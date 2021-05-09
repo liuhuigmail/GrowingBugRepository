@@ -1,0 +1,45 @@
+diff --git a/src/main/java/org/joda/time/DateTimeZone.java b/src/main/java/org/joda/time/DateTimeZone.java
+index afa75d79..3ad5cfeb 100644
+--- a/src/main/java/org/joda/time/DateTimeZone.java
++++ b/src/main/java/org/joda/time/DateTimeZone.java
+@@ -93,7 +93,6 @@ public abstract class DateTimeZone implements Serializable {
+     /** The time zone for Universal Coordinated Time */
+     public static final DateTimeZone UTC = new FixedDateTimeZone("UTC", "UTC", 0, 0);
+     /** Maximum offset. */
+-    private static final int MAX_MILLIS = (86400 * 1000) - 1;
+ 
+     /** The instance that is providing time zones. */
+     private static Provider cProvider;
+@@ -255,19 +254,16 @@ public abstract class DateTimeZone implements Serializable {
+         if (hoursOffset == 0 && minutesOffset == 0) {
+             return DateTimeZone.UTC;
+         }
+-        if (hoursOffset < -23 || hoursOffset > 23) {
+-            throw new IllegalArgumentException("Hours out of range: " + hoursOffset);
+-        }
+         if (minutesOffset < 0 || minutesOffset > 59) {
+             throw new IllegalArgumentException("Minutes out of range: " + minutesOffset);
+         }
+         int offset = 0;
+         try {
+-            int hoursInMinutes = hoursOffset * 60;
++            int hoursInMinutes = FieldUtils.safeMultiply(hoursOffset, 60);
+             if (hoursInMinutes < 0) {
+-                minutesOffset = hoursInMinutes - minutesOffset;
++                minutesOffset = FieldUtils.safeAdd(hoursInMinutes, -minutesOffset);
+             } else {
+-                minutesOffset = hoursInMinutes + minutesOffset;
++                minutesOffset = FieldUtils.safeAdd(hoursInMinutes, minutesOffset);
+             }
+             offset = FieldUtils.safeMultiply(minutesOffset, DateTimeConstants.MILLIS_PER_MINUTE);
+         } catch (ArithmeticException ex) {
+@@ -283,9 +279,6 @@ public abstract class DateTimeZone implements Serializable {
+      * @return the DateTimeZone object for the offset
+      */
+     public static DateTimeZone forOffsetMillis(int millisOffset) {
+-        if (millisOffset < -MAX_MILLIS || millisOffset > MAX_MILLIS) {
+-            throw new IllegalArgumentException("Millis out of range: " + millisOffset);
+-        }
+         String id = printOffset(millisOffset);
+         return fixedOffsetZone(id, millisOffset);
+     }

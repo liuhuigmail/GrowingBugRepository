@@ -1,0 +1,10 @@
+org.apache.commons.imaging.common.bytesource.ByteSourceImageTest
+org.apache.commons.imaging.common.bytesource.ByteSourceTest
+org.apache.commons.imaging.formats.tiff.TiffBaseTest
+org.apache.commons.imaging.formats.tiff.TiffReadTest
+org.apache.commons.imaging.formats.tiff.TiffRoundtripTest
+org.apache.commons.imaging.formats.xmp.XmpDumpTest
+org.apache.commons.imaging.formats.xmp.XmpUpdateTest
+org.apache.commons.imaging.ImagingTest
+org.apache.commons.imaging.ImagingTestConstants
+org.apache.commons.imaging.test.util.FileSystemTraversal

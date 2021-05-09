@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/codec/digest/MurmurHash3.java b/src/main/java/org/apache/commons/codec/digest/MurmurHash3.java
+index c7a149e8..95ab8b1e 100644
+--- a/src/main/java/org/apache/commons/codec/digest/MurmurHash3.java
++++ b/src/main/java/org/apache/commons/codec/digest/MurmurHash3.java
+@@ -923,8 +923,6 @@ public final class MurmurHash3 {
+          * @return The 32-bit hash
+          */
+         public final int end() {
+-            // Allow calling end() again after adding no data to return the same result.
+-            int result = hash;
+             // ************
+             // Note: This fails to apply masking using 0xff to the 3 remaining bytes.
+             // ************
+@@ -941,12 +939,12 @@ public final class MurmurHash3 {
+                 k1 *= C1_32;
+                 k1 = Integer.rotateLeft(k1, R1_32);
+                 k1 *= C2_32;
+-                result ^= k1;
++                hash ^= k1;
+             }
+ 
+             // finalization
+-            result ^= totalLen;
+-            return fmix32(result);
++            hash ^= totalLen;
++            return fmix32(hash);
+         }
+ 
+         /**

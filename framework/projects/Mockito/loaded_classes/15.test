@@ -1,0 +1,3 @@
+org.mockito.configuration.MockitoConfiguration
+org.mockitousage.bugs.InjectMocksShouldTryPropertySettersFirstBeforeFieldAccessTest
+org.mockitousage.configuration.SmartMock

@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/tika/mime/MimeTypes.java b/src/main/java/org/apache/tika/mime/MimeTypes.java
+index 5afc899f9..eb7279def 100644
+--- a/src/main/java/org/apache/tika/mime/MimeTypes.java
++++ b/src/main/java/org/apache/tika/mime/MimeTypes.java
+@@ -167,7 +167,7 @@ public final class MimeTypes {
+      *         <code>null</code> if none is found.
+      */
+     public MimeType getMimeType(String name) {
+-        MimeType type = patterns.matches(name.toLowerCase());
++        MimeType type = patterns.matches(name);
+         if (type != null)
+             return type;
+         // if it's null here, then return the default type

@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionToBlockMutator.java b/src/com/google/javascript/jscomp/FunctionToBlockMutator.java
+index 3fee1a9..64764c0 100644
+--- a/src/com/google/javascript/jscomp/FunctionToBlockMutator.java
++++ b/src/com/google/javascript/jscomp/FunctionToBlockMutator.java
+@@ -149,8 +149,6 @@ class FunctionToBlockMutator {
+                 "inline_",
+                 isCallInLoop)));
+     // Make label names unique to this instance.
+-    new RenameLabels(compiler, new LabelNameSupplier(idSupplier), false)
+-        .process(null, fnNode);
+   }
+ 
+   static class LabelNameSupplier implements Supplier<String> {
+diff --git a/src/com/google/javascript/jscomp/RenameLabels.java b/src/com/google/javascript/jscomp/RenameLabels.java
+index 28e52ee..a2f53cf 100644
+--- a/src/com/google/javascript/jscomp/RenameLabels.java
++++ b/src/com/google/javascript/jscomp/RenameLabels.java
+@@ -212,7 +212,7 @@ final class RenameLabels implements CompilerPass {
+       String name = nameNode.getString();
+       LabelInfo li = getLabelInfo(name);
+       // This is a label...
+-      if (li.referenced || !removeUnused) {
++      if (li.referenced) {
+         String newName = getNameForId(li.id);
+         if (!name.equals(newName)) {
+           // ... and it is used, give it the short name.

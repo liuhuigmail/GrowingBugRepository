@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+index 8860a141..312c8e87 100644
+--- a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+@@ -450,8 +450,7 @@ public class UrlValidator implements Serializable {
+         }
+ 
+         try {
+-            // Don't omit host otherwise leading path may be taken as host if it starts with //
+-            URI uri = new URI(null,"localhost",path,null);
++            URI uri = new URI(null,null,path,null);
+             String norm = uri.normalize().getPath();
+             if (norm.startsWith("/../") // Trying to go via the parent dir 
+              || norm.equals("/..")) {   // Trying to go to the parent dir

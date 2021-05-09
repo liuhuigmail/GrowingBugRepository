@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 09aba12..3fb4813 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1518,14 +1518,11 @@ final class TypedScopeCreator implements ScopeCreator {
+             || FunctionTypeBuilder.isFunctionTypeDeclaration(info));
+       }
+ 
+-      if (inferred && rhsValue != null && rhsValue.isFunction()) {
++      if (inferred) {
+         // Determining declaration for #2
+-        if (info != null) {
+-          inferred = false;
+-        } else if (!scope.isDeclared(qName, false) &&
+-                   n.isUnscopedQualifiedName()) {
+-          inferred = false;
+-        }
++        inferred = !(rhsValue != null &&
++            rhsValue.isFunction() &&
++            (info != null || !scope.isDeclared(qName, false)));
+       }
+ 
+       if (!inferred) {

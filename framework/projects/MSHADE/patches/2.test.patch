@@ -1,0 +1,190 @@
+diff --git a/src/test/java/org/apache/maven/plugins/shade/resource/ApacheLicenseResourceTransformerTest.java b/src/test/java/org/apache/maven/plugins/shade/resource/ApacheLicenseResourceTransformerTest.java
+deleted file mode 100644
+index c070909..0000000
+--- a/src/test/java/org/apache/maven/plugins/shade/resource/ApacheLicenseResourceTransformerTest.java
++++ /dev/null
+@@ -1,41 +0,0 @@
+-package org.apache.maven.plugins.shade.resource;
+-
+-import java.util.Locale;
+-
+-import junit.framework.TestCase;
+-
+-/**
+- * Test for {@link ApacheLicenseResourceTransformer}.
+- * 
+- * @author Benjamin Bentmann
+- * @version $Id$
+- */
+-public class ApacheLicenseResourceTransformerTest
+-    extends TestCase
+-{
+-
+-    private ApacheLicenseResourceTransformer transformer;
+-
+-    static
+-    {
+-        /*
+-         * NOTE: The Turkish locale has an usual case transformation for the letters "I" and "i", making it a prime
+-         * choice to test for improper case-less string comparisions.
+-         */
+-        Locale.setDefault( new Locale( "tr" ) );
+-    }
+-
+-    public void setUp()
+-    {
+-        this.transformer = new ApacheLicenseResourceTransformer();
+-    }
+-
+-    public void testCanTransformResource()
+-    {
+-        assertTrue( this.transformer.canTransformResource( "META-INF/LICENSE" ) );
+-        assertTrue( this.transformer.canTransformResource( "META-INF/LICENSE.TXT" ) );
+-        assertTrue( this.transformer.canTransformResource( "META-INF/License.txt" ) );
+-        assertFalse( this.transformer.canTransformResource( "META-INF/MANIFEST.MF" ) );
+-    }
+-
+-}
+diff --git a/src/test/java/org/apache/maven/plugins/shade/resource/ApacheNoticeResourceTransformerTest.java b/src/test/java/org/apache/maven/plugins/shade/resource/ApacheNoticeResourceTransformerTest.java
+deleted file mode 100644
+index 9e35a03..0000000
+--- a/src/test/java/org/apache/maven/plugins/shade/resource/ApacheNoticeResourceTransformerTest.java
++++ /dev/null
+@@ -1,41 +0,0 @@
+-package org.apache.maven.plugins.shade.resource;
+-
+-import java.util.Locale;
+-
+-import junit.framework.TestCase;
+-
+-/**
+- * Test for {@link ApacheNoticeResourceTransformer}.
+- * 
+- * @author Benjamin Bentmann
+- * @version $Id$
+- */
+-public class ApacheNoticeResourceTransformerTest
+-    extends TestCase
+-{
+-
+-    private ApacheNoticeResourceTransformer transformer;
+-
+-    static
+-    {
+-        /*
+-         * NOTE: The Turkish locale has an usual case transformation for the letters "I" and "i", making it a prime
+-         * choice to test for improper case-less string comparisions.
+-         */
+-        Locale.setDefault( new Locale( "tr" ) );
+-    }
+-
+-    public void setUp()
+-    {
+-        this.transformer = new ApacheNoticeResourceTransformer();
+-    }
+-
+-    public void testCanTransformResource()
+-    {
+-        assertTrue( this.transformer.canTransformResource( "META-INF/NOTICE" ) );
+-        assertTrue( this.transformer.canTransformResource( "META-INF/NOTICE.TXT" ) );
+-        assertTrue( this.transformer.canTransformResource( "META-INF/Notice.txt" ) );
+-        assertFalse( this.transformer.canTransformResource( "META-INF/MANIFEST.MF" ) );
+-    }
+-
+-}
+diff --git a/src/test/java/org/apache/maven/plugins/shade/resource/AppendingTransformerTest.java b/src/test/java/org/apache/maven/plugins/shade/resource/AppendingTransformerTest.java
+deleted file mode 100644
+index 65b3901..0000000
+--- a/src/test/java/org/apache/maven/plugins/shade/resource/AppendingTransformerTest.java
++++ /dev/null
+@@ -1,42 +0,0 @@
+-package org.apache.maven.plugins.shade.resource;
+-
+-import java.util.Locale;
+-
+-import junit.framework.TestCase;
+-
+-/**
+- * Test for {@link AppendingTransformer}.
+- * 
+- * @author Benjamin Bentmann
+- * @version $Id$
+- */
+-public class AppendingTransformerTest
+-    extends TestCase
+-{
+-
+-    private AppendingTransformer transformer;
+-
+-    static
+-    {
+-        /*
+-         * NOTE: The Turkish locale has an usual case transformation for the letters "I" and "i", making it a prime
+-         * choice to test for improper case-less string comparisions.
+-         */
+-        Locale.setDefault( new Locale( "tr" ) );
+-    }
+-
+-    public void setUp()
+-    {
+-        this.transformer = new AppendingTransformer();
+-    }
+-
+-    public void testCanTransformResource()
+-    {
+-        this.transformer.resource = "abcdefghijklmnopqrstuvwxyz";
+-
+-        assertTrue( this.transformer.canTransformResource( "abcdefghijklmnopqrstuvwxyz" ) );
+-        assertTrue( this.transformer.canTransformResource( "ABCDEFGHIJKLMNOPQRSTUVWXYZ" ) );
+-        assertFalse( this.transformer.canTransformResource( "META-INF/MANIFEST.MF" ) );
+-    }
+-
+-}
+diff --git a/src/test/java/org/apache/maven/plugins/shade/resource/XmlAppendingTransformerTest.java b/src/test/java/org/apache/maven/plugins/shade/resource/XmlAppendingTransformerTest.java
+deleted file mode 100644
+index 6a653e8..0000000
+--- a/src/test/java/org/apache/maven/plugins/shade/resource/XmlAppendingTransformerTest.java
++++ /dev/null
+@@ -1,42 +0,0 @@
+-package org.apache.maven.plugins.shade.resource;
+-
+-import java.util.Locale;
+-
+-import junit.framework.TestCase;
+-
+-/**
+- * Test for {@link XmlAppendingTransformer}.
+- * 
+- * @author Benjamin Bentmann
+- * @version $Id$
+- */
+-public class XmlAppendingTransformerTest
+-    extends TestCase
+-{
+-
+-    private XmlAppendingTransformer transformer;
+-
+-    static
+-    {
+-        /*
+-         * NOTE: The Turkish locale has an usual case transformation for the letters "I" and "i", making it a prime
+-         * choice to test for improper case-less string comparisions.
+-         */
+-        Locale.setDefault( new Locale( "tr" ) );
+-    }
+-
+-    public void setUp()
+-    {
+-        this.transformer = new XmlAppendingTransformer();
+-    }
+-
+-    public void testCanTransformResource()
+-    {
+-        this.transformer.resource = "abcdefghijklmnopqrstuvwxyz";
+-
+-        assertTrue( this.transformer.canTransformResource( "abcdefghijklmnopqrstuvwxyz" ) );
+-        assertTrue( this.transformer.canTransformResource( "ABCDEFGHIJKLMNOPQRSTUVWXYZ" ) );
+-        assertFalse( this.transformer.canTransformResource( "META-INF/MANIFEST.MF" ) );
+-    }
+-
+-}

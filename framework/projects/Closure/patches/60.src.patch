@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index 43a296f..7f20c2e 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -105,8 +105,6 @@ public final class NodeUtil {
+         // ignoring side-effects
+         return TernaryValue.TRUE;
+ 
+-      case Token.VOID:
+-        return TernaryValue.FALSE;
+ 
+       default:
+         return getPureBooleanValue(n);
+@@ -135,10 +133,7 @@ public final class NodeUtil {
+         return TernaryValue.FALSE;
+ 
+       case Token.VOID:
+-        if (!mayHaveSideEffects(n.getFirstChild())) {
+           return TernaryValue.FALSE;
+-        }
+-        break;
+ 
+       case Token.NAME:
+         String name = n.getString();

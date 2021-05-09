@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/lang3/StringUtils.java b/src/main/java/org/apache/commons/lang3/StringUtils.java
+index 4aac02d..a90b067 100644
+--- a/src/main/java/org/apache/commons/lang3/StringUtils.java
++++ b/src/main/java/org/apache/commons/lang3/StringUtils.java
+@@ -1443,21 +1443,13 @@ public class StringUtils {
+ 		}
+ 		int csLength = cs.length();
+ 		int searchLength = searchChars.length;
+-		int csLastIndex = csLength - 1;
+-		int searchLastIndex = searchLength - 1;
+ 		for (int i = 0; i < csLength; i++) {
+ 			char ch = cs.charAt(i);
+ 			for (int j = 0; j < searchLength; j++) {
+ 				if (searchChars[j] == ch) {
+-					if (i < csLastIndex && j < searchLastIndex && ch >= Character.MIN_HIGH_SURROGATE && ch <= Character.MAX_HIGH_SURROGATE) {
+ 						// ch is a supplementary character
+-						if (searchChars[j + 1] == cs.charAt(i + 1)) {
+-							return true;
+-						}
+-					} else {
+ 						// ch is in the Basic Multilingual Plane
+ 						return true;
+-					}
+ 				}
+ 			}
+ 		}

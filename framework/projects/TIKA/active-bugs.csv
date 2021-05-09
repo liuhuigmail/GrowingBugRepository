@@ -1,0 +1,7 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,9477c5e4a38dbacf794b663c757617a8ee07432a,b12c01d9b56053554cec501aab0530f7f4352daf,TIKA-56,https://issues.apache.org/jira/browse/TIKA-56
+2,0dd035b9be57a71ba23a29120f1e2153a3178b5b,fa6bb7e3c92145d29cd97820718ece69fd6ffd62,TIKA-107,https://issues.apache.org/jira/browse/TIKA-107
+3,4937653add95f71d58d064b8bd7f84b402e7a002,836c4b953552c4dd4359d45197b0f241824ba32c,TIKA-140,https://issues.apache.org/jira/browse/TIKA-140
+4,aac081e097de07b99e9d4975bf7da5be55114492,e43a19e433b6085b91bf44f534dbf055db313026,TIKA-179,https://issues.apache.org/jira/browse/TIKA-179
+5,2699cf47e222d61b5c4f5ab0757c63199e3fd62a,dd352d27c1b955103b2be76f2d5bca88f3b8e48b,TIKA-189,https://issues.apache.org/jira/browse/TIKA-189
+6,2a77cf379166e9c2e5144d9cafa37a2146563a36,f6f9d4fe18590bfd8b03e5e87b75af9a18ee059e,TIKA-197,https://issues.apache.org/jira/browse/TIKA-197

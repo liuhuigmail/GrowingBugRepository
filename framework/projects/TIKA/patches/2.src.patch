@@ -1,0 +1,129 @@
+diff --git a/src/main/java/org/apache/tika/mime/MimeType.java b/src/main/java/org/apache/tika/mime/MimeType.java
+index 0103bcf37..b30dcdb54 100644
+--- a/src/main/java/org/apache/tika/mime/MimeType.java
++++ b/src/main/java/org/apache/tika/mime/MimeType.java
+@@ -46,9 +46,7 @@ public final class MimeType implements Comparable<MimeType> {
+      *         <code>false</code> otherwise
+      */
+     public static boolean isValid(String name) {
+-        if (name == null) {
+-            throw new IllegalArgumentException("Name is missing");
+-        }
++        assert name != null;
+ 
+         boolean slash = false;
+         for (int i = 0; i < name.length(); i++) {
+@@ -119,12 +117,8 @@ public final class MimeType implements Comparable<MimeType> {
+      * @param name media type name
+      */
+     MimeType(MimeTypes registry, String name) {
+-        if (registry == null) {
+-            throw new IllegalArgumentException("Registry is missing");
+-        }
+-        if (!MimeType.isValid(name) || !name.equals(name.toLowerCase())) {
+-            throw new IllegalArgumentException("Media type name is invalid");
+-        }
++        assert registry != null;
++        assert isValid(name) && name.equals(name.toLowerCase());
+         this.registry = registry;
+         this.name = name;
+     }
+@@ -148,12 +142,7 @@ public final class MimeType implements Comparable<MimeType> {
+     }
+ 
+     public void setSuperType(MimeType type) throws MimeTypeException {
+-        if (type == null) {
+-            throw new IllegalArgumentException("MimeType is missing");
+-        }
+-        if (type.registry != registry) {
+-            throw new IllegalArgumentException("MimeType is from a different registry");
+-        }
++        assert type != null && type.registry == registry;
+         if (this.isDescendantOf(type)) {
+             // ignore, already a descendant of the given type
+         } else if (this == type) {
+@@ -180,9 +169,7 @@ public final class MimeType implements Comparable<MimeType> {
+     }
+ 
+     public boolean isDescendantOf(MimeType type) {
+-        if (type == null) {
+-            throw new IllegalArgumentException("MimeType is missing");
+-        }
++        assert type != null;
+         synchronized (registry) {
+             for (MimeType t = superType; t != null; t = t.superType) {
+                 if (t == type) {
+@@ -208,9 +195,7 @@ public final class MimeType implements Comparable<MimeType> {
+      * @param description media type description
+      */
+     public void setDescription(String description) {
+-        if (description == null) {
+-            throw new IllegalArgumentException("Description is missing");
+-        }
++        assert description != null;
+         this.description = description;
+     }
+ 
+@@ -375,9 +360,7 @@ public final class MimeType implements Comparable<MimeType> {
+     //----------------------------------------------------------< Comparable >
+ 
+     public int compareTo(MimeType type) {
+-        if (type == null) {
+-            throw new IllegalArgumentException("MimeType is missing");
+-        }
++        assert type != null;
+         if (type == this) {
+             return 0;
+         } else if (this.isDescendantOf(type)) {
+diff --git a/src/main/java/org/apache/tika/mime/MimeTypes.java b/src/main/java/org/apache/tika/mime/MimeTypes.java
+index 05585d55e..9048d4d19 100644
+--- a/src/main/java/org/apache/tika/mime/MimeTypes.java
++++ b/src/main/java/org/apache/tika/mime/MimeTypes.java
+@@ -120,9 +120,7 @@ public final class MimeTypes {
+      * @return matching MIME type, or <code>null</code> if no match is found
+      */
+     public MimeType getMimeType(byte[] data) {
+-        if (data == null) {
+-            throw new IllegalArgumentException("Data is missing");
+-        }
++        assert data != null;
+ 
+         // First, check for XML descriptions (level by level)
+         for (MimeType type : xmls) {
+@@ -168,9 +166,7 @@ public final class MimeTypes {
+      * @throws IOException if the stream can not be read
+      */
+     private byte[] readMagicHeader(InputStream stream) throws IOException {
+-        if (stream == null) {
+-            throw new IllegalArgumentException("InputStream is missing");
+-        }
++        assert stream != null;
+ 
+         byte[] bytes = new byte[getMinLength()];
+         int totalRead = 0;
+diff --git a/src/main/java/org/apache/tika/mime/Patterns.java b/src/main/java/org/apache/tika/mime/Patterns.java
+index c5653b2c0..3af2a16d9 100644
+--- a/src/main/java/org/apache/tika/mime/Patterns.java
++++ b/src/main/java/org/apache/tika/mime/Patterns.java
+@@ -58,9 +58,7 @@ class Patterns {
+         });
+ 
+     public void add(String pattern, MimeType type) throws MimeTypeException {
+-        if (pattern == null || type == null) {
+-            throw new IllegalArgumentException("Pattern and/or mime type is missing");
+-        }
++        assert pattern != null && type != null;
+ 
+         if (pattern.indexOf('*') == -1
+                 && pattern.indexOf('?') == -1
+@@ -130,9 +128,7 @@ class Patterns {
+      * (since this covers the majority of the patterns).
+      */
+     public MimeType matches(String name) {
+-        if (name == null) {
+-            throw new IllegalArgumentException("Name is missing");
+-        }
++        assert name != null;
+ 
+         // First, try exact match of the provided resource name
+         if (names.containsKey(name)) {

@@ -1,0 +1,356 @@
+diff --git a/src/org/apache/xml/security/encryption/XMLCipher.java b/src/org/apache/xml/security/encryption/XMLCipher.java
+index 6742940c..9eb21140 100644
+--- a/src/org/apache/xml/security/encryption/XMLCipher.java
++++ b/src/org/apache/xml/security/encryption/XMLCipher.java
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright 2003-2010 The Apache Software Foundation.
++ * Copyright 2003-2009 The Apache Software Foundation.
+  *
+  *  Licensed under the Apache License, Version 2.0 (the "License");
+  *  you may not use this file except in compliance with the License.
+@@ -1264,14 +1264,7 @@ public class XMLCipher {
+ 			KeyInfo ki = encryptedKey.getKeyInfo();
+ 			if (ki != null) {
+ 				try {
+-					String keyWrapAlg = encryptedKey.getEncryptionMethod().getAlgorithm();
+-					String keyType = JCEMapper.getJCEKeyAlgorithmFromURI(keyWrapAlg);
+-					if ("RSA".equals(keyType)) {
+-						_key = ki.getPrivateKey();
+-					}
+-					else {
+-						_key = ki.getSecretKey();
+-					}
++					_key = ki.getSecretKey();
+ 				}
+ 				catch (Exception e) {
+ 				}
+diff --git a/src/org/apache/xml/security/keys/KeyInfo.java b/src/org/apache/xml/security/keys/KeyInfo.java
+index 22705eaf..c5aee298 100644
+--- a/src/org/apache/xml/security/keys/KeyInfo.java
++++ b/src/org/apache/xml/security/keys/KeyInfo.java
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright  1999-2010 The Apache Software Foundation.
++ * Copyright  1999-2004 The Apache Software Foundation.
+  *
+  *  Licensed under the Apache License, Version 2.0 (the "License");
+  *  you may not use this file except in compliance with the License.
+@@ -18,7 +18,6 @@ package org.apache.xml.security.keys;
+ 
+ 
+ 
+-import java.security.PrivateKey;
+ import java.security.PublicKey;
+ import java.security.cert.X509Certificate;
+ import java.util.ArrayList;
+@@ -94,14 +93,9 @@ public class KeyInfo extends SignatureElementProxy {
+    /** {@link org.apache.commons.logging} logging facility */
+     static org.apache.commons.logging.Log log = 
+         org.apache.commons.logging.LogFactory.getLog(KeyInfo.class.getName());
+-    
+     List x509Datas=null;
+     List encryptedKeys=null;
+     
+-    // We need at least one StorageResolver otherwise
+-    // the KeyResolvers would not be called.
+-    // The default StorageResolver is null.
+-    
+     static final List nullList;
+     static {
+     	List list = new ArrayList();
+@@ -722,9 +716,9 @@ public class KeyInfo extends SignatureElementProxy {
+    }
+ 
+    /**
+-    * Searches the library wide KeyResolvers for public keys
++    * Searches the library wide keyresolvers for public keys
+     *
+-    * @return The public key contained in this Node.
++    * @return The publick contained in this Node.
+     * @throws KeyResolverException
+     */
+    PublicKey getPublicKeyFromStaticResolvers() throws KeyResolverException {
+@@ -759,9 +753,9 @@ public class KeyInfo extends SignatureElementProxy {
+    }
+ 
+    /**
+-    * Searches the per-KeyInfo KeyResolvers for public keys
++    * Searches the per-KeyInfo keyresolvers for public keys
+     *
+-    * @return The public key contained in this Node.
++    * @return The publick contained in this Node.
+     * @throws KeyResolverException
+     */
+    PublicKey getPublicKeyFromInternalResolvers() throws KeyResolverException {
+@@ -797,7 +791,7 @@ public class KeyInfo extends SignatureElementProxy {
+    /**
+     * Method getX509Certificate
+     *
+-    * @return The certificate contained in this KeyInfo
++    * @return The certificate contined in this KeyInfo
+     * @throws KeyResolverException
+     */
+    public X509Certificate getX509Certificate() throws KeyResolverException {
+@@ -937,16 +931,16 @@ public class KeyInfo extends SignatureElementProxy {
+    }
+ 
+    /**
+-    * Searches the library wide KeyResolvers for Secret keys
++    * Searches the library wide keyresolvers for Secret keys
+     *
+     * @return the secret key contained in this KeyInfo
+     * @throws KeyResolverException
+     */
+ 
+    SecretKey getSecretKeyFromStaticResolvers() throws KeyResolverException {
+-      final int length=KeyResolver.length();
+-      int storageLength=this._storageResolvers.size();
+-      Iterator it = KeyResolver.iterator();
++	  final int length=KeyResolver.length();
++	  int storageLength=this._storageResolvers.size();
++	  Iterator it = KeyResolver.iterator();
+       for (int i = 0; i < length; i++) {
+          KeyResolverSpi keyResolver = (KeyResolverSpi) it.next();
+ 
+@@ -975,18 +969,18 @@ public class KeyInfo extends SignatureElementProxy {
+    }
+ 
+    /**
+-    * Searches the per-KeyInfo KeyResolvers for secret keys
++    * Searches the per-KeyInfo keyresolvers for secret keys
+     *
+     * @return the secret key contained in this KeyInfo
+     * @throws KeyResolverException
+     */
+ 
+    SecretKey getSecretKeyFromInternalResolvers() throws KeyResolverException {
+-       int storageLength=this._storageResolvers.size();
++	   int storageLength=this._storageResolvers.size();
+       for (int i = 0; i < this.lengthInternalKeyResolver(); i++) {
+          KeyResolverSpi keyResolver = this.itemInternalKeyResolver(i);
+          if (log.isDebugEnabled())
+-            log.debug("Try " + keyResolver.getClass().getName());
++         	log.debug("Try " + keyResolver.getClass().getName());
+ 
+          Node currentChild=this._constructionElement.getFirstChild();
+          String uri=this.getBaseURI();
+@@ -1011,98 +1005,6 @@ public class KeyInfo extends SignatureElementProxy {
+       return null;
+    }
+ 
+-   /**
+-    * This method returns a private key. This is for Key Transport in XML Encryption.
+-    * @return the private key contained in this KeyInfo
+-    * @throws KeyResolverException
+-    */
+-   public PrivateKey getPrivateKey() throws KeyResolverException {
+-      PrivateKey pk = this.getPrivateKeyFromInternalResolvers();
+-
+-      if (pk != null) {
+-         log.debug("I could find a private key using the per-KeyInfo key resolvers");
+-         return pk;
+-      } 
+-      log.debug("I couldn't find a secret key using the per-KeyInfo key resolvers");
+-
+-      pk = this.getPrivateKeyFromStaticResolvers();
+-      if (pk != null) {
+-         log.debug("I could find a private key using the system-wide key resolvers");
+-         return pk;
+-      } 
+-      log.debug("I couldn't find a private key using the system-wide key resolvers");
+-      
+-      return null;
+-   }
+-
+-   /**
+-    * Searches the library wide KeyResolvers for Private keys
+-    *
+-    * @return the private key contained in this KeyInfo
+-    * @throws KeyResolverException
+-    */
+-   PrivateKey getPrivateKeyFromStaticResolvers() throws KeyResolverException {
+-      final int length=KeyResolver.length();
+-      Iterator it = KeyResolver.iterator();
+-      for (int i = 0; i < length; i++) {
+-         KeyResolverSpi keyResolver = (KeyResolverSpi) it.next();
+-
+-         Node currentChild=this._constructionElement.getFirstChild();
+-         String uri=this.getBaseURI();
+-         while (currentChild!=null)      {    
+-            if (currentChild.getNodeType() == Node.ELEMENT_NODE) {
+-                // not using StorageResolvers at the moment
+-                // since they cannot return private keys
+-                StorageResolver storage = null;
+-                PrivateKey pk = keyResolver.engineLookupAndResolvePrivateKey(
+-                        (Element) currentChild,
+-                        uri,
+-                        storage);
+-
+-                if (pk != null) {
+-                    return pk;
+-                }                     
+-            }
+-            currentChild=currentChild.getNextSibling();
+-         }
+-      }
+-      return null;
+-   }
+-
+-   /**
+-    * Searches the per-KeyInfo KeyResolvers for private keys
+-    *
+-    * @return the private key contained in this KeyInfo
+-    * @throws KeyResolverException
+-    */
+-
+-   PrivateKey getPrivateKeyFromInternalResolvers() throws KeyResolverException {
+-      for (int i = 0; i < this.lengthInternalKeyResolver(); i++) {
+-         KeyResolverSpi keyResolver = this.itemInternalKeyResolver(i);
+-         if (log.isDebugEnabled())
+-            log.debug("Try " + keyResolver.getClass().getName());
+-
+-         Node currentChild=this._constructionElement.getFirstChild();
+-         String uri=this.getBaseURI();
+-         while (currentChild!=null)      {    
+-            if (currentChild.getNodeType() == Node.ELEMENT_NODE) {
+-                // not using StorageResolvers at the moment
+-                // since they cannot return private keys
+-                StorageResolver storage = null;
+-                PrivateKey pk = keyResolver
+-                       .engineLookupAndResolvePrivateKey((Element) currentChild, uri, storage);
+-
+-                if (pk != null) {
+-                   return pk;
+-                }                    
+-             }            
+-            currentChild=currentChild.getNextSibling();
+-         }
+-      }
+-
+-      return null;
+-   }
+-
+    /**
+     * Stores the individual (per-KeyInfo) {@link KeyResolver}s
+     */
+@@ -1150,11 +1052,11 @@ public class KeyInfo extends SignatureElementProxy {
+     * @param storageResolver
+     */
+    public void addStorageResolver(StorageResolver storageResolver) {
+-	   if  (_storageResolvers == nullList) {
+-	       // Replace the default null StorageResolver
+-		   _storageResolvers = new ArrayList();
++	   if  (_storageResolvers == nullList  ){
++		   _storageResolvers=new ArrayList();
+ 	   }      
+-       this._storageResolvers.add(storageResolver);
++         this._storageResolvers.add(storageResolver);
++      
+    }
+ 
+    //J-
+diff --git a/src/org/apache/xml/security/keys/keyresolver/KeyResolverSpi.java b/src/org/apache/xml/security/keys/keyresolver/KeyResolverSpi.java
+index 3fee079e..c777bec1 100644
+--- a/src/org/apache/xml/security/keys/keyresolver/KeyResolverSpi.java
++++ b/src/org/apache/xml/security/keys/keyresolver/KeyResolverSpi.java
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright  1999-2010 The Apache Software Foundation.
++ * Copyright  1999-2004 The Apache Software Foundation.
+  *
+  *  Licensed under the Apache License, Version 2.0 (the "License");
+  *  you may not use this file except in compliance with the License.
+@@ -16,7 +16,6 @@
+  */
+ package org.apache.xml.security.keys.keyresolver;
+ 
+-import java.security.PrivateKey;
+ import java.security.PublicKey;
+ import java.security.cert.X509Certificate;
+ import java.util.HashMap;
+@@ -41,7 +40,8 @@ import org.w3c.dom.Element;
+  */
+ public abstract class KeyResolverSpi {
+    /**
+-    * This method returns whether the KeyResolverSpi is able to perform the requested action.
++    * This method helps the {@link org.apache.xml.security.utils.resolver.ResourceResolver} to decide whether a
++    * {@link org.apache.xml.security.utils.resolver.ResourceResolverSpi} is able to perform the requested action.
+     *
+     * @param element
+     * @param BaseURI
+@@ -70,7 +70,7 @@ public abstract class KeyResolverSpi {
+     };
+        
+    /**
+-    * Method engineLookupAndResolvePublicKey
++    * Method engineResolvePublicKey
+     *
+     * @param element
+     * @param BaseURI
+@@ -119,7 +119,7 @@ public abstract class KeyResolverSpi {
+     };
+     
+    /**
+-    * Method engineLookupResolveX509Certificate
++    * Method engineResolveCertificate
+     *
+     * @param element
+     * @param BaseURI
+@@ -154,7 +154,7 @@ public abstract class KeyResolverSpi {
+     }; 
+     
+    /**
+-    * Method engineLookupAndResolveSecretKey
++    * Method engineResolveSecretKey
+     *
+     * @param element
+     * @param BaseURI
+@@ -171,27 +171,6 @@ public abstract class KeyResolverSpi {
+ 		   return null;
+    		return tmp.engineResolveSecretKey(element, BaseURI, storage);   		
+    }
+-   
+-   /**
+-    * Method engineLookupAndResolvePrivateKey
+-    *
+-    * @param element
+-    * @param BaseURI
+-    * @param storage
+-    * @return resolved PrivateKey key from the registered from the elements
+-    *
+-    * @throws KeyResolverException
+-    */
+-   public PrivateKey engineLookupAndResolvePrivateKey(
+-      Element element, String BaseURI, StorageResolver storage)
+-         throws KeyResolverException {
+-       // This method was added later, it has no equivalent
+-       // engineResolvePrivateKey() in the old API.
+-       // We cannot throw UnsupportedOperationException because
+-       // KeyResolverSpi implementations who don't know about
+-       // this method would stop the search too early.
+-       return null;
+-   }
+ 
+    /** Field _properties */
+    protected java.util.Map _properties = null;
+diff --git a/src/org/apache/xml/security/keys/keyresolver/implementations/RetrievalMethodResolver.java b/src/org/apache/xml/security/keys/keyresolver/implementations/RetrievalMethodResolver.java
+index 7fc1f98c..831d2763 100644
+--- a/src/org/apache/xml/security/keys/keyresolver/implementations/RetrievalMethodResolver.java
++++ b/src/org/apache/xml/security/keys/keyresolver/implementations/RetrievalMethodResolver.java
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright 1999-2010 The Apache Software Foundation.
++ * Copyright 1999-2009 The Apache Software Foundation.
+  *
+  *  Licensed under the Apache License, Version 2.0 (the "License");
+  *  you may not use this file except in compliance with the License.
+@@ -193,7 +193,7 @@ public class RetrievalMethodResolver extends KeyResolverSpi {
+     } 
+    
+     /**
+-     * Retrieves a PublicKey from the given information
++     * Retrieves a x509Certificate from the given information
+      * @param e
+      * @param BaseURI
+      * @param storage

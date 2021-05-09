@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,603cc5a72bfcac0c4fc0f94422fdcf5522fde50b,439d3d5d372887ea92473f50f8b06b501eddf59d,VALIDATOR-444,https://issues.apache.org/jira/browse/VALIDATOR-444
+2,e7ec659df7800aabf6386420f4575f626b19e613,e9bda17e9a27e4e8d1b951854baf838f0075619f,VALIDATOR-467,https://issues.apache.org/jira/browse/VALIDATOR-467
+3,4ab18ec3e70f283fb98c72e3042553358ae85145,81d60ae98cfd5ae0bff1ccecb7654bdbc6bc2692,VALIDATOR-464,https://issues.apache.org/jira/browse/VALIDATOR-464
+4,81d60ae98cfd5ae0bff1ccecb7654bdbc6bc2692,a3c5da2d0e53003885a6af4875e40565a07b05a4,VALIDATOR-302,https://issues.apache.org/jira/browse/VALIDATOR-302

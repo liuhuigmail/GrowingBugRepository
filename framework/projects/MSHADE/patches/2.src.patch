@@ -1,0 +1,81 @@
+diff --git a/src/main/java/org/apache/maven/plugins/shade/resource/ApacheLicenseResourceTransformer.java b/src/main/java/org/apache/maven/plugins/shade/resource/ApacheLicenseResourceTransformer.java
+index ed64ca7..74a45f7 100644
+--- a/src/main/java/org/apache/maven/plugins/shade/resource/ApacheLicenseResourceTransformer.java
++++ b/src/main/java/org/apache/maven/plugins/shade/resource/ApacheLicenseResourceTransformer.java
+@@ -27,21 +27,18 @@ import java.util.jar.JarOutputStream;
+ 
+ /**
+  * Prevents duplicate copies of the license
++ *
+  */
+ public class ApacheLicenseResourceTransformer
+     implements ResourceTransformer
+ {
+-
+-    private static final String LICENSE_PATH = "meta-inf/license";
+-
+-    private static final String LICENSE_TXT_PATH = "meta-inf/license.txt";
+-
+     Set entries = new HashSet();
+ 
+     public boolean canTransformResource( String resource )
+     {
+-        if ( LICENSE_PATH.equalsIgnoreCase( resource )
+-            || LICENSE_TXT_PATH.regionMatches( true, 0, resource, 0, LICENSE_TXT_PATH.length() ) )
++        String s = resource.toLowerCase();
++
++        if ( s.startsWith( "meta-inf/license.txt" ) || s.equals( "meta-inf/license" ))
+         {
+             return true;
+         }
+diff --git a/src/main/java/org/apache/maven/plugins/shade/resource/ApacheNoticeResourceTransformer.java b/src/main/java/org/apache/maven/plugins/shade/resource/ApacheNoticeResourceTransformer.java
+index 3d1dd04..1939ad4 100644
+--- a/src/main/java/org/apache/maven/plugins/shade/resource/ApacheNoticeResourceTransformer.java
++++ b/src/main/java/org/apache/maven/plugins/shade/resource/ApacheNoticeResourceTransformer.java
+@@ -61,13 +61,12 @@ public class ApacheNoticeResourceTransformer
+ 
+     String copyright;
+ 
+-    private static final String NOTICE_PATH = "meta-inf/notice";
+-
+-    private static final String NOTICE_TXT_PATH = "meta-inf/notice.txt";
+ 
+     public boolean canTransformResource( String resource )
+     {
+-        if ( NOTICE_PATH.equalsIgnoreCase( resource ) || NOTICE_TXT_PATH.equalsIgnoreCase( resource ) )
++        String s = resource.toLowerCase();
++
++        if (s.equals( "meta-inf/notice.txt" ) || s.equals( "meta-inf/notice" ) )
+         {
+             return true;
+         }
+diff --git a/src/main/java/org/apache/maven/plugins/shade/resource/AppendingTransformer.java b/src/main/java/org/apache/maven/plugins/shade/resource/AppendingTransformer.java
+index 7890878..a4a2ab4 100644
+--- a/src/main/java/org/apache/maven/plugins/shade/resource/AppendingTransformer.java
++++ b/src/main/java/org/apache/maven/plugins/shade/resource/AppendingTransformer.java
+@@ -36,7 +36,9 @@ public class AppendingTransformer
+ 
+     public boolean canTransformResource( String r )
+     {
+-        if ( resource != null && resource.equalsIgnoreCase( r ) )
++        r = r.toLowerCase();
++
++        if (resource != null && resource.toLowerCase().equals(r))
+         {
+             return true;
+         }
+diff --git a/src/main/java/org/apache/maven/plugins/shade/resource/XmlAppendingTransformer.java b/src/main/java/org/apache/maven/plugins/shade/resource/XmlAppendingTransformer.java
+index 75ce92a..ad33cc4 100644
+--- a/src/main/java/org/apache/maven/plugins/shade/resource/XmlAppendingTransformer.java
++++ b/src/main/java/org/apache/maven/plugins/shade/resource/XmlAppendingTransformer.java
+@@ -44,7 +44,9 @@ public class XmlAppendingTransformer
+ 
+     public boolean canTransformResource( String r )
+     {
+-        if ( resource != null && resource.equalsIgnoreCase( r ) )
++        r = r.toLowerCase();
++
++        if (resource != null && resource.toLowerCase().equals(r))
+         {
+             return true;
+         }

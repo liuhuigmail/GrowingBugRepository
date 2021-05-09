@@ -1,0 +1,145 @@
+#-------------------------------------------------------------------------------
+# Copyright (c) 2014-2019 René Just, Darioush Jalali, and Defects4J contributors.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#-------------------------------------------------------------------------------
+
+=pod
+
+=head1 NAME
+
+d4j-monitor.test -- monitor class loader while running a single test class or test method.
+
+=head1 SYNOPSIS
+
+  d4j-monitor.test -t single_test [-w work_dir] [-s test_suite]
+
+=head1 DESCRIPTION
+
+This script runs a single test class or test method and monitors the class
+loader during execution. The script reports all source and test classes that were loaded
+during the execution of C<single_test>. It also writes all loaded source and test classes
+to F<loaded_classes.src> and F<loaded_classes.test>, respectively.
+
+=head1 OPTIONS
+
+=over 4
+
+=item -t C<single_test>
+
+Run this single test and monitor the class loader. Format: <test_class>[::<test_method>].
+
+=item -w F<work_dir>
+
+The working directory of the checked-out project version (optional). Default is
+the current directory.
+
+=item -s F<test_suite>
+
+The archive file name of an external test suite (optional). The default test suite is the
+developer-written test suite of the checked-out project version.
+See L<Test suites|/"Test suites">.
+
+=back
+
+=head1 Test suites
+
+An external test suite has to be provided as an archive of test sources.
+Format of the archive file name:
+
+F<C<project_id>-C<version_id>-C<test_suite_src>.C<test_id>.tar.bz2>
+
+Examples:
+
+=over 4
+
+=item * F<Lang-11f-randoop.1.tar.bz2>
+
+=item * F<Lang-12b-evosuite-weakmutation.1.tar.bz2>
+
+=item * F<Lang-12f-evosuite-branch.1.tar.bz2>
+
+=back
+
+=cut
+
+use strict;
+use warnings;
+
+use Constants;
+use Utils;
+use Project;
+use Getopt::Std;
+use Pod::Usage;
+
+my %cmd_opts;
+getopts('t:w:s:', \%cmd_opts) or pod2usage( { -verbose => 1, -input => __FILE__} );
+
+my $WORK_DIR = Utils::get_abs_path($cmd_opts{w} // ".");
+my $TEST = $cmd_opts{t};
+defined $TEST or pod2usage( { -verbose => 1, -input => __FILE__} );
+my $TEST_SUITE = $cmd_opts{s};
+
+my $config = Utils::read_config_file("$WORK_DIR/$CONFIG");
+unless(defined $config) {
+    print(STDERR "$WORK_DIR is not a valid working directory!\n");
+    exit 1;
+}
+
+# Instantiate project and set working directory
+my $project = Project::create_project($config->{$CONFIG_PID});
+$project->{prog_root} = $WORK_DIR;
+
+my $test_dir = undef;
+# Compile the test suite, according to the provided flags
+if (defined $TEST_SUITE) {
+    # Extract and compile external test suite
+    $test_dir = "$WORK_DIR/.test_suite";
+    Utils::extract_test_suite($TEST_SUITE, $test_dir) or die;
+    $project->compile_ext_tests($test_dir) or die "Cannot compile extracted test suite!";
+} else {
+    # Compile developer-written test suite
+    $project->compile_tests() or die "Cannot compile test suite!";
+}
+
+# Obtain version and monitor the test
+my $vid = $config->{$CONFIG_VID};
+my $classes = $project->monitor_test($TEST, $vid, $test_dir);
+defined $classes or die "Cannot run test!";
+
+my $loaded_src = "$WORK_DIR/loaded_classes.src";
+my $loaded_test = "$WORK_DIR/loaded_classes.test";
+
+open(OUT, ">$loaded_src") or die "Cannot write loaded classes";
+print("Loaded source classes:\n");
+for my $class (@{$classes->{src}}) {
+    print(OUT $class, "\n");
+    print("  - $class \n");
+}
+close(OUT);
+
+open(OUT, ">$loaded_test") or die "Cannot write loaded test classes";
+print("Loaded test classes:\n");
+for my $class (@{$classes->{test}}) {
+    print(OUT $class, "\n");
+    print("  - $class \n");
+}
+close(OUT);
+
+1;

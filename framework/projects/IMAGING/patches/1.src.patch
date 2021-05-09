@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/imaging/formats/bmp/BmpImageParser.java b/src/main/java/org/apache/commons/imaging/formats/bmp/BmpImageParser.java
+index 0d6d6963..002d48cf 100644
+--- a/src/main/java/org/apache/commons/imaging/formats/bmp/BmpImageParser.java
++++ b/src/main/java/org/apache/commons/imaging/formats/bmp/BmpImageParser.java
+@@ -622,10 +622,10 @@ public class BmpImageParser extends ImageParser {
+         // boolean isProgressive = (fPNGChunkIHDR.InterlaceMethod != 0);
+         //
+         // pixels per meter
+-        int physicalWidthDpi = (int) (bhi.hResolution * .0254);
++        int physicalWidthDpi = (int) (bhi.hResolution * 1000.0 / 2.54);
+         float physicalWidthInch = (float) ((double) width / (double) physicalWidthDpi);
+         // int physicalHeightDpi = 72;
+-        int physicalHeightDpi = (int) (bhi.vResolution * .0254);
++        int physicalHeightDpi = (int) (bhi.vResolution * 1000.0 / 2.54);
+         float physicalHeightInch = (float) ((double) height / (double) physicalHeightDpi);
+ 
+         String formatDetails = "Bmp (" + (char) bhi.identifier1

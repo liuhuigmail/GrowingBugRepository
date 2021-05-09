@@ -1,0 +1,63 @@
+diff --git a/src/test/java/org/apache/commons/validator/EmailTest.java b/src/test/java/org/apache/commons/validator/EmailTest.java
+index 1216bd83..09667e2f 100644
+--- a/src/test/java/org/apache/commons/validator/EmailTest.java
++++ b/src/test/java/org/apache/commons/validator/EmailTest.java
+@@ -190,15 +190,13 @@ protected void setUp() throws IOException, SAXException {
+         info.setValue("joeblow@ apache.org");
+         valueTest(info, false);
+         info.setValue(" joeblow@apache.org");
+-        valueTest(info, false);
++        valueTest(info, true);
+         info.setValue("joeblow@apache.org ");
+-        valueTest(info, false);
++        valueTest(info, true);
+         info.setValue("joe blow@apache.org ");
+         valueTest(info, false);
+         info.setValue("joeblow@apa che.org ");
+         valueTest(info, false);
+-        info.setValue("\"joe blow\"@apache.org");
+-        valueTest(info, true);
+ 
+     }
+ 
+diff --git a/src/test/java/org/apache/commons/validator/routines/EmailValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/EmailValidatorTest.java
+index 0df92025..8482aa5c 100644
+--- a/src/test/java/org/apache/commons/validator/routines/EmailValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/EmailValidatorTest.java
+@@ -178,24 +178,18 @@ protected void tearDown() {
+     * Tests the email validation with spaces.
+     */
+     public void testEmailWithSpaces()  {
+-        assertFalse(validator.isValid("joeblow @apache.org"));
++        assertFalse(validator.isValid("joeblow @apache.org")); // TODO - this should be valid?
+ 
+         assertFalse(validator.isValid("joeblow@ apache.org"));
+ 
+-        assertFalse(validator.isValid(" joeblow@apache.org"));
++        assertTrue(validator.isValid(" joeblow@apache.org")); // TODO - this should be valid?
+ 
+-        assertFalse(validator.isValid("joeblow@apache.org "));
++        assertTrue(validator.isValid("joeblow@apache.org "));
+ 
+         assertFalse(validator.isValid("joe blow@apache.org "));
+ 
+         assertFalse(validator.isValid("joeblow@apa che.org "));
+ 
+-        assertTrue(validator.isValid("\"joeblow \"@apache.org"));
+-
+-        assertTrue(validator.isValid("\" joeblow\"@apache.org"));
+-
+-        assertTrue(validator.isValid("\" joe blow \"@apache.org"));
+-
+     }
+ 
+    /**
+@@ -351,8 +345,6 @@ protected void tearDown() {
+ 
+         assertTrue(validator.isValid("\"joe+\"@apache.org"));
+ 
+-        assertTrue(validator.isValid("\"joe@\"@apache.org"));
+-
+         assertTrue(validator.isValid("\"joe!\"@apache.org"));
+ 
+         assertTrue(validator.isValid("\"joe*\"@apache.org"));

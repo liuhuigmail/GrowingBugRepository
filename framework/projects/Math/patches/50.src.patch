@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java b/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java
+index c781a90..e47d982 100644
+--- a/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java
++++ b/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java
+@@ -184,6 +184,10 @@ public abstract class BaseSecantSolver
+                     break;
+                 case REGULA_FALSI:
+                     // Nothing.
++                    if (x == x1) {
++                        x0 = 0.5 * (x0 + x1 - FastMath.max(rtol * FastMath.abs(x1), atol));
++                        f0 = computeObjectiveValue(x0);
++                    }
+                     break;
+                 default:
+                     // Should never happen.

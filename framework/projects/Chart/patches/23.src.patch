@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java b/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
+index d2b24c6..bbd5ddb 100644
+--- a/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
++++ b/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
+@@ -432,25 +432,6 @@ public class MinMaxCategoryRenderer extends AbstractCategoryItemRenderer {
+      *
+      * @since 1.0.7
+      */
+-    public boolean equals(Object obj) {
+-        if (obj == this) {
+-            return true;
+-        }
+-        if (!(obj instanceof MinMaxCategoryRenderer)) {
+-            return false;
+-        }
+-        MinMaxCategoryRenderer that = (MinMaxCategoryRenderer) obj;
+-        if (this.plotLines != that.plotLines) {
+-            return false;
+-        }
+-        if (!PaintUtilities.equal(this.groupPaint, that.groupPaint)) {
+-            return false;
+-        }
+-        if (!this.groupStroke.equals(that.groupStroke)) {
+-            return false;
+-        }
+-        return super.equals(obj);
+-    }
+ 
+     /**
+      * Returns an icon.

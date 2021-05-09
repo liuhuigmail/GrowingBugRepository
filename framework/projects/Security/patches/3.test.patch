@@ -1,0 +1,486 @@
+diff --git a/src_unitTests/javax/xml/crypto/test/dsig/Baltimore23Test.java b/src_unitTests/javax/xml/crypto/test/dsig/Baltimore23Test.java
+index 881ab600..3b89c658 100644
+--- a/src_unitTests/javax/xml/crypto/test/dsig/Baltimore23Test.java
++++ b/src_unitTests/javax/xml/crypto/test/dsig/Baltimore23Test.java
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright 2006-2009 The Apache Software Foundation.
++ * Copyright 2006 The Apache Software Foundation.
+  *
+  *  Licensed under the Apache License, Version 2.0 (the "License");
+  *  you may not use this file except in compliance with the License.
+@@ -24,7 +24,6 @@ import java.io.FileInputStream;
+ import java.security.KeyStore;
+ import java.security.Security;
+ import javax.xml.crypto.KeySelector;
+-import javax.xml.crypto.dsig.XMLSignatureException;
+ 
+ import junit.framework.*;
+ 
+@@ -119,13 +118,8 @@ public class Baltimore23Test extends TestCase {
+         
+ 	KeySelector ks = new KeySelectors.SecretKeySelector
+ 	    ("secret".getBytes("ASCII") );
+-        try {
+-	    boolean coreValidity = validator.validate(file, ks);
+-            fail("Expected HMACOutputLength exception");
+-        } catch (XMLSignatureException xse) {
+-            System.out.println(xse.getMessage());
+-            // pass
+-        }
++	boolean coreValidity = validator.validate(file, ks);
++	assertTrue("Signature failed core validation", coreValidity);
+     }
+ 
+     public void test_signature_keyname() throws Exception {
+diff --git a/src_unitTests/javax/xml/crypto/test/dsig/CreateBaltimore23Test.java b/src_unitTests/javax/xml/crypto/test/dsig/CreateBaltimore23Test.java
+index 9818753c..498e8935 100644
+--- a/src_unitTests/javax/xml/crypto/test/dsig/CreateBaltimore23Test.java
++++ b/src_unitTests/javax/xml/crypto/test/dsig/CreateBaltimore23Test.java
+@@ -164,14 +164,8 @@ public class CreateBaltimore23Test extends TestCase {
+ 	throws Exception {
+ 	SignatureMethod hmacSha1 = fac.newSignatureMethod
+ 	    (SignatureMethod.HMAC_SHA1, new HMACParameterSpec(40));
+-        try {
+-            test_create_signature_enveloping(hmacSha1, null,
+-	        TestUtils.getSecretKey("secret".getBytes("ASCII")), sks, false);
+-            fail("Expected HMACOutputLength Exception");
+-        } catch (XMLSignatureException xse) {
+-            System.out.println(xse.getMessage());
+-            // pass
+-        }
++        test_create_signature_enveloping(hmacSha1, null,
++	    TestUtils.getSecretKey("secret".getBytes("ASCII")), sks, false);
+     }
+ 
+     public void test_create_signature_enveloping_hmac_sha1()
+diff --git a/src_unitTests/javax/xml/crypto/test/dsig/CreatePhaosXMLDSig3Test.java b/src_unitTests/javax/xml/crypto/test/dsig/CreatePhaosXMLDSig3Test.java
+index 85c5fa89..980cfd85 100644
+--- a/src_unitTests/javax/xml/crypto/test/dsig/CreatePhaosXMLDSig3Test.java
++++ b/src_unitTests/javax/xml/crypto/test/dsig/CreatePhaosXMLDSig3Test.java
+@@ -66,13 +66,7 @@ public class CreatePhaosXMLDSig3Test extends TestCase {
+ 
+     public void test_create_hmac_sha1_40_exclusive_c14n_comments_detached() 
+ 	throws Exception {
+-        try {
+-            test_create_hmac_sha1_exclusive_c14n_comments_detached(true);
+-            fail("Expected HMACOutputLength Exception");
+-        } catch (XMLSignatureException xse) {
+-            System.out.println(xse.getMessage());
+-            // pass
+-        }
++        test_create_hmac_sha1_exclusive_c14n_comments_detached(true);
+     } 
+ 
+     private void test_create_hmac_sha1_exclusive_c14n_comments_detached(boolean fortyBit) 
+diff --git a/src_unitTests/javax/xml/crypto/test/dsig/IaikSignatureAlgosTest.java b/src_unitTests/javax/xml/crypto/test/dsig/IaikSignatureAlgosTest.java
+index a2e06d12..7d7bdde2 100644
+--- a/src_unitTests/javax/xml/crypto/test/dsig/IaikSignatureAlgosTest.java
++++ b/src_unitTests/javax/xml/crypto/test/dsig/IaikSignatureAlgosTest.java
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright 2006-2009 The Apache Software Foundation.
++ * Copyright 2006 The Apache Software Foundation.
+  *
+  *  Licensed under the Apache License, Version 2.0 (the "License");
+  *  you may not use this file except in compliance with the License.
+@@ -21,7 +21,6 @@ package javax.xml.crypto.test.dsig;
+ 
+ import java.io.File;
+ import java.security.Security;
+-import javax.xml.crypto.dsig.XMLSignatureException;
+ 
+ import junit.framework.*;
+ 
+@@ -68,14 +67,9 @@ public class IaikSignatureAlgosTest extends TestCase {
+     public void test_hmacShortSignature() throws Exception {
+         String file = "hMACShortSignature.xml";
+ 
+-        try {
+-	    boolean coreValidity = validator.validate(file, new 
+-	        KeySelectors.SecretKeySelector("secret".getBytes("ASCII")));
+-            fail("Expected HMACOutputLength Exception");
+-        } catch (XMLSignatureException xse) {
+-            System.out.println(xse.getMessage());
+-            // pass
+-        }
++	boolean coreValidity = validator.validate(file, new 
++	    KeySelectors.SecretKeySelector("secret".getBytes("ASCII")));
++	assertTrue("Signature failed core validation", coreValidity);
+     }
+     public void test_hmacSignature() throws Exception {
+         String file = "hMACSignature.xml";
+diff --git a/src_unitTests/javax/xml/crypto/test/dsig/PhaosXMLDSig3Test.java b/src_unitTests/javax/xml/crypto/test/dsig/PhaosXMLDSig3Test.java
+index cad01fb8..1ec9f19d 100644
+--- a/src_unitTests/javax/xml/crypto/test/dsig/PhaosXMLDSig3Test.java
++++ b/src_unitTests/javax/xml/crypto/test/dsig/PhaosXMLDSig3Test.java
+@@ -94,13 +94,8 @@ public class PhaosXMLDSig3Test extends TestCase {
+         
+ 	KeySelector ks = new KeySelectors.SecretKeySelector
+ 	    ("test".getBytes("ASCII") );
+-        try {
+-	    boolean coreValidity = validator.validate(file, ks);
+-            fail("Expected HMACOutputLength Exception");
+-        } catch (XMLSignatureException xse) {
+-            System.out.println(xse.getMessage());
+-            // pass
+-        }
++	boolean coreValidity = validator.validate(file, ks);
++	assertTrue("Signature failed core validation", coreValidity);
+     }
+     public void test_signature_hmac_sha1_40_exclusive_c14n_comments_detached() 
+ 	throws Exception {
+@@ -108,13 +103,8 @@ public class PhaosXMLDSig3Test extends TestCase {
+         
+ 	KeySelector ks = new KeySelectors.SecretKeySelector
+ 	    ("test".getBytes("ASCII") );
+-        try {
+-	    boolean coreValidity = validator.validate(file, ks);
+-            fail("Expected HMACOutputLength Exception");
+-        } catch (XMLSignatureException xse) {
+-            System.out.println(xse.getMessage());
+-            // pass
+-        }
++	boolean coreValidity = validator.validate(file, ks);
++	assertTrue("Signature failed core validation", coreValidity);
+     }
+     public void test_signature_hmac_sha1_exclusive_c14n_comments_detached() 
+ 	throws Exception {
+diff --git a/src_unitTests/javax/xml/crypto/test/dsig/ValidateSignatureTest.java b/src_unitTests/javax/xml/crypto/test/dsig/ValidateSignatureTest.java
+index 77bd3fef..5f131ba2 100644
+--- a/src_unitTests/javax/xml/crypto/test/dsig/ValidateSignatureTest.java
++++ b/src_unitTests/javax/xml/crypto/test/dsig/ValidateSignatureTest.java
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright 2006-2009 The Apache Software Foundation.
++ * Copyright 2006-2008 The Apache Software Foundation.
+  *
+  *  Licensed under the Apache License, Version 2.0 (the "License");
+  *  you may not use this file except in compliance with the License.
+@@ -30,7 +30,6 @@ import javax.xml.crypto.URIDereferencer;
+ import javax.xml.crypto.URIReference;
+ import javax.xml.crypto.URIReferenceException;
+ import javax.xml.crypto.XMLCryptoContext;
+-import javax.xml.crypto.dsig.XMLSignatureException;
+ import javax.xml.crypto.dsig.XMLSignatureFactory;
+ import javax.xml.crypto.dsig.dom.DOMValidateContext;
+ 
+@@ -95,31 +94,6 @@ public class ValidateSignatureTest extends TestCase {
+ 	assertTrue("References validated before signature", ud.dereferenced);
+     }
+ 
+-    public void test_signature_enveloping_hmac_sha1_trunclen_0() throws Exception {
+-        try {
+-            boolean coreValidity = validator.validate
+-                ("signature-enveloping-hmac-sha1-trunclen-0-attack.xml", 
+-                new KeySelectors.SecretKeySelector("secret".getBytes("ASCII")));
+-            fail("Expected HMACOutputLength exception");
+-        } catch (XMLSignatureException xse) {
+-            System.out.println(xse.getMessage());
+-            // pass
+-        }
+-    }
+-
+-    public void test_signature_enveloping_hmac_sha1_trunclen_8() throws Exception {
+-   
+-        try {
+-            boolean coreValidity = validator.validate
+-                ("signature-enveloping-hmac-sha1-trunclen-8-attack.xml", 
+-                new KeySelectors.SecretKeySelector("secret".getBytes("ASCII")));
+-            fail("Expected HMACOutputLength exception");
+-        } catch (XMLSignatureException xse) {
+-            System.out.println(xse.getMessage());
+-            // pass
+-        }
+-    }
+-
+     /**
+      * Set flag if called.
+      */
+diff --git a/src_unitTests/org/apache/xml/security/test/interop/BaltimoreTest.java b/src_unitTests/org/apache/xml/security/test/interop/BaltimoreTest.java
+index 3f6d66b9..68329aea 100644
+--- a/src_unitTests/org/apache/xml/security/test/interop/BaltimoreTest.java
++++ b/src_unitTests/org/apache/xml/security/test/interop/BaltimoreTest.java
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright 1999-2009 The Apache Software Foundation.
++ * Copyright  1999-2004 The Apache Software Foundation.
+  *
+  *  Licensed under the Apache License, Version 2.0 (the "License");
+  *  you may not use this file except in compliance with the License.
+@@ -16,12 +16,14 @@
+  */
+ package org.apache.xml.security.test.interop;
+ 
++
++
+ import junit.framework.Test;
+ import junit.framework.TestSuite;
+ 
+ import org.apache.xml.security.test.utils.resolver.OfflineResolver;
+ import org.apache.xml.security.utils.resolver.ResourceResolverSpi;
+-import org.apache.xml.security.signature.XMLSignatureException;
++
+ 
+ /**
+  * This test is to ensure interoperability with the examples provided by Merlin Huges
+@@ -110,17 +112,16 @@ public class BaltimoreTest extends InteropTest {
+ 
+       try {
+          verify = this.verifyHMAC(filename, resolver, followManifests, hmacKey);
+-         fail("HMACOutputLength Exception not caught");
+       } catch (RuntimeException ex) {
+          log.error("Verification crashed for " + filename);
+          throw ex;
+-      } catch (XMLSignatureException ex) {
+-         if (ex.getMsgID().equals("algorithms.HMACOutputLengthMin")) {
+-             // succeed
+-         } else {
+-             fail(ex.getMessage());
+-         }
+       }
++
++      if (!verify) {
++         log.error("Verification failed for " + filename);
++      }
++
++      assertTrue(filename, verify);
+    }
+ 
+    /**
+@@ -369,17 +370,16 @@ public class BaltimoreTest extends InteropTest {
+ 
+       try {
+          verify = this.verifyHMAC(filename, resolver, followManifests, hmacKey);
+-         fail("HMACOutputLength Exception not caught");
+       } catch (RuntimeException ex) {
+          log.error("Verification crashed for " + filename);
+          throw ex;
+-      } catch (XMLSignatureException ex) {
+-         if (ex.getMsgID().equals("algorithms.HMACOutputLengthMin")) {
+-             // succeed
+-         } else {
+-             fail(ex.getMessage());
+-         }
+       }
++
++      if (!verify) {
++         log.error("Verification failed for " + filename);
++      }
++
++      assertTrue(filename, verify);
+    }
+ 
+    /**
+diff --git a/src_unitTests/org/apache/xml/security/test/interop/IAIKTest.java b/src_unitTests/org/apache/xml/security/test/interop/IAIKTest.java
+index bb6fe16e..38b5e240 100644
+--- a/src_unitTests/org/apache/xml/security/test/interop/IAIKTest.java
++++ b/src_unitTests/org/apache/xml/security/test/interop/IAIKTest.java
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright 1999-2009 The Apache Software Foundation.
++ * Copyright  1999-2004 The Apache Software Foundation.
+  *
+  *  Licensed under the Apache License, Version 2.0 (the "License");
+  *  you may not use this file except in compliance with the License.
+@@ -16,14 +16,16 @@
+  */
+ package org.apache.xml.security.test.interop;
+ 
++
++
+ import junit.framework.Test;
+ import junit.framework.TestSuite;
+ 
+ import org.apache.xml.security.test.utils.resolver.OfflineResolver;
+-import org.apache.xml.security.signature.XMLSignatureException;
+ import org.apache.xml.security.utils.resolver.ResourceResolverSpi;
+ import org.apache.xml.security.utils.resolver.implementations.ResolverAnonymous;
+ 
++
+ /**
+  * This test is to ensure interoperability with the examples provided by the IAIK
+  * XML Signature implementation. Thanks to Gregor Karlinger who provided these
+@@ -92,17 +94,17 @@ public class IAIKTest extends InteropTest {
+ 
+       try {
+          verify = this.verifyHMAC(filename, resolver, followManifests, hmacKey);
+-         fail("HMACOutputLength Exception not caught");
+       } catch (RuntimeException ex) {
+          log.error("Verification crashed for " + filename);
++
+          throw ex;
+-      } catch (XMLSignatureException ex) {
+-         if (ex.getMsgID().equals("algorithms.HMACOutputLengthMin")) {
+-             // succeed
+-         } else {
+-             fail(ex.getMessage());
+-         }
+       }
++
++      if (!verify) {
++         log.error("Verification failed for " + filename);
++      }
++
++      assertTrue(filename, verify);
+    }
+ 
+    /**
+diff --git a/src_unitTests/org/apache/xml/security/test/signature/AllTests.java b/src_unitTests/org/apache/xml/security/test/signature/AllTests.java
+index 5b1197b4..0f112601 100644
+--- a/src_unitTests/org/apache/xml/security/test/signature/AllTests.java
++++ b/src_unitTests/org/apache/xml/security/test/signature/AllTests.java
+@@ -36,7 +36,6 @@ public class AllTests {
+ 	suite.addTest(ProcessingInstructionTest.suite());
+ 	suite.addTest(ECDSASignatureTest.suite());
+ 	suite.addTest(NoKeyInfoTest.suite());
+-	suite.addTest(HMACOutputLengthTest.suite());
+ 	//$JUnit-END$
+ 	return suite;
+     }
+diff --git a/src_unitTests/org/apache/xml/security/test/signature/HMACOutputLengthTest.java b/src_unitTests/org/apache/xml/security/test/signature/HMACOutputLengthTest.java
+deleted file mode 100644
+index f572abab..00000000
+--- a/src_unitTests/org/apache/xml/security/test/signature/HMACOutputLengthTest.java
++++ /dev/null
+@@ -1,140 +0,0 @@
+-/*
+- * Copyright 2009 The Apache Software Foundation.
+- *
+- *  Licensed under the Apache License, Version 2.0 (the "License");
+- *  you may not use this file except in compliance with the License.
+- *  You may obtain a copy of the License at
+- *
+- *      http://www.apache.org/licenses/LICENSE-2.0
+- *
+- *  Unless required by applicable law or agreed to in writing, software
+- *  distributed under the License is distributed on an "AS IS" BASIS,
+- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- *  See the License for the specific language governing permissions and
+- *  limitations under the License.
+- *
+- */
+-package org.apache.xml.security.test.signature;
+-
+-import java.io.File;
+-import javax.crypto.SecretKey;
+-import javax.xml.parsers.DocumentBuilderFactory;
+-import org.w3c.dom.Document;
+-import org.w3c.dom.Element;
+-import org.w3c.dom.NodeList;
+-import junit.framework.Test;
+-import junit.framework.TestCase;
+-import junit.framework.TestSuite;
+-
+-import org.apache.xml.security.Init;
+-import org.apache.xml.security.c14n.Canonicalizer;
+-import org.apache.xml.security.signature.XMLSignature;
+-import org.apache.xml.security.signature.XMLSignatureException;
+-import org.apache.xml.security.utils.Constants;
+-
+-public class HMACOutputLengthTest extends TestCase {
+-
+-    private static DocumentBuilderFactory dbf = null;
+-
+-    protected void setUp() throws Exception {
+-        Init.init();
+-        dbf = DocumentBuilderFactory.newInstance();
+-        dbf.setNamespaceAware(true);
+-        dbf.setValidating(false);
+-    }
+-
+-    /** {@link org.apache.commons.logging} logging facility */
+-    static org.apache.commons.logging.Log log =
+-        org.apache.commons.logging.LogFactory.getLog
+-            (HMACOutputLengthTest.class.getName());
+-
+-    private static final String BASEDIR = System.getProperty("basedir");
+-    private static final String SEP = System.getProperty("file.separator");
+-
+-    public static Test suite() {
+-        return new TestSuite(HMACOutputLengthTest.class);
+-    }
+-
+-    public HMACOutputLengthTest(String name) {
+-        super(name);
+-    }
+-
+-    public static void main(String[] args) {
+-        String[] testCaseName = { "-noloading",
+-                                  HMACOutputLengthTest.class.getName() };
+-
+-        junit.textui.TestRunner.main(testCaseName);
+-    }
+-
+-    public void test_signature_enveloping_hmac_sha1_trunclen_0() throws Exception {
+-        try {
+-            validate("signature-enveloping-hmac-sha1-trunclen-0-attack.xml");
+-            fail("Expected HMACOutputLength exception");
+-        } catch (XMLSignatureException xse) {
+-            System.out.println(xse.getMessage());
+-            if (xse.getMsgID().equals("algorithms.HMACOutputLengthMin")) {
+-                // pass
+-            } else {
+-                fail(xse.getMessage());
+-            }
+-        }
+-    }
+-    public void test_signature_enveloping_hmac_sha1_trunclen_8() throws Exception {
+-        try {
+-            validate("signature-enveloping-hmac-sha1-trunclen-8-attack.xml");
+-        } catch (XMLSignatureException xse) {
+-            System.out.println(xse.getMessage());
+-            if (xse.getMsgID().equals("algorithms.HMACOutputLengthMin")) {
+-                // pass
+-            } else {
+-                fail(xse.getMessage());
+-            }
+-        }
+-    }
+-
+-    private static void validate(String data) throws Exception {
+-        System.out.println("Validating " + data);
+-        File file = new File(BASEDIR + SEP + "data" + SEP + "javax" + SEP + "xml" + SEP + "crypto" + SEP + "dsig" + SEP, data);
+-
+-        Document doc = dbf.newDocumentBuilder().parse(file);
+-        NodeList nl =
+-            doc.getElementsByTagNameNS(Constants.SignatureSpecNS, "Signature");
+-        if (nl.getLength() == 0) {
+-            throw new Exception("Couldn't find signature Element");
+-        }
+-        Element sigElement = (Element) nl.item(0);
+-        XMLSignature signature = new XMLSignature
+-            (sigElement, file.toURI().toString());
+-        SecretKey sk = signature.createSecretKey("secret".getBytes("ASCII"));
+-        System.out.println
+-            ("Validation status: " + signature.checkSignatureValue(sk));
+-    }
+-
+-    public void test_generate_hmac_sha1_40() throws Exception {
+-        System.out.println("Generating ");
+-
+-        Document doc = dbf.newDocumentBuilder().newDocument();
+-        XMLSignature sig = new XMLSignature
+-            (doc, null, XMLSignature.ALGO_ID_MAC_HMAC_SHA1, 40,
+-             Canonicalizer.ALGO_ID_C14N_OMIT_COMMENTS);
+-        try {
+-            sig.sign(getSecretKey("secret".getBytes("ASCII")));
+-            fail("Expected HMACOutputLength Exception");
+-        } catch (XMLSignatureException xse) {
+-            System.out.println(xse.getMessage());
+-            if (xse.getMsgID().equals("algorithms.HMACOutputLengthMin")) {
+-                // pass
+-            } else {
+-                fail(xse.getMessage());
+-            }
+-        }
+-    }
+-
+-    private static SecretKey getSecretKey(final byte[] secret) {
+-        return new SecretKey() {
+-            public String getFormat()   { return "RAW"; }
+-            public byte[] getEncoded()  { return secret; }
+-            public String getAlgorithm(){ return "SECRET"; }
+-        };
+-    }
+-}

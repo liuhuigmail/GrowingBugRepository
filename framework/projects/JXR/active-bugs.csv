@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,d5b9c0771d276f9ea0517e211693aa34e896be4f,aae189e47b87ca51ef048f851b0241f1dcd69587,JXR-18,https://issues.apache.org/jira/browse/JXR-18

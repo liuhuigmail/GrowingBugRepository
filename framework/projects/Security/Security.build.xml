@@ -1,0 +1,113 @@
+<!--
+Copyright (c) 2014-2019 René Just, Darioush Jalali, and Defects4J contributors.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+################################################################################
+               This is the project-specific build file for Security.
+
+It defines project-specific properties and targets, and imports the build file
+of the checked-out project version.
+#############################################################################-->
+<project name="D4j-Security" basedir="${basedir}">
+    <!-- TODO: Make sure that the following properties and paths are defined:
+           - source.home        ->  Directory of sources
+           - test.home          ->  Directory of test sources
+           - build.home         ->  Root directory for compiled (test) classes
+           - test.classpath     ->  Classpath to compile tests
+           - compile.classpath  ->  Classpath to compile sources
+    -->
+
+    <property name="junit.jar" value="${d4j.home}/framework/projects/lib/junit-4.11.jar"/>
+
+    <!-- Do not download maven dependencies -->
+    <property name="maven.settings.offline" value="true" />
+    <property name="maven.repo.local" value="${d4j.dir.projects}/Security/lib/" />
+
+    <!-- Generate all debugging information -->
+    <property name="compile.debug" value="yes" />
+
+    <!-- Include existing project build file -->
+    <import file="${d4j.workdir}/build.xml"/>
+
+    <!-- Project properties targets -->
+    <if> <isset property="ant.refid:compile.classpath" />
+          <then>
+            <property name="test.dir" value="${test.home}" />
+          </then>
+          <else>
+            <property name="oldversion"    value="yes" />
+            <path id="compile.classpath"   refid="id.classpath" />
+            <path id="test.classpath"      refid="id.classpath.test" />
+
+            <property name="dir.src.classes"  value="${dir.src}"/>
+            <property name="dir.src.tests"    value="${dir.src.test}"/>
+            <property name="test.dir"         value="${dir.src.test}" />
+            <property name="source.home"      value="${dir.src}"/>
+            <property name="d4j.test.dir"     value="${dir.src.test}"/>
+          </else>
+    </if>
+    <property name="test.home" value="${dir.build.test}" />
+    <condition property="classes.dir" value="${dir.build.bin}" else="${build.classes}">
+        <isset property="dir.build.bin" />
+    </condition>
+    <condition property="test.classes.dir" value="${dir.build.test}" else="${build.tests}">
+        <isset property="dir.build.test" />
+    </condition>
+
+    <property name="build.home" value="${classes.dir}/.." />
+
+    <!-- Classpath to run developer-written tests -->
+    <path id="d4j.test.classpath">
+        <path refid="test.classpath"/>
+        <pathelement location="${classes.dir}"/>
+        <pathelement location="${test.classes.dir}"/>
+        <pathelement path="${junit.jar}" />
+        <!--
+        <pathelement path="${dependency.jar}" />
+        -->
+    </path>
+
+    <!-- List of all developer-written tests that reliably pass on the fixed version -->
+    <!-- Manually generalize test patterns if analyzer produces incorrect outputs -->
+    <fileset id="all.manual.tests" dir="${test.dir}" excludes="${d4j.tests.exclude}">
+        <!--include name="____" /-->
+        <!--exclude name="____" /-->
+        <include name='**/*Test*.java' />
+        <include name='org.apache.xml.security.test.interop.IBMTest' />
+        <include name='org/apache/xml/security/test/AllTests.java' />
+        <include name='org/apache/xml/security/test/c14n/implementations/ExclusiveC14NInterop.java' />
+        <exclude name='**/IBMTest.java' />
+        <exclude name='**/TestVectorResolver.java' />
+        <exclude name='javax/xml/crypto/**' />
+        <exclude name='javax/xml/crypto/test/dsig/CreateBaltimore23Test.java' />
+        <exclude name='javax/xml/crypto/test/dsig/InteropC14nTest.java' />
+        <exclude name='javax/xml/crypto/test/dsig/TestUtils.java' />
+        <exclude name='org/apache/xml/security/test/*Test*.java' />
+        <exclude name='org/apache/xml/security/test/TestUtils.java' />
+        <exclude name='org/apache/xml/security/test/interop/InteropTest.java' />
+
+    </fileset>
+
+    <!-- List of relevant developer-written tests that reliably pass on the fixed version -->
+    <fileset id="rel.manual.tests" dir="${test.home}"
+        includesfile="${d4j.dir.projects}/${d4j.project.id}/relevant_tests/${d4j.bug.id}" />
+
+    <target name="compile.tests" depends="build.test" />
+</project>

@@ -1,0 +1,12 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index ce94573..6e3294b 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -2398,7 +2398,6 @@ public final class JsDocInfoParser {
+    */
+   private String getRemainingJSDocLine() {
+     String result = stream.getRemainingJSDocLine();
+-    unreadToken = NO_UNREAD_TOKEN;
+     return result;
+   }
+ 

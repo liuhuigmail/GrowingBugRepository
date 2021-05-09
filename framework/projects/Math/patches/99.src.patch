@@ -1,0 +1,26 @@
+diff --git a/src/java/org/apache/commons/math/util/MathUtils.java b/src/java/org/apache/commons/math/util/MathUtils.java
+index 806c888..d51ec7a 100644
+--- a/src/java/org/apache/commons/math/util/MathUtils.java
++++ b/src/java/org/apache/commons/math/util/MathUtils.java
+@@ -540,11 +540,6 @@ public final class MathUtils {
+         int u = p;
+         int v = q;
+         if ((u == 0) || (v == 0)) {
+-            if ((u == Integer.MIN_VALUE) || (v == Integer.MIN_VALUE)) {
+-                throw MathRuntimeException.createArithmeticException(
+-                        "overflow: gcd({0}, {1}) is 2^31",
+-                        new Object[] { p, q });
+-            }
+             return (Math.abs(u) + Math.abs(v));
+         }
+         // keep u and v negative, as negative integers range down to
+@@ -716,9 +711,6 @@ public final class MathUtils {
+             return 0;
+         }
+         int lcm = Math.abs(mulAndCheck(a / gcd(a, b), b));
+-        if (lcm == Integer.MIN_VALUE){
+-            throw new ArithmeticException("overflow: lcm is 2^31");
+-        }
+         return lcm;
+     }
+ 

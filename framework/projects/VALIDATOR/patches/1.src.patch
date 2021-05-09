@@ -1,0 +1,91 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/AbstractNumberValidator.java b/src/main/java/org/apache/commons/validator/routines/AbstractNumberValidator.java
+index f8c6cce2..8187b6e4 100644
+--- a/src/main/java/org/apache/commons/validator/routines/AbstractNumberValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/AbstractNumberValidator.java
+@@ -198,7 +198,7 @@ public abstract class AbstractNumberValidator extends AbstractFormatValidator {
+             formatter = new DecimalFormat(pattern, symbols);
+         }
+ 
+-        if (!isAllowFractions()) {
++        if (determineScale(formatter) == 0) {
+             formatter.setParseIntegerOnly(true);
+         }
+         return formatter;
+@@ -267,9 +267,6 @@ public abstract class AbstractNumberValidator extends AbstractFormatValidator {
+             } else {
+                 formatter = NumberFormat.getInstance(locale);
+             }
+-            if (!isAllowFractions()) {
+-                formatter.setParseIntegerOnly(true);
+-            }
+             break;
+         }
+         return formatter;
+diff --git a/src/main/java/org/apache/commons/validator/routines/ByteValidator.java b/src/main/java/org/apache/commons/validator/routines/ByteValidator.java
+index fb638ff4..c7d11531 100644
+--- a/src/main/java/org/apache/commons/validator/routines/ByteValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/ByteValidator.java
+@@ -244,15 +244,13 @@ public class ByteValidator extends AbstractNumberValidator {
+     @Override
+     protected Object processParsedValue(Object value, Format formatter) {
+ 
+-        // Parsed value will be Long if it fits in a long and is not fractional
+-        if (value instanceof Long) {
+-            long longValue = ((Long)value).longValue();
+-            if (longValue >= Byte.MIN_VALUE && 
+-                longValue <= Byte.MAX_VALUE) {
+-                return Byte.valueOf((byte)longValue);
+-            }
++        long longValue = ((Number)value).longValue();
++
++        if (longValue < Byte.MIN_VALUE ||
++            longValue > Byte.MAX_VALUE) {
++            return null;
+         }
+-        return null;
++        return Byte.valueOf((byte)longValue);
+     }
+ 
+ }
+diff --git a/src/main/java/org/apache/commons/validator/routines/IntegerValidator.java b/src/main/java/org/apache/commons/validator/routines/IntegerValidator.java
+index eab42bd5..1f31c4fb 100644
+--- a/src/main/java/org/apache/commons/validator/routines/IntegerValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/IntegerValidator.java
+@@ -244,14 +244,12 @@ public class IntegerValidator extends AbstractNumberValidator {
+     @Override
+     protected Object processParsedValue(Object value, Format formatter) {
+ 
+-        // Parsed value will be Long if it fits in a long and is not fractional
+-        if (value instanceof Long) {
+-            long longValue = ((Long)value).longValue();
+-            if (longValue >= Integer.MIN_VALUE && 
+-                longValue <= Integer.MAX_VALUE) {
+-                return Integer.valueOf((int)longValue);
+-            }
++        long longValue = ((Number)value).longValue();
++
++        if (longValue < Integer.MIN_VALUE ||
++            longValue > Integer.MAX_VALUE) {
++            return null;
+         }
+-        return null;
++        return Integer.valueOf((int)longValue);
+     }
+ }
+diff --git a/src/main/java/org/apache/commons/validator/routines/LongValidator.java b/src/main/java/org/apache/commons/validator/routines/LongValidator.java
+index 9aa96572..fc9cb6c2 100644
+--- a/src/main/java/org/apache/commons/validator/routines/LongValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/LongValidator.java
+@@ -242,11 +242,10 @@ public class LongValidator extends AbstractNumberValidator {
+     @Override
+     protected Object processParsedValue(Object value, Format formatter) {
+ 
+-        // Parsed value will be Long if it fits in a long and is not fractional
+         if (value instanceof Long) {
+             return value;
+         }
+-        return null;
++        return Long.valueOf(((Number)value).longValue());
+ 
+     }
+ }

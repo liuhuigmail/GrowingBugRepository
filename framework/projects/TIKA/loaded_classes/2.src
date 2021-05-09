@@ -1,0 +1,4 @@
+org.apache.tika.mime.MimeType
+org.apache.tika.mime.MimeTypeException
+org.apache.tika.mime.MimeTypes
+org.apache.tika.mime.Patterns

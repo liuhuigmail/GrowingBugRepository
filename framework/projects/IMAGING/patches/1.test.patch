@@ -1,0 +1,13 @@
+diff --git a/src/test/java/org/apache/commons/imaging/roundtrip/RoundtripTest.java b/src/test/java/org/apache/commons/imaging/roundtrip/RoundtripTest.java
+index 83530201..455da48a 100644
+--- a/src/test/java/org/apache/commons/imaging/roundtrip/RoundtripTest.java
++++ b/src/test/java/org/apache/commons/imaging/roundtrip/RoundtripTest.java
+@@ -75,7 +75,7 @@ public class RoundtripTest extends ImagingTest {
+             new FormatInfo(ImageFormat.IMAGE_FORMAT_JPEG, true, false,
+                     COLOR_FULL_RGB, true, true), //
+             new FormatInfo(ImageFormat.IMAGE_FORMAT_BMP, true, true,
+-                    COLOR_FULL_RGB, true, true), //
++                    COLOR_FULL_RGB, true, false), //
+             new FormatInfo(ImageFormat.IMAGE_FORMAT_PSD, true, false,
+                     COLOR_FULL_RGB, true, true), //
+             new FormatInfo(ImageFormat.IMAGE_FORMAT_PBM, true, true,

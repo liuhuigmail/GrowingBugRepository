@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/io/FileUtils.java b/src/main/java/org/apache/commons/io/FileUtils.java
+index 5d0d6694..20e24639 100644
+--- a/src/main/java/org/apache/commons/io/FileUtils.java
++++ b/src/main/java/org/apache/commons/io/FileUtils.java
+@@ -1535,8 +1535,9 @@ public class FileUtils {
+      * @since 2.5
+      */
+     public static void copyToFile(final InputStream source, final File destination) throws IOException {
+-        try (OutputStream out = openOutputStream(destination)) {
+-            IOUtils.copy(source, out);
++        try (InputStream in = source;
++             OutputStream out = openOutputStream(destination)) {
++            IOUtils.copy(in, out);
+         }
+     }
+ 

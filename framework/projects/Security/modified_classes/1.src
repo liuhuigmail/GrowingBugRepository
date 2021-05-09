@@ -1,0 +1,8 @@
+org.apache.xml.security.signature.XMLSignature
+org.apache.xml.security.utils.ElementProxy
+org.apache.xml.security.utils.XMLUtils
+org.jcp.xml.dsig.internal.dom.DOMExcC14NMethod
+org.jcp.xml.dsig.internal.dom.DOMKeyInfo
+org.jcp.xml.dsig.internal.dom.DOMUtils
+org.jcp.xml.dsig.internal.dom.DOMXMLSignature
+org.jcp.xml.dsig.internal.dom.DOMXPathFilter2Transform

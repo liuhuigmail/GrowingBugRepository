@@ -1,0 +1,2 @@
+org.apache.commons.functor.BaseFunctorTest
+org.apache.commons.functor.core.composite.TestUnarySequence

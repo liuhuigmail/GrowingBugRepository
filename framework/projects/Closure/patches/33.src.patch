@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java b/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
+index 81a7d89..b6e3fc7 100644
+--- a/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
++++ b/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
+@@ -554,9 +554,6 @@ class PrototypeObjectType extends ObjectType {
+   @Override
+   public void matchConstraint(ObjectType constraintObj) {
+     // We only want to match contraints on anonymous types.
+-    if (hasReferenceName()) {
+-      return;
+-    }
+ 
+     // Handle the case where the constraint object is a record type.
+     //

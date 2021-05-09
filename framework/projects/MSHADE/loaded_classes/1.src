@@ -1,0 +1,4 @@
+org.apache.maven.plugins.shade.DefaultShader
+org.apache.maven.plugins.shade.relocation.Relocator
+org.apache.maven.plugins.shade.relocation.SimpleRelocator
+org.apache.maven.plugins.shade.Shader

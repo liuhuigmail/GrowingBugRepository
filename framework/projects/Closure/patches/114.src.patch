@@ -1,0 +1,13 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index a7b95b0..0fc5ae8 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -575,7 +575,7 @@ final class NameAnalyzer implements CompilerPass {
+           } else {
+             recordDepScope(nameNode, ns);
+           }
+-        } else if (!(parent.isCall() && parent.getFirstChild() == n)) {
++        } else {
+           // The rhs of the assignment is the caller, so it's used by the
+           // context. Don't associate it w/ the lhs.
+           // FYI: this fixes only the specific case where the assignment is the

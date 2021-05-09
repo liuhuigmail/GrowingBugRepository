@@ -1,0 +1,9 @@
+org.apache.maven.plugins.shade.filter.Filter
+org.apache.maven.plugins.shade.filter.SimpleFilter
+org.apache.maven.plugins.shade.mojo.ArchiveFilter
+org.apache.maven.plugins.shade.mojo.ArtifactId
+org.apache.maven.plugins.shade.mojo.ArtifactSet
+org.apache.maven.plugins.shade.mojo.PackageRelocation
+org.apache.maven.plugins.shade.mojo.ShadeMojo
+org.apache.maven.plugins.shade.resource.ResourceTransformer
+org.apache.maven.plugins.shade.Shader

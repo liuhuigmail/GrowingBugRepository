@@ -1,0 +1,23 @@
+diff --git a/src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java b/src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java
+index a08eac5..02810e1 100644
+--- a/src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java
++++ b/src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java
+@@ -106,18 +106,8 @@ public class NormalDistributionImpl extends AbstractContinuousDistribution
+      * convergence exception is caught and 0 or 1 is returned.
+      */
+     public double cumulativeProbability(double x) throws MathException {
+-        try {
+             return 0.5 * (1.0 + Erf.erf((x - mean) /
+                     (standardDeviation * Math.sqrt(2.0))));
+-        } catch (MaxIterationsExceededException ex) {
+-            if (x < (mean - 20 * standardDeviation)) { // JDK 1.5 blows at 38
+-                return 0.0d;
+-            } else if (x > (mean + 20 * standardDeviation)) {
+-                return 1.0d;
+-            } else {
+-                throw ex;
+-            }
+-        }
+     }
+     
+     /**

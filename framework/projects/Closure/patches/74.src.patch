@@ -1,0 +1,35 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 9d2f97a..a61bb6c 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -904,8 +904,8 @@ class PeepholeFoldConstants extends AbstractPeepholeOptimization {
+           && right.getString().equals("undefined"))
+           || (Token.VOID == right.getType()
+               && NodeUtil.isLiteralValue(right.getFirstChild(), false)));
+-    int lhType = getNormalizedNodeType(left);
+-    int rhType = getNormalizedNodeType(right);
++    int lhType = left.getType();
++    int rhType = right.getType();
+     switch (lhType) {
+       case Token.VOID:
+         if (!NodeUtil.isLiteralValue(left.getFirstChild(), false)) {
+@@ -1071,19 +1071,6 @@ class PeepholeFoldConstants extends AbstractPeepholeOptimization {
+   /**
+    * @return Translate NOT expressions into TRUE or FALSE when possible.
+    */
+-  private int getNormalizedNodeType(Node n) {
+-    int type = n.getType();
+-    if (type == Token.NOT) {
+-      TernaryValue value = NodeUtil.getPureBooleanValue(n);
+-      switch (value) {
+-        case TRUE:
+-          return Token.TRUE;
+-        case FALSE:
+-          return Token.FALSE;
+-      }
+-    }
+-    return type;
+-  }
+ 
+   /**
+    * The result of the comparison as a Boolean or null if the

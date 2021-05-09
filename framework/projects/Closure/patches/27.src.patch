@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/rhino/IR.java b/src/com/google/javascript/rhino/IR.java
+index 002acd6..081f01f 100644
+--- a/src/com/google/javascript/rhino/IR.java
++++ b/src/com/google/javascript/rhino/IR.java
+@@ -108,9 +108,6 @@ public class IR {
+     return block;
+   }
+ 
+-  private static Node blockUnchecked(Node stmt) {
+-    return new Node(Token.BLOCK, stmt);
+-  }
+ 
+   public static Node script(Node ... stmts) {
+     // TODO(johnlenz): finish setting up the SCRIPT node
+@@ -224,8 +221,8 @@ public class IR {
+   }
+ 
+   public static Node tryFinally(Node tryBody, Node finallyBody) {
+-    Preconditions.checkState(tryBody.isBlock());
+-    Preconditions.checkState(finallyBody.isBlock());
++    Preconditions.checkState(tryBody.isLabelName());
++    Preconditions.checkState(finallyBody.isLabelName());
+     Node catchBody = block().copyInformationFrom(tryBody);
+     return new Node(Token.TRY, tryBody, catchBody, finallyBody);
+   }
+@@ -233,7 +230,7 @@ public class IR {
+   public static Node tryCatch(Node tryBody, Node catchNode) {
+     Preconditions.checkState(tryBody.isBlock());
+     Preconditions.checkState(catchNode.isCatch());
+-    Node catchBody = blockUnchecked(catchNode).copyInformationFrom(catchNode);
++    Node catchBody = block(catchNode).copyInformationFrom(catchNode);
+     return new Node(Token.TRY, tryBody, catchBody);
+   }
+ 

@@ -1,0 +1,6 @@
+org.apache.commons.imaging.formats.tiff.TiffBaseTest
+org.apache.commons.imaging.formats.tiff.TiffReadTest
+org.apache.commons.imaging.formats.tiff.TiffRoundtripTest
+org.apache.commons.imaging.ImagingTest
+org.apache.commons.imaging.ImagingTestConstants
+org.apache.commons.imaging.test.util.FileSystemTraversal

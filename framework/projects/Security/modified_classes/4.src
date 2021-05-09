@@ -1,0 +1,4 @@
+org.apache.xml.security.encryption.XMLCipher
+org.apache.xml.security.keys.KeyInfo
+org.apache.xml.security.keys.keyresolver.KeyResolverSpi
+org.apache.xml.security.keys.keyresolver.implementations.RetrievalMethodResolver

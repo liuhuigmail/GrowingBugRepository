@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,753828d17e3d0c306eec86caa8e2e179cd8f3786,4e4f17e98e709cb5ad5f497a121ccef6ea3bfe61,44999,https://bz.apache.org/bugzilla//show_bug.cgi?id=44999
+2,7bb95d74b5a65b6304eaa5d28aa1de94375d76c7,91803cb2c63f8e94f5417e8b8236b85232b3e54e,45475,https://bz.apache.org/bugzilla//show_bug.cgi?id=45475
+3,9cc4b8e92903fe2845fe33ea05d42042676f7acc,a8bbfcce18270d2fa78e015ba0ba7780177ddde7,47526,https://bz.apache.org/bugzilla//show_bug.cgi?id=47526
+4,08ee4dab75ab2c15f0863a6bed54e7ac3e76d4e3,ef2350e4585c349c4dd3231ab7c3fc5ae5955640,49493,https://bz.apache.org/bugzilla//show_bug.cgi?id=49493

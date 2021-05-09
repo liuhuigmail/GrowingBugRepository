@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/lang3/builder/ToStringStyle.java b/src/main/java/org/apache/commons/lang3/builder/ToStringStyle.java
+index 26214ed..aa1f448 100644
+--- a/src/main/java/org/apache/commons/lang3/builder/ToStringStyle.java
++++ b/src/main/java/org/apache/commons/lang3/builder/ToStringStyle.java
+@@ -145,7 +145,7 @@ public abstract class ToStringStyle implements Serializable {
+      * @return Set the registry of objects being traversed
+      */
+     static Map<Object, Object> getRegistry() {
+-        return REGISTRY.get();
++        return REGISTRY.get() != null ? REGISTRY.get() : Collections.<Object, Object>emptyMap();
+     }
+ 
+     /**
+@@ -161,7 +161,7 @@ public abstract class ToStringStyle implements Serializable {
+      */
+     static boolean isRegistered(Object value) {
+         Map<Object, Object> m = getRegistry();
+-        return m != null && m.containsKey(value);
++        return m.containsKey(value);
+     }
+ 
+     /**

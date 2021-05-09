@@ -1,0 +1,70 @@
+diff --git a/src_unitTests/javax/xml/crypto/test/dsig/XMLSignatureTest.java b/src_unitTests/javax/xml/crypto/test/dsig/XMLSignatureTest.java
+index efeae301..01878335 100644
+--- a/src_unitTests/javax/xml/crypto/test/dsig/XMLSignatureTest.java
++++ b/src_unitTests/javax/xml/crypto/test/dsig/XMLSignatureTest.java
+@@ -27,7 +27,6 @@ import javax.xml.crypto.dsig.keyinfo.*;
+ import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
+ import javax.xml.crypto.dsig.dom.DOMSignContext;
+ import javax.xml.crypto.dsig.dom.DOMValidateContext;
+-import javax.xml.transform.*;
+ import javax.crypto.SecretKey;
+ import javax.crypto.spec.SecretKeySpec;
+ 
+@@ -227,22 +226,6 @@ public class XMLSignatureTest extends TestCase {
+ 	}
+     }
+ 
+-    public void testSignWithEmptyNSPrefix() throws Exception {
+-	SignedInfo si = createSignedInfo(SIG_METHODS[1]);
+-	KeyInfo	ki = kifac.newKeyInfo(Collections.singletonList
+-		    (kifac.newKeyValue((PublicKey) VALIDATE_KEYS[1])));
+-	XMLSignature sig = fac.newXMLSignature(si, ki, objs, id, sigValueId); 
+-	Document doc = TestUtils.newDocument();
+-	XMLSignContext signContext = new DOMSignContext(SIGN_KEYS[1], doc);
+-	signContext.putNamespacePrefix(XMLSignature.XMLNS, "");
+-        sig.sign(signContext);
+-/*
+-	StringWriter sw = new StringWriter();
+-	dumpDocument(doc, sw);
+-	System.out.println(sw);
+-*/
+-    }
+-
+     private SignedInfo createSignedInfo(SignatureMethod sm) throws Exception {
+ 	// set up the building blocks
+ 	CanonicalizationMethod cm = fac.newCanonicalizationMethod
+@@ -259,11 +242,4 @@ public class XMLSignatureTest extends TestCase {
+ 	    super("TestProvider", 0, "TestProvider");
+ 	}
+     }
+-
+-    private void dumpDocument(Document doc, Writer w) throws Exception {
+-        TransformerFactory tf = TransformerFactory.newInstance();
+-        Transformer trans = tf.newTransformer();
+-//      trans.setOutputProperty(OutputKeys.INDENT, "yes");
+-        trans.transform(new DOMSource(doc), new StreamResult(w));
+-    }
+ }
+diff --git a/src_unitTests/org/apache/xml/security/test/signature/CreateSignatureTest.java b/src_unitTests/org/apache/xml/security/test/signature/CreateSignatureTest.java
+index c511cde0..3be19e19 100644
+--- a/src_unitTests/org/apache/xml/security/test/signature/CreateSignatureTest.java
++++ b/src_unitTests/org/apache/xml/security/test/signature/CreateSignatureTest.java
+@@ -151,18 +151,6 @@ public class CreateSignatureTest extends TestCase {
+ 	doSignWithCert();
+     }
+ 
+-    public void testWithNSPrefixDisabled() throws Exception {
+-	String prefix = Constants.getSignatureSpecNSprefix();
+-	try {
+-            Constants.setSignatureSpecNSprefix("");
+-            doSign();
+-            Constants.setSignatureSpecNSprefix(prefix);
+-	} catch (Exception e) {
+-            Constants.setSignatureSpecNSprefix(prefix);
+-	    throw e;
+-	}
+-    }
+-
+     String doSign() throws Exception {
+         PrivateKey privateKey = kp.getPrivate();
+         org.w3c.dom.Document doc = db.newDocument();

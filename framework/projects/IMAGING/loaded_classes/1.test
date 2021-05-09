@@ -1,0 +1,4 @@
+org.apache.commons.imaging.ImagingTest
+org.apache.commons.imaging.ImagingTestConstants
+org.apache.commons.imaging.roundtrip.RoundtripTest
+org.apache.commons.imaging.test.util.FileSystemTraversal

@@ -1,0 +1,16 @@
+org.apache.tika.config.ParserConfig
+org.apache.tika.config.TikaConfig
+org.apache.tika.metadata.TikaMimeKeys
+org.apache.tika.mime.Clause
+org.apache.tika.mime.Magic
+org.apache.tika.mime.MagicClause
+org.apache.tika.mime.MagicMatch
+org.apache.tika.mime.MimeType
+org.apache.tika.mime.MimeTypeException
+org.apache.tika.mime.MimeTypes
+org.apache.tika.mime.MimeTypesReader
+org.apache.tika.mime.MimeUtils
+org.apache.tika.mime.Operator
+org.apache.tika.mime.Patterns
+org.apache.tika.utils.StringUtil
+org.apache.tika.utils.Utils

@@ -1,0 +1,3 @@
+org.apache.tika.TestParsers
+org.apache.tika.mime.TestMimeTypes
+org.apache.tika.mime.TestMimeUtils

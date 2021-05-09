@@ -1,0 +1,2 @@
+org.apache.tika.parser.html.HtmlParser
+org.apache.tika.parser.html.XHTMLDowngradeHandler

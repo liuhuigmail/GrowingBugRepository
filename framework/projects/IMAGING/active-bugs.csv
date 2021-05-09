@@ -1,0 +1,6 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,979c6856b1869ecf1309c926f732ab52af8c3334,39f463da29620668e1a4c6459997be52cce72681,IMAGING-82,https://issues.apache.org/jira/browse/IMAGING-82
+2,fcf027c38ac94ded8cdb248ec41e9d37b32e8b14,837cc0b926b2989fbe7ed484ef3460b041e81e27,IMAGING-90,https://issues.apache.org/jira/browse/IMAGING-90
+3,5ab7a3e29bb8c6a13b961a06db7d9ca3a298f4cf,7d886c0bf06232096740c5066aaf5510d8e7abf5,IMAGING-169,https://issues.apache.org/jira/browse/IMAGING-169
+4,f1fe855f42701c5d98a9b7c59f3626e762bc06f6,801a75dcf871914d243f585c8755140eda52c69f,IMAGING-178,https://issues.apache.org/jira/browse/IMAGING-178
+5,cd5ef9b33efea115d54d5f536f157cbae3990366,ed6115b320aa309100ba2edabff22f5e0c51a71b,IMAGING-176,https://issues.apache.org/jira/browse/IMAGING-176

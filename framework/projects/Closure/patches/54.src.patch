@@ -1,0 +1,51 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 5bccc06..8654ae6 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1410,13 +1410,7 @@ final class TypedScopeCreator implements ScopeCreator {
+           // then they are responsible for making sure that the object literal's
+           // implicit prototype is set up appropriately. We just obey
+           // the @extends tag.
+-          ObjectType qVarType = ObjectType.cast(qVar.getType());
+-          if (qVarType != null &&
+-              rhsValue != null &&
+-              rhsValue.getType() == Token.OBJECTLIT) {
+-            typeRegistry.resetImplicitPrototype(
+-                rhsValue.getJSType(), qVarType.getImplicitPrototype());
+-          } else if (!qVar.isTypeInferred()) {
++          if (!qVar.isTypeInferred()) {
+             // If the programmer has declared that F inherits from Super,
+             // and they assign F.prototype to some arbitrary expression,
+             // there's not much we can do. We just ignore the expression,
+diff --git a/src/com/google/javascript/rhino/jstype/FunctionType.java b/src/com/google/javascript/rhino/jstype/FunctionType.java
+index a87be07..b65d8b1 100644
+--- a/src/com/google/javascript/rhino/jstype/FunctionType.java
++++ b/src/com/google/javascript/rhino/jstype/FunctionType.java
+@@ -338,6 +338,7 @@ public class FunctionType extends PrototypeObjectType {
+     //
+     // In the second case, we just use the anonymous object as the prototype.
+     if (baseType.hasReferenceName() ||
++        baseType.isUnknownType() ||
+         isNativeObjectType() ||
+         baseType.isFunctionPrototypeType() ||
+         !(baseType instanceof PrototypeObjectType)) {
+@@ -362,18 +363,14 @@ public class FunctionType extends PrototypeObjectType {
+       return false;
+     }
+ 
+-    PrototypeObjectType oldPrototype = this.prototype;
+-    boolean replacedPrototype = oldPrototype != null;
++    boolean replacedPrototype = prototype != null;
+ 
+     this.prototype = prototype;
+     this.prototypeSlot = new SimpleSlot("prototype", prototype, true);
+     this.prototype.setOwnerFunction(this);
+ 
+-    if (oldPrototype != null) {
+       // Disassociating the old prototype makes this easier to debug--
+       // we don't have to worry about two prototypes running around.
+-      oldPrototype.setOwnerFunction(null);
+-    }
+ 
+     if (isConstructor() || isInterface()) {
+       FunctionType superClass = getSuperClassConstructor();

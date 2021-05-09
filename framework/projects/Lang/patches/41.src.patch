@@ -1,0 +1,57 @@
+diff --git a/src/java/org/apache/commons/lang/ClassUtils.java b/src/java/org/apache/commons/lang/ClassUtils.java
+index 478b377..d5de42b 100644
+--- a/src/java/org/apache/commons/lang/ClassUtils.java
++++ b/src/java/org/apache/commons/lang/ClassUtils.java
+@@ -188,23 +188,10 @@ public class ClassUtils {
+             return StringUtils.EMPTY;
+         }
+ 
+-        StringBuffer arrayPrefix = new StringBuffer();
+ 
+         // Handle array encoding
+-        if (className.startsWith("[")) {
+-            while (className.charAt(0) == '[') {
+-                className = className.substring(1);
+-                arrayPrefix.append("[]");
+-            }
+             // Strip Object type encoding
+-            if (className.charAt(0) == 'L' && className.charAt(className.length() - 1) == ';') {
+-                className = className.substring(1, className.length() - 1);
+-            }
+-        }
+ 
+-        if (reverseAbbreviationMap.containsKey(className)) {
+-            className = reverseAbbreviationMap.get(className);
+-        }
+ 
+         int lastDotIdx = className.lastIndexOf(PACKAGE_SEPARATOR_CHAR);
+         int innerIdx = className.indexOf(
+@@ -213,7 +200,7 @@ public class ClassUtils {
+         if (innerIdx != -1) {
+             out = out.replace(INNER_CLASS_SEPARATOR_CHAR, PACKAGE_SEPARATOR_CHAR);
+         }
+-        return out + arrayPrefix;
++        return out;
+     }
+ 
+     // Package name
+@@ -255,18 +242,12 @@ public class ClassUtils {
+      * @return the package name or an empty string
+      */
+     public static String getPackageName(String className) {
+-        if (className == null || className.length() == 0) {
++        if (className == null) {
+             return StringUtils.EMPTY;
+         }
+ 
+         // Strip array encoding
+-        while (className.charAt(0) == '[') {
+-            className = className.substring(1);
+-        }
+         // Strip Object type encoding
+-        if (className.charAt(0) == 'L' && className.charAt(className.length() - 1) == ';') {
+-            className = className.substring(1);
+-        }
+ 
+         int i = className.lastIndexOf(PACKAGE_SEPARATOR_CHAR);
+         if (i == -1) {

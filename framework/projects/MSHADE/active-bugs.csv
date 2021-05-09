@@ -1,0 +1,8 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,0c1113784feb2a7f3eab7d5f9e768e5ad91e375a,1313844ec89701189a87ab629f2d7970bccc57a8,MSHADE-19,https://issues.apache.org/jira/browse/MSHADE-19
+2,8e389707daa75c16ef6aa2112ba3ec9073bc02e8,47959bbd73b0aa022ebf32f442e7df6d59fa3ae0,MSHADE-26,https://issues.apache.org/jira/browse/MSHADE-26
+3,99d436d485e493e5caece022e3f6f9b93e7cf953,6ab3cde463cf13f6a21719a0619f62b3fcd3d51d,MSHADE-38,https://issues.apache.org/jira/browse/MSHADE-38
+4,664a0468c2da9ae52e1db5937b35d153f4eb9ef2,65100086a5a51b1ef767b67ac2bfff8b77b573d6,MSHADE-70,https://issues.apache.org/jira/browse/MSHADE-70
+5,613238d9b1d39f19a10585cf01ddd086b4416a6b,04e2ceeffb4b54487e4c4a13d269f8142770fdef,MSHADE-83,https://issues.apache.org/jira/browse/MSHADE-83
+6,5217a53bb2bd6569ab8fc23c0e70bc956bfcfc18,88f188da5f0d352518d8c1441bac1ee25befcad4,MSHADE-101,https://issues.apache.org/jira/browse/MSHADE-101
+7,088fa83a9fc3dbedf4aa126bed01de79a73079f4,bcece7bd4d72f2f980abfd575e5b1afafba7af4c,MSHADE-94,https://issues.apache.org/jira/browse/MSHADE-94

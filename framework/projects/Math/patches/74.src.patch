@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java b/src/main/java/org/apache/commons/math/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
+index 1bbad3e..6f3e883 100644
+--- a/src/main/java/org/apache/commons/math/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
++++ b/src/main/java/org/apache/commons/math/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
+@@ -242,15 +242,12 @@ public abstract class EmbeddedRungeKuttaIntegrator
+         }
+ 
+         if (firstTime) {
+-          final double[] scale = new double[y0.length];
++          final double[] scale;
+           if (vecAbsoluteTolerance == null) {
+-              for (int i = 0; i < scale.length; ++i) {
+-                scale[i] = scalAbsoluteTolerance + scalRelativeTolerance * Math.abs(y[i]);
+-              }
++              scale = new double[y0.length];
++              java.util.Arrays.fill(scale, scalAbsoluteTolerance);
+             } else {
+-              for (int i = 0; i < scale.length; ++i) {
+-                scale[i] = vecAbsoluteTolerance[i] + vecRelativeTolerance[i] * Math.abs(y[i]);
+-              }
++              scale = vecAbsoluteTolerance;
+             }
+           hNew = initializeStep(equations, forward, getOrder(), scale,
+                                 stepStart, y, yDotK[0], yTmp, yDotK[1]);

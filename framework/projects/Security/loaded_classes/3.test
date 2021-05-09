@@ -1,0 +1,6 @@
+org.apache.xml.security.test.interop.BaltimoreTest
+org.apache.xml.security.test.interop.IAIKTest
+org.apache.xml.security.test.interop.InteropTest
+org.apache.xml.security.test.signature.HMACOutputLengthTest
+org.apache.xml.security.test.TestUtils
+org.apache.xml.security.test.utils.resolver.OfflineResolver

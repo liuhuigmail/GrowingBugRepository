@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math/optimization/general/AbstractLeastSquaresOptimizer.java b/src/main/java/org/apache/commons/math/optimization/general/AbstractLeastSquaresOptimizer.java
+index 5a60da8..30ebfff 100644
+--- a/src/main/java/org/apache/commons/math/optimization/general/AbstractLeastSquaresOptimizer.java
++++ b/src/main/java/org/apache/commons/math/optimization/general/AbstractLeastSquaresOptimizer.java
+@@ -237,7 +237,12 @@ public abstract class AbstractLeastSquaresOptimizer implements DifferentiableMul
+      * @return RMS value
+      */
+     public double getRMS() {
+-        return Math.sqrt(getChiSquare() / rows);
++        double criterion = 0;
++        for (int i = 0; i < rows; ++i) {
++            final double residual = residuals[i];
++            criterion += residual * residual * residualsWeights[i];
++        }
++        return Math.sqrt(criterion / rows);
+     }
+ 
+     /**
+@@ -250,7 +255,7 @@ public abstract class AbstractLeastSquaresOptimizer implements DifferentiableMul
+         double chiSquare = 0;
+         for (int i = 0; i < rows; ++i) {
+             final double residual = residuals[i];
+-            chiSquare += residual * residual * residualsWeights[i];
++            chiSquare += residual * residual / residualsWeights[i];
+         }
+         return chiSquare;
+     }

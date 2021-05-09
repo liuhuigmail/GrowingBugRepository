@@ -1,0 +1,37 @@
+diff --git a/src/com/google/javascript/jscomp/ScopedAliases.java b/src/com/google/javascript/jscomp/ScopedAliases.java
+index b2a1690..1e22c9e 100644
+--- a/src/com/google/javascript/jscomp/ScopedAliases.java
++++ b/src/com/google/javascript/jscomp/ScopedAliases.java
+@@ -256,7 +256,6 @@ class ScopedAliases implements HotSwapCompilerPass {
+     private final Map<String, Var> aliases = Maps.newHashMap();
+ 
+     // Also temporary and cleared for each scope.
+-    private final Set<Node> injectedDecls = Sets.newHashSet();
+ 
+     // Suppose you create an alias.
+     // var x = goog.x;
+@@ -314,7 +313,6 @@ class ScopedAliases implements HotSwapCompilerPass {
+ 
+       if (t.getScopeDepth() == 2) {
+         renameNamespaceShadows(t);
+-        injectedDecls.clear();
+         aliases.clear();
+         forbiddenLocals.clear();
+         transformation = null;
+@@ -431,7 +429,6 @@ class ScopedAliases implements HotSwapCompilerPass {
+             } else {
+               grandparent.addChildBefore(newDecl, varNode);
+             }
+-            injectedDecls.add(newDecl.getFirstChild());
+           }
+ 
+           // Rewrite "var name = EXPR;" to "var name = $jscomp.scope.name;"
+@@ -581,7 +578,7 @@ class ScopedAliases implements HotSwapCompilerPass {
+         // When we inject declarations, we duplicate jsdoc. Make sure
+         // we only process that jsdoc once.
+         JSDocInfo info = n.getJSDocInfo();
+-        if (info != null && !injectedDecls.contains(n)) {
++        if (info != null) {
+           for (Node node : info.getTypeNodes()) {
+             fixTypeNode(node);
+           }

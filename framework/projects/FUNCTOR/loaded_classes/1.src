@@ -1,0 +1,8 @@
+org.apache.commons.functor.Functor
+org.apache.commons.functor.generator.BaseGenerator
+org.apache.commons.functor.generator.Generator
+org.apache.commons.functor.generator.TransformedGenerator
+org.apache.commons.functor.generator.util.IntegerRange
+org.apache.commons.functor.UnaryFunction
+org.apache.commons.functor.UnaryFunctor
+org.apache.commons.functor.UnaryProcedure

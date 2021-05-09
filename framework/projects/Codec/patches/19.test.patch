@@ -1,0 +1,12 @@
+diff --git a/src/test/java/org/apache/commons/codec/digest/MurmurHash3Test.java b/src/test/java/org/apache/commons/codec/digest/MurmurHash3Test.java
+index d7c21aab..a07dbb1f 100644
+--- a/src/test/java/org/apache/commons/codec/digest/MurmurHash3Test.java
++++ b/src/test/java/org/apache/commons/codec/digest/MurmurHash3Test.java
+@@ -597,7 +597,6 @@ public class MurmurHash3Test {
+             offset += block;
+             final int h2 = inc.end();
+             Assert.assertEquals("Hashes differ", h1, h2);
+-            Assert.assertEquals("Hashes differ after no additional data", h1, inc.end());
+         }
+     }
+ }

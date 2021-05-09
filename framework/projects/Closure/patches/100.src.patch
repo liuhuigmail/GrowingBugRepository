@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/CheckGlobalThis.java b/src/com/google/javascript/jscomp/CheckGlobalThis.java
+index 1b6c93f..6390687 100644
+--- a/src/com/google/javascript/jscomp/CheckGlobalThis.java
++++ b/src/com/google/javascript/jscomp/CheckGlobalThis.java
+@@ -96,13 +96,6 @@ final class CheckGlobalThis implements Callback {
+       // var a = function() { }; // or
+       // function a() {} // or
+       // a.x = function() {};
+-      int pType = parent.getType();
+-      if (!(pType == Token.BLOCK ||
+-            pType == Token.SCRIPT ||
+-            pType == Token.NAME ||
+-            pType == Token.ASSIGN)) {
+-        return false;
+-      }
+     }
+ 
+     if (parent != null && parent.getType() == Token.ASSIGN) {
+@@ -150,7 +143,7 @@ final class CheckGlobalThis implements Callback {
+     }
+ 
+     // Also report a THIS with a property access.
+-    return parent != null && NodeUtil.isGet(parent);
++    return false;
+   }
+ 
+   /**

@@ -1,0 +1,124 @@
+diff --git a/src/test/org/apache/commons/dbutils/BeanProcessorTest.java b/src/test/org/apache/commons/dbutils/BeanProcessorTest.java
+index eae146b..6944a85 100644
+--- a/src/test/org/apache/commons/dbutils/BeanProcessorTest.java
++++ b/src/test/org/apache/commons/dbutils/BeanProcessorTest.java
+@@ -16,9 +16,6 @@
+  */
+ package org.apache.commons.dbutils;
+ 
+-import java.beans.Introspector;
+-import java.beans.PropertyDescriptor;
+-import java.sql.ResultSetMetaData;
+ import java.sql.SQLException;
+ 
+ public class BeanProcessorTest extends BaseTestCase {
+@@ -28,58 +25,14 @@ public class BeanProcessorTest extends BaseTestCase {
+     public void testProcess() throws SQLException {
+         TestBean b = null;
+         assertTrue(this.rs.next());
+-        b = beanProc.toBean(this.rs, TestBean.class);
++        b = (TestBean) beanProc.toBean(this.rs, TestBean.class);
+         assertEquals(13.0, b.getColumnProcessorDoubleTest(), 0);
+-
++        
+         assertTrue(this.rs.next());
+-        b = beanProc.toBean(this.rs, TestBean.class);
++        b = (TestBean) beanProc.toBean(this.rs, TestBean.class);
+         assertEquals(13.0, b.getColumnProcessorDoubleTest(), 0);
+ 
+         assertFalse(this.rs.next());
+     }
+ 
+-    public static class MapColumnToPropertiesBean {
+-        private String one;
+-
+-        private String two;
+-
+-        private String three;
+-
+-        public String getOne() {
+-            return one;
+-        }
+-
+-        public void setOne(String one) {
+-            this.one = one;
+-        }
+-
+-        public String getTwo() {
+-            return two;
+-        }
+-
+-        public void setTwo(String two) {
+-            this.two = two;
+-        }
+-
+-        public String getThree() {
+-            return three;
+-        }
+-
+-        public void setThree(String three) {
+-            this.three = three;
+-        }
+-    }
+-
+-    public void testMapColumnToProperties() throws Exception {
+-        String[] columnNames = { "test", "test", "three" };
+-        String[] columnLabels = { "one", "two", null };
+-        ResultSetMetaData rsmd = ProxyFactory.instance().createResultSetMetaData(
+-                new MockResultSetMetaData(columnNames, columnLabels));
+-        PropertyDescriptor[] props = Introspector.getBeanInfo(MapColumnToPropertiesBean.class).getPropertyDescriptors();
+-
+-        int[] columns = beanProc.mapColumnsToProperties(rsmd, props);
+-        for (int i = 1; i < columns.length; i++) {
+-            assertTrue(columns[i] != BeanProcessor.PROPERTY_NOT_FOUND);
+-        }
+-    }
+ }
+diff --git a/src/test/org/apache/commons/dbutils/MockResultSetMetaData.java b/src/test/org/apache/commons/dbutils/MockResultSetMetaData.java
+index b152bb8..8edb821 100644
+--- a/src/test/org/apache/commons/dbutils/MockResultSetMetaData.java
++++ b/src/test/org/apache/commons/dbutils/MockResultSetMetaData.java
+@@ -27,7 +27,6 @@ import java.sql.ResultSetMetaData;
+ public class MockResultSetMetaData implements InvocationHandler {
+ 
+     private String[] columnNames = null;
+-    private String[] columnLabels = null;
+ 
+     /**
+      * Create a <code>MockResultSetMetaData</code> proxy object.  This is 
+@@ -47,14 +46,6 @@ public class MockResultSetMetaData implements InvocationHandler {
+     public MockResultSetMetaData(String[] columnNames) {
+         super();
+         this.columnNames = columnNames;
+-        this.columnLabels = new String[columnNames.length];
+-
+-    }
+-    
+-    public MockResultSetMetaData(String[] columnNames, String[] columnLabels) {
+-        super();
+-        this.columnNames = columnNames;
+-        this.columnLabels = columnLabels;
+ 
+     }
+ 
+@@ -67,16 +58,11 @@ public class MockResultSetMetaData implements InvocationHandler {
+             return new Integer(this.columnNames.length);
+ 
+         } else if (
+-                methodName.equals("getColumnName")) {
+-
+-                int col = ((Integer) args[0]).intValue() - 1;
+-                return this.columnNames[col];
+-
+-        } else if (
+-        		methodName.equals("getColumnLabel")) {
++            methodName.equals("getColumnName")
++                || methodName.equals("getColumnLabel")) {
+ 
+-                int col = ((Integer) args[0]).intValue() - 1;
+-                return this.columnLabels[col];
++            int col = ((Integer) args[0]).intValue() - 1;
++            return this.columnNames[col];
+ 
+         } else if (methodName.equals("hashCode")) {
+             return new Integer(System.identityHashCode(proxy));

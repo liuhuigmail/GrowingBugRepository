@@ -1,0 +1,6 @@
+org.apache.tika.TestParsers
+org.apache.tika.mime.MimeTypeTest
+org.apache.tika.mime.MimeTypesTest
+org.apache.tika.mime.PatternsTest
+org.apache.tika.mime.TestMimeTypes
+org.apache.tika.parser.AutoDetectParserTest

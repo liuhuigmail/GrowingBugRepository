@@ -1,0 +1,75 @@
+<!--
+Copyright (c) 2014-2017 René Just, Darioush Jalali, and Defects4J contributors.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+################################################################################
+              This is the project-specific build file for Closure.
+
+It defines project-specific properties and targets, and imports the build file
+of the checked-out project version.
+#############################################################################-->
+<project name="D4J-Closure">
+    <!-- Compile with debugging information enabled -->
+    <property name="javac.debug" value="true" />
+
+    <!-- Dummy paths, in case not defined in project build file -->
+    <path id="allclasspath.path" />
+    <path id="srcclasspath.path" />
+    <path id="classpath.path" />
+
+    <!-- Include existing project build file -->
+    <import file="${d4j.workdir}/build.xml" />
+
+    <!-- relevant classpaths from different build revisions -->
+    <path id="test.classpath">
+        <path refid="allclasspath.path" />
+        <path refid="classpath.path" />
+        <pathelement path="${build.dir}/test" />
+    </path>
+    <path id="compile.classpath">
+        <path refid="srcclasspath.path" />
+        <path refid="classpath.path" />
+        <fileset dir="${d4j.workdir}/lib" includes="ant.jar" />
+    </path>
+    <!-- Values necessary for mutation scripting to work -->
+    <property name="test.home" value="${testClasses.dir}" />
+    <property name="build.home" value="${build.dir}" />
+    <property name="test.classes.dir" value="${test.home}" />
+
+    <target name="compile.tests" depends="compile-tests" />
+
+    <!-- We need to compile rhino.testing package before we can
+         compile the generated test suites => Override the compile.gen.tests target -->
+    <target name="compile.gen.tests" depends="compile-tests">
+        <!-- Call overridden target -->
+        <antcall target="Defects4J.compile.gen.tests" />
+    </target>
+
+    <!-- List of all devloper-written tests that reliably pass on the fixed version -->
+    <fileset id="all.manual.tests" dir="${build.dir}/test" excludes="${d4j.tests.exclude}">
+        <include name="**/*Test.class" />
+    </fileset>
+
+    <!-- Classpath to run developer-written tests -->
+    <path id="d4j.test.classpath">
+        <path refid="compile.classpath" />
+        <path refid="test.classpath" />
+    </path>
+</project>

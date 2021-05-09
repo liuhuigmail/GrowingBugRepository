@@ -1,0 +1,6 @@
+com.google.javascript.jscomp.LooseTypeCheckTest
+com.google.javascript.jscomp.TypeCheckTest
+com.google.javascript.jscomp.TypedScopeCreatorTest
+com.google.javascript.jscomp.parsing.ParserTest
+com.google.javascript.rhino.jstype.JSTypeTest
+com.google.javascript.rhino.jstype.RecordTypeTest

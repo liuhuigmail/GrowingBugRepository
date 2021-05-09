@@ -1,0 +1,146 @@
+<!--
+Copyright (c) 2014-2017 René Just, Darioush Jalali, and Defects4J contributors.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+################################################################################
+               This is the project-specific build file for Chart.
+
+It defines project-specific properties and targets, and imports the build file
+of the checked-out project version.
+#############################################################################-->
+<project name="D4J-Chart">
+    <!-- Include existing project build file -->
+    <import file="${d4j.workdir}/ant/build.xml" />
+
+    <!-- Values necessary for mutation scripting to work -->
+    <property name="test.home" value="${d4j.workdir}/build-tests" />
+    <property name="build.home" value="${d4j.workdir}" />
+    <property name="classes.dir" value="${d4j.workdir}/build" />
+    <property name="test.classes.dir" value="${test.home}" />
+    <path id="compile.classpath" refid="build.classpath" />
+
+    <!-- Clean up working directory, i.e., delete classes and test classes. -->
+    <target name="clean">
+        <delete dir="$test.home" />
+        <delete dir="$classes.dir" />
+    </target>
+
+    <!-- target used for compiling sources. This was replicated to avoid deleting the compilation directory -->
+    <target name="compile" depends="initialise"
+            description="Compile the JFreeChart source code.">
+
+        <!-- create a temp build directory -->
+        <mkdir dir="${d4j.workdir}/build" />
+
+        <javac srcdir="${d4j.workdir}/source"
+               destdir="${d4j.workdir}/build"
+               debug="on"
+               deprecation="false"
+               source="1.4"
+               target="1.4">
+            <classpath refid="build.classpath" />
+            <include name="org/jfree/**"/>
+        </javac>
+
+        <!-- copy across gorilla.jpg -->
+        <copy file="${d4j.workdir}/source/org/jfree/chart/gorilla.jpg" tofile="${d4j.workdir}/build/org/jfree/chart/gorilla.jpg" />
+
+        <!-- copy across .properties files -->
+        <copy todir="${d4j.workdir}/build/org/jfree/chart/">
+            <fileset dir="${d4j.workdir}/source/org/jfree/chart">
+                <include name="*.properties" />
+            </fileset>
+        </copy>
+        <copy todir="${d4j.workdir}/build/org/jfree/chart/plot">
+            <fileset dir="${d4j.workdir}/source/org/jfree/chart/plot">
+                <include name="*.properties" />
+            </fileset>
+        </copy>
+        <copy todir="${d4j.workdir}/build/org/jfree/chart/editor">
+            <fileset dir="${d4j.workdir}/source/org/jfree/chart/editor">
+                <include name="*.properties" />
+            </fileset>
+        </copy>
+        <copy todir="${d4j.workdir}/build/org/jfree/chart/ui">
+            <fileset dir="${d4j.workdir}/source/org/jfree/chart/ui">
+                <include name="*.properties" />
+            </fileset>
+        </copy>
+    </target>
+
+
+    <!-- Compile the experimental classes.  This was replicated to avoid deleting the compilation directory -->
+    <target name="compile-experimental" depends="compile"
+            description="Compile the JFreeChart experimental classes">
+
+        <!-- create a temp build directory -->
+        <mkdir dir="${d4j.workdir}/build" />
+
+        <path id="build.experimental.classpath">
+            <pathelement location="${servlet.jar}"/>
+        </path>
+
+        <!-- compile the source -->
+        <javac srcdir="${d4j.workdir}/experimental"
+               destdir="${d4j.workdir}/build"
+               debug="on"
+               deprecation="false"
+               source="1.4"
+               target="1.4">
+            <classpath refid="build.experimental.classpath" />
+            <include name="org/jfree/experimental/**"/>
+            <exclude name="org/jfree/experimental/**/junit/*"/>
+        </javac>
+    </target>
+
+
+    <!-- dummy target, used to rename -->
+    <target name="compile.tests" depends="compile, compile-experimental">
+         <mkdir dir="${d4j.workdir}/build-tests"/>
+        <javac srcdir="${d4j.workdir}/tests"
+               destdir="${d4j.workdir}/build-tests"
+               source="1.4"
+               target="1.4"
+               debug="true"
+               deprecation="false"
+               optimize="false">
+            <classpath>
+                <path refid="build.classpath"/>
+                <pathelement location="${junit.jar}"/>
+                <pathelement location="${classes.dir}" />
+                <pathelement location="${d4j.workdir}/build-tests"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- List of all developer-written tests that reliably pass on the fixed version -->
+    <fileset id="all.manual.tests" dir="${d4j.workdir}/tests" excludes="${d4j.tests.exclude}">
+        <include name="**/*Tests.java"/>
+        <exclude name="**/*Package*.java"/>
+    </fileset>
+
+    <!-- Classpath to run developer-written tests -->
+    <path id="d4j.test.classpath">
+        <path refid="build.classpath"/>
+        <pathelement location="${junit.jar}"/>
+        <pathelement location="${classes.dir}" />
+        <pathelement location="${d4j.workdir}/build-tests"/>
+    </path>
+</project>

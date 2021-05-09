@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/apache/commons/lang3/StringUtils.java b/src/main/java/org/apache/commons/lang3/StringUtils.java
+index 4733b7e..535a3f2 100644
+--- a/src/main/java/org/apache/commons/lang3/StringUtils.java
++++ b/src/main/java/org/apache/commons/lang3/StringUtils.java
+@@ -785,10 +785,7 @@ public class StringUtils {
+         if (cs1 == null || cs2 == null) {
+             return false;
+         }
+-        if (cs1 instanceof String && cs2 instanceof String) {
+             return cs1.equals(cs2);
+-        }
+-        return CharSequenceUtils.regionMatches(cs1, false, 0, cs2, 0, Math.max(cs1.length(), cs2.length()));
+     }
+ 
+     /**

@@ -1,0 +1,6 @@
+org.apache.tika.parser.html.HtmlParser
+org.apache.tika.parser.pkg.PackageParser
+org.apache.tika.sax.EmbeddedContentHandler
+org.apache.tika.sax.TextContentHandler
+org.apache.tika.sax.WriteOutContentHandler
+org.apache.tika.sax.xpath.MatchingContentHandler

@@ -1,0 +1,20 @@
+diff --git a/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
+index 7a40e3cc..9e48e07d 100644
+--- a/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
+@@ -498,14 +498,7 @@ protected void setUp() {
+        assertTrue(validator.isValid("http://example.com/serach?address=Main+Avenue"));
+    }
+ 
+-   public void testValidator467() {
+-      UrlValidator validator = new UrlValidator(UrlValidator.ALLOW_2_SLASHES);
+-      assertTrue(validator.isValid("https://example.com/some_path/path/"));
+-      assertTrue(validator.isValid("https://example.com//somepath/path/"));
+-      assertTrue(validator.isValid("https://example.com//some_path/path/"));
+-  }
+-
+-  //-------------------- Test data for creating a composite URL
++   //-------------------- Test data for creating a composite URL
+    /**
+     * The data given below approximates the 4 parts of a URL
+     * <scheme>://<authority><path>?<query> except that the port number

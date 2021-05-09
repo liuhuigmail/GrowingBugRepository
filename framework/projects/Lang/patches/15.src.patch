@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/lang3/reflect/TypeUtils.java b/src/main/java/org/apache/commons/lang3/reflect/TypeUtils.java
+index 8db8abf..415cefa 100644
+--- a/src/main/java/org/apache/commons/lang3/reflect/TypeUtils.java
++++ b/src/main/java/org/apache/commons/lang3/reflect/TypeUtils.java
+@@ -216,9 +216,9 @@ public class TypeUtils {
+                 toClass, typeVarAssigns);
+ 
+         // now to check each type argument
+-        for (TypeVariable<?> var : toTypeVarAssigns.keySet()) {
+-            Type toTypeArg = unrollVariableAssignments(var, toTypeVarAssigns);
+-            Type fromTypeArg = unrollVariableAssignments(var, fromTypeVarAssigns);
++        for (Map.Entry<TypeVariable<?>, Type> entry : toTypeVarAssigns.entrySet()) {
++            Type toTypeArg = entry.getValue();
++            Type fromTypeArg = fromTypeVarAssigns.get(entry.getKey());
+ 
+             // parameters must either be absent from the subject type, within
+             // the bounds of the wildcard type, or be an exact match to the
+@@ -672,7 +672,7 @@ public class TypeUtils {
+                 : new HashMap<TypeVariable<?>, Type>(subtypeVarAssigns);
+ 
+         // has target class been reached?
+-        if (toClass.equals(cls)) {
++        if (cls.getTypeParameters().length > 0 || toClass.equals(cls)) {
+             return typeVarAssigns;
+         }
+ 

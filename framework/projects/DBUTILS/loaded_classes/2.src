@@ -1,0 +1,4 @@
+org.apache.commons.dbutils.BasicRowProcessor
+org.apache.commons.dbutils.BeanProcessor
+org.apache.commons.dbutils.ProxyFactory
+org.apache.commons.dbutils.RowProcessor

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 4b30d57..4c24e2f 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -1189,15 +1189,9 @@ class TypeInference
+     }
+ 
+     // Try to infer the template types
+-    Map<TemplateType, JSType> inferred = Maps.filterKeys(
+-        inferTemplateTypesFromParameters(fnType, n),
+-        new Predicate<TemplateType>() {
+-
+-          @Override
+-          public boolean apply(TemplateType key) {
+-            return keys.contains(key);
+-          }}
+-        );
++    Map<TemplateType, JSType> inferred = 
++        inferTemplateTypesFromParameters(fnType, n);
++
+ 
+     // Replace all template types. If we couldn't find a replacement, we
+     // replace it with UNKNOWN.

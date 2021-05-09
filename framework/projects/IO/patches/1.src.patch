@@ -1,0 +1,12 @@
+diff --git a/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java b/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
+index 5129f23e..3ef82df8 100644
+--- a/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
++++ b/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
+@@ -164,7 +164,6 @@ public final class FileAlterationMonitor implements Runnable {
+         }
+         running = false;
+         try {
+-            thread.interrupt();
+             thread.join(stopInterval);
+         } catch (final InterruptedException e) {
+             Thread.currentThread().interrupt();

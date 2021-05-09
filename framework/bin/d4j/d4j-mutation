@@ -1,0 +1,191 @@
+#-------------------------------------------------------------------------------
+# Copyright (c) 2014-2019 René Just, Darioush Jalali, and Defects4J contributors.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#-------------------------------------------------------------------------------
+
+=pod
+
+=head1 NAME
+
+d4j-mutation -- run mutation analysis for a checked-out project version.
+
+=head1 SYNOPSIS
+
+  d4j-mutation [-w work_dir] [-r | [-t single_test] [-s test_suite]] [-i instrument_classes] [-e exclude_file] [-m mutation_operators_file]
+
+=head1 DESCRIPTION
+
+This script performs mutation analysis for a test or a test suite on a
+checked-out program version.
+
+=head1 OPTIONS
+
+=over 4
+
+=item -w F<work_dir>
+
+The working directory of the checked-out project version (optional). Default is
+the current directory.
+
+=item -r
+
+Only execute relevant developer-written tests (optional). By default all developer-written
+tests of the checked-out project version are executed.
+
+=item -t C<single_test>
+
+Only run this single test method (optional). By default all tests are executed.
+Format: <test_class>::<test_method>.
+
+=item -s F<test_suite>
+
+The archive file name of an external test suite (optional). The default test suite is the
+developer-written test suite of the checked-out project version.
+See L<Test suites|/"Test suites">.
+
+=item -i F<instrument_classes>
+
+Mutate all classes listed in F<instrument_classes> (optional). By default, only for the
+classes modified by the bug fix are mutated. The file F<instrument_classes> must contain
+fully-qualified class names -- one class per line.
+
+=item -e F<exclude_file>
+
+The file that contains the list of all mutant ids (one per row) to exclude (optional).
+By default no exclude file is used and therefore no mutant is excluded.
+
+=item -m F<mutation_operators_file>
+
+The file that contains the list of mutation operators (separated by space or newline) to apply (optional).
+By default all mutation operators are applied: AOR, LOR, SOR, COR, ROR, ORU, LVR, STD.
+
+=back
+
+=head1 Test suites
+
+An external test suite has to be provided as an archive that contains the test sources.
+Format of the archive file name:
+
+F<C<project_id>-C<version_id>-C<test_suite_src>.C<test_id>.tar.bz2>
+
+Examples:
+
+=over 4
+
+=item * F<Lang-11f-randoop.1.tar.bz2>
+
+=item * F<Lang-12b-evosuite-weakmutation.1.tar.bz2>
+
+=item * F<Lang-12f-evosuite-branch.1.tar.bz2>
+
+=back
+
+=cut
+
+use strict;
+use warnings;
+
+use Constants;
+use Utils;
+use Project;
+use Getopt::Std;
+use Pod::Usage;
+
+my %cmd_opts;
+getopts('t:w:rs:i:e:m:', \%cmd_opts) or pod2usage( { -verbose => 1, -input => __FILE__} );
+
+my $WORK_DIR    = Utils::get_abs_path($cmd_opts{w} // ".");
+my $REL_TESTS   = defined $cmd_opts{r} ? 1 : 0;
+my $SINGLE_TEST = $cmd_opts{t};
+my $TEST_SUITE  = $cmd_opts{s};
+my $INSTRUMENT  = $cmd_opts{i};
+my $EXCL        = $cmd_opts{e};
+my $MUT_OPS_FILE= $cmd_opts{m};
+if ((defined $SINGLE_TEST || defined $TEST_SUITE) && $REL_TESTS==1) {
+    pod2usage( { -verbose => 1, -input => __FILE__} );
+}
+
+my $config = Utils::read_config_file("$WORK_DIR/$CONFIG");
+unless(defined $config) {
+    print(STDERR "$WORK_DIR is not a valid working directory!\n");
+    exit 1;
+}
+my $pid = $config->{$CONFIG_PID};
+my $vid = $config->{$CONFIG_VID};
+my $res = Utils::check_vid($vid);
+my $bid = $res->{bid};
+my $type= $res->{type};
+
+# The mutation operators that should be enabled
+my @MUT_OPS = ("AOR", "LOR","SOR", "COR", "ROR", "ORU", "LVR", "STD");
+if (defined($MUT_OPS_FILE)) {
+    @MUT_OPS = Mutation::parse_mutation_operators($MUT_OPS_FILE);
+}
+
+# Instantiate project and set working directory
+my $project = Project::create_project($pid);
+$project->{prog_root} = $WORK_DIR;
+
+# Classes to mutate -- default is all modified classes
+my $classes = $INSTRUMENT // "$SCRIPT_DIR/projects/$pid/modified_classes/$bid.src";
+
+$project->mutate($classes, \@MUT_OPS) > 0 or die "Cannot mutate project!";
+
+my $log_file = "$WORK_DIR/.mutation.log";
+# Run the test suite, according to the provided flags
+my $mut_result;
+if (defined $TEST_SUITE) {
+    # Run external test suite
+    my $test_dir = "$WORK_DIR/.test_suite";
+    Utils::extract_test_suite($TEST_SUITE, $test_dir) or die;
+    $project->compile_ext_tests($test_dir) or die "Cannot compile extracted test suite!";
+    $mut_result = $project->mutation_analysis_ext($test_dir, "*.java", $log_file, $EXCL, $SINGLE_TEST);
+} else {
+    # Run developer-written tests
+    $project->compile_tests() or die "Cannot compile test suite!";
+    $mut_result = $project->mutation_analysis($log_file, $REL_TESTS, $EXCL, $SINGLE_TEST);
+}
+
+if (! $mut_result) {
+    system("cat $log_file");
+
+    # Provide more details if mutation analysis failed on a buggy version
+    if ($type eq "b") {
+      print(STDERR "-"x75 . "\n" .
+                   "Mutation analysis failed on a buggy program version!\n" .
+                   "You may need to exclude failing tests from the analysis, e.g., by setting\n" .
+                   "the 'haltonfailure' flag to false in 'defects4j.build.xml'.\n" .
+                   "(If this failure is unexpected, please file a bug report.)\n");
+    }
+
+    exit 1;
+}
+open(RES, "<$WORK_DIR/summary.csv") or die "Cannot read mutation analysis result file $!";
+my $header = <RES>;
+my $line = <RES>;
+close(RES);
+my ($mutGen, $mutCov, $mutKill, $mutLive, $timePreproc, $timeAnalysis) = split(/,/, $line);
+my $killRatioGen = $mutGen == 0 ? 0 : $mutKill/$mutGen*100;
+my $killRatioCov = $mutCov == 0 ? 0 : $mutKill/$mutCov*100;
+printf("%17s: %d\n", "Mutants generated", $mutGen);
+printf("%17s: %d\n", "Mutants covered", $mutCov);
+printf("%17s: %d\n", "Mutants killed", $mutKill);
+printf("%17s: %.1f%% (%.1f%%)\n", "Mutation score", $killRatioCov, $killRatioGen);
+printf("%17s: %.1f seconds\n", "Total run time", ($timePreproc+$timeAnalysis));

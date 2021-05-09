@@ -1,0 +1,48 @@
+diff --git a/src/com/google/javascript/jscomp/UnreachableCodeElimination.java b/src/com/google/javascript/jscomp/UnreachableCodeElimination.java
+index e6d4320..c2150b1 100644
+--- a/src/com/google/javascript/jscomp/UnreachableCodeElimination.java
++++ b/src/com/google/javascript/jscomp/UnreachableCodeElimination.java
+@@ -150,7 +150,20 @@ class UnreachableCodeElimination extends AbstractPostOrderCallback
+       return n;
+     }
+ 
++    if (n.getParent() == null) {
++      List<DiGraphEdge<Node,Branch>> outEdges = gNode.getOutEdges();
++      if (outEdges.size() == 1) {
++        return tryRemoveUnconditionalBranching(outEdges.get(0).getDestination().getValue());
++      }
++    }
+     switch (n.getType()) {
++      case Token.BLOCK:
++        if (n.hasChildren()) {
++          Node first = n.getFirstChild();
++          return tryRemoveUnconditionalBranching(first);
++        } else {
++          return tryRemoveUnconditionalBranching(ControlFlowAnalysis.computeFollowNode(n));
++        }
+       case Token.RETURN:
+         if (n.hasChildren()) {
+           break;
+@@ -167,7 +180,7 @@ class UnreachableCodeElimination extends AbstractPostOrderCallback
+             (n.getNext() == null || n.getNext().getType() == Token.FUNCTION)) {
+ 
+           Preconditions.checkState(outEdges.get(0).getValue() == Branch.UNCOND);
+-          Node fallThrough = computeFollowing(n);
++          Node fallThrough = tryRemoveUnconditionalBranching(computeFollowing(n));
+           Node nextCfgNode = outEdges.get(0).getDestination().getValue();
+           if (nextCfgNode == fallThrough) {
+             removeDeadExprStatementSafely(n);
+@@ -180,13 +193,6 @@ class UnreachableCodeElimination extends AbstractPostOrderCallback
+ 
+   private Node computeFollowing(Node n) {
+     Node next = ControlFlowAnalysis.computeFollowNode(n);
+-    while (next != null && next.getType() == Token.BLOCK) {
+-      if (next.hasChildren()) {
+-        next = next.getFirstChild();
+-      } else {
+-        next = computeFollowing(next);
+-      }
+-    }
+     return next;
+   }
+ 

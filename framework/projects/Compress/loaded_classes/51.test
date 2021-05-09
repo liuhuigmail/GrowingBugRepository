@@ -1,0 +1,3 @@
+org.apache.commons.compress.AbstractTestCase
+org.apache.commons.compress.archivers.sevenz.SevenZOutputFileTest
+org.apache.commons.compress.archivers.SevenZTestCase

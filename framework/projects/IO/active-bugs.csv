@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,e9eb2d8b5a858bb6810c941ee7891c3adcf9949d,a4705cc3c310ffb422336b319891f63eef021f1c,IO-535,https://issues.apache.org/jira/browse/IO-535
+2,7791a851c4a303f47743b156007fb19c6ed8ed81,2736b6fe0b3fa22ec8e2b4184897ecadb021fc78,IO-559,https://issues.apache.org/jira/browse/IO-559
+3,4597f38c3608cfe8ef872144ed4bfe393a05dc84,c6b8a383de96cd0a8e94037a04510f162e4bbc68,IO-554,https://issues.apache.org/jira/browse/IO-554

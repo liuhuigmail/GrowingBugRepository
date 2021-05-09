@@ -1,0 +1,13 @@
+diff --git a/source/org/jfree/data/time/TimeSeries.java b/source/org/jfree/data/time/TimeSeries.java
+index d16d447..4067e3e 100644
+--- a/source/org/jfree/data/time/TimeSeries.java
++++ b/source/org/jfree/data/time/TimeSeries.java
+@@ -941,7 +941,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
+             endIndex = -(endIndex + 1); // this is first item AFTER end period
+             endIndex = endIndex - 1;    // so this is last item BEFORE end
+         }
+-        if ((endIndex < 0)  || (endIndex < startIndex)) {
++        if (endIndex < 0) {
+             emptyRange = true;
+         }
+         if (emptyRange) {

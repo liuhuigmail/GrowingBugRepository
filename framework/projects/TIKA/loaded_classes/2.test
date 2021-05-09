@@ -1,0 +1,3 @@
+org.apache.tika.mime.MimeTypesTest
+org.apache.tika.mime.MimeTypeTest
+org.apache.tika.mime.PatternsTest

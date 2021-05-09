@@ -1,0 +1,5 @@
+org.apache.commons.validator.routines.AbstractFormatValidator
+org.apache.commons.validator.routines.AbstractNumberValidator
+org.apache.commons.validator.routines.ByteValidator
+org.apache.commons.validator.routines.IntegerValidator
+org.apache.commons.validator.routines.LongValidator

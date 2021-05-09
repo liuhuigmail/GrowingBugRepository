@@ -1,0 +1,50 @@
+diff --git a/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java b/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
+index 3f39c07..d53a8f8 100644
+--- a/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
++++ b/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
+@@ -154,7 +154,7 @@ class FlowSensitiveInlineVariables extends AbstractPostOrderCallback
+ 
+   @Override
+   public void process(Node externs, Node root) {
+-    (new NodeTraversal(compiler, this)).traverseRoots(externs, root);
++    (new NodeTraversal(compiler, this)).traverse(root);
+   }
+ 
+   @Override
+diff --git a/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java b/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
+index 589f673..1487af3 100644
+--- a/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
++++ b/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
+@@ -68,7 +68,6 @@ final class MustBeReachingVariableDef extends
+   private static class Definition {
+     final Node node;
+     final Set<Var> depends = Sets.newHashSet();
+-    private boolean unknownDependencies = false;
+ 
+     Definition(Node node) {
+       this.node = node;
+@@ -394,13 +393,9 @@ final class MustBeReachingVariableDef extends
+         new AbstractCfgNodeTraversalCallback() {
+       @Override
+       public void visit(NodeTraversal t, Node n, Node parent) {
+-        if (n.isName()) {
++        if (n.isName() && jsScope.isDeclared(n.getString(), true)) {
+           Var dep = jsScope.getVar(n.getString());
+-          if (dep == null) {
+-            def.unknownDependencies = true;
+-          } else {
+             def.depends.add(dep);
+-          }
+         }
+       }
+     });
+@@ -432,9 +427,6 @@ final class MustBeReachingVariableDef extends
+     GraphNode<Node, Branch> n = getCfg().getNode(useNode);
+     FlowState<MustDef> state = n.getAnnotation();
+     Definition def = state.getIn().reachingDef.get(jsScope.getVar(name));
+-    if (def.unknownDependencies) {
+-      return true;
+-    }
+ 
+     for (Var s : def.depends) {
+       if (s.scope != jsScope) {
