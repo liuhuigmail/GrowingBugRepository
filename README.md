@@ -1,7 +1,7 @@
 # A bug repository that keeps growing, called ***growingBugs***
 
-## Contents of this BugRepository
-This bug repository contains 982 bugs from the following open-source projects:
+## Contents of growingBugs
+growingBugs contains 982 bugs from the following open-source projects:
 
 | Identifier      | Project name               | Number of bugs | Active bug ids      | Deprecated bug ids (\*) |
 |-----------------|----------------------------|---------------:|---------------------|-------------------------| 
