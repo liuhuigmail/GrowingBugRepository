@@ -42,7 +42,7 @@ This bug repository contains 982 bugs from the following open-source projects:
 | Numbers         | commons-numbers            |        3       | 1-3                 | None                    |
 
 ## Copyright
-Notably, this bug repository is based on the well-known Defects4J https://github.com/rjust/defects4j. We reuse its source code as well as the bugs in Defects4J. 
+Notably, this bug repository is based on the well-known Defects4J (https://github.com/rjust/defects4j). We reuse its source code as well as the bugs in Defects4J. 
 Currently, we also reuse its APIs (but no guarantee that such APIs would not be changed in the near future). The major difference is that we implement BugBuilder proposed by Jiang et al. [1], and leverage it to extract concise patches fully automatically whereas Defects4J depends on human experts to exclude bug-irrelevant changes from patches. As a result, our repository keeps growing automatically.
 
 Under MIT License, you are free to use, modify, and distribute this repository with proper reference/citation.
