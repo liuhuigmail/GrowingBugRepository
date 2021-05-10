@@ -1,4 +1,4 @@
-# A bug repository that keeps growing
+# A bug repository that keeps growing, called growingBugs
 
 ## Contents of this BugRepository
 This bug repository contains 982 bugs from the following open-source projects:
