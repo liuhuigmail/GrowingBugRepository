@@ -1,7 +1,9 @@
 # A bug repository that keeps growing, called ***growingBugs***
 
+Notably, each bug is composed of a buggy version, a fixed version, a concise patch (bug-fixing changes only), and one or more triggering test cases.
+
 ## Contents of growingBugs
-growingBugs contains 982 bugs from the following open-source projects:
+To date, growingBugs contains 982 bugs from open-source Java projects. 
 
 | Identifier      | Project name               | Number of bugs | Active bug ids      | Deprecated bug ids (\*) |
 |-----------------|----------------------------|---------------:|---------------------|-------------------------| 
