@@ -24,7 +24,7 @@
 
 =head1 NAME
 
-Project::Mshade.pm -- L<Project> submodule for maven-shade-plugin.
+Project::MShade.pm -- L<Project> submodule for maven-shade-plugin.
 
 =head1 DESCRIPTION
 
@@ -32,7 +32,7 @@ This module provides all project-specific configurations and subroutines for the
 maven-shade-plugin project.
 
 =cut
-package Project::Mshade;
+package Project::MShade;
 
 use strict;
 use warnings;
@@ -41,7 +41,7 @@ use Constants;
 use Vcs::Git;
 
 our @ISA = qw(Project);
-my $PID  = "Mshade";
+my $PID  = "MShade";
 
 sub new {
     @_ == 1 or die $ARG_ERROR;

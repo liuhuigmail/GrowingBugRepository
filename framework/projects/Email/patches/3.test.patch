@@ -1,0 +1,29 @@
+diff --git a/src/test/org/apache/commons/mail/resolver/DataSourceCompositeResolverTest.java b/src/test/org/apache/commons/mail/resolver/DataSourceCompositeResolverTest.java
+index 29041e2..23c219e 100644
+--- a/src/test/org/apache/commons/mail/resolver/DataSourceCompositeResolverTest.java
++++ b/src/test/org/apache/commons/mail/resolver/DataSourceCompositeResolverTest.java
+@@ -71,24 +71,6 @@ public class DataSourceCompositeResolverTest extends TestCase
+         }
+     }
+ 
+-    public void testExternalModification() throws Exception
+-    {
+-        DataSourceResolver urlResolver = new DataSourceUrlResolver(new URL("http://www.apache.org"), false);
+-        DataSourceResolver classPathResolver = new DataSourceClassPathResolver("/images", false);
+-        DataSourceResolver[] dataSourceResolvers = new DataSourceResolver[] { urlResolver, classPathResolver };
+-        DataSourceCompositeResolver dataSourceResolver = new DataSourceCompositeResolver(dataSourceResolvers, true);
+-
+-        DataSourceResolver[] arr = dataSourceResolver.getDataSourceResolvers();
+-        
+-        // modify an element in the returned array
+-        arr[0] = null;
+-        
+-        DataSourceResolver[] arr2 = dataSourceResolver.getDataSourceResolvers();
+-        
+-        // assert that the external modification is not propagated to the internal array
+-        assertNotNull(arr2[0]);        
+-    }
+-
+     private byte[] toByteArray(DataSource dataSource) throws IOException
+     {
+         if(dataSource != null)

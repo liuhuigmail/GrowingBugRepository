@@ -1,0 +1,6 @@
+org.apache.commons.mail.BaseEmailTestCase
+org.apache.commons.mail.HtmlEmailTest
+org.apache.commons.mail.ImageHtmlEmailTest
+org.apache.commons.mail.mocks.MockHtmlEmailConcrete
+org.apache.commons.mail.mocks.MockImageHtmlEmailConcrete
+org.apache.commons.mail.settings.EmailConfiguration

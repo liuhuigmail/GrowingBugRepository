@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/mail/Email.java b/src/main/java/org/apache/commons/mail/Email.java
+index 2a23c10..1199e77 100644
+--- a/src/main/java/org/apache/commons/mail/Email.java
++++ b/src/main/java/org/apache/commons/mail/Email.java
+@@ -1171,7 +1171,8 @@ public abstract class Email
+         while (iterKeyBad.hasNext())
+         {
+             Map.Entry<String, String> entry = iterKeyBad.next();
+-            this.headers.put(entry.getKey(), entry.getValue());
++            String name = entry.getKey();
++            this.headers.put(name, createFoldedHeaderValue(name, entry.getValue()));
+         }
+ 
+     }
+@@ -1194,7 +1195,7 @@ public abstract class Email
+             throw new IllegalArgumentException("value can not be null");
+         }
+ 
+-        this.headers.put(name, value);
++        this.headers.put(name, createFoldedHeaderValue(name, value));
+     }
+ 
+     /**

@@ -1,0 +1,160 @@
+diff --git a/src/test/java/org/apache/commons/mail/util/MimeMessageParserTest.java b/src/test/java/org/apache/commons/mail/util/MimeMessageParserTest.java
+index 05dc6a1..a159adb 100644
+--- a/src/test/java/org/apache/commons/mail/util/MimeMessageParserTest.java
++++ b/src/test/java/org/apache/commons/mail/util/MimeMessageParserTest.java
+@@ -16,23 +16,18 @@
+  */
+ package org.apache.commons.mail.util;
+ 
+-import static org.junit.Assert.assertEquals;
+-import static org.junit.Assert.assertFalse;
+-import static org.junit.Assert.assertNotNull;
+-import static org.junit.Assert.assertNull;
+-import static org.junit.Assert.assertTrue;
+-
+-import java.io.File;
+-import java.util.List;
+-import java.util.Properties;
++import static org.junit.Assert.*;
+ 
+ import javax.activation.DataSource;
+ import javax.mail.Session;
+ import javax.mail.internet.MimeMessage;
+ 
+-import org.apache.commons.mail.HtmlEmail;
+ import org.junit.Test;
+ 
++import java.io.File;
++import java.util.List;
++import java.util.Properties;
++
+ /**
+  * Testing the MimeMessageParser.
+  */
+@@ -97,7 +92,7 @@ public class MimeMessageParserTest
+         mimeMessageParser.parse();
+ 
+         assertEquals("Test", mimeMessageParser.getSubject());
+-        assertNotNull(mimeMessageParser.getMimeMessage());
++        assertNotNull(mimeMessageParser.getMimeMessage());        
+         assertTrue(mimeMessageParser.isMultipart());
+         assertTrue(mimeMessageParser.hasHtmlContent());
+         assertTrue(mimeMessageParser.hasPlainContent());
+@@ -312,7 +307,7 @@ public class MimeMessageParserTest
+         mimeMessageParser.parse();
+ 
+         assertEquals("test", mimeMessageParser.getSubject());
+-        assertNotNull(mimeMessageParser.getMimeMessage());
++        assertNotNull(mimeMessageParser.getMimeMessage());        
+         assertTrue(mimeMessageParser.isMultipart());
+         assertFalse(mimeMessageParser.hasHtmlContent());
+         assertTrue(mimeMessageParser.hasPlainContent());
+@@ -332,108 +327,4 @@ public class MimeMessageParserTest
+         assertEquals("text/html", dataSource.getContentType());
+     }
+ 
+-    @Test
+-    public void testParseCreatedHtmlEmailWithNoContent() throws Exception
+-    {
+-        Session session = Session.getDefaultInstance(new Properties());
+-
+-        HtmlEmail email = new HtmlEmail();
+-
+-        email.setMailSession(session);
+-
+-        email.setFrom("test_from@apache.org");
+-        email.setSubject("Test Subject");
+-        email.addTo("test_to@apache.org");
+-
+-        email.buildMimeMessage();
+-        MimeMessage msg = email.getMimeMessage();
+-
+-        MimeMessageParser mimeMessageParser = new MimeMessageParser(msg);
+-        mimeMessageParser.parse();
+-
+-        assertEquals("Test Subject", mimeMessageParser.getSubject());
+-        assertNotNull(mimeMessageParser.getMimeMessage());
+-        assertTrue(mimeMessageParser.isMultipart());
+-        assertFalse(mimeMessageParser.hasHtmlContent());
+-        assertFalse(mimeMessageParser.hasPlainContent());
+-        assertNull(mimeMessageParser.getPlainContent());
+-        assertNull(mimeMessageParser.getHtmlContent());
+-        assertTrue(mimeMessageParser.getTo().size() == 1);
+-        assertTrue(mimeMessageParser.getCc().size() == 0);
+-        assertTrue(mimeMessageParser.getBcc().size() == 0);
+-        assertEquals("test_from@apache.org", mimeMessageParser.getFrom());
+-        assertEquals("test_from@apache.org", mimeMessageParser.getReplyTo());
+-        assertFalse(mimeMessageParser.hasAttachments());
+-    }
+-
+-    @Test
+-    public void testParseCreatedHtmlEmailWithTextContent() throws Exception
+-    {
+-        Session session = Session.getDefaultInstance(new Properties());
+-
+-        HtmlEmail email = new HtmlEmail();
+-
+-        email.setMailSession(session);
+-
+-        email.setFrom("test_from@apache.org");
+-        email.setSubject("Test Subject");
+-        email.addTo("test_to@apache.org");
+-        email.setTextMsg("My test message");
+-
+-        email.buildMimeMessage();
+-        MimeMessage msg = email.getMimeMessage();
+-
+-        MimeMessageParser mimeMessageParser = new MimeMessageParser(msg);
+-        mimeMessageParser.parse();
+-
+-        assertEquals("Test Subject", mimeMessageParser.getSubject());
+-        assertNotNull(mimeMessageParser.getMimeMessage());
+-        assertTrue(mimeMessageParser.isMultipart());
+-        assertFalse(mimeMessageParser.hasHtmlContent());
+-        assertTrue(mimeMessageParser.hasPlainContent());
+-        assertNotNull(mimeMessageParser.getPlainContent());
+-        assertNull(mimeMessageParser.getHtmlContent());
+-        assertTrue(mimeMessageParser.getTo().size() == 1);
+-        assertTrue(mimeMessageParser.getCc().size() == 0);
+-        assertTrue(mimeMessageParser.getBcc().size() == 0);
+-        assertEquals("test_from@apache.org", mimeMessageParser.getFrom());
+-        assertEquals("test_from@apache.org", mimeMessageParser.getReplyTo());
+-        assertFalse(mimeMessageParser.hasAttachments());
+-    }
+-
+-    @Test
+-    public void testParseCreatedHtmlEmailWithMixedContent() throws Exception
+-    {
+-        Session session = Session.getDefaultInstance(new Properties());
+-
+-        HtmlEmail email = new HtmlEmail();
+-
+-        email.setMailSession(session);
+-
+-        email.setFrom("test_from@apache.org");
+-        email.setSubject("Test Subject");
+-        email.addTo("test_to@apache.org");
+-        email.setTextMsg("My test message");
+-        email.setHtmlMsg("<p>My HTML message</p>");
+-
+-        email.buildMimeMessage();
+-        MimeMessage msg = email.getMimeMessage();
+-
+-        MimeMessageParser mimeMessageParser = new MimeMessageParser(msg);
+-        mimeMessageParser.parse();
+-
+-        assertEquals("Test Subject", mimeMessageParser.getSubject());
+-        assertNotNull(mimeMessageParser.getMimeMessage());
+-        assertTrue(mimeMessageParser.isMultipart());
+-        assertTrue(mimeMessageParser.hasHtmlContent());
+-        assertTrue(mimeMessageParser.hasPlainContent());
+-        assertNotNull(mimeMessageParser.getPlainContent());
+-        assertNotNull(mimeMessageParser.getHtmlContent());
+-        assertTrue(mimeMessageParser.getTo().size() == 1);
+-        assertTrue(mimeMessageParser.getCc().size() == 0);
+-        assertTrue(mimeMessageParser.getBcc().size() == 0);
+-        assertEquals("test_from@apache.org", mimeMessageParser.getFrom());
+-        assertEquals("test_from@apache.org", mimeMessageParser.getReplyTo());
+-        assertFalse(mimeMessageParser.hasAttachments());
+-    }
+ }

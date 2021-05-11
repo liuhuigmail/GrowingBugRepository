@@ -1,0 +1,12 @@
+org.apache.commons.mail.DataSourceResolver
+org.apache.commons.mail.DefaultAuthenticator
+org.apache.commons.mail.Email
+org.apache.commons.mail.EmailConstants
+org.apache.commons.mail.EmailException
+org.apache.commons.mail.EmailUtils
+org.apache.commons.mail.HtmlEmail
+org.apache.commons.mail.ImageHtmlEmail
+org.apache.commons.mail.impl.DataSourceResolverImpl
+org.apache.commons.mail.MultiPartEmail
+org.apache.commons.mail.util.MimeMessageParser
+org.apache.commons.mail.util.URLFactory

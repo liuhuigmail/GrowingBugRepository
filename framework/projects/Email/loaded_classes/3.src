@@ -1,0 +1,5 @@
+org.apache.commons.mail.DataSourceResolver
+org.apache.commons.mail.resolver.DataSourceBaseResolver
+org.apache.commons.mail.resolver.DataSourceClassPathResolver
+org.apache.commons.mail.resolver.DataSourceCompositeResolver
+org.apache.commons.mail.resolver.DataSourceUrlResolver

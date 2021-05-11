@@ -1,0 +1,60 @@
+diff --git a/src/test/java/org/apache/commons/mail/EmailTest.java b/src/test/java/org/apache/commons/mail/EmailTest.java
+index 409ba1f..f13de3c 100644
+--- a/src/test/java/org/apache/commons/mail/EmailTest.java
++++ b/src/test/java/org/apache/commons/mail/EmailTest.java
+@@ -21,7 +21,6 @@ import java.io.UnsupportedEncodingException;
+ import java.nio.charset.Charset;
+ import java.nio.charset.IllegalCharsetNameException;
+ import java.util.ArrayList;
+-import java.util.Arrays;
+ import java.util.Calendar;
+ import java.util.Date;
+ import java.util.Hashtable;
+@@ -29,8 +28,6 @@ import java.util.Iterator;
+ import java.util.List;
+ import java.util.Map;
+ import java.util.Properties;
+-import java.util.StringTokenizer;
+-
+ import javax.mail.Authenticator;
+ import javax.mail.Session;
+ import javax.mail.internet.AddressException;
+@@ -1101,35 +1098,11 @@ public class EmailTest extends BaseEmailTestCase
+         assertEquals(ht, this.email.getHeaders());
+     }
+ 
+-    public void testFoldingHeaders() throws Exception
++    public void testFoldingHeaders()
+     {
+-        this.email.setHostName(this.strTestMailServer);
+-        this.email.setSmtpPort(this.getMailServerPort());
+-        this.email.setFrom("a@b.com");
+-        this.email.addTo("c@d.com");
+-        this.email.setSubject("test mail");
+-
+-        final String headerValue = "1234567890 1234567890 123456789 01234567890 123456789 0123456789 01234567890 01234567890";
+-        this.email.addHeader("X-LongHeader", headerValue);
+-        
++        this.email.addHeader("X-LongHeader", "1234567890 1234567890 123456789 01234567890 123456789 0123456789 01234567890 01234567890");
+         assertTrue(this.email.getHeaders().size() == 1);
+-        // the header should not yet be folded -> will be done by buildMimeMessage()
+-        assertTrue(this.email.getHeaders().get("X-LongHeader").toString().indexOf("\r\n") == -1);
+-        
+-        this.email.buildMimeMessage();
+-
+-        MimeMessage msg = this.email.getMimeMessage();
+-        msg.saveChanges();
+-        
+-        String[] values = msg.getHeader("X-LongHeader");
+-        assertEquals(1, values.length);
+-        
+-        // the header should be split in two lines
+-        String[] lines = values[0].split("\\r\\n");
+-        assertEquals(2, lines.length);
+-        
+-        // there should only be one line-break
+-        assertTrue(values[0].indexOf("\n") == values[0].lastIndexOf("\n"));
++        assertTrue(this.email.getHeaders().get("X-LongHeader").toString().indexOf("\r\n") >= 0);
+     }
+ 
+     /** */

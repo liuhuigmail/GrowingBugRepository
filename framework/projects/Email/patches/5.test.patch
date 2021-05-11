@@ -1,0 +1,26 @@
+diff --git a/src/test/java/org/apache/commons/mail/EmailLiveTest.java b/src/test/java/org/apache/commons/mail/EmailLiveTest.java
+index 4dccb48..fec0d93 100644
+--- a/src/test/java/org/apache/commons/mail/EmailLiveTest.java
++++ b/src/test/java/org/apache/commons/mail/EmailLiveTest.java
+@@ -133,21 +133,6 @@ public class EmailLiveTest extends BaseEmailTestCase
+         EmailUtils.writeMimeMessage( new File("./target/test-emails/simplemail.eml"), send(email).getMimeMessage());
+     }
+ 
+-    /**
+-     * A sanity check that a header folding works correctly.
+-     *
+-     * @throws Exception the test failed
+-     */
+-    public void testFoldedHeaderValue() throws Exception
+-    {
+-        SimpleEmail email = (SimpleEmail) create(SimpleEmail.class);
+-        email.setSubject("TestFoldedHeaderMail");
+-        email.setMsg("This is a test mail with a folded header value... :-)");
+-        email.addHeader("X-TestHeader", "This is a very long header value which should be folded into two lines, hopefully");
+-
+-        EmailUtils.writeMimeMessage( new File("./target/test-emails/foldedheader.eml"), send(email).getMimeMessage());
+-    }
+-
+     /**
+      * A sanity check that a simple email also works in reality.
+      *

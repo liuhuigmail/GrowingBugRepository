@@ -1,0 +1,4 @@
+org.apache.commons.mail.EmailLiveTest
+org.apache.commons.mail.HtmlEmailTest
+org.apache.commons.mail.ImageHtmlEmailTest
+org.apache.commons.mail.SendWithAttachmentsTest

@@ -1,0 +1,130 @@
+diff --git a/src/java/org/apache/commons/mail/Email.java b/src/java/org/apache/commons/mail/Email.java
+index 18fd277..59baeeb 100644
+--- a/src/java/org/apache/commons/mail/Email.java
++++ b/src/java/org/apache/commons/mail/Email.java
+@@ -1084,23 +1084,13 @@ public abstract class Email
+     public abstract Email setMsg(String msg) throws EmailException;
+ 
+     /**
+-     * Does the work of actually building the MimeMessage. Please note that
+-     * a user rarely calls this method directly and only if he/she is
+-     * interested in the sending the underlying MimeMessage without
+-     * commons-email.
++     * Build the internal MimeMessage to be sent.
+      *
+-     * @exception EmailException if there was an error.
++     * @throws EmailException if there was an error.
+      * @since 1.0
+      */
+     public void buildMimeMessage() throws EmailException
+     {
+-        if(this.message != null)
+-        {
+-            // EMAIL-95 we assume that an email is not reused therefore invoking
+-            // buildMimeMessage() more than once is illegal.
+-            throw new IllegalStateException("The MimeMessage is already built.");
+-        }
+-        
+         try
+         {
+             this.getMailSession();
+@@ -1335,13 +1325,13 @@ public abstract class Email
+      */
+     public String getHostName()
+     {
+-        if (EmailUtils.isNotEmpty(this.hostName))
++        if (this.session != null && EmailUtils.isNotEmpty(this.session.getProperty(MAIL_HOST)))
+         {
+-            return this.hostName;
+-        }
+-        else if (this.session != null)
++            return this.session.getProperty(MAIL_HOST);   
++        } 
++        else if (EmailUtils.isNotEmpty(this.hostName))
+         {
+-            return this.session.getProperty(MAIL_HOST);
++            return this.hostName;
+         }
+         return null;
+     }
+@@ -1353,13 +1343,13 @@ public abstract class Email
+      */
+     public String getSmtpPort()
+     {
+-        if (EmailUtils.isNotEmpty(this.smtpPort))
+-        {
+-            return this.smtpPort;
+-        }
+-        else if (this.session != null)
++        if (this.session != null && EmailUtils.isNotEmpty(this.session.getProperty(MAIL_PORT)))
+         {
+             return this.session.getProperty(MAIL_PORT);
++        } 
++        else if (EmailUtils.isNotEmpty(this.smtpPort))
++        {
++            return this.smtpPort;
+         }
+         return null;
+     }
+@@ -1437,13 +1427,13 @@ public abstract class Email
+      */
+     public String getSslSmtpPort()
+     {
+-        if (EmailUtils.isNotEmpty(this.sslSmtpPort))
++        if (this.session != null && EmailUtils.isNotEmpty(this.session.getProperty(MAIL_SMTP_SOCKET_FACTORY_PORT)))
+         {
+-            return this.sslSmtpPort;
++            return this.session.getProperty(MAIL_SMTP_SOCKET_FACTORY_PORT);
+         }
+-        else if (this.session != null)
++        if (EmailUtils.isNotEmpty(this.sslSmtpPort))
+         {
+-            return this.session.getProperty(MAIL_SMTP_SOCKET_FACTORY_PORT);
++            return this.sslSmtpPort;
+         }
+         return null;
+     }
+diff --git a/src/java/org/apache/commons/mail/HtmlEmail.java b/src/java/org/apache/commons/mail/HtmlEmail.java
+index e4df0a4..2847e71 100644
+--- a/src/java/org/apache/commons/mail/HtmlEmail.java
++++ b/src/java/org/apache/commons/mail/HtmlEmail.java
+@@ -495,14 +495,11 @@ public class HtmlEmail extends MultiPartEmail
+     }
+ 
+     /**
+-     * Does the work of actually building the MimeMessage. Please note that
+-     * a user rarely calls this method directly and only if he/she is
+-     * interested in the sending the underlying MimeMessage without
+-     * commons-email.
++     * Does the work of actually building the email.
+      *
+      * @exception EmailException if there was an error.
+      * @since 1.0
+-     */    
++     */
+     public void buildMimeMessage() throws EmailException
+     {
+         try
+diff --git a/src/java/org/apache/commons/mail/MultiPartEmail.java b/src/java/org/apache/commons/mail/MultiPartEmail.java
+index 05aea3d..2e6401f 100644
+--- a/src/java/org/apache/commons/mail/MultiPartEmail.java
++++ b/src/java/org/apache/commons/mail/MultiPartEmail.java
+@@ -216,14 +216,12 @@ public class MultiPartEmail extends Email
+     }
+ 
+     /**
+-     * Does the work of actually building the MimeMessage. Please note that
+-     * a user rarely calls this method directly and only if he/she is
+-     * interested in the sending the underlying MimeMessage without
+-     * commons-email.
++     * Builds the actual MimeMessage
+      *
+-     * @exception EmailException if there was an error.
++     * @throws EmailException see javax.mail.internet.MimeBodyPart
++     *  for definitions
+      * @since 1.0
+-     */    
++     */
+     public void buildMimeMessage() throws EmailException
+     {
+         try

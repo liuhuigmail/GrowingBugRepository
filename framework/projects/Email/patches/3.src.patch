@@ -1,0 +1,16 @@
+diff --git a/src/java/org/apache/commons/mail/resolver/DataSourceCompositeResolver.java b/src/java/org/apache/commons/mail/resolver/DataSourceCompositeResolver.java
+index d4dc538..c9f67a2 100644
+--- a/src/java/org/apache/commons/mail/resolver/DataSourceCompositeResolver.java
++++ b/src/java/org/apache/commons/mail/resolver/DataSourceCompositeResolver.java
+@@ -63,10 +63,7 @@ public class DataSourceCompositeResolver extends DataSourceBaseResolver
+      */
+     public DataSourceResolver[] getDataSourceResolvers()
+     {
+-        // clone the internal array to prevent external modification (see EMAIL-116)
+-        final DataSourceResolver[] resolvers = new DataSourceResolver[dataSourceResolvers.length];
+-        System.arraycopy(dataSourceResolvers, 0, resolvers, 0, dataSourceResolvers.length);
+-        return resolvers;
++        return dataSourceResolvers;
+     }
+ 
+     public DataSource resolve(String resourceLocation) throws IOException

@@ -1,0 +1,13 @@
+diff --git a/src/java/org/apache/commons/mail/HtmlEmail.java b/src/java/org/apache/commons/mail/HtmlEmail.java
+index 30e25a2..7539a1c 100644
+--- a/src/java/org/apache/commons/mail/HtmlEmail.java
++++ b/src/java/org/apache/commons/mail/HtmlEmail.java
+@@ -414,7 +414,7 @@ public class HtmlEmail extends MultiPartEmail
+             throw new EmailException("file " + filePath + " isn't readable");
+         }
+ 
+-        return embed(new FileDataSource(file), file.getName(), cid);
++        return embed(new FileDataSource(file), file.getName());
+     }
+ 
+     /**

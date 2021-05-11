@@ -1,0 +1,3 @@
+org.apache.commons.mail.Email
+org.apache.commons.mail.HtmlEmail
+org.apache.commons.mail.MultiPartEmail

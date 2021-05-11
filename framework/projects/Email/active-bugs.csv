@@ -1,0 +1,7 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,c6a8ee98da034cbc511acef4804c399941e10fda,ad87038b53ed4d36c354a0a6258368ffa510cb42,EMAIL-95,https://issues.apache.org/jira/browse/EMAIL-95
+2,8d2a65639e29b63ee7fea8820729d7f8240301a9,d29a037a5a6c33c48adfe25a9ae36e3155b003f6,EMAIL-101,https://issues.apache.org/jira/browse/EMAIL-101
+3,2976dd836797d11f3eb3f4d02d61feb6e7bde2e7,b9f88a773c72e590015736edad69181329a43d30,EMAIL-116,https://issues.apache.org/jira/browse/EMAIL-116
+4,fab97868ec7ffe89e4052a31b22f0a43560c93cb,8b9aad8d106f7445495c4d3188424f2bd98294cb,EMAIL-124,https://issues.apache.org/jira/browse/EMAIL-124
+5,ed451ccfe82779fbeb1f2bdde9d27ac4c75c7e63,f639e15f50e0192187bd77bb63ea5af6fb646a0d,EMAIL-124,https://issues.apache.org/jira/browse/EMAIL-124
+6,93d8f1317dd6a342915ff9f8c5820c363b40c67f,2dede2cb4b3ad467c6812e824b1a851d9faefa71,EMAIL-137,https://issues.apache.org/jira/browse/EMAIL-137

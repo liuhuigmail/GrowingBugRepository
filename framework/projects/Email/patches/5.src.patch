@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/mail/Email.java b/src/main/java/org/apache/commons/mail/Email.java
+index 4a8bece..2a23c10 100644
+--- a/src/main/java/org/apache/commons/mail/Email.java
++++ b/src/main/java/org/apache/commons/mail/Email.java
+@@ -1160,7 +1160,6 @@ public abstract class Email
+      * Disposition-Notification-To: user@domain.net
+      *
+      * @param map A Map.
+-     * @throws IllegalArgumentException if either of the provided header / value is null or empty
+      * @since 1.0
+      */
+     public void setHeaders(Map<String, String> map)
+@@ -1172,7 +1171,7 @@ public abstract class Email
+         while (iterKeyBad.hasNext())
+         {
+             Map.Entry<String, String> entry = iterKeyBad.next();
+-            addHeader(entry.getKey(), entry.getValue());
++            this.headers.put(entry.getKey(), entry.getValue());
+         }
+ 
+     }
+@@ -1183,17 +1182,16 @@ public abstract class Email
+      * @param name A String with the name.
+      * @param value A String with the value.
+      * @since 1.0
+-     * @throws IllegalArgumentException if either {@code name} or {@code value} is null or empty
+      */
+     public void addHeader(String name, String value)
+     {
+         if (EmailUtils.isEmpty(name))
+         {
+-            throw new IllegalArgumentException("name can not be null or empty");
++            throw new IllegalArgumentException("name can not be null");
+         }
+         if (EmailUtils.isEmpty(value))
+         {
+-            throw new IllegalArgumentException("value can not be null or empty");
++            throw new IllegalArgumentException("value can not be null");
+         }
+ 
+         this.headers.put(name, value);
