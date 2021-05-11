@@ -24,31 +24,30 @@
 
 =head1 NAME
 
-Project::JacksonDatabind.pm -- L<Project> submodule for jackson-databind.
+Project::Mshade.pm -- L<Project> submodule for maven-shade-plugin.
 
 =head1 DESCRIPTION
 
 This module provides all project-specific configurations and subroutines for the
-jackson-databind project.
+maven-shade-plugin project.
 
 =cut
-package Project::JacksonDatabind;
+package Project::Mshade;
 
 use strict;
 use warnings;
 
 use Constants;
 use Vcs::Git;
-use File::Copy;
 
 our @ISA = qw(Project);
-my $PID  = "JacksonDatabind";
+my $PID  = "Mshade";
 
 sub new {
     @_ == 1 or die $ARG_ERROR;
     my ($class) = @_;
 
-    my $name = "jackson-databind";
+    my $name = "maven-shade-plugin";
     my $vcs  = Vcs::Git->new($PID,
                              "$REPO_DIR/$name.git",
                              "$PROJECTS_DIR/$PID/$BUGS_CSV_ACTIVE",
@@ -56,6 +55,20 @@ sub new {
 
     return $class->SUPER::new($PID, $name, $vcs);
 }
+
+##
+## Determines the directory layout for sources and tests
+##
+#sub determine_layout {
+#    @_ == 2 or die $ARG_ERROR;
+#    my ($self, $rev_id) = @_;
+#    my $dir = $self->{prog_root};
+
+#    # Add additional layouts if necessary
+#    my $result = _ant_layout($dir) // _maven_layout($dir);
+#    die "Unknown layout for revision: ${rev_id}" unless defined $result;
+#    return $result;
+#}
 
 #
 # Post-checkout tasks include, for instance, providing cached build files,
@@ -69,26 +82,9 @@ sub _post_checkout {
     unless (-e "$work_dir/build.xml") {
         my $build_files_dir = "$PROJECTS_DIR/$PID/build_files/$rev_id";
         if (-d "$build_files_dir") {
-            Utils::exec_cmd("cp -r $build_files_dir/* $work_dir", "Copy generated Ant build file") or die;
+            Utils::exec_cmd("cp $build_files_dir/* $work_dir", "Copy generated Ant build file") or die;
         }
     }
-
-    # Copy generated file into place
-    my $version = "UNKNOWN";
-
-    open(IN,'<'."$work_dir/maven-build.properties") or die $!;
-    while(my $line = <IN>) {
-        if ($line =~ /maven\.build\.finalName/) {
-            my @words = split /-/, $line;
-            $version = $words[2];
-        }
-    } 
-    close(IN);
-    
-    if ($version ne "UNKNOWN"){
-        copy($project_dir."/generated_sources/".$version."/PackageVersion.java", $work_dir."/src/main/java/com/fasterxml/jackson/databind/cfg/PackageVersion.java");
-    }
-
 }
 
 #
@@ -101,10 +97,53 @@ sub initialize_revision {
     $self->SUPER::initialize_revision($rev_id);
 
     my $work_dir = $self->{prog_root};
-    my $result = {src=>"src/main/java", test=>"src/test/java"};
+    my $result = _ant_layout($work_dir) // _maven_layout($work_dir);
+    die "Unknown layout for revision: ${rev_id}" unless defined $result;
 
     $self->_add_to_layout_map($rev_id, $result->{src}, $result->{test});
     $self->_cache_layout_map(); # Force cache rebuild
+}
+
+#
+# Distinguish between project layouts and determine src and test directories.
+# Each _layout subroutine returns undef if it doesn't match the layout of the
+# checked-out version. Otherwise, it returns a hash that provides the src and
+# test directory, relative to the working directory.
+#
+
+#
+# Existing Ant build.xml and default.properties
+#
+sub _ant_layout {
+    @_ == 1 or die $ARG_ERROR;
+    my ($dir) = @_;
+    my $src  = `grep "source.home" $dir/default.properties 2>/dev/null`;
+    my $test = `grep "test.home" $dir/default.properties 2>/dev/null`;
+
+    # Check whether this layout applies to the checked-out version
+    return undef if ($src eq "" || $test eq "");
+
+    $src =~ s/\s*source.home\s*=\s*(\S+)\s*/$1/;
+    $test=~ s/\s*test.home\s*=\s*(\S+)\s*/$1/;
+
+    return {src=>$src, test=>$test};
+}
+
+#
+# Generated build.xml (from mvn ant:ant) with maven-build.properties
+#
+sub _maven_layout {
+    @_ == 1 or die $ARG_ERROR;
+    my ($dir) = @_;
+    my $src  = `grep "maven.build.srcDir.0" $dir/maven-build.properties 2>/dev/null`;
+    my $test = `grep "maven.build.testDir.0" $dir/maven-build.properties 2>/dev/null`;
+
+    return undef if ($src eq "" || $test eq "");
+
+    $src =~ s/\s*maven\.build\.srcDir\.0\s*=\s*(\S+)\s*/$1/;
+    $test=~ s/\s*maven\.build\.testDir\.0\s*=\s*(\S+)\s*/$1/;
+
+    return {src=>$src, test=>$test};
 }
 
 1;

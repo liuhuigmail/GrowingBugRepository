@@ -38,7 +38,7 @@ This bug repository contains 982 bugs from the following open-source projects:
 | Graph           | commons-graph              |        4       | 1-4                 | None                    |
 | Digester        | commons-digester           |        1       | 1                   | None                    |
 | Net             | commons-net                |        27      | 1-27                | None                    |
-| Test            |                            |        6       | 1-6                 | None                    |
+| Testing         | commons-testing            |        6       | 1-6                 | None                    |
 | Numbers         | commons-numbers            |        3       | 1-3                 | None                    |
 
 
