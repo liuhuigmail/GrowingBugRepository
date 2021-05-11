@@ -115,8 +115,6 @@ my $trigger_tests = "$TRIGGER_TESTS_DIR/${BID}";
 
 my $TMP_DIR = Utils::get_tmp_dir();
 system("mkdir -p $TMP_DIR");
-print("===========================");
-print("$TMP_DIR");
 
 my $CHECKOUT_DIR = "$TMP_DIR/$PID-${BID}f";
 
@@ -137,14 +135,6 @@ while (1) {
             or die "Cannot backup patch file";
 
     # Minimize patch with configured editor
-    
-    
-    
-    
-    
-    
-    
-    
     system("$EDITOR $CHECKOUT_DIR");
 
     # Check whether patch could be successfully minimized
@@ -220,13 +210,10 @@ while (1) {
         Utils::exec_cmd("cp $TMP_DIR/$src_patch $PATCH_DIR", "Restore original patch")
                 or die "Cannot restore patch";
     }
-    
-    
 
     print "Can the patch be further minimized? [y/n] > ";
     $input = <STDIN>; chomp $input;
     last unless lc $input eq "y";
-    
 }
 
 # Remove temporary directory

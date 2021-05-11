@@ -35,7 +35,7 @@ get-trigger.pl -p project_id -w work_dir [-b bug_id]
 
 =head1 OPTIONS
 
-=over 4
+=over 5 
 
 =item B<-p C<project_id>>
 
@@ -44,6 +44,11 @@ The id of the project for which the meta data should be generated.
 =item B<-w F<work_dir>>
 
 The working directory used for the bug-mining process.
+
+=item B<-s F<subproject>>
+
+The subproject to be mined (if not the root directory)
+
 
 =item B<-b C<bug_id>>
 
@@ -56,7 +61,7 @@ Runs the following workflow for the project C<project_id> and the results are
 written to F<work_dir/TAB_TRIGGER>. For all B<reviewed> version pairs in
 F<work_dir/$TAB_REV_PAIRS>:
 
-=over 4
+=over 5
 
 =item 1) Checkout fixed version.
 
@@ -100,14 +105,14 @@ use DB;
 use Utils;
 
 my %cmd_opts;
-getopts('p:b:w:', \%cmd_opts) or pod2usage(1);
+getopts('p:b:w:s:', \%cmd_opts) or pod2usage(1);
 
 pod2usage(1) unless defined $cmd_opts{p} and defined $cmd_opts{w};
 
 my $PID = $cmd_opts{p};
 my $BID = $cmd_opts{b};
 my $WORK_DIR = abs_path($cmd_opts{w});
-
+my $SUBPROJ = $cmd_opts{s}//".";
 # Check format of target bug id
 if (defined $BID) {
     $BID =~ /^(\d+)(:(\d+))?$/ or die "Wrong version id format ((\\d+)(:(\\d+))?): $BID!";
@@ -166,6 +171,8 @@ foreach my $bid (@bids) {
     my $list = _get_failing_tests($project, "$TMP_DIR/v2", "${bid}f");
     if (($data{$FAIL_V2} = (scalar(@{$list->{"classes"}}) + scalar(@{$list->{"methods"}}))) != 0) {
         print("Non expected failing test classes/methods on ${PID}-${bid}\n");
+        print("1:@{$list->{'classes'}}\n");
+        print("2:@{$list->{'methods'}}\n");
         _add_row(\%data);
         next;
     }
@@ -177,6 +184,8 @@ foreach my $bid (@bids) {
     if ($fail_c !=0 or $fail_m == 0) {
         print("Expected at least one failing test method on ${PID}-${bid}b\n");
         _add_row(\%data);
+        print("1:@{$list->{'classes'}}\n");
+        print("2:@{$list->{'methods'}}\n");
         next;
     }
 
@@ -187,8 +196,7 @@ foreach my $bid (@bids) {
     # Make sure there are no duplicates.
     my %seen;
     for (@$list) {
-         # "Duplicate test case failure: $_. Build is probably broken" unless ++$seen{$_} < 2;
-         print("Duplicate test case failure: $_. Build is probably broken") unless ++$seen{$_} < 2;
+        print "Duplicate test case failure: $_. Build is probably broken" unless ++$seen{$_} < 2;
     }
 
     print "List of test methods: \n" . join ("\n",  @$list) . "\n";
@@ -289,7 +297,7 @@ sub _get_failing_tests {
     system(">$FAILED_TESTS_FILE");
     $project->{prog_root} = $root;
 
-    $project->checkout_vid($vid, $root, 1) or die;
+    $project->checkout_vid($vid, $root, 1,$SUBPROJ) or die;
 
     # Compile src and test
     $project->compile() or die;

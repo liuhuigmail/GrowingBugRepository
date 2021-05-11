@@ -59,16 +59,22 @@ sub new {
 ##
 ## Determines the directory layout for sources and tests
 ##
-#sub determine_layout {
-#    @_ == 2 or die $ARG_ERROR;
-#    my ($self, $rev_id) = @_;
-#    my $dir = $self->{prog_root};
+sub determine_layout {
+    @_ == 2 or die $ARG_ERROR;
+    my ($self, $rev_id) = @_;
+    my $work_dir = $self->{prog_root};
 
-#    # Add additional layouts if necessary
-#    my $result = _ant_layout($dir) // _maven_layout($dir);
-#    die "Unknown layout for revision: ${rev_id}" unless defined $result;
-#    return $result;
-#}
+    # Only two sets of layouts in this case
+    my $result;
+    if (-e "$work_dir/src/main"){
+      $result = {src=>"src/main/java", test=>"src/test/java"};
+    }
+    if (-e "$work_dir/src/java"){
+      $result = {src=>"src/java", test=>"src/test"};
+    }
+    die "Unknown layout for revision: ${rev_id}" unless defined $result;
+    return $result;
+}
 
 #
 # Post-checkout tasks include, for instance, providing cached build files,
@@ -82,7 +88,7 @@ sub _post_checkout {
     unless (-e "$work_dir/build.xml") {
         my $build_files_dir = "$PROJECTS_DIR/$PID/build_files/$rev_id";
         if (-d "$build_files_dir") {
-            Utils::exec_cmd("cp $build_files_dir/* $work_dir", "Copy generated Ant build file") or die;
+            Utils::exec_cmd("cp -r $build_files_dir/* $work_dir", "Copy generated Ant build file") or die;
         }
     }
 }
@@ -97,53 +103,11 @@ sub initialize_revision {
     $self->SUPER::initialize_revision($rev_id);
 
     my $work_dir = $self->{prog_root};
-    my $result = _ant_layout($work_dir) // _maven_layout($work_dir);
+    my $result = determine_layout($self, $rev_id);
     die "Unknown layout for revision: ${rev_id}" unless defined $result;
 
     $self->_add_to_layout_map($rev_id, $result->{src}, $result->{test});
     $self->_cache_layout_map(); # Force cache rebuild
-}
-
-#
-# Distinguish between project layouts and determine src and test directories.
-# Each _layout subroutine returns undef if it doesn't match the layout of the
-# checked-out version. Otherwise, it returns a hash that provides the src and
-# test directory, relative to the working directory.
-#
-
-#
-# Existing Ant build.xml and default.properties
-#
-sub _ant_layout {
-    @_ == 1 or die $ARG_ERROR;
-    my ($dir) = @_;
-    my $src  = `grep "source.home" $dir/default.properties 2>/dev/null`;
-    my $test = `grep "test.home" $dir/default.properties 2>/dev/null`;
-
-    # Check whether this layout applies to the checked-out version
-    return undef if ($src eq "" || $test eq "");
-
-    $src =~ s/\s*source.home\s*=\s*(\S+)\s*/$1/;
-    $test=~ s/\s*test.home\s*=\s*(\S+)\s*/$1/;
-
-    return {src=>$src, test=>$test};
-}
-
-#
-# Generated build.xml (from mvn ant:ant) with maven-build.properties
-#
-sub _maven_layout {
-    @_ == 1 or die $ARG_ERROR;
-    my ($dir) = @_;
-    my $src  = `grep "maven.build.srcDir.0" $dir/maven-build.properties 2>/dev/null`;
-    my $test = `grep "maven.build.testDir.0" $dir/maven-build.properties 2>/dev/null`;
-
-    return undef if ($src eq "" || $test eq "");
-
-    $src =~ s/\s*maven\.build\.srcDir\.0\s*=\s*(\S+)\s*/$1/;
-    $test=~ s/\s*maven\.build\.testDir\.0\s*=\s*(\S+)\s*/$1/;
-
-    return {src=>$src, test=>$test};
 }
 
 1;

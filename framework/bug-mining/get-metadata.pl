@@ -35,7 +35,7 @@ get-class-list.pl -p project_id -w work_dir [-b bug_id]
 
 =head1 OPTIONS
 
-=over 4
+=over 5
 
 =item B<-p C<project_id>>
 
@@ -44,6 +44,11 @@ The id of the project for which the meta data should be generated.
 =item B<-w F<work_dir>>
 
 The working directory used for the bug-mining process.
+
+=item B<-s F<subproject>>
+
+The subproject to be mined (if not the root directory)
+
 
 =item B<-b C<bug_id>>
 
@@ -107,14 +112,14 @@ use DB;
 use Utils;
 
 my %cmd_opts;
-getopts('p:b:w:', \%cmd_opts) or pod2usage(1);
+getopts('p:b:w:s:', \%cmd_opts) or pod2usage(1);
 
 pod2usage(1) unless defined $cmd_opts{p} and defined $cmd_opts{w};
 
 my $PID = $cmd_opts{p};
 my $BID = $cmd_opts{b};
 my $WORK_DIR = abs_path($cmd_opts{w});
-
+my $SUBPROJ = $cmd_opts{s}//".";
 # Check format of target bug id
 if (defined $BID) {
     $BID =~ /^(\d+)(:(\d+))?$/ or die "Wrong version id format ((\\d+)(:(\\d+))?): $BID!";
@@ -168,7 +173,7 @@ foreach my $bid (@bids) {
     printf ("%4d: $project->{prog_name}\n", $bid);
 
     # Checkout to version 2
-    $project->checkout_vid("${bid}f", $TMP_DIR, 1) or die;
+    $project->checkout_vid("${bid}f", $TMP_DIR, 1,$SUBPROJ) or die;
 
     # Compile sources and tests
     $project->compile() or die;
