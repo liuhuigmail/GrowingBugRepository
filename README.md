@@ -1,7 +1,9 @@
-# A bug repository that keeps growing
+# A bug repository that keeps growing, called ***growingBugs***
 
-## Contents of this BugRepository
-This bug repository contains 982 bugs from the following open-source projects:
+Notably, each bug is composed of a buggy version, a fixed version, a concise patch (bug-fixing changes only), and one or more triggering test cases.
+
+## Contents of growingBugs
+To date, growingBugs contains 1002 bugs from open-source Java projects. 
 
 | Identifier      | Project name               | Number of bugs | Active bug ids      | Deprecated bug ids (\*) |
 |-----------------|----------------------------|---------------:|---------------------|-------------------------| 
@@ -41,12 +43,12 @@ This bug repository contains 982 bugs from the following open-source projects:
 | Testing         | commons-testing            |        6       | 1-6                 | None                    |
 | Numbers         | commons-numbers            |        3       | 1-3                 | None                    |
 
-
 ## Copyright
 Notably, this bug repository is based on the well-known Defects4J https://github.com/rjust/defects4j. We reuse its source code as well as the bugs in Defects4J. 
-Currently, we also reuse its APIs (but no guarantee that such APIs would not be changed in the near future). The major difference is that we implement BugBuilder proposed by Jiang et al. [1], and leverage it to extract concise patches fully automatically whereas Defects4J depends on human experts to exclude bug-irrelevant changes from patches. As a result, our repository keeps growing automatically.
+=======
 
 Under MIT License, you are free to use, modify, and distribute this repository with proper reference/citation.
 
 [1] Yanjie Jiang, Hui Liu, Nan Niu, Lu Zhang, Yamin Hu. Extracting Concise Bug-Fixing Patches from Human-Written Patches in Version Control Systems. The 43rd International Conference on Software Engineering (ICSE), 2021 https://liuhuigmail.github.io/publishedPappers/ICSE2021.pdf
 
+=======
