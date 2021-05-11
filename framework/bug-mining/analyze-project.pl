@@ -30,11 +30,11 @@ analyze-project.pl -- Determine all suitable candidates listed in the active-bug
 
 =head1 SYNOPSIS
 
-analyze-project.pl -p project_id -w work_dir -g tracker_name -t tracker_project_id [-b bug_id]
+analyze-project.pl -p project_id -w work_dir -g tracker_name -t tracker_project_id  [-s subproject]  [-b bug_id]
 
 =head1 OPTIONS
 
-=over 4
+=over 6
 
 =item B<-p C<project_id>>
 
@@ -54,10 +54,16 @@ The name used on the issue tracker to identify the project. Note that this might
 not be the same as the Defects4j project name / id, for instance, for the
 commons-lang project is LANG.
 
+=item B<-s F<subproject>>
+
+The subproject to be mined (if not the root directory)
+
+
 =item B<-b C<bug_id>>
 
 Only analyze this bug id. The bug_id has to follow the format B<(\d+)(:(\d+))?>.
 Per default all bug ids, listed in the active-bugs csv, are considered.
+
 
 =back
 
@@ -109,7 +115,8 @@ use DB;
 use Utils;
 
 my %cmd_opts;
-getopts('p:w:g:t:b:', \%cmd_opts) or pod2usage(1);
+getopts('p:w:g:t:s:b:', \%cmd_opts) or pod2usage(1);
+
 
 pod2usage(1) unless defined $cmd_opts{p} and defined $cmd_opts{w}
                     and defined $cmd_opts{g} and defined $cmd_opts{t};
@@ -119,6 +126,7 @@ my $BID = $cmd_opts{b};
 my $WORK_DIR = abs_path($cmd_opts{w});
 my $TRACKER_ID = $cmd_opts{t};
 my $TRACKER_NAME = $cmd_opts{g};
+my $SUBPROJ = $cmd_opts{s}//".";
 
 # Check format of target version id
 if (defined $BID) {
@@ -151,9 +159,11 @@ my $MAX_TEST_RUNS = 10;
 my $TMP_DIR = Utils::get_tmp_dir();
 system("mkdir -p $TMP_DIR");
 
+
 # Set up project
 my $project = Project::create_project($PID);
-$project->{prog_root} = $TMP_DIR;
+
+$project->{prog_root} = "$TMP_DIR";
 
 # Get database handle for results
 my $dbh = DB::get_db_handle($TAB_REV_PAIRS, $db_dir);
@@ -203,7 +213,7 @@ system("rm -rf $TMP_DIR");
 #
 # Returns 1 on success, 0 otherwise
 #
-sub _check_diff { 
+sub _check_diff {
     my ($project, $bid, $data) = @_;
 
     # Determine patch size for src and test patches (rev2 -> rev1)
@@ -246,7 +256,7 @@ sub _check_t2v2 {
     `>$FAILING_DIR/$v2` if -e "$FAILING_DIR/$v2";
 
     # Checkout v2
-    $project->checkout_vid("${bid}f", $TMP_DIR, 1) == 1 or die;
+    $project->checkout_vid("${bid}f",  $TMP_DIR, 1,$SUBPROJ) == 1 or die;
 
     # Compile v2 ant t2
     my $ret = $project->compile();
@@ -264,7 +274,7 @@ sub _check_t2v2 {
         # Run t2 and get number of failing tests
         my $file = "$project->{prog_root}/v2.fail"; `>$file`;
 
-        $project->run_tests($file) or die;
+        $project->run_tests($file) or next;
 
         # Filter out invalid test names, such as testEncode[0].
         # This problem impacts many Commons projects.
@@ -316,10 +326,9 @@ sub _check_t2v1 {
     # Lookup revision ids
     my $v1  = $project->lookup("${bid}b");
     my $v2  = $project->lookup("${bid}f");
-
+    
     # Checkout v1
-    $project->checkout_vid("${bid}b", $TMP_DIR, 1) == 1 or die;
-
+    $project->checkout_vid("${bid}b", $TMP_DIR,1,$SUBPROJ) == 1 or die;
     # Compile v1 and t2v1
     my $ret = $project->compile();
     _add_bool_result($data, $COMP_V1, $ret) or return;

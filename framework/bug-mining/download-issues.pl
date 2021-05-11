@@ -270,7 +270,6 @@ my $ISSUES_FILE = $cmd_opts{f};
 my $ORGANIZATION_ID = $cmd_opts{z};
 my $QUERY = $cmd_opts{q} // $TRACKER{'default_query'};
 my $TRACKER_URI = $cmd_opts{u} // $TRACKER{'default_tracker_uri'};
-print("$TRACKER_URI\n");
 my $FETCHING_LIMIT = $cmd_opts{l} // $TRACKER{'default_limit'};
 # Enable debugging if flag is set
 my $DEBUG = 1 if defined $cmd_opts{D};
@@ -389,3 +388,4 @@ sub get_id_List {
     my @id_list=split',',$names[0];
     return @id_list;
 }
+

@@ -320,6 +320,7 @@ sub exclude_tests_in_file {
     my $work_dir = $self->{prog_root};
 
     # Remove broken test methods
+    
     Utils::exec_cmd("$UTIL_DIR/rm_broken_tests.pl $file $work_dir/$tests_dir",
             "Excluding broken/flaky tests") or die;
 
@@ -371,7 +372,7 @@ framework is used for bug mining, the default is false.
 =cut
 
 sub checkout_vid {
-    my ($self, $vid, $work_dir, $is_bugmine) = @_;
+    my ($self, $vid, $work_dir, $is_bugmine,$SUBPROJ) = @_;
     my $tmp = Utils::check_vid($vid);
     my $bid = $tmp->{bid};
     my $version_type = $tmp->{type};
@@ -437,7 +438,7 @@ sub checkout_vid {
     # Check whether post-checkout hook is provided
     if (defined $self->{_vcs}->{_co_hook}) {
         # Execute post-checkout hook
-        $self->{_vcs}->{_co_hook}($self, $revision_id, $work_dir);
+        $self->{_vcs}->{_co_hook}($self, $revision_id, $work_dir,$SUBPROJ);
         # TODO: We need a better solution for tracking changes of the
         # post-checkout hook.
         my $changes = `cd $work_dir && git status -s | wc -l`;
@@ -538,7 +539,7 @@ sub compile {
 =pod
 
   $project->compile_tests([log_file])
-a
+
 Compiles the tests of the project version that is currently checked out.
 If F<log_file> is provided, the compiler output is written to this file.
 
@@ -1131,7 +1132,7 @@ sub _ant_call {
 sub _ant_call_comp {
     @_ >= 2 or die $ARG_ERROR;
     my ($self, $target, $option_str, $log_file, $ant_cmd) =  @_;
-    $option_str = "-Dbuild.compiler=javac1.7 " . ($option_str // "");
+    $option_str = "-Dbuild.compiler=javac1.8 " . ($option_str // "");
     $ant_cmd = "$MAJOR_ROOT/bin/ant" unless defined $ant_cmd;
     return $self->_ant_call($target, $option_str, $log_file, $ant_cmd);
 }

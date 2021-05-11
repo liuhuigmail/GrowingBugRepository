@@ -45,10 +45,7 @@ To date, growingBugs contains 1002 bugs from open-source Java projects.
 
 ## Copyright
 Notably, this bug repository is based on the well-known Defects4J https://github.com/rjust/defects4j. We reuse its source code as well as the bugs in Defects4J. 
-=======
 
 Under MIT License, you are free to use, modify, and distribute this repository with proper reference/citation.
 
 [1] Yanjie Jiang, Hui Liu, Nan Niu, Lu Zhang, Yamin Hu. Extracting Concise Bug-Fixing Patches from Human-Written Patches in Version Control Systems. The 43rd International Conference on Software Engineering (ICSE), 2021 https://liuhuigmail.github.io/publishedPappers/ICSE2021.pdf
-
-=======

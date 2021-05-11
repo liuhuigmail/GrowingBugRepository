@@ -23,23 +23,40 @@
 #-------------------------------------------------------------------------------
 
 =pod
+
 =head1 NAME
+
 initialize-revisions.pl -- Initialize all revisions: identify the directory
 layout and perform a sanity check for each revision.
+
 =head1 SYNOPSIS
-initialize-revisions.pl -p project_id -w work_dir [-s subproject] [ -b bug_id] 
+
+initialize-revisions.pl -p project_id -w work_dir [-s subproject]  [ -c component] 
+
 =head1 OPTIONS
+
 =over 4
+
 =item B<-p C<project_id>>
+
 The id of the project for which the meta data should be generated.
+
 =item B<-w F<work_dir>>
+
 The working directory used for the bug-mining process.
+
 =item B<-s F<subproject>>
+
 The subproject to be mined (if not the root directory)
+
 =item B<-b C<bug_id>>
+
 Only analyze this bug id. The bug_id has to follow the format B<(\d+)(:(\d+))?>.
 Per default all bug ids, listed in the active-bugs csv, are considered.
+
+
 =back
+
 =cut
 use warnings;
 use strict;
@@ -62,7 +79,7 @@ pod2usage(1) unless defined $cmd_opts{p} and defined $cmd_opts{w};
 my $PID = $cmd_opts{p};
 my $BID = $cmd_opts{b};
 my $WORK_DIR = abs_path($cmd_opts{w});
-my $SUBPROJ = $cmd_opts{s};
+my $SUBPROJ = $cmd_opts{s}//".";
 
 # Check format of target bug id
 if (defined $BID) {
@@ -90,6 +107,7 @@ system("mkdir -p $ANALYZER_OUTPUT $GEN_BUILDFILE_DIR");
 # Temporary directory
 my $TMP_DIR = Utils::get_tmp_dir();
 system("mkdir -p $TMP_DIR");
+system("mkdir -p $PROJECT_DIR/lib");
 
 # Set up project
 my $project = Project::create_project($PID);
@@ -107,19 +125,28 @@ sub _init_version {
 
     # Use the VCS checkout routine, which does not apply the cached, possibly
     # minimized patch to obtain the buggy version.
-    $project->{_vcs}->checkout_vid("${vid}", $work_dir) or die "Cannot checkout $vid version";
+    my $t;
+    $project->{_vcs}->checkout_vid("${vid}", $work_dir ) or die "Cannot checkout $vid version";
 
     if (defined $SUBPROJ) {
         $work_dir .= "/$SUBPROJ/";
         $project->{prog_root} = $work_dir;
     }
-
+    
     system("mkdir -p $ANALYZER_OUTPUT/$bid");
     if (-e "$work_dir/build.xml") {
         my $cmd = " cd $work_dir" .
                   " && java -jar $LIB_DIR/analyzer.jar $work_dir $ANALYZER_OUTPUT/$bid build.xml 2>&1";
         Utils::exec_cmd($cmd, "Run build-file analyzer on build.xml.");
     } elsif (-e "$work_dir/pom.xml") {
+        #here are two patterns : one is just deleting -SNAPSHOT , the other is changing the version and deleting -SNAPSHOT
+    	#system("sed -i \"s/2.0.0-SNAPSHOT/1.15/g\"  `grep SNAPSHOT -rl $work_dir`");
+    	system("sed -i \"s/-SNAPSHOT//g\"  `grep SNAPSHOT -rl $work_dir`");
+    	#delete multi lines 
+    	#system("sed   -i  '/\<parent/,/parent\>/d' `grep parent -rl $work_dir` ");
+    	
+    	#system("cat $work_dir/pom.xml");
+        
         # Run maven-ant plugin and overwrite the original build.xml whenever a maven build file exists
         my $cmd = " cd $work_dir" .
                   " && mvn ant:ant -Doverwrite=true 2>&1 -Dhttps.protocols=TLSv1.2" .
@@ -127,12 +154,14 @@ sub _init_version {
                   " && rm -rf $GEN_BUILDFILE_DIR/$rev_id && mkdir -p $GEN_BUILDFILE_DIR/$rev_id 2>&1" .
                   " && cp maven-build.* $GEN_BUILDFILE_DIR/$rev_id 2>&1" .
                   " && cp build.xml $GEN_BUILDFILE_DIR/$rev_id 2>&1";
-        Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) or die;
-
+        Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) or next;
+        #Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) or die;
+        #???
         $cmd = " cd $work_dir" .
                " && java -jar $LIB_DIR/analyzer.jar $work_dir $ANALYZER_OUTPUT/$bid maven-build.xml 2>&1";
-        Utils::exec_cmd($cmd, "Run build-file analyzer on maven-ant.xml.") or die;
-	
+        #Utils::exec_cmd($cmd, "Run build-file analyzer on maven-ant.xml.") or die;
+	Utils::exec_cmd($cmd, "Run build-file analyzer on maven-ant.xml.")  or next;
+    
         # Fix broken dependency links
         my $fix_dep = "cd $work_dir && sed \'s\/https:\\/\\/oss\\.sonatype\\.org\\/content\\/repositories\\/snapshots\\//http:\\/\\/central\\.maven\\.org\\/maven2\\/\/g\' maven-build.xml >> temp && mv temp maven-build.xml";
         Utils::exec_cmd($fix_dep, "Fixing broken dependency links.");
@@ -140,12 +169,76 @@ sub _init_version {
         # Get dependencies if it is maven-ant project
         my $download_dep = "cd $work_dir && ant -Dmaven.repo.local=\"$PROJECT_DIR/lib\" get-deps";
         Utils::exec_cmd($download_dep, "Download dependencies for maven-ant.xml.");
-    } else {
+    }elsif (-e "$work_dir/build.gradle") {
+        open(OUT, '>>'."$work_dir/build.gradle") or die $!;
+        my $convert_cmd="\n".
+                        "apply plugin: 'java'\n".
+                        "apply plugin: 'maven'\n".
+                        "task writeNewPom << {\n".
+                        " pom {\n".
+                        "project {\n".
+                        "inceptionYear '2008'\n".
+                        "licenses {\n".
+                        "license {\n".
+                        "name 'The Apache Software License, Version 2.0'\n".
+                        "url 'http://www.apache.org/licenses/LICENSE-2.0.txt'\n".
+                        "distribution 'repo'\n".
+                        "}\n".
+                        "}\n".
+                        "}\n".
+                        " }.writeTo(\"pom.xml\")\n".
+                        "}\n".
+                        "\n";
+        print OUT $convert_cmd;
+        close(OUT);
+        print("$work_dir/build.gradle\n");
+        my $trans_to_maven= " cd $work_dir".
+                            " && gradle clean".
+                            " && gradle writeNewPom";
+                            #" && gradle writeNewPom ";
+        Utils::exec_cmd($trans_to_maven, "Convert gradle to Maven build file: " . $rev_id) or next;
+
+        
+        my $cmd = " cd $work_dir" .
+                  " && mvn ant:ant -Doverwrite=true 2>&1 -Dhttps.protocols=TLSv1.2" .
+                  " && patch build.xml $PROJECT_DIR/build.xml.patch 2>&1" .
+                  " && rm -rf $GEN_BUILDFILE_DIR/$rev_id && mkdir -p $GEN_BUILDFILE_DIR/$rev_id 2>&1" .
+                  " && cp maven-build.* $GEN_BUILDFILE_DIR/$rev_id 2>&1" .
+                  " && cp build.xml $GEN_BUILDFILE_DIR/$rev_id 2>&1";
+        Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) or next;
+        #Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) or die;
+        #???
+
+        $cmd = " cd $work_dir" .
+               " && java -jar $LIB_DIR/analyzer.jar $work_dir $ANALYZER_OUTPUT/$bid maven-build.xml 2>&1";
+        #Utils::exec_cmd($cmd, "Run build-file analyzer on maven-ant.xml.") or die;
+        Utils::exec_cmd($cmd, "Run build-file analyzer on maven-ant.xml.") or next;
+        
+
+        # Fix broken dependency links
+        my $fix_dep = "cd $work_dir && sed \'s\/https:\\/\\/oss\\.sonatype\\.org\\/content\\/repositories\\/snapshots\\//http:\\/\\/central\\.maven\\.org\\/maven2\\/\/g\' maven-build.xml >> temp && mv temp maven-build.xml";
+        Utils::exec_cmd($fix_dep, "Fixing broken dependency links.");
+
+        #download dependencies you need
+        my $download_dep2 = "cd $PROJECT_DIR && ant -Dmaven.repo.local=\"$PROJECT_DIR/lib\" get-deps";
+        Utils::exec_cmd($download_dep2, "Download dependencies for project");
+
+        # Get dependencies if it is maven-ant project
+        my $download_dep = "cd $work_dir && ant -Dmaven.repo.local=\"$PROJECT_DIR/lib\" get-deps";
+        Utils::exec_cmd($download_dep, "Download dependencies for maven-ant.xml.");
+        
+    } 
+    else {
         # TODO add support for other build systems
-        die "Unsupported build system";
+        if (-e "$work_dir"){
+      	  die "Unsupported build system !";
+    	}
+    	else { 
+    	    print("$work_dir does not exist !\n");
+    	}
     }
 
-    $project->initialize_revision($rev_id, "${vid}");
+    $project->initialize_revision($rev_id, "${vid}",$SUBPROJ);
 
     return ($rev_id, $project->src_dir("${vid}"), $project->test_dir("${vid}"));
 }
@@ -183,7 +276,7 @@ foreach my $bid (@ids) {
 
     # Clean up previously generated data
     system("rm -rf $ANALYZER_OUTPUT/${bid} $PATCH_DIR/${bid}.src.patch $PATCH_DIR/${bid}.test.patch");
-
+    system("touch   $PATCH_DIR/${bid}.src.patch $PATCH_DIR/${bid}.test.patch");
     # Populate the layout map and patches directory
     _bootstrap($project, $bid);
 
@@ -198,8 +291,9 @@ foreach my $bid (@ids) {
     Utils::exec_cmd("rm -rf $TMP_DIR && mkdir -p $TMP_DIR", "Cleaning working directory")
             or die "Cannot clean working directory";
     $project->{prog_root} = $TMP_DIR;
-    $project->checkout_vid("${bid}f", $TMP_DIR, 1) or die "Cannot checkout fixed version";
+    $project->checkout_vid("${bid}f", $TMP_DIR, 1,$SUBPROJ) or die "Cannot checkout fixed version";
     $project->sanity_check();
+
 }
 
 print("\n--- Add the following to the <fileset> tag identified by the id 'all.manual.tests' in the <PROJECT_ID.build.xml> file ---\n");
@@ -207,3 +301,4 @@ system("cat $ANALYZER_OUTPUT/*/includes | sort -u | while read -r include; do ec
 system("cat $ANALYZER_OUTPUT/*/excludes | sort -u | while read -r exclude; do echo \"<exclude name='\"\$exclude\"' />\"; done");
 
 system("rm -rf $TMP_DIR");
+

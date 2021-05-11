@@ -221,8 +221,12 @@ sub _remove_test_method {
     my @lines=@{$buffers{$file}};
     # Line buffer for the fixed source file
     my @buffer;
+     
     for (my $i=0; $i<=$#lines; ++$i) {
-        if ($lines[$i] =~ /^([^\/]*)public.+$method\(\)/) {
+     my $temp_method=$method;
+     #$temp_method=~ s/\[/\\\[/g;
+     #$temp_method =~ s/\]/\\\]/g; 
+        if ($lines[$i] =~ /^([^\/]*)public.+$temp_method/) {
             my $index = $i;
             # Found the test to exclude
             my $space = $1;
@@ -233,7 +237,6 @@ sub _remove_test_method {
                 $dummy = "${space}\@Test\n$dummy";
                 --$index;
             }
-
             # Remove all String/Character literals and comments from the
             # temporary buffer as they may contain unbalanced delimiters or
             # brackets.
@@ -266,8 +269,7 @@ sub _remove_test_method {
 
             last;
         }
-    }
-
+    } 
     if (@buffer) {
         # Update file buffer
         $buffers{$file} = \@buffer;
