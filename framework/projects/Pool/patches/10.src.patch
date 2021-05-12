@@ -1,0 +1,12 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+index 9f870471..3fe11703 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+@@ -1007,7 +1007,6 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+             p = factory.makeObject(key);
+         } catch (Exception e) {
+             numTotal.decrementAndGet();
+-            objectDeque.getCreateCount().decrementAndGet();
+             throw e;
+         }
+ 

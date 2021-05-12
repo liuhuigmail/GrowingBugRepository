@@ -1,0 +1,28 @@
+diff --git a/src/test/java/org/apache/commons/validator/routines/EmailValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/EmailValidatorTest.java
+index 8c75d288..eb165933 100644
+--- a/src/test/java/org/apache/commons/validator/routines/EmailValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/EmailValidatorTest.java
+@@ -509,23 +509,6 @@ public class EmailValidatorTest extends TestCase {
+                 "Maecenaspharetraeuismodmetusegetefficitur.Suspendisseamet@gmail.com"));
+     }
+ 
+-    /**
+-     * Tests the e-mail validation with a user at a TLD
+-     *
+-     * http://tools.ietf.org/html/rfc5321#section-2.3.5
+-     * (In the case of a top-level domain used by itself in an
+-     * email address, a single string is used without any dots)
+-     */
+-    public void testEmailAtTLD() {
+-        EmailValidator val = EmailValidator.getInstance(false, true);
+-        assertTrue(val.isValid("test@com"));
+-    }
+-
+-    public void testValidator359() {
+-        EmailValidator val = EmailValidator.getInstance(false, true);
+-        assertFalse(val.isValid("test@.com"));
+-    }
+-
+     public void testValidator374() {
+         assertTrue(validator.isValid("abc@school.school"));
+     }

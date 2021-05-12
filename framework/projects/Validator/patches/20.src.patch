@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/IBANValidator.java b/src/main/java/org/apache/commons/validator/routines/IBANValidator.java
+index 3f0ee089..c1060ff1 100644
+--- a/src/main/java/org/apache/commons/validator/routines/IBANValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/IBANValidator.java
+@@ -153,7 +153,6 @@ public class IBANValidator {
+             new Validator("ST", 25, "ST\\d{23}"                             ), // Sao Tome And Principe
+             new Validator("SA", 24, "SA\\d{4}[A-Z0-9]{18}"                  ), // Saudi Arabia
+             new Validator("RS", 22, "RS\\d{20}"                             ), // Serbia
+-            new Validator("SC", 31, "SC\\d{2}[A-Z]{4}\\d{20}[A-Z]{3}"       ), // Seychelles
+             new Validator("SK", 24, "SK\\d{22}"                             ), // Slovak Republic
+             new Validator("SI", 19, "SI\\d{17}"                             ), // Slovenia
+             new Validator("ES", 24, "ES\\d{22}"                             ), // Spain
+@@ -162,7 +161,6 @@ public class IBANValidator {
+             new Validator("TL", 23, "TL\\d{21}"                             ), // Timor-Leste
+             new Validator("TN", 24, "TN59\\d{20}"                           ), // Tunisia
+             new Validator("TR", 26, "TR\\d{8}[A-Z0-9]{16}"                  ), // Turkey
+-            new Validator("UA", 29, "UA\\d{8}[A-Z0-9]{19}"                  ), // Ukraine
+             new Validator("AE", 23, "AE\\d{21}"                             ), // United Arab Emirates
+             new Validator("GB", 22, "GB\\d{2}[A-Z]{4}\\d{14}"               ), // United Kingdom
+             new Validator("VG", 24, "VG\\d{2}[A-Z]{4}\\d{16}"               ), // Virgin Islands, British

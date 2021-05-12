@@ -1,0 +1,16 @@
+--- org.apache.commons.pool2.impl.TestGenericObjectPool::testNoInvalidateNPE
+java.lang.NullPointerException
+	at org.apache.commons.pool2.impl.LinkedBlockingDeque.putLast(LinkedBlockingDeque.java:458)
+	at org.apache.commons.pool2.impl.LinkedBlockingDeque.put(LinkedBlockingDeque.java:792)
+	at org.apache.commons.pool2.impl.GenericObjectPool.destroy(GenericObjectPool.java:945)
+	at org.apache.commons.pool2.impl.GenericObjectPool.invalidateObject(GenericObjectPool.java:623)
+	at org.apache.commons.pool2.impl.TestGenericObjectPool.testNoInvalidateNPE(TestGenericObjectPool.java:2145)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)

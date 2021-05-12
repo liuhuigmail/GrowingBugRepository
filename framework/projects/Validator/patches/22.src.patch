@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+index 92d2159b..1457a37e 100644
+--- a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+@@ -148,8 +148,8 @@ public class UrlValidator implements Serializable {
+             USERINFO_CHARS_REGEX + "+:" + // At least one character for the name
+             USERINFO_CHARS_REGEX + "*@"; // password may be absent
+     private static final String AUTHORITY_REGEX =
+-            "(?:\\[("+IPV6_REGEX+")\\]|(?:(?:"+USERINFO_FIELD_REGEX+")?([" + AUTHORITY_CHARS_REGEX + "]*)))(?::(\\d*))?(.*)?";
+-    //             1                          e.g. user:pass@          2                                         3       4
++            "(?:\\[("+IPV6_REGEX+")\\]|(?:(?:"+USERINFO_FIELD_REGEX+")?([" + AUTHORITY_CHARS_REGEX + "]*)))(:\\d*)?(.*)?";
++    //             1                          e.g. user:pass@          2                                   3       4
+     private static final Pattern AUTHORITY_PATTERN = Pattern.compile(AUTHORITY_REGEX);
+ 
+     private static final int PARSE_AUTHORITY_IPV6 = 1;

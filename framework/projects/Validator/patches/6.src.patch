@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/CreditCardValidator.java b/src/main/java/org/apache/commons/validator/routines/CreditCardValidator.java
+index 8bebd888..6534e1d8 100644
+--- a/src/main/java/org/apache/commons/validator/routines/CreditCardValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/CreditCardValidator.java
+@@ -95,10 +95,10 @@ public class CreditCardValidator implements Serializable {
+     public static final CodeValidator AMEX_VALIDATOR = new CodeValidator("^(3[47]\\d{13})$", LUHN_VALIDATOR);
+ 
+     /** Diners Card Validator */
+-    public static final CodeValidator DINERS_VALIDATOR = new CodeValidator("^(30[0-5]\\d{11}|3095\\d{10}|36\\d{12}|3[8-9]\\d{12})$", LUHN_VALIDATOR);
++    public static final CodeValidator DINERS_VALIDATOR = new CodeValidator("^(30[0-5]\\d{11}|36\\d{12})$", LUHN_VALIDATOR);
+ 
+     /** Discover Card regular expressions */
+-    private static final RegexValidator DISCOVER_REGEX = new RegexValidator(new String[] {"^(6011\\d{12})$", "^(64[4-9]\\d{13})$", "^(65\\d{14})$"});
++    private static final RegexValidator DISCOVER_REGEX = new RegexValidator(new String[] {"^(6011\\d{12})$", "^(65\\d{14})$"});
+ 
+     /** Discover Card Validator */
+     public static final CodeValidator DISCOVER_VALIDATOR = new CodeValidator(DISCOVER_REGEX, LUHN_VALIDATOR);

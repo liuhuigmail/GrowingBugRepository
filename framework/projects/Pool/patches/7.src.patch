@@ -1,0 +1,38 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+index da444dd3..df5b3e99 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+@@ -551,11 +551,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+             throw new IllegalStateException(
+                     "Object not currently part of this pool");
+         }
+-        synchronized (p) {
+-            if (p.getState() != PooledObjectState.INVALID) { 
+-                destroy(key, p, true);
+-            }
+-        }
++        destroy(key, p, true);
+     }
+ 
+ 
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+index f4b239e3..8051dfab 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+@@ -581,14 +581,10 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+                 return;
+             } else {
+                 throw new IllegalStateException(
+-                        "Invalidated object not currently part of this pool");
++                        "Returned object not currently part of this pool");
+             }
+         }   
+-        synchronized (p) {
+-            if (p.getState() != PooledObjectState.INVALID) { 
+-                destroy(p);
+-            }
+-        }
++        destroy(p);
+     }
+ 
+     /**

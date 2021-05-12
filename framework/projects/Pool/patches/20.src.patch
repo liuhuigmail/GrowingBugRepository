@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java b/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
+index 97081f52..77b6386c 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
++++ b/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
+@@ -243,19 +243,13 @@ public class DefaultPooledObject<T> implements PooledObject<T> {
+ 
+     @Override
+     public void printStackTrace(PrintWriter writer) {
+-        boolean written = false;
+         Exception borrowedByCopy = this.borrowedBy;
+         if (borrowedByCopy != null) {
+             borrowedByCopy.printStackTrace(writer);
+-            written = true;
+         }
+         Exception usedByCopy = this.usedBy;
+         if (usedByCopy != null) {
+             usedByCopy.printStackTrace(writer);
+-            written = true;
+-        }
+-        if (written) {
+-            writer.flush();
+         }
+     }
+ 

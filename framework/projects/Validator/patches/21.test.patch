@@ -1,0 +1,22 @@
+diff --git a/src/test/java/org/apache/commons/validator/routines/IBANValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/IBANValidatorTest.java
+index 9eea465f..a8e55b8e 100644
+--- a/src/test/java/org/apache/commons/validator/routines/IBANValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/IBANValidatorTest.java
+@@ -46,7 +46,7 @@ public class IBANValidatorTest {
+             "BR1800000000141455123924100C2",
+             "BR9700360305000010009795493P1",
+             "CH9300762011623852957",
+-            "CR05015202001026284066",
++            "CR0515202001026284066",
+             "CY17002001280000001200527600",
+             "CZ6508000000192000145399",
+             "CZ9455000000001011038930",
+@@ -75,7 +75,7 @@ public class IBANValidatorTest {
+             "KW81CBKU0000000000001234560101",
+             "KZ86125KZT5004100100",
+             "LB62099900000001001901229114",
+-            "LC55HEMM000100010012001200023015",
++            "LC55HEMM000100010012001200023015", // the SWIFT docs have LC62...
+             "LI21088100002324013AA",
+             "LT121000011101001000",
+             "LU280019400644750000",

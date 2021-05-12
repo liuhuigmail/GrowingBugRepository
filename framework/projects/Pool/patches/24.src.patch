@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+index a6a9f53c..02d8d02d 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+@@ -887,7 +887,7 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+         final PooledObject<T> p;
+         try {
+             p = factory.makeObject();
+-        } catch (final Throwable e) {
++        } catch (final Exception e) {
+             createCount.decrementAndGet();
+             throw e;
+         } finally {

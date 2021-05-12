@@ -1,0 +1,22 @@
+diff --git a/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
+index a227dc10..83859bdf 100644
+--- a/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
+@@ -275,17 +275,6 @@ protected void setUp() {
+               validator.isValid("file://C:\\some.file"));
+     }
+ 
+-    public void testValidator391OK() {
+-        String[] schemes = {"file"};
+-        UrlValidator urlValidator = new UrlValidator(schemes);
+-        urlValidator.isValid("file:///C:/path/to/dir/");
+-    }
+-    
+-    public void testValidator391FAILS() {
+-        String[] schemes = {"file"};
+-        UrlValidator urlValidator = new UrlValidator(schemes);
+-        urlValidator.isValid("file:/C:/path/to/dir/");
+-    }
+     
+     public void testValidator309() {
+         UrlValidator urlValidator = new UrlValidator();

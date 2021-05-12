@@ -1,0 +1,48 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/InetAddressValidator.java b/src/main/java/org/apache/commons/validator/routines/InetAddressValidator.java
+index e6134fcb..a0f12a98 100644
+--- a/src/main/java/org/apache/commons/validator/routines/InetAddressValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/InetAddressValidator.java
+@@ -149,7 +149,7 @@ public class InetAddressValidator implements Serializable {
+             return false;
+         }
+         int validOctets = 0;
+-        int emptyOctets = 0; // consecutive empty chunks
++        int emptyOctets = 0;
+         for (int index = 0; index < octets.length; index++) {
+             String octet = octets[index];
+             if (octet.length() == 0) {
+@@ -159,8 +159,14 @@ public class InetAddressValidator implements Serializable {
+                 }
+             } else {
+                 emptyOctets = 0;
+-                // Is last chunk an IPv4 address?
+-                if (index == octets.length - 1 && octet.contains(".")) {
++                if (octet.contains(".")) { // contains is Java 1.5+
++                    if (!inet6Address.endsWith(octet)) {
++                        return false;
++                    }
++                    if (index > octets.length - 1 || index > 6) {  // CHECKSTYLE IGNORE MagicNumber
++                        // IPV4 occupies last two octets
++                        return false;
++                    }
+                     if (!isValidInet4Address(octet)) {
+                         return false;
+                     }
+@@ -172,7 +178,7 @@ public class InetAddressValidator implements Serializable {
+                 }
+                 int octetInt = 0;
+                 try {
+-                    octetInt = Integer.parseInt(octet, BASE_16);
++                    octetInt = Integer.valueOf(octet, BASE_16).intValue();
+                 } catch (NumberFormatException e) {
+                     return false;
+                 }
+@@ -182,7 +188,7 @@ public class InetAddressValidator implements Serializable {
+             }
+             validOctets++;
+         }
+-        if (validOctets > IPV6_MAX_HEX_GROUPS || (validOctets < IPV6_MAX_HEX_GROUPS && !containsCompressedZeroes)) {
++        if (validOctets < IPV6_MAX_HEX_GROUPS && !containsCompressedZeroes) {
+             return false;
+         }
+         return true;

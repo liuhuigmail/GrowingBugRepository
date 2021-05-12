@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/DomainValidator.java b/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
+index 4cab4be0..0830ea2e 100644
+--- a/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
+@@ -87,11 +87,6 @@ public class DomainValidator implements Serializable {
+      */
+     private final RegexValidator domainRegex =
+             new RegexValidator(DOMAIN_NAME_REGEX);
+-    /**
+-     * RegexValidator for matching the a local hostname
+-     */
+-    private final RegexValidator hostnameRegex =
+-            new RegexValidator(DOMAIN_LABEL_REGEX);
+ 
+     /**
+      * Returns the singleton instance of this validator. It
+@@ -131,7 +126,7 @@ public class DomainValidator implements Serializable {
+         if (groups != null && groups.length > 0) {
+             return isValidTld(groups[0]);
+         } else if(allowLocal) {
+-            if (hostnameRegex.isValid(domain)) {
++            if ("localhost".equals(domain)) {
+                return true;
+             }
+         }

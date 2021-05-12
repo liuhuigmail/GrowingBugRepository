@@ -1,0 +1,56 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+index 52aed4b4..77b41463 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+@@ -353,10 +353,8 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+                 if (blockWhenExhausted) {
+                     p = objectDeque.getIdleObjects().pollFirst();
+                     if (p == null) {
++                        create = true;
+                         p = create(key);
+-                        if (p != null) {
+-                            create = true;
+-                        }
+                     }
+                     if (p == null) {
+                         if (borrowMaxWaitMillis < 0) {
+@@ -376,10 +374,8 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+                 } else {
+                     p = objectDeque.getIdleObjects().pollFirst();
+                     if (p == null) {
++                        create = true;
+                         p = create(key);
+-                        if (p != null) {
+-                            create = true;
+-                        }
+                     }
+                     if (p == null) {
+                         throw new NoSuchElementException("Pool exhausted");
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+index a5479f0b..344a06e4 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+@@ -432,10 +432,8 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+             if (blockWhenExhausted) {
+                 p = idleObjects.pollFirst();
+                 if (p == null) {
++                    create = true;
+                     p = create();
+-                    if (p != null) {
+-                        create = true;
+-                    }
+                 }
+                 if (p == null) {
+                     if (borrowMaxWaitMillis < 0) {
+@@ -455,10 +453,8 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+             } else {
+                 p = idleObjects.pollFirst();
+                 if (p == null) {
++                    create = true;
+                     p = create();
+-                    if (p != null) {
+-                        create = true;
+-                    }
+                 }
+                 if (p == null) {
+                     throw new NoSuchElementException("Pool exhausted");

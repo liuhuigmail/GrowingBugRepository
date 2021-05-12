@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java b/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java
+index e6234fde..3bcc9bfc 100644
+--- a/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java
++++ b/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java
+@@ -68,10 +68,6 @@ public final class IBANCheckDigit implements CheckDigit, Serializable {
+         if (code == null || code.length() < 5) {
+             return false;
+         }
+-        String check = code.substring(2,4);
+-        if ("00".equals(check) || "01".equals(check) || "99".equals(check)) {
+-            return false;
+-        }
+         try {
+             int modulusResult = calculateModulus(code);
+             return (modulusResult == 1);

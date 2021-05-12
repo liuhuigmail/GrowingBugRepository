@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/CodeValidator.java b/src/main/java/org/apache/commons/validator/routines/CodeValidator.java
+index 31111301..d9de7945 100644
+--- a/src/main/java/org/apache/commons/validator/routines/CodeValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/CodeValidator.java
+@@ -213,12 +213,8 @@ public final class CodeValidator implements Serializable {
+      */
+     public Object validate(String input) {
+ 
+-        if (input == null) {
+-            return null;
+-        }
+-
+-        String code = input.trim();
+-        if (code.length() == 0) {
++        String code = (input == null ? null : input.trim());
++        if (code != null && code.length() == 0) {
+             return null;
+         }
+ 

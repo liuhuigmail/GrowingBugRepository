@@ -1,0 +1,53 @@
+diff --git a/src/test/java/org/apache/commons/pool2/impl/TestGenericKeyedObjectPool.java b/src/test/java/org/apache/commons/pool2/impl/TestGenericKeyedObjectPool.java
+index 28ec395f..ad388792 100644
+--- a/src/test/java/org/apache/commons/pool2/impl/TestGenericKeyedObjectPool.java
++++ b/src/test/java/org/apache/commons/pool2/impl/TestGenericKeyedObjectPool.java
+@@ -1635,10 +1635,7 @@ public class TestGenericKeyedObjectPool extends TestKeyedObjectPool {
+             this.valid = valid;
+         }
+         @Override
+-        public PooledObject<String> makeObject(K key) throws Exception {
+-            if (exceptionOnCreate) {
+-                throw new Exception();
+-            }
++        public PooledObject<String> makeObject(K key) {
+             String out = null;
+             synchronized(this) {
+                 activeCount++;
+@@ -1725,7 +1722,6 @@ public class TestGenericKeyedObjectPool extends TestKeyedObjectPool {
+         boolean exceptionOnPassivate = false;
+         boolean exceptionOnActivate = false;
+         boolean exceptionOnDestroy = false;
+-        boolean exceptionOnCreate = false;
+ 
+         private void doWait(long latency) {
+             try {
+@@ -1916,28 +1912,6 @@ public class TestGenericKeyedObjectPool extends TestKeyedObjectPool {
+         String obj = pool.borrowObject("one");
+         pool.returnObject("one", obj);
+     }
+-    
+-    /**
+-     * Verify that factory exceptions creating objects do not corrupt per key create count.
+-     * 
+-     * JIRA: POOL-243
+-     */
+-    @Test
+-    public void testMakeObjectException()
+-        throws Exception {
+-        SimpleFactory<String> factory = new SimpleFactory<String>();
+-        GenericKeyedObjectPool<String, String> pool = new GenericKeyedObjectPool<String, String>(factory);
+-        pool.setMaxTotalPerKey(1);
+-        pool.setBlockWhenExhausted(false);
+-        factory.exceptionOnCreate = true;
+-        try {
+-            pool.borrowObject("One");
+-        } catch (Exception ex) {
+-            // expected
+-        }
+-        factory.exceptionOnCreate = false;
+-        pool.borrowObject("One");
+-    }
+ 
+     private static class DummyFactory
+             extends BaseKeyedPooledObjectFactory<Object,Object> {

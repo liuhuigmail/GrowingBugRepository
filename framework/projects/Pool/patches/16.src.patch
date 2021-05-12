@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java b/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
+index ed95c472..e60ef68a 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
++++ b/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
+@@ -85,11 +85,7 @@ public class DefaultPooledObject<T> implements PooledObject<T> {
+ 
+     @Override
+     public long getIdleTimeMillis() {
+-        final long elapsed = System.currentTimeMillis() - lastReturnTime;
+-     // elapsed may be negative if:
+-     // - another thread updates lastReturnTime during the calculation window
+-     // - System.currentTimeMillis() is not monotonic (e.g. system time is set back)
+-     return elapsed >= 0 ? elapsed : 0;
++        return System.currentTimeMillis() - lastReturnTime;
+     }
+ 
+     @Override

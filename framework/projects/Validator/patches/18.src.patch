@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/EmailValidator.java b/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
+index 91d56cfa..e344dcc4 100644
+--- a/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
+@@ -39,7 +39,7 @@ public class EmailValidator implements Serializable {
+ 
+     private static final String SPECIAL_CHARS = "\\p{Cntrl}\\(\\)<>@,;:'\\\\\\\"\\.\\[\\]";
+     private static final String VALID_CHARS = "(\\\\.)|[^\\s" + SPECIAL_CHARS + "]";
+-    private static final String QUOTED_USER = "(\"(\\\\\"|[^\"])*\")";
++    private static final String QUOTED_USER = "(\"[^\"]*\")";
+     private static final String WORD = "((" + VALID_CHARS + "|')+|" + QUOTED_USER + ")";
+ 
+     private static final String EMAIL_REGEX = "^\\s*?(.+)@(.+?)\\s*$";

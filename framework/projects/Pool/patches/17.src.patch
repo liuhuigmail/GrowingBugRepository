@@ -1,0 +1,168 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/BaseGenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/BaseGenericObjectPool.java
+index f5cece9c..e4c927f5 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/BaseGenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/BaseGenericObjectPool.java
+@@ -21,7 +21,6 @@ import java.io.StringWriter;
+ import java.io.Writer;
+ import java.lang.management.ManagementFactory;
+ import java.lang.ref.WeakReference;
+-import java.util.Deque;
+ import java.util.Iterator;
+ import java.util.TimerTask;
+ import java.util.concurrent.atomic.AtomicLong;
+@@ -92,7 +91,7 @@ public abstract class BaseGenericObjectPool<T> {
+     volatile boolean closed = false;
+     final Object evictionLock = new Object();
+     private Evictor evictor = null; // @GuardedBy("evictionLock")
+-    EvictionIterator evictionIterator = null; // @GuardedBy("evictionLock")
++    Iterator<PooledObject<T>> evictionIterator = null; // @GuardedBy("evictionLock")
+     /*
+      * Class loader for evictor thread to use since, in a JavaEE or similar
+      * environment, the context class loader for the evictor thread may not have
+@@ -1101,55 +1100,4 @@ public abstract class BaseGenericObjectPool<T> {
+             return (long) result;
+         }
+     }
+-    
+-    /**
+-     * The idle object eviction iterator. Holds a reference to the idle objects.
+-     */
+-    class EvictionIterator implements Iterator<PooledObject<T>> {
+-
+-        private final Deque<PooledObject<T>> idleObjects;
+-        private final Iterator<PooledObject<T>> idleObjectIterator;
+-
+-        /**
+-         * Create an EvictionIterator for the provided idle instance deque.
+-         * @param idleObjects underlying deque
+-         */
+-        EvictionIterator(final Deque<PooledObject<T>> idleObjects) {
+-            this.idleObjects = idleObjects;
+-
+-            if (getLifo()) {
+-                idleObjectIterator = idleObjects.descendingIterator();
+-            } else {
+-                idleObjectIterator = idleObjects.iterator();
+-            }
+-        }
+-
+-        /**
+-         * Returns the idle object deque referenced by this iterator.
+-         * @return the idle object deque
+-         */
+-        public Deque<PooledObject<T>> getIdleObjects() {
+-            return idleObjects;
+-        }
+-
+-        /** {@inheritDoc} */
+-        @Override
+-        public boolean hasNext() {
+-            return idleObjectIterator.hasNext();
+-        }
+-
+-        /** {@inheritDoc} */
+-        @Override
+-        public PooledObject<T> next() {
+-            return idleObjectIterator.next();
+-        }
+-
+-        /** {@inheritDoc} */
+-        @Override
+-        public void remove() {
+-            idleObjectIterator.remove();
+-        }
+-        
+-    }
+-
+ }
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+index ca88edbe..23411242 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+@@ -17,7 +17,6 @@
+ package org.apache.commons.pool2.impl;
+ 
+ import java.util.ArrayList;
+-import java.util.Deque;
+ import java.util.HashMap;
+ import java.util.Iterator;
+ import java.util.List;
+@@ -880,6 +879,8 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+ 
+             boolean testWhileIdle = getTestWhileIdle();
+ 
++            LinkedBlockingDeque<PooledObject<T>> idleObjects = null;
++
+             for (int i = 0, m = getNumTests(); i < m; i++) {
+                 if(evictionIterator == null || !evictionIterator.hasNext()) {
+                     if (evictionKeyIterator == null ||
+@@ -900,9 +901,13 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+                         if (objectDeque == null) {
+                             continue;
+                         }
+-                        
+-                        final Deque<PooledObject<T>> idleObjects = objectDeque.getIdleObjects();
+-                        evictionIterator = new EvictionIterator(idleObjects);
++                        idleObjects = objectDeque.getIdleObjects();
++
++                        if (getLifo()) {
++                            evictionIterator = idleObjects.descendingIterator();
++                        } else {
++                            evictionIterator = idleObjects.iterator();
++                        }
+                         if (evictionIterator.hasNext()) {
+                             break;
+                         }
+@@ -913,10 +918,8 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+                     // Pools exhausted
+                     return;
+                 }
+-                final Deque<PooledObject<T>> idleObjects;
+                 try {
+                     underTest = evictionIterator.next();
+-                    idleObjects = evictionIterator.getIdleObjects();
+                 } catch (NoSuchElementException nsee) {
+                     // Object was borrowed in another thread
+                     // Don't count this as an eviction test so reduce i;
+@@ -962,12 +965,14 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+                             destroyedByEvictorCount.incrementAndGet();
+                         }
+                         if (active) {
+-                            if (!factory.validateObject(evictionKey, underTest)) {
++                            if (!factory.validateObject(evictionKey,
++                                    underTest)) {
+                                 destroy(evictionKey, underTest, true);
+                                 destroyedByEvictorCount.incrementAndGet();
+                             } else {
+                                 try {
+-                                    factory.passivateObject(evictionKey, underTest);
++                                    factory.passivateObject(evictionKey,
++                                            underTest);
+                                 } catch (Exception e) {
+                                     destroy(evictionKey, underTest, true);
+                                     destroyedByEvictorCount.incrementAndGet();
+@@ -1488,7 +1493,6 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+         public Map<S, PooledObject<S>> getAllObjects() {
+             return allObjects;
+         }
+-
+     }
+ 
+     //--- configuration attributes ---------------------------------------------
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+index e601efd0..489a8ec2 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+@@ -752,7 +752,11 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+ 
+                 for (int i = 0, m = getNumTests(); i < m; i++) {
+                     if (evictionIterator == null || !evictionIterator.hasNext()) {
+-                        evictionIterator = new EvictionIterator(idleObjects);
++                        if (getLifo()) {
++                            evictionIterator = idleObjects.descendingIterator();
++                        } else {
++                            evictionIterator = idleObjects.iterator();
++                        }
+                     }
+                     if (!evictionIterator.hasNext()) {
+                         // Pool exhausted, nothing to do here

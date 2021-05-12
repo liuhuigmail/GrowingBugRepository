@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/IBANValidator.java b/src/main/java/org/apache/commons/validator/routines/IBANValidator.java
+index aa481b89..3f0ee089 100644
+--- a/src/main/java/org/apache/commons/validator/routines/IBANValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/IBANValidator.java
+@@ -103,7 +103,7 @@ public class IBANValidator {
+             new Validator("BA", 20, "BA\\d{18}"                             ), // Bosnia and Herzegovina
+             new Validator("BR", 29, "BR\\d{25}[A-Z]{1}[A-Z0-9]{1}"          ), // Brazil
+             new Validator("BG", 22, "BG\\d{2}[A-Z]{4}\\d{6}[A-Z0-9]{8}"     ), // Bulgaria
+-            new Validator("CR", 22, "CR\\d{20}"                             ), // Costa Rica
++            new Validator("CR", 21, "CR\\d{19}"                             ), // Costa Rica
+             new Validator("HR", 21, "HR\\d{19}"                             ), // Croatia
+             new Validator("CY", 28, "CY\\d{10}[A-Z0-9]{16}"                 ), // Cyprus
+             new Validator("CZ", 24, "CZ\\d{22}"                             ), // Czech Republic

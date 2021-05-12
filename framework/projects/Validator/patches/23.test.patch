@@ -1,0 +1,12 @@
+diff --git a/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
+index 93b8952f..911bcb30 100644
+--- a/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
+@@ -471,7 +471,6 @@ protected void setUp() {
+        assertTrue(validator.isValid("http://www.apache.org:80/path"));
+        assertTrue(validator.isValid("http://user:pass@www.apache.org:80/path"));
+        assertTrue(validator.isValid("http://user:@www.apache.org:80/path"));
+-       assertTrue(validator.isValid("http://user@www.apache.org:80/path"));
+        assertTrue(validator.isValid("http://us%00er:-._~!$&'()*+,;=@www.apache.org:80/path"));
+        assertFalse(validator.isValid("http://:pass@www.apache.org:80/path"));
+        assertFalse(validator.isValid("http://:@www.apache.org:80/path"));

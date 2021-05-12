@@ -1,0 +1,82 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+index 5734c613..62901af8 100644
+--- a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+@@ -133,24 +133,21 @@ public class UrlValidator implements Serializable {
+     // Drop numeric, and  "+-." for now
+     // TODO does not allow for optional userinfo. 
+     // Validation of character set is done by isValidAuthority
+-    private static final String AUTHORITY_CHARS_REGEX = "\\p{Alnum}\\-\\."; // allows for IPV4 but not IPV6
+-    private static final String IPV6_REGEX = "[0-9a-fA-F:]+"; // do this as separate match because : could cause ambiguity with port prefix
++    private static final String AUTHORITY_CHARS_REGEX = "\\p{Alnum}\\-\\.";
+ 
+     private static final String AUTHORITY_REGEX =
+-            "^(?:\\[("+IPV6_REGEX+")\\]|([" + AUTHORITY_CHARS_REGEX + "]*))(:\\d*)?(.*)?";
+-    //                   1                              2                3       4
++            "^([" + AUTHORITY_CHARS_REGEX + "]*)(:\\d*)?(.*)?";
++    //        1                                 2       3
+     private static final Pattern AUTHORITY_PATTERN = Pattern.compile(AUTHORITY_REGEX);
+ 
+-    private static final int PARSE_AUTHORITY_IPV6 = 1;
++    private static final int PARSE_AUTHORITY_HOST_IP = 1;
+ 
+-    private static final int PARSE_AUTHORITY_HOST_IP = 2;
+-
+-    private static final int PARSE_AUTHORITY_PORT = 3;
++    private static final int PARSE_AUTHORITY_PORT = 2;
+ 
+     /**
+      * Should always be empty. The code currently allows spaces.
+      */
+-    private static final int PARSE_AUTHORITY_EXTRA = 4;
++    private static final int PARSE_AUTHORITY_EXTRA = 3;
+ 
+     private static final String PATH_REGEX = "^(/[-\\w:@&?=+,.!/~*'%$_;\\(\\)]*)?$";
+     private static final Pattern PATH_PATTERN = Pattern.compile(PATH_REGEX);
+@@ -379,25 +376,17 @@ public class UrlValidator implements Serializable {
+             return false;
+         }
+ 
+-        // We have to process IPV6 separately because that is parsed in a different group
+-        String ipv6 = authorityMatcher.group(PARSE_AUTHORITY_IPV6);
+-        if (ipv6 != null) {
+-            InetAddressValidator inetAddressValidator = InetAddressValidator.getInstance();
+-                if (!inetAddressValidator.isValidInet6Address(ipv6)) {
+-                    return false;
+-                }
+-        } else {
+-            String hostLocation = authorityMatcher.group(PARSE_AUTHORITY_HOST_IP);
+-            // check if authority is hostname or IP address:
+-            // try a hostname first since that's much more likely
+-            DomainValidator domainValidator = DomainValidator.getInstance(isOn(ALLOW_LOCAL_URLS));
+-            if (!domainValidator.isValid(hostLocation)) {
+-                // try an IPv4 address
+-                InetAddressValidator inetAddressValidator = InetAddressValidator.getInstance();
+-                if (!inetAddressValidator.isValidInet4Address(hostLocation)) {
+-                    // isn't IPv4, so the URL is invalid
+-                    return false;
+-                }
++        String hostLocation = authorityMatcher.group(PARSE_AUTHORITY_HOST_IP);
++        // check if authority is hostname or IP address:
++        // try a hostname first since that's much more likely
++        DomainValidator domainValidator = DomainValidator.getInstance(isOn(ALLOW_LOCAL_URLS));
++        if (!domainValidator.isValid(hostLocation)) {
++            // try an IP address
++            InetAddressValidator inetAddressValidator =
++                InetAddressValidator.getInstance();
++            if (!inetAddressValidator.isValid(hostLocation)) {
++                // isn't either one, so the URL is invalid
++                return false;
+             }
+         }
+ 
+@@ -510,9 +499,4 @@ public class UrlValidator implements Serializable {
+     private boolean isOff(long flag) {
+         return (options & flag) == 0;
+     }
+-
+-    // Unit test access to pattern matcher
+-    Matcher matchURL(String value) {
+-        return URL_PATTERN.matcher(value);
+-    }
+ }

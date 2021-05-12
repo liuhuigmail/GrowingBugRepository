@@ -1,0 +1,15 @@
+diff --git a/src/test/java/org/apache/commons/validator/routines/DomainValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/DomainValidatorTest.java
+index 8485ab49..35cfabc3 100644
+--- a/src/test/java/org/apache/commons/validator/routines/DomainValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/DomainValidatorTest.java
+@@ -299,10 +299,6 @@ public class DomainValidatorTest extends TestCase {
+         assertTrue(sorted);
+     }
+ 
+-    public void testEnumIsPublic() {
+-        assertTrue(Modifier.isPublic(DomainValidator.ArrayType.class.getModifiers()));
+-    }
+-
+     public void testUpdateCountryCode() {
+         assertFalse(validator.isValidCountryCodeTld("com")); // cannot be valid
+         DomainValidator.updateTLDOverride(ArrayType.COUNTRY_CODE_PLUS, new String[]{"com"});

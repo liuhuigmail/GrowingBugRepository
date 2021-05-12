@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+index 9b786d3b..f6eedd25 100644
+--- a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+@@ -286,19 +286,12 @@ public class UrlValidator implements Serializable {
+             return false;
+         }
+ 
+-        String scheme = urlMatcher.group(PARSE_URL_SCHEME);
+-        if (!isValidScheme(scheme)) {
++        if (!isValidScheme(urlMatcher.group(PARSE_URL_SCHEME))) {
+             return false;
+         }
+ 
+-        String authority = urlMatcher.group(PARSE_URL_AUTHORITY); 
+-        if ("file".equals(scheme) && "".equals(authority)) {
+-           // Special case - file: allows an empty authority
+-        } else {
+-           // Validate the authority
+-           if (!isValidAuthority(authority)) {
+-               return false;
+-            }
++        if (!isValidAuthority(urlMatcher.group(PARSE_URL_AUTHORITY))) {
++            return false;
+         }
+ 
+         if (!isValidPath(urlMatcher.group(PARSE_URL_PATH))) {

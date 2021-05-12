@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+index 8c97dbf0..c3e18a9f 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+@@ -478,13 +478,6 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+                 } catch (Exception e) {
+                     swallowException(e);
+                 }
+-                if (objectDeque.idleObjects.hasTakeWaiters()) {
+-                    try {
+-                        addObject(key);
+-                    } catch (Exception e) {
+-                        swallowException(e);
+-                    }
+-                }
+                 updateStatsReturn(activeTime);
+                 return;
+             }
+@@ -499,13 +492,6 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+             } catch (Exception e) {
+                 swallowException(e);
+             }
+-            if (objectDeque.idleObjects.hasTakeWaiters()) {
+-                try {
+-                    addObject(key);
+-                } catch (Exception e) {
+-                    swallowException(e);
+-                }
+-            }
+             updateStatsReturn(activeTime);
+             return;
+         }
+@@ -570,9 +556,6 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+                 destroy(key, p, true);
+             }
+         }
+-        if (objectDeque.idleObjects.hasTakeWaiters()) {
+-            addObject(key);
+-        }
+     }
+ 
+ 

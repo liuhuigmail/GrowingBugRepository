@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/EmailValidator.java b/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
+index d41c26ae..6db711a5 100644
+--- a/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
+@@ -160,8 +160,7 @@ public class EmailValidator implements Serializable {
+             // Domain is symbolic name
+             DomainValidator domainValidator =
+                     DomainValidator.getInstance(allowLocal);
+-            return domainValidator.isValid(domain) ||
+-                    domainValidator.isValidTld(domain);
++            return domainValidator.isValid(domain);
+         }
+     }
+ 

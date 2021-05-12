@@ -1,0 +1,102 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+index 697ae052..eb335d69 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+@@ -476,7 +476,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+             throw new IllegalStateException(
+                     "Returned object not currently part of this pool");
+         }
+-
++        
+         synchronized(p) {
+             final PooledObjectState state = p.getState();
+             if (state != PooledObjectState.ALLOCATED) {
+@@ -907,7 +907,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+                         if (objectDeque == null) {
+                             continue;
+                         }
+-
++                        
+                         final Deque<PooledObject<T>> idleObjects = objectDeque.getIdleObjects();
+                         evictionIterator = new EvictionIterator(idleObjects);
+                         if (evictionIterator.hasNext()) {
+@@ -1004,8 +1004,6 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+         final int maxTotalPerKeySave = getMaxTotalPerKey(); // Per key
+         final int maxTotal = getMaxTotal();   // All keys
+ 
+-        final ObjectDeque<T> objectDeque = poolMap.get(key);
+-
+         // Check against the overall limit
+         boolean loop = true;
+ 
+@@ -1014,9 +1012,6 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+             if (maxTotal > -1 && newNumTotal > maxTotal) {
+                 numTotal.decrementAndGet();
+                 if (getNumIdle() == 0) {
+-                    // POOL-303. There may be threads waiting on an object
+-                    // return that isn't going to happen. Unblock them.
+-                    objectDeque.idleObjects.interuptTakeWaiters();
+                     return null;
+                 }
+                 clearOldest();
+@@ -1025,6 +1020,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+             }
+         }
+ 
++        final ObjectDeque<T> objectDeque = poolMap.get(key);
+         final long newCreateCount = objectDeque.getCreateCount().incrementAndGet();
+ 
+         // Check against the per key limit
+@@ -1032,9 +1028,6 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+                 newCreateCount > Integer.MAX_VALUE) {
+             numTotal.decrementAndGet();
+             objectDeque.getCreateCount().decrementAndGet();
+-            // POOL-303. There may be threads waiting on an object return that
+-            // isn't going to happen. Unblock them.
+-            objectDeque.idleObjects.interuptTakeWaiters();
+             return null;
+         }
+ 
+@@ -1045,9 +1038,6 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+         } catch (final Exception e) {
+             numTotal.decrementAndGet();
+             objectDeque.getCreateCount().decrementAndGet();
+-            // POOL-303. There may be threads waiting on an object return that
+-            // isn't going to happen. Unblock them.
+-            objectDeque.idleObjects.interuptTakeWaiters();
+             throw e;
+         }
+ 
+@@ -1443,7 +1433,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+ 
+         /*
+          * The map is keyed on pooled instances, wrapped to ensure that
+-         * they work properly as keys.
++         * they work properly as keys.  
+          */
+         private final Map<IdentityWrapper<S>, PooledObject<S>> allObjects =
+                 new ConcurrentHashMap<IdentityWrapper<S>, PooledObject<S>>();
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+index b5ef9bd8..6c8dc710 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+@@ -856,9 +856,6 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+         if (localMaxTotal > -1 && newCreateCount > localMaxTotal ||
+                 newCreateCount > Integer.MAX_VALUE) {
+             createCount.decrementAndGet();
+-            // POOL-303. There may be threads waiting on an object return that
+-            // isn't going to happen. Unblock them.
+-            idleObjects.interuptTakeWaiters();
+             return null;
+         }
+ 
+@@ -867,9 +864,6 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+             p = factory.makeObject();
+         } catch (final Exception e) {
+             createCount.decrementAndGet();
+-            // POOL-303. There may be threads waiting on an object return that
+-            // isn't going to happen. Unblock them.
+-            idleObjects.interuptTakeWaiters();
+             throw e;
+         }
+ 

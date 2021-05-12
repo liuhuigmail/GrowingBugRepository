@@ -1,0 +1,15 @@
+diff --git a/src/test/java/org/apache/commons/validator/routines/IBANValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/IBANValidatorTest.java
+index 74faf59e..49c49ef4 100644
+--- a/src/test/java/org/apache/commons/validator/routines/IBANValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/IBANValidatorTest.java
+@@ -107,9 +107,7 @@ public class IBANValidatorTest {
+             "AE070331234567890123456",
+             "GB29NWBK60161331926819",
+             "VG96VPVG0000012345678901",
+-            "SC18SSCB11010000000000001497USD",
+-            "UA213996220000026007233566001"
+-    };
++            };
+ 
+     private final String[] invalidIBANFormat = new String[] {
+             "",                        // empty

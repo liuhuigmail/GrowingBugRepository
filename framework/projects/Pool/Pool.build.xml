@@ -1,0 +1,249 @@
+<!--
+Copyright (c) 2014-2019 René Just, Darioush Jalali, and Defects4J contributors.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+################################################################################
+               This is the project-specific build file for Pool.
+
+It defines project-specific properties and targets, and imports the build file
+of the checked-out project version.
+#############################################################################-->
+<project name="D4j-Pool" basedir="${basedir}">
+    <!-- TODO: Make sure that the following properties and paths are defined:
+           - source.home        ->  Directory of sources
+           - test.home          ->  Directory of test sources
+           - build.home         ->  Root directory for compiled (test) classes
+           - test.classpath     ->  Classpath to compile tests
+           - compile.classpath  ->  Classpath to compile sources
+    -->
+
+    <property name="junit.jar" value="${d4j.home}/framework/projects/lib/junit-4.11.jar"/>
+
+    <!-- Do not download maven dependencies -->
+    <property name="maven.settings.offline" value="true" />
+    <property name="maven.repo.local" value="${d4j.dir.projects}/Pool/lib/" />
+
+    <!-- Generate all debugging information -->
+    <property name="compile.debug" value="yes" />
+
+    <!-- Include existing project build file -->
+    <import file="${d4j.workdir}/build.xml"/>
+    
+    <!-- Project properties targets -->
+    <if> <isset property="ant.refid:compile.classpath" />
+          <then>
+            <property name="test.dir" value="${test.home}" />
+          </then>
+          <else>
+            <property name="oldversion"    value="yes" />
+             <path id="test.classpath">
+             <!--pathelement path="${classes.dir}" />--> 
+            	<pathelement path="${classes.dir}" />
+                <pathelement path="${test.classes.dir}" />
+                <pathelement path="${junit.jar}" />
+                <fileset dir="${maven.repo.local}">
+            	<include name="**/*.jar"/>
+        	</fileset>
+            </path>
+        <path id="compile.classpath">
+            <pathelement path="${classes.dir}" /> 
+            <!--pathelement path="${classes.dir}" />--> 
+            <fileset dir="${maven.repo.local}">
+            <include name="**/*.jar"/>
+            </fileset>
+        </path>
+            <condition property="src-dir" value="src/java" else="src/main/java">
+                <available file="src/java" />
+            </condition>
+            <condition property="test-dir" value="src/test" else="src/test/java">
+                <available file="src/test" />
+            </condition>
+		<echo message="Hello, ${src-dir}" />  
+            <property name="dir.src.classes"  value="${src-dir}"/>
+            <property name="dir.src.tests"    value="${test-dir}"/>
+            <property name="test.dir"         value="${test-dir}" />
+            <property name="source.home"      value="${src-dir}"/>
+            <property name="d4j.test.dir"     value="${test-dir}"/>
+            
+          </else>
+    </if>
+    
+    <property name="test.home" value="${test.classes.dir}" />
+    <condition property="classes.dir" value="build/classes" else="target/classes">
+        <available file="build/classes" />
+    </condition>
+    <condition property="test.classes.dir" value="build/test-classes" else="target/test-classes" >
+        <!--isset property="build.test-classes.dir" -->
+         <available file="build/test-classes" />
+    </condition>
+    <!-- the echo can print the variable -->
+    <!-- <echo message="Hello, ${classes.dir}"  />  -->  
+    <property name="build.home" value="${classes.dir}/.." />
+
+    <!-- Classpath to run developer-written tests -->
+    <path id="d4j.test.classpath">
+        <path refid="test.classpath"/>
+        <pathelement location="${classes.dir}"/>
+        <pathelement location="${test.classes.dir}"/>
+        <pathelement path="${junit.jar}" />
+        <!--
+        <pathelement path="${dependency.jar}" />
+        -->
+    </path>
+
+    <!-- List of all developer-written tests that reliably pass on the fixed version -->
+    <!-- Manually generalize test patterns if analyzer produces incorrect outputs -->
+    <fileset id="all.manual.tests" dir="${test.dir}" excludes="${d4j.tests.exclude}">
+        <!--include name="____" /-->
+        <!--exclude name="____" /-->
+ <include name='${test.entry}' />
+<include name='**/${test}.java' />
+<include name='**/Test*.java' />
+<exclude name='org/apache/commons/pool2/impl/TestSoftRefOutOfMemory.java' />
+<exclude name='org/apache/commons/pool/impl/TestSoftRefOutOfMemory.java' />
+<exclude name='**/Test*$*.java' />
+<exclude name='**/TestKeyedObjectPoolFactory.java' />
+<exclude name='**/TestKeyedObjectPool.java' />
+<exclude name='**/TestObjectPoolFactory.java' />
+<exclude name='**/TestObjectPool.java' />
+<exclude name='**/TestSoftRefOutOfMemory.java' />
+    </fileset>
+
+    <!-- List of relevant developer-written tests that reliably pass on the fixed version -->
+    <fileset id="rel.manual.tests" dir="${test.home}"
+        includesfile="${d4j.dir.projects}/${d4j.project.id}/relevant_tests/${d4j.bug.id}" />
+   
+        <target name="compile.tests" depends="compile-tests" />
+ <!--   
+ <target name="compile" depends="init" description="compiles source files">
+      <mkdir dir="${build.classes.dir}"/>
+      <javac destdir="${build.classes.dir}"
+             srcdir="${src.java.dir}"
+             debug="${javac.debug}"
+             classpath="${classpath}"
+             deprecation="${javac.deprecation}"
+             optimize="${javac.optimize}"
+             target="${javac.target.version}"
+             source="${javac.src.version}">
+         <classpath>
+      	<path refid="compile.classpath"/>
+      	    <fileset  dir="${maven.repo.local}"> 
+		<include name="**/*.jar" /> 
+    	    </fileset>
+      	</classpath>
+      </javac>
+   </target>
+ -->   
+   <target name="init">
+      <tstamp/>
+
+      <!-- read properties from the build.properties, if any -->
+      <property name="component-propfile" value="${basedir}/build.properties"/>
+      <property file="${component-propfile}"/>
+
+      <!-- read properties from the commons build.properties, if any -->
+      <property name="commons-propfile" value="${basedir}/../build.properties"/>
+      <property file="${commons-propfile}"/>
+
+      <!-- read properties from the ${user.home}/propfile, if any -->
+      <property name="user-propfile" value="${user.home}/build.properties"/>
+      <property file="${user-propfile}"/>
+
+      <!-- command line classpath, if any -->
+      <property name="cp" value="build/classes"/>
+
+      <!-- now combine the classpaths -->
+      <property name="classpath" value="${cp}"/>
+
+      <property name="name" value="commons-pool2"/>
+      <property name="title" value="Apache Commons Object Pooling Package"/>
+      <property name="version" value="2.0-SNAPSHOT"/>
+      <property name="package" value="org.apache.commons.pool2.*"/>
+
+      <property name="src.dir" value="${basedir}/src"/>
+      <property name="src.java.dir" value="${basedir}/${src-dir}"/>
+      <property name="src.test.dir" value="${basedir}/${test-dir}"/>
+      <property name="src.testresources.dir" value="${src.dir}/test/resources"/>
+      <property name="build.dir" value="${basedir}/build"/>
+      <property name="build.classes.dir" value="${build.dir}/classes"/>
+      <property name="build.test-classes.dir" value="${build.dir}/test-classes"/>
+      <property name="dist.dir" value="${basedir}/dist"/>
+      <property name="dist.jar" value="${dist.dir}/${name}-${version}.jar"/>
+
+      <property name="test.failonerror" value="true" /> 
+     
+      <property name="javadoc.dir" value="${dist.dir}/docs/api"/>
+      <property name="javadoc.bottom" value="&lt;small&gt;Copyright &amp;copy; 2001-2012 Apache Software Foundation. Documenation generated ${TODAY}&lt;/small&gt;."/>
+      <property name="javadoc.overview" value="${src.java.dir}/org/apache/commons/pool2/overview.html" />
+
+      <property name="javac.optimize" value="false"/>
+      <property name="javac.debug" value="true"/>
+      <property name="javac.deprecation" value="true"/>
+      <property name="javac.target.version" value="1.8"/>
+      <property name="javac.src.version" value="1.8"/>
+   </target>
+
+   <!-- ######################################################### -->
+
+   
+
+<target name="compile" depends="init" description="compiles source files">
+      <mkdir dir="${build.classes.dir}"/>
+      <javac destdir="${build.classes.dir}"
+             srcdir="${src.java.dir}"
+             debug="${javac.debug}"
+             classpath="${classpath}"
+             deprecation="${javac.deprecation}"
+             optimize="${javac.optimize}"
+             fork="true"
+             target="${javac.target.version}"
+             source="${javac.src.version}">
+         <classpath>
+      	<path refid="compile.classpath"/>
+      	    <fileset  dir="${maven.repo.local}"> 
+		<include name="**/*.jar" /> 
+    	    </fileset>
+      	</classpath>
+      </javac>
+   </target>
+    
+  <target name="compile-tests" depends="compile">
+      <mkdir dir="${build.test-classes.dir}"/>
+      <javac destdir="${build.test-classes.dir}"
+             srcdir="${src.test.dir}"
+             debug="${javac.debug}"
+             deprecation="${javac.deprecation}"
+             optimize="${javac.optimize}"
+             fork="true"
+             target="${javac.target.version}"
+             source="${javac.src.version}">
+        <classpath>
+          <pathelement location="${build.classes.dir}" /> 
+          <pathelement location="${build.test-classes.dir}" /> 
+          <pathelement path="${classpath}" /> 
+          <fileset  dir="${maven.repo.local}"> 
+		<include name="**/*.jar" /> 
+    	  </fileset>
+        </classpath>
+      </javac>
+   </target>
+
+     
+</project>

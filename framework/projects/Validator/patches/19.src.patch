@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+index 28a9f3bd..36e9f558 100644
+--- a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+@@ -312,7 +312,7 @@ public class UrlValidator implements Serializable {
+ 
+         String authority = urlMatcher.group(PARSE_URL_AUTHORITY);
+         if ("file".equals(scheme)) {// Special case - file: allows an empty authority
+-            if (authority != null) {
++            if (!"".equals(authority)) {
+                 if (authority.contains(":")) { // but cannot allow trailing :
+                     return false;
+                 }

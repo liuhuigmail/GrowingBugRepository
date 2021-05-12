@@ -1,0 +1,21 @@
+diff --git a/src/test/java/org/apache/commons/pool2/impl/TestGenericObjectPool.java b/src/test/java/org/apache/commons/pool2/impl/TestGenericObjectPool.java
+index fd5a871f..3e897f7e 100644
+--- a/src/test/java/org/apache/commons/pool2/impl/TestGenericObjectPool.java
++++ b/src/test/java/org/apache/commons/pool2/impl/TestGenericObjectPool.java
+@@ -777,7 +777,7 @@ public class TestGenericObjectPool extends TestBaseObjectPool {
+         }
+         // Give the threads a chance to start doing some work
+         try {
+-            Thread.sleep(100);
++            Thread.sleep(5000);
+         } catch(final InterruptedException e) {
+             // ignored
+         }
+@@ -824,7 +824,6 @@ public class TestGenericObjectPool extends TestBaseObjectPool {
+                 }
+             }
+             if(threads[i].failed()) {
+-                threads[i]._error.printStackTrace();
+                 fail("Thread "+i+" failed: "+threads[i]._error.toString());
+             }
+         }

@@ -1,0 +1,50 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/LinkedBlockingDeque.java b/src/main/java/org/apache/commons/pool2/impl/LinkedBlockingDeque.java
+index 9e2dfb8b..3ea41668 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/LinkedBlockingDeque.java
++++ b/src/main/java/org/apache/commons/pool2/impl/LinkedBlockingDeque.java
+@@ -1226,26 +1226,6 @@ class LinkedBlockingDeque<E> extends AbstractQueue<E>
+             }
+         }
+ 
+-        /**
+-         * Returns the successor node of the given non-null, but
+-         * possibly previously deleted, node.
+-         */
+-        private Node<E> succ(Node<E> n) {
+-            // Chains of deleted nodes ending in null or self-links
+-            // are possible if multiple interior nodes are removed.
+-            for (;;) {
+-                Node<E> s = nextNode(n);
+-                if (s == null)
+-                    return null;
+-                else if (s.item != null)
+-                    return s;
+-                else if (s == n)
+-                    return firstNode();
+-                else
+-                    n = s;
+-            }
+-        }
+-
+         /**
+          * Advances next.
+          */
+@@ -1253,7 +1233,17 @@ class LinkedBlockingDeque<E> extends AbstractQueue<E>
+             lock.lock();
+             try {
+                 // assert next != null;
+-                next = succ(next);
++                Node<E> s = nextNode(next);
++                if (s == next) {
++                    next = firstNode();
++                } else {
++                    // Skip over removed nodes.
++                    // May be necessary if multiple interior Nodes are removed.
++                    while (s != null && s.item == null) {
++                        s = nextNode(s);
++                    }
++                    next = s;
++                }
+                 nextItem = next == null ? null : next.item;
+             } finally {
+                 lock.unlock();

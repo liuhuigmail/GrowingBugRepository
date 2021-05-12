@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+index a05038a5..7ad8a5a6 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+@@ -822,9 +822,6 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+             localMaxTotal = Integer.MAX_VALUE;
+         }
+ 
+-        long localStartTimeMillis = System.currentTimeMillis();
+-        long localMaxWaitTimeMillis = Math.max(getMaxWaitMillis(), 0);
+-
+         // Flag that indicates if create should:
+         // - TRUE:  call the factory to create an object
+         // - FALSE: return null
+@@ -848,7 +845,7 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+                         // bring the pool to capacity. Those calls might also
+                         // fail so wait until they complete and then re-test if
+                         // the pool is at capacity or not.
+-                        makeObjectCountLock.wait(localMaxWaitTimeMillis);
++                        makeObjectCountLock.wait();
+                     }
+                 } else {
+                     // The pool is not at capacity. Create a new object.
+@@ -856,13 +853,6 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+                     create = Boolean.TRUE;
+                 }
+             }
+-
+-            // Do not block more if maxWaitTimeMillis is set.
+-            if (create == null &&
+-                (localMaxWaitTimeMillis > 0 &&
+-                 System.currentTimeMillis() - localStartTimeMillis >= localMaxWaitTimeMillis)) {
+-                create = Boolean.FALSE;
+-            }
+         }
+ 
+         if (!create.booleanValue()) {

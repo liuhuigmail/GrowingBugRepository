@@ -1,0 +1,64 @@
+diff --git a/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
+index 28b9368c..0b196f5a 100644
+--- a/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
+@@ -206,59 +206,6 @@ public class UrlValidatorTest extends TestCase {
+         assertTrue("www.apache.org should still validate",
+                 validator.isValid("http://www.apache.org/test/index.html"));
+     }
+-    
+-    public void testValidator276() {
+-        // file:// isn't allowed by default
+-        UrlValidator validator = new UrlValidator();
+-        
+-        assertTrue("http://apache.org/ should be allowed by default",
+-                 validator.isValid("http://www.apache.org/test/index.html"));
+-       
+-        assertFalse("file:///c:/ shouldn't be allowed by default",
+-                 validator.isValid("file:///C:/some.file"));
+-        
+-        assertFalse("file:///c:\\ shouldn't be allowed by default",
+-              validator.isValid("file:///C:\\some.file"));
+-        
+-        assertFalse("file:///etc/ shouldn't be allowed by default",
+-              validator.isValid("file:///etc/hosts"));
+-        
+-        assertFalse("file://localhost/etc/ shouldn't be allowed by default",
+-              validator.isValid("file://localhost/etc/hosts"));
+-        
+-        assertFalse("file://localhost/c:/ shouldn't be allowed by default",
+-              validator.isValid("file://localhost/c:/some.file"));
+-        
+-        // Turn it on, and check
+-        // Note - we need to enable local urls when working with file:
+-        validator = new UrlValidator(new String[] {"http","file"}, UrlValidator.ALLOW_LOCAL_URLS);
+-        
+-        assertTrue("http://apache.org/ should be allowed by default",
+-                 validator.isValid("http://www.apache.org/test/index.html"));
+-       
+-        assertTrue("file:///c:/ should now be allowed",
+-                 validator.isValid("file:///C:/some.file"));
+-        
+-        // Currently, we don't support the c:\ form
+-        assertFalse("file:///c:\\ shouldn't be allowed",
+-              validator.isValid("file:///C:\\some.file"));
+-        
+-        assertTrue("file:///etc/ should now be allowed",
+-              validator.isValid("file:///etc/hosts"));
+-        
+-        assertTrue("file://localhost/etc/ should now be allowed",
+-              validator.isValid("file://localhost/etc/hosts"));
+-        
+-        assertTrue("file://localhost/c:/ should now be allowed",
+-              validator.isValid("file://localhost/c:/some.file"));
+-        
+-        // These are never valid
+-        assertFalse("file://c:/ shouldn't ever be allowed, needs file:///c:/",
+-              validator.isValid("file://C:/some.file"));
+-     
+-        assertFalse("file://c:\\ shouldn't ever be allowed, needs file:///c:/",
+-              validator.isValid("file://C:\\some.file"));
+-    }
+ 
+     
+    static boolean incrementTestPartsIndex(int[] testPartsIndex, Object[] testParts) {

@@ -1,0 +1,183 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/BaseGenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/BaseGenericObjectPool.java
+index 7b224b15..f5cece9c 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/BaseGenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/BaseGenericObjectPool.java
+@@ -1151,46 +1151,5 @@ public abstract class BaseGenericObjectPool<T> {
+         }
+         
+     }
+-    
+-    /**
+-     * Wrapper for objects under management by the pool.
+-     *
+-     * GenericObjectPool and GenericKeyedObjectPool maintain references to all
+-     * objects under management using maps keyed on the objects. This wrapper
+-     * class ensures that objects can work as hash keys.
+-     *
+-     * @param <T> type of objects in the pool
+-     */
+-    static class IdentityWrapper<T> {
+-        /** Wrapped object */
+-        private final T instance;
+-        
+-        /**
+-         * Create a wrapper for an instance.
+-         *
+-         * @param instance object to wrap
+-         */
+-        public IdentityWrapper(T instance) {
+-            this.instance = instance;
+-        }
+-
+-        @Override
+-        public int hashCode() {
+-            return System.identityHashCode(instance);
+-        }
+-
+-        @Override
+-        @SuppressWarnings("rawtypes")
+-        public boolean equals(Object other) {
+-            return ((IdentityWrapper) other).instance == instance;
+-        }
+-        
+-        /**
+-         * @return the wrapped object
+-         */
+-        public T getObject() {
+-            return instance;
+-        }
+-    }
+ 
+ }
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+index eb20303c..ca88edbe 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+@@ -471,7 +471,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+ 
+         ObjectDeque<T> objectDeque = poolMap.get(key);
+ 
+-        PooledObject<T> p = objectDeque.getAllObjects().get(new IdentityWrapper<T>(obj));
++        PooledObject<T> p = objectDeque.getAllObjects().get(obj);
+ 
+         if (p == null) {
+             throw new IllegalStateException(
+@@ -575,7 +575,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+ 
+         ObjectDeque<T> objectDeque = poolMap.get(key);
+ 
+-        PooledObject<T> p = objectDeque.getAllObjects().get(new IdentityWrapper<T>(obj));
++        PooledObject<T> p = objectDeque.getAllObjects().get(obj);
+         if (p == null) {
+             throw new IllegalStateException(
+                     "Object not currently part of this pool");
+@@ -1036,7 +1036,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+         }
+ 
+         createdCount.incrementAndGet();
+-        objectDeque.getAllObjects().put(new IdentityWrapper<T>(p.getObject()), p);
++        objectDeque.getAllObjects().put(p.getObject(), p);
+         return p;
+     }
+ 
+@@ -1059,7 +1059,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+             boolean isIdle = objectDeque.getIdleObjects().remove(toDestroy);
+ 
+             if (isIdle || always) {
+-                objectDeque.getAllObjects().remove(new IdentityWrapper<T>(toDestroy.getObject()));
++                objectDeque.getAllObjects().remove(toDestroy.getObject());
+                 toDestroy.invalidate();
+ 
+                 try {
+@@ -1428,11 +1428,12 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+         private final AtomicInteger createCount = new AtomicInteger(0);
+ 
+         /*
+-         * The map is keyed on pooled instances, wrapped to ensure that
+-         * they work properly as keys.  
++         * The map is keyed on pooled instances.  Note: pooled instances
++         * <em>must</em> be distinguishable by equals for this structure to
++         * work properly.
+          */
+-        private final Map<IdentityWrapper<S>, PooledObject<S>> allObjects =
+-                new ConcurrentHashMap<IdentityWrapper<S>, PooledObject<S>>();
++        private final Map<S, PooledObject<S>> allObjects =
++                new ConcurrentHashMap<S, PooledObject<S>>();
+ 
+         /*
+          * Number of threads with registered interest in this key.
+@@ -1484,7 +1485,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+          *
+          * @return All the objects
+          */
+-        public Map<IdentityWrapper<S>, PooledObject<S>> getAllObjects() {
++        public Map<S, PooledObject<S>> getAllObjects() {
+             return allObjects;
+         }
+ 
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+index 4c09d74c..e601efd0 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+@@ -534,7 +534,7 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+      */
+     @Override
+     public void returnObject(T obj) {
+-        PooledObject<T> p = allObjects.get(new IdentityWrapper<T>(obj));
++        PooledObject<T> p = allObjects.get(obj);
+ 
+         if (!isAbandonedConfig()) {
+             if (p == null) {
+@@ -635,7 +635,7 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+      */
+     @Override
+     public void invalidateObject(T obj) throws Exception {
+-        PooledObject<T> p = allObjects.get(new IdentityWrapper<T>(obj));
++        PooledObject<T> p = allObjects.get(obj);
+         if (p == null) {
+             if (isAbandonedConfig()) {
+                 return;
+@@ -866,7 +866,7 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+         }
+ 
+         createdCount.incrementAndGet();
+-        allObjects.put(new IdentityWrapper<T>(p.getObject()), p);
++        allObjects.put(p.getObject(), p);
+         return p;
+     }
+ 
+@@ -881,7 +881,7 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+     private void destroy(PooledObject<T> toDestory) throws Exception {
+         toDestory.invalidate();
+         idleObjects.remove(toDestory);
+-        allObjects.remove(new IdentityWrapper<T>(toDestory.getObject()));
++        allObjects.remove(toDestory.getObject());
+         try {
+             factory.destroyObject(toDestory);
+         } finally {
+@@ -1033,7 +1033,7 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+     public void use(T pooledObject) {
+         AbandonedConfig ac = this.abandonedConfig;
+         if (ac != null && ac.getUseUsageTracking()) {
+-            PooledObject<T> wrapper = allObjects.get(new IdentityWrapper<T>(pooledObject));
++            PooledObject<T> wrapper = allObjects.get(pooledObject);
+             wrapper.use();
+         }
+     }
+@@ -1119,8 +1119,8 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+      * #_maxActive}. Map keys are pooled objects, values are the PooledObject
+      * wrappers used internally by the pool.
+      */
+-    private final Map<IdentityWrapper<T>, PooledObject<T>> allObjects =
+-        new ConcurrentHashMap<IdentityWrapper<T>, PooledObject<T>>();
++    private final Map<T, PooledObject<T>> allObjects =
++        new ConcurrentHashMap<T, PooledObject<T>>();
+     /*
+      * The combined count of the currently created objects and those in the
+      * process of being created. Under load, it may exceed {@link #_maxActive}
+@@ -1137,5 +1137,4 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+ 
+     // Additional configuration properties for abandoned object tracking
+     private volatile AbandonedConfig abandonedConfig = null;
+-    
+ }

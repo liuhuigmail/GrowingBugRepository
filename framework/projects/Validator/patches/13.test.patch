@@ -1,0 +1,18 @@
+diff --git a/src/test/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigitTest.java b/src/test/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigitTest.java
+index c6489f7a..62395444 100644
+--- a/src/test/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigitTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigitTest.java
+@@ -101,12 +101,7 @@ public class IBANCheckDigitTest extends AbstractCheckDigitTest {
+          *  https://intranet.birmingham.ac.uk/finance/documents/public/IBAN.pdf
+          *  http://www.paymentscouncil.org.uk/resources_and_publications/ibans_in_europe/
+          */
+-        invalid = new String[] {
+-                "510007+47061BE63",
+-                "IE01AIBK93118702569045",
+-                "AA0000000000089",
+-                "AA9900000000053",
+-        };
++        invalid = new String[] {"510007+47061BE63"};
+         zeroSum = null;
+         missingMessage = "Invalid Code length=0";
+ 

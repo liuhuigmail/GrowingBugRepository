@@ -1,0 +1,57 @@
+diff --git a/src/test/java/org/apache/commons/validator/routines/CreditCardValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/CreditCardValidatorTest.java
+index 9a402121..3840115e 100644
+--- a/src/test/java/org/apache/commons/validator/routines/CreditCardValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/CreditCardValidatorTest.java
+@@ -186,7 +186,7 @@ public class CreditCardValidatorTest extends TestCase {
+         RegexValidator regex    = validator.getRegexValidator();
+ 
+         // ****** Test Regular Expression ******
+-        // length 14 and start with a "300-305" or "3095" or "36" or "38" or "39"
++        // length 14 and start with a "300-305" or "36"
+         assertFalse("Length 12-300",  regex.isValid("300456789012"));
+         assertFalse("Length 12-36",   regex.isValid("363456789012"));
+         assertFalse("Length 13-300",  regex.isValid("3004567890123"));
+@@ -209,14 +209,9 @@ public class CreditCardValidatorTest extends TestCase {
+         assertTrue("Prefix 304",      regex.isValid("30445678901234"));
+         assertTrue("Prefix 305",      regex.isValid("30545678901234"));
+         assertFalse("Prefix 306",     regex.isValid("30645678901234"));
+-        assertFalse("Prefix 3094",    regex.isValid("30945678901234"));
+-        assertTrue( "Prefix 3095",    regex.isValid("30955678901234"));
+-        assertFalse("Prefix 3096",    regex.isValid("30965678901234"));
+         assertFalse("Prefix 35",      regex.isValid("35345678901234"));
+         assertTrue("Prefix 36",       regex.isValid("36345678901234"));
+         assertFalse("Prefix 37",      regex.isValid("37345678901234"));
+-        assertTrue("Prefix 38",       regex.isValid("38345678901234"));
+-        assertTrue("Prefix 39",       regex.isValid("39345678901234"));
+ 
+         assertFalse("Invalid Char-A", regex.isValid("3004567x901234"));
+         assertFalse("Invalid Char-B", regex.isValid("3634567x901234"));
+@@ -266,7 +261,7 @@ public class CreditCardValidatorTest extends TestCase {
+         RegexValidator regex    = validator.getRegexValidator();
+ 
+         // ****** Test Regular Expression ******
+-        // length 16 and start with either "6011" or or "64[4-9]" or "65"
++        // length 16 and start with either "6011" or "65"
+         assertFalse("Length 12-6011", regex.isValid("601156789012"));
+         assertFalse("Length 12-65",   regex.isValid("653456789012"));
+         assertFalse("Length 13-6011", regex.isValid("6011567890123"));
+@@ -276,18 +271,13 @@ public class CreditCardValidatorTest extends TestCase {
+         assertFalse("Length 15-6011", regex.isValid("601156789012345"));
+         assertFalse("Length 15-65",   regex.isValid("653456789012345"));
+         assertTrue("Length 16-6011",  regex.isValid("6011567890123456"));
+-        assertTrue("Length 16-644",   regex.isValid("6444567890123456"));
+-        assertTrue("Length 16-648",   regex.isValid("6484567890123456"));
+         assertTrue("Length 16-65",    regex.isValid("6534567890123456"));
+         assertFalse("Length 17-6011", regex.isValid("60115678901234567"));
+         assertFalse("Length 17-65",   regex.isValid("65345678901234567"));
+         assertFalse("Length 18-6011", regex.isValid("601156789012345678"));
+         assertFalse("Length 18-65",   regex.isValid("653456789012345678"));
+ 
+-        assertFalse("Prefix 640",     regex.isValid("6404567890123456"));
+-        assertFalse("Prefix 641",     regex.isValid("6414567890123456"));
+-        assertFalse("Prefix 642",     regex.isValid("6424567890123456"));
+-        assertFalse("Prefix 643",     regex.isValid("6434567890123456"));
++        assertFalse("Prefix 64",      regex.isValid("6434567890123456"));
+         assertFalse("Prefix 6010",    regex.isValid("6010567890123456"));
+         assertFalse("Prefix 6012",    regex.isValid("6012567890123456"));
+         assertFalse("Invalid Char",   regex.isValid("6011567x90123456"));

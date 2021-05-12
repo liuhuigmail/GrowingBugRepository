@@ -1,0 +1,66 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+index df0eb676..132dee46 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+@@ -343,7 +343,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+         boolean blockWhenExhausted = getBlockWhenExhausted();
+ 
+         boolean create;
+-        long waitTime = System.currentTimeMillis();
++        long waitTime = 0;
+         ObjectDeque<T> objectDeque = register(key);
+ 
+         try {
+@@ -359,8 +359,10 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+                         if (borrowMaxWaitMillis < 0) {
+                             p = objectDeque.getIdleObjects().takeFirst();
+                         } else {
++                            waitTime = System.currentTimeMillis();
+                             p = objectDeque.getIdleObjects().pollFirst(
+                                     borrowMaxWaitMillis, TimeUnit.MILLISECONDS);
++                            waitTime = System.currentTimeMillis() - waitTime;
+                         }
+                     }
+                     if (p == null) {
+@@ -432,7 +434,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+             deregister(key);
+         }
+ 
+-        updateStatsBorrow(p, System.currentTimeMillis() - waitTime);
++        updateStatsBorrow(p, waitTime);
+ 
+         return p.getObject();
+     }
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+index ff73df9e..ab75eb72 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+@@ -423,7 +423,7 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+         boolean blockWhenExhausted = getBlockWhenExhausted();
+ 
+         boolean create;
+-        long waitTime = System.currentTimeMillis();
++        long waitTime = 0;
+ 
+         while (p == null) {
+             create = false;
+@@ -437,8 +437,10 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+                     if (borrowMaxWaitMillis < 0) {
+                         p = idleObjects.takeFirst();
+                     } else {
++                        waitTime = System.currentTimeMillis();
+                         p = idleObjects.pollFirst(borrowMaxWaitMillis,
+                                 TimeUnit.MILLISECONDS);
++                        waitTime = System.currentTimeMillis() - waitTime;
+                     }
+                 }
+                 if (p == null) {
+@@ -507,7 +509,7 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+             }
+         }
+ 
+-        updateStatsBorrow(p, System.currentTimeMillis() - waitTime);
++        updateStatsBorrow(p, waitTime);
+ 
+         return p.getObject();
+     }

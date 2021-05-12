@@ -1,0 +1,23 @@
+diff --git a/src/test/java/org/apache/commons/validator/routines/CodeValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/CodeValidatorTest.java
+index b9f192cb..f2a86059 100644
+--- a/src/test/java/org/apache/commons/validator/routines/CodeValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/CodeValidatorTest.java
+@@ -195,18 +195,6 @@ public class CodeValidatorTest extends TestCase {
+         assertEquals("Trimmed",      "A",  validator.validate(" A  "));
+     }
+ 
+-    public void testValidator294_1() {
+-        CodeValidator validator = new CodeValidator((String)null, 0, -1, (CheckDigit)null);
+-        assertEquals("Null",         null, validator.validate(null));
+-        validator = new CodeValidator((String)null, -1, 0, (CheckDigit)null);
+-        assertEquals("Null",         null, validator.validate(null));
+-    }
+-
+-    public void testValidator294_2() {
+-        CodeValidator validator = new CodeValidator((String)null, -1, 0, (CheckDigit)null);
+-        assertEquals("Null",         null, validator.validate(null));
+-    }
+-
+     /**
+      * Test Regular Expression.
+      */

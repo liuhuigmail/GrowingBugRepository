@@ -1,0 +1,13 @@
+diff --git a/src/test/java/org/apache/commons/validator/routines/DomainValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/DomainValidatorTest.java
+index b089e68f..9f4e2ecc 100644
+--- a/src/test/java/org/apache/commons/validator/routines/DomainValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/DomainValidatorTest.java
+@@ -99,8 +99,6 @@ public class DomainValidatorTest extends TestCase {
+        // But it may be requested
+        assertTrue("localhost.localdomain should validate", allowLocal.isValid("localhost.localdomain"));
+        assertTrue("localhost should validate", allowLocal.isValid("localhost"));
+-       assertTrue("hostname should validate", allowLocal.isValid("hostname"));
+-       assertTrue("machinename should validate", allowLocal.isValid("machinename"));
+        
+        // Check the localhost one with a few others
+        assertTrue("apache.org should validate", allowLocal.isValid("apache.org"));

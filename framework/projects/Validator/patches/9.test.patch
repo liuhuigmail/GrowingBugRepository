@@ -1,0 +1,23 @@
+diff --git a/src/test/java/org/apache/commons/validator/EmailTest.java b/src/test/java/org/apache/commons/validator/EmailTest.java
+index 09de92ed..3ee3a0e7 100644
+--- a/src/test/java/org/apache/commons/validator/EmailTest.java
++++ b/src/test/java/org/apache/commons/validator/EmailTest.java
+@@ -210,18 +210,6 @@ public class EmailTest extends AbstractCommonTest {
+         assertFalse("Test control char 127", validator.isValid("foo" + ((char)127) + "bar@domain.com"));
+     }
+ 
+-   /**
+-    * Tests the e-mail validation with a user at a TLD
+-    */
+-   public void testEmailAtTLD() throws ValidatorException {
+-      // Create bean to run test on.
+-      ValueBean info = new ValueBean();
+-
+-      info.setValue("m@de");
+-      valueTest(info, true);
+-
+-   }
+-
+     /**
+      * Test that @localhost and @localhost.localdomain
+      *  addresses aren't declared valid by default 
