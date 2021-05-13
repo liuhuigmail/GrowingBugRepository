@@ -85,7 +85,53 @@ sub _post_checkout {
             Utils::exec_cmd("cp $build_files_dir/* $work_dir", "Copy generated Ant build file") or die;
         }
     }
+
+     if (-e "$work_dir/build.xml"){
+        rename("$work_dir/build.xml", "$work_dir/build.xml".'.bak');
+        open(IN, '<'."$work_dir/build.xml".'.bak') or die $!;
+        open(OUT, '>'."$work_dir/build.xml") or die $!;
+        while(<IN>) {
+
+            $_ =~ s/compile-tests/compile\.tests/g;
+            #$_ =~ s/classesdir/classes\.dir/g;
+            #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
+            
+            #support java8
+            $_ =~ s/fork="false"/fork="true"/g;
+            print OUT $_;
+        }
+        close(IN);
+        close(OUT);
+    }
+
+    if (-e "$work_dir/maven-build.xml"){
+        rename("$work_dir/maven-build.xml", "$work_dir/maven-build.xml".'.bak');
+        open(IN, '<'."$work_dir/maven-build.xml".'.bak') or die $!;
+        open(OUT, '>'."$work_dir/maven-build.xml") or die $!;
+        while(<IN>) {
+            $_ =~ s/compile-tests/compile\.tests/g;
+            #$_ =~ s/classesdir/classes\.dir/g;
+            #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
+            
+            #support java8
+            $_ =~ s/fork="false"/fork="true"/g;
+            print OUT $_;
+        }
+        close(IN);
+        close(OUT);
+    }
+
+    #exclude the test you don't need
+    if (-e "$work_dir/src/tests/junit/org/apache/tools/ant/taskdefs/xxx.java"){
+        rename("$work_dir/src/tests/junit/org/apache/tools/ant/taskdefs/xxx.java", "$work_dir/src/tests/junit/org/apache/tools/ant/taskdefs/xxx.java".".bak");
+        #open(OUT, '>'."$work_dir/src/tests/junit/org/apache/tools/ant/taskdefs/SQLExecTest.java") or die $!;
+        #my $converted_file = `iconv -f iso-8859-1 -t utf-8 "$work_dir/src/tests/junit/org/apache/tools/ant/taskdefs/SQLExecTest.java.bak"`;
+        #print OUT $converted_file;
+        #close(OUT);
+    }
+
 }
+
 
 #
 # This subroutine is called by the bug-mining framework for each revision during
@@ -98,8 +144,33 @@ sub initialize_revision {
 
     my $work_dir = $self->{prog_root};
     my $result = _ant_layout($work_dir) // _maven_layout($work_dir);
-    die "Unknown layout for revision: ${rev_id}" unless defined $result;
-
+    
+   if (-e "$work_dir/src/main/java" and -e "$work_dir/src/test/java"){
+        $result = {src=>"src/main/java", test=>"src/test/java"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/main/java" and -e "$work_dir/src/tests/java"){
+        $result = {src=>"src/main/java", test=>"src/tests/java"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/testcases"){
+        $result = {src=>"src/main", test=>"src/testcases"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/tests/junit"){
+        $result = {src=>"src/main", test=>"src/tests/junit"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/tests"){
+        $result = {src=>"src/main", test=>"src/tests"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/java" and -e "$work_dir/src/test"){
+        $result = {src=>"src/java", test=>"src/test"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/java" and -e "$work_dir/src/tests"){
+        $result = {src=>"src/java", test=>"src/tests"} unless defined $result;
+    }
+    else {
+        system("tree -d $work_dir");
+        die "Unknown directory layout" unless defined $result;
+    }
+    
     $self->_add_to_layout_map($rev_id, $result->{src}, $result->{test});
     $self->_cache_layout_map(); # Force cache rebuild
 }

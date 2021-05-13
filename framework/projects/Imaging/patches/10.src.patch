@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java b/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
+index a6decf22..07ae14da 100644
+--- a/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
++++ b/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
+@@ -273,7 +273,7 @@ public class PngImageParser extends ImageParser {
+     @Override
+     public ImageMetadata getMetadata(final ByteSource byteSource, final Map<String, Object> params)
+             throws ImageReadException, IOException {
+-        final List<PngChunk> chunks = readChunks(byteSource, new ChunkType[] { ChunkType.tEXt, ChunkType.zTXt, }, false);
++        final List<PngChunk> chunks = readChunks(byteSource, new ChunkType[] { ChunkType.tEXt, ChunkType.zTXt, }, true);
+ 
+         if ((chunks == null) || (chunks.isEmpty())) {
+             return null;

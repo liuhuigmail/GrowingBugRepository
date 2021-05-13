@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/imaging/formats/jpeg/JpegUtils.java b/src/main/java/org/apache/commons/imaging/formats/jpeg/JpegUtils.java
+index 7031f9d2..8af207c9 100644
+--- a/src/main/java/org/apache/commons/imaging/formats/jpeg/JpegUtils.java
++++ b/src/main/java/org/apache/commons/imaging/formats/jpeg/JpegUtils.java
+@@ -80,9 +80,6 @@ public class JpegUtils extends BinaryFileParser {
+ 
+                 final byte[] segmentLengthBytes = readBytes("segmentLengthBytes", is, 2, "segmentLengthBytes");
+                 final int segmentLength = ByteConversions.toUInt16(segmentLengthBytes, getByteOrder());
+-                if (segmentLength < 2) {
+-                    throw new ImageReadException("Invalid segment size");
+-                }
+ 
+                 final byte[] segmentData = readBytes("Segment Data",
+                         is, segmentLength - 2,

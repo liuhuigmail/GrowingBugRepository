@@ -45,7 +45,12 @@ of the checked-out project version.
 
     <!-- Include existing project build file -->
     <import file="${d4j.workdir}/build.xml"/>
-
+    <condition property="src-dir" value="${maven.build.srcDir.0}" else="${source.home}">
+    	<isset property="maven.build.srcDir.0" />
+    </condition>
+    <condition property="test-dir" value="${maven.build.testDir.0}" else="${test.home}/java">
+    	<isset property="maven.build.testDir.0" />
+    </condition> 
     <!-- Project properties targets -->
     <if> <isset property="ant.refid:compile.classpath" />
           <then>
@@ -53,14 +58,26 @@ of the checked-out project version.
           </then>
           <else>
             <property name="oldversion"    value="yes" />
-            <path id="compile.classpath"   refid="build.classpath" />
-            <path id="test.classpath"      refid="build.test.classpath" />
 
-            <property name="dir.src.classes"  value="${maven.build.srcDir.0}"/>
-            <property name="dir.src.tests"    value="${maven.build.testDir.0}"/>
-            <property name="test.dir"         value="${maven.build.testDir.0}" />
-            <property name="source.home"      value="${maven.build.srcDir.0}"/>
-            <property name="d4j.test.dir"     value="${maven.build.testDir.0}"/>
+            <!-- the classpath needs to include jar -->
+             <!--
+                <fileset dir="{maven.repo.local}">
+                    <include name="**/*.jar" />
+                </fileset>
+             -->
+            <path id="compile.classpath"      >
+                <path refid="build.classpath" />
+            </path>
+            <path id="test.classpath"      >
+                <path refid="build.test.classpath" />
+                
+            </path>
+            <property name="dir.src.classes"  value="${src-dir}"/>
+            <property name="dir.src.tests"    value="${test-dir}"/>
+            <property name="test.dir"         value="${test-dir}" />
+            <property name="source.home"      value="${src-dir}"/>
+            <property name="d4j.test.dir"     value="${test-dir}"/>
+            
           </else>
     </if>
     <property name="test.home" value="${maven.build.testOutputDir}" />
@@ -71,6 +88,15 @@ of the checked-out project version.
         <isset property="maven.build.testOutputDir" />
     </condition>
 
+    <!--
+        if else statement in xml
+        <condition property="test.classes.dir" value="build/class" else="target/class">
+            <available file="build/classes" />
+        </condition>
+         
+        echo  print the var
+        <echo message="${abc}" />
+    --> 
     <property name="build.home" value="${classes.dir}/.." />
 
     <!-- Classpath to run developer-written tests -->
@@ -82,16 +108,29 @@ of the checked-out project version.
         <!--
         <pathelement path="${dependency.jar}" />
         -->
+        <fileset dir="${d4j.dir.projects}/imaging/lib/">
+               <include name="**/*.jar" />
+        </fileset> 
     </path>
-
-    <!-- List of all developer-written tests that reliably pass on the fixed version -->
+     <!-- List of all developer-written tests that reliably pass on the fixed version -->
     <!-- Manually generalize test patterns if analyzer produces incorrect outputs -->
-    <fileset id="all.manual.tests" dir="${test.dir}" excludes="${d4j.tests.exclude}">
+    <fileset id="all.manual.tests" dir="${test-dir}" excludes="${d4j.tests.exclude}">
         <!--include name="____" /-->
         <!--exclude name="____" /-->
+        <include name='**/${test}.java' />
+<include name='**/*TestCase.java' />
+<include name='**/*Test.java' />
+<include name='**/Test*.java' />
+<exclude name='**/*Abstract*Test.java' />
+
     </fileset>
 
     <!-- List of relevant developer-written tests that reliably pass on the fixed version -->
     <fileset id="rel.manual.tests" dir="${test.home}"
         includesfile="${d4j.dir.projects}/${d4j.project.id}/relevant_tests/${d4j.bug.id}" />
+    <!--
+        <target name="compile" depends="build" />
+        <target name="compile.tests" depends="compile-tests" />
+    -->
+        
 </project>

@@ -1,0 +1,9 @@
+Hbase_asyncfs, Initialization error!
+Hbase_backup, Initialization error!
+Hbase_balancer, Initialization error!
+Hbase_client, Initialization error!
+Hbase_common, Initialization error!
+Hbase_endpoint, Initialization error!
+Hbase_examples, Initialization error!
+Hbase_hadoop_compat, Initialization error!
+Hbase_hbtop, Initialization error!
