@@ -1,0 +1,29 @@
+diff --git a/src/test/java/org/apache/commons/graph/visit/VisitTestCase.java b/src/test/java/org/apache/commons/graph/visit/VisitTestCase.java
+index 37b160e..3681e35 100644
+--- a/src/test/java/org/apache/commons/graph/visit/VisitTestCase.java
++++ b/src/test/java/org/apache/commons/graph/visit/VisitTestCase.java
+@@ -143,16 +143,24 @@ public final class VisitTestCase
+         input.addVertex( s );
+ 
+         input.addEdge( s, new BaseLabeledEdge( "S <-> A" ), a );
++        input.addEdge( a, new BaseLabeledEdge( "A <-> S" ), s );
+         input.addEdge( s, new BaseLabeledEdge( "S <-> B" ), b );
++        input.addEdge( b, new BaseLabeledEdge( "B <-> S" ), s );
+ 
+         input.addEdge( a, new BaseLabeledEdge( "A <-> C" ), c );
++        input.addEdge( c, new BaseLabeledEdge( "C <-> A" ), a );
+         input.addEdge( a, new BaseLabeledEdge( "A <-> D" ), d );
++        input.addEdge( d, new BaseLabeledEdge( "D <-> A" ), a );
+ 
+         input.addEdge( b, new BaseLabeledEdge( "B <-> E" ), e );
++        input.addEdge( e, new BaseLabeledEdge( "E <-> B" ), b );
+         input.addEdge( b, new BaseLabeledEdge( "B <-> F" ), f );
++        input.addEdge( f, new BaseLabeledEdge( "F <-> B" ), b );
+ 
+         input.addEdge( e, new BaseLabeledEdge( "E <-> H" ), h );
++        input.addEdge( h, new BaseLabeledEdge( "H <-> E" ), e );
+         input.addEdge( e, new BaseLabeledEdge( "E <-> G" ), g );
++        input.addEdge( g, new BaseLabeledEdge( "G <-> E" ), e );
+ 
+         // expected node set
+ 

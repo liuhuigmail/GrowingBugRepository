@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,16563e052948fbb1e91005dc62b4c516c23b3c4f,1e725084aa52844723cfb65662d54ef2dda2f135,DIGESTER-159,https://issues.apache.org/jira/browse/DIGESTER-159

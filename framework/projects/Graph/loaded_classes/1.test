@@ -1,0 +1,3 @@
+org.apache.commons.graph.coloring.GraphColoringTestCase
+org.apache.commons.graph.model.BaseLabeledEdge
+org.apache.commons.graph.model.BaseLabeledVertex

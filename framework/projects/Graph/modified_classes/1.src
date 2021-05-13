@@ -1,0 +1,2 @@
+org.apache.commons.graph.coloring.GraphColoring
+org.apache.commons.graph.coloring.UncoloredOrderedVertices

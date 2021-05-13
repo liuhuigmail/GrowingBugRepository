@@ -1,0 +1,297 @@
+diff --git a/src/test/java/org/apache/commons/graph/coloring/GraphColoringTestCase.java b/src/test/java/org/apache/commons/graph/coloring/GraphColoringTestCase.java
+index b5d2fc9..658659c 100644
+--- a/src/test/java/org/apache/commons/graph/coloring/GraphColoringTestCase.java
++++ b/src/test/java/org/apache/commons/graph/coloring/GraphColoringTestCase.java
+@@ -23,15 +23,12 @@ import static org.apache.commons.graph.coloring.GraphColoring.coloring;
+ import static org.apache.commons.graph.utils.GraphUtils.buildBipartedGraph;
+ import static org.apache.commons.graph.utils.GraphUtils.buildCompleteGraph;
+ import static org.junit.Assert.assertEquals;
+-import static org.junit.Assert.assertTrue;
+ 
+ import org.apache.commons.graph.Edge;
+ import org.apache.commons.graph.Vertex;
+-import org.apache.commons.graph.VertexPair;
+ import org.apache.commons.graph.model.BaseLabeledEdge;
+ import org.apache.commons.graph.model.BaseLabeledVertex;
+ import org.apache.commons.graph.model.UndirectedMutableGraph;
+-import org.apache.commons.graph.utils.GraphUtils;
+ import org.junit.Test;
+ 
+ /**
+@@ -42,10 +39,8 @@ public class GraphColoringTestCase
+ 
+     @Test
+     public void testCromaticNumber()
+-        throws Exception
+     {
+-        UndirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge> g =
+-            new UndirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge>();
++        UndirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge> g = new UndirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge>();
+ 
+         BaseLabeledVertex one = new BaseLabeledVertex( "1" );
+         BaseLabeledVertex two = new BaseLabeledVertex( "2" );
+@@ -59,11 +54,7 @@ public class GraphColoringTestCase
+         g.addEdge( two, new BaseLabeledEdge( "2 -> 3" ), three );
+         g.addEdge( three, new BaseLabeledEdge( "3 -> 1" ), one );
+ 
+-        ColoredVertices<BaseLabeledVertex> coloredVertices = coloring( g );
+-        assertEquals( 3, coloredVertices.getRequiredColors() );
+-
+-        checkColoring( g, coloredVertices );
+-
++        assertEquals( 3, coloring( g ).getRequiredColors() );
+     }
+ 
+     @Test
+@@ -73,11 +64,7 @@ public class GraphColoringTestCase
+             new UndirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge>();
+         buildCompleteGraph( 100, g1 );
+ 
+-        ColoredVertices<BaseLabeledVertex> coloredVertices = coloring( g1 );
+-        assertEquals( 100, coloredVertices.getRequiredColors() );
+-
+-        checkColoring( g1, coloredVertices );
+-
++        assertEquals( 100, coloring( g1 ).getRequiredColors() );
+     }
+ 
+     @Test
+@@ -87,111 +74,19 @@ public class GraphColoringTestCase
+             new UndirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge>();
+         buildBipartedGraph( 100, g1 );
+ 
+-        ColoredVertices<BaseLabeledVertex> coloredVertices = coloring( g1 );
+-
+-        assertEquals( 2, coloredVertices.getRequiredColors() );
+-        checkColoring( g1, coloredVertices );
+-
++        assertEquals( 2, coloring( g1 ).getRequiredColors() );
+     }
+ 
+     @Test
+     public void testCromaticNumberSparseGraph()
+     {
+-        UndirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge> g1 =
+-            new UndirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge>();
++        UndirectedMutableGraph<Vertex, Edge> g1 = new UndirectedMutableGraph<Vertex, Edge>();
+         for ( int i = 0; i < 100; i++ )
+         {
+             g1.addVertex( new BaseLabeledVertex( "" + i ) );
+         }
+ 
+-        ColoredVertices<BaseLabeledVertex> coloredVertices = coloring( g1 );
+-
+-        assertEquals( 1, coloredVertices.getRequiredColors() );
+-        checkColoring( g1, coloredVertices );
+-
+-    }
+-
+-    /**
+-     * see <a href="http://en.wikipedia.org/wiki/Crown_graph">wiki</a> for more details
+-     */
+-    @Test
+-    public void testCrawnGraph()
+-    {
+-        UndirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge> g =
+-            new UndirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge>();
+-
+-        BaseLabeledVertex one = new BaseLabeledVertex( "1" );
+-        BaseLabeledVertex two = new BaseLabeledVertex( "2" );
+-        BaseLabeledVertex three = new BaseLabeledVertex( "3" );
+-        BaseLabeledVertex four = new BaseLabeledVertex( "4" );
+-        BaseLabeledVertex five = new BaseLabeledVertex( "5" );
+-        BaseLabeledVertex six = new BaseLabeledVertex( "6" );
+-
+-        g.addVertex( one );
+-        g.addVertex( two );
+-        g.addVertex( three );
+-        g.addVertex( four );
+-        g.addVertex( five );
+-        g.addVertex( six );
+-
+-        g.addEdge( one, new BaseLabeledEdge( "1 -> 2" ), two );
+-        g.addEdge( two, new BaseLabeledEdge( "2 -> 3" ), three );
+-        g.addEdge( three, new BaseLabeledEdge( "3 -> 4" ), four );
+-        g.addEdge( four, new BaseLabeledEdge( "4 -> 5" ), five );
+-        g.addEdge( five, new BaseLabeledEdge( "5 -> 6" ), six );
+-        g.addEdge( six, new BaseLabeledEdge( "5 -> 1" ), one );
+-
+-        ColoredVertices<BaseLabeledVertex> coloredVertices = coloring( g );
+-        assertEquals( 2, coloring( g ).getRequiredColors() );
+-
+-        checkColoring( g, coloredVertices );
+-
+-    }
+-
+-    @Test
+-    public void testSudoku()
+-        throws Exception
+-    {
+-
+-        UndirectedMutableGraph<Vertex, Edge> g1 = GraphUtils.buildSudokuGraph();
+-
+-        // The true color number fot this graph is 9. but the greedy euristics is not the best and returns 11.
+-        ColoredVertices<Vertex> sudoku = GraphColoring.coloring( g1 );
+-        assertEquals( 11, sudoku.getRequiredColors() );
+-
+-        checkColoring( g1, sudoku );
+-
+-        // for ( int i = 0; i < 9; i++ )
+-        // {
+-        // for ( int j = 0; j < 9; j++ )
+-        // {
+-        // System.out.print ( sudoku.getColor(GraphUtils.grid[i][j]) + " | " );
+-        // }
+-        // System.out.println();
+-        // }
+-
+-        // Writer w = new OutputStreamWriter(System.out);
+-        // GraphUtils.DOTexport(w, g1);
+-        // w.flush();
+-        // w.close();
+-
+-    }
+-
+-    /**
+-     * This method checks if all connected vertices have different colors.
+-     * 
+-     * @param g
+-     * @param coloredVertices
+-     */
+-    private <V extends Vertex, E extends Edge> void checkColoring( UndirectedMutableGraph<V, E> g,
+-                                                                   ColoredVertices<V> coloredVertices )
+-    {
+-        for ( E e : g.getEdges() )
+-        {
+-            VertexPair<V> vp = g.getVertices( e );
+-            assertTrue( coloredVertices.getColor( vp.getHead() ) != coloredVertices.getColor( vp.getTail() ) );
+-
+-        }
++        assertEquals( 1, coloring( g1 ).getRequiredColors() );
+     }
+ 
+ }
+diff --git a/src/test/java/org/apache/commons/graph/utils/GraphUtils.java b/src/test/java/org/apache/commons/graph/utils/GraphUtils.java
+index 79145aa..820bb51 100644
+--- a/src/test/java/org/apache/commons/graph/utils/GraphUtils.java
++++ b/src/test/java/org/apache/commons/graph/utils/GraphUtils.java
+@@ -3,8 +3,6 @@ package org.apache.commons.graph.utils;
+ import java.util.ArrayList;
+ import java.util.List;
+ 
+-import org.apache.commons.graph.Edge;
+-import org.apache.commons.graph.Vertex;
+ import org.apache.commons.graph.model.BaseLabeledEdge;
+ import org.apache.commons.graph.model.BaseLabeledVertex;
+ import org.apache.commons.graph.model.UndirectedMutableGraph;
+@@ -36,7 +34,7 @@ public class GraphUtils
+ 
+     /**
+      * Creates a complete graph with nVertices
+-     * 
++     *
+      * @param nVertices number of vertices
+      * @param g graph
+      */
+@@ -111,101 +109,6 @@ public class GraphUtils
+         }
+     }
+ 
+-    /**
+-     * Creates a graph that contains all classic sudoku contratints.
+-     *
+-     * @return
+-     */
+-    public static UndirectedMutableGraph<Vertex, Edge> buildSudokuGraph()
+-    {
+-        UndirectedMutableGraph<Vertex, Edge> sudoku = new UndirectedMutableGraph<Vertex, Edge>();
+-
+-        BaseLabeledVertex[][] grid = new BaseLabeledVertex[9][9];
+-
+-        // build sudoku grid.
+-        for ( int row = 0; row < 9; row++ )
+-        {
+-            for ( int col = 0; col < 9; col++ )
+-            {
+-                grid[row][col] = new BaseLabeledVertex( row + "," + col );
+-                sudoku.addVertex( grid[row][col] );
+-            }
+-        }
+-
+-        int[] rowsOffsets = new int[] { 0, 3, 6 };
+-        int[] colsOffsets = new int[] { 0, 3, 6 };
+-
+-        // build constraint.
+-        for ( int rof = 0; rof < 3; rof++ )
+-        {
+-            for ( int cof = 0; cof < 3; cof++ )
+-            {
+-                List<Vertex> boxes = new ArrayList<Vertex>();
+-                for ( int row = rowsOffsets[rof]; row < 3 + rowsOffsets[rof]; row++ )
+-                {
+-                    for ( int col = colsOffsets[cof]; col < 3 + colsOffsets[cof]; col++ )
+-                    {
+-                        boxes.add( grid[row][col] );
+-                    }
+-                }
+-
+-                for ( Vertex v1 : boxes )
+-                {
+-                    for ( Vertex v2 : boxes )
+-                    {
+-
+-                        Edge e = new BaseLabeledEdge( v1 + " -> " + v2 );
+-                        if ( !v1.equals( v2 ) )
+-                        {
+-                            sudoku.addEdge( v1, e, v2 );
+-                        }
+-                    }
+-                }
+-            }
+-        }
+-
+-        // create rows constraint
+-        for ( int j = 0; j < 9; j++ )
+-        {
+-            for ( int i = 0; i < 9; i++ )
+-            {
+-                for ( int h = 0; h < 9; h++ )
+-                {
+-                    Vertex v1 = grid[j][i];
+-                    Vertex v2 = grid[j][h];
+-
+-                    if ( !v1.equals( v2 ) )
+-                    {
+-                        Edge e = new BaseLabeledEdge( v1 + " -> " + v2 );
+-                        sudoku.addEdge( v1, e, v2 );
+-                    }
+-
+-                }
+-            }
+-        }
+-
+-        // create cols constraint
+-        for ( int j = 0; j < 9; j++ )
+-        {
+-            for ( int i = 0; i < 9; i++ )
+-            {
+-                for ( int h = 0; h < 9; h++ )
+-                {
+-                    Vertex v1 = grid[i][j];
+-                    Vertex v2 = grid[h][j];
+-
+-                    if ( !v1.equals( v2 ) )
+-                    {
+-                        Edge e = new BaseLabeledEdge( v1 + " -> " + v2 );
+-                        sudoku.addEdge( v1, e, v2 );
+-                    }
+-
+-                }
+-            }
+-        }
+-        return sudoku;
+-    }
+-
+     /**
+      * This class can't be instantiated
+      */
