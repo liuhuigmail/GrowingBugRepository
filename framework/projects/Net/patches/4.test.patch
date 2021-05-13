@@ -1,0 +1,24 @@
+diff --git a/src/test/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParserTest.java b/src/test/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParserTest.java
+index 99923203..26046fe7 100644
+--- a/src/test/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParserTest.java
++++ b/src/test/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParserTest.java
+@@ -174,17 +174,8 @@ public class UnixFTPEntryParserTest extends FTPParseTestFramework {
+ 	public void testNameWIthPunctuation() {
+ 		FTPFile f = getParser().parseFTPEntry("drwx------ 4 maxm Domain Users 512 Oct 2 10:59 abc(test)123.pdf");
+ 		assertNotNull(f);
+-		assertEquals(f.getName(), "abc(test)123.pdf");	
+-	}
+-
+-	public void testNoSpacesBeforeFileSize() {
+-		FTPFile f = getParser().parseFTPEntry("drwxr-x---+1464 chrism   chrism     41472 Feb 25 13:17 20090225");
+-		assertNotNull(f);
+-		assertEquals(f.getSize(), 41472);
+-		assertEquals(f.getType(), FTPFile.DIRECTORY_TYPE);
+-		assertEquals(f.getUser(), "chrism");
+-		assertEquals(f.getGroup(), "chrism");
+-		assertEquals(f.getHardLinkCount(), 1464);
++		assertEquals(f.getName(), "abc(test)123.pdf");
++		
+ 	}
+ 
+     /**

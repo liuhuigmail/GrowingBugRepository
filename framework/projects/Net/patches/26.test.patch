@@ -1,0 +1,16 @@
+diff --git a/src/test/java/org/apache/commons/net/SubnetUtilsTest.java b/src/test/java/org/apache/commons/net/SubnetUtilsTest.java
+index 82ddcdef..a56e9cdb 100644
+--- a/src/test/java/org/apache/commons/net/SubnetUtilsTest.java
++++ b/src/test/java/org/apache/commons/net/SubnetUtilsTest.java
+@@ -368,11 +368,4 @@ public class SubnetUtilsTest extends TestCase {
+         utils.setInclusiveHostCount(false);
+         assertTrue(info.isInRange("127.0.0.0"));
+     }
+-
+-    public void testNET641() {
+-        assertFalse(new SubnetUtils("192.168.1.0/00").getInfo().isInRange("0.0.0.0"));
+-        assertFalse(new SubnetUtils("192.168.1.0/30").getInfo().isInRange("0.0.0.0"));
+-        assertFalse(new SubnetUtils("192.168.1.0/31").getInfo().isInRange("0.0.0.0"));
+-        assertFalse(new SubnetUtils("192.168.1.0/32").getInfo().isInRange("0.0.0.0"));
+-    }
+ }

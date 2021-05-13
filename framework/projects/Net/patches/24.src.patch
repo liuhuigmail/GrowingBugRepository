@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java b/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
+index b8f347a3..7251618f 100644
+--- a/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
++++ b/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
+@@ -271,7 +271,7 @@ public class MVSFTPEntryParser extends ConfigurableFTPFileEntryParserImpl {
+                 isParsed = parseSimpleEntry(f, entry);
+             }
+         } else if (isType == UNIX_LIST_TYPE) {
+-            return unixFTPEntryParser.parseFTPEntry(entry);
++            isParsed = parseUnixList(f, entry);
+         } else if (isType == JES_LEVEL_1_LIST_TYPE) {
+             isParsed = parseJeslevel1List(f, entry);
+         } else if (isType == JES_LEVEL_2_LIST_TYPE) {
+@@ -401,6 +401,21 @@ public class MVSFTPEntryParser extends ConfigurableFTPFileEntryParserImpl {
+         return false;
+     }
+ 
++    /**
++     * Parse the entry as a standard unix file. Using the UnixFTPEntryParser.
++     *
++     * @param file
++     * @param entry
++     * @return true: entry is parsed, false: entry could not be parsed.
++     */
++    private boolean parseUnixList(FTPFile file, String entry) {
++        file = unixFTPEntryParser.parseFTPEntry(entry);
++        if (file == null) {
++            return false;
++        }
++        return true;
++    }
++
+     /**
+      * Matches these entries, note: no header:
+      * <pre>

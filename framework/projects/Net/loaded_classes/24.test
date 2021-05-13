@@ -1,0 +1,2 @@
+org.apache.commons.net.ftp.parser.FTPParseTestFramework
+org.apache.commons.net.ftp.parser.MVSFTPEntryParserTest

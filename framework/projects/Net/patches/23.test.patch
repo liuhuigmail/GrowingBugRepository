@@ -1,0 +1,29 @@
+diff --git a/src/test/java/org/apache/commons/net/SubnetUtilsTest.java b/src/test/java/org/apache/commons/net/SubnetUtilsTest.java
+index a56e9cdb..2d8f18ec 100644
+--- a/src/test/java/org/apache/commons/net/SubnetUtilsTest.java
++++ b/src/test/java/org/apache/commons/net/SubnetUtilsTest.java
+@@ -340,24 +340,6 @@ public class SubnetUtilsTest extends TestCase {
+         assertEquals(2147483646, info.getAddressCount());
+     }
+ 
+-    public void testNET624() {
+-        new SubnetUtils("0.0.0.0/0");
+-        new SubnetUtils("0.0.0.0","0.0.0.0");
+-        new SubnetUtils("0.0.0.0","128.0.0.0");
+-        try {
+-            new SubnetUtils("0.0.0.0","64.0.0.0");
+-            fail("Should have thrown IllegalArgumentException");
+-        } catch (IllegalArgumentException expected) {
+-            // Ignored
+-        }
+-        try {
+-            new SubnetUtils("0.0.0.0","0.0.0.1");
+-            fail("Should have thrown IllegalArgumentException");
+-        } catch (IllegalArgumentException expected) {
+-            // Ignored
+-        }
+-    }
+-
+     public void testNET520() {
+         SubnetUtils utils = new SubnetUtils("0.0.0.0/0");
+         utils.setInclusiveHostCount(true);

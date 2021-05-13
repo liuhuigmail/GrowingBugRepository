@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java b/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
+index 98e40d89..b698ef30 100644
+--- a/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
++++ b/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
+@@ -83,7 +83,7 @@ public class UnixFTPEntryParser extends ConfigurableFTPFileEntryParserImpl
+      */
+     private static final String REGEX =
+         "([bcdelfmpSs-])"
+-        +"(((r|-)(w|-)([xsStTL-]))((r|-)(w|-)([xsStTL-]))((r|-)(w|-)([xsStTL-])))\\+?\\s*"
++        +"(((r|-)(w|-)([xsStTL-]))((r|-)(w|-)([xsStTL-]))((r|-)(w|-)([xsStTL-])))\\+?\\s+"
+         + "(\\d+)\\s+"
+         + "(?:(\\S+(?:\\s\\S+)*?)\\s+)?"                // owner name (optional spaces)
+         + "(?:(\\S+(?:\\s\\S+)*)\\s+)?"                 // group name (optional spaces)

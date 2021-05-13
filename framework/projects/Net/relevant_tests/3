@@ -1,0 +1,11 @@
+org.apache.commons.net.ftp.FTPClientConfigTest
+org.apache.commons.net.ftp.parser.DefaultFTPFileEntryParserFactoryTest
+org.apache.commons.net.ftp.parser.FTPConfigEntryParserTest
+org.apache.commons.net.ftp.parser.FTPTimestampParserImplTest
+org.apache.commons.net.ftp.parser.MVSFTPEntryParserTest
+org.apache.commons.net.ftp.parser.NTFTPEntryParserTest
+org.apache.commons.net.ftp.parser.NetwareFTPEntryParserTest
+org.apache.commons.net.ftp.parser.OS2FTPEntryParserTest
+org.apache.commons.net.ftp.parser.OS400FTPEntryParserTest
+org.apache.commons.net.ftp.parser.UnixFTPEntryParserTest
+org.apache.commons.net.ftp.parser.VMSFTPEntryParserTest

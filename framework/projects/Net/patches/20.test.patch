@@ -1,0 +1,26 @@
+diff --git a/src/test/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParserTest.java b/src/test/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParserTest.java
+index c703aad2..2c53e74b 100644
+--- a/src/test/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParserTest.java
++++ b/src/test/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParserTest.java
+@@ -166,10 +166,10 @@ public class UnixFTPEntryParserTest extends FTPParseTestFramework {
+         assertEquals("zxbox     ", f.getName());
+     }
+ 
+-    public void testLeadingSpacesDefault() { // the default has been changed to keep spaces
++    public void testLeadingSpacesOriginal() { // this is the original (non-ideal) behaviour
+         FTPFile f = getParser().parseFTPEntry("drwxr-xr-x   2 john smith     group         4096 Mar  2 15:13   zxbox");
+         assertNotNull(f);
+-        assertEquals("  zxbox", f.getName() ); // leading spaces retained
++        assertEquals("zxbox", f.getName() ); // leading spaces dropped
+     }
+ 
+     public void testLeadingSpacesNET566() { // check new behaviour
+@@ -178,7 +178,7 @@ public class UnixFTPEntryParserTest extends FTPParseTestFramework {
+         assertEquals("  zxbox", f.getName() ); // leading spaces retained
+     }
+ 
+-    public void testTrimLeadingSpacesNET566() { // check can trim spaces as before
++    public void testTrimLeadingSpacesNET566() { // check new behaviour alternate setting
+         FTPFile f = new UnixFTPEntryParser(null, true).parseFTPEntry("drwxr-xr-x   2 john smith     group         4096 Mar  2 15:13   zxbox");
+         assertNotNull(f);
+         assertEquals("zxbox", f.getName() ); // leading spaces trimmed

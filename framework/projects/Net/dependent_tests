@@ -1,0 +1,5 @@
+--- org.apache.commons.net.tftp.TFTPTest::testHugeDownloads
+--- org.apache.commons.net.tftp.TFTPTest::testHugeUploads
+--- org.apache.commons.net.tftp.TFTPTest::testTFTPBinaryDownloads
+--- org.apache.commons.net.tftp.TFTPTest::testTFTPBinaryUploads
+--- org.apache.commons.net.tftp.TFTPTest::testASCIIUploads
