@@ -33,8 +33,8 @@ To date, growingBugs contains 1007 bugs from open-source Java projects.
 | Santuario       | santuario-java             |        4       | 1-4                 | None                    |
 | Tika            | tika                       |        6       | 1-6                 | None                    |
 | Validator       | commons-validator          |        25      | 1-25                | None                    |
-| MEar             | maven-ear-plugin           |        1       | 1                   | None                    |
-| MGpg             | maven-gpg-plugin           |        3       | 1-3                 | None                    |
+| MEar            | maven-ear-plugin           |        1       | 1                   | None                    |
+| MGpg            | maven-gpg-plugin           |        3       | 1-3                 | None                    |
 | Pool            | commons-pool               |        30      | 1-30                | None                    |
 | Email           | commons-email              |        6       | 1-6                 | None                    |
 | Graph           | commons-graph              |        4       | 1-4                 | None                    |
