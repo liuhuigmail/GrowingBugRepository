@@ -15,10 +15,10 @@ index 7c701cd..55cb80f 100644
      }
  
 -    public void testToMapOrdering() throws SQLException {
--
+
 -        assertTrue(this.rs.next());
 -        Map<String, Object> m = processor.toMap(this.rs);
--
+
 -        Iterator<String> itr = m.keySet().iterator();
 -        assertEquals("one", itr.next());
 -        assertEquals("two", itr.next());
@@ -30,8 +30,7 @@ index 7c701cd..55cb80f 100644
 -        assertEquals("nullPrimitiveTest", itr.next());
 -        assertEquals("notDate", itr.next());
 -        assertEquals("columnProcessorDoubleTest", itr.next());
--
 -        assertFalse(itr.hasNext());
 -    }
--
+
  }
