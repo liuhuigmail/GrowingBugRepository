@@ -9,7 +9,6 @@ index 0b5fa3ee..0e502e26 100644
 -    public void testZeroAddressAndCidr() {
 -        new SubnetUtils("0.0.0.0/0");
 -    }
--
      public void testZeroNetmaskBits() {
          try {
              new SubnetUtils("192.168.0.1/0");

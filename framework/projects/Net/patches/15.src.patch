@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/net/ftp/parser/NTFTPEntryParser.java b/src/main/java/org/apache/commons/net/ftp/parser/NTFTPEntryParser.java
-index a2b315aa..c806069e 100644
---- a/src/main/java/org/apache/commons/net/ftp/parser/NTFTPEntryParser.java
-+++ b/src/main/java/org/apache/commons/net/ftp/parser/NTFTPEntryParser.java
+diff --git a/net_15_fix/src/main/java/org/apache/commons/net/ftp/parser/NTFTPEntryParser.java b/net_15_buggy/src/main/java/org/apache/commons/net/ftp/parser/NTFTPEntryParser.java
+index a2b315a..c806069 100644
+--- a/net_15_fix/src/main/java/org/apache/commons/net/ftp/parser/NTFTPEntryParser.java
++++ b/net_15_buggy/src/main/java/org/apache/commons/net/ftp/parser/NTFTPEntryParser.java
 @@ -17,7 +17,6 @@
  
  package org.apache.commons.net.ftp.parser;

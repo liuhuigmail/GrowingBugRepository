@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java b/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
-index b8f347a3..7251618f 100644
---- a/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
-+++ b/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
+diff --git a/net_24_fix/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java b/net_24_buggy/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
+index b8f347a..7251618 100644
+--- a/net_24_fix/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
++++ b/net_24_buggy/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
 @@ -271,7 +271,7 @@ public class MVSFTPEntryParser extends ConfigurableFTPFileEntryParserImpl {
                  isParsed = parseSimpleEntry(f, entry);
              }
@@ -15,13 +15,7 @@ index b8f347a3..7251618f 100644
          return false;
      }
  
-+    /**
-+     * Parse the entry as a standard unix file. Using the UnixFTPEntryParser.
-+     *
-+     * @param file
-+     * @param entry
-+     * @return true: entry is parsed, false: entry could not be parsed.
-+     */
+
 +    private boolean parseUnixList(FTPFile file, String entry) {
 +        file = unixFTPEntryParser.parseFTPEntry(entry);
 +        if (file == null) {
@@ -29,7 +23,7 @@ index b8f347a3..7251618f 100644
 +        }
 +        return true;
 +    }
-+
+
      /**
       * Matches these entries, note: no header:
       * <pre>

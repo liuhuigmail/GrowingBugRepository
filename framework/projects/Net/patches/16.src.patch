@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/net/nntp/Threader.java b/src/main/java/org/apache/commons/net/nntp/Threader.java
-index bf934517..037374d7 100644
---- a/src/main/java/org/apache/commons/net/nntp/Threader.java
-+++ b/src/main/java/org/apache/commons/net/nntp/Threader.java
+diff --git a/net_16_fix/src/main/java/org/apache/commons/net/nntp/Threader.java b/net_16_buggy/src/main/java/org/apache/commons/net/nntp/Threader.java
+index bf93451..037374d 100644
+--- a/net_16_fix/src/main/java/org/apache/commons/net/nntp/Threader.java
++++ b/net_16_buggy/src/main/java/org/apache/commons/net/nntp/Threader.java
 @@ -27,7 +27,6 @@ package org.apache.commons.net.nntp;
   *
   */
@@ -10,28 +10,7 @@ index bf934517..037374d7 100644
  import java.util.HashMap;
  import java.util.Iterator;
  import java.util.List;
-@@ -37,8 +36,8 @@ public class Threader {
-     /**
-      * The client passes in a list of Threadable objects, and
-      * the Threader constructs a connected 'graph' of messages
--     * @param messages list of messages to thread, must not be empty
--     * @return null if messages == null or root.child == null or messages list is empty
-+     * @param messages list of messages to thread
-+     * @return null if messages == null or root.child == null
-      * @since 2.2
-      */
-     public Threadable thread(List<? extends Threadable> messages) {
-@@ -48,8 +47,8 @@ public class Threader {
-     /**
-      * The client passes in a list of Iterable objects, and
-      * the Threader constructs a connected 'graph' of messages
--     * @param messages iterable of messages to thread, must not be empty
--     * @return null if messages == null or root.child == null or messages list is empty
-+     * @param messages iterable of messages to thread
-+     * @return null if messages == null or root.child == null
-      * @since 3.0
-      */
-     public Threadable thread(Iterable<? extends Threadable> messages) {
+
 @@ -66,10 +65,6 @@ public class Threader {
              }
          }
@@ -39,20 +18,11 @@ index bf934517..037374d7 100644
 -        if (idTable.isEmpty()) {
 -            return null;
 -        }
--
+
          ThreadContainer root = findRootSet(idTable);
          idTable.clear();
          idTable = null;
 @@ -451,16 +446,13 @@ public class Threader {
-     /**
-      * The client passes in an array of Threadable objects, and
-      * the Threader constructs a connected 'graph' of messages
--     * @param messages array of messages to thread, must not be empty
--     * @return null if messages == null or root.child == null or messages array is empty
-+     * @param messages array of messages to thread
-+     * @return null if messages == null or root.child == null
-      * @deprecated (2.2) prefer {@link #thread(List)}
-      */
      @Deprecated
      public Threadable thread(Threadable[] messages) {
 -        if (messages == null) {

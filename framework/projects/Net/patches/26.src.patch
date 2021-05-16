@@ -1,19 +1,10 @@
-diff --git a/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
-index f18f2c6c..4de394d3 100644
---- a/src/main/java/org/apache/commons/net/util/SubnetUtils.java
-+++ b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+diff --git a/net_26_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/net_26_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+index f18f2c6..4de394d 100644
+--- a/net_26_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java
++++ b/net_26_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
 @@ -157,17 +157,12 @@ public class SubnetUtils {
          }
  
-         /**
--         * Returns true if the parameter <code>address</code> is in the
--         * range of usable endpoint addresses for this subnet. This excludes the
--         * network and broadcast addresses.
-+         *
-          * @param address the address to check
-          * @return true if it is in range
-          * @since 3.4 (made public)
-          */
          public boolean isInRange(int address) {
 -            if (address == 0) { // cannot ever be in range; rejecting now avoids problems with CIDR/31,32
 -                return false;

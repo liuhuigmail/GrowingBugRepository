@@ -1,17 +1,14 @@
-diff --git a/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
-index 70c36854..68398c86 100644
---- a/src/main/java/org/apache/commons/net/util/SubnetUtils.java
-+++ b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
-@@ -161,11 +161,7 @@ public class SubnetUtils {
-         }
- 
+diff --git a/net_10_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/net_10_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+index 70c3685..81f1c68 100644
+--- a/net_10_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java
++++ b/net_10_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+@@ -163,9 +163,6 @@ public class SubnetUtils {
          public String[] getAllAddresses() {
--            int ct = getAddressCount();
--            String[] addresses = new String[ct];
+             int ct = getAddressCount();
+             String[] addresses = new String[ct];
 -            if (ct == 0) {
 -                return addresses;
 -            }
-+            String[] addresses = new String[getAddressCount()];
              for (int add = low(), j=0; add <= high(); ++add, ++j) {
                  addresses[j] = format(toArray(add));
              }

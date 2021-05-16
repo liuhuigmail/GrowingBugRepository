@@ -1,13 +1,12 @@
-diff --git a/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
-index 834906b5..24cb3d37 100644
---- a/src/main/java/org/apache/commons/net/util/SubnetUtils.java
-+++ b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+diff --git a/net_14_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/net_14_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+index 834906b..24cb3d3 100644
+--- a/net_14_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java
++++ b/net_14_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
 @@ -99,19 +99,15 @@ public class SubnetUtils {
          private int network()       { return network; }
          private int address()       { return address; }
          private int broadcast()     { return broadcast; }
--        
--        // long versions of the values (as unsigned int) which are more suitable for range checking
+
 -        private long networkLong()  { return network &  UNSIGNED_INT_MASK; }
 -        private long broadcastLong(){ return broadcast &  UNSIGNED_INT_MASK; }
  

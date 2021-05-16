@@ -19,7 +19,6 @@ index 9b96fa3a..17a273a6 100644
          assertEquals("Domain Users", f.getGroup());
      }
  
--    // byte -123 when read using ISO-8859-1 encoding becomes 0X85 line terminator
 -    private static final byte[] listFilesByteTrace = { 
 -        48, 57, 45, 48, 52, 45, 49, 51, 32, 32, 48, 53, 58, 53, 49, 80, 77,
 -        32, 32, 32, 32, 32, 32, 32, 60, 68, 73, 82, 62, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32,
@@ -89,9 +88,8 @@ index 9b96fa3a..17a273a6 100644
 -        -107, -94, -112, -123, -106, 126, -126, -55, -107, -44, -126, -25, -126, -72, 46, 116, 120, 116,
 -        13, 10 // 16
 -        };
--
+
 -    private static final int LISTFILE_COUNT = 16;
--
 -    private int testNET516(String charset) throws Exception {
 -        FTPFileEntryParser parser = new NTFTPEntryParser();
 -        FTPListParseEngine engine = new FTPListParseEngine(parser );
@@ -99,7 +97,6 @@ index 9b96fa3a..17a273a6 100644
 -        FTPFile[] ftpfiles = engine.getFiles();
 -        return ftpfiles.length;
 -    }
--
 -    public void testNET516() throws Exception { // problem where part of a multi-byte char gets converted to 0x85 = line term
 -        int utf = testNET516("UTF-8");
 -        assertEquals(LISTFILE_COUNT, utf);
