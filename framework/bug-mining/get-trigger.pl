@@ -137,7 +137,7 @@ system("mkdir -p $TMP_DIR");
 
 # Set up project
 my $project = Project::create_project($PID);
-$project->{prog_root} = $TMP_DIR;
+$project->{prog_root} = "$TMP_DIR/$SUBPROJ";
 
 # Get database handle for results
 my $dbh_trigger = DB::get_db_handle($TAB_TRIGGER, $db_dir);
@@ -162,30 +162,29 @@ my $EXPECT_FAIL = 1;
 my @bids = _get_bug_ids($BID);
 foreach my $bid (@bids) {
     printf ("%4d: $project->{prog_name}\n", $bid);
-
     my %data;
     $data{$PROJECT} = $PID;
     $data{$ID} = $bid;
 
     # V2 must not have any failing tests
-    my $list = _get_failing_tests($project, "$TMP_DIR/v2", "${bid}f");
+    my $list = _get_failing_tests($project, "$TMP_DIR/v2/$SUBPROJ", "${bid}f");
     if (($data{$FAIL_V2} = (scalar(@{$list->{"classes"}}) + scalar(@{$list->{"methods"}}))) != 0) {
         print("Non expected failing test classes/methods on ${PID}-${bid}\n");
-        print("1:@{$list->{'classes'}}\n");
-        print("2:@{$list->{'methods'}}\n");
+        print("classes:@{$list->{'classes'}}\n");
+        print("methods:@{$list->{'methods'}}\n");
         _add_row(\%data);
         next;
     }
 
     # V1 must not have failing test classes but at least one failing test method
-    $list = _get_failing_tests($project, "$TMP_DIR/v1", "${bid}b");
+    $list = _get_failing_tests($project, "$TMP_DIR/v1/$SUBPROJ", "${bid}b");
     my $fail_c = scalar(@{$list->{"classes"}}); $data{$FAIL_C_V1} = $fail_c;
     my $fail_m = scalar(@{$list->{"methods"}}); $data{$FAIL_M_V1} = $fail_m;
     if ($fail_c !=0 or $fail_m == 0) {
         print("Expected at least one failing test method on ${PID}-${bid}b\n");
         _add_row(\%data);
-        print("1:@{$list->{'classes'}}\n");
-        print("2:@{$list->{'methods'}}\n");
+        print("classes:@{$list->{'classes'}}\n");
+        print("methods:@{$list->{'methods'}}\n");
         next;
     }
 
@@ -202,13 +201,13 @@ foreach my $bid (@bids) {
     print "List of test methods: \n" . join ("\n",  @$list) . "\n";
     # Run triggering test(s) in isolation on v2 -> tests should pass. Any test not
     # passing is excluded from further processing.
-    $list = _run_tests_isolation("$TMP_DIR/v2", $list, $EXPECT_PASS);
+    $list = _run_tests_isolation("$TMP_DIR/v2/$SUBPROJ", $list, $EXPECT_PASS);
     $data{$PASS_ISO_V2} = scalar(@$list);
     print "List of test methods: (passed in isolation on v2)\n" . join ("\n", @$list) . "\n";
 
     # Run triggering test(s) in isolation on v1 -> tests should fail. Any test not
     # failing is excluded from further processing.
-    $list = _run_tests_isolation("$TMP_DIR/v1", $list, $EXPECT_FAIL);
+    $list = _run_tests_isolation("$TMP_DIR/v1/$SUBPROJ", $list, $EXPECT_FAIL);
     $data{$FAIL_ISO_V1} = scalar(@$list);
     print "List of test methods: (failed in isolation on v1)\n" . join ("\n", @$list) . "\n";
 
@@ -295,7 +294,7 @@ sub _get_failing_tests {
 
     # Clean output file
     system(">$FAILED_TESTS_FILE");
-    $project->{prog_root} = $root;
+    $project->{prog_root} = "$root/$SUBPROJ";
 
     $project->checkout_vid($vid, $root, 1,$SUBPROJ) or die;
 
