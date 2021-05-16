@@ -1,0 +1,39 @@
+diff --git a/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
+index b34a030b..7a40e3cc 100644
+--- a/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/UrlValidatorTest.java
+@@ -35,7 +35,7 @@ public class UrlValidatorTest extends TestCase {
+    }
+ 
+    @Override
+-   protected void setUp() {
++protected void setUp() {
+       for (int index = 0; index < testPartsIndex.length - 1; index++) {
+          testPartsIndex[index] = 0;
+       }
+@@ -254,7 +254,8 @@ public class UrlValidatorTest extends TestCase {
+         assertTrue("file:///c:/ should now be allowed",
+                  validator.isValid("file:///C:/some.file"));
+ 
+-        assertTrue("file:///c:\\ should be allowed",
++        // Currently, we don't support the c:\ form
++        assertFalse("file:///c:\\ shouldn't be allowed",
+               validator.isValid("file:///C:\\some.file"));
+ 
+         assertTrue("file:///etc/ should now be allowed",
+@@ -330,15 +331,6 @@ public class UrlValidatorTest extends TestCase {
+         assertFalse(urlValidator.isValid("http://example.rocks:100000/"));
+     }
+ 
+-    public void testValidator464() {
+-        String[] schemes = {"file"};
+-        UrlValidator urlValidator = new UrlValidator(schemes);
+-        String fileOK = "file:///bad ^ domain.com/label/test";
+-        String fileNAK = "file://bad ^ domain.com/label/test";
+-        assertTrue(fileOK, urlValidator.isValid(fileOK));
+-        assertFalse(fileNAK, urlValidator.isValid(fileNAK));
+-    }
+-
+     static boolean incrementTestPartsIndex(int[] testPartsIndex, Object[] testParts) {
+       boolean carry = true;  //add 1 to lowest order part.
+       boolean maxIndex = true;

@@ -1,12 +1,12 @@
-diff --git a/validator_2_fix/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/validator_2_buggy/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
-index 8860a14..312c8e8 100644
---- a/validator_2_fix/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
-+++ b/validator_2_buggy/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+diff --git a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+index 8860a141..312c8e87 100644
+--- a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
 @@ -450,8 +450,7 @@ public class UrlValidator implements Serializable {
          }
  
          try {
-
+-            // Don't omit host otherwise leading path may be taken as host if it starts with //
 -            URI uri = new URI(null,"localhost",path,null);
 +            URI uri = new URI(null,null,path,null);
              String norm = uri.normalize().getPath();

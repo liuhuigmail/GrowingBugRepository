@@ -1,0 +1,137 @@
+diff --git a/src/test/java/org/apache/commons/validator/routines/ByteValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/ByteValidatorTest.java
+index 98c2ed08..7cfdc848 100644
+--- a/src/test/java/org/apache/commons/validator/routines/ByteValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/ByteValidatorTest.java
+@@ -25,14 +25,6 @@ import java.util.Locale;
+  */
+ public class ByteValidatorTest extends AbstractNumberValidatorTest {
+ 
+-    private static final Byte BYTE_MIN_VAL = Byte.valueOf(Byte.MIN_VALUE);
+-    private static final Byte BYTE_MAX_VAL = Byte.valueOf(Byte.MAX_VALUE);
+-    private static final String BYTE_MAX   =  "127";
+-    private static final String BYTE_MAX_0 =  "127.99999999999999999999999"; // force double rounding
+-    private static final String BYTE_MAX_1 =  "128";
+-    private static final String BYTE_MIN   = "-128";
+-    private static final String BYTE_MIN_0 = "-128.99999999999999999999999"; // force double rounding";
+-    private static final String BYTE_MIN_1 = "-129";
+     /**
+      * Constructor
+      * @param name test name
+@@ -57,18 +49,18 @@ public class ByteValidatorTest extends AbstractNumberValidatorTest {
+         minMinusOne = Long.valueOf(min.longValue() - 1);
+ 
+         // testInvalidStrict()
+-        invalidStrict = new String[] {null, "", "X", "X12", "12X", "1X2", "1.2", BYTE_MAX_1, BYTE_MIN_1, BYTE_MAX_0, BYTE_MIN_0};
++        invalidStrict = new String[] {null, "", "X", "X12", "12X", "1X2", "1.2"};
+ 
+         // testInvalidNotStrict()
+-        invalid       = new String[] {null, "", "X", "X12", BYTE_MAX_1, BYTE_MIN_1};
++        invalid       = new String[] {null, "", "X", "X12"};
+ 
+         // testValid()
+         testNumber    = Byte.valueOf((byte)123);
+         testZero      = Byte.valueOf((byte)0);
+-        validStrict          = new String[] {"0", "123", ",123", BYTE_MAX, BYTE_MIN};
+-        validStrictCompare   = new Number[] {testZero, testNumber, testNumber, BYTE_MAX_VAL, BYTE_MIN_VAL};
+-        valid                = new String[] {"0", "123", ",123", ",123.5", "123X", BYTE_MAX, BYTE_MIN, BYTE_MAX_0, BYTE_MIN_0};
+-        validCompare         = new Number[] {testZero, testNumber, testNumber, testNumber, testNumber, BYTE_MAX_VAL, BYTE_MIN_VAL, BYTE_MAX_VAL, BYTE_MIN_VAL};
++        validStrict          = new String[] {"0", "123", ",123"};
++        validStrictCompare   = new Number[] {testZero, testNumber, testNumber};
++        valid                = new String[] {"0", "123", ",123", ",123.5", "123X"};
++        validCompare         = new Number[] {testZero, testNumber, testNumber, testNumber, testNumber};
+ 
+         testStringUS = ",123";
+         testStringDE = ".123";
+diff --git a/src/test/java/org/apache/commons/validator/routines/IntegerValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/IntegerValidatorTest.java
+index 110ac47a..2a56be83 100644
+--- a/src/test/java/org/apache/commons/validator/routines/IntegerValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/IntegerValidatorTest.java
+@@ -25,15 +25,6 @@ import java.util.Locale;
+  */
+ public class IntegerValidatorTest extends AbstractNumberValidatorTest {
+ 
+-    private static final Integer INT_MIN_VAL = Integer.valueOf(Integer.MIN_VALUE);
+-    private static final Integer INT_MAX_VAL = Integer.valueOf(Integer.MAX_VALUE);
+-    private static final String INT_MAX   =  "2147483647";
+-    private static final String INT_MAX_0 =  "2147483647.99999999999999999999999"; // force double rounding
+-    private static final String INT_MAX_1 =  "2147483648";
+-    private static final String INT_MIN   = "-2147483648";
+-    private static final String INT_MIN_0 = "-2147483648.99999999999999999999999"; // force double rounding";
+-    private static final String INT_MIN_1 = "-2147483649";
+-
+     /**
+      * Constructor
+      * @param name test name
+@@ -58,18 +49,18 @@ public class IntegerValidatorTest extends AbstractNumberValidatorTest {
+         minMinusOne = Long.valueOf(min.longValue() - 1);
+ 
+         // testInvalidStrict()
+-        invalidStrict = new String[] {null, "", "X", "X12", "12X", "1X2", "1.2", INT_MAX_1, INT_MIN_1};
++        invalidStrict = new String[] {null, "", "X", "X12", "12X", "1X2", "1.2"};
+ 
+         // testInvalidNotStrict()
+-        invalid       = new String[] {null, "", "X", "X12", INT_MAX_1, INT_MIN_1};
++        invalid       = new String[] {null, "", "X", "X12"};
+ 
+         // testValid()
+         testNumber    = Integer.valueOf(1234);
+         testZero      = Integer.valueOf(0);
+-        validStrict          = new String[] {"0", "1234", "1,234", INT_MAX, INT_MIN};
+-        validStrictCompare   = new Number[] {testZero, testNumber, testNumber, INT_MAX_VAL, INT_MIN_VAL};
+-        valid                = new String[] {"0", "1234", "1,234", "1,234.5", "1234X", INT_MAX, INT_MIN, INT_MAX_0, INT_MIN_0};
+-        validCompare         = new Number[] {testZero, testNumber, testNumber, testNumber, testNumber, INT_MAX_VAL, INT_MIN_VAL, INT_MAX_VAL, INT_MIN_VAL};
++        validStrict          = new String[] {"0", "1234", "1,234"};
++        validStrictCompare   = new Number[] {testZero, testNumber, testNumber};
++        valid                = new String[] {"0", "1234", "1,234", "1,234.5", "1234X"};
++        validCompare         = new Number[] {testZero, testNumber, testNumber, testNumber, testNumber};
+ 
+         testStringUS = "1,234";
+         testStringDE = "1.234";
+diff --git a/src/test/java/org/apache/commons/validator/routines/LongValidatorTest.java b/src/test/java/org/apache/commons/validator/routines/LongValidatorTest.java
+index 3b8fe089..68114aef 100644
+--- a/src/test/java/org/apache/commons/validator/routines/LongValidatorTest.java
++++ b/src/test/java/org/apache/commons/validator/routines/LongValidatorTest.java
+@@ -25,16 +25,6 @@ import java.util.Locale;
+  */
+ public class LongValidatorTest extends AbstractNumberValidatorTest {
+ 
+-    private static final Long LONG_MIN_VAL = Long.valueOf(Long.MIN_VALUE);
+-    private static final Long LONG_MAX_VAL = Long.valueOf(Long.MAX_VALUE);
+-    private static final String LONG_MAX   =  "9223372036854775807";
+-    private static final String LONG_MAX_0 =  "9223372036854775807.99999999999999999999999"; // force double rounding
+-    private static final String LONG_MAX_1 =  "9223372036854775808";
+-    private static final String LONG_MIN   = "-9223372036854775808";
+-    private static final String LONG_MIN_0 = "-9223372036854775808.99999999999999999999999"; // force double rounding
+-    private static final String LONG_MIN_1 = "-9223372036854775809";
+-
+-    private static final String NINES = "9999999999999999999999999999999999999";
+     /**
+      * Constructor
+      * @param name test name
+@@ -58,20 +48,19 @@ public class LongValidatorTest extends AbstractNumberValidatorTest {
+         min = null;
+         minMinusOne = null;
+ 
+-        
+         // testInvalidStrict()
+-        invalidStrict = new String[] {null, "", "X", "X12", "12X", "1X2", "1.2", LONG_MAX_1, LONG_MIN_1, NINES};
++        invalidStrict = new String[] {null, "", "X", "X12", "12X", "1X2", "1.2"};
+ 
+         // testInvalidNotStrict()
+-        invalid       = new String[] {null, "", "X", "X12", "", LONG_MAX_1, LONG_MIN_1, NINES};
++        invalid       = new String[] {null, "", "X", "X12"};
+ 
+         // testValid()
+         testNumber    = Long.valueOf(1234);
+         testZero      = Long.valueOf(0);
+-        validStrict          = new String[] {"0", "1234", "1,234", LONG_MAX, LONG_MIN};
+-        validStrictCompare   = new Number[] {testZero, testNumber, testNumber, LONG_MAX_VAL, LONG_MIN_VAL};
+-        valid                = new String[] {"0", "1234", "1,234", "1,234.5", "1234X", LONG_MAX, LONG_MIN, LONG_MAX_0, LONG_MIN_0};
+-        validCompare         = new Number[] {testZero, testNumber, testNumber, testNumber, testNumber, LONG_MAX_VAL, LONG_MIN_VAL, LONG_MAX_VAL, LONG_MIN_VAL};
++        validStrict          = new String[] {"0", "1234", "1,234"};
++        validStrictCompare   = new Number[] {testZero, testNumber, testNumber};
++        valid                = new String[] {"0", "1234", "1,234", "1,234.5", "1234X"};
++        validCompare         = new Number[] {testZero, testNumber, testNumber, testNumber, testNumber};
+ 
+         testStringUS = "1,234";
+         testStringDE = "1.234";

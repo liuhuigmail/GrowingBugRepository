@@ -1,7 +1,7 @@
-diff --git a/validator_4_fix/src/main/java/org/apache/commons/validator/routines/EmailValidator.java b/validator_4_buggy/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
-index 51337d9..91d56cf 100644
---- a/validator_4_fix/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
-+++ b/validator_4_buggy/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
+diff --git a/src/main/java/org/apache/commons/validator/routines/EmailValidator.java b/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
+index 51337d95..91d56cfa 100644
+--- a/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
 @@ -42,9 +42,9 @@ public class EmailValidator implements Serializable {
      private static final String QUOTED_USER = "(\"(\\\\\"|[^\"])*\")";
      private static final String WORD = "((" + VALID_CHARS + "|')+|" + QUOTED_USER + ")";
