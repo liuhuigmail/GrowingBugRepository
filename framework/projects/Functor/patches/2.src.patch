@@ -1,15 +1,14 @@
-diff --git a/src/main/java/org/apache/commons/functor/core/composite/UnarySequence.java b/src/main/java/org/apache/commons/functor/core/composite/UnarySequence.java
-index 05c6de8..1e7bcab 100644
---- a/src/main/java/org/apache/commons/functor/core/composite/UnarySequence.java
-+++ b/src/main/java/org/apache/commons/functor/core/composite/UnarySequence.java
+diff --git a/Users/yanjiejiang/icse/functor_2_fix/src/main/java/org/apache/commons/functor/core/composite/UnarySequence.java b/Users/yanjiejiang/icse/functor_2_buggy/src/main/java/org/apache/commons/functor/core/composite/UnarySequence.java
+index 05c6de8..0e30122 100644
+--- a/Users/yanjiejiang/icse/functor_2_fix/src/main/java/org/apache/commons/functor/core/composite/UnarySequence.java
++++ b/Users/yanjiejiang/icse/functor_2_buggy/src/main/java/org/apache/commons/functor/core/composite/UnarySequence.java
 @@ -98,9 +98,7 @@ public class UnarySequence<A> implements UnaryProcedure<A>, Serializable {
       * @return this
       */
      public UnarySequence<A> then(UnaryProcedure<? super A> p) {
 -        if (p != null) {
--            list.add(p);
+             list.add(p);
 -        }
-+        list.add(p);
          return this;
      }
  

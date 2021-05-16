@@ -1,14 +1,13 @@
-diff --git a/src/main/java/org/apache/commons/functor/generator/TransformedGenerator.java b/src/main/java/org/apache/commons/functor/generator/TransformedGenerator.java
-index 8c8e362..0b1aeb6 100644
---- a/src/main/java/org/apache/commons/functor/generator/TransformedGenerator.java
-+++ b/src/main/java/org/apache/commons/functor/generator/TransformedGenerator.java
-@@ -86,8 +86,7 @@ public class TransformedGenerator<I, E> extends BaseGenerator<E> {
-     public int hashCode() {
+diff --git a/Users/yanjiejiang/icse/functor_1_fix/src/main/java/org/apache/commons/functor/generator/TransformedGenerator.java b/Users/yanjiejiang/icse/functor_1_buggy/src/main/java/org/apache/commons/functor/generator/TransformedGenerator.java
+index 8c8e362..c47b747 100644
+--- a/Users/yanjiejiang/icse/functor_1_fix/src/main/java/org/apache/commons/functor/generator/TransformedGenerator.java
++++ b/Users/yanjiejiang/icse/functor_1_buggy/src/main/java/org/apache/commons/functor/generator/TransformedGenerator.java
+@@ -87,7 +87,7 @@ public class TransformedGenerator<I, E> extends BaseGenerator<E> {
          int result = "TransformedGenerator".hashCode();
          result <<= 2;
--        Generator<?> gen = getWrappedGenerator();
+         Generator<?> gen = getWrappedGenerator();
 -        result ^= gen == null ? 0 : gen.hashCode();
-+        result ^= getWrappedGenerator().hashCode();
++        result ^= gen.hashCode();
          result <<= 2;
          result ^= func.hashCode();
          return result;
