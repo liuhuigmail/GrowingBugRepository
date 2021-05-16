@@ -38,7 +38,7 @@ index d3450ed7..d76360f6 100644
 -        t = tis.getNextTarEntry();
 -        assertEquals(name, t.getName());
 -    }
--
+
      private TarArchiveInputStream getTestStream(String name) {
          return new TarArchiveInputStream(
                  TarArchiveInputStreamTest.class.getResourceAsStream(name));
