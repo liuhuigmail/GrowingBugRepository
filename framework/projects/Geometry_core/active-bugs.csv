@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,2ec5d82d4e8a849fe8eff5083657fbd862db51b7,feed702f3266e947835e7685f7b9af30d7849b86,GEOMETRY-51,https://issues.apache.org/jira/browse/GEOMETRY-51
+2,f5bd492f69cf5e2a2596dbfa359c5fbf5f8b41fc,55991385c303a63bea1a02760516ff369f33eaa2,GEOMETRY-91,https://issues.apache.org/jira/browse/GEOMETRY-91
+3,385c02a9b2cc924ebdaacc8ba02f93b76cac31cc,fc9272b2366d6b5944e1c1a9ecf568ff89f95a30,GEOMETRY-99,https://issues.apache.org/jira/browse/GEOMETRY-99

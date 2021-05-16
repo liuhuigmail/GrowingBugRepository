@@ -1,0 +1,30 @@
+diff --git a/commons-geometry-core/src/test/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContextTest.java b/commons-geometry-core/src/test/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContextTest.java
+index d8d4164..e0e26f9 100644
+--- a/commons-geometry-core/src/test/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContextTest.java
++++ b/commons-geometry-core/src/test/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContextTest.java
+@@ -208,25 +208,6 @@ public class EpsilonDoublePrecisionContextTest {
+         Assert.assertEquals(a, c);
+     }
+ 
+-    @Test
+-    public void testEqualsAndHashCode_signedZeroConsistency() {
+-        // arrange
+-        final EpsilonDoublePrecisionContext a = new EpsilonDoublePrecisionContext(0.0);
+-        final EpsilonDoublePrecisionContext b = new EpsilonDoublePrecisionContext(-0.0);
+-        final EpsilonDoublePrecisionContext c = new EpsilonDoublePrecisionContext(0.0);
+-        final EpsilonDoublePrecisionContext d = new EpsilonDoublePrecisionContext(-0.0);
+-
+-        // act/assert
+-        Assert.assertFalse(a.equals(b));
+-        Assert.assertNotEquals(a.hashCode(), b.hashCode());
+-
+-        Assert.assertTrue(a.equals(c));
+-        Assert.assertEquals(a.hashCode(), c.hashCode());
+-
+-        Assert.assertTrue(b.equals(d));
+-        Assert.assertEquals(b.hashCode(), d.hashCode());
+-    }
+-
+     @Test
+     public void testToString() {
+         // arrange

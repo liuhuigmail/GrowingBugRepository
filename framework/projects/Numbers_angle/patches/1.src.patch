@@ -1,0 +1,22 @@
+diff --git a/numbers_1_fix/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java b/numbers_1_buggy/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java
+index 8a7ce0e..cf8f509 100644
+--- a/numbers_1_fix/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java
++++ b/numbers_1_buggy/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java
+@@ -94,21 +94,7 @@ public class PlaneAngle {
+      * {@code center - 0.5 <= a - k < center + 0.5} (in turns).
+      */
+     public PlaneAngle normalize(PlaneAngle center) {
+-        final double lowerBound = center.value - HALF_TURN;
+-        final double upperBound = center.value + HALF_TURN;
+
+-        double normalized = value - Math.floor(value - lowerBound);
+
+-        if (normalized >= upperBound) {
+-            normalized -= 1.0;
+-        }
+
+-        return new PlaneAngle(normalized);
++        return new PlaneAngle(value - Math.floor(value + HALF_TURN - center.value));
+     }
+ 
+     /**

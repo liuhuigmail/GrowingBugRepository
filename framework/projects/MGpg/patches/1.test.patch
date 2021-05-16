@@ -1,0 +1,30 @@
+diff --git a/src/test/java/org/apache/maven/plugins/gpg/GpgVersionTest.java b/src/test/java/org/apache/maven/plugins/gpg/GpgVersionTest.java
+index 337416d..fb6bf47 100644
+--- a/src/test/java/org/apache/maven/plugins/gpg/GpgVersionTest.java
++++ b/src/test/java/org/apache/maven/plugins/gpg/GpgVersionTest.java
+@@ -19,13 +19,11 @@ package org.apache.maven.plugins.gpg;
+  * under the License.
+  */
+ 
+-import org.junit.Test;
+-
+ import static org.junit.Assert.assertTrue;
+ 
+-/**
+- * Tests for {@link GpgVersion}.
+- */
++import org.apache.maven.plugins.gpg.GpgVersion;
++import org.junit.Test;
++
+ public class GpgVersionTest
+ {
+     @Test
+@@ -34,8 +32,6 @@ public class GpgVersionTest
+         assertTrue( GpgVersion.parse( "gpg (GnuPG) 2.2.1" ).isAtLeast( GpgVersion.parse( "gpg (GnuPG) 2.2.1" ) ) );
+         assertTrue( GpgVersion.parse( "gpg (GnuPG) 2.2.1" ).isAtLeast( GpgVersion.parse( "2.1" ) ) );
+         assertTrue( GpgVersion.parse( "gpg (GnuPG/MacGPG2) 2.2.10" ).isAtLeast( GpgVersion.parse( "2.2.10" ) ) );
+-        assertTrue( GpgVersion.parse( "gpg (GnuPG) 2.0.26 (Gpg4win 2.2.3)" )
+-                .isAtLeast( GpgVersion.parse( "2.0.26" ) ) );
+     }
+ 
+ }

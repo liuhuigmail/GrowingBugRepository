@@ -1,0 +1,12 @@
+org.apache.commons.geometry.core.EmbeddingTest
+org.apache.commons.geometry.core.internal.HyperplaneSubsetsTest
+org.apache.commons.geometry.core.partitioning.AbstractConvexHyperplaneBoundedRegionTest
+org.apache.commons.geometry.core.partitioning.AbstractHyperplaneTest
+org.apache.commons.geometry.core.partitioning.bsp.AbstractBSPTreeMergeOperatorTest
+org.apache.commons.geometry.core.partitioning.bsp.AbstractBSPTreeTest
+org.apache.commons.geometry.core.partitioning.bsp.AbstractPartitionedRegionBuilderTest
+org.apache.commons.geometry.core.partitioning.bsp.AbstractRegionBSPTreeBooleanTest
+org.apache.commons.geometry.core.partitioning.bsp.AbstractRegionBSPTreeTest
+org.apache.commons.geometry.core.partitioning.bsp.BSPTreeVisitorTest
+org.apache.commons.geometry.core.partitioning.bsp.RegionCutBoundaryTest
+org.apache.commons.geometry.core.precision.EpsilonDoublePrecisionContextTest

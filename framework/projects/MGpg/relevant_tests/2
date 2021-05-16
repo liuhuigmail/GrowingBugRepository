@@ -1,0 +1,2 @@
+org.apache.maven.plugins.gpg.GpgVersionConsumerTest
+org.apache.maven.plugins.gpg.GpgVersionTest

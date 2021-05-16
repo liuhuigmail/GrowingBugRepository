@@ -3,7 +3,7 @@
 Notably, each bug is composed of a buggy version, a fixed version, a concise patch (bug-fixing changes only), and one or more triggering test cases.
 
 ## Contents of growingBugs
-To date, growingBugs contains 928 bugs from open-source Java projects. 
+To date, growingBugs contains 933 bugs from open-source Java projects. 
 
 | Identifier      | Project name               | Number of bugs | Active bug ids      | Deprecated bug ids (\*) |
 |-----------------|----------------------------|---------------:|---------------------|-------------------------| 
@@ -35,7 +35,9 @@ To date, growingBugs contains 928 bugs from open-source Java projects.
 | Email           | commons-email              |        4       | 2-5                 | None                    |
 | Graph           | commons-graph              |        3       | 1-3                 | None                    |
 | Net             | commons-net                |        18      | 1,3,5,7,9,10,12,14-18,20-21,23-26             | None                    |
-
+| Numbers_angle   | commons-numbers-angle  |              2 | 1-2               | None                    |
+| Geometry_core   | commons-geometry-core  |              2 | 1,3               | None                    |
+| MGpg            | maven-gpg-plugin       |              1 | 1               | None                    |
 
 ## Copyright
 Notably, this bug repository is based on the well-known Defects4J https://github.com/rjust/defects4j. We reuse its source code as well as the bugs in Defects4J. 

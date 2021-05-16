@@ -1,0 +1,29 @@
+diff --git a/mgpg_1_fix/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java b/mgpg_1_buggy/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java
+index 35b33e0..6e64577 100644
+--- a/mgpg_1_fix/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java
++++ b/mgpg_1_buggy/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java
+@@ -47,13 +47,13 @@ public class GpgVersion implements Comparable<GpgVersion>
+     @Override
+     public int compareTo( GpgVersion other )
+     {
+-        Pattern p = Pattern.compile( "(\\d+\\.)+(\\d+)" );
++        Pattern p = Pattern.compile( "([.\\d]+)$" );
+ 
+         String[] thisSegments;
+         Matcher m = p.matcher( rawVersion );
+         if ( m.find() )
+         {
+-            thisSegments  = m.group( 0 ).split( "\\." );
++            thisSegments  = m.group( 1 ).split( "\\." );
+         }
+         else
+         {
+@@ -64,7 +64,7 @@ public class GpgVersion implements Comparable<GpgVersion>
+         m = p.matcher( other.rawVersion );
+         if ( m.find() )
+         {
+-            otherSegments  = m.group( 0 ).split( "\\." );
++            otherSegments  = m.group( 1 ).split( "\\." );
+         }
+         else
+         {

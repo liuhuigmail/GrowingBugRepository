@@ -1,0 +1,17 @@
+org.apache.commons.geometry.core.Embedding
+org.apache.commons.geometry.core.partitioning.AbstractConvexHyperplaneBoundedRegion
+org.apache.commons.geometry.core.partitioning.ConvexSubHyperplane
+org.apache.commons.geometry.core.partitioning.EmbeddingHyperplane
+org.apache.commons.geometry.core.partitioning.Hyperplane
+org.apache.commons.geometry.core.partitioning.HyperplaneBoundedRegion
+org.apache.commons.geometry.core.partitioning.Split
+org.apache.commons.geometry.core.partitioning.SplitLocation
+org.apache.commons.geometry.core.partitioning.Splittable
+org.apache.commons.geometry.core.partitioning.SubHyperplane
+org.apache.commons.geometry.core.Point
+org.apache.commons.geometry.core.precision.DoublePrecisionContext
+org.apache.commons.geometry.core.precision.EpsilonDoublePrecisionContext
+org.apache.commons.geometry.core.Region
+org.apache.commons.geometry.core.RegionLocation
+org.apache.commons.geometry.core.Spatial
+org.apache.commons.geometry.core.Transform

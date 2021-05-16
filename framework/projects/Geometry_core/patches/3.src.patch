@@ -1,0 +1,13 @@
+diff --git a/geometry_3_fix/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java b/geometry_3_buggy/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java
+index e9a5121..bfa6446 100644
+--- a/geometry_3_fix/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java
++++ b/geometry_3_buggy/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java
+@@ -94,7 +94,7 @@ public class EpsilonDoublePrecisionContext extends DoublePrecisionContext implem
+ 
+         final EpsilonDoublePrecisionContext other = (EpsilonDoublePrecisionContext) obj;
+ 
+-        return Double.compare(this.epsilon, other.epsilon) == 0;
++        return this.epsilon == other.epsilon;
+     }
+ 
+     /** {@inheritDoc} **/

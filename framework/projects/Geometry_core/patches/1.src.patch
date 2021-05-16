@@ -1,0 +1,32 @@
+diff --git a/geometry_1_fix/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java b/geometry_1_buggy/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java
+index cc45d27..dfc9b34 100644
+--- a/geometry_1_fix/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java
++++ b/geometry_1_buggy/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java
+@@ -16,8 +16,6 @@
+  */
+ package org.apache.commons.geometry.core.precision;
+ 
+-import java.io.Serializable;
+ import org.apache.commons.numbers.core.Precision;
+ 
+ /** Simple {@link DoublePrecisionContext} subclass that uses an absolute epsilon value to
+@@ -30,11 +28,7 @@ import org.apache.commons.numbers.core.Precision;
+  *
+  * @see Precision#compareTo(double, double, double)
+  */
+-public class EpsilonDoublePrecisionContext extends DoublePrecisionContext implements Serializable {
+-    private static final long serialVersionUID = 20191212L;
+
++public class EpsilonDoublePrecisionContext extends DoublePrecisionContext {
+     /** Epsilon value. */
+     private final double epsilon;
+ 
+@@ -42,12 +36,8 @@ public class EpsilonDoublePrecisionContext extends DoublePrecisionContext implem
+
+     public EpsilonDoublePrecisionContext(final double eps) {
+-        if (!Double.isFinite(eps) || eps < 0.0) {
+-            throw new IllegalArgumentException("Invalid epsilon value: " + eps);
+-        }
+         this.epsilon = eps;
+     }
+ 

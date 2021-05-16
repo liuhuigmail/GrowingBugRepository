@@ -1,0 +1,2 @@
+org.apache.commons.geometry.core.GeometryTestUtils
+org.apache.commons.geometry.core.precision.EpsilonDoublePrecisionContextTest
