@@ -28,8 +28,7 @@ To date, growingBugs contains 1003 bugs from open-source Java projects.
 | Functor         | commons-functor            |        2       | 1-2                 | None                    |
 | Imaging         | commons-imaging            |        9       | 1,3-4,6-8,10-11,14  | None                    |
 | IO              | commons-io                 |        2       | 1,3                 | None                    |
-| JXR             | maven-jxr                  |        1       | 1                   | None                    |
-| MShade          | maven-shade-plugin         |        7       | 1-7                 | None                    |
+| MShade          | maven-shade-plugin         |        5       | 3-7                 | None                    |
 | Santuario       | santuario-java             |        4       | 1-4                 | None                    |
 | Tika            | tika                       |        6       | 1-6                 | None                    |
 | Validator       | commons-validator          |        25      | 1-25                | None                    |
