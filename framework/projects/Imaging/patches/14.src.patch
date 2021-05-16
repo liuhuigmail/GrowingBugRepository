@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java b/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
-index 4b1b57bf..00a81a03 100644
---- a/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
-+++ b/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
+diff --git a/imaging_14_fix/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java b/imaging_14_buggy/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
+index 4b1b57b..00a81a0 100644
+--- a/imaging_14_fix/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
++++ b/imaging_14_buggy/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
 @@ -154,9 +154,6 @@ public class PngImageParser extends ImageParser {
  
          while (true) {

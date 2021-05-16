@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/imaging/formats/png/chunks/PngChunkIhdr.java b/src/main/java/org/apache/commons/imaging/formats/png/chunks/PngChunkIhdr.java
-index 614b12d0..f8ad5327 100644
---- a/src/main/java/org/apache/commons/imaging/formats/png/chunks/PngChunkIhdr.java
-+++ b/src/main/java/org/apache/commons/imaging/formats/png/chunks/PngChunkIhdr.java
+diff --git a/imaging_11_fix/src/main/java/org/apache/commons/imaging/formats/png/chunks/PngChunkIhdr.java b/imaging_11_buggy/src/main/java/org/apache/commons/imaging/formats/png/chunks/PngChunkIhdr.java
+index 614b12d..f8ad532 100644
+--- a/imaging_11_fix/src/main/java/org/apache/commons/imaging/formats/png/chunks/PngChunkIhdr.java
++++ b/imaging_11_buggy/src/main/java/org/apache/commons/imaging/formats/png/chunks/PngChunkIhdr.java
 @@ -50,7 +50,7 @@ public class PngChunkIhdr extends PngChunk {
          compressionMethod = readByte("CompressionMethod", is, "Not a Valid Png File: IHDR Corrupt");
          filterMethod = readByte("FilterMethod", is, "Not a Valid Png File: IHDR Corrupt");

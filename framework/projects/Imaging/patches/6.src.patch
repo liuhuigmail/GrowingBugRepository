@@ -1,13 +1,12 @@
-diff --git a/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java b/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
-index 5528d84c..c55e797f 100644
---- a/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
-+++ b/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
+diff --git a/imaging_6_fix/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java b/imaging_6_buggy/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
+index 5528d84..c55e797 100644
+--- a/imaging_6_fix/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
++++ b/imaging_6_buggy/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
 @@ -364,11 +364,6 @@ public class PnmImageParser extends ImageParser {
          if (params.containsKey(PARAM_KEY_FORMAT)) {
              params.remove(PARAM_KEY_FORMAT);
          }
--
--        // clear rawbits key.
+
 -        if (params.containsKey(PARAM_KEY_PNM_RAWBITS)) {
 -            params.remove(PARAM_KEY_PNM_RAWBITS);
 -        }

@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java b/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
-index a6decf22..07ae14da 100644
---- a/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
-+++ b/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
+diff --git a/imaging_10_fix/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java b/imaging_10_buggy/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
+index a6decf2..07ae14d 100644
+--- a/imaging_10_fix/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
++++ b/imaging_10_buggy/src/main/java/org/apache/commons/imaging/formats/png/PngImageParser.java
 @@ -273,7 +273,7 @@ public class PngImageParser extends ImageParser {
      @Override
      public ImageMetadata getMetadata(final ByteSource byteSource, final Map<String, Object> params)
