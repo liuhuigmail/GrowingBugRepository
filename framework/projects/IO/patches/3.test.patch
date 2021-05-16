@@ -57,7 +57,7 @@ index 76dfc22a..00000000
 
 -    private class CheckingInputStream extends ByteArrayInputStream {
 -        private boolean closed;
--
+
 -        public CheckingInputStream(byte[] data) {
 -            super(data);
 -            closed = false;
