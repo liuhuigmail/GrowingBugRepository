@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java b/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
-index 5129f23e..3ef82df8 100644
---- a/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
-+++ b/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
+diff --git a/io_1_fix/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java b/io_1_buggy/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
+index 5129f23..3ef82df 100644
+--- a/io_1_fix/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
++++ b/io_1_buggy/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
 @@ -164,7 +164,6 @@ public final class FileAlterationMonitor implements Runnable {
          }
          running = false;
