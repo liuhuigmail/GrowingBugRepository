@@ -1,6 +1,7 @@
 #!/bin/bash
-
-cat LargeApacheProjects.txt | while read line
+WORK_DIR="run_test_pro"
+echo "WORK_DIR: $WORK_DIR"
+cat $WORK_DIR/LargeApacheProjects.txt | while read line
 do
     # read project information
     read -ra strarr <<<"$line"
@@ -30,7 +31,7 @@ do
    	continue
     fi
     
-    work_dir="$path/bug-mining/$project_id"
+    work_dir="$path/$WORK_DIR/$project_id"
     echo "WORK_DIR: $work_dir"
     
 
@@ -51,7 +52,31 @@ do
    	continue
    fi
    echo -e "Initialize project $project_id and collect issues successfully!\n\n"
-   
+done
+cat $WORK_DIR/LargeApacheProjects.txt | while read line
+do
+    # read project information
+    read -ra strarr <<<"$line"
+    project_id=${strarr[0]} 
+    project_name=${strarr[1]}
+    repository_url=${strarr[2]}
+    issue_tracker_name=${strarr[3]}
+    issue_tracker_project_id=${strarr[4]}
+    bug_fix_regex=${strarr[5]}
+    sub_project=${strarr[6]}
+    echo "Getting the project information ..."
+    echo "PROJECT_ID: $project_id"
+    echo "PROJECT_NAME: $project_name"
+    echo "REPOSITORY_URL: $repository_url"
+    echo "ISSUE_TRACKER_NAME: $issue_tracker_name"
+    echo "ISSUE_TRACKER_PROJECT_ID: $issue_tracker_project_id"
+    echo "BUG_FIX_REGEX: $bug_fix_regex"
+    echo "SUB_PROJECT: $sub_project"
+    # make bug-mining directory
+    cd `dirname $0`
+    work_dir="$path/$WORK_DIR/$project_id"
+    echo "WORK_DIR: $work_dir"
+    path=$PWD   
    # Initialize the project revisions
    perl ./initialize-revisions.pl -p $project_id -w $work_dir -s $sub_project
    if [ $? != 0 ]
@@ -94,4 +119,3 @@ do
    #    rm -rf $work_dir
    # fi
 done
-

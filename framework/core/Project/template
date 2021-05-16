@@ -78,6 +78,7 @@ sub _post_checkout {
     my ($self, $rev_id, $work_dir,$SUBPROJ) = @_;
     #print("$SUBPROJ !\n");
     my $project_dir = "$PROJECTS_DIR/$self->{pid}";
+    $work_dir.="/$SUBPROJ";
     # Check whether ant build file exists
     unless (-e "$work_dir/build.xml") {
         my $build_files_dir = "$PROJECTS_DIR/$PID/build_files/$rev_id";
@@ -93,7 +94,7 @@ sub _post_checkout {
         while(<IN>) {
 
             $_ =~ s/compile-tests/compile\.tests/g;
-            $_ =~ s/=src\//=$SUBPROJ\/src\//g;
+            #$_ =~ s/=src\//=$SUBPROJ\/src\//g;
             #$_ =~ s/classesdir/classes\.dir/g;
             #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
             
@@ -113,7 +114,7 @@ sub _post_checkout {
             $_ =~ s/compile-tests/compile\.tests/g;
             #$_ =~ s/classesdir/classes\.dir/g;
             #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
-            $_ =~ s/src\//$SUBPROJ\/src\//g;
+            #$_ =~ s/src\//$SUBPROJ\/src\//g;
             #support java8
             $_ =~ s/fork="false"/fork="true"/g;
             print OUT $_;
@@ -127,7 +128,7 @@ sub _post_checkout {
         open(OUT, '>'."$work_dir/maven-build.properties") or die $!;
         while(<IN>) {
             $_ =~ s/compile-tests/compile\.tests/g;
-            $_ =~ s/=src\//=$SUBPROJ\/src\//g;
+            #$_ =~ s/=src\//=$SUBPROJ\/src\//g;
             #$_ =~ s/classesdir/classes\.dir/g;
             #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
             
@@ -162,28 +163,28 @@ sub initialize_revision {
     $self->SUPER::initialize_revision($rev_id);
 
     my $work_dir = $self->{prog_root};
-    my $result ; # = _ant_layout($work_dir) // _maven_layout($work_dir);
+    my $result  = _ant_layout($work_dir) // _maven_layout($work_dir);
     
    if (-e "$work_dir/src/main/java" and -e "$work_dir/src/test/java"){
-        $result = {src=>"$sub_project/src/main/java", test=>"$sub_project/src/test/java"} unless defined $result;
+        $result = {src=>"src/main/java", test=>"src/test/java"} unless defined $result;
     }
     elsif (-e "$work_dir/src/main/java" and -e "$work_dir/src/tests/java"){
-        $result = {src=>"$sub_project/src/main/java", test=>"$sub_project/src/tests/java"} unless defined $result;
+        $result = {src=>"src/main/java", test=>"src/tests/java"} unless defined $result;
     }
     elsif (-e "$work_dir/src/main" and -e "$work_dir/src/testcases"){
-        $result = {src=>"$sub_project/src/main", test=>"$sub_project/src/testcases"} unless defined $result;
+        $result = {src=>"src/main", test=>"src/testcases"} unless defined $result;
     }
     elsif (-e "$work_dir/src/main" and -e "$work_dir/src/tests/junit"){
-        $result = {src=>"$sub_project/src/main", test=>"$sub_project/src/tests/junit"} unless defined $result;
+        $result = {src=>"src/main", test=>"src/tests/junit"} unless defined $result;
     }
     elsif (-e "$work_dir/src/main" and -e "$work_dir/src/tests"){
-        $result = {src=>"$sub_project/src/main", test=>"$sub_project/src/tests"} unless defined $result;
+        $result = {src=>"src/main", test=>"src/tests"} unless defined $result;
     }
     elsif (-e "$work_dir/src/java" and -e "$work_dir/src/test"){
-        $result = {src=>"$sub_project/src/java", test=>"$sub_project/src/test"} unless defined $result;
+        $result = {src=>"src/java", test=>"src/test"} unless defined $result;
     }
     elsif (-e "$work_dir/src/java" and -e "$work_dir/src/tests"){
-        $result = {src=>"$sub_project/src/java", test=>"$sub_project/src/tests"} unless defined $result;
+        $result = {src=>"src/java", test=>"src/tests"} unless defined $result;
     }
     else {
         if (-e "$work_dir"){
@@ -195,7 +196,7 @@ sub initialize_revision {
     	}
     }
     
-    $self->_add_to_layout_map($rev_id, $result->{src}, $result->{test});
+    $self->_add_to_layout_map($rev_id, $sub_project."/".$result->{src}, $sub_project."/".$result->{test});
     $self->_cache_layout_map(); # Force cache rebuild
 }
 

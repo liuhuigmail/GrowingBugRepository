@@ -1,6 +1,7 @@
 #!/bin/bash
-
-cat LargeApacheProjects.txt | while read line
+WORK_DIR="run_test_pro"
+echo "WORK_DIR: $WORK_DIR"
+cat $WORK_DIR/LargeApacheProjects.txt | while read line
 do
     # read project information
     read -ra strarr <<<"$line"
@@ -30,11 +31,16 @@ do
    	continue
     fi
     
-    work_dir="$path/bug-mining/$project_id"
+    work_dir="$WORK_DIR/$project_id"
     echo "WORK_DIR: $work_dir"
     
-
-    
+   if [ -f "$WORK_DIR/$project_id/issues.txt" ]
+   then
+        echo -e "Initialize project $project_id and collect issues have already finished!\n\n"
+   	continue
+   fi
+   
+    #rm -rf $work_dir
     # Initialize project and collect issues
     perl ./initialize-project-and-collect-issues.pl -p $project_id \
                                                          -n $project_name \
@@ -43,11 +49,11 @@ do
                                                          -g $issue_tracker_name \
                                                          -t $issue_tracker_project_id \
                                                          -e $bug_fix_regex 
+   continue
    if [ $? != 0 ]
    then
    	echo -e "Initialize project $project_id and collect issues failed!\n\n"
    	echo "${project_id}, Initialization error!" >> error_info.txt
-   	rm -rf $work_dir
    	continue
    fi
    echo -e "Initialize project $project_id and collect issues successfully!\n\n"
@@ -58,7 +64,6 @@ do
    then
    	echo -e "Initialize the project $project_id revisions failed!\n\n"
    	echo "${project_id}, Initialize the revisions error!" >> error_info.txt
-   	rm -rf $work_dir
    	continue
    fi
    echo -e "Initialize the project $project_id revisions successfully!\n\n"
@@ -72,7 +77,6 @@ do
    then
    	echo -e "Analyze all revisions of the project $project_id failed!\n\n"
    	echo "${project_id}, Analyze all revisions of the project error!" >> error_info.txt
-   	rm -rf $work_dir
    	continue
    fi
    echo -e "Analyze all revisions of the project $project_id successfully!\n\n"
@@ -83,7 +87,6 @@ do
    then
    	echo -e "Determine triggering tests of project $project_id failed!\n\n"
    	echo "${project_id}, Determine triggering tests of the project error!" >> error_info.txt
-   	rm -rf $work_dir
    	continue
    fi
    echo -e "Determine triggering tests of project $project_id failed successfully!\n\n"
@@ -94,4 +97,3 @@ do
    #    rm -rf $work_dir
    # fi
 done
-

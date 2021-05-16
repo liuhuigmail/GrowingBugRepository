@@ -120,18 +120,17 @@ sub _init_version {
 
     my $work_dir = "${TMP_DIR}/${vid}";
     $project->{prog_root} = $work_dir;
-
     my $rev_id = $project->lookup("${vid}");
-
+    
     # Use the VCS checkout routine, which does not apply the cached, possibly
     # minimized patch to obtain the buggy version.
     my $t;
     $project->{_vcs}->checkout_vid("${vid}", $work_dir ) or die "Cannot checkout $vid version";
-
-    if (defined $SUBPROJ) {
-        $work_dir .= "/$SUBPROJ/";
-        $project->{prog_root} = $work_dir;
-    }
+    
+    my $temp_work_dir=$work_dir;
+    $work_dir .= "/$SUBPROJ/";
+    $project->{prog_root} = $work_dir;
+    
     
     system("mkdir -p $ANALYZER_OUTPUT/$bid");
     if (-e "$work_dir/build.xml") {
@@ -140,8 +139,12 @@ sub _init_version {
         Utils::exec_cmd($cmd, "Run build-file analyzer on build.xml.");
     } elsif (-e "$work_dir/pom.xml") {
         #here are two patterns : one is just deleting -SNAPSHOT , the other is changing the version and deleting -SNAPSHOT
-    	#system("sed -i \"s/2.0.0-SNAPSHOT/1.15/g\"  `grep SNAPSHOT -rl $work_dir`");
-    	system("sed -i \"s/-SNAPSHOT//g\"  `grep SNAPSHOT -rl $work_dir`");
+    	#system("sed -i \"s/<xmlsec\.version>2\.2\.0-SNAPSHOT<\/xmlsec\.version>/<xmlsec\.version>2\.2\.3-SNAPSHOT<\/xmlsec\.version>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
+    	
+    	system("sed -i \"s/\<bundle\.version\>2\.0-SNAPSHOT\<\\/bundle\.version\>/\<bundle\.version\>2\.0\<\\/bundle\.version\>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
+    	
+    	system("sed -i \"s/\<xmlsec\.version\>2\..\..-SNAPSHOT\<\\/xmlsec\.version\>/\<xmlsec\.version\>2\.2\.3-SNAPSHOT\<\\/xmlsec\.version\>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
+    	
     	#delete multi lines 
     	#system("sed   -i  '/\<parent/,/parent\>/d' `grep parent -rl $work_dir` ");
     	
@@ -156,7 +159,7 @@ sub _init_version {
                   " && cp build.xml $GEN_BUILDFILE_DIR/$rev_id 2>&1";
         Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) or next;
         #Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) or die;
-        #???
+        #system("cat $work_dir/maven-build.xml");
         $cmd = " cd $work_dir" .
                " && java -jar $LIB_DIR/analyzer.jar $work_dir $ANALYZER_OUTPUT/$bid maven-build.xml 2>&1";
         #Utils::exec_cmd($cmd, "Run build-file analyzer on maven-ant.xml.") or die;
@@ -290,7 +293,7 @@ foreach my $bid (@ids) {
     # Clean the temporary directory
     Utils::exec_cmd("rm -rf $TMP_DIR && mkdir -p $TMP_DIR", "Cleaning working directory")
             or die "Cannot clean working directory";
-    $project->{prog_root} = $TMP_DIR;
+    $project->{prog_root} = $TMP_DIR."/$SUBPROJ";
     $project->checkout_vid("${bid}f", $TMP_DIR, 1,$SUBPROJ) or die "Cannot checkout fixed version";
     $project->sanity_check();
 

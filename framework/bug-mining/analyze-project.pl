@@ -162,9 +162,7 @@ system("mkdir -p $TMP_DIR");
 
 # Set up project
 my $project = Project::create_project($PID);
-
-$project->{prog_root} = "$TMP_DIR";
-
+$project->{prog_root} = "$TMP_DIR/$SUBPROJ";
 # Get database handle for results
 my $dbh = DB::get_db_handle($TAB_REV_PAIRS, $db_dir);
 my @COLS = DB::get_tab_columns($TAB_REV_PAIRS) or die;
@@ -254,10 +252,11 @@ sub _check_t2v2 {
 
     # Clean previous results
     `>$FAILING_DIR/$v2` if -e "$FAILING_DIR/$v2";
-
+    
+    
     # Checkout v2
     $project->checkout_vid("${bid}f",  $TMP_DIR, 1,$SUBPROJ) == 1 or die;
-
+    
     # Compile v2 ant t2
     my $ret = $project->compile();
     _add_bool_result($data, $COMP_V2, $ret) or return 0;
