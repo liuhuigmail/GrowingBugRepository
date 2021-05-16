@@ -3,14 +3,14 @@
 Notably, each bug is composed of a buggy version, a fixed version, a concise patch (bug-fixing changes only), and one or more triggering test cases.
 
 ## Contents of growingBugs
-To date, growingBugs contains 1007 bugs from open-source Java projects. 
+To date, growingBugs contains 1004 bugs from open-source Java projects. 
 
 | Identifier      | Project name               | Number of bugs | Active bug ids      | Deprecated bug ids (\*) |
 |-----------------|----------------------------|---------------:|---------------------|-------------------------| 
 | Chart           | jfreechart                 |       26       | 1-26                | None                    |
 | Cli             | commons-cli                |       39       | 1-5,7-40            | 6                       |
 | Closure         | closure-compiler           |      174       | 1-62,64-92,94-176   | 63,93                   |
-| Codec           | commons-codec              |       27       | 1-27                | None                    |
+| Codec           | commons-codec              |       24       | 1-24                | None                    |
 | Collections     | commons-collections        |        4       | 25-28               | 1-24                    |
 | Compress        | commons-compress           |       54       | 1-54                | None                    |
 | Csv             | commons-csv                |       17       | 1-17                | None                    |
