@@ -6,102 +6,69 @@ index 36a4358..b8a9e26 100644
  
          g.getEdge( source, target );
      }
--
--    /**
--     * Test method for
--     * {@link org.apache.commons.graph.model.BaseMutableGraph#removeEdge(org.apache.commons.graph.Edge)}
--     */
+
 -    @Test
 -    public final void testDirectedGraphRemoveEdge()
 -    {
--        // Test a complete undirect graph.
 -        final DirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge> g = new DirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge>();
--
 -        final BaseLabeledVertex source = new BaseLabeledVertex( valueOf( 1 ) );
 -        final BaseLabeledVertex target = new BaseLabeledVertex( valueOf( 2 ) );
--
 -        buildCompleteGraph( 10, g );
--
 -        BaseLabeledEdge e = g.getEdge( source, target );
--        g.removeEdge( e );
--        
+-        g.removeEdge( e );  
 -        BaseLabeledEdge edge = g.getEdge( source, target );
 -        assertNull( edge  );
 -    }
--    
--    /**
--     * Test method for
--     * {@link org.apache.commons.graph.model.BaseMutableGraph#removeEdge(org.apache.commons.graph.Edge)}
--     */
+
 -    @Test
 -    public final void testUndirectedGraphRemoveEdge()
 -    {
--        // Test a complete undirect graph.
+
 -        final UndirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge> g =
 -            new UndirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge>();
--
 -        final BaseLabeledVertex source = new BaseLabeledVertex( valueOf( 1 ) );
 -        final BaseLabeledVertex target = new BaseLabeledVertex( valueOf( 2 ) );
--
 -        buildCompleteGraph( 10, g );
--
 -        BaseLabeledEdge e = g.getEdge( source, target );
 -        g.removeEdge( e );
--
 -        BaseLabeledEdge edge = g.getEdge( source, target );
--
 -        assertNull( edge );
 -    }
--    
--    /**
--     * Test method for
--     * {@link org.apache.commons.graph.model.BaseMutableGraph#removeEdge(org.apache.commons.graph.Edge)}
--     */
+
 -    @Test( expected = GraphException.class )
 -    public final void testUndirectedGraphRemoveEdgeNotExists()
 -    {
--        // Test a complete undirect graph.
+
 -        UndirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge> g = null;
 -        BaseLabeledEdge e = null;
 -        try
 -        {
 -            g = new UndirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge>();
 -            buildCompleteGraph( 10, g );
--
 -            e = new BaseLabeledEdge( "NOT EXIST" );
 -        }
 -        catch ( GraphException ex )
 -        {
 -            fail( ex.getMessage() );
 -        }
--
 -        g.removeEdge( e );
--
 -    }
--    
--    /**
--     * Test method for
--     * {@link org.apache.commons.graph.model.BaseMutableGraph#removeEdge(org.apache.commons.graph.Edge)}
--     */
+
 -    @Test( expected = GraphException.class )
 -    public final void testDirectedGraphRemoveEdgeNotExists()
 -    {
--        // Test a complete undirect graph.
 -        DirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge> g = null;
 -        BaseLabeledEdge e = null;
 -        try
 -        {
 -            g = new DirectedMutableGraph<BaseLabeledVertex, BaseLabeledEdge>();
 -            buildCompleteGraph( 10, g );
--
 -            e = new BaseLabeledEdge( "NOT EXIST" );
 -        }
 -        catch ( GraphException ex )
 -        {
 -            fail( ex.getMessage() );
 -        }
--
 -        g.removeEdge( e );
--
 -    }
  }
