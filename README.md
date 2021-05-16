@@ -34,7 +34,7 @@ To date, growingBugs contains 1003 bugs from open-source Java projects.
 | Validator       | commons-validator          |        20      | 2,4,6-9,11-21,23-25 | None                    |
 | MEar            | maven-ear-plugin           |        1       | 1                   | None                    |
 | MGpg            | maven-gpg-plugin           |        3       | 1-3                 | None                    |
-| Pool            | commons-pool               |        30      | 1-30                | None                    |
+| Pool            | commons-pool               |        19      | 1-2,4-7,10-14,16,20-21,24,26-27,29-30| None   |
 | Email           | commons-email              |        4       | 2-5                 | None                    |
 | Graph           | commons-graph              |        4       | 1-4                 | None                    |
 | Digester        | commons-digester           |        1       | 1                   | None                    |

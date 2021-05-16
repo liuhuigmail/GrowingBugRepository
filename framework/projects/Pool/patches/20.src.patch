@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java b/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
-index 97081f52..77b6386c 100644
---- a/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
-+++ b/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
+diff --git a/pool_20_fix/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java b/pool_20_buggy/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
+index 97081f5..77b6386 100644
+--- a/pool_20_fix/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
++++ b/pool_20_buggy/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
 @@ -243,19 +243,13 @@ public class DefaultPooledObject<T> implements PooledObject<T> {
  
      @Override

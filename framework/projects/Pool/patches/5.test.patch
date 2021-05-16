@@ -14,9 +14,6 @@ index 8c757238..b9e18de3 100644
          assertEquals("Expected half the threads to fail",wtt.length/2,failed);
      }
  
--    /**
--     * Test case for POOL-180.
--     */
 -    public void testMaxActivePerKeyExceeded() {
 -        WaiterFactory factory = new WaiterFactory(0, 20, 0, 0, 0, 0, 8, 5, 0);
 -        pool = new GenericKeyedObjectPool(factory);
@@ -27,7 +24,7 @@ index 8c757238..b9e18de3 100644
 -        pool.setMaxWait(-1);
 -        runTestThreads(20, 300, 250);
 -    }
--    
+   
      /*
       * Very simple test thread that just tries to borrow an object from
       * the provided pool with the specified key and returns it

@@ -7,8 +7,6 @@ index 3b0c2ec8..770d2c0b 100644
      }
      
 -    public void testConstructors() {
--        
--        // Make constructor arguments all different from defaults
 -        int maxActive = 1;
 -        int maxIdle = 2;
 -        long maxWait = 3;
@@ -22,7 +20,7 @@ index 3b0c2ec8..770d2c0b 100644
 -        long timeBetweenEvictionRunsMillis = 8;
 -        byte whenExhaustedAction = GenericObjectPool.WHEN_EXHAUSTED_GROW;
 -        boolean lifo = false;
--        
+       
 -        GenericKeyedObjectPool pool = new GenericKeyedObjectPool();
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_MAX_ACTIVE, pool.getMaxActive());
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_MAX_IDLE, pool.getMaxIdle());
@@ -44,7 +42,7 @@ index 3b0c2ec8..770d2c0b 100644
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_WHEN_EXHAUSTED_ACTION,
 -                pool.getWhenExhaustedAction());
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_LIFO, pool.getLifo());
--        
+       
 -        GenericKeyedObjectPool.Config config = new GenericKeyedObjectPool.Config();
 -        config.lifo = lifo;
 -        config.maxActive = maxActive;
@@ -75,7 +73,7 @@ index 3b0c2ec8..770d2c0b 100644
 -                pool.getTimeBetweenEvictionRunsMillis());
 -        assertEquals(whenExhaustedAction,pool.getWhenExhaustedAction());
 -        assertEquals(lifo, pool.getLifo());
--        
+       
 -        pool = new GenericKeyedObjectPool(null, maxActive);
 -        assertEquals(maxActive, pool.getMaxActive());
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_MAX_IDLE, pool.getMaxIdle());
@@ -97,7 +95,7 @@ index 3b0c2ec8..770d2c0b 100644
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_WHEN_EXHAUSTED_ACTION,
 -                pool.getWhenExhaustedAction());
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_LIFO, pool.getLifo());
--        
+      
 -        pool = new GenericKeyedObjectPool(null, maxActive, whenExhaustedAction, maxWait);
 -        assertEquals(maxActive, pool.getMaxActive());
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_MAX_IDLE, pool.getMaxIdle());
@@ -118,7 +116,7 @@ index 3b0c2ec8..770d2c0b 100644
 -                pool.getTimeBetweenEvictionRunsMillis());
 -        assertEquals(whenExhaustedAction,pool.getWhenExhaustedAction());
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_LIFO, pool.getLifo());
--        
+   
 -        pool = new GenericKeyedObjectPool(null, maxActive, whenExhaustedAction,
 -                   maxWait, testOnBorrow, testOnReturn);
 -        assertEquals(maxActive, pool.getMaxActive());
@@ -138,7 +136,7 @@ index 3b0c2ec8..770d2c0b 100644
 -                pool.getTimeBetweenEvictionRunsMillis());
 -        assertEquals(whenExhaustedAction,pool.getWhenExhaustedAction());
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_LIFO, pool.getLifo());
--        
+ 
 -        pool = new GenericKeyedObjectPool(null, maxActive, whenExhaustedAction,
 -                maxWait, maxIdle);
 -        assertEquals(maxActive, pool.getMaxActive());
@@ -160,7 +158,7 @@ index 3b0c2ec8..770d2c0b 100644
 -                pool.getTimeBetweenEvictionRunsMillis());
 -        assertEquals(whenExhaustedAction,pool.getWhenExhaustedAction());
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_LIFO, pool.getLifo());
--
+
 -        pool = new GenericKeyedObjectPool(null, maxActive, whenExhaustedAction,
 -                maxWait, maxIdle, testOnBorrow, testOnReturn);
 -        assertEquals(maxActive, pool.getMaxActive());
@@ -180,7 +178,7 @@ index 3b0c2ec8..770d2c0b 100644
 -                pool.getTimeBetweenEvictionRunsMillis());
 -        assertEquals(whenExhaustedAction,pool.getWhenExhaustedAction());
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_LIFO, pool.getLifo());
--
+
 -        pool = new GenericKeyedObjectPool(null, maxActive, whenExhaustedAction,
 -                maxWait, maxIdle, testOnBorrow, testOnReturn,
 -                timeBetweenEvictionRunsMillis, numTestsPerEvictionRun,
@@ -202,7 +200,7 @@ index 3b0c2ec8..770d2c0b 100644
 -                pool.getTimeBetweenEvictionRunsMillis());
 -        assertEquals(whenExhaustedAction,pool.getWhenExhaustedAction());
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_LIFO, pool.getLifo());
--        
+ 
 -        pool = new GenericKeyedObjectPool(null, maxActive, whenExhaustedAction,
 -                maxWait, maxIdle, maxTotal, testOnBorrow, testOnReturn,
 -                timeBetweenEvictionRunsMillis, numTestsPerEvictionRun,
@@ -224,7 +222,7 @@ index 3b0c2ec8..770d2c0b 100644
 -                pool.getTimeBetweenEvictionRunsMillis());
 -        assertEquals(whenExhaustedAction,pool.getWhenExhaustedAction());
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_LIFO, pool.getLifo());
--        
+ 
 -        pool = new GenericKeyedObjectPool(null, maxActive, whenExhaustedAction,
 -                maxWait, maxIdle, maxTotal, minIdle, testOnBorrow, testOnReturn,
 -                timeBetweenEvictionRunsMillis, numTestsPerEvictionRun,
@@ -246,7 +244,7 @@ index 3b0c2ec8..770d2c0b 100644
 -                pool.getTimeBetweenEvictionRunsMillis());
 -        assertEquals(whenExhaustedAction,pool.getWhenExhaustedAction());
 -        assertEquals(GenericKeyedObjectPool.DEFAULT_LIFO, pool.getLifo());
--        
+
 -        pool = new GenericKeyedObjectPool(null, maxActive, whenExhaustedAction,
 -                maxWait, maxIdle, maxTotal, minIdle, testOnBorrow, testOnReturn,
 -                timeBetweenEvictionRunsMillis, numTestsPerEvictionRun,

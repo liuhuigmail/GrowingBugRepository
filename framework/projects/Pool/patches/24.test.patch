@@ -17,37 +17,24 @@ index 0abc55bc..915b4c47 100644
  
 -    @Test
 -    public void testErrorFactoryDoesNotBlockThreads() throws Exception {
--
 -        final CreateErrorFactory factory = new CreateErrorFactory();
 -        try (final GenericObjectPool<String> createFailFactoryPool = new GenericObjectPool<>(factory)) {
--
 -            createFailFactoryPool.setMaxTotal(1);
--
--            // Try and borrow the first object from the pool
+
 -            final WaitingTestThread thread1 = new WaitingTestThread(createFailFactoryPool, 0);
 -            thread1.start();
--
--            // Wait for thread to reach semaphore
+
 -            while (!factory.hasQueuedThreads()) {
 -                Thread.sleep(200);
 -            }
--
--            // Try and borrow the second object from the pool
+
 -            final WaitingTestThread thread2 = new WaitingTestThread(createFailFactoryPool, 0);
 -            thread2.start();
--            // Pool will not call factory since maximum number of object creations
--            // are already queued.
--
--            // Thread 2 will wait on an object being returned to the pool
--            // Give thread 2 a chance to reach this state
 -            Thread.sleep(1000);
--
--            // Release thread1
+
 -            factory.release();
--            // Pre-release thread2
 -            factory.release();
--
--            // Both threads should now complete.
+
 -            boolean threadRunning = true;
 -            int count = 0;
 -            while (threadRunning && count < 15) {
@@ -58,36 +45,35 @@ index 0abc55bc..915b4c47 100644
 -            }
 -            Assert.assertFalse(thread1.isAlive());
 -            Assert.assertFalse(thread2.isAlive());
--
+
 -            Assert.assertTrue(thread1._thrown instanceof UnknownError);
 -            Assert.assertTrue(thread2._thrown instanceof UnknownError);
 -        }
 -    }
--
+
 -    private static class CreateErrorFactory extends BasePooledObjectFactory<String> {
--
 -        private final Semaphore semaphore = new Semaphore(0);
--
+
 -        @Override
 -        public String create() throws Exception {
 -            semaphore.acquire();
 -            throw new UnknownError("wiggle");
 -        }
--
+
 -        @Override
 -        public PooledObject<String> wrap(final String obj) {
 -            return new DefaultPooledObject<>(obj);
 -        }
--
+
 -        public void release() {
 -            semaphore.release();
 -        }
--
+
 -        public boolean hasQueuedThreads() {
 -            return semaphore.hasQueuedThreads();
 -        }
 -    }
--
+
  	private BasePooledObjectFactory<String> createBasePooledObjectfactory() {
  		return new BasePooledObjectFactory<String>() {
  			@Override

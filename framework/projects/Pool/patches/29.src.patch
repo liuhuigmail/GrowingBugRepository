@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
-index 7a282f11..b3fc96fd 100644
---- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
-+++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+diff --git a/pool_29_fix/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/pool_29_buggy/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+index 7a282f1..b3fc96f 100644
+--- a/pool_29_fix/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/pool_29_buggy/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
 @@ -447,11 +447,6 @@ public class GenericKeyedObjectPool<K, T> extends BaseGenericObjectPool<T>
  
          final ObjectDeque<T> objectDeque = poolMap.get(key);
@@ -10,7 +10,7 @@ index 7a282f11..b3fc96fd 100644
 -            throw new IllegalStateException(
 -                    "Returned object not currently part of this pool");
 -        }
--
+
          final PooledObject<T> p = objectDeque.getAllObjects().get(new IdentityWrapper<>(obj));
  
          if (p == null) {

@@ -1,24 +1,13 @@
-diff --git a/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java b/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
-index 2877ddee..30e729c1 100644
---- a/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
-+++ b/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
-@@ -1404,8 +1404,8 @@ public class GenericKeyedObjectPool extends BaseKeyedObjectPool implements Keyed
-                 // key references is the key of the list it belongs to.
-                 Object key = entry.getValue();
-                 ObjectTimestampPair pairTimeStamp = (ObjectTimestampPair) entry.getKey();
--                ObjectQueue objectQueue = (ObjectQueue)_poolMap.get(key);
--                final CursorableLinkedList list = objectQueue.queue;
-+                final CursorableLinkedList list =
-+                    ((ObjectQueue)(_poolMap.get(key))).queue;
-                 list.remove(pairTimeStamp);
- 
-                 if (toDestroy.containsKey(key)) {
+diff --git a/pool_5_fix/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java b/pool_5_buggy/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
+index 2877dde..5bc104c 100644
+--- a/pool_5_fix/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
++++ b/pool_5_buggy/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
 @@ -1415,8 +1415,13 @@ public class GenericKeyedObjectPool extends BaseKeyedObjectPool implements Keyed
                      listForKey.add(pairTimeStamp);
                      toDestroy.put(key, listForKey);
                  }
 -                objectQueue.incrementInternalProcessingCount();
-+                // if that was the last object for that key, drop that pool
+
 +                if (list.isEmpty()) {
 +                    _poolMap.remove(key);
 +                    _poolList.remove(key);

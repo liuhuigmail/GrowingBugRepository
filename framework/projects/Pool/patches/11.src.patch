@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-index 50b73bf3..59a631ec 100644
---- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-+++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+diff --git a/pool_11_fix/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/pool_11_buggy/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+index 50b73bf..59a631e 100644
+--- a/pool_11_fix/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/pool_11_buggy/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 @@ -541,7 +541,8 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
                  // Make sure object is not being reclaimed
                  synchronized(p) {
