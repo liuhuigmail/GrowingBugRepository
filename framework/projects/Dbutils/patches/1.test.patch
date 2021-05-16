@@ -19,8 +19,7 @@ index eae146b..6944a85 100644
 -        b = beanProc.toBean(this.rs, TestBean.class);
 +        b = (TestBean) beanProc.toBean(this.rs, TestBean.class);
          assertEquals(13.0, b.getColumnProcessorDoubleTest(), 0);
--
-+        
+        
          assertTrue(this.rs.next());
 -        b = beanProc.toBean(this.rs, TestBean.class);
 +        b = (TestBean) beanProc.toBean(this.rs, TestBean.class);
@@ -105,7 +104,7 @@ index b152bb8..8edb821 100644
 
 -                int col = ((Integer) args[0]).intValue() - 1;
 -                return this.columnNames[col];
--
+
 -        } else if (
 -        		methodName.equals("getColumnLabel")) {
 +            methodName.equals("getColumnName")
