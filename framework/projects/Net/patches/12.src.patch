@@ -1,8 +1,8 @@
-diff --git a/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
-index 8e0d5806..540874b7 100644
---- a/src/main/java/org/apache/commons/net/util/SubnetUtils.java
-+++ b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
-@@ -226,12 +226,9 @@ public class SubnetUtils {
+diff --git a/net_12_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/net_12_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+index 8e0d580..f7efa2b 100644
+--- a/net_12_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java
++++ b/net_12_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+@@ -226,10 +226,7 @@ public class SubnetUtils {
              address = matchAddress(matcher);
  
              /* Create a binary netmask from the number of bits specification /x */
@@ -12,8 +12,5 @@ index 8e0d5806..540874b7 100644
 -            }
 +            int cidrPart = rangeCheck(Integer.parseInt(matcher.group(5)), 1, NBITS);
              for (int j = 0; j < cidrPart; ++j) {
--                netmask |= (1 << 31 - j);
-+                netmask |= (1 << 31-j);
+                 netmask |= (1 << 31 - j);
              }
- 
-             /* Calculate base network address */

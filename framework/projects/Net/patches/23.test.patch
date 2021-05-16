@@ -14,16 +14,13 @@ index a56e9cdb..2d8f18ec 100644
 -            new SubnetUtils("0.0.0.0","64.0.0.0");
 -            fail("Should have thrown IllegalArgumentException");
 -        } catch (IllegalArgumentException expected) {
--            // Ignored
 -        }
 -        try {
 -            new SubnetUtils("0.0.0.0","0.0.0.1");
 -            fail("Should have thrown IllegalArgumentException");
 -        } catch (IllegalArgumentException expected) {
--            // Ignored
 -        }
 -    }
--
      public void testNET520() {
          SubnetUtils utils = new SubnetUtils("0.0.0.0/0");
          utils.setInclusiveHostCount(true);

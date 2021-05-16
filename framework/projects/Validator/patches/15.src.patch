@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/validator/routines/EmailValidator.java b/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
-index abd8d522..26f689ec 100644
---- a/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
-+++ b/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
+diff --git a/validator_15_fix/src/main/java/org/apache/commons/validator/routines/EmailValidator.java b/validator_15_buggy/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
+index abd8d52..26f689e 100644
+--- a/validator_15_fix/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
++++ b/validator_15_buggy/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
 @@ -38,7 +38,7 @@ public class EmailValidator implements Serializable {
      private static final long serialVersionUID = 1705927040799295880L;
  

@@ -26,12 +26,7 @@ index 28ec395f..ad388792 100644
          String obj = pool.borrowObject("one");
          pool.returnObject("one", obj);
      }
--    
--    /**
--     * Verify that factory exceptions creating objects do not corrupt per key create count.
--     * 
--     * JIRA: POOL-243
--     */
+
 -    @Test
 -    public void testMakeObjectException()
 -        throws Exception {
@@ -43,7 +38,6 @@ index 28ec395f..ad388792 100644
 -        try {
 -            pool.borrowObject("One");
 -        } catch (Exception ex) {
--            // expected
 -        }
 -        factory.exceptionOnCreate = false;
 -        pool.borrowObject("One");

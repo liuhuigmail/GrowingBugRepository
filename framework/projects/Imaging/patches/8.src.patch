@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/imaging/formats/rgbe/RgbeInfo.java b/src/main/java/org/apache/commons/imaging/formats/rgbe/RgbeInfo.java
-index 4038165f..e09e46ab 100644
---- a/src/main/java/org/apache/commons/imaging/formats/rgbe/RgbeInfo.java
-+++ b/src/main/java/org/apache/commons/imaging/formats/rgbe/RgbeInfo.java
+diff --git a/imaging_8_fix/src/main/java/org/apache/commons/imaging/formats/rgbe/RgbeInfo.java b/imaging_8_buggy/src/main/java/org/apache/commons/imaging/formats/rgbe/RgbeInfo.java
+index 4038165..e09e46a 100644
+--- a/imaging_8_fix/src/main/java/org/apache/commons/imaging/formats/rgbe/RgbeInfo.java
++++ b/imaging_8_buggy/src/main/java/org/apache/commons/imaging/formats/rgbe/RgbeInfo.java
 @@ -169,17 +169,13 @@ class RgbeInfo implements Closeable {
      }
  
@@ -17,7 +17,7 @@ index 4038165f..e09e46ab 100644
 -            if (n < 0) {
 -                throw new ImageReadException("Error decompressing RGBE file");
 -            }
--
+
              if (n > 128) {
                  final int value = in.read();
  

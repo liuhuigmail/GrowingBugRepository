@@ -1,18 +1,18 @@
-diff --git a/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java b/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
-index b1471eb2..98e40d89 100644
---- a/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
-+++ b/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
+diff --git a/net_5_fix/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java b/net_5_buggy/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
+index b1471eb..98e40d8 100644
+--- a/net_5_fix/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
++++ b/net_5_buggy/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
 @@ -88,10 +88,12 @@ public class UnixFTPEntryParser extends ConfigurableFTPFileEntryParserImpl
          + "(?:(\\S+(?:\\s\\S+)*?)\\s+)?"                // owner name (optional spaces)
          + "(?:(\\S+(?:\\s\\S+)*)\\s+)?"                 // group name (optional spaces)
          + "(\\d+(?:,\\s*\\d+)?)\\s+"
-+        
+        
          /*
            numeric or standard format date
          */
 -        + "((?:\\d+[-/]\\d+[-/]\\d+)|(?:[a-zA-Z]+\\s+\\S+))\\s+"
 +        + "((?:\\d+[-/]\\d+[-/]\\d+)|(?:\\S+\\s+\\S+))\\s+"
-+        
+       
          /* 
             year (for non-recent standard format) 
             or time (for numeric or recent standard format  

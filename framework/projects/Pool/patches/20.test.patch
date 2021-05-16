@@ -16,10 +16,6 @@ index 8415d8ec..1c0ea1ef 100644
  
          Assert.assertTrue (end - start < 5000);
      }
--    
--    /**
--     * JIRA: POOL-300
--     */
 -    @Test
 -    public void testStackTrace() throws Exception {
 -        abandonedConfig.setRemoveAbandonedOnMaintenance(true);

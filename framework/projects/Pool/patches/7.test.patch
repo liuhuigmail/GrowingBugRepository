@@ -6,14 +6,9 @@ index dcb09465..1cde317c 100644
          // Check thread was interrupted
          assertTrue(wtt._thrown instanceof InterruptedException);
      }
--    
--    /**
--     * POOL-231 - verify that concurrent invalidates of the same object do not
--     * corrupt pool destroyCount.
--     */
+
 -    @Test
 -    public void testConcurrentInvalidate() throws Exception {
--        // Get allObjects and idleObjects loaded with some instances
 -        final int nObjects = 1000;
 -        final String key = "one";
 -        pool.setMaxTotal(nObjects);
@@ -31,17 +26,14 @@ index dcb09465..1cde317c 100644
 -        final int nThreads = 20;
 -        final int nIterations = 60;
 -        final InvalidateThread[] threads = new InvalidateThread[nThreads];
--        // Randomly generated list of distinct invalidation targets
 -        final ArrayList<Integer> targets = new ArrayList<Integer>();
 -        final Random random = new Random();
 -        for (int j = 0; j < nIterations; j++) {
--            // Get a random invalidation target
 -            Integer targ = new Integer(random.nextInt(nObjects));
 -            while (targets.contains(targ)) {
 -                targ = new Integer(random.nextInt(nObjects));
 -            }
 -            targets.add(targ);
--            // Launch nThreads threads all trying to invalidate the target
 -            for (int i = 0; i < nThreads; i++) {
 -                threads[i] = new InvalidateThread(pool,key, obj[targ]);
 -            }
@@ -59,10 +51,7 @@ index dcb09465..1cde317c 100644
 -        }
 -        Assert.assertEquals(nIterations, pool.getDestroyedCount());
 -    }
--    
--    /**
--     * Attempts to invalidate an object, swallowing IllegalStateException.
--     */
+
 -    static class InvalidateThread implements Runnable {
 -        private final String obj;
 -        private final KeyedObjectPool<String, String> pool;
@@ -77,7 +66,6 @@ index dcb09465..1cde317c 100644
 -            try {
 -                pool.invalidateObject(key, obj);
 -            } catch (IllegalStateException ex) {
--                // Ignore
 -            } catch (Exception ex) {
 -                Assert.fail("Unexpected exception " + ex.toString());
 -            } finally {
@@ -99,14 +87,9 @@ index e49e6c96..91885e9f 100644
          assertEquals("Total count different than expected.", 0, pool.getNumActive());
          pool.close();
      }
--    
--    /**
--     * POOL-231 - verify that concurrent invalidates of the same object do not
--     * corrupt pool destroyCount.
--     */
+
 -    @Test
 -    public void testConcurrentInvalidate() throws Exception {
--        // Get allObjects and idleObjects loaded with some instances
 -        final int nObjects = 1000;
 -        pool.setMaxTotal(nObjects);
 -        pool.setMaxIdle(nObjects);
@@ -122,17 +105,14 @@ index e49e6c96..91885e9f 100644
 -        final int nThreads = 20;
 -        final int nIterations = 60;
 -        final InvalidateThread[] threads = new InvalidateThread[nThreads];
--        // Randomly generated list of distinct invalidation targets
 -        final ArrayList<Integer> targets = new ArrayList<Integer>();
 -        final Random random = new Random();
 -        for (int j = 0; j < nIterations; j++) {
--            // Get a random invalidation target
 -            Integer targ = new Integer(random.nextInt(nObjects));
 -            while (targets.contains(targ)) {
 -                targ = new Integer(random.nextInt(nObjects));
 -            }
 -            targets.add(targ);
--            // Launch nThreads threads all trying to invalidate the target
 -            for (int i = 0; i < nThreads; i++) {
 -                threads[i] = new InvalidateThread(pool, obj[targ]);
 -            }
@@ -150,10 +130,7 @@ index e49e6c96..91885e9f 100644
 -        }
 -        Assert.assertEquals(nIterations, pool.getDestroyedCount());
 -    }
--    
--    /**
--     * Attempts to invalidate an object, swallowing IllegalStateException.
--     */
+
 -    static class InvalidateThread implements Runnable {
 -        private final Object obj;
 -        private final ObjectPool<Object> pool;
@@ -166,7 +143,6 @@ index e49e6c96..91885e9f 100644
 -            try {
 -                pool.invalidateObject(obj);
 -            } catch (IllegalStateException ex) {
--                // Ignore
 -            } catch (Exception ex) {
 -                Assert.fail("Unexpected exception " + ex.toString());
 -            } finally {

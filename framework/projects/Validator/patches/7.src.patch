@@ -1,14 +1,12 @@
-diff --git a/src/main/java/org/apache/commons/validator/routines/DomainValidator.java b/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
-index 4cab4be0..0830ea2e 100644
---- a/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
-+++ b/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
+diff --git a/validator_7_fix/src/main/java/org/apache/commons/validator/routines/DomainValidator.java b/validator_7_buggy/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
+index 4cab4be..0830ea2 100644
+--- a/validator_7_fix/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
++++ b/validator_7_buggy/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
 @@ -87,11 +87,6 @@ public class DomainValidator implements Serializable {
       */
      private final RegexValidator domainRegex =
              new RegexValidator(DOMAIN_NAME_REGEX);
--    /**
--     * RegexValidator for matching the a local hostname
--     */
+
 -    private final RegexValidator hostnameRegex =
 -            new RegexValidator(DOMAIN_LABEL_REGEX);
  

@@ -1,15 +1,11 @@
-diff --git a/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java b/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
-index 6b947786..e582ae2f 100644
---- a/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
-+++ b/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
+diff --git a/net_1_fix/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java b/net_1_buggy/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
+index 6b94778..e582ae2 100644
+--- a/net_1_fix/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
++++ b/net_1_buggy/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
 @@ -33,6 +33,12 @@ import org.apache.commons.net.ftp.FTPFile;
   */
  public class UnixFTPEntryParser extends ConfigurableFTPFileEntryParserImpl
  {
-+    /**
-+     * months abbreviations looked for by this parser.  Also used
-+     * to determine which month is matched by the parser
-+     */
 +    private static final String DEFAULT_MONTHS =
 +        "(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)";
      
@@ -19,10 +15,9 @@ index 6b947786..e582ae2f 100644
          "([bcdelfmpSs-])"
          +"(((r|-)(w|-)([xsStTL-]))((r|-)(w|-)([xsStTL-]))((r|-)(w|-)([xsStTL-])))\\+?\\s+"
          + "(\\d+)\\s+"
--        + "(?:(\\S+(?:\\s\\S+)*)\\s+)?"					// owner name (optional spaces)
--        + "(?:(\\S+(?:\\s\\S+)*)\\s+)?" // group name (optional spaces)
+         + "(?:(\\S+(?:\\s\\S+)*)\\s+)?"					
+-        + "(?:(\\S+(?:\\s\\S+)*)\\s+)?"
 +        + "(\\S+)\\s+"
-+        + "(?:(\\S+(?:\\s\\S+)*)\\s+)?"
          + "(\\d+)\\s+"
          
          /*

@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/imaging/formats/bmp/BmpImageParser.java b/src/main/java/org/apache/commons/imaging/formats/bmp/BmpImageParser.java
-index 0d6d6963..002d48cf 100644
---- a/src/main/java/org/apache/commons/imaging/formats/bmp/BmpImageParser.java
-+++ b/src/main/java/org/apache/commons/imaging/formats/bmp/BmpImageParser.java
+diff --git a/imaging_1_fix/src/main/java/org/apache/commons/imaging/formats/bmp/BmpImageParser.java b/imaging_1_buggy/src/main/java/org/apache/commons/imaging/formats/bmp/BmpImageParser.java
+index 0d6d696..002d48c 100644
+--- a/imaging_1_fix/src/main/java/org/apache/commons/imaging/formats/bmp/BmpImageParser.java
++++ b/imaging_1_buggy/src/main/java/org/apache/commons/imaging/formats/bmp/BmpImageParser.java
 @@ -622,10 +622,10 @@ public class BmpImageParser extends ImageParser {
          // boolean isProgressive = (fPNGChunkIHDR.InterlaceMethod != 0);
          //

@@ -6,7 +6,7 @@ index a797b5a3..ed9cd186 100644
          info = utils.getInfo();
          assertEquals(2147483646, info.getAddressCount());
      }
--
+
 -    public void testNET520() {
 -        SubnetUtils utils = new SubnetUtils("0.0.0.0/0");
 -        utils.setInclusiveHostCount(true);

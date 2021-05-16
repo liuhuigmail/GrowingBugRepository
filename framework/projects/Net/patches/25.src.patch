@@ -1,14 +1,14 @@
-diff --git a/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java b/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
-index 88203b6d..cb24f372 100644
---- a/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
-+++ b/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
+diff --git a/net_25_fix/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java b/net_25_buggy/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
+index 88203b6..cb24f37 100644
+--- a/net_25_fix/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
++++ b/net_25_buggy/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
 @@ -66,8 +66,7 @@ public class MVSFTPEntryParser extends ConfigurableFTPFileEntryParserImpl {
              "\\S+\\s+" + // unit - ignored
              "\\S+\\s+" + // access date - ignored
              "\\S+\\s+" + // extents -ignored
--            // If the values are too large, the fields may be merged (NET-639)
--            "(?:\\S+\\s+)?" + // used - ignored
-+            "\\S+\\s+" + // used - ignored
+
+-            "(?:\\S+\\s+)?" + 
++            "\\S+\\s+" + 
              "[FV]\\S*\\s+" + // recfm - must start with F or V
              "\\S+\\s+" + // logical record length -ignored
              "\\S+\\s+" + // block size - ignored

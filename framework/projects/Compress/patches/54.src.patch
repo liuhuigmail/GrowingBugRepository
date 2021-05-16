@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java b/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
-index b41dbb6e..14691c4f 100644
---- a/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
-+++ b/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
+diff --git a/compress_54_fix/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java b/compress_54_buggy/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
+index b41dbb6..14691c4 100644
+--- a/compress_54_fix/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
++++ b/compress_54_buggy/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
 @@ -175,17 +175,12 @@ public class ExtraFieldUtils {
              }
              try {

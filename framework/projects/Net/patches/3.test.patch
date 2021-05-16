@@ -8,12 +8,7 @@ index cfaf521e..a515c1e0 100644
  
 -        parser = factory.createFileEntryParser("AS/400");
 -        assertTrue(parser instanceof CompositeFileEntryParser);
--
--        // Added test to make sure it handles the Unix systems that were
--        // compiled with OS as "UNKNOWN". This test validates that the
--        // check is case-insensitive.
 -        parser = factory.createFileEntryParser("UNKNOWN Type: L8");
--
          try {
              parser = factory.createFileEntryParser("OS2FTPFileEntryParser");
              fail("Exception should have been thrown. \"OS2FTPFileEntryParser\" is not a recognized key");

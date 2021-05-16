@@ -6,9 +6,6 @@ index 862e02b1..ca53b8b4 100644
          tis.close();
      }
  
--    /**
--     * @link "https://issues.apache.org/jira/browse/COMPRESS-324"
--     */
 -    @Test
 -    public void shouldReadGNULongNameEntryWithWrongName() throws Exception {
 -        TarArchiveInputStream is = getTestStream("/COMPRESS-324.tar");
@@ -23,7 +20,6 @@ index 862e02b1..ca53b8b4 100644
 -            is.close();
 -        }
 -    }
--
      private TarArchiveInputStream getTestStream(String name) {
          return new TarArchiveInputStream(
                  TarArchiveInputStreamTest.class.getResourceAsStream(name));

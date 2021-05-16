@@ -27,45 +27,41 @@ index 7430d63d..b8ad2b60 100644
 -    @Test
 -    public void test_withMultipletEXt() throws Exception {
 -        final int[][] smallBlackPixels = getSimpleRawData(256, 256, 0);
--
 -        writeAndReadMultipletEXt(smallBlackPixels);
 -    }
--
+
      @Test
      public void testTransparency() throws Exception {
          // Test for https://issues.apache.org/jira/browse/SANSELAN-52
 @@ -205,43 +194,4 @@ public class PngWriteReadTest extends ImagingTest {
          assertArrayEquals(rawData, dstData);
      }
- 
+
 -    private void writeAndReadMultipletEXt(final int[][] rawData) throws IOException,
 -       ImageReadException, ImageWriteException {
 -        final BufferedImage srcImage = imageDataToBufferedImage(rawData);
--
+
 -        final List<PngText.Text> textChunks = new LinkedList<>();
 -        textChunks.add(new PngText.Text("a", "b"));
 -        textChunks.add(new PngText.Text("c", "d"));
 -        final Map<String, Object> writeParams = new HashMap<>();
 -        writeParams.put(PngConstants.PARAM_KEY_PNG_TEXT_CHUNKS,
 -           textChunks);
--
+
 -        final byte[] bytes = Imaging.writeImageToBytes(srcImage,
 -           ImageFormats.PNG, writeParams);
--
--        // Debug.debug("bytes", bytes);
--
 -        final File tempFile = createTempFile("temp", ".png");
 -        FileUtils.writeByteArrayToFile(tempFile, bytes);
--
+
 -        final BufferedImage dstImage = Imaging.getBufferedImage(bytes);
--
+
 -        assertNotNull(dstImage);
 -        assertTrue(srcImage.getWidth() == dstImage.getWidth());
 -        assertTrue(srcImage.getHeight() == dstImage.getHeight());
--
+
 -        final int dstData[][] = bufferedImageToImageData(dstImage);
 -        assertArrayEquals(rawData, dstData);
--
+
 -        final ImageMetadata imageMetadata = Imaging.getMetadata(bytes);
 -        assertEquals(imageMetadata.getItems().size(), 2);
 -        final GenericImageMetadata.GenericImageMetadataItem item0

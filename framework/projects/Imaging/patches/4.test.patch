@@ -6,7 +6,7 @@ index 59e5fe62..066ed37b 100644
      PnmImageParser underTest = new PnmImageParser();
      underTest.getImageInfo(bytes, params);
    }
--
+
 -  @Test(expected = ImageReadException.class)
 -  public void testGetImageInfo_missingWidthValue() throws ImageReadException, IOException {
 -    byte[] bytes = "P7\nWIDTH \n".getBytes(US_ASCII);

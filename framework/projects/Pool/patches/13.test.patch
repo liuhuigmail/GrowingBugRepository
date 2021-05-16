@@ -6,11 +6,7 @@ index 8d7dcecf..e4e4b4af 100644
              assertFalse(pool.getBlockWhenExhausted());
          }
      }
--    
--    /** 
--     * JIRA: POOL-270 - make sure constructor correctly sets run
--     * frequency of evictor timer.
--     */
+
 -    @Test
 -    public void testContructorEvictionConfig() throws Exception {
 -        GenericKeyedObjectPoolConfig config = new GenericKeyedObjectPoolConfig();
@@ -27,7 +23,7 @@ index 8d7dcecf..e4e4b4af 100644
 -        assertEquals(0, p.getNumIdle("one"));
 -        p.close();
 -    }
--    
+    
  
      @Test(timeout=60000)
      public void testEviction() throws Exception {

@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java b/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java
-index 56aac009..195568ad 100644
---- a/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java
-+++ b/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java
+diff --git a/net_21_fix/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java b/net_21_buggy/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java
+index 56aac00..195568a 100644
+--- a/net_21_fix/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java
++++ b/net_21_buggy/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java
 @@ -17,10 +17,6 @@
  
  package org.apache.commons.net.smtp;
@@ -9,7 +9,7 @@ index 56aac009..195568ad 100644
 -import java.text.SimpleDateFormat;
 -import java.util.Date;
 -import java.util.Locale;
--
+
  /***
   * This class is used to construct a bare minimum
   * acceptable header for an email message.  To construct more
@@ -37,7 +37,7 @@ index 56aac009..195568ad 100644
  
 -        final String pattern = "EEE, dd MMM yyyy HH:mm:ss Z"; // Fri, 21 Nov 1997 09:55:06 -0600
 -        final SimpleDateFormat format = new SimpleDateFormat(pattern, Locale.ENGLISH);
--
+
 -        if (!hasHeaderDate) {
 -            addHeaderField("Date", format.format(new Date()));
 -        }

@@ -11,7 +11,7 @@ index a227dc10..83859bdf 100644
 -        UrlValidator urlValidator = new UrlValidator(schemes);
 -        urlValidator.isValid("file:///C:/path/to/dir/");
 -    }
--    
+  
 -    public void testValidator391FAILS() {
 -        String[] schemes = {"file"};
 -        UrlValidator urlValidator = new UrlValidator(schemes);

@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
-index df0eb676..132dee46 100644
---- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
-+++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+diff --git a/pool_12_fix/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/pool_12_buggy/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+index df0eb67..132dee4 100644
+--- a/pool_12_fix/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/pool_12_buggy/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
 @@ -343,7 +343,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
          boolean blockWhenExhausted = getBlockWhenExhausted();
  
@@ -31,10 +31,10 @@ index df0eb676..132dee46 100644
  
          return p.getObject();
      }
-diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-index ff73df9e..ab75eb72 100644
---- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-+++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+diff --git a/pool_12_fix/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/pool_12_buggy/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+index ff73df9..ab75eb7 100644
+--- a/pool_12_fix/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/pool_12_buggy/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 @@ -423,7 +423,7 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
          boolean blockWhenExhausted = getBlockWhenExhausted();
  

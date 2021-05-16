@@ -1,20 +1,3 @@
-diff --git a/src/test/java/org/apache/commons/pool2/impl/TestGenericKeyedObjectPool.java b/src/test/java/org/apache/commons/pool2/impl/TestGenericKeyedObjectPool.java
-index e7dc1385..28ec395f 100644
---- a/src/test/java/org/apache/commons/pool2/impl/TestGenericKeyedObjectPool.java
-+++ b/src/test/java/org/apache/commons/pool2/impl/TestGenericKeyedObjectPool.java
-@@ -1916,10 +1916,10 @@ public class TestGenericKeyedObjectPool extends TestKeyedObjectPool {
-         String obj = pool.borrowObject("one");
-         pool.returnObject("one", obj);
-     }
--
-+    
-     /**
-      * Verify that factory exceptions creating objects do not corrupt per key create count.
--     *
-+     * 
-      * JIRA: POOL-243
-      */
-     @Test
 diff --git a/src/test/java/org/apache/commons/pool2/impl/TestGenericObjectPool.java b/src/test/java/org/apache/commons/pool2/impl/TestGenericObjectPool.java
 index 5e1ed6b8..62f04955 100644
 --- a/src/test/java/org/apache/commons/pool2/impl/TestGenericObjectPool.java
@@ -23,32 +6,31 @@ index 5e1ed6b8..62f04955 100644
          assertEquals(2, swallowedExceptions.size());
      }
  
--    // POOL-248
 -    @Test
 -    public void testMultipleReturnOfSameObject() throws Exception {
 -        final GenericObjectPool<String> pool = new GenericObjectPool<String>(
 -                factory, new GenericObjectPoolConfig(),
 -                new AbandonedConfig());
--
+
 -        Assert.assertEquals(0, pool.getNumActive());
 -        Assert.assertEquals(0, pool.getNumIdle());
--
+
 -        String obj = pool.borrowObject();
--
+
 -        Assert.assertEquals(1, pool.getNumActive());
 -        Assert.assertEquals(0, pool.getNumIdle());
--
+
 -        pool.returnObject(obj);
--
+
 -        Assert.assertEquals(0, pool.getNumActive());
 -        Assert.assertEquals(1, pool.getNumIdle());
--
+
 -        pool.returnObject(obj);
--
+
 -        Assert.assertEquals(0, pool.getNumActive());
 -        Assert.assertEquals(1, pool.getNumIdle());
 -    }
--
+
      private static final class DummyFactory
              extends BasePooledObjectFactory<Object> {
          @Override

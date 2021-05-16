@@ -6,7 +6,7 @@ index d591ea1c..99923203 100644
  		assertEquals(f.getGroup(), "chrism");
  		assertEquals(f.getHardLinkCount(), 1464);
  	}
--	
+	
 -	public void testCorrectGroupNameParsing() {
 -		FTPFile f = getParser().parseFTPEntry("-rw-r--r--   1 ftpuser  ftpusers 12414535 Mar 17 11:07 test 1999 abc.pdf");
 -		assertNotNull(f);
@@ -15,8 +15,7 @@ index d591ea1c..99923203 100644
 -		assertEquals(f.getGroup(), "ftpusers");
 -		assertEquals(f.getSize(), 12414535);
 -		assertEquals(f.getName(), "test 1999 abc.pdf");
--
--
+
 -		Calendar cal = Calendar.getInstance();
 -		cal.set(Calendar.MONTH, Calendar.MARCH);
 -		cal.set(Calendar.DAY_OF_MONTH, 17);

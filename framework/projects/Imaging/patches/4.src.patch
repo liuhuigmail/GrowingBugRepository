@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java b/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
-index 301ac0df..967912e2 100644
---- a/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
-+++ b/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
+diff --git a/imaging_4_fix/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java b/imaging_4_buggy/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
+index 301ac0d..967912e 100644
+--- a/imaging_4_fix/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
++++ b/imaging_4_buggy/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
 @@ -157,28 +157,18 @@ public class PnmImageParser extends ImageParser {
                  final String type = tokenizer.nextToken();
                  if ("WIDTH".equals(type)) {

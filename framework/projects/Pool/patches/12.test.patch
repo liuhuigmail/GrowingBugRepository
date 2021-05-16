@@ -6,22 +6,18 @@ index d1d7abe4..b33f2553 100644
          }
          Assert.assertEquals(nIterations, pool.getDestroyedCount());
      }
--    
--    // POOL-259
+
 -    @Test
 -    public void testClientWaitStats() throws Exception {
 -        SimpleFactory<String> factory = new SimpleFactory<String>();
--        // Give makeObject a little latency
 -        factory.setMakeLatency(100);
 -        final GenericKeyedObjectPool<String, String> pool = new GenericKeyedObjectPool<String, String>(
 -                factory, new GenericKeyedObjectPoolConfig());
 -        String s = pool.borrowObject("one");
--        // First borrow waits on create, so wait time should be at least 100 ms
 -        Assert.assertTrue(pool.getMaxBorrowWaitTimeMillis() >= 100);
 -        Assert.assertTrue(pool.getMeanBorrowWaitTimeMillis() >= 100);
 -        pool.returnObject("one", s);
 -        pool.borrowObject("one");
--        // Second borrow does not have to wait on create, average should be about 50
 -        Assert.assertTrue(pool.getMaxBorrowWaitTimeMillis() >= 100);
 -        Assert.assertTrue(pool.getMeanBorrowWaitTimeMillis() < 60);  
 -        Assert.assertTrue(pool.getMeanBorrowWaitTimeMillis() > 40);  
@@ -63,22 +59,18 @@ index 93daa36b..4ce2e6f7 100644
          Assert.assertEquals(0, pool.getNumActive());
          Assert.assertEquals(1, pool.getNumIdle());
      }
--    
--    // POOL-259
+
 -    @Test
 -    public void testClientWaitStats() throws Exception {
 -        SimpleFactory factory = new SimpleFactory();
--        // Give makeObject a little latency
 -        factory.setMakeLatency(100);
 -        final GenericObjectPool<String> pool = new GenericObjectPool<String>(
 -                factory, new GenericObjectPoolConfig());
 -        String s = pool.borrowObject();
--        // First borrow waits on create, so wait time should be at least 100 ms
 -        Assert.assertTrue(pool.getMaxBorrowWaitTimeMillis() >= 100);
 -        Assert.assertTrue(pool.getMeanBorrowWaitTimeMillis() >= 100);
 -        pool.returnObject(s);
 -        pool.borrowObject();
--        // Second borrow does not have to wait on create, average should be about 50
 -        Assert.assertTrue(pool.getMaxBorrowWaitTimeMillis() >= 100);
 -        Assert.assertTrue(pool.getMeanBorrowWaitTimeMillis() < 60);  
 -        Assert.assertTrue(pool.getMeanBorrowWaitTimeMillis() > 40);  

@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java
-index 96bb3ee7..cdbc80f3 100644
---- a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java
-+++ b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java
+diff --git a/compress_53_fix/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java b/compress_53_buggy/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java
+index 96bb3ee..cdbc80f 100644
+--- a/compress_53_fix/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java
++++ b/compress_53_buggy/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java
 @@ -728,7 +728,8 @@ public class TarArchiveEntry implements TarConstants, ArchiveEntry {
       * @return true if this is a long name extension provided by GNU tar
       */
