@@ -12,18 +12,13 @@ index 29041e2..23c219e 100644
 -        DataSourceResolver classPathResolver = new DataSourceClassPathResolver("/images", false);
 -        DataSourceResolver[] dataSourceResolvers = new DataSourceResolver[] { urlResolver, classPathResolver };
 -        DataSourceCompositeResolver dataSourceResolver = new DataSourceCompositeResolver(dataSourceResolvers, true);
--
+
 -        DataSourceResolver[] arr = dataSourceResolver.getDataSourceResolvers();
--        
--        // modify an element in the returned array
--        arr[0] = null;
--        
+-        arr[0] = null;  
 -        DataSourceResolver[] arr2 = dataSourceResolver.getDataSourceResolvers();
--        
--        // assert that the external modification is not propagated to the internal array
 -        assertNotNull(arr2[0]);        
 -    }
--
+
      private byte[] toByteArray(DataSource dataSource) throws IOException
      {
          if(dataSource != null)

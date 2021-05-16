@@ -36,7 +36,7 @@ To date, growingBugs contains 1003 bugs from open-source Java projects.
 | MEar            | maven-ear-plugin           |        1       | 1                   | None                    |
 | MGpg            | maven-gpg-plugin           |        3       | 1-3                 | None                    |
 | Pool            | commons-pool               |        30      | 1-30                | None                    |
-| Email           | commons-email              |        6       | 1-6                 | None                    |
+| Email           | commons-email              |        4       | 2-5                 | None                    |
 | Graph           | commons-graph              |        4       | 1-4                 | None                    |
 | Digester        | commons-digester           |        1       | 1                   | None                    |
 | Net             | commons-net                |        27      | 1-27                | None                    |
