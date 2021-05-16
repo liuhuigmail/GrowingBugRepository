@@ -9,15 +9,6 @@ index a1db452..343bfe1 100644
  import static org.junit.Assert.assertTrue;
  import static org.junit.Assert.fail;
 @@ -88,24 +91,18 @@ public class TestTransformedGenerator
-                 }
-             });
-         assertTrue( !sumsTwoGenerator.equals(aGenerateWithADifferentFunction));
-
-        TransformedGenerator<Integer, Integer> aTransformedGeneratorWithADifferentWrapped =        
-         		new TransformedGenerator<Integer, Integer>(new IntegerRange(1,2), sumsTwo);
-         assertTrue(!sumsTwoGenerator.equals(aTransformedGeneratorWithADifferentWrapped));
-     }
-
      @Test
      public void testHashcode() {
          assertEquals(sumsTwoGenerator.hashCode(), sumsTwoGenerator.hashCode());
