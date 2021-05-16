@@ -1,5 +1,0 @@
-org.apache.xml.security.algorithms.implementations.IntegrityHmac
-org.apache.xml.security.resource.xmlsecurity_de.properties
-org.apache.xml.security.resource.xmlsecurity_en.properties
-org.apache.xml.security.signature.XMLSignature
-org.jcp.xml.dsig.internal.dom.DOMHMACSignatureMethod
