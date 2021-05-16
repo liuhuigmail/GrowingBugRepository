@@ -7,8 +7,6 @@ index 0d96a78e..fea43a62 100644
         assertTrue(validator.isValid("http://www.apache.org:80/path"));       
         assertTrue(validator.isValid("http://www.apache.org:8/path")); 
 -       assertTrue(validator.isValid("http://www.apache.org:/path"));
-+       // To be enabled when code has been fixed
-+//       assertTrue(validator.isValid("http://www.apache.org:/path"));
     }
  
     /**

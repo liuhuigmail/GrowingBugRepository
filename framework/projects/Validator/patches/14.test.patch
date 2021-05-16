@@ -18,7 +18,7 @@ index b9b691cc..0d96a78e 100644
 -        assertTrue(urlValidator.isValid("http://www.example.org/.../world"));
 -        assertFalse(urlValidator.isValid("http://www.example.org/../world"));
 -    }
--
+
     public void testValidator375() {
         UrlValidator validator = new UrlValidator();
         String url = "http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html";

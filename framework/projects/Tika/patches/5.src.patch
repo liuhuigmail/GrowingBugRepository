@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/tika/parser/microsoft/ExcelExtractor.java b/src/main/java/org/apache/tika/parser/microsoft/ExcelExtractor.java
-index c050b7169..5253d03e6 100644
---- a/src/main/java/org/apache/tika/parser/microsoft/ExcelExtractor.java
-+++ b/src/main/java/org/apache/tika/parser/microsoft/ExcelExtractor.java
+diff --git a/tika_5_fix/src/main/java/org/apache/tika/parser/microsoft/ExcelExtractor.java b/tika_5_buggy/src/main/java/org/apache/tika/parser/microsoft/ExcelExtractor.java
+index c050b71..5253d03 100644
+--- a/tika_5_fix/src/main/java/org/apache/tika/parser/microsoft/ExcelExtractor.java
++++ b/tika_5_buggy/src/main/java/org/apache/tika/parser/microsoft/ExcelExtractor.java
 @@ -343,8 +343,8 @@ public class ExcelExtractor {
              handler.startElement("tbody");
  

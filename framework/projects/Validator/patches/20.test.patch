@@ -8,8 +8,6 @@ index 74faf59e..49c49ef4 100644
              "VG96VPVG0000012345678901",
 -            "SC18SSCB11010000000000001497USD",
 -            "UA213996220000026007233566001"
--    };
-+            };
  
      private final String[] invalidIBANFormat = new String[] {
              "",                        // empty

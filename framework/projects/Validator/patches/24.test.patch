@@ -22,7 +22,7 @@ index 34dae8fd..ba014e81 100644
 -        addr = "::192.168.1.1:192.168.1.1";
 -        assertFalse(addr, validator.isValid(addr));
 -    }
--
+
      /**
       * Test valid and invalid IPs from each address class.
       */
@@ -30,7 +30,6 @@ index 34dae8fd..ba014e81 100644
       */
      public void testBrokenInetAddresses() {
          assertFalse("IP with characters should be invalid",     validator.isValid("124.14.32.abc"));
--//        assertFalse("IP with leading zeroes should be invalid", validator.isValid("124.14.32.01"));
 +        assertFalse("IP with leading zeroes should be invalid", validator.isValid("124.14.32.01"));
          assertFalse("IP with three groups should be invalid",   validator.isValid("23.64.12"));
          assertFalse("IP with five groups should be invalid",    validator.isValid("26.34.23.77.234"));
@@ -39,7 +38,6 @@ index 34dae8fd..ba014e81 100644
      public void testIPv6() {
          // The original Perl script contained a lot of duplicate tests.
          // I removed the duplicates I noticed, but there may be more.
--//        assertFalse("IPV6 empty string should be invalid", validator.isValidInet6Address(""));// empty string 
 +        assertFalse("IPV6 empty string should be invalid", validator.isValidInet6Address(""));// empty string 
          assertTrue("IPV6 ::1 should be valid", validator.isValidInet6Address("::1"));// loopback, compressed, non-routable 
          assertTrue("IPV6 :: should be valid", validator.isValidInet6Address("::"));// unspecified, compressed, non-routable 

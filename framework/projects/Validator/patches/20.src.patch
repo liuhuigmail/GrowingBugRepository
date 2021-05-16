@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/validator/routines/IBANValidator.java b/src/main/java/org/apache/commons/validator/routines/IBANValidator.java
-index 3f0ee089..c1060ff1 100644
---- a/src/main/java/org/apache/commons/validator/routines/IBANValidator.java
-+++ b/src/main/java/org/apache/commons/validator/routines/IBANValidator.java
+diff --git a/validator_20_fix/src/main/java/org/apache/commons/validator/routines/IBANValidator.java b/validator_20_buggy/src/main/java/org/apache/commons/validator/routines/IBANValidator.java
+index 3f0ee08..c1060ff 100644
+--- a/validator_20_fix/src/main/java/org/apache/commons/validator/routines/IBANValidator.java
++++ b/validator_20_buggy/src/main/java/org/apache/commons/validator/routines/IBANValidator.java
 @@ -153,7 +153,6 @@ public class IBANValidator {
              new Validator("ST", 25, "ST\\d{23}"                             ), // Sao Tome And Principe
              new Validator("SA", 24, "SA\\d{4}[A-Z0-9]{18}"                  ), // Saudi Arabia
