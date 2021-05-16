@@ -1,0 +1,7 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,b11451b26f5145000c71c2191aa306e911e6f12c,fe20a173e01a0d73e75d0907fed3a371d34d0f8b,TEXT-76,https://issues.apache.org/jira/browse/TEXT-76
+2,c71a5cd470d937e270361cf2a379b0f4c3baecc4,3f5dfd4b1cc24fa31446a9ea5821cf267375e552,TEXT-88,https://issues.apache.org/jira/browse/TEXT-88
+3,5e479dcd74dab262e5080991796395c3e29222b9,ecaaf9040561fbc410ad0375050af07bf20ca7fe,TEXT-88,https://issues.apache.org/jira/browse/TEXT-88
+4,804e4599bd63e4bb14c905613711eac8829e54fb,c9f92a02f8c0ddfc8e8f30fadf2ac932072ae284,TEXT-100,https://issues.apache.org/jira/browse/TEXT-100
+5,e55d0ac1c17a7fd71dbb4f65034c7b739be6a35a,1596501e610bca7955969bb94fe6c6bad397e361,TEXT-106,https://issues.apache.org/jira/browse/TEXT-106
+6,ee6017fcb2505255b32d6dc917d5fdb54a3a68f9,b647f0496d0548b8ce817e6504fc0e72af618bad,TEXT-106,https://issues.apache.org/jira/browse/TEXT-106

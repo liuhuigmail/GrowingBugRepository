@@ -1,0 +1,22 @@
+diff --git a/src/test/java/org/apache/commons/text/ExtendedMessageFormatTest.java b/src/test/java/org/apache/commons/text/ExtendedMessageFormatTest.java
+index 7e32236..640b5b0 100644
+--- a/src/test/java/org/apache/commons/text/ExtendedMessageFormatTest.java
++++ b/src/test/java/org/apache/commons/text/ExtendedMessageFormatTest.java
+@@ -101,17 +101,6 @@ public class ExtendedMessageFormatTest {
+         assertEquals("Message with placeholder 'DUMMY'", emf2.format(new Object[] {"DUMMY"}));
+     }
+ 
+-    /**
+-     * Test Bug TEXT-106 - Exception while using ExtendedMessageFormat and choice format element with quote just before brace end
+-     */
+-    @Test
+-    public void testChoiceQuoteJustBeforeBraceEnd_TEXT_106() {
+-        final String pattern2 = "Message with choice format element with quote just before brace end ''{0,choice,0#0|0<'1'}''";
+-        final ExtendedMessageFormat emf = new ExtendedMessageFormat(pattern2, registry);
+-        assertEquals("Message with choice format element with quote just before brace end '0'", emf.format(new Object[] {0}));
+-        assertEquals("Message with choice format element with quote just before brace end '1'", emf.format(new Object[] {1}));
+-    }
+-
+     /**
+      * Test extended and built in formats.
+      */

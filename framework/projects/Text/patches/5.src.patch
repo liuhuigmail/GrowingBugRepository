@@ -1,0 +1,30 @@
+diff --git a/text_5_fix/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java b/text_5_buggy/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java
+index cfe1bf4..dcf0766 100644
+--- a/text_5_fix/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java
++++ b/text_5_buggy/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java
+@@ -411,24 +411,21 @@ public class ExtendedMessageFormat extends MessageFormat {
+         seekNonWs(pattern, pos);
+         final int text = pos.getIndex();
+         int depth = 1;
+-        while (pos.getIndex() < pattern.length()) {
++        for (; pos.getIndex() < pattern.length(); next(pos)) {
+             switch (pattern.charAt(pos.getIndex())) {
+             case START_FE:
+                 depth++;
+-                next(pos);
+                 break;
+             case END_FE:
+                 depth--;
+                 if (depth == 0) {
+                     return pattern.substring(text, pos.getIndex());
+                 }
+-                next(pos);
+                 break;
+             case QUOTE:
+                 getQuotedString(pattern, pos);
+                 break;
+             default:
+-                next(pos);
+                 break;
+             }
+         }

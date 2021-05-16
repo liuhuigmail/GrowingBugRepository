@@ -1,0 +1,34 @@
+diff --git a/text_2_fix/src/main/java/org/apache/commons/text/WordUtils.java b/text_2_buggy/src/main/java/org/apache/commons/text/WordUtils.java
+index 0ffff07..7d90730 100644
+--- a/text_2_fix/src/main/java/org/apache/commons/text/WordUtils.java
++++ b/text_2_buggy/src/main/java/org/apache/commons/text/WordUtils.java
+@@ -411,7 +411,8 @@ public class WordUtils {
+      * @see #capitalizeFully(String)
+      */
+     public static String capitalize(final String str, final char... delimiters) {
+-        if (StringUtils.isEmpty(str)) {
++        final int delimLen = delimiters == null ? -1 : delimiters.length;
++        if (StringUtils.isEmpty(str) || delimLen == 0) {
+             return str;
+         }
+         int strLen = str.length();
+@@ -489,7 +490,8 @@ public class WordUtils {
+      * @return capitalized String, <code>null</code> if null String input
+      */
+     public static String capitalizeFully(String str, final char... delimiters) {
+-        if (StringUtils.isEmpty(str)) {
++        final int delimLen = delimiters == null ? -1 : delimiters.length;
++        if (StringUtils.isEmpty(str) || delimLen == 0) {
+             return str;
+         }
+         str = str.toLowerCase();
+@@ -543,7 +545,8 @@ public class WordUtils {
+      * @see #capitalize(String)
+      */
+     public static String uncapitalize(final String str, final char... delimiters) {
+-        if (StringUtils.isEmpty(str)) {
++        final int delimLen = delimiters == null ? -1 : delimiters.length;
++        if (StringUtils.isEmpty(str) || delimLen == 0) {
+             return str;
+         }
+         int strLen = str.length();
