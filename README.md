@@ -37,7 +37,6 @@ To date, growingBugs contains 1003 bugs from open-source Java projects.
 | Pool            | commons-pool               |        19      | 1-2,4-7,10-14,16,20-21,24,26-27,29-30| None   |
 | Email           | commons-email              |        4       | 2-5                 | None                    |
 | Graph           | commons-graph              |        4       | 1-4                 | None                    |
-| Digester        | commons-digester           |        1       | 1                   | None                    |
 | Net             | commons-net                |        27      | 1-27                | None                    |
 | Text            | commons-text               |        6       | 1-6                 | None                    |
 | Numbers         | commons-numbers            |        3       | 1-3                 | None                    |

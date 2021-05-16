@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java b/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java
+diff --git a/graph_1_fix/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java b/graph_1_buggy/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java
 index d2103c9..031e7c0 100644
---- a/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java
-+++ b/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java
+--- a/graph_1_fix/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java
++++ b/graph_1_buggy/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java
 @@ -1,8 +1,6 @@
  package org.apache.commons.graph.coloring;
  
@@ -11,25 +11,7 @@ index d2103c9..031e7c0 100644
  
  import org.apache.commons.graph.Edge;
  import org.apache.commons.graph.UndirectedGraph;
-@@ -28,16 +26,14 @@ import org.apache.commons.graph.Vertex;
-  */
- 
- /**
-- * Contains the graph coloring implementation. This is a greedy implementation for the graph coloring problem. This
-- * algorithm couldn't find the mimium coloring for the given graph since this is an NP-complete problem. <a
-- * href="http://scienceblogs.com/goodmath/2007/06/graph_coloring_algorithms_1.php">
-+ * Contains the graph coloring implementation. http://scienceblogs.com/goodmath/2007/06/graph_coloring_algorithms_1.php
-  */
- public final class GraphColoring
- {
- 
-     /**
-      * Colors the graph such that no two adjacent vertices share the same color.
--     * 
-+     *
-      * @param g The graph.
-      * @return The color - vertex association.
-      */
+
 @@ -54,42 +50,32 @@ public final class GraphColoring
          }
  
@@ -40,17 +22,16 @@ index d2103c9..031e7c0 100644
 -        for ( int currentColorIndex = 0; it.hasNext(); currentColorIndex++ )
 +        while ( it.hasNext() )
          {
--            // consume the vertex.
+
 -            it.next();
 +            V v = it.next();
  
--            // this list contains all vertex colore with the current color.
 -            List<V> currentColorVertices = new ArrayList<V>();
 -            Iterator<V> uncoloredVtxIterator = uncoloredOrderedVertices.iterator();
 -            while ( uncoloredVtxIterator.hasNext() )
 -            {
 -                V uncoloredVtx = uncoloredVtxIterator.next();
-+            // remove vertex from uncolored list.
+
 +            it.remove();
 +            coloredVertices.addColor( v, currrentColorIndex );
  
@@ -59,26 +40,21 @@ index d2103c9..031e7c0 100644
 -                {
 -                    if ( g.getEdge( currentColoredVtx, uncoloredVtx ) != null )
 -                    {
--                        // we've found that 'uncoloredVtx' is adiacent to 'currentColoredVtx'
 -                        foundAnAdjacentVertex = true;
 -                        break;
 -                    }
 -                }
--
+
 -                if ( !foundAnAdjacentVertex )
-+            // color all vertices not adjacent
 +            Iterator<V> it2 = uncoloredOrderedVertices.iterator();
 +            while ( it2.hasNext() )
 +            {
 +                V v2 = it2.next();
 +                if ( g.getEdge( v, v2 ) == null )
                  {
--                    // It's possible to color the vertex 'uncoloredVtx', it has no connected vertex into
--                    // 'currentcoloredvtx'
 -                    uncoloredVtxIterator.remove();
 -                    coloredVertices.addColor( uncoloredVtx, currentColorIndex );
 -                    currentColorVertices.add( uncoloredVtx );
-+                    // v2 is not connect to v.
 +                    it2.remove();
 +                    coloredVertices.addColor( v2, currrentColorIndex );
                  }
@@ -89,19 +65,14 @@ index d2103c9..031e7c0 100644
          }
  
          return coloredVertices;
-diff --git a/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java b/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java
+diff --git a/graph_1_fix/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java b/graph_1_buggy/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java
 index 98b1363..7ab4720 100644
---- a/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java
-+++ b/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java
+--- a/graph_1_fix/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java
++++ b/graph_1_buggy/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java
 @@ -111,14 +111,4 @@ final class UncoloredOrderedVertices<V extends Vertex>
          };
      }
- 
--    /**
--     * Returns the number of vertices degrees in the graph.
--     *
--     * @return the number of vertices degrees in the graph.
--     */
+
 -    public int size()
 -    {
 -        return orderedVertices.size();
