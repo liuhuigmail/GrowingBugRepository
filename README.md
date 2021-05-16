@@ -40,7 +40,7 @@ To date, growingBugs contains 1003 bugs from open-source Java projects.
 | Graph           | commons-graph              |        4       | 1-4                 | None                    |
 | Digester        | commons-digester           |        1       | 1                   | None                    |
 | Net             | commons-net                |        27      | 1-27                | None                    |
-| Testing         | commons-testing            |        6       | 1-6                 | None                    |
+| Text            | commons-text               |        6       | 1-6                 | None                    |
 | Numbers         | commons-numbers            |        3       | 1-3                 | None                    |
 
 ## Copyright
