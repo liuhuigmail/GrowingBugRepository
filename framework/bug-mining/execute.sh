@@ -1,7 +1,7 @@
 #!/bin/bash
-WORK_DIR="run_test_pro"
+WORK_DIR="com"
 echo "WORK_DIR: $WORK_DIR"
-cat $WORK_DIR/LargeApacheProjects.txt | while read line
+cat $WORK_DIR/Commons.txt | while read line
 do
     # read project information
     read -ra strarr <<<"$line"
@@ -11,7 +11,7 @@ do
     issue_tracker_name=${strarr[3]}
     issue_tracker_project_id=${strarr[4]}
     bug_fix_regex=${strarr[5]}
-    sub_project=${strarr[6]}
+    sub_project=${strarr[6]:-"."}
     echo "Getting the project information ..."
     echo "PROJECT_ID: $project_id"
     echo "PROJECT_NAME: $project_name"
@@ -33,31 +33,28 @@ do
     
     work_dir="$WORK_DIR/$project_id"
     echo "WORK_DIR: $work_dir"
-    
-   if [ -f "$WORK_DIR/$project_id/issues.txt" ]
-   then
-        echo -e "Initialize project $project_id and collect issues have already finished!\n\n"
-   	continue
-   fi
    
-    #rm -rf $work_dir
-    # Initialize project and collect issues
-    perl ./initialize-project-and-collect-issues.pl -p $project_id \
+   if [ ! -f "$WORK_DIR/$project_id/issues.txt" ]
+   then
+        rm -rf $work_dir
+        perl ./initialize-project-and-collect-issues.pl -p $project_id \
                                                          -n $project_name \
                                                          -w $work_dir \
                                                          -r $repository_url \
                                                          -g $issue_tracker_name \
                                                          -t $issue_tracker_project_id \
                                                          -e $bug_fix_regex 
-   continue
-   if [ $? != 0 ]
-   then
-   	echo -e "Initialize project $project_id and collect issues failed!\n\n"
-   	echo "${project_id}, Initialization error!" >> error_info.txt
-   	continue
+   	#continue
+   	if [ $? != 0 ]
+   	then
+   		echo -e "Initialize project $project_id and collect issues failed!\n\n"
+   		echo "${project_id}, Initialization error!" >> error_info.txt
+   	#continue
+   	fi
    fi
-   echo -e "Initialize project $project_id and collect issues successfully!\n\n"
    
+    #rm -rf $work_dir
+     
    # Initialize the project revisions
    perl ./initialize-revisions.pl -p $project_id -w $work_dir -s $sub_project
    if [ $? != 0 ]

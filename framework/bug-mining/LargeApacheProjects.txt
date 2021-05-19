@@ -1,3 +1,4 @@
+Camel_core	camel-core	https://github.com/apache/camel.git	jira	CAMEL	/(CAMEL-\\d+)/mi	camel-core
 Hbase_asyncfs	hbase-asyncfs	https://github.com/apache/hbase.git	jira	HBASE	/(HBASE-\\d+)/mi	hbase-asyncfs
 Hbase_backup	hbase-backup	https://github.com/apache/hbase.git	jira	HBASE	/(HBASE-\\d+)/mi	hbase-backup
 Hbase_balancer	hbase-balancer	https://github.com/apache/hbase.git	jira	HBASE	/(HBASE-\\d+)/mi	hbase-balancer
