@@ -306,7 +306,11 @@ sub _export_relevant_tests {
     my @all_tests = `cd $TMP_DIR && $SCRIPT_DIR/bin/defects4j export -ptests.all`;
     foreach my $test (@all_tests) {
         chomp($test);
-        print(STDERR "Analyze test: $test\n");
+         
+        if ($test =~ /\.java\.bak/){
+   		next;
+   	}
+   	print(STDERR "Analyze test: $test\n");
         my $loaded = $project->monitor_test($test, "${bid}f");
         die("Failed test: $test\n") unless (defined $loaded);
 

@@ -264,11 +264,12 @@ sub _check_t2v2 {
     _add_bool_result($data, $COMP_T2V2, $ret) or return 0;
 
     my $successful_runs = 0;
-    my $run = 1;
+    my $run = 0;
     while ($successful_runs < $TEST_RUNS && $run <= $MAX_TEST_RUNS) {
         # Automatically fix broken tests and recompile
+        ++$run;
         $project->fix_tests("${bid}f");
-        $project->compile_tests() or die;
+        $project->compile_tests() or next;
 
         # Run t2 and get number of failing tests
         my $file = "$project->{prog_root}/v2.fail"; `>$file`;
@@ -310,8 +311,7 @@ sub _check_t2v2 {
             close OUT;
             system("cat $file >> $FAILING_DIR/$v2");
             $successful_runs = 0;
-        }
-        ++$run;
+        } 
     }
     return 1;
 }
