@@ -287,6 +287,7 @@ foreach my $bid (@ids) {
     # these candidates are filtered in a later step anyway.
     if (-z "$PATCH_DIR/$bid.src.patch") {
         printf("      -> Skipping sanity check (empty source patch)\n");
+        system("rm -rf $TMP_DIR && mkdir -p $TMP_DIR ");
         next;
     }
 

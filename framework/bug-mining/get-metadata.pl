@@ -308,7 +308,7 @@ sub _export_relevant_tests {
         chomp($test);
          
         if ($test =~ /\.java\.bak/){
-   		next;
+            next;
    	}
    	print(STDERR "Analyze test: $test\n");
         my $loaded = $project->monitor_test($test, "${bid}f");
@@ -317,12 +317,14 @@ sub _export_relevant_tests {
         foreach my $class (@{$loaded->{src}}) {
             if (defined $mod_classes{$class}) {
                 push(@relevant, $test);
+                #print(".... $test\n");
                 # A test is relevant if it loads at least one of the modified
                 # classes!
                 last;
             }
         }
     }
+    
     open(OUT, ">$RELEVANT/$bid") or die "Cannot write relevant tests";
     for (@relevant) {
         print(OUT $_, "\n");
