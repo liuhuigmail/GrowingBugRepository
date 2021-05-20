@@ -45,12 +45,50 @@ of the checked-out project version.
 
     <!-- Include existing project build file -->
     <import file="${d4j.workdir}/build.xml"/>
-    <condition property="src-dir" value="${maven.build.srcDir.0}" else="${source.home}">
+    
+    <condition property="src-dir" value="${maven.build.srcDir.0}">
     	<isset property="maven.build.srcDir.0" />
     </condition>
-    <condition property="test-dir" value="${maven.build.testDir.0}" else="${test.home}/java">
+    <condition property="src-dir" value="${source.home}" >
+    	<isset property="source.home" />
+    </condition>
+    <condition property="src-dir" value="${basedir}/src/java" >
+    	<available file="${basedir}/src/java" />
+    </condition>
+    
+    
+    <condition property="test-dir" value="${maven.build.testDir.0}" >
     	<isset property="maven.build.testDir.0" />
     </condition> 
+    <condition property="test-dir" value="${test.home}"  >
+    	<isset property="test.home" />
+    </condition> 
+    <condition property="test-dir" value="${basedir}/src/test">
+    	<available file="${basedir}/src/test" />
+    </condition> 
+    
+    <condition property="classes.dir" value="${maven.build.outputDir}"  >
+        <isset property="maven.build.outputDir" />
+    </condition>
+    <condition property="classes.dir" value="${classesdir}">
+        <isset property="classesdir" />
+    </condition>
+    <condition property="classes.dir" value="${build.home}/classes" >
+        <available file="${build.home}/classes" />
+    </condition>
+    
+    <condition property="test.classes.dir" value="${maven.build.testOutputDir}"  >
+        <isset property="maven.build.testOutputDir" />
+    </condition>
+    <condition property="test.classes.dir" value="${testclassesdir}"  >
+        <isset property="testclassesdir" />
+    </condition>
+    <condition property="test.classes.dir" value="${build.home}/test-classes" >
+        <available file="${build.home}/test-classes" />
+    </condition>
+    <property name="test.home" value="${test.classes.dir}" />
+    <property name="build.home" value="${classes.dir}/.." />
+   
     <!-- Project properties targets -->
     <if> <isset property="ant.refid:compile.classpath" />
           <then>
@@ -80,13 +118,6 @@ of the checked-out project version.
             
           </else>
     </if>
-    <property name="test.home" value="${maven.build.testOutputDir}" />
-    <condition property="classes.dir" value="${maven.build.outputDir}" else="${build.classes}">
-        <isset property="maven.build.outputDir" />
-    </condition>
-    <condition property="test.classes.dir" value="${maven.build.testOutputDir}" else="${build.tests}">
-        <isset property="maven.build.testOutputDir" />
-    </condition>
 
     <!--
         if else statement in xml
@@ -108,6 +139,7 @@ of the checked-out project version.
         <pathelement path="${junit.jar}" />
         <!--
         <pathelement path="${dependency.jar}" />
+        <pathelement location="${user.home}/.m2/repository"/>
         -->
         <fileset dir="${maven.repo.local}">
                <include name="**/*.jar" />
