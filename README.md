@@ -41,6 +41,13 @@ To date, growingBugs contains 946 bugs from open-source Java projects.
 | 32     | MGpg            | maven-gpg-plugin           |        1       | 1               |
 | 33     | Text            | commons-text               |        4       | 1-2,4-5               |
 
+Using GrowingBugs
+================
+
+If you have already configured the Defects4j environment, run `repos.sh` before using GrowingBugs and it will automatically download some required Git repositories in the `project_repos` folder.
+    - `./repos.sh`
+    
+
 ## Copyright
 Notably, this bug repository is based on the well-known **Defects4J** https://github.com/rjust/defects4j. We reuse its source code as well as the bugs in **Defects4J**. The key difference is that **growingBugs** levearages **BugBuilder**[1] to exclude bug-irrelevarange changes from bug-fixing commmits automatically whereas **Defects4J** requests human experts to accomplish the same task. Consequently, **growingBugs** can keep growing automatically even ***without human intervention***.  
 
