@@ -161,6 +161,7 @@ while (1) {
         system("cat $compile_log_file");
         next;
     }
+    
     my $compile_tests_log_file = "$TMP_DIR/compile_tests-log.txt";
     system(">$compile_tests_log_file");
     unless ($project->compile_tests($compile_tests_log_file)) {
@@ -172,7 +173,6 @@ while (1) {
     my $local_trigger_tests = "$TMP_DIR/trigger_tests";
     system(">$local_trigger_tests");
     $project->run_relevant_tests($local_trigger_tests);
-
     system("grep \"^--- \" $trigger_tests | sort > $local_trigger_tests.sorted.original");
     system("grep \"^--- \" $local_trigger_tests | sort > $local_trigger_tests.sorted.minimal");
 

@@ -281,11 +281,11 @@ for (my $start = 0; ; $start += $FETCHING_LIMIT) {
     my $project_in_file = $TRACKER_ID;
     $project_in_file =~ tr*/*-*;
     my $out_file = "${OUTPUT_DIR}/${project_in_file}-issues-${start}.txt";
-    print "！！！！！！！！！！！！uri is:$uri\n";
     if (! -s $out_file) {
         print "Downloading ${uri} to ${out_file}\n" if $DEBUG;
         if($TRACKER_NAME eq "bugzilla"){
             my @bug_id_list = get_id_List($uri,$TRACKER_ID);
+            #TODO do not support other organizations' bugzilla website
             my $res_temp="https://bz.apache.org/bugzilla/show_bug.cgi?ctype=xml";
             my $size = @bug_id_list;
             my $index=0;

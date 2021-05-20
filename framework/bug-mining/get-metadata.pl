@@ -112,14 +112,14 @@ use DB;
 use Utils;
 
 my %cmd_opts;
-getopts('p:b:w:s:', \%cmd_opts) or pod2usage(1);
+getopts('p:b:w:', \%cmd_opts) or pod2usage(1);
 
 pod2usage(1) unless defined $cmd_opts{p} and defined $cmd_opts{w};
 
 my $PID = $cmd_opts{p};
 my $BID = $cmd_opts{b};
 my $WORK_DIR = abs_path($cmd_opts{w});
-my $SUBPROJ = $cmd_opts{s}//".";
+
 # Check format of target bug id
 if (defined $BID) {
     $BID =~ /^(\d+)(:(\d+))?$/ or die "Wrong version id format ((\\d+)(:(\\d+))?): $BID!";
@@ -173,7 +173,7 @@ foreach my $bid (@bids) {
     printf ("%4d: $project->{prog_name}\n", $bid);
 
     # Checkout to version 2
-    $project->checkout_vid("${bid}f", $TMP_DIR, 1,$SUBPROJ) or die;
+    $project->checkout_vid("${bid}f", $TMP_DIR, 1) or die;
 
     # Compile sources and tests
     $project->compile() or die;
@@ -313,13 +313,26 @@ sub _export_relevant_tests {
    	print(STDERR "Analyze test: $test\n");
         my $loaded = $project->monitor_test($test, "${bid}f");
         die("Failed test: $test\n") unless (defined $loaded);
-
+        
+        #while(my ($key, $val) = each(%mod_classes)) { print "\n$key,, $val\n" }
+        
         foreach my $class (@{$loaded->{src}}) {
+        #print("class $class\n");
             if (defined $mod_classes{$class}) {
                 push(@relevant, $test);
-                #print(".... $test\n");
-                # A test is relevant if it loads at least one of the modified
-                # classes!
+                # A test is relevant if it loads at least one of the modified classes!
+                last;
+            }
+            my $class1="src.java.".$class;
+            if (defined $mod_classes{$class1}) {
+                push(@relevant, $test);
+                # A test is relevant if it loads at least one of the modified classes!
+                last;
+            }
+            my $class2="src.main.java.".$class;
+            if (defined $mod_classes{$class2}) {
+                push(@relevant, $test);
+                # A test is relevant if it loads at least one of the modified classes!
                 last;
             }
         }
