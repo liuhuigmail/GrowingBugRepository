@@ -1,0 +1,10 @@
+org.apache.maven.jxr.JavaCodeTransform
+org.apache.maven.jxr.log.Log
+org.apache.maven.jxr.pacman.BaseType
+org.apache.maven.jxr.pacman.ClassType
+org.apache.maven.jxr.pacman.FileManager
+org.apache.maven.jxr.pacman.ImportType
+org.apache.maven.jxr.pacman.JavaFile
+org.apache.maven.jxr.pacman.JavaFileImpl
+org.apache.maven.jxr.pacman.PackageManager
+org.apache.maven.jxr.pacman.PackageType

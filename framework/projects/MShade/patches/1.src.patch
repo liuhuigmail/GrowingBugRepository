@@ -1,0 +1,95 @@
+diff --git a/src/main/java/org/apache/maven/plugins/shade/DefaultShader.java b/src/main/java/org/apache/maven/plugins/shade/DefaultShader.java
+index 7255647..26c65f9 100644
+--- a/src/main/java/org/apache/maven/plugins/shade/DefaultShader.java
++++ b/src/main/java/org/apache/maven/plugins/shade/DefaultShader.java
+@@ -274,47 +274,22 @@ public class DefaultShader
+ 
+         public Object mapValue( Object object )
+         {
+-            if ( object instanceof String )
+-            {
+-                String name = (String) object;
+-                String value = name;
+-                for ( Iterator i = relocators.iterator(); i.hasNext(); )
+-                {
+-                    Relocator r = (Relocator) i.next();
+-                    if ( r.canRelocatePath( name ) )
+-                    {
+-                        value = r.relocatePath( name );
+-                        break;
+-                    }
+-                    if ( r.canRelocateClass( name ) )
+-                    {
+-                        value = r.relocateClass( name );
+-                        break;
+-                    }
+-                }
+-                return value;
+-            }
+             return object;
+         }
+ 
+         public String map( String name )
+         {
+-            String value = name;
+             for ( Iterator i = relocators.iterator(); i.hasNext(); )
+             {
+                 Relocator r = (Relocator) i.next();
+ 
+
+                 if ( r.canRelocate( name ) )
+                 {
+                     value = r.relocate( name );
+-                    break;
+
+                 }
+             }
+ 
+-            return value;
++            return name;
+         }
+     }
+ }
+
+diff --git a/src/main/java/org/apache/maven/plugins/shade/relocation/SimpleRelocator.java b/src/main/java/org/apache/maven/plugins/shade/relocation/SimpleRelocator.java
+index d4e2b36..4f1322e 100644
+--- a/src/main/java/org/apache/maven/plugins/shade/relocation/SimpleRelocator.java
++++ b/src/main/java/org/apache/maven/plugins/shade/relocation/SimpleRelocator.java
+@@ -88,39 +81,12 @@ public class SimpleRelocator
+             }
+         }
+ 
+-        return clazz.startsWith( pathPattern );
+-    }
+-    public boolean canRelocateClass( String clazz )
+-    {
+-        if ( excludes != null )
+-        {
+-            for ( Iterator i = excludes.iterator(); i.hasNext(); )
+-            {
+-                String exclude = (String) i.next();
+-
+-                exclude = exclude.replace( '/', '.' );
+-                if ( exclude.endsWith( ".*" ) && clazz.startsWith( exclude.substring( 0, exclude.length() - 2 ) ) )
+-                {
+-                    return false;
+-                }
+-                else if ( clazz.equals( exclude ) )
+-                {
+-                    return false;
+-                }
+-            }
+-        }
+         return clazz.startsWith( pattern );
+     }
+ 
+-    public String relocatePath( String clazz )
+-    {
+-        return clazz.replaceFirst(pathPattern, shadedPathPattern);
+-    }
+-    public String relocateClass( String clazz )
++    public String relocate( String clazz )
+     {
+         return clazz.replaceFirst(pattern, shadedPattern);
+     }
+ }
