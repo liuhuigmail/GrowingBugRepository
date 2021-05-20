@@ -35,8 +35,8 @@ To date, growingBugs contains 937 bugs from open-source Java projects.
 | Email           | commons-email              |        4       | 2-5                 |
 | Graph           | commons-graph              |        3       | 1-3                 |
 | Net             | commons-net                |        18      | 1,3,5,7,9,10,12,14-18,20-21,23-26             |
-| Numbers_angle   | commons-numbers-angle  |              2 | 1-2               |
-| Geometry_core   | commons-geometry-core  |              2 | 1,3               |
+| Numbers_angle   | commons-numbers  |              2 | 1-2               |
+| Geometry_core   | commons-geometry  |              2 | 1,3               |
 | MGpg            | maven-gpg-plugin       |              1 | 1               |
 | Text            | commons-text           |              4 | 1-2,4-5               |
 
