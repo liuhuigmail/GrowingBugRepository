@@ -42,11 +42,10 @@ To date, growingBugs contains 946 bugs from open-source Java projects.
 | 33     | Text            | commons-text               |        4       | 1-2,4-5               |
 
 ## Using GrowingBugs
-================
 
 If you have already configured the Defects4j environment, run `repos.sh` before using GrowingBugs and it will automatically download some required Git repositories in the `project_repos` folder.
 
-    - `./repos.sh`
+  `./repos.sh`
     
 
 ## Copyright
