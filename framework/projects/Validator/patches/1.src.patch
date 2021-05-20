@@ -29,21 +29,18 @@ index fb638ff4..c7d11531 100644
      @Override
      protected Object processParsedValue(Object value, Format formatter) {
  
--        // Parsed value will be Long if it fits in a long and is not fractional
 -        if (value instanceof Long) {
 -            long longValue = ((Long)value).longValue();
 -            if (longValue >= Byte.MIN_VALUE && 
 -                longValue <= Byte.MAX_VALUE) {
--                return Byte.valueOf((byte)longValue);
+                 return Byte.valueOf((byte)longValue);
 -            }
 +        long longValue = ((Number)value).longValue();
 +
-+        if (longValue < Byte.MIN_VALUE ||
-+            longValue > Byte.MAX_VALUE) {
-+            return null;
+         if (longValue < Byte.MIN_VALUE ||
+             longValue > Byte.MAX_VALUE) {
+             return null;
          }
--        return null;
-+        return Byte.valueOf((byte)longValue);
      }
  
  }
@@ -55,21 +52,17 @@ index eab42bd5..1f31c4fb 100644
      @Override
      protected Object processParsedValue(Object value, Format formatter) {
  
--        // Parsed value will be Long if it fits in a long and is not fractional
 -        if (value instanceof Long) {
 -            long longValue = ((Long)value).longValue();
 -            if (longValue >= Integer.MIN_VALUE && 
 -                longValue <= Integer.MAX_VALUE) {
--                return Integer.valueOf((int)longValue);
+                 return Integer.valueOf((int)longValue);
 -            }
 +        long longValue = ((Number)value).longValue();
-+
-+        if (longValue < Integer.MIN_VALUE ||
-+            longValue > Integer.MAX_VALUE) {
-+            return null;
+         if (longValue < Integer.MIN_VALUE ||
+             longValue > Integer.MAX_VALUE) {
+             return null;
          }
--        return null;
-+        return Integer.valueOf((int)longValue);
      }
  }
 diff --git a/src/main/java/org/apache/commons/validator/routines/LongValidator.java b/src/main/java/org/apache/commons/validator/routines/LongValidator.java
@@ -80,7 +73,6 @@ index 9aa96572..fc9cb6c2 100644
      @Override
      protected Object processParsedValue(Object value, Format formatter) {
  
--        // Parsed value will be Long if it fits in a long and is not fractional
          if (value instanceof Long) {
              return value;
          }
