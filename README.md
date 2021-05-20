@@ -3,7 +3,7 @@
 Notably, each bug is composed of a buggy version, a fixed version, a concise patch (bug-fixing changes only), and one or more triggering test cases.
 
 ## Contents of growingBugs
-To date, growingBugs contains 941 bugs from open-source Java projects. 
+To date, growingBugs contains 946 bugs from open-source Java projects. 
 
 | Project No.     | Project ID      | Project name               | Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|---------------:|---------------------|
