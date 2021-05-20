@@ -3,7 +3,7 @@
 Notably, each bug is composed of a buggy version, a fixed version, a concise patch (bug-fixing changes only), and one or more triggering test cases.
 
 ## Contents of growingBugs
-To date, growingBugs contains 937 bugs from open-source Java projects. 
+To date, growingBugs contains 941 bugs from open-source Java projects. 
 
 | Project ID      | Project name               | Number of bugs | Bug IDs      | 
 |-----------------|----------------------------|---------------:|---------------------|
@@ -29,8 +29,8 @@ To date, growingBugs contains 937 bugs from open-source Java projects.
 | Imaging         | commons-imaging            |        9       | 1,3-4,6-8,10-11,14  |
 | IO              | commons-io                 |        2       | 1,3                 |
 | MShade          | maven-shade-plugin         |        5       | 3-7                 |
-| Tika            | tika                       |        3       | 1,5-6               |
-| Validator       | commons-validator          |        20      | 2,4,6-9,11-21,23-25 |
+| Tika            | tika                       |        6       | 1-6               |
+| Validator       | commons-validator          |        21      | 1-2,4,6-9,11-21,23-25 |
 | Pool            | commons-pool               |        19      | 1-2,4-7,10-14,16,20-21,24,26-27,29-30|
 | Email           | commons-email              |        4       | 2-5                 |
 | Graph           | commons-graph              |        3       | 1-3                 |
