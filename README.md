@@ -42,7 +42,7 @@ To date, growingBugs contains 946 bugs from open-source Java projects.
 | 33     | Text            | commons-text               |        4       | 1-2,4-5               |
 
 ## Using GrowingBugs
-Defects4J uploads complete Git reposities of the involved projects. However, with the increase of involved projects, such complete Git reposities are huge and it becomes difficult to store them with this **GrowingBugs**. Consequently, we decide to exclude them but to provide a mechanism to download them automatically instead.
+Defects4J uploads complete Git reposities of the involved projects. However, with the increase of involved projects, such complete Git reposities are huge and it becomes difficult to integrate them into **GrowingBugs**. Consequently, we decide to exclude them but to provide a mechanism to download them automatically instead.
 
 Once Defects4j is well-installed and configured, run `repos.sh` to automatically download required Git repositories in the `project_repos` folder.
 
