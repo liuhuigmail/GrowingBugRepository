@@ -47,7 +47,10 @@ Defects4J uploads complete Git reposities of the involved projects. However, wit
 Once Defects4j is well-installed and configured, run `repos.sh` to automatically download required Git repositories in the `project_repos` folder.
 
   - `./repos.sh`
-    
+
+Currently, we resuse all APIs of **Defects4J** (more details at  https://github.com/rjust/defects4j), and thus all applications relying on **Defects4J** could be transferred smoothly to **GrowingBugs**. 
+
+
 
 ## Copyright
 Notably, this bug repository is based on the well-known **Defects4J** https://github.com/rjust/defects4j. We reuse its source code as well as the bugs in **Defects4J**. The key difference is that **growingBugs** levearages **BugBuilder**[1] to exclude bug-irrelevarange changes from bug-fixing commmits automatically whereas **Defects4J** requests human experts to accomplish the same task. Consequently, **growingBugs** can keep growing automatically even ***without human intervention***.  
