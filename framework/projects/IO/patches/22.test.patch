@@ -1,0 +1,54 @@
+diff --git a/src/test/java/org/apache/commons/io/input/BrokenInputStreamTest.java b/src/test/java/org/apache/commons/io/input/BrokenInputStreamTest.java
+index 2636afbb..4bd3f965 100644
+--- a/src/test/java/org/apache/commons/io/input/BrokenInputStreamTest.java
++++ b/src/test/java/org/apache/commons/io/input/BrokenInputStreamTest.java
+@@ -95,4 +95,18 @@ public class BrokenInputStreamTest extends TestCase {
+         }
+     }
+ 
++    @SuppressWarnings("ResultOfMethodCallIgnored")
++    public void testSelfSupressed(){
++        BrokenInputStream bis = new BrokenInputStream();
++        try {
++            bis.read();
++        } catch (IOException e) {
++            try {
++                bis.close();
++            } catch (IOException e1) {
++                e1.addSuppressed( e); // Simulates try-with resources since we're not jdk7 yet
++            }
++        }
++    }
++
+ }
+diff --git a/src/test/java/org/apache/commons/io/output/BrokenOutputStreamTest.java b/src/test/java/org/apache/commons/io/output/BrokenOutputStreamTest.java
+index 7fea25e9..491ef408 100644
+--- a/src/test/java/org/apache/commons/io/output/BrokenOutputStreamTest.java
++++ b/src/test/java/org/apache/commons/io/output/BrokenOutputStreamTest.java
+@@ -20,6 +20,7 @@ import java.io.IOException;
+ import java.io.OutputStream;
+ 
+ import junit.framework.TestCase;
++import org.apache.commons.io.input.BrokenInputStream;
+ 
+ /**
+  * JUnit Test Case for {@link BrokenOutputStream}.
+@@ -77,4 +78,18 @@ public class BrokenOutputStreamTest extends TestCase {
+         }
+     }
+ 
++    @SuppressWarnings("ResultOfMethodCallIgnored")
++    public void testSelfSupressed(){
++        BrokenOutputStream bos = new BrokenOutputStream();
++        try {
++            bos.write(123);
++        } catch (IOException e) {
++            try {
++                bos.close();
++            } catch (IOException e1) {
++                e1.addSuppressed( e); // Simulates try-with resources since we're not jdk7 yet
++            }
++        }
++    }
++
+ }

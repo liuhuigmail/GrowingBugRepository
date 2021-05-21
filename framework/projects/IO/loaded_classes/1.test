@@ -1,3 +1,4 @@
-org.apache.commons.io.monitor.AbstractMonitorTestCase
-org.apache.commons.io.monitor.CollectionFileListener
-org.apache.commons.io.monitor.FileAlterationMonitorTestCase
+org.apache.commons.io.IOUtilsCopyTestCase
+org.apache.commons.io.testtools.FileBasedTestCase
+org.apache.commons.io.testtools.YellOnCloseInputStream
+org.apache.commons.io.testtools.YellOnFlushAndCloseOutputStream

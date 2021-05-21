@@ -1,0 +1,17 @@
+org.apache.commons.io.DirectoryWalkerTestCase
+org.apache.commons.io.DirectoryWalkerTestCaseJava4
+org.apache.commons.io.FileSystemUtilsTestCase
+org.apache.commons.io.FileUtilsDirectoryContainsTestCase
+org.apache.commons.io.FileUtilsListFilesTestCase
+org.apache.commons.io.FileUtilsTestCase
+org.apache.commons.io.FilenameUtilsTestCase
+org.apache.commons.io.FilenameUtilsWildcardTestCase
+org.apache.commons.io.IOCaseTestCase
+org.apache.commons.io.comparator.CompositeFileComparatorTest
+org.apache.commons.io.comparator.ExtensionFileComparatorTest
+org.apache.commons.io.comparator.NameFileComparatorTest
+org.apache.commons.io.comparator.PathFileComparatorTest
+org.apache.commons.io.filefilter.FileFilterTestCase
+org.apache.commons.io.filefilter.RegexFileFilterTestCase
+org.apache.commons.io.monitor.FileAlterationMonitorTestCase
+org.apache.commons.io.monitor.FileAlterationObserverTestCase

@@ -1,0 +1,13 @@
+diff --git a/io_18_fix/src/main/java/org/apache/commons/io/input/BOMInputStream.java b/io_18_buggy/src/main/java/org/apache/commons/io/input/BOMInputStream.java
+index 5963ea0..f46c4a5 100644
+--- a/io_18_fix/src/main/java/org/apache/commons/io/input/BOMInputStream.java
++++ b/io_18_buggy/src/main/java/org/apache/commons/io/input/BOMInputStream.java
+@@ -284,7 +284,7 @@ public class BOMInputStream extends ProxyInputStream {
+             }
+         }
+         int secondCount = in.read(buf, off, len);
+-        return (secondCount < 0) ? (firstCount > 0 ? firstCount : -1) : firstCount + secondCount;
++        return (secondCount < 0) ? firstCount : firstCount + secondCount;
+     }
+ 
+     /**

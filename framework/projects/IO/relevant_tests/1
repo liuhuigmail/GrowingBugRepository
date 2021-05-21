@@ -1,0 +1,17 @@
+org.apache.commons.io.FileCleanerTestCase
+org.apache.commons.io.FileDeleteStrategyTestCase
+org.apache.commons.io.FileSystemUtilsTestCase
+org.apache.commons.io.FileUtilsCleanDirectoryTestCase
+org.apache.commons.io.FileUtilsFileNewerTestCase
+org.apache.commons.io.FileUtilsListFilesTestCase
+org.apache.commons.io.FileUtilsTestCase
+org.apache.commons.io.FilenameUtilsTestCase
+org.apache.commons.io.IOUtilsCopyTestCase
+org.apache.commons.io.IOUtilsTestCase
+org.apache.commons.io.IOUtilsWriteTestCase
+org.apache.commons.io.LineIteratorTestCase
+org.apache.commons.io.filefilter.FileFilterTestCase
+org.apache.commons.io.input.CountingInputStreamTest
+org.apache.commons.io.output.CountingOutputStreamTest
+org.apache.commons.io.output.DeferredFileOutputStreamTest
+org.apache.commons.io.output.LockableFileWriterTest

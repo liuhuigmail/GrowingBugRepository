@@ -1,0 +1,13 @@
+diff --git a/io_8_fix/src/java/org/apache/commons/io/FileUtils.java b/io_8_buggy/src/java/org/apache/commons/io/FileUtils.java
+index 629233c..e9cb644 100644
+--- a/io_8_fix/src/java/org/apache/commons/io/FileUtils.java
++++ b/io_8_buggy/src/java/org/apache/commons/io/FileUtils.java
+@@ -532,7 +532,7 @@ public class FileUtils {
+         URL[] urls = new URL[files.length];
+ 
+         for (int i = 0; i < urls.length; i++) {
+-            urls[i] = files[i].toURI().toURL();
++            urls[i] = files[i].toURL();
+         }
+ 
+         return urls;

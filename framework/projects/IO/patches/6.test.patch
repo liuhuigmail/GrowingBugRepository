@@ -1,0 +1,27 @@
+diff --git a/src/test/org/apache/commons/io/FilenameUtilsTestCase.java b/src/test/org/apache/commons/io/FilenameUtilsTestCase.java
+index f9dd0248..637f8acf 100644
+--- a/src/test/org/apache/commons/io/FilenameUtilsTestCase.java
++++ b/src/test/org/apache/commons/io/FilenameUtilsTestCase.java
+@@ -791,19 +791,19 @@ public class FilenameUtilsTestCase extends FileBasedTestCase {
+         try {
+             FilenameUtils.equalsNormalizedOnSystem("//file.txt", "file.txt");
+             fail("Invalid normalized first file");
+-        } catch(NullPointerException e) {
++        } catch(IllegalArgumentException e) {
+             // expected result
+         }
+         try {
+             FilenameUtils.equalsNormalizedOnSystem("file.txt", "//file.txt");
+             fail("Invalid normalized second file");
+-        } catch(NullPointerException e) {
++        } catch(IllegalArgumentException e) {
+             // expected result
+         }
+         try {
+             FilenameUtils.equalsNormalizedOnSystem("//file.txt", "//file.txt");
+             fail("Invalid normalized both filse");
+-        } catch(NullPointerException e) {
++        } catch(IllegalArgumentException e) {
+             // expected result
+         }
+     }

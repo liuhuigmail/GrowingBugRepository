@@ -1,0 +1,15 @@
+diff --git a/src/test/java/org/apache/commons/io/FilenameUtilsTestCase.java b/src/test/java/org/apache/commons/io/FilenameUtilsTestCase.java
+index bd97a5ae..fc6a025f 100644
+--- a/src/test/java/org/apache/commons/io/FilenameUtilsTestCase.java
++++ b/src/test/java/org/apache/commons/io/FilenameUtilsTestCase.java
+@@ -583,10 +583,6 @@ public class FilenameUtilsTestCase extends FileBasedTestCase {
+         assertEquals(9, FilenameUtils.getPrefixLength("//server/a/b/c.txt"));
+         assertEquals(-1, FilenameUtils.getPrefixLength("\\\\\\a\\b\\c.txt"));
+         assertEquals(-1, FilenameUtils.getPrefixLength("///a/b/c.txt"));
+-
+-        assertEquals(1, FilenameUtils.getPrefixLength("/:foo"));
+-        assertEquals(1, FilenameUtils.getPrefixLength("/:/"));
+-        assertEquals(1, FilenameUtils.getPrefixLength("/:::::::.txt"));
+     }
+ 
+     @Test

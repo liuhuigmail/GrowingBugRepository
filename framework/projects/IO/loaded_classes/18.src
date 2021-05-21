@@ -1,0 +1,3 @@
+org.apache.commons.io.ByteOrderMark
+org.apache.commons.io.input.BOMInputStream
+org.apache.commons.io.input.ProxyInputStream

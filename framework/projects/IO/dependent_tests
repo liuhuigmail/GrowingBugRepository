@@ -1,0 +1,3 @@
+--- org.apache.commons.io.monitor.FilesystemObserverTestCase::testFileCreate
+--- org.apache.commons.io.monitor.FilesystemObserverTestCase::testFileDelete
+--- org.apache.commons.io.FileSystemUtilsTestCase::testGetFreeSpace_String

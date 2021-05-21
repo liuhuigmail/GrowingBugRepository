@@ -1,0 +1,4 @@
+org.apache.commons.io.input.XmlStreamReaderTest
+org.apache.commons.io.input.XmlStreamReaderUtilitiesTest
+org.apache.commons.io.input.compatibility.XmlStreamReaderUtilitiesCompatibilityTest
+org.apache.commons.io.output.XmlStreamWriterTest

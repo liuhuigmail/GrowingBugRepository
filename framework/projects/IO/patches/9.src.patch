@@ -1,0 +1,18 @@
+diff --git a/io_9_fix/src/java/org/apache/commons/io/FilenameUtils.java b/io_9_buggy/src/java/org/apache/commons/io/FilenameUtils.java
+index 7a0f044..d0fdae2 100644
+--- a/io_9_fix/src/java/org/apache/commons/io/FilenameUtils.java
++++ b/io_9_buggy/src/java/org/apache/commons/io/FilenameUtils.java
+@@ -699,11 +699,10 @@ public class FilenameUtils {
+             return null;
+         }
+         int index = indexOfLastSeparator(filename);
+-        int endIndex = index+separatorAdd;
+-        if (prefix >= filename.length() || index < 0 || prefix >= endIndex) {
++        if (prefix >= filename.length() || index < 0) {
+             return "";
+         }
+-        return filename.substring(prefix, endIndex);
++        return filename.substring(prefix, index + separatorAdd);
+     }
+ 
+     /**

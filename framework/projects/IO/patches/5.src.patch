@@ -1,0 +1,15 @@
+diff --git a/io_5_fix/src/java/org/apache/commons/io/FilenameUtils.java b/io_5_buggy/src/java/org/apache/commons/io/FilenameUtils.java
+index 2c6c62f..006859f 100644
+--- a/io_5_fix/src/java/org/apache/commons/io/FilenameUtils.java
++++ b/io_5_buggy/src/java/org/apache/commons/io/FilenameUtils.java
+@@ -977,10 +977,6 @@ public class FilenameUtils {
+         if (normalized) {
+             filename1 = normalize(filename1);
+             filename2 = normalize(filename2);
+-            if (filename1 == null || filename2 == null) {
+-                throw new IllegalArgumentException(
+-                    "Error normalizing one or both of the file names");
+-            }
+         }
+         if (caseSensitivity == null) {
+             caseSensitivity = IOCase.SENSITIVE;
