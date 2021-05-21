@@ -5,7 +5,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 ## Contents of growingBugs
 To date, growingBugs contains 946 bugs from open-source Java projects. 
 
-| Project No.     | Project ID      | Project name               | Number of bugs | Bug IDs      | 
+|   | Project ID      | Project name               | Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|---------------:|---------------------|
 | 1     | Chart           | jfreechart                 |       26       | 1-26                |
 | 2     | Cli             | commons-cli                |       39       | 1-5,7-40            |
