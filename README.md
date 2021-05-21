@@ -26,10 +26,10 @@ To date, growingBugs contains 946 bugs from open-source Java projects.
 | 17     | Time            | joda-time                  |       26       | 1-20,22-27          |
 | 18     | Dbutils         | commons-dbutils            |        2       | 1-2                 |
 | 19     | Functor         | commons-functor            |        2       | 1-2                 |
-| 20     | Imaging         | commons-imaging            |        9       | 1,3-8,10-11,14  |
+| 20     | Imaging         | commons-imaging            |        10      | 1,3-8,10-11,14  |
 | 21     | IO              | commons-io                 |        3       | 1-3                 |
 | 22     | JXR             | maven-jxr                  |        1       | 1                   |
-| 23     | MShade          | maven-shade-plugin         |        5       | 1-7                 |
+| 23     | MShade          | maven-shade-plugin         |        7       | 1-7                 |
 | 24     | Tika            | tika                       |        6       | 1-6               |
 | 25     | Validator       | commons-validator          |        21      | 1-2,4,6-9,11-21,23-25 |
 | 26     | Pool            | commons-pool               |        19      | 1-2,4-7,10-14,16,20-21,24,26-27,29-30|
