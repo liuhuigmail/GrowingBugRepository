@@ -27,7 +27,7 @@ To date, growingBugs contains 946 bugs from open-source Java projects.
 | 18     | Dbutils         | commons-dbutils            |        2       | 1-2                 |
 | 19     | Functor         | commons-functor            |        2       | 1-2                 |
 | 20     | Imaging         | commons-imaging            |        9       | 1,3-8,10-11,14  |
-| 21     | IO              | commons-io                 |        2       | 1-3                 |
+| 21     | IO              | commons-io                 |        3       | 1-3                 |
 | 22     | JXR             | maven-jxr                  |        1       | 1                   |
 | 23     | MShade          | maven-shade-plugin         |        5       | 1-7                 |
 | 24     | Tika            | tika                       |        6       | 1-6               |
