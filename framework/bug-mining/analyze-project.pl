@@ -265,32 +265,50 @@ sub _check_t2v2 {
 
     my $successful_runs = 0;
     my $run = 0;
+    my $count=0;
     while ($successful_runs < $TEST_RUNS && $run <= $MAX_TEST_RUNS) {
         # Automatically fix broken tests and recompile
         ++$run;
         $project->fix_tests("${bid}f");
+        system("cat all_tests.txt");
+    
         $project->compile_tests() or next;
 
         # Run t2 and get number of failing tests
         my $file = "$project->{prog_root}/v2.fail"; `>$file`;
-
+	
+        
         $project->run_tests($file) or next;
-
         # Filter out invalid test names, such as testEncode[0].
         # This problem impacts many Commons projects.
-        if(-e "$project->{prog_root}/v2.fail"){
+	if(-e "$project->{prog_root}/v2.fail"){
             rename("$project->{prog_root}/v2.fail", "$project->{prog_root}/v2.fail".'.bak');
             open(IN, '<'."$project->{prog_root}/v2.fail".'.bak') or die $!;
             open(OUT, '>'."$project->{prog_root}/v2.fail") or die $!;
+            
             while(<IN>) {
                 if($_ =~ /\-\-\-/){
-                    $_ =~ s/\[[0-9]\]//g;
+                #TODO if first num ==0 just remove [0] else remove the line 
+                     #my ($first_num) = 0;
+                     #$first_num= $_ =~ /\[(\d+)\]/;   # 123
+                     #my $temp=10;
+                     #if($first_num < $temp	 ){
+                     #	$_ =~ s/\[[0-9]+\]//g;
+                     #}
+                     #else{
+                     	#$_ =~ s/\[[0-9]+\]/_$count/g;
+                     	#$_ =~ s/.*\[[0-9]+\].*//g;
+                     	#$count=$count+1;
+                     	#die "\n$first_num\n";
+                     #}
+                     $_ =~ s/\[[0-9]+\]//g;
                 }
                 print OUT $_;
             }
             close(IN);
             close(OUT);
         }
+         
 	
         # Get number of failing tests
         my $list = Utils::get_failing_tests($file);
