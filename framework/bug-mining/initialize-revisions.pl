@@ -140,13 +140,13 @@ sub _init_version {
     } elsif (-e "$work_dir/pom.xml") {
         #here are two patterns : one is just deleting -SNAPSHOT , the other is changing the version and deleting -SNAPSHOT
     	#system("sed -i \"s/<xmlsec\.version>2\.2\.0-SNAPSHOT<\/xmlsec\.version>/<xmlsec\.version>2\.2\.3-SNAPSHOT<\/xmlsec\.version>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
-    	
+    	#sed -i \"s/-SNAPSHOT//g\"  `grep SNAPSHOT -rl $temp_work_dir`"
     	system("sed -i \"s/\<bundle\.version\>2\.0-SNAPSHOT\<\\/bundle\.version\>/\<bundle\.version\>2\.0\<\\/bundle\.version\>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
     	
     	system("sed -i \"s/\<xmlsec\.version\>2\..\..-SNAPSHOT\<\\/xmlsec\.version\>/\<xmlsec\.version\>2\.2\.3-SNAPSHOT\<\\/xmlsec\.version\>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
     	
     	#delete multi lines 
-    	#system("sed   -i  '/\<parent/,/parent\>/d' `grep parent -rl $work_dir` ");
+    	#system("sed -i  '/\<parent/,/parent\>/d' `grep parent -rl $work_dir` ");
     	
     	#system("cat $work_dir/pom.xml");
         
@@ -157,7 +157,13 @@ sub _init_version {
                   " && rm -rf $GEN_BUILDFILE_DIR/$rev_id && mkdir -p $GEN_BUILDFILE_DIR/$rev_id 2>&1" .
                   " && cp maven-build.* $GEN_BUILDFILE_DIR/$rev_id 2>&1" .
                   " && cp build.xml $GEN_BUILDFILE_DIR/$rev_id 2>&1";
-        Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) or next;
+          
+        my $try1=Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) ;
+        if(!$try1){
+        	system("sed -i \"s/-SNAPSHOT//g\"  `grep SNAPSHOT -rl $temp_work_dir`");
+        	Utils::exec_cmd($cmd, "Convert Maven to Ant build file again : " . $rev_id) or next;
+        } 
+         
         #Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) or die;
         #system("cat $work_dir/maven-build.xml");
         $cmd = " cd $work_dir" .
