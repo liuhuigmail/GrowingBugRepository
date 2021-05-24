@@ -21,16 +21,11 @@
 #-------------------------------------------------------------------------------
 
 =pod
-
 =head1 NAME
-
 Project::Validator.pm -- L<Project> submodule for commons-validator.
-
 =head1 DESCRIPTION
-
 This module provides all project-specific configurations and subroutines for the
 commons-validator project.
-
 =cut
 package Project::Validator;
 
