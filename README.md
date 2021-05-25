@@ -3,7 +3,7 @@
 Notably, each bug is composed of a buggy version, a fixed version, a concise patch (bug-fixing changes only), and one or more triggering test cases.
 
 ## Contents of growingBugs
-To date, growingBugs contains 962 bugs from open-source Java projects. 
+To date, growingBugs contains 965 bugs from open-source Java projects. 
 
 |   | Project ID      | Project name               | Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|---------------:|---------------------|
@@ -11,7 +11,7 @@ To date, growingBugs contains 962 bugs from open-source Java projects.
 | 2     | Cli             | commons-cli                |       39       | 1-5,7-40            |
 | 3     | Closure         | closure-compiler           |      174       | 1-62,64-92,94-176   |
 | 4     | Codec           | commons-codec              |       18       | 1-18                |
-| 5     | Collections     | commons-collections        |        4       | 25-28               |
+| 5     | Collections     | commons-collections        |        6       | 25-29,35               |
 | 6     | Compress        | commons-compress           |       52       | 1-48,50,52-54       |
 | 7     | Csv             | commons-csv                |       17       | 1-17                |
 | 8     | Gson            | gson                       |       18       | 1-18                |
@@ -30,7 +30,7 @@ To date, growingBugs contains 962 bugs from open-source Java projects.
 | 21     | IO              | commons-io                 |        19       | 1-3,5-6,8-11,13,15-18,22,25,27,29-30                |
 | 22     | JXR             | maven-jxr                  |        1       | 1                   |
 | 23     | MShade          | maven-shade-plugin         |        7       | 1-7                 |
-| 24     | Tika            | tika                       |        6       | 1-6               |
+| 24     | Tika            | tika                       |        7       | 1-7               |
 | 25     | Validator       | commons-validator          |        21      | 1-2,4,6-9,11-21,23-25 |
 | 26     | Pool            | commons-pool               |        19      | 1-2,4-7,10-14,16,20-21,24,26-27,29-30|
 | 27     | Email           | commons-email              |        4       | 2-5                 |

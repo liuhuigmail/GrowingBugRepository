@@ -1,7 +1,7 @@
-diff --git a/src/main/java/org/apache/commons/collections4/map/Flat3Map.java b/src/main/java/org/apache/commons/collections4/map/Flat3Map.java
-index c506c531..2bfa20a3 100644
---- a/src/main/java/org/apache/commons/collections4/map/Flat3Map.java
-+++ b/src/main/java/org/apache/commons/collections4/map/Flat3Map.java
+diff --git a/collections_35_fix/src/main/java/org/apache/commons/collections4/map/Flat3Map.java b/collections_35_buggy/src/main/java/org/apache/commons/collections4/map/Flat3Map.java
+index c506c53..2bfa20a 100644
+--- a/collections_35_fix/src/main/java/org/apache/commons/collections4/map/Flat3Map.java
++++ b/collections_35_buggy/src/main/java/org/apache/commons/collections4/map/Flat3Map.java
 @@ -946,8 +946,8 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
              if (currentEntry == null) {
                  throw new IllegalStateException(AbstractHashedMap.REMOVE_INVALID);

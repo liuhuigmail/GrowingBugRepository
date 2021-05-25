@@ -1,0 +1,19 @@
+diff --git a/tika_7_fix/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java b/tika_7_buggy/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
+index fecd23e..5bb070d 100644
+--- a/tika_7_fix/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
++++ b/tika_7_buggy/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
+@@ -186,16 +186,6 @@ public class XHTMLContentHandler extends SafeContentHandler {
+         }
+     }
+ 
+
+-    @Override
+-    public void characters(char[] ch, int start, int length)
+-            throws SAXException {
+-        lazyStartDocument();
+-        super.characters(ch, start, length);
+-    }
+
+     //------------------------------------------< public convenience methods >
+ 
+     public void startElement(String name) throws SAXException {
