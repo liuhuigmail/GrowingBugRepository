@@ -1,0 +1,36 @@
+diff --git a/src/test/java/org/apache/commons/collections4/map/CompositeMapTest.java b/src/test/java/org/apache/commons/collections4/map/CompositeMapTest.java
+index 4499eb21..8841ab46 100644
+--- a/src/test/java/org/apache/commons/collections4/map/CompositeMapTest.java
++++ b/src/test/java/org/apache/commons/collections4/map/CompositeMapTest.java
+@@ -75,7 +75,6 @@ public class CompositeMapTest<K, V> extends AbstractIterableMapTest<K, V> {
+         final CompositeMap<K, V> map = new CompositeMap<>(buildOne(), buildTwo());
+         final HashMap<K, V> three = new HashMap<>();
+         three.put((K) "5", (V) "five");
+-        map.addComposited(null);
+         map.addComposited(three);
+         assertTrue(map.containsKey("5"));
+         try {
+@@ -91,7 +90,6 @@ public class CompositeMapTest<K, V> extends AbstractIterableMapTest<K, V> {
+         final CompositeMap<K, V> map = new CompositeMap<>(buildOne(), buildTwo());
+         final HashMap<K, V> three = new HashMap<>();
+         three.put((K) "5", (V) "five");
+-        map.addComposited(null);
+         map.addComposited(three);
+         assertTrue(map.containsKey("5"));
+ 
+@@ -108,7 +106,6 @@ public class CompositeMapTest<K, V> extends AbstractIterableMapTest<K, V> {
+         final CompositeMap<K, V> map = new CompositeMap<>(buildOne(), buildTwo());
+         final HashMap<K, V> three = new HashMap<>();
+         three.put((K) "5", (V) "five");
+-        map.addComposited(null);
+         map.addComposited(three);
+         assertTrue(map.containsKey("5"));
+ 
+@@ -122,7 +119,6 @@ public class CompositeMapTest<K, V> extends AbstractIterableMapTest<K, V> {
+         final CompositeMap<K, V> map = new CompositeMap<>(buildOne(), buildTwo());
+         final HashMap<K, V> three = new HashMap<>();
+         three.put((K) "5", (V) "five");
+-        map.addComposited(null);
+         map.addComposited(three);
+         assertTrue(map.containsKey("5"));
+ 

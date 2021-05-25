@@ -1,0 +1,4 @@
+org.apache.commons.collections4.collection.AbstractCollectionDecorator
+org.apache.commons.collections4.list.AbstractListDecorator
+org.apache.commons.collections4.list.AbstractSerializableListDecorator
+org.apache.commons.collections4.list.SetUniqueList

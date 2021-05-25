@@ -1,0 +1,83 @@
+diff --git a/src/main/java/org/apache/commons/collections4/collection/CompositeCollection.java b/src/main/java/org/apache/commons/collections4/collection/CompositeCollection.java
+index 57541dcb..83b43029 100644
+--- a/src/main/java/org/apache/commons/collections4/collection/CompositeCollection.java
++++ b/src/main/java/org/apache/commons/collections4/collection/CompositeCollection.java
+@@ -24,7 +24,6 @@ import java.util.Collection;
+ import java.util.Iterator;
+ import java.util.List;
+ 
+-import org.apache.commons.collections4.CollectionUtils;
+ import org.apache.commons.collections4.iterators.EmptyIterator;
+ import org.apache.commons.collections4.iterators.IteratorChain;
+ import org.apache.commons.collections4.list.UnmodifiableList;
+@@ -261,9 +260,6 @@ public class CompositeCollection<E> implements Collection<E>, Serializable {
+      */
+     @Override
+     public boolean containsAll(final Collection<?> coll) {
+-        if (coll == null) {
+-            return false;
+-        }
+         for (final Object item : coll) {
+             if (contains(item) == false) {
+                 return false;
+@@ -304,7 +300,7 @@ public class CompositeCollection<E> implements Collection<E>, Serializable {
+      */
+     @Override
+     public boolean removeAll(final Collection<?> coll) {
+-        if (CollectionUtils.isEmpty(coll)) {
++        if (coll.size() == 0) {
+             return false;
+         }
+         boolean changed = false;
+@@ -327,10 +323,8 @@ public class CompositeCollection<E> implements Collection<E>, Serializable {
+     @Override
+     public boolean retainAll(final Collection<?> coll) {
+         boolean changed = false;
+-        if (coll != null) {
+-            for (final Collection<E> item : all) {
+-                changed |= item.retainAll(coll);
+-            }
++        for (final Collection<E> item : all) {
++            changed |= item.retainAll(coll);
+         }
+         return changed;
+     }
+@@ -365,9 +359,7 @@ public class CompositeCollection<E> implements Collection<E>, Serializable {
+      * @param compositeCollection  the Collection to be appended to the composite
+      */
+     public void addComposited(final Collection<E> compositeCollection) {
+-        if (compositeCollection != null) {
+-            all.add(compositeCollection);
+-        }
++        all.add(compositeCollection);
+     }
+ 
+     /**
+@@ -378,12 +370,8 @@ public class CompositeCollection<E> implements Collection<E>, Serializable {
+      */
+     public void addComposited(final Collection<E> compositeCollection1,
+                               final Collection<E> compositeCollection2) {
+-        if (compositeCollection1 != null) {
+-            all.add(compositeCollection1);
+-        }
+-        if (compositeCollection2 != null) {
+-            all.add(compositeCollection2);
+-        }
++        all.add(compositeCollection1);
++        all.add(compositeCollection2);
+     }
+ 
+     /**
+@@ -392,11 +380,7 @@ public class CompositeCollection<E> implements Collection<E>, Serializable {
+      * @param compositeCollections  the Collections to be appended to the composite
+      */
+     public void addComposited(final Collection<E>... compositeCollections) {
+-        for (Collection<E> compositeCollection : compositeCollections) {
+-            if (compositeCollection != null) {
+-                all.add(compositeCollection);
+-            }
+-        }
++        all.addAll(Arrays.asList(compositeCollections));
+     }
+ 
+     /**

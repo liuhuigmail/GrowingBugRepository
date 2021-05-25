@@ -35,7 +35,7 @@ initialize-revisions.pl -p project_id -w work_dir [-s subproject]  [ -c componen
 
 =head1 OPTIONS
 
-=over 4
+=over 5
 
 =item B<-p C<project_id>>
 
@@ -53,6 +53,10 @@ The subproject to be mined (if not the root directory)
 
 Only analyze this bug id. The bug_id has to follow the format B<(\d+)(:(\d+))?>.
 Per default all bug ids, listed in the active-bugs csv, are considered.
+
+=item B<-n C<project_name>>
+
+In order to make the project name consistent before and after the version
 
 
 =back
@@ -72,7 +76,7 @@ use DB;
 use Utils;
 
 my %cmd_opts;
-getopts('p:b:w:s:', \%cmd_opts) or pod2usage(1);
+getopts('p:b:w:s:n:', \%cmd_opts) or pod2usage(1);
 
 pod2usage(1) unless defined $cmd_opts{p} and defined $cmd_opts{w};
 
@@ -80,6 +84,7 @@ my $PID = $cmd_opts{p};
 my $BID = $cmd_opts{b};
 my $WORK_DIR = abs_path($cmd_opts{w});
 my $SUBPROJ = $cmd_opts{s}//".";
+my $NAME = $cmd_opts{n};
 
 # Check format of target bug id
 if (defined $BID) {
@@ -163,6 +168,32 @@ sub _init_version {
         	system("sed -i \"s/-SNAPSHOT//g\"  `grep SNAPSHOT -rl $temp_work_dir`");
         	Utils::exec_cmd($cmd, "Convert Maven to Ant build file again : " . $rev_id) or next;
         } 
+        
+        if (-e "$GEN_BUILDFILE_DIR/$rev_id/maven-build.xml"){
+        	rename("$GEN_BUILDFILE_DIR/$rev_id/maven-build.xml", "$GEN_BUILDFILE_DIR/$rev_id/maven-build.xml".'.bak');
+        	open(IN, '<'."$GEN_BUILDFILE_DIR/$rev_id/maven-build.xml".'.bak') or die $!;
+        	open(OUT, '>'."$GEN_BUILDFILE_DIR/$rev_id/maven-build.xml") or die $!;
+        	while(<IN>) {
+            		#$_ =~ s/commons-collections4/commons-collections/g;
+            		$_ =~ s/name\=\".*from\-maven/name\=\"$NAME\-from\-maven/g;
+            		print OUT $_;
+        	}
+        	close(IN);
+        	close(OUT);
+    	}
+ 
+#   	if (-e "$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties"){
+#        	rename("$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties", "$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties".'.bak');
+#        	open(IN, '<'."$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties".'.bak') or die $!;
+#        	open(OUT, '>'."$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties") or die $!;
+#        	while(<IN>) {
+#            	#$_ =~ s/commons-collections4/commons-collections/g;
+#            	print OUT $_;
+#       	 }
+#        	close(IN);
+#        	close(OUT);
+#        
+#    	}
          
         #Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) or die;
         #system("cat $work_dir/maven-build.xml");
@@ -174,6 +205,33 @@ sub _init_version {
         # Fix broken dependency links
         my $fix_dep = "cd $work_dir && sed \'s\/https:\\/\\/oss\\.sonatype\\.org\\/content\\/repositories\\/snapshots\\//http:\\/\\/central\\.maven\\.org\\/maven2\\/\/g\' maven-build.xml >> temp && mv temp maven-build.xml";
         Utils::exec_cmd($fix_dep, "Fixing broken dependency links.");
+        
+        if (-e "$work_dir/maven-build.xml"){
+        	rename("$work_dir/maven-build.xml", "$work_dir/maven-build.xml".'.bak');
+        	open(IN, '<'."$work_dir/maven-build.xml".'.bak') or die $!;
+        	open(OUT, '>'."$work_dir/maven-build.xml") or die $!;
+        	while(<IN>) {
+            		#$_ =~ s/commons-collections4/commons-collections/g;
+            		$_ =~ s/name\=\".*from\-maven/name\=\"$NAME\-from\-maven/g;
+            		print OUT $_;
+        	}
+        	close(IN);
+        	close(OUT);
+    	}
+ 
+#   	if (-e "$work_dir/maven-build.properties"){
+#        	rename("$work_dir/maven-build.properties", "$work_dir/maven-build.properties".'.bak');
+#        	open(IN, '<'."$work_dir/maven-build.properties".'.bak') or die $!;
+#        	open(OUT, '>'."$work_dir/maven-build.properties") or die $!;
+#        	while(<IN>) {
+#            	#$_ =~ s/commons-collections4/commons-collections/g;
+#            	$_ =~ s/name\=\".*from\-maven/name\=\"$NAME\-from\-maven/g;
+#            	print OUT $_;
+#       	 }
+#        	close(IN);
+#        	close(OUT);
+#        
+#    	}
 
         # Get dependencies if it is maven-ant project
         my $download_dep = "cd $work_dir && ant -Dmaven.repo.local=\"$PROJECT_DIR/lib\" get-deps";
