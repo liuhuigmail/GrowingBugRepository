@@ -28,7 +28,7 @@ d4j-checkout -- checkout a particular project version.
 
 =head1 SYNOPSIS
 
-  d4j-checkout -p project_id -v version_id -w work_dir
+  d4j-checkout -p project_id -v version_id -w work_dir -s sub_proj
 
 =head1 DESCRIPTION
 
@@ -37,7 +37,7 @@ directory.
 
 =head1 OPTIONS
 
-=over 4
+=over 5
 
 =item -p C<project_id>
 
@@ -52,6 +52,11 @@ The version id that shall be checked out. Format: C<\d+[bf]>.
 
 The working directory to which the buggy or fixed project version shall be checked out.
 The working directory has to be either empty or a previously used working directory.
+
+=item -s F<sub_proj>
+
+The sub project of the project.
+The working directory has to be either empty or a sub project of the project.
 
 B<ALL files in a previously used working directory are deleted prior to
 checking out the requested project version.>
@@ -72,17 +77,18 @@ use Getopt::Std;
 # Issue usage message and quit
 #
 sub _usage {
-    print "usage: $0 -p project_id -v version_id -w work_dir\n";
+    print "usage: $0 -p project_id -v version_id -w work_dir -s sub_proj\n";
     exit 1;
 }
 
 my %cmd_opts;
-getopts('p:v:w:', \%cmd_opts) or _usage();
+getopts('p:v:w:s:', \%cmd_opts) or _usage();
 
 _usage() unless defined $cmd_opts{p} and defined $cmd_opts{v} and defined $cmd_opts{w};
 
 my $PID = $cmd_opts{p};
 my $VID = $cmd_opts{v};
+my $SID = $cmd_opts{s}//".";
 
 Utils::ensure_valid_vid($PID, $VID);
 
@@ -93,6 +99,6 @@ my $project = Project::create_project($PID);
 $project->{prog_root} = $WORK_DIR;
 
 # Checkout program version
-$project->checkout_vid($VID) or die "Cannot checkout program version!";
+$project->checkout_vid($VID, $WORK_DIR, 1, $SID) or die "Cannot checkout program version!";
 
 1;

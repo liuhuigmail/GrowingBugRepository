@@ -361,7 +361,7 @@ sub sanity_check {
 
 =pod
 
-  $project->checkout_vid(vid [, work_dir, is_bugmine])
+  $project->checkout_vid(vid, work_dir, is_bugmine, sub_proj)
 
 Checks out the provided version id (C<vid>) to F<work_dir>, and tags the the buggy AND
 the fixed program version of this bug. Format of C<vid>: C<\d+[bf]>.
@@ -372,11 +372,10 @@ framework is used for bug mining, the default is false.
 =cut
 
 sub checkout_vid {
-    my ($self, $vid, $work_dir, $is_bugmine,$SUBPROJ) = @_;
+    my ($self, $vid, $work_dir, $is_bugmine, $sub_proj) = @_;
     my $tmp = Utils::check_vid($vid);
     my $bid = $tmp->{bid};
     my $version_type = $tmp->{type};
-
     my $pid = $self->{pid};
     my $revision_id = $self->lookup("${bid}f");
     unless (defined $work_dir) {
@@ -384,10 +383,10 @@ sub checkout_vid {
     }
 
     # Check whether the working directory can be re-used (same pid and bid)
-    if (-e "$work_dir/$CONFIG") {
+    if (-e "$work_dir/$sub_proj/$CONFIG") {
         # If the directory is a previously used working directory, check whether
         # we can just checkout a previously generated tag.
-        my $config = Utils::read_config_file("$work_dir/$CONFIG");
+        my $config = Utils::read_config_file("$work_dir/$sub_proj/$CONFIG");
         if (defined $config) {
             my $old_pid = $config->{$CONFIG_PID};
             my $old_vid = $config->{$CONFIG_VID};
@@ -422,7 +421,7 @@ sub checkout_vid {
             or confess("Couldn't init local git repository!");
 
     # Write program and version id of fixed program version to config file
-    Utils::write_config_file("$work_dir/$CONFIG", {$CONFIG_PID => $pid, $CONFIG_VID => "${bid}f"});
+    Utils::write_config_file("$work_dir/$sub_proj/$CONFIG", {$CONFIG_PID => $pid, $CONFIG_VID => "${bid}f"});
 
     # Commit and tag the post-fix revision
     my $tag_name = Utils::tag_prefix($pid, $bid) . $TAG_POST_FIX;
@@ -438,7 +437,7 @@ sub checkout_vid {
     # Check whether post-checkout hook is provided
     if (defined $self->{_vcs}->{_co_hook}) {
         # Execute post-checkout hook
-        $self->{_vcs}->{_co_hook}($self, $revision_id, $work_dir,$SUBPROJ);
+        $self->{_vcs}->{_co_hook}($self, $revision_id, $work_dir,$sub_proj);
         # TODO: We need a better solution for tracking changes of the
         # post-checkout hook.
         my $changes = `cd $work_dir && git status -s | wc -l`;
@@ -461,7 +460,7 @@ sub checkout_vid {
     # Fix test suite if necessary
     $self->fix_tests("${bid}f");
     # Write version-specific properties
-    $self->_write_props($vid, $is_bugmine);
+    $self->_write_props($work_dir, $sub_proj, $vid, $is_bugmine);
 
     # Commit and tag the fixed program version
     $tag_name = Utils::tag_prefix($pid, $bid) . $TAG_FIXED;
@@ -478,7 +477,7 @@ sub checkout_vid {
     $self->apply_patch($work_dir, $src_patch) or return 0;
 
     # Write program and version id of buggy program version to config file
-    Utils::write_config_file("$work_dir/$CONFIG", {$CONFIG_PID => $pid, $CONFIG_VID => "${bid}b"});
+    Utils::write_config_file("$work_dir/$sub_proj/$CONFIG", {$CONFIG_PID => $pid, $CONFIG_VID => "${bid}b"});
 
     # Commit and tag the buggy program version
     $tag_name = Utils::tag_prefix($pid, $bid) . $TAG_BUGGY;
@@ -1192,8 +1191,8 @@ sub _relevant_classes {
 # Write all version-specific properties to file
 #
 sub _write_props {
-    @_ == 3 or die $ARG_ERROR;
-    my ($self, $vid, $is_bugmine) = @_;
+    @_ == 5 or die $ARG_ERROR;
+    my ($self, $work_dir, $sub_proj, $vid, $is_bugmine) = @_;
     my $bid = Utils::check_vid($vid)->{bid};
 
     # will skip writing mod classes and trigger tests if we are bug mining because they are not defined yet
@@ -1219,7 +1218,7 @@ sub _write_props {
         $PROP_CLASSES_RELEVANT=> $rel_classes,
         $PROP_TESTS_TRIGGER   => $trigger_tests,
     };
-    Utils::write_config_file("$self->{prog_root}/$PROP_FILE", $config);
+    Utils::write_config_file("$work_dir/$sub_proj/$PROP_FILE", $config);
 }
 
 #
