@@ -306,7 +306,10 @@ sub _export_relevant_tests {
     my @all_tests = `cd $TMP_DIR && $SCRIPT_DIR/bin/defects4j export -ptests.all`;
     foreach my $test (@all_tests) {
         chomp($test);
-         
+        if ($test =~ /\.html/){
+            next;
+        }
+        
         if ($test =~ /\.java\.bak/){
             next;
    	}

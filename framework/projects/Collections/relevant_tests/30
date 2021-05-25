@@ -1,0 +1,6 @@
+org.apache.commons.collections4.CollectionUtilsTest
+org.apache.commons.collections4.ListUtilsTest
+org.apache.commons.collections4.list.SetUniqueListTest
+org.apache.commons.collections4.multimap.ArrayListValuedHashMapTest
+org.apache.commons.collections4.multimap.TransformedMultiValuedMapTest
+org.apache.commons.collections4.multimap.UnmodifiableMultiValuedMapTest

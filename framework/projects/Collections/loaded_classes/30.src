@@ -1,0 +1,5 @@
+org.apache.commons.collections4.Equator
+org.apache.commons.collections4.Factory
+org.apache.commons.collections4.ListUtils
+org.apache.commons.collections4.Predicate
+org.apache.commons.collections4.sequence.CommandVisitor
