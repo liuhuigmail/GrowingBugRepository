@@ -146,9 +146,9 @@ sub _init_version {
         #here are two patterns : one is just deleting -SNAPSHOT , the other is changing the version and deleting -SNAPSHOT
     	#system("sed -i \"s/<xmlsec\.version>2\.2\.0-SNAPSHOT<\/xmlsec\.version>/<xmlsec\.version>2\.2\.3-SNAPSHOT<\/xmlsec\.version>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
     	#sed -i \"s/-SNAPSHOT//g\"  `grep SNAPSHOT -rl $temp_work_dir`"
-    	system("sed -i \"s/\<bundle\.version\>2\.0-SNAPSHOT\<\\/bundle\.version\>/\<bundle\.version\>2\.0\<\\/bundle\.version\>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
+    	#system("sed -i \"s/\<bundle\.version\>2\.0-SNAPSHOT\<\\/bundle\.version\>/\<bundle\.version\>2\.0\<\\/bundle\.version\>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
     	
-    	system("sed -i \"s/\<xmlsec\.version\>2\..\..-SNAPSHOT\<\\/xmlsec\.version\>/\<xmlsec\.version\>2\.2\.3-SNAPSHOT\<\\/xmlsec\.version\>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
+    	#system("sed -i \"s/\<xmlsec\.version\>2\..\..-SNAPSHOT\<\\/xmlsec\.version\>/\<xmlsec\.version\>2\.2\.3-SNAPSHOT\<\\/xmlsec\.version\>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
     	
     	#delete multi lines 
     	#system("sed -i  '/\<parent/,/parent\>/d' `grep parent -rl $work_dir` ");
@@ -165,7 +165,7 @@ sub _init_version {
           
         my $try1=Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) ;
         if(!$try1){
-        	system("sed -i \"s/-SNAPSHOT//g\"  `grep SNAPSHOT -rl $temp_work_dir`");
+        	system("gsed -i \"s/-SNAPSHOT//g\"  `grep SNAPSHOT -rl $temp_work_dir`");
         	Utils::exec_cmd($cmd, "Convert Maven to Ant build file again : " . $rev_id) or next;
         } 
         
@@ -200,7 +200,7 @@ sub _init_version {
         $cmd = " cd $work_dir" .
                " && java -jar $LIB_DIR/analyzer.jar $work_dir $ANALYZER_OUTPUT/$bid maven-build.xml 2>&1";
         #Utils::exec_cmd($cmd, "Run build-file analyzer on maven-ant.xml.") or die;
-	Utils::exec_cmd($cmd, "Run build-file analyzer on maven-ant.xml.")  or next;
+	Utils::exec_cmd($cmd, "Run build-file analyzer on maven-ant.xml.")  ;#or next;
     
         # Fix broken dependency links
         my $fix_dep = "cd $work_dir && sed \'s\/https:\\/\\/oss\\.sonatype\\.org\\/content\\/repositories\\/snapshots\\//http:\\/\\/central\\.maven\\.org\\/maven2\\/\/g\' maven-build.xml >> temp && mv temp maven-build.xml";
@@ -317,8 +317,19 @@ sub _init_version {
 sub _bootstrap {
     my ($project, $bid) = @_;
 
+    my $work_dir = "${TMP_DIR}/${bid}b";
+    
+    my $rev_id_buggy = $project->lookup("${bid}b");
+    my $rev_id_fix = $project->lookup("${bid}f");
+    $project->export_diff($rev_id_fix, $rev_id_buggy, "$PATCH_DIR/$bid.modify.patch", "$SUBPROJ");
+    
+    if (-z "$PATCH_DIR/$bid.modify.patch") {
+        printf("      -> Skipping empty project modify\n");
+        return;
+    }
+
     my ($v1, $src_b, $test_b) = _init_version($project, $bid, "${bid}b");
-    my ($v2, $src_f, $test_f) = _init_version($project, $bid, "${bid}f");
+    my ($v2, $src_f, $test_f) = _init_version($project, $bid, "${bid}f"); 
 
     die "Source directories don't match for buggy and fixed revisions of $bid" unless $src_b eq $src_f;
     die "Test directories don't match for buggy and fixed revisions of $bid" unless $test_b eq $test_f;
