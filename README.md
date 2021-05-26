@@ -3,7 +3,7 @@
 Notably, each bug is composed of a buggy version, a fixed version, a concise patch (bug-fixing changes only), and one or more triggering test cases.
 
 ## Contents of growingBugs
-To date, growingBugs contains 965 bugs from open-source Java projects. 
+To date, growingBugs contains 976 bugs from open-source Java projects. 
 
 |   | Project ID      | Project name               | Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|---------------:|---------------------|
@@ -11,7 +11,7 @@ To date, growingBugs contains 965 bugs from open-source Java projects.
 | 2     | Cli             | commons-cli                |       39       | 1-5,7-40            |
 | 3     | Closure         | closure-compiler           |      174       | 1-62,64-92,94-176   |
 | 4     | Codec           | commons-codec              |       18       | 1-18                |
-| 5     | Collections     | commons-collections        |        6       | 25-29,35               |
+| 5     | Collections     | commons-collections        |        8       | 25-31,35               |
 | 6     | Compress        | commons-compress           |       52       | 1-48,50,52-54       |
 | 7     | Csv             | commons-csv                |       17       | 1-17                |
 | 8     | Gson            | gson                       |       18       | 1-18                |
@@ -40,6 +40,8 @@ To date, growingBugs contains 965 bugs from open-source Java projects.
 | 31     | Geometry_core   | commons-geometry           |        2       | 1,3               |
 | 32     | MGpg            | maven-gpg-plugin           |        1       | 1               |
 | 33     | Text            | commons-text               |        4       | 1-2,4-5               |
+| 34     | Tika_core            | Tika-core               |        7       | 4-6,9,11,17,20               |
+| 35     | Tika_app            | Tika-app               |        2       | 1,3               |
 
 ## Using GrowingBugs
 Defects4J uploads complete Git reposities of the involved projects. However, with the increase of involved projects, such complete Git reposities are huge and it becomes difficult to integrate them into **GrowingBugs**. Consequently, we decide to exclude them but to provide a mechanism to download them automatically instead.

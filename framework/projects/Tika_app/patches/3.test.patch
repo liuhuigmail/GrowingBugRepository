@@ -1,0 +1,13 @@
+diff --git a/tika-app/src/test/java/org/apache/tika/cli/TikaCLITest.java b/tika-app/src/test/java/org/apache/tika/cli/TikaCLITest.java
+index 8e4d4c896..f1ee10370 100644
+--- a/tika-app/src/test/java/org/apache/tika/cli/TikaCLITest.java
++++ b/tika-app/src/test/java/org/apache/tika/cli/TikaCLITest.java
+@@ -98,8 +98,6 @@ public class TikaCLITest extends TestCase{
+         String[] params = {"-h", resourcePrefix + "alice.cli.test"};
+         TikaCLI.main(params);
+         Assert.assertTrue(outContent.toString().contains("html xmlns=\"http://www.w3.org/1999/xhtml"));
+-        Assert.assertTrue("Expanded <title></title> element should be present",
+-                outContent.toString().contains("<title></title>"));
+     }
+ 
+     /**

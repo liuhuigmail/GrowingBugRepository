@@ -1,0 +1,13 @@
+diff --git a/collections_30_fix/src/main/java/org/apache/commons/collections4/ListUtils.java b/collections_30_buggy/src/main/java/org/apache/commons/collections4/ListUtils.java
+index 4d52847..12201a6 100755
+--- a/collections_30_fix/src/main/java/org/apache/commons/collections4/ListUtils.java
++++ b/collections_30_buggy/src/main/java/org/apache/commons/collections4/ListUtils.java
+@@ -688,7 +688,7 @@ public class ListUtils {
+ 
+         @Override
+         public int size() {
+-            return (int) Math.ceil((double) list.size() / (double) size);
++            return (list.size() + size - 1) / size;
+         }
+ 
+         @Override

@@ -1,0 +1,57 @@
+diff --git a/tika-core/src/test/java/org/apache/tika/detect/TextDetectorTest.java b/tika-core/src/test/java/org/apache/tika/detect/TextDetectorTest.java
+index eecdea0ea..0295f42e2 100644
+--- a/tika-core/src/test/java/org/apache/tika/detect/TextDetectorTest.java
++++ b/tika-core/src/test/java/org/apache/tika/detect/TextDetectorTest.java
+@@ -39,16 +39,9 @@ public class TextDetectorTest extends TestCase {
+                 detector.detect(null, new Metadata()));
+     }
+ 
+-    /**
+-     * Test for type detection of empty documents.
+-     *
+-     * @see <a href="https://issues.apache.org/jira/browse/TIKA-483">TIKA-483</a>
+-     */
+-    public void testDetectEmpty() throws Exception {
+-        assertNotText(new byte[0]);
+-    }
+-
+     public void testDetectText() throws Exception {
++        assertText(new byte[0]);
++
+         assertText("Hello, World!".getBytes("UTF-8"));
+         assertText(" \t\r\n".getBytes("UTF-8"));
+         assertText(new byte[] { -1, -2, -3, 0x09, 0x0A, 0x0C, 0x0D, 0x1B });
+diff --git a/tika-core/src/test/java/org/apache/tika/mime/MimeDetectionTest.java b/tika-core/src/test/java/org/apache/tika/mime/MimeDetectionTest.java
+index a03961d1a..dd5093ce2 100644
+--- a/tika-core/src/test/java/org/apache/tika/mime/MimeDetectionTest.java
++++ b/tika-core/src/test/java/org/apache/tika/mime/MimeDetectionTest.java
+@@ -138,28 +138,7 @@ public class MimeDetectionTest extends TestCase {
+             in.close();
+         }        
+     }
+-
+-    /**
+-     * Test for type detection of empty documents.
+-     *
+-     * @see <a href="https://issues.apache.org/jira/browse/TIKA-483">TIKA-483</a>
+-     */
+-    public void testEmptyDocument() throws IOException {
+-        assertEquals(MediaType.OCTET_STREAM, mimeTypes.detect(
+-                new ByteArrayInputStream(new byte[0]), new Metadata()));
+-
+-        Metadata namehint = new Metadata();
+-        namehint.set(Metadata.RESOURCE_NAME_KEY, "test.txt");
+-        assertEquals(MediaType.TEXT_PLAIN, mimeTypes.detect(
+-                new ByteArrayInputStream(new byte[0]), namehint));
+-
+-        Metadata typehint = new Metadata();
+-        typehint.set(Metadata.CONTENT_TYPE, "text/plain");
+-        assertEquals(MediaType.TEXT_PLAIN, mimeTypes.detect(
+-                new ByteArrayInputStream(new byte[0]), typehint));
+-
+-    }
+-
++    
+     /**
+      * Tests that when we repeatedly test the detection of a document
+      *  that can be detected with Mime Magic, that we consistently
