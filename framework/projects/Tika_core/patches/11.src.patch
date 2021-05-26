@@ -1,0 +1,26 @@
+diff --git a/tikacore_11_fix/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java b/tikacore_11_buggy/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
+index ba710e1..7d30cbb 100644
+--- a/tikacore_11_fix/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
++++ b/tikacore_11_buggy/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
+@@ -40,7 +40,6 @@ import org.apache.tika.mime.MediaTypeRegistry;
+ import org.apache.tika.mime.MimeTypeException;
+ import org.apache.tika.mime.MimeTypes;
+ import org.apache.tika.mime.MimeTypesFactory;
+-import org.apache.tika.parser.AutoDetectParser;
+ import org.apache.tika.parser.CompositeParser;
+ import org.apache.tika.parser.DefaultParser;
+ import org.apache.tika.parser.Parser;
+@@ -286,13 +285,6 @@ public class TikaConfig {
+ 
+             try {
+                 Class<?> parserClass = Class.forName(name, true, loader);
+
+-                if (DefaultParser.class.isAssignableFrom(parserClass)
+-                        || AutoDetectParser.class.isAssignableFrom(parserClass)) {
+-                    throw new TikaException(
+-                            "Composite parsers not supported in <parser>"
+-                            + " configuration elements: " + name);
+-                }
+                 Object instance = parserClass.newInstance();
+                 if (!(instance instanceof Parser)) {
+                     throw new TikaException(

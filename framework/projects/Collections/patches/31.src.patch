@@ -1,0 +1,14 @@
+diff --git a/collections_31_fix/src/main/java/org/apache/commons/collections4/list/SetUniqueList.java b/collections_31_buggy/src/main/java/org/apache/commons/collections4/list/SetUniqueList.java
+index b00b2d2..3227e43 100755
+--- a/collections_31_fix/src/main/java/org/apache/commons/collections4/list/SetUniqueList.java
++++ b/collections_31_buggy/src/main/java/org/apache/commons/collections4/list/SetUniqueList.java
+@@ -149,8 +149,8 @@ public class SetUniqueList<E> extends AbstractSerializableListDecorator<E> {
+     public void add(final int index, final E object) {
+         // adds element if it is not contained already
+         if (set.contains(object) == false) {
+-            set.add(object);
+             super.add(index, object);
++            set.add(object);
+         }
+     }
+ 

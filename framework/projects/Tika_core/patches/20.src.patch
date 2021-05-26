@@ -1,0 +1,13 @@
+diff --git a/tikacore_20_fix/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java b/tikacore_20_buggy/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
+index ada3367..79c948c 100644
+--- a/tikacore_20_fix/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
++++ b/tikacore_20_buggy/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
+@@ -60,7 +60,7 @@ public class XHTMLContentHandler extends SafeContentHandler {
+      * skip them if they get sent to startElement/endElement by mistake.
+      */
+     private static final Set<String> AUTO =
+-        unmodifiableSet("head", "frameset");
++        unmodifiableSet("html", "head", "frameset");
+ 
+     /**
+      * The elements that get prepended with the {@link #TAB} character.
