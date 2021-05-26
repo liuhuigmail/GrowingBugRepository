@@ -316,7 +316,7 @@ sub _run_tests_isolation {
 
     # Clean output file
     system(">$FAILED_TESTS_FILE");
-    $project->{prog_root} = $root;
+    $project->{prog_root} = "$root/$SUBPROJ";
 
     my @succeeded_tests = ();
 
