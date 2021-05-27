@@ -1,0 +1,13 @@
+diff --git a/shirocore_202_fix/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java b/shirocore_202_buggy/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java
+index 3d332f1..87cb5cc 100644
+--- a/shirocore_202_fix/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java
++++ b/shirocore_202_buggy/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java
+@@ -64,7 +64,7 @@ public class FirstSuccessfulStrategy extends AbstractAuthenticationStrategy {
+      * otherwise.
+      */
+     public AuthenticationInfo beforeAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws AuthenticationException {
+-        if (getStopAfterFirstSuccess() && aggregate != null && !isEmpty(aggregate.getPrincipals())) {
++        if (getStopAfterFirstSuccess() && aggregate != null && isEmpty(aggregate.getPrincipals())) {
+             throw new ShortCircuitIterationException();
+         }
+         return aggregate;

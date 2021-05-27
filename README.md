@@ -42,6 +42,7 @@ To date, growingBugs contains 976 bugs from open-source Java projects.
 | 33     | Text            | commons-text               |        4       | 1-2,4-5               |
 | 34     | Tika_core            | Tika-core               |        7       | 4-6,9,11,17,20               |
 | 35     | Tika_app            | Tika-app               |        2       | 1,3               |
+| 36     | Shiro_core            | core               |        10       | 37,40,46,52,72,98,144,176,181,202               |
 
 ## Using GrowingBugs
 Defects4J uploads complete Git reposities of the involved projects. However, with the increase of involved projects, such complete Git reposities are huge and it becomes difficult to integrate them into **GrowingBugs**. Consequently, we decide to exclude them but to provide a mechanism to download them automatically instead.

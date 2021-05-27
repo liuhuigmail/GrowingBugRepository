@@ -1,0 +1,23 @@
+diff --git a/shirocore_181_fix/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java b/shirocore_181_buggy/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java
+index 8f69a24..e12798f 100644
+--- a/shirocore_181_fix/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java
++++ b/shirocore_181_buggy/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java
+@@ -26,7 +26,6 @@ import org.apache.shiro.cache.CacheManager;
+ import org.apache.shiro.subject.PrincipalCollection;
+ import org.apache.shiro.util.CollectionUtils;
+ import org.apache.shiro.util.Initializable;
+-import org.apache.shiro.util.StringUtils;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+ 
+@@ -432,10 +431,8 @@ public abstract class AuthorizingRealm extends AuthenticatingRealm
+         if (resolver != null && !CollectionUtils.isEmpty(stringPerms)) {
+             perms = new LinkedHashSet<Permission>(stringPerms.size());
+             for (String strPermission : stringPerms) {
+-                if (StringUtils.clean(strPermission) != null) {
+                     Permission permission = resolver.resolvePermission(strPermission);
+                     perms.add(permission);
+-                }
+             }
+         }
+         return perms;

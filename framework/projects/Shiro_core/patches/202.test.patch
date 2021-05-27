@@ -1,0 +1,29 @@
+diff --git a/core/src/test/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategyTest.java b/core/src/test/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategyTest.java
+index 5f065660..68fe3951 100644
+--- a/core/src/test/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategyTest.java
++++ b/core/src/test/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategyTest.java
+@@ -98,22 +98,10 @@ public class FirstSuccessfulStrategyTest {
+         assertNull(strategy.beforeAttempt(null, null, null));
+     }
+ 
+-    @Test
+-    public void testBeforeAttemptEmptyPrincipal() {
+-        AuthenticationInfo aggregate = new SimpleAuthenticationInfo();
+-        assertEquals(strategy.beforeAttempt(null, null, aggregate), aggregate);
+-    }
+-
+-    @Test
+-    public void testBeforeAttemptEmptyList() {
+-        SimplePrincipalCollection principalCollection = new SimplePrincipalCollection();
+-        AuthenticationInfo aggregate = new SimpleAuthenticationInfo(principalCollection, null);
+-        assertEquals(strategy.beforeAttempt(null, null, aggregate), aggregate);
+-    }
+-
+     @Test (expected=ShortCircuitIterationException.class)
+     public void testBeforeAttemptStopAfterFirstSuccess() {
+-        AuthenticationInfo aggregate = new SimpleAuthenticationInfo("principal", null, "a-realm-name");
++        AuthenticationInfo aggregate = new SimpleAuthenticationInfo();
+         strategy.beforeAttempt(null, null, aggregate);
+     }
++
+ }

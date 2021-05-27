@@ -1,0 +1,13 @@
+diff --git a/shirocore_144_fix/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java b/shirocore_144_buggy/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java
+index cdfeded..6c59d77 100644
+--- a/shirocore_144_fix/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java
++++ b/shirocore_144_buggy/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java
+@@ -225,10 +225,6 @@ public abstract class AbstractValidatingSessionManager extends AbstractNativeSes
+         if (scheduler == null) {
+             scheduler = createSessionValidationScheduler();
+             setSessionValidationScheduler(scheduler);
+-        }
+-        if (!scheduler.isEnabled()) {
+             if (log.isInfoEnabled()) {
+                 log.info("Enabling session validation scheduler...");
+             }

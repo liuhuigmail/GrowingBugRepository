@@ -1,0 +1,15 @@
+diff --git a/shirocore_52_fix/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java b/shirocore_52_buggy/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java
+index a33bd53..b448292 100644
+--- a/shirocore_52_fix/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java
++++ b/shirocore_52_buggy/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java
+@@ -272,10 +272,7 @@ public abstract class AbstractValidatingSessionManager extends AbstractNativeSes
+         if (activeSessions != null && !activeSessions.isEmpty()) {
+             for (Session s : activeSessions) {
+                 try {
+
+-                    SessionKey key = new DefaultSessionKey(s.getId());
+-                    validate(s, key);
++                    doValidate(s);
+                 } catch (InvalidSessionException e) {
+                     if (log.isDebugEnabled()) {
+                         boolean expired = (e instanceof ExpiredSessionException);
