@@ -1,0 +1,17 @@
+diff --git a/src/test/java/org/apache/commons/lang3/text/WordUtilsTest.java b/src/test/java/org/apache/commons/lang3/text/WordUtilsTest.java
+index 6be8ded79..417751c52 100644
+--- a/src/test/java/org/apache/commons/lang3/text/WordUtilsTest.java
++++ b/src/test/java/org/apache/commons/lang3/text/WordUtilsTest.java
+@@ -71,12 +71,6 @@ public class WordUtilsTest {
+         expected = "Click here," + systemNewLine + "http://commons.apache.org," + systemNewLine 
+             + "to jump to the" + systemNewLine + "commons website";
+         assertEquals(expected, WordUtils.wrap(input, 20));
+-
+-        // leading spaces on a new line are stripped
+-        // trailing spaces are not stripped
+-        input = "word1             word2                        word3";
+-        expected = "word1  " + systemNewLine + "word2  " + systemNewLine + "word3";
+-        assertEquals(expected, WordUtils.wrap(input, 7));
+     }
+     
+     @Test

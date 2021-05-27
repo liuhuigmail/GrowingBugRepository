@@ -1,0 +1,13 @@
+diff --git a/jenacore_2_fix/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java b/jenacore_2_buggy/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java
+index 4f2286c..8c77d8f 100644
+--- a/jenacore_2_fix/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java
++++ b/jenacore_2_buggy/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java
+@@ -32,7 +32,7 @@ public class VCARD {
+ 	/**
+ 	 * The namespace of the vocabulary as a string
+ 	 */
+-	public static final String uri ="http://www.w3.org/2001/vcard-rdf/3.0#";
++	public static final String uri ="http://www.w3.org/2006/vcard/ns#";
+ 
+     /** returns the URI for this schema
+      * @return the URI for this schema

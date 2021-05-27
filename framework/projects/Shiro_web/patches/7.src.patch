@@ -1,0 +1,26 @@
+diff --git a/shiroweb_7_fix/web/src/main/java/org/apache/shiro/web/servlet/ShiroHttpServletRequest.java b/shiroweb_7_buggy/web/src/main/java/org/apache/shiro/web/servlet/ShiroHttpServletRequest.java
+index 072f2af..6b71250 100644
+--- a/shiroweb_7_fix/web/src/main/java/org/apache/shiro/web/servlet/ShiroHttpServletRequest.java
++++ b/shiroweb_7_buggy/web/src/main/java/org/apache/shiro/web/servlet/ShiroHttpServletRequest.java
+@@ -151,17 +151,16 @@ public class ShiroHttpServletRequest extends HttpServletRequestWrapper {
+                 }
+             }
+         } else {
+-            boolean existing = getSubject().getSession(false) != null;
+           
+-            if (this.session == null || !existing) {
++            if (this.session == null) {
+
++                boolean existing = getSubject().getSession(false) != null;
+
+                 Session shiroSession = getSubject().getSession(create);
+                 if (shiroSession != null) {
+                     this.session = new ShiroHttpSession(shiroSession, this, this.servletContext);
+                     if (!existing) {
+                         setAttribute(REFERENCED_SESSION_IS_NEW, Boolean.TRUE);
+                     }
+-                } else if (this.session != null) {
+-                    this.session = null;
+                 }
+             }
+             httpSession = this.session;

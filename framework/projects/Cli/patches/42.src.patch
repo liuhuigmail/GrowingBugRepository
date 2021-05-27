@@ -1,0 +1,17 @@
+diff --git a/cli_42_fix/src/java/org/apache/commons/cli/HelpFormatter.java b/cli_42_buggy/src/java/org/apache/commons/cli/HelpFormatter.java
+index 74bcfe7..f520f5a 100644
+--- a/cli_42_fix/src/java/org/apache/commons/cli/HelpFormatter.java
++++ b/cli_42_buggy/src/java/org/apache/commons/cli/HelpFormatter.java
+@@ -819,13 +819,6 @@ public class HelpFormatter
+         // characters
+         final String padding = createPadding(nextLineTabStop);
+ 
+-        if (nextLineTabStop >= width)
+-        {
+-            throw new IllegalStateException("Total width is less than the width of the argument and indent " + 
+-                                            "- no room for the description");
+-        }
+
+         while (true)
+         {
+             text = padding + text.substring(pos).trim();

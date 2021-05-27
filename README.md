@@ -4,13 +4,13 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 ## Contents of growingBugs
 To date, growingBugs contains 
- `986` bugs
+ `1001` bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               | Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|---------------:|---------------------|
 | 1     | Chart           | jfreechart                 |       26       | 1-26                |
-| 2     | Cli             | commons-cli                |       39       | 1-5,7-40            |
+| 2     | Cli             | commons-cli                |       41       | 1-5,7-42            |
 | 3     | Closure         | closure-compiler           |      174       | 1-62,64-92,94-176   |
 | 4     | Codec           | commons-codec              |       18       | 1-18                |
 | 5     | Collections     | commons-collections        |        8       | 25-31,35               |
@@ -22,7 +22,7 @@ from open-source Java projects.
 | 11     | JacksonXml      | jackson-dataformat-xml     |        6       | 1-6                 |
 | 12    | Jsoup           | jsoup                      |       93       | 1-93                |
 | 13     | JxPath          | commons-jxpath             |       22       | 1-22                |
-| 14     | Lang            | commons-lang               |       64       | 1,3-65              |
+| 14     | Lang            | commons-lang               |       73       | 1,3-65,67,69,71,73,76,80-84              |
 | 15     | Math            | commons-math               |      106       | 1-106               |
 | 16     | Mockito         | mockito                    |       38       | 1-38                |
 | 17     | Time            | joda-time                  |       26       | 1-20,22-27          |
@@ -45,6 +45,8 @@ from open-source Java projects.
 | 34     | Tika_core            | Tika-core               |        7       | 4-6,9,11,17,20               |
 | 35     | Tika_app            | Tika-app               |        2       | 1,3               |
 | 36     | Shiro_core            | core               |        10       | 37,40,46,52,72,98,144,176,181,202               |
+| 37     | Jena_core            | jena-core               |        1       | 2               |
+| 38     | Shiro_web            | web               |        3       | 1,3,7               |
 
 ## Using GrowingBugs
 Defects4J uploads complete Git reposities of the involved projects. However, with the increase of involved projects, such complete Git reposities are huge and it becomes difficult to integrate them into **GrowingBugs**. Consequently, we decide to exclude them but to provide a mechanism to download them automatically instead.

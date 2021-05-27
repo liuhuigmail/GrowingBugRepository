@@ -1,0 +1,13 @@
+diff --git a/shiroweb_3_fix/web/src/main/java/org/apache/shiro/web/session/HttpServletSession.java b/shiroweb_3_buggy/web/src/main/java/org/apache/shiro/web/session/HttpServletSession.java
+index 99630a0..eb6497c 100644
+--- a/shiroweb_3_fix/web/src/main/java/org/apache/shiro/web/session/HttpServletSession.java
++++ b/shiroweb_3_buggy/web/src/main/java/org/apache/shiro/web/session/HttpServletSession.java
+@@ -75,7 +75,7 @@ public class HttpServletSession implements Session {
+ 
+     public long getTimeout() throws InvalidSessionException {
+         try {
+-            return httpSession.getMaxInactiveInterval() * 1000L;
++            return httpSession.getMaxInactiveInterval() * 1000;
+         } catch (Exception e) {
+             throw new InvalidSessionException(e);
+         }

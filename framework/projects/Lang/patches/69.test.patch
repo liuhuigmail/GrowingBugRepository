@@ -1,0 +1,15 @@
+diff --git a/src/test/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaperTest.java b/src/test/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaperTest.java
+index 2310dcf52..6604bdebb 100644
+--- a/src/test/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaperTest.java
++++ b/src/test/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaperTest.java
+@@ -66,8 +66,8 @@ public class NumericEntityUnescaperTest extends TestCase {
+ 
+         try {
+             result = neu.translate(input);
+-            fail("IllegalArgumentException expected");
+-        } catch(IllegalArgumentException iae) {
++            fail("RuntimeException expected");
++        } catch(RuntimeException re) {
+             // expected
+         }
+     }

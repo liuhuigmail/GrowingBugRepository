@@ -1,0 +1,15 @@
+diff --git a/lang_73_fix/src/main/java/org/apache/commons/lang3/text/translate/OctalUnescaper.java b/lang_73_buggy/src/main/java/org/apache/commons/lang3/text/translate/OctalUnescaper.java
+index 1d6a02c..52b40c4 100644
+--- a/lang_73_fix/src/main/java/org/apache/commons/lang3/text/translate/OctalUnescaper.java
++++ b/lang_73_buggy/src/main/java/org/apache/commons/lang3/text/translate/OctalUnescaper.java
+@@ -50,10 +50,6 @@ public class OctalUnescaper extends CharSequenceTranslator {
+                     end--; // rollback
+                     break;
+                 }
+
+-                if (end - start >= 3) {
+-                    break;
+-                }
+             }
+ 
+             out.write( Integer.parseInt(input.subSequence(start, end).toString(), 8) );

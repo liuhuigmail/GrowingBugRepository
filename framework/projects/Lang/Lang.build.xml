@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2014-2017 René Just, Darioush Jalali, and Defects4J contributors.
+Copyright (c) 2014-2019 René Just, Darioush Jalali, and Defects4J contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,48 +25,153 @@ THE SOFTWARE.
 It defines project-specific properties and targets, and imports the build file
 of the checked-out project version.
 #############################################################################-->
-<project name="D4J-Lang">
-    <!-- Project-specific dependencies -->
+<project name="D4j-Lang" basedir="${basedir}">
+    <!-- TODO: Make sure that the following properties and paths are defined:
+           - source.home        ->  Directory of sources
+           - test.home          ->  Directory of test sources
+           - build.home         ->  Root directory for compiled (test) classes
+           - test.classpath     ->  Classpath to compile tests
+           - compile.classpath  ->  Classpath to compile sources
+    -->
+
+    <property name="junit.jar" value="${d4j.home}/framework/projects/lib/junit-4.11.jar"/>
     <property name="easymock.jar" value="${d4j.home}/framework/projects/Lang/lib/easymock.jar"/>
     <property name="commons-io.jar" value="${d4j.home}/framework/projects/Lang/lib/commons-io.jar"/>
     <property name="cglib.jar" value="${d4j.home}/framework/projects/Lang/lib/cglib.jar"/>
     <property name="asm.jar" value="${d4j.home}/framework/projects/Lang/lib/asm.jar"/>
 
     <!-- Do not download maven dependencies -->
-    <property name="maven.mode.offline" value="true" />
-    <property name="maven.repo.local" value="${d4j.home}/framework/projects/Lang/lib/" />
+    <property name="maven.settings.offline" value="true" />
+    <property name="maven.repo.local" value="${d4j.dir.projects}/Lang/lib/" />
 
-    <!-- Compile with debugging information enabled -->
+    <!-- Generate all debugging information -->
     <property name="compile.debug" value="yes" />
 
     <!-- Include existing project build file -->
     <import file="${d4j.workdir}/build.xml"/>
-
-    <!-- Directory of the test sources, the default is the directory of the
-         existing tests -->
-    <property name="d4j.test.dir" value="${test.home}"/>
-    <property name="classes.dir" value="${build.home}/classes"/>
-    <condition property="test.classes.dir" value="${maven.build.testOutputDir}" else="${build.home}/tests">
+    
+    <condition property="src-dir" value="${maven.build.srcDir.0}">
+    	<isset property="maven.build.srcDir.0" />
+    </condition>
+    <condition property="src-dir" value="${source.home}" >
+    	<isset property="source.home" />
+    </condition>
+    <condition property="src-dir" value="${basedir}/src/java" >
+    	<available file="${basedir}/src/java" />
+    </condition>
+    
+    
+    <condition property="test-dir" value="${maven.build.testDir.0}" >
+    	<isset property="maven.build.testDir.0" />
+    </condition> 
+    <condition property="test-dir" value="${test.home}"  >
+    	<isset property="test.home" />
+    </condition> 
+    <condition property="test-dir" value="${basedir}/src/test">
+    	<available file="${basedir}/src/test" />
+    </condition> 
+    
+    <condition property="classes.dir" value="${maven.build.outputDir}"  >
+        <isset property="maven.build.outputDir" />
+    </condition>
+    <condition property="classes.dir" value="${classesdir}">
+        <isset property="classesdir" />
+    </condition>
+    <condition property="classes.dir" value="${build.home}/classes" >
+        <available file="${build.home}/classes" />
+    </condition>
+    
+    <condition property="test.classes.dir" value="${maven.build.testOutputDir}"  >
         <isset property="maven.build.testOutputDir" />
     </condition>
+    <condition property="test.classes.dir" value="${testclassesdir}"  >
+        <isset property="testclassesdir" />
+    </condition>
+    <condition property="test.classes.dir" value="${build.home}/test-classes" >
+        <available file="${build.home}/test-classes" />
+    </condition>
+    <property name="test.home" value="${test.classes.dir}" />
+    <property name="build.home" value="${classes.dir}/.." />
+   
+    <!-- Project properties targets -->
+    <if> <isset property="ant.refid:compile.classpath" />
+          <then>
+            <property name="test.dir" value="${test.home}" />
+          </then>
+          <else>
+            <property name="oldversion"    value="yes" />
+
+            <!-- the classpath needs to include jar -->
+             <!--
+                <fileset dir="${maven.repo.local}">
+                    <include name="**/*.jar" />
+                </fileset>
+             -->
+            <path id="compile.classpath"      >
+                <path refid="build.classpath" />
+            </path>
+            <path id="test.classpath"      >
+                <path refid="build.test.classpath" />
+            </path>
+            
+            <property name="dir.src.classes"  value="${src-dir}"/>
+            <property name="dir.src.tests"    value="${test-dir}"/>
+            <property name="test.dir"         value="${test-dir}" />
+            <property name="source.home"      value="${src-dir}"/>
+            <property name="d4j.test.dir"     value="${test-dir}"/>
+            
+          </else>
+    </if>
+
+    <!--
+        if else statement in xml
+        <condition property="test.classes.dir" value="build/class" else="target/class">
+            <available file="build/classes" />
+        </condition>
+         
+        echo  print the var
+        <echo message="${abc}" />
+    -->
+
+    <property name="build.home" value="${classes.dir}/.." />
+
+    <!-- Classpath to run developer-written tests -->
+    <path id="d4j.test.classpath">
+        <path refid="test.classpath"/>
+        <pathelement location="${classes.dir}"/>
+        <pathelement location="${test.classes.dir}"/>
+        <pathelement path="${junit.jar}" />
+        <pathelement path="${easymock.jar}" />
+        <pathelement path="${commons-io.jar}" />
+        <pathelement path="${cglib.jar}" />
+        <pathelement path="${asm.jar}" />
+        <!--
+        <pathelement path="${dependency.jar}" />
+        <pathelement location="${user.home}/.m2/repository"/>
+        -->
+        <fileset dir="${maven.repo.local}">
+               <include name="**/*.jar" />
+        </fileset>
+    </path>
 
     <!-- List of all developer-written tests that reliably pass on the fixed version -->
-    <fileset id="all.manual.tests" dir="${test.home}" excludes="${d4j.tests.exclude}">
+    <!-- Manually generalize test patterns if analyzer produces incorrect outputs -->
+    <fileset id="all.manual.tests" dir="${test-dir}" excludes="${d4j.tests.exclude}">
+        <!--include name="____" /-->
+        <!--exclude name="____" /-->
         <include name="**/*Test.java"/>
+        <include name="**/*TestCase.java"/>
+        <include name="**/${test}.java"/>
+        <include name="**/Test*.java"/>
         <exclude name="**/*Abstract*Test.java"/>
         <exclude name="**/RandomUtilsTest.java"/>
     </fileset>
 
     <!-- List of relevant developer-written tests that reliably pass on the fixed version -->
     <fileset id="rel.manual.tests" dir="${test.home}"
-        includesfile="${d4j.home}/framework/projects/${d4j.project.id}/relevant_tests/${d4j.bug.id}" />
-
-    <!-- Classpath to run developer-written tests -->
-    <path id="d4j.test.classpath">
-        <path refid="test.classpath"/>
-        <pathelement path="${cglib.jar}" />
-        <pathelement path="${asm.jar}" />
-        <pathelement path="${easymock.jar}" />
-        <pathelement path="${commons-io.jar}" />
-    </path>
+        includesfile="${d4j.dir.projects}/${d4j.project.id}/relevant_tests/${d4j.bug.id}" />
+    <!--
+        <target name="compile" depends="build" />
+        <target name="compile.tests" depends="compile-tests" />
+    -->
 </project>

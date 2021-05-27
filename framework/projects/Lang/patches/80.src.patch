@@ -1,0 +1,14 @@
+diff --git a/lang_80_fix/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/lang_80_buggy/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+index f1e1f90..1a42125 100644
+--- a/lang_80_fix/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/lang_80_buggy/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+@@ -542,9 +542,6 @@ public class DurationFormatUtils {
+                 buffer = null;
+             }
+         }
+-        if (inLiteral) { 
+-            throw new IllegalArgumentException("Unmatched quote in format: " + format);
+-        }
+         return list.toArray(new Token[list.size()]);
+     }
+ 

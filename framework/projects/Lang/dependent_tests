@@ -2,3 +2,6 @@
 --- org.apache.commons.lang.time.DateUtilsTest::testAddByField
 --- org.apache.commons.lang.time.DateUtilsTest::testAddMilliseconds
 --- org.apache.commons.lang.time.DurationFormatUtilsTest::testBugzilla38401
+--- org.apache.commons.lang.math.RandomUtilsTest::testNextDouble
+--- org.apache.commons.lang3.time.StopWatchTest::testStopWatchSimple
+--- org.apache.commons.lang3.time.StopWatchTest::testStopWatchSplit

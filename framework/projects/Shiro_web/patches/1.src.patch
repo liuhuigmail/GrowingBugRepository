@@ -1,0 +1,20 @@
+diff --git a/shiroweb_1_fix/web/src/main/java/org/apache/shiro/web/filter/authz/PortFilter.java b/shiroweb_1_buggy/web/src/main/java/org/apache/shiro/web/filter/authz/PortFilter.java
+index 14dfd58..1057b7e 100644
+--- a/shiroweb_1_fix/web/src/main/java/org/apache/shiro/web/filter/authz/PortFilter.java
++++ b/shiroweb_1_buggy/web/src/main/java/org/apache/shiro/web/filter/authz/PortFilter.java
+@@ -102,12 +102,12 @@ public class PortFilter extends AuthorizationFilter {
+ 
+         String scheme = getScheme(request.getScheme(), port);
+ 
+-        StringBuilder sb = new StringBuilder();
++        StringBuffer sb = new StringBuffer();
+         sb.append(scheme).append("://");
+         sb.append(request.getServerName());
+-        if (port != DEFAULT_HTTP_PORT && port != SslFilter.DEFAULT_HTTPS_PORT) {
++        if (port != 80 && port != 443) {
+             sb.append(":");
+-            sb.append(port);
++            sb.append(request.getServerPort());
+         }
+         if (request instanceof HttpServletRequest) {
+             sb.append(WebUtils.toHttp(request).getRequestURI());

@@ -27,7 +27,7 @@ of the checked-out project version.
 #############################################################################-->
 <project name="D4j-Cli" basedir="${basedir}">
 
-    <!-- CLI requires that local dependencies use the file:// prefix -->
+    <!-- Cli requires that local dependencies use the file:// prefix -->
     <var name="junit.jar" unset="true"/>
     <property name="junit.jar" value="file://${d4j.home}/framework/projects/lib/junit-4.11.jar"/>
 
