@@ -24,15 +24,15 @@
 
 =head1 NAME
 
-Project::Cli.pm -- L<Project> submodule for commons-cli.
+Project::Jena_core.pm -- L<Project> submodule for jena-core.
 
 =head1 DESCRIPTION
 
 This module provides all project-specific configurations and subroutines for the
-commons-cli project.
+jena-core project.
 
 =cut
-package Project::Cli;
+package Project::Jena_core;
 
 use strict;
 use warnings;
@@ -41,13 +41,13 @@ use Constants;
 use Vcs::Git;
 
 our @ISA = qw(Project);
-my $PID  = "Cli";
+my $PID  = "Jena_core";
 
 sub new {
     @_ == 1 or die $ARG_ERROR;
     my ($class) = @_;
 
-    my $name = "commons-cli";
+    my $name = "jena-core";
     my $vcs  = Vcs::Git->new($PID,
                              "$REPO_DIR/$name.git",
                              "$PROJECTS_DIR/$PID/$BUGS_CSV_ACTIVE",
@@ -56,45 +56,19 @@ sub new {
     return $class->SUPER::new($PID, $name, $vcs);
 }
 
-#
-# Determines the directory layout for sources and tests
-#
-sub determine_layout {
-    @_ == 2 or die $ARG_ERROR;
-    my ($self, $rev_id) = @_;
-    my $work_dir = $self->{prog_root};
-    my $result  = _ant_layout($work_dir) // _maven_layout($work_dir);
-    
-    if (-e "$work_dir/src/main/java" and -e "$work_dir/src/test/java"){
-        $result = {src=>"src/main/java", test=>"src/test/java"} unless defined $result;
-    }
-    elsif (-e "$work_dir/src/main/java" and -e "$work_dir/src/tests/java"){
-        $result = {src=>"src/main/java", test=>"src/tests/java"} unless defined $result;
-    }
-    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/testcases"){
-        $result = {src=>"src/main", test=>"src/testcases"} unless defined $result;
-    }
-    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/tests/junit"){
-        $result = {src=>"src/main", test=>"src/tests/junit"} unless defined $result;
-    }
-    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/tests"){
-        $result = {src=>"src/main", test=>"src/tests"} unless defined $result;
-    }
-    elsif (-e "$work_dir/src/java" and -e "$work_dir/src/test"){
-        $result = {src=>"src/java", test=>"src/test"} unless defined $result;
-    }
-    elsif (-e "$work_dir/src/java" and -e "$work_dir/src/tests"){
-        $result = {src=>"src/java", test=>"src/tests"} unless defined $result;
-    }
-    else {
-        if (-e "$work_dir"){
-      	  system("tree -d $work_dir");
-          die "Unknown directory layout" unless defined $result;
-    	}
-    }
-    die "Unknown layout for revision: ${rev_id}" unless defined $result;
-    return $result;
-}
+##
+## Determines the directory layout for sources and tests
+##
+#sub determine_layout {
+#    @_ == 2 or die $ARG_ERROR;
+#    my ($self, $rev_id) = @_;
+#    my $dir = $self->{prog_root};
+
+#    # Add additional layouts if necessary
+#    my $result = _ant_layout($dir) // _maven_layout($dir);
+#    die "Unknown layout for revision: ${rev_id}" unless defined $result;
+#    return $result;
+#}
 
 #
 # Post-checkout tasks include, for instance, providing cached build files,
@@ -123,14 +97,7 @@ sub _post_checkout {
             #$_ =~ s/=src\//=$SUBPROJ\/src\//g;
             #$_ =~ s/classesdir/classes\.dir/g;
             #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
-            $_ =~ s/build\.classpath/compile\.classpath/g;
-            $_ =~ s/classesdir/classes\.dir/g;
-            $_ =~ s/testclasses\.dir/test\.classes\.dir/g;
-            $_ =~ s/http:\/\/repo1\.maven\.org\/maven\/commons-lang\/jars\/commons-lang-2\.1\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/commons-lang\/commons-lang\/2\.1\/commons-lang-2\.1\.jar/g;
-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-lang\/jars\/commons-lang-2\.1\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/commons-lang\/commons-lang\/2\.1\/commons-lang-2\.1\.jar/g;
-            $_ =~ s/http:\/\/repo1\.maven\.org\/maven\/junit\/jars\/junit-3\.8\.1\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\.1\/junit-3\.8\.1\.jar/g;
-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/junit\/jars\/junit-3\.8\.1\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\.1\/junit-3\.8\.1\.jar/g;
-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/jdepend\/jars\/jdepend-2\.5\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/jdepend\/jdepend\/2\.5\/jdepend-2\.5\.jar/g;
+            
             #support java8
             $_ =~ s/fork="false"/fork="true"/g;
             print OUT $_;
@@ -148,12 +115,6 @@ sub _post_checkout {
             #$_ =~ s/classesdir/classes\.dir/g;
             #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
             #$_ =~ s/src\//$SUBPROJ\/src\//g;
-            $_ =~ s/build\.classpath/compile\.classpath/g;
-            $_ =~ s/http:\/\/repo1\.maven\.org\/maven\/commons-lang\/jars\/commons-lang-2\.1\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/commons-lang\/commons-lang\/2\.1\/commons-lang-2\.1\.jar/g;
-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-lang\/jars\/commons-lang-2\.1\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/commons-lang\/commons-lang\/2\.1\/commons-lang-2\.1\.jar/g;
-            $_ =~ s/http:\/\/repo1\.maven\.org\/maven\/junit\/jars\/junit-3\.8\.1\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\.1\/junit-3\.8\.1\.jar/g;
-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/junit\/jars\/junit-3\.8\.1\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\.1\/junit-3\.8\.1\.jar/g;
-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/jdepend\/jars\/jdepend-2\.5\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/jdepend\/jdepend\/2\.5\/jdepend-2\.5\.jar/g;
             #support java8
             $_ =~ s/fork="false"/fork="true"/g;
             print OUT $_;
@@ -189,15 +150,6 @@ sub _post_checkout {
         #close(OUT);
     }
 
-     # Convert the file encoding of a problematic file
-    my $result = determine_layout($self, $rev_id);
-    if(-e $work_dir."/".$result->{test}."/org/apache/commons/cli2/bug/BugLoopingOptionLookAlikeTest.java"){
-        rename($work_dir."/".$result->{test}."/org/apache/commons/cli2/bug/BugLoopingOptionLookAlikeTest.java", $work_dir."/".$result->{test}."/org/apache/commons/cli2/bug/BugLoopingOptionLookAlikeTest.java".".bak");
-        open(OUT, '>'.$work_dir."/".$result->{test}."/org/apache/commons/cli2/bug/BugLoopingOptionLookAlikeTest.java") or die $!;
-        my $converted_file = `iconv -f iso-8859-1 -t utf-8 $work_dir"/"$result->{test}"/org/apache/commons/cli2/bug/BugLoopingOptionLookAlikeTest.java.bak"`;
-        print OUT $converted_file;
-        close(OUT);
-    }
 }
 
 
@@ -213,7 +165,7 @@ sub initialize_revision {
     my $work_dir = $self->{prog_root};
     my $result  = _ant_layout($work_dir) // _maven_layout($work_dir);
     
-    if (-e "$work_dir/src/main/java" and -e "$work_dir/src/test/java"){
+   if (-e "$work_dir/src/main/java" and -e "$work_dir/src/test/java"){
         $result = {src=>"src/main/java", test=>"src/test/java"} unless defined $result;
     }
     elsif (-e "$work_dir/src/main/java" and -e "$work_dir/src/tests/java"){
