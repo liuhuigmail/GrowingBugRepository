@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 ## Contents of growingBugs
 To date, growingBugs contains 
- `1001` bugs
+ **`1001`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               | Number of bugs | Bug IDs      | 
