@@ -64,4 +64,6 @@ Notably, this bug repository is based on the well-known **Defects4J** https://gi
 
 Under MIT License, you are free to use, modify, and distribute this repository with proper reference/citation.
 
+## Citation
+If you are exploiting our dataset, please kindly cite the following paper:
 **[1] Yanjie Jiang, [Hui Liu](https://liuhuigmail.github.io/), Nan Niu, Lu Zhang, Yamin Hu. Extracting Concise Bug-Fixing Patches from Human-Written Patches in Version Control Systems. The 43rd International Conference on Software Engineering (ICSE), pp. 686-698, May, 2021 https://liuhuigmail.github.io/publishedPappers/ICSE2021.pdf**
