@@ -270,7 +270,7 @@ sub _check_t2v2 {
         # Automatically fix broken tests and recompile
         ++$run;
         $project->fix_tests("${bid}f");
-        system("cat all_tests.txt");
+        #system("cat all_tests.txt");
     
         $project->compile_tests() or next;
 
