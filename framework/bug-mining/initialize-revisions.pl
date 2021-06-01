@@ -164,8 +164,9 @@ sub _init_version {
                   " && cp build.xml $GEN_BUILDFILE_DIR/$rev_id 2>&1";
           
         my $try1=Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) ;
+        # my $try1=system($cmd) ;
         if(!$try1){
-        	system("gsed -i \"s/-SNAPSHOT//g\"  `grep SNAPSHOT -rl $temp_work_dir`");
+        	system("sed -i \"s/-SNAPSHOT//g\"  `grep SNAPSHOT -rl $temp_work_dir`");
         	Utils::exec_cmd($cmd, "Convert Maven to Ant build file again : " . $rev_id) or next;
         } 
         
@@ -236,6 +237,8 @@ sub _init_version {
         # Get dependencies if it is maven-ant project
         my $download_dep = "cd $work_dir && ant -Dmaven.repo.local=\"$PROJECT_DIR/lib\" get-deps";
         Utils::exec_cmd($download_dep, "Download dependencies for maven-ant.xml.");
+        #system($download_dep);
+        
     }elsif (-e "$work_dir/build.gradle") {
         open(OUT, '>>'."$work_dir/build.gradle") or die $!;
         my $convert_cmd="\n".
