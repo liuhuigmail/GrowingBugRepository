@@ -310,6 +310,9 @@ sub _export_relevant_tests {
         if ($test =~ /\.html/){
             next;
         }
+        if ($test =~ /\.properties/){
+            next;
+        }
         
         if ($test =~ /\.java\.bak/){
             next;

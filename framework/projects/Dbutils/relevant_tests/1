@@ -1,0 +1,10 @@
+org.apache.commons.dbutils.BasicRowProcessorTest
+org.apache.commons.dbutils.BeanProcessorTest
+org.apache.commons.dbutils.ResultSetIteratorTest
+org.apache.commons.dbutils.handlers.ArrayHandlerTest
+org.apache.commons.dbutils.handlers.ArrayListHandlerTest
+org.apache.commons.dbutils.handlers.BeanHandlerTest
+org.apache.commons.dbutils.handlers.BeanListHandlerTest
+org.apache.commons.dbutils.handlers.KeyedHandlerTest
+org.apache.commons.dbutils.handlers.MapHandlerTest
+org.apache.commons.dbutils.handlers.MapListHandlerTest
