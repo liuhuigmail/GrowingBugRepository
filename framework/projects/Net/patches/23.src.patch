@@ -1,7 +1,7 @@
-diff --git a/net_23_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/net_23_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+diff --git a/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
 index c6b4c1e..2f33d58 100644
---- a/net_23_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java
-+++ b/net_23_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+--- a/src/main/java/org/apache/commons/net/util/SubnetUtils.java
++++ b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
 @@ -354,25 +354,11 @@ public class SubnetUtils {
          return x & 0x0000003F;
      }

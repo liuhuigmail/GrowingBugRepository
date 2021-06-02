@@ -1,7 +1,7 @@
-diff --git a/compress_52_fix/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java b/compress_52_buggy/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java
+diff --git a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java
 index 077720a..2a5d591 100644
---- a/compress_52_fix/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java
-+++ b/compress_52_buggy/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java
+--- a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java
++++ b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java
 @@ -271,12 +271,12 @@ public class TarArchiveOutputStream extends ArchiveOutputStream {
          TarArchiveEntry entry = (TarArchiveEntry) archiveEntry;
          Map<String, String> paxHeaders = new HashMap<String, String>();

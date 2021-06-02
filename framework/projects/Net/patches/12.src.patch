@@ -1,7 +1,7 @@
-diff --git a/net_12_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/net_12_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+diff --git a/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
 index 8e0d580..f7efa2b 100644
---- a/net_12_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java
-+++ b/net_12_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+--- a/src/main/java/org/apache/commons/net/util/SubnetUtils.java
++++ b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
 @@ -226,10 +226,7 @@ public class SubnetUtils {
              address = matchAddress(matcher);
  

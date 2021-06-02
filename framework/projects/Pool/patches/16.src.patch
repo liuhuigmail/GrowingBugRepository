@@ -1,7 +1,7 @@
-diff --git a/pool_16_fix/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java b/pool_16_buggy/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
+diff --git a/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java b/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
 index ed95c47..6dc2ab6 100644
---- a/pool_16_fix/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
-+++ b/pool_16_buggy/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
+--- a/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
++++ b/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
 @@ -86,10 +86,7 @@ public class DefaultPooledObject<T> implements PooledObject<T> {
      @Override
      public long getIdleTimeMillis() {

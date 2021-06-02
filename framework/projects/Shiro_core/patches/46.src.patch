@@ -1,7 +1,7 @@
-diff --git a/shirocore_46_fix/core/src/main/java/org/apache/shiro/session/mgt/SimpleSession.java b/shirocore_46_buggy/core/src/main/java/org/apache/shiro/session/mgt/SimpleSession.java
+diff --git a/core/src/main/java/org/apache/shiro/session/mgt/SimpleSession.java b/core/src/main/java/org/apache/shiro/session/mgt/SimpleSession.java
 index 7ba14c4..0e90720 100644
---- a/shirocore_46_fix/core/src/main/java/org/apache/shiro/session/mgt/SimpleSession.java
-+++ b/shirocore_46_buggy/core/src/main/java/org/apache/shiro/session/mgt/SimpleSession.java
+--- a/core/src/main/java/org/apache/shiro/session/mgt/SimpleSession.java
++++ b/core/src/main/java/org/apache/shiro/session/mgt/SimpleSession.java
 @@ -500,7 +500,7 @@ public class SimpleSession implements ValidatingSession, Serializable {
          bitMask = stopTimestamp != null ? bitMask | STOP_TIMESTAMP_BIT_MASK : bitMask;
          bitMask = lastAccessTime != null ? bitMask | LAST_ACCESS_TIME_BIT_MASK : bitMask;

@@ -1,7 +1,7 @@
-diff --git a/shirocore_181_fix/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java b/shirocore_181_buggy/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java
+diff --git a/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java b/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java
 index 8f69a24..e12798f 100644
---- a/shirocore_181_fix/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java
-+++ b/shirocore_181_buggy/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java
+--- a/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java
++++ b/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java
 @@ -26,7 +26,6 @@ import org.apache.shiro.cache.CacheManager;
  import org.apache.shiro.subject.PrincipalCollection;
  import org.apache.shiro.util.CollectionUtils;

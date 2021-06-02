@@ -1,7 +1,7 @@
-diff --git a/shirocore_72_fix/core/src/main/java/org/apache/shiro/crypto/hash/DefaultHasher.java b/shirocore_72_buggy/core/src/main/java/org/apache/shiro/crypto/hash/DefaultHasher.java
+diff --git a/core/src/main/java/org/apache/shiro/crypto/hash/DefaultHasher.java b/core/src/main/java/org/apache/shiro/crypto/hash/DefaultHasher.java
 index 1911556..fcdef2b 100644
---- a/shirocore_72_fix/core/src/main/java/org/apache/shiro/crypto/hash/DefaultHasher.java
-+++ b/shirocore_72_buggy/core/src/main/java/org/apache/shiro/crypto/hash/DefaultHasher.java
+--- a/core/src/main/java/org/apache/shiro/crypto/hash/DefaultHasher.java
++++ b/core/src/main/java/org/apache/shiro/crypto/hash/DefaultHasher.java
 @@ -153,7 +153,7 @@ public class DefaultHasher implements ConfigurableHasher {
              publicSaltBytes = null;
          }

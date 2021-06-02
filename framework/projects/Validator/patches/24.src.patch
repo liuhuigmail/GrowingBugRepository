@@ -1,7 +1,7 @@
-diff --git a/validator_24_fix/src/main/java/org/apache/commons/validator/routines/InetAddressValidator.java b/validator_24_buggy/src/main/java/org/apache/commons/validator/routines/InetAddressValidator.java
+diff --git a/src/main/java/org/apache/commons/validator/routines/InetAddressValidator.java b/src/main/java/org/apache/commons/validator/routines/InetAddressValidator.java
 index e6134fc..a0f12a9 100644
---- a/validator_24_fix/src/main/java/org/apache/commons/validator/routines/InetAddressValidator.java
-+++ b/validator_24_buggy/src/main/java/org/apache/commons/validator/routines/InetAddressValidator.java
+--- a/src/main/java/org/apache/commons/validator/routines/InetAddressValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/InetAddressValidator.java
 @@ -149,7 +149,7 @@ public class InetAddressValidator implements Serializable {
              return false;
          }

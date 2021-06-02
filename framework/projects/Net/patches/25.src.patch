@@ -1,7 +1,7 @@
-diff --git a/net_25_fix/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java b/net_25_buggy/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
+diff --git a/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java b/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
 index 88203b6..cb24f37 100644
---- a/net_25_fix/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
-+++ b/net_25_buggy/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
+--- a/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
++++ b/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
 @@ -66,8 +66,7 @@ public class MVSFTPEntryParser extends ConfigurableFTPFileEntryParserImpl {
              "\\S+\\s+" + // unit - ignored
              "\\S+\\s+" + // access date - ignored

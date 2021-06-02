@@ -1,7 +1,7 @@
-diff --git a/lang_81_fix/src/main/java/org/apache/commons/lang3/time/DateUtils.java b/lang_81_buggy/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+diff --git a/src/main/java/org/apache/commons/lang3/time/DateUtils.java b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
 index 60bb0d0..e57b537 100644
---- a/lang_81_fix/src/main/java/org/apache/commons/lang3/time/DateUtils.java
-+++ b/lang_81_buggy/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+--- a/src/main/java/org/apache/commons/lang3/time/DateUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
 @@ -1690,15 +1690,13 @@ public class DateUtils {
          final long millisPerUnit = getMillisPerUnit(unit);
          long result = 0;

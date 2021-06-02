@@ -1,7 +1,7 @@
-diff --git a/tika_6_fix/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java b/tika_6_buggy/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java
+diff --git a/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java b/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java
 index bfc5ff9..86f1411 100644
---- a/tika_6_fix/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java
-+++ b/tika_6_buggy/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java
+--- a/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java
++++ b/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java
 @@ -61,7 +61,6 @@ public class OfficeParser implements Parser {
          XHTMLContentHandler xhtml = new XHTMLContentHandler(handler, metadata);
          xhtml.startDocument();

@@ -1,7 +1,7 @@
-diff --git a/validator_6_fix/src/main/java/org/apache/commons/validator/routines/CreditCardValidator.java b/validator_6_buggy/src/main/java/org/apache/commons/validator/routines/CreditCardValidator.java
+diff --git a/src/main/java/org/apache/commons/validator/routines/CreditCardValidator.java b/src/main/java/org/apache/commons/validator/routines/CreditCardValidator.java
 index 8bebd88..6534e1d 100644
---- a/validator_6_fix/src/main/java/org/apache/commons/validator/routines/CreditCardValidator.java
-+++ b/validator_6_buggy/src/main/java/org/apache/commons/validator/routines/CreditCardValidator.java
+--- a/src/main/java/org/apache/commons/validator/routines/CreditCardValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/CreditCardValidator.java
 @@ -95,10 +95,10 @@ public class CreditCardValidator implements Serializable {
      public static final CodeValidator AMEX_VALIDATOR = new CodeValidator("^(3[47]\\d{13})$", LUHN_VALIDATOR);
  

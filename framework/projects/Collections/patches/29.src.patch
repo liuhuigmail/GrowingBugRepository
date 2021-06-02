@@ -1,7 +1,7 @@
-diff --git a/collections_29_fix/src/main/java/org/apache/commons/collections4/map/AbstractReferenceMap.java b/collections_29_buggy/src/main/java/org/apache/commons/collections4/map/AbstractReferenceMap.java
+diff --git a/src/main/java/org/apache/commons/collections4/map/AbstractReferenceMap.java b/src/main/java/org/apache/commons/collections4/map/AbstractReferenceMap.java
 index e0fa7e2..f114083 100644
---- a/collections_29_fix/src/main/java/org/apache/commons/collections4/map/AbstractReferenceMap.java
-+++ b/collections_29_buggy/src/main/java/org/apache/commons/collections4/map/AbstractReferenceMap.java
+--- a/src/main/java/org/apache/commons/collections4/map/AbstractReferenceMap.java
++++ b/src/main/java/org/apache/commons/collections4/map/AbstractReferenceMap.java
 @@ -1045,15 +1045,6 @@ public abstract class AbstractReferenceMap<K, V> extends AbstractHashedMap<K, V>
          final int capacity = in.readInt();
          init();

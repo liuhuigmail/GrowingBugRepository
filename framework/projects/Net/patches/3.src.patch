@@ -1,7 +1,7 @@
-diff --git a/net_3_fix/src/main/java/org/apache/commons/net/ftp/FTPClientConfig.java b/net_3_buggy/src/main/java/org/apache/commons/net/ftp/FTPClientConfig.java
+diff --git a/src/main/java/org/apache/commons/net/ftp/FTPClientConfig.java b/src/main/java/org/apache/commons/net/ftp/FTPClientConfig.java
 index eb8f6ca..5730f87 100644
---- a/net_3_fix/src/main/java/org/apache/commons/net/ftp/FTPClientConfig.java
-+++ b/net_3_buggy/src/main/java/org/apache/commons/net/ftp/FTPClientConfig.java
+--- a/src/main/java/org/apache/commons/net/ftp/FTPClientConfig.java
++++ b/src/main/java/org/apache/commons/net/ftp/FTPClientConfig.java
 @@ -190,12 +190,9 @@ public class FTPClientConfig
 
 -    public static final String SYST_L8 = "TYPE: L8";

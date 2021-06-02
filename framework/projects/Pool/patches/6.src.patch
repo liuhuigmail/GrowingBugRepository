@@ -1,7 +1,7 @@
-diff --git a/pool_6_fix/src/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/pool_6_buggy/src/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+diff --git a/src/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
 index db2134a..3e503bd 100644
---- a/pool_6_fix/src/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
-+++ b/pool_6_buggy/src/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+--- a/src/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
 
 @@ -1192,25 +1192,15 @@ public class GenericKeyedObjectPool<K,T> implements KeyedObjectPool<K,T>,
               }
@@ -19,10 +19,10 @@ index db2134a..3e503bd 100644
  
       }
  
-diff --git a/pool_6_fix/src/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/pool_6_buggy/src/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+diff --git a/src/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 index 163f237..a580a00 100644
---- a/pool_6_fix/src/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-+++ b/pool_6_buggy/src/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+--- a/src/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 
 @@ -1062,9 +1062,6 @@ public class GenericObjectPool<T> extends BaseObjectPool<T>
                  ManagementFactory.getPlatformMBeanServer().unregisterMBean(

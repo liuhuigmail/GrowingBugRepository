@@ -1,7 +1,7 @@
-diff --git a/io_16_fix/src/java/org/apache/commons/io/FileSystemUtils.java b/io_16_buggy/src/java/org/apache/commons/io/FileSystemUtils.java
+diff --git a/src/java/org/apache/commons/io/FileSystemUtils.java b/src/java/org/apache/commons/io/FileSystemUtils.java
 index c2aa4ab..e8de4c5 100644
---- a/io_16_fix/src/java/org/apache/commons/io/FileSystemUtils.java
-+++ b/io_16_buggy/src/java/org/apache/commons/io/FileSystemUtils.java
+--- a/src/java/org/apache/commons/io/FileSystemUtils.java
++++ b/src/java/org/apache/commons/io/FileSystemUtils.java
 @@ -291,8 +291,8 @@ public class FileSystemUtils {
       */
      long freeSpaceWindows(String path, long timeout) throws IOException {

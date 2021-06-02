@@ -1,7 +1,7 @@
-diff --git a/email_4_fix/src/main/java/org/apache/commons/mail/Email.java b/email_4_buggy/src/main/java/org/apache/commons/mail/Email.java
+diff --git a/src/main/java/org/apache/commons/mail/Email.java b/src/main/java/org/apache/commons/mail/Email.java
 index 2a23c10..6940887 100644
---- a/email_4_fix/src/main/java/org/apache/commons/mail/Email.java
-+++ b/email_4_buggy/src/main/java/org/apache/commons/mail/Email.java
+--- a/src/main/java/org/apache/commons/mail/Email.java
++++ b/src/main/java/org/apache/commons/mail/Email.java
 @@ -1171,7 +1171,7 @@ public abstract class Email
          while (iterKeyBad.hasNext())
          {

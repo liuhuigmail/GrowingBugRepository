@@ -1,7 +1,7 @@
-diff --git a/net_16_fix/src/main/java/org/apache/commons/net/nntp/Threader.java b/net_16_buggy/src/main/java/org/apache/commons/net/nntp/Threader.java
+diff --git a/src/main/java/org/apache/commons/net/nntp/Threader.java b/src/main/java/org/apache/commons/net/nntp/Threader.java
 index bf93451..037374d 100644
---- a/net_16_fix/src/main/java/org/apache/commons/net/nntp/Threader.java
-+++ b/net_16_buggy/src/main/java/org/apache/commons/net/nntp/Threader.java
+--- a/src/main/java/org/apache/commons/net/nntp/Threader.java
++++ b/src/main/java/org/apache/commons/net/nntp/Threader.java
 @@ -27,7 +27,6 @@ package org.apache.commons.net.nntp;
   *
   */

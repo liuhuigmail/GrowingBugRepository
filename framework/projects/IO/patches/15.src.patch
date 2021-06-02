@@ -1,7 +1,7 @@
-diff --git a/io_15_fix/src/java/org/apache/commons/io/FilenameUtils.java b/io_15_buggy/src/java/org/apache/commons/io/FilenameUtils.java
+diff --git a/src/java/org/apache/commons/io/FilenameUtils.java b/src/java/org/apache/commons/io/FilenameUtils.java
 index a61c600..01fcadb 100644
---- a/io_15_fix/src/java/org/apache/commons/io/FilenameUtils.java
-+++ b/io_15_buggy/src/java/org/apache/commons/io/FilenameUtils.java
+--- a/src/java/org/apache/commons/io/FilenameUtils.java
++++ b/src/java/org/apache/commons/io/FilenameUtils.java
 @@ -887,9 +887,6 @@ public class FilenameUtils {
              return filename.substring(0, prefix);
          }

@@ -1,7 +1,7 @@
-diff --git a/compress_48_fix/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java b/compress_48_buggy/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
+diff --git a/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java b/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
 index 9f9de11..47e8e8d 100644
---- a/compress_48_fix/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
-+++ b/compress_48_buggy/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
+--- a/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
++++ b/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
 @@ -112,12 +112,8 @@ public class ExtraFieldUtils {
              ZipShort headerId = new ZipShort(data, start);
              int length = (new ZipShort(data, start + 2)).getValue();

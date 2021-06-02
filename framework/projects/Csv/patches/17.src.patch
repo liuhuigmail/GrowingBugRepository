@@ -1,7 +1,7 @@
-diff --git a/csv_17_fix/src/main/java/org/apache/commons/csv/CSVFormat.java b/csv_17_buggy/src/main/java/org/apache/commons/csv/CSVFormat.java
+diff --git a/src/main/java/org/apache/commons/csv/CSVFormat.java b/src/main/java/org/apache/commons/csv/CSVFormat.java
 index a7432b9..319c861 100644
---- a/csv_17_fix/src/main/java/org/apache/commons/csv/CSVFormat.java
-+++ b/csv_17_buggy/src/main/java/org/apache/commons/csv/CSVFormat.java
+--- a/src/main/java/org/apache/commons/csv/CSVFormat.java
++++ b/src/main/java/org/apache/commons/csv/CSVFormat.java
 @@ -804,8 +804,8 @@ public final class CSVFormat implements Serializable {
              throw new IllegalArgumentException("The comment start marker character cannot be a line break");
          }

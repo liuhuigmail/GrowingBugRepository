@@ -1,7 +1,7 @@
-diff --git a/text_5_fix/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java b/text_5_buggy/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java
+diff --git a/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java b/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java
 index cfe1bf4..dcf0766 100644
---- a/text_5_fix/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java
-+++ b/text_5_buggy/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java
+--- a/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java
++++ b/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java
 @@ -411,24 +411,21 @@ public class ExtendedMessageFormat extends MessageFormat {
          seekNonWs(pattern, pos);
          final int text = pos.getIndex();

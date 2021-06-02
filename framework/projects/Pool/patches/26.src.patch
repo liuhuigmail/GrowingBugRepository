@@ -1,7 +1,7 @@
-diff --git a/pool_26_fix/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/pool_26_buggy/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 index a05038a..7ad8a5a 100644
---- a/pool_26_fix/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-+++ b/pool_26_buggy/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 @@ -822,9 +822,6 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
              localMaxTotal = Integer.MAX_VALUE;
          }

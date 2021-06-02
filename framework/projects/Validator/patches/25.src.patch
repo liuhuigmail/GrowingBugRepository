@@ -1,7 +1,7 @@
-diff --git a/validator_25_fix/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/validator_25_buggy/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+diff --git a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
 index 312c8e8..d764912 100644
---- a/validator_25_fix/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
-+++ b/validator_25_buggy/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+--- a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
 @@ -168,7 +168,7 @@ public class UrlValidator implements Serializable {
      private static final String PATH_REGEX = "^(/[-\\w:@&?=+,.!/~*'%$_;\\(\\)]*)?$";
      private static final Pattern PATH_PATTERN = Pattern.compile(PATH_REGEX);

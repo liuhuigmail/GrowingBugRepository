@@ -1,7 +1,7 @@
-diff --git a/numbers_2_fix/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java b/numbers_2_buggy/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java
+diff --git a/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java b/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java
 index 6870386..cf8f509 100644
---- a/numbers_2_fix/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java
-+++ b/numbers_2_buggy/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java
+--- a/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java
++++ b/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java
 @@ -94,20 +94,7 @@ public class PlaneAngle {
       * {@code center - 0.5 <= a - k < center + 0.5} (in turns).
       */

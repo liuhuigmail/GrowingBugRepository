@@ -1,7 +1,7 @@
-diff --git a/graph_2_fix/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java b/graph_2_buggy/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
+diff --git a/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java b/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
 index 6593129..d9007d4 100644
---- a/graph_2_fix/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
-+++ b/graph_2_buggy/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
+--- a/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
++++ b/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
 @@ -120,11 +120,6 @@ public abstract class BaseMutableGraph<V extends Vertex, E extends Edge>
          {
              throw new GraphException( "Tail Vertex '%s' not present in the Graph", tail );

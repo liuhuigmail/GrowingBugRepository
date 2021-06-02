@@ -1,7 +1,7 @@
-diff --git a/io_29_fix/src/main/java/org/apache/commons/io/FileUtils.java b/io_29_buggy/src/main/java/org/apache/commons/io/FileUtils.java
+diff --git a/src/main/java/org/apache/commons/io/FileUtils.java b/src/main/java/org/apache/commons/io/FileUtils.java
 index 5d0d669..20e2463 100644
---- a/io_29_fix/src/main/java/org/apache/commons/io/FileUtils.java
-+++ b/io_29_buggy/src/main/java/org/apache/commons/io/FileUtils.java
+--- a/src/main/java/org/apache/commons/io/FileUtils.java
++++ b/src/main/java/org/apache/commons/io/FileUtils.java
 @@ -1535,8 +1535,9 @@ public class FileUtils {
       * @since 2.5
       */

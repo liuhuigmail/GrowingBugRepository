@@ -1,7 +1,7 @@
-diff --git a/graph_1_fix/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java b/graph_1_buggy/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java
+diff --git a/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java b/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java
 index d2103c9..031e7c0 100644
---- a/graph_1_fix/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java
-+++ b/graph_1_buggy/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java
+--- a/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java
++++ b/src/main/java/org/apache/commons/graph/coloring/GraphColoring.java
 @@ -1,8 +1,6 @@
  package org.apache.commons.graph.coloring;
  
@@ -65,10 +65,10 @@ index d2103c9..031e7c0 100644
          }
  
          return coloredVertices;
-diff --git a/graph_1_fix/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java b/graph_1_buggy/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java
+diff --git a/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java b/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java
 index 98b1363..7ab4720 100644
---- a/graph_1_fix/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java
-+++ b/graph_1_buggy/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java
+--- a/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java
++++ b/src/main/java/org/apache/commons/graph/coloring/UncoloredOrderedVertices.java
 @@ -111,14 +111,4 @@ final class UncoloredOrderedVertices<V extends Vertex>
          };
      }

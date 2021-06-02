@@ -1,7 +1,7 @@
-diff --git a/validator_13_fix/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java b/validator_13_buggy/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java
+diff --git a/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java b/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java
 index e6234fd..3bcc9bf 100644
---- a/validator_13_fix/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java
-+++ b/validator_13_buggy/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java
+--- a/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java
++++ b/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java
 @@ -68,10 +68,6 @@ public final class IBANCheckDigit implements CheckDigit, Serializable {
          if (code == null || code.length() < 5) {
              return false;

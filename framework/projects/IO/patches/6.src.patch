@@ -1,7 +1,7 @@
-diff --git a/io_6_fix/src/java/org/apache/commons/io/FilenameUtils.java b/io_6_buggy/src/java/org/apache/commons/io/FilenameUtils.java
+diff --git a/src/java/org/apache/commons/io/FilenameUtils.java b/src/java/org/apache/commons/io/FilenameUtils.java
 index 7de8d31..2c6c62f 100644
---- a/io_6_fix/src/java/org/apache/commons/io/FilenameUtils.java
-+++ b/io_6_buggy/src/java/org/apache/commons/io/FilenameUtils.java
+--- a/src/java/org/apache/commons/io/FilenameUtils.java
++++ b/src/java/org/apache/commons/io/FilenameUtils.java
 @@ -978,7 +978,7 @@ public class FilenameUtils {
              filename1 = normalize(filename1);
              filename2 = normalize(filename2);

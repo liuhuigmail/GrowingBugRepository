@@ -1,7 +1,7 @@
-diff --git a/net_21_fix/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java b/net_21_buggy/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java
+diff --git a/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java b/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java
 index 56aac00..195568a 100644
---- a/net_21_fix/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java
-+++ b/net_21_buggy/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java
+--- a/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java
++++ b/src/main/java/org/apache/commons/net/smtp/SimpleSMTPHeader.java
 @@ -17,10 +17,6 @@
  
  package org.apache.commons.net.smtp;

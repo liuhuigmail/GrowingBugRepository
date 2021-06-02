@@ -1,7 +1,7 @@
-diff --git a/shirocore_98_fix/core/src/main/java/org/apache/shiro/authz/permission/DomainPermission.java b/shirocore_98_buggy/core/src/main/java/org/apache/shiro/authz/permission/DomainPermission.java
+diff --git a/core/src/main/java/org/apache/shiro/authz/permission/DomainPermission.java b/core/src/main/java/org/apache/shiro/authz/permission/DomainPermission.java
 index 665454b..71c45fb 100644
---- a/shirocore_98_fix/core/src/main/java/org/apache/shiro/authz/permission/DomainPermission.java
-+++ b/shirocore_98_buggy/core/src/main/java/org/apache/shiro/authz/permission/DomainPermission.java
+--- a/core/src/main/java/org/apache/shiro/authz/permission/DomainPermission.java
++++ b/core/src/main/java/org/apache/shiro/authz/permission/DomainPermission.java
 @@ -55,7 +55,7 @@ public class DomainPermission extends WildcardPermission {
      public DomainPermission(String actions, String targets) {
          this.domain = getDomain(getClass());

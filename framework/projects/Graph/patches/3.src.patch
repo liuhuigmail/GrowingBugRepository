@@ -1,7 +1,7 @@
-diff --git a/graph_3_fix/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java b/graph_3_buggy/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
+diff --git a/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java b/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
 index f4857ba..a4df569 100644
---- a/graph_3_fix/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
-+++ b/graph_3_buggy/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
+--- a/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
++++ b/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
 @@ -105,7 +105,7 @@ public abstract class BaseMutableGraph<V extends Vertex, E extends Edge>
      {
          getAdjacencyList().get( head ).add( tail );
@@ -41,10 +41,10 @@ index f4857ba..a4df569 100644
      }
  
      /**
-diff --git a/graph_3_fix/src/main/java/org/apache/commons/graph/model/DirectedMutableGraph.java b/graph_3_buggy/src/main/java/org/apache/commons/graph/model/DirectedMutableGraph.java
+diff --git a/src/main/java/org/apache/commons/graph/model/DirectedMutableGraph.java b/src/main/java/org/apache/commons/graph/model/DirectedMutableGraph.java
 index 7f1f715..c6d27f5 100644
---- a/graph_3_fix/src/main/java/org/apache/commons/graph/model/DirectedMutableGraph.java
-+++ b/graph_3_buggy/src/main/java/org/apache/commons/graph/model/DirectedMutableGraph.java
+--- a/src/main/java/org/apache/commons/graph/model/DirectedMutableGraph.java
++++ b/src/main/java/org/apache/commons/graph/model/DirectedMutableGraph.java
 @@ -27,7 +27,6 @@ import java.util.Set;
  import org.apache.commons.graph.DirectedGraph;
  import org.apache.commons.graph.Edge;
@@ -63,10 +63,10 @@ index 7f1f715..c6d27f5 100644
      }
  
  }
-diff --git a/graph_3_fix/src/main/java/org/apache/commons/graph/model/UndirectedMutableGraph.java b/graph_3_buggy/src/main/java/org/apache/commons/graph/model/UndirectedMutableGraph.java
+diff --git a/src/main/java/org/apache/commons/graph/model/UndirectedMutableGraph.java b/src/main/java/org/apache/commons/graph/model/UndirectedMutableGraph.java
 index 8de7990..9565e93 100644
---- a/graph_3_fix/src/main/java/org/apache/commons/graph/model/UndirectedMutableGraph.java
-+++ b/graph_3_buggy/src/main/java/org/apache/commons/graph/model/UndirectedMutableGraph.java
+--- a/src/main/java/org/apache/commons/graph/model/UndirectedMutableGraph.java
++++ b/src/main/java/org/apache/commons/graph/model/UndirectedMutableGraph.java
 @@ -77,7 +77,7 @@ public class UndirectedMutableGraph<V extends Vertex, E extends Edge>
      @Override
      protected void decorateRemoveEdge( E e )

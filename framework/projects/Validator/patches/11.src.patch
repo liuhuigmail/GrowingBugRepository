@@ -1,7 +1,7 @@
-diff --git a/validator_11_fix/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/validator_11_buggy/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+diff --git a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
 index dc29321..5734c61 100644
---- a/validator_11_fix/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
-+++ b/validator_11_buggy/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+--- a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
 @@ -136,18 +136,9 @@ public class UrlValidator implements Serializable {
      private static final String AUTHORITY_CHARS_REGEX = "\\p{Alnum}\\-\\."; // allows for IPV4 but not IPV6
      private static final String IPV6_REGEX = "[0-9a-fA-F:]+"; // do this as separate match because : could cause ambiguity with port prefix

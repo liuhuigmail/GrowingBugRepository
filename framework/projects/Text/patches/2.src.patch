@@ -1,7 +1,7 @@
-diff --git a/text_2_fix/src/main/java/org/apache/commons/text/WordUtils.java b/text_2_buggy/src/main/java/org/apache/commons/text/WordUtils.java
+diff --git a/src/main/java/org/apache/commons/text/WordUtils.java b/src/main/java/org/apache/commons/text/WordUtils.java
 index 0ffff07..7d90730 100644
---- a/text_2_fix/src/main/java/org/apache/commons/text/WordUtils.java
-+++ b/text_2_buggy/src/main/java/org/apache/commons/text/WordUtils.java
+--- a/src/main/java/org/apache/commons/text/WordUtils.java
++++ b/src/main/java/org/apache/commons/text/WordUtils.java
 @@ -411,7 +411,8 @@ public class WordUtils {
       * @see #capitalizeFully(String)
       */

@@ -1,7 +1,7 @@
-diff --git a/validator_7_fix/src/main/java/org/apache/commons/validator/routines/DomainValidator.java b/validator_7_buggy/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
+diff --git a/src/main/java/org/apache/commons/validator/routines/DomainValidator.java b/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
 index 4cab4be..0830ea2 100644
---- a/validator_7_fix/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
-+++ b/validator_7_buggy/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
+--- a/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
 @@ -87,11 +87,6 @@ public class DomainValidator implements Serializable {
       */
      private final RegexValidator domainRegex =

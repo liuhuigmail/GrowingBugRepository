@@ -1,7 +1,7 @@
-diff --git a/net_26_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/net_26_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+diff --git a/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
 index f18f2c6..4de394d 100644
---- a/net_26_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java
-+++ b/net_26_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+--- a/src/main/java/org/apache/commons/net/util/SubnetUtils.java
++++ b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
 @@ -157,17 +157,12 @@ public class SubnetUtils {
          }
  

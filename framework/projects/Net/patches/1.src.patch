@@ -1,7 +1,7 @@
-diff --git a/net_1_fix/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java b/net_1_buggy/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
+diff --git a/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java b/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
 index 6b94778..e582ae2 100644
---- a/net_1_fix/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
-+++ b/net_1_buggy/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
+--- a/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
++++ b/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
 @@ -33,6 +33,12 @@ import org.apache.commons.net.ftp.FTPFile;
   */
  public class UnixFTPEntryParser extends ConfigurableFTPFileEntryParserImpl

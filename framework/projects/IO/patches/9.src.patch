@@ -1,7 +1,7 @@
-diff --git a/io_9_fix/src/java/org/apache/commons/io/FilenameUtils.java b/io_9_buggy/src/java/org/apache/commons/io/FilenameUtils.java
+diff --git a/src/java/org/apache/commons/io/FilenameUtils.java b/src/java/org/apache/commons/io/FilenameUtils.java
 index 7a0f044..d0fdae2 100644
---- a/io_9_fix/src/java/org/apache/commons/io/FilenameUtils.java
-+++ b/io_9_buggy/src/java/org/apache/commons/io/FilenameUtils.java
+--- a/src/java/org/apache/commons/io/FilenameUtils.java
++++ b/src/java/org/apache/commons/io/FilenameUtils.java
 @@ -699,11 +699,10 @@ public class FilenameUtils {
              return null;
          }

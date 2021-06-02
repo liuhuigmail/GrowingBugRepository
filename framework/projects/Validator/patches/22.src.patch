@@ -1,7 +1,7 @@
-diff --git a/validator_22_fix/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/validator_22_buggy/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+diff --git a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
 index 92d2159..1457a37 100644
---- a/validator_22_fix/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
-+++ b/validator_22_buggy/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+--- a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
 @@ -148,8 +148,8 @@ public class UrlValidator implements Serializable {
              USERINFO_CHARS_REGEX + "+:" + // At least one character for the name
              USERINFO_CHARS_REGEX + "*@"; // password may be absent

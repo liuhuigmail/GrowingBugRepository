@@ -1,7 +1,7 @@
-diff --git a/tikacore_17_fix/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java b/tikacore_17_buggy/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
+diff --git a/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java b/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
 index 79c948c..00fb928 100644
---- a/tikacore_17_fix/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
-+++ b/tikacore_17_buggy/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
+--- a/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
++++ b/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
 @@ -60,7 +60,7 @@ public class XHTMLContentHandler extends SafeContentHandler {
       * skip them if they get sent to startElement/endElement by mistake.
       */

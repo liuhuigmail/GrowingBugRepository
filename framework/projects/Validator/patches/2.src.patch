@@ -1,7 +1,7 @@
-diff --git a/validator_2_fix/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/validator_2_buggy/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+diff --git a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
 index 8860a14..312c8e8 100644
---- a/validator_2_fix/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
-+++ b/validator_2_buggy/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+--- a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
 @@ -450,8 +450,7 @@ public class UrlValidator implements Serializable {
          }
  

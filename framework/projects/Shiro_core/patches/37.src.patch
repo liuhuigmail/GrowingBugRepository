@@ -1,7 +1,7 @@
-diff --git a/shirocore_37_fix/core/src/main/java/org/apache/shiro/authc/SimpleAuthenticationInfo.java b/shirocore_37_buggy/core/src/main/java/org/apache/shiro/authc/SimpleAuthenticationInfo.java
+diff --git a/core/src/main/java/org/apache/shiro/authc/SimpleAuthenticationInfo.java b/core/src/main/java/org/apache/shiro/authc/SimpleAuthenticationInfo.java
 index 4dcb098..8f0af39 100644
---- a/shirocore_37_fix/core/src/main/java/org/apache/shiro/authc/SimpleAuthenticationInfo.java
-+++ b/shirocore_37_buggy/core/src/main/java/org/apache/shiro/authc/SimpleAuthenticationInfo.java
+--- a/core/src/main/java/org/apache/shiro/authc/SimpleAuthenticationInfo.java
++++ b/core/src/main/java/org/apache/shiro/authc/SimpleAuthenticationInfo.java
 @@ -122,11 +122,12 @@ public class SimpleAuthenticationInfo implements MergableAuthenticationInfo {
          if (this.principals == null) {
              this.principals = info.getPrincipals();

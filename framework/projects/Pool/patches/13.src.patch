@@ -1,7 +1,7 @@
-diff --git a/pool_13_fix/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/pool_13_buggy/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
 index 77b4146..9f98c28 100644
---- a/pool_13_fix/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
-+++ b/pool_13_buggy/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
 @@ -110,7 +110,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
  
          setConfig(config);

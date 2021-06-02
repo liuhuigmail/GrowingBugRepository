@@ -1,7 +1,7 @@
-diff --git a/tikacore_9_fix/tika-core/src/main/java/org/apache/tika/mime/MediaType.java b/tikacore_9_buggy/tika-core/src/main/java/org/apache/tika/mime/MediaType.java
+diff --git a/tika-core/src/main/java/org/apache/tika/mime/MediaType.java b/tika-core/src/main/java/org/apache/tika/mime/MediaType.java
 index b1116e7..bca232b 100644
---- a/tikacore_9_fix/tika-core/src/main/java/org/apache/tika/mime/MediaType.java
-+++ b/tikacore_9_buggy/tika-core/src/main/java/org/apache/tika/mime/MediaType.java
+--- a/tika-core/src/main/java/org/apache/tika/mime/MediaType.java
++++ b/tika-core/src/main/java/org/apache/tika/mime/MediaType.java
 @@ -17,8 +17,10 @@
  package org.apache.tika.mime;
  

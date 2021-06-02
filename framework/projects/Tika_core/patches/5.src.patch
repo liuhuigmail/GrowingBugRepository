@@ -1,7 +1,7 @@
-diff --git a/tikacore_5_fix/tika-core/src/main/java/org/apache/tika/detect/TextDetector.java b/tikacore_5_buggy/tika-core/src/main/java/org/apache/tika/detect/TextDetector.java
+diff --git a/tika-core/src/main/java/org/apache/tika/detect/TextDetector.java b/tika-core/src/main/java/org/apache/tika/detect/TextDetector.java
 index 481f595..0079b54 100644
---- a/tikacore_5_fix/tika-core/src/main/java/org/apache/tika/detect/TextDetector.java
-+++ b/tikacore_5_buggy/tika-core/src/main/java/org/apache/tika/detect/TextDetector.java
+--- a/tika-core/src/main/java/org/apache/tika/detect/TextDetector.java
++++ b/tika-core/src/main/java/org/apache/tika/detect/TextDetector.java
 @@ -96,12 +96,7 @@ public class TextDetector implements Detector {
              for (int i = 0; i < NUMBER_OF_BYTES_TO_TEST; i++) {
                  int ch = input.read();
@@ -14,10 +14,10 @@ index 481f595..0079b54 100644
                  } else if (ch < IS_CONTROL_BYTE.length && IS_CONTROL_BYTE[ch]) {
                      return MediaType.OCTET_STREAM;
                  }
-diff --git a/tikacore_5_fix/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java b/tikacore_5_buggy/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
+diff --git a/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java b/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
 index 1e0e8bd..a30cc8d 100644
---- a/tikacore_5_fix/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
-+++ b/tikacore_5_buggy/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
+--- a/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
++++ b/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
 @@ -214,9 +214,6 @@ public final class MimeTypes implements Detector, Serializable {
      public MimeType getMimeType(byte[] data) {
          if (data == null) {

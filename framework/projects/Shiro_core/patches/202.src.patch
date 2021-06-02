@@ -1,7 +1,7 @@
-diff --git a/shirocore_202_fix/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java b/shirocore_202_buggy/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java
+diff --git a/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java b/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java
 index 3d332f1..87cb5cc 100644
---- a/shirocore_202_fix/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java
-+++ b/shirocore_202_buggy/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java
+--- a/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java
++++ b/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java
 @@ -64,7 +64,7 @@ public class FirstSuccessfulStrategy extends AbstractAuthenticationStrategy {
       * otherwise.
       */

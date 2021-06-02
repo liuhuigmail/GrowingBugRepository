@@ -1,7 +1,7 @@
-diff --git a/imaging_3_fix/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java b/imaging_3_buggy/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
+diff --git a/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java b/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
 index 05308eb..b2dc074 100644
---- a/imaging_3_fix/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
-+++ b/imaging_3_buggy/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
+--- a/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
++++ b/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
 @@ -102,17 +102,9 @@ public class PnmImageParser extends ImageParser {
                  || identifier2 == PnmConstants.PPM_RAW_CODE) {
              

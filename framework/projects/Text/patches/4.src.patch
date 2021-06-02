@@ -1,7 +1,7 @@
-diff --git a/text_4_fix/src/main/java/org/apache/commons/text/StringEscapeUtils.java b/text_4_buggy/src/main/java/org/apache/commons/text/StringEscapeUtils.java
+diff --git a/src/main/java/org/apache/commons/text/StringEscapeUtils.java b/src/main/java/org/apache/commons/text/StringEscapeUtils.java
 index cd15a8a..3ac66ff 100644
---- a/text_4_fix/src/main/java/org/apache/commons/text/StringEscapeUtils.java
-+++ b/text_4_buggy/src/main/java/org/apache/commons/text/StringEscapeUtils.java
+--- a/src/main/java/org/apache/commons/text/StringEscapeUtils.java
++++ b/src/main/java/org/apache/commons/text/StringEscapeUtils.java
 @@ -302,14 +302,7 @@ public class StringEscapeUtils {
       * object allows the Json unescaping functionality to be used
       * as the foundation for a custom translator.

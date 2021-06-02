@@ -1,7 +1,7 @@
-diff --git a/lang_71_fix/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java b/lang_71_buggy/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
+diff --git a/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java b/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
 index 59c51e9..722d3b5 100644
---- a/lang_71_fix/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
-+++ b/lang_71_buggy/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
+--- a/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
++++ b/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
 @@ -417,10 +417,10 @@ public class ExtendedMessageFormat extends MessageFormat {
                  break;
              case START_FE:

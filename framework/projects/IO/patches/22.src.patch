@@ -1,7 +1,7 @@
-diff --git a/io_22_fix/src/main/java/org/apache/commons/io/input/BrokenInputStream.java b/io_22_buggy/src/main/java/org/apache/commons/io/input/BrokenInputStream.java
+diff --git a/src/main/java/org/apache/commons/io/input/BrokenInputStream.java b/src/main/java/org/apache/commons/io/input/BrokenInputStream.java
 index a8b0fe9..7294359 100644
---- a/io_22_fix/src/main/java/org/apache/commons/io/input/BrokenInputStream.java
-+++ b/io_22_buggy/src/main/java/org/apache/commons/io/input/BrokenInputStream.java
+--- a/src/main/java/org/apache/commons/io/input/BrokenInputStream.java
++++ b/src/main/java/org/apache/commons/io/input/BrokenInputStream.java
 @@ -102,7 +102,7 @@ public class BrokenInputStream extends InputStream {
       */
      @Override
@@ -11,10 +11,10 @@ index a8b0fe9..7294359 100644
      }
  
  }
-diff --git a/io_22_fix/src/main/java/org/apache/commons/io/output/BrokenOutputStream.java b/io_22_buggy/src/main/java/org/apache/commons/io/output/BrokenOutputStream.java
+diff --git a/src/main/java/org/apache/commons/io/output/BrokenOutputStream.java b/src/main/java/org/apache/commons/io/output/BrokenOutputStream.java
 index 1f149ff..3fac0fe 100644
---- a/io_22_fix/src/main/java/org/apache/commons/io/output/BrokenOutputStream.java
-+++ b/io_22_buggy/src/main/java/org/apache/commons/io/output/BrokenOutputStream.java
+--- a/src/main/java/org/apache/commons/io/output/BrokenOutputStream.java
++++ b/src/main/java/org/apache/commons/io/output/BrokenOutputStream.java
 @@ -79,7 +79,7 @@ public class BrokenOutputStream extends OutputStream {
       */
      @Override

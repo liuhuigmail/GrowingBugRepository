@@ -1,7 +1,7 @@
-diff --git a/text_1_fix/src/main/java/org/apache/commons/text/similarity/JaroWinklerDistance.java b/text_1_buggy/src/main/java/org/apache/commons/text/similarity/JaroWinklerDistance.java
+diff --git a/src/main/java/org/apache/commons/text/similarity/JaroWinklerDistance.java b/src/main/java/org/apache/commons/text/similarity/JaroWinklerDistance.java
 index f1c4d01..0190c7b 100644
---- a/text_1_fix/src/main/java/org/apache/commons/text/similarity/JaroWinklerDistance.java
-+++ b/text_1_buggy/src/main/java/org/apache/commons/text/similarity/JaroWinklerDistance.java
+--- a/src/main/java/org/apache/commons/text/similarity/JaroWinklerDistance.java
++++ b/src/main/java/org/apache/commons/text/similarity/JaroWinklerDistance.java
 @@ -75,6 +75,7 @@ public class JaroWinklerDistance implements SimilarityScore<Double> {
      @Override
      public Double apply(final CharSequence left, final CharSequence right) {

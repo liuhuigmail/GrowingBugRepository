@@ -1,7 +1,7 @@
-diff --git a/validator_23_fix/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/validator_23_buggy/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+diff --git a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
 index ed603dc..11d3130 100644
---- a/validator_23_fix/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
-+++ b/validator_23_buggy/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+--- a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
 @@ -147,8 +147,8 @@ public class UrlValidator implements Serializable {
      private static final String USERINFO_CHARS_REGEX = "[a-zA-Z0-9%-._~!$&'()*+,;=]";
      // since neither ':' nor '@' are allowed chars, we don't need to use non-greedy matching

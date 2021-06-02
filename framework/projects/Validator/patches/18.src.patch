@@ -1,7 +1,7 @@
-diff --git a/validator_18_fix/src/main/java/org/apache/commons/validator/routines/EmailValidator.java b/validator_18_buggy/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
+diff --git a/src/main/java/org/apache/commons/validator/routines/EmailValidator.java b/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
 index 91d56cf..e344dcc 100644
---- a/validator_18_fix/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
-+++ b/validator_18_buggy/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
+--- a/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/EmailValidator.java
 @@ -39,7 +39,7 @@ public class EmailValidator implements Serializable {
  
      private static final String SPECIAL_CHARS = "\\p{Cntrl}\\(\\)<>@,;:'\\\\\\\"\\.\\[\\]";

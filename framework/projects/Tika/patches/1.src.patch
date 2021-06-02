@@ -1,7 +1,7 @@
-diff --git a/tika_1_fix/src/main/java/org/apache/tika/mime/MimeTypes.java b/tika_1_buggy/src/main/java/org/apache/tika/mime/MimeTypes.java
+diff --git a/src/main/java/org/apache/tika/mime/MimeTypes.java b/src/main/java/org/apache/tika/mime/MimeTypes.java
 index 5afc899..eb7279d 100644
---- a/tika_1_fix/src/main/java/org/apache/tika/mime/MimeTypes.java
-+++ b/tika_1_buggy/src/main/java/org/apache/tika/mime/MimeTypes.java
+--- a/src/main/java/org/apache/tika/mime/MimeTypes.java
++++ b/src/main/java/org/apache/tika/mime/MimeTypes.java
 @@ -167,7 +167,7 @@ public final class MimeTypes {
       *         <code>null</code> if none is found.
       */

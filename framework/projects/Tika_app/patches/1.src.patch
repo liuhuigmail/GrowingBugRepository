@@ -1,7 +1,7 @@
-diff --git a/tikaapp_1_fix/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java b/tikaapp_1_buggy/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
+diff --git a/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java b/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
 index 0ab4ac9..31096d6 100644
---- a/tikaapp_1_fix/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
-+++ b/tikaapp_1_buggy/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
+--- a/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
++++ b/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
 @@ -824,9 +824,7 @@ public class TikaCLI {
          
          public void outputMetadata(String[] names) {

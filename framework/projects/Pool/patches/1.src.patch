@@ -1,7 +1,7 @@
-diff --git a/pool_1_fix/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java b/pool_1_buggy/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
+diff --git a/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java b/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
 index a454748..f988d7c 100644
---- a/pool_1_fix/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
-+++ b/pool_1_buggy/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
+--- a/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
++++ b/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
 @@ -312,7 +312,7 @@ public class GenericKeyedObjectPool extends BaseKeyedObjectPool implements Keyed
       * @param config a non-<code>null</code> {@link GenericKeyedObjectPool.Config} describing the configuration
       */

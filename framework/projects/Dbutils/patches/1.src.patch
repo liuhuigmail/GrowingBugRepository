@@ -1,7 +1,7 @@
-diff --git a/dbutils_1_fix/src/java/org/apache/commons/dbutils/BeanProcessor.java b/dbutils_1_buggy/src/java/org/apache/commons/dbutils/BeanProcessor.java
+diff --git a/src/java/org/apache/commons/dbutils/BeanProcessor.java b/src/java/org/apache/commons/dbutils/BeanProcessor.java
 index f5768b0..bb54d97 100644
---- a/dbutils_1_fix/src/java/org/apache/commons/dbutils/BeanProcessor.java
-+++ b/dbutils_1_buggy/src/java/org/apache/commons/dbutils/BeanProcessor.java
+--- a/src/java/org/apache/commons/dbutils/BeanProcessor.java
++++ b/src/java/org/apache/commons/dbutils/BeanProcessor.java
 @@ -390,10 +390,7 @@ public class BeanProcessor {
          Arrays.fill(columnToProperty, PROPERTY_NOT_FOUND);
  

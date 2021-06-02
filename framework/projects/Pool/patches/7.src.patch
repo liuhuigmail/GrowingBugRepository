@@ -1,7 +1,7 @@
-diff --git a/pool_7_fix/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/pool_7_buggy/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
 index da444dd..2bb163b 100644
---- a/pool_7_fix/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
-+++ b/pool_7_buggy/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
 @@ -551,11 +551,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
              throw new IllegalStateException(
                      "Object not currently part of this pool");
@@ -14,10 +14,10 @@ index da444dd..2bb163b 100644
      }
  
  
-diff --git a/pool_7_fix/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/pool_7_buggy/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 index f4b239e..9d9cac5 100644
---- a/pool_7_fix/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-+++ b/pool_7_buggy/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 @@ -581,14 +581,10 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
                  return;
              } else {

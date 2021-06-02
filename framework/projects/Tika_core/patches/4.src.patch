@@ -1,7 +1,7 @@
-diff --git a/tikacore_4_fix/tika-core/src/main/java/org/apache/tika/language/LanguageIdentifier.java b/tikacore_4_buggy/tika-core/src/main/java/org/apache/tika/language/LanguageIdentifier.java
+diff --git a/tika-core/src/main/java/org/apache/tika/language/LanguageIdentifier.java b/tika-core/src/main/java/org/apache/tika/language/LanguageIdentifier.java
 index 9754857..a05eb69 100644
---- a/tikacore_4_fix/tika-core/src/main/java/org/apache/tika/language/LanguageIdentifier.java
-+++ b/tikacore_4_buggy/tika-core/src/main/java/org/apache/tika/language/LanguageIdentifier.java
+--- a/tika-core/src/main/java/org/apache/tika/language/LanguageIdentifier.java
++++ b/tika-core/src/main/java/org/apache/tika/language/LanguageIdentifier.java
 @@ -73,7 +73,7 @@ public class LanguageIdentifier {
      static {
          addProfile("da"); // Danish

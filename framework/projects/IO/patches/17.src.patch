@@ -1,7 +1,7 @@
-diff --git a/io_17_fix/src/java/org/apache/commons/io/FileSystemUtils.java b/io_17_buggy/src/java/org/apache/commons/io/FileSystemUtils.java
+diff --git a/src/java/org/apache/commons/io/FileSystemUtils.java b/src/java/org/apache/commons/io/FileSystemUtils.java
 index 3649a63..c2aa4ab 100644
---- a/io_17_fix/src/java/org/apache/commons/io/FileSystemUtils.java
-+++ b/io_17_buggy/src/java/org/apache/commons/io/FileSystemUtils.java
+--- a/src/java/org/apache/commons/io/FileSystemUtils.java
++++ b/src/java/org/apache/commons/io/FileSystemUtils.java
 @@ -290,7 +290,7 @@ public class FileSystemUtils {
       * @throws IOException if an error occurs
       */

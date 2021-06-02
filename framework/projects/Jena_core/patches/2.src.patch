@@ -1,7 +1,7 @@
-diff --git a/jenacore_2_fix/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java b/jenacore_2_buggy/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java
+diff --git a/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java b/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java
 index 4f2286c..8c77d8f 100644
---- a/jenacore_2_fix/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java
-+++ b/jenacore_2_buggy/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java
+--- a/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java
++++ b/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java
 @@ -32,7 +32,7 @@ public class VCARD {
  	/**
  	 * The namespace of the vocabulary as a string

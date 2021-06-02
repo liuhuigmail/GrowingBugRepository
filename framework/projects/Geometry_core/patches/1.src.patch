@@ -1,7 +1,7 @@
-diff --git a/geometry_1_fix/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java b/geometry_1_buggy/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java
+diff --git a/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java b/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java
 index cc45d27..dfc9b34 100644
---- a/geometry_1_fix/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java
-+++ b/geometry_1_buggy/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java
+--- a/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java
++++ b/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java
 @@ -16,8 +16,6 @@
   */
  package org.apache.commons.geometry.core.precision;

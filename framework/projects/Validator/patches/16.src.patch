@@ -1,7 +1,7 @@
-diff --git a/validator_16_fix/src/main/java/org/apache/commons/validator/routines/DomainValidator.java b/validator_16_buggy/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
+diff --git a/src/main/java/org/apache/commons/validator/routines/DomainValidator.java b/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
 index 1e722a9..fe2937a 100644
---- a/validator_16_fix/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
-+++ b/validator_16_buggy/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
+--- a/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
 @@ -1428,9 +1428,8 @@ public class DomainValidator implements Serializable {
       * enum used by {@link DomainValidator#updateTLDOverride(ArrayType, String[])}
       * to determine which override array to update.

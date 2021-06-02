@@ -1,7 +1,7 @@
-diff --git a/net_9_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/net_9_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+diff --git a/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
 index 69676ca..58f3e92 100644
---- a/net_9_fix/src/main/java/org/apache/commons/net/util/SubnetUtils.java
-+++ b/net_9_buggy/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+--- a/src/main/java/org/apache/commons/net/util/SubnetUtils.java
++++ b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
 @@ -96,14 +96,11 @@ public class SubnetUtils {
          private int network()       { return network; }
          private int address()       { return address; }

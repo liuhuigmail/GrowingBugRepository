@@ -1,7 +1,7 @@
-diff --git a/shirocore_40_fix/core/src/main/java/org/apache/shiro/authz/ModularRealmAuthorizer.java b/shirocore_40_buggy/core/src/main/java/org/apache/shiro/authz/ModularRealmAuthorizer.java
+diff --git a/core/src/main/java/org/apache/shiro/authz/ModularRealmAuthorizer.java b/core/src/main/java/org/apache/shiro/authz/ModularRealmAuthorizer.java
 index fbef094..3c8fc13 100644
---- a/shirocore_40_fix/core/src/main/java/org/apache/shiro/authz/ModularRealmAuthorizer.java
-+++ b/shirocore_40_buggy/core/src/main/java/org/apache/shiro/authz/ModularRealmAuthorizer.java
+--- a/core/src/main/java/org/apache/shiro/authz/ModularRealmAuthorizer.java
++++ b/core/src/main/java/org/apache/shiro/authz/ModularRealmAuthorizer.java
 @@ -89,7 +89,6 @@ public class ModularRealmAuthorizer implements Authorizer, PermissionResolverAwa
      public void setRealms(Collection<Realm> realms) {
          this.realms = realms;

@@ -1,7 +1,7 @@
-diff --git a/net_24_fix/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java b/net_24_buggy/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
+diff --git a/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java b/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
 index b8f347a..7251618 100644
---- a/net_24_fix/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
-+++ b/net_24_buggy/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
+--- a/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
++++ b/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
 @@ -271,7 +271,7 @@ public class MVSFTPEntryParser extends ConfigurableFTPFileEntryParserImpl {
                  isParsed = parseSimpleEntry(f, entry);
              }

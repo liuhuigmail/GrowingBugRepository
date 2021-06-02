@@ -1,7 +1,7 @@
-diff --git a/tika_7_fix/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java b/tika_7_buggy/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
+diff --git a/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java b/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
 index fecd23e..5bb070d 100644
---- a/tika_7_fix/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
-+++ b/tika_7_buggy/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
+--- a/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
++++ b/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
 @@ -186,16 +186,6 @@ public class XHTMLContentHandler extends SafeContentHandler {
          }
      }

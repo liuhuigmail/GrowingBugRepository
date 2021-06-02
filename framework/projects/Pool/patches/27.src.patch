@@ -1,7 +1,7 @@
-diff --git a/pool_27_fix/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/pool_27_buggy/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 index 0575f7e..abdf7e1 100644
---- a/pool_27_fix/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-+++ b/pool_27_buggy/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 @@ -914,15 +914,6 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
              destroyedCount.incrementAndGet();
              createCount.decrementAndGet();

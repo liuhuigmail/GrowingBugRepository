@@ -1,7 +1,7 @@
-diff --git a/tikaapp_3_fix/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java b/tikaapp_3_buggy/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
+diff --git a/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java b/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
 index a0abe43..dc0d15f 100644
---- a/tikaapp_3_fix/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
-+++ b/tikaapp_3_buggy/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
+--- a/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
++++ b/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
 @@ -84,7 +84,6 @@ import org.apache.tika.parser.ParserDecorator;
  import org.apache.tika.parser.PasswordProvider;
  import org.apache.tika.parser.html.BoilerpipeContentHandler;

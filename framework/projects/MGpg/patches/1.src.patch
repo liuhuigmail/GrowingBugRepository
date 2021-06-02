@@ -1,7 +1,7 @@
-diff --git a/mgpg_1_fix/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java b/mgpg_1_buggy/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java
+diff --git a/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java b/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java
 index 35b33e0..6e64577 100644
---- a/mgpg_1_fix/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java
-+++ b/mgpg_1_buggy/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java
+--- a/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java
++++ b/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java
 @@ -47,13 +47,13 @@ public class GpgVersion implements Comparable<GpgVersion>
      @Override
      public int compareTo( GpgVersion other )

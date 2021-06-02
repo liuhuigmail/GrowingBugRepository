@@ -1,7 +1,7 @@
-diff --git a/imaging_7_fix/src/main/java/org/apache/commons/imaging/formats/jpeg/JpegUtils.java b/imaging_7_buggy/src/main/java/org/apache/commons/imaging/formats/jpeg/JpegUtils.java
+diff --git a/src/main/java/org/apache/commons/imaging/formats/jpeg/JpegUtils.java b/src/main/java/org/apache/commons/imaging/formats/jpeg/JpegUtils.java
 index 7031f9d..8af207c 100644
---- a/imaging_7_fix/src/main/java/org/apache/commons/imaging/formats/jpeg/JpegUtils.java
-+++ b/imaging_7_buggy/src/main/java/org/apache/commons/imaging/formats/jpeg/JpegUtils.java
+--- a/src/main/java/org/apache/commons/imaging/formats/jpeg/JpegUtils.java
++++ b/src/main/java/org/apache/commons/imaging/formats/jpeg/JpegUtils.java
 @@ -80,9 +80,6 @@ public class JpegUtils extends BinaryFileParser {
  
                  final byte[] segmentLengthBytes = readBytes("segmentLengthBytes", is, 2, "segmentLengthBytes");

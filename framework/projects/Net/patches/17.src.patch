@@ -1,7 +1,7 @@
-diff --git a/net_17_fix/src/main/java/org/apache/commons/net/io/Util.java b/net_17_buggy/src/main/java/org/apache/commons/net/io/Util.java
+diff --git a/src/main/java/org/apache/commons/net/io/Util.java b/src/main/java/org/apache/commons/net/io/Util.java
 index d18b075..fbb5f2c 100644
---- a/net_17_fix/src/main/java/org/apache/commons/net/io/Util.java
-+++ b/net_17_buggy/src/main/java/org/apache/commons/net/io/Util.java
+--- a/src/main/java/org/apache/commons/net/io/Util.java
++++ b/src/main/java/org/apache/commons/net/io/Util.java
 @@ -285,7 +285,7 @@ public final class Util
                      dest.flush();
                      ++total;

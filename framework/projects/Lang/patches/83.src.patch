@@ -1,7 +1,7 @@
-diff --git a/lang_83_fix/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/lang_83_buggy/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
 index e7aa45f..4fe626f 100644
---- a/lang_83_fix/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
-+++ b/lang_83_buggy/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+--- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
 @@ -124,9 +124,6 @@ public class DurationFormatUtils {
       * @return the formatted duration, not null
       */

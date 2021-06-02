@@ -1,7 +1,7 @@
-diff --git a/lang_84_fix/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/lang_84_buggy/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
 index 554cef5..e9fd007 100644
---- a/lang_84_fix/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
-+++ b/lang_84_buggy/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+--- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
 @@ -72,14 +72,15 @@ public class DurationFormatUtils {
 
      public static String formatDurationHMS(final long durationMillis) {

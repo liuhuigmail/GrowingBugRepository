@@ -1,7 +1,7 @@
-diff --git a/email_5_fix/src/main/java/org/apache/commons/mail/Email.java b/email_5_buggy/src/main/java/org/apache/commons/mail/Email.java
+diff --git a/src/main/java/org/apache/commons/mail/Email.java b/src/main/java/org/apache/commons/mail/Email.java
 index 4a8bece..2a23c10 100644
---- a/email_5_fix/src/main/java/org/apache/commons/mail/Email.java
-+++ b/email_5_buggy/src/main/java/org/apache/commons/mail/Email.java
+--- a/src/main/java/org/apache/commons/mail/Email.java
++++ b/src/main/java/org/apache/commons/mail/Email.java
 @@ -1160,7 +1160,6 @@ public abstract class Email
       * Disposition-Notification-To: user@domain.net
       *

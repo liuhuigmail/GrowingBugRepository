@@ -1,7 +1,7 @@
-diff --git a/tikacore_6_fix/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java b/tikacore_6_buggy/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
+diff --git a/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java b/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
 index a8036b3..b84183f 100644
---- a/tikacore_6_fix/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
-+++ b/tikacore_6_buggy/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
+--- a/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
++++ b/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
 @@ -73,7 +73,7 @@ public class XHTMLContentHandler extends SafeContentHandler {
      public static final Set<String> ENDLINE = unmodifiableSet(
              "p", "h1", "h2", "h3", "h4", "h5", "h6", "div", "ul", "ol", "dl",

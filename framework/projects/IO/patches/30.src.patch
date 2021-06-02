@@ -1,7 +1,7 @@
-diff --git a/io_30_fix/src/main/java/org/apache/commons/io/FileUtils.java b/io_30_buggy/src/main/java/org/apache/commons/io/FileUtils.java
+diff --git a/src/main/java/org/apache/commons/io/FileUtils.java b/src/main/java/org/apache/commons/io/FileUtils.java
 index 72d8f2a..6503eb3 100644
---- a/io_30_fix/src/main/java/org/apache/commons/io/FileUtils.java
-+++ b/io_30_buggy/src/main/java/org/apache/commons/io/FileUtils.java
+--- a/src/main/java/org/apache/commons/io/FileUtils.java
++++ b/src/main/java/org/apache/commons/io/FileUtils.java
 @@ -1217,7 +1216,7 @@ public class FileUtils {
              throw new NullPointerException("Source must not be null");
          }

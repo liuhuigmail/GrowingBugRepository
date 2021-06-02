@@ -1,7 +1,7 @@
-diff --git a/compress_50_fix/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java b/compress_50_buggy/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java
+diff --git a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java
 index b54656b..4221844 100644
---- a/compress_50_fix/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java
-+++ b/compress_50_buggy/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java
+--- a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java
++++ b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java
 @@ -247,11 +247,11 @@ public class TarArchiveInputStream extends ArchiveInputStream {
  
          if (currEntry.isGNULongNameEntry()) {

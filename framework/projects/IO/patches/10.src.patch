@@ -1,7 +1,7 @@
-diff --git a/io_10_fix/src/java/org/apache/commons/io/FileUtils.java b/io_10_buggy/src/java/org/apache/commons/io/FileUtils.java
+diff --git a/src/java/org/apache/commons/io/FileUtils.java b/src/java/org/apache/commons/io/FileUtils.java
 index 0a23e07..13c57ab 100644
---- a/io_10_fix/src/java/org/apache/commons/io/FileUtils.java
-+++ b/io_10_buggy/src/java/org/apache/commons/io/FileUtils.java
+--- a/src/java/org/apache/commons/io/FileUtils.java
++++ b/src/java/org/apache/commons/io/FileUtils.java
 @@ -1596,7 +1596,7 @@ public class FileUtils {
          }
          if (!reference.exists()) {

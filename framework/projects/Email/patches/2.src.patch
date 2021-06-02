@@ -1,7 +1,7 @@
-diff --git a/email_2_fix/src/java/org/apache/commons/mail/HtmlEmail.java b/email_2_buggy/src/java/org/apache/commons/mail/HtmlEmail.java
+diff --git a/src/java/org/apache/commons/mail/HtmlEmail.java b/src/java/org/apache/commons/mail/HtmlEmail.java
 index 30e25a2..7539a1c 100644
---- a/email_2_fix/src/java/org/apache/commons/mail/HtmlEmail.java
-+++ b/email_2_buggy/src/java/org/apache/commons/mail/HtmlEmail.java
+--- a/src/java/org/apache/commons/mail/HtmlEmail.java
++++ b/src/java/org/apache/commons/mail/HtmlEmail.java
 @@ -414,7 +414,7 @@ public class HtmlEmail extends MultiPartEmail
              throw new EmailException("file " + filePath + " isn't readable");
          }

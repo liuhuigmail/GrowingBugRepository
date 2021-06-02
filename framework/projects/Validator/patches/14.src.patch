@@ -1,7 +1,7 @@
-diff --git a/validator_14_fix/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/validator_14_buggy/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+diff --git a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
 index d9c56f6..4a28e37 100644
---- a/validator_14_fix/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
-+++ b/validator_14_buggy/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
+--- a/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
++++ b/src/main/java/org/apache/commons/validator/routines/UrlValidator.java
 @@ -17,8 +17,6 @@
  package org.apache.commons.validator.routines;
  

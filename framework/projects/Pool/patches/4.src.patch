@@ -1,7 +1,7 @@
-diff --git a/pool_4_fix/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java b/pool_4_buggy/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
+diff --git a/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java b/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
 index 065c400..00ab6a4 100644
---- a/pool_4_fix/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
-+++ b/pool_4_buggy/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
+--- a/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
++++ b/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
 @@ -1149,15 +1149,6 @@ public class GenericKeyedObjectPool extends BaseKeyedObjectPool implements Keyed
                                      }
                                  }
@@ -16,10 +16,10 @@ index 065c400..00ab6a4 100644
                                  Thread.currentThread().interrupt();
                                  throw e;
                              }
-diff --git a/pool_4_fix/src/java/org/apache/commons/pool/impl/GenericObjectPool.java b/pool_4_buggy/src/java/org/apache/commons/pool/impl/GenericObjectPool.java
+diff --git a/src/java/org/apache/commons/pool/impl/GenericObjectPool.java b/src/java/org/apache/commons/pool/impl/GenericObjectPool.java
 index 06d28a0..6e2f3cc 100644
---- a/pool_4_fix/src/java/org/apache/commons/pool/impl/GenericObjectPool.java
-+++ b/pool_4_buggy/src/java/org/apache/commons/pool/impl/GenericObjectPool.java
+--- a/src/java/org/apache/commons/pool/impl/GenericObjectPool.java
++++ b/src/java/org/apache/commons/pool/impl/GenericObjectPool.java
 @@ -1117,16 +1117,6 @@ public class GenericObjectPool extends BaseObjectPool implements ObjectPool {
                                      }
                                  }

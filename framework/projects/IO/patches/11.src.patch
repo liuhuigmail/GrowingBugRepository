@@ -1,7 +1,7 @@
-diff --git a/io_11_fix/src/java/org/apache/commons/io/input/SwappedDataInputStream.java b/io_11_buggy/src/java/org/apache/commons/io/input/SwappedDataInputStream.java
+diff --git a/src/java/org/apache/commons/io/input/SwappedDataInputStream.java b/src/java/org/apache/commons/io/input/SwappedDataInputStream.java
 index f9ed6c5..54e01a7 100644
---- a/io_11_fix/src/java/org/apache/commons/io/input/SwappedDataInputStream.java
-+++ b/io_11_buggy/src/java/org/apache/commons/io/input/SwappedDataInputStream.java
+--- a/src/java/org/apache/commons/io/input/SwappedDataInputStream.java
++++ b/src/java/org/apache/commons/io/input/SwappedDataInputStream.java
 @@ -48,15 +48,15 @@ public class SwappedDataInputStream extends ProxyInputStream
      }
  

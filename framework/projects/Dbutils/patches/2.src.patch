@@ -1,7 +1,7 @@
-diff --git a/Users/yanjiejiang/icse/dbutils_2_fix/src/main/java/org/apache/commons/dbutils/BasicRowProcessor.java b/Users/yanjiejiang/icse/dbutils_2_buggy/src/main/java/org/apache/commons/dbutils/BasicRowProcessor.java
+diff --git a/src/main/java/org/apache/commons/dbutils/BasicRowProcessor.java b/src/main/java/org/apache/commons/dbutils/BasicRowProcessor.java
 index 7508140..ce7ef89 100644
---- a/Users/yanjiejiang/icse/dbutils_2_fix/src/main/java/org/apache/commons/dbutils/BasicRowProcessor.java
-+++ b/Users/yanjiejiang/icse/dbutils_2_buggy/src/main/java/org/apache/commons/dbutils/BasicRowProcessor.java
+--- a/src/main/java/org/apache/commons/dbutils/BasicRowProcessor.java
++++ b/src/main/java/org/apache/commons/dbutils/BasicRowProcessor.java
 @@ -20,7 +20,6 @@ import java.sql.ResultSet;
  import java.sql.ResultSetMetaData;
  import java.sql.SQLException;

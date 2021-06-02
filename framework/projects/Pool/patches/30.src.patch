@@ -1,7 +1,7 @@
-diff --git a/pool_30_fix/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/pool_30_buggy/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 index 56d4668..5d171a4 100644
---- a/pool_30_fix/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-+++ b/pool_30_buggy/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 @@ -581,11 +581,6 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
              } catch (final Exception e) {
                  swallowException(e);

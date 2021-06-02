@@ -1,7 +1,7 @@
-diff --git a/net_7_fix/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java b/net_7_buggy/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
+diff --git a/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java b/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
 index e1b1919..408d247 100644
---- a/net_7_fix/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
-+++ b/net_7_buggy/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
+--- a/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
++++ b/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
 @@ -84,24 +84,21 @@ public class UnixFTPEntryParser extends ConfigurableFTPFileEntryParserImpl
      private static final String REGEX =
          "([bcdelfmpSs-])"

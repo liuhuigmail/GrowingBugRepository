@@ -1,7 +1,7 @@
-diff --git a/pool_21_fix/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/pool_21_buggy/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
 index 697ae05..eb335d6 100644
---- a/pool_21_fix/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
-+++ b/pool_21_buggy/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
 @@ -1014,9 +1012,6 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
              if (maxTotal > -1 && newNumTotal > maxTotal) {
                  numTotal.decrementAndGet();
@@ -34,10 +34,10 @@ index 697ae05..eb335d6 100644
              throw e;
          }
  
-diff --git a/pool_21_fix/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/pool_21_buggy/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 index b5ef9bd..6c8dc71 100644
---- a/pool_21_fix/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-+++ b/pool_21_buggy/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 @@ -856,9 +856,6 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
          if (localMaxTotal > -1 && newCreateCount > localMaxTotal ||
                  newCreateCount > Integer.MAX_VALUE) {

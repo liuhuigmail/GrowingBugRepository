@@ -1,7 +1,7 @@
-diff --git a/tikacore_11_fix/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java b/tikacore_11_buggy/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
+diff --git a/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java b/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
 index ba710e1..7d30cbb 100644
---- a/tikacore_11_fix/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
-+++ b/tikacore_11_buggy/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
+--- a/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
++++ b/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
 @@ -40,7 +40,6 @@ import org.apache.tika.mime.MediaTypeRegistry;
  import org.apache.tika.mime.MimeTypeException;
  import org.apache.tika.mime.MimeTypes;
