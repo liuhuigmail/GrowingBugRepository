@@ -24,15 +24,15 @@
 
 =head1 NAME
 
-Project::Pool.pm -- L<Project> submodule for commons-pool.
+Project::Text.pm -- L<Project> submodule for commons-text.
 
 =head1 DESCRIPTION
 
 This module provides all project-specific configurations and subroutines for the
-commons-pool project.
+commons-text project.
 
 =cut
-package Project::Pool;
+package Project::Text;
 
 use strict;
 use warnings;
@@ -41,13 +41,13 @@ use Constants;
 use Vcs::Git;
 
 our @ISA = qw(Project);
-my $PID  = "Pool";
+my $PID  = "Text";
 
 sub new {
     @_ == 1 or die $ARG_ERROR;
     my ($class) = @_;
 
-    my $name = "commons-pool";
+    my $name = "commons-text";
     my $vcs  = Vcs::Git->new($PID,
                              "$REPO_DIR/$name.git",
                              "$PROJECTS_DIR/$PID/$BUGS_CSV_ACTIVE",
@@ -85,33 +85,8 @@ sub _post_checkout {
             Utils::exec_cmd("cp $build_files_dir/* $work_dir", "Copy generated Ant build file") or die;
         }
     }
-    if (-e "$work_dir/build.xml"){
-        rename("$work_dir/build.xml", "$work_dir/build.xml".'.bak');
-        open(IN, '<'."$work_dir/build.xml".'.bak') or die $!;
-        open(OUT, '>'."$work_dir/build.xml") or die $!;
-        while(<IN>) {
-            $_ =~ s/"compile-test"/"compile-tests"/g;
-            $_ =~ s/"\$\{cp\}:\$\{cglib\.jar\}:\$\{asm\.jar\}:\$\{asm-util\.jar\}:\$\{asm-tree\.jar\}:\$\{junit\.jar\}:\$\{hamcrest\.jar\}"/"\$\{maven\.repo\.local\}"/g;
-         
-            $_ =~ s/fork="false"/fork="true"/g;
-            print OUT $_;
-        }
-        close(IN);
-        close(OUT);
-    }
-    if (-e "$work_dir/maven-build.xml"){
-        rename("$work_dir/maven-build.xml", "$work_dir/maven-build.xml".'.bak');
-        open(IN, '<'."$work_dir/maven-build.xml".'.bak') or die $!;
-        open(OUT, '>'."$work_dir/maven-build.xml") or die $!;
-        while(<IN>) {
-            $_ =~ s/"compile-test"/"compile-tests"/g;
-            $_ =~ s/fork="false"/fork="true"/g;
-            print OUT $_;
-        }
-        close(IN);
-        close(OUT);
-    }
 }
+
 #
 # This subroutine is called by the bug-mining framework for each revision during
 # the initialization of the project. Example uses are: converting and caching
@@ -123,12 +98,7 @@ sub initialize_revision {
 
     my $work_dir = $self->{prog_root};
     my $result = _ant_layout($work_dir) // _maven_layout($work_dir);
-    if(-e "$work_dir/src/main/java" and -e "$work_dir/src/test/java"){
-    	$result = {src=>"src/main/java", test=>"src/test/java"} unless defined $result;
-    }
-    elsif(-e "$work_dir/src/java" and  -e "$work_dir/src/test"){
-    	$result = {src=>"src/java", test=>"src/test"} unless defined $result;
-    }
+    die "Unknown layout for revision: ${rev_id}" unless defined $result;
 
     $self->_add_to_layout_map($rev_id, $result->{src}, $result->{test});
     $self->_cache_layout_map(); # Force cache rebuild

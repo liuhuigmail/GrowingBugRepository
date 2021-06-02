@@ -24,15 +24,15 @@
 
 =head1 NAME
 
-Project::Pool.pm -- L<Project> submodule for commons-pool.
+Project::Numbers_angle.pm -- L<Project> submodule for commons-numbers.
 
 =head1 DESCRIPTION
 
 This module provides all project-specific configurations and subroutines for the
-commons-pool project.
+commons-numbers project.
 
 =cut
-package Project::Pool;
+package Project::Numbers_angle;
 
 use strict;
 use warnings;
@@ -41,13 +41,13 @@ use Constants;
 use Vcs::Git;
 
 our @ISA = qw(Project);
-my $PID  = "Pool";
+my $PID  = "Numbers_angle";
 
 sub new {
     @_ == 1 or die $ARG_ERROR;
     my ($class) = @_;
 
-    my $name = "commons-pool";
+    my $name = "commons-numbers";
     my $vcs  = Vcs::Git->new($PID,
                              "$REPO_DIR/$name.git",
                              "$PROJECTS_DIR/$PID/$BUGS_CSV_ACTIVE",
@@ -85,33 +85,72 @@ sub _post_checkout {
             Utils::exec_cmd("cp $build_files_dir/* $work_dir", "Copy generated Ant build file") or die;
         }
     }
-    if (-e "$work_dir/build.xml"){
+
+     if (-e "$work_dir/build.xml"){
         rename("$work_dir/build.xml", "$work_dir/build.xml".'.bak');
         open(IN, '<'."$work_dir/build.xml".'.bak') or die $!;
         open(OUT, '>'."$work_dir/build.xml") or die $!;
         while(<IN>) {
-            $_ =~ s/"compile-test"/"compile-tests"/g;
-            $_ =~ s/"\$\{cp\}:\$\{cglib\.jar\}:\$\{asm\.jar\}:\$\{asm-util\.jar\}:\$\{asm-tree\.jar\}:\$\{junit\.jar\}:\$\{hamcrest\.jar\}"/"\$\{maven\.repo\.local\}"/g;
-         
+
+            $_ =~ s/compile-tests/compile\.tests/g;
+            #$_ =~ s/classesdir/classes\.dir/g;
+            #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
+            
+            #support java8
             $_ =~ s/fork="false"/fork="true"/g;
             print OUT $_;
         }
         close(IN);
         close(OUT);
     }
+
     if (-e "$work_dir/maven-build.xml"){
         rename("$work_dir/maven-build.xml", "$work_dir/maven-build.xml".'.bak');
         open(IN, '<'."$work_dir/maven-build.xml".'.bak') or die $!;
         open(OUT, '>'."$work_dir/maven-build.xml") or die $!;
         while(<IN>) {
-            $_ =~ s/"compile-test"/"compile-tests"/g;
+            $_ =~ s/compile-tests/compile\.tests/g;
+            $_ =~ s/"src/"commons-numbers-angle\/src/g;
+            #$_ =~ s/classesdir/classes\.dir/g;
+            #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
+            
+            #support java8
             $_ =~ s/fork="false"/fork="true"/g;
             print OUT $_;
         }
         close(IN);
         close(OUT);
     }
+	
+    if (-e "$work_dir/maven-build.properties"){
+        rename("$work_dir/maven-build.properties", "$work_dir/maven-build.properties".'.bak');
+        open(IN, '<'."$work_dir/maven-build.properties".'.bak') or die $!;
+        open(OUT, '>'."$work_dir/maven-build.properties") or die $!;
+        while(<IN>) {
+            $_ =~ s/compile-tests/compile\.tests/g;
+            $_ =~ s/=src/=commons-numbers-angle\/src/g;
+            #$_ =~ s/classesdir/classes\.dir/g;
+            #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
+            
+            #support java8
+            $_ =~ s/fork="false"/fork="true"/g;
+            print OUT $_;
+        }
+        close(IN);
+        close(OUT);
+    }    
+    #exclude the test you don't need
+    if (-e "$work_dir/src/tests/junit/org/apache/tools/ant/taskdefs/xxx.java"){
+        rename("$work_dir/src/tests/junit/org/apache/tools/ant/taskdefs/xxx.java", "$work_dir/src/tests/junit/org/apache/tools/ant/taskdefs/xxx.java".".bak");
+        #open(OUT, '>'."$work_dir/src/tests/junit/org/apache/tools/ant/taskdefs/SQLExecTest.java") or die $!;
+        #my $converted_file = `iconv -f iso-8859-1 -t utf-8 "$work_dir/src/tests/junit/org/apache/tools/ant/taskdefs/SQLExecTest.java.bak"`;
+        #print OUT $converted_file;
+        #close(OUT);
+    }
+
 }
+
+
 #
 # This subroutine is called by the bug-mining framework for each revision during
 # the initialization of the project. Example uses are: converting and caching
@@ -122,14 +161,37 @@ sub initialize_revision {
     $self->SUPER::initialize_revision($rev_id);
 
     my $work_dir = $self->{prog_root};
-    my $result = _ant_layout($work_dir) // _maven_layout($work_dir);
-    if(-e "$work_dir/src/main/java" and -e "$work_dir/src/test/java"){
-    	$result = {src=>"src/main/java", test=>"src/test/java"} unless defined $result;
+    #$work_dir .= "commons-numbers-core/";                               #work_dir is already sub project
+    my $result ;#= _ant_layout($work_dir) // _maven_layout($work_dir);
+    my $subproject="commons-numbers-angle";
+   
+   if (-e "$work_dir/src/main/java" and -e "$work_dir/src/test/java"){
+        $result = {src=>"$subproject/src/main/java", test=>"$subproject/src/test/java"} unless defined $result;
     }
-    elsif(-e "$work_dir/src/java" and  -e "$work_dir/src/test"){
-    	$result = {src=>"src/java", test=>"src/test"} unless defined $result;
+    elsif (-e "$work_dir/src/main/java" and -e "$work_dir/src/tests/java"){
+        $result = {src=>"$subproject/src/main/java", test=>"$subproject/src/tests/java"} unless defined $result;
     }
-
+    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/testcases"){
+        $result = {src=>"$subproject/src/main", test=>"$subproject/src/testcases"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/tests/junit"){
+        $result = {src=>"$subproject/src/main", test=>"$subproject/src/tests/junit"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/tests"){
+        $result = {src=>"$subproject/src/main", test=>"$subproject/src/tests"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/java" and -e "$work_dir/src/test"){
+        $result = {src=>"$subproject/src/java", test=>"$subproject/src/test"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/java" and -e "$work_dir/src/tests"){
+        $result = {src=>"$subproject/src/java", test=>"$subproject/src/tests"} unless defined $result;
+    }
+    else {
+        system("tree -d $work_dir");
+        #print("!!! $work_dir \n");
+        die "Unknown directory layout" unless defined $result;
+    }
+    
     $self->_add_to_layout_map($rev_id, $result->{src}, $result->{test});
     $self->_cache_layout_map(); # Force cache rebuild
 }
