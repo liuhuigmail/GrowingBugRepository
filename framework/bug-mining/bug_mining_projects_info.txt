@@ -1,0 +1,39 @@
+Chart	jfreechart	https://github.com/jfree/jfreechart.git	github	jfree/jfreechart	/Fix(?:es)?\\s*#(\\d+)/mi	
+Cli	commons-cli	https://github.com/apache/commons-cli.git	jira	CLI	/(CLI-\\d+)/mi
+Closure	closure-compiler	https://github.com/google/closure-compiler.git	google	closure-compiler	/issue[^\\d]*(\\d+)/mi	
+Codec	commons-codec	https://github.com/apache/commons-codec.git	jira	CODEC	/(CODEC-\\d+)/mi
+Collections	commons-collections	https://github.com/apache/commons-collections.git	jira	COLLECTIONS	/(COLLECTIONS-\\d+)/mi
+Compress	commons-compress	https://github.com/apache/commons-compress.git	jira	COMPRESS	/(COMPRESS-\\d+)/mi
+Csv	commons-csv	https://github.com/apache/commons-csv.git	jira	CSV	/(CSV-\\d+)/mi
+Gson	gson	https://github.com/google/gson.git	github	google/gson	/Fix(?:es)?\\s*#(\\d+)/mi
+JacksonCore	jackson-core	https://github.com/FasterXML/jackson-core.git	github	FasterXML/jackson-core	/Fix(?:es)?\\s*#(\\d+)/mi
+JacksonDatabind	jackson-databind	https://github.com/FasterXML/jackson-databind.git	github	FasterXML/jackson-databind	/Fix(?:es)?\\s*#(\\d+)/mi
+JacksonXml	jackson-dataformat-xml	https://github.com/FasterXML/jackson-dataformat-xml.git	github	FasterXML/jackson-dataformat-xml	/Fix(?:es)?\\s*#(\\d+)/mi	
+Jsoup	jsoup	https://github.com/jhy/jsoup.git	github	jhy/jsoup	/Fix(?:es)?\\s*#(\\d+)/mi
+JxPath	commons-jxpath	https://github.com/apache/commons-jxpath.git	jira	JXPATH	/(JXPATH-\\d+)/mi
+Lang	commons-lang	https://github.com/apache/commons-lang.git	jira	LANG	/(LANG-\\d+)/mi
+Math	commons-math	https://github.com/apache/commons-math.git	jira	MATH	/(MATH-\\d+)/mi
+Mockito	mockito	https://github.com/mockito/mockito.git	github	mockito/mockito	/Fix(?:es)?\\s*#(\\d+)/mi
+Time	joda-time	https://github.com/JodaOrg/joda-time.git	github	JodaOrg/joda-time	/Fix(?:es)?\\s*#(\\d+)/mi
+Time	joad-time	https://github.com/JodaOrg/joda-time.git	sourceforge	joda-time	/\[.*?(\\d+)/mi
+Dbutils	commons-dbutils	https://github.com/apache/commons-dbutils.git	jira	DBUTILS	/(DBUTILS-\\d+)/mi
+Functor	commons-functor	https://github.com/apache/commons-functor.git	jira	FUNCTOR	/(FUNCTOR-\\d+)/mi
+Imaging	commons-imaging	https://github.com/apache/commons-imaging.git	jira	IMAGING	/(IMAGING-\\d+)/mi
+IO	commons-io	https://github.com/apache/commons-io.git	jira	IO	/(IO-\\d+)/mi
+JXR	maven-jxr	https://github.com/apache/maven-jxr.git	jira	JXR	/(JXR-\\d+)/mi
+MShade	maven-shade-plugin	https://github.com/apache/maven-shade-plugin.git	jira	MSHADE	/(MSHADE-\\d+)/mi
+Tika	tika	https://github.com/apache/tika.git	jira	TIKA	/(TIKA-\\d+)/mi
+Validator	commons-validator	https://github.com/apache/commons-validator.git	jira	VALIDATOR	/(VALIDATOR-\\d+)/mi
+Pool	commons-pool	https://github.com/apache/commons-pool.git	jira	POOL	/(POOL-\\d+)/mi
+Email	commons-email	https://github.com/apache/commons-email.git	jira	EMAIL	/(EMAIL-\\d+)/mi
+Graph	commons-graph	https://github.com/apache/commons-graph.git	jira	SANDBOX	/(SANDBOX-\\d+)/mi
+Net	commons-net	https://github.com/apache/commons-net.git	jira	NET	/(NET-\\d+)/mi
+Numbers_angle	commons-numbers-angle	https://github.com/apache/commons-numbers.git	jira	NUMBERS	/(NUMBERS-\\d+)/mi	commons-numbers-angle
+Geometry_core	commons-geometry-core	https://github.com/apache/commons-geometry.git	jira	GEOMETRY	/(GEOMETRY-\\d+)/mi	commons-geometry-core
+MGpg	maven-gpg-plugin	https://github.com/apache/maven-gpg-plugin.git	jira	MGPG	/(MGPG-\\d+)/mi
+Text	commons-text	https://github.com/apache/commons-text.git	jira	TEXT	/(TEXT-\\d+)/mi
+Tika_core	tika-core	https://github.com/apache/tika.git	jira	TIKA	/(TIKA-\\d+)/mi	tika-core	
+Tika_app	tika-app	https://github.com/apache/tika.git	jira	TIKA	/(TIKA-\\d+)/mi	tika-app
+Shiro_core	shiro-core	https://github.com/apache/shiro.git	jira	SHIRO	/(SHIRO-\\d+)/mi	core	
+Jena_core	jena-core	https://github.com/apache/jena.git	jira	JENA	/(JENA-\\d+)/mi	jena-core
+Shiro_web	shiro-web	https://github.com/apache/shiro.git	jira	SHIRO	/(SHIRO-\\d+)/mi	web

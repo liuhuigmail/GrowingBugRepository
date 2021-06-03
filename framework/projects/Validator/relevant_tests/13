@@ -1,0 +1,2 @@
+org.apache.commons.validator.routines.IBANValidatorTest
+org.apache.commons.validator.routines.checkdigit.IBANCheckDigitTest

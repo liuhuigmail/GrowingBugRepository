@@ -46,6 +46,15 @@ of the checked-out project version.
     <!-- Include existing project build file -->
     <import file="${d4j.workdir}/build.xml"/>
     
+    <condition property="classes.dir" value="build/classes" else="target/classes">
+        <available file="build/classes" />
+    </condition>
+    <condition property="test.classes.dir" value="build/test-classes" else="target/test-classes" >
+        <!--isset property="build.test-classes.dir" -->
+         <available file="build/test-classes" />
+    </condition>
+    <property name="test.home" value="${test.classes.dir}" />
+    
     <!-- Project properties targets -->
     <if> <isset property="ant.refid:compile.classpath" />
           <then>
@@ -56,8 +65,7 @@ of the checked-out project version.
              <path id="test.classpath">
              <!--pathelement path="${classes.dir}" />--> 
             	<pathelement path="${classes.dir}" />
-                <pathelement path="${test.classes.dir}" />
-                <pathelement path="${junit.jar}" />
+                  <pathelement path="${junit.jar}" />
                 <fileset dir="${maven.repo.local}">
             	<include name="**/*.jar"/>
         	</fileset>
@@ -85,14 +93,7 @@ of the checked-out project version.
           </else>
     </if>
     
-    <property name="test.home" value="${test.classes.dir}" />
-    <condition property="classes.dir" value="build/classes" else="target/classes">
-        <available file="build/classes" />
-    </condition>
-    <condition property="test.classes.dir" value="build/test-classes" else="target/test-classes" >
-        <!--isset property="build.test-classes.dir" -->
-         <available file="build/test-classes" />
-    </condition>
+     
     <!-- the echo can print the variable -->
     <!-- <echo message="Hello, ${classes.dir}"  />  -->  
     <property name="build.home" value="${classes.dir}/.." />
@@ -124,6 +125,8 @@ of the checked-out project version.
 <exclude name='**/TestObjectPoolFactory.java' />
 <exclude name='**/TestObjectPool.java' />
 <exclude name='**/TestSoftRefOutOfMemory.java' />
+<exclude name='**/TestAll.java' />
+<exclude name='**/TestSynchronizedPooledObjectFactory.java' />
     </fileset>
 
     <!-- List of relevant developer-written tests that reliably pass on the fixed version -->
