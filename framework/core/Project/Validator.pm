@@ -54,16 +54,42 @@ sub new {
 ##
 ## Determines the directory layout for sources and tests
 ##
-#sub determine_layout {
-#    @_ == 2 or die $ARG_ERROR;
-#    my ($self, $rev_id) = @_;
-#    my $dir = $self->{prog_root};
+sub determine_layout {
+    @_ == 2 or die $ARG_ERROR;
+    my ($self, $rev_id) = @_;
+    my $work_dir = $self->{prog_root};
 
-#    # Add additional layouts if necessary
-#    my $result = _ant_layout($dir) // _maven_layout($dir);
-#    die "Unknown layout for revision: ${rev_id}" unless defined $result;
-#    return $result;
-#}
+    # Add additional layouts if necessary
+    my $result = _ant_layout($work_dir) // _maven_layout($work_dir);
+    
+    if (-e "$work_dir/src/main/java" and -e "$work_dir/src/test/java"){
+        $result = {src=>"src/main/java", test=>"src/test/java"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/main/java" and -e "$work_dir/src/tests/java"){
+        $result = {src=>"src/main/java", test=>"src/tests/java"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/testcases"){
+        $result = {src=>"src/main", test=>"src/testcases"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/tests/junit"){
+        $result = {src=>"src/main", test=>"src/tests/junit"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/tests"){
+        $result = {src=>"src/main", test=>"src/tests"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/java" and -e "$work_dir/src/test"){
+        $result = {src=>"src/java", test=>"src/test"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src/java" and -e "$work_dir/src/tests"){
+        $result = {src=>"src/java", test=>"src/tests"} unless defined $result;
+    }
+    else {
+        system("tree -d $work_dir");
+        die "Unknown directory layout" unless defined $result;
+    }
+    die "Unknown layout for revision: ${rev_id}" unless defined $result;
+    return $result;
+}
 
 #
 # Post-checkout tasks include, for instance, providing cached build files,
@@ -173,7 +199,7 @@ sub initialize_revision {
     my $work_dir = $self->{prog_root};
     my $result = _ant_layout($work_dir) // _maven_layout($work_dir);
     
-   if (-e "$work_dir/src/main/java" and -e "$work_dir/src/test/java"){
+    if (-e "$work_dir/src/main/java" and -e "$work_dir/src/test/java"){
         $result = {src=>"src/main/java", test=>"src/test/java"} unless defined $result;
     }
     elsif (-e "$work_dir/src/main/java" and -e "$work_dir/src/tests/java"){

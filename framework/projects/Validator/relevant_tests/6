@@ -1,0 +1,17 @@
+org.apache.commons.validator.ByteTest
+org.apache.commons.validator.DoubleTest
+org.apache.commons.validator.EmailTest
+org.apache.commons.validator.ExtensionTest
+org.apache.commons.validator.FloatTest
+org.apache.commons.validator.GenericValidatorTest
+org.apache.commons.validator.IntegerTest
+org.apache.commons.validator.LocaleTest
+org.apache.commons.validator.LongTest
+org.apache.commons.validator.MultipleConfigFilesTest
+org.apache.commons.validator.MultipleTest
+org.apache.commons.validator.RequiredIfTest
+org.apache.commons.validator.RequiredNameTest
+org.apache.commons.validator.ShortTest
+org.apache.commons.validator.UrlTest
+org.apache.commons.validator.ValidatorResultsTest
+org.apache.commons.validator.routines.CreditCardValidatorTest

@@ -72,7 +72,7 @@ of the checked-out project version.
     </condition>
 
     <property name="build.home" value="${classes.dir}/.." />
-
+<echo message="${maven.build.testDir.0} !" />
     <!-- Classpath to run developer-written tests -->
     <path id="d4j.test.classpath">
         <path refid="test.classpath"/>
@@ -97,6 +97,9 @@ of the checked-out project version.
 	<exclude name='org/apache/commons/mail/BaseEmailTestCase.java' />
 	<exclude name='org/apache/commons/mail/mocks/*' />
 	<exclude name='org/apache/commons/mail/settings/*' />
+	<exclude name='**/*ImageHtmlEmailTest.java' /> 
+	<exclude name='**/*HtmlEmailTest.java' /> 
+	<exclude name='**/*MultiPartEmailTest.java' /> 
     </fileset>
 
     <!-- List of relevant developer-written tests that reliably pass on the fixed version -->
