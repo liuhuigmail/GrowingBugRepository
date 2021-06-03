@@ -14,12 +14,17 @@ index 2cad71c61..44b28bd0e 100644
 @@ -64,33 +62,4 @@ public class OutlookParserTest extends TestCase {
          assertTrue(content.contains("Messagerie et groupes de discussion"));
      }
-
+ 
+-    /**
+-     * Test case for TIKA-197
+-     *
+-     * @see <a href="https://issues.apache.org/jira/browse/TIKA-197">TIKA-197</a>
+-     */
 -    public void testMultipleCopies() throws Exception {
 -        Parser parser = new AutoDetectParser();
 -        ContentHandler handler = new BodyContentHandler();
 -        Metadata metadata = new Metadata();
-
+-
 -        InputStream stream = OutlookParserTest.class.getResourceAsStream(
 -                "/test-documents/testMSG.msg");
 -        try {
@@ -27,14 +32,16 @@ index 2cad71c61..44b28bd0e 100644
 -        } finally {
 -            stream.close();
 -        }
-
+-
 -        assertEquals(
 -                "application/vnd.ms-outlook",
 -                metadata.get(Metadata.CONTENT_TYPE));
+-
 -        String content = handler.toString();
 -        Pattern pattern = Pattern.compile("From");
 -        Matcher matcher = pattern.matcher(content);
 -        assertTrue(matcher.find());
 -        assertFalse(matcher.find());
 -    }
+-
  }

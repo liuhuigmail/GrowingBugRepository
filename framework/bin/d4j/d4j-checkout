@@ -97,7 +97,6 @@ my $WORK_DIR = Utils::get_abs_path($cmd_opts{w});
 # Instantiate project and set working directory
 my $project = Project::create_project($PID);
 $project->{prog_root} = $WORK_DIR;
-
 # Checkout program version
 $project->checkout_vid($VID, $WORK_DIR, 1, $SID) or die "Cannot checkout program version!";
 

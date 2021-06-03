@@ -13,7 +13,6 @@ org.apache.commons.imaging.formats.png.ConvertPngToGifTest
 org.apache.commons.imaging.formats.png.PngMultipleRoundtripTest
 org.apache.commons.imaging.formats.png.PngReadTest
 org.apache.commons.imaging.formats.png.PngTextTest
-org.apache.commons.imaging.formats.png.PngWriteForceTrueColorText
 org.apache.commons.imaging.formats.png.PngWriteReadTest
 org.apache.commons.imaging.formats.pnm.PnmImageParserTest
 org.apache.commons.imaging.formats.psd.PsdReadTest

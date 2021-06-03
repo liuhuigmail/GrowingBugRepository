@@ -1,0 +1,10 @@
+org.apache.commons.imaging.formats.png.ConvertPngToGifTest
+org.apache.commons.imaging.formats.png.PngMultipleRoundtripTest
+org.apache.commons.imaging.formats.png.PngReadTest
+org.apache.commons.imaging.formats.png.PngTextTest
+org.apache.commons.imaging.formats.png.PngWithInvalidPngChunkSizeTest
+org.apache.commons.imaging.formats.png.PngWriteReadTest
+org.apache.commons.imaging.roundtrip.BitmapRoundtripTest
+org.apache.commons.imaging.roundtrip.GrayscaleRountripTest
+org.apache.commons.imaging.roundtrip.LimitedColorRoundtripTest
+org.apache.commons.imaging.roundtrip.NullParametersRoundtripTest

@@ -108,7 +108,7 @@ of the checked-out project version.
         <!--
         <pathelement path="${dependency.jar}" />
         -->
-        <fileset dir="${d4j.dir.projects}/imaging/lib/">
+        <fileset dir="${d4j.dir.projects}/Imaging/lib/">
                <include name="**/*.jar" />
         </fileset> 
     </path>

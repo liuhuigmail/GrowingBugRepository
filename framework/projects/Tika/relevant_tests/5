@@ -1,0 +1,7 @@
+org.apache.tika.TestParsers
+org.apache.tika.parser.AutoDetectParserTest
+org.apache.tika.parser.microsoft.ExcelParserTest
+org.apache.tika.parser.pkg.Bzip2ParserTest
+org.apache.tika.parser.pkg.GzipParserTest
+org.apache.tika.parser.pkg.TarParserTest
+org.apache.tika.parser.pkg.ZipParserTest
