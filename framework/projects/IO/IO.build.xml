@@ -168,5 +168,5 @@ of the checked-out project version.
         <target name="compile" depends="build" />
         <target name="compile.tests" depends="compile-tests" />
     -->
-    <target name="compile.tests" depends="compile-tests" />    
+   
 </project>
