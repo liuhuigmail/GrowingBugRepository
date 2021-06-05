@@ -2,7 +2,7 @@
 
 Notably, each bug is composed of a buggy version, a fixed version, a concise patch (bug-fixing changes only), and one or more triggering test cases.
 
-## Contents of growingBugs
+# Contents of growingBugs
 To date, growingBugs contains 
  **`1001`** bugs
 from open-source Java projects. 
@@ -48,12 +48,64 @@ from open-source Java projects.
 | 37     | Jena_core            | jena-core               |        1       | 2               |
 | 38     | Shiro_web            | web               |        3       | 1,3,7               |
 
-## Using GrowingBugs
-Defects4J uploads complete Git reposities of the involved projects. However, with the increase of involved projects, such complete Git reposities are huge and it becomes difficult to integrate them into **GrowingBugs**. Consequently, we decide to exclude them but to provide a mechanism to download them automatically instead.
+# Setting up GrowingBugs
+## Requirements
+ - Java 1.8
+ - Git >= 1.9
+ - SVN >= 1.8
+ - Perl >= 5.0.12
+ 
+#### Java version
+All bugs have been reproduced and triggering tests verified, using the latest
+version of Java 1.8.
+Note that using Java 1.9+ might result in unexpected failing tests on a fixed
+program version.
 
-Once Defects4j is well-installed and configured, please run `repos.sh` to automatically download required Git repositories into the `project_repos` folder.
+#### Timezone
+GrowingBugs generates and executes tests in the timezone `America/Los_Angeles`.
+If you are using the bugs outside of the GrowingBugs framework, set the `TZ`
+environment variable to `America/Los_Angeles` and export it.
 
-  - `./repos.sh`
+#### Perl dependencies
+```
+DBI >= 1.63
+DBD::CSV >= 0.48
+URI >= 1.72
+JSON >= 2.97
+JSON::Parse >= 0.55
+List::Util >= 1.33
+```
+If you do not have `cpanm` installed, use cpan or a cpan wrapper to install the above perl modules.
+
+## Steps to set up GrowingBugs
+1. Clone Defects4J:
+    - `git clone https://github.com/liuhuigmail/GrowingBugRepository.git`
+
+2. Initialize GrowingBugs: <br>Download the project repositories and external libraries, which are not included in the git repository for size purposes and to avoid redundancies. Consequently, we decide to provide a mechanism to download them automatically.
+    - `cd GrowingBugs`
+    - `cpanm --installdeps .`
+    - `./init.sh`
+    - `./repos.sh`
+    
+3. Add GrowingBugs's executables to your PATH:
+    - `export PATH=$PATH:"path2growingbugs"/framework/bin`
+
+# Using GrowingBugs
+**GrowingBugs** can search for bugs in submodules of the project, so for bugs in submodules, we should specify the submodule with the<br> `-s` parameter in the `checkout` command. For the `compile` and `test` commands, we also have to go into the submodule's folder to compile and test
+#### Example commands (for submodule in the project)
+1. Checkout a buggy source code version:
+    - `defects4j checkout -p Tika_app -v 1b -w /tmp/Tika_app_1_buggy -s Tika_app`
+
+&emsp;Synopsis:<br>
+  &emsp;&emsp; `-p project_id -v version_id -w work_dir -s project_name`
+
+2. Change to the working directory, compile sources and tests, and run tests:
+    - `cd /tmp/Tika_app_1_buggy/Tika_app`
+    - `defects4j compile`
+    - `defects4j test`
+    
+&emsp;Synopsis:<br>
+   &emsp;&emsp;`cd work_dir/project_name`
 
 Currently, we resuse all APIs of **Defects4J** (more details at  https://github.com/rjust/defects4j), and thus all applications relying on **Defects4J** could be transferred smoothly to **GrowingBugs**. 
 
