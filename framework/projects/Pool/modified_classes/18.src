@@ -1,0 +1,3 @@
+org.apache.commons.pool2.impl.BaseGenericObjectPool
+org.apache.commons.pool2.impl.GenericKeyedObjectPool
+org.apache.commons.pool2.impl.GenericObjectPool

@@ -1,0 +1,5 @@
+org.apache.commons.pool2.impl.TestGenericObjectPool
+org.apache.commons.pool2.MethodCallPoolableObjectFactory
+org.apache.commons.pool2.PrivateException
+org.apache.commons.pool2.TestBaseObjectPool
+org.apache.commons.pool2.TestObjectPool

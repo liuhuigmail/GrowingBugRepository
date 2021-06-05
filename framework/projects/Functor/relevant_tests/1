@@ -1,0 +1,4 @@
+org.apache.commons.functor.TestAlgorithms
+org.apache.commons.functor.example.lines.TestAll
+org.apache.commons.functor.example.lines.TestLines
+org.apache.commons.functor.generator.TestTransformedGenerator

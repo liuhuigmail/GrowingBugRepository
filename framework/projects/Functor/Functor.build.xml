@@ -89,6 +89,7 @@ of the checked-out project version.
     <fileset id="all.manual.tests" dir="${test.dir}" excludes="${d4j.tests.exclude}">
         <!--include name="____" /-->
         <!--exclude name="____" /-->
+        <exclude name='**/AbstractTimedAggregatorTest.java' />
     </fileset>
 
     <!-- List of relevant developer-written tests that reliably pass on the fixed version -->

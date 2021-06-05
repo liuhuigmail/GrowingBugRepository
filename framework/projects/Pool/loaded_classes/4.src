@@ -1,0 +1,6 @@
+org.apache.commons.pool.BaseObjectPool
+org.apache.commons.pool.impl.CursorableLinkedList
+org.apache.commons.pool.impl.GenericKeyedObjectPool
+org.apache.commons.pool.impl.GenericObjectPool
+org.apache.commons.pool.ObjectPool
+org.apache.commons.pool.PoolableObjectFactory

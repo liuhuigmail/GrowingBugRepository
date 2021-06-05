@@ -1,0 +1,10 @@
+org.apache.commons.pool2.TestPoolUtils
+org.apache.commons.pool2.impl.TestAbandonedObjectPool
+org.apache.commons.pool2.impl.TestBaseGenericObjectPool
+org.apache.commons.pool2.impl.TestDefaultPooledObjectInfo
+org.apache.commons.pool2.impl.TestGenericKeyedObjectPool
+org.apache.commons.pool2.impl.TestSoftReferenceObjectPool
+org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy
+org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithJdkProxy
+org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithCglibProxy
+org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithJdkProxy
