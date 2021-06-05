@@ -1,0 +1,82 @@
+[DEBUG] PID: Email
+[DEBUG] VID: 3
+[DEBUG] DATA_DIR: /home1/lileping3/tryGZoltar/email_3
+[DEBUG] TOOL: developer
+[DEBUG] TESTS_DIR: 
+[DEBUG] TMP_DIR: /home1/lileping3/tmp/email_3_buggy
+[DEBUG] DIR_PROJECT: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Email
+[DEBUG] DIR_LOADED_CLASSES: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/loaded_classes
+[DEBUG] DIR_RELEVANT_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/relevant_tests
+[DEBUG] DIR_TRIGGER_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/trigger_tests
+[DEBUG] JAVA_VERSION:
+Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1024m -Xmx4096m
+java version "1.7.0_80"
+Java(TM) SE Runtime Environment (build 1.7.0_80-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 24.80-b11, mixed mode)
+[DEBUG] LOADED_CLASSES: org.apache.commons.mail.DataSourceResolver:org.apache.commons.mail.resolver.DataSourceBaseResolver:org.apache.commons.mail.resolver.DataSourceClassPathResolver:org.apache.commons.mail.resolver.DataSourceCompositeResolver:org.apache.commons.mail.resolver.DataSourceUrlResolver:
+[DEBUG] LOADED_SUB_CLASSES: org.apache.commons.mail.DataSourceResolver$*:org.apache.commons.mail.resolver.DataSourceBaseResolver$*:org.apache.commons.mail.resolver.DataSourceClassPathResolver$*:org.apache.commons.mail.resolver.DataSourceCompositeResolver$*:org.apache.commons.mail.resolver.DataSourceUrlResolver$*:
+[DEBUG] RELEVANT_TESTS: org.apache.commons.mail.resolver.DataSourceCompositeResolverTest:
+[DEBUG] TRIGGER_TESTS_FILE: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/trigger_tests/3
+[DEBUG] CP: /home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/javax/mail/mail/1.4.4/mail-1.4.4.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/javax/activation/activation/1.1.1/activation-1.1.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/junit/junit/3.8.2/junit-3.8.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/commons-io/commons-io/1.4/commons-io-1.4.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/net/sf/retrotranslator/retrotranslator-runtime/1.2.1/retrotranslator-runtime-1.2.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/backport-util-concurrent/backport-util-concurrent/3.0/backport-util-concurrent-3.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/org/subethamail/subethasmtp-smtp/1.2/subethasmtp-smtp-1.2-java14.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/commons-logging/commons-logging/1.1/commons-logging-1.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/log4j/log4j/1.2.12/log4j-1.2.12.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/logkit/logkit/1.0.1/logkit-1.0.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/avalon-framework/avalon-framework/4.1.3/avalon-framework-4.1.3.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/javax/servlet/servlet-api/2.3/servlet-api-2.3.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/org/subethamail/subethasmtp-wiser/1.2/subethasmtp-wiser-1.2-java14.jar:/home1/lileping3/tmp/email_3_buggy/target/classes:/home1/lileping3/tmp/email_3_buggy/target/test-classes:/home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar
+[INFO] Compiling Email-3
+Running ant (compile)...................................................... OK
+Running ant (compile.tests)................................................ OK
+[INFO] Running GZoltar
+[INFO] Start: 2021年 06月 05日 星期六 05:56:42 PDT
+   ____ _____     _ _               
+  / ___|__  /___ | | |_ __ _ _ __   
+ | |  _  / // _ \| | __/ _` | '__| 
+ | |_| |/ /| (_) | | || (_| | |     
+  \____/____\___/|_|\__\__,_|_| 
+
+* Preparing classpath
+* Collecting classes under test
+* Collecting test cases
+* Performing analysis
+* Started org.apache.commons.mail.resolver.DataSourceCompositeResolverTest#testResolvingFilesLenient
+* Finished org.apache.commons.mail.resolver.DataSourceCompositeResolverTest#testResolvingFilesLenient
+* Started org.apache.commons.mail.resolver.DataSourceCompositeResolverTest#testResolvingFilesNonLenient
+* Finished org.apache.commons.mail.resolver.DataSourceCompositeResolverTest#testResolvingFilesNonLenient
+* Started org.apache.commons.mail.resolver.DataSourceCompositeResolverTest#testExternalModification
+* Failure: null | testExternalModification(org.apache.commons.mail.resolver.DataSourceCompositeResolverTest)
+junit.framework.AssertionFailedError
+	at junit.framework.Assert.fail(Assert.java:55)
+	at junit.framework.Assert.assertTrue(Assert.java:22)
+	at junit.framework.Assert.assertNotNull(Assert.java:256)
+	at junit.framework.Assert.assertNotNull(Assert.java:248)
+	at junit.framework.TestCase.assertNotNull(TestCase.java:417)
+	at org.apache.commons.mail.resolver.DataSourceCompositeResolverTest.testExternalModification(DataSourceCompositeResolverTest.java:93)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at junit.framework.TestCase.runTest(TestCase.java:176)
+	at junit.framework.TestCase.runBare(TestCase.java:141)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+* Finished org.apache.commons.mail.resolver.DataSourceCompositeResolverTest#testExternalModification
+* Filtering test cases that do not cover any component
+* Sending data to master
+* Closing connection with client
+* Performing fault localization
+* Running Ochiai
+* Writing coverage matrix to '/home1/lileping3/tryGZoltar/email_3/matrix'
+* Writing spectra to '/home1/lileping3/tryGZoltar/email_3/spectra'
+* Metrics
+* Computation finished
+[INFO] End: 2021年 06月 05日 星期六 05:56:46 PDT
+[DEBUG] MATRIX OK
+[DEBUG] SPECTRA OK
+
+DONE!

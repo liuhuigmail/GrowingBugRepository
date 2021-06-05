@@ -1,0 +1,158 @@
+[DEBUG] PID: Functor
+[DEBUG] VID: 1
+[DEBUG] DATA_DIR: /home1/lileping3/tryGZoltar/functor_1
+[DEBUG] TOOL: developer
+[DEBUG] TESTS_DIR: 
+[DEBUG] TMP_DIR: /home1/lileping3/tmp/functor_1_buggy
+[DEBUG] DIR_PROJECT: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Functor
+[DEBUG] DIR_LOADED_CLASSES: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Functor/loaded_classes
+[DEBUG] DIR_RELEVANT_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Functor/relevant_tests
+[DEBUG] DIR_TRIGGER_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Functor/trigger_tests
+[DEBUG] JAVA_VERSION:
+Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1024m -Xmx4096m
+java version "1.7.0_80"
+Java(TM) SE Runtime Environment (build 1.7.0_80-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 24.80-b11, mixed mode)
+[DEBUG] LOADED_CLASSES: org.apache.commons.functor.Functor:org.apache.commons.functor.generator.BaseGenerator:org.apache.commons.functor.generator.Generator:org.apache.commons.functor.generator.TransformedGenerator:org.apache.commons.functor.generator.util.IntegerRange:org.apache.commons.functor.UnaryFunction:org.apache.commons.functor.UnaryFunctor:org.apache.commons.functor.UnaryProcedure:
+[DEBUG] LOADED_SUB_CLASSES: org.apache.commons.functor.Functor$*:org.apache.commons.functor.generator.BaseGenerator$*:org.apache.commons.functor.generator.Generator$*:org.apache.commons.functor.generator.TransformedGenerator$*:org.apache.commons.functor.generator.util.IntegerRange$*:org.apache.commons.functor.UnaryFunction$*:org.apache.commons.functor.UnaryFunctor$*:org.apache.commons.functor.UnaryProcedure$*:
+[DEBUG] RELEVANT_TESTS: org.apache.commons.functor.TestAlgorithms:org.apache.commons.functor.example.lines.TestAll:org.apache.commons.functor.example.lines.TestLines:org.apache.commons.functor.generator.TestTransformedGenerator:
+[DEBUG] TRIGGER_TESTS_FILE: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Functor/trigger_tests/1
+[DEBUG] CP: /home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Functor/lib/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Functor/lib/junit/junit/4.10/junit-4.10.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Functor/lib/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar:/home1/lileping3/tmp/functor_1_buggy/target/classes:/home1/lileping3/tmp/functor_1_buggy/target/test-classes:/home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar
+[INFO] Compiling Functor-1
+Running ant (compile)...................................................... OK
+Running ant (compile.tests)................................................ OK
+[INFO] Running GZoltar
+[INFO] Start: 2021年 06月 05日 星期六 05:26:28 PDT
+   ____ _____     _ _               
+  / ___|__  /___ | | |_ __ _ _ __   
+ | |  _  / // _ \| | __/ _` | '__| 
+ | |_| |/ /| (_) | | || (_| | |     
+  \____/____\___/|_|\__\__,_|_| 
+
+* Preparing classpath
+* Collecting classes under test
+* Collecting test cases
+* Performing analysis
+* Started org.apache.commons.functor.example.lines.TestLines#testCountLines
+* Finished org.apache.commons.functor.example.lines.TestLines#testCountLines
+* Started org.apache.commons.functor.example.lines.TestLines#testCountWords
+* Finished org.apache.commons.functor.example.lines.TestLines#testCountWords
+* Started org.apache.commons.functor.example.lines.TestLines#testCountWordsExcludingComments
+* Finished org.apache.commons.functor.example.lines.TestLines#testCountWordsExcludingComments
+* Started org.apache.commons.functor.example.lines.TestLines#testFindMatchingLines
+* Finished org.apache.commons.functor.example.lines.TestLines#testFindMatchingLines
+* Started org.apache.commons.functor.example.lines.TestLines#testCountCommentLines
+* Finished org.apache.commons.functor.example.lines.TestLines#testCountCommentLines
+* Started org.apache.commons.functor.example.lines.TestLines#testCountCharacters
+* Finished org.apache.commons.functor.example.lines.TestLines#testCountCharacters
+* Started org.apache.commons.functor.example.lines.TestLines#testFindMatchingFromTail
+* Finished org.apache.commons.functor.example.lines.TestLines#testFindMatchingFromTail
+* Started org.apache.commons.functor.example.lines.TestLines#testCountLines
+* Finished org.apache.commons.functor.example.lines.TestLines#testCountLines
+* Started org.apache.commons.functor.example.lines.TestLines#testCountWords
+* Finished org.apache.commons.functor.example.lines.TestLines#testCountWords
+* Started org.apache.commons.functor.example.lines.TestLines#testCountWordsExcludingComments
+* Finished org.apache.commons.functor.example.lines.TestLines#testCountWordsExcludingComments
+* Started org.apache.commons.functor.example.lines.TestLines#testFindMatchingLines
+* Finished org.apache.commons.functor.example.lines.TestLines#testFindMatchingLines
+* Started org.apache.commons.functor.example.lines.TestLines#testCountCommentLines
+* Finished org.apache.commons.functor.example.lines.TestLines#testCountCommentLines
+* Started org.apache.commons.functor.example.lines.TestLines#testCountCharacters
+* Finished org.apache.commons.functor.example.lines.TestLines#testCountCharacters
+* Started org.apache.commons.functor.example.lines.TestLines#testFindMatchingFromTail
+* Finished org.apache.commons.functor.example.lines.TestLines#testFindMatchingFromTail
+* Started org.apache.commons.functor.TestAlgorithms#testRun
+* Finished org.apache.commons.functor.TestAlgorithms#testRun
+* Started org.apache.commons.functor.TestAlgorithms#testApply
+* Finished org.apache.commons.functor.TestAlgorithms#testApply
+* Started org.apache.commons.functor.TestAlgorithms#testDetectIfNone
+* Finished org.apache.commons.functor.TestAlgorithms#testDetectIfNone
+* Started org.apache.commons.functor.TestAlgorithms#testUntilDo
+* Finished org.apache.commons.functor.TestAlgorithms#testUntilDo
+* Started org.apache.commons.functor.TestAlgorithms#testApplyToGenerator
+* Finished org.apache.commons.functor.TestAlgorithms#testApplyToGenerator
+* Started org.apache.commons.functor.TestAlgorithms#testContains
+* Finished org.apache.commons.functor.TestAlgorithms#testContains
+* Started org.apache.commons.functor.TestAlgorithms#testRecurse
+* Finished org.apache.commons.functor.TestAlgorithms#testRecurse
+* Started org.apache.commons.functor.TestAlgorithms#testReject1
+* Finished org.apache.commons.functor.TestAlgorithms#testReject1
+* Started org.apache.commons.functor.TestAlgorithms#testReject2
+* Finished org.apache.commons.functor.TestAlgorithms#testReject2
+* Started org.apache.commons.functor.TestAlgorithms#testWhileDo
+* Finished org.apache.commons.functor.TestAlgorithms#testWhileDo
+* Started org.apache.commons.functor.TestAlgorithms#testFoldLeft
+* Finished org.apache.commons.functor.TestAlgorithms#testFoldLeft
+* Started org.apache.commons.functor.TestAlgorithms#testFoldRight
+* Finished org.apache.commons.functor.TestAlgorithms#testFoldRight
+* Started org.apache.commons.functor.TestAlgorithms#testApply2
+* Finished org.apache.commons.functor.TestAlgorithms#testApply2
+* Started org.apache.commons.functor.TestAlgorithms#testApply3
+* Finished org.apache.commons.functor.TestAlgorithms#testApply3
+* Started org.apache.commons.functor.TestAlgorithms#testDetect
+* Finished org.apache.commons.functor.TestAlgorithms#testDetect
+* Started org.apache.commons.functor.TestAlgorithms#testDoUntil
+* Finished org.apache.commons.functor.TestAlgorithms#testDoUntil
+* Started org.apache.commons.functor.TestAlgorithms#testDoWhile
+* Finished org.apache.commons.functor.TestAlgorithms#testDoWhile
+* Started org.apache.commons.functor.TestAlgorithms#testSelect1
+* Finished org.apache.commons.functor.TestAlgorithms#testSelect1
+* Started org.apache.commons.functor.TestAlgorithms#testSelect2
+* Finished org.apache.commons.functor.TestAlgorithms#testSelect2
+* Started org.apache.commons.functor.TestAlgorithms#testRemove
+* Finished org.apache.commons.functor.TestAlgorithms#testRemove
+* Started org.apache.commons.functor.TestAlgorithms#testRetain
+* Finished org.apache.commons.functor.TestAlgorithms#testRetain
+* Started org.apache.commons.functor.TestAlgorithms#testTransform
+* Finished org.apache.commons.functor.TestAlgorithms#testTransform
+* Started org.apache.commons.functor.generator.TestTransformedGenerator#testGenerate
+* Finished org.apache.commons.functor.generator.TestTransformedGenerator#testGenerate
+* Started org.apache.commons.functor.generator.TestTransformedGenerator#testHashcode
+* Failure: null | testHashcode(org.apache.commons.functor.generator.TestTransformedGenerator)
+java.lang.NullPointerException
+	at org.apache.commons.functor.generator.TransformedGenerator.hashCode(TransformedGenerator.java:89)
+	at org.apache.commons.functor.generator.TestTransformedGenerator.testHashcode(TestTransformedGenerator.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+* Finished org.apache.commons.functor.generator.TestTransformedGenerator#testHashcode
+* Started org.apache.commons.functor.generator.TestTransformedGenerator#testConstructorProhibitsNull
+* Finished org.apache.commons.functor.generator.TestTransformedGenerator#testConstructorProhibitsNull
+* Started org.apache.commons.functor.generator.TestTransformedGenerator#testEquals
+* Finished org.apache.commons.functor.generator.TestTransformedGenerator#testEquals
+* Filtering test cases that do not cover any component
+* Sending data to master
+* Closing connection with client
+* Performing fault localization
+* Running Ochiai
+* Writing coverage matrix to '/home1/lileping3/tryGZoltar/functor_1/matrix'
+* Writing spectra to '/home1/lileping3/tryGZoltar/functor_1/spectra'
+* Metrics
+* Computation finished
+[INFO] End: 2021年 06月 05日 星期六 05:26:31 PDT
+[DEBUG] MATRIX OK
+[DEBUG] SPECTRA OK
+
+DONE!

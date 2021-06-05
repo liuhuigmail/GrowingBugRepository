@@ -1,0 +1,564 @@
+[DEBUG] PID: Validator
+[DEBUG] VID: 7
+[DEBUG] DATA_DIR: /home1/lileping3/tryGZoltar/validator_7
+[DEBUG] TOOL: developer
+[DEBUG] TESTS_DIR: 
+[DEBUG] TMP_DIR: /home1/lileping3/tmp/validator_7_buggy
+[DEBUG] DIR_PROJECT: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator
+[DEBUG] DIR_LOADED_CLASSES: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/loaded_classes
+[DEBUG] DIR_RELEVANT_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/relevant_tests
+[DEBUG] DIR_TRIGGER_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/trigger_tests
+[DEBUG] JAVA_VERSION:
+Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1024m -Xmx4096m
+java version "1.8.0_231"
+Java(TM) SE Runtime Environment (build 1.8.0_231-b11)
+Java HotSpot(TM) 64-Bit Server VM (build 25.231-b11, mixed mode)
+[DEBUG] LOADED_CLASSES: org.apache.commons.validator.routines.DomainValidator:org.apache.commons.validator.routines.RegexValidator:
+[DEBUG] LOADED_SUB_CLASSES: org.apache.commons.validator.routines.DomainValidator$*:org.apache.commons.validator.routines.RegexValidator$*:
+[DEBUG] RELEVANT_TESTS: org.apache.commons.validator.EmailTest:org.apache.commons.validator.routines.DomainValidatorTest:org.apache.commons.validator.routines.EmailValidatorTest:org.apache.commons.validator.routines.UrlValidatorTest:
+[DEBUG] TRIGGER_TESTS_FILE: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/trigger_tests/7
+[DEBUG] CP: /home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar:/home1/lileping3/tmp/validator_7_buggy/target/classes:/home1/lileping3/tmp/validator_7_buggy/target/tests:/home1/lileping3/jakarta-commons/beanutils/dist/commons-beanutils.jar:/home1/lileping3/jakarta-commons/digester/dist/commons-digester.jar:/home1/lileping3/jakarta-commons/logging/dist/commons-logging.jar:/home1/lileping3/tmp/validator_7_buggy/${oro.jar}:/home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar:/home1/lileping3/tmp/validator_7_buggy/${xerces.jar}:/home1/lileping3/tmp/validator_7_buggy/lib/commons-beanutils.jar:/home1/lileping3/tmp/validator_7_buggy/lib/commons-digester.jar:/home1/lileping3/tmp/validator_7_buggy/lib/commons-logging.jar:/home1/lileping3/tmp/validator_7_buggy/lib/oro.jar:/home1/lileping3/tmp/validator_7_buggy/lib/junit.jar
+[INFO] Compiling Validator-7
+Running ant (compile)...................................................... OK
+Running ant (compile.tests)................................................ OK
+[INFO] Running GZoltar
+[INFO] Start: 2021年 06月 05日 星期六 06:12:35 PDT
+   ____ _____     _ _               
+  / ___|__  /___ | | |_ __ _ _ __   
+ | |  _  / // _ \| | __/ _` | '__| 
+ | |_| |/ /| (_) | | || (_| | |     
+  \____/____\___/|_|\__\__,_|_| 
+
+[ERROR] /home1/lileping3/jakarta-commons/beanutils/dist/commons-beanutils.jar does not exist
+java.lang.Exception
+	at com.gzoltar.lib.master.modes.Diagnose.execute(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.parseCommandLine(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.main(Unknown Source)
+[ERROR] /home1/lileping3/jakarta-commons/digester/dist/commons-digester.jar does not exist
+java.lang.Exception
+	at com.gzoltar.lib.master.modes.Diagnose.execute(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.parseCommandLine(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.main(Unknown Source)
+[ERROR] /home1/lileping3/jakarta-commons/logging/dist/commons-logging.jar does not exist
+java.lang.Exception
+	at com.gzoltar.lib.master.modes.Diagnose.execute(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.parseCommandLine(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.main(Unknown Source)
+[ERROR] /home1/lileping3/tmp/validator_7_buggy/${oro.jar} does not exist
+java.lang.Exception
+	at com.gzoltar.lib.master.modes.Diagnose.execute(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.parseCommandLine(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.main(Unknown Source)
+[ERROR] /home1/lileping3/tmp/validator_7_buggy/${xerces.jar} does not exist
+java.lang.Exception
+	at com.gzoltar.lib.master.modes.Diagnose.execute(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.parseCommandLine(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.main(Unknown Source)
+[ERROR] /home1/lileping3/tmp/validator_7_buggy/lib/junit.jar does not exist
+java.lang.Exception
+	at com.gzoltar.lib.master.modes.Diagnose.execute(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.parseCommandLine(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.main(Unknown Source)
+* Preparing classpath
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=1024M; support was removed in 8.0
+* Collecting classes under test
+* Collecting test cases
+* Performing analysis
+* Started org.apache.commons.validator.EmailTest#testEmailLocalhost
+[ERROR] Class not found
+java.lang.ClassNotFoundException: org.apache.log4j.Logger
+	at java.lang.ClassLoader.findClass(ClassLoader.java:523)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at org.apache.commons.logging.impl.LogFactoryImpl$1.run(LogFactoryImpl.java:441)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.apache.commons.logging.impl.LogFactoryImpl.loadClass(LogFactoryImpl.java:435)
+	at org.apache.commons.logging.impl.LogFactoryImpl.isLog4JAvailable(LogFactoryImpl.java:505)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogClassName(LogFactoryImpl.java:327)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:368)
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:529)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:235)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:209)
+	at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:351)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:82)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:135)
+	at org.apache.commons.validator.AbstractCommonTest.loadResources(AbstractCommonTest.java:52)
+	at org.apache.commons.validator.EmailTest.setUp(EmailTest.java:53)
+	at junit.framework.TestCase.runBare(TestCase.java:139)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+* Failure: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")) | testEmailLocalhost(org.apache.commons.validator.EmailTest)
+org.apache.commons.logging.LogConfigurationException: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"))
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:543)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:235)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:209)
+	at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:351)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:82)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:135)
+	at org.apache.commons.validator.AbstractCommonTest.loadResources(AbstractCommonTest.java:52)
+	at org.apache.commons.validator.EmailTest.setUp(EmailTest.java:53)
+	at junit.framework.TestCase.runBare(TestCase.java:139)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:397)
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:529)
+	... 20 more
+Caused by: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:635)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.processClassPath(Unknown Source)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:374)
+	... 21 more
+
+* Finished org.apache.commons.validator.EmailTest#testEmailLocalhost
+* Started org.apache.commons.validator.EmailTest#testEmailWithControlChars
+* Failure: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")) | testEmailWithControlChars(org.apache.commons.validator.EmailTest)
+org.apache.commons.logging.LogConfigurationException: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"))
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:543)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:235)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:209)
+	at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:351)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:82)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:135)
+	at org.apache.commons.validator.AbstractCommonTest.loadResources(AbstractCommonTest.java:52)
+	at org.apache.commons.validator.EmailTest.setUp(EmailTest.java:53)
+	at junit.framework.TestCase.runBare(TestCase.java:139)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:397)
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:529)
+	... 20 more
+Caused by: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:635)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.processClassPath(Unknown Source)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:374)
+	... 21 more
+
+* Finished org.apache.commons.validator.EmailTest#testEmailWithControlChars
+* Started org.apache.commons.validator.EmailTest#testEmail
+* Failure: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")) | testEmail(org.apache.commons.validator.EmailTest)
+org.apache.commons.logging.LogConfigurationException: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"))
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:543)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:235)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:209)
+	at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:351)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:82)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:135)
+	at org.apache.commons.validator.AbstractCommonTest.loadResources(AbstractCommonTest.java:52)
+	at org.apache.commons.validator.EmailTest.setUp(EmailTest.java:53)
+	at junit.framework.TestCase.runBare(TestCase.java:139)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:397)
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:529)
+	... 20 more
+Caused by: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:635)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.processClassPath(Unknown Source)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:374)
+	... 21 more
+
+* Finished org.apache.commons.validator.EmailTest#testEmail
+* Started org.apache.commons.validator.EmailTest#testEmailExtension
+* Failure: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")) | testEmailExtension(org.apache.commons.validator.EmailTest)
+org.apache.commons.logging.LogConfigurationException: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"))
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:543)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:235)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:209)
+	at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:351)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:82)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:135)
+	at org.apache.commons.validator.AbstractCommonTest.loadResources(AbstractCommonTest.java:52)
+	at org.apache.commons.validator.EmailTest.setUp(EmailTest.java:53)
+	at junit.framework.TestCase.runBare(TestCase.java:139)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:397)
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:529)
+	... 20 more
+Caused by: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:635)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.processClassPath(Unknown Source)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:374)
+	... 21 more
+
+* Finished org.apache.commons.validator.EmailTest#testEmailExtension
+* Started org.apache.commons.validator.EmailTest#testEmailWithDash
+* Failure: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")) | testEmailWithDash(org.apache.commons.validator.EmailTest)
+org.apache.commons.logging.LogConfigurationException: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"))
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:543)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:235)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:209)
+	at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:351)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:82)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:135)
+	at org.apache.commons.validator.AbstractCommonTest.loadResources(AbstractCommonTest.java:52)
+	at org.apache.commons.validator.EmailTest.setUp(EmailTest.java:53)
+	at junit.framework.TestCase.runBare(TestCase.java:139)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:397)
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:529)
+	... 20 more
+Caused by: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:635)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.processClassPath(Unknown Source)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:374)
+	... 21 more
+
+* Finished org.apache.commons.validator.EmailTest#testEmailWithDash
+* Started org.apache.commons.validator.EmailTest#testEmailWithCommas
+* Failure: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")) | testEmailWithCommas(org.apache.commons.validator.EmailTest)
+org.apache.commons.logging.LogConfigurationException: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"))
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:543)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:235)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:209)
+	at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:351)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:82)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:135)
+	at org.apache.commons.validator.AbstractCommonTest.loadResources(AbstractCommonTest.java:52)
+	at org.apache.commons.validator.EmailTest.setUp(EmailTest.java:53)
+	at junit.framework.TestCase.runBare(TestCase.java:139)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:397)
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:529)
+	... 20 more
+Caused by: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:635)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.processClassPath(Unknown Source)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:374)
+	... 21 more
+
+* Finished org.apache.commons.validator.EmailTest#testEmailWithCommas
+* Started org.apache.commons.validator.EmailTest#testEmailWithDotEnd
+* Failure: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")) | testEmailWithDotEnd(org.apache.commons.validator.EmailTest)
+org.apache.commons.logging.LogConfigurationException: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"))
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:543)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:235)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:209)
+	at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:351)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:82)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:135)
+	at org.apache.commons.validator.AbstractCommonTest.loadResources(AbstractCommonTest.java:52)
+	at org.apache.commons.validator.EmailTest.setUp(EmailTest.java:53)
+	at junit.framework.TestCase.runBare(TestCase.java:139)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:397)
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:529)
+	... 20 more
+Caused by: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:635)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.processClassPath(Unknown Source)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:374)
+	... 21 more
+
+* Finished org.apache.commons.validator.EmailTest#testEmailWithDotEnd
+* Started org.apache.commons.validator.EmailTest#testEmailWithSpaces
+* Failure: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")) | testEmailWithSpaces(org.apache.commons.validator.EmailTest)
+org.apache.commons.logging.LogConfigurationException: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"))
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:543)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:235)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:209)
+	at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:351)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:82)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:135)
+	at org.apache.commons.validator.AbstractCommonTest.loadResources(AbstractCommonTest.java:52)
+	at org.apache.commons.validator.EmailTest.setUp(EmailTest.java:53)
+	at junit.framework.TestCase.runBare(TestCase.java:139)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:397)
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:529)
+	... 20 more
+Caused by: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:635)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.processClassPath(Unknown Source)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:374)
+	... 21 more
+
+* Finished org.apache.commons.validator.EmailTest#testEmailWithSpaces
+* Started org.apache.commons.validator.EmailTest#testEmailWithBogusCharacter
+* Failure: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")) | testEmailWithBogusCharacter(org.apache.commons.validator.EmailTest)
+org.apache.commons.logging.LogConfigurationException: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"))
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:543)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:235)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:209)
+	at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:351)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:82)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:135)
+	at org.apache.commons.validator.AbstractCommonTest.loadResources(AbstractCommonTest.java:52)
+	at org.apache.commons.validator.EmailTest.setUp(EmailTest.java:53)
+	at junit.framework.TestCase.runBare(TestCase.java:139)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:397)
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:529)
+	... 20 more
+Caused by: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:635)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.processClassPath(Unknown Source)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:374)
+	... 21 more
+
+* Finished org.apache.commons.validator.EmailTest#testEmailWithBogusCharacter
+* Started org.apache.commons.validator.EmailTest#testEmailWithNumericAddress
+* Failure: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")) | testEmailWithNumericAddress(org.apache.commons.validator.EmailTest)
+org.apache.commons.logging.LogConfigurationException: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log") (Caused by org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"))
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:543)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:235)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getInstance(LogFactoryImpl.java:209)
+	at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:351)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:82)
+	at org.apache.commons.validator.ValidatorResources.<init>(ValidatorResources.java:135)
+	at org.apache.commons.validator.AbstractCommonTest.loadResources(AbstractCommonTest.java:52)
+	at org.apache.commons.validator.EmailTest.setUp(EmailTest.java:53)
+	at junit.framework.TestCase.runBare(TestCase.java:139)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.commons.logging.LogConfigurationException: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log" (Caused by java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log")
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:397)
+	at org.apache.commons.logging.impl.LogFactoryImpl.newInstance(LogFactoryImpl.java:529)
+	... 20 more
+Caused by: java.lang.LinkageError: loader (instance of  com/gzoltar/lib/instrumentation/util/GZoltarClassLoader): attempted  duplicate class definition for name: "org/apache/commons/logging/Log"
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:635)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.processClassPath(Unknown Source)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at org.apache.commons.logging.impl.LogFactoryImpl.getLogConstructor(LogFactoryImpl.java:374)
+	... 21 more
+
+* Finished org.apache.commons.validator.EmailTest#testEmailWithNumericAddress
+* Started org.apache.commons.validator.routines.EmailValidatorTest#testEmailLocalhost
+* Finished org.apache.commons.validator.routines.EmailValidatorTest#testEmailLocalhost
+* Started org.apache.commons.validator.routines.EmailValidatorTest#testEmailWithControlChars
+* Finished org.apache.commons.validator.routines.EmailValidatorTest#testEmailWithControlChars
+* Started org.apache.commons.validator.routines.EmailValidatorTest#testEmail
+* Finished org.apache.commons.validator.routines.EmailValidatorTest#testEmail
+* Started org.apache.commons.validator.routines.EmailValidatorTest#testEmailExtension
+* Finished org.apache.commons.validator.routines.EmailValidatorTest#testEmailExtension
+* Started org.apache.commons.validator.routines.EmailValidatorTest#testEmailWithDash
+* Finished org.apache.commons.validator.routines.EmailValidatorTest#testEmailWithDash
+* Started org.apache.commons.validator.routines.EmailValidatorTest#testEmailWithCommas
+* Finished org.apache.commons.validator.routines.EmailValidatorTest#testEmailWithCommas
+* Started org.apache.commons.validator.routines.EmailValidatorTest#testEmailWithDotEnd
+* Finished org.apache.commons.validator.routines.EmailValidatorTest#testEmailWithDotEnd
+* Started org.apache.commons.validator.routines.EmailValidatorTest#testEmailWithSpaces
+* Finished org.apache.commons.validator.routines.EmailValidatorTest#testEmailWithSpaces
+* Started org.apache.commons.validator.routines.EmailValidatorTest#testEmailUserName
+* Finished org.apache.commons.validator.routines.EmailValidatorTest#testEmailUserName
+* Started org.apache.commons.validator.routines.EmailValidatorTest#testEmailWithBogusCharacter
+* Finished org.apache.commons.validator.routines.EmailValidatorTest#testEmailWithBogusCharacter
+* Started org.apache.commons.validator.routines.EmailValidatorTest#testEmailWithNumericAddress
+* Finished org.apache.commons.validator.routines.EmailValidatorTest#testEmailWithNumericAddress
+* Started org.apache.commons.validator.routines.EmailValidatorTest#testValidator293
+* Finished org.apache.commons.validator.routines.EmailValidatorTest#testValidator293
+* Started org.apache.commons.validator.routines.UrlValidatorTest#testValidateUrl
+* Finished org.apache.commons.validator.routines.UrlValidatorTest#testValidateUrl
+* Started org.apache.commons.validator.routines.UrlValidatorTest#testIsValidScheme
+* Finished org.apache.commons.validator.routines.UrlValidatorTest#testIsValidScheme
+* Started org.apache.commons.validator.routines.UrlValidatorTest#testIsValid
+* Finished org.apache.commons.validator.routines.UrlValidatorTest#testIsValid
+* Started org.apache.commons.validator.routines.UrlValidatorTest#testValidator202
+* Finished org.apache.commons.validator.routines.UrlValidatorTest#testValidator202
+* Started org.apache.commons.validator.routines.UrlValidatorTest#testValidator204
+* Finished org.apache.commons.validator.routines.UrlValidatorTest#testValidator204
+* Started org.apache.commons.validator.routines.UrlValidatorTest#testValidator218
+* Finished org.apache.commons.validator.routines.UrlValidatorTest#testValidator218
+* Started org.apache.commons.validator.routines.UrlValidatorTest#testValidator248
+* Finished org.apache.commons.validator.routines.UrlValidatorTest#testValidator248
+* Started org.apache.commons.validator.routines.DomainValidatorTest#testAllowLocal
+* Failure: hostname should validate | testAllowLocal(org.apache.commons.validator.routines.DomainValidatorTest)
+junit.framework.AssertionFailedError: hostname should validate
+	at junit.framework.Assert.fail(Assert.java:57)
+	at junit.framework.Assert.assertTrue(Assert.java:22)
+	at junit.framework.TestCase.assertTrue(TestCase.java:192)
+	at org.apache.commons.validator.routines.DomainValidatorTest.testAllowLocal(DomainValidatorTest.java:102)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at junit.framework.TestCase.runTest(TestCase.java:176)
+	at junit.framework.TestCase.runBare(TestCase.java:141)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.commons.validator.routines.DomainValidatorTest#testAllowLocal
+* Started org.apache.commons.validator.routines.DomainValidatorTest#testTopLevelDomains
+* Finished org.apache.commons.validator.routines.DomainValidatorTest#testTopLevelDomains
+* Started org.apache.commons.validator.routines.DomainValidatorTest#testInvalidDomains
+* Finished org.apache.commons.validator.routines.DomainValidatorTest#testInvalidDomains
+* Started org.apache.commons.validator.routines.DomainValidatorTest#testValidDomains
+* Finished org.apache.commons.validator.routines.DomainValidatorTest#testValidDomains
+* Filtering test cases that do not cover any component
+* Sending data to master
+* Closing connection with client
+* Performing fault localization
+* Running Ochiai
+* Writing coverage matrix to '/home1/lileping3/tryGZoltar/validator_7/matrix'
+* Writing spectra to '/home1/lileping3/tryGZoltar/validator_7/spectra'
+* Metrics
+* Computation finished
+[INFO] End: 2021年 06月 05日 星期六 06:12:38 PDT
+[DEBUG] MATRIX OK
+[DEBUG] SPECTRA OK
+
+DONE!
