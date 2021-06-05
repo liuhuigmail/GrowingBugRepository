@@ -1,0 +1,3 @@
+org.apache.commons.pool2.impl.DefaultPooledObject
+org.apache.commons.pool2.PooledObject
+org.apache.commons.pool2.PooledObjectState

@@ -1,0 +1,79 @@
+[DEBUG] PID: JXR
+[DEBUG] VID: 1
+[DEBUG] DATA_DIR: /home1/lileping3/tryGZoltar/jxr_1
+[DEBUG] TOOL: developer
+[DEBUG] TESTS_DIR: 
+[DEBUG] TMP_DIR: /home1/lileping3/tmp/jxr_1_buggy
+[DEBUG] DIR_PROJECT: /home1/NewD4j/GrowingBugRepository-main/framework/projects/JXR
+[DEBUG] DIR_LOADED_CLASSES: /home1/NewD4j/GrowingBugRepository-main/framework/projects/JXR/loaded_classes
+[DEBUG] DIR_RELEVANT_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/JXR/relevant_tests
+[DEBUG] DIR_TRIGGER_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/JXR/trigger_tests
+[DEBUG] JAVA_VERSION:
+Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1024m -Xmx4096m
+java version "1.7.0_80"
+Java(TM) SE Runtime Environment (build 1.7.0_80-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 24.80-b11, mixed mode)
+[DEBUG] LOADED_CLASSES: org.apache.maven.jxr.JavaCodeTransform:org.apache.maven.jxr.log.Log:org.apache.maven.jxr.pacman.BaseType:org.apache.maven.jxr.pacman.ClassType:org.apache.maven.jxr.pacman.FileManager:org.apache.maven.jxr.pacman.ImportType:org.apache.maven.jxr.pacman.JavaFile:org.apache.maven.jxr.pacman.JavaFileImpl:org.apache.maven.jxr.pacman.PackageManager:org.apache.maven.jxr.pacman.PackageType:
+[DEBUG] LOADED_SUB_CLASSES: org.apache.maven.jxr.JavaCodeTransform$*:org.apache.maven.jxr.log.Log$*:org.apache.maven.jxr.pacman.BaseType$*:org.apache.maven.jxr.pacman.ClassType$*:org.apache.maven.jxr.pacman.FileManager$*:org.apache.maven.jxr.pacman.ImportType$*:org.apache.maven.jxr.pacman.JavaFile$*:org.apache.maven.jxr.pacman.JavaFileImpl$*:org.apache.maven.jxr.pacman.PackageManager$*:org.apache.maven.jxr.pacman.PackageType$*:
+[DEBUG] RELEVANT_TESTS: org.apache.maven.jxr.JavaCodeTransformTest:
+[DEBUG] TRIGGER_TESTS_FILE: /home1/NewD4j/GrowingBugRepository-main/framework/projects/JXR/trigger_tests/1
+[DEBUG] CP: /home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/JXR/lib/junit/junit/3.8.1/junit-3.8.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/JXR/lib/commons-collections/commons-collections/3.1/commons-collections-3.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/JXR/lib/oro/oro/2.0.7/oro-2.0.7.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/JXR/lib/plexus/plexus-utils/1.0.3/plexus-utils-1.0.3.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/JXR/lib/velocity/velocity/1.4/velocity-1.4.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/JXR/lib/velocity/velocity-dep/1.4/velocity-dep-1.4.jar:/home1/lileping3/tmp/jxr_1_buggy/target/classes:/home1/lileping3/tmp/jxr_1_buggy/target/test-classes:/home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar
+[INFO] Compiling JXR-1
+Running ant (compile)...................................................... OK
+Running ant (compile.tests)................................................ OK
+[INFO] Running GZoltar
+[INFO] Start: 2021年 06月 04日 星期五 00:22:12 PDT
+   ____ _____     _ _               
+  / ___|__  /___ | | |_ __ _ _ __   
+ | |  _  / // _ \| | __/ _` | '__| 
+ | |_| |/ /| (_) | | || (_| | |     
+  \____/____\___/|_|\__\__,_|_| 
+
+* Preparing classpath
+* Collecting classes under test
+* Collecting test cases
+* Performing analysis
+* Started org.apache.maven.jxr.JavaCodeTransformTest#testTransformWithEmptyClassFile
+Unable to processPath /home1/lileping3/tmp/jxr_1_buggy/src/test/resources/EmptyClass.java => /home1/lileping3/tmp/jxr_1_buggy/target/EmptyClass.html
+* Failure: null | testTransformWithEmptyClassFile(org.apache.maven.jxr.JavaCodeTransformTest)
+java.lang.NullPointerException
+	at org.apache.maven.jxr.JavaCodeTransform.getHeader(JavaCodeTransform.java:290)
+	at org.apache.maven.jxr.JavaCodeTransform.transform(JavaCodeTransform.java:355)
+	at org.apache.maven.jxr.JavaCodeTransform.transform(JavaCodeTransform.java:425)
+	at org.apache.maven.jxr.JavaCodeTransformTest.testTransformWithEmptyClassFile(JavaCodeTransformTest.java:63)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at junit.framework.TestCase.runTest(TestCase.java:176)
+	at junit.framework.TestCase.runBare(TestCase.java:141)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+* Finished org.apache.maven.jxr.JavaCodeTransformTest#testTransformWithEmptyClassFile
+* Started org.apache.maven.jxr.JavaCodeTransformTest#testTransform
+* Finished org.apache.maven.jxr.JavaCodeTransformTest#testTransform
+* Filtering test cases that do not cover any component
+* Sending data to master
+* Closing connection with client
+* Performing fault localization
+* Running Ochiai
+* Writing coverage matrix to '/home1/lileping3/tryGZoltar/jxr_1/matrix'
+* Writing spectra to '/home1/lileping3/tryGZoltar/jxr_1/spectra'
+* Metrics
+* Computation finished
+[INFO] End: 2021年 06月 04日 星期五 00:22:16 PDT
+[DEBUG] MATRIX OK
+[DEBUG] SPECTRA OK
+
+DONE!

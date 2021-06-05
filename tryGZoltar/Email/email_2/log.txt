@@ -1,0 +1,119 @@
+[DEBUG] PID: Email
+[DEBUG] VID: 2
+[DEBUG] DATA_DIR: /home1/lileping3/tryGZoltar/email_2
+[DEBUG] TOOL: developer
+[DEBUG] TESTS_DIR: 
+[DEBUG] TMP_DIR: /home1/lileping3/tmp/email_2_buggy
+[DEBUG] DIR_PROJECT: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Email
+[DEBUG] DIR_LOADED_CLASSES: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/loaded_classes
+[DEBUG] DIR_RELEVANT_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/relevant_tests
+[DEBUG] DIR_TRIGGER_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/trigger_tests
+[DEBUG] JAVA_VERSION:
+Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1024m -Xmx4096m
+java version "1.7.0_80"
+Java(TM) SE Runtime Environment (build 1.7.0_80-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 24.80-b11, mixed mode)
+[DEBUG] LOADED_CLASSES: org.apache.commons.mail.DataSourceResolver:org.apache.commons.mail.DefaultAuthenticator:org.apache.commons.mail.Email:org.apache.commons.mail.EmailConstants:org.apache.commons.mail.EmailException:org.apache.commons.mail.EmailUtils:org.apache.commons.mail.HtmlEmail:org.apache.commons.mail.ImageHtmlEmail:org.apache.commons.mail.impl.DataSourceResolverImpl:org.apache.commons.mail.MultiPartEmail:org.apache.commons.mail.util.MimeMessageParser:org.apache.commons.mail.util.URLFactory:
+[DEBUG] LOADED_SUB_CLASSES: org.apache.commons.mail.DataSourceResolver$*:org.apache.commons.mail.DefaultAuthenticator$*:org.apache.commons.mail.Email$*:org.apache.commons.mail.EmailConstants$*:org.apache.commons.mail.EmailException$*:org.apache.commons.mail.EmailUtils$*:org.apache.commons.mail.HtmlEmail$*:org.apache.commons.mail.ImageHtmlEmail$*:org.apache.commons.mail.impl.DataSourceResolverImpl$*:org.apache.commons.mail.MultiPartEmail$*:org.apache.commons.mail.util.MimeMessageParser$*:org.apache.commons.mail.util.URLFactory$*:
+[DEBUG] RELEVANT_TESTS: org.apache.commons.mail.EmailLiveTest:org.apache.commons.mail.HtmlEmailTest:org.apache.commons.mail.SendWithAttachmentsTest:
+[DEBUG] TRIGGER_TESTS_FILE: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/trigger_tests/2
+[DEBUG] CP: /home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/javax/mail/mail/1.4.1/mail-1.4.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/javax/activation/activation/1.1/activation-1.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/junit/junit/3.8.2/junit-3.8.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/commons-io/commons-io/1.4/commons-io-1.4.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/net/sf/retrotranslator/retrotranslator-runtime/1.2.1/retrotranslator-runtime-1.2.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/backport-util-concurrent/backport-util-concurrent/3.0/backport-util-concurrent-3.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/org/subethamail/subethasmtp-smtp/1.2/subethasmtp-smtp-1.2-java14.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/commons-logging/commons-logging/1.1/commons-logging-1.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/log4j/log4j/1.2.12/log4j-1.2.12.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/logkit/logkit/1.0.1/logkit-1.0.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/avalon-framework/avalon-framework/4.1.3/avalon-framework-4.1.3.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/javax/servlet/servlet-api/2.3/servlet-api-2.3.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Email/lib/org/subethamail/subethasmtp-wiser/1.2/subethasmtp-wiser-1.2-java14.jar:/home1/lileping3/tmp/email_2_buggy/target/classes:/home1/lileping3/tmp/email_2_buggy/target/test-classes:/home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar
+[INFO] Compiling Email-2
+Running ant (compile)...................................................... OK
+Running ant (compile.tests)................................................ OK
+[INFO] Running GZoltar
+[INFO] Start: 2021年 06月 04日 星期五 00:18:46 PDT
+   ____ _____     _ _               
+  / ___|__  /___ | | |_ __ _ _ __   
+ | |  _  / // _ \| | __/ _` | '__| 
+ | |_| |/ /| (_) | | || (_| | |     
+  \____/____\___/|_|\__\__,_|_| 
+
+* Preparing classpath
+* Collecting classes under test
+* Collecting test cases
+* Performing analysis
+* Started org.apache.commons.mail.EmailLiveTest#testSimpleEmail
+* Finished org.apache.commons.mail.EmailLiveTest#testSimpleEmail
+* Started org.apache.commons.mail.EmailLiveTest#testImageHtmlEmailLocal
+* Finished org.apache.commons.mail.EmailLiveTest#testImageHtmlEmailLocal
+* Started org.apache.commons.mail.EmailLiveTest#testSendingEmailsInBatch
+* Finished org.apache.commons.mail.EmailLiveTest#testSendingEmailsInBatch
+* Started org.apache.commons.mail.EmailLiveTest#testCorrectCharacterEncoding
+* Finished org.apache.commons.mail.EmailLiveTest#testCorrectCharacterEncoding
+* Started org.apache.commons.mail.EmailLiveTest#testHtmlMailMimeLayout
+* Finished org.apache.commons.mail.EmailLiveTest#testHtmlMailMimeLayout
+* Started org.apache.commons.mail.EmailLiveTest#testImageHtmlEmailRemote
+* Finished org.apache.commons.mail.EmailLiveTest#testImageHtmlEmailRemote
+* Started org.apache.commons.mail.HtmlEmailTest#testCallingBuildMimeMessageBeforeSent
+* Finished org.apache.commons.mail.HtmlEmailTest#testCallingBuildMimeMessageBeforeSent
+* Started org.apache.commons.mail.HtmlEmailTest#testSend2
+log4j:WARN No appenders could be found for logger (org.subethamail.smtp.server.CommandHandler).
+log4j:WARN Please initialize the log4j system properly.
+* Finished org.apache.commons.mail.HtmlEmailTest#testSend2
+* Started org.apache.commons.mail.HtmlEmailTest#testEmbedFileWithCID
+* Failure: didn't get same CID when embedding with a specified CID expected:<[Test CID]> but was:<[hffltxxayl]> | testEmbedFileWithCID(org.apache.commons.mail.HtmlEmailTest)
+junit.framework.ComparisonFailure: didn't get same CID when embedding with a specified CID expected:<[Test CID]> but was:<[hffltxxayl]>
+	at junit.framework.Assert.assertEquals(Assert.java:100)
+	at junit.framework.TestCase.assertEquals(TestCase.java:261)
+	at org.apache.commons.mail.HtmlEmailTest.testEmbedFileWithCID(HtmlEmailTest.java:638)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at junit.framework.TestCase.runTest(TestCase.java:176)
+	at junit.framework.TestCase.runBare(TestCase.java:141)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+* Finished org.apache.commons.mail.HtmlEmailTest#testEmbedFileWithCID
+* Started org.apache.commons.mail.HtmlEmailTest#testSend
+* Finished org.apache.commons.mail.HtmlEmailTest#testSend
+* Started org.apache.commons.mail.HtmlEmailTest#testGetSetTextMsg
+* Finished org.apache.commons.mail.HtmlEmailTest#testGetSetTextMsg
+* Started org.apache.commons.mail.HtmlEmailTest#testEmbedFile
+* Finished org.apache.commons.mail.HtmlEmailTest#testEmbedFile
+* Started org.apache.commons.mail.HtmlEmailTest#testEmbedDataSource
+* Finished org.apache.commons.mail.HtmlEmailTest#testEmbedDataSource
+* Started org.apache.commons.mail.HtmlEmailTest#testSendWithPlainTextButNoHtmlContent
+* Finished org.apache.commons.mail.HtmlEmailTest#testSendWithPlainTextButNoHtmlContent
+* Started org.apache.commons.mail.HtmlEmailTest#testAddZipUrl
+* Finished org.apache.commons.mail.HtmlEmailTest#testAddZipUrl
+* Started org.apache.commons.mail.HtmlEmailTest#testEmbedUrlAndFile
+* Finished org.apache.commons.mail.HtmlEmailTest#testEmbedUrlAndFile
+* Started org.apache.commons.mail.HtmlEmailTest#testGetSetMsg
+* Finished org.apache.commons.mail.HtmlEmailTest#testGetSetMsg
+* Started org.apache.commons.mail.HtmlEmailTest#testEmbedUrl
+* Finished org.apache.commons.mail.HtmlEmailTest#testEmbedUrl
+* Started org.apache.commons.mail.HtmlEmailTest#testGetSetHtmlMsg
+* Finished org.apache.commons.mail.HtmlEmailTest#testGetSetHtmlMsg
+* Started org.apache.commons.mail.SendWithAttachmentsTest#testSendWAttachments
+log4j:WARN No appenders could be found for logger (org.subethamail.smtp.server.CommandHandler).
+log4j:WARN Please initialize the log4j system properly.
+* Finished org.apache.commons.mail.SendWithAttachmentsTest#testSendWAttachments
+* Started org.apache.commons.mail.SendWithAttachmentsTest#testSendNoAttachments
+* Finished org.apache.commons.mail.SendWithAttachmentsTest#testSendNoAttachments
+* Filtering test cases that do not cover any component
+* Sending data to master
+* Closing connection with client
+* Performing fault localization
+* Running Ochiai
+* Writing coverage matrix to '/home1/lileping3/tryGZoltar/email_2/matrix'
+* Writing spectra to '/home1/lileping3/tryGZoltar/email_2/spectra'
+* Metrics
+* Computation finished
+[INFO] End: 2021年 06月 04日 星期五 00:18:53 PDT
+[DEBUG] MATRIX OK
+[DEBUG] SPECTRA OK
+
+DONE!

@@ -126,6 +126,7 @@ of the checked-out project version.
 <exclude name='**/TestObjectPool.java' />
 <exclude name='**/TestSoftRefOutOfMemory.java' />
 <exclude name='**/TestAll.java' />
+<exclude name='**/TestGenericObjectPool.java' />
 <exclude name='**/TestSynchronizedPooledObjectFactory.java' />
     </fileset>
 

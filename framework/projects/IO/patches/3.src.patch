@@ -1,16 +1,13 @@
-diff --git a/src/main/java/org/apache/commons/io/FileUtils.java b/src/main/java/org/apache/commons/io/FileUtils.java
-index 5d0d669..20e2463 100644
---- a/src/main/java/org/apache/commons/io/FileUtils.java
-+++ b/src/main/java/org/apache/commons/io/FileUtils.java
-@@ -1535,8 +1535,9 @@ public class FileUtils {
-      * @since 2.5
-      */
-     public static void copyToFile(final InputStream source, final File destination) throws IOException {
--        try (OutputStream out = openOutputStream(destination)) {
--            IOUtils.copy(source, out);
-+        try (InputStream in = source;
-+             OutputStream out = openOutputStream(destination)) {
-+            IOUtils.copy(in, out);
-         }
-     }
- 
+diff --git a/src/java/org/apache/commons/io/FileUtils.java b/src/java/org/apache/commons/io/FileUtils.java
+index a15fb553..84c52a19 100644
+--- a/src/java/org/apache/commons/io/FileUtils.java
++++ b/src/java/org/apache/commons/io/FileUtils.java
+@@ -169,7 +169,7 @@ public class FileUtils {
+             }
+         } else {
+             File parent = file.getParentFile();
+-            if (parent != null && parent.exists() == false) {
++            if (parent.exists() == false) {
+                 if (parent.mkdirs() == false) {
+                     throw new IOException("File '" + file + "' could not be created");
+                 }

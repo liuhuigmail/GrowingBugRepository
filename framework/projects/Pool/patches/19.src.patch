@@ -1,0 +1,65 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+index 262869b5..eb20303c 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+@@ -477,16 +477,6 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+             throw new IllegalStateException(
+                     "Returned object not currently part of this pool");
+         }
+-        
+-        synchronized(p) {
+-            final PooledObjectState state = p.getState();
+-            if (state != PooledObjectState.ALLOCATED) {
+-                throw new IllegalStateException(
+-                        "Object has already been returned to this pool or is invalid");
+-            } else {
+-                p.markReturning(); // Keep from being marked abandoned (once GKOP does this)
+-            }
+-        }
+ 
+         long activeTime = p.getActiveTimeMillis();
+ 
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+index db48738b..4c09d74c 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+@@ -535,23 +535,26 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+     @Override
+     public void returnObject(T obj) {
+         PooledObject<T> p = allObjects.get(new IdentityWrapper<T>(obj));
+-        
+-        if (p == null) {
+-            if (!isAbandonedConfig()) {
++
++        if (!isAbandonedConfig()) {
++            if (p == null) {
+                 throw new IllegalStateException(
+                         "Returned object not currently part of this pool");
+-            } else {
+-                return; // Object was abandoned and removed
+             }
+-        }
+-
+-        synchronized(p) {
+-            final PooledObjectState state = p.getState();
+-            if (state != PooledObjectState.ALLOCATED) {
+-                throw new IllegalStateException(
+-                        "Object has already been returned to this pool or is invalid");
++        } else {
++            if (p == null) {
++                return;  // Object was abandoned and removed
+             } else {
+-                p.markReturning(); // Keep from being marked abandoned
++                // Make sure object is not being reclaimed
++                synchronized(p) {
++                    final PooledObjectState state = p.getState();
++                    if (state != PooledObjectState.ALLOCATED) {
++                        throw new IllegalStateException(
++                                "Object has already been returned to this pool or is invalid");
++                    } else {
++                        p.markReturning(); // Keep from being marked abandoned
++                    }
++                }
+             }
+         }
+ 

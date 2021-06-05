@@ -1,0 +1,4 @@
+org.apache.commons.validator.EmailTest
+org.apache.commons.validator.routines.DomainValidatorTest
+org.apache.commons.validator.routines.EmailValidatorTest
+org.apache.commons.validator.routines.UrlValidatorTest

@@ -1,0 +1,132 @@
+[DEBUG] PID: Net
+[DEBUG] VID: 18
+[DEBUG] DATA_DIR: /home1/lileping3/tryGZoltar/net_18
+[DEBUG] TOOL: developer
+[DEBUG] TESTS_DIR: 
+[DEBUG] TMP_DIR: /home1/lileping3/tmp/net_18_buggy
+[DEBUG] DIR_PROJECT: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Net
+[DEBUG] DIR_LOADED_CLASSES: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Net/loaded_classes
+[DEBUG] DIR_RELEVANT_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Net/relevant_tests
+[DEBUG] DIR_TRIGGER_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Net/trigger_tests
+[DEBUG] JAVA_VERSION:
+Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1024m -Xmx4096m
+java version "1.7.0_80"
+Java(TM) SE Runtime Environment (build 1.7.0_80-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 24.80-b11, mixed mode)
+[DEBUG] LOADED_CLASSES: org.apache.commons.net.io.CopyStreamException:org.apache.commons.net.io.CopyStreamListener:org.apache.commons.net.io.Util:
+[DEBUG] LOADED_SUB_CLASSES: org.apache.commons.net.io.CopyStreamException$*:org.apache.commons.net.io.CopyStreamListener$*:org.apache.commons.net.io.Util$*:
+[DEBUG] RELEVANT_TESTS: org.apache.commons.net.util.UtilTest:
+[DEBUG] TRIGGER_TESTS_FILE: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Net/trigger_tests/18
+[DEBUG] CP: /home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Net/lib/junit/junit/4.11/junit-4.11.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Net/lib/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home1/lileping3/tmp/net_18_buggy/target/classes:/home1/lileping3/tmp/net_18_buggy/target/test-classes:/home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar
+[INFO] Compiling Net-18
+Running ant (compile)...................................................... OK
+Running ant (compile.tests)................................................ OK
+[INFO] Running GZoltar
+[INFO] Start: 2021年 06月 04日 星期五 00:16:24 PDT
+   ____ _____     _ _               
+  / ___|__  /___ | | |_ __ _ _ __   
+ | |  _  / // _ \| | __/ _` | '__| 
+ | |_| |/ /| (_) | | || (_| | |     
+  \____/____\___/|_|\__\__,_|_| 
+
+* Preparing classpath
+* Collecting classes under test
+* Collecting test cases
+* Performing analysis
+* Started org.apache.commons.net.util.UtilTest#testStream_1
+* Finished org.apache.commons.net.util.UtilTest#testStream_1
+* Started org.apache.commons.net.util.UtilTest#testNET550_Reader
+* Failure: Wrong bytes expected:<4> but was:<1> | testNET550_Reader(org.apache.commons.net.util.UtilTest)
+java.lang.AssertionError: Wrong bytes expected:<4> but was:<1>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:555)
+	at org.apache.commons.net.util.UtilTest$CSLtotal.bytesTransferred(UtilTest.java:203)
+	at org.apache.commons.net.io.Util.copyReader(Util.java:288)
+	at org.apache.commons.net.util.UtilTest.testNET550_Reader(UtilTest.java:125)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+* Finished org.apache.commons.net.util.UtilTest#testNET550_Reader
+* Started org.apache.commons.net.util.UtilTest#testNET550_Stream
+* Failure: Wrong bytes expected:<4> but was:<1> | testNET550_Stream(org.apache.commons.net.util.UtilTest)
+java.lang.AssertionError: Wrong bytes expected:<4> but was:<1>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:555)
+	at org.apache.commons.net.util.UtilTest$CSLtotal.bytesTransferred(UtilTest.java:203)
+	at org.apache.commons.net.io.Util.copyStream(Util.java:118)
+	at org.apache.commons.net.io.Util.copyStream(Util.java:181)
+	at org.apache.commons.net.util.UtilTest.testNET550_Stream(UtilTest.java:161)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+* Finished org.apache.commons.net.util.UtilTest#testNET550_Stream
+* Started org.apache.commons.net.util.UtilTest#testReader_1
+* Finished org.apache.commons.net.util.UtilTest#testReader_1
+* Started org.apache.commons.net.util.UtilTest#testcloseQuietly
+* Finished org.apache.commons.net.util.UtilTest#testcloseQuietly
+* Started org.apache.commons.net.util.UtilTest#testReader0
+* Finished org.apache.commons.net.util.UtilTest#testReader0
+* Started org.apache.commons.net.util.UtilTest#testReader1
+* Finished org.apache.commons.net.util.UtilTest#testReader1
+* Started org.apache.commons.net.util.UtilTest#testStream0
+* Finished org.apache.commons.net.util.UtilTest#testStream0
+* Started org.apache.commons.net.util.UtilTest#testStream1
+* Finished org.apache.commons.net.util.UtilTest#testStream1
+* Filtering test cases that do not cover any component
+* Sending data to master
+* Closing connection with client
+* Performing fault localization
+* Running Ochiai
+* Writing coverage matrix to '/home1/lileping3/tryGZoltar/net_18/matrix'
+* Writing spectra to '/home1/lileping3/tryGZoltar/net_18/spectra'
+* Metrics
+* Computation finished
+[INFO] End: 2021年 06月 04日 星期五 00:16:27 PDT
+[DEBUG] MATRIX OK
+[DEBUG] SPECTRA OK
+
+DONE!

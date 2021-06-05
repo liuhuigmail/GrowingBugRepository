@@ -1,8 +1,8 @@
 diff --git a/src/main/java/org/apache/commons/imaging/formats/rgbe/RgbeInfo.java b/src/main/java/org/apache/commons/imaging/formats/rgbe/RgbeInfo.java
-index 4038165..e09e46a 100644
+index 4038165f..e09e46ab 100644
 --- a/src/main/java/org/apache/commons/imaging/formats/rgbe/RgbeInfo.java
 +++ b/src/main/java/org/apache/commons/imaging/formats/rgbe/RgbeInfo.java
-@@ -169,17 +169,13 @@ class RgbeInfo implements Closeable {
+@@ -169,17 +169,14 @@ class RgbeInfo implements Closeable {
      }
  
      private static void decompress(final InputStream in, final byte[] out)

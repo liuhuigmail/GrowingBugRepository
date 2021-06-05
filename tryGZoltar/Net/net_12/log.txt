@@ -1,0 +1,94 @@
+[DEBUG] PID: Net
+[DEBUG] VID: 12
+[DEBUG] DATA_DIR: /home1/lileping3/tryGZoltar/net_12
+[DEBUG] TOOL: developer
+[DEBUG] TESTS_DIR: 
+[DEBUG] TMP_DIR: /home1/lileping3/tmp/net_12_buggy
+[DEBUG] DIR_PROJECT: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Net
+[DEBUG] DIR_LOADED_CLASSES: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Net/loaded_classes
+[DEBUG] DIR_RELEVANT_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Net/relevant_tests
+[DEBUG] DIR_TRIGGER_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Net/trigger_tests
+[DEBUG] JAVA_VERSION:
+Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1024m -Xmx4096m
+java version "1.7.0_80"
+Java(TM) SE Runtime Environment (build 1.7.0_80-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 24.80-b11, mixed mode)
+[DEBUG] LOADED_CLASSES: org.apache.commons.net.util.SubnetUtils:
+[DEBUG] LOADED_SUB_CLASSES: org.apache.commons.net.util.SubnetUtils$*:
+[DEBUG] RELEVANT_TESTS: org.apache.commons.net.SubnetUtilsTest:
+[DEBUG] TRIGGER_TESTS_FILE: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Net/trigger_tests/12
+[DEBUG] CP: /home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Net/lib/junit/junit/4.11/junit-4.11.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Net/lib/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home1/lileping3/tmp/net_12_buggy/target/classes:/home1/lileping3/tmp/net_12_buggy/target/test-classes:/home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar
+[INFO] Compiling Net-12
+Running ant (compile)...................................................... OK
+Running ant (compile.tests)................................................ OK
+[INFO] Running GZoltar
+[INFO] Start: 2021年 06月 04日 星期五 00:15:13 PDT
+   ____ _____     _ _               
+  / ___|__  /___ | | |_ __ _ _ __   
+ | |  _  / // _ \| | __/ _` | '__| 
+ | |_| |/ /| (_) | | || (_| | |     
+  \____/____\___/|_|\__\__,_|_| 
+
+* Preparing classpath
+* Collecting classes under test
+* Collecting test cases
+* Performing analysis
+* Started org.apache.commons.net.SubnetUtilsTest#testNET428_31
+* Finished org.apache.commons.net.SubnetUtilsTest#testNET428_31
+* Started org.apache.commons.net.SubnetUtilsTest#testNET428_32
+* Finished org.apache.commons.net.SubnetUtilsTest#testNET428_32
+* Started org.apache.commons.net.SubnetUtilsTest#testParseSimpleNetmaskInclusive
+* Finished org.apache.commons.net.SubnetUtilsTest#testParseSimpleNetmaskInclusive
+* Started org.apache.commons.net.SubnetUtilsTest#testZeroAddressAndCidr
+* Failure: Value [0] not in range [1,32] | testZeroAddressAndCidr(org.apache.commons.net.SubnetUtilsTest)
+java.lang.IllegalArgumentException: Value [0] not in range [1,32]
+	at org.apache.commons.net.util.SubnetUtils.rangeCheck(SubnetUtils.java:304)
+	at org.apache.commons.net.util.SubnetUtils.calculate(SubnetUtils.java:229)
+	at org.apache.commons.net.util.SubnetUtils.<init>(SubnetUtils.java:52)
+	at org.apache.commons.net.SubnetUtilsTest.testZeroAddressAndCidr(SubnetUtilsTest.java:302)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at junit.framework.TestCase.runTest(TestCase.java:176)
+	at junit.framework.TestCase.runBare(TestCase.java:141)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+* Finished org.apache.commons.net.SubnetUtilsTest#testZeroAddressAndCidr
+* Started org.apache.commons.net.SubnetUtilsTest#testParseSimpleNetmask
+* Finished org.apache.commons.net.SubnetUtilsTest#testParseSimpleNetmask
+* Started org.apache.commons.net.SubnetUtilsTest#testParseSimpleNetmaskExclusive
+* Finished org.apache.commons.net.SubnetUtilsTest#testParseSimpleNetmaskExclusive
+* Started org.apache.commons.net.SubnetUtilsTest#testInvalidMasks
+* Finished org.apache.commons.net.SubnetUtilsTest#testInvalidMasks
+* Started org.apache.commons.net.SubnetUtilsTest#testAddresses
+* Finished org.apache.commons.net.SubnetUtilsTest#testAddresses
+* Started org.apache.commons.net.SubnetUtilsTest#testZeroNetmaskBits
+* Finished org.apache.commons.net.SubnetUtilsTest#testZeroNetmaskBits
+* Started org.apache.commons.net.SubnetUtilsTest#testCidrAddresses
+* Finished org.apache.commons.net.SubnetUtilsTest#testCidrAddresses
+* Filtering test cases that do not cover any component
+* Sending data to master
+* Closing connection with client
+* Performing fault localization
+* Running Ochiai
+* Writing coverage matrix to '/home1/lileping3/tryGZoltar/net_12/matrix'
+* Writing spectra to '/home1/lileping3/tryGZoltar/net_12/spectra'
+* Metrics
+* Computation finished
+[INFO] End: 2021年 06月 04日 星期五 00:15:16 PDT
+[DEBUG] MATRIX OK
+[DEBUG] SPECTRA OK
+
+DONE!
