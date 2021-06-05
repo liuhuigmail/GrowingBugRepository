@@ -1,8 +1,8 @@
 diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-index a05038a..7ad8a5a 100644
+index a05038a5..7ad8a5a6 100644
 --- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 +++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-@@ -822,9 +822,6 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+@@ -822,9 +822,7 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
              localMaxTotal = Integer.MAX_VALUE;
          }
  
@@ -21,11 +21,12 @@ index a05038a..7ad8a5a 100644
                      }
                  } else {
                      // The pool is not at capacity. Create a new object.
-@@ -856,13 +853,6 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+@@ -856,13 +853,8 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
                      create = Boolean.TRUE;
                  }
              }
 
+             // Do not block more if maxWaitTimeMillis is set.
 -            if (create == null &&
 -                (localMaxWaitTimeMillis > 0 &&
 -                 System.currentTimeMillis() - localStartTimeMillis >= localMaxWaitTimeMillis)) {

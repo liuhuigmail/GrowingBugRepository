@@ -1,5 +1,5 @@
 diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
-index 52aed4b..77b4146 100644
+index 52aed4b4..77b41463 100644
 --- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
 +++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
 @@ -353,10 +353,8 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
@@ -27,7 +27,7 @@ index 52aed4b..77b4146 100644
                      if (p == null) {
                          throw new NoSuchElementException("Pool exhausted");
 diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-index a5479f0..344a06e 100644
+index a5479f0b..344a06e4 100644
 --- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 +++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 @@ -432,10 +432,8 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>

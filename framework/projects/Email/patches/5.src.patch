@@ -2,14 +2,6 @@ diff --git a/src/main/java/org/apache/commons/mail/Email.java b/src/main/java/or
 index 4a8bece..2a23c10 100644
 --- a/src/main/java/org/apache/commons/mail/Email.java
 +++ b/src/main/java/org/apache/commons/mail/Email.java
-@@ -1160,7 +1160,6 @@ public abstract class Email
-      * Disposition-Notification-To: user@domain.net
-      *
-      * @param map A Map.
-      * @throws IllegalArgumentException if either of the provided header / value is null or empty
-      * @since 1.0
-      */
-     public void setHeaders(Map<String, String> map)
 @@ -1172,7 +1171,7 @@ public abstract class Email
          while (iterKeyBad.hasNext())
          {
@@ -19,7 +11,7 @@ index 4a8bece..2a23c10 100644
          }
  
      }
-@@ -1183,17 +1182,16 @@ public abstract class Email
+@@ -1183,17 +1182,17 @@ public abstract class Email
       * @param name A String with the name.
       * @param value A String with the value.
       * @since 1.0

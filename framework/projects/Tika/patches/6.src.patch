@@ -1,5 +1,5 @@
 diff --git a/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java b/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java
-index bfc5ff9..86f1411 100644
+index bfc5ff912..86f1411b3 100644
 --- a/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java
 +++ b/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java
 @@ -61,7 +61,6 @@ public class OfficeParser implements Parser {
@@ -10,11 +10,12 @@ index bfc5ff9..86f1411 100644
          POIFSFileSystem filesystem = new POIFSFileSystem(stream);
          Iterator<?> entries = filesystem.getRoot().getEntries();
          while (entries.hasNext()) {
-@@ -93,9 +92,7 @@ public class OfficeParser implements Parser {
+@@ -93,9 +92,8 @@ public class OfficeParser implements Parser {
                  for (String text : extractor.getAllText()) {
                      xhtml.element("p", text);
                  }
 -            } else if (!outlookExtracted && name.startsWith("__substg1.0_")) {
+                 // TODO: Cleaner mechanism for detecting Outlook
 -                outlookExtracted = true;
 +            } else if (name.startsWith("__substg1.0_")) {
                  setType(metadata, "application/vnd.ms-outlook");

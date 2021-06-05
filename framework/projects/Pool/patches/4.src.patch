@@ -1,12 +1,14 @@
 diff --git a/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java b/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
-index 065c400..00ab6a4 100644
+index 065c400d..a15a5d07 100644
 --- a/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
 +++ b/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
-@@ -1149,15 +1149,6 @@ public class GenericKeyedObjectPool extends BaseKeyedObjectPool implements Keyed
+@@ -1149,18 +1149,11 @@ public class GenericKeyedObjectPool extends BaseKeyedObjectPool implements Keyed
                                      }
                                  }
                              } catch(InterruptedException e) {
 -                                synchronized (this) {
+                                     // Make sure allocate hasn't already assigned an object
+                                     // in a different thread or permitted a new object to be created
 -                                    if (latch.getPair() == null && !latch.mayCreate()) {
 -                                        _allocationQueue.remove(latch);
 -                                    } else {
@@ -15,17 +17,24 @@ index 065c400..00ab6a4 100644
 -                                }
                                  Thread.currentThread().interrupt();
                                  throw e;
-                             }
+-                            }
++                                }
+                             if (maxWait > 0 && ((System.currentTimeMillis() - starttime) >= maxWait)) {
+                                 synchronized (this) {
+                                     // Make sure allocate hasn't already assigned an object
 diff --git a/src/java/org/apache/commons/pool/impl/GenericObjectPool.java b/src/java/org/apache/commons/pool/impl/GenericObjectPool.java
-index 06d28a0..6e2f3cc 100644
+index 06d28a08..6e2f3ccf 100644
 --- a/src/java/org/apache/commons/pool/impl/GenericObjectPool.java
 +++ b/src/java/org/apache/commons/pool/impl/GenericObjectPool.java
-@@ -1117,16 +1117,6 @@ public class GenericObjectPool extends BaseObjectPool implements ObjectPool {
+@@ -1117,16 +1117,9 @@ public class GenericObjectPool extends BaseObjectPool implements ObjectPool {
                                      }
                                  }
                              } catch(InterruptedException e) {
 -                                synchronized(this) {
+                                     // Make sure allocate hasn't already assigned an object
+                                     // in a different thread or permitted a new object to be created
 -                                    if (latch.getPair() == null && !latch.mayCreate()) {
+                                         // Remove latch from the allocation queue
 -                                        _allocationQueue.remove(latch);
 -                                    } else {
 -                                        break;

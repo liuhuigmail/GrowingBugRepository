@@ -1,8 +1,8 @@
 diff --git a/src/main/java/org/apache/commons/validator/routines/DomainValidator.java b/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
-index 1e722a9..fe2937a 100644
+index 1e722a94..fe2937a8 100644
 --- a/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
 +++ b/src/main/java/org/apache/commons/validator/routines/DomainValidator.java
-@@ -1428,9 +1428,8 @@ public class DomainValidator implements Serializable {
+@@ -1428,9 +1428,9 @@ public class DomainValidator implements Serializable {
       * enum used by {@link DomainValidator#updateTLDOverride(ArrayType, String[])}
       * to determine which override array to update.
       * @since 1.5.0

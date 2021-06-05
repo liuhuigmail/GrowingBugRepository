@@ -1,12 +1,33 @@
-diff --git a/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java b/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
-index 5129f23..3ef82df 100644
---- a/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
-+++ b/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
-@@ -164,7 +164,6 @@ public final class FileAlterationMonitor implements Runnable {
+diff --git a/src/java/org/apache/commons/io/IOUtils.java b/src/java/org/apache/commons/io/IOUtils.java
+index b46c8c7b..4d85b7af 100644
+--- a/src/java/org/apache/commons/io/IOUtils.java
++++ b/src/java/org/apache/commons/io/IOUtils.java
+@@ -995,12 +995,13 @@ public class IOUtils {
+      * @throws ArithmeticException if the byte count is too large
+      * @since Commons IO 1.1
+      */
+-    public static int copy(InputStream input, OutputStream output) throws IOException {
++    public static int copy(InputStream input, OutputStream output)
++            throws IOException {
+         long count = copyLarge(input, output);
+         if (count > Integer.MAX_VALUE) {
+-            return -1;
++            throw new ArithmeticException("The byte count " + count + " is too large to be converted to an int");
          }
-         running = false;
-         try {
--            thread.interrupt();
-             thread.join(stopInterval);
-         } catch (final InterruptedException e) {
-             Thread.currentThread().interrupt();
+-        return (int) count;
++        return (int)count;
+     }
+ 
+     /**
+@@ -1103,9 +1104,9 @@ public class IOUtils {
+     public static int copy(Reader input, Writer output) throws IOException {
+         long count = copyLarge(input, output);
+         if (count > Integer.MAX_VALUE) {
+-            return -1;
++            throw new ArithmeticException("The character count " + count + " is too large to be converted to an int");
+         }
+-        return (int) count;
++        return (int)count;
+     }
+ 
+     /**
