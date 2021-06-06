@@ -1,0 +1,3 @@
+org.apache.commons.pool2.TestPoolUtils
+org.apache.commons.pool2.impl.TestGenericKeyedObjectPool
+org.apache.commons.pool2.impl.TestSoftReferenceObjectPool
