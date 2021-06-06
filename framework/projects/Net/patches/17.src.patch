@@ -1,5 +1,5 @@
 diff --git a/src/main/java/org/apache/commons/net/io/Util.java b/src/main/java/org/apache/commons/net/io/Util.java
-index d18b075..fbb5f2c 100644
+index d18b075f..fbb5f2c6 100644
 --- a/src/main/java/org/apache/commons/net/io/Util.java
 +++ b/src/main/java/org/apache/commons/net/io/Util.java
 @@ -285,7 +285,7 @@ public final class Util

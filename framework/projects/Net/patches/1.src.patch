@@ -1,8 +1,8 @@
 diff --git a/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java b/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
-index 6b94778..e582ae2 100644
+index 6b947786..e582ae2f 100644
 --- a/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
 +++ b/src/main/java/org/apache/commons/net/ftp/parser/UnixFTPEntryParser.java
-@@ -33,6 +33,12 @@ import org.apache.commons.net.ftp.FTPFile;
+@@ -33,6 +33,8 @@ import org.apache.commons.net.ftp.FTPFile;
   */
  public class UnixFTPEntryParser extends ConfigurableFTPFileEntryParserImpl
  {
@@ -15,8 +15,8 @@ index 6b94778..e582ae2 100644
          "([bcdelfmpSs-])"
          +"(((r|-)(w|-)([xsStTL-]))((r|-)(w|-)([xsStTL-]))((r|-)(w|-)([xsStTL-])))\\+?\\s+"
          + "(\\d+)\\s+"
-         + "(?:(\\S+(?:\\s\\S+)*)\\s+)?"					
--        + "(?:(\\S+(?:\\s\\S+)*)\\s+)?"
+         + "(?:(\\S+(?:\\s\\S+)*)\\s+)?"					// owner name (optional spaces)
+-        + "(?:(\\S+(?:\\s\\S+)*)\\s+)?" // group name (optional spaces)
 +        + "(\\S+)\\s+"
          + "(\\d+)\\s+"
          

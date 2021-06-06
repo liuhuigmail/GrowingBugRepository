@@ -1,5 +1,5 @@
 diff --git a/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java b/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
-index b8f347a..7251618 100644
+index b8f347a3..7251618f 100644
 --- a/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
 +++ b/src/main/java/org/apache/commons/net/ftp/parser/MVSFTPEntryParser.java
 @@ -271,7 +271,7 @@ public class MVSFTPEntryParser extends ConfigurableFTPFileEntryParserImpl {
@@ -11,10 +11,9 @@ index b8f347a..7251618 100644
          } else if (isType == JES_LEVEL_1_LIST_TYPE) {
              isParsed = parseJeslevel1List(f, entry);
          } else if (isType == JES_LEVEL_2_LIST_TYPE) {
-@@ -401,6 +401,21 @@ public class MVSFTPEntryParser extends ConfigurableFTPFileEntryParserImpl {
+@@ -401,6 +401,13 @@ public class MVSFTPEntryParser extends ConfigurableFTPFileEntryParserImpl {
          return false;
      }
- 
 
 +    private boolean parseUnixList(FTPFile file, String entry) {
 +        file = unixFTPEntryParser.parseFTPEntry(entry);
@@ -23,7 +22,6 @@ index b8f347a..7251618 100644
 +        }
 +        return true;
 +    }
-
      /**
       * Matches these entries, note: no header:
       * <pre>
