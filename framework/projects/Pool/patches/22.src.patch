@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+index dcfe448c..82987daf 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+@@ -1009,6 +1009,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+             if (maxTotal > -1 && newNumTotal > maxTotal) {
+                 numTotal.decrementAndGet();
+                 if (getNumIdle() == 0) {
++                    objectDeque.idleObjects.interuptTakeWaiters();
+                     return null;
+                 }
+                 clearOldest();
+@@ -1023,6 +1026,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+         if (newCreateCount > maxTotalPerKeySave) {
+             numTotal.decrementAndGet();
+             objectDeque.getCreateCount().decrementAndGet();
++            objectDeque.idleObjects.interuptTakeWaiters();
+             return null;
+         }
+ 
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+index 0e0c9bdb..2aadb43a 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
+@@ -848,6 +848,7 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+         final long newCreateCount = createCount.incrementAndGet();
+         if (newCreateCount > localMaxTotal) {
+             createCount.decrementAndGet();
++            idleObjects.interuptTakeWaiters();
+             return null;
+         }
+ 

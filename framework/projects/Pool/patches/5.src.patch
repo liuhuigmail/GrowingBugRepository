@@ -1,13 +1,12 @@
 diff --git a/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java b/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
-index 2877dde..5bc104c 100644
+index 2877ddee..30e729c1 100644
 --- a/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
 +++ b/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
-@@ -1415,8 +1415,13 @@ public class GenericKeyedObjectPool extends BaseKeyedObjectPool implements Keyed
+@@ -1415,8 +1415,12 @@ public class GenericKeyedObjectPool extends BaseKeyedObjectPool implements Keyed
                      listForKey.add(pairTimeStamp);
                      toDestroy.put(key, listForKey);
                  }
 -                objectQueue.incrementInternalProcessingCount();
-
 +                if (list.isEmpty()) {
 +                    _poolMap.remove(key);
 +                    _poolList.remove(key);

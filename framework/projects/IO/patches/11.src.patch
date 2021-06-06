@@ -1,10 +1,16 @@
 diff --git a/src/java/org/apache/commons/io/input/SwappedDataInputStream.java b/src/java/org/apache/commons/io/input/SwappedDataInputStream.java
-index f9ed6c5..54e01a7 100644
+index f9ed6c57..54e01a78 100644
 --- a/src/java/org/apache/commons/io/input/SwappedDataInputStream.java
 +++ b/src/java/org/apache/commons/io/input/SwappedDataInputStream.java
 @@ -48,15 +48,15 @@ public class SwappedDataInputStream extends ProxyInputStream
      }
  
+     /**
+      * Return <code>{@link #readByte()} != 0</code>
+      * @return false if the byte read is zero, otherwise true
+      * @throws IOException if an I/O error occurs
+      * @throws EOFException if an end of file is reached unexpectedly
+      */
      public boolean readBoolean()
          throws IOException, EOFException
      {

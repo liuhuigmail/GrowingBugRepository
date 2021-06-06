@@ -1,34 +1,46 @@
 diff --git a/src/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
-index db2134a..3e503bd 100644
+index db2134ae..3e503bd7 100644
 --- a/src/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
 +++ b/src/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
-
-@@ -1192,25 +1192,15 @@ public class GenericKeyedObjectPool<K,T> implements KeyedObjectPool<K,T>,
+@@ -1192,25 +1192,20 @@ public class GenericKeyedObjectPool<K,T> implements KeyedObjectPool<K,T>,
               }
  
               // Stop the evictor before the pool is closed since evict() calls
-              // assertOpen() 
+              // assertOpen()
               startEvictor(-1L);
  
+              closed = true;
+              // This clear removes any idle objects
+              clear();
+              if (oname != null) {
+                  ManagementFactory.getPlatformMBeanServer().unregisterMBean(
+                          oname);
+              }
+ 
+              // Release any threads that were waiting for an object
 -             Iterator<ObjectDeque<T>> iter = poolMap.values().iterator();
 -             while (iter.hasNext()) {
 -                 iter.next().getIdleObjects().interuptTakeWaiters();
 -             }
+              // This clear cleans up the keys now any waiting threads have been
+              // interrupted
 -             clear();
           }
  
       }
- 
 diff --git a/src/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-index 163f237..a580a00 100644
+index 163f237f..a580a00b 100644
 --- a/src/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 +++ b/src/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-
-@@ -1062,9 +1062,6 @@ public class GenericObjectPool<T> extends BaseObjectPool<T>
+@@ -1062,9 +1062,8 @@ public class GenericObjectPool<T> extends BaseObjectPool<T>
                  ManagementFactory.getPlatformMBeanServer().unregisterMBean(
                          oname);
              }
-
+ 
+             // Release any threads that were waiting for an object
 -            idleObjects.interuptTakeWaiters();
          }
      }
+
+
+ 

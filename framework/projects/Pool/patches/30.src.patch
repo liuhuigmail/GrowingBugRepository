@@ -1,5 +1,5 @@
 diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
-index 56d4668..5d171a4 100644
+index 56d46688..5d171a44 100644
 --- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 +++ b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 @@ -581,11 +581,6 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
@@ -14,11 +14,10 @@ index 56d4668..5d171a4 100644
          } else {
              if (getLifo()) {
                  idleObjects.addFirst(p);
-@@ -940,6 +935,15 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
+@@ -940,6 +935,10 @@ public class GenericObjectPool<T> extends BaseGenericObjectPool<T>
              destroyedCount.incrementAndGet();
              createCount.decrementAndGet();
          }
-
 +        if (idleObjects.isEmpty() && idleObjects.hasTakeWaiters()) {
 +            final PooledObject<T> freshPooled = create();
 +            idleObjects.put(freshPooled);
