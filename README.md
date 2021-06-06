@@ -55,28 +55,6 @@ from open-source Java projects.
  - SVN >= 1.8
  - Perl >= 5.0.12
  
-#### Java version
-All bugs have been reproduced and triggering tests verified, using the latest
-version of Java 1.8.
-Note that using Java 1.9+ might result in unexpected failing tests on a fixed
-program version.
-
-#### Timezone
-GrowingBugs generates and executes tests in the timezone `America/Los_Angeles`.
-If you are using the bugs outside of the GrowingBugs framework, set the `TZ`
-environment variable to `America/Los_Angeles` and export it.
-
-#### Perl dependencies
-```
-DBI >= 1.63
-DBD::CSV >= 0.48
-URI >= 1.72
-JSON >= 2.97
-JSON::Parse >= 0.55
-List::Util >= 1.33
-```
-If you do not have `cpanm` installed, use cpan or a cpan wrapper to install the above perl modules.
-
 ## Steps to set up GrowingBugs
 1. Clone Defects4J:
     - `git clone https://github.com/liuhuigmail/GrowingBugRepository.git`

@@ -1,9 +1,17 @@
 diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
-index 554cef5..e9fd007 100644
+index 554cef5c9..e9fd007dd 100644
 --- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
 +++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
-@@ -72,14 +72,15 @@ public class DurationFormatUtils {
-
+@@ -72,14 +72,14 @@ public class DurationFormatUtils {
+     /**
+      * <p>Formats the time gap as a string.</p>
+      * 
+      * <p>The format used is ISO 8601-like: {@code HH:mm:ss.SSS}.</p>
+      *
+      * @param durationMillis  the duration to format
+      * @return the formatted duration, not null
+      * @throws java.lang.IllegalArgumentException if durationMillis is negative
+      */
      public static String formatDurationHMS(final long durationMillis) {
 -        return formatDuration(durationMillis, "HH:mm:ss.SSS");
 +        return formatDuration(durationMillis, "H:mm:ss.SSS");

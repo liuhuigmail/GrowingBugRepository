@@ -1,12 +1,12 @@
 diff --git a/src/main/java/org/apache/commons/lang3/text/translate/OctalUnescaper.java b/src/main/java/org/apache/commons/lang3/text/translate/OctalUnescaper.java
-index 1d6a02c..52b40c4 100644
+index 1d6a02c02..52b40c432 100644
 --- a/src/main/java/org/apache/commons/lang3/text/translate/OctalUnescaper.java
 +++ b/src/main/java/org/apache/commons/lang3/text/translate/OctalUnescaper.java
-@@ -50,10 +50,6 @@ public class OctalUnescaper extends CharSequenceTranslator {
+@@ -50,10 +50,7 @@ public class OctalUnescaper extends CharSequenceTranslator {
                      end--; // rollback
                      break;
                  }
-
+                 // only 3 characters applicable for Octal
 -                if (end - start >= 3) {
 -                    break;
 -                }
