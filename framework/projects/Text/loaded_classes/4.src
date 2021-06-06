@@ -1,0 +1,15 @@
+org.apache.commons.text.StringEscapeUtils
+org.apache.commons.text.translate.AggregateTranslator
+org.apache.commons.text.translate.CharSequenceTranslator
+org.apache.commons.text.translate.CodePointTranslator
+org.apache.commons.text.translate.CsvTranslators
+org.apache.commons.text.translate.EntityArrays
+org.apache.commons.text.translate.JavaUnicodeEscaper
+org.apache.commons.text.translate.LookupTranslator
+org.apache.commons.text.translate.NumericEntityEscaper
+org.apache.commons.text.translate.NumericEntityUnescaper
+org.apache.commons.text.translate.OctalUnescaper
+org.apache.commons.text.translate.SinglePassTranslator
+org.apache.commons.text.translate.UnicodeEscaper
+org.apache.commons.text.translate.UnicodeUnescaper
+org.apache.commons.text.translate.UnicodeUnpairedSurrogateRemover

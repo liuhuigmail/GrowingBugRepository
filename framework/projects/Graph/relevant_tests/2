@@ -1,0 +1,8 @@
+org.apache.commons.graph.coloring.GraphColoingBackTrackingTestCase
+org.apache.commons.graph.coloring.GraphColoringTestCase
+org.apache.commons.graph.model.BaseMutableGraphTestCase
+org.apache.commons.graph.shortestpath.AStarTestCase
+org.apache.commons.graph.shortestpath.BellmannFordTestCase
+org.apache.commons.graph.shortestpath.DijkstraTestCase
+org.apache.commons.graph.shortestpath.FloydWarshallTestCase
+org.apache.commons.graph.visit.VisitTestCase
