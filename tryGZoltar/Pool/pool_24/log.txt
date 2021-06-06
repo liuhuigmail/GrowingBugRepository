@@ -1,0 +1,1820 @@
+[DEBUG] PID: Pool
+[DEBUG] VID: 24
+[DEBUG] DATA_DIR: /home1/lileping3/tryGZoltar/pool_24
+[DEBUG] TOOL: developer
+[DEBUG] TESTS_DIR: 
+[DEBUG] TMP_DIR: /home1/lileping3/tmp/pool_24_buggy
+[DEBUG] DIR_PROJECT: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool
+[DEBUG] DIR_LOADED_CLASSES: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/loaded_classes
+[DEBUG] DIR_RELEVANT_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/relevant_tests
+[DEBUG] DIR_TRIGGER_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/trigger_tests
+[DEBUG] JAVA_VERSION:
+Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1024m -Xmx4096m
+java version "1.8.0_231"
+Java(TM) SE Runtime Environment (build 1.8.0_231-b11)
+Java HotSpot(TM) 64-Bit Server VM (build 25.231-b11, mixed mode)
+[DEBUG] LOADED_CLASSES: org.apache.commons.pool2.BaseObject:org.apache.commons.pool2.BasePooledObjectFactory:org.apache.commons.pool2.impl.AbandonedConfig:org.apache.commons.pool2.impl.BaseGenericObjectPool:org.apache.commons.pool2.impl.BaseObjectPoolConfig:org.apache.commons.pool2.impl.DefaultEvictionPolicy:org.apache.commons.pool2.impl.DefaultPooledObjectInfo:org.apache.commons.pool2.impl.DefaultPooledObjectInfoMBean:org.apache.commons.pool2.impl.EvictionPolicy:org.apache.commons.pool2.impl.GenericObjectPool:org.apache.commons.pool2.impl.GenericObjectPoolConfig:org.apache.commons.pool2.impl.GenericObjectPoolMXBean:org.apache.commons.pool2.impl.InterruptibleReentrantLock:org.apache.commons.pool2.impl.LinkedBlockingDeque:org.apache.commons.pool2.ObjectPool:org.apache.commons.pool2.PooledObject:org.apache.commons.pool2.PooledObjectFactory:org.apache.commons.pool2.SwallowedExceptionListener:org.apache.commons.pool2.UsageTracking:
+[DEBUG] LOADED_SUB_CLASSES: org.apache.commons.pool2.BaseObject$*:org.apache.commons.pool2.BasePooledObjectFactory$*:org.apache.commons.pool2.impl.AbandonedConfig$*:org.apache.commons.pool2.impl.BaseGenericObjectPool$*:org.apache.commons.pool2.impl.BaseObjectPoolConfig$*:org.apache.commons.pool2.impl.DefaultEvictionPolicy$*:org.apache.commons.pool2.impl.DefaultPooledObjectInfo$*:org.apache.commons.pool2.impl.DefaultPooledObjectInfoMBean$*:org.apache.commons.pool2.impl.EvictionPolicy$*:org.apache.commons.pool2.impl.GenericObjectPool$*:org.apache.commons.pool2.impl.GenericObjectPoolConfig$*:org.apache.commons.pool2.impl.GenericObjectPoolMXBean$*:org.apache.commons.pool2.impl.InterruptibleReentrantLock$*:org.apache.commons.pool2.impl.LinkedBlockingDeque$*:org.apache.commons.pool2.ObjectPool$*:org.apache.commons.pool2.PooledObject$*:org.apache.commons.pool2.PooledObjectFactory$*:org.apache.commons.pool2.SwallowedExceptionListener$*:org.apache.commons.pool2.UsageTracking$*:
+[DEBUG] RELEVANT_TESTS: org.apache.commons.pool2.TestPoolUtils:org.apache.commons.pool2.impl.TestAbandonedObjectPool:org.apache.commons.pool2.impl.TestBaseGenericObjectPool:org.apache.commons.pool2.impl.TestDefaultPooledObjectInfo:org.apache.commons.pool2.impl.TestGenericObjectPool:org.apache.commons.pool2.impl.TestSoftReferenceObjectPool:org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithCglibProxy:org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithJdkProxy:
+[DEBUG] TRIGGER_TESTS_FILE: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/trigger_tests/24
+[DEBUG] CP: /home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar:/home1/lileping3/tmp/pool_24_buggy/build/classes:/home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/cglib/cglib-nodep/2.1_3/cglib-nodep-2.1_3.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/cglib/cglib/3.2.10/cglib-3.2.10.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/cglib/cglib/3.2.12/cglib-3.2.12.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/cglib/cglib/3.2.5/cglib-3.2.5.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/cglib/cglib/3.2.6/cglib-3.2.6.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/cglib/cglib/3.2.7/cglib-3.2.7.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/cglib/cglib/3.2.9/cglib-3.2.9.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/cglib/cglib/3.3.0/cglib-3.3.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/junit/junit/4.12/junit-4.12.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/cglib/cglib-nodep/2.1_3/cglib-nodep-2.1_3.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/cglib/cglib/3.2.10/cglib-3.2.10.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/cglib/cglib/3.2.12/cglib-3.2.12.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/cglib/cglib/3.2.5/cglib-3.2.5.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/cglib/cglib/3.2.6/cglib-3.2.6.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/cglib/cglib/3.2.7/cglib-3.2.7.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/cglib/cglib/3.2.9/cglib-3.2.9.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/cglib/cglib/3.3.0/cglib-3.3.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/junit/junit/4.12/junit-4.12.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/apache/ant/ant-launcher/1.10.3/ant-launcher-1.10.3.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/apache/ant/ant-launcher/1.9.6/ant-launcher-1.9.6.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/apache/ant/ant/1.10.3/ant-1.10.3.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/apache/ant/ant/1.9.6/ant-1.9.6.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-analysis/6.1.1/asm-analysis-6.1.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-analysis/6.2.1/asm-analysis-6.2.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-analysis/6.2/asm-analysis-6.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-analysis/7.0/asm-analysis-7.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-analysis/7.1/asm-analysis-7.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-analysis/7.2/asm-analysis-7.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-tree/6.0/asm-tree-6.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-tree/6.1.1/asm-tree-6.1.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-tree/6.2.1/asm-tree-6.2.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-tree/6.2/asm-tree-6.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-tree/7.0/asm-tree-7.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-tree/7.1/asm-tree-7.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-tree/7.2/asm-tree-7.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-util/6.0/asm-util-6.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-util/6.1.1/asm-util-6.1.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-util/6.2.1/asm-util-6.2.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-util/6.2/asm-util-6.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-util/7.0/asm-util-7.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-util/7.1/asm-util-7.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm-util/7.2/asm-util-7.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm/5.2/asm-5.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm/6.0/asm-6.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm/6.2/asm-6.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm/7.0/asm-7.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/lib/org/ow2/asm/asm/7.1/asm-7.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/apache/ant/ant-launcher/1.10.3/ant-launcher-1.10.3.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/apache/ant/ant-launcher/1.9.6/ant-launcher-1.9.6.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/apache/ant/ant/1.10.3/ant-1.10.3.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/apache/ant/ant/1.9.6/ant-1.9.6.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-analysis/6.1.1/asm-analysis-6.1.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-analysis/6.2.1/asm-analysis-6.2.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-analysis/6.2/asm-analysis-6.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-analysis/7.0/asm-analysis-7.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-analysis/7.1/asm-analysis-7.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-analysis/7.2/asm-analysis-7.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-tree/6.0/asm-tree-6.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-tree/6.1.1/asm-tree-6.1.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-tree/6.2.1/asm-tree-6.2.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-tree/6.2/asm-tree-6.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-tree/7.0/asm-tree-7.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-tree/7.1/asm-tree-7.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-tree/7.2/asm-tree-7.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-util/6.0/asm-util-6.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-util/6.1.1/asm-util-6.1.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-util/6.2.1/asm-util-6.2.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-util/6.2/asm-util-6.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-util/7.0/asm-util-7.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-util/7.1/asm-util-7.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm-util/7.2/asm-util-7.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm/5.2/asm-5.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm/6.0/asm-6.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm/6.2/asm-6.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm/7.0/asm-7.0.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Pool/lib/org/ow2/asm/asm/7.1/asm-7.1.jar:/home1/lileping3/tmp/pool_24_buggy/build/test-classes
+[INFO] Compiling Pool-24
+Running ant (compile)...................................................... OK
+Running ant (compile.tests)................................................ OK
+[INFO] Running GZoltar
+[INFO] Start: 2021年 06月 05日 星期六 07:32:54 PDT
+   ____ _____     _ _               
+  / ___|__  /___ | | |_ __ _ _ __   
+ | |  _  / // _ \| | __/ _` | '__| 
+ | |_| |/ /| (_) | | || (_| | |     
+  \____/____\___/|_|\__\__,_|_| 
+
+* Preparing classpath
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=1024M; support was removed in 8.0
+* Collecting classes under test
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+* Collecting test cases
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+* Performing analysis
+* Started org.apache.commons.pool2.TestPoolUtils#testErodingObjectPoolDefaultFactor
+* Finished org.apache.commons.pool2.TestPoolUtils#testErodingObjectPoolDefaultFactor
+* Started org.apache.commons.pool2.TestPoolUtils#testJavaBeanInstantiation
+* Finished org.apache.commons.pool2.TestPoolUtils#testJavaBeanInstantiation
+* Started org.apache.commons.pool2.TestPoolUtils#testCheckMinIdleKeyedObjectPoolKeysNulls
+* Finished org.apache.commons.pool2.TestPoolUtils#testCheckMinIdleKeyedObjectPoolKeysNulls
+* Started org.apache.commons.pool2.TestPoolUtils#testTimerHolder
+* Finished org.apache.commons.pool2.TestPoolUtils#testTimerHolder
+* Started org.apache.commons.pool2.TestPoolUtils#testPrefillKeyedObjectPool
+* Finished org.apache.commons.pool2.TestPoolUtils#testPrefillKeyedObjectPool
+* Started org.apache.commons.pool2.TestPoolUtils#testSynchronizedPoolableFactoryKeyedPoolableObjectFactory
+* Finished org.apache.commons.pool2.TestPoolUtils#testSynchronizedPoolableFactoryKeyedPoolableObjectFactory
+* Started org.apache.commons.pool2.TestPoolUtils#testPrefillKeyedObjectPoolCollection
+* Finished org.apache.commons.pool2.TestPoolUtils#testPrefillKeyedObjectPoolCollection
+* Started org.apache.commons.pool2.TestPoolUtils#testErodingPoolKeyedObjectPool
+* Finished org.apache.commons.pool2.TestPoolUtils#testErodingPoolKeyedObjectPool
+* Started org.apache.commons.pool2.TestPoolUtils#testCheckMinIdleObjectPool
+* Finished org.apache.commons.pool2.TestPoolUtils#testCheckMinIdleObjectPool
+* Started org.apache.commons.pool2.TestPoolUtils#testSynchronizedPoolObjectPool
+* Finished org.apache.commons.pool2.TestPoolUtils#testSynchronizedPoolObjectPool
+* Started org.apache.commons.pool2.TestPoolUtils#testErodingPoolKeyedObjectPoolDefaultFactor
+* Finished org.apache.commons.pool2.TestPoolUtils#testErodingPoolKeyedObjectPoolDefaultFactor
+* Started org.apache.commons.pool2.TestPoolUtils#testErodingPoolObjectPool
+* Finished org.apache.commons.pool2.TestPoolUtils#testErodingPoolObjectPool
+* Started org.apache.commons.pool2.TestPoolUtils#testErodingPerKeyKeyedObjectPool
+* Finished org.apache.commons.pool2.TestPoolUtils#testErodingPerKeyKeyedObjectPool
+* Started org.apache.commons.pool2.TestPoolUtils#testPrefillObjectPool
+* Finished org.apache.commons.pool2.TestPoolUtils#testPrefillObjectPool
+* Started org.apache.commons.pool2.TestPoolUtils#testCheckMinIdleKeyedObjectPoolKeys
+* Finished org.apache.commons.pool2.TestPoolUtils#testCheckMinIdleKeyedObjectPoolKeys
+* Started org.apache.commons.pool2.TestPoolUtils#testSynchronizedPoolableFactoryPoolableObjectFactory
+* Finished org.apache.commons.pool2.TestPoolUtils#testSynchronizedPoolableFactoryPoolableObjectFactory
+* Started org.apache.commons.pool2.TestPoolUtils#testSynchronizedPoolKeyedObjectPool
+* Finished org.apache.commons.pool2.TestPoolUtils#testSynchronizedPoolKeyedObjectPool
+* Started org.apache.commons.pool2.TestPoolUtils#testCheckRethrow
+* Finished org.apache.commons.pool2.TestPoolUtils#testCheckRethrow
+* Started org.apache.commons.pool2.TestPoolUtils#testCheckMinIdleKeyedObjectPool
+* Finished org.apache.commons.pool2.TestPoolUtils#testCheckMinIdleKeyedObjectPool
+* Started org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithCglibProxy#testBorrowObject
+[ERROR] Class not found
+java.lang.ClassNotFoundException: net.sf.cglib.proxy.Enhancer$EnhancerKey$$KeyFactoryByCGLIB$$7fb24d72
+	at java.lang.ClassLoader.findClass(ClassLoader.java:523)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at net.sf.cglib.core.AbstractClassGenerator.create(AbstractClassGenerator.java:210)
+	at net.sf.cglib.core.KeyFactory$Generator.create(KeyFactory.java:145)
+	at net.sf.cglib.core.KeyFactory.create(KeyFactory.java:117)
+	at net.sf.cglib.core.KeyFactory.create(KeyFactory.java:108)
+	at net.sf.cglib.core.KeyFactory.create(KeyFactory.java:104)
+	at net.sf.cglib.proxy.Enhancer.<clinit>(Enhancer.java:69)
+	at org.apache.commons.pool2.proxy.CglibProxySource.createProxy(CglibProxySource.java:46)
+	at org.apache.commons.pool2.proxy.ProxiedObjectPool.borrowObject(ProxiedObjectPool.java:63)
+	at org.apache.commons.pool2.proxy.BaseTestProxiedObjectPool.testBorrowObject(BaseTestProxiedObjectPool.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[ERROR] Class not found
+java.lang.ClassNotFoundException: net.sf.cglib.core.MethodWrapper$MethodWrapperKey$$KeyFactoryByCGLIB$$d45e49f7
+	at java.lang.ClassLoader.findClass(ClassLoader.java:523)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at net.sf.cglib.core.AbstractClassGenerator.create(AbstractClassGenerator.java:210)
+	at net.sf.cglib.core.KeyFactory$Generator.create(KeyFactory.java:145)
+	at net.sf.cglib.core.KeyFactory.create(KeyFactory.java:117)
+	at net.sf.cglib.core.KeyFactory.create(KeyFactory.java:108)
+	at net.sf.cglib.core.KeyFactory.create(KeyFactory.java:104)
+	at net.sf.cglib.core.MethodWrapper.<clinit>(MethodWrapper.java:22)
+	at net.sf.cglib.proxy.Enhancer.getMethods(Enhancer.java:432)
+	at net.sf.cglib.proxy.Enhancer.generateClass(Enhancer.java:456)
+	at net.sf.cglib.core.DefaultGeneratorStrategy.generate(DefaultGeneratorStrategy.java:25)
+	at net.sf.cglib.core.AbstractClassGenerator.create(AbstractClassGenerator.java:216)
+	at net.sf.cglib.proxy.Enhancer.createHelper(Enhancer.java:377)
+	at net.sf.cglib.proxy.Enhancer.create(Enhancer.java:285)
+	at org.apache.commons.pool2.proxy.CglibProxySource.createProxy(CglibProxySource.java:55)
+	at org.apache.commons.pool2.proxy.ProxiedObjectPool.borrowObject(ProxiedObjectPool.java:63)
+	at org.apache.commons.pool2.proxy.BaseTestProxiedObjectPool.testBorrowObject(BaseTestProxiedObjectPool.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+* Finished org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithCglibProxy#testBorrowObject
+* Started org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithCglibProxy#testPassThroughMethods01
+* Finished org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithCglibProxy#testPassThroughMethods01
+* Started org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithCglibProxy#testPassThroughMethods02
+* Finished org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithCglibProxy#testPassThroughMethods02
+* Started org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithCglibProxy#testAccessAfterReturn
+* Finished org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithCglibProxy#testAccessAfterReturn
+* Started org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithCglibProxy#testAccessAfterInvalidate
+* Finished org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithCglibProxy#testAccessAfterInvalidate
+* Started org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithCglibProxy#testUsageTracking
+* Finished org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithCglibProxy#testUsageTracking
+* Started org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithJdkProxy#testBorrowObject
+* Finished org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithJdkProxy#testBorrowObject
+* Started org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithJdkProxy#testPassThroughMethods01
+* Finished org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithJdkProxy#testPassThroughMethods01
+* Started org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithJdkProxy#testPassThroughMethods02
+* Finished org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithJdkProxy#testPassThroughMethods02
+* Started org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithJdkProxy#testAccessAfterReturn
+* Finished org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithJdkProxy#testAccessAfterReturn
+* Started org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithJdkProxy#testAccessAfterInvalidate
+* Finished org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithJdkProxy#testAccessAfterInvalidate
+* Started org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithJdkProxy#testUsageTracking
+* Finished org.apache.commons.pool2.proxy.TestProxiedObjectPoolWithJdkProxy#testUsageTracking
+* Started org.apache.commons.pool2.impl.TestDefaultPooledObjectInfo#testGetPooledObjectToString
+* Finished org.apache.commons.pool2.impl.TestDefaultPooledObjectInfo#testGetPooledObjectToString
+* Started org.apache.commons.pool2.impl.TestDefaultPooledObjectInfo#testGetLastBorrowTrace
+* Finished org.apache.commons.pool2.impl.TestDefaultPooledObjectInfo#testGetLastBorrowTrace
+* Started org.apache.commons.pool2.impl.TestDefaultPooledObjectInfo#testGetPooledObjectType
+* Finished org.apache.commons.pool2.impl.TestDefaultPooledObjectInfo#testGetPooledObjectType
+* Started org.apache.commons.pool2.impl.TestDefaultPooledObjectInfo#testTiming
+* Finished org.apache.commons.pool2.impl.TestDefaultPooledObjectInfo#testTiming
+* Started org.apache.commons.pool2.impl.TestAbandonedObjectPool#testAbandonedInvalidate
+* Finished org.apache.commons.pool2.impl.TestAbandonedObjectPool#testAbandonedInvalidate
+* Started org.apache.commons.pool2.impl.TestAbandonedObjectPool#testAbandonedReturn
+* Finished org.apache.commons.pool2.impl.TestAbandonedObjectPool#testAbandonedReturn
+* Started org.apache.commons.pool2.impl.TestAbandonedObjectPool#testStackTrace
+* Finished org.apache.commons.pool2.impl.TestAbandonedObjectPool#testStackTrace
+* Started org.apache.commons.pool2.impl.TestAbandonedObjectPool#testWhenExhaustedBlock
+* Finished org.apache.commons.pool2.impl.TestAbandonedObjectPool#testWhenExhaustedBlock
+* Started org.apache.commons.pool2.impl.TestAbandonedObjectPool#testRemoveAbandonedWhileReturning
+* Finished org.apache.commons.pool2.impl.TestAbandonedObjectPool#testRemoveAbandonedWhileReturning
+* Started org.apache.commons.pool2.impl.TestAbandonedObjectPool#testConcurrentInvalidation
+* Finished org.apache.commons.pool2.impl.TestAbandonedObjectPool#testConcurrentInvalidation
+* Ignored: org.apache.commons.pool2.impl.TestGenericObjectPool#testGetFactoryType_PoolUtilssynchronizedPooledFactory
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testMakeConcurrentWithReturn
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testMakeConcurrentWithReturn
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testGetFactoryType
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testGetFactoryType
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testSwallowedExceptionListener
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testSwallowedExceptionListener
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testValidationFailureOnReturnFreesCapacity
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testValidationFailureOnReturnFreesCapacity
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testConcurrentInvalidate
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testConcurrentInvalidate
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictWhileEmpty
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictWhileEmpty
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testConcurrentBorrowAndEvict
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testConcurrentBorrowAndEvict
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictionSoftMinIdle
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictionSoftMinIdle
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testTimeoutNoLeak
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testTimeoutNoLeak
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testFIFO
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testFIFO
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testLIFO
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testLIFO
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictionInvalid
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictionInvalid
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testClientWaitStats
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testClientWaitStats
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testMaxTotalZero
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testMaxTotalZero
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testConstructors
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testConstructors
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testThreaded1
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testThreaded1
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testBrokenFactoryShouldNotBlockPool
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testBrokenFactoryShouldNotBlockPool
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testValidationOnCreateOnly
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testValidationOnCreateOnly
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testSettersAndGetters
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testSettersAndGetters
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testJmxRegistration
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testJmxRegistration
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testMaxTotalInvariant
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testMaxTotalInvariant
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictFIFO
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictFIFO
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictLIFO
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictLIFO
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testMultipleReturn
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testMultipleReturn
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testConstructorNullFactory
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testConstructorNullFactory
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testFailingFactoryDoesNotBlockThreads
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testFailingFactoryDoesNotBlockThreads
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testMultipleReturnOfSameObject
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testMultipleReturnOfSameObject
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testNoInstanceOverlap
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testNoInstanceOverlap
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testMaxIdle
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testMaxIdle
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictionOrder
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictionOrder
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictionWithNegativeNumTests
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictionWithNegativeNumTests
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictorVisiting
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictorVisiting
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testMaxTotalUnderLoad
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testMaxTotalUnderLoad
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testAddObject
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testAddObject
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testExceptionOnDestroyDuringBorrow
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testExceptionOnDestroyDuringBorrow
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testDefaultConfiguration
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testDefaultConfiguration
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testNegativeMaxTotal
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testNegativeMaxTotal
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testWhenExhaustedFail
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testWhenExhaustedFail
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testExceptionOnActivateDuringBorrow
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testExceptionOnActivateDuringBorrow
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testMinIdle
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testMinIdle
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testSetConfig
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testSetConfig
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testWhenExhaustedBlockClosePool
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testWhenExhaustedBlockClosePool
+* Ignored: org.apache.commons.pool2.impl.TestGenericObjectPool#testGetFactoryType_SynchronizedPooledObjectFactory
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testExceptionOnDestroyDuringReturn
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testExceptionOnDestroyDuringReturn
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testMutable
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testMutable
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testEviction
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testEviction
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testMaxTotal
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testMaxTotal
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testErrorFactoryDoesNotBlockThreads
+* Failure: null | testErrorFactoryDoesNotBlockThreads(org.apache.commons.pool2.impl.TestGenericObjectPool)
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:86)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertFalse(Assert.java:64)
+	at org.junit.Assert.assertFalse(Assert.java:74)
+	at org.apache.commons.pool2.impl.TestGenericObjectPool.testErrorFactoryDoesNotBlockThreads(TestGenericObjectPool.java:2680)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testErrorFactoryDoesNotBlockThreads
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testBorrowObjectFairness
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testBorrowObjectFairness
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testExceptionOnPassivateDuringReturn
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testExceptionOnPassivateDuringReturn
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictAddObjects
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictAddObjects
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testEqualsIndiscernible
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testEqualsIndiscernible
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictionPolicy
+[ERROR] Class not found
+java.lang.ClassNotFoundException: 1622903714146
+	at java.lang.ClassLoader.findClass(ClassLoader.java:523)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+	at org.apache.commons.pool2.impl.BaseGenericObjectPool.setEvictionPolicyClassName(BaseGenericObjectPool.java:607)
+	at org.apache.commons.pool2.impl.TestGenericObjectPool.testEvictionPolicy(TestGenericObjectPool.java:1046)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+[ERROR] Class not found
+java.lang.ClassNotFoundException: 1622903714146
+	at java.lang.ClassLoader.findClass(ClassLoader.java:523)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+	at com.gzoltar.lib.instrumentation.util.GZoltarClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at org.apache.commons.pool2.impl.BaseGenericObjectPool.setEvictionPolicyClassName(BaseGenericObjectPool.java:610)
+	at org.apache.commons.pool2.impl.TestGenericObjectPool.testEvictionPolicy(TestGenericObjectPool.java:1046)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testEvictionPolicy
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testMaxIdleZero
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testMaxIdleZero
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testMaxWaitMultiThreaded
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testMaxWaitMultiThreaded
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testMinIdleMaxTotal
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testMinIdleMaxTotal
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testInvalidateFreesCapacity
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testInvalidateFreesCapacity
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testStartAndStopEvictor
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testStartAndStopEvictor
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testWhenExhaustedBlockInterupt
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testWhenExhaustedBlockInterupt
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testWhenExhaustedBlock
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testWhenExhaustedBlock
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testBaseBorrow
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testBaseBorrow
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testClose
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testClose
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testBaseClear
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testBaseClear
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testBaseNumActiveNumIdle
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testBaseNumActiveNumIdle
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testUnsupportedOperations
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testUnsupportedOperations
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testBaseInvalidateObject
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testBaseInvalidateObject
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testBaseBorrowReturn
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testBaseBorrowReturn
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testBaseClosePool
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testBaseClosePool
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testBaseAddObject
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testBaseAddObject
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testPOFInvalidateObjectUsages
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testPOFInvalidateObjectUsages
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testPOFAddObjectUsage
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testPOFAddObjectUsage
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testPOFCloseUsages
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testPOFCloseUsages
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testToString
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testToString
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testClosedPoolBehavior
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testClosedPoolBehavior
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testPOFBorrowObjectUsages
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testPOFBorrowObjectUsages
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testPOFReturnObjectUsages
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testPOFReturnObjectUsages
+* Started org.apache.commons.pool2.impl.TestGenericObjectPool#testPOFClearUsages
+* Finished org.apache.commons.pool2.impl.TestGenericObjectPool#testPOFClearUsages
+* Started org.apache.commons.pool2.impl.TestBaseGenericObjectPool#testBorrowWaitStatistics
+* Finished org.apache.commons.pool2.impl.TestBaseGenericObjectPool#testBorrowWaitStatistics
+* Started org.apache.commons.pool2.impl.TestBaseGenericObjectPool#testActiveTimeStatistics
+* Finished org.apache.commons.pool2.impl.TestBaseGenericObjectPool#testActiveTimeStatistics
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testBaseBorrow
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testBaseBorrow
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testClose
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testClose
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testBaseClear
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testBaseClear
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testBaseNumActiveNumIdle
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testBaseNumActiveNumIdle
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testUnsupportedOperations
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testUnsupportedOperations
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testBaseInvalidateObject
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testBaseInvalidateObject
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testBaseBorrowReturn
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testBaseBorrowReturn
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testBaseClosePool
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testBaseClosePool
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testBaseAddObject
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testBaseAddObject
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testPOFInvalidateObjectUsages
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testPOFInvalidateObjectUsages
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testPOFAddObjectUsage
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testPOFAddObjectUsage
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testPOFCloseUsages
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testPOFCloseUsages
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testToString
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testToString
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testClosedPoolBehavior
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testClosedPoolBehavior
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testPOFBorrowObjectUsages
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testPOFBorrowObjectUsages
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testPOFReturnObjectUsages
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testPOFReturnObjectUsages
+* Started org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testPOFClearUsages
+* Finished org.apache.commons.pool2.impl.TestSoftReferenceObjectPool#testPOFClearUsages
+* Filtering test cases that do not cover any component
+* Sending data to master
+* Closing connection with client
+* Performing fault localization
+* Running Ochiai
+* Writing coverage matrix to '/home1/lileping3/tryGZoltar/pool_24/matrix'
+* Writing spectra to '/home1/lileping3/tryGZoltar/pool_24/spectra'
+* Metrics
+* Computation finished
+[INFO] End: 2021年 06月 05日 星期六 07:35:22 PDT
+[DEBUG] MATRIX OK
+[DEBUG] SPECTRA OK
+
+DONE!
