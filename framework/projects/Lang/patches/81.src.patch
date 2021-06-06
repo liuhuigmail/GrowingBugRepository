@@ -1,13 +1,13 @@
 diff --git a/src/main/java/org/apache/commons/lang3/time/DateUtils.java b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
-index 60bb0d0..e57b537 100644
+index 60bb0d0d6..e57b53765 100644
 --- a/src/main/java/org/apache/commons/lang3/time/DateUtils.java
 +++ b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
-@@ -1690,15 +1690,13 @@ public class DateUtils {
+@@ -1690,15 +1690,14 @@ public class DateUtils {
          final long millisPerUnit = getMillisPerUnit(unit);
          long result = 0;
          
 -        int offset = (unit == Calendar.DAY_OF_YEAR) ? 0 : 1;
-       
+         
          // Fragments bigger than a day require a breakdown to days
          switch (fragment) {
              case Calendar.YEAR:

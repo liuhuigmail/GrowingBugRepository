@@ -1,5 +1,5 @@
 diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
-index e7aa45f..4fe626f 100644
+index e7aa45f3a..4fe626f19 100644
 --- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
 +++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
 @@ -124,9 +124,6 @@ public class DurationFormatUtils {

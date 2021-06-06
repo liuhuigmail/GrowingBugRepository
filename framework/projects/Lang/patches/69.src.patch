@@ -1,5 +1,5 @@
 diff --git a/src/main/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaper.java b/src/main/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaper.java
-index 739db32..e87993a 100644
+index 739db3227..e87993a58 100644
 --- a/src/main/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaper.java
 +++ b/src/main/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaper.java
 @@ -109,7 +109,7 @@ public class NumericEntityUnescaper extends CharSequenceTranslator {

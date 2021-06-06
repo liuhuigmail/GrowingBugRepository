@@ -1,5 +1,5 @@
 diff --git a/src/main/java/org/apache/commons/collections4/list/SetUniqueList.java b/src/main/java/org/apache/commons/collections4/list/SetUniqueList.java
-index b00b2d2..3227e43 100755
+index b00b2d2f..3227e439 100644
 --- a/src/main/java/org/apache/commons/collections4/list/SetUniqueList.java
 +++ b/src/main/java/org/apache/commons/collections4/list/SetUniqueList.java
 @@ -149,8 +149,8 @@ public class SetUniqueList<E> extends AbstractSerializableListDecorator<E> {

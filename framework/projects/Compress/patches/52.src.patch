@@ -1,5 +1,5 @@
 diff --git a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java
-index 077720a..2a5d591 100644
+index 077720a7..2a5d5910 100644
 --- a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java
 +++ b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java
 @@ -271,12 +271,12 @@ public class TarArchiveOutputStream extends ArchiveOutputStream {
