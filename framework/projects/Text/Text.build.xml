@@ -91,6 +91,7 @@ of the checked-out project version.
         <!--exclude name="____" /-->
         <exclude name="**/ParameterizedLevenshteinDistanceTest*" />
          <exclude name="**/*Abstract*Test.java" />
+         <exclude name="**/RandomStringGeneratorTest.java" />
          <include name="**/*TestCase.java" />
          <include name="**/Test*.java" />
          <include name="**/${test}.java" />

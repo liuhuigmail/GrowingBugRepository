@@ -85,6 +85,16 @@ sub _post_checkout {
             Utils::exec_cmd("cp $build_files_dir/* $work_dir", "Copy generated Ant build file") or die;
         }
     }
+    
+    #exclude the test you don't need
+    my $exclude_test1="$work_dir/src/test/java/org/apache/commons/text/RandomStringGeneratorTest.java";
+    if (-e $exclude_test1){
+        rename($exclude_test1,$exclude_test1.".bak");
+        #open(OUT, '>'.$exclude_test1) or die $!;
+        #my $converted_file = `iconv -f iso-8859-1 -t utf-8 "$exclude_test1.bak"`;
+        #print OUT $converted_file;
+        #close(OUT);
+    }
 }
 
 #
