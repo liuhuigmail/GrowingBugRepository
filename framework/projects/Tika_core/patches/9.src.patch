@@ -1,5 +1,5 @@
 diff --git a/tika-core/src/main/java/org/apache/tika/mime/MediaType.java b/tika-core/src/main/java/org/apache/tika/mime/MediaType.java
-index b1116e7..bca232b 100644
+index b1116e7eb..bca232b31 100644
 --- a/tika-core/src/main/java/org/apache/tika/mime/MediaType.java
 +++ b/tika-core/src/main/java/org/apache/tika/mime/MediaType.java
 @@ -17,8 +17,10 @@
@@ -13,7 +13,7 @@ index b1116e7..bca232b 100644
  import java.util.Locale;
  import java.util.Map;
  import java.util.SortedMap;
-@@ -185,22 +184,11 @@ public final class MediaType implements Comparable<MediaType>, Serializable {
+@@ -185,22 +184,13 @@ public final class MediaType implements Comparable<MediaType>, Serializable {
  
              key = key.trim();
              if (key.length() > 0) {
@@ -23,7 +23,7 @@ index b1116e7..bca232b 100644
          }
          return parameters;
      }
-   
+     
 -    private static String unquote(String s) {
 -        if( s.startsWith("\"") && s.endsWith("\"")) {
 -            return s.substring(1, s.length() - 1);
@@ -31,7 +31,7 @@ index b1116e7..bca232b 100644
 -        if( s.startsWith("'") && s.endsWith("'")) {
 -           return s.substring(1, s.length() - 1);
 -       }
-
+ 
 -        return s;
 -    }
  

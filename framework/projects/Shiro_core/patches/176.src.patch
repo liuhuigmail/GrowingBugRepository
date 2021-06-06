@@ -1,5 +1,5 @@
 diff --git a/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java b/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java
-index 6a99ff0..05b7010 100644
+index 6a99ff03..05b70103 100644
 --- a/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java
 +++ b/core/src/main/java/org/apache/shiro/authc/pam/FirstSuccessfulStrategy.java
 @@ -57,7 +57,7 @@ public class FirstSuccessfulStrategy extends AbstractAuthenticationStrategy {

@@ -1,5 +1,5 @@
 diff --git a/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java b/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
-index ba710e1..7d30cbb 100644
+index ba710e174..7d30cbb0c 100644
 --- a/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
 +++ b/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
 @@ -40,7 +40,6 @@ import org.apache.tika.mime.MediaTypeRegistry;
@@ -10,11 +10,11 @@ index ba710e1..7d30cbb 100644
  import org.apache.tika.parser.CompositeParser;
  import org.apache.tika.parser.DefaultParser;
  import org.apache.tika.parser.Parser;
-@@ -286,13 +285,6 @@ public class TikaConfig {
+@@ -286,13 +285,7 @@ public class TikaConfig {
  
              try {
                  Class<?> parserClass = Class.forName(name, true, loader);
-
+                 // https://issues.apache.org/jira/browse/TIKA-866
 -                if (DefaultParser.class.isAssignableFrom(parserClass)
 -                        || AutoDetectParser.class.isAssignableFrom(parserClass)) {
 -                    throw new TikaException(

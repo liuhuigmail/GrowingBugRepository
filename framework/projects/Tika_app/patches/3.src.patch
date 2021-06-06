@@ -1,5 +1,5 @@
 diff --git a/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java b/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
-index a0abe43..dc0d15f 100644
+index a0abe4339..dc0d15f21 100644
 --- a/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
 +++ b/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
 @@ -84,7 +84,6 @@ import org.apache.tika.parser.ParserDecorator;

@@ -1,5 +1,5 @@
 diff --git a/core/src/main/java/org/apache/shiro/session/mgt/SimpleSession.java b/core/src/main/java/org/apache/shiro/session/mgt/SimpleSession.java
-index 7ba14c4..0e90720 100644
+index 7ba14c40..0e90720b 100644
 --- a/core/src/main/java/org/apache/shiro/session/mgt/SimpleSession.java
 +++ b/core/src/main/java/org/apache/shiro/session/mgt/SimpleSession.java
 @@ -500,7 +500,7 @@ public class SimpleSession implements ValidatingSession, Serializable {

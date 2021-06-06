@@ -1,28 +1,30 @@
 diff --git a/tika-core/src/main/java/org/apache/tika/detect/TextDetector.java b/tika-core/src/main/java/org/apache/tika/detect/TextDetector.java
-index 481f595..0079b54 100644
+index 481f5959f..6148668c5 100644
 --- a/tika-core/src/main/java/org/apache/tika/detect/TextDetector.java
 +++ b/tika-core/src/main/java/org/apache/tika/detect/TextDetector.java
-@@ -96,12 +96,7 @@ public class TextDetector implements Detector {
+@@ -96,12 +96,8 @@ public class TextDetector implements Detector {
              for (int i = 0; i < NUMBER_OF_BYTES_TO_TEST; i++) {
                  int ch = input.read();
                  if (ch == -1) {
 -                    if (i > 0) {
                          return MediaType.TEXT_PLAIN;
 -                    } else {
+                         // See https://issues.apache.org/jira/browse/TIKA-483
 -                        return MediaType.OCTET_STREAM;
 -                    }
                  } else if (ch < IS_CONTROL_BYTE.length && IS_CONTROL_BYTE[ch]) {
                      return MediaType.OCTET_STREAM;
                  }
 diff --git a/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java b/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
-index 1e0e8bd..a30cc8d 100644
+index 1e0e8bdd5..a30cc8d1b 100644
 --- a/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
 +++ b/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
-@@ -214,9 +214,6 @@ public final class MimeTypes implements Detector, Serializable {
+@@ -214,9 +214,7 @@ public final class MimeTypes implements Detector, Serializable {
      public MimeType getMimeType(byte[] data) {
          if (data == null) {
              throw new IllegalArgumentException("Data is missing");
 -        } else if (data.length == 0) {
+             // See https://issues.apache.org/jira/browse/TIKA-483
 -            return rootMimeType;
          }
  

@@ -1,12 +1,14 @@
 diff --git a/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java b/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java
-index cdfeded..6c59d77 100644
+index cdfededa..6c59d774 100644
 --- a/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java
 +++ b/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java
-@@ -225,10 +225,6 @@ public abstract class AbstractValidatingSessionManager extends AbstractNativeSes
+@@ -225,10 +225,8 @@ public abstract class AbstractValidatingSessionManager extends AbstractNativeSes
          if (scheduler == null) {
              scheduler = createSessionValidationScheduler();
              setSessionValidationScheduler(scheduler);
 -        }
+         // it is possible that that a scheduler was already created and set via 'setSessionValidationScheduler()'
+         // but would not have been enabled/started yet
 -        if (!scheduler.isEnabled()) {
              if (log.isInfoEnabled()) {
                  log.info("Enabling session validation scheduler...");

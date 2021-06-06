@@ -1,5 +1,5 @@
 diff --git a/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java b/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
-index 79c948c..00fb928 100644
+index 79c948c0a..00fb928f4 100644
 --- a/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
 +++ b/tika-core/src/main/java/org/apache/tika/sax/XHTMLContentHandler.java
 @@ -60,7 +60,7 @@ public class XHTMLContentHandler extends SafeContentHandler {

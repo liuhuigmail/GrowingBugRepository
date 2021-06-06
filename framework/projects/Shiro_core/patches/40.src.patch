@@ -1,5 +1,5 @@
 diff --git a/core/src/main/java/org/apache/shiro/authz/ModularRealmAuthorizer.java b/core/src/main/java/org/apache/shiro/authz/ModularRealmAuthorizer.java
-index fbef094..3c8fc13 100644
+index fbef0947..3c8fc13f 100644
 --- a/core/src/main/java/org/apache/shiro/authz/ModularRealmAuthorizer.java
 +++ b/core/src/main/java/org/apache/shiro/authz/ModularRealmAuthorizer.java
 @@ -89,7 +89,6 @@ public class ModularRealmAuthorizer implements Authorizer, PermissionResolverAwa

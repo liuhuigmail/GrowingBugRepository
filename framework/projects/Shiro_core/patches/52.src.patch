@@ -1,12 +1,13 @@
 diff --git a/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java b/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java
-index a33bd53..b448292 100644
+index a33bd53b..b4482926 100644
 --- a/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java
 +++ b/core/src/main/java/org/apache/shiro/session/mgt/AbstractValidatingSessionManager.java
-@@ -272,10 +272,7 @@ public abstract class AbstractValidatingSessionManager extends AbstractNativeSes
+@@ -272,10 +272,9 @@ public abstract class AbstractValidatingSessionManager extends AbstractNativeSes
          if (activeSessions != null && !activeSessions.isEmpty()) {
              for (Session s : activeSessions) {
                  try {
-
+                     //simulate a lookup key to satisfy the method signature.
+                     //this could probably stand to be cleaned up in future versions:
 -                    SessionKey key = new DefaultSessionKey(s.getId());
 -                    validate(s, key);
 +                    doValidate(s);

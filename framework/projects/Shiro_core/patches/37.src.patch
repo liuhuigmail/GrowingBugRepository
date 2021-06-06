@@ -1,5 +1,5 @@
 diff --git a/core/src/main/java/org/apache/shiro/authc/SimpleAuthenticationInfo.java b/core/src/main/java/org/apache/shiro/authc/SimpleAuthenticationInfo.java
-index 4dcb098..8f0af39 100644
+index 4dcb0985..8bcc42e2 100644
 --- a/core/src/main/java/org/apache/shiro/authc/SimpleAuthenticationInfo.java
 +++ b/core/src/main/java/org/apache/shiro/authc/SimpleAuthenticationInfo.java
 @@ -122,11 +122,12 @@ public class SimpleAuthenticationInfo implements MergableAuthenticationInfo {
@@ -8,13 +8,12 @@ index 4dcb098..8f0af39 100644
          } else {
 -            if (!(this.principals instanceof MutablePrincipalCollection)) {
 +            if (this.principals instanceof MutablePrincipalCollection) {
-+            ((MutablePrincipalCollection) this.principals).addAll(info.getPrincipals());
++                ((MutablePrincipalCollection) this.principals).addAll(info.getPrincipals());
 +            } else {
                  this.principals = new SimplePrincipalCollection(this.principals);
              }
 -            ((MutablePrincipalCollection) this.principals).addAll(info.getPrincipals());
-        }         
-
+         }         
  
          Object thisCredentials = getCredentials();
          Object otherCredentials = info.getCredentials();

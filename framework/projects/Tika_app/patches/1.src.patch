@@ -1,15 +1,16 @@
 diff --git a/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java b/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
-index 0ab4ac9..31096d6 100644
+index 0ab4ac904..8cc01480e 100644
 --- a/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
 +++ b/tika-app/src/main/java/org/apache/tika/cli/TikaCLI.java
-@@ -824,9 +824,7 @@ public class TikaCLI {
+@@ -824,10 +824,8 @@ public class TikaCLI {
          
          public void outputMetadata(String[] names) {
             for (String name : names) {
 -              for(String value : metadata.getValues(name)) {
 -                 writer.println(name + ": " + value);
 -              }
-+              writer.println(name + ": " + metadata.get(name));
             }
++              writer.println(name + ": " + metadata.get(name));
          }
          
+         public boolean metOutput(){
