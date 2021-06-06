@@ -1,18 +1,15 @@
-diff --git a/web/web/src/main/java/org/apache/shiro/web/servlet/ShiroHttpServletRequest.java
-index 072f2af..6b71250 100644
+diff --git a/web/src/main/java/org/apache/shiro/web/servlet/ShiroHttpServletRequest.java b/web/src/main/java/org/apache/shiro/web/servlet/ShiroHttpServletRequest.java
+index 072f2af5..6b71250d 100644
 --- a/web/src/main/java/org/apache/shiro/web/servlet/ShiroHttpServletRequest.java
 +++ b/web/src/main/java/org/apache/shiro/web/servlet/ShiroHttpServletRequest.java
-@@ -151,17 +151,16 @@ public class ShiroHttpServletRequest extends HttpServletRequestWrapper {
+@@ -151,17 +151,15 @@ public class ShiroHttpServletRequest extends HttpServletRequestWrapper {
                  }
              }
          } else {
--            boolean existing = getSubject().getSession(false) != null;
-           
+             boolean existing = getSubject().getSession(false) != null;
+             
 -            if (this.session == null || !existing) {
 +            if (this.session == null) {
-
-+                boolean existing = getSubject().getSession(false) != null;
-
                  Session shiroSession = getSubject().getSession(create);
                  if (shiroSession != null) {
                      this.session = new ShiroHttpSession(shiroSession, this, this.servletContext);

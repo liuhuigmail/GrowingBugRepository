@@ -1,5 +1,5 @@
 diff --git a/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java b/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java
-index 4f2286c..8c77d8f 100644
+index 4f2286ca40..8c77d8f2a9 100644
 --- a/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java
 +++ b/jena-core/src/main/java/org/apache/jena/vocabulary/VCARD.java
 @@ -32,7 +32,7 @@ public class VCARD {

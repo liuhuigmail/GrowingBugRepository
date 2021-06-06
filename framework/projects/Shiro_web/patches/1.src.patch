@@ -1,5 +1,5 @@
-diff --git a/web/web/src/main/java/org/apache/shiro/web/filter/authz/PortFilter.java
-index 14dfd58..1057b7e 100644
+diff --git a/web/src/main/java/org/apache/shiro/web/filter/authz/PortFilter.java b/web/src/main/java/org/apache/shiro/web/filter/authz/PortFilter.java
+index 14dfd582..1057b7ee 100644
 --- a/web/src/main/java/org/apache/shiro/web/filter/authz/PortFilter.java
 +++ b/web/src/main/java/org/apache/shiro/web/filter/authz/PortFilter.java
 @@ -102,12 +102,12 @@ public class PortFilter extends AuthorizationFilter {

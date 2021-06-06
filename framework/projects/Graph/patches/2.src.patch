@@ -2,11 +2,11 @@ diff --git a/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java 
 index 6593129..d9007d4 100644
 --- a/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
 +++ b/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
-@@ -120,11 +120,6 @@ public abstract class BaseMutableGraph<V extends Vertex, E extends Edge>
+@@ -120,11 +120,7 @@ public abstract class BaseMutableGraph<V extends Vertex, E extends Edge>
          {
              throw new GraphException( "Tail Vertex '%s' not present in the Graph", tail );
          }
-       
+         
 -        if ( getEdge( head, tail ) != null )
 -        {
 -            throw new GraphException( "Edge %s is already present in the Graph", e );

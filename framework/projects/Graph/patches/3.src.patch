@@ -11,11 +11,11 @@ index f4857ba..a4df569 100644
          getIndexedEdges().put( vertexPair, e );
  
          if ( !getIndexedVertices().containsKey( e ) )
-@@ -113,16 +113,10 @@ public abstract class BaseMutableGraph<V extends Vertex, E extends Edge>
+@@ -113,16 +113,9 @@ public abstract class BaseMutableGraph<V extends Vertex, E extends Edge>
              getIndexedVertices().put( e, vertexPair );
          }
      }
-    
+     
 -    protected void internalRemoveEdge( V head, E e, V tail )
 -    {
 -        final VertexPair<V> vertexPair = new VertexPair<V>( head, tail );
@@ -24,20 +24,22 @@ index f4857ba..a4df569 100644
 -        getAdjacencyList().get( vertexPair.getHead() ).remove( vertexPair.getTail() );
 -    }
  
-
+     /**
+      * @param e
+      */
+     protected abstract void decorateAddEdge( V head, E e, V tail );
 @@ -133,14 +127,10 @@ public abstract class BaseMutableGraph<V extends Vertex, E extends Edge>
      public final void removeEdge( E e )
      {
          checkGraphCondition( e != null, "Impossible to remove a null Edge from the Graph" );
-       
+         
 -        final VertexPair<V> vertexPair = getVertices( e );
 -        checkGraphCondition( vertexPair != null, "Edge '%s' not present in the Graph", e );
  
--        decorateRemoveEdge( e );
+         decorateRemoveEdge( e );
 -        internalRemoveEdge( vertexPair.getHead(), e, vertexPair.getTail() );
 -        getAllEdges().remove( e );
  
-+        decorateRemoveEdge( e );
      }
  
      /**
@@ -53,7 +55,7 @@ index 7f1f715..c6d27f5 100644
  
  /**
   * A memory-based implementation of a mutable directed Graph.
-@@ -122,9 +121,7 @@ public class DirectedMutableGraph<V extends Vertex, E extends Edge>
+@@ -122,9 +121,6 @@ public class DirectedMutableGraph<V extends Vertex, E extends Edge>
      @Override
      protected void decorateRemoveEdge( E e )
      {
@@ -67,7 +69,7 @@ diff --git a/src/main/java/org/apache/commons/graph/model/UndirectedMutableGraph
 index 8de7990..9565e93 100644
 --- a/src/main/java/org/apache/commons/graph/model/UndirectedMutableGraph.java
 +++ b/src/main/java/org/apache/commons/graph/model/UndirectedMutableGraph.java
-@@ -77,7 +77,7 @@ public class UndirectedMutableGraph<V extends Vertex, E extends Edge>
+@@ -77,7 +77,6 @@ public class UndirectedMutableGraph<V extends Vertex, E extends Edge>
      @Override
      protected void decorateRemoveEdge( E e )
      {

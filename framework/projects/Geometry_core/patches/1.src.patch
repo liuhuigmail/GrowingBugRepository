@@ -2,27 +2,34 @@ diff --git a/commons-geometry-core/src/main/java/org/apache/commons/geometry/cor
 index cc45d27..dfc9b34 100644
 --- a/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java
 +++ b/commons-geometry-core/src/main/java/org/apache/commons/geometry/core/precision/EpsilonDoublePrecisionContext.java
-@@ -16,8 +16,6 @@
+@@ -16,8 +16,7 @@
   */
  package org.apache.commons.geometry.core.precision;
  
 -import java.io.Serializable;
+ 
  import org.apache.commons.numbers.core.Precision;
  
  /** Simple {@link DoublePrecisionContext} subclass that uses an absolute epsilon value to
-@@ -30,11 +28,7 @@ import org.apache.commons.numbers.core.Precision;
+@@ -30,11 +28,10 @@ import org.apache.commons.numbers.core.Precision;
   *
   * @see Precision#compareTo(double, double, double)
   */
 -public class EpsilonDoublePrecisionContext extends DoublePrecisionContext implements Serializable {
+ 
+     /** Serializable UID. */
 -    private static final long serialVersionUID = 20191212L;
-
+ 
 +public class EpsilonDoublePrecisionContext extends DoublePrecisionContext {
      /** Epsilon value. */
      private final double epsilon;
  
-@@ -42,12 +36,8 @@ public class EpsilonDoublePrecisionContext extends DoublePrecisionContext implem
-
+@@ -42,12 +36,9 @@ public class EpsilonDoublePrecisionContext extends DoublePrecisionContext implem
+      * @param eps Epsilon value. Numbers are considered equal if there is no
+      *      floating point value strictly between them or if their difference is less
+      *      than or equal to this value.
+      * @throws IllegalArgumentException if the given epsilon value is infinite, NaN, or negative
+      */
      public EpsilonDoublePrecisionContext(final double eps) {
 -        if (!Double.isFinite(eps) || eps < 0.0) {
 -            throw new IllegalArgumentException("Invalid epsilon value: " + eps);
