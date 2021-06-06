@@ -35,7 +35,6 @@ of the checked-out project version.
     -->
 
     <property name="junit.jar" value="${d4j.home}/framework/projects/lib/junit-4.11.jar"/>
-
     <!-- Do not download maven dependencies -->
     <property name="maven.settings.offline" value="true" />
     <property name="maven.repo.local" value="${d4j.dir.projects}/Tika_core/lib/" />
@@ -92,7 +91,7 @@ of the checked-out project version.
     <!-- Project properties targets -->
     <if> <isset property="ant.refid:compile.classpath" />
           <then>
-            <property name="test.dir" value="${test.home}" />
+            <property name="test.dir" value="${test-dir}" />
           </then>
           <else>
             <property name="oldversion"    value="yes" />
@@ -128,7 +127,6 @@ of the checked-out project version.
         echo  print the var
         <echo message="${abc}" />
     -->
-
     <property name="build.home" value="${classes.dir}/.." />
 
     <!-- Classpath to run developer-written tests -->
@@ -152,6 +150,7 @@ of the checked-out project version.
         <!--include name="____" /-->
         <!--exclude name="____" /-->
         <exclude name="**/TikaIT.java"/>
+        <exclude name="**/TypeDetectionBenchmark.java"/>
 	<exclude name="**/MimeDetectionTest.java"/>
     </fileset>
 

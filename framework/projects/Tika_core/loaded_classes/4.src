@@ -1,0 +1,5 @@
+org.apache.tika.io.ByteArrayOutputStream
+org.apache.tika.io.IOUtils
+org.apache.tika.language.LanguageIdentifier
+org.apache.tika.language.LanguageProfile
+org.apache.tika.language.ProfilingWriter

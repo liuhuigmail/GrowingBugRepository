@@ -1,0 +1,9 @@
+org.apache.tika.TikaDetectionTest
+org.apache.tika.detect.MagicDetectorTest
+org.apache.tika.detect.NameDetectorTest
+org.apache.tika.detect.TextDetectorTest
+org.apache.tika.detect.TypeDetectorTest
+org.apache.tika.mime.MediaTypeTest
+org.apache.tika.mime.MimeTypesReaderTest
+org.apache.tika.mime.PatternsTest
+org.apache.tika.parser.CompositeParserTest
