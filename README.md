@@ -91,7 +91,7 @@ If you do not have `cpanm` installed, use cpan or a cpan wrapper to install the 
     - `export PATH=$PATH:"path2growingbugs"/framework/bin`
 
 # Using GrowingBugs
-**GrowingBugs** can search for bugs in submodules of the project, so for bugs in submodules, we should specify the submodule with the `-s` parameter in the `checkout` command. For the `compile` and `test` commands, we also have to go into the submodule's folder to compile and test
+**GrowingBugs** can search for bugs in submodules of the project, so for bugs in submodules, we should specify the submodule with the `-s` parameter in the `checkout` command. For the `compile` and `test` commands, we also have to go into the submodule's folder to compile and test. (the project with underscore character `_` in it's ID is a submodule.)
 #### Example commands (for submodule in the project)
 1. Checkout a buggy source code version:
     - `defects4j checkout -p Tika_app -v 1b -w /tmp/Tika_app_1_buggy -s Tika-app`
