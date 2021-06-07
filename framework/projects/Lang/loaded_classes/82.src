@@ -1,0 +1,3 @@
+org.apache.commons.lang3.JavaVersion
+org.apache.commons.lang3.SystemUtils
+org.apache.commons.lang3.text.WordUtils

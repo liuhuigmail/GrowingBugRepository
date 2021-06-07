@@ -57,7 +57,7 @@ do
    nums=$(wc -l < $work_dir/framework/projects/$project_id/active-bugs.csv)
    nums=`expr $nums - 1`
    #for((i=7000;i<=$nums;i++)); 
-   for((i=6000;i<=6499;i++));  
+   for((i=1;i<=$nums;i++));  
 do    
    # Initialize the project revisions
    perl ./initialize-revisions.pl -p $project_id -w $work_dir -s $sub_project -b $i -n $project_name
