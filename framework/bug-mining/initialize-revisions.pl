@@ -339,8 +339,8 @@ sub _bootstrap {
 
     # Create local patch so that we can use the D4J core framework.
     # Minimization doesn't matter here, which has to be done manually.
-    $project->export_diff($v2, $v1, "$PATCH_DIR/$bid.src.patch", "$src_f");
-    $project->export_diff($v2, $v1, "$PATCH_DIR/$bid.test.patch", "$test_f");
+    $project->export_diff($v2, $v1, "$PATCH_DIR/$bid.src.patch", "$SUBPROJ/$src_f");
+    $project->export_diff($v2, $v1, "$PATCH_DIR/$bid.test.patch", "$SUBPROJ/$test_f");
 }
 
 my @ids = $project->get_bug_ids();

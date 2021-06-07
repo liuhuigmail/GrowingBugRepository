@@ -156,7 +156,7 @@ system("mkdir -p $TMP_DIR");
 
 # Set up project
 my $project = Project::create_project($PID);
-$project->{prog_root} = $TMP_DIR;
+$project->{prog_root} = "$TMP_DIR/$SUBPROJ";
 
 my @bids = _get_bug_ids($BID);
 foreach my $bid (@bids) {
@@ -183,7 +183,7 @@ foreach my $bid (@bids) {
     my %src;
     my %test;
     foreach my $test (@list) {
-        my $log_file = "$TMP_DIR/tests.fail";
+        my $log_file = "$TMP_DIR/$SUBPROJ/tests.fail";
 
         # Run triggering test and verify that it passes
         $project->run_tests($log_file, $test) or die;
@@ -304,7 +304,7 @@ sub _export_relevant_tests {
     my @relevant = ();
 
     # Iterate over all tests and determine whether or not a test is relevant
-    my @all_tests = `cd $TMP_DIR && $SCRIPT_DIR/bin/defects4j export -ptests.all`;
+    my @all_tests = `cd $TMP_DIR && $SCRIPT_DIR/bin/defects4j export -ptests.all -w $SUBPROJ`;
     foreach my $test (@all_tests) {
         chomp($test);
         if ($test =~ /\.html/){
