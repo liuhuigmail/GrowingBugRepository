@@ -182,8 +182,6 @@ sub _post_checkout {
         print OUT $converted_file;
         close(OUT);
     }
-     
-
 }
 
 

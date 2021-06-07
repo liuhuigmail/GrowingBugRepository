@@ -6,6 +6,8 @@ https://github.com/apache/maven-jxr.git	maven-jxr
 https://github.com/apache/maven-shade-plugin.git	maven-shade-plugin
 https://github.com/apache/santuario-java.git	santuario-java
 https://github.com/apache/tika.git	tika
+https://github.com/apache/tika.git	Tika-app
+https://github.com/apache/tika.git	Tika-core
 https://github.com/apache/commons-validator.git	commons-validator
 https://github.com/apache/maven-ear-plugin.git	maven-ear-plugin
 https://github.com/apache/maven-gpg-plugin.git	maven-gpg-plugin
@@ -18,5 +20,6 @@ https://github.com/apache/commons-text.git	commons-text
 https://github.com/apache/commons-numbers.git	commons-numbers
 https://github.com/apache/commons-geometry.git	commons-geometry
 https://github.com/apache/commons-fileupload.git	commons-fileupload
-https://github.com/apache/shiro.git	shiro
-https://github.com/apache/jena.git	jena
+https://github.com/apache/shiro.git	shiro-core
+https://github.com/apache/shiro.git	shiro-web
+https://github.com/apache/jena.git	jena-core

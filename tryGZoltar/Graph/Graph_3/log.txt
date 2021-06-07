@@ -1,0 +1,314 @@
+[DEBUG] PID: Graph
+[DEBUG] VID: 3
+[DEBUG] DATA_DIR: /home1/lileping3/tryGZoltar/Graph_3
+[DEBUG] TOOL: developer
+[DEBUG] TESTS_DIR: 
+[DEBUG] TMP_DIR: /home1/lileping3/tmp/Graph_3_buggy
+[DEBUG] DIR_PROJECT: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Graph
+[DEBUG] DIR_LOADED_CLASSES: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Graph/loaded_classes
+[DEBUG] DIR_RELEVANT_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Graph/relevant_tests
+[DEBUG] DIR_TRIGGER_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Graph/trigger_tests
+[DEBUG] JAVA_VERSION:
+Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1024m -Xmx4096m
+java version "1.8.0_231"
+Java(TM) SE Runtime Environment (build 1.8.0_231-b11)
+Java HotSpot(TM) 64-Bit Server VM (build 25.231-b11, mixed mode)
+[DEBUG] LOADED_CLASSES: org.apache.commons.graph.DirectedGraph:org.apache.commons.graph.Edge:org.apache.commons.graph.Graph:org.apache.commons.graph.GraphException:org.apache.commons.graph.Labeled:org.apache.commons.graph.model.BaseGraph:org.apache.commons.graph.model.BaseLabeledEdge:org.apache.commons.graph.model.BaseLabeledVertex:org.apache.commons.graph.model.BaseMutableGraph:org.apache.commons.graph.model.DirectedMutableGraph:org.apache.commons.graph.model.UndirectedMutableGraph:org.apache.commons.graph.MutableGraph:org.apache.commons.graph.UndirectedGraph:org.apache.commons.graph.utils.Assertions:org.apache.commons.graph.Vertex:org.apache.commons.graph.VertexPair:
+[DEBUG] LOADED_SUB_CLASSES: org.apache.commons.graph.DirectedGraph$*:org.apache.commons.graph.Edge$*:org.apache.commons.graph.Graph$*:org.apache.commons.graph.GraphException$*:org.apache.commons.graph.Labeled$*:org.apache.commons.graph.model.BaseGraph$*:org.apache.commons.graph.model.BaseLabeledEdge$*:org.apache.commons.graph.model.BaseLabeledVertex$*:org.apache.commons.graph.model.BaseMutableGraph$*:org.apache.commons.graph.model.DirectedMutableGraph$*:org.apache.commons.graph.model.UndirectedMutableGraph$*:org.apache.commons.graph.MutableGraph$*:org.apache.commons.graph.UndirectedGraph$*:org.apache.commons.graph.utils.Assertions$*:org.apache.commons.graph.Vertex$*:org.apache.commons.graph.VertexPair$*:
+[DEBUG] RELEVANT_TESTS: org.apache.commons.graph.builder.GraphBuilderTestCase:org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase:org.apache.commons.graph.coloring.GraphColoringTestCase:org.apache.commons.graph.connectivity.FindConnectedComponetTestCase:org.apache.commons.graph.export.ExportTestCase:org.apache.commons.graph.flow.EdmondsKarpTestCase:org.apache.commons.graph.flow.FordFulkersonTestCase:org.apache.commons.graph.model.BaseMutableGraphTestCase:org.apache.commons.graph.shortestpath.AStarTestCase:org.apache.commons.graph.shortestpath.BellmannFordTestCase:org.apache.commons.graph.shortestpath.DijkstraTestCase:org.apache.commons.graph.shortestpath.FloydWarshallTestCase:org.apache.commons.graph.spanning.BoruvkaTestCase:org.apache.commons.graph.spanning.KruskalTestCase:org.apache.commons.graph.spanning.PrimTestCase:org.apache.commons.graph.spanning.ReverseDeleteTestCase:org.apache.commons.graph.visit.VisitTestCase:
+[DEBUG] TRIGGER_TESTS_FILE: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Graph/trigger_tests/3
+[DEBUG] CP: /home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Graph/lib/junit/junit/4.10/junit-4.10.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Graph/lib/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Graph/lib/com/carrotsearch/junit-benchmarks/0.3.0/junit-benchmarks-0.3.0-jdk15.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Graph/lib/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Graph/lib/com/h2database/h2/1.3.158/h2-1.3.158.jar:/home1/lileping3/tmp/Graph_3_buggy/target/classes:/home1/lileping3/tmp/Graph_3_buggy/target/test-classes:/home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar
+[INFO] Compiling Graph-3
+Running ant (compile)...................................................... OK
+Running ant (compile.tests)................................................ OK
+[INFO] Running GZoltar
+[INFO] Start: 2021年 06月 06日 星期日 19:27:24 PDT
+   ____ _____     _ _               
+  / ___|__  /___ | | |_ __ _ _ __   
+ | |  _  / // _ \| | __/ _` | '__| 
+ | |_| |/ /| (_) | | || (_| | |     
+  \____/____\___/|_|\__\__,_|_| 
+
+* Preparing classpath
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=1024M; support was removed in 8.0
+* Collecting classes under test
+* Collecting test cases
+* Performing analysis
+* Started org.apache.commons.graph.flow.FordFulkersonTestCase#findMaxFlowAndVerify
+* Finished org.apache.commons.graph.flow.FordFulkersonTestCase#findMaxFlowAndVerify
+* Started org.apache.commons.graph.flow.FordFulkersonTestCase#testNullVertices
+* Finished org.apache.commons.graph.flow.FordFulkersonTestCase#testNullVertices
+* Started org.apache.commons.graph.flow.FordFulkersonTestCase#testNullGraphAndVertices
+* Finished org.apache.commons.graph.flow.FordFulkersonTestCase#testNullGraphAndVertices
+* Started org.apache.commons.graph.flow.FordFulkersonTestCase#testNotConnected
+* Finished org.apache.commons.graph.flow.FordFulkersonTestCase#testNotConnected
+* Started org.apache.commons.graph.flow.FordFulkersonTestCase#testNullGraph
+* Finished org.apache.commons.graph.flow.FordFulkersonTestCase#testNullGraph
+* Started org.apache.commons.graph.flow.FordFulkersonTestCase#testNotConnected_2
+* Finished org.apache.commons.graph.flow.FordFulkersonTestCase#testNotConnected_2
+* Started org.apache.commons.graph.flow.EdmondsKarpTestCase#findMaxFlowAndVerify
+* Finished org.apache.commons.graph.flow.EdmondsKarpTestCase#findMaxFlowAndVerify
+* Started org.apache.commons.graph.flow.EdmondsKarpTestCase#testNullVertices
+* Finished org.apache.commons.graph.flow.EdmondsKarpTestCase#testNullVertices
+* Started org.apache.commons.graph.flow.EdmondsKarpTestCase#testNullGraph
+* Finished org.apache.commons.graph.flow.EdmondsKarpTestCase#testNullGraph
+* Started org.apache.commons.graph.flow.EdmondsKarpTestCase#testSparse
+* Finished org.apache.commons.graph.flow.EdmondsKarpTestCase#testSparse
+* Started org.apache.commons.graph.visit.VisitTestCase#verifyBreadthFirstSearch
+* Finished org.apache.commons.graph.visit.VisitTestCase#verifyBreadthFirstSearch
+* Started org.apache.commons.graph.visit.VisitTestCase#verifyDepthFirstSearch
+* Finished org.apache.commons.graph.visit.VisitTestCase#verifyDepthFirstSearch
+* Started org.apache.commons.graph.model.BaseMutableGraphTestCase#testGetEgdeNotExistsVertex
+* Finished org.apache.commons.graph.model.BaseMutableGraphTestCase#testGetEgdeNotExistsVertex
+* Started org.apache.commons.graph.model.BaseMutableGraphTestCase#testGetConnectedVerticesNPE
+* Finished org.apache.commons.graph.model.BaseMutableGraphTestCase#testGetConnectedVerticesNPE
+* Started org.apache.commons.graph.model.BaseMutableGraphTestCase#testUndirectedGraphRemoveEdge
+* Failure: expected null, but was:<{ 1 } -> { 2 }()> | testUndirectedGraphRemoveEdge(org.apache.commons.graph.model.BaseMutableGraphTestCase)
+java.lang.AssertionError: expected null, but was:<{ 1 } -> { 2 }()>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotNull(Assert.java:664)
+	at org.junit.Assert.assertNull(Assert.java:646)
+	at org.junit.Assert.assertNull(Assert.java:656)
+	at org.apache.commons.graph.model.BaseMutableGraphTestCase.testUndirectedGraphRemoveEdge(BaseMutableGraphTestCase.java:314)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.commons.graph.model.BaseMutableGraphTestCase#testUndirectedGraphRemoveEdge
+* Started org.apache.commons.graph.model.BaseMutableGraphTestCase#testGetEgdeNotExistsVertex_2
+* Finished org.apache.commons.graph.model.BaseMutableGraphTestCase#testGetEgdeNotExistsVertex_2
+* Started org.apache.commons.graph.model.BaseMutableGraphTestCase#testUndirectedGraphRemoveEdgeNotExists
+* Failure: Expected exception: org.apache.commons.graph.GraphException | testUndirectedGraphRemoveEdgeNotExists(org.apache.commons.graph.model.BaseMutableGraphTestCase)
+java.lang.AssertionError: Expected exception: org.apache.commons.graph.GraphException
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.commons.graph.model.BaseMutableGraphTestCase#testUndirectedGraphRemoveEdgeNotExists
+* Started org.apache.commons.graph.model.BaseMutableGraphTestCase#testGetEdge
+* Finished org.apache.commons.graph.model.BaseMutableGraphTestCase#testGetEdge
+* Started org.apache.commons.graph.model.BaseMutableGraphTestCase#testGetConnectedVertices
+* Finished org.apache.commons.graph.model.BaseMutableGraphTestCase#testGetConnectedVertices
+* Started org.apache.commons.graph.model.BaseMutableGraphTestCase#testGetConnectedVerticesOnNotConnectedGraph
+* Finished org.apache.commons.graph.model.BaseMutableGraphTestCase#testGetConnectedVerticesOnNotConnectedGraph
+* Started org.apache.commons.graph.model.BaseMutableGraphTestCase#testAddVertexAndEdge
+* Finished org.apache.commons.graph.model.BaseMutableGraphTestCase#testAddVertexAndEdge
+* Started org.apache.commons.graph.model.BaseMutableGraphTestCase#testDirectedGraphRemoveEdge
+* Failure: expected null, but was:<{ 1 } -> { 2 }()> | testDirectedGraphRemoveEdge(org.apache.commons.graph.model.BaseMutableGraphTestCase)
+java.lang.AssertionError: expected null, but was:<{ 1 } -> { 2 }()>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotNull(Assert.java:664)
+	at org.junit.Assert.assertNull(Assert.java:646)
+	at org.junit.Assert.assertNull(Assert.java:656)
+	at org.apache.commons.graph.model.BaseMutableGraphTestCase.testDirectedGraphRemoveEdge(BaseMutableGraphTestCase.java:290)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.commons.graph.model.BaseMutableGraphTestCase#testDirectedGraphRemoveEdge
+* Started org.apache.commons.graph.model.BaseMutableGraphTestCase#testGetNotExistsEdge
+* Finished org.apache.commons.graph.model.BaseMutableGraphTestCase#testGetNotExistsEdge
+* Started org.apache.commons.graph.model.BaseMutableGraphTestCase#testDirectedGraphRemoveEdgeNotExists
+* Failure: Expected exception: org.apache.commons.graph.GraphException | testDirectedGraphRemoveEdgeNotExists(org.apache.commons.graph.model.BaseMutableGraphTestCase)
+java.lang.AssertionError: Expected exception: org.apache.commons.graph.GraphException
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.commons.graph.model.BaseMutableGraphTestCase#testDirectedGraphRemoveEdgeNotExists
+* Started org.apache.commons.graph.shortestpath.DijkstraTestCase#testNullVertices
+* Finished org.apache.commons.graph.shortestpath.DijkstraTestCase#testNullVertices
+* Started org.apache.commons.graph.shortestpath.DijkstraTestCase#testNotConnectGraph
+* Finished org.apache.commons.graph.shortestpath.DijkstraTestCase#testNotConnectGraph
+* Started org.apache.commons.graph.shortestpath.DijkstraTestCase#testNullMonoid
+* Finished org.apache.commons.graph.shortestpath.DijkstraTestCase#testNullMonoid
+* Started org.apache.commons.graph.shortestpath.DijkstraTestCase#findShortestPathAndVerify
+* Finished org.apache.commons.graph.shortestpath.DijkstraTestCase#findShortestPathAndVerify
+* Started org.apache.commons.graph.shortestpath.DijkstraTestCase#testNullGraph
+* Finished org.apache.commons.graph.shortestpath.DijkstraTestCase#testNullGraph
+* Started org.apache.commons.graph.shortestpath.FloydWarshallTestCase#undirectedShortestPath
+* Finished org.apache.commons.graph.shortestpath.FloydWarshallTestCase#undirectedShortestPath
+* Started org.apache.commons.graph.shortestpath.FloydWarshallTestCase#testNotConnectGraph
+* Finished org.apache.commons.graph.shortestpath.FloydWarshallTestCase#testNotConnectGraph
+* Started org.apache.commons.graph.shortestpath.FloydWarshallTestCase#directedShortestPath
+* Finished org.apache.commons.graph.shortestpath.FloydWarshallTestCase#directedShortestPath
+* Started org.apache.commons.graph.shortestpath.FloydWarshallTestCase#testNullGraph
+* Finished org.apache.commons.graph.shortestpath.FloydWarshallTestCase#testNullGraph
+* Started org.apache.commons.graph.shortestpath.BellmannFordTestCase#testNullVertices
+* Finished org.apache.commons.graph.shortestpath.BellmannFordTestCase#testNullVertices
+* Started org.apache.commons.graph.shortestpath.BellmannFordTestCase#testNotConnectGraph
+* Finished org.apache.commons.graph.shortestpath.BellmannFordTestCase#testNotConnectGraph
+* Started org.apache.commons.graph.shortestpath.BellmannFordTestCase#testNullMonoid
+* Finished org.apache.commons.graph.shortestpath.BellmannFordTestCase#testNullMonoid
+* Started org.apache.commons.graph.shortestpath.BellmannFordTestCase#findShortestPathAndVerify
+* Finished org.apache.commons.graph.shortestpath.BellmannFordTestCase#findShortestPathAndVerify
+* Started org.apache.commons.graph.shortestpath.BellmannFordTestCase#testNullGraph
+* Finished org.apache.commons.graph.shortestpath.BellmannFordTestCase#testNullGraph
+* Started org.apache.commons.graph.shortestpath.AStarTestCase#testNullVertices
+* Finished org.apache.commons.graph.shortestpath.AStarTestCase#testNullVertices
+* Started org.apache.commons.graph.shortestpath.AStarTestCase#testNullHeuristic
+* Finished org.apache.commons.graph.shortestpath.AStarTestCase#testNullHeuristic
+* Started org.apache.commons.graph.shortestpath.AStarTestCase#testNotConnectGraph
+* Finished org.apache.commons.graph.shortestpath.AStarTestCase#testNotConnectGraph
+* Started org.apache.commons.graph.shortestpath.AStarTestCase#testNullMonoid
+* Finished org.apache.commons.graph.shortestpath.AStarTestCase#testNullMonoid
+* Started org.apache.commons.graph.shortestpath.AStarTestCase#findShortestPathAndVerify
+* Finished org.apache.commons.graph.shortestpath.AStarTestCase#findShortestPathAndVerify
+* Started org.apache.commons.graph.shortestpath.AStarTestCase#testNullGraph
+* Finished org.apache.commons.graph.shortestpath.AStarTestCase#testNullGraph
+* Started org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testEmptyGraph
+* Finished org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testEmptyGraph
+* Started org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testNullColorGraph
+* Finished org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testNullColorGraph
+* Started org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testNotEnoughtColorGraph
+* Finished org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testNotEnoughtColorGraph
+* Started org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testCromaticNumberSparseGraph
+* Finished org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testCromaticNumberSparseGraph
+* Started org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testCromaticNumberBiparted
+* Finished org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testCromaticNumberBiparted
+* Started org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testCrawnGraph
+* Finished org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testCrawnGraph
+* Started org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testCromaticNumberComplete
+* Finished org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testCromaticNumberComplete
+* Started org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testSudokuWithConstraints
+* Finished org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testSudokuWithConstraints
+* Started org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testCromaticNumber
+* Finished org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testCromaticNumber
+* Started org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testNullGraph
+* Finished org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testNullGraph
+* Started org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testSudoku
+* Finished org.apache.commons.graph.coloring.GraphColoringBackTrackingTestCase#testSudoku
+* Started org.apache.commons.graph.coloring.GraphColoringTestCase#testEmptyGraph
+* Finished org.apache.commons.graph.coloring.GraphColoringTestCase#testEmptyGraph
+* Started org.apache.commons.graph.coloring.GraphColoringTestCase#testNullColorGraph
+* Finished org.apache.commons.graph.coloring.GraphColoringTestCase#testNullColorGraph
+* Started org.apache.commons.graph.coloring.GraphColoringTestCase#testCromaticNumberSparseGraph
+* Finished org.apache.commons.graph.coloring.GraphColoringTestCase#testCromaticNumberSparseGraph
+* Started org.apache.commons.graph.coloring.GraphColoringTestCase#testCromaticNumberBiparted
+* Finished org.apache.commons.graph.coloring.GraphColoringTestCase#testCromaticNumberBiparted
+* Started org.apache.commons.graph.coloring.GraphColoringTestCase#testCrawnGraph
+* Finished org.apache.commons.graph.coloring.GraphColoringTestCase#testCrawnGraph
+* Started org.apache.commons.graph.coloring.GraphColoringTestCase#testNotEnoughtColorGreedyGraph
+* Finished org.apache.commons.graph.coloring.GraphColoringTestCase#testNotEnoughtColorGreedyGraph
+* Started org.apache.commons.graph.coloring.GraphColoringTestCase#testCromaticNumberComplete
+* Finished org.apache.commons.graph.coloring.GraphColoringTestCase#testCromaticNumberComplete
+* Started org.apache.commons.graph.coloring.GraphColoringTestCase#testCromaticNumber
+* Finished org.apache.commons.graph.coloring.GraphColoringTestCase#testCromaticNumber
+* Started org.apache.commons.graph.coloring.GraphColoringTestCase#testNullGraph
+* Finished org.apache.commons.graph.coloring.GraphColoringTestCase#testNullGraph
+* Started org.apache.commons.graph.coloring.GraphColoringTestCase#testSudoku
+* Finished org.apache.commons.graph.coloring.GraphColoringTestCase#testSudoku
+* Started org.apache.commons.graph.spanning.ReverseDeleteTestCase#verifyMinimumSpanningTree
+* Finished org.apache.commons.graph.spanning.ReverseDeleteTestCase#verifyMinimumSpanningTree
+* Started org.apache.commons.graph.spanning.ReverseDeleteTestCase#verifyNotConnectGraph2
+* Finished org.apache.commons.graph.spanning.ReverseDeleteTestCase#verifyNotConnectGraph2
+* Started org.apache.commons.graph.spanning.ReverseDeleteTestCase#verifyNotConnectGraph3
+* Finished org.apache.commons.graph.spanning.ReverseDeleteTestCase#verifyNotConnectGraph3
+* Started org.apache.commons.graph.spanning.ReverseDeleteTestCase#verifyNotConnectGraph
+* Finished org.apache.commons.graph.spanning.ReverseDeleteTestCase#verifyNotConnectGraph
+* Started org.apache.commons.graph.spanning.BoruvkaTestCase#verifyWikipediaMinimumSpanningTree
+* Finished org.apache.commons.graph.spanning.BoruvkaTestCase#verifyWikipediaMinimumSpanningTree
+* Started org.apache.commons.graph.spanning.BoruvkaTestCase#verifySparseGraphMinimumSpanningTree
+* Finished org.apache.commons.graph.spanning.BoruvkaTestCase#verifySparseGraphMinimumSpanningTree
+* Started org.apache.commons.graph.spanning.KruskalTestCase#verifyWikipediaMinimumSpanningTree
+* Finished org.apache.commons.graph.spanning.KruskalTestCase#verifyWikipediaMinimumSpanningTree
+* Started org.apache.commons.graph.spanning.KruskalTestCase#verifyNotConnectedMinimumSpanningTree
+* Finished org.apache.commons.graph.spanning.KruskalTestCase#verifyNotConnectedMinimumSpanningTree
+* Started org.apache.commons.graph.spanning.PrimTestCase#verifyWikipediaMinimumSpanningTree
+* Finished org.apache.commons.graph.spanning.PrimTestCase#verifyWikipediaMinimumSpanningTree
+* Started org.apache.commons.graph.spanning.PrimTestCase#verifyMinimumSpanningTree2
+* Finished org.apache.commons.graph.spanning.PrimTestCase#verifyMinimumSpanningTree2
+* Started org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyConnectedComponentsIncludingVertices2
+* Finished org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyConnectedComponentsIncludingVertices2
+* Started org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyConnectedComponentsIncludingVertices
+* Finished org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyConnectedComponentsIncludingVertices
+* Started org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyConnectedComponents
+* Finished org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyConnectedComponents
+* Started org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyNullGraph
+* Finished org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyNullGraph
+* Started org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyNullVerticesGraph
+* Finished org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyNullVerticesGraph
+* Started org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyConnectedComponents2
+* Finished org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyConnectedComponents2
+* Started org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyConnectedComponents3
+* Finished org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyConnectedComponents3
+* Started org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyEmptyGraph
+* Finished org.apache.commons.graph.connectivity.FindConnectedComponetTestCase#verifyEmptyGraph
+* Started org.apache.commons.graph.builder.GraphBuilderTestCase#verifyProducedGraphesAreEquals
+* Finished org.apache.commons.graph.builder.GraphBuilderTestCase#verifyProducedGraphesAreEquals
+* Started org.apache.commons.graph.export.ExportTestCase#shouldPrintGraphMLFormat
+<?xml version="1.0" ?><!--Graph generated by Apache Commons Graph on Sun Jun 06 19:27:30 PDT 2021
+--><graphml xmlns="http://graphml.graphdrawing.org/xmlns"><graph id="G" edgedefault="directed"><key id="weight" for="edge" attr.name="weight" attr.type="double"></key><key id="label" for="edge" attr.name="label" attr.type="string"></key><key id="label" for="node" attr.name="label" attr.type="string"></key><node id="128"><data key="label">a</data></node><node id="129"><data key="label">b</data></node><node id="3178290"><data key="label">goal</data></node><node id="109757569"><data key="label">start</data></node><edge id="-1575811503" source="128" target="129" label="a &lt;-&gt; b" weight="2.0"></edge><edge id="-678015523" source="129" target="3178290" label="b &lt;-&gt; goal" weight="2.0"></edge><edge id="-629346543" source="109757569" target="128" label="start &lt;-&gt; a" weight="1.5"></edge><edge id="1118935836" source="128" target="3178290" label="a &lt;-&gt; goal" weight="2.0"></edge></graph></graphml>* Closing connection with client
+* Performing fault localization
+* Running Ochiai
+* Writing coverage matrix to '/home1/lileping3/tryGZoltar/Graph_3/matrix'
+* Writing spectra to '/home1/lileping3/tryGZoltar/Graph_3/spectra'
+* Metrics
+* Computation finished
+[INFO] End: 2021年 06月 06日 星期日 19:27:31 PDT
+[DEBUG] MATRIX OK
+[DEBUG] SPECTRA OK
+
+DONE!
