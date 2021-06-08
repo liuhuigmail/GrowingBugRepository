@@ -74,7 +74,6 @@ from open-source Java projects.
 # Using GrowingBugs
 1. Checkout a buggy source code version (If the project doesn't hava subproject, `-s` parameter can be ignored):
     - `defects4j checkout -p project_id -v version_id -w work_dir -s subproject_name` 
-)
     
     Example:
   
