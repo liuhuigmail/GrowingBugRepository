@@ -30,7 +30,7 @@ get_modified_classes.pl -- determine the set of classes modified by the src patc
 
 =head1 SYNOPSIS
 
-  get_modified_classes.pl -p project_id -b bug_id [-o output_file]
+  get_modified_classes.pl -p project_id -b bug_id [-o output_file] -s subproject
 
 =head1 OPTIONS
 
@@ -49,7 +49,9 @@ The id of the bug for which the patch should be analyzed.
 Write output to this file (optional). By default the script prints the modified classes to
 stdout. Note that all diagnostic messages are sent to stderr.
 
-=back
+=item -s F<subproject>
+
+The subproject to be mined (if not the root directory)
 
 =head1 DESCRIPTION
 
@@ -74,12 +76,14 @@ use Project;
 # Process arguments and issue usage message if necessary.
 #
 my %cmd_opts;
-getopts('p:b:o:', \%cmd_opts) or pod2usage(1);
+getopts('p:b:o:s:', \%cmd_opts) or pod2usage(1);
 
 pod2usage(1) unless defined $cmd_opts{p} and defined $cmd_opts{b};
 my $PID      = $cmd_opts{p};
 my $BID      = $cmd_opts{b};
 my $OUT_FILE = $cmd_opts{o};
+my $SUBPROJ = $cmd_opts{s}//".";
+
 
 # Set up project and determine the source directory
 my $project = Project::create_project($PID);
@@ -95,8 +99,10 @@ my $classes;
 Utils::exec_cmd("diffstat -l -p1 $patch", "Analyzing patch", \$classes);
 
 $classes = "" unless defined $classes and length $classes;
-
 # Translate Java file name into class name
+if($SUBPROJ ne "."){
+   $classes =~ s/$SUBPROJ\/?//g;
+}
 $classes =~ s/$src_dir\/?//g;
 $classes =~ s/\.java//g;
 $classes =~ s/\//\./g;
