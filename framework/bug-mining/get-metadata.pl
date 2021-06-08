@@ -229,7 +229,7 @@ foreach my $bid (@bids) {
     # Note:
     # This util script uses the possibly minimized source patch file instead of
     # the Vcs-diff between the pre-fix and post-fix revision.
-    Utils::exec_cmd("$UTIL_DIR/get_modified_classes.pl -p $PID -b $bid > $MODIFIED/$bid.src",
+    Utils::exec_cmd("$UTIL_DIR/get_modified_classes.pl -p $PID -b $bid > $MODIFIED/$bid.src -s $SUBPROJ ",
             "Exporting the set of modified classes");
 
     # Determine and export all relevant test classes
@@ -321,7 +321,7 @@ sub _export_relevant_tests {
         my $loaded = $project->monitor_test($test, "${bid}f");
         die("Failed test: $test\n") unless (defined $loaded);
         
-        #while(my ($key, $val) = each(%mod_classes)) { print "\n$key,, $val\n" }
+        while(my ($key, $val) = each(%mod_classes)) { print "mod_classes(key,val):$key, $val\n" }
         
         foreach my $class (@{$loaded->{src}}) {
         #print("class $class\n");
