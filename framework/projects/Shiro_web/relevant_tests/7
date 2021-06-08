@@ -1,0 +1,3 @@
+org.apache.shiro.web.mgt.CookieRememberMeManagerTest
+org.apache.shiro.web.mgt.DefaultWebSecurityManagerTest
+org.apache.shiro.web.servlet.ShiroHttpServletRequestTest

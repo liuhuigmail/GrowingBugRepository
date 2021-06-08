@@ -1,0 +1,3 @@
+org.apache.shiro.web.servlet.ShiroHttpServletRequest
+org.apache.shiro.web.servlet.ShiroHttpSession
+org.apache.shiro.web.session.HttpServletSession

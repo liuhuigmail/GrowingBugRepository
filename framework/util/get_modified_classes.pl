@@ -101,7 +101,7 @@ Utils::exec_cmd("diffstat -l -p1 $patch", "Analyzing patch", \$classes);
 $classes = "" unless defined $classes and length $classes;
 # Translate Java file name into class name
 if($SUBPROJ ne "."){
-   $classes =~ s/$SUBPROJ\/?//g;
+   $classes =~ s/^$SUBPROJ\/?//g;
 }
 $classes =~ s/$src_dir\/?//g;
 $classes =~ s/\.java//g;

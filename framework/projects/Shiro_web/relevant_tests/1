@@ -1,0 +1,7 @@
+org.apache.shiro.web.config.IniFilterChainResolverFactoryTest
+org.apache.shiro.web.config.WebIniSecurityManagerFactoryTest
+org.apache.shiro.web.filter.authz.PortFilterTest
+org.apache.shiro.web.filter.mgt.DefaultFilterChainManagerTest
+org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolverTest
+org.apache.shiro.web.filter.mgt.SimpleNamedFilterListTest
+org.apache.shiro.web.servlet.IniShiroFilterTest

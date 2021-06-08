@@ -1,0 +1,2 @@
+org.apache.tika.detect.TextDetector
+org.apache.tika.mime.MimeTypes
