@@ -100,6 +100,7 @@ sub _post_checkout {
             #$_ =~ s/=src\//=$SUBPROJ\/src\//g;
             #$_ =~ s/classesdir/classes\.dir/g;
             #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
+            $_ =~ s/\<javac srcdir=\"\$\{source\.home\}\" destdir=\"\$\{build\.home\}\/classes\" debug=\"\$\{compile\.debug\}\" deprecation\=\"\$\{compile\.deprecation\}\" target=\"\$\{compile\.target\}\" source=\"\$\{compile\.source\}\" excludes=\"\$\{compile\.excludes\}\" optimize=\"\$\{compile\.optimize\}\" includeantruntime=\"false\" encoding=\"\$\{compile\.encoding\}\"\>/\<javac fork=\"true\" srcdir=\"\$\{source\.home\}\" destdir=\"\$\{build\.home\}\/classes\" debug=\"\$\{compile\.debug\}\" deprecation\=\"\$\{compile\.deprecation\}\" target=\"1\.7\" source=\"1\.7\" excludes=\"\$\{compile\.excludes\}\" optimize=\"\$\{compile\.optimize\}\" includeantruntime=\"false\" encoding=\"\$\{compile\.encoding\}\"\>/g;
             
             #support java8
             $_ =~ s/fork="false"/fork="true"/g;
