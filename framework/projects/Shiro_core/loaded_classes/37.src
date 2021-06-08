@@ -1,0 +1,6 @@
+org.apache.shiro.authc.AuthenticationInfo
+org.apache.shiro.authc.MergableAuthenticationInfo
+org.apache.shiro.authc.SimpleAuthenticationInfo
+org.apache.shiro.subject.MutablePrincipalCollection
+org.apache.shiro.subject.PrincipalCollection
+org.apache.shiro.subject.SimplePrincipalCollection

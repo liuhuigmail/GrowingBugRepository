@@ -1,0 +1,12 @@
+org.apache.shiro.authc.AuthenticationException
+org.apache.shiro.authc.AuthenticationInfo
+org.apache.shiro.authc.MergableAuthenticationInfo
+org.apache.shiro.authc.pam.AbstractAuthenticationStrategy
+org.apache.shiro.authc.pam.AuthenticationStrategy
+org.apache.shiro.authc.pam.FirstSuccessfulStrategy
+org.apache.shiro.authc.pam.ShortCircuitIterationException
+org.apache.shiro.authc.SaltedAuthenticationInfo
+org.apache.shiro.authc.SimpleAuthenticationInfo
+org.apache.shiro.subject.MutablePrincipalCollection
+org.apache.shiro.subject.PrincipalCollection
+org.apache.shiro.subject.SimplePrincipalCollection

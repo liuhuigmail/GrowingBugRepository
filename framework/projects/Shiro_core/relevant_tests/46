@@ -1,0 +1,8 @@
+org.apache.shiro.config.IniSecurityManagerFactoryTest
+org.apache.shiro.mgt.DefaultSecurityManagerTest
+org.apache.shiro.mgt.VMSingletonDefaultSecurityManagerTest
+org.apache.shiro.realm.activedirectory.ActiveDirectoryRealmTest
+org.apache.shiro.session.mgt.DefaultSessionManagerTest
+org.apache.shiro.session.mgt.DelegatingSessionTest
+org.apache.shiro.session.mgt.SimpleSessionTest
+org.apache.shiro.subject.DelegatingSubjectTest

@@ -1,0 +1,13 @@
+org.apache.shiro.authz.aop.PermissionAnnotationHandlerTest
+org.apache.shiro.authz.aop.RoleAnnotationHandlerTest
+org.apache.shiro.concurrent.SubjectAwareExecutorServiceTest
+org.apache.shiro.concurrent.SubjectAwareExecutorTest
+org.apache.shiro.mgt.DefaultSecurityManagerTest
+org.apache.shiro.mgt.VMSingletonDefaultSecurityManagerTest
+org.apache.shiro.realm.activedirectory.ActiveDirectoryRealmTest
+org.apache.shiro.realm.jdbc.JDBCRealmTest
+org.apache.shiro.session.mgt.AbstractValidatingSessionManagerTest
+org.apache.shiro.session.mgt.DefaultSessionManagerTest
+org.apache.shiro.session.mgt.DelegatingSessionTest
+org.apache.shiro.subject.DelegatingSubjectTest
+org.apache.shiro.test.ExampleShiroIntegrationTest

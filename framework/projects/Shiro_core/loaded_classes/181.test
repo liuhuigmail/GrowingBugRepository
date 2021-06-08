@@ -1,0 +1,2 @@
+org.apache.shiro.realm.AuthorizingRealmTest
+org.apache.shiro.realm.UsernamePrincipal

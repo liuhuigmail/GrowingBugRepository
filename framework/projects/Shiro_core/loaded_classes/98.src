@@ -1,0 +1,5 @@
+org.apache.shiro.authz.Permission
+org.apache.shiro.authz.permission.DomainPermission
+org.apache.shiro.authz.permission.WildcardPermission
+org.apache.shiro.util.CollectionUtils
+org.apache.shiro.util.StringUtils

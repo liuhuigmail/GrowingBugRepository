@@ -1,0 +1,10 @@
+org.apache.shiro.authz.ModularRealmAuthorizerTest
+org.apache.shiro.authz.aop.PermissionAnnotationHandlerTest
+org.apache.shiro.authz.aop.RoleAnnotationHandlerTest
+org.apache.shiro.concurrent.SubjectAwareExecutorServiceTest
+org.apache.shiro.concurrent.SubjectAwareExecutorTest
+org.apache.shiro.config.IniSecurityManagerFactoryTest
+org.apache.shiro.mgt.DefaultSecurityManagerTest
+org.apache.shiro.mgt.VMSingletonDefaultSecurityManagerTest
+org.apache.shiro.realm.activedirectory.ActiveDirectoryRealmTest
+org.apache.shiro.subject.DelegatingSubjectTest
