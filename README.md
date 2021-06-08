@@ -74,16 +74,16 @@ from open-source Java projects.
 1. Checkout a buggy source code version:
     - `-p project_id -v version_id -w work_dir -s project_name`
     
-&Example:<br>
+Example:<br>
   &emsp;&emsp;  `defects4j checkout -p Tika_app -v 1b -w /tmp/Tika_app_1_buggy -s Tika-app`
 
 2. Change to the working directory, compile sources and tests, and run tests:
-    - `cd /tmp/Tika_app_1_buggy/Tika-app`
+    - `cd work_dir/project_name`
     - `defects4j compile`
     - `defects4j test`
     
-&emsp;Synopsis:<br>
-   &emsp;&emsp;`cd work_dir/project_name`
+Example:<br>
+   &emsp;&emsp;`cd /tmp/Tika_app_1_buggy/Tika-app`
 
 Currently, we resuse all APIs of **Defects4J** (more details at  https://github.com/rjust/defects4j), and thus all applications relying on **Defects4J** could be transferred smoothly to **GrowingBugs**. 
 
