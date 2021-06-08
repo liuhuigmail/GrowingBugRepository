@@ -1,2 +1,2 @@
-tika-core.org.apache.tika.detect.TextDetector
-tika-core.org.apache.tika.mime.MimeTypes
+org.apache.tika.detect.TextDetector
+org.apache.tika.mime.MimeTypes
