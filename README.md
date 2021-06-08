@@ -84,7 +84,9 @@ Notably, **GrowingBugs**  supports sub-projects that are not suported by Defects
     
 Example:<br>
     - `cd /tmp/Shiro_core_1_buggy/core`
+    
     - `defects4j compile`
+    
     - `defects4j test`
 
 Currently, we resuse all APIs of **Defects4J** (more details at  https://github.com/rjust/defects4j), and thus all applications relying on **Defects4J** could be transferred smoothly to **GrowingBugs**. 
