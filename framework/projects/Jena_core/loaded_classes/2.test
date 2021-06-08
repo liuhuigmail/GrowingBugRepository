@@ -1,0 +1,5 @@
+org.apache.jena.graph.test.GraphTestBase
+org.apache.jena.rdf.model.test.ModelTestBase
+org.apache.jena.test.JenaTestBase
+org.apache.jena.vocabulary.test.TestVocabVCARD
+org.apache.jena.vocabulary.test.VocabTestBase
