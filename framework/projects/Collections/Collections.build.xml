@@ -31,6 +31,7 @@ of the checked-out project version.
       <property name="easymock.jar" value="${d4j.dir.projects}/Collections/lib/easymock-2.0.jar"/>
     <property name="hamcrest.jar" value="${d4j.dir.projects}/Collections/lib/hamcrest-core-1.3.jar"/>
     <!-- Do not download maven dependencies -->
+    <property name="maven.repo.local" value="${d4j.dir.projects}/Collections/lib/" />
     <property name="maven.settings.offline" value="true" />
  
     <!-- Generate all debugging information -->
