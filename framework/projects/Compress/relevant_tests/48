@@ -1,4 +1,3 @@
-org.apache.commons.compress.ArchiveReadTests
 org.apache.commons.compress.IOMethodsTest
 org.apache.commons.compress.archivers.ArchiveOutputStreamTest
 org.apache.commons.compress.archivers.JarTestCase
