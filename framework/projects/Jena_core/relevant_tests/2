@@ -1,0 +1,14 @@
+org.apache.jena.graph.impl.CollectionGraph_CS
+org.apache.jena.graph.impl.SimpleEventManager_CS
+org.apache.jena.graph.impl.SimpleGraphMaker_CS
+org.apache.jena.graph.impl.SimpleTransactionHandler_CS
+org.apache.jena.graph.impl.WrappedGraph_CS
+org.apache.jena.mem.ArrayBunch_CS
+org.apache.jena.mem.GraphMem_CS
+org.apache.jena.mem.GraphTripleStoreMem_CS
+org.apache.jena.mem.GraphTripleStore_CS
+org.apache.jena.mem.HashedBunchMap_CS
+org.apache.jena.mem.HashedTripleBunch_CS
+org.apache.jena.mem.SetBunch_CS
+org.apache.jena.mem.WrappedHashMap_CS
+org.apache.jena.test.TestPackage
