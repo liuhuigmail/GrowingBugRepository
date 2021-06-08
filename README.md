@@ -7,46 +7,46 @@ To date, growingBugs contains
  **`1001`** bugs
 from open-source Java projects. 
 
-|   | Project ID      | Project name               | Number of bugs | Bug IDs      | 
-|-----------------|-----------------|----------------------------|---------------:|---------------------|
-| 1     | Chart           | jfreechart                 |       26       | 1-26                |
-| 2     | Cli             | commons-cli                |       41       | 1-5,7-42            |
-| 3     | Closure         | closure-compiler           |      174       | 1-62,64-92,94-176   |
-| 4     | Codec           | commons-codec              |       18       | 1-18                |
-| 5     | Collections     | commons-collections        |        8       | 25-31,35               |
-| 6     | Compress        | commons-compress           |       52       | 1-48,50,52-54       |
-| 7     | Csv             | commons-csv                |       17       | 1-17                |
-| 8     | Gson            | gson                       |       18       | 1-18                |
-| 9     | JacksonCore     | jackson-core               |       26       | 1-26                |
-| 10     | JacksonDatabind | jackson-databind           |      112       | 1-112               |
-| 11     | JacksonXml      | jackson-dataformat-xml     |        6       | 1-6                 |
-| 12    | Jsoup           | jsoup                      |       93       | 1-93                |
-| 13     | JxPath          | commons-jxpath             |       22       | 1-22                |
-| 14     | Lang            | commons-lang               |       73       | 1,3-65,69,71,73,76,80-84              |
-| 15     | Math            | commons-math               |      106       | 1-106               |
-| 16     | Mockito         | mockito                    |       38       | 1-38                |
-| 17     | Time            | joda-time                  |       26       | 1-20,22-27          |
-| 18     | Dbutils         | commons-dbutils            |        2       | 1-2                 |
-| 19     | Functor         | commons-functor            |        2       | 1-2                 |
-| 20     | Imaging         | commons-imaging            |        10      | 1,3-8,10-11,14  |
-| 21     | IO              | commons-io                 |        19       | 1-3,5-6,8-11,13,15-18,22,25,27,29-30                |
-| 22     | JXR             | maven-jxr                  |        1       | 1                   |
-| 23     | MShade          | maven-shade-plugin         |        7       | 1-7                 |
-| 24     | Tika            | tika                       |        7       | 1-7               |
-| 25     | Validator       | commons-validator          |        21      | 1-2,4,6-9,11-21,23-25 |
-| 26     | Pool            | commons-pool               |        19      | 1-2,4-7,10-14,16,20-21,24,26-27,29-30|
-| 27     | Email           | commons-email              |        4       | 2-5                 |
-| 28     | Graph           | commons-graph              |        3       | 1-3                 |
-| 29     | Net             | commons-net                |        18      | 1,3,5,7,9,10,12,14-18,20-21,23-26             |
-| 30     | Numbers_angle   | commons-numbers-angle            |        2       | 1-2               |
-| 31     | Geometry_core   | commons-geometry-core           |        2       | 1,3               |
-| 32     | MGpg            | maven-gpg-plugin           |        1       | 1               |
-| 33     | Text            | commons-text               |        4       | 1-2,4-5               |
-| 34     | Tika_core            | tika-core               |        7       | 4-6,9,11,17,20               |
-| 35     | Tika_app            | tika-app               |        2       | 1,3               |
-| 36     | Shiro_core            | core               |        10       | 37,40,46,52,72,98,144,176,181,202               |
-| 37     | Jena_core            | jena-core               |        1       | 2               |
-| 38     | Shiro_web            | web               |        3       | 1,3,7               |
+|   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
+|-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
+| 1     | Chart           | jfreechart                 |                           |       26       | 1-26                |
+| 2     | Cli             | commons-cli                |                           |       41       | 1-5,7-42            |
+| 3     | Closure         | closure-compiler           |                           |      174       | 1-62,64-92,94-176   |
+| 4     | Codec           | commons-codec              |                           |       18       | 1-18                |
+| 5     | Collections     | commons-collections        |                           |        8       | 25-31,35               |
+| 6     | Compress        | commons-compress           |                           |       52       | 1-48,50,52-54       |
+| 7     | Csv             | commons-csv                |                           |       17       | 1-17                |
+| 8     | Gson            | gson                       |                           |       18       | 1-18                |
+| 9     | JacksonCore     | jackson-core               |                           |       26       | 1-26                |
+| 10     | JacksonDatabind | jackson-databind           |                          |      112       | 1-112               |
+| 11     | JacksonXml      | jackson-dataformat-xml     |                          |        6       | 1-6                 |
+| 12    | Jsoup           | jsoup                      |                           |       93       | 1-93                |
+| 13     | JxPath          | commons-jxpath             |                          |       22       | 1-22                |
+| 14     | Lang            | commons-lang               |                          |       73       | 1,3-65,69,71,73,76,80-84              |
+| 15     | Math            | commons-math               |                          |      106       | 1-106               |
+| 16     | Mockito         | mockito                    |                          |       38       | 1-38                |
+| 17     | Time            | joda-time                  |                          |       26       | 1-20,22-27          |
+| 18     | Dbutils         | commons-dbutils            |                          |        2       | 1-2                 |
+| 19     | Functor         | commons-functor            |                          |        2       | 1-2                 |
+| 20     | Imaging         | commons-imaging            |                          |        10      | 1,3-8,10-11,14  |
+| 21     | IO              | commons-io                 |                          |        19       | 1-3,5-6,8-11,13,15-18,22,25,27,29-30                |
+| 22     | JXR             | maven-jxr                  |                          |        1       | 1                   |
+| 23     | MShade          | maven-shade-plugin         |                          |        7       | 1-7                 |
+| 24     | Tika            | tika                       |                          |        7       | 1-7               |
+| 25     | Validator       | commons-validator          |                          |        21      | 1-2,4,6-9,11-21,23-25 |
+| 26     | Pool            | commons-pool               |                          |        19      | 1-2,4-7,10-14,16,20-21,24,26-27,29-30|
+| 27     | Email           | commons-email              |                          |        4       | 2-5                 |
+| 28     | Graph           | commons-graph              |                          |        3       | 1-3                 |
+| 29     | Net             | commons-net                |                          |        18      | 1,3,5,7,9,10,12,14-18,20-21,23-26             |
+| 30     | Numbers_angle   | commons-numbers-angle            |  commons-numbers-angle         |        2       | 1-2               |
+| 31     | Geometry_core   | commons-geometry-core           |    commons-geometry-core |        2       | 1,3               |
+| 32     | MGpg            | maven-gpg-plugin           ||        1       | 1               |
+| 33     | Text            | commons-text               ||        4       | 1-2,4-5               |
+| 34     | Tika_core            | tika-core               |  tika-core |        7       | 4-6,9,11,17,20               |
+| 35     | Tika_app            | tika-app               |   tika-app     |        2       | 1,3               |
+| 36     | Shiro_core            | shiro-core               |      core      |        10       | 37,40,46,52,72,98,144,176,181,202               |
+| 37     | Jena_core            | jena-core               |    jena-core   |        1       | 2               |
+| 38     | Shiro_web            | shiro-web               |        web      |        3       | 1,3,7               |
 
 # Setting up GrowingBugs
 ## Requirements
@@ -59,7 +59,10 @@ from open-source Java projects.
 1. Clone GrowingBugs:
     - `git clone https://github.com/liuhuigmail/GrowingBugRepository.git`
 
-2. Initialize GrowingBugs: <br>Download the project repositories and external libraries that are not included in the git repository for size purposes and to avoid redundancies. We provide a mechanism to download them automatically as follows:
+2. Initialize GrowingBugs:
+
+    Download the project repositories and external libraries that are not included in the git repository for size purposes and to avoid redundancies. We provide a mechanism to download them automatically as follows:
+    
     - `cd GrowingBugs`
     - `cpanm --installdeps .`
     - `./init.sh`
@@ -69,24 +72,27 @@ from open-source Java projects.
     - `export PATH=$PATH:"path2growingbugs"/framework/bin`
 
 # Using GrowingBugs
-1. Checkout a buggy source code version:
-    - `defects4j checkout -p project_id -v version_id -w work_dir -s project_name`
+1. Checkout a buggy source code version (If the project doesn't hava subproject, `-s` parameter can be ignored):
+    - `defects4j checkout -p project_id -v version_id -w work_dir -s subproject_name` 
     
     Example:
   
     - `defects4j checkout -p Shiro_core -v 1b -w /tmp/Shiro_core_1_buggy -s core`
+    - `defects4j checkout -p Dbutils -v 1b -w /tmp/dbutils_1_buggy`
 
-   Notably, **GrowingBugs**  supports sub-projects that are not suported by Defects4J. To this end, yor should specify the sub-project with  `-s` parameter in the `checkout`  command. The preceding example common leverages `-s core` to check out sub-proejct `core` from the enclosing project `Shiro_core`. For the `compile` and `test` commands, you should also switch to the sub-project's folder to compile and test the sub-project.  If you are checking out the complete projects (except for sub-projects),  `-s` parameter should be ignored. 
+   Notably, **GrowingBugs**  supports sub-projects that are not suported by Defects4J. To this end, yor should specify the sub-project with  `-s` parameter in the `checkout`  command. The preceding example common leverages `-s core` to check out sub-proejct `core` from the enclosing project `Shiro_core`. For the `compile` and `test` commands, you should also switch to the sub-project's folder to compile and test the sub-project.
 
 2. Change to the working directory, compile sources and tests, and run tests:
 
-   - `cd work_dir/project_name`
+   Example1：
+   
+   - `cd /tmp/Shiro_core_1_buggy/core`
    - `defects4j compile`
    - `defects4j test`
 
-   Example：
+   Example2：
    
-   - `cd /tmp/Shiro_core_1_buggy/core`
+   - `cd /tmp/dbutils_1_buggy`
    - `defects4j compile`
    - `defects4j test`
 
