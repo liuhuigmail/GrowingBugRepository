@@ -75,7 +75,7 @@ from open-source Java projects.
     - `defects4j checkout -p project_id -v version_id -w work_dir -s project_name`
     
 Example:<br>
-  &emsp;&emsp;  `defects4j checkout -p Tika_app -v 1b -w /tmp/Tika_app_1_buggy -s Tika-app`
+  &emsp;&emsp;  `defects4j checkout -p Shiro_core -v 1b -w /tmp/Shiro_core_1_buggy -s core`
 
 2. Change to the working directory, compile sources and tests, and run tests:
     - `cd work_dir/project_name`
@@ -83,7 +83,7 @@ Example:<br>
     - `defects4j test`
     
 Example:<br>
-   &emsp;&emsp;`cd /tmp/Tika_app_1_buggy/Tika-app`
+   &emsp;&emsp;`cd /tmp/Shiro_core_1_buggy/core`
 
 Currently, we resuse all APIs of **Defects4J** (more details at  https://github.com/rjust/defects4j), and thus all applications relying on **Defects4J** could be transferred smoothly to **GrowingBugs**. 
 
