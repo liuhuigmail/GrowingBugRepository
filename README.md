@@ -56,10 +56,10 @@ from open-source Java projects.
  - Perl >= 5.0.12
  
 ## Steps to set up GrowingBugs
-1. Clone Defects4J:
+1. Clone GrowingBugs:
     - `git clone https://github.com/liuhuigmail/GrowingBugRepository.git`
 
-2. Initialize GrowingBugs: <br>Download the project repositories and external libraries, which are not included in the git repository for size purposes and to avoid redundancies. Consequently, we decide to provide a mechanism to download them automatically.
+2. Initialize GrowingBugs: <br>Download the project repositories and external libraries that are not included in the git repository for size purposes and to avoid redundancies. We provide a mechanism to download them automatically as follows:
     - `cd GrowingBugs`
     - `cpanm --installdeps .`
     - `./init.sh`
