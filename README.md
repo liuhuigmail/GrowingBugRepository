@@ -69,13 +69,13 @@ from open-source Java projects.
     - `export PATH=$PATH:"path2growingbugs"/framework/bin`
 
 # Using GrowingBugs
-**GrowingBugs** can search for bugs in submodules of the project, so for bugs in submodules, we should specify the submodule with the `-s` parameter in the `checkout` command. For the `compile` and `test` commands, we also have to go into the submodule's folder to compile and test. (the project with underscore character `_` in it's ID is a submodule.)
-#### Example commands (for submodule in the project)
 1. Checkout a buggy source code version:
     - `defects4j checkout -p project_id -v version_id -w work_dir -s project_name`
     
 Example:<br>
   &emsp;&emsp;  `defects4j checkout -p Shiro_core -v 1b -w /tmp/Shiro_core_1_buggy -s core`
+
+Notably, **GrowingBugs**  supports sub-projects that are not suported by Defects4J. To this end, yor should specify the sub-project with  `-s` parameter in the `checkout` command. The preceding example common leverages `-s core` to check out sub-proejct `core` from the enclosing project `Shiro_core`. For the `compile` and `test` commands, you should also switch to the sub-project's folder to compile and test the sub-project.  If you are checking out the complete projects (except for sub-projects),  `-s` parameter should be ignored. 
 
 2. Change to the working directory, compile sources and tests, and run tests:
     - `cd work_dir/project_name`
