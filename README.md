@@ -84,6 +84,10 @@ from open-source Java projects.
 
 2. Change to the working directory, compile sources and tests, and run tests:
 
+   - `cd work_dir/subproject_name`
+   - `defects4j compile`
+   - `defects4j test`
+   
    Example1：
    
    - `cd /tmp/Shiro_core_1_buggy/core`
