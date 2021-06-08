@@ -38,3 +38,6 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 38,5764b6270287a74d31cb83f70ab38bdd916e619e,ac2a1c85616f0140418de9190389fe7b80296c39,CLI-265,https://issues.apache.org/jira/browse/CLI-265
 39,70a392756c713f404fed0e3ddd48aa18ce20485f,0b453953fa5f55cf2e8fd034d4d55972deb7647a,CLI-274,https://issues.apache.org/jira/browse/CLI-274
 40,e400f9256a2af526e9a06b9d5d2965965109a8db,b0024d482050a08efc36c3cabee37c0af0e57a10,CLI-282,https://issues.apache.org/jira/browse/CLI-282
+41,b20a8e9fd4d7d63621bf61ffaa43b51ea2fca3c7,880a9f6c45dbcb14215bb35de21fdbbfaeb89c2e,CLI-162,https://issues.apache.org/jira/browse/CLI-162
+42,4141904a4bc95471d2f80ecf35d012e7fcf34bb3,84234a65638f0e9e4be73dfcccaa6530a5b571af,CLI-162,https://issues.apache.org/jira/browse/CLI-162
+43,f588f55ad6ee8d64fcb9956847dfa8c064d888ee,5560a086886c4d6dba2c30eb75e57e3167765c6e,CLI-202,https://issues.apache.org/jira/browse/CLI-202
