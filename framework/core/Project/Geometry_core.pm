@@ -75,14 +75,15 @@ sub new {
 # fixing compilation errors, etc.
 #
 sub _post_checkout {
-    my ($self, $rev_id, $work_dir) = @_;
-
+    my ($self, $rev_id, $work_dir,$SUBPROJ) = @_;
+    #print("$SUBPROJ !\n");
     my $project_dir = "$PROJECTS_DIR/$self->{pid}";
+    $work_dir.="/$SUBPROJ";
     # Check whether ant build file exists
     unless (-e "$work_dir/build.xml") {
         my $build_files_dir = "$PROJECTS_DIR/$PID/build_files/$rev_id";
         if (-d "$build_files_dir") {
-            Utils::exec_cmd("cp $build_files_dir/* $work_dir", "Copy generated Ant build file") or die;
+            Utils::exec_cmd("cp -r $build_files_dir/* $work_dir", "Copy generated Ant build file") or die;
         }
     }
 
@@ -110,7 +111,6 @@ sub _post_checkout {
         open(OUT, '>'."$work_dir/maven-build.xml") or die $!;
         while(<IN>) {
             $_ =~ s/compile-tests/compile\.tests/g;
-            $_ =~ s/"src/"commons-geometry-core\/src/g;
             #$_ =~ s/classesdir/classes\.dir/g;
             #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
             
@@ -127,7 +127,6 @@ sub _post_checkout {
         open(OUT, '>'."$work_dir/maven-build.properties") or die $!;
         while(<IN>) {
             $_ =~ s/compile-tests/compile\.tests/g;
-            $_ =~ s/=src/=commons-geometry-core\/src/g;
             #$_ =~ s/classesdir/classes\.dir/g;
             #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
             
@@ -157,38 +156,43 @@ sub _post_checkout {
 # build files or other time-consuming tasks, whose results should be cached.
 #
 sub initialize_revision {
-    my ($self, $rev_id, $vid) = @_;
+      my ($self, $rev_id, $vid,$sub_project) = @_;
     $self->SUPER::initialize_revision($rev_id);
 
     my $work_dir = $self->{prog_root};
-    my $result; #= _ant_layout($work_dir) // _maven_layout($work_dir);
-    my $subproject="commons-geometry-core";
+    my $result  = _ant_layout($work_dir) // _maven_layout($work_dir);
     
-   if (-e "$work_dir/src/main/java" and -e "$work_dir/src/test/java"){
-        $result = {src=>"$subproject/src/main/java", test=>"$subproject/src/test/java"} unless defined $result;
+     if (-e "$work_dir/src/main/java" and -e "$work_dir/src/test/java"){
+        $result = {src=>"src/main/java", test=>"src/test/java"} unless defined $result;
     }
     elsif (-e "$work_dir/src/main/java" and -e "$work_dir/src/tests/java"){
-        $result = {src=>"$subproject/src/main/java", test=>"$subproject/src/tests/java"} unless defined $result;
+        $result = {src=>"src/main/java", test=>"src/tests/java"} unless defined $result;
     }
     elsif (-e "$work_dir/src/main" and -e "$work_dir/src/testcases"){
-        $result = {src=>"$subproject/src/main", test=>"$subproject/src/testcases"} unless defined $result;
+        $result = {src=>"src/main", test=>"src/testcases"} unless defined $result;
     }
     elsif (-e "$work_dir/src/main" and -e "$work_dir/src/tests/junit"){
-        $result = {src=>"$subproject/src/main", test=>"$subproject/src/tests/junit"} unless defined $result;
+        $result = {src=>"src/main", test=>"src/tests/junit"} unless defined $result;
     }
     elsif (-e "$work_dir/src/main" and -e "$work_dir/src/tests"){
-        $result = {src=>"$subproject/src/main", test=>"$subproject/src/tests"} unless defined $result;
+        $result = {src=>"src/main", test=>"src/tests"} unless defined $result;
     }
     elsif (-e "$work_dir/src/java" and -e "$work_dir/src/test"){
-        $result = {src=>"$subproject/src/java", test=>"$subproject/src/test"} unless defined $result;
+        $result = {src=>"src/java", test=>"src/test"} unless defined $result;
     }
     elsif (-e "$work_dir/src/java" and -e "$work_dir/src/tests"){
-        $result = {src=>"$subproject/src/java", test=>"$subproject/src/tests"} unless defined $result;
+        $result = {src=>"src/java", test=>"src/tests"} unless defined $result;
     }
     else {
-        system("tree -d $work_dir");
-        die "Unknown directory layout" unless defined $result;
+        if (-e "$work_dir"){
+      	  system("tree -d $work_dir");
+          die "Unknown directory layout" unless defined $result;
+    	}
+        else { 
+    	    $result = {src=>"$sub_project", test=>"$sub_project"} unless defined $result;
+    	}
     }
+    
     
     $self->_add_to_layout_map($rev_id, $result->{src}, $result->{test});
     $self->_cache_layout_map(); # Force cache rebuild

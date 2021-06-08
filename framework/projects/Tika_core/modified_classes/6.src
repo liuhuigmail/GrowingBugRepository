@@ -1,1 +1,1 @@
-org.apache.tika.sax.XHTMLContentHandler
+tika-core.org.apache.tika.sax.XHTMLContentHandler

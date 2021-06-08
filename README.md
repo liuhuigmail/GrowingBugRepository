@@ -38,12 +38,12 @@ from open-source Java projects.
 | 27     | Email           | commons-email              |        4       | 2-5                 |
 | 28     | Graph           | commons-graph              |        3       | 1-3                 |
 | 29     | Net             | commons-net                |        18      | 1,3,5,7,9,10,12,14-18,20-21,23-26             |
-| 30     | Numbers_angle   | commons-numbers            |        2       | 1-2               |
-| 31     | Geometry_core   | commons-geometry           |        2       | 1,3               |
+| 30     | Numbers_angle   | commons-numbers-angle            |        2       | 1-2               |
+| 31     | Geometry_core   | commons-geometry-core           |        2       | 1,3               |
 | 32     | MGpg            | maven-gpg-plugin           |        1       | 1               |
 | 33     | Text            | commons-text               |        4       | 1-2,4-5               |
-| 34     | Tika_core            | Tika-core               |        7       | 4-6,9,11,17,20               |
-| 35     | Tika_app            | Tika-app               |        2       | 1,3               |
+| 34     | Tika_core            | tika-core               |        7       | 4-6,9,11,17,20               |
+| 35     | Tika_app            | tika-app               |        2       | 1,3               |
 | 36     | Shiro_core            | core               |        10       | 37,40,46,52,72,98,144,176,181,202               |
 | 37     | Jena_core            | jena-core               |        1       | 2               |
 | 38     | Shiro_web            | web               |        3       | 1,3,7               |
