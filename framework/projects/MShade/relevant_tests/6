@@ -1,0 +1,2 @@
+org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformerParameterTests
+org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformerTest

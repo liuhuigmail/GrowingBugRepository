@@ -1,0 +1,2 @@
+org.apache.maven.plugins.shade.DefaultShaderTest
+org.apache.maven.plugins.shade.relocation.SimpleRelocatorTest
