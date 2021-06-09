@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/maven/plugins/shade/resource/ApacheNoticeResourceTransformer.java b/src/main/java/org/apache/maven/plugins/shade/resource/ApacheNoticeResourceTransformer.java
+index 79e72a2..92da457 100644
+--- a/src/main/java/org/apache/maven/plugins/shade/resource/ApacheNoticeResourceTransformer.java
++++ b/src/main/java/org/apache/maven/plugins/shade/resource/ApacheNoticeResourceTransformer.java
+@@ -49,7 +49,7 @@ public class ApacheNoticeResourceTransformer
+     Set entries = new LinkedHashSet();
+     Map organizationEntries = new LinkedHashMap();
+ 
+-    String projectName = ""; // MSHADE-101 :: NullPointerException when projectName is missing
++    String projectName;
+     boolean addHeader = true;
+ 
+     String preamble1 =

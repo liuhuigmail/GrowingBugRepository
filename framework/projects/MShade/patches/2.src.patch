@@ -2,7 +2,7 @@ diff --git a/src/main/java/org/apache/maven/plugins/shade/resource/ApacheLicense
 index ed64ca7..74a45f7 100644
 --- a/src/main/java/org/apache/maven/plugins/shade/resource/ApacheLicenseResourceTransformer.java
 +++ b/src/main/java/org/apache/maven/plugins/shade/resource/ApacheLicenseResourceTransformer.java
-@@ -27,21 +27,18 @@ import java.util.jar.JarOutputStream;
+@@ -27,21 +27,19 @@ import java.util.jar.JarOutputStream;
  
  /**
   * Prevents duplicate copies of the license
@@ -10,7 +10,11 @@ index ed64ca7..74a45f7 100644
  public class ApacheLicenseResourceTransformer
      implements ResourceTransformer
  {
-
+ 
+-    private static final String LICENSE_PATH = "meta-inf/license";
+ 
+-    private static final String LICENSE_TXT_PATH = "meta-inf/license.txt";
+ 
      Set entries = new HashSet();
  
      public boolean canTransformResource( String resource )
@@ -30,7 +34,9 @@ index 3d1dd04..1939ad4 100644
  
      String copyright;
  
-
+-    private static final String NOTICE_PATH = "meta-inf/notice";
+ 
+-    private static final String NOTICE_TXT_PATH = "meta-inf/notice.txt";
  
      public boolean canTransformResource( String resource )
      {
@@ -44,7 +50,7 @@ diff --git a/src/main/java/org/apache/maven/plugins/shade/resource/AppendingTran
 index 7890878..a4a2ab4 100644
 --- a/src/main/java/org/apache/maven/plugins/shade/resource/AppendingTransformer.java
 +++ b/src/main/java/org/apache/maven/plugins/shade/resource/AppendingTransformer.java
-@@ -36,7 +36,9 @@ public class AppendingTransformer
+@@ -36,7 +36,8 @@ public class AppendingTransformer
  
      public boolean canTransformResource( String r )
      {
@@ -58,7 +64,7 @@ diff --git a/src/main/java/org/apache/maven/plugins/shade/resource/XmlAppendingT
 index 75ce92a..ad33cc4 100644
 --- a/src/main/java/org/apache/maven/plugins/shade/resource/XmlAppendingTransformer.java
 +++ b/src/main/java/org/apache/maven/plugins/shade/resource/XmlAppendingTransformer.java
-@@ -44,7 +44,9 @@ public class XmlAppendingTransformer
+@@ -44,7 +44,8 @@ public class XmlAppendingTransformer
  
      public boolean canTransformResource( String r )
      {

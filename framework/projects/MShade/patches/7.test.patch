@@ -1,0 +1,108 @@
+diff --git a/src/test/java/org/apache/maven/plugins/shade/relocation/SimpleRelocatorParameterTest.java b/src/test/java/org/apache/maven/plugins/shade/relocation/SimpleRelocatorParameterTest.java
+deleted file mode 100644
+index e4e4fb3..0000000
+--- a/src/test/java/org/apache/maven/plugins/shade/relocation/SimpleRelocatorParameterTest.java
++++ /dev/null
+@@ -1,49 +0,0 @@
+-package org.apache.maven.plugins.shade.relocation;
+-
+-/*
+- * Licensed to the Apache Software Foundation (ASF) under one
+- * or more contributor license agreements.  See the NOTICE file
+- * distributed with this work for additional information
+- * regarding copyright ownership.  The ASF licenses this file
+- * to you under the Apache License, Version 2.0 (the
+- * "License"); you may not use this file except in compliance
+- * with the License.  You may obtain a copy of the License at
+- *
+- *  http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing,
+- * software distributed under the License is distributed on an
+- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+- * KIND, either express or implied.  See the License for the
+- * specific language governing permissions and limitations
+- * under the License.
+- */
+-
+-import java.util.Collections;
+-
+-import junit.framework.TestCase;
+-
+-public class SimpleRelocatorParameterTest extends TestCase {
+-
+-	
+-	protected void setUp() throws Exception {
+-		super.setUp();
+-	}
+-
+-	public void testThatNullPatternInConstructorShouldNotThrowNullPointerException() {
+-		constructThenFailOnNullPointerException(null, "");
+-	}
+-
+-	public void testThatNullShadedPatternInConstructorShouldNotThrowNullPointerException() {
+-		constructThenFailOnNullPointerException("", null);
+-	}
+-	
+-	private void constructThenFailOnNullPointerException(
+-			String pattern, String shadedPattern) {
+-		try {
+-			new SimpleRelocator(pattern, shadedPattern, Collections.EMPTY_LIST, Collections.EMPTY_LIST);
+-		} catch (NullPointerException e) {
+-			fail("Constructor should not throw null pointer exceptions");
+-		}
+-	}
+-}
+diff --git a/src/test/java/org/apache/maven/plugins/shade/relocation/SimpleRelocatorTest.java b/src/test/java/org/apache/maven/plugins/shade/relocation/SimpleRelocatorTest.java
+index b6c16a2..bd6bf6b 100644
+--- a/src/test/java/org/apache/maven/plugins/shade/relocation/SimpleRelocatorTest.java
++++ b/src/test/java/org/apache/maven/plugins/shade/relocation/SimpleRelocatorTest.java
+@@ -1,12 +1,12 @@
+ package org.apache.maven.plugins.shade.relocation;
+ 
+-import junit.framework.TestCase;
+-
+ import java.util.Arrays;
+ 
++import junit.framework.TestCase;
++
+ /**
+  * Test for {@link SimpleRelocator}.
+- *
++ * 
+  * @author Benjamin Bentmann
+  * @version $Id$
+  */
+@@ -28,8 +28,9 @@ public class SimpleRelocatorTest
+         assertEquals( false, relocator.canRelocatePath( "org/Foo/Class" ) );
+         assertEquals( false, relocator.canRelocatePath( "org/Foo/Class.class" ) );
+ 
+-        relocator = new SimpleRelocator( "org.foo", null, null, Arrays.asList(
+-            new String[]{ "org.foo.Excluded", "org.foo.public.*", "org.foo.Public*Stuff" } ) );
++        relocator =
++            new SimpleRelocator( "org.foo", null, null, Arrays.asList( new String[] { "org.foo.Excluded", "org.foo.public.*",
++                "org.foo.Public*Stuff" } ) );
+         assertEquals( true, relocator.canRelocatePath( "org/foo/Class" ) );
+         assertEquals( true, relocator.canRelocatePath( "org/foo/Class.class" ) );
+         assertEquals( true, relocator.canRelocatePath( "org/foo/excluded" ) );
+@@ -57,8 +58,9 @@ public class SimpleRelocatorTest
+         assertEquals( false, relocator.canRelocateClass( "com.foo.bar.Class" ) );
+         assertEquals( false, relocator.canRelocateClass( "org.Foo.Class" ) );
+ 
+-        relocator = new SimpleRelocator( "org.foo", null, null, Arrays.asList(
+-            new String[]{ "org.foo.Excluded", "org.foo.public.*", "org.foo.Public*Stuff" } ) );
++        relocator =
++            new SimpleRelocator( "org.foo", null, null, Arrays.asList( new String[] { "org.foo.Excluded", "org.foo.public.*",
++                "org.foo.Public*Stuff" } ) );
+         assertEquals( true, relocator.canRelocateClass( "org.foo.Class" ) );
+         assertEquals( true, relocator.canRelocateClass( "org.foo.excluded" ) );
+         assertEquals( false, relocator.canRelocateClass( "org.foo.Excluded" ) );
+@@ -69,7 +71,7 @@ public class SimpleRelocatorTest
+         assertEquals( false, relocator.canRelocateClass( "org.foo.PublicStuff" ) );
+         assertEquals( false, relocator.canRelocateClass( "org.foo.PublicUtilStuff" ) );
+     }
+-
++    
+     public void testCanRelocateRawString()
+     {
+         SimpleRelocator relocator;
