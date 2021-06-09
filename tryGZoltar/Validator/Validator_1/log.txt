@@ -1,0 +1,368 @@
+[DEBUG] PID: Validator
+[DEBUG] VID: 1
+[DEBUG] DATA_DIR: /home1/lileping3/tryGZoltar/Validator_1
+[DEBUG] TOOL: developer
+[DEBUG] TESTS_DIR: 
+[DEBUG] TMP_DIR: /home1/lileping3/tmp/Validator_1_buggy
+[DEBUG] DIR_PROJECT: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator
+[DEBUG] DIR_LOADED_CLASSES: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/loaded_classes
+[DEBUG] DIR_RELEVANT_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/relevant_tests
+[DEBUG] DIR_TRIGGER_TESTS: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/trigger_tests
+[DEBUG] JAVA_VERSION:
+Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1024m -Xmx4096m
+java version "1.8.0_231"
+Java(TM) SE Runtime Environment (build 1.8.0_231-b11)
+Java HotSpot(TM) 64-Bit Server VM (build 25.231-b11, mixed mode)
+[DEBUG] LOADED_CLASSES: org.apache.commons.validator.routines.AbstractFormatValidator:org.apache.commons.validator.routines.AbstractNumberValidator:org.apache.commons.validator.routines.ByteValidator:org.apache.commons.validator.routines.IntegerValidator:org.apache.commons.validator.routines.LongValidator:
+[DEBUG] LOADED_SUB_CLASSES: org.apache.commons.validator.routines.AbstractFormatValidator$*:org.apache.commons.validator.routines.AbstractNumberValidator$*:org.apache.commons.validator.routines.ByteValidator$*:org.apache.commons.validator.routines.IntegerValidator$*:org.apache.commons.validator.routines.LongValidator$*:
+[DEBUG] RELEVANT_TESTS: org.apache.commons.validator.routines.BigDecimalValidatorTest:org.apache.commons.validator.routines.BigIntegerValidatorTest:org.apache.commons.validator.routines.ByteValidatorTest:org.apache.commons.validator.routines.CurrencyValidatorTest:org.apache.commons.validator.routines.DoubleValidatorTest:org.apache.commons.validator.routines.FloatValidatorTest:org.apache.commons.validator.routines.IntegerValidatorTest:org.apache.commons.validator.routines.LongValidatorTest:org.apache.commons.validator.routines.PercentValidatorTest:org.apache.commons.validator.routines.ShortValidatorTest:
+[DEBUG] TRIGGER_TESTS_FILE: /home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/trigger_tests/1
+[DEBUG] CP: /home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/lib/commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/lib/commons-digester/commons-digester/2.1/commons-digester-2.1.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/lib/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/lib/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/lib/org/apache/commons/commons-csv/1.6/commons-csv-1.6.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/lib/junit/junit/4.12/junit-4.12.jar:/home1/NewD4j/GrowingBugRepository-main/framework/projects/Validator/lib/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home1/lileping3/tmp/Validator_1_buggy/target/classes:/home1/lileping3/tmp/Validator_1_buggy/target/test-classes:/home1/NewD4j/GrowingBugRepository-main/framework/projects/lib/junit-4.11.jar
+[INFO] Compiling Validator-1
+Running ant (compile)...................................................... OK
+Running ant (compile.tests)................................................ OK
+[INFO] Running GZoltar
+[INFO] Start: 2021年 06月 09日 星期三 04:48:49 PDT
+   ____ _____     _ _               
+  / ___|__  /___ | | |_ __ _ _ __   
+ | |  _  / // _ \| | __/ _` | '__| 
+ | |_| |/ /| (_) | | || (_| | |     
+  \____/____\___/|_|\__\__,_|_| 
+
+* Preparing classpath
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=1024M; support was removed in 8.0
+* Collecting classes under test
+* Collecting test cases
+* Performing analysis
+* Started org.apache.commons.validator.routines.BigDecimalValidatorTest#testBigDecimalRangeMinMax
+* Finished org.apache.commons.validator.routines.BigDecimalValidatorTest#testBigDecimalRangeMinMax
+* Started org.apache.commons.validator.routines.BigDecimalValidatorTest#testBigDecimalValidatorMethods
+* Finished org.apache.commons.validator.routines.BigDecimalValidatorTest#testBigDecimalValidatorMethods
+* Started org.apache.commons.validator.routines.BigDecimalValidatorTest#testValidateLocale
+* Finished org.apache.commons.validator.routines.BigDecimalValidatorTest#testValidateLocale
+* Started org.apache.commons.validator.routines.BigDecimalValidatorTest#testValidateMinMax
+* Finished org.apache.commons.validator.routines.BigDecimalValidatorTest#testValidateMinMax
+* Started org.apache.commons.validator.routines.BigDecimalValidatorTest#testRangeMinMax
+* Finished org.apache.commons.validator.routines.BigDecimalValidatorTest#testRangeMinMax
+* Started org.apache.commons.validator.routines.BigDecimalValidatorTest#testSerialization
+* Finished org.apache.commons.validator.routines.BigDecimalValidatorTest#testSerialization
+* Started org.apache.commons.validator.routines.BigDecimalValidatorTest#testValidNotStrict
+* Finished org.apache.commons.validator.routines.BigDecimalValidatorTest#testValidNotStrict
+* Started org.apache.commons.validator.routines.BigDecimalValidatorTest#testInvalidNotStrict
+* Finished org.apache.commons.validator.routines.BigDecimalValidatorTest#testInvalidNotStrict
+* Started org.apache.commons.validator.routines.BigDecimalValidatorTest#testFormatType
+* Finished org.apache.commons.validator.routines.BigDecimalValidatorTest#testFormatType
+* Started org.apache.commons.validator.routines.BigDecimalValidatorTest#testInvalidStrict
+* Finished org.apache.commons.validator.routines.BigDecimalValidatorTest#testInvalidStrict
+* Started org.apache.commons.validator.routines.BigDecimalValidatorTest#testFormat
+* Finished org.apache.commons.validator.routines.BigDecimalValidatorTest#testFormat
+* Started org.apache.commons.validator.routines.BigDecimalValidatorTest#testValidStrict
+* Finished org.apache.commons.validator.routines.BigDecimalValidatorTest#testValidStrict
+* Started org.apache.commons.validator.routines.BigIntegerValidatorTest#testBigIntegerRangeMinMax
+* Finished org.apache.commons.validator.routines.BigIntegerValidatorTest#testBigIntegerRangeMinMax
+* Started org.apache.commons.validator.routines.BigIntegerValidatorTest#testBigIntegerValidatorMethods
+* Finished org.apache.commons.validator.routines.BigIntegerValidatorTest#testBigIntegerValidatorMethods
+* Started org.apache.commons.validator.routines.BigIntegerValidatorTest#testValidateLocale
+* Finished org.apache.commons.validator.routines.BigIntegerValidatorTest#testValidateLocale
+* Started org.apache.commons.validator.routines.BigIntegerValidatorTest#testValidateMinMax
+* Finished org.apache.commons.validator.routines.BigIntegerValidatorTest#testValidateMinMax
+* Started org.apache.commons.validator.routines.BigIntegerValidatorTest#testRangeMinMax
+* Finished org.apache.commons.validator.routines.BigIntegerValidatorTest#testRangeMinMax
+* Started org.apache.commons.validator.routines.BigIntegerValidatorTest#testSerialization
+* Finished org.apache.commons.validator.routines.BigIntegerValidatorTest#testSerialization
+* Started org.apache.commons.validator.routines.BigIntegerValidatorTest#testValidNotStrict
+* Finished org.apache.commons.validator.routines.BigIntegerValidatorTest#testValidNotStrict
+* Started org.apache.commons.validator.routines.BigIntegerValidatorTest#testInvalidNotStrict
+* Finished org.apache.commons.validator.routines.BigIntegerValidatorTest#testInvalidNotStrict
+* Started org.apache.commons.validator.routines.BigIntegerValidatorTest#testFormatType
+* Finished org.apache.commons.validator.routines.BigIntegerValidatorTest#testFormatType
+* Started org.apache.commons.validator.routines.BigIntegerValidatorTest#testInvalidStrict
+* Finished org.apache.commons.validator.routines.BigIntegerValidatorTest#testInvalidStrict
+* Started org.apache.commons.validator.routines.BigIntegerValidatorTest#testFormat
+* Finished org.apache.commons.validator.routines.BigIntegerValidatorTest#testFormat
+* Started org.apache.commons.validator.routines.BigIntegerValidatorTest#testValidStrict
+* Finished org.apache.commons.validator.routines.BigIntegerValidatorTest#testValidStrict
+* Started org.apache.commons.validator.routines.PercentValidatorTest#testValid
+* Finished org.apache.commons.validator.routines.PercentValidatorTest#testValid
+* Started org.apache.commons.validator.routines.PercentValidatorTest#testFormatType
+* Finished org.apache.commons.validator.routines.PercentValidatorTest#testFormatType
+* Started org.apache.commons.validator.routines.PercentValidatorTest#testInvalid
+* Finished org.apache.commons.validator.routines.PercentValidatorTest#testInvalid
+* Started org.apache.commons.validator.routines.ShortValidatorTest#testShortValidatorMethods
+* Finished org.apache.commons.validator.routines.ShortValidatorTest#testShortValidatorMethods
+* Started org.apache.commons.validator.routines.ShortValidatorTest#testShortRangeMinMax
+* Finished org.apache.commons.validator.routines.ShortValidatorTest#testShortRangeMinMax
+* Started org.apache.commons.validator.routines.ShortValidatorTest#testValidateLocale
+* Finished org.apache.commons.validator.routines.ShortValidatorTest#testValidateLocale
+* Started org.apache.commons.validator.routines.ShortValidatorTest#testValidateMinMax
+* Finished org.apache.commons.validator.routines.ShortValidatorTest#testValidateMinMax
+* Started org.apache.commons.validator.routines.ShortValidatorTest#testRangeMinMax
+* Finished org.apache.commons.validator.routines.ShortValidatorTest#testRangeMinMax
+* Started org.apache.commons.validator.routines.ShortValidatorTest#testSerialization
+* Finished org.apache.commons.validator.routines.ShortValidatorTest#testSerialization
+* Started org.apache.commons.validator.routines.ShortValidatorTest#testValidNotStrict
+* Finished org.apache.commons.validator.routines.ShortValidatorTest#testValidNotStrict
+* Started org.apache.commons.validator.routines.ShortValidatorTest#testInvalidNotStrict
+* Finished org.apache.commons.validator.routines.ShortValidatorTest#testInvalidNotStrict
+* Started org.apache.commons.validator.routines.ShortValidatorTest#testFormatType
+* Finished org.apache.commons.validator.routines.ShortValidatorTest#testFormatType
+* Started org.apache.commons.validator.routines.ShortValidatorTest#testInvalidStrict
+* Finished org.apache.commons.validator.routines.ShortValidatorTest#testInvalidStrict
+* Started org.apache.commons.validator.routines.ShortValidatorTest#testFormat
+* Finished org.apache.commons.validator.routines.ShortValidatorTest#testFormat
+* Started org.apache.commons.validator.routines.ShortValidatorTest#testValidStrict
+* Finished org.apache.commons.validator.routines.ShortValidatorTest#testValidStrict
+* Started org.apache.commons.validator.routines.FloatValidatorTest#testFloatRangeMinMax
+* Finished org.apache.commons.validator.routines.FloatValidatorTest#testFloatRangeMinMax
+* Started org.apache.commons.validator.routines.FloatValidatorTest#testFloatSmallestValues
+* Finished org.apache.commons.validator.routines.FloatValidatorTest#testFloatSmallestValues
+* Started org.apache.commons.validator.routines.FloatValidatorTest#testFloatValidatorMethods
+* Finished org.apache.commons.validator.routines.FloatValidatorTest#testFloatValidatorMethods
+* Started org.apache.commons.validator.routines.FloatValidatorTest#testValidateLocale
+* Finished org.apache.commons.validator.routines.FloatValidatorTest#testValidateLocale
+* Started org.apache.commons.validator.routines.FloatValidatorTest#testValidateMinMax
+* Finished org.apache.commons.validator.routines.FloatValidatorTest#testValidateMinMax
+* Started org.apache.commons.validator.routines.FloatValidatorTest#testRangeMinMax
+* Finished org.apache.commons.validator.routines.FloatValidatorTest#testRangeMinMax
+* Started org.apache.commons.validator.routines.FloatValidatorTest#testSerialization
+* Finished org.apache.commons.validator.routines.FloatValidatorTest#testSerialization
+* Started org.apache.commons.validator.routines.FloatValidatorTest#testValidNotStrict
+* Finished org.apache.commons.validator.routines.FloatValidatorTest#testValidNotStrict
+* Started org.apache.commons.validator.routines.FloatValidatorTest#testInvalidNotStrict
+* Finished org.apache.commons.validator.routines.FloatValidatorTest#testInvalidNotStrict
+* Started org.apache.commons.validator.routines.FloatValidatorTest#testFormatType
+* Finished org.apache.commons.validator.routines.FloatValidatorTest#testFormatType
+* Started org.apache.commons.validator.routines.FloatValidatorTest#testInvalidStrict
+* Finished org.apache.commons.validator.routines.FloatValidatorTest#testInvalidStrict
+* Started org.apache.commons.validator.routines.FloatValidatorTest#testFormat
+* Finished org.apache.commons.validator.routines.FloatValidatorTest#testFormat
+* Started org.apache.commons.validator.routines.FloatValidatorTest#testValidStrict
+* Finished org.apache.commons.validator.routines.FloatValidatorTest#testValidStrict
+* Started org.apache.commons.validator.routines.IntegerValidatorTest#testIntegerValidatorMethods
+* Finished org.apache.commons.validator.routines.IntegerValidatorTest#testIntegerValidatorMethods
+* Started org.apache.commons.validator.routines.IntegerValidatorTest#testMinMaxValues
+* Finished org.apache.commons.validator.routines.IntegerValidatorTest#testMinMaxValues
+* Started org.apache.commons.validator.routines.IntegerValidatorTest#testIntegerRangeMinMax
+* Finished org.apache.commons.validator.routines.IntegerValidatorTest#testIntegerRangeMinMax
+* Started org.apache.commons.validator.routines.IntegerValidatorTest#testValidateLocale
+* Finished org.apache.commons.validator.routines.IntegerValidatorTest#testValidateLocale
+* Started org.apache.commons.validator.routines.IntegerValidatorTest#testValidateMinMax
+* Finished org.apache.commons.validator.routines.IntegerValidatorTest#testValidateMinMax
+* Started org.apache.commons.validator.routines.IntegerValidatorTest#testRangeMinMax
+* Finished org.apache.commons.validator.routines.IntegerValidatorTest#testRangeMinMax
+* Started org.apache.commons.validator.routines.IntegerValidatorTest#testSerialization
+* Finished org.apache.commons.validator.routines.IntegerValidatorTest#testSerialization
+* Started org.apache.commons.validator.routines.IntegerValidatorTest#testValidNotStrict
+* Failure: (A) idx=[7] value=[2147483647] expected:<2147483647> but was:<null> | testValidNotStrict(org.apache.commons.validator.routines.IntegerValidatorTest)
+junit.framework.AssertionFailedError: (A) idx=[7] value=[2147483647] expected:<2147483647> but was:<null>
+	at junit.framework.Assert.fail(Assert.java:57)
+	at junit.framework.Assert.failNotEquals(Assert.java:329)
+	at junit.framework.Assert.assertEquals(Assert.java:78)
+	at junit.framework.TestCase.assertEquals(TestCase.java:244)
+	at org.apache.commons.validator.routines.AbstractNumberValidatorTest.testValidNotStrict(AbstractNumberValidatorTest.java:154)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at junit.framework.TestCase.runTest(TestCase.java:176)
+	at junit.framework.TestCase.runBare(TestCase.java:141)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.commons.validator.routines.IntegerValidatorTest#testValidNotStrict
+* Started org.apache.commons.validator.routines.IntegerValidatorTest#testInvalidNotStrict
+* Finished org.apache.commons.validator.routines.IntegerValidatorTest#testInvalidNotStrict
+* Started org.apache.commons.validator.routines.IntegerValidatorTest#testFormatType
+* Finished org.apache.commons.validator.routines.IntegerValidatorTest#testFormatType
+* Started org.apache.commons.validator.routines.IntegerValidatorTest#testInvalidStrict
+* Finished org.apache.commons.validator.routines.IntegerValidatorTest#testInvalidStrict
+* Started org.apache.commons.validator.routines.IntegerValidatorTest#testFormat
+* Finished org.apache.commons.validator.routines.IntegerValidatorTest#testFormat
+* Started org.apache.commons.validator.routines.IntegerValidatorTest#testValidStrict
+* Finished org.apache.commons.validator.routines.IntegerValidatorTest#testValidStrict
+* Started org.apache.commons.validator.routines.CurrencyValidatorTest#testValid
+* Finished org.apache.commons.validator.routines.CurrencyValidatorTest#testValid
+* Started org.apache.commons.validator.routines.CurrencyValidatorTest#testPattern
+* Finished org.apache.commons.validator.routines.CurrencyValidatorTest#testPattern
+* Started org.apache.commons.validator.routines.CurrencyValidatorTest#testFormatType
+* Finished org.apache.commons.validator.routines.CurrencyValidatorTest#testFormatType
+* Started org.apache.commons.validator.routines.CurrencyValidatorTest#testIntegerInvalid
+* Finished org.apache.commons.validator.routines.CurrencyValidatorTest#testIntegerInvalid
+* Started org.apache.commons.validator.routines.CurrencyValidatorTest#testIntegerValid
+* Finished org.apache.commons.validator.routines.CurrencyValidatorTest#testIntegerValid
+* Started org.apache.commons.validator.routines.CurrencyValidatorTest#testInvalid
+* Finished org.apache.commons.validator.routines.CurrencyValidatorTest#testInvalid
+* Started org.apache.commons.validator.routines.DoubleValidatorTest#testDoubleValidatorMethods
+* Finished org.apache.commons.validator.routines.DoubleValidatorTest#testDoubleValidatorMethods
+* Started org.apache.commons.validator.routines.DoubleValidatorTest#testDoubleRangeMinMax
+* Finished org.apache.commons.validator.routines.DoubleValidatorTest#testDoubleRangeMinMax
+* Started org.apache.commons.validator.routines.DoubleValidatorTest#testValidateLocale
+* Finished org.apache.commons.validator.routines.DoubleValidatorTest#testValidateLocale
+* Started org.apache.commons.validator.routines.DoubleValidatorTest#testValidateMinMax
+* Finished org.apache.commons.validator.routines.DoubleValidatorTest#testValidateMinMax
+* Started org.apache.commons.validator.routines.DoubleValidatorTest#testRangeMinMax
+* Finished org.apache.commons.validator.routines.DoubleValidatorTest#testRangeMinMax
+* Started org.apache.commons.validator.routines.DoubleValidatorTest#testSerialization
+* Finished org.apache.commons.validator.routines.DoubleValidatorTest#testSerialization
+* Started org.apache.commons.validator.routines.DoubleValidatorTest#testValidNotStrict
+* Finished org.apache.commons.validator.routines.DoubleValidatorTest#testValidNotStrict
+* Started org.apache.commons.validator.routines.DoubleValidatorTest#testInvalidNotStrict
+* Finished org.apache.commons.validator.routines.DoubleValidatorTest#testInvalidNotStrict
+* Started org.apache.commons.validator.routines.DoubleValidatorTest#testFormatType
+* Finished org.apache.commons.validator.routines.DoubleValidatorTest#testFormatType
+* Started org.apache.commons.validator.routines.DoubleValidatorTest#testInvalidStrict
+* Finished org.apache.commons.validator.routines.DoubleValidatorTest#testInvalidStrict
+* Started org.apache.commons.validator.routines.DoubleValidatorTest#testFormat
+* Finished org.apache.commons.validator.routines.DoubleValidatorTest#testFormat
+* Started org.apache.commons.validator.routines.DoubleValidatorTest#testValidStrict
+* Finished org.apache.commons.validator.routines.DoubleValidatorTest#testValidStrict
+* Started org.apache.commons.validator.routines.LongValidatorTest#testLongRangeMinMax
+* Finished org.apache.commons.validator.routines.LongValidatorTest#testLongRangeMinMax
+* Started org.apache.commons.validator.routines.LongValidatorTest#testLongValidatorMethods
+* Finished org.apache.commons.validator.routines.LongValidatorTest#testLongValidatorMethods
+* Started org.apache.commons.validator.routines.LongValidatorTest#testValidateLocale
+* Finished org.apache.commons.validator.routines.LongValidatorTest#testValidateLocale
+* Started org.apache.commons.validator.routines.LongValidatorTest#testValidateMinMax
+* Finished org.apache.commons.validator.routines.LongValidatorTest#testValidateMinMax
+* Started org.apache.commons.validator.routines.LongValidatorTest#testRangeMinMax
+* Finished org.apache.commons.validator.routines.LongValidatorTest#testRangeMinMax
+* Started org.apache.commons.validator.routines.LongValidatorTest#testSerialization
+* Finished org.apache.commons.validator.routines.LongValidatorTest#testSerialization
+* Started org.apache.commons.validator.routines.LongValidatorTest#testValidNotStrict
+* Finished org.apache.commons.validator.routines.LongValidatorTest#testValidNotStrict
+* Started org.apache.commons.validator.routines.LongValidatorTest#testInvalidNotStrict
+* Failure: (A) idx=[5] value=[9223372036854775808] | testInvalidNotStrict(org.apache.commons.validator.routines.LongValidatorTest)
+junit.framework.AssertionFailedError: (A) idx=[5] value=[9223372036854775808]
+	at junit.framework.Assert.fail(Assert.java:57)
+	at junit.framework.Assert.assertTrue(Assert.java:22)
+	at junit.framework.Assert.assertNull(Assert.java:277)
+	at junit.framework.TestCase.assertNull(TestCase.java:447)
+	at org.apache.commons.validator.routines.AbstractNumberValidatorTest.testInvalidNotStrict(AbstractNumberValidatorTest.java:128)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at junit.framework.TestCase.runTest(TestCase.java:176)
+	at junit.framework.TestCase.runBare(TestCase.java:141)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.commons.validator.routines.LongValidatorTest#testInvalidNotStrict
+* Started org.apache.commons.validator.routines.LongValidatorTest#testFormatType
+* Finished org.apache.commons.validator.routines.LongValidatorTest#testFormatType
+* Started org.apache.commons.validator.routines.LongValidatorTest#testInvalidStrict
+* Failure: (A) idx=[7] value=[9223372036854775808] | testInvalidStrict(org.apache.commons.validator.routines.LongValidatorTest)
+junit.framework.AssertionFailedError: (A) idx=[7] value=[9223372036854775808]
+	at junit.framework.Assert.fail(Assert.java:57)
+	at junit.framework.Assert.assertTrue(Assert.java:22)
+	at junit.framework.Assert.assertNull(Assert.java:277)
+	at junit.framework.TestCase.assertNull(TestCase.java:447)
+	at org.apache.commons.validator.routines.AbstractNumberValidatorTest.testInvalidStrict(AbstractNumberValidatorTest.java:115)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at junit.framework.TestCase.runTest(TestCase.java:176)
+	at junit.framework.TestCase.runBare(TestCase.java:141)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.commons.validator.routines.LongValidatorTest#testInvalidStrict
+* Started org.apache.commons.validator.routines.LongValidatorTest#testFormat
+* Finished org.apache.commons.validator.routines.LongValidatorTest#testFormat
+* Started org.apache.commons.validator.routines.LongValidatorTest#testValidStrict
+* Finished org.apache.commons.validator.routines.LongValidatorTest#testValidStrict
+* Started org.apache.commons.validator.routines.ByteValidatorTest#testByteValidatorMethods
+* Finished org.apache.commons.validator.routines.ByteValidatorTest#testByteValidatorMethods
+* Started org.apache.commons.validator.routines.ByteValidatorTest#testByteRangeMinMax
+* Finished org.apache.commons.validator.routines.ByteValidatorTest#testByteRangeMinMax
+* Started org.apache.commons.validator.routines.ByteValidatorTest#testValidateLocale
+* Finished org.apache.commons.validator.routines.ByteValidatorTest#testValidateLocale
+* Started org.apache.commons.validator.routines.ByteValidatorTest#testValidateMinMax
+* Finished org.apache.commons.validator.routines.ByteValidatorTest#testValidateMinMax
+* Started org.apache.commons.validator.routines.ByteValidatorTest#testRangeMinMax
+* Finished org.apache.commons.validator.routines.ByteValidatorTest#testRangeMinMax
+* Started org.apache.commons.validator.routines.ByteValidatorTest#testSerialization
+* Finished org.apache.commons.validator.routines.ByteValidatorTest#testSerialization
+* Started org.apache.commons.validator.routines.ByteValidatorTest#testValidNotStrict
+* Failure: (A) idx=[7] value=[127] expected:<127> but was:<null> | testValidNotStrict(org.apache.commons.validator.routines.ByteValidatorTest)
+junit.framework.AssertionFailedError: (A) idx=[7] value=[127] expected:<127> but was:<null>
+	at junit.framework.Assert.fail(Assert.java:57)
+	at junit.framework.Assert.failNotEquals(Assert.java:329)
+	at junit.framework.Assert.assertEquals(Assert.java:78)
+	at junit.framework.TestCase.assertEquals(TestCase.java:244)
+	at org.apache.commons.validator.routines.AbstractNumberValidatorTest.testValidNotStrict(AbstractNumberValidatorTest.java:154)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at junit.framework.TestCase.runTest(TestCase.java:176)
+	at junit.framework.TestCase.runBare(TestCase.java:141)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.commons.validator.routines.ByteValidatorTest#testValidNotStrict
+* Started org.apache.commons.validator.routines.ByteValidatorTest#testInvalidNotStrict
+* Finished org.apache.commons.validator.routines.ByteValidatorTest#testInvalidNotStrict
+* Started org.apache.commons.validator.routines.ByteValidatorTest#testFormatType
+* Finished org.apache.commons.validator.routines.ByteValidatorTest#testFormatType
+* Started org.apache.commons.validator.routines.ByteValidatorTest#testInvalidStrict
+* Finished org.apache.commons.validator.routines.ByteValidatorTest#testInvalidStrict
+* Started org.apache.commons.validator.routines.ByteValidatorTest#testFormat
+* Finished org.apache.commons.validator.routines.ByteValidatorTest#testFormat
+* Started org.apache.commons.validator.routines.ByteValidatorTest#testValidStrict
+* Finished org.apache.commons.validator.routines.ByteValidatorTest#testValidStrict
+* Filtering test cases that do not cover any component
+* Sending data to master
+* Closing connection with client
+* Performing fault localization
+* Running Ochiai
+* Writing coverage matrix to '/home1/lileping3/tryGZoltar/Validator_1/matrix'
+* Writing spectra to '/home1/lileping3/tryGZoltar/Validator_1/spectra'
+* Metrics
+* Computation finished
+[INFO] End: 2021年 06月 09日 星期三 04:48:52 PDT
+[DEBUG] MATRIX OK
+[DEBUG] SPECTRA OK
+
+DONE!
