@@ -12,7 +12,7 @@ index f148bc01..7b5b5ac7 100644
 -            pool.returnObject("Foo", "Bar");
 -        }
 -    }
-
+-
      @Test(timeout=60000)
      public void testMaxIdle() throws Exception {
          gkoPool.setMaxTotalPerKey(100);
@@ -34,6 +34,11 @@ index f148bc01..7b5b5ac7 100644
              final Thread t = new Thread(threads[i]);
              t.start();
              // Short delay to ensure threads start in correct order
-
+@@ -2378,7 +2371,6 @@ public class TestGenericKeyedObjectPool extends TestKeyedObjectPool {
+             return new DefaultPooledObject<>(value);
+         }
+     }
+-    
+ }
  
  
