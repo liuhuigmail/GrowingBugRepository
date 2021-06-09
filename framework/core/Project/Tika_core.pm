@@ -196,7 +196,7 @@ sub initialize_revision {
     	}
     }
     
-    $self->_add_to_layout_map($rev_id, $sub_project."/".$result->{src}, $sub_project."/".$result->{test});
+    $self->_add_to_layout_map($rev_id,$result->{src},$result->{test});
     $self->_cache_layout_map(); # Force cache rebuild
 }
 
