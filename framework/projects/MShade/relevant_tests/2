@@ -1,0 +1,4 @@
+org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformerTest
+org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformerTest
+org.apache.maven.plugins.shade.resource.AppendingTransformerTest
+org.apache.maven.plugins.shade.resource.XmlAppendingTransformerTest

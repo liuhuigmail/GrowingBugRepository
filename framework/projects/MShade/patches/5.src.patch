@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/maven/plugins/shade/mojo/ShadeMojo.java b/src/main/java/org/apache/maven/plugins/shade/mojo/ShadeMojo.java
+index f533960..38070de 100644
+--- a/src/main/java/org/apache/maven/plugins/shade/mojo/ShadeMojo.java
++++ b/src/main/java/org/apache/maven/plugins/shade/mojo/ShadeMojo.java
+@@ -649,18 +649,10 @@ public class ShadeMojo
+ 
+                 if ( ( (ArtifactId) entry.getValue() ).matches( pattern ) )
+                 {
+                     Artifact artifact = (Artifact) entry.getKey();
+                     
+                     jars.add( artifact.getFile() );
+                     
+-                    if ( createSourcesJar )
+-                    {
+-                        File file = resolveArtifactSources( artifact );
+-                        if ( file != null )
+-                        {
+-                            jars.add( file );
+-                        }
+-                    }
+                 }
+             }
+ 

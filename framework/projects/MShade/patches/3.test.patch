@@ -1,0 +1,72 @@
+diff --git a/src/test/java/org/apache/maven/plugins/shade/mojo/ShadeMojoTest.java b/src/test/java/org/apache/maven/plugins/shade/mojo/ShadeMojoTest.java
+index 2aebb80..2e98f72 100644
+--- a/src/test/java/org/apache/maven/plugins/shade/mojo/ShadeMojoTest.java
++++ b/src/test/java/org/apache/maven/plugins/shade/mojo/ShadeMojoTest.java
+@@ -20,10 +20,6 @@ package org.apache.maven.plugins.shade.mojo;
+  */
+ 
+ import java.io.File;
+-import java.lang.reflect.Field;
+-import java.lang.reflect.Method;
+-import java.net.URL;
+-import java.net.URLClassLoader;
+ import java.util.ArrayList;
+ import java.util.Arrays;
+ import java.util.HashSet;
+@@ -55,36 +51,6 @@ public class ShadeMojoTest
+         shaderWithPattern("org/shaded/plexus/util", new File( "target/foo-custom.jar" ));
+     }
+ 
+-    public void testShaderWithExclusions()
+-        throws Exception
+-    {
+-        File jarFile = new File( getBasedir(), "target/unit/foo-bar.jar" );
+-
+-        Shader s = (Shader) lookup( Shader.ROLE );
+-
+-        Set set = new HashSet();
+-        set.add( new File( getBasedir(), "src/test/jars/test-artifact-1.0-SNAPSHOT.jar" ) );
+-
+-        List relocators = new ArrayList();
+-        relocators.add( new SimpleRelocator( "org.codehaus.plexus.util", "hidden", Arrays.asList( new String[] {
+-            "org.codehaus.plexus.util.xml.Xpp3Dom", "org.codehaus.plexus.util.xml.pull.*" } ) ) );
+-
+-        List resourceTransformers = new ArrayList();
+-
+-        List filters = new ArrayList();
+-
+-        s.shade( set, jarFile, filters, relocators, resourceTransformers );
+-
+-        ClassLoader cl = new URLClassLoader( new URL[] { jarFile.toURI().toURL() } );
+-        Class c = cl.loadClass( "org.apache.maven.plugins.shade.Lib" );
+-
+-        Field field = c.getDeclaredField( "CLASS_REALM_PACKAGE_IMPORT" );
+-        assertEquals( "org.codehaus.plexus.util.xml.pull", field.get( null ) );
+-
+-        Method method = c.getDeclaredMethod( "getClassRealmPackageImport", new Class[0] );
+-        assertEquals( "org.codehaus.plexus.util.xml.pull", method.invoke( null, new Object[0] ) );
+-    }
+-
+     public void shaderWithPattern(String shadedPattern, File jar)
+         throws Exception
+     {
+diff --git a/src/test/java/org/apache/maven/plugins/shade/relocation/SimpleRelocatorTest.java b/src/test/java/org/apache/maven/plugins/shade/relocation/SimpleRelocatorTest.java
+index 6fac8f1..0659581 100644
+--- a/src/test/java/org/apache/maven/plugins/shade/relocation/SimpleRelocatorTest.java
++++ b/src/test/java/org/apache/maven/plugins/shade/relocation/SimpleRelocatorTest.java
+@@ -36,7 +36,6 @@ public class SimpleRelocatorTest
+         assertEquals( true, relocator.canRelocatePath( "org/foo/excluded" ) );
+         assertEquals( false, relocator.canRelocatePath( "org/foo/Excluded" ) );
+         assertEquals( false, relocator.canRelocatePath( "org/foo/Excluded.class" ) );
+-        assertEquals( false, relocator.canRelocatePath( "org/foo/public" ) );
+         assertEquals( false, relocator.canRelocatePath( "org/foo/public/Class" ) );
+         assertEquals( false, relocator.canRelocatePath( "org/foo/public/Class.class" ) );
+         assertEquals( true, relocator.canRelocatePath( "org/foo/PrivateStuff" ) );
+@@ -63,7 +62,6 @@ public class SimpleRelocatorTest
+         assertEquals( true, relocator.canRelocateClass( "org.foo.Class" ) );
+         assertEquals( true, relocator.canRelocateClass( "org.foo.excluded" ) );
+         assertEquals( false, relocator.canRelocateClass( "org.foo.Excluded" ) );
+-        assertEquals( false, relocator.canRelocateClass( "org.foo.public" ) );
+         assertEquals( false, relocator.canRelocateClass( "org.foo.public.Class" ) );
+         assertEquals( true, relocator.canRelocateClass( "org.foo.PrivateStuff" ) );
+         assertEquals( false, relocator.canRelocateClass( "org.foo.PublicStuff" ) );

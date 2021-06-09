@@ -1,0 +1,39 @@
+diff --git a/src/main/java/org/apache/maven/plugins/shade/relocation/SimpleRelocator.java b/src/main/java/org/apache/maven/plugins/shade/relocation/SimpleRelocator.java
+index 198eeed..77e42b0 100644
+--- a/src/main/java/org/apache/maven/plugins/shade/relocation/SimpleRelocator.java
++++ b/src/main/java/org/apache/maven/plugins/shade/relocation/SimpleRelocator.java
+@@ -19,8 +19,7 @@ package org.apache.maven.plugins.shade.relocation;
+  * under the License.
+  */
+ 
+-import org.codehaus.plexus.util.SelectorUtils;
+ 
+ import java.util.Collection;
+ import java.util.Iterator;
+ import java.util.LinkedHashSet;
+@@ -28,6 +26,7 @@ import java.util.List;
+ import java.util.Set;
+ import java.util.regex.Pattern;
+ 
++import org.codehaus.plexus.util.SelectorUtils;
+ /**
+  * @author Jason van Zyl
+  * @author Mauro Talevi
+@@ -69,16 +69,8 @@ public class SimpleRelocator
+         }
+         else
+         {
+-            if ( patt == null )
+-            {
+-                this.pattern = "";
+-                this.pathPattern = "";
+-            }
+-            else
+-            {
+                 this.pattern = patt.replace( '/', '.' );
+                 this.pathPattern = patt.replace( '.', '/' );
+-            }
+ 
+             if ( shadedPattern != null )
+             {
+

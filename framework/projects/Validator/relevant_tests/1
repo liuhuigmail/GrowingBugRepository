@@ -1,0 +1,10 @@
+org.apache.commons.validator.routines.BigDecimalValidatorTest
+org.apache.commons.validator.routines.BigIntegerValidatorTest
+org.apache.commons.validator.routines.ByteValidatorTest
+org.apache.commons.validator.routines.CurrencyValidatorTest
+org.apache.commons.validator.routines.DoubleValidatorTest
+org.apache.commons.validator.routines.FloatValidatorTest
+org.apache.commons.validator.routines.IntegerValidatorTest
+org.apache.commons.validator.routines.LongValidatorTest
+org.apache.commons.validator.routines.PercentValidatorTest
+org.apache.commons.validator.routines.ShortValidatorTest

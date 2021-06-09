@@ -1,0 +1,39 @@
+diff --git a/src/main/java/org/apache/maven/plugins/shade/filter/SimpleFilter.java b/src/main/java/org/apache/maven/plugins/shade/filter/SimpleFilter.java
+index fc36bc1..f46f9cd 100644
+--- a/src/main/java/org/apache/maven/plugins/shade/filter/SimpleFilter.java
++++ b/src/main/java/org/apache/maven/plugins/shade/filter/SimpleFilter.java
+@@ -41,7 +41,7 @@ public class SimpleFilter
+ 
+     public SimpleFilter( Set jars, Set includes, Set excludes )
+     {
+-        this.jars = ( jars != null ) ? new HashSet( jars ) : new HashSet();
++        this.jars = new HashSet( jars );
+         this.includes = normalizePatterns( includes );
+         this.excludes = normalizePatterns( excludes );
+     }
+@@ -95,7 +95,7 @@ public class SimpleFilter
+ 
+     private String normalizePath( String path )
+     {
+-        return ( path != null ) ? path.replace( File.separatorChar == '/' ? '\\' : '/', File.separatorChar ) : null;
++        return ( path != null ) ? path.replace( '/', File.separatorChar ).replace( '\\', File.separatorChar ) : null;
+     }
+ 
+     private Set normalizePatterns( Set patterns )
+@@ -107,15 +107,10 @@ public class SimpleFilter
+             for ( Iterator it = patterns.iterator(); it.hasNext(); )
+             {
+                 String pattern = (String) it.next();
+ 
+-                pattern = normalizePath( pattern );
+ 
+-                if ( pattern.endsWith( File.separator ) )
+-                {
+-                    pattern += "**";
+-                }
+ 
+-                result.add( pattern );
++                result.add( normalizePath( pattern ) );
+             }
+         }
+ 
