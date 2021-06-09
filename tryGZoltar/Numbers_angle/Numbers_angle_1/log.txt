@@ -1,0 +1,140 @@
+[DEBUG] PID: Numbers_angle
+[DEBUG] VID: 1
+[DEBUG] DATA_DIR: /home/laughtale/桌面/checkout/gzoltar/Numbers_angle_1
+[DEBUG] TOOL: developer
+[DEBUG] TESTS_DIR: 
+[DEBUG] TMP_DIR: /home/laughtale/桌面/checkout/Numbers_angle/Numbers_angle_1_buggy/commons-numbers-angle
+[DEBUG] DIR_PROJECT: /home/laughtale/defects4j/framework/projects/Numbers_angle
+[DEBUG] DIR_LOADED_CLASSES: /home/laughtale/defects4j/framework/projects/Numbers_angle/loaded_classes
+[DEBUG] DIR_RELEVANT_TESTS: /home/laughtale/defects4j/framework/projects/Numbers_angle/relevant_tests
+[DEBUG] DIR_TRIGGER_TESTS: /home/laughtale/defects4j/framework/projects/Numbers_angle/trigger_tests
+[DEBUG] JAVA_VERSION:
+Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1024m -Xmx4096m
+java version "1.8.0_202"
+Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
+Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)
+[DEBUG] LOADED_CLASSES: org.apache.commons.numbers.angle.PlaneAngle:
+[DEBUG] LOADED_SUB_CLASSES: org.apache.commons.numbers.angle.PlaneAngle$*:
+[DEBUG] RELEVANT_TESTS: org.apache.commons.numbers.angle.PlaneAngleRadiansTest:org.apache.commons.numbers.angle.PlaneAngleTest:
+[DEBUG] TRIGGER_TESTS_FILE: /home/laughtale/defects4j/framework/projects/Numbers_angle/trigger_tests/1
+[DEBUG] CP: /home/laughtale/defects4j/framework/projects/lib/junit-4.11.jar:/home/laughtale/defects4j/framework/projects/Numbers_angle/lib/junit/junit/4.12/junit-4.12.jar:/home/laughtale/defects4j/framework/projects/Numbers_angle/lib/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/laughtale/桌面/checkout/Numbers_angle/Numbers_angle_1_buggy/commons-numbers-angle/target/classes:/home/laughtale/桌面/checkout/Numbers_angle/Numbers_angle_1_buggy/commons-numbers-angle/target/test-classes:/home/laughtale/defects4j/framework/projects/lib/junit-4.11.jar
+[INFO] Compiling Numbers_angle-1
+Running ant (compile)...................................................... OK
+Running ant (compile.tests)................................................ OK
+[INFO] Running GZoltar
+[INFO] Start: 2021年 06月 09日 星期三 06:54:09 PDT
+   ____ _____     _ _               
+  / ___|__  /___ | | |_ __ _ _ __   
+ | |  _  / // _ \| | __/ _` | '__| 
+ | |_| |/ /| (_) | | || (_| | |     
+  \____/____\___/|_|\__\__,_|_| 
+
+* Preparing classpath
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=1024M; support was removed in 8.0
+* Collecting classes under test
+* Collecting test cases
+* Performing analysis
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testEquals1
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testEquals1
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testEquals2
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testEquals2
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testEquals3
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testEquals3
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeMixed
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeMixed
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeAroundZero1
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeAroundZero1
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeAroundZero2
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeAroundZero2
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeAroundZero3
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeAroundZero3
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeAroundZero4
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeAroundZero4
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testZero
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testZero
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testPi
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testPi
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeRadians
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeRadians
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testConversionTurns
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testConversionTurns
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeVeryCloseToBounds
+* Failure: expected:<0.0> but was:<-1.0E-18> | testNormalizeVeryCloseToBounds(org.apache.commons.numbers.angle.PlaneAngleTest)
+java.lang.AssertionError: expected:<0.0> but was:<-1.0E-18>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:494)
+	at org.junit.Assert.assertEquals(Assert.java:592)
+	at org.apache.commons.numbers.angle.PlaneAngleTest.testNormalizeVeryCloseToBounds(PlaneAngleTest.java:143)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeVeryCloseToBounds
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeUpperAndLowerBounds
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testNormalizeUpperAndLowerBounds
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testHashCode
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testHashCode
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testConversionRadians
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testConversionRadians
+* Started org.apache.commons.numbers.angle.PlaneAngleTest#testConversionDegrees
+* Finished org.apache.commons.numbers.angle.PlaneAngleTest#testConversionDegrees
+* Started org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenZeroAndTwoPi_upperBound
+* Finished org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenZeroAndTwoPi_upperBound
+* Started org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenMinusPiAndPi_lowerBound
+* Finished org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenMinusPiAndPi_lowerBound
+* Started org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalize
+* Finished org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalize
+* Started org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenZeroAndTwoPi1
+* Finished org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenZeroAndTwoPi1
+* Started org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenZeroAndTwoPi2
+* Finished org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenZeroAndTwoPi2
+* Started org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenZeroAndTwoPi3
+* Finished org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenZeroAndTwoPi3
+* Started org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenZeroAndTwoPi4
+* Finished org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenZeroAndTwoPi4
+* Started org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenMinusPiAndPi1
+* Finished org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenMinusPiAndPi1
+* Started org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenMinusPiAndPi2
+* Finished org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenMinusPiAndPi2
+* Started org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenMinusPiAndPi3
+* Finished org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenMinusPiAndPi3
+* Started org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenMinusPiAndPi4
+* Finished org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenMinusPiAndPi4
+* Started org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenMinusPiAndPi_upperBound
+* Finished org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenMinusPiAndPi_upperBound
+* Started org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenZeroAndTwoPi_lowerBound
+* Finished org.apache.commons.numbers.angle.PlaneAngleRadiansTest#testNormalizeBetweenZeroAndTwoPi_lowerBound
+* Filtering test cases that do not cover any component
+* Sending data to master
+* Closing connection with client
+* Performing fault localization
+* Running Ochiai
+* Writing coverage matrix to '/home/laughtale/桌面/checkout/gzoltar/Numbers_angle_1/matrix'
+* Writing spectra to '/home/laughtale/桌面/checkout/gzoltar/Numbers_angle_1/spectra'
+* Metrics
+* Computation finished
+[INFO] End: 2021年 06月 09日 星期三 06:54:11 PDT
+[DEBUG] MATRIX OK
+[DEBUG] SPECTRA OK
+
+DONE!
