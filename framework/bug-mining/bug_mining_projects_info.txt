@@ -38,3 +38,5 @@ Shiro_core	shiro-core	https://github.com/apache/shiro.git	jira	SHIRO	/(SHIRO-\\d
 Jena_core	jena-core	https://github.com/apache/jena.git	jira	JENA	/(JENA-\\d+)/mi	jena-core
 Shiro_web	shiro-web	https://github.com/apache/shiro.git	jira	SHIRO	/(SHIRO-\\d+)/mi	web
 Jackrabbit_oak_core	oak-core	https://github.com/apache/jackrabbit-oak.git	jira	OAK	/(OAK-\\d+)/mi	oak-core	
+MDeploy	maven-deploy-plugin	https://github.com/apache/maven-deploy-plugin.git	jira	MDEPLOY	/(MDEPLOY-\\d+)/mi	
+
