@@ -1,0 +1,306 @@
+[DEBUG] PID: MDeploy
+[DEBUG] VID: 1
+[DEBUG] DATA_DIR: /home/ccluo/Desktop/gzoltar/coverage/MDeploy_1
+[DEBUG] TOOL: developer
+[DEBUG] TESTS_DIR: 
+[DEBUG] TMP_DIR: /tmp/mdeploy_1_buggy
+[DEBUG] DIR_PROJECT: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy
+[DEBUG] DIR_LOADED_CLASSES: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/loaded_classes
+[DEBUG] DIR_RELEVANT_TESTS: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/relevant_tests
+[DEBUG] DIR_TRIGGER_TESTS: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/trigger_tests
+[DEBUG] JAVA_VERSION:
+Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1024m -Xmx4096m
+java version "1.8.0_202"
+Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
+Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)
+[DEBUG] LOADED_CLASSES: org.apache.maven.plugin.deploy.AbstractDeployMojo:org.apache.maven.plugin.deploy.DeployFileMojo:
+[DEBUG] LOADED_SUB_CLASSES: org.apache.maven.plugin.deploy.AbstractDeployMojo$*:org.apache.maven.plugin.deploy.DeployFileMojo$*:
+[DEBUG] RELEVANT_TESTS: org.apache.maven.plugin.deploy.DeployFileMojoUnitTest:
+[DEBUG] TRIGGER_TESTS_FILE: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/trigger_tests/1
+[DEBUG] CP: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/lib/junit-4.11.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-plugin-api/2.0/maven-plugin-api-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-core/2.0/maven-core-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-settings/2.0/maven-settings-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/wagon/wagon-file/1.0-alpha-5/wagon-file-1.0-alpha-5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-plugin-parameter-documenter/2.0/maven-plugin-parameter-documenter-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/wagon/wagon-http-lightweight/1.0-alpha-5/wagon-http-lightweight-1.0-alpha-5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/reporting/maven-reporting-api/2.0/maven-reporting-api-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/doxia/doxia-sink-api/1.0-alpha-4/doxia-sink-api-1.0-alpha-4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-profile/2.0/maven-profile-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-model/2.0/maven-model-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/wagon/wagon-provider-api/1.0-alpha-5/wagon-provider-api-1.0-alpha-5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-container-default/1.0-alpha-8/plexus-container-default-1.0-alpha-8.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-repository-metadata/2.0/maven-repository-metadata-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-error-diagnostics/2.0/maven-error-diagnostics-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-plugin-registry/2.0/maven-plugin-registry-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/commons-cli/commons-cli/1.0/commons-cli-1.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-plugin-descriptor/2.0/maven-plugin-descriptor-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-interactivity-api/1.0-alpha-4/plexus-interactivity-api-1.0-alpha-4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-monitor/2.0/maven-monitor-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/wagon/wagon-ssh/1.0-alpha-5/wagon-ssh-1.0-alpha-5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/com/jcraft/jsch/0.1.23/jsch-0.1.23.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-utils/1.0.4/plexus-utils-1.0.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-project/2.0/maven-project-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-artifact-manager/2.0/maven-artifact-manager-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-artifact/2.0/maven-artifact-2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/shared/maven-plugin-testing-harness/1.0-beta-1/maven-plugin-testing-harness-1.0-beta-1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/junit/junit/3.8.1/junit-3.8.1.jar:/tmp/mdeploy_1_buggy/target/classes:/tmp/mdeploy_1_buggy/target/test-classes:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/lib/junit-4.11.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/backport-util-concurrent/backport-util-concurrent/3.1/backport-util-concurrent-3.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/com/jcraft/jsch/0.1.38/jsch-0.1.38.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/commons-cli/commons-cli/1.2/commons-cli-1.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/commons-codec/commons-codec/1.11/commons-codec-1.11.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/commons-codec/commons-codec/1.2/commons-codec-1.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/commons-httpclient/commons-httpclient/3.0/commons-httpclient-3.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/commons-io/commons-io/2.5/commons-io-2.5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/junit/junit/3.8.2/junit-3.8.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/junit/junit/4.12/junit-4.12.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/junit/junit/4.13.1/junit-4.13.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/nekohtml/nekohtml/1.9.6.2/nekohtml-1.9.6.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/nekohtml/xercesMinimal/1.9.6.2/xercesMinimal-1.9.6.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/jackrabbit/jackrabbit-jcr-commons/1.5.0/jackrabbit-jcr-commons-1.5.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/jackrabbit/jackrabbit-webdav/1.5.0/jackrabbit-webdav-1.5.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/doxia/doxia-logging-api/1.1/doxia-logging-api-1.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/doxia/doxia-sink-api/1.1/doxia-sink-api-1.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-aether-provider/3.0/maven-aether-provider-3.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-artifact-manager/2.0.6/maven-artifact-manager-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-artifact-manager/2.2.1/maven-artifact-manager-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-artifact/2.0.6/maven-artifact-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-artifact/2.2.1/maven-artifact-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-artifact/3.0/maven-artifact-3.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-compat/3.0/maven-compat-3.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-core/2.2.1/maven-core-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-core/3.0/maven-core-3.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-error-diagnostics/2.2.1/maven-error-diagnostics-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-model-builder/3.0/maven-model-builder-3.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-model/2.0.1/maven-model-2.0.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-model/2.0.6/maven-model-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-model/2.2.1/maven-model-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-model/3.0/maven-model-3.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-monitor/2.2.1/maven-monitor-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-plugin-api/2.0.1/maven-plugin-api-2.0.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-plugin-api/2.2.1/maven-plugin-api-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-plugin-api/3.0/maven-plugin-api-3.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-plugin-descriptor/2.2.1/maven-plugin-descriptor-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-plugin-parameter-documenter/2.2.1/maven-plugin-parameter-documenter-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-plugin-registry/2.0.6/maven-plugin-registry-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-plugin-registry/2.2.1/maven-plugin-registry-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-profile/2.0.1/maven-profile-2.0.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-profile/2.0.6/maven-profile-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-profile/2.2.1/maven-profile-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-project/2.0.1/maven-project-2.0.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-project/2.0.6/maven-project-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-project/2.2.1/maven-project-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-repository-metadata/2.0.6/maven-repository-metadata-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-repository-metadata/2.2.1/maven-repository-metadata-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-repository-metadata/3.0/maven-repository-metadata-3.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-settings-builder/3.0/maven-settings-builder-3.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-settings/2.0.6/maven-settings-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-settings/2.2.1/maven-settings-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/maven-settings/3.0/maven-settings-3.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/plugin-testing/maven-plugin-testing-harness/1.2/maven-plugin-testing-harness-1.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/plugin-testing/maven-plugin-testing-harness/1.3/maven-plugin-testing-harness-1.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/plugin-testing/maven-plugin-testing-harness/2.1/maven-plugin-testing-harness-2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/plugin-tools/maven-plugin-annotations/3.2/maven-plugin-annotations-3.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/plugin-tools/maven-plugin-annotations/3.3/maven-plugin-annotations-3.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/plugin-tools/maven-plugin-annotations/3.5.2/maven-plugin-annotations-3.5.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/reporting/maven-reporting-api/2.2.1/maven-reporting-api-2.2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/shared/maven-artifact-transfer/0.10.0/maven-artifact-transfer-0.10.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/shared/maven-artifact-transfer/0.11.0/maven-artifact-transfer-0.11.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/shared/maven-common-artifact-filters/3.0.1/maven-common-artifact-filters-3.0.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/shared/maven-shared-utils/3.1.0/maven-shared-utils-3.1.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/wagon/wagon-file/1.0-beta-6/wagon-file-1.0-beta-6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/wagon/wagon-http-lightweight/1.0-beta-6/wagon-http-lightweight-1.0-beta-6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/wagon/wagon-http-shared/1.0-beta-6/wagon-http-shared-1.0-beta-6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/wagon/wagon-http/1.0-beta-6/wagon-http-1.0-beta-6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/wagon/wagon-provider-api/1.0-beta-2/wagon-provider-api-1.0-beta-2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/wagon/wagon-provider-api/1.0-beta-6/wagon-provider-api-1.0-beta-6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/wagon/wagon-ssh-common/1.0-beta-6/wagon-ssh-common-1.0-beta-6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/wagon/wagon-ssh-external/1.0-beta-6/wagon-ssh-external-1.0-beta-6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/wagon/wagon-ssh/1.0-beta-6/wagon-ssh-1.0-beta-6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/apache/maven/wagon/wagon-webdav-jackrabbit/1.0-beta-6/wagon-webdav-jackrabbit-1.0-beta-6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-archiver/1.0-alpha-7/plexus-archiver-1.0-alpha-7.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-archiver/2.2/plexus-archiver-2.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-classworlds/2.2.3/plexus-classworlds-2.2.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-component-annotations/1.7.1/plexus-component-annotations-1.7.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-component-annotations/2.0.0/plexus-component-annotations-2.0.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-interpolation/1.11/plexus-interpolation-1.11.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-interpolation/1.14/plexus-interpolation-1.14.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-io/2.0.4/plexus-io-2.0.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-utils/1.0.5/plexus-utils-1.0.5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-utils/1.5.6/plexus-utils-1.5.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-utils/3.0.15/plexus-utils-3.0.15.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-utils/3.0.20/plexus-utils-3.0.20.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-utils/3.1.0/plexus-utils-3.1.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/codehaus/plexus/plexus-utils/3.2.0/plexus-utils-3.2.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/mockito/mockito-core/1.9.5/mockito-core-1.9.5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/objenesis/objenesis/1.0/objenesis-1.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/slf4j/jcl-over-slf4j/1.5.6/jcl-over-slf4j-1.5.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/slf4j/slf4j-api/1.5.6/slf4j-api-1.5.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/slf4j/slf4j-jdk14/1.5.6/slf4j-jdk14-1.5.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/slf4j/slf4j-nop/1.5.3/slf4j-nop-1.5.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/slf4j/slf4j-nop/1.7.5/slf4j-nop-1.7.5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/sonatype/aether/aether-api/1.7/aether-api-1.7.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/sonatype/aether/aether-connector-file/1.7/aether-connector-file-1.7.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/sonatype/aether/aether-impl/1.7/aether-impl-1.7.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/sonatype/aether/aether-spi/1.7/aether-spi-1.7.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/sonatype/aether/aether-util/1.7/aether-util-1.7.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/sonatype/plexus/plexus-sec-dispatcher/1.3/plexus-sec-dispatcher-1.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/sonatype/sisu/sisu-guice/2.1.7/sisu-guice-2.1.7-noaop.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/sonatype/sisu/sisu-inject-bean/1.4.2/sisu-inject-bean-1.4.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MDeploy/lib/org/sonatype/sisu/sisu-inject-plexus/1.4.2/sisu-inject-plexus-1.4.2.jar
+[INFO] Compiling MDeploy-1
+Running ant (compile)...................................................... OK
+Running ant (compile.tests)................................................ OK
+[INFO] Running GZoltar
+[INFO] Start: Fri 11 Jun 2021 01:02:13 AM PDT
+   ____ _____     _ _               
+  / ___|__  /___ | | |_ __ _ _ __   
+ | |  _  / // _ \| | __/ _` | '__| 
+ | |_| |/ /| (_) | | || (_| | |     
+  \____/____\___/|_|\__\__,_|_| 
+
+* Preparing classpath
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=1024M; support was removed in 8.0
+* Collecting classes under test
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+* Collecting test cases
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:225)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:155)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:103)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+* Performing analysis
+* Started org.apache.maven.plugin.deploy.DeployFileMojoUnitTest#testProcessPomFromPomFileWithOverrides
+* Finished org.apache.maven.plugin.deploy.DeployFileMojoUnitTest#testProcessPomFromPomFileWithOverrides
+* Started org.apache.maven.plugin.deploy.DeployFileMojoUnitTest#testProcessPomFromPomFileWithParent1
+* Failure: expected:<parentVersion> but was:<null> | testProcessPomFromPomFileWithParent1(org.apache.maven.plugin.deploy.DeployFileMojoUnitTest)
+junit.framework.ComparisonFailure: expected:<parentVersion> but was:<null>
+	at junit.framework.Assert.assertEquals(Assert.java:100)
+	at junit.framework.Assert.assertEquals(Assert.java:107)
+	at org.apache.maven.plugin.deploy.DeployFileMojoUnitTest.checkMojoProperties(DeployFileMojoUnitTest.java:180)
+	at org.apache.maven.plugin.deploy.DeployFileMojoUnitTest.testProcessPomFromPomFileWithParent1(DeployFileMojoUnitTest.java:99)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at junit.framework.TestCase.runTest(TestCase.java:176)
+	at junit.framework.TestCase.runBare(TestCase.java:141)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.maven.plugin.deploy.DeployFileMojoUnitTest#testProcessPomFromPomFileWithParent1
+* Started org.apache.maven.plugin.deploy.DeployFileMojoUnitTest#testProcessPomFromPomFileWithParent2
+* Failure: expected:<parentVersion> but was:<null> | testProcessPomFromPomFileWithParent2(org.apache.maven.plugin.deploy.DeployFileMojoUnitTest)
+junit.framework.ComparisonFailure: expected:<parentVersion> but was:<null>
+	at junit.framework.Assert.assertEquals(Assert.java:100)
+	at junit.framework.Assert.assertEquals(Assert.java:107)
+	at org.apache.maven.plugin.deploy.DeployFileMojoUnitTest.checkMojoProperties(DeployFileMojoUnitTest.java:180)
+	at org.apache.maven.plugin.deploy.DeployFileMojoUnitTest.testProcessPomFromPomFileWithParent2(DeployFileMojoUnitTest.java:113)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at junit.framework.TestCase.runTest(TestCase.java:176)
+	at junit.framework.TestCase.runBare(TestCase.java:141)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.maven.plugin.deploy.DeployFileMojoUnitTest#testProcessPomFromPomFileWithParent2
+* Started org.apache.maven.plugin.deploy.DeployFileMojoUnitTest#testProcessPomFromPomFileWithParent3
+* Finished org.apache.maven.plugin.deploy.DeployFileMojoUnitTest#testProcessPomFromPomFileWithParent3
+* Started org.apache.maven.plugin.deploy.DeployFileMojoUnitTest#testProcessPomFromPomFileWithParent4
+* Finished org.apache.maven.plugin.deploy.DeployFileMojoUnitTest#testProcessPomFromPomFileWithParent4
+* Started org.apache.maven.plugin.deploy.DeployFileMojoUnitTest#testProcessPomFromPomFileWithParent5
+* Finished org.apache.maven.plugin.deploy.DeployFileMojoUnitTest#testProcessPomFromPomFileWithParent5
+* Started org.apache.maven.plugin.deploy.DeployFileMojoUnitTest#testProcessPomFromPomFileWithParent6
+* Finished org.apache.maven.plugin.deploy.DeployFileMojoUnitTest#testProcessPomFromPomFileWithParent6
+* Filtering test cases that do not cover any component
+* Sending data to master
+* Closing connection with client
+* Performing fault localization
+* Running Ochiai
+* Writing coverage matrix to '/home/ccluo/Desktop/gzoltar/coverage/MDeploy_1/matrix'
+* Writing spectra to '/home/ccluo/Desktop/gzoltar/coverage/MDeploy_1/spectra'
+* Metrics
+* Computation finished
+[INFO] End: Fri 11 Jun 2021 01:02:45 AM PDT
+[DEBUG] MATRIX OK
+[DEBUG] SPECTRA OK
+
+DONE!

@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,271c42bd4478db5a10242e681e7a8fd96a9329d1,fa462097bc02d8ca6ca48022dc62f30ef15d45c4,MDEPLOY-56,https://issues.apache.org/jira/browse/MDEPLOY-56

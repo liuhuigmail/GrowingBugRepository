@@ -1,0 +1,2 @@
+org.apache.maven.plugin.deploy.AbstractDeployMojo
+org.apache.maven.plugin.deploy.DeployFileMojo

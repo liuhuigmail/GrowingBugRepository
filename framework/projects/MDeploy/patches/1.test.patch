@@ -1,0 +1,30 @@
+diff --git a/src/test/java/org/apache/maven/plugin/deploy/DeployFileMojoUnitTest.java b/src/test/java/org/apache/maven/plugin/deploy/DeployFileMojoUnitTest.java
+index b0cfd85..2f4d6b0 100644
+--- a/src/test/java/org/apache/maven/plugin/deploy/DeployFileMojoUnitTest.java
++++ b/src/test/java/org/apache/maven/plugin/deploy/DeployFileMojoUnitTest.java
+@@ -93,10 +93,10 @@ public class DeployFileMojoUnitTest
+         try {
+             mojo.initProperties();
+         } catch (MojoExecutionException expected) {
+-            assertTrue( true ); // missing artifactId and packaging
++            assertTrue( true ); // missing artifact version and packaging
+         }
+ 
+-        checkMojoProperties("parentGroup", null, "parentVersion", null);
++        checkMojoProperties("parentGroup", null, null, null);
+     }
+ 
+     public void testProcessPomFromPomFileWithParent2() throws MojoExecutionException
+@@ -107,10 +107,10 @@ public class DeployFileMojoUnitTest
+         try {
+             mojo.initProperties();
+         } catch (MojoExecutionException expected) {
+-            assertTrue( true ); // missing packaging
++            assertTrue( true ); // missing version and packaging
+         }
+ 
+-        checkMojoProperties("parentGroup", "artifact", "parentVersion", null );
++        checkMojoProperties("parentGroup", "artifact", null, null );
+ 
+     }
+ 
