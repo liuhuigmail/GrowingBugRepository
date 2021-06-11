@@ -1,0 +1,15 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/memory/MemoryNodeBuilder.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/memory/MemoryNodeBuilder.java
+index 31f62366e0..75d6c457d3 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/memory/MemoryNodeBuilder.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/memory/MemoryNodeBuilder.java
+@@ -374,7 +374,9 @@ public class MemoryNodeBuilder implements NodeBuilder {
+         PropertyState base = builder.getBaseState().getProperty(MoveDetector.SOURCE_PATH);
+         PropertyState head = builder.getNodeState().getProperty(MoveDetector.SOURCE_PATH);
+         if (Objects.equal(base, head)) {
++            if (!builder.hasProperty(MoveDetector.SOURCE_PATH)) {
+             builder.setProperty(MoveDetector.SOURCE_PATH, path);
++            }
+         }
+     }
+ 
+

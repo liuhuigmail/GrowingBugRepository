@@ -1,0 +1,2 @@
+org.apache.jackrabbit.oak.plugins.mongomk.DocumentSplitTest
+org.apache.jackrabbit.oak.plugins.mongomk.RangeTest

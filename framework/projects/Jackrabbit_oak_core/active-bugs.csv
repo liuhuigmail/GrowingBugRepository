@@ -1,0 +1,6 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,d2bbdad5b039a31b3c7a8ba1293b195de840b6e4,f8be641ad3dcaa45e7d06ded0e3990e039cadff5,OAK-1289,https://issues.apache.org/jira/browse/OAK-1289
+2,badcd98244e480e3ffe4d16a2ad55846f23af031,52ffe384db61c423c88634e28fa30cd2c1051465,OAK-1297,https://issues.apache.org/jira/browse/OAK-1297
+3,472c73c19e93a5f5c1c0784a93b623cf67801513,dbaf51fbb145ff604e9f75ebde9781186013a4d3,OAK-1254,https://issues.apache.org/jira/browse/OAK-1254
+4,5316521473f74d734a65296e441e5a27b2c94b36,a03ebaf5e1b061edafc38d19f8b0e4b96c364113,OAK-1348,https://issues.apache.org/jira/browse/OAK-1348
+5,8a0c922b570a827bca5e31138302ab893be8fbc4,c642f14f0808045f1f59a87725ddd7a2515a99bb,OAK-1467,https://issues.apache.org/jira/browse/OAK-1467
