@@ -1,0 +1,87 @@
+[DEBUG] PID: MShade
+[DEBUG] VID: 1
+[DEBUG] DATA_DIR: /home/ccluo/Desktop/gzoltar/coverage/MShade_1
+[DEBUG] TOOL: developer
+[DEBUG] TESTS_DIR: 
+[DEBUG] TMP_DIR: /tmp/mmmmmmmmmshade_1_buggy
+[DEBUG] DIR_PROJECT: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade
+[DEBUG] DIR_LOADED_CLASSES: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/loaded_classes
+[DEBUG] DIR_RELEVANT_TESTS: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/relevant_tests
+[DEBUG] DIR_TRIGGER_TESTS: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/trigger_tests
+[DEBUG] JAVA_VERSION:
+Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1024m -Xmx4096m
+java version "1.8.0_202"
+Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
+Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)
+[DEBUG] LOADED_CLASSES: org.apache.maven.plugins.shade.DefaultShader:org.apache.maven.plugins.shade.relocation.Relocator:org.apache.maven.plugins.shade.relocation.SimpleRelocator:org.apache.maven.plugins.shade.Shader:
+[DEBUG] LOADED_SUB_CLASSES: org.apache.maven.plugins.shade.DefaultShader$*:org.apache.maven.plugins.shade.relocation.Relocator$*:org.apache.maven.plugins.shade.relocation.SimpleRelocator$*:org.apache.maven.plugins.shade.Shader$*:
+[DEBUG] RELEVANT_TESTS: org.apache.maven.plugins.shade.DefaultShaderTest:
+[DEBUG] TRIGGER_TESTS_FILE: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/trigger_tests/1
+[DEBUG] CP: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/lib/junit-4.11.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/org/apache/maven/maven-model/2.0.6/maven-model-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/org/apache/maven/maven-project/2.0.6/maven-project-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/org/apache/maven/maven-settings/2.0.6/maven-settings-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/org/apache/maven/maven-profile/2.0.6/maven-profile-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/org/apache/maven/maven-artifact-manager/2.0.6/maven-artifact-manager-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/org/apache/maven/maven-repository-metadata/2.0.6/maven-repository-metadata-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/org/apache/maven/wagon/wagon-provider-api/1.0-beta-2/wagon-provider-api-1.0-beta-2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/org/apache/maven/maven-plugin-registry/2.0.6/maven-plugin-registry-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/org/apache/maven/maven-artifact/2.0.6/maven-artifact-2.0.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/org/codehaus/plexus/plexus-utils/1.4.1/plexus-utils-1.4.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/asm/asm/3.1/asm-3.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/asm/asm-util/3.1/asm-util-3.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/asm/asm-tree/3.1/asm-tree-3.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/asm/asm-commons/3.1/asm-commons-3.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/jdom/jdom/1.0/jdom-1.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/MShade/lib/junit/junit/3.8.1/junit-3.8.1.jar:/tmp/mmmmmmmmmshade_1_buggy/target/classes:/tmp/mmmmmmmmmshade_1_buggy/target/test-classes:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/lib/junit-4.11.jar
+[INFO] Compiling MShade-1
+Running ant (compile)...................................................... OK
+Running ant (compile.tests)................................................ OK
+[INFO] Running GZoltar
+[INFO] Start: Fri 11 Jun 2021 02:04:00 AM PDT
+   ____ _____     _ _               
+  / ___|__  /___ | | |_ __ _ _ __   
+ | |  _  / // _ \| | __/ _` | '__| 
+ | |_| |/ /| (_) | | || (_| | |     
+  \____/____\___/|_|\__\__,_|_| 
+
+* Preparing classpath
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=1024M; support was removed in 8.0
+* Collecting classes under test
+* Collecting test cases
+* Performing analysis
+* Started org.apache.maven.plugins.shade.DefaultShaderTest#testShaderWithCustomShadedPattern
+* Finished org.apache.maven.plugins.shade.DefaultShaderTest#testShaderWithCustomShadedPattern
+* Started org.apache.maven.plugins.shade.DefaultShaderTest#testShaderWithoutExcludesShouldRemoveReferencesOfOriginalPattern
+* Finished org.apache.maven.plugins.shade.DefaultShaderTest#testShaderWithoutExcludesShouldRemoveReferencesOfOriginalPattern
+* Started org.apache.maven.plugins.shade.DefaultShaderTest#testShaderWithStaticInitializedClass
+* Failure: org.apache.maven.plugins.shade.Lib | testShaderWithStaticInitializedClass(org.apache.maven.plugins.shade.DefaultShaderTest)
+java.lang.NoClassDefFoundError: org.apache.maven.plugins.shade.Lib
+	at hidden.org.apache.maven.plugins.shade.Lib.class$(Lib.java:10)
+	at hidden.org.apache.maven.plugins.shade.Lib.<clinit>(Lib.java:10)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.lang.Class.newInstance(Class.java:442)
+	at org.apache.maven.plugins.shade.DefaultShaderTest.testShaderWithStaticInitializedClass(DefaultShaderTest.java:75)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at junit.framework.TestCase.runTest(TestCase.java:176)
+	at junit.framework.TestCase.runBare(TestCase.java:141)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.maven.plugins.shade.DefaultShaderTest#testShaderWithStaticInitializedClass
+* Started org.apache.maven.plugins.shade.DefaultShaderTest#testShaderWithDefaultShadedPattern
+* Finished org.apache.maven.plugins.shade.DefaultShaderTest#testShaderWithDefaultShadedPattern
+* Filtering test cases that do not cover any component
+* Sending data to master
+* Closing connection with client
+* Performing fault localization
+* Running Ochiai
+* Writing coverage matrix to '/home/ccluo/Desktop/gzoltar/coverage/MShade_1/matrix'
+* Writing spectra to '/home/ccluo/Desktop/gzoltar/coverage/MShade_1/spectra'
+* Metrics
+* Computation finished
+[INFO] End: Fri 11 Jun 2021 02:04:04 AM PDT
+[DEBUG] MATRIX OK
+[DEBUG] SPECTRA OK
+
+DONE!
