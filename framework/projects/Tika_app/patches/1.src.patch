@@ -9,8 +9,8 @@ index 0ab4ac904..8cc01480e 100644
 -              for(String value : metadata.getValues(name)) {
 -                 writer.println(name + ": " + value);
 -              }
-            }
 +              writer.println(name + ": " + metadata.get(name));
+            }
          }
          
          public boolean metOutput(){
