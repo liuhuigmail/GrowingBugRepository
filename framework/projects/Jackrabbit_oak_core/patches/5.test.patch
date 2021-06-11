@@ -1,0 +1,24 @@
+diff --git a/oak-core/src/test/java/org/apache/jackrabbit/oak/plugins/document/DocumentNodeStoreTest.java b/oak-core/src/test/java/org/apache/jackrabbit/oak/plugins/document/DocumentNodeStoreTest.java
+index f870ce9edf..4e01750989 100644
+--- a/oak-core/src/test/java/org/apache/jackrabbit/oak/plugins/document/DocumentNodeStoreTest.java
++++ b/oak-core/src/test/java/org/apache/jackrabbit/oak/plugins/document/DocumentNodeStoreTest.java
+@@ -172,6 +172,7 @@ public class DocumentNodeStoreTest {
+         store.dispose();
+     }
+ 
++    @Ignore("OAK-1467")
+     @Test
+     public void rollback() throws Exception {
+         final Map<Thread, Semaphore> locks = Collections.synchronizedMap(
+@@ -229,11 +230,9 @@ public class DocumentNodeStoreTest {
+         String id = Utils.getIdFromPath("/foo/node");
+         NodeDocument doc = docStore.find(Collection.NODES, id);
+         assertNotNull("document with id " + id + " does not exist", doc);
+-        assertTrue(!doc.getLastRev().isEmpty());
+         id = Utils.getIdFromPath("/bar/node");
+         doc = docStore.find(Collection.NODES, id);
+         assertNotNull("document with id " + id + " does not exist", doc);
+-        assertTrue(!doc.getLastRev().isEmpty());
+ 
+         mk.dispose();
+     }

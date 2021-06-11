@@ -1,0 +1,15 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/Commit.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/Commit.java
+index 93b4bd055e..75510da8d3 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/Commit.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/Commit.java
+@@ -408,9 +408,7 @@ public class Commit {
+             store.createOrUpdate(NODES, reverse);
+         }
+         for (UpdateOp op : newDocuments) {
+-            UpdateOp reverse = op.getReverseOperation();
+-            NodeDocument.unsetLastRev(reverse, revision.getClusterId());
+-            store.createOrUpdate(NODES, reverse);
++            store.remove(NODES, op.id);
+         }
+         UpdateOp removeCollision = new UpdateOp(commitRoot.getId(), false);
+         NodeDocument.removeCollision(removeCollision, revision);
