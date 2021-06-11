@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1001`** bugs
+ **`999`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -31,9 +31,9 @@ from open-source Java projects.
 | 20     | Imaging         | commons-imaging            |                          |        10      | 1,3-8,10-11,14  |
 | 21     | IO              | commons-io                 |                          |        19       | 1-3,5-6,8-11,13,15-18,22,25,27,29-30                |
 | 22     | JXR             | maven-jxr                  |                          |        1       | 1                   |
-| 23     | MShade          | maven-shade-plugin         |                          |        7       | 1-7                 |
-| 24     | Tika            | tika                       |                          |        7       | 1-7               |
-| 25     | Validator       | commons-validator          |                          |        21      | 1-2,4,6-9,11-21,23-25 |
+| 23     | MShade          | maven-shade-plugin         |                          |        6       | 1-4,6-7                 |
+| 24     | Tika            | tika                       |                          |        5       | 1-2,5-7               |
+| 25     | Validator       | commons-validator          |                          |        21      | 1-2,4,6-9,11,13-25 |
 | 26     | Pool            | commons-pool               |                          |        19      | 1-2,4-7,10-14,16,20-21,24,26-27,29-30|
 | 27     | Email           | commons-email              |                          |        4       | 2-5                 |
 | 28     | Graph           | commons-graph              |                          |        3       | 1-3                 |
@@ -42,11 +42,13 @@ from open-source Java projects.
 | 31     | Geometry_core   | commons-geometry-core           |    commons-geometry-core |        2       | 1,3               |
 | 32     | MGpg            | maven-gpg-plugin           ||        1       | 1               |
 | 33     | Text            | commons-text               ||        4       | 1-2,4-5               |
-| 34     | Tika_core            | tika-core               |  tika-core |        7       | 4-6,9,11,17,20               |
+| 34     | Tika_core            | tika-core               |  tika-core |        6       | 4,6,9,11,17,20               |
 | 35     | Tika_app            | tika-app               |   tika-app     |        2       | 1,3               |
-| 36     | Shiro_core            | shiro-core               |      core      |        10       | 37,40,46,52,72,98,144,176,181,202               |
+| 36     | Shiro_core            | shiro-core               |      core      |        9       | 37,40,46,52,98,144,176,181,202               |
 | 37     | Jena_core            | jena-core               |    jena-core   |        1       | 2               |
 | 38     | Shiro_web            | shiro-web               |        web      |        3       | 1,3,7               |
+| 39     | MDeploy            | maven-deploy-plugin               |              |        1       | 1               |
+| 40     | Jackrabbit_oak_core            | oak-core               |       oak-core       |        2       | 1-2               |
 
 # Setting up GrowingBugs
 ## Requirements
