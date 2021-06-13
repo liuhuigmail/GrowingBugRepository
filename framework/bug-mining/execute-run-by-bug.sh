@@ -56,7 +56,7 @@ do
     #rm -rf $work_dir
    nums=$(wc -l < $work_dir/framework/projects/$project_id/active-bugs.csv)
    nums=`expr $nums - 1`
-   #for((i=7000;i<=$nums;i++)); 
+   #for((i=7000;i<=$nums;i++));    
    for((i=1;i<=$nums;i++));  
 do    
    # Initialize the project revisions
