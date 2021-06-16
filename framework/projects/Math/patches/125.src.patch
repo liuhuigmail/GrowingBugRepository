@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
+index 5aec175fc..c81832b07 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
+@@ -294,7 +294,7 @@ public class BSPTree<S extends Space> {
+      */
+     private SubHyperplane<S> fitToCell(final SubHyperplane<S> sub) {
+         SubHyperplane<S> s = sub;
+-        for (BSPTree<S> tree = this; tree.parent != null && s != null; tree = tree.parent) {
++        for (BSPTree<S> tree = this; tree.parent != null; tree = tree.parent) {
+             if (tree == tree.parent.plus) {
+                 s = s.split(tree.parent.cut.getHyperplane()).getPlus();
+             } else {

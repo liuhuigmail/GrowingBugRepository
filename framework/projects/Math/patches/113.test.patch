@@ -1,0 +1,16 @@
+diff --git a/src/test/java/org/apache/commons/math4/util/FastMathTest.java b/src/test/java/org/apache/commons/math4/util/FastMathTest.java
+index bccd0e8d4..b95debac4 100644
+--- a/src/test/java/org/apache/commons/math4/util/FastMathTest.java
++++ b/src/test/java/org/apache/commons/math4/util/FastMathTest.java
+@@ -1232,11 +1232,6 @@ public class FastMathTest {
+         Assert.assertTrue(Double.isInfinite(FastMath.pow(FastMath.scalb(1.0, 500), 4)));
+     }
+ 
+-    @Test(timeout=5000L) // This test must finish in finite time.
+-    public void testIntPowLongMinValue() {
+-        Assert.assertEquals(1.0, FastMath.pow(1.0, Long.MIN_VALUE), -1.0);
+-    }
+-
+     @Test
+     public void testIncrementExactInt() {
+         int[] specialValues = new int[] {

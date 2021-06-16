@@ -1,0 +1,17 @@
+org.apache.commons.math3.distribution.BetaDistributionTest
+org.apache.commons.math3.distribution.BinomialDistributionTest
+org.apache.commons.math3.distribution.FDistributionTest
+org.apache.commons.math3.distribution.LogNormalDistributionTest
+org.apache.commons.math3.distribution.PascalDistributionTest
+org.apache.commons.math3.distribution.TDistributionTest
+org.apache.commons.math3.distribution.WeibullDistributionTest
+org.apache.commons.math3.special.BetaTest
+org.apache.commons.math3.stat.correlation.KendallsCorrelationTest
+org.apache.commons.math3.stat.correlation.PearsonsCorrelationTest
+org.apache.commons.math3.stat.correlation.SpearmansRankCorrelationTest
+org.apache.commons.math3.stat.inference.BinomialConfidenceIntervalTest
+org.apache.commons.math3.stat.inference.BinomialTestTest
+org.apache.commons.math3.stat.inference.OneWayAnovaTest
+org.apache.commons.math3.stat.inference.TTestTest
+org.apache.commons.math3.stat.inference.TestUtilsTest
+org.apache.commons.math3.stat.regression.SimpleRegressionTest

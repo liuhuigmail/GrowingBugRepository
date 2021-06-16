@@ -1,0 +1,10 @@
+org.apache.commons.math3.analysis.interpolation.FieldHermiteInterpolatorTest
+org.apache.commons.math3.analysis.polynomials.PolynomialsUtilsTest
+org.apache.commons.math3.distribution.KolmogorovSmirnovDistributionTest
+org.apache.commons.math3.fraction.BigFractionFieldTest
+org.apache.commons.math3.fraction.BigFractionFormatTest
+org.apache.commons.math3.fraction.BigFractionTest
+org.apache.commons.math3.linear.MatrixUtilsTest
+org.apache.commons.math3.ode.nonstiff.AdamsBashforthIntegratorTest
+org.apache.commons.math3.ode.nonstiff.AdamsMoultonIntegratorTest
+org.apache.commons.math3.ode.sampling.NordsieckStepInterpolatorTest

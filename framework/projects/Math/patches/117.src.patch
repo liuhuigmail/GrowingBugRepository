@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/math4/util/ResizableDoubleArray.java b/src/main/java/org/apache/commons/math4/util/ResizableDoubleArray.java
+index 7d9547c0f..6377141a0 100644
+--- a/src/main/java/org/apache/commons/math4/util/ResizableDoubleArray.java
++++ b/src/main/java/org/apache/commons/math4/util/ResizableDoubleArray.java
+@@ -287,7 +287,7 @@ public class ResizableDoubleArray implements DoubleArray, Serializable {
+         numElements = 0;
+         startIndex = 0;
+ 
+-        if (data != null && data.length > 0) {
++        if (data != null && data.length > 1) {
+             addElements(data);
+         }
+     }

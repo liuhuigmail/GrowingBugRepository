@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math4/distribution/SaddlePointExpansion.java b/src/main/java/org/apache/commons/math4/distribution/SaddlePointExpansion.java
+index aea0e3c17..01b0f652a 100644
+--- a/src/main/java/org/apache/commons/math4/distribution/SaddlePointExpansion.java
++++ b/src/main/java/org/apache/commons/math4/distribution/SaddlePointExpansion.java
+@@ -159,9 +159,6 @@ final class SaddlePointExpansion {
+             }
+             ret = s1;
+         } else {
+-            if (x == 0) {
+-                return mu;
+-            }
+             ret = x * FastMath.log(x / mu) + mu - x;
+         }
+         return ret;
+@@ -183,9 +180,6 @@ final class SaddlePointExpansion {
+             if (p < 0.1) {
+                 ret = -getDeviancePart(n, n * q) - n * p;
+             } else {
+-                if (n == 0) {
+-                    return 0;
+-                }
+                 ret = n * FastMath.log(q);
+             }
+         } else if (x == n) {

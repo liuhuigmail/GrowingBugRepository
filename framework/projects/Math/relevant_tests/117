@@ -1,0 +1,13 @@
+org.apache.commons.math4.distribution.ExponentialDistributionTest
+org.apache.commons.math4.distribution.PoissonDistributionTest
+org.apache.commons.math4.optim.univariate.BrentOptimizerTest
+org.apache.commons.math4.stat.CertifiedDataTest
+org.apache.commons.math4.stat.StatUtilsTest
+org.apache.commons.math4.stat.data.LewTest
+org.apache.commons.math4.stat.data.LotteryTest
+org.apache.commons.math4.stat.descriptive.DescriptiveStatisticsTest
+org.apache.commons.math4.stat.descriptive.ListUnivariateImplTest
+org.apache.commons.math4.stat.descriptive.MixedListUnivariateImplTest
+org.apache.commons.math4.stat.descriptive.SynchronizedDescriptiveStatisticsTest
+org.apache.commons.math4.stat.regression.GLSMultipleLinearRegressionTest
+org.apache.commons.math4.util.ResizableDoubleArrayTest

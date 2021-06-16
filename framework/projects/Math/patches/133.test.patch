@@ -1,0 +1,56 @@
+diff --git a/src/test/java/org/apache/commons/math3/distribution/LogNormalDistributionTest.java b/src/test/java/org/apache/commons/math3/distribution/LogNormalDistributionTest.java
+index ffb151338..595a10f49 100644
+--- a/src/test/java/org/apache/commons/math3/distribution/LogNormalDistributionTest.java
++++ b/src/test/java/org/apache/commons/math3/distribution/LogNormalDistributionTest.java
+@@ -243,12 +243,4 @@ public class LogNormalDistributionTest extends RealDistributionAbstractTest {
+         Assert.assertEquals(dist.getNumericalMean(), 0.0, tol);
+         Assert.assertEquals(dist.getNumericalVariance(), 0.0, tol);
+     }
+-
+-    @Test
+-    public void testTinyVariance() {
+-        LogNormalDistribution dist = new LogNormalDistribution(0, 1e-9);
+-        double t = dist.getNumericalVariance();
+-        Assert.assertEquals(1e-18, t, 1e-20);
+-    }
+-
+ }
+diff --git a/src/test/java/org/apache/commons/math3/distribution/WeibullDistributionTest.java b/src/test/java/org/apache/commons/math3/distribution/WeibullDistributionTest.java
+index 94a42813f..b09ae80c4 100644
+--- a/src/test/java/org/apache/commons/math3/distribution/WeibullDistributionTest.java
++++ b/src/test/java/org/apache/commons/math3/distribution/WeibullDistributionTest.java
+@@ -63,16 +63,6 @@ public class WeibullDistributionTest extends RealDistributionAbstractTest {
+ 
+     //---------------------------- Additional test cases -------------------------
+ 
+-    @Test
+-    public void testInverseCumulativeProbabilitySmallPAccuracy() {
+-        WeibullDistribution dist = new WeibullDistribution(2, 3);
+-        double t = dist.inverseCumulativeProbability(1e-17);
+-        // Analytically, answer is solution to 1e-17 = 1-exp(-(x/3)^2)
+-        // x = sqrt(-9*log(1-1e-17))
+-        // If we're not careful, answer will be 0. Answer below is computed with care in Octave:
+-        Assert.assertEquals(9.48683298050514e-9, t, 1e-17);
+-    }
+-
+     @Test
+     public void testInverseCumulativeProbabilityExtremes() {
+         setInverseCumulativeTestPoints(new double[] {0.0, 1.0});
+diff --git a/src/test/java/org/apache/commons/math3/special/BetaTest.java b/src/test/java/org/apache/commons/math3/special/BetaTest.java
+index fc9ac9c27..26aad9b2c 100644
+--- a/src/test/java/org/apache/commons/math3/special/BetaTest.java
++++ b/src/test/java/org/apache/commons/math3/special/BetaTest.java
+@@ -134,13 +134,6 @@ public class BetaTest {
+         testRegularizedBeta(0.75, 0.5, 1.0, 2.0);
+     }
+ 
+-    @Test
+-    public void testRegularizedBetaTinyArgument() {
+-        double actual = Beta.regularizedBeta(1e-17, 1.0, 1e12);
+-        // This value is from R: pbeta(1e-17,1,1e12)
+-        TestUtils.assertEquals(9.999950000166648e-6, actual, 1e-16);
+-    }
+-
+     @Test
+     public void testLogBetaNanPositive() {
+         testLogBeta(Double.NaN, Double.NaN, 2.0);

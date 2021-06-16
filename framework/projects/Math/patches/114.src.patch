@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math4/fraction/Fraction.java b/src/main/java/org/apache/commons/math4/fraction/Fraction.java
+index 39eba8dff..0713b8596 100644
+--- a/src/main/java/org/apache/commons/math4/fraction/Fraction.java
++++ b/src/main/java/org/apache/commons/math4/fraction/Fraction.java
+@@ -566,7 +566,7 @@ public class Fraction
+      */
+     @Override
+     public Fraction multiply(final int i) {
+-        return multiply(new Fraction(i));
++        return new Fraction(numerator * i, denominator);
+     }
+ 
+     /**
+@@ -597,7 +597,7 @@ public class Fraction
+      * @return this * i
+      */
+     public Fraction divide(final int i) {
+-        return divide(new Fraction(i));
++        return new Fraction(numerator, denominator * i);
+     }
+ 
+     /**

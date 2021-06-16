@@ -224,6 +224,7 @@ sub _remove_test_method {
      
     for (my $i=0; $i<=$#lines; ++$i) {
      my $temp_method=$method;
+     system("echo $method");
      #$temp_method=~ s/\[/\\\[/g;
      #$temp_method =~ s/\]/\\\]/g; 
         if ($lines[$i] =~ /^([^\/]*)public.+$temp_method/) {

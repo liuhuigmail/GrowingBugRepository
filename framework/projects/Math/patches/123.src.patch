@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/BinomialDistribution.java b/src/main/java/org/apache/commons/math3/distribution/BinomialDistribution.java
+index 9a882a05b..15747e13e 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/BinomialDistribution.java
++++ b/src/main/java/org/apache/commons/math3/distribution/BinomialDistribution.java
+@@ -106,9 +106,6 @@ public class BinomialDistribution extends AbstractIntegerDistribution {
+     /** {@inheritDoc} **/
+     @Override
+     public double logProbability(int x) {
+-        if (numberOfTrials == 0) {
+-            return (x == 0) ? 0. : Double.NEGATIVE_INFINITY;
+-        }
+         double ret;
+         if (x < 0 || x > numberOfTrials) {
+             ret = Double.NEGATIVE_INFINITY;

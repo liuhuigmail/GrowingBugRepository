@@ -1,0 +1,12 @@
+org.apache.commons.math4.fraction.FractionFieldTest
+org.apache.commons.math4.fraction.FractionFormatTest
+org.apache.commons.math4.fraction.FractionTest
+org.apache.commons.math4.linear.ArrayFieldVectorTest
+org.apache.commons.math4.linear.BlockFieldMatrixTest
+org.apache.commons.math4.linear.FieldLUDecompositionTest
+org.apache.commons.math4.linear.FieldLUSolverTest
+org.apache.commons.math4.linear.FieldMatrixImplTest
+org.apache.commons.math4.linear.MatrixUtilsTest
+org.apache.commons.math4.linear.SparseFieldMatrixTest
+org.apache.commons.math4.linear.SparseFieldVectorTest
+org.apache.commons.math4.util.OpenIntToFieldTest

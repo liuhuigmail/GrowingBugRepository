@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/math4/stat/correlation/KendallsCorrelation.java b/src/main/java/org/apache/commons/math4/stat/correlation/KendallsCorrelation.java
+index 125083e91..77b7d2297 100644
+--- a/src/main/java/org/apache/commons/math4/stat/correlation/KendallsCorrelation.java
++++ b/src/main/java/org/apache/commons/math4/stat/correlation/KendallsCorrelation.java
+@@ -201,7 +201,7 @@ public class KendallsCorrelation {
+         tiedXPairs += sum(consecutiveXTies - 1);
+         tiedXYPairs += sum(consecutiveXYTies - 1);
+ 
+-        long swaps = 0;
++        int swaps = 0;
+         @SuppressWarnings("unchecked")
+         Pair<Double, Double>[] pairsDestination = new Pair[n];
+         for (int segmentSize = 1; segmentSize < n; segmentSize <<= 1) {

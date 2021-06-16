@@ -1,0 +1,14 @@
+org.apache.commons.math4.exception.MathArithmeticException
+org.apache.commons.math4.exception.MathIllegalArgumentException
+org.apache.commons.math4.exception.MathIllegalNumberException
+org.apache.commons.math4.exception.MathIllegalStateException
+org.apache.commons.math4.exception.MathRuntimeException
+org.apache.commons.math4.exception.MaxCountExceededException
+org.apache.commons.math4.exception.NumberIsTooLargeException
+org.apache.commons.math4.exception.NumberIsTooSmallException
+org.apache.commons.math4.exception.util.ExceptionContextProvider
+org.apache.commons.math4.exception.util.Localizable
+org.apache.commons.math4.special.Gamma
+org.apache.commons.math4.util.ContinuedFraction
+org.apache.commons.math4.util.FastMath
+org.apache.commons.math4.util.FastMathLiteralArrays

@@ -1,0 +1,2 @@
+org.apache.commons.math.estimation.LevenbergMarquardtEstimatorTest
+org.apache.commons.math.estimation.MinpackTest

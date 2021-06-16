@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math4/ode/AbstractIntegrator.java b/src/main/java/org/apache/commons/math4/ode/AbstractIntegrator.java
+index 441674d74..072889a00 100644
+--- a/src/main/java/org/apache/commons/math4/ode/AbstractIntegrator.java
++++ b/src/main/java/org/apache/commons/math4/ode/AbstractIntegrator.java
+@@ -398,8 +398,11 @@ public abstract class AbstractIntegrator implements FirstOrderIntegrator {
+                     return eventT;
+                 }
+ 
++                boolean needReset = false;
+                 resetOccurred = false;
+-                final boolean needReset = currentEvent.reset(eventT, eventYComplete);
++                for (final EventState state : eventsStates) {
++                    needReset =  needReset || state.reset(eventT, eventYComplete);
++                }
+                 if (needReset) {
+                     // some event handler has triggered changes that
+                     // invalidate the derivatives, we need to recompute them

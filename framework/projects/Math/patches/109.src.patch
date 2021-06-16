@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/math4/exception/util/LocalizedFormats.java b/src/main/java/org/apache/commons/math4/exception/util/LocalizedFormats.java
+index dabe9a751..1b589f198 100644
+--- a/src/main/java/org/apache/commons/math4/exception/util/LocalizedFormats.java
++++ b/src/main/java/org/apache/commons/math4/exception/util/LocalizedFormats.java
+@@ -162,7 +162,6 @@ public enum LocalizedFormats implements Localizable {
+     LOWER_BOUND_NOT_BELOW_UPPER_BOUND("lower bound ({0}) must be strictly less than upper bound ({1})"), /* keep */
+     LOWER_ENDPOINT_ABOVE_UPPER_ENDPOINT("lower endpoint ({0}) must be less than or equal to upper endpoint ({1})"),
+     MAP_MODIFIED_WHILE_ITERATING("map has been modified while iterating"),
+-    MULTISTEP_STARTER_STOPPED_EARLY("multistep integrator starter stopped early, maybe too large step size"),
+     EVALUATIONS("evaluations"), /* keep */
+     MAX_COUNT_EXCEEDED("maximal count ({0}) exceeded"), /* keep */
+     MAX_ITERATIONS_EXCEEDED("maximal number of iterations ({0}) exceeded"),
+diff --git a/src/main/java/org/apache/commons/math4/ode/MultistepIntegrator.java b/src/main/java/org/apache/commons/math4/ode/MultistepIntegrator.java
+index 354db491e..b415dd1ab 100644
+--- a/src/main/java/org/apache/commons/math4/ode/MultistepIntegrator.java
++++ b/src/main/java/org/apache/commons/math4/ode/MultistepIntegrator.java
+@@ -18,7 +18,6 @@
+ package org.apache.commons.math4.ode;
+ 
+ import org.apache.commons.math4.exception.DimensionMismatchException;
+-import org.apache.commons.math4.exception.MathIllegalStateException;
+ import org.apache.commons.math4.exception.MaxCountExceededException;
+ import org.apache.commons.math4.exception.NoBracketingException;
+ import org.apache.commons.math4.exception.NumberIsTooSmallException;
+@@ -249,9 +248,8 @@ public abstract class MultistepIntegrator extends AdaptiveStepsizeIntegrator {
+                 }, t0, y0, t, new double[y0.length]);
+             }
+ 
+             // we should not reach this step
+-            throw new MathIllegalStateException(LocalizedFormats.MULTISTEP_STARTER_STOPPED_EARLY);
+ 
+         } catch (InitializationCompletedMarkerException icme) { // NOPMD
+             // this is the expected nominal interruption of the start integrator
+ 

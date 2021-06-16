@@ -1,0 +1,2 @@
+org.apache.commons.math4.util.DoubleArrayAbstractTest
+org.apache.commons.math4.util.ResizableDoubleArrayTest

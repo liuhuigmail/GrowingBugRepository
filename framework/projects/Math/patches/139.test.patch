@@ -1,0 +1,26 @@
+diff --git a/src/test/java/org/apache/commons/math/util/MathUtilsTest.java b/src/test/java/org/apache/commons/math/util/MathUtilsTest.java
+index d03efbbaa..d446bc720 100644
+--- a/src/test/java/org/apache/commons/math/util/MathUtilsTest.java
++++ b/src/test/java/org/apache/commons/math/util/MathUtilsTest.java
+@@ -1136,8 +1136,8 @@ public final class MathUtilsTest {
+         try {
+             MathUtils.round(1.234, 2, BigDecimal.ROUND_UNNECESSARY);
+             Assert.fail();
+-        } catch (ArithmeticException ex) { 
+-            // expected
++        } catch (MathRuntimeException ex) { // XXX Loosing semantics?
++            // success
+         }
+ 
+         Assert.assertEquals(1.24, MathUtils.round(x, 2, BigDecimal.ROUND_UP), 0.0);
+@@ -1150,8 +1150,8 @@ public final class MathUtilsTest {
+         try {
+             MathUtils.round(1.234, 2, 1923);
+             Assert.fail();
+-        } catch (IllegalArgumentException ex) {
+-            // expected
++        } catch (MathRuntimeException ex) { // XXX Loosing semantics?
++            // success
+         }
+ 
+         // MATH-151

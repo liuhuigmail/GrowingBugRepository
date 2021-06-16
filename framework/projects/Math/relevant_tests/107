@@ -1,0 +1,4 @@
+org.apache.commons.math4.distribution.BinomialDistributionTest
+org.apache.commons.math4.distribution.HypergeometricDistributionTest
+org.apache.commons.math4.distribution.PoissonDistributionTest
+org.apache.commons.math4.stat.inference.BinomialTestTest

@@ -1,0 +1,2 @@
+org.apache.commons.math4.stat.correlation.KendallsCorrelationTest
+org.apache.commons.math4.stat.correlation.PearsonsCorrelationTest

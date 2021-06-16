@@ -1,0 +1,10 @@
+org.apache.commons.math4.exception.MathIllegalArgumentException
+org.apache.commons.math4.exception.MathIllegalNumberException
+org.apache.commons.math4.exception.MathRuntimeException
+org.apache.commons.math4.exception.NumberIsTooSmallException
+org.apache.commons.math4.exception.util.ArgUtils
+org.apache.commons.math4.exception.util.ExceptionContext
+org.apache.commons.math4.exception.util.ExceptionContextProvider
+org.apache.commons.math4.exception.util.Localizable
+org.apache.commons.math4.exception.util.LocalizedFormats
+org.apache.commons.math4.geometry.euclidean.oned.Interval

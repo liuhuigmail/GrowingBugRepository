@@ -1,0 +1,29 @@
+diff --git a/src/test/java/org/apache/commons/math/optimization/linear/SimplexSolverTest.java b/src/test/java/org/apache/commons/math/optimization/linear/SimplexSolverTest.java
+index 555c51a0f..469d9edc7 100644
+--- a/src/test/java/org/apache/commons/math/optimization/linear/SimplexSolverTest.java
++++ b/src/test/java/org/apache/commons/math/optimization/linear/SimplexSolverTest.java
+@@ -18,7 +18,6 @@
+ package org.apache.commons.math.optimization.linear;
+ 
+ import static org.junit.Assert.assertEquals;
+-import static org.junit.Assert.assertNotNull;
+ 
+ import java.util.ArrayList;
+ import java.util.Collection;
+@@ -74,16 +73,6 @@ public class SimplexSolverTest {
+         assertEquals(10.0, solution.getValue(), .0000001);
+     }
+ 
+-    @Test
+-    public void testMath290() throws OptimizationException {
+-        LinearObjectiveFunction f = new LinearObjectiveFunction(new double[] { 1, 5 }, 0 );
+-        Collection<LinearConstraint> constraints = new ArrayList<LinearConstraint>();
+-        constraints.add(new LinearConstraint(new double[] { 2, 0 }, Relationship.GEQ, -1.0));
+-        SimplexSolver solver = new SimplexSolver();
+-        RealPointValuePair solution = solver.optimize(f, constraints, GoalType.MINIMIZE, true);
+-        assertNotNull(solution);
+-    }
+-
+     @Test
+     public void testSimplexSolver() throws OptimizationException {
+         LinearObjectiveFunction f =
