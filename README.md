@@ -66,7 +66,7 @@ from open-source Java projects.
 
     Download the project repositories and external libraries that are not included in the git repository for size purposes and to avoid redundancies. We provide a mechanism to download them automatically as follows:
     
-    - `cd GrowingBugs`
+    - `cd GrowingBugRepository`
     - `cpanm --installdeps .`
     - `./init.sh`
     - `./repos.sh`
