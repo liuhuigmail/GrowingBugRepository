@@ -1,0 +1,21 @@
+diff --git a/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/impl/util/DocumentViewXmlContentHandler.java b/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/impl/util/DocumentViewXmlContentHandler.java
+index f65172c..d2a4731 100644
+--- a/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/impl/util/DocumentViewXmlContentHandler.java
++++ b/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/impl/util/DocumentViewXmlContentHandler.java
+@@ -159,7 +159,7 @@ public class DocumentViewXmlContentHandler extends DefaultHandler implements Nam
+     @Override
+     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+         // convert to DocViewNode (mostly taken over from DocViewSAXImporter#startElement)
+-        String label = getNormalizedName(qName);
++        String label = qName;
+         Name name;
+         if (elementNameStack.isEmpty() && localName.equals(NameConstants.JCR_ROOT.getLocalName())
+                     && uri.equals(NameConstants.JCR_ROOT.getNamespaceURI())) {
+@@ -209,7 +209,6 @@ public class DocumentViewXmlContentHandler extends DefaultHandler implements Nam
+             violations.add(new ValidationViolation(ValidationMessageSeverity.ERROR, String.format(PARSE_VIOLATION_MESSAGE_STRING, qName, e.getMessage()), filePath, null, nodePath.toString(), locator.getLineNumber(), locator.getColumnNumber(), e));
+         }
+         // do not collect node paths for empty elements (as they represent order only)
+-        // really?
+         if (attributes.getLength() > 0) {
+             nodePathsAndLineNumbers.put(nodePath.toString(), locator.getLineNumber());
+         }

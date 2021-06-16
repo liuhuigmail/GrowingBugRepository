@@ -1,0 +1,2 @@
+org.apache.jackrabbit.vault.validation.AnyValidationMessageMatcher
+org.apache.jackrabbit.vault.validation.DocumentViewParserValidatorTest

@@ -1,0 +1,68 @@
+diff --git a/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/DocumentViewParserValidatorTest.java b/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/DocumentViewParserValidatorTest.java
+index 1d5d7b7..58134f0 100644
+--- a/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/DocumentViewParserValidatorTest.java
++++ b/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/DocumentViewParserValidatorTest.java
+@@ -31,9 +31,7 @@ import javax.xml.XMLConstants;
+ import javax.xml.parsers.ParserConfigurationException;
+ import javax.xml.parsers.SAXParserFactory;
+ 
+-import org.apache.jackrabbit.spi.Name;
+ import org.apache.jackrabbit.spi.commons.name.NameConstants;
+-import org.apache.jackrabbit.spi.commons.name.NameFactoryImpl;
+ import org.apache.jackrabbit.vault.util.DocViewNode;
+ import org.apache.jackrabbit.vault.util.DocViewProperty;
+ import org.apache.jackrabbit.vault.util.JcrConstants;
+@@ -43,8 +41,6 @@ import org.apache.jackrabbit.vault.validation.spi.DocumentViewXmlValidator;
+ import org.apache.jackrabbit.vault.validation.spi.ValidationMessage;
+ import org.apache.jackrabbit.vault.validation.spi.ValidationMessageSeverity;
+ import org.apache.jackrabbit.vault.validation.spi.impl.DocumentViewParserValidator;
+-import org.apache.sling.api.SlingConstants;
+-import org.apache.sling.jcr.resource.JcrResourceConstants;
+ import org.junit.Assert;
+ import org.junit.Before;
+ import org.junit.Test;
+@@ -60,9 +56,6 @@ public class DocumentViewParserValidatorTest {
+     private DocumentViewParserValidator validator;
+     private Map<String, Integer> nodePathsAndLineNumbers;
+ 
+-    private static final Name NAME_SLING_RESOURCE_TYPE = NameFactoryImpl.getInstance().create(JcrResourceConstants.SLING_NAMESPACE_URI, SlingConstants.PROPERTY_RESOURCE_TYPE);
+-    private static final Name NAME_SLING_TARGET= NameFactoryImpl.getInstance().create(JcrResourceConstants.SLING_NAMESPACE_URI, "target");
+-
+     @Mock
+     private DocumentViewXmlValidator docViewXmlValidator;
+ 
+@@ -127,34 +120,6 @@ public class DocumentViewParserValidatorTest {
+         }
+     }
+ 
+-    @Test
+-    public void testDocViewDotContentXmlOnRootLevel()
+-            throws ParserConfigurationException, SAXException, URISyntaxException, IOException, NamespaceException {
+-        Mockito.when(docViewXmlValidator.validate(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.anyBoolean())).thenReturn(Collections.singleton(new ValidationMessage(ValidationMessageSeverity.ERROR, "startDocView")));
+-        try (InputStream input = this.getClass().getResourceAsStream("/simple-package/jcr_root/.content.xml")) {
+-            Collection<ValidationMessage> messages = validator.validateJcrData(input, Paths.get(".content.xml"), nodePathsAndLineNumbers);
+-            // filter
+-            ValidationExecutorTest.assertViolation(messages,
+-                    new ValidationViolation("docviewid", ValidationMessageSeverity.ERROR, "startDocView", Paths.get(".content.xml"), Paths.get(""), "/", 6, 32, null
+-                            ));
+-
+-            // verify node names
+-            Map<String, Integer> expectedNodePathsAndLineNumber = new HashMap<>();
+-            expectedNodePathsAndLineNumber.put("/", 6);
+-            Assert.assertEquals(expectedNodePathsAndLineNumber, nodePathsAndLineNumbers);
+-            Map<String, DocViewProperty> properties = new HashMap<>();
+-            properties.put(NameConstants.JCR_PRIMARYTYPE.toString(),
+-                    new DocViewProperty(NameConstants.JCR_PRIMARYTYPE.toString(), new String[] { "rep:root" }, false,
+-                            PropertyType.UNDEFINED));
+-            properties.put(NameConstants.JCR_MIXINTYPES.toString(), new DocViewProperty(NameConstants.JCR_MIXINTYPES.toString(), new String[] { "rep:AccessControllable" ,"rep:RepoAccessControllable" }, true, PropertyType.UNDEFINED));
+-            properties.put(NAME_SLING_RESOURCE_TYPE.toString(), new DocViewProperty(NAME_SLING_RESOURCE_TYPE.toString(), new String[] { "sling:redirect" }, false, PropertyType.UNDEFINED));
+-            properties.put(NAME_SLING_TARGET.toString(), new DocViewProperty(NAME_SLING_TARGET.toString(), new String[] { "/index.html" }, false, PropertyType.UNDEFINED));
+-            
+-            DocViewNode node = new DocViewNode(NameConstants.JCR_ROOT.toString(), "jcr:root", null, properties, new String[] { "rep:AccessControllable" ,"rep:RepoAccessControllable" }, "rep:root");
+-            Mockito.verify(docViewXmlValidator).validate(node, "/", Paths.get(".content.xml"), true);
+-        }
+-    }
+-    
+     @Test
+     public void testDocViewWithEmptyElements() throws IOException {
+         try (InputStream input = this.getClass().getResourceAsStream("/simple-package/jcr_root/apps/emptyelements/.content.xml")) {
