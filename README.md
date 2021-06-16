@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1001`** bugs
+ **`1037`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -23,7 +23,7 @@ from open-source Java projects.
 | 12    | Jsoup           | jsoup                      |                           |       93       | 1-93                |
 | 13     | JxPath          | commons-jxpath             |                          |       22       | 1-22                |
 | 14     | Lang            | commons-lang               |                          |       73       | 1,3-65,69,71,73,76,80-84              |
-| 15     | Math            | commons-math               |                          |      106       | 1-106               |
+| 15     | Math            | commons-math               |                          |      142       | 1-142               |
 | 16     | Mockito         | mockito                    |                          |       38       | 1-38                |
 | 17     | Time            | joda-time                  |                          |       26       | 1-20,22-27          |
 | 18     | Dbutils         | commons-dbutils            |                          |        2       | 1-2                 |
