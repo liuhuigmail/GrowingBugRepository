@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1037`** bugs
+ **`1041`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -48,7 +48,8 @@ from open-source Java projects.
 | 37     | Jena_core            | jena-core               |    jena-core   |        1       | 2               |
 | 38     | Shiro_web            | shiro-web               |        web      |        3       | 1,3,7               |
 | 39     | MDeploy            | maven-deploy-plugin               |              |        1       | 1               |
-| 40     | Jackrabbit_oak_core            | oak-core               |       oak-core       |        2       | 1-2               |
+| 40     | Jackrabbit_filevault_vault_validation            | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
+| 41     | Jackrabbit_oak_core            | oak-core               |       oak-core       |        2       | 1-2               |
 
 # Setting up GrowingBugs
 ## Requirements
