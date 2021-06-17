@@ -1,0 +1,25 @@
+diff --git a/src/test/java/org/apache/commons/math3/fraction/BigFractionTest.java b/src/test/java/org/apache/commons/math3/fraction/BigFractionTest.java
+index 229da6930..71efb97ba 100644
+--- a/src/test/java/org/apache/commons/math3/fraction/BigFractionTest.java
++++ b/src/test/java/org/apache/commons/math3/fraction/BigFractionTest.java
+@@ -156,19 +156,7 @@ public class BigFractionTest {
+         assertFraction(769, 1250, new BigFraction(0.6152, 9999));
+         
+         // MATH-996
+-        assertFraction(1, 2, new BigFraction(0.5000000001, 10));        
+-    }
+-
+-    // MATH-1029
+-    @Test(expected=FractionConversionException.class)
+-    public void testPositiveValueOverflow() {
+-        assertFraction((long) 1e10, 1, new BigFraction(1e10, 1000));
+-    }
+-
+-    // MATH-1029
+-    @Test(expected=FractionConversionException.class)
+-    public void testNegativeValueOverflow() {
+-        assertFraction((long) -1e10, 1, new BigFraction(-1e10, 1000));
++        assertFraction(1, 2, new BigFraction(0.5000000001, 10));
+     }
+ 
+     @Test

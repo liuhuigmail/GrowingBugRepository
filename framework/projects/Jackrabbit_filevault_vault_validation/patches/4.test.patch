@@ -1,0 +1,74 @@
+diff --git a/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/DocumentViewParserValidatorTest.java b/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/DocumentViewParserValidatorTest.java
+index 25e36e3..7b4db05 100644
+--- a/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/DocumentViewParserValidatorTest.java
++++ b/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/DocumentViewParserValidatorTest.java
+@@ -68,7 +68,7 @@ public class DocumentViewParserValidatorTest {
+     private DocumentViewXmlValidator docViewXmlValidator;
+ 
+     @Before
+-    public void setUp() throws ParserConfigurationException, SAXException, IOException {
++    public void setUp() throws ParserConfigurationException, SAXException {
+         SAXParserFactory spf = SAXParserFactory.newInstance();
+         spf.setNamespaceAware(true);
+         spf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+@@ -91,16 +91,16 @@ public class DocumentViewParserValidatorTest {
+             Collection<ValidationMessage> messages = validator.validateJcrData(input, Paths.get("apps", ".content.xml"), Paths.get(""), nodePathsAndLineNumbers);
+             // filter
+             ValidationExecutorTest.assertViolation(messages,
+-                    new ValidationViolation("docviewid", ValidationMessageSeverity.ERROR, "startDocView", Paths.get("apps/.content.xml"), Paths.get(""), "/apps", 19, 35, null
++                    new ValidationViolation("docviewid", ValidationMessageSeverity.ERROR, "startDocView", Paths.get("apps/.content.xml"), null, "/apps", 19, 35, null
+                             ),
+                     new ValidationViolation("docviewid", ValidationMessageSeverity.ERROR,
+-                            "startDocView", Paths.get("apps/.content.xml"), Paths.get(""), "/apps/somepath", 21, 29, null),
++                            "startDocView", Paths.get("apps/.content.xml"), null, "/apps/somepath", 21, 29, null),
+                     new ValidationViolation("docviewid", ValidationMessageSeverity.ERROR,
+-                            "startDocView", Paths.get("apps/.content.xml"), Paths.get(""), "/apps/somepath/jc:content", 22, 54, null),
++                            "startDocView", Paths.get("apps/.content.xml"), null, "/apps/somepath/jc:content", 22, 54, null),
+                     new ValidationViolation("docviewid", ValidationMessageSeverity.ERROR,
+-                            "startDocView", Paths.get("apps/.content.xml"), Paths.get(""), "/apps/0123_sample.jpg", 25, 29, null),
++                            "startDocView", Paths.get("apps/.content.xml"), null, "/apps/0123_sample.jpg", 25, 29, null),
+                     new ValidationViolation("docviewid", ValidationMessageSeverity.ERROR,
+-                            "startDocView", Paths.get("apps/.content.xml"), Paths.get(""), "/apps/01234_sample.jpg", 26, 55, null));
++                            "startDocView", Paths.get("apps/.content.xml"), null, "/apps/01234_sample.jpg", 26, 55, null));
+ 
+             // verify node names
+             Map<String, Integer> expectedNodePathsAndLineNumber = new HashMap<>();
+@@ -141,7 +141,7 @@ public class DocumentViewParserValidatorTest {
+             Collection<ValidationMessage> messages = validator.validateJcrData(input, Paths.get(".content.xml"), Paths.get(""), nodePathsAndLineNumbers);
+             // filter
+             ValidationExecutorTest.assertViolation(messages,
+-                    new ValidationViolation("docviewid", ValidationMessageSeverity.ERROR, "startDocView", Paths.get(".content.xml"), Paths.get(""), "/", 6, 32, null
++                    new ValidationViolation("docviewid", ValidationMessageSeverity.ERROR, "startDocView", Paths.get(".content.xml"), null, "/", 6, 32, null
+                             ));
+ 
+             // verify node names
+@@ -206,20 +206,6 @@ public class DocumentViewParserValidatorTest {
+         }
+     }
+ 
+-    @Test
+-    public void testDocViewWithRegularFileNameAndUndeclaredNamespacePrefixInFilename()
+-            throws ParserConfigurationException, SAXException, URISyntaxException, IOException, NamespaceException {
+-
+-        try (InputStream input = this.getClass().getResourceAsStream("/simple-package/jcr_root/apps/child1.xml")) {
+-            Collection<ValidationMessage> messages = validator.validateJcrData(input, Paths.get("apps", "cq:child1.xml"), Paths.get(""), nodePathsAndLineNumbers);
+-           
+-            ValidationExecutorTest.assertViolation(messages, 
+-                    new ValidationViolation(ValidationMessageSeverity.ERROR, 
+-                    "Invalid XML found: Given root node name 'cq:child1' (implicitly given via filename) cannot be resolved. The prefix used in the filename must be declared as XML namespace in the child docview XML as well!",
+-                    Paths.get("apps", "cq:child1.xml"), Paths.get(""), "/apps/cq:child1",  0,0, null));
+-        }
+-    }
+-
+     @Test
+     public void testDocViewDotContentXmlWithRootElementDifferentThanJcrRoot()
+             throws ParserConfigurationException, SAXException, URISyntaxException, IOException, NamespaceException {
+@@ -274,7 +260,7 @@ public class DocumentViewParserValidatorTest {
+            ValidationExecutorTest.assertViolation(messages,
+                     new ValidationViolation(ValidationMessageSeverity.ERROR,
+                             String.format(DocumentViewXmlContentHandler.PARSE_VIOLATION_MESSAGE_STRING, "somepath",
+-                                    "unknown type: Invalid"), Paths.get("apps/invalid/wrongtype.xml"), Paths.get(""), "/apps/invalid/wrongtype/somepath", 24, 6,
++                                    "unknown type: Invalid"), Paths.get("apps/invalid/wrongtype.xml"), null, "/apps/invalid/wrongtype/somepath", 24, 6,
+                             new IllegalArgumentException("unknown type: Invalid")));
+         }
+     }

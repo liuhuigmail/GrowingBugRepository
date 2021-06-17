@@ -1,0 +1,8 @@
+org.apache.commons.math4.geometry.euclidean.oned.IntervalTest
+org.apache.commons.math4.geometry.euclidean.oned.IntervalsSetTest
+org.apache.commons.math4.geometry.euclidean.threed.PolyhedronsSetTest
+org.apache.commons.math4.geometry.euclidean.threed.SubLineTest
+org.apache.commons.math4.geometry.euclidean.twod.PolygonsSetTest
+org.apache.commons.math4.geometry.euclidean.twod.SubLineTest
+org.apache.commons.math4.geometry.euclidean.twod.hull.AklToussaintHeuristicTest
+org.apache.commons.math4.geometry.euclidean.twod.hull.MonotoneChainTest

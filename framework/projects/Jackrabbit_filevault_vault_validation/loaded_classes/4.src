@@ -1,0 +1,14 @@
+org.apache.jackrabbit.vault.validation.impl.util.DocumentViewXmlContentHandler
+org.apache.jackrabbit.vault.validation.impl.util.EnhancedBufferedInputStream
+org.apache.jackrabbit.vault.validation.impl.util.ResettableInputStream
+org.apache.jackrabbit.vault.validation.impl.util.ValidatorException
+org.apache.jackrabbit.vault.validation.spi.DocumentViewXmlValidator
+org.apache.jackrabbit.vault.validation.spi.GenericJcrDataValidator
+org.apache.jackrabbit.vault.validation.spi.impl.DocumentViewParserValidator
+org.apache.jackrabbit.vault.validation.spi.NodeContext
+org.apache.jackrabbit.vault.validation.spi.util.NodeContextImpl
+org.apache.jackrabbit.vault.validation.spi.ValidationMessage
+org.apache.jackrabbit.vault.validation.spi.ValidationMessageSeverity
+org.apache.jackrabbit.vault.validation.spi.Validator
+org.apache.jackrabbit.vault.validation.ValidationExecutor
+org.apache.jackrabbit.vault.validation.ValidationViolation

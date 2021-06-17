@@ -213,7 +213,7 @@ _copy($src, $dst);
 # Copy repository directory
 my $dir_name = $REPOSITORY_DIR;
 $dir_name =~ m[^.*/(.*)$];
-system ("rm -rf $REPO_DIR/$1") == 0 or die "Could not remove $REPO_DIR/$1: $!";
+#system ("rm -rf $REPO_DIR/$1") == 0 or die "Could not remove $REPO_DIR/$1: $!";
 _copy($REPOSITORY_DIR, $REPO_DIR);
 
 # Update README file

@@ -1,0 +1,35 @@
+diff --git a/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/impl/util/DocumentViewXmlContentHandler.java b/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/impl/util/DocumentViewXmlContentHandler.java
+index b3eb3c1..1ed9969 100644
+--- a/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/impl/util/DocumentViewXmlContentHandler.java
++++ b/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/impl/util/DocumentViewXmlContentHandler.java
+@@ -129,6 +129,7 @@ public class DocumentViewXmlContentHandler extends DefaultHandler {
+         while (iterator.hasNext()) {
+             nodePath.append("/").append(iterator.next());
+         }
++        nodePathsAndLineNumbers.put(nodePath.toString(), locator.getLineNumber());
+         nodePathStack.push(nodePath.toString());
+         try {
+             DocViewNode node = getDocViewNode(name, label, attributes);
+@@ -144,10 +145,6 @@ public class DocumentViewXmlContentHandler extends DefaultHandler {
+         } catch (IllegalArgumentException e) { // thrown from DocViewProperty.parse()
+             violations.add(new ValidationViolation(ValidationMessageSeverity.ERROR, String.format(PARSE_VIOLATION_MESSAGE_STRING, qName, e.getMessage()), filePath, null, nodePath.toString(), locator.getLineNumber(), locator.getColumnNumber(), e));
+         }
+-        // do not collect node paths for empty elements (as they represent order only)
+-        if (attributes.getLength() > 0) {
+-            nodePathsAndLineNumbers.put(nodePath.toString(), locator.getLineNumber());
+-        }
+     }
+ 
+     private DocViewNode getDocViewNode(String name, String label, Attributes attributes) {
+diff --git a/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/spi/NodePathValidator.java b/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/spi/NodePathValidator.java
+index 59b0911..79dae55 100644
+--- a/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/spi/NodePathValidator.java
++++ b/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/spi/NodePathValidator.java
+@@ -33,7 +33,6 @@ import org.osgi.annotation.versioning.ProviderType;
+ public interface NodePathValidator extends Validator {
+     /**
+      * Called for each node being found in a package.
+-     * Empty node elements (in DocView files) are not included as they are only used for ordering purposes.
+      * 
+      * @param nodePath the absolute node path
+      * @return validation messages or {@code null}

@@ -1,0 +1,5 @@
+org.apache.commons.math3.distribution.LogNormalDistributionTest
+org.apache.commons.math3.distribution.RealDistributionAbstractTest
+org.apache.commons.math3.distribution.WeibullDistributionTest
+org.apache.commons.math3.special.BetaTest
+org.apache.commons.math3.TestUtils

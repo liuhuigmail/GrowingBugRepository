@@ -1,0 +1,40 @@
+diff --git a/src/test/java/org/apache/commons/math4/special/GammaTest.java b/src/test/java/org/apache/commons/math4/special/GammaTest.java
+index 35da9fe5e..70275f34c 100644
+--- a/src/test/java/org/apache/commons/math4/special/GammaTest.java
++++ b/src/test/java/org/apache/commons/math4/special/GammaTest.java
+@@ -19,6 +19,7 @@ package org.apache.commons.math4.special;
+ import org.apache.commons.math4.TestUtils;
+ import org.apache.commons.math4.exception.NumberIsTooLargeException;
+ import org.apache.commons.math4.exception.NumberIsTooSmallException;
++import org.apache.commons.math4.special.Gamma;
+ import org.apache.commons.math4.util.FastMath;
+ import org.junit.Assert;
+ import org.junit.Test;
+@@ -124,13 +125,6 @@ public class GammaTest {
+         }
+     }
+ 
+-    @Test
+-    public void testDigammaNonRealArgs() {
+-        Assert.assertTrue(Double.isNaN(Gamma.digamma(Double.NaN)));
+-        Assert.assertTrue(Double.isInfinite(Gamma.digamma(Double.POSITIVE_INFINITY)));
+-        Assert.assertTrue(Double.isInfinite(Gamma.digamma(Double.NEGATIVE_INFINITY)));
+-    }
+-
+     @Test
+     public void testTrigamma() {
+         double eps = 1e-8;
+@@ -157,13 +151,6 @@ public class GammaTest {
+         }
+     }
+ 
+-    @Test
+-    public void testTrigammaNonRealArgs() {
+-        Assert.assertTrue(Double.isNaN(Gamma.trigamma(Double.NaN)));
+-        Assert.assertTrue(Double.isInfinite(Gamma.trigamma(Double.POSITIVE_INFINITY)));
+-        Assert.assertTrue(Double.isInfinite(Gamma.trigamma(Double.NEGATIVE_INFINITY)));
+-    }
+-
+     /**
+      * Reference data for the {@link Gamma#logGamma(double)} function. This data
+      * was generated with the following <a

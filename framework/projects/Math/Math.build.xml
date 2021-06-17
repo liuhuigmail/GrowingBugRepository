@@ -26,56 +26,114 @@ It defines project-specific properties and targets, and imports the build file
 of the checked-out project version.
 #############################################################################-->
 <project name="D4J-Math">
+      <!-- Directory of the test sources, the default is the directory of the
+         existing tests -->
+   <!-- Generate all debugging information -->
+    <property name="compile.debug" value="yes" />
+    <property name="junit.jar" value="${d4j.home}/framework/projects/lib/junit-4.11.jar"/>
+
+    <!-- Do not download maven dependencies -->
+    <property name="maven.settings.offline" value="true" />
+    <property name="maven.repo.local" value="${d4j.dir.projects}/Math/lib/" />
+
+    <!-- Generate all debugging information -->
+    <property name="compile.debug" value="yes" />
     <!-- Include existing project build file -->
     <import file="${d4j.workdir}/build.xml"/>
-
-    <!-- build.home is not set in old repository layout -->
-    <property name="build.home" value="${classesdir}/.." />
-    <property name="classes.dir" value="${build.home}/classes" />
-    <property name="test.classes.dir" value="${build.home}/test-classes" />
-
-    <!-- Directory of the test sources, the default is the directory of the
-         existing tests -->
-    <property name="d4j.test.dir" value="${test.home}"/>
-
-    <!-- Fixing ant script in case compile-tests is defined instead of compile.tests -->
-    <scriptdef name="hastarget" language="javascript">
-         <attribute name="targetname" />
-     <attribute name="newtargetname" />
-     <attribute name="setproperty" />
-         <![CDATA[
-           var targetname = attributes.get("targetname");
-       var newtargetname = attributes.get("newtargetname");
-       var setproperty = attributes.get("setproperty");
-       if(project.getTargets().containsKey(targetname)) {
-        var newTarget = new org.apache.tools.ant.Target();
-        newTarget.addDependency(targetname);
-        newTarget.setName(newtargetname);
-            project.addTarget(newtargetname, newTarget);
-        project.setProperty(setproperty, "yes");
-        }
-         ]]>
-    </scriptdef>
-
-    <hastarget targetname="compile-tests" newtargetname="compile.tests" setproperty="oldLayout" />
-    <path id="build.classpath">
+    
+    <condition property="src-dir" value="${maven.build.srcDir.0}">
+    	<isset property="maven.build.srcDir.0" />
+    </condition>
+    <condition property="src-dir" value="${source.home}" >
+    	<isset property="source.home" />
+    </condition>
+    <condition property="src-dir" value="${basedir}/src/java" >
+    	<available file="${basedir}/src/java" />
+    </condition>
+    
+    
+    <condition property="test-dir" value="${maven.build.testDir.0}" >
+    	<isset property="maven.build.testDir.0" />
+    </condition> 
+    <condition property="test-dir" value="${test.home}"  >
+    	<isset property="test.home" />
+    </condition> 
+    <condition property="test-dir" value="${basedir}/src/test">
+    	<available file="${basedir}/src/test" />
+    </condition> 
+    
+    <condition property="classes.dir" value="${maven.build.outputDir}"  >
+        <isset property="maven.build.outputDir" />
+    </condition>
+    <condition property="classes.dir" value="${classesdir}">
+        <isset property="classesdir" />
+    </condition>
+    <condition property="classes.dir" value="${defaulttargetdir}">
+        <isset property="defaulttargetdir" />
+    </condition>
+    <condition property="classes.dir" value="${build.home}/classes" >
+        <available file="${build.home}/classes" />
+    </condition>
+    
+    <condition property="test.classes.dir" value="${maven.build.testOutputDir}"  >
+        <isset property="maven.build.testOutputDir" />
+    </condition>
+    <condition property="test.classes.dir" value="${testclassesdir}"  >
+        <isset property="testclassesdir" />
+    </condition>
+    <condition property="test.classes.dir" value="${build.home}/test-classes" >
+        <available file="${build.home}/test-classes" />
+    </condition>
+    <property name="test.home" value="${d4j.workdir}/src/test" />
+    <property name="build.home" value="${classes.dir}/.." />
+   
+     <path id="build.classpath">
     <pathelement location="${d4j.home}/framework/projects/Math/lib/commons-discovery-0.5.jar" />
-    </path>
-    <if> <isset property="oldLayout" /> <then>
-        <property name ="test.home" value="${d4j.workdir}/src/test" />
-        <property name ="build.home" value="${defaulttargetdir}" />
-        <property name="noget" value="true" />
-        <path id="test.classpath">
-            <pathelement path="${testclassesdir}" />
+    </path>   
+   
+     
+            <path id="compile.classpath"      >
+                 <pathelement path="${classesdir}" />
+            </path>
+            <path id="test.classpath"      >
+            <path refid="compile.classpath"/>
+                 <pathelement path="${testclassesdir}" />
+                 <pathelement location="${classes.dir}"/>
                 <pathelement path="${classesdir}" />
                 <pathelement path="${junit.jar}" />
-        </path>
-        <path id="compile.classpath">
-            <pathelement path="${classesdir}" />
-        </path>
+            </path>
+            
+            <property name="dir.src.classes"  value="${src-dir}"/>
+            <property name="dir.src.tests"    value="${test-dir}"/>
+            <property name="test.dir"         value="${test-dir}" />
+            <property name="source.home"      value="${src-dir}"/>
+            <property name="d4j.test.dir"     value="${test-dir}"/>
+    <!--
+        if else statement in xml
+        <condition property="test.classes.dir" value="build/class" else="target/class">
+            <available file="build/classes" />
+        </condition>
+         
+        echo  print the var
+        <echo message="${abc}" />
+    -->
 
-    </then> </if>
-    <!-- end of fixing ant script -->
+    <property name="build.home" value="${classes.dir}/.." />
+
+    <!-- Classpath to run developer-written tests -->
+    <path id="d4j.test.classpath">
+        <path refid="test.classpath"/>
+        <pathelement location="${classes.dir}"/>
+        <pathelement location="${test.classes.dir}"/>
+        <pathelement path="${junit.jar}" />
+        <!--
+        <pathelement path="${dependency.jar}" />
+        <pathelement location="${user.home}/.m2/repository"/>
+        -->
+        <fileset dir="${maven.repo.local}">
+               <include name="**/*.jar" />
+        </fileset>
+    </path>
 
     <!-- List of all developer-written tests that reliably pass on the fixed version -->
     <fileset id="all.manual.tests" dir="${test.home}" excludes="${d4j.tests.exclude}">
@@ -85,10 +143,5 @@ of the checked-out project version.
         <exclude name="**/random/*.java"/>
         <exclude name="**/*Abstract*Test.java"/>
     </fileset>
-
-    <!-- Classpath to run developer-written tests -->
-    <path id="d4j.test.classpath">
-        <path refid="test.classpath"/>
-        <pathelement path="${junit.jar}" />
-    </path>
+ 
 </project>

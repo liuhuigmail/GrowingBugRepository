@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/Precision.java b/src/main/java/org/apache/commons/math3/util/Precision.java
+index 441e015ac..f0b0c4ff7 100644
+--- a/src/main/java/org/apache/commons/math3/util/Precision.java
++++ b/src/main/java/org/apache/commons/math3/util/Precision.java
+@@ -392,11 +392,11 @@ public class Precision {
+      */
+     public static double round(double x, int scale, int roundingMethod) {
+         try {
+-            final double rounded = (new BigDecimal(Double.toString(x))
++            return (new BigDecimal
++                   (Double.toString(x))
+                    .setScale(scale, roundingMethod))
+                    .doubleValue();
+             // MATH-1089: negative values rounded to zero should result in negative zero
+-            return rounded == 0.0 ? rounded * FastMath.copySign(1d, x) : rounded;
+         } catch (NumberFormatException ex) {
+             if (Double.isInfinite(x)) {
+                 return x;

@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+index 4d0c9d8cc..3c1b26cc3 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+@@ -229,10 +219,7 @@ public class PolygonsSet extends AbstractRegion<Euclidean2D, Euclidean1D> {
+     private static Line[] boxBoundary(final double xMin, final double xMax,
+                                       final double yMin, final double yMax,
+                                       final double tolerance) {
+-        if ((xMin >= xMax - tolerance) || (yMin >= yMax - tolerance)) {
+             // too thin box, build an empty polygons set
+-            return null;
+-        }
+         final Vector2D minMin = new Vector2D(xMin, yMin);
+         final Vector2D minMax = new Vector2D(xMin, yMax);
+         final Vector2D maxMin = new Vector2D(xMax, yMin);

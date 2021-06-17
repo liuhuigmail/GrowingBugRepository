@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/Precision.java b/src/main/java/org/apache/commons/math3/util/Precision.java
+index f0b0c4ff7..ef3b57f39 100644
+--- a/src/main/java/org/apache/commons/math3/util/Precision.java
++++ b/src/main/java/org/apache/commons/math3/util/Precision.java
+@@ -515,10 +516,8 @@ public class Precision {
+             }
+             break;
+         case BigDecimal.ROUND_UP :
+             // do not round if the discarded fraction is equal to zero
+-            if (unscaled != FastMath.floor(unscaled)) {
+                 unscaled = FastMath.ceil(FastMath.nextAfter(unscaled, Double.POSITIVE_INFINITY));
+-            }
+             break;
+         default :
+             throw new MathIllegalArgumentException(LocalizedFormats.INVALID_ROUNDING_METHOD,

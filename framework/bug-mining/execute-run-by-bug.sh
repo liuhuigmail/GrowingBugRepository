@@ -56,18 +56,19 @@ do
     #rm -rf $work_dir
    nums=$(wc -l < $work_dir/framework/projects/$project_id/active-bugs.csv)
    nums=`expr $nums - 1`
-   #for((i=7000;i<=$nums;i++)); 
-   for((i=1;i<=$nums;i++));  
+   #for((i=7000;i<=$nums;i++));    
+   #for((i=41;i<=$nums;i++)); 
+   for((i=$nums;i>=1;i--));  
 do    
    # Initialize the project revisions
    perl ./initialize-revisions.pl -p $project_id -w $work_dir -s $sub_project -b $i -n $project_name
-   if [ $? != 0 ]
-   then
-    echo -e "Initialize the project $project_id revisions failed!\n\n"
-    echo "${project_id}, Initialize the revisions error!" >> error_info.txt
-    continue
-   fi
-   echo -e "Initialize the project $project_id revisions successfully!\n\n"
+    if [ $? != 0 ]
+    then
+     echo -e "Initialize the project $project_id revisions failed!\n\n"
+     echo "${project_id}, Initialize the revisions error!" >> error_info.txt
+     continue
+    fi
+    echo -e "Initialize the project $project_id revisions successfully!\n\n"
    
    # Analyze all revisions of the project
    perl ./analyze-project.pl -p $project_id -w $work_dir \

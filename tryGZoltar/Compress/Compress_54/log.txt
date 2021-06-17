@@ -1,0 +1,777 @@
+[DEBUG] PID: Compress
+[DEBUG] VID: 54
+[DEBUG] DATA_DIR: /home/ccluo/Desktop/gzoltar/coverage/Compress_54
+[DEBUG] TOOL: developer
+[DEBUG] TESTS_DIR: 
+[DEBUG] TMP_DIR: /tmp/compress_54_buggy
+[DEBUG] DIR_PROJECT: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress
+[DEBUG] DIR_LOADED_CLASSES: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/loaded_classes
+[DEBUG] DIR_RELEVANT_TESTS: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/relevant_tests
+[DEBUG] DIR_TRIGGER_TESTS: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/trigger_tests
+[DEBUG] JAVA_VERSION:
+Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1024m -Xmx4096m
+java version "1.8.0_202"
+Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
+Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)
+[DEBUG] LOADED_CLASSES: org.apache.commons.compress.archivers.zip.AbstractUnicodeExtraField:org.apache.commons.compress.archivers.zip.AsiExtraField:org.apache.commons.compress.archivers.zip.ExtraFieldUtils:org.apache.commons.compress.archivers.zip.JarMarker:org.apache.commons.compress.archivers.zip.PKWareExtraHeader:org.apache.commons.compress.archivers.zip.ResourceAlignmentExtraField:org.apache.commons.compress.archivers.zip.UnicodeCommentExtraField:org.apache.commons.compress.archivers.zip.UnicodePathExtraField:org.apache.commons.compress.archivers.zip.UnixStat:org.apache.commons.compress.archivers.zip.UnrecognizedExtraField:org.apache.commons.compress.archivers.zip.UnsupportedZipFeatureException:org.apache.commons.compress.archivers.zip.X000A_NTFS:org.apache.commons.compress.archivers.zip.X0014_X509Certificates:org.apache.commons.compress.archivers.zip.X0015_CertificateIdForFile:org.apache.commons.compress.archivers.zip.X0016_CertificateIdForCentralDirectory:org.apache.commons.compress.archivers.zip.X0017_StrongEncryptionHeader:org.apache.commons.compress.archivers.zip.X0019_EncryptionRecipientCertificateList:org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestamp:org.apache.commons.compress.archivers.zip.X7875_NewUnix:org.apache.commons.compress.archivers.zip.Zip64ExtendedInformationExtraField:org.apache.commons.compress.archivers.zip.ZipEightByteInteger:org.apache.commons.compress.archivers.zip.ZipExtraField:org.apache.commons.compress.archivers.zip.ZipLong:org.apache.commons.compress.archivers.zip.ZipShort:org.apache.commons.compress.archivers.zip.ZipUtil:org.apache.commons.compress.utils.ByteUtils:
+[DEBUG] LOADED_SUB_CLASSES: org.apache.commons.compress.archivers.zip.AbstractUnicodeExtraField$*:org.apache.commons.compress.archivers.zip.AsiExtraField$*:org.apache.commons.compress.archivers.zip.ExtraFieldUtils$*:org.apache.commons.compress.archivers.zip.JarMarker$*:org.apache.commons.compress.archivers.zip.PKWareExtraHeader$*:org.apache.commons.compress.archivers.zip.ResourceAlignmentExtraField$*:org.apache.commons.compress.archivers.zip.UnicodeCommentExtraField$*:org.apache.commons.compress.archivers.zip.UnicodePathExtraField$*:org.apache.commons.compress.archivers.zip.UnixStat$*:org.apache.commons.compress.archivers.zip.UnrecognizedExtraField$*:org.apache.commons.compress.archivers.zip.UnsupportedZipFeatureException$*:org.apache.commons.compress.archivers.zip.X000A_NTFS$*:org.apache.commons.compress.archivers.zip.X0014_X509Certificates$*:org.apache.commons.compress.archivers.zip.X0015_CertificateIdForFile$*:org.apache.commons.compress.archivers.zip.X0016_CertificateIdForCentralDirectory$*:org.apache.commons.compress.archivers.zip.X0017_StrongEncryptionHeader$*:org.apache.commons.compress.archivers.zip.X0019_EncryptionRecipientCertificateList$*:org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestamp$*:org.apache.commons.compress.archivers.zip.X7875_NewUnix$*:org.apache.commons.compress.archivers.zip.Zip64ExtendedInformationExtraField$*:org.apache.commons.compress.archivers.zip.ZipEightByteInteger$*:org.apache.commons.compress.archivers.zip.ZipExtraField$*:org.apache.commons.compress.archivers.zip.ZipLong$*:org.apache.commons.compress.archivers.zip.ZipShort$*:org.apache.commons.compress.archivers.zip.ZipUtil$*:org.apache.commons.compress.utils.ByteUtils$*:
+[DEBUG] RELEVANT_TESTS: org.apache.commons.compress.ArchiveReadTest:org.apache.commons.compress.IOMethodsTest:org.apache.commons.compress.archivers.ArchiveOutputStreamTest:org.apache.commons.compress.archivers.JarTestCase:org.apache.commons.compress.archivers.ZipTestCase:org.apache.commons.compress.archivers.jar.JarArchiveOutputStreamTest:org.apache.commons.compress.archivers.zip.DataDescriptorTest:org.apache.commons.compress.archivers.zip.EncryptedArchiveTest:org.apache.commons.compress.archivers.zip.ExplodeSupportTest:org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest:org.apache.commons.compress.archivers.zip.Maven221MultiVolumeTest:org.apache.commons.compress.archivers.zip.ParallelScatterZipCreatorTest:org.apache.commons.compress.archivers.zip.ScatterSampleTest:org.apache.commons.compress.archivers.zip.ScatterZipOutputStreamTest:org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest:org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest:org.apache.commons.compress.archivers.zip.X7875_NewUnixTest:org.apache.commons.compress.archivers.zip.Zip64SupportIT:org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest:org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest:org.apache.commons.compress.archivers.zip.ZipFileTest:org.apache.commons.compress.changes.ChangeSetTestCase:org.apache.commons.compress.compressors.Pack200TestCase:org.apache.commons.compress.compressors.deflate64.Deflate64BugsTest:org.apache.commons.compress.compressors.pack200.Pack200UtilsTest:org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest:
+[DEBUG] TRIGGER_TESTS_FILE: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/trigger_tests/54
+[DEBUG] CP: /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/lib/junit-4.11.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/junit/junit/4.12/junit-4.12.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/com/github/luben/zstd-jni/1.3.3-3/zstd-jni-1.3.3-3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/brotli/dec/0.1.2/dec-0.1.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/tukaani/xz/1.8/xz-1.8.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-module-junit4/1.7.3/powermock-module-junit4-1.7.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-module-junit4-common/1.7.3/powermock-module-junit4-common-1.7.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-reflect/1.7.3/powermock-reflect-1.7.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-core/1.7.3/powermock-core-1.7.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/javassist/javassist/3.21.0-GA/javassist-3.21.0-GA.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-api-mockito/1.7.3/powermock-api-mockito-1.7.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-api-mockito-common/1.7.3/powermock-api-mockito-common-1.7.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-api-support/1.7.3/powermock-api-support-1.7.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/mockito/mockito-core/1.10.19/mockito-core-1.10.19.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/objenesis/objenesis/2.1/objenesis-2.1.jar:/tmp/compress_54_buggy/target/classes:/tmp/compress_54_buggy/target/test-classes:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/lib/junit-4.11.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/zstd.jar:/tmp/compress_54_buggy/${dependency.jar}:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/com/github/luben/zstd-jni/1.3.1-1/zstd-jni-1.3.1-1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/com/github/luben/zstd-jni/1.3.3-1/zstd-jni-1.3.3-1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/com/github/luben/zstd/1.3.1-1/zstd-jni-1.3.1-1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/com/github/luben/zstd/1.3.3-1/zstd-jni-1.3.3-1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/junit/junit/3.8.2/junit-3.8.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/junit/junit/4.10/junit-4.10.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/junit/junit/4.11/junit-4.11.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/junit/junit/4.8.2/junit-4.8.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/biz/aQute/bnd/bndlib/2.4.0/bndlib-2.4.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/com/github/luben/zstd-jni/1.3.1-1/zstd-jni-1.3.1-1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/com/github/luben/zstd-jni/1.3.3-1/zstd-jni-1.3.3-1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/com/github/luben/zstd-jni/1.3.3-3/zstd-jni-1.3.3-3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/com/github/luben/zstd-jni/1.4.0-1/zstd-jni-1.4.0-1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/com/github/luben/zstd-jni/1.4.3-1/zstd-jni-1.4.3-1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/com/github/luben/zstd-jni/1.4.4-7/zstd-jni-1.4.4-7.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/com/github/luben/zstd-jni/1.4.5-12/zstd-jni-1.4.5-12.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/com/github/luben/zstd-jni/1.4.5-6/zstd-jni-1.4.5-6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/com/github/marschall/memoryfilesystem/1.3.0/memoryfilesystem-1.3.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/com/github/marschall/memoryfilesystem/2.1.0/memoryfilesystem-2.1.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/javax/inject/javax.inject/1/javax.inject-1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/junit/junit/3.8.2/junit-3.8.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/junit/junit/4.10/junit-4.10.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/junit/junit/4.11/junit-4.11.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/junit/junit/4.12/junit-4.12.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/junit/junit/4.13.1/junit-4.13.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/junit/junit/4.13/junit-4.13.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/junit/junit/4.8.2/junit-4.8.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/net/bytebuddy/byte-buddy-agent/1.10.15/byte-buddy-agent-1.10.15.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/net/bytebuddy/byte-buddy/1.10.15/byte-buddy-1.10.15.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/apache/felix/org.apache.felix.framework/5.6.10/org.apache.felix.framework-5.6.10.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/apache/felix/org.apache.felix.framework/6.0.2/org.apache.felix.framework-6.0.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/apache/felix/org.apache.felix.framework/6.0.3/org.apache.felix.framework-6.0.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/brotli/dec/0.1.1/dec-0.1.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/brotli/dec/0.1.2/dec-0.1.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/codehaus/mojo/animal-sniffer-annotations/1.9/animal-sniffer-annotations-1.9.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/javassist/javassist/3.20.0-GA/javassist-3.20.0-GA.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/javassist/javassist/3.21.0-GA/javassist-3.21.0-GA.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/mockito/mockito-core/1.10.19/mockito-core-1.10.19.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/mockito/mockito-core/3.6.0/mockito-core-3.6.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/objenesis/objenesis/2.1/objenesis-2.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/objenesis/objenesis/2.6/objenesis-2.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/objenesis/objenesis/3.1/objenesis-3.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/base/ops4j-base-io/1.5.0/ops4j-base-io-1.5.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/base/ops4j-base-lang/1.5.0/ops4j-base-lang-1.5.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/base/ops4j-base-monitors/1.5.0/ops4j-base-monitors-1.5.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/base/ops4j-base-net/1.5.0/ops4j-base-net-1.5.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/base/ops4j-base-spi/1.5.0/ops4j-base-spi-1.5.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/base/ops4j-base-store/1.5.0/ops4j-base-store-1.5.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/base/ops4j-base-util-property/1.5.0/ops4j-base-util-property-1.5.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/exam/pax-exam-cm/4.11.0/pax-exam-cm-4.11.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/exam/pax-exam-cm/4.13.1/pax-exam-cm-4.13.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/exam/pax-exam-container-native/4.11.0/pax-exam-container-native-4.11.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/exam/pax-exam-container-native/4.13.1/pax-exam-container-native-4.13.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/exam/pax-exam-junit4/4.11.0/pax-exam-junit4-4.11.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/exam/pax-exam-junit4/4.13.1/pax-exam-junit4-4.13.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/exam/pax-exam-link-mvn/4.11.0/pax-exam-link-mvn-4.11.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/exam/pax-exam-link-mvn/4.13.1/pax-exam-link-mvn-4.13.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/exam/pax-exam-spi/4.11.0/pax-exam-spi-4.11.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/exam/pax-exam-spi/4.13.1/pax-exam-spi-4.13.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/exam/pax-exam/4.11.0/pax-exam-4.11.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/exam/pax-exam/4.13.1/pax-exam-4.13.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/swissbox/pax-swissbox-core/1.8.2/pax-swissbox-core-1.8.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/swissbox/pax-swissbox-lifecycle/1.8.2/pax-swissbox-lifecycle-1.8.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/swissbox/pax-swissbox-optional-jcl/1.8.2/pax-swissbox-optional-jcl-1.8.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/swissbox/pax-swissbox-property/1.8.2/pax-swissbox-property-1.8.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/swissbox/pax-swissbox-tracker/1.8.2/pax-swissbox-tracker-1.8.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/tinybundles/tinybundles/2.1.1/tinybundles-2.1.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/url/pax-url-aether/2.4.5/pax-url-aether-2.4.5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/url/pax-url-classpath/2.4.5/pax-url-classpath-2.4.5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/url/pax-url-commons/2.4.5/pax-url-commons-2.4.5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/ops4j/pax/url/pax-url-link/2.4.5/pax-url-link-2.4.5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/osgi/org.osgi.core/6.0.0/org.osgi.core-6.0.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-api-mockito-common/1.6.6/powermock-api-mockito-common-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-api-mockito-common/1.7.0/powermock-api-mockito-common-1.7.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-api-mockito-common/1.7.3/powermock-api-mockito-common-1.7.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-api-mockito-common/1.7.4/powermock-api-mockito-common-1.7.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-api-mockito/1.6.4/powermock-api-mockito-1.6.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-api-mockito/1.6.6/powermock-api-mockito-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-api-mockito/1.7.0/powermock-api-mockito-1.7.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-api-mockito/1.7.3/powermock-api-mockito-1.7.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-api-mockito/1.7.4/powermock-api-mockito-1.7.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-api-support/1.6.4/powermock-api-support-1.6.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-api-support/1.6.6/powermock-api-support-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-api-support/1.7.0/powermock-api-support-1.7.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-api-support/1.7.3/powermock-api-support-1.7.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-api-support/1.7.4/powermock-api-support-1.7.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-core/1.6.4/powermock-core-1.6.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-core/1.6.6/powermock-core-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-core/1.7.0/powermock-core-1.7.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-core/1.7.3/powermock-core-1.7.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-core/1.7.4/powermock-core-1.7.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-module-junit4-common/1.6.4/powermock-module-junit4-common-1.6.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-module-junit4-common/1.6.6/powermock-module-junit4-common-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-module-junit4-common/1.7.0/powermock-module-junit4-common-1.7.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-module-junit4-common/1.7.3/powermock-module-junit4-common-1.7.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-module-junit4-common/1.7.4/powermock-module-junit4-common-1.7.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-module-junit4/1.6.4/powermock-module-junit4-1.6.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-module-junit4/1.6.6/powermock-module-junit4-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-module-junit4/1.7.0/powermock-module-junit4-1.7.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-module-junit4/1.7.3/powermock-module-junit4-1.7.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-module-junit4/1.7.4/powermock-module-junit4-1.7.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-reflect/1.6.4/powermock-reflect-1.6.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-reflect/1.6.6/powermock-reflect-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-reflect/1.7.0/powermock-reflect-1.7.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-reflect/1.7.3/powermock-reflect-1.7.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/powermock/powermock-reflect/1.7.4/powermock-reflect-1.7.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/slf4j/jcl-over-slf4j/1.6.6/jcl-over-slf4j-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/slf4j/slf4j-api/1.7.26/slf4j-api-1.7.26.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/tukaani/xz/1.0/xz-1.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/tukaani/xz/1.2/xz-1.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/tukaani/xz/1.3/xz-1.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/tukaani/xz/1.4/xz-1.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/tukaani/xz/1.5/xz-1.5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/tukaani/xz/1.6/xz-1.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/org/tukaani/xz/1.8/xz-1.8.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/lib/zstd-jni-1.3.4-3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/brotli/dec/0.1.1/dec-0.1.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/javassist/javassist/3.20.0-GA/javassist-3.20.0-GA.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/objenesis/objenesis/2.6/objenesis-2.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-api-mockito-common/1.6.6/powermock-api-mockito-common-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-api-mockito-common/1.7.0/powermock-api-mockito-common-1.7.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-api-mockito/1.6.4/powermock-api-mockito-1.6.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-api-mockito/1.6.6/powermock-api-mockito-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-api-mockito/1.7.0/powermock-api-mockito-1.7.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-api-support/1.6.4/powermock-api-support-1.6.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-api-support/1.6.6/powermock-api-support-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-api-support/1.7.0/powermock-api-support-1.7.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-core/1.6.4/powermock-core-1.6.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-core/1.6.6/powermock-core-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-core/1.7.0/powermock-core-1.7.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-module-junit4-common/1.6.4/powermock-module-junit4-common-1.6.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-module-junit4-common/1.6.6/powermock-module-junit4-common-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-module-junit4-common/1.7.0/powermock-module-junit4-common-1.7.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-module-junit4/1.6.4/powermock-module-junit4-1.6.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-module-junit4/1.6.6/powermock-module-junit4-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-module-junit4/1.7.0/powermock-module-junit4-1.7.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-reflect/1.6.4/powermock-reflect-1.6.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-reflect/1.6.6/powermock-reflect-1.6.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/powermock/powermock-reflect/1.7.0/powermock-reflect-1.7.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/tukaani/xz/1.0/xz-1.0.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/tukaani/xz/1.2/xz-1.2.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/tukaani/xz/1.3/xz-1.3.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/tukaani/xz/1.4/xz-1.4.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/tukaani/xz/1.5/xz-1.5.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/org/tukaani/xz/1.6/xz-1.6.jar:/home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/zstd-jni-1.3.4-3.jar
+[INFO] Compiling Compress-54
+Running ant (compile)...................................................... OK
+Running ant (compile.tests)................................................ OK
+[INFO] Running GZoltar
+[INFO] Start: Fri 11 Jun 2021 07:47:49 AM PDT
+   ____ _____     _ _               
+  / ___|__  /___ | | |_ __ _ _ __   
+ | |  _  / // _ \| | __/ _` | '__| 
+ | |_| |/ /| (_) | | || (_| | |     
+  \____/____\___/|_|\__\__,_|_| 
+
+[ERROR] /home/ccluo/Desktop/4j-repo/GrowingBugRepository/GrowingBugRepository/framework/projects/Compress/lib/zstd.jar does not exist
+java.lang.Exception
+	at com.gzoltar.lib.master.modes.Diagnose.execute(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.parseCommandLine(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.main(Unknown Source)
+[ERROR] /tmp/compress_54_buggy/${dependency.jar} does not exist
+java.lang.Exception
+	at com.gzoltar.lib.master.modes.Diagnose.execute(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.parseCommandLine(Unknown Source)
+	at com.gzoltar.lib.master.GZoltar.main(Unknown Source)
+* Preparing classpath
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=1024M; support was removed in 8.0
+* Collecting classes under test
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getNonTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+* Collecting test cases
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+[ERROR] 
+java.io.IOException: invalid constant type: 19 at 4
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.readOne(ConstPool.java:1241)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.read(ConstPool.java:1172)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ConstPool.<init>(ConstPool.java:185)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.read(ClassFile.java:807)
+	at com.gzoltar.lib.shaded.javassist.bytecode.ClassFile.<init>(ClassFile.java:148)
+	at com.gzoltar.lib.shaded.javassist.CtClassType.<init>(CtClassType.java:96)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:729)
+	at com.gzoltar.lib.shaded.javassist.ClassPool.makeClass(ClassPool.java:707)
+	at com.gzoltar.lib.client.util.ClassUtils.processClassPath(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getClasses(Unknown Source)
+	at com.gzoltar.lib.client.util.ClassUtils.getTestClasses(Unknown Source)
+	at com.gzoltar.lib.client.Diagnose.main(Unknown Source)
+* Performing analysis
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS_crc.cpio]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS_crc.cpio]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS_odc.cpio]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS_odc.cpio]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD_ustar.tar]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD_ustar.tar]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS_cAEf.tar]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS_cAEf.tar]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD_newc.cpio]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD_newc.cpio]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS_cEf.tar]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS_cEf.tar]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS_-c.cpio]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS_-c.cpio]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD_pax.tar]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD_pax.tar]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD.ar]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD.ar]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD_.tar]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD_.tar]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS.zip]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS.zip]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD_crc.cpio]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD_crc.cpio]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD_hpbin.cpio]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD_hpbin.cpio]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS_.cpio]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS_.cpio]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS_cf.tar]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS_cf.tar]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD.zip]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD.zip]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS.ar]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=SunOS.ar]
+* Started org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD_bin.cpio]
+* Finished org.apache.commons.compress.ArchiveReadTest#testArchive[file=FreeBSD_bin.cpio]
+* Started org.apache.commons.compress.archivers.zip.DataDescriptorTest#doesntWriteDataDescriptorWhenAddingRawEntries
+* Finished org.apache.commons.compress.archivers.zip.DataDescriptorTest#doesntWriteDataDescriptorWhenAddingRawEntries
+* Started org.apache.commons.compress.archivers.zip.DataDescriptorTest#doesntWriteDataDescriptorForDeflatedEntryOnSeekableOutput
+* Finished org.apache.commons.compress.archivers.zip.DataDescriptorTest#doesntWriteDataDescriptorForDeflatedEntryOnSeekableOutput
+* Started org.apache.commons.compress.archivers.zip.DataDescriptorTest#writesDataDescriptorForDeflatedEntryOnUnseekableOutput
+* Finished org.apache.commons.compress.archivers.zip.DataDescriptorTest#writesDataDescriptorForDeflatedEntryOnUnseekableOutput
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testSkipsPK00Prefix
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testSkipsPK00Prefix
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testOffsets
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testOffsets
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#nameSourceDefaultsToName
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#nameSourceDefaultsToName
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testEntryAlignmentExceed
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testEntryAlignmentExceed
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testReadingOfStoredEntry
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testReadingOfStoredEntry
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#readDeflate64CompressedStream
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#readDeflate64CompressedStream
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testDuplicateEntry
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testDuplicateEntry
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testPhysicalOrder
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testPhysicalOrder
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testReadingOfFirstStoredEntry
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testReadingOfFirstStoredEntry
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testExcessDataInZip64ExtraField
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testExcessDataInZip64ExtraField
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testCDOrder
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testCDOrder
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#nameSourceIsSetToEFS
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#nameSourceIsSetToEFS
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testConcurrentReadFile
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testConcurrentReadFile
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#nameSourceIsSetToUnicodeExtraField
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#nameSourceIsSetToUnicodeExtraField
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testUnshrinking
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testUnshrinking
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testInvalidAlignment
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testInvalidAlignment
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testUnixSymlinkSampleFile
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testUnixSymlinkSampleFile
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testDelayedOffsetsAndSizes
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testDelayedOffsetsAndSizes
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testWinzipBackSlashWorkaround
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testWinzipBackSlashWorkaround
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testCDOrderInMemory
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testCDOrderInMemory
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testConcurrentReadSeekable
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testConcurrentReadSeekable
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testUnzipBZip2CompressedEntry
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testUnzipBZip2CompressedEntry
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testEntryAlignment
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testEntryAlignment
+* Started org.apache.commons.compress.archivers.zip.ZipFileTest#testDoubleClose
+* Finished org.apache.commons.compress.archivers.zip.ZipFileTest#testDoubleClose
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testCompressionMethod
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testCompressionMethod
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testIsUnixSymlink
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testIsUnixSymlink
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testCopyConstructor
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testCopyConstructor
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#isUnixSymlinkIsFalseIfMoreThanOneFlagIsSet
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#isUnixSymlinkIsFalseIfMoreThanOneFlagIsSet
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testNullCommentEqualsEmptyComment
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testNullCommentEqualsEmptyComment
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testExtraFieldMerging
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testExtraFieldMerging
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testExtraFields
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testExtraFields
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testUnixMode
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testUnixMode
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testAddAsFirstExtraField
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testAddAsFirstExtraField
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testNotEquals
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest#testNotEquals
+* Started org.apache.commons.compress.archivers.zip.Maven221MultiVolumeTest#testRead7ZipMultiVolumeArchiveForStream
+* Finished org.apache.commons.compress.archivers.zip.Maven221MultiVolumeTest#testRead7ZipMultiVolumeArchiveForStream
+* Started org.apache.commons.compress.archivers.zip.Maven221MultiVolumeTest#testRead7ZipMultiVolumeArchiveForFile
+* Finished org.apache.commons.compress.archivers.zip.Maven221MultiVolumeTest#testRead7ZipMultiVolumeArchiveForFile
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#readDeflate64CompressedStreamWithDataDescriptor
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#readDeflate64CompressedStreamWithDataDescriptor
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#testOffsets
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#testOffsets
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#nameSourceDefaultsToName
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#nameSourceDefaultsToName
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#shouldConsumeArchiveCompletely
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#shouldConsumeArchiveCompletely
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#readDeflate64CompressedStream
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#readDeflate64CompressedStream
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#testReadingOfFirstStoredEntry
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#testReadingOfFirstStoredEntry
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#nameSourceIsSetToEFS
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#nameSourceIsSetToEFS
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#nameSourceIsSetToUnicodeExtraField
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#nameSourceIsSetToUnicodeExtraField
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#testUnshrinkEntry
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#testUnshrinkEntry
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#properUseOfInflater
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#properUseOfInflater
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#testMessageWithCorruptFileName
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#testMessageWithCorruptFileName
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#properlyMarksEntriesAsUnreadableIfUncompressedSizeIsUnknown
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#properlyMarksEntriesAsUnreadableIfUncompressedSizeIsUnknown
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#winzipBackSlashWorkaround
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#winzipBackSlashWorkaround
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#testUnzipBZip2CompressedEntry
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#testUnzipBZip2CompressedEntry
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#testWithBytesAfterData
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#testWithBytesAfterData
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#shouldReadNestedZip
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#shouldReadNestedZip
+* Started org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#testThrowOnInvalidEntry
+* Finished org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest#testThrowOnInvalidEntry
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testZipFileReadsUnicodeFields
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testZipFileReadsUnicodeFields
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testCP437FileRoundtripImplicitUnicodeExtra
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testCP437FileRoundtripImplicitUnicodeExtra
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testUtf8FileRoundtripImplicitUnicodeExtra
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testUtf8FileRoundtripImplicitUnicodeExtra
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testRead7ZipArchiveForStream
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testRead7ZipArchiveForStream
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testCP437FileRoundtripExplicitUnicodeExtra
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testCP437FileRoundtripExplicitUnicodeExtra
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testRead7ZipArchive
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testRead7ZipArchive
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testUtf8FileRoundtripExplicitUnicodeExtra
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testUtf8FileRoundtripExplicitUnicodeExtra
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testASCIIFileRoundtripImplicitUnicodeExtra
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testASCIIFileRoundtripImplicitUnicodeExtra
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testReadWinZipArchiveForStream
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testReadWinZipArchiveForStream
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testUtf8FileRoundtripNoEFSImplicitUnicodeExtra
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testUtf8FileRoundtripNoEFSImplicitUnicodeExtra
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testZipArchiveInputStreamReadsUnicodeFields
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testZipArchiveInputStreamReadsUnicodeFields
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testASCIIFileRoundtripExplicitUnicodeExtra
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testASCIIFileRoundtripExplicitUnicodeExtra
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testReadWinZipArchive
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testReadWinZipArchive
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testUtf8FileRoundtripNoEFSExplicitUnicodeExtra
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testUtf8FileRoundtripNoEFSExplicitUnicodeExtra
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testUtf8Interoperability
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testUtf8Interoperability
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testRawNameReadFromZipFile
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testRawNameReadFromZipFile
+* Started org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testRawNameReadFromStream
+* Finished org.apache.commons.compress.archivers.zip.UTF8ZipFilesTest#testRawNameReadFromStream
+* Started org.apache.commons.compress.archivers.zip.X7875_NewUnixTest#testMisc
+* Finished org.apache.commons.compress.archivers.zip.X7875_NewUnixTest#testMisc
+* Started org.apache.commons.compress.archivers.zip.X7875_NewUnixTest#testSampleFile
+* Finished org.apache.commons.compress.archivers.zip.X7875_NewUnixTest#testSampleFile
+* Started org.apache.commons.compress.archivers.zip.X7875_NewUnixTest#testTrimLeadingZeroesForceMinLength4
+* Finished org.apache.commons.compress.archivers.zip.X7875_NewUnixTest#testTrimLeadingZeroesForceMinLength4
+* Started org.apache.commons.compress.archivers.zip.X7875_NewUnixTest#testParseReparse
+* Finished org.apache.commons.compress.archivers.zip.X7875_NewUnixTest#testParseReparse
+* Started org.apache.commons.compress.archivers.zip.X7875_NewUnixTest#testGetHeaderId
+* Finished org.apache.commons.compress.archivers.zip.X7875_NewUnixTest#testGetHeaderId
+* Started org.apache.commons.compress.archivers.zip.ScatterSampleTest#testSample
+* Finished org.apache.commons.compress.archivers.zip.ScatterSampleTest#testSample
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryKnownSizeToFileModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryKnownSizeToFileModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedByWinZIPUsingZipFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedByWinZIPUsingZipFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesUsingInputStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesUsingInputStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryUnknownSizeToStreamModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryUnknownSizeToStreamModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryKnownSizeToStreamModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryKnownSizeToStreamModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryKnownSizeToStreamModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryKnownSizeToStreamModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryToStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryToStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#write100KFilesStreamModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#write100KFilesStreamModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByPKZipUsingInputStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByPKZipUsingInputStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryToStreamModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryToStreamModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedByJava7JarUsingZipFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedByJava7JarUsingZipFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryToStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryToStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedBy7ZIPUsingZipFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedBy7ZIPUsingZipFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryUnknownSizeToFileModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryUnknownSizeToFileModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryUnnownSizeToFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryUnnownSizeToFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByJava7JarUsingZipFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByJava7JarUsingZipFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryKnownSizeToFileModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryKnownSizeToFileModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryUnnownSizeToFileModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryUnnownSizeToFileModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryKnownSizeToFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryKnownSizeToFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#write100KFilesFileModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#write100KFilesFileModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByWinCFUsingInputStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByWinCFUsingInputStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryKnownSizeToFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryKnownSizeToFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#write100KFilesStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#write100KFilesStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read3EntriesCreatingBigArchiveFileUsingZipFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read3EntriesCreatingBigArchiveFileUsingZipFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryKnownSizeToStreamModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryKnownSizeToStreamModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryKnownSizeToFileModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryKnownSizeToFileModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryUnnownSizeToFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryUnnownSizeToFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryToStreamModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryToStreamModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryKnownSizeToStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryKnownSizeToStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryKnownSizeToFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryKnownSizeToFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#write3EntriesCreatingBigArchiveFileModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#write3EntriesCreatingBigArchiveFileModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryKnownSizeToStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryKnownSizeToStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#write100KFilesStreamModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#write100KFilesStreamModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedByPKZipUsingInputStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedByPKZipUsingInputStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryUnknownSizeToStreamModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryUnknownSizeToStreamModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryKnownSizeToFileModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryKnownSizeToFileModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#write3EntriesCreatingBigArchiveStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#write3EntriesCreatingBigArchiveStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryUnknownSizeToFileModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryUnknownSizeToFileModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryUnknownSizeToStreamModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryUnknownSizeToStreamModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryUnknownSizeToStreamModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryUnknownSizeToStreamModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedBy7ZIPUsingInputStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedBy7ZIPUsingInputStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryUnknownSizeToFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryUnknownSizeToFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryToStreamModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryToStreamModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryKnownSizeToFileModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryKnownSizeToFileModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedBy7ZIPUsingInputStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedBy7ZIPUsingInputStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryKnownSizeToFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryKnownSizeToFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedBy7ZIPUsingZipFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedBy7ZIPUsingZipFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryUnknownSizeToFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryUnknownSizeToFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryUnnownSizeToFileModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryUnnownSizeToFileModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesUsingZipFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesUsingZipFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryKnownSizeToStreamModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryKnownSizeToStreamModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByJava7JarUsingInputStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByJava7JarUsingInputStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByPKZipUsingZipFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByPKZipUsingZipFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByWinCFUsingZipFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByWinCFUsingZipFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosUsingZipFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosUsingZipFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryUnnownSizeToFileModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryUnnownSizeToFileModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryUnknownSizeToFileModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryUnknownSizeToFileModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryUnknownSizeToFileModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryUnknownSizeToFileModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#readSelfGenerated100KFilesUsingZipFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#readSelfGenerated100KFilesUsingZipFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#write3EntriesCreatingBigArchiveFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#write3EntriesCreatingBigArchiveFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryUnnownSizeToFileModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigStoredEntryUnnownSizeToFileModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedByJava7JarUsingInputStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedByJava7JarUsingInputStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryKnownSizeToFileModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryKnownSizeToFileModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#write3EntriesCreatingBigArchiveFileModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#write3EntriesCreatingBigArchiveFileModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#write3EntriesCreatingBigArchiveStreamModeAlways
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#write3EntriesCreatingBigArchiveStreamModeAlways
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#write3EntriesCreatingBigArchiveStreamModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#write3EntriesCreatingBigArchiveStreamModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryKnownSizeToFileModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryKnownSizeToFileModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryUnknownSizeToStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryUnknownSizeToStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeAndRead5GBOfZerosUsingZipFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeAndRead5GBOfZerosUsingZipFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryKnownSizeToFileModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeBigDeflatedEntryKnownSizeToFileModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#write100KFilesFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#write100KFilesFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByWinZIPUsingZipFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByWinZIPUsingZipFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#write100KFilesFileModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#write100KFilesFileModeNever
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosUsingInputStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosUsingInputStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedByWinZIPUsingInputStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedByWinZIPUsingInputStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByWinZIPUsingInputStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read100KFilesGeneratedByWinZIPUsingInputStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryUnknownSizeToStream
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallDeflatedEntryUnknownSizeToStream
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedByPKZipUsingZipFile
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#read5GBOfZerosGeneratedByPKZipUsingZipFile
+* Started org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryToStreamModeNever
+* Finished org.apache.commons.compress.archivers.zip.Zip64SupportIT#writeSmallStoredEntryToStreamModeNever
+* Started org.apache.commons.compress.archivers.zip.ScatterZipOutputStreamTest#putArchiveEntry
+* Finished org.apache.commons.compress.archivers.zip.ScatterZipOutputStreamTest#putArchiveEntry
+* Started org.apache.commons.compress.archivers.zip.ExplodeSupportTest#testArchiveWithImplodeCompression4K2Trees
+* Finished org.apache.commons.compress.archivers.zip.ExplodeSupportTest#testArchiveWithImplodeCompression4K2Trees
+* Started org.apache.commons.compress.archivers.zip.ExplodeSupportTest#testConstructorThrowsExceptions
+* Finished org.apache.commons.compress.archivers.zip.ExplodeSupportTest#testConstructorThrowsExceptions
+* Started org.apache.commons.compress.archivers.zip.ExplodeSupportTest#testZipStreamWithImplodeCompression8K3Trees
+* Finished org.apache.commons.compress.archivers.zip.ExplodeSupportTest#testZipStreamWithImplodeCompression8K3Trees
+* Started org.apache.commons.compress.archivers.zip.ExplodeSupportTest#testTikaTestArchive
+* Finished org.apache.commons.compress.archivers.zip.ExplodeSupportTest#testTikaTestArchive
+* Started org.apache.commons.compress.archivers.zip.ExplodeSupportTest#testArchiveWithImplodeCompression8K3Trees
+* Finished org.apache.commons.compress.archivers.zip.ExplodeSupportTest#testArchiveWithImplodeCompression8K3Trees
+* Started org.apache.commons.compress.archivers.zip.ExplodeSupportTest#testZipStreamWithImplodeCompression4K2Trees
+* Finished org.apache.commons.compress.archivers.zip.ExplodeSupportTest#testZipStreamWithImplodeCompression4K2Trees
+* Started org.apache.commons.compress.archivers.zip.ExplodeSupportTest#testTikaTestStream
+* Finished org.apache.commons.compress.archivers.zip.ExplodeSupportTest#testTikaTestStream
+* Started org.apache.commons.compress.archivers.zip.EncryptedArchiveTest#testReadPasswordEncryptedEntryViaStream
+* Finished org.apache.commons.compress.archivers.zip.EncryptedArchiveTest#testReadPasswordEncryptedEntryViaStream
+* Started org.apache.commons.compress.archivers.zip.EncryptedArchiveTest#testReadPasswordEncryptedEntryViaZipFile
+* Finished org.apache.commons.compress.archivers.zip.EncryptedArchiveTest#testReadPasswordEncryptedEntryViaZipFile
+* Started org.apache.commons.compress.archivers.zip.ParallelScatterZipCreatorTest#concurrent
+* Finished org.apache.commons.compress.archivers.zip.ParallelScatterZipCreatorTest#concurrent
+* Started org.apache.commons.compress.archivers.zip.ParallelScatterZipCreatorTest#callableApi
+* Finished org.apache.commons.compress.archivers.zip.ParallelScatterZipCreatorTest#callableApi
+* Started org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest#testMergeWithUnparseableData
+* Finished org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest#testMergeWithUnparseableData
+* Started org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest#testMerge
+* Finished org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest#testMerge
+* Started org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest#testParse
+* Finished org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest#testParse
+* Started org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest#parseTurnsArrayIndexOutOfBoundsIntoZipException
+* Failure: null | parseTurnsArrayIndexOutOfBoundsIntoZipException(org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest)
+java.lang.ArrayIndexOutOfBoundsException
+	at java.lang.System.arraycopy(Native Method)
+	at org.apache.commons.compress.archivers.zip.AsiExtraField.parseFromLocalFileData(AsiExtraField.java:292)
+	at org.apache.commons.compress.archivers.zip.ExtraFieldUtils.parse(ExtraFieldUtils.java:179)
+	at org.apache.commons.compress.archivers.zip.ExtraFieldUtils.parse(ExtraFieldUtils.java:106)
+	at org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest.parseTurnsArrayIndexOutOfBoundsIntoZipException(ExtraFieldUtilsTest.java:116)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at com.gzoltar.lib.instrumentation.testing.junit.a.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+* Finished org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest#parseTurnsArrayIndexOutOfBoundsIntoZipException
+* Started org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest#testParseCentral
+* Finished org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest#testParseCentral
+* Started org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest#testParseWithRead
+* Finished org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest#testParseWithRead
+* Started org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest#testParseWithSkip
+* Finished org.apache.commons.compress.archivers.zip.ExtraFieldUtilsTest#testParseWithSkip
+* Started org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest#testGettersSetters
+* Finished org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest#testGettersSetters
+* Started org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest#testMisc
+* Finished org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest#testMisc
+* Started org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest#testBitsAreSetWithTime
+* Finished org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest#testBitsAreSetWithTime
+* Started org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest#testSampleFile
+* Finished org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest#testSampleFile
+* Started org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest#testWriteReadRoundtrip
+* Finished org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest#testWriteReadRoundtrip
+* Started org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest#testParseReparse
+* Finished org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest#testParseReparse
+* Started org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest#testGetHeaderId
+* Finished org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest#testGetHeaderId
+* Started org.apache.commons.compress.archivers.ArchiveOutputStreamTest#testCallSequenceAr
+* Finished org.apache.commons.compress.archivers.ArchiveOutputStreamTest#testCallSequenceAr
+* Started org.apache.commons.compress.archivers.ArchiveOutputStreamTest#testCallSequenceCpio
+* Finished org.apache.commons.compress.archivers.ArchiveOutputStreamTest#testCallSequenceCpio
+* Started org.apache.commons.compress.archivers.ArchiveOutputStreamTest#testFinish
+* Finished org.apache.commons.compress.archivers.ArchiveOutputStreamTest#testFinish
+* Started org.apache.commons.compress.archivers.ArchiveOutputStreamTest#testOptionalFinish
+* Finished org.apache.commons.compress.archivers.ArchiveOutputStreamTest#testOptionalFinish
+* Started org.apache.commons.compress.archivers.ArchiveOutputStreamTest#testCallSequenceJar
+* Finished org.apache.commons.compress.archivers.ArchiveOutputStreamTest#testCallSequenceJar
+* Started org.apache.commons.compress.archivers.ArchiveOutputStreamTest#testCallSequenceTar
+* Finished org.apache.commons.compress.archivers.ArchiveOutputStreamTest#testCallSequenceTar
+* Started org.apache.commons.compress.archivers.ArchiveOutputStreamTest#testCallSequenceZip
+* Finished org.apache.commons.compress.archivers.ArchiveOutputStreamTest#testCallSequenceZip
+* Started org.apache.commons.compress.archivers.ZipTestCase#testUnixModeInAddRaw
+* Finished org.apache.commons.compress.archivers.ZipTestCase#testUnixModeInAddRaw
+* Started org.apache.commons.compress.archivers.ZipTestCase#testSkipsPK00Prefix
+* Finished org.apache.commons.compress.archivers.ZipTestCase#testSkipsPK00Prefix
+* Started org.apache.commons.compress.archivers.ZipTestCase#testZipUnarchive
+* Finished org.apache.commons.compress.archivers.ZipTestCase#testZipUnarchive
+* Started org.apache.commons.compress.archivers.ZipTestCase#testFileEntryFromFile
+* Finished org.apache.commons.compress.archivers.ZipTestCase#testFileEntryFromFile
+* Started org.apache.commons.compress.archivers.ZipTestCase#testDirectoryEntryFromFile
+* Finished org.apache.commons.compress.archivers.ZipTestCase#testDirectoryEntryFromFile
+* Started org.apache.commons.compress.archivers.ZipTestCase#testCopyRawEntriesFromFile
+* Finished org.apache.commons.compress.archivers.ZipTestCase#testCopyRawEntriesFromFile
+* Started org.apache.commons.compress.archivers.ZipTestCase#testZipArchiveCreationInMemory
+* Finished org.apache.commons.compress.archivers.ZipTestCase#testZipArchiveCreationInMemory
+* Started org.apache.commons.compress.archivers.ZipTestCase#testCopyRawZip64EntryFromFile
+* Finished org.apache.commons.compress.archivers.ZipTestCase#testCopyRawZip64EntryFromFile
+* Started org.apache.commons.compress.archivers.ZipTestCase#testSkipEntryWithUnsupportedCompressionMethod
+* Finished org.apache.commons.compress.archivers.ZipTestCase#testSkipEntryWithUnsupportedCompressionMethod
+* Started org.apache.commons.compress.archivers.ZipTestCase#testExplicitDirectoryEntry
+* Finished org.apache.commons.compress.archivers.ZipTestCase#testExplicitDirectoryEntry
+* Started org.apache.commons.compress.archivers.ZipTestCase#testSupportedCompressionMethod
+* Finished org.apache.commons.compress.archivers.ZipTestCase#testSupportedCompressionMethod
+* Started org.apache.commons.compress.archivers.ZipTestCase#testListAllFilesWithNestedArchive
+* Finished org.apache.commons.compress.archivers.ZipTestCase#testListAllFilesWithNestedArchive
+* Started org.apache.commons.compress.archivers.ZipTestCase#testExplicitFileEntry
+* Finished org.apache.commons.compress.archivers.ZipTestCase#testExplicitFileEntry
+* Started org.apache.commons.compress.archivers.ZipTestCase#testZipArchiveCreation
+* Finished org.apache.commons.compress.archivers.ZipTestCase#testZipArchiveCreation
+* Started org.apache.commons.compress.archivers.jar.JarArchiveOutputStreamTest#testJarMarker
+* Finished org.apache.commons.compress.archivers.jar.JarArchiveOutputStreamTest#testJarMarker
+* Started org.apache.commons.compress.archivers.JarTestCase#testJarUnarchive
+* Finished org.apache.commons.compress.archivers.JarTestCase#testJarUnarchive
+* Started org.apache.commons.compress.archivers.JarTestCase#testJarArchiveCreation
+* Finished org.apache.commons.compress.archivers.JarTestCase#testJarArchiveCreation
+* Started org.apache.commons.compress.archivers.JarTestCase#testJarUnarchiveAll
+* Finished org.apache.commons.compress.archivers.JarTestCase#testJarUnarchiveAll
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFile2
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFile2
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testAddDeleteToOneFileArchive
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testAddDeleteToOneFileArchive
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromAndAddToZipUsingZipFilePerform
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromAndAddToZipUsingZipFilePerform
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testAddToEmptyArchive
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testAddToEmptyArchive
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testRenameAndDelete
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testRenameAndDelete
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteAddToOneFileArchive
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteAddToOneFileArchive
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testAddAllreadyExistingWithReplaceFalse
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testAddAllreadyExistingWithReplaceFalse
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testChangeSetResults
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testChangeSetResults
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromAndAddToAr
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromAndAddToAr
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testAddMoveDelete
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testAddMoveDelete
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromAr
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromAr
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteAddDelete
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteAddDelete
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteDir
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteDir
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testAddDeleteAdd
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testAddDeleteAdd
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testAddChangeTwiceWithoutReplace
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testAddChangeTwiceWithoutReplace
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeletePlusAddSame
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeletePlusAddSame
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteDir2
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteDir2
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteDir3
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteDir3
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFile
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFile
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testAddAllreadyExistingWithReplaceTrue
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testAddAllreadyExistingWithReplaceTrue
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromJar
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromJar
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromTar
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromTar
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromZip
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromZip
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeletePlusAdd
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeletePlusAdd
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromAndAddToJar
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromAndAddToJar
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromAndAddToTar
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromAndAddToTar
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromAndAddToZip
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testDeleteFromAndAddToZip
+* Started org.apache.commons.compress.changes.ChangeSetTestCase#testAddChangeTwice
+* Finished org.apache.commons.compress.changes.ChangeSetTestCase#testAddChangeTwice
+* Started org.apache.commons.compress.compressors.deflate64.Deflate64BugsTest#readBeyondMemoryException
+* Finished org.apache.commons.compress.compressors.deflate64.Deflate64BugsTest#readBeyondMemoryException
+* Started org.apache.commons.compress.compressors.pack200.Pack200UtilsTest#testNormalizeInPlace
+* Finished org.apache.commons.compress.compressors.pack200.Pack200UtilsTest#testNormalizeInPlace
+* Started org.apache.commons.compress.compressors.pack200.Pack200UtilsTest#testNormalize
+* Finished org.apache.commons.compress.compressors.pack200.Pack200UtilsTest#testNormalize
+* Started org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#testRemainingChunkTypes
+* Finished org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#testRemainingChunkTypes
+* Started org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#testUnskippableChunk
+* Finished org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#testUnskippableChunk
+* Started org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#testAvailable
+* Finished org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#testAvailable
+* Started org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#testLoremIpsum
+* Finished org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#testLoremIpsum
+* Started org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#testMatches
+* Finished org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#testMatches
+* Started org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#readIWAFile
+* Finished org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#readIWAFile
+* Started org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#readIWAFileWithBiggerOffset
+* Finished org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#readIWAFileWithBiggerOffset
+* Started org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#testChecksumUnmasking
+* Finished org.apache.commons.compress.compressors.snappy.FramedSnappyCompressorInputStreamTest#testChecksumUnmasking
+* Started org.apache.commons.compress.compressors.Pack200TestCase#testInputStreamMethods
+* Finished org.apache.commons.compress.compressors.Pack200TestCase#testInputStreamMethods
+* Started org.apache.commons.compress.compressors.Pack200TestCase#testJarArchiveCreationTempFile
+* Finished org.apache.commons.compress.compressors.Pack200TestCase#testJarArchiveCreationTempFile
+* Started org.apache.commons.compress.compressors.Pack200TestCase#testJarUnarchiveAllInMemory
+* Finished org.apache.commons.compress.compressors.Pack200TestCase#testJarUnarchiveAllInMemory
+* Started org.apache.commons.compress.compressors.Pack200TestCase#testJarArchiveCreationInMemory
+* Finished org.apache.commons.compress.compressors.Pack200TestCase#testJarArchiveCreationInMemory
+* Started org.apache.commons.compress.compressors.Pack200TestCase#testJarUnarchiveAllFileArgInMemory
+* Finished org.apache.commons.compress.compressors.Pack200TestCase#testJarUnarchiveAllFileArgInMemory
+* Started org.apache.commons.compress.compressors.Pack200TestCase#testBadSignature
+* Finished org.apache.commons.compress.compressors.Pack200TestCase#testBadSignature
+* Started org.apache.commons.compress.compressors.Pack200TestCase#testJarUnarchiveAllFileTempFile
+* Finished org.apache.commons.compress.compressors.Pack200TestCase#testJarUnarchiveAllFileTempFile
+* Started org.apache.commons.compress.compressors.Pack200TestCase#testOutputStreamMethods
+* Finished org.apache.commons.compress.compressors.Pack200TestCase#testOutputStreamMethods
+* Started org.apache.commons.compress.compressors.Pack200TestCase#testShortSignature
+* Finished org.apache.commons.compress.compressors.Pack200TestCase#testShortSignature
+* Started org.apache.commons.compress.compressors.Pack200TestCase#testGoodSignature
+* Finished org.apache.commons.compress.compressors.Pack200TestCase#testGoodSignature
+* Started org.apache.commons.compress.compressors.Pack200TestCase#testJarUnarchiveAllTempFile
+* Finished org.apache.commons.compress.compressors.Pack200TestCase#testJarUnarchiveAllTempFile
+* Started org.apache.commons.compress.IOMethodsTest#testWriteJar
+* Finished org.apache.commons.compress.IOMethodsTest#testWriteJar
+* Started org.apache.commons.compress.IOMethodsTest#testWriteTar
+* Finished org.apache.commons.compress.IOMethodsTest#testWriteTar
+* Started org.apache.commons.compress.IOMethodsTest#testWriteZip
+* Finished org.apache.commons.compress.IOMethodsTest#testWriteZip
+* Started org.apache.commons.compress.IOMethodsTest#testWriteCpio
+* Finished org.apache.commons.compress.IOMethodsTest#testWriteCpio
+* Started org.apache.commons.compress.IOMethodsTest#testReadCpio
+* Finished org.apache.commons.compress.IOMethodsTest#testReadCpio
+* Started org.apache.commons.compress.IOMethodsTest#testReadJar
+* Finished org.apache.commons.compress.IOMethodsTest#testReadJar
+* Started org.apache.commons.compress.IOMethodsTest#testReadTar
+* Finished org.apache.commons.compress.IOMethodsTest#testReadTar
+* Started org.apache.commons.compress.IOMethodsTest#testReadZip
+* Finished org.apache.commons.compress.IOMethodsTest#testReadZip
+* Started org.apache.commons.compress.IOMethodsTest#testWriteAr
+* Finished org.apache.commons.compress.IOMethodsTest#testWriteAr
+* Started org.apache.commons.compress.IOMethodsTest#testReadAr
+* Finished org.apache.commons.compress.IOMethodsTest#testReadAr
+* Filtering test cases that do not cover any component
+* Sending data to master
+* Closing connection with client
+* Performing fault localization
+* Running Ochiai
+* Writing coverage matrix to '/home/ccluo/Desktop/gzoltar/coverage/Compress_54/matrix'
+* Writing spectra to '/home/ccluo/Desktop/gzoltar/coverage/Compress_54/spectra'
+* Metrics
+* Computation finished
+[INFO] End: Fri 11 Jun 2021 07:55:05 AM PDT
+[DEBUG] MATRIX OK
+[DEBUG] SPECTRA OK
+
+DONE!

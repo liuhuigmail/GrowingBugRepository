@@ -1,0 +1,26 @@
+diff --git a/src/java/org/apache/commons/math/estimation/LevenbergMarquardtEstimator.java b/src/java/org/apache/commons/math/estimation/LevenbergMarquardtEstimator.java
+index 07bffbad1..248ebf3c9 100644
+--- a/src/java/org/apache/commons/math/estimation/LevenbergMarquardtEstimator.java
++++ b/src/java/org/apache/commons/math/estimation/LevenbergMarquardtEstimator.java
+@@ -733,9 +733,9 @@ public class LevenbergMarquardtEstimator extends AbstractEstimator implements Se
+    * are performed in non-increasing columns norms order thanks to columns
+    * pivoting. The diagonal elements of the R matrix are therefore also in
+    * non-increasing absolute values order.</p>
+    * @exception EstimationException if the decomposition cannot be performed
+    */
+-  private void qrDecomposition() throws EstimationException {
++  private void qrDecomposition() {
+ 
+     // initializations
+     for (int k = 0; k < cols; ++k) {
+@@ -761,10 +760,6 @@ public class LevenbergMarquardtEstimator extends AbstractEstimator implements Se
+           double aki = jacobian[index];
+           norm2 += aki * aki;
+         }
+-        if (Double.isInfinite(norm2) || Double.isNaN(norm2)) {
+-            throw new EstimationException("unable to perform Q.R decomposition on the {0}x{1} jacobian matrix",
+-                                          new Object[] { new Integer(rows), new Integer(cols) });
+-        }
+         if (norm2 > ak2) {
+           nextColumn = i;
+           ak2        = norm2;

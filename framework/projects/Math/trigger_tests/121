@@ -1,0 +1,18 @@
+--- org.apache.commons.math3.stat.inference.KolmogorovSmirnovTestTest::testTwoSampleProductSizeOverflow
+java.lang.Exception: test timed out after 5000 milliseconds
+	at java.util.Arrays.binarySearch0(Arrays.java:2255)
+	at java.util.Arrays.binarySearch(Arrays.java:2189)
+	at org.apache.commons.math3.stat.inference.KolmogorovSmirnovTest.kolmogorovSmirnovStatistic(KolmogorovSmirnovTest.java:301)
+	at org.apache.commons.math3.stat.inference.KolmogorovSmirnovTest.exactP(KolmogorovSmirnovTest.java:897)
+	at org.apache.commons.math3.stat.inference.KolmogorovSmirnovTest.kolmogorovSmirnovTest(KolmogorovSmirnovTest.java:244)
+	at org.apache.commons.math3.stat.inference.KolmogorovSmirnovTest.kolmogorovSmirnovTest(KolmogorovSmirnovTest.java:268)
+	at org.apache.commons.math3.stat.inference.KolmogorovSmirnovTestTest.testTwoSampleProductSizeOverflow(KolmogorovSmirnovTestTest.java:270)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)

@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math4/special/Gamma.java b/src/main/java/org/apache/commons/math4/special/Gamma.java
+index aa0e90c23..eb3fb5b2e 100644
+--- a/src/main/java/org/apache/commons/math4/special/Gamma.java
++++ b/src/main/java/org/apache/commons/math4/special/Gamma.java
+@@ -442,10 +442,7 @@ public class Gamma {
+      * @since 2.0
+      */
+     public static double digamma(double x) {
+-        if (Double.isNaN(x) || Double.isInfinite(x)) {
+-            return x;
+-        }
+ 
+         if (x > 0 && x <= S_LIMIT) {
+             // use method 5 from Bernardo AS103
+             // accurate to O(x)
+@@ -476,10 +472,7 @@ public class Gamma {
+      * @since 2.0
+      */
+     public static double trigamma(double x) {
+-        if (Double.isNaN(x) || Double.isInfinite(x)) {
+-            return x;
+-        }
+ 
+         if (x > 0 && x <= S_LIMIT) {
+             return 1 / (x * x);
+         }

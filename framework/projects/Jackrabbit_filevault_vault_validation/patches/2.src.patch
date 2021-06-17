@@ -1,0 +1,21 @@
+diff --git a/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/impl/util/DocumentViewXmlContentHandler.java b/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/impl/util/DocumentViewXmlContentHandler.java
+index afded4b..9fff9a4 100644
+--- a/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/impl/util/DocumentViewXmlContentHandler.java
++++ b/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/impl/util/DocumentViewXmlContentHandler.java
+@@ -163,14 +163,9 @@ public class DocumentViewXmlContentHandler extends DefaultHandler implements Nam
+                 // take over node name from file name
+                 label = rootNodeName;
+                 try {
+-                    if (rootNodeName.equals("")) {
+-                        name = NameConstants.JCR_ROOT;
+-                    } else {
+-                        // how to get name of root node?
+-                        name = getExpandedName(rootNodeName);
+-                    }
++                    name = getExpandedName(rootNodeName);
+                 } catch (IllegalNameException|NamespaceException e) {
+-                    throw new SAXException("Given root node name '" + rootNodeName + "' (implicitly given via filename) cannot be resolved. The prefix used in the filename must be defined in the XML as well!", e);
++                    throw new SAXException("Given root node name (implicitly given via filename) cannot be resolved. The prefix used in the filename must be defined in the XML as well!", e);
+                 }
+         } else {
+             name = NameFactoryImpl.getInstance().create(uri, getNormalizedName(localName));

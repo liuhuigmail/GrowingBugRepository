@@ -1,0 +1,2 @@
+org.apache.jackrabbit.vault.validation.DocumentViewParserValidatorTest
+org.apache.jackrabbit.vault.validation.ValidationExecutorTest

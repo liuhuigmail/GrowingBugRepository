@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+index 864faae3e..5f0527c33 100644
+--- a/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+@@ -506,7 +506,7 @@ public class LevenbergMarquardtOptimizer implements LeastSquaresOptimizer {
+ 
+                     // tests for convergence.
+                     if (checker != null && checker.converged(iterationCounter.getCount(), previous, current)) {
+-                        return new OptimumImpl(current, evaluationCounter.getCount(), iterationCounter.getCount());
++                        return new OptimumImpl(current, iterationCounter.getCount(), evaluationCounter.getCount());
+                     }
+                 } else {
+                     // failed iteration, reset the previous values
+@@ -527,7 +527,7 @@ public class LevenbergMarquardtOptimizer implements LeastSquaresOptimizer {
+                      preRed <= costRelativeTolerance &&
+                      ratio <= 2.0) ||
+                     delta <= parRelativeTolerance * xNorm) {
+-                    return new OptimumImpl(current, evaluationCounter.getCount(), iterationCounter.getCount());
++                    return new OptimumImpl(current, iterationCounter.getCount(), evaluationCounter.getCount());
+                 }
+ 
+                 // tests for termination and stringent tolerances

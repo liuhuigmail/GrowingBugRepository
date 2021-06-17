@@ -1,0 +1,39 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/LogNormalDistribution.java b/src/main/java/org/apache/commons/math3/distribution/LogNormalDistribution.java
+index ab7a13be4..810c9e407 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/LogNormalDistribution.java
++++ b/src/main/java/org/apache/commons/math3/distribution/LogNormalDistribution.java
+@@ -289,7 +289,7 @@ public class LogNormalDistribution extends AbstractRealDistribution {
+     public double getNumericalVariance() {
+         final double s = shape;
+         final double ss = s * s;
+-        return (FastMath.expm1(ss)) * FastMath.exp(2 * scale + ss);
++        return (FastMath.exp(ss) - 1) * FastMath.exp(2 * scale + ss);
+     }
+ 
+     /**
+diff --git a/src/main/java/org/apache/commons/math3/distribution/WeibullDistribution.java b/src/main/java/org/apache/commons/math3/distribution/WeibullDistribution.java
+index 6e69bc9be..ec34b508c 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/WeibullDistribution.java
++++ b/src/main/java/org/apache/commons/math3/distribution/WeibullDistribution.java
+@@ -221,7 +221,7 @@ public class WeibullDistribution extends AbstractRealDistribution {
+         } else  if (p == 1) {
+             ret = Double.POSITIVE_INFINITY;
+         } else {
+-            ret = scale * FastMath.pow(-FastMath.log1p(-p), 1.0 / shape);
++            ret = scale * FastMath.pow(-FastMath.log(1.0 - p), 1.0 / shape);
+         }
+         return ret;
+     }
+diff --git a/src/main/java/org/apache/commons/math3/special/Beta.java b/src/main/java/org/apache/commons/math3/special/Beta.java
+index c6091b48c..59f696a0b 100644
+--- a/src/main/java/org/apache/commons/math3/special/Beta.java
++++ b/src/main/java/org/apache/commons/math3/special/Beta.java
+@@ -218,7 +218,7 @@ public class Beta {
+                     return 1.0;
+                 }
+             };
+-            ret = FastMath.exp((a * FastMath.log(x)) + (b * FastMath.log1p(-x)) -
++            ret = FastMath.exp((a * FastMath.log(x)) + (b * FastMath.log(1.0 - x)) -
+                 FastMath.log(a) - logBeta(a, b)) *
+                 1.0 / fraction.evaluate(x, epsilon, maxIterations);
+         }

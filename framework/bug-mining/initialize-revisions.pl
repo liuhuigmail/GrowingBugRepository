@@ -138,11 +138,7 @@ sub _init_version {
     
     
     system("mkdir -p $ANALYZER_OUTPUT/$bid");
-    if (-e "$work_dir/build.xml") {
-        my $cmd = " cd $work_dir" .
-                  " && java -jar $LIB_DIR/analyzer.jar $work_dir $ANALYZER_OUTPUT/$bid build.xml 2>&1";
-        Utils::exec_cmd($cmd, "Run build-file analyzer on build.xml.");
-    } elsif (-e "$work_dir/pom.xml") {
+    if (-e "$work_dir/pom.xml") {
         #here are two patterns : one is just deleting -SNAPSHOT , the other is changing the version and deleting -SNAPSHOT
     	#system("sed -i \"s/<xmlsec\.version>2\.2\.0-SNAPSHOT<\/xmlsec\.version>/<xmlsec\.version>2\.2\.3-SNAPSHOT<\/xmlsec\.version>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
     	#sed -i \"s/-SNAPSHOT//g\"  `grep SNAPSHOT -rl $temp_work_dir`"
@@ -154,7 +150,8 @@ sub _init_version {
     	#system("sed -i  '/\<parent/,/parent\>/d' `grep parent -rl $work_dir` ");
     	
     	#system("cat $work_dir/pom.xml");
-        
+    	rename("$work_dir/build.xml", "$work_dir/build_init".'.bak');
+    	
         # Run maven-ant plugin and overwrite the original build.xml whenever a maven build file exists
         my $cmd = " cd $work_dir" .
                   " && mvn ant:ant -Doverwrite=true 2>&1 -Dhttps.protocols=TLSv1.2" .
@@ -170,12 +167,23 @@ sub _init_version {
         	Utils::exec_cmd($cmd, "Convert Maven to Ant build file again : " . $rev_id) or next;
         } 
         
-        if (-e "$GEN_BUILDFILE_DIR/$rev_id/maven-build.xml"){
+        if (-e "$GEN_BUILDFILE_DIR/$rev_id/build.xml"){
+        	rename("$GEN_BUILDFILE_DIR/$rev_id/build.xml", "$GEN_BUILDFILE_DIR/$rev_id/build.xml".'.bak');
+        	open(IN, '<'."$GEN_BUILDFILE_DIR/$rev_id/build.xml".'.bak') or die $!;
+        	open(OUT, '>'."$GEN_BUILDFILE_DIR/$rev_id/build.xml") or die $!;
+        	while(<IN>) {
+            		$_ =~ s/name\=\".*from\-maven/name\=\"$NAME\-from\-maven/g;
+            		print OUT $_;
+        	}
+        	close(IN);
+        	close(OUT);
+    	}
+ 	
+ 	if (-e "$GEN_BUILDFILE_DIR/$rev_id/maven-build.xml"){
         	rename("$GEN_BUILDFILE_DIR/$rev_id/maven-build.xml", "$GEN_BUILDFILE_DIR/$rev_id/maven-build.xml".'.bak');
         	open(IN, '<'."$GEN_BUILDFILE_DIR/$rev_id/maven-build.xml".'.bak') or die $!;
         	open(OUT, '>'."$GEN_BUILDFILE_DIR/$rev_id/maven-build.xml") or die $!;
         	while(<IN>) {
-            		#$_ =~ s/commons-collections4/commons-collections/g;
             		$_ =~ s/name\=\".*from\-maven/name\=\"$NAME\-from\-maven/g;
             		print OUT $_;
         	}
@@ -183,18 +191,19 @@ sub _init_version {
         	close(OUT);
     	}
  
-#   	if (-e "$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties"){
-#        	rename("$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties", "$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties".'.bak');
-#        	open(IN, '<'."$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties".'.bak') or die $!;
-#        	open(OUT, '>'."$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties") or die $!;
-#        	while(<IN>) {
-#            	#$_ =~ s/commons-collections4/commons-collections/g;
-#            	print OUT $_;
-#       	 }
-#        	close(IN);
-#        	close(OUT);
-#        
-#    	}
+ 	
+   	if (-e "$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties"){
+        	rename("$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties", "$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties".'.bak');
+        	open(IN, '<'."$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties".'.bak') or die $!;
+        	open(OUT, '>'."$GEN_BUILDFILE_DIR/$rev_id/maven-build.properties") or die $!;
+        	while(<IN>) {
+            	#$_ =~ s/commons-collections4/commons-collections/g;
+            	$_ =~ s/name\=\".*from\-maven/name\=\"$NAME\-from\-maven/g;
+            	print OUT $_;
+       	 }
+        	close(IN);
+        	close(OUT);
+    	}
          
         #Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) or die;
         #system("cat $work_dir/maven-build.xml");
@@ -239,7 +248,11 @@ sub _init_version {
         Utils::exec_cmd($download_dep, "Download dependencies for maven-ant.xml.");
         #system($download_dep);
         
-    }elsif (-e "$work_dir/build.gradle") {
+    }elsif (-e "$work_dir/build.xml") {
+        my $cmd = " cd $work_dir" .
+                  " && java -jar $LIB_DIR/analyzer.jar $work_dir $ANALYZER_OUTPUT/$bid build.xml 2>&1";
+        Utils::exec_cmd($cmd, "Run build-file analyzer on build.xml.");
+    } elsif (-e "$work_dir/build.gradle") {
         open(OUT, '>>'."$work_dir/build.gradle") or die $!;
         my $convert_cmd="\n".
                         "apply plugin: 'java'\n".

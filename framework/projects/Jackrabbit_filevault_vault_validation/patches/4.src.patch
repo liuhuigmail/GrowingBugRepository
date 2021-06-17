@@ -1,0 +1,16 @@
+diff --git a/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/spi/impl/DocumentViewParserValidator.java b/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/spi/impl/DocumentViewParserValidator.java
+index 1c00219..e65167b 100644
+--- a/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/spi/impl/DocumentViewParserValidator.java
++++ b/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/spi/impl/DocumentViewParserValidator.java
+@@ -152,9 +152,9 @@ public class DocumentViewParserValidator implements GenericJcrDataValidator {
+         xr.setContentHandler(handler);
+         try {
+             xr.parse(new InputSource(new CloseShieldInputStream(input)));
+-            enrichedMessages.addAll(ValidationViolation.wrapMessages(null, handler.getViolations(), filePath, basePath, rootNodePath, 0, 0));
++            enrichedMessages.addAll(ValidationViolation.wrapMessages(null, handler.getViolations(), filePath, null, null, 0, 0));
+         } catch (SAXException e) {
+-            enrichedMessages.add(new ValidationViolation(severity, "Invalid XML found: " + e.getMessage(), filePath, basePath, rootNodePath, 0, 0, e));
++            enrichedMessages.add(new ValidationViolation(severity, "Invalid XML found: " + e.getMessage(), filePath, null, null, 0, 0, e));
+         }
+         nodePathsAndLineNumbers.putAll(handler.getNodePaths());
+         return enrichedMessages;

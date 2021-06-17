@@ -1,0 +1,29 @@
+diff --git a/src/test/java/org/apache/commons/math3/distribution/BinomialDistributionTest.java b/src/test/java/org/apache/commons/math3/distribution/BinomialDistributionTest.java
+index 7e9a8a479..df9232c83 100644
+--- a/src/test/java/org/apache/commons/math3/distribution/BinomialDistributionTest.java
++++ b/src/test/java/org/apache/commons/math3/distribution/BinomialDistributionTest.java
+@@ -127,24 +127,6 @@ public class BinomialDistributionTest extends IntegerDistributionAbstractTest {
+         Assert.assertEquals(dist.getSupportUpperBound(), 5);
+     }
+ 
+-    /** Test degenerate case n = 0 */
+-    @Test
+-    public void testDegenerate2() {
+-        BinomialDistribution dist = new BinomialDistribution(0, 0.01d);
+-        setDistribution(dist);
+-        setCumulativeTestPoints(new int[] { -1, 0, 1, 2, 5, 10 });
+-        setCumulativeTestValues(new double[] { 0d, 1d, 1d, 1d, 1d, 1d });
+-        setDensityTestPoints(new int[] { -1, 0, 1, 2, 5, 10 });
+-        setDensityTestValues(new double[] { 0d, 1d, 0d, 0d, 0d, 0d });
+-        setInverseCumulativeTestPoints(new double[] { 0.1d, 0.5d });
+-        setInverseCumulativeTestValues(new int[] { 0, 0 });
+-        verifyDensities();
+-        verifyCumulativeProbabilities();
+-        verifyInverseCumulativeProbabilities();
+-        Assert.assertEquals(dist.getSupportLowerBound(), 0);
+-        Assert.assertEquals(dist.getSupportUpperBound(), 0);
+-    }
+-
+     @Test
+     public void testMoments() {
+         final double tol = 1e-9;

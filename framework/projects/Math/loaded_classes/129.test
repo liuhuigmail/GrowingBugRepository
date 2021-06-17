@@ -1,0 +1,5 @@
+org.apache.commons.math3.fitting.leastsquares.AbstractLeastSquaresOptimizerAbstractTest
+org.apache.commons.math3.fitting.leastsquares.CircleProblem
+org.apache.commons.math3.fitting.leastsquares.CircleVectorial
+org.apache.commons.math3.fitting.leastsquares.LevenbergMarquardtOptimizerTest
+org.apache.commons.math3.fitting.leastsquares.StatisticalReferenceDataset

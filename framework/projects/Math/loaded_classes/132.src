@@ -1,0 +1,9 @@
+org.apache.commons.math3.exception.MathArithmeticException
+org.apache.commons.math3.exception.MathIllegalArgumentException
+org.apache.commons.math3.exception.util.ArgUtils
+org.apache.commons.math3.exception.util.ExceptionContext
+org.apache.commons.math3.exception.util.ExceptionContextProvider
+org.apache.commons.math3.exception.util.Localizable
+org.apache.commons.math3.exception.util.LocalizedFormats
+org.apache.commons.math3.util.FastMath
+org.apache.commons.math3.util.Precision

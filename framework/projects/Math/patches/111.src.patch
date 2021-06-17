@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/math4/special/Gamma.java b/src/main/java/org/apache/commons/math4/special/Gamma.java
+index f390f7c2b..aa0e90c23 100644
+--- a/src/main/java/org/apache/commons/math4/special/Gamma.java
++++ b/src/main/java/org/apache/commons/math4/special/Gamma.java
+@@ -695,7 +695,7 @@ public class Gamma {
+             }
+         } else {
+             final double y = absX + LANCZOS_G + 0.5;
+-            final double gammaAbs = SQRT_TWO_PI / absX *
++            final double gammaAbs = SQRT_TWO_PI / x *
+                                     FastMath.pow(y, absX + 0.5) *
+                                     FastMath.exp(-y) * lanczos(absX);
+             if (x > 0.0) {

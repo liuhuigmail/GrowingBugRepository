@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,60c66c3cb7fe456c6e1fd6599736afdddec862a4,9fa6c72bf4bdf36331b50b9370f3ed826a4622e8,JCRVLT-354,https://issues.apache.org/jira/browse/JCRVLT-354
+2,35a5a7da73c59e66e4301f25e668f040f6aefd84,31c150cfa068d0e57281f48efadd07186187c5f0,JCRVLT-409,https://issues.apache.org/jira/browse/JCRVLT-409
+3,f29e743aaf94e7e15cec3d96318d3d71ffc3e8cd,f94289d10b9ea617b215cee4ad968d3707ac7bda,JCRVLT-422,https://issues.apache.org/jira/browse/JCRVLT-422
+4,a3fd7a10abf69d4a4cdbc07cabf49e9e11b425e7,9b5655266194b6dd44ea4aae401a539228a08099,JCRVLT-423,https://issues.apache.org/jira/browse/JCRVLT-423
