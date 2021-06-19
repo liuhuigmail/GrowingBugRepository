@@ -26,4 +26,3 @@ https://github.com/apache/jena.git	jena-core
 https://github.com/apache/jackrabbit-oak.git	oak-core
 https://github.com/apache/maven-deploy-plugin.git	maven-deploy-plugin	
 https://github.com/apache/jackrabbit-filevault.git	jackrabbit-filevault-vault-validation	
-

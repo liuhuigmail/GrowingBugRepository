@@ -1,0 +1,2 @@
+org.apache.maven.doxia.module.apt.AptIdentityTest
+org.apache.maven.doxia.module.apt.AptParserTest

@@ -1,0 +1,13 @@
+org.apache.hc.core5.http.ConnectionClosedException
+org.apache.hc.core5.http.impl.BasicHttpTransportMetrics
+org.apache.hc.core5.http.impl.nio.AbstractContentDecoder
+org.apache.hc.core5.http.impl.nio.ExpandableBuffer
+org.apache.hc.core5.http.impl.nio.IdentityDecoder
+org.apache.hc.core5.http.impl.nio.LengthDelimitedDecoder
+org.apache.hc.core5.http.impl.nio.SessionInputBufferImpl
+org.apache.hc.core5.http.io.HttpTransportMetrics
+org.apache.hc.core5.http.MessageConstraintException
+org.apache.hc.core5.http.nio.ContentDecoder
+org.apache.hc.core5.http.nio.FileContentDecoder
+org.apache.hc.core5.http.nio.SessionInputBuffer
+org.apache.hc.core5.util.Args

@@ -23,7 +23,7 @@ do
     # make bug-mining directory
     cd `dirname $0`
     path=$PWD
-    echo "Create project directory: $path/bug-mining/$project_id"
+    echo "Create project directory: $path/$WORK_DIR/$project_id"
     mkdir -p $path/bug-mining/$project_id
     if [ $? != 0 ]
     then
@@ -56,9 +56,14 @@ do
     #rm -rf $work_dir
    nums=$(wc -l < $work_dir/framework/projects/$project_id/active-bugs.csv)
    nums=`expr $nums - 1`
+   #3470
    #for((i=7000;i<=$nums;i++));    
-   #for((i=41;i<=$nums;i++)); 
-   for((i=$nums;i>=1;i--));  
+   #for((i=1;i<=$nums;i++)); 
+   #for((i=$nums;i>=1;i--));
+   #for((i=$nums;i>=1;i--));  
+   arr=( 12 15 16 35 40 44 46 47 49 55 66 67 69 76 78 94 102 103 106 109 112 117 121 129 132);
+   #arr=(1019);
+   for i in ${arr[@]}
 do    
    # Initialize the project revisions
    perl ./initialize-revisions.pl -p $project_id -w $work_dir -s $sub_project -b $i -n $project_name

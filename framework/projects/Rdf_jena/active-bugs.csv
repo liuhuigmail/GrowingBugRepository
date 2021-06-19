@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,ecc81fa4a1ef959d2f56f249b34eea56123b2eb8,895718276b8bba064679b3ee97f95ab2ff70bfc0,COMMONSRDF-66,https://issues.apache.org/jira/browse/COMMONSRDF-66

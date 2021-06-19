@@ -1,0 +1,4 @@
+org.apache.hc.core5.http.impl.nio.CodecTestUtils
+org.apache.hc.core5.http.impl.nio.TestIdentityDecoder
+org.apache.hc.core5.http.impl.nio.TestLengthDelimitedDecoder
+org.apache.hc.core5.http.ReadableByteChannelMock

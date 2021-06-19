@@ -1,0 +1,21 @@
+diff --git a/fontbox/src/main/java/org/apache/fontbox/ttf/TTFSubsetter.java b/fontbox/src/main/java/org/apache/fontbox/ttf/TTFSubsetter.java
+index e4d2226e5..c592474b4 100755
+--- a/fontbox/src/main/java/org/apache/fontbox/ttf/TTFSubsetter.java
++++ b/fontbox/src/main/java/org/apache/fontbox/ttf/TTFSubsetter.java
+@@ -27,7 +27,6 @@ import java.util.Calendar;
+ import java.util.GregorianCalendar;
+ import java.util.HashMap;
+ import java.util.Iterator;
+-import java.util.LinkedHashMap;
+ import java.util.List;
+ import java.util.Map;
+ import java.util.Map.Entry;
+@@ -830,7 +829,7 @@ public final class TTFSubsetter
+         writeUint16(out, glyphIds.size());
+ 
+         // glyphNameIndex[numGlyphs]
+-        Map<String, Integer> names = new LinkedHashMap<>();
++        Map<String, Integer> names = new TreeMap<>();
+         for (int gid : glyphIds)
+         {
+             String name = post.getName(gid);

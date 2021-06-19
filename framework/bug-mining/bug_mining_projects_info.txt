@@ -40,4 +40,10 @@ Shiro_web	shiro-web	https://github.com/apache/shiro.git	jira	SHIRO	/(SHIRO-\\d+)
 Jackrabbit_oak_core	oak-core	https://github.com/apache/jackrabbit-oak.git	jira	OAK	/(OAK-\\d+)/mi	oak-core	
 MDeploy	maven-deploy-plugin	https://github.com/apache/maven-deploy-plugin.git	jira	MDEPLOY	/(MDEPLOY-\\d+)/mi	
 Jackrabbit_filevault_vault_validation	jackrabbit-filevault-vault-validation	https://hub.fastgit.org/apache/jackrabbit-filevault.git	jira	JCRVLT	/(JCRVLT-\\d+)/mi	vault-validation	
-
+Doxia_module_apt doxia-module-apt https://hub.fastgit.org/apache/maven-doxia.git jira DOXIA /(DOXIA-\\d+)/mi doxia-modules/doxia-module-apt	
+HttpCore5 httpcore5 https://hub.fastgit.org/apache/httpcomponents-core.git jira HTTPCORE /(HTTPCORE-\\d+)/mi httpcore5	
+Rdf_jena commons-rdf-jena https://github.com/apache/commons-rdf.git jira COMMONSRDF /(COMMONSRDF-\\d+)/mi commons-rdf-jena	
+Maven_checkstyle_plugin	maven-checkstyle-plugin	https://hub.fastgit.org/apache/maven-checkstyle-plugin.git	jira	MCHECKSTYLE	/(MCHECKSTYLE-\\d+)/mi	.	
+James_project_core	james-project-core	https://hub.fastgit.org/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	core	
+Pdfbox_fontbox	pdfbox-fontbox	https://hub.fastgit.org/apache/pdfbox.git	jira	PDFBOX	/(PDFBOX-\\d+)/mi	fontbox	
+Jackrabbit_filevault_vault_core	jackrabbit-filevault-vault-core	https://hub.fastgit.org/apache/jackrabbit-filevault.git	jira	JCRVLT	/(JCRVLT-\\d+)/mi	vault-core	
