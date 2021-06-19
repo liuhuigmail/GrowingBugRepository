@@ -96,7 +96,8 @@ do
     echo "${project_id}, Determine triggering tests of the project error!" >> error_info.txt
     continue
    fi
-   echo -e "Determine triggering tests of project $project_id failed successfully!\n\n"
+   perl ./get-metadata.pl -p $project_id -w $work_dir -b $i -s $sub_project
+   
  
 done   
    # trigger_dir="$work_dir/framework/projects/$project_id/trigger_tests";
