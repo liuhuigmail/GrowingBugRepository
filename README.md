@@ -63,6 +63,7 @@ from open-source Java projects.
  - Git >= 1.9
  - SVN >= 1.8
  - Perl >= 5.0.12
+ - Curl
  
 ## Steps to set up GrowingBugs
 1. Clone GrowingBugs:
