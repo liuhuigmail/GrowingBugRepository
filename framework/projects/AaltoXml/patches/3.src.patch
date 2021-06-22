@@ -1,0 +1,20 @@
+diff --git a/src/main/java/com/fasterxml/aalto/out/Utf8XmlWriter.java b/src/main/java/com/fasterxml/aalto/out/Utf8XmlWriter.java
+index ebe0a49..d4cbc90 100644
+--- a/src/main/java/com/fasterxml/aalto/out/Utf8XmlWriter.java
++++ b/src/main/java/com/fasterxml/aalto/out/Utf8XmlWriter.java
+@@ -83,9 +83,13 @@ public final class Utf8XmlWriter
+             char ch = cbuf[offset++];
+             if (ch < 0x800) { // 2-byte?
+                 output2ByteChar(ch);
+-                continue;
++            } else {
++                offset = outputMultiByteChar(ch, cbuf, offset, len);
+             }
+-            offset = outputMultiByteChar(ch, cbuf, offset, len);
++            if (_outputPtr >= _outputBufferLen) {
++                flushBuffer();
++            }
++            _outputBuffer[_outputPtr++] = (byte)ch;
+         }
+     }
+ 

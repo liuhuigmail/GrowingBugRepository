@@ -1,0 +1,2001 @@
+diff --git a/src/test/java/failing/Issue35LFTest.java b/src/test/java/failing/Issue35LFTest.java
+deleted file mode 100644
+index 46df0a0..0000000
+--- a/src/test/java/failing/Issue35LFTest.java
++++ /dev/null
+@@ -1,63 +0,0 @@
+-package failing;
+-
+-import java.io.*;
+-import java.nio.charset.StandardCharsets;
+-
+-import javax.xml.stream.*;
+-import javax.xml.stream.events.XMLEvent;
+-
+-public class Issue35LFTest extends base.BaseTestCase
+-{
+-    static final String TEXT="a&#13;a";
+-    static final String EXPANDED_TEXT = "a a";
+-    static final String NEWLINE_TEXT = "a\na";
+-    static final String XML = "<x>" + TEXT + "</x>";
+-    static final byte[] XML_BYTES = XML.getBytes(StandardCharsets.UTF_8);
+-
+-    /** Run some tests for each StAX implementation. */
+-    public void testLFHandling() throws Exception
+-    {
+-        final XMLInputFactory inputFactory = getInputFactory();
+-        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+-
+-        final XMLEventReader r = inputFactory.createXMLEventReader(
+-                new ByteArrayInputStream(XML_BYTES));
+-        final StringBuilder buffer = new StringBuilder();
+-        while (r.hasNext()) {
+-            final XMLEvent e = r.nextEvent();
+-            if (e.isStartDocument()) {
+-                // Avoid the XML declaration. Not present in the input.
+-                continue;
+-            }
+-            if (e.isCharacters()) {
+-                String text = e.asCharacters().getData();
+-                buffer.append(text);
+-                System.out.println("[CHARACTERS] ("+text.length()+" ["+text+"]");
+-System.err.println("char #1: "+((int) text.charAt(1)));                
+-            }
+-        }
+-        r.close();
+-        final byte[] resultBytes = baos.toByteArray();
+-        System.out.println("StAX XML: ("+resultBytes.length+" bytes) [" + new String(resultBytes,
+-                StandardCharsets.UTF_8) + "]");
+-    }
+-
+-    /*
+-    private static void printName(final String name, final Object obj) {
+-        System.out.println(name + "=" + obj.getClass().getName());
+-    }
+-*/
+-
+-    private static void testText(final String text) {
+-        System.out.println("Buffered text: [" + text + "]");
+-        System.out.println("Code point at index 1: " +
+-                Character.codePointAt(text, 1));
+-        System.out.println("Buffered text equals input text? " +
+-                TEXT.equals(text));
+-        System.out.println(
+-                "Buffered text equals expanded text? " +
+-                        EXPANDED_TEXT.equals(text));
+-        System.out.println("Buffered text has \\n for \\r? " +
+-                NEWLINE_TEXT.equals(text));
+-    }
+-}
+diff --git a/src/test/java/failing/ManualIssue29Repro.java b/src/test/java/manual/Issue29Repro.java
+similarity index 92%
+rename from src/test/java/failing/ManualIssue29Repro.java
+rename to src/test/java/manual/Issue29Repro.java
+index 916d68a..d9a52fc 100644
+--- a/src/test/java/failing/ManualIssue29Repro.java
++++ b/src/test/java/manual/Issue29Repro.java
+@@ -1,4 +1,4 @@
+-package failing;
++package manual;
+ 
+ import java.nio.ByteBuffer;
+ import java.nio.charset.StandardCharsets;
+@@ -17,7 +17,7 @@ import com.fasterxml.aalto.stax.InputFactoryImpl;
+ /**
+  * Manually runnable reproduction of [aalto-xml#29]
+  */
+-public class ManualIssue29Repro implements Runnable
++public class Issue29Repro implements Runnable
+ {
+     private static String xml = "<?xml version='1.0'?><stream:stream xmlns='jabber:client' xmlns:stream='http://etherx.jabber.org/streams' id='4095288169' from='localhost' version='1.0' xml:lang='en'>";
+     private static int NUM_THREADS = 5;
+@@ -28,7 +28,7 @@ public class ManualIssue29Repro implements Runnable
+         ExecutorService ex = Executors.newFixedThreadPool(NUM_THREADS);
+ 
+         for (int i = 0; i < 100000; i++) {
+-            ex.submit(new ManualIssue29Repro(i));
++            ex.submit(new Issue29Repro(i));
+         }
+ 
+         ex.shutdown();
+@@ -37,7 +37,7 @@ public class ManualIssue29Repro implements Runnable
+ 
+     private final int count;
+ 
+-    public ManualIssue29Repro(int count) {
++    public Issue29Repro(int count) {
+         this.count = count;
+     }
+ 
+diff --git a/src/test/java/stax2/BaseStax2Test.java b/src/test/java/stax2/BaseStax2Test.java
+deleted file mode 100644
+index 6c34826..0000000
+--- a/src/test/java/stax2/BaseStax2Test.java
++++ /dev/null
+@@ -1,712 +0,0 @@
+-package stax2;
+-
+-import java.io.*;
+-import java.util.HashMap;
+-
+-import junit.framework.TestCase;
+-
+-import javax.xml.stream.*;
+-import javax.xml.stream.events.XMLEvent;
+-
+-import org.codehaus.stax2.*;
+-import org.codehaus.stax2.evt.*;
+-
+-import org.codehaus.stax2.ri.Stax2ReaderAdapter;
+-
+-import com.fasterxml.aalto.stax.EventFactoryImpl;
+-import com.fasterxml.aalto.stax.InputFactoryImpl;
+-import com.fasterxml.aalto.stax.OutputFactoryImpl;
+-
+-/**
+- * Base unit test class to be inherited by all unit tests that test
+- * StAX2 API compatibility.
+- */
+-public abstract class BaseStax2Test
+-    extends TestCase
+-    implements XMLStreamConstants
+-{
+-    /**
+-     * Value that should be reported by stax(2) impl to denote "no prefix"
+-     * for elements
+-     */
+-    final static String ELEM_NO_PREFIX = "";
+-
+-    /**
+-     * Value that should be reported by stax(2) impl to denote "no prefix"
+-     * for attributes
+-     */
+-    final static String ATTR_NO_PREFIX = "";
+-
+-    final static HashMap<Integer,String> mTokenTypes = new HashMap<Integer,String>();
+-    static {
+-        mTokenTypes.put(new Integer(START_ELEMENT), "START_ELEMENT");
+-        mTokenTypes.put(new Integer(END_ELEMENT), "END_ELEMENT");
+-        mTokenTypes.put(new Integer(START_DOCUMENT), "START_DOCUMENT");
+-        mTokenTypes.put(new Integer(END_DOCUMENT), "END_DOCUMENT");
+-        mTokenTypes.put(new Integer(CHARACTERS), "CHARACTERS");
+-        mTokenTypes.put(new Integer(CDATA), "CDATA");
+-        mTokenTypes.put(new Integer(COMMENT), "COMMENT");
+-        mTokenTypes.put(new Integer(PROCESSING_INSTRUCTION), "PROCESSING_INSTRUCTION");
+-        mTokenTypes.put(new Integer(DTD), "DTD");
+-        mTokenTypes.put(new Integer(SPACE), "SPACE");
+-        mTokenTypes.put(new Integer(ENTITY_REFERENCE), "ENTITY_REFERENCE");
+-    }
+-
+-    /**
+-     * Switch that can be turned on to verify to display ALL exact Exceptions
+-     * thrown when Exceptions are expected. This is sometimes necessary
+-     * when debugging, since it's impossible to automatically verify
+-     * that Exception is exactly the right one, since there is no
+-     * strict Exception type hierarchy for StAX problems.
+-     *<p>
+-     * Note: Not made 'final static', so that compiler won't inline
+-     * it. Makes possible to do partial re-compilations.
+-     * Note: Since it's only used as the default value, sub-classes
+-     *  can separately turn it off as necessary
+-     */
+-    //protected static boolean DEF_PRINT_EXP_EXCEPTION = true;
+-    protected static boolean DEF_PRINT_EXP_EXCEPTION = false;
+-
+-    protected boolean PRINT_EXP_EXCEPTION = DEF_PRINT_EXP_EXCEPTION;
+-
+-    /*
+-    ///////////////////////////////////////////////////////////
+-    // Lazy-loaded thingies
+-    ///////////////////////////////////////////////////////////
+-     */
+-
+-    XMLInputFactory2 mInputFactory = null;
+-    XMLOutputFactory2 mOutputFactory = null;
+-    XMLEventFactory2 mEventFactory = null;
+-
+-    /*
+-    ///////////////////////////////////////////////////////////
+-    // "Overloads"
+-    ///////////////////////////////////////////////////////////
+-     */
+-    
+-    protected static XMLInputFactory2 newInputFactory() {
+-        return (XMLInputFactory2) InputFactoryImpl.newInstance();
+-    }
+-
+-    protected static XMLOutputFactory2 newOutputFactory() {
+-        return (XMLOutputFactory2) OutputFactoryImpl.newInstance();
+-    }
+-
+-    protected XMLEventFactory newEventFactory() {
+-        return EventFactoryImpl.newInstance();
+-    }
+-
+-    /*
+-    ///////////////////////////////////////////////////////////
+-    // Factory methods
+-    ///////////////////////////////////////////////////////////
+-     */
+-
+-    protected XMLInputFactory2 getInputFactory()
+-    {
+-        if (mInputFactory == null) {
+-            /* Shouldn't try to set these here, if these tests are
+-             * to be reusable. Rather, junit (ant) task should
+-             * define system properties if necessary.
+-             */
+-            //System.setProperty("javax.xml.stream.XMLInputFactory", "...");
+-            mInputFactory = newInputFactory();
+-        }
+-        return mInputFactory;
+-    }
+-
+-    protected XMLStreamReader2 constructNsStreamReader(String content, boolean coal)
+-        throws XMLStreamException
+-    {
+-        XMLInputFactory f = getInputFactory();
+-        setNamespaceAware(f, true);
+-        setCoalescing(f, coal);
+-        return (XMLStreamReader2) f.createXMLStreamReader(new StringReader(content));
+-    }
+-
+-    protected XMLStreamReader2 constructNsStreamReader(InputStream in, boolean coal)
+-        throws XMLStreamException
+-    {
+-        XMLInputFactory f = getInputFactory();
+-        setNamespaceAware(f, true);
+-        setCoalescing(f, coal);
+-        return (XMLStreamReader2) f.createXMLStreamReader(in);
+-    }
+-
+-    protected XMLEventFactory2 getEventFactory()
+-    {
+-        if (mEventFactory == null) {
+-            /* Shouldn't try to set these here, if these tests are
+-             * to be reusable. Rather, junit (ant) task should
+-             * define system properties if necessary.
+-             */
+-            //System.setProperty("javax.xml.stream.XMLEventFactory", "...");
+-            mEventFactory = (XMLEventFactory2) XMLEventFactory.newInstance();
+-        }
+-        return mEventFactory;
+-    }
+-
+-
+-    protected XMLOutputFactory2 getOutputFactory()
+-    {
+-        if (mOutputFactory == null) {
+-            //System.setProperty("javax.xml.stream.XMLOutputFactory", "...");
+-            mOutputFactory = newOutputFactory();
+-        }
+-        return mOutputFactory;
+-    }
+-
+-    protected static XMLStreamReader2 constructStreamReader(XMLInputFactory f, String content)
+-        throws XMLStreamException
+-    {
+-        return (XMLStreamReader2) f.createXMLStreamReader(new StringReader(content));
+-    }
+-
+-    protected static XMLStreamReader2 constructStreamReader(XMLInputFactory f, byte[] data)
+-        throws XMLStreamException
+-    {
+-        return (XMLStreamReader2) f.createXMLStreamReader(new ByteArrayInputStream(data));
+-    }
+-
+-    @SuppressWarnings({ "deprecation", "resource" })
+-	protected static XMLStreamReader2 constructStreamReaderForFile(XMLInputFactory f, String filename)
+-        throws IOException, XMLStreamException
+-    {
+-        File inf = new File(filename);
+-        XMLStreamReader sr = f.createXMLStreamReader(inf.toURL().toString(),
+-                                                     new FileReader(inf));
+-        assertEquals(sr.getEventType(), START_DOCUMENT);
+-        return (XMLStreamReader2) sr;
+-    }
+-
+-    protected static XMLEventReader2 constructEventReader(XMLInputFactory f, String content)
+-        throws XMLStreamException
+-    {
+-        return (XMLEventReader2) f.createXMLEventReader(new StringReader(content));
+-    }
+-
+-    protected XMLStreamReader2 constructNonNsStreamReader(String content, boolean coal)
+-        throws XMLStreamException
+-    {
+-        XMLInputFactory f = getInputFactory();
+-        setNamespaceAware(f, false);
+-        setCoalescing(f, coal);
+-        return (XMLStreamReader2) f.createXMLStreamReader(new StringReader(content));
+-    }
+-
+-    /**
+-     * Method to force constructing a wrapper for given stream reader.
+-     * Have to use this method to work around natural resistance by
+-     * the wrapper to apply itself on what it considered "unnecessary"
+-     * target.
+-     */
+-    protected XMLStreamReader2 wrapWithAdapter(XMLStreamReader sr)
+-    {
+-        return new ForcedAdapter(sr);
+-    }
+-
+-    /*
+-    ///////////////////////////////////////////////////////////
+-    // Configuring input factory
+-    ///////////////////////////////////////////////////////////
+-     */
+-
+-    protected static boolean setNamespaceAware(XMLInputFactory f, boolean state)
+-        throws XMLStreamException
+-    {
+-        /* Let's not assert, but see if it sticks. Some implementations
+-         * might choose to silently ignore setting, at least for 'false'?
+-         */
+-        try {
+-            f.setProperty(XMLInputFactory.IS_NAMESPACE_AWARE, state ? Boolean.TRUE : Boolean.FALSE);
+-            return (isNamespaceAware(f) == state);
+-        } catch (IllegalArgumentException e) {
+-            /* Let's assume, then, that the property (or specific value for it)
+-             * is NOT supported...
+-             */
+-            return false;
+-        }
+-    }
+-
+-    protected static boolean isNamespaceAware(XMLInputFactory f)
+-        throws XMLStreamException
+-    {
+-        return ((Boolean) f.getProperty(XMLInputFactory.IS_NAMESPACE_AWARE)).booleanValue();
+-    }
+-
+-    protected static void setCoalescing(XMLInputFactory f, boolean state)
+-        throws XMLStreamException
+-    {
+-        f.setProperty(XMLInputFactory.IS_COALESCING, Boolean.valueOf(state));
+-    }
+-
+-    protected static void setValidating(XMLInputFactory f, boolean state)
+-        throws XMLStreamException
+-    {
+-        f.setProperty(XMLInputFactory.IS_VALIDATING, Boolean.valueOf(state));
+-    }
+-
+-    protected static boolean setSupportDTD(XMLInputFactory f, boolean state)
+-        throws XMLStreamException
+-    {
+-        try {
+-            f.setProperty(XMLInputFactory.SUPPORT_DTD, Boolean.valueOf(state));
+-            return (willSupportDTD(f) == state);
+-        } catch (IllegalArgumentException e) {
+-            // Let's assume that the property (or specific value) is NOT supported...
+-            return false;
+-        }
+-    }
+-
+-    protected static boolean willSupportDTD(XMLInputFactory f)
+-        throws XMLStreamException
+-    {
+-        return ((Boolean) f.getProperty(XMLInputFactory.SUPPORT_DTD)).booleanValue();
+-    }
+-
+-    protected static void setReplaceEntities(XMLInputFactory f, boolean state)
+-        throws XMLStreamException
+-    {
+-        f.setProperty(XMLInputFactory.IS_REPLACING_ENTITY_REFERENCES,
+-                      state ? Boolean.TRUE : Boolean.FALSE);
+-    }
+-
+-    protected static void setSupportExternalEntities(XMLInputFactory f, boolean state)
+-        throws XMLStreamException
+-    {
+-        f.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES,
+-                      state ? Boolean.TRUE : Boolean.FALSE);
+-    }
+-
+-    protected static void setLazyParsing(XMLInputFactory f, boolean state)
+-        throws XMLStreamException
+-    {
+-        f.setProperty(XMLInputFactory2.P_LAZY_PARSING,
+-                      state ? Boolean.TRUE : Boolean.FALSE);
+-    }
+-
+-    /*
+-    ///////////////////////////////////////////////////////////
+-    // Configuring output factory
+-    ///////////////////////////////////////////////////////////
+-     */
+-
+-    protected static void setRepairing(XMLOutputFactory f, boolean state)
+-    {
+-        f.setProperty(XMLOutputFactory.IS_REPAIRING_NAMESPACES,
+-                      Boolean.valueOf(state));
+-    }
+-
+-    protected static boolean setNamespaceAware(XMLOutputFactory f, boolean state)
+-        throws XMLStreamException
+-    {
+-        /* Let's not assert, but see if it sticks. Some implementations
+-         * might choose to silently ignore setting, at least for 'false'?
+-         */
+-        try {
+-            f.setProperty(XMLStreamProperties.XSP_NAMESPACE_AWARE, state ? Boolean.TRUE : Boolean.FALSE);
+-            return (isNamespaceAware(f) == state);
+-        } catch (IllegalArgumentException e) {
+-            /* Let's assume, then, that the property (or specific value for it)
+-             * is NOT supported...
+-             */
+-            return false;
+-        }
+-    }
+-
+-    protected static boolean isNamespaceAware(XMLOutputFactory f)
+-        throws XMLStreamException
+-    {
+-        return ((Boolean) f.getProperty(XMLStreamProperties.XSP_NAMESPACE_AWARE)).booleanValue();
+-    }
+-
+-    /*
+-    ///////////////////////////////////////////////////////////
+-    // Higher-level test methods
+-    ///////////////////////////////////////////////////////////
+-     */
+-
+-    /**
+-     * Method that will iterate through contents of an XML document
+-     * using specified stream reader; will also access some of data
+-     * to make sure reader reads most of lazy-loadable data.
+-     * Method is usually called to try to get an exception for invalid
+-     * content.
+-     *
+-     * @return Dummy value calculated on contents; used to make sure
+-     *   no dead code is eliminated
+-     */
+-    protected int streamThrough(XMLStreamReader sr)
+-        throws XMLStreamException
+-    {
+-        int result = 0;
+-
+-        while (sr.hasNext()) {
+-            int type = sr.next();
+-            result += type;
+-            if (sr.hasText()) {
+-                /* will also do basic verification for text content, to 
+-                 * see that all text accessor methods return same content
+-                 */
+-                result += getAndVerifyText(sr).hashCode();
+-            }
+-            if (sr.hasName()) {
+-                result += sr.getName().hashCode();
+-            }
+-        }
+-
+-        return result;
+-    }
+-
+-    protected int streamThroughFailing(XMLInputFactory f, String contents,
+-                                       String msg)
+-        throws XMLStreamException
+-    {
+-        int result = 0;
+-        try {
+-            XMLStreamReader sr = constructStreamReader(f, contents);
+-            result = streamThrough(sr);
+-        } catch (XMLStreamException ex) { // good
+-            if (PRINT_EXP_EXCEPTION) {
+-                System.out.println("Expected failure: '"+ex.getMessage()+"' "
+-                                   +"(matching message: '"+msg+"')");
+-            }
+-            return 0;
+-        } catch (RuntimeException ex2) { // ok
+-            if (PRINT_EXP_EXCEPTION) {
+-                System.out.println("Expected failure: '"+ex2.getMessage()+"' "
+-                                   +"(matching message: '"+msg+"')");
+-            }
+-            return 0;
+-        } catch (Throwable t) { // not so good
+-            fail("Expected an XMLStreamException or RuntimeException for "+msg
+-                 +", got: "+t);
+-        }
+-
+-        fail("Expected an exception for "+msg);
+-        return result; // never gets here
+-    }
+-
+-    protected int streamThroughFailing(XMLStreamReader sr, String msg)
+-        throws XMLStreamException
+-    {
+-        int result = 0;
+-        try {
+-            result = streamThrough(sr);
+-        } catch (XMLStreamException ex) { // good
+-            if (PRINT_EXP_EXCEPTION) {
+-                System.out.println("Expected failure: '"+ex.getMessage()+"' "
+-                                   +"(matching message: '"+msg+"')");
+-            }
+-            return 0;
+-        } catch (RuntimeException ex2) { // ok
+-            if (PRINT_EXP_EXCEPTION) {
+-                System.out.println("Expected failure: '"+ex2.getMessage()+"' "
+-                                   +"(matching message: '"+msg+"')");
+-            }
+-            return 0;
+-        } catch (Throwable t) { // not so good
+-            fail("Expected an XMLStreamException or RuntimeException for "+msg
+-                 +", got: "+t);
+-        }
+-
+-        fail("Expected an exception for "+msg);
+-        return result; // never gets here
+-    }
+-
+-    /*
+-    ///////////////////////////////////////////////////////////
+-    // Assertions
+-    ///////////////////////////////////////////////////////////
+-     */
+-
+-    protected static String tokenTypeDesc(int tt)
+-    {
+-	String desc = mTokenTypes.get(new Integer(tt));
+-	return (desc == null) ? ("["+tt+"]") : desc;
+-    }
+-
+-    protected static void assertTokenType(int expType, XMLEvent evt)
+-    {
+-        assertTokenType(expType, evt.getEventType());
+-    }
+-
+-    protected static void assertTokenType(int expType, int actType)
+-    {
+-        if (expType != actType) {
+-            String expStr = tokenTypeDesc(expType);
+-            String actStr = tokenTypeDesc(actType);
+-
+-            if (expStr == null) {
+-                expStr = ""+expType;
+-            }
+-            if (actStr == null) {
+-                actStr = ""+actType;
+-            }
+-            fail("Expected token "+expStr+"; got "+actStr+".");
+-        }
+-    }
+-
+-    /**
+-     * Helper assertion that assert that the String is either null or
+-     * empty ("").
+-     */
+-    protected static void assertNullOrEmpty(String str)
+-    {
+-        if (str != null && str.length() > 0) {
+-            fail("Expected String to be empty or null; was '"+str+"' (length "
+-                 +str.length()+")");
+-        }
+-    }
+-
+-    protected static void assertNotNullOrEmpty(String str)
+-    {
+-        if (str == null || str.length() == 0) {
+-            fail("Expected String to be non-empty; got "
+-                 +((str == null) ? "NULL" : "\"\""));
+-        }
+-    }
+-
+-    /**
+-     * Method that can be used to verify that the current element
+-     * pointed to by the stream reader has no prefix.
+-     */
+-    protected static void assertNoElemPrefix(XMLStreamReader sr)
+-        throws XMLStreamException
+-    {
+-        String prefix = sr.getPrefix();
+-        if (prefix != ELEM_NO_PREFIX) {
+-            fail("Element that does not have a prefix should be indicated with <"+ELEM_NO_PREFIX+">, not <"+prefix+">");
+-        }
+-    }
+-
+-    /**
+-     * Helper method for ensuring that the given return value for
+-     * attribute prefix accessor has returned a value that
+-     * represents "no prefix" value.
+-     *<p>
+-     * Current thinking (early 2008) is that empty string is the
+-     * expected value here.
+-     */
+-    protected static void assertNoAttrPrefix(String attrPrefix)
+-        throws XMLStreamException
+-    {
+-        if (attrPrefix != ATTR_NO_PREFIX) {
+-            fail("Attribute that does not have a prefix should be indicated with <"+ATTR_NO_PREFIX+">, not <"+attrPrefix+">");
+-        }
+-    }
+-
+-    /**
+-     * Method that can be used to verify that the current element
+-     * pointed to by the stream reader does not belong to a namespace.
+-     */
+-    protected static void assertElemNotInNamespace(XMLStreamReader sr)
+-        throws XMLStreamException
+-    {
+-        String uri = sr.getNamespaceURI();
+-        if (uri == null) {
+-            fail("Excepted empty String to indicate \"no namespace\": got null");
+-        } else if (uri.length() != 0) {
+-            fail("Excepted no (null) namespace URI: got '"+uri+"'");
+-        }
+-    }
+-
+-    protected static void assertNoAttrNamespace(String attrNsURI)
+-        throws XMLStreamException
+-    {
+-        if (attrNsURI == null) {
+-            fail("Expected empty String to indicate \"no namespace\" (for attribute): got null");
+-        } else if (attrNsURI.length() != 0) {
+-            fail("Expected empty String to indicate \"no namespace\" (for attribute): got '"+attrNsURI+"'");
+-        }
+-    }
+-
+-    protected static void failStrings(String msg, String exp, String act)
+-    {
+-        // !!! TODO: Indicate position where Strings differ
+-        fail(msg+": expected "+quotedPrintable(exp)+", got "
+-             +quotedPrintable(act));
+-    }
+-
+-    /**
+-     * Method that not only gets currently available text from the 
+-     * reader, but also checks that its consistenly accessible using
+-     * different (basic) StAX methods.
+-     */
+-    protected static String getAndVerifyText(XMLStreamReader sr)
+-        throws XMLStreamException
+-    {
+-        /* 05-Apr-2006, TSa: Although getText() is available for DTD
+-         *   and ENTITY_REFERENCE, getTextXxx() are not. Thus, can not
+-         *   do more checks for those types.
+-         */
+-        int type = sr.getEventType();
+-        if (type == ENTITY_REFERENCE || type == DTD) {
+-            return sr.getText();
+-        }
+-
+-        int expLen = sr.getTextLength();
+-        /* Hmmh. It's only ok to return empty text for DTD event... well,
+-         * maybe also for CDATA, since empty CDATA blocks are legal?
+-         */
+-        /* !!! 01-Sep-2004, TSa:
+-         *  note: theoretically, in coalescing mode, it could be possible
+-         *  to have empty CDATA section(s) get converted to CHARACTERS,
+-         *  which would be empty... may need to enhance this to check that
+-         *  mode is not coalescing? Or something
+-         */
+-        if (type == CHARACTERS) {
+-            assertTrue("Stream reader should never return empty Strings.",  (expLen > 0));
+-        }
+-        String text = sr.getText();
+-        assertNotNull("getText() should never return null.", text);
+-        assertEquals("Expected text length of "+expLen+", got "+text.length(),
+-		     expLen, text.length());
+-        char[] textChars = sr.getTextCharacters();
+-        int start = sr.getTextStart();
+-        String text2 = new String(textChars, start, expLen);
+-        assertEquals(text, text2);
+-        return text;
+-    }
+-
+-    protected void verifyException(Throwable e, String match)
+-    {
+-        String msg = e.getMessage();
+-        String lmsg = msg.toLowerCase();
+-        String lmatch = match.toLowerCase();
+-        if (lmsg.indexOf(lmatch) < 0) {
+-            fail("Expected an exception with sub-string \""+match+"\": got one with message \""+msg+"\"");
+-        }
+-    }
+-
+-    /*
+-    ///////////////////////////////////////////////////////////
+-    // Debug/output helpers
+-    ///////////////////////////////////////////////////////////
+-     */
+-
+-    public static void warn(String msg)
+-    {
+-	System.err.println("WARN: "+msg);
+-    }
+-
+-    public static String printable(char ch)
+-    {
+-        if (ch == '\n') {
+-            return "\\n";
+-        }
+-        if (ch == '\r') {
+-            return "\\r";
+-        }
+-        if (ch == '\t') {
+-            return "\\t";
+-        }
+-        if (ch == ' ') {
+-            return "_";
+-        }
+-        if (ch > 127 || ch < 32) {
+-            StringBuffer sb = new StringBuffer(6);
+-            sb.append("\\u");
+-            String hex = Integer.toHexString(ch);
+-            for (int i = 0, len = 4 - hex.length(); i < len; i++) {
+-                sb.append('0');
+-            }
+-            sb.append(hex);
+-            return sb.toString();
+-        }
+-        return null;
+-    }
+-
+-    public static String printableWithSpaces(char ch)
+-    {
+-        if (ch == '\n') {
+-            return "\\n";
+-        }
+-        if (ch == '\r') {
+-            return "\\r";
+-        }
+-        if (ch == '\t') {
+-            return "\\t";
+-        }
+-        if (ch > 127 || ch < 32) {
+-            StringBuffer sb = new StringBuffer(6);
+-            sb.append("\\u");
+-            String hex = Integer.toHexString(ch);
+-            for (int i = 0, len = 4 - hex.length(); i < len; i++) {
+-                sb.append('0');
+-            }
+-            sb.append(hex);
+-            return sb.toString();
+-        }
+-        return null;
+-    }
+-
+-    public static String printable(String str)
+-    {
+-        if (str == null || str.length() == 0) {
+-            return str;
+-        }
+-
+-        int len = str.length();
+-        StringBuffer sb = new StringBuffer(len + 64);
+-        for (int i = 0; i < len; ++i) {
+-            char c = str.charAt(i);
+-            String res = printable(c);
+-            if (res == null) {
+-                sb.append(c);
+-            } else {
+-                sb.append(res);
+-            }
+-        }
+-        return sb.toString();
+-    }
+-
+-    public static String printableWithSpaces(String str)
+-    {
+-        if (str == null || str.length() == 0) {
+-            return str;
+-        }
+-
+-        int len = str.length();
+-        StringBuffer sb = new StringBuffer(len + 64);
+-        for (int i = 0; i < len; ++i) {
+-            char c = str.charAt(i);
+-            String res = printableWithSpaces(c);
+-            if (res == null) {
+-                sb.append(c);
+-            } else {
+-                sb.append(res);
+-            }
+-        }
+-        return sb.toString();
+-    }
+-
+-    protected static String quotedPrintable(String str)
+-    {
+-        if (str == null || str.length() == 0) {
+-            return "[0]''";
+-        }
+-        return "[len: "+str.length()+"] '"+printable(str)+"'";
+-    }
+-
+-    /*
+-    ///////////////////////////////////////////////////////////
+-    // Helper classes
+-    ///////////////////////////////////////////////////////////
+-     */
+-
+-    /**
+-     * Need a dummy base class to be able to access protected
+-     * constructor for testing purposes.
+-     */
+-    final static class ForcedAdapter
+-        extends Stax2ReaderAdapter
+-    {
+-        public ForcedAdapter(XMLStreamReader sr)
+-        {
+-            super(sr);
+-        }
+-    }
+-}
+-
+diff --git a/src/test/java/stax2/wstream/BaseWriterTest.java b/src/test/java/stax2/wstream/BaseWriterTest.java
+deleted file mode 100644
+index dc374ac..0000000
+--- a/src/test/java/stax2/wstream/BaseWriterTest.java
++++ /dev/null
+@@ -1,70 +0,0 @@
+-package stax2.wstream;
+-
+-import java.io.*;
+-
+-import javax.xml.stream.*;
+-
+-import org.codehaus.stax2.*;
+-
+-/**
+- * Base class for all StaxTest unit tests that test basic
+- * stream (cursor) writer API functionality.
+- *
+- * @author Tatu Saloranta
+- */
+-public abstract class BaseWriterTest
+-    extends stax2.BaseStax2Test
+-{
+-    public XMLStreamWriter2 getRepairingWriter(Writer w)
+-        throws XMLStreamException
+-    {
+-        XMLOutputFactory f = getOutputFactory();
+-        f.setProperty(XMLStreamProperties.XSP_NAMESPACE_AWARE, Boolean.TRUE);
+-        f.setProperty(XMLOutputFactory.IS_REPAIRING_NAMESPACES,
+-                      Boolean.TRUE);
+-        return (XMLStreamWriter2) f.createXMLStreamWriter(w);
+-    }
+-
+-    public XMLStreamWriter2 getRepairingWriter(Writer w, String enc)
+-        throws XMLStreamException
+-    {
+-        XMLOutputFactory2 f = getOutputFactory();
+-        f.setProperty(XMLStreamProperties.XSP_NAMESPACE_AWARE, Boolean.TRUE);
+-        f.setProperty(XMLOutputFactory.IS_REPAIRING_NAMESPACES,
+-                      Boolean.TRUE);
+-        return f.createXMLStreamWriter(w, enc);
+-    }
+-
+-    public XMLStreamWriter2 getNonRepairingWriter(Writer w, boolean nsAware)
+-        throws XMLStreamException
+-    {
+-        XMLOutputFactory f = getOutputFactory();
+-        f.setProperty(XMLOutputFactory.IS_REPAIRING_NAMESPACES,
+-                      Boolean.FALSE);
+-        f.setProperty(XMLStreamProperties.XSP_NAMESPACE_AWARE,
+-                      Boolean.valueOf(nsAware));
+-        return (XMLStreamWriter2) f.createXMLStreamWriter(w);
+-    }
+-
+-    public XMLStreamWriter2 getNonRepairingWriter(Writer w, String enc, boolean nsAware)
+-        throws XMLStreamException
+-    {
+-        XMLOutputFactory2 f = getOutputFactory();
+-        f.setProperty(XMLOutputFactory.IS_REPAIRING_NAMESPACES,
+-                      Boolean.FALSE);
+-        f.setProperty(XMLStreamProperties.XSP_NAMESPACE_AWARE,
+-                      Boolean.valueOf(nsAware));
+-        return f.createXMLStreamWriter(w, enc);
+-    }
+-
+-    public XMLStreamWriter2 getNonRepairingWriter(OutputStream os, String enc, boolean nsAware)
+-        throws XMLStreamException
+-    {
+-        XMLOutputFactory2 f = getOutputFactory();
+-        f.setProperty(XMLOutputFactory.IS_REPAIRING_NAMESPACES,
+-                      Boolean.FALSE);
+-        f.setProperty(XMLStreamProperties.XSP_NAMESPACE_AWARE,
+-                      Boolean.valueOf(nsAware));
+-        return (XMLStreamWriter2) f.createXMLStreamWriter(os, enc);
+-    }
+-}
+diff --git a/src/test/java/stax2/wstream/TestClosing.java b/src/test/java/stax2/wstream/TestClosing.java
+deleted file mode 100644
+index 5a837a1..0000000
+--- a/src/test/java/stax2/wstream/TestClosing.java
++++ /dev/null
+@@ -1,242 +0,0 @@
+-package stax2.wstream;
+-
+-import java.io.*;
+-
+-import javax.xml.stream.*;
+-import javax.xml.transform.stream.StreamResult;
+-
+-import org.codehaus.stax2.*;
+-import org.codehaus.stax2.io.Stax2BlockResult;
+-
+-/**
+- * This unit test suite verifies that the auto-closing feature works
+- * as expected (both explicitly, and via Result object being passed).
+- */
+-@SuppressWarnings("resource")
+-public class TestClosing
+-    extends BaseWriterTest
+-{
+-    /**
+-     * This unit test checks the default behaviour; with no auto-close, no
+-     * automatic closing should occur, nor explicit one unless specific
+-     * forcing method is used.
+-     */
+-    public void testNoAutoCloseWriter()
+-        throws XMLStreamException
+-    {
+-        XMLOutputFactory2 f = getFactory(false);
+-        MyWriter output = new MyWriter();
+-        XMLStreamWriter2 sw = (XMLStreamWriter2) f.createXMLStreamWriter(output);
+-        // shouldn't be closed to begin with...
+-        assertFalse(output.isClosed());
+-        writeDoc(sw);
+-        assertFalse(output.isClosed());
+-
+-        // nor closed half-way through with basic close()
+-        sw.close();
+-        assertFalse(output.isClosed());
+-
+-        // but needs to close when forced to:
+-        sw.closeCompletely();
+-        assertTrue(output.isClosed());
+-
+-        // ... and should be ok to call it multiple times:
+-        sw.closeCompletely();
+-        sw.closeCompletely();
+-        assertTrue(output.isClosed());
+-    }
+-
+-    public void testNoAutoCloseStream()
+-        throws XMLStreamException
+-    {
+-        XMLOutputFactory2 f = getFactory(false);
+-        MyStream output = new MyStream();
+-        XMLStreamWriter2 sw = (XMLStreamWriter2) f.createXMLStreamWriter(output, "UTF-8");
+-        // shouldn't be closed to begin with...
+-        assertFalse(output.isClosed());
+-        writeDoc(sw);
+-        assertFalse(output.isClosed());
+-
+-        // nor closed half-way through with basic close()
+-        sw.close();
+-        assertFalse(output.isClosed());
+-
+-        // but needs to close when forced to:
+-        sw.closeCompletely();
+-        assertTrue(output.isClosed());
+-
+-        // ... and should be ok to call it multiple times:
+-        sw.closeCompletely();
+-        sw.closeCompletely();
+-        assertTrue(output.isClosed());
+-    }
+-
+-    /**
+-     * This unit test checks that when auto-closing option is set, the
+-     * passed in output stream does get properly closed
+-     * when we call close(), as well as when do writeEndDocument().
+-     */
+-    public void testEnabledAutoClose()
+-        throws XMLStreamException
+-    {
+-        // First, explicit close:
+-        XMLOutputFactory2 f = getFactory(true);
+-        MyWriter output = new MyWriter();
+-        XMLStreamWriter2 sw = (XMLStreamWriter2) f.createXMLStreamWriter(output);
+-        assertFalse(output.isClosed());
+-
+-        writeDoc(sw);
+-
+-        sw.close();
+-        assertTrue(output.isClosed());
+-
+-        // also, let's verify we can call more than once:
+-        sw.close();
+-        sw.close();
+-        assertTrue(output.isClosed());
+-
+-        // Then implicit close:
+-        output = new MyWriter();
+-        sw = (XMLStreamWriter2) f.createXMLStreamWriter(output);
+-        writeDoc(sw);
+-        assertTrue(output.isClosed());
+-    }
+-
+-    /**
+-     * This unit test checks what happens when we use Result abstraction
+-     * for passing in result stream/writer. Their handling differs depending
+-     * on whether caller is considered to have access to the underlying
+-     * physical object or not.
+-     */
+-    public void testAutoCloseImplicit()
+-        throws XMLStreamException
+-    {
+-        XMLOutputFactory2 f = getFactory(false); // auto-close disabled
+-
+-        /* Ok, first: with regular (OutputStream, Writer) results not auto-closing
+-         * because caller does have access: StreamResult does retain given
+-         * stream/writer as is.
+-         */
+-        MyResult output = new MyResult();
+-        XMLStreamWriter2 sw = (XMLStreamWriter2) f.createXMLStreamWriter(output);
+-        assertFalse(output.isClosed());
+-        writeDoc(sw);
+-        sw.close();
+-        assertFalse(output.isClosed());
+-
+-        /* And then more interesting case; verifying that Stax2Source
+-         * sub-classes are implicitly auto-closed: they need to be, because
+-         * they do not (necessarily) expose underlying physical stream.
+-         * We can test this by using any Stax2Source impl.
+-         */
+-        MyStringResult result = new MyStringResult();
+-        sw = (XMLStreamWriter2) f.createXMLStreamWriter(result);
+-        // closed if we write end doc
+-        writeDoc(sw);
+-        assertTrue(result.isClosed());
+-
+-        // as well as if we just call regular close
+-        result = new MyStringResult();
+-        sw = (XMLStreamWriter2) f.createXMLStreamWriter(result);
+-        sw.writeStartDocument();
+-        sw.writeEmptyElement("test");
+-        // no call to write end doc, so writer can't yet close; but we do call close:
+-        sw.close();
+-        assertTrue(result.isClosed());
+-    }
+-
+-    /*
+-    ////////////////////////////////////////
+-    // Non-test methods
+-    ////////////////////////////////////////
+-     */
+-
+-    XMLOutputFactory2 getFactory(boolean autoClose)
+-    {
+-        XMLOutputFactory2 f = getOutputFactory();
+-        f.setProperty(XMLOutputFactory2.P_AUTO_CLOSE_OUTPUT, Boolean.valueOf(autoClose));
+-        return f;
+-    }
+-
+-    void writeDoc(XMLStreamWriter sw) throws XMLStreamException
+-    {
+-        sw.writeStartDocument();
+-        sw.writeEmptyElement("root");
+-        sw.writeEndDocument();
+-    }
+-
+-    /*
+-    ////////////////////////////////////////
+-    // Helper mock classes
+-    ////////////////////////////////////////
+-     */
+-
+-    final static class MyWriter
+-        extends StringWriter
+-    {
+-        boolean mIsClosed = false;
+-
+-        public MyWriter() { }
+-
+-        @Override
+-        public void close() throws IOException {
+-            mIsClosed = true;
+-            super.close();
+-        }
+-
+-        public boolean isClosed() { return mIsClosed; }
+-    }
+-
+-    final static class MyStream
+-        extends ByteArrayOutputStream
+-    {
+-        boolean mIsClosed = false;
+-
+-        public MyStream() { }
+-
+-        @Override
+-        public void close() throws IOException {
+-            mIsClosed = true;
+-            super.close();
+-        }
+-        public boolean isClosed() { return mIsClosed; }
+-    }
+-
+-    final static class MyResult
+-        extends StreamResult
+-    {
+-        final MyWriter mWriter;
+-
+-        private MyResult() {
+-            super();
+-            mWriter = new MyWriter();
+-            setWriter(mWriter);
+-        }
+-
+-        public boolean isClosed() {
+-            return mWriter.isClosed();
+-        }
+-    }
+-
+-    /**
+-     * Need a helper class to verify whether resources (OutputStream, Writer)
+-     * created via Stax2Result instances are (auto)closed or not.
+-     */
+-    private final static class MyStringResult
+-        extends Stax2BlockResult
+-    {
+-        MyWriter mWriter;
+-
+-        public MyStringResult() { super(); }
+-
+-        @Override
+-        public Writer constructWriter() {
+-            mWriter = new MyWriter();
+-            return mWriter;
+-        }
+-        @Override
+-        public OutputStream constructOutputStream() { return null; }
+-
+-        public boolean isClosed() { return mWriter.isClosed(); }
+-    }
+-}
+diff --git a/src/test/java/stax2/wstream/TestConfig.java b/src/test/java/stax2/wstream/TestConfig.java
+deleted file mode 100644
+index 3dee69e..0000000
+--- a/src/test/java/stax2/wstream/TestConfig.java
++++ /dev/null
+@@ -1,31 +0,0 @@
+-package stax2.wstream;
+-
+-import javax.xml.stream.*;
+-
+-import org.codehaus.stax2.*;
+-
+-/**
+- * Set of unit tests that checks that configuring of
+- * {@link XMLOutputFactory2} works ok.
+- *<p>
+- * Note: for now there isn't much meat in this unit test: it's mostly
+- * used to do simple smoke testing for profile setters.
+- */
+-public class TestConfig
+-    extends BaseWriterTest
+-{
+-    public void testProfiles() throws XMLStreamException
+-    {
+-        // configureForXmlConformance
+-        XMLOutputFactory2 ofact = newOutputFactory();
+-        ofact.configureForXmlConformance();
+-
+-        // configureForRobustness
+-        ofact = newOutputFactory();
+-        ofact.configureForRobustness();
+-
+-        // configureForSpeed
+-        ofact = newOutputFactory();
+-        ofact.configureForSpeed();
+-    }
+-}
+diff --git a/src/test/java/stax2/wstream/TestEscaping.java b/src/test/java/stax2/wstream/TestEscaping.java
+deleted file mode 100644
+index 74dd7b9..0000000
+--- a/src/test/java/stax2/wstream/TestEscaping.java
++++ /dev/null
+@@ -1,158 +0,0 @@
+-package stax2.wstream;
+-
+-import java.io.*;
+-
+-import javax.xml.stream.*;
+-
+-import org.codehaus.stax2.*;
+-
+-/**
+- * This test checks to see that text/attribute value escaping is
+- * working properly.
+- */
+-public class TestEscaping
+-    extends BaseWriterTest
+-{
+-    /**
+-     * This test checks that even though it's 'wrong' to use non-URL/URI
+-     * namespace URIs, it's not a fatal error; and that the 'uri' value
+-     * should come back as it was written out.
+-     */
+-    public void testBrokenNsURLs()
+-        throws XMLStreamException
+-    {
+-        final String BROKEN_URL1 = "<tag>";
+-        final String BROKEN_URL2 = "\"";
+-        final String BROKEN_URL3 = "x&";
+-
+-        StringWriter strw = new StringWriter();
+-        XMLStreamWriter2 w = getNonRepairingWriter(strw, true);
+-            
+-        w.writeStartDocument();
+-        w.writeStartElement("", "test", "");
+-        w.writeNamespace("ns", BROKEN_URL1);
+-        w.writeStartElement("", "test", "");
+-        w.writeNamespace("ns", BROKEN_URL2);
+-        w.writeStartElement("", "test", "");
+-        w.writeNamespace("ns", BROKEN_URL3);
+-        
+-        w.writeEndElement();
+-        w.writeEndElement();
+-        w.writeEndElement();
+-        
+-        w.writeEndDocument();
+-        w.close();
+-        
+-        // And then let's parse and verify it all:
+-
+-        String input = strw.toString();
+-
+-        XMLStreamReader sr = constructNsStreamReader(input, true);
+-        assertTokenType(START_DOCUMENT, sr.getEventType());
+-        
+-        assertTokenType(START_ELEMENT, sr.next());
+-        assertEquals("test", sr.getLocalName());
+-        assertEquals(1, sr.getNamespaceCount());
+-        assertEquals("ns", sr.getNamespacePrefix(0));
+-        assertEquals(BROKEN_URL1, sr.getNamespaceURI(0));
+-        
+-        assertTokenType(START_ELEMENT, sr.next());
+-        assertEquals("test", sr.getLocalName());
+-        assertEquals(1, sr.getNamespaceCount());
+-        assertEquals("ns", sr.getNamespacePrefix(0));
+-        assertEquals(BROKEN_URL2, sr.getNamespaceURI(0));
+-
+-        assertTokenType(START_ELEMENT, sr.next());
+-        assertEquals("test", sr.getLocalName());
+-        assertEquals(1, sr.getNamespaceCount());
+-        assertEquals("ns", sr.getNamespacePrefix(0));
+-        assertEquals(BROKEN_URL3, sr.getNamespaceURI(0));
+-        
+-        assertTokenType(END_ELEMENT, sr.next());
+-        assertTokenType(END_ELEMENT, sr.next());
+-        assertTokenType(END_ELEMENT, sr.next());
+-        
+-        assertTokenType(END_DOCUMENT, sr.next());
+-        
+-        sr.close();
+-    }
+-
+-    public void testLatin1Quoting()
+-        throws XMLStreamException
+-    {
+-        final String TEXT = "ab\u00A0cd\tef\u00D8gh\u3c00...";
+-
+-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+-        XMLStreamWriter2 w = getNonRepairingWriter(bos, "ISO-8859-1", true);
+-
+-        w.writeStartDocument();
+-        w.writeStartElement("root");
+-        w.writeCharacters(TEXT);
+-        w.writeEndElement();
+-        w.writeEndDocument();
+-        w.close();
+-
+-        InputStream in = new ByteArrayInputStream(bos.toByteArray());
+-        XMLStreamReader sr = constructNsStreamReader(in, true);
+-        assertTokenType(START_DOCUMENT, sr.getEventType());
+-        assertTokenType(START_ELEMENT, sr.next());
+-        assertEquals("root", sr.getLocalName());
+-        assertTokenType(CHARACTERS, sr.next());
+-
+-        assertEquals(TEXT, sr.getText());
+-
+-        assertTokenType(END_ELEMENT, sr.next());
+-    }
+-
+-    public void testAsciiQuoting()
+-        throws XMLStreamException
+-    {
+-        final String TEXT = "ab\u00A0cd\tef\u00D8gh\u3c00...";
+-
+-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+-        XMLStreamWriter2 w = getNonRepairingWriter(bos, "US-ASCII", true);
+-
+-        w.writeStartDocument();
+-        w.writeStartElement("root");
+-        w.writeCharacters(TEXT);
+-        w.writeEndElement();
+-        w.writeEndDocument();
+-        w.close();
+-
+-        InputStream in = new ByteArrayInputStream(bos.toByteArray());
+-        XMLStreamReader sr = constructNsStreamReader(in, true);
+-        assertTokenType(START_DOCUMENT, sr.getEventType());
+-        assertTokenType(START_ELEMENT, sr.next());
+-        assertEquals("root", sr.getLocalName());
+-        assertTokenType(CHARACTERS, sr.next());
+-
+-        assertEquals(TEXT, sr.getText());
+-
+-        assertTokenType(END_ELEMENT, sr.next());
+-    }
+-
+-    public void testLinefeedQuoting() throws Exception
+-    {
+-        final String EXP = "<root>a\nb&#xd;c</root>";
+-
+-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+-        XMLStreamWriter2 w = getNonRepairingWriter(bos, "US-ASCII", true);
+-        w.writeStartElement("root");
+-        w.writeCharacters("a\nb\rc");
+-        w.writeEndElement();
+-        w.writeEndDocument();
+-        w.close();
+-
+-        assertEquals(EXP, bos.toString("UTF-8"));
+-
+-        StringWriter strw = new StringWriter();
+-        w = getNonRepairingWriter(strw, "US-ASCII", true);
+-        w.writeStartElement("root");
+-        w.writeCharacters("a\nb\rc");
+-        w.writeEndElement();
+-        w.writeEndDocument();
+-        w.close();
+-
+-        assertEquals(EXP, strw.toString());
+-    }
+-}
+diff --git a/src/test/java/stax2/wstream/TestNamespaceCopying.java b/src/test/java/stax2/wstream/TestNamespaceCopying.java
+deleted file mode 100644
+index d69fc2e..0000000
+--- a/src/test/java/stax2/wstream/TestNamespaceCopying.java
++++ /dev/null
+@@ -1,69 +0,0 @@
+-package stax2.wstream;
+-
+-import java.io.*;
+-import java.util.*;
+-
+-import javax.xml.parsers.DocumentBuilderFactory;
+-import javax.xml.parsers.ParserConfigurationException;
+-import javax.xml.stream.*;
+-import javax.xml.transform.dom.DOMResult;
+-
+-import org.w3c.dom.Document;
+-import org.w3c.dom.Element;
+-
+-/**
+- * Tests that namespaces are written to the output stream in namespace
+- * repairing mode. See [WSTX-193] for details.
+- *
+- * @author Christopher Paul Simmons
+- */
+-public class TestNamespaceCopying
+-    extends BaseWriterTest
+-{
+-    XMLInputFactory _inputFactory;
+-    XMLOutputFactory _outputFactory;
+-    XMLEventFactory _eventFactory;
+-
+-  @Override
+-  protected void setUp() throws Exception {
+-      _outputFactory = getOutputFactory();
+-      setRepairing(_outputFactory, true);
+-      _eventFactory = getEventFactory();
+-      _inputFactory = getInputFactory();
+-  }
+-
+-  public void testStreamXMLNSDeclaration() throws Exception {
+-    final StringWriter stringWriter = new StringWriter();
+-    XMLEventWriter xmlWriter = _outputFactory.createXMLEventWriter(stringWriter);
+-    xmlWriter.add(_eventFactory.createStartDocument("UFT-8"));
+-    xmlWriter.add(_eventFactory.createStartElement("foo", "fooNS", "root", Collections.EMPTY_LIST.iterator(), Arrays.asList(_eventFactory.createNamespace("bar", "barNS")).iterator()));
+-    xmlWriter.add(_eventFactory.createNamespace("baz", "bazNS"));
+-    xmlWriter.add(_eventFactory.createCharacters("bar:qname"));
+-    xmlWriter.add(_eventFactory.createEndElement("foo", "fooNS", "root"));
+-    xmlWriter.add(_eventFactory.createEndDocument());
+-
+-    // The document is just to inspect the result.
+-    final Document document = buildDocument(stringWriter.toString());
+-
+-    Element documentElement = document.getDocumentElement();
+-    assertEquals("fooNS", getNamespaceForPrefix(documentElement, "foo"));
+-    // This line fails in 3.2.7
+-    assertEquals("barNS", getNamespaceForPrefix(documentElement, "bar"));
+-    assertEquals("bazNS", getNamespaceForPrefix(documentElement, "baz"));
+-  }
+-
+-  private String getNamespaceForPrefix(final Element element, final String prefix) {
+-    return element.getAttributeNS("http://www.w3.org/2000/xmlns/", prefix);
+-  }
+-
+-  private Document buildDocument(final String string) throws XMLStreamException, ParserConfigurationException {
+-    // Less painful to do this using XMLUnit if you use it.
+-    XMLEventReader reader = _inputFactory.createXMLEventReader(new StringReader(string));
+-    final DocumentBuilderFactory documentBuilder = DocumentBuilderFactory.newInstance();
+-    documentBuilder.setNamespaceAware(true);
+-    final Document document = documentBuilder.newDocumentBuilder().newDocument();
+-    XMLEventWriter writer = _outputFactory.createXMLEventWriter(new DOMResult(document));
+-    writer.add(reader);
+-    return document;
+-  }
+-}
+diff --git a/src/test/java/stax2/wstream/TestStreamResult.java b/src/test/java/stax2/wstream/TestStreamResult.java
+deleted file mode 100644
+index 4c20cf4..0000000
+--- a/src/test/java/stax2/wstream/TestStreamResult.java
++++ /dev/null
+@@ -1,49 +0,0 @@
+-package stax2.wstream;
+-
+-import java.io.*;
+-import javax.xml.stream.*;
+-import javax.xml.transform.stream.StreamResult;
+-
+-import org.codehaus.stax2.XMLInputFactory2;
+-
+-import stax2.BaseStax2Test;
+-
+-/**
+- * This unit test suite verifies use of {@link StreamResult} as output
+- * for {@link XMLOutputFactory}.
+- *
+- * @author Tatu Saloranta
+- *
+- * @since 3.0
+- */
+-public class TestStreamResult
+-    extends BaseStax2Test
+-{
+-    /**
+-     * This test is related to problem reported as [WSTX-182], inability
+-     * to use SystemId alone as source.
+-     */
+-    public void testCreateUsingSystemId()
+-        throws IOException, XMLStreamException
+-    {
+-        File tmpF = File.createTempFile("staxtest", ".xml");
+-        tmpF.deleteOnExit();
+-
+-        XMLOutputFactory f = getOutputFactory();
+-        StreamResult dst = new StreamResult();
+-        dst.setSystemId(tmpF);
+-        XMLStreamWriter sw = f.createXMLStreamWriter(dst);
+-
+-        sw.writeStartDocument();
+-        sw.writeEmptyElement("root");
+-        sw.writeEndDocument();
+-        sw.close();
+-
+-        // plus let's read and check it
+-        XMLInputFactory2 inf = getInputFactory();
+-        XMLStreamReader sr = inf.createXMLStreamReader(tmpF);
+-        assertTokenType(START_ELEMENT, sr.next());
+-        assertTokenType(END_ELEMENT, sr.next());
+-        sr.close();
+-    }
+-}
+diff --git a/src/test/java/stax2/wstream/TestStreamWriter.java b/src/test/java/stax2/wstream/TestStreamWriter.java
+deleted file mode 100644
+index 56e5c34..0000000
+--- a/src/test/java/stax2/wstream/TestStreamWriter.java
++++ /dev/null
+@@ -1,428 +0,0 @@
+-package stax2.wstream;
+-
+-import java.io.*;
+-
+-import javax.xml.stream.*;
+-
+-import org.codehaus.stax2.*;
+-
+-/**
+- * Unit test suite that focuses on testing additional methods that
+- * StAX2 has for stream writers.
+- */
+-public class TestStreamWriter
+-    extends BaseWriterTest
+-{
+-    /*
+-    //////////////////////////////////////////////////////////
+-    // First tests for simple accessors
+-    //////////////////////////////////////////////////////////
+-     */
+-
+-    public void testGetEncoding()
+-        throws XMLStreamException
+-    {
+-        // Let's test with US-ASCII for fun
+-        final String ENC = "US-ASCII";
+-
+-        for (int isWriter = 0; isWriter < 2; ++isWriter) {
+-            for (int i = 0; i < 3; ++i) {
+-                boolean ns = (i > 0);
+-                boolean repairing = (i == 2);
+-                XMLOutputFactory2 of = getFactory(ns, repairing);
+-                XMLStreamWriter2 w;
+-
+-                if (isWriter > 0) {
+-                    StringWriter strw = new StringWriter();
+-                    w = of.createXMLStreamWriter(strw, ENC);
+-                } else {
+-                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+-                    w = (XMLStreamWriter2)of.createXMLStreamWriter(bos, ENC);
+-                }
+-                assertEquals(ENC, w.getEncoding());
+-                // Need to output something, otherwise it'll be empty doc
+-                w.writeEmptyElement("root");
+-                w.close();
+-
+-                /* Ok good, but how about the case where it's only
+-                 * passed for writeStartDocument()? Note: when wrapping
+-                 * a stream, factory has to use default (UTF-8).
+-                 */
+-                if (isWriter > 0) {
+-                    StringWriter strw = new StringWriter();
+-                    w = (XMLStreamWriter2)of.createXMLStreamWriter(strw);
+-                    w.writeStartDocument(ENC, "1.0");
+-                    assertEquals(ENC, w.getEncoding());
+-                } else {
+-                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+-                    w = (XMLStreamWriter2)of.createXMLStreamWriter(bos);
+-                    w.writeStartDocument(ENC, "1.0");
+-                    assertEquals("UTF-8", w.getEncoding());
+-                }
+-                w.writeEmptyElement("root");
+-                w.close();
+-            }
+-        }
+-    }
+-
+-    /**
+-     * Additional tests based on [WSTX-146]; JDK may report legacy
+-     * encoding names, we shouldn't report those but rather IANA
+-     * approved canonical equivalents.
+-     */
+-    public void testLegacyEncodings()
+-        throws Exception
+-    {
+-        String[] encs = new String[] { "UTF-8", "US-ASCII", "ISO-8859-1" };
+-
+-        XMLOutputFactory2 outf = getFactory(true, false);
+-        XMLInputFactory2 inf = newInputFactory();
+-
+-        for (int i = 0; i < encs.length; ++i) {
+-            String enc = encs[i];
+-            ByteArrayOutputStream os = new ByteArrayOutputStream();
+-            XMLStreamWriter sw = outf.createXMLStreamWriter(new OutputStreamWriter(os, enc));
+-            sw.writeStartDocument("1.0");
+-            sw.writeEmptyElement("foo");
+-            sw.writeEndDocument();
+-            // Parse it and check the encoding
+-            XMLStreamReader sr = inf.createXMLStreamReader(new ByteArrayInputStream(os.toByteArray()));
+-            String act = sr.getCharacterEncodingScheme();
+-            if (!enc.equals(act)) {
+-                fail("Expected encoding to be returned correctly as \""+enc+"\", got \""+act+"\"");
+-            }
+-        }
+-    }
+-
+-    /**
+-     * Since Woodstox doesn't yet actually implement the method, we'll
+-     * just call the method and do not expect and exception. Returned
+-     * object (or lack thereof) is not inspected
+-     */
+-    public void testGetLocation()
+-        throws XMLStreamException
+-    {
+-        for (int i = 0; i < 3; ++i) {
+-            boolean ns = (i > 0);
+-            boolean repairing = (i == 2);
+-            XMLOutputFactory2 of = getFactory(ns, repairing);
+-            StringWriter strw = new StringWriter();
+-            XMLStreamWriter2 w = (XMLStreamWriter2)of.createXMLStreamWriter(strw);
+-            XMLStreamLocation2 loc = w.getLocation();
+-            assertNotNull(loc);
+-            // Need to output something, otherwise it'll be empty doc
+-            w.writeEmptyElement("root");
+-            w.close();
+-        }
+-    }
+-        
+-    /*
+-    //////////////////////////////////////////////////////////
+-    // Then new output methods, or improved existing ones
+-    //////////////////////////////////////////////////////////
+-     */
+-
+-    public void testCData()
+-        throws XMLStreamException
+-    {
+-        final String CDATA_TEXT = "Let's test it with some ] ]> data; <tag>s and && chars and all!";
+-
+-        for (int i = 0; i < 2; ++i) {
+-            boolean ns = (i > 0);
+-            StringWriter strw = new StringWriter();
+-            XMLStreamWriter2 w = getNonRepairingWriter(strw, ns);
+-            
+-            w.writeStartDocument();
+-            w.writeStartElement("test");
+-
+-            char[] cbuf = new char[CDATA_TEXT.length() + 10];
+-            CDATA_TEXT.getChars(0, CDATA_TEXT.length(), cbuf, 3);
+-            w.writeCData(cbuf, 3, CDATA_TEXT.length());
+-            w.writeEndElement();
+-            w.writeEndDocument();
+-            w.close();
+-            
+-            // And then let's parse and verify it all:
+-            
+-            XMLStreamReader sr = constructNsStreamReader(strw.toString(), true);
+-            assertTokenType(START_DOCUMENT, sr.getEventType());
+-            assertTokenType(START_ELEMENT, sr.next());
+-            
+-            // Now, parsers are allowed to report CHARACTERS or CDATA
+-            int tt = sr.next();
+-            if (tt != CHARACTERS && tt != CDATA) {
+-                assertTokenType(CDATA, tt); // to cause failure
+-            }
+-            assertFalse(sr.isWhiteSpace());
+-            assertEquals(CDATA_TEXT, getAndVerifyText(sr));
+-            assertTokenType(END_ELEMENT, sr.next());
+-            assertTokenType(END_DOCUMENT, sr.next());
+-        }
+-    }
+-
+-    /**
+-     * This test was inspired by a failing regression test: it required
+-     * long enough COMMENT content to trigger buffar boundary problems
+-     */
+-    public void testLongerComment()
+-        throws XMLStreamException
+-    {
+-        doTestLonger(COMMENT, false, false, "UTF-8");
+-        doTestLonger(COMMENT, false, false, "ISO-8859-1");
+-        doTestLonger(COMMENT, false, false, "US-ASCII");
+-        doTestLonger(COMMENT, true, false, "UTF-8");
+-        doTestLonger(COMMENT, true, false, "ISO-8859-1");
+-        doTestLonger(COMMENT, true, false, "US-ASCII");
+-        doTestLonger(COMMENT, true, true, "UTF-8");
+-        doTestLonger(COMMENT, true, true, "ISO-8859-1");
+-        doTestLonger(COMMENT, true, true, "US-ASCII");
+-    }
+-
+-    public void testLongerPI()
+-        throws XMLStreamException
+-    {
+-        doTestLonger(PROCESSING_INSTRUCTION, false, false, "UTF-8");
+-        doTestLonger(PROCESSING_INSTRUCTION, false, false, "ISO-8859-1");
+-        doTestLonger(PROCESSING_INSTRUCTION, false, false, "US-ASCII");
+-        doTestLonger(PROCESSING_INSTRUCTION, true, false, "UTF-8");
+-        doTestLonger(PROCESSING_INSTRUCTION, true, false, "ISO-8859-1");
+-        doTestLonger(PROCESSING_INSTRUCTION, true, false, "US-ASCII");
+-        doTestLonger(PROCESSING_INSTRUCTION, true, true, "UTF-8");
+-        doTestLonger(PROCESSING_INSTRUCTION, true, true, "ISO-8859-1");
+-        doTestLonger(PROCESSING_INSTRUCTION, true, true, "US-ASCII");
+-    }
+-
+-    public void testCopy()
+-        throws XMLStreamException
+-    {
+-        final String XML =
+-            "<?xml version='1.0'?>\n"
+-            +"<!DOCTYPE root [  <!ENTITY foo 'value'> ]>\n"
+-            +"<root>\n"
+-            +"<!-- comment! --><?proc instr?>"
+-            +"Text: &amp; <leaf attr='xyz' xmlns:a='url:foo' a:xyz='1' />"
+-            +"<![CDATA[and <> there you have it!]]>"
+-            +"</root>"
+-            ;
+-
+-        for (int i = 0; i < 2; ++i) {
+-            boolean ns = (i > 0);
+-            //boolean repairing = (i == 2);
+-            boolean repairing = (i == 1);
+-            XMLStreamReader2 sr = constructNsStreamReader(XML, ns);
+-            StringWriter strw = new StringWriter();
+-            XMLStreamWriter2 w;
+-
+-            if (repairing) {
+-                w = getRepairingWriter(strw);
+-            } else {
+-                w = getNonRepairingWriter(strw, ns);
+-            }
+-
+-            while (sr.hasNext()) {
+-                sr.next();
+-                w.copyEventFromReader(sr, false);
+-            }
+-            sr.close();
+-            w.close();
+-            String xmlOut = strw.toString();
+-
+-            // And let's parse it to verify it's still well-formed...
+-            // (should also verify its accuracy...)
+-            sr = constructNsStreamReader(xmlOut, ns);
+-            streamThrough(sr);
+-        }
+-    }
+-
+-    /**
+-     * Unit test for verifyin that writeRaw() works as expected.
+-     */
+-    public void testRaw()
+-        throws XMLStreamException
+-    {
+-        String RAW2 = "<elem>foo&amp;bar</elem>";
+-
+-        for (int i = 0; i < 3; ++i) {
+-            boolean ns = (i > 0);
+-            StringWriter strw = new StringWriter();
+-            XMLStreamWriter2 w = (i == 2) ? getRepairingWriter(strw)
+-                : getNonRepairingWriter(strw, ns);
+-            w.writeStartDocument();
+-            w.writeStartElement("test");
+-            w.writeAttribute("attr", "value");
+-            w.writeRaw("this or &apos;that&apos;");
+-            char[] cbuf = new char[RAW2.length() + 10];
+-            RAW2.getChars(0, RAW2.length(), cbuf, 3);
+-            w.writeRaw(cbuf, 3, RAW2.length());
+-            w.writeEndElement();
+-            w.writeEndDocument();
+-            w.close();
+-            
+-            // And then let's parse and verify it all:
+-            XMLStreamReader sr = constructNsStreamReader(strw.toString(), true);
+-            assertTokenType(START_DOCUMENT, sr.getEventType());
+-            assertTokenType(START_ELEMENT, sr.next());
+-            assertEquals("test", sr.getLocalName());
+-            assertEquals(1, sr.getAttributeCount());
+-            assertEquals("attr", sr.getAttributeLocalName(0));
+-            assertEquals("value", sr.getAttributeValue(0));
+-            assertTokenType(CHARACTERS, sr.next());
+-            assertEquals("this or 'that'", getAndVerifyText(sr));
+-            assertTokenType(START_ELEMENT, sr.next());
+-            assertEquals("elem", sr.getLocalName());
+-            assertTokenType(CHARACTERS, sr.next());
+-            assertEquals("foo&bar", getAndVerifyText(sr));
+-            assertTokenType(END_ELEMENT, sr.next());
+-            assertEquals("elem", sr.getLocalName());
+-            assertTokenType(END_ELEMENT, sr.next());
+-            assertEquals("test", sr.getLocalName());
+-            assertTokenType(END_DOCUMENT, sr.next());
+-        }
+-    }
+-
+-    /*
+-    //////////////////////////////////////////////////////////
+-    // Then custom quoting/escaping writers
+-    //////////////////////////////////////////////////////////
+-     */
+-
+-    /**
+-     * First a simplish testing of how exotic characters are escaped
+-     * in attribute values.
+-     */
+-    public void testAttrValueWriterSimple()
+-        throws IOException, XMLStreamException
+-    {
+-        // Let's just ensure escaping is done for chars that need it
+-        //String IN = "Ok, lessee \u00A0; -- \t and this: \u0531.";
+-        String IN = "Ok, nbsp: \u00A0; and 'quotes' and \"doubles\" too; and multi-bytes too: [\u0531]";
+-        doTestAttrValueWriter("ISO-8859-1", IN);
+-        doTestAttrValueWriter("UTF-8", IN);
+-        doTestAttrValueWriter("US-ASCII", IN);
+-    }
+-
+-    /**
+-     * And then bit more advanced test for things that need special
+-     * support for round-tripping
+-     */
+-    public void testAttrValueWriterTabsEtc()
+-        throws IOException, XMLStreamException
+-    {
+-        String IN = "How about tabs: [\t] or cr+lf [\r\n]";
+-        doTestAttrValueWriter("ISO-8859-1", IN);
+-        doTestAttrValueWriter("UTF-8", IN);
+-        doTestAttrValueWriter("US-ASCII", IN);
+-    }
+-
+-    /*
+-    //////////////////////////////////////////////////////////
+-    // Non-test methods:
+-    //////////////////////////////////////////////////////////
+-     */
+-
+-    public XMLOutputFactory2 getFactory(boolean nsAware, boolean repairing)
+-        throws XMLStreamException
+-    {
+-        XMLOutputFactory2 f = getOutputFactory();
+-        f.setProperty(XMLStreamProperties.XSP_NAMESPACE_AWARE,
+-                      Boolean.valueOf(nsAware));
+-        f.setProperty(XMLOutputFactory.IS_REPAIRING_NAMESPACES,
+-                      Boolean.valueOf(repairing));
+-        return f;
+-    }
+-
+-    private void doTestAttrValueWriter(String enc, String IN)
+-        throws IOException, XMLStreamException
+-    {
+-        // First, let's explicitly pass the encoding...
+-        XMLOutputFactory of = getFactory(false, false);
+-        ByteArrayOutputStream out = new ByteArrayOutputStream();
+-        Writer w = new OutputStreamWriter(out, enc);
+-        /* 26-Mar-2008, tatus: Note: we may get legacy encoding
+-         *   names from here (like "ASCII" over "US-ASCII" etc).
+-         *  Additionally, should we count on output factory knowing
+-         *  how to find underlying encoding from OutputStreamWriter?
+-         *  Could (should?) explicitly pass encoding instead.
+-         */
+-        XMLStreamWriter sw = of.createXMLStreamWriter(w);
+-
+-        // So shouldn't we do this?
+-        //XMLStreamWriter sw = of.createXMLStreamWriter(w, enc);
+-        
+-        sw.writeStartDocument(enc, "1.0");
+-        sw.writeStartElement("elem");
+-        sw.writeAttribute("attr", IN);
+-        sw.writeEndElement();
+-        sw.writeEndDocument();
+-        sw.close();
+-        w.close();
+-        
+-        // Can we parse it ok?
+-        XMLInputFactory ifact = getInputFactory();
+-        XMLStreamReader sr = ifact.createXMLStreamReader(new ByteArrayInputStream(out.toByteArray()), enc);
+-
+-        // First, let's ensure we see the encoding:
+-        assertTokenType(START_DOCUMENT, sr.getEventType());
+-        assertEquals(enc, sr.getCharacterEncodingScheme());
+-
+-        assertTokenType(START_ELEMENT, sr.next());
+-        assertEquals(1, sr.getAttributeCount());
+-        String attrValue = sr.getAttributeValue(0);
+-        if (!IN.equals(attrValue)) {
+-            failStrings("Incorrect writing/reading of attribute value (encoding '"+enc+"')",
+-                        IN, attrValue);
+-        }
+-        assertTokenType(END_ELEMENT, sr.next());
+-        assertTokenType(END_DOCUMENT, sr.next());
+-        sr.close();
+-    }
+-
+-    public void doTestLonger(int type, boolean ns, boolean repair, String enc)
+-        throws XMLStreamException
+-    {
+-        final String TEXT =
+-" Table of types of doubts\n"
+-+"doubt: specific error or issue with the test case\n"
+-+"extension: uses an extension feature\n"
+-+"gray-area: the spec does not give enough precision to distinguish correct behavior on the indicated detail\n"
+-+"processor-specific: processors are required to provide a unique value (should be marked as \"manual\" compare in catalog)\n"
+-+"serial: processor has options regarding serialization (This doubt only used for detail issues, not general discretion about encoding.)"
+-            ;
+-
+-        for (int i = 0; i < 2; ++i) {
+-            StringWriter strw = new StringWriter();
+-            XMLStreamWriter2 w;
+-            if (repair) {
+-                w = getRepairingWriter(strw, enc);
+-            } else {
+-                w = getNonRepairingWriter(strw, enc, ns);
+-            }
+-            w.writeStartDocument(enc, "1.0");
+-            if (type == COMMENT) {
+-                w.writeComment(TEXT);
+-            } else {
+-                w.writeProcessingInstruction("pi", TEXT);
+-            }
+-            w.writeEmptyElement("root");
+-            w.writeEndDocument();
+-            w.close();
+-            
+-            // And then let's parse and verify the contents:
+-            XMLStreamReader sr = constructNsStreamReader(strw.toString(), true);
+-            assertTokenType(START_DOCUMENT, sr.getEventType());
+-            
+-            if (type == COMMENT) {
+-                assertTokenType(COMMENT, sr.next());
+-                assertEquals(TEXT, getAndVerifyText(sr));
+-            } else {
+-                assertTokenType(PROCESSING_INSTRUCTION, sr.next());
+-                // PI data excludes leading space... need to trim
+-                assertEquals(TEXT.trim(), sr.getPIData().trim());
+-            }
+-            assertTokenType(START_ELEMENT, sr.next());
+-            assertTokenType(END_ELEMENT, sr.next());
+-            assertTokenType(END_DOCUMENT, sr.next());
+-            sr.close();
+-        }
+-    }
+-}
+diff --git a/src/test/java/stax2/wstream/TestWriterConstruction.java b/src/test/java/stax2/wstream/TestWriterConstruction.java
+deleted file mode 100644
+index 1d5c4b1..0000000
+--- a/src/test/java/stax2/wstream/TestWriterConstruction.java
++++ /dev/null
+@@ -1,79 +0,0 @@
+-package stax2.wstream;
+-
+-import java.io.*;
+-
+-import javax.xml.stream.*;
+-
+-import org.codehaus.stax2.*;
+-import org.codehaus.stax2.io.*;
+-
+-/**
+- * Unit test suite that tests additional StAX2 stream writer construction
+- * methods.
+- */
+-public class TestWriterConstruction
+-    extends BaseWriterTest
+-{
+-    public void testCreateWithFileSource()
+-        throws IOException, XMLStreamException
+-    {
+-        XMLOutputFactory2 outf = getOutputFactory();
+-        File f = createTempFile();
+-        XMLStreamWriter sw = outf.createXMLStreamWriter(new Stax2FileResult(f));
+-        writeAndVerify(sw, f, "withFileSource");
+-    }
+-
+-    public void testCreateWithFileStreamReader()
+-        throws IOException, XMLStreamException
+-    {
+-        // Doesn't do much, yet... just constructs, for now
+-        StringWriter strw = new StringWriter();
+-        XMLStreamWriter sw = getNonRepairingWriter(strw, true);
+-        XMLEventWriter ew = getOutputFactory().createXMLEventWriter(sw);
+-
+-        assertNotNull(ew);
+-
+-        // TODO: try it out...
+-    }
+-
+-    /*
+-    ////////////////////////////////////////////////
+-    // Internal methods
+-    ////////////////////////////////////////////////
+-     */
+-
+-    File createTempFile()
+-        throws IOException
+-    {
+-        File f = File.createTempFile("stax2test", null);
+-        f.deleteOnExit();
+-        return f;
+-   }
+-
+-    private void writeAndVerify(XMLStreamWriter sw, File f, String text)
+-        throws XMLStreamException
+-    {
+-        /* No need to write elaborate doc, just to ensure creation and
+-         * later access work ok.
+-         */
+-        sw.writeStartDocument("UTF-8", "1.0");
+-        sw.writeStartElement("write");
+-        sw.writeCharacters(text);
+-        sw.writeEndElement();
+-        sw.writeEndDocument();
+-        sw.close();
+-
+-        // And then reader
+-        XMLInputFactory2 ifact = getInputFactory();
+-        setCoalescing(ifact, true);
+-        XMLStreamReader sr = ifact.createXMLStreamReader(new Stax2FileSource(f));
+-        assertTokenType(START_ELEMENT, sr.next());
+-        assertEquals("write", sr.getLocalName());
+-        assertTokenType(CHARACTERS, sr.next());
+-        assertEquals(text, getAndVerifyText(sr));
+-        assertTokenType(END_ELEMENT, sr.next());
+-        assertEquals("write", sr.getLocalName());
+-        assertTokenType(END_DOCUMENT, sr.next());
+-        sr.close();
+-    }
+-}

@@ -1,0 +1,6 @@
+stream.TestDTDSkimming
+stream.TestNameDecoding
+stream.TestSimple
+stream.TestSurrogates
+wstream.TestLongerContent
+wstream.TestNameEncoding

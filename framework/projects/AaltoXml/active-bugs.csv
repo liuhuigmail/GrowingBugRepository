@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,745ff7facfc5f984b992e9635d770991f6e37751,9f4212f37f43bd2913a934269a3dcd7d0b2ef9f4,53,https://github.com/FasterXML/aalto-xml/issues/53
+2,f5c1007442a51696b0ef05937c679422b1420540,8940d90adc7ee7efe5884228974f2a29439aa2ee,35,https://github.com/FasterXML/aalto-xml/issues/35
+3,4f4e4b3a0e43bb233e50c9f6d0367879a49f9a5e,9b43cf2766b5be1234c0d0bafb07876b773eecec,46,https://github.com/FasterXML/aalto-xml/issues/46
+4,ba4fe1e0e2272ab59a6087b5800ac75b95c25823,bb0f5e2448a43ddb29c00073669e39b420976790,47,https://github.com/FasterXML/aalto-xml/issues/47

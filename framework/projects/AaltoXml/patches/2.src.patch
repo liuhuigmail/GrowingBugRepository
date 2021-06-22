@@ -1,0 +1,27 @@
+diff --git a/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java b/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java
+index 491a3f1..dc79300 100644
+--- a/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java
++++ b/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java
+@@ -960,7 +961,6 @@ public abstract class ByteXmlWriter
+                     // Also, CR to be quoted?
+                     if (_config.willEscapeCR()) {
+                         _outputPtr = ptr;
+-                        writeAsEntity(ch);
+                         break;
+                     }
+                     _outputBuffer[ptr++] = (byte)ch;
+diff --git a/src/main/java/com/fasterxml/aalto/out/StreamWriterBase.java b/src/main/java/com/fasterxml/aalto/out/StreamWriterBase.java
+index b3a6d94..a468a9f 100644
+--- a/src/main/java/com/fasterxml/aalto/out/StreamWriterBase.java
++++ b/src/main/java/com/fasterxml/aalto/out/StreamWriterBase.java
+@@ -1137,7 +1140,8 @@ public abstract class StreamWriterBase
+     public XMLStreamLocation2 getLocation()
+     {
+         return new LocationImpl(null, null, // pub/sys ids not yet known
+-                _xmlWriter.getAbsOffset(), _xmlWriter.getRow(), _xmlWriter.getColumn());
++                                _xmlWriter.getAbsOffset(),
++                                _xmlWriter.getRow(), _xmlWriter.getColumn());
+     }
+ 
+     @Override
+

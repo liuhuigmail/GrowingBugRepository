@@ -1,0 +1,20 @@
+diff --git a/src/main/java/com/fasterxml/aalto/in/Utf8Scanner.java b/src/main/java/com/fasterxml/aalto/in/Utf8Scanner.java
+index 28080c6..501719e 100644
+--- a/src/main/java/com/fasterxml/aalto/in/Utf8Scanner.java
++++ b/src/main/java/com/fasterxml/aalto/in/Utf8Scanner.java
+@@ -696,14 +696,14 @@ public final class Utf8Scanner
+                 throwUnexpectedChar(c, " in public identifier");
+             }
+ 
+             // White space? Needs to be coalesced
+             if (c <= INT_SPACE) {
+                 addSpace = true;
+                 continue;
+             }
+             if (addSpace) {
+                 if (outPtr >= outputBuffer.length) {
+-                    _nameBuffer = outputBuffer = DataUtil.growArrayBy(outputBuffer, outputBuffer.length);
++                    outputBuffer = _textBuilder.finishCurrentSegment();
+                     outPtr = 0;
+                 }
+                 outputBuffer[outPtr++] = ' ';
