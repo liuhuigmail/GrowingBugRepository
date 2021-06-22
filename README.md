@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1041`** bugs
+ **`1051`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -48,8 +48,14 @@ from open-source Java projects.
 | 37     | Jena_core            | jena-core               |    jena-core   |        1       | 2               |
 | 38     | Shiro_web            | shiro-web               |        web      |        3       | 1,3,7               |
 | 39     | MDeploy            | maven-deploy-plugin               |              |        1       | 1               |
-| 40     | Jackrabbit_filevault_vault_validation            | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
+| 40     | Jackrabbit_filevault_vault_validation | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
 | 41     | Jackrabbit_oak_core            | oak-core               |       oak-core       |        2       | 1-2               |
+| 42     | Doxia_module_apt            | doxia-module-apt               |   doxia-modules/doxia-module-apt       |       1       | 1               |
+| 43     | HttpCore5            | httpcore5               |       httpcore5       |        1       | 1               |
+| 44     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
+| 45     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
+| 46     | James_project_core            | james-project-core               |       core       |        1       | 1               |
+| 47     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        5       | 1-5               |
 
 # Setting up GrowingBugs
 ## Requirements

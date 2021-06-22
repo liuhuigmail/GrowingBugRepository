@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/maven/plugin/checkstyle/CheckstyleReportListener.java b/src/main/java/org/apache/maven/plugin/checkstyle/CheckstyleReportListener.java
+index 03b40ad..a2adba1 100644
+--- a/src/main/java/org/apache/maven/plugin/checkstyle/CheckstyleReportListener.java
++++ b/src/main/java/org/apache/maven/plugin/checkstyle/CheckstyleReportListener.java
+@@ -124,14 +124,10 @@ public class CheckstyleReportListener
+     {
+         for ( File sourceDirectory : sourceDirectories )
+         {
+-            String sourceDirectoryPath = sourceDirectory.getPath();
+-            String fileName = StringUtils.replace( event.getFileName(), "\\", "/" );
+-            if ( fileName.startsWith( sourceDirectoryPath + "/" ) )
+-            {
+-                currentFile = StringUtils.substring( fileName, sourceDirectoryPath.length() + 1 );
+ 
+                 events = getResults().getFileViolations( currentFile );
+-            }
++            currentFile = StringUtils.substring( event.getFileName(), sourceDirectory.getPath().length() + 1 );
++            currentFile = StringUtils.replace( currentFile, "\\", "/" );
+         }
+ 
+         if ( events == null )

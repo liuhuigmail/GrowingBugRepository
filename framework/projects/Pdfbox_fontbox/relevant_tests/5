@@ -1,0 +1,3 @@
+org.apache.fontbox.ttf.RAFDataStreamTest
+org.apache.fontbox.ttf.TTFSubsetterTest
+org.apache.fontbox.ttf.TestTTFParser

@@ -1,0 +1,2 @@
+org.apache.hc.core5.http.impl.nio.IdentityDecoder
+httpcore5.org.apache.hc.core5.http.impl.nio.LengthDelimitedDecoder

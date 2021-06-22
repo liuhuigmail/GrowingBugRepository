@@ -158,8 +158,9 @@ my %SUPPORTED_TRACKERS = (
                                 },
                 },
     'github' => {
-                    'default_tracker_uri' => 'https://api.github.com/repos/',
-                    'default_query' => 'labels=Bug',
+    # https://v2.kkpp.cc https://api.github.com
+                    'default_tracker_uri' => 'https://v2.kkpp.cc/repos/',
+                    'default_query' => '',
                     'default_limit' => 100,
                     'build_uri' => sub {
                                             my ($tracker, $project, $query, $start, $limit, $organization_id) = @_;
@@ -172,7 +173,7 @@ my %SUPPORTED_TRACKERS = (
                                                          . "/issues?state=all&"
                                                          . $query
                                                          . "&per_page=${limit}"
-                                                         . "&page=${page}";
+                                                         . "&page=${page}"; 
                                             return $uri;
                                         },
                     'results' => sub {
