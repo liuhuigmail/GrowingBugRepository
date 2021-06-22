@@ -1,0 +1,8 @@
+org.apache.hc.client5.http.cookie.CommonCookieAttributeHandler
+org.apache.hc.client5.http.cookie.Cookie
+org.apache.hc.client5.http.cookie.CookieAttributeHandler
+org.apache.hc.client5.http.cookie.MalformedCookieException
+org.apache.hc.client5.http.cookie.SetCookie
+org.apache.hc.client5.http.impl.cookie.AbstractCookieAttributeHandler
+org.apache.hc.client5.http.impl.cookie.BasicClientCookie
+org.apache.hc.client5.http.impl.cookie.LaxExpiresHandler

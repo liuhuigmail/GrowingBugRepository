@@ -1,0 +1,41 @@
+diff --git a/httpclient5/src/test/java/org/apache/hc/client5/http/ssl/TestDefaultHostnameVerifier.java b/httpclient5/src/test/java/org/apache/hc/client5/http/ssl/TestDefaultHostnameVerifier.java
+index b4bdee4e3..db84c86bf 100644
+--- a/httpclient5/src/test/java/org/apache/hc/client5/http/ssl/TestDefaultHostnameVerifier.java
++++ b/httpclient5/src/test/java/org/apache/hc/client5/http/ssl/TestDefaultHostnameVerifier.java
+@@ -44,7 +44,6 @@ import java.nio.charset.StandardCharsets;
+ import java.security.cert.CertificateFactory;
+ import java.security.cert.X509Certificate;
+ import java.util.Arrays;
+-import java.util.Collections;
+ import java.util.List;
+ 
+ /**
+@@ -415,28 +414,4 @@ public class TestDefaultHostnameVerifier {
+         }
+     }
+ 
+-    @Test
+-    public void testMatchDNSName() throws Exception {
+-        DefaultHostnameVerifier.matchDNSName(
+-                "host.domain.com",
+-                Collections.singletonList(SubjectName.DNS("*.domain.com")),
+-                publicSuffixMatcher);
+-        DefaultHostnameVerifier.matchDNSName(
+-                "host.xx",
+-                Collections.singletonList(SubjectName.DNS("*.xx")),
+-                publicSuffixMatcher);
+-        DefaultHostnameVerifier.matchDNSName(
+-                "host.appspot.com",
+-                Collections.singletonList(SubjectName.DNS("*.appspot.com")),
+-                publicSuffixMatcher);
+-        DefaultHostnameVerifier.matchDNSName(
+-                "demo-s3-bucket.s3.eu-central-1.amazonaws.com",
+-                Collections.singletonList(SubjectName.DNS("*.s3.eu-central-1.amazonaws.com")),
+-                publicSuffixMatcher);
+-        DefaultHostnameVerifier.matchDNSName(
+-                "hostname-workspace-1.local",
+-                Collections.singletonList(SubjectName.DNS("hostname-workspace-1.local")),
+-                publicSuffixMatcher);
+-    }
+-
+ }

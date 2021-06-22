@@ -1,0 +1,19 @@
+diff --git a/httpclient5/src/test/java/org/apache/hc/client5/http/impl/cookie/TestLaxCookieAttribHandlers.java b/httpclient5/src/test/java/org/apache/hc/client5/http/impl/cookie/TestLaxCookieAttribHandlers.java
+index b120b61b8..4a9dd2727 100644
+--- a/httpclient5/src/test/java/org/apache/hc/client5/http/impl/cookie/TestLaxCookieAttribHandlers.java
++++ b/httpclient5/src/test/java/org/apache/hc/client5/http/impl/cookie/TestLaxCookieAttribHandlers.java
+@@ -115,14 +115,6 @@ public class TestLaxCookieAttribHandlers {
+         Assert.assertEquals(0, c.get(Calendar.MILLISECOND));
+     }
+ 
+-    @Test
+-    public void testParseExpiryInvalidTime0() throws Exception {
+-        final BasicClientCookie cookie = new BasicClientCookie("name", "value");
+-        final CookieAttributeHandler h = new LaxExpiresHandler();
+-        h.parse(cookie, null);
+-        Assert.assertNull(cookie.getExpiryDate());
+-    }
+-
+     @Test(expected = MalformedCookieException.class)
+     public void testParseExpiryInvalidTime1() throws Exception {
+         final BasicClientCookie cookie = new BasicClientCookie("name", "value");

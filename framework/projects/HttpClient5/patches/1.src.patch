@@ -1,0 +1,18 @@
+diff --git a/httpclient5/src/main/java/org/apache/hc/client5/http/ssl/DefaultHostnameVerifier.java b/httpclient5/src/main/java/org/apache/hc/client5/http/ssl/DefaultHostnameVerifier.java
+index 53ef852b4..9d2e16007 100644
+--- a/httpclient5/src/main/java/org/apache/hc/client5/http/ssl/DefaultHostnameVerifier.java
++++ b/httpclient5/src/main/java/org/apache/hc/client5/http/ssl/DefaultHostnameVerifier.java
+@@ -286,13 +286,11 @@ public final class DefaultHostnameVerifier implements HttpClientHostnameVerifier
+             for (final List<?> entry : entries) {
+                 final Integer type = entry.size() >= 2 ? (Integer) entry.get(0) : null;
+                 if (type != null) {
+-                    if (type == SubjectName.DNS || type == SubjectName.IP) {
+                         final Object o = entry.get(1);
+                         if (o instanceof String) {
+                             result.add(new SubjectName((String) o, type));
+                         } else if (o instanceof byte[]) {
+                             // TODO ASN.1 DER encoded form
+-                        }
+                     }
+                 }
+             }

@@ -1,0 +1,2 @@
+org.apache.hc.client5.http.impl.classic.TestFutureRequestExecutionService
+org.apache.hc.client5.http.ssl.TestDefaultHostnameVerifier

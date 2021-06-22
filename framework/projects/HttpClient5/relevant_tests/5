@@ -1,0 +1,2 @@
+org.apache.hc.client5.http.impl.cookie.TestLaxCookieAttribHandlers
+org.apache.hc.client5.http.protocol.TestResponseProcessCookies

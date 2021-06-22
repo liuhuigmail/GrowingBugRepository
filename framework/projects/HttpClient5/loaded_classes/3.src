@@ -1,0 +1,9 @@
+org.apache.hc.client5.http.auth.AuthSchemes
+org.apache.hc.client5.http.auth.AuthScope
+org.apache.hc.client5.http.auth.BasicUserPrincipal
+org.apache.hc.client5.http.auth.Credentials
+org.apache.hc.client5.http.auth.CredentialsProvider
+org.apache.hc.client5.http.auth.CredentialsStore
+org.apache.hc.client5.http.auth.UsernamePasswordCredentials
+org.apache.hc.client5.http.impl.auth.BasicCredentialsProvider
+org.apache.hc.client5.http.impl.AuthSupport

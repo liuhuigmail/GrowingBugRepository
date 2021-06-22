@@ -1,0 +1,2 @@
+org.apache.hc.client5.http.ssl.CertificatesToPlayWith
+org.apache.hc.client5.http.ssl.TestDefaultHostnameVerifier

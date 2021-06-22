@@ -1,0 +1,2 @@
+org.apache.hc.client5.http.entity.mime.TestMultipartEntityBuilder
+org.apache.hc.client5.http.entity.mime.TestMultipartFormHttpEntity

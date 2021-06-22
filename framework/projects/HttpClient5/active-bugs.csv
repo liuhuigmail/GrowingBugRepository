@@ -1,0 +1,8 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,a2cc0a511bb2a38cc37a0f351944d6b19036fa67,56cc24525e5ba2a5ef8fa0de2385687e83589a71,HTTPCLIENT-1906,https://issues.apache.org/jira/browse/HTTPCLIENT-1906
+2,50e7dd51e06b877c9378846e980b99cbef2eafbb,7824d98d0ca8aa4bed14d70c01c544ac544d4170,HTTPCLIENT-1958,https://issues.apache.org/jira/browse/HTTPCLIENT-1958
+3,00012c578636dd197e8536af5dd712197d8fd4fc,90e34878a1224d6bd89af5878841e026bdab5d92,HTTPCLIENT-2009,https://issues.apache.org/jira/browse/HTTPCLIENT-2009
+4,3575cff3dc77f80557e9a2264ffa38a696379743,4401991d93e1c4979cf8931e343323f97c335608,HTTPCLIENT-2047,https://issues.apache.org/jira/browse/HTTPCLIENT-2047
+5,3e484c083064c7718f694d870aca2448e40adcc5,12ec6f15ea30cfa8e7a1b59f143adde3b175fcaf,HTTPCLIENT-2076,https://issues.apache.org/jira/browse/HTTPCLIENT-2076
+6,e26d5376587a6c9873bd8d45a18b3d4d4ac10052,76a12fc4c680b25b1c3820b78069967fd0901a22,HTTPCLIENT-2077,https://issues.apache.org/jira/browse/HTTPCLIENT-2077
+7,5bdcb242f0297c9dca8f6284ed5a4dd062a210b7,ff6308a69fe2d0db8342c2962a910fee6ff698fc,HTTPCLIENT-2100,https://issues.apache.org/jira/browse/HTTPCLIENT-2100
