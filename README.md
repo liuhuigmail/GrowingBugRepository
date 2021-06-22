@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1051`** bugs
+ **`1062`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -56,6 +56,8 @@ from open-source Java projects.
 | 45     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
 | 46     | James_project_core            | james-project-core               |       core       |        1       | 1               |
 | 47     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        5       | 1-5               |
+| 48     | AaltoXml            | aalto-xml      |             |        4       | 1-4               |
+| 49     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-7               |
 
 # Setting up GrowingBugs
 ## Requirements
