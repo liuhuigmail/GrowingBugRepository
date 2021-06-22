@@ -45,5 +45,7 @@ HttpCore5 httpcore5 https://hub.fastgit.org/apache/httpcomponents-core.git jira 
 Rdf_jena commons-rdf-jena https://github.com/apache/commons-rdf.git jira COMMONSRDF /(COMMONSRDF-\\d+)/mi commons-rdf-jena	
 Maven_checkstyle_plugin	maven-checkstyle-plugin	https://hub.fastgit.org/apache/maven-checkstyle-plugin.git	jira	MCHECKSTYLE	/(MCHECKSTYLE-\\d+)/mi	.	
 James_project_core	james-project-core	https://hub.fastgit.org/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	core	
-Pdfbox_fontbox	pdfbox-fontbox	https://hub.fastgit.org/apache/pdfbox.git	jira	PDFBOX	/(PDFBOX-\\d+)/mi	fontbox	
+Pdfbox_fontbox	pdfbox-fontbox	https://github.com/apache/pdfbox.git	jira	PDFBOX	/(PDFBOX-\\d+)/mi	fontbox	
 Jackrabbit_filevault_vault_core	jackrabbit-filevault-vault-core	https://hub.fastgit.org/apache/jackrabbit-filevault.git	jira	JCRVLT	/(JCRVLT-\\d+)/mi	vault-core	
+AaltoXml	aalto-xml	https://github.com/FasterXML/aalto-xml.git	github	FasterXML/aalto-xml	/Fix(?:es)?\\s*#(\\d+)/mi	.	
+HttpClient5	httpclient5	https://hub.fastgit.org/apache/httpcomponents-client.git	jira	HTTPCLIENT	/(HTTPCLIENT-\\d+)/mi	httpclient5	
