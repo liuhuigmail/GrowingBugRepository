@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1062`** bugs
+ **`1075`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -17,7 +17,7 @@ from open-source Java projects.
 | 6     | Compress        | commons-compress           |                           |       52       | 1-48,50,52-54       |
 | 7     | Csv             | commons-csv                |                           |       17       | 1-17                |
 | 8     | Gson            | gson                       |                           |       18       | 1-18                |
-| 9     | JacksonCore     | jackson-core               |                           |       26       | 1-26                |
+| 9     | JacksonCore     | jackson-core               |                           |       29       | 1-26,28-30                |
 | 10     | JacksonDatabind | jackson-databind           |                          |      112       | 1-112               |
 | 11     | JacksonXml      | jackson-dataformat-xml     |                          |        6       | 1-6                 |
 | 12    | Jsoup           | jsoup                      |                           |       93       | 1-93                |
@@ -58,6 +58,9 @@ from open-source Java projects.
 | 47     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        5       | 1-5               |
 | 48     | AaltoXml            | aalto-xml      |             |        4       | 1-4               |
 | 49     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-7               |
+| 50     | jackson_modules_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |
+| 51     | Pdfbox_pdfbox         | pdfbox-pdfbox |    pdfbox    |        3      | 1-3               |
+| 52     | Storm_client            | storm-client      |       storm-client      |        2       | 1-2              |
 
 # Setting up GrowingBugs
 ## Requirements
