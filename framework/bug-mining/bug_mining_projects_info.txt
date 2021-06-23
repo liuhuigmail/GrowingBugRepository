@@ -54,4 +54,4 @@ JacksonCore	jackson-core	https://hub.fastgit.org/FasterXML/jackson-core.git	gith
 Pdfbox_pdfbox	pdfbox-pdfbox	https://hub.fastgit.org/apache/pdfbox.git	jira	PDFBOX	/(PDFBOX-\\d+)/mi	pdfbox	
 Jackrabbit_filevault_vault_core	jackrabbit-filevault-vault-core	https://hub.fastgit.org/apache/jackrabbit-filevault.git	jira	JCRVLT	/(JCRVLT-\\d+)/mi	vault-core	
 Storm_client	storm-client	https://hub.fastgit.org/apache/storm.git	jira	STORM	/(STORM-\\d+)/mi	storm-client
-
+James_mime4j_core	james-mime4j-core https://hub.fastgit.org/apache/james-mime4j.git	jira	MIME4J	/MIME4J-\\d+/mi	core	
