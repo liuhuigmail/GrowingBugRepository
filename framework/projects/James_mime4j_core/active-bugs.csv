@@ -1,0 +1,9 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,e6e5ce9ae8e5c6504482bbbc38c352864ba359ea,be831dff83e23a64b2393cef2fe09a94b7e53834,MIME4J-177,https://issues.apache.org/jira/browse/MIME4J-177
+2,a07f3a0ade43404dd814d7da4d973c9a65680661,9d26d3d5a807a2b59d1bf254f8a7e7d314f77b9c,MIME4J-187,https://issues.apache.org/jira/browse/MIME4J-187
+3,1384bb96aee71e4f1561b301b21503edcebb73ba,280a2c9a1f688f8bd7eefc0b794d7e72a9aae3a2,MIME4J-189,https://issues.apache.org/jira/browse/MIME4J-189
+4,28f70e83eee11063653ce86d5daa05662bb76922,8ab9362b799f4fe44cb250bcd7a132f07dff8c40,MIME4J-209,https://issues.apache.org/jira/browse/MIME4J-209
+5,0d5247fed64edf0494362b72ee52aa5ec5012592,2ae2cb54a1cfa1ca17e70487eb91c65752a7c962,MIME4J-218,https://issues.apache.org/jira/browse/MIME4J-218
+6,d924dcb518f4aa85a7e7ff21920a472251345c0d,03c1f6fcb5e1fc0d78371d03af5310a5c6cb1f98,MIME4J-273,https://issues.apache.org/jira/browse/MIME4J-273
+7,c33617db27d2c31825946706c91843f3cfbadce5,db390c15702eff7ba6b0cdb5855ffc5503bb9b5c,MIME4J-263,https://issues.apache.org/jira/browse/MIME4J-263
+8,fefae5a68b1f70f495dcfa6aa5adacb5c8f8f8b8,6ec1135e813fc845875cfae3c1055ad534a418b9,MIME4J-273,https://issues.apache.org/jira/browse/MIME4J-273

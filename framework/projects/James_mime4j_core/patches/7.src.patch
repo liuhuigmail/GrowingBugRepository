@@ -1,0 +1,23 @@
+diff --git a/core/src/main/java/org/apache/james/mime4j/codec/DecoderUtil.java b/core/src/main/java/org/apache/james/mime4j/codec/DecoderUtil.java
+index dab1f20e..790b62a3 100644
+--- a/core/src/main/java/org/apache/james/mime4j/codec/DecoderUtil.java
++++ b/core/src/main/java/org/apache/james/mime4j/codec/DecoderUtil.java
+@@ -35,7 +35,7 @@ import org.apache.james.mime4j.util.CharsetUtil;
+ public class DecoderUtil {
+ 
+     private static final Pattern PATTERN_ENCODED_WORD = Pattern.compile(
+-            "(.*?)=\\?(.+?)\\?(\\w)\\?(.*?)\\?=", Pattern.DOTALL);
++            "(.*?)=\\?(.+?)\\?(\\w)\\?(.+?)\\?=", Pattern.DOTALL);
+ 
+     /**
+      * Decodes a string containing quoted-printable encoded data.
+@@ -183,9 +183,7 @@ public class DecoderUtil {
+             String encoding = matcher.group(3);
+             String encodedText = matcher.group(4);
+ 
+-            if ("".equals(encodedText))
+-                return "";
+ 
+             String decoded;
+             decoded = tryDecodeEncodedWord(mimeCharset, encoding, encodedText, monitor, fallback);
+             if (decoded == null) {

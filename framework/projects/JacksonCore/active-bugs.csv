@@ -25,3 +25,7 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 24,35f3ab4d0512edc2d1ce13a7f43cd75b3c63c797,c4dd84e4d505baa90d8d1675c1f60f8d6ce90db8,508,https://github.com/FasterXML/jackson-core/issues/508
 25,3d3dedc656e331ab1a9e28efcde96bf71c347daa,ad47c206f4fbf22f439f3d66871757891f549f6a,510,https://github.com/FasterXML/jackson-core/pull/510
 26,eb477b85f74a2a1250ba6294cf4086d496830e27,d83ce8aec99f4e99afdf8fd172d77ce771f8ea35,531,https://github.com/FasterXML/jackson-core/issues/531
+27,63a87b9335a907d0d0a639dad7aa024a01830304,d533f29cf497343d7aa4c6b5f94d33cd3f4be1f9,152,https://github.com/FasterXML/jackson-core/issues/152
+28,6f496e7a104700250ad0fa567c7338618f797438,cfeaed0a935b3901c1fbccaf979efbac4a819d6d,213,https://github.com/FasterXML/jackson-core/issues/213
+29,bec821b8eadc8130240f942242f1d56f450de24f,bf550f3165e37029966b46d8514753a770cdeec2,460,https://github.com/FasterXML/jackson-core/issues/460
+30,bf550f3165e37029966b46d8514753a770cdeec2,233640bc97d4afe32d34ad2f335098045835cef9,516,https://github.com/FasterXML/jackson-core/issues/516

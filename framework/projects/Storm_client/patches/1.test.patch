@@ -1,0 +1,17 @@
+diff --git a/storm-client/test/jvm/org/apache/storm/blobstore/ClientBlobStoreTest.java b/storm-client/test/jvm/org/apache/storm/blobstore/ClientBlobStoreTest.java
+index 448a3819c..742c91734 100644
+--- a/storm-client/test/jvm/org/apache/storm/blobstore/ClientBlobStoreTest.java
++++ b/storm-client/test/jvm/org/apache/storm/blobstore/ClientBlobStoreTest.java
+@@ -164,12 +164,6 @@ public class ClientBlobStoreTest {
+     validatedBlobAcls(testKey);
+   }
+ 
+-  @Test
+-  public void testBloblStoreKeyWithUnicodesValidation() throws Exception {
+-    BlobStore.validateKey("msg:kafka-unicodewriter䶵-11-1483434711-stormconf.ser");
+-    BlobStore.validateKey("msg:kafka-ascii-11-148343436363-stormconf.ser");
+-  }
+-
+   private void createTestBlob(String testKey, SettableBlobMeta meta) throws AuthorizationException, KeyAlreadyExistsException {
+     AccessControl submitterAcl = BlobStoreAclHandler.parseAccessControl("u:tester:rwa");
+     meta.add_to_acl(submitterAcl);

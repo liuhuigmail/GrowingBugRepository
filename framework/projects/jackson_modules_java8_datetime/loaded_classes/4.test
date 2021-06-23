@@ -1,0 +1,2 @@
+com.fasterxml.jackson.datatype.jsr310.deser.YearDeserTest
+com.fasterxml.jackson.datatype.jsr310.ModuleTestBase

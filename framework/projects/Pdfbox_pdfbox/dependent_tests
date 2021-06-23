@@ -1,0 +1,2 @@
+--- org.apache.pdfbox.encryption.TestPublicKeyEncryption::testProtection
+--- org.apache.pdfbox.cos.TestCOSFloat::testHashCode

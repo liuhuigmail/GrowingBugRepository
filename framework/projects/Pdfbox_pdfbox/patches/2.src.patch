@@ -1,0 +1,22 @@
+diff --git a/pdfbox/src/main/java/org/apache/pdfbox/pdmodel/edit/PDPageContentStream.java b/pdfbox/src/main/java/org/apache/pdfbox/pdmodel/edit/PDPageContentStream.java
+index 8d3651c63..05583a42e 100644
+--- a/pdfbox/src/main/java/org/apache/pdfbox/pdmodel/edit/PDPageContentStream.java
++++ b/pdfbox/src/main/java/org/apache/pdfbox/pdmodel/edit/PDPageContentStream.java
+@@ -652,7 +652,7 @@ public class PDPageContentStream
+         else if( colorSpace.getType() == ColorSpace.TYPE_CMYK )
+         {
+             color.getColorComponents( colorComponents );
+-            setStrokingColor( colorComponents[0], colorComponents[1], colorComponents[2], colorComponents[3] );
++            setStrokingColor( colorComponents[0], colorComponents[2], colorComponents[2], colorComponents[3] );
+         }
+         else
+         {
+@@ -681,7 +681,7 @@ public class PDPageContentStream
+         else if( colorSpace.getType() == ColorSpace.TYPE_CMYK )
+         {
+             color.getColorComponents( colorComponents );
+-            setNonStrokingColor( colorComponents[0], colorComponents[1], colorComponents[2], colorComponents[3] );
++            setNonStrokingColor( colorComponents[0], colorComponents[2], colorComponents[2], colorComponents[3] );
+         }
+         else
+         {

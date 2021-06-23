@@ -1,0 +1,2 @@
+com.fasterxml.jackson.datatype.jsr310.deser.ZonedDateTimeDeserTest
+com.fasterxml.jackson.datatype.jsr310.ModuleTestBase

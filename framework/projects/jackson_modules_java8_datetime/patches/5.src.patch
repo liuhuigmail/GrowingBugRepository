@@ -1,0 +1,13 @@
+diff --git a/datetime/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/InstantDeserializer.java b/datetime/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/InstantDeserializer.java
+index 7e3ad2e..11db736 100644
+--- a/datetime/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/InstantDeserializer.java
++++ b/datetime/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/InstantDeserializer.java
+@@ -73,7 +73,7 @@ public class InstantDeserializer<T extends Temporal>
+             OffsetDateTime::from,
+             a -> OffsetDateTime.ofInstant(Instant.ofEpochMilli(a.value), a.zoneId),
+             a -> OffsetDateTime.ofInstant(Instant.ofEpochSecond(a.integer, a.fraction), a.zoneId),
+-            (d, z) -> (d.isEqual(OffsetDateTime.MIN) || d.isEqual(OffsetDateTime.MAX) ? d : d.withOffsetSameInstant(z.getRules().getOffset(d.toLocalDateTime()))),
++            (d, z) -> d.withOffsetSameInstant(z.getRules().getOffset(d.toLocalDateTime())),
+             true // yes, replace zero offset with Z
+     );
+ 

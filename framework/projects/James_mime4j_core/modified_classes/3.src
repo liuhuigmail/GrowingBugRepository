@@ -1,0 +1,2 @@
+org.apache.james.mime4j.stream.DefaultBodyDescriptor
+core.org.apache.james.mime4j.stream.RawFieldParser

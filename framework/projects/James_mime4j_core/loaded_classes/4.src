@@ -1,0 +1,6 @@
+org.apache.james.mime4j.codec.DecodeMonitor
+org.apache.james.mime4j.codec.DecoderUtil
+org.apache.james.mime4j.codec.QuotedPrintableInputStream
+org.apache.james.mime4j.util.ByteArrayBuffer
+org.apache.james.mime4j.util.ByteSequence
+org.apache.james.mime4j.util.CharsetUtil

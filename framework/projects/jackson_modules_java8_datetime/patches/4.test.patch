@@ -1,0 +1,77 @@
+diff --git a/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/TestLocalDateTimeDeserialization.java b/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/TestLocalDateTimeDeserialization.java
+index 709e544..f2d2ff1 100644
+--- a/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/TestLocalDateTimeDeserialization.java
++++ b/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/TestLocalDateTimeDeserialization.java
+@@ -3,7 +3,6 @@ package com.fasterxml.jackson.datatype.jsr310;
+ import com.fasterxml.jackson.core.JsonParser;
+ import com.fasterxml.jackson.core.JsonProcessingException;
+ import com.fasterxml.jackson.core.JsonToken;
+-
+ import com.fasterxml.jackson.databind.DeserializationContext;
+ import com.fasterxml.jackson.databind.DeserializationFeature;
+ import com.fasterxml.jackson.databind.ObjectMapper;
+@@ -14,6 +13,7 @@ import com.fasterxml.jackson.databind.exc.MismatchedInputException;
+ import org.junit.Test;
+ 
+ import java.io.IOException;
++import java.time.LocalDate;
+ import java.time.LocalDateTime;
+ import java.time.Month;
+ import java.time.format.DateTimeParseException;
+diff --git a/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/deser/YearDeserTest.java b/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/deser/YearDeserTest.java
+index 8ed35a9..3e147a1 100644
+--- a/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/deser/YearDeserTest.java
++++ b/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/deser/YearDeserTest.java
+@@ -19,7 +19,6 @@ package com.fasterxml.jackson.datatype.jsr310.deser;
+ import java.time.Year;
+ import java.time.temporal.Temporal;
+ 
+-import com.fasterxml.jackson.annotation.JsonFormat;
+ import com.fasterxml.jackson.databind.ObjectMapper;
+ import com.fasterxml.jackson.datatype.jsr310.MockObjectConfiguration;
+ import com.fasterxml.jackson.datatype.jsr310.ModuleTestBase;
+@@ -31,16 +30,6 @@ import static org.junit.Assert.assertTrue;
+ 
+ public class YearDeserTest extends ModuleTestBase
+ {
+-    static class FormattedYear {
+-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "'Y'yyyy")
+-        public Year value;
+-
+-        protected FormattedYear() {}
+-        public FormattedYear(Year year) {
+-            value = year;
+-        }
+-    }
+-
+     private final ObjectMapper MAPPER = newMapper();
+ 
+     @Test
+@@ -61,27 +50,4 @@ public class YearDeserTest extends ModuleTestBase
+         assertTrue("The value should be a Year.", value instanceof Year);
+         assertEquals("The value is not correct.", Year.of(2005), value);
+     }
+-
+-    @Test
+-    public void testWithCustomFormat() throws Exception
+-    {
+-        FormattedYear input = new FormattedYear(Year.of(2018));
+-        String json = MAPPER.writeValueAsString(input);
+-        assertEquals("{\"value\":\"Y2018\"}", json);
+-        FormattedYear result = MAPPER.readValue(json, FormattedYear.class);
+-        assertEquals(input.value, result.value);
+-    }
+-
+-    @Test
+-    public void testWithFormatViaConfigOverride() throws Exception
+-    {
+-        ObjectMapper mapper = newMapper();
+-        mapper.configOverride(Year.class)
+-                .setFormat(JsonFormat.Value.forPattern("'X'yyyy"));
+-        Year input = Year.of(2018);
+-        String json = mapper.writeValueAsString(input);
+-        assertEquals("\"X2018\"", json);
+-        Year result = mapper.readValue(json, Year.class);
+-        assertEquals(input, result);
+-    }
+ }

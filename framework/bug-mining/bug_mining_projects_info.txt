@@ -49,3 +49,9 @@ Pdfbox_fontbox	pdfbox-fontbox	https://github.com/apache/pdfbox.git	jira	PDFBOX	/
 Jackrabbit_filevault_vault_core	jackrabbit-filevault-vault-core	https://hub.fastgit.org/apache/jackrabbit-filevault.git	jira	JCRVLT	/(JCRVLT-\\d+)/mi	vault-core	
 AaltoXml	aalto-xml	https://github.com/FasterXML/aalto-xml.git	github	FasterXML/aalto-xml	/Fix(?:es)?\\s*#(\\d+)/mi	.	
 HttpClient5	httpclient5	https://hub.fastgit.org/apache/httpcomponents-client.git	jira	HTTPCLIENT	/(HTTPCLIENT-\\d+)/mi	httpclient5	
+jackson_modules_java8_datetime	jackson-modules-java8-datetime	https://hub.fastgit.org/FasterXML/jackson-modules-java8.git	github	FasterXML/jackson-modules-java8	/Fix(?:es)?\\s*#(\\d+)/mi	datetime	
+JacksonCore	jackson-core	https://hub.fastgit.org/FasterXML/jackson-core.git	github	FasterXML/jackson-core	/Fix(?:es)?\\s*#(\\d+)/mi	.		
+Pdfbox_pdfbox	pdfbox-pdfbox	https://hub.fastgit.org/apache/pdfbox.git	jira	PDFBOX	/(PDFBOX-\\d+)/mi	pdfbox	
+Jackrabbit_filevault_vault_core	jackrabbit-filevault-vault-core	https://hub.fastgit.org/apache/jackrabbit-filevault.git	jira	JCRVLT	/(JCRVLT-\\d+)/mi	vault-core	
+Storm_client	storm-client	https://hub.fastgit.org/apache/storm.git	jira	STORM	/(STORM-\\d+)/mi	storm-client
+

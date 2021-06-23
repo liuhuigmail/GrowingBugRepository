@@ -1,0 +1,6 @@
+org.apache.james.mime4j.EncodeUtils
+org.apache.james.mime4j.ExampleMail
+org.apache.james.mime4j.stream.MimeTokenEmbeddedMessageTest
+org.apache.james.mime4j.stream.MimeTokenNoRecurseTest
+org.apache.james.mime4j.stream.MultipartStreamTest
+org.apache.james.mime4j.stream.MultipartTokensTest

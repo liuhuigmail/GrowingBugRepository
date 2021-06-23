@@ -1,0 +1,3 @@
+org.apache.james.mime4j.io.BufferedLineReaderInputStream
+core.org.apache.james.mime4j.io.LineReaderInputStreamAdaptor
+core.org.apache.james.mime4j.stream.MimeEntity

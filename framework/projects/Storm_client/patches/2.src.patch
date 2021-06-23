@@ -1,0 +1,13 @@
+diff --git a/storm-client/src/jvm/org/apache/storm/blobstore/BlobStore.java b/storm-client/src/jvm/org/apache/storm/blobstore/BlobStore.java
+index 643bc3fc8..1c10c40ad 100644
+--- a/storm-client/src/jvm/org/apache/storm/blobstore/BlobStore.java
++++ b/storm-client/src/jvm/org/apache/storm/blobstore/BlobStore.java
+@@ -64,7 +64,7 @@ import org.apache.storm.generated.StormTopology;
+  */
+ public abstract class BlobStore implements Shutdownable {
+     private static final Logger LOG = LoggerFactory.getLogger(BlobStore.class);
+-    private static final Pattern KEY_PATTERN = Pattern.compile("^[\\w \\t\\.:_-]+$", Pattern.UNICODE_CHARACTER_CLASS);
++    private static final Pattern KEY_PATTERN = Pattern.compile("^[\\w \\t\\.:_-]+$");
+     protected static final String BASE_BLOBS_DIR_NAME = "blobs";
+ 
+     /**

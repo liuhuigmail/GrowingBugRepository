@@ -146,9 +146,8 @@ sub _post_checkout {
     } 
     close(IN);
     
-    if ($version ne "UNKNOWN"){
-        copy($project_dir."/generated_sources/".$version."/PackageVersion.java", $work_dir."/src/main/java/com/fasterxml/jackson/core/json/PackageVersion.java");
-    }
+    copy($project_dir."/generated_sources/"."PackageVersion.java", $work_dir."/src/main/java/com/fasterxml/jackson/core/json/PackageVersion.java");
+    copy($project_dir."/generated_sources/".$version."/PackageVersion.java", $work_dir."/src/main/java/com/fasterxml/jackson/core/json/PackageVersion.java");
 }
 
 #

@@ -1,0 +1,9 @@
+org.apache.james.mime4j.codec.Base64InputStreamTest
+org.apache.james.mime4j.codec.EncoderUtilTest
+org.apache.james.mime4j.codec.QuotedPrintableEncodeTest
+org.apache.james.mime4j.codec.QuotedPrintableTextEncodeTest
+org.apache.james.mime4j.stream.MimeStreamTokenMessageRfc822Test
+org.apache.james.mime4j.stream.MimeTokenEmbeddedMessageTest
+org.apache.james.mime4j.stream.MimeTokenStreamBodyDescriptorTest
+org.apache.james.mime4j.stream.MimeTokenStreamReaderTest
+org.apache.james.mime4j.stream.MimeTokenStreamTest

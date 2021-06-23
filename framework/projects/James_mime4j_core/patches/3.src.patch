@@ -1,0 +1,27 @@
+diff --git a/core/src/main/java/org/apache/james/mime4j/stream/DefaultBodyDescriptor.java b/core/src/main/java/org/apache/james/mime4j/stream/DefaultBodyDescriptor.java
+index 11f4530a..d6180080 100644
+--- a/core/src/main/java/org/apache/james/mime4j/stream/DefaultBodyDescriptor.java
++++ b/core/src/main/java/org/apache/james/mime4j/stream/DefaultBodyDescriptor.java
+@@ -133,7 +133,8 @@ public class DefaultBodyDescriptor implements MutableBodyDescriptor {
+ 
+     private void parseContentType(RawField field) throws MimeException {
+         contentTypeSet = true;
+-        RawBody body = RawFieldParser.DEFAULT.parseRawBody(field);
++        RawField rf = new RawField(field.getName(), field.getBody());
++        RawBody body = RawFieldParser.DEFAULT.parseRawBody(rf);
+         String main = body.getValue();
+         Map<String, String> params = new HashMap<String, String>();
+         for (NameValuePair nmp: body.getParams()) {
+diff --git a/core/src/main/java/org/apache/james/mime4j/stream/RawFieldParser.java b/core/src/main/java/org/apache/james/mime4j/stream/RawFieldParser.java
+index 362ab841..16cc4b82 100644
+--- a/core/src/main/java/org/apache/james/mime4j/stream/RawFieldParser.java
++++ b/core/src/main/java/org/apache/james/mime4j/stream/RawFieldParser.java
+@@ -265,7 +265,7 @@ public class RawFieldParser {
+                 }
+                 if (current == '\\') {
+                     escaped = true;
+-                } else if (current != '\r' && current != '\n') {
++                } else {
+                     dst.append(current);
+                 }
+             }

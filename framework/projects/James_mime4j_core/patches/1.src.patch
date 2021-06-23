@@ -1,0 +1,61 @@
+diff --git a/core/src/main/java/org/apache/james/mime4j/io/MimeBoundaryInputStream.java b/core/src/main/java/org/apache/james/mime4j/io/MimeBoundaryInputStream.java
+index fc2a15a8..41f9f9d9 100644
+--- a/core/src/main/java/org/apache/james/mime4j/io/MimeBoundaryInputStream.java
++++ b/core/src/main/java/org/apache/james/mime4j/io/MimeBoundaryInputStream.java
+@@ -41,13 +41,12 @@ public class MimeBoundaryInputStream extends LineReaderInputStream {
+ 
+     private BufferedLineReaderInputStream buffer;
+ 
+     /**
+      * Store the first buffer length.
+      * Used to distinguish between an empty preamble and 
+      * no preamble. 
+      */
+-    private int initialLength;
+ 
+     /**
+      * Creates a new MimeBoundaryInputStream.
+      * 
+@@ -68,7 +61,6 @@ public class MimeBoundaryInputStream extends LineReaderInputStream {
+         this.atBoundary = false;
+         this.boundaryLen = 0;
+         this.lastPart = false;
+-        this.initialLength = -1;
+         this.completed = false;
+         
+         this.boundary = new byte[boundary.length() + 2];
+@@ -230,14 +222,10 @@ public class MimeBoundaryInputStream extends LineReaderInputStream {
+         return bytesRead;
+     }
+     
+-    public boolean isEmptyStream() {
+-        return initialLength == 0;
+-    }
+     
+     private void calculateBoundaryLen() throws IOException {
+         boundaryLen = boundary.length;
+         int len = limit - buffer.pos();
+-        if (len >= 0 && initialLength == -1) initialLength = len;
+         if (len > 0) {
+             if (buffer.charAt(limit - 1) == '\n') {
+                 boundaryLen++;
+diff --git a/core/src/main/java/org/apache/james/mime4j/stream/MimeEntity.java b/core/src/main/java/org/apache/james/mime4j/stream/MimeEntity.java
+index c6601846..c1d65f4b 100644
+--- a/core/src/main/java/org/apache/james/mime4j/stream/MimeEntity.java
++++ b/core/src/main/java/org/apache/james/mime4j/stream/MimeEntity.java
+@@ -138,14 +138,13 @@ public class MimeEntity extends AbstractEntity {
+             if (dataStream.isUsed()) {
+                 advanceToBoundary();            
+                 state = EntityStates.T_END_MULTIPART;
+-                break;
+             } else {
+                 createMimePartStream();
+                 state = EntityStates.T_PREAMBLE;
+                 
+-                if (!currentMimePartStream.isEmptyStream()) break;
+                 // continue to next state
+             }
++            break;
+         case EntityStates.T_PREAMBLE:
+         	// removed specific code. Fallback to T_IN_BODYPART that
+         	// better handle missing parts.

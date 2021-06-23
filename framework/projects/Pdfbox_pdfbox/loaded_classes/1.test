@@ -1,0 +1,3 @@
+org.apache.pdfbox.pdmodel.TestPDDocumentCatalog
+org.apache.pdfbox.pdmodel.TestPDDocumentInformation
+org.apache.pdfbox.util.PageExtractorTest

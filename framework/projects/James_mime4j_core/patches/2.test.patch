@@ -1,0 +1,88 @@
+diff --git a/core/src/test/java/org/apache/james/mime4j/stream/MimeTokenEmbeddedMessageTest.java b/core/src/test/java/org/apache/james/mime4j/stream/MimeTokenEmbeddedMessageTest.java
+index bd7425cb..4f2a576c 100644
+--- a/core/src/test/java/org/apache/james/mime4j/stream/MimeTokenEmbeddedMessageTest.java
++++ b/core/src/test/java/org/apache/james/mime4j/stream/MimeTokenEmbeddedMessageTest.java
+@@ -106,6 +106,7 @@ public class MimeTokenEmbeddedMessageTest extends TestCase {
+         nextIs(EntityState.T_BODY);
+         checkInputStream("CUSTARDCUSTARDCUSTARD\r\n");
+         nextIs(EntityState.T_END_BODYPART);
++        nextIs(EntityState.T_EPILOGUE);
+         nextIs(EntityState.T_END_MULTIPART);   
+         nextIs(EntityState.T_END_MESSAGE);
+         nextIs(EntityState.T_END_BODYPART);
+diff --git a/core/src/test/java/org/apache/james/mime4j/stream/MimeTokenNoRecurseTest.java b/core/src/test/java/org/apache/james/mime4j/stream/MimeTokenNoRecurseTest.java
+index 21f89be6..20492aad 100644
+--- a/core/src/test/java/org/apache/james/mime4j/stream/MimeTokenNoRecurseTest.java
++++ b/core/src/test/java/org/apache/james/mime4j/stream/MimeTokenNoRecurseTest.java
+@@ -108,8 +108,11 @@ public class MimeTokenNoRecurseTest extends TestCase {
+         nextIs(EntityState.T_FIELD);
+         nextIs(EntityState.T_END_HEADER);
+         nextIs(EntityState.T_START_MULTIPART);
++        // an empty preamble should not raise a T_PREAMBLE event
++        // nextIs(EntityStates.T_PREAMBLE);
+         nextShouldBeStandardPart(true);
+         nextShouldBeStandardPart(true);
++        nextIs(EntityState.T_EPILOGUE);
+         nextIs(EntityState.T_END_MULTIPART);
+         nextIs(EntityState.T_END_MESSAGE);
+         nextIs(EntityState.T_END_BODYPART);
+diff --git a/core/src/test/java/org/apache/james/mime4j/stream/MultipartStreamTest.java b/core/src/test/java/org/apache/james/mime4j/stream/MultipartStreamTest.java
+index 2c604f45..376d55bf 100644
+--- a/core/src/test/java/org/apache/james/mime4j/stream/MultipartStreamTest.java
++++ b/core/src/test/java/org/apache/james/mime4j/stream/MultipartStreamTest.java
+@@ -136,6 +136,7 @@ public class MultipartStreamTest extends TestCase {
+         checkState(EntityState.T_END_HEADER);
+         checkState(EntityState.T_BODY);
+         checkState(EntityState.T_END_BODYPART);
++        checkState(EntityState.T_EPILOGUE);
+         checkState(EntityState.T_END_MULTIPART);
+         checkState(EntityState.T_END_MESSAGE);
+         checkState(EntityState.T_END_OF_STREAM);
+diff --git a/core/src/test/java/org/apache/james/mime4j/stream/MultipartTokensTest.java b/core/src/test/java/org/apache/james/mime4j/stream/MultipartTokensTest.java
+index 435b2ed1..b301dba0 100644
+--- a/core/src/test/java/org/apache/james/mime4j/stream/MultipartTokensTest.java
++++ b/core/src/test/java/org/apache/james/mime4j/stream/MultipartTokensTest.java
+@@ -39,8 +39,7 @@ public class MultipartTokensTest extends TestCase {
+                 "--1729\r\n" +
+                 "Content-Type: text/plain; charset=US-ASCII\r\n\r\n" +
+                 "Some more text\r\n" +
+-                "--1729--\r\n" +
+-                "An Epilogue\r\n";
++                "--1729--\r\n";
+     public static final String MESSAGE = "To: Road Runner <runner@example.org>\r\n" +
+             "From: Wile E. Cayote <wile@example.org>\r\n" +
+             "Date: Tue, 12 Feb 2008 17:34:09 +0000 (GMT)\r\n" +
+@@ -65,8 +64,7 @@ public class MultipartTokensTest extends TestCase {
+     "\r\n" +
+     "Custard!" +
+     "\r\n" +
+-    "--42--\r\n" +
+-    "A little epilogue\r\n";
++    "--42--\r\n";
+     
+     public static final String COMPLEX_QP_MESSAGE = 
+         "Content-Transfer-Encoding: quoted-printable\r\n" +
+@@ -155,11 +153,15 @@ public class MultipartTokensTest extends TestCase {
+         checkState(EntityState.T_FIELD);
+         checkState(EntityState.T_END_HEADER);
+         checkState(EntityState.T_START_MULTIPART);
++        // an empty preamble should not rais a T_PREAMBLE event
++        // checkState(EntityStates.T_PREAMBLE);
+         checkState(EntityState.T_START_BODYPART);
+         checkState(EntityState.T_START_HEADER);
+         checkState(EntityState.T_FIELD);
+         checkState(EntityState.T_END_HEADER);
+         checkState(EntityState.T_START_MULTIPART);
++        // an empty preamble should not rais a T_PREAMBLE event
++        // checkState(EntityStates.T_PREAMBLE);
+         checkState(EntityState.T_START_BODYPART);
+         checkState(EntityState.T_START_HEADER);
+         checkState(EntityState.T_FIELD);
+@@ -169,6 +171,7 @@ public class MultipartTokensTest extends TestCase {
+         checkState(EntityState.T_EPILOGUE);
+         checkState(EntityState.T_END_MULTIPART);
+         checkState(EntityState.T_END_BODYPART);
++        checkState(EntityState.T_EPILOGUE);
+         checkState(EntityState.T_END_MULTIPART);
+         checkState(EntityState.T_END_MESSAGE);
+         checkState(EntityState.T_END_OF_STREAM);
