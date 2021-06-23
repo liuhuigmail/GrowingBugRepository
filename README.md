@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1075`** bugs
+ **`1083`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -61,6 +61,7 @@ from open-source Java projects.
 | 50     | jackson_modules_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |
 | 51     | Pdfbox_pdfbox         | pdfbox-pdfbox |    pdfbox    |        3      | 1-3               |
 | 52     | Storm_client            | storm-client      |       storm-client      |        2       | 1-2              |
+| 53     | James_mime4j_core            | James-mime4j-core |      core   |       8     | 1-8              |
 
 # Setting up GrowingBugs
 ## Requirements
