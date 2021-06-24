@@ -1,0 +1,14 @@
+com.fasterxml.jackson.dataformat.yaml.DatabindAdvancedTest
+com.fasterxml.jackson.dataformat.yaml.EventsTest
+com.fasterxml.jackson.dataformat.yaml.ExceptionConversionTest
+com.fasterxml.jackson.dataformat.yaml.FormatDetectionTest
+com.fasterxml.jackson.dataformat.yaml.GeneratorFeature34Test
+com.fasterxml.jackson.dataformat.yaml.GeneratorFeatureTest
+com.fasterxml.jackson.dataformat.yaml.MultipleRootValuesTest
+com.fasterxml.jackson.dataformat.yaml.ObjectIdTest
+com.fasterxml.jackson.dataformat.yaml.PolymorphicIdTest
+com.fasterxml.jackson.dataformat.yaml.SimpleDatabindTest
+com.fasterxml.jackson.dataformat.yaml.SimpleGenerationTest
+com.fasterxml.jackson.dataformat.yaml.SimpleParseTest
+com.fasterxml.jackson.dataformat.yaml.TestVersions
+com.fasterxml.jackson.dataformat.yaml.TypeIdTest

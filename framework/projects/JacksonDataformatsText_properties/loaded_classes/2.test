@@ -1,0 +1,4 @@
+com.fasterxml.jackson.dataformat.javaprop.ModuleTestBase
+com.fasterxml.jackson.dataformat.javaprop.StreamClosingTest
+com.fasterxml.jackson.dataformat.javaprop.testutil.CloseStateInputStream
+com.fasterxml.jackson.dataformat.javaprop.testutil.CloseStateReader

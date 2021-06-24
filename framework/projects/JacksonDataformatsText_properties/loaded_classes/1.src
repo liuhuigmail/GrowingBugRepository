@@ -1,0 +1,15 @@
+com.fasterxml.jackson.dataformat.javaprop.impl.PropertiesBackedGenerator
+com.fasterxml.jackson.dataformat.javaprop.impl.WriterBackedGenerator
+com.fasterxml.jackson.dataformat.javaprop.io.JPropEscapes
+com.fasterxml.jackson.dataformat.javaprop.io.JPropReadContext
+com.fasterxml.jackson.dataformat.javaprop.io.JPropWriteContext
+com.fasterxml.jackson.dataformat.javaprop.io.Latin1Reader
+com.fasterxml.jackson.dataformat.javaprop.JavaPropsFactory
+com.fasterxml.jackson.dataformat.javaprop.JavaPropsGenerator
+com.fasterxml.jackson.dataformat.javaprop.JavaPropsMapper
+com.fasterxml.jackson.dataformat.javaprop.JavaPropsParser
+com.fasterxml.jackson.dataformat.javaprop.JavaPropsSchema
+com.fasterxml.jackson.dataformat.javaprop.util.JPropNode
+com.fasterxml.jackson.dataformat.javaprop.util.JPropNodeBuilder
+com.fasterxml.jackson.dataformat.javaprop.util.JPropPathSplitter
+com.fasterxml.jackson.dataformat.javaprop.util.Markers

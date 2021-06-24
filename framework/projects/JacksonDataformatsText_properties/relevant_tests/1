@@ -1,0 +1,11 @@
+com.fasterxml.jackson.dataformat.javaprop.ArrayGenerationTest
+com.fasterxml.jackson.dataformat.javaprop.ArrayParsingTest
+com.fasterxml.jackson.dataformat.javaprop.BinaryParsingTest
+com.fasterxml.jackson.dataformat.javaprop.CustomSeparatorsTest
+com.fasterxml.jackson.dataformat.javaprop.GenerationEscapingTest
+com.fasterxml.jackson.dataformat.javaprop.MapParsingTest
+com.fasterxml.jackson.dataformat.javaprop.PropertiesSupportTest
+com.fasterxml.jackson.dataformat.javaprop.SimpleGenerationTest
+com.fasterxml.jackson.dataformat.javaprop.SimpleParsingTest
+com.fasterxml.jackson.dataformat.javaprop.SimpleStreamingTest
+com.fasterxml.jackson.dataformat.javaprop.TestVersions

@@ -1,0 +1,12 @@
+diff --git a/properties/src/main/java/com/fasterxml/jackson/dataformat/javaprop/JavaPropsParser.java b/properties/src/main/java/com/fasterxml/jackson/dataformat/javaprop/JavaPropsParser.java
+index ae32c48..234043c 100644
+--- a/properties/src/main/java/com/fasterxml/jackson/dataformat/javaprop/JavaPropsParser.java
++++ b/properties/src/main/java/com/fasterxml/jackson/dataformat/javaprop/JavaPropsParser.java
+@@ -209,7 +209,6 @@ public class JavaPropsParser extends ParserMinimalBase
+ 
+     @Override
+     public JsonToken nextToken() throws IOException {
+-        _binaryValue = null;
+         if (_readContext == null) {
+             if (_closed) {
+                 return null;

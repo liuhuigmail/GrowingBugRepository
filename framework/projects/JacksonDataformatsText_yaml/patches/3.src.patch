@@ -1,0 +1,27 @@
+diff --git a/yaml/src/main/java/com/fasterxml/jackson/dataformat/yaml/YAMLParser.java b/yaml/src/main/java/com/fasterxml/jackson/dataformat/yaml/YAMLParser.java
+index 0f22c2b..52661f4 100644
+--- a/yaml/src/main/java/com/fasterxml/jackson/dataformat/yaml/YAMLParser.java
++++ b/yaml/src/main/java/com/fasterxml/jackson/dataformat/yaml/YAMLParser.java
+@@ -383,20 +383,17 @@ public class YAMLParser extends ParserBase
+                         }
+                         _reportError("Expected a field name (Scalar value in YAML), got this instead: "+evt);
+                     }
+                     // 20-Feb-2019, tatu: [dataformats-text#123] Looks like YAML exposes Anchor for Object at point
+                     //   where we return START_OBJECT (which makes sense), but, alas, Jackson expects that at point
+                     //   after first FIELD_NAME. So we will need to defer clearing of the anchor slightly,
+                     //   just for the very first entry; and only if no anchor for name found.
+                     //  ... not even 100% sure this is correct, or robust, but does appear to work for specific
+                     //  test case given.
+-                    final ScalarEvent scalar = (ScalarEvent) evt;
+-                    final String newAnchor = scalar.getAnchor();
+-                    if ((newAnchor != null) || (_currToken != JsonToken.START_OBJECT)) {
+                         _currentAnchor = scalar.getAnchor();
+-                    }
+-                    final String name = scalar.getValue();
++                    ScalarEvent scalar = (ScalarEvent) evt;
++                    String name = scalar.getValue();
+                     _currentFieldName = name;
+                     _parsingContext.setCurrentName(name);
+                     return (_currToken = JsonToken.FIELD_NAME);
+                 }
+             }

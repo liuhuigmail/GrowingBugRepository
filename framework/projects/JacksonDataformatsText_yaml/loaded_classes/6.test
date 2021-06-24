@@ -1,0 +1,2 @@
+com.fasterxml.jackson.dataformat.yaml.deser.StreamingParseTest
+com.fasterxml.jackson.dataformat.yaml.ModuleTestBase

@@ -1,0 +1,30 @@
+diff --git a/properties/src/main/java/com/fasterxml/jackson/dataformat/javaprop/JavaPropsFactory.java b/properties/src/main/java/com/fasterxml/jackson/dataformat/javaprop/JavaPropsFactory.java
+index 6e932c3..0d45295 100644
+--- a/properties/src/main/java/com/fasterxml/jackson/dataformat/javaprop/JavaPropsFactory.java
++++ b/properties/src/main/java/com/fasterxml/jackson/dataformat/javaprop/JavaPropsFactory.java
+@@ -348,7 +347,7 @@ public class JavaPropsFactory extends JsonFactory
+     {
+         Properties props = new Properties();
+         // May or may not want to close the reader, so...
+-        if (ctxt.isResourceManaged() || isEnabled(StreamReadFeature.AUTO_CLOSE_SOURCE)) {
++        if (ctxt.isResourceManaged()) {
+             try (Reader r = r0) {
+                 props.load(r);
+             }
+diff --git a/properties/src/main/java/com/fasterxml/jackson/dataformat/javaprop/io/Latin1Reader.java b/properties/src/main/java/com/fasterxml/jackson/dataformat/javaprop/io/Latin1Reader.java
+index efe99c4..b7e5a67 100644
+--- a/properties/src/main/java/com/fasterxml/jackson/dataformat/javaprop/io/Latin1Reader.java
++++ b/properties/src/main/java/com/fasterxml/jackson/dataformat/javaprop/io/Latin1Reader.java
+@@ -96,12 +96,8 @@ public final class Latin1Reader extends Reader
+     @Override
+     public void close() throws IOException
+     {
+-        InputStream in = _inputSource;
+-        if (in != null) {
+             _inputSource = null;
+             freeBuffers();
+-            in.close();
+-        }
+     }
+ 
+     private char[] _tmpBuffer = null;

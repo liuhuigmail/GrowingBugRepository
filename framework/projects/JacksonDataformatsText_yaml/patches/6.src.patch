@@ -1,0 +1,13 @@
+diff --git a/yaml/src/main/java/com/fasterxml/jackson/dataformat/yaml/YAMLParser.java b/yaml/src/main/java/com/fasterxml/jackson/dataformat/yaml/YAMLParser.java
+index e790b29..cf5fbf0 100644
+--- a/yaml/src/main/java/com/fasterxml/jackson/dataformat/yaml/YAMLParser.java
++++ b/yaml/src/main/java/com/fasterxml/jackson/dataformat/yaml/YAMLParser.java
+@@ -326,7 +326,7 @@ public class YAMLParser extends ParserBase
+                     -1, -1, -1);
+         }
+         return new JsonLocation(_ioContext.getSourceReference(),
+-                m.getIndex(),
++                -1,
+                 m.getLine() + 1, // from 0- to 1-based
+                 m.getColumn() + 1); // ditto
+     }
