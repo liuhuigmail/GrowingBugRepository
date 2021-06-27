@@ -55,3 +55,5 @@ Pdfbox_pdfbox	pdfbox-pdfbox	https://hub.fastgit.org/apache/pdfbox.git	jira	PDFBO
 Jackrabbit_filevault_vault_core	jackrabbit-filevault-vault-core	https://hub.fastgit.org/apache/jackrabbit-filevault.git	jira	JCRVLT	/(JCRVLT-\\d+)/mi	vault-core	
 Storm_client	storm-client	https://hub.fastgit.org/apache/storm.git	jira	STORM	/(STORM-\\d+)/mi	storm-client
 James_mime4j_core	james-mime4j-core https://hub.fastgit.org/apache/james-mime4j.git	jira	MIME4J	/MIME4J-\\d+/mi	core	
+JacksonDataformatsText_properties	jackson-dataformats-text-properties	https://hub.fastgit.org/FasterXML/jackson-dataformats-text.git	github	FasterXML/jackson-dataformats-text	/Fix(?:es)?\\s*#(\\d+)/mi	properties	
+JacksonDataformatsText_yaml	jackson-dataformats-text-yaml	https://hub.fastgit.org/FasterXML/jackson-dataformats-text.git	github	FasterXML/jackson-dataformats-text	/Fix(?:es)?\\s*#(\\d+)/mi	yaml	
