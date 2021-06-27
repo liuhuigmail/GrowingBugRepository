@@ -28,7 +28,7 @@ do
     
    nums=$(wc -l < $work_dir/framework/projects/$project_id/active-bugs.csv)
    nums=`expr $nums - 1`
-   arr=( 297 );
+   arr=(7 28);
    #arr=(1019);
    for i in ${arr[@]}
    #for((i=24;i<=$nums;i++));  
@@ -41,7 +41,7 @@ do
    #            -s $sub_project -b $i
    # Determine triggering tests of the project
    #perl ./get-trigger.pl -p $project_id -w $work_dir -s $sub_project -b $i
-   #perl ./get-metadata.pl -p $project_id -w $work_dir -b $i -s $sub_project
+   # perl ./get-metadata.pl -p $project_id -w $work_dir -b $i -s $sub_project
    perl ./promote-to-db.pl -p $project_id -w $work_dir -r $WORK_DIR/project_repos/$project_name.git -b $i
    
 done   
