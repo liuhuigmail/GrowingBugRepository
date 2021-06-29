@@ -131,6 +131,9 @@ Notably, this bug repository is based on the well-known **Defects4J** https://gi
 
 Under MIT License, you are free to use, modify, and distribute this repository with proper reference/citation.
 
+## Versions
+Because the bug repository keeps growing, let us known if you need a stable version for your study (e.g., evalutions for a research paper), and we will release a specific version where the bugs and patches are fixed (to faciliate the replication of your study).  
+
 ## Citation
 If you are exploiting our dataset, please kindly cite the following paper:
 
