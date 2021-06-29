@@ -1,0 +1,18 @@
+diff --git a/src/main/java/com/fasterxml/jackson/module/jsonSchema/types/ValueTypeSchema.java b/src/main/java/com/fasterxml/jackson/module/jsonSchema/types/ValueTypeSchema.java
+index 2e8fa6e..98d24b5 100644
+--- a/src/main/java/com/fasterxml/jackson/module/jsonSchema/types/ValueTypeSchema.java
++++ b/src/main/java/com/fasterxml/jackson/module/jsonSchema/types/ValueTypeSchema.java
+@@ -3,12 +3,11 @@ package com.fasterxml.jackson.module.jsonSchema.types;
+ import java.util.*;
+ 
+ import com.fasterxml.jackson.annotation.JsonProperty;
+-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+ import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonValueFormat;
+ import com.fasterxml.jackson.module.jsonSchema.JsonSchema;
+ 
+ /**
+  * This class represents a {@link JsonSchema}
+  * A primitive type.
+  */
+ public abstract class ValueTypeSchema extends SimpleTypeSchema
+ {

@@ -1,0 +1,6 @@
+com.fasterxml.jackson.dataformat.cbor.CBORConstants
+com.fasterxml.jackson.dataformat.cbor.CBORFactory
+com.fasterxml.jackson.dataformat.cbor.CBORGenerator
+com.fasterxml.jackson.dataformat.cbor.CBORParser
+com.fasterxml.jackson.dataformat.cbor.CBORParserBootstrapper
+com.fasterxml.jackson.dataformat.cbor.CBORReadContext

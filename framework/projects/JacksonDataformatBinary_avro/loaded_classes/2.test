@@ -1,0 +1,4 @@
+com.fasterxml.jackson.dataformat.avro.AvroTestBase
+com.fasterxml.jackson.dataformat.avro.schemaev.UnionArrayEvolutionTest
+com.fasterxml.jackson.dataformat.avro.schemaev.UnionMapEvolutionTest
+com.fasterxml.jackson.dataformat.avro.schemaev.UnionRecordEvolutionTest

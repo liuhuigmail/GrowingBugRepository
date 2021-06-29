@@ -1,0 +1,26 @@
+diff --git a/src/main/java/com/fasterxml/jackson/datatype/joda/cfg/JacksonJodaDateFormat.java b/src/main/java/com/fasterxml/jackson/datatype/joda/cfg/JacksonJodaDateFormat.java
+index 8bccca4..96f4194 100644
+--- a/src/main/java/com/fasterxml/jackson/datatype/joda/cfg/JacksonJodaDateFormat.java
++++ b/src/main/java/com/fasterxml/jackson/datatype/joda/cfg/JacksonJodaDateFormat.java
+@@ -120,7 +120,7 @@ public class JacksonJodaDateFormat extends JacksonJodaFormatBase
+         JacksonJodaDateFormat format = this;
+         format = format.withLocale(ann.getLocale());
+         format = format.withTimeZone(ann.getTimeZone());
+-        format = format.withFormat(ann.getPattern());
++        format = format.withFormat(ann.getPattern().trim());
+         Boolean adjustTZ = ann.getFeature(JsonFormat.Feature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
+         Boolean writeZoneId = ann.getFeature(JsonFormat.Feature.WRITE_DATES_WITH_ZONE_ID);
+         if ((adjustTZ != _adjustToContextTZOverride)
+diff --git a/src/main/java/com/fasterxml/jackson/datatype/joda/ser/PeriodSerializer.java b/src/main/java/com/fasterxml/jackson/datatype/joda/ser/PeriodSerializer.java
+index 42e9c1b..9388e4b 100644
+--- a/src/main/java/com/fasterxml/jackson/datatype/joda/ser/PeriodSerializer.java
++++ b/src/main/java/com/fasterxml/jackson/datatype/joda/ser/PeriodSerializer.java
+@@ -72,7 +72,7 @@ public class PeriodSerializer // non final since 2.6.1
+                     format = format.withUseTimestamp(useTimestamp);
+                 }
+                 // for others, safe to call, null/empty just ignored
+-                format = format.withFormat(ann.getPattern());
++                format = format.withFormat(ann.getPattern().trim());
+                 format = format.withLocale(ann.getLocale());
+                 if (format != _format) {
+                     return new PeriodSerializer(format);

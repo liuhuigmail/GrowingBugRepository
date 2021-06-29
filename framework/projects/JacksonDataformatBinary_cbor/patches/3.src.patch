@@ -1,0 +1,31 @@
+diff --git a/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORGenerator.java b/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORGenerator.java
+index ab856d28..e27eca5d 100644
+--- a/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORGenerator.java
++++ b/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORGenerator.java
+@@ -1032,11 +1032,11 @@ public class CBORGenerator extends GeneratorBase
+         _writeByte(BYTE_TAG_DECIMAL_FRACTION);
+         _writeByte(BYTE_ARRAY_2_ELEMENTS);
+ 
+         // 27-Nov-2019, tatu: As per [dataformats-binary#139] need to change sign here
+         int scale = dec.scale();
+-        _writeIntValue(-scale);
+         // Hmmmh. Specification suggest use of regular integer for mantissa. But
+         // if it doesn't fit, use "bignum"
++        _writeIntValue(scale);
+         BigInteger unscaled = dec.unscaledValue();
+         int bitLength = unscaled.bitLength();
+         if (bitLength <= 31) {
+diff --git a/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORParser.java b/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORParser.java
+index 5910f0f9..6e29eb3d 100644
+--- a/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORParser.java
++++ b/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORParser.java
+@@ -882,8 +882,8 @@ public class CBORParser extends ParserMinimalBase
+         if (t != JsonToken.VALUE_NUMBER_INT) {
+             _reportError("Unexpected token ("+t+") as the first part of 'bigfloat' value: should get VALUE_NUMBER_INT");
+         }
+         // 27-Nov-2019, tatu: As per [dataformats-binary#139] need to change sign here
+-        int exp = -getIntValue();
++        int exp = getIntValue();
+ 
+         t = nextToken();
+         // Should get an integer value; int/long/BigInteger

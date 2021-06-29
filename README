@@ -1,0 +1,22 @@
+Repositories updated: 06/2016
+-----------------------------
+jfreechart:             Synchronized with SourceForge
+commons-math:           Cloned from Apache (http://git.apache.org/commons-math.git)
+commons-lang:           Cloned from Apache (http://git.apache.org/commons-lang.git)
+closure-compiler:       Cloned from Google Code (https://code.google.com/p/closure-compiler)
+JodaTime:               Cloned from GitHub (https://github.com/JodaOrg/joda-time.git)
+Mockito:                Cloned from GitHub (https://github.com/mockito/mockito.git)
+
+Repositories updated: 08/2019
+-----------------------------
+commons-collections:    Cloned from https://github.com/apache/commons-collections
+commons-compress:       Cloned from https://github.com/apache/commons-compress
+commons-cli:            Cloned from https://github.com/apache/commons-cli
+commons-csv:            Cloned from https://github.com/apache/commons-csv
+commons-codec:          Cloned from https://github.com/apache/commons-codec
+commons-jxpath:         Cloned from https://github.com/apache/commons-jxpath
+jackson-core:           Cloned from https://github.com/FasterXML/jackson-core
+jackson-dataformat-xml: Cloned from https://github.com/FasterXML/jackson-dataformat-xml
+jackson-databind:       Cloned from https://github.com/FasterXML/jackson-databind
+jsoup:                  Cloned from https://github.com/jhy/jsoup.git
+gson:                   Cloned from https://github.com/google/gson.git

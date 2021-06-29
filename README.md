@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1090`** bugs
+ **`1106`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -64,6 +64,11 @@ from open-source Java projects.
 | 53     | James_mime4j_core            | James-mime4j-core |      core   |       8     | 1-8              |
 | 54     | JacksonDataformatsText_yaml            | jackson-dataformats-text-yaml |      yaml   |       7     | 1-7              |
 | 55     | JacksonDataformatsText_properties            | jackson-dataformats-text-properties |      properties   |       2     | 1-2              |
+| 56     | JacksonDataformatBinary_avro            | jackson-dataformats-binary-avro |      avro   |       2     | 1-2              |
+| 57     | JacksonDataformatBinary_cbor            | jackson-dataformats-binary-cbor |      cbor   |       5     | 1-5              |
+| 58     | JavaClassmate            | java-classmate |        |       2     | 1-2              |
+| 59     | JacksonModuleJsonSchema            | jackson-module-jsonSchema |      |       2     | 1-2              |
+| 60     | JacksonDatatypeJoda            | jackson-datatype-joda |        |       3     | 1-3              |
 # Setting up GrowingBugs
 ## Requirements
  - Java 1.8

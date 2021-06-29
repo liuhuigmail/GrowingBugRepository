@@ -1,0 +1,4 @@
+com.fasterxml.jackson.dataformat.cbor.CBORTestBase
+com.fasterxml.jackson.dataformat.cbor.GeneratorSimpleTest
+com.fasterxml.jackson.dataformat.cbor.parse.ParserNumbersTest
+com.fasterxml.jackson.dataformat.cbor.util.ThrottledInputStream

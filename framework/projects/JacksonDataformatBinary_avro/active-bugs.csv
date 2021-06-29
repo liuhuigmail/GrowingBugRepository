@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,57f811b8dbf944f6e52aeb7235492ec6622d1bb6,a837a64be4f1e93545bef21de0219415d930b26f,39,https://github.com/FasterXML/jackson-dataformats-binary/issues/39
+2,4ac24abb78201b411213f483b7e6582ba4eded17,8a0df0a0cc37aec3021808e29614f3fdba24e2e9,161,https://github.com/FasterXML/jackson-dataformats-binary/issues/161

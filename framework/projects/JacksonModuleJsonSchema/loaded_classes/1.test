@@ -1,0 +1,3 @@
+com.fasterxml.jackson.module.jsonSchema.SchemaTestBase
+com.fasterxml.jackson.module.jsonSchema.TestBase
+com.fasterxml.jackson.module.jsonSchema.TestVisitorContext

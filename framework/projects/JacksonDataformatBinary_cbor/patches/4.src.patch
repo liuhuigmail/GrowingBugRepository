@@ -1,0 +1,22 @@
+diff --git a/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORGenerator.java b/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORGenerator.java
+index 5ab6da2c..ab856d28 100644
+--- a/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORGenerator.java
++++ b/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORGenerator.java
+@@ -1097,6 +1097,7 @@ public class CBORGenerator extends GeneratorBase
+     /**********************************************************
+      */
+ 
++    @SuppressWarnings("deprecation")
+     @Override
+     public final void flush() throws IOException {
+         _flushBuffer();
+@@ -1128,8 +1129,8 @@ public class CBORGenerator extends GeneratorBase
+         if (_ioContext.isResourceManaged()
+                 || isEnabled(JsonGenerator.Feature.AUTO_CLOSE_TARGET)) {
+             _out.close();
+-        } else if (isEnabled(JsonGenerator.Feature.FLUSH_PASSED_TO_STREAM)) {
+             // 14-Jan-2019, tatu: [dataformats-binary#155]: unless prevented via feature
++        } else {
+             // If we can't close it, we should at least flush
+             _out.flush();
+         }

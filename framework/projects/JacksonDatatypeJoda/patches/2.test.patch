@@ -1,0 +1,32 @@
+diff --git a/src/test/java/com/fasterxml/jackson/datatype/joda/DateTimeTest.java b/src/test/java/com/fasterxml/jackson/datatype/joda/DateTimeTest.java
+index ec4b74a..f9b16ce 100644
+--- a/src/test/java/com/fasterxml/jackson/datatype/joda/DateTimeTest.java
++++ b/src/test/java/com/fasterxml/jackson/datatype/joda/DateTimeTest.java
+@@ -91,10 +91,9 @@ public class DateTimeTest extends JodaTestBase
+ 
+     public void testSerializationFeatureNoTimestamp() throws IOException
+     {
+-		String json = MAPPER.writer()
+-				.without(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+-				.writeValueAsString(DATE_JAN_1_1970_UTC);
+-        assertEquals(quote("1970-01-01T00:00:00.000Z"), json);
++        ObjectMapper m = jodaMapper();
++        m.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
++        assertEquals(quote("1970-01-01T00:00:00.000Z"), m.writeValueAsString(DATE_JAN_1_1970_UTC));
+     }
+ 
+     public void testAnnotationAsText() throws IOException
+@@ -106,13 +105,6 @@ public class DateTimeTest extends JodaTestBase
+                 m.writeValueAsString(new DateAsText(DATE_JAN_1_1970_UTC)));
+     }
+ 
+-    // for [datatype-joda#70]
+-    public void testAsTextNoMilliseconds() throws Exception
+-    {
+-    	DateTime value = MAPPER.readValue(quote("2015-07-27T08:11:07-07:00"), DateTime.class);
+-    	assertNotNull(value);
+-    }
+-    
+     public void testCustomPatternStyle() throws IOException
+     {
+         // or, using annotations

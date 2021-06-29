@@ -1,0 +1,16 @@
+com.fasterxml.jackson.module.jsonSchema.CustomSchemaReadTest
+com.fasterxml.jackson.module.jsonSchema.EnumGenerationTest
+com.fasterxml.jackson.module.jsonSchema.EnumSchemaTest
+com.fasterxml.jackson.module.jsonSchema.HyperSchemaFactoryWrapperTest
+com.fasterxml.jackson.module.jsonSchema.TestCyclic
+com.fasterxml.jackson.module.jsonSchema.TestEquals
+com.fasterxml.jackson.module.jsonSchema.TestGenerateJsonSchema
+com.fasterxml.jackson.module.jsonSchema.TestJDKTypes
+com.fasterxml.jackson.module.jsonSchema.TestJsonValue
+com.fasterxml.jackson.module.jsonSchema.TestPropertyOrderInSchema
+com.fasterxml.jackson.module.jsonSchema.TestReadJsonSchema
+com.fasterxml.jackson.module.jsonSchema.TestTypeGeneration
+com.fasterxml.jackson.module.jsonSchema.TestUnwrapping
+com.fasterxml.jackson.module.jsonSchema.TestVisitorContext
+com.fasterxml.jackson.module.jsonSchema.TitleSchemaFactoryWrapperTest
+com.fasterxml.jackson.module.jsonSchema.ValidationSchemaFactoryWrapperTest
