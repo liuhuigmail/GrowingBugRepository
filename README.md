@@ -69,6 +69,7 @@ from open-source Java projects.
 | 58     | JavaClassmate            | java-classmate |        |       2     | 1-2              |
 | 59     | JacksonModuleJsonSchema            | jackson-module-jsonSchema |      |       2     | 1-2              |
 | 60     | JacksonDatatypeJoda            | jackson-datatype-joda |        |       3     | 1-3              |
+# Setting up GrowingBugs
 
 ## Requirements
  - Java 1.8
