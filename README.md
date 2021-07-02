@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1106`** bugs
+ **`1150`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -18,7 +18,7 @@ from open-source Java projects.
 | 7     | Csv             | commons-csv                |                           |       17       | 1-17                |
 | 8     | Gson            | gson                       |                           |       18       | 1-18                |
 | 9     | JacksonCore     | jackson-core               |                           |       29       | 1-26,28-30                |
-| 10     | JacksonDatabind | jackson-databind           |                          |      112       | 1-112               |
+| 10     | JacksonDatabind | jackson-databind           |                          |      156       | 1-156               |
 | 11     | JacksonXml      | jackson-dataformat-xml     |                          |        6       | 1-6                 |
 | 12    | Jsoup           | jsoup                      |                           |       93       | 1-93                |
 | 13     | JxPath          | commons-jxpath             |                          |       22       | 1-22                |
@@ -69,7 +69,7 @@ from open-source Java projects.
 | 58     | JavaClassmate            | java-classmate |        |       2     | 1-2              |
 | 59     | JacksonModuleJsonSchema            | jackson-module-jsonSchema |      |       2     | 1-2              |
 | 60     | JacksonDatatypeJoda            | jackson-datatype-joda |        |       3     | 1-3              |
-# Setting up GrowingBugs
+
 ## Requirements
  - Java 1.8
  - Git >= 1.9
