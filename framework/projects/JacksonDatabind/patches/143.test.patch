@@ -1,0 +1,101 @@
+diff --git a/src/test/java/com/fasterxml/jackson/databind/format/MapEntryFormatTest.java b/src/test/java/com/fasterxml/jackson/databind/format/MapEntryFormatTest.java
+index ce875a517..81c21af4a 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/format/MapEntryFormatTest.java
++++ b/src/test/java/com/fasterxml/jackson/databind/format/MapEntryFormatTest.java
+@@ -99,12 +99,36 @@ public class MapEntryFormatTest extends BaseMapTest
+     
+     /*
+     /**********************************************************
+-    /* Test methods, basic
++    /* Test methods
+     /**********************************************************
+      */
+     
+     private final ObjectMapper MAPPER = newObjectMapper();
+ 
++    public void testAsNaturalRoundtrip() throws Exception
++    {
++        BeanWithMapEntry input = new BeanWithMapEntry("foo" ,"bar");
++        String json = MAPPER.writeValueAsString(input);
++        assertEquals(aposToQuotes("{'entry':{'foo':'bar'}}"), json);
++        BeanWithMapEntry result = MAPPER.readValue(json, BeanWithMapEntry.class);
++        assertEquals("foo", result.entry.getKey());
++        assertEquals("bar", result.entry.getValue());
++    }
++    // should work via class annotation
++    public void testAsObjectRoundtrip() throws Exception
++    {
++        MapEntryAsObject input = new MapEntryAsObject("foo" ,"bar");
++        String json = MAPPER.writeValueAsString(input);
++        assertEquals(aposToQuotes("{'key':'foo','value':'bar'}"), json);
++
++        // 16-Oct-2016, tatu: Happens to work by default because it's NOT basic
++        //   `Map.Entry` but subtype.
++        
++        MapEntryAsObject result = MAPPER.readValue(json, MapEntryAsObject.class);
++        assertEquals("foo", result.getKey());
++        assertEquals("bar", result.getValue());
++    }
++
+     public void testInclusion() throws Exception
+     {
+         assertEquals(aposToQuotes("{'entry':{'a':'b'}}"),
+@@ -135,45 +159,4 @@ public class MapEntryFormatTest extends BaseMapTest
+         assertEquals(aposToQuotes("{}"),
+                 MAPPER.writeValueAsString(new EntryWithNonAbsentWrapper("a", null)));
+     }
+-
+-    /*
+-    /**********************************************************
+-    /* Test methods, as-Object (Shape)
+-    /**********************************************************
+-     */
+-
+-    public void testAsNaturalRoundtrip() throws Exception
+-    {
+-        BeanWithMapEntry input = new BeanWithMapEntry("foo" ,"bar");
+-        String json = MAPPER.writeValueAsString(input);
+-        assertEquals(aposToQuotes("{'entry':{'foo':'bar'}}"), json);
+-        BeanWithMapEntry result = MAPPER.readValue(json, BeanWithMapEntry.class);
+-        assertEquals("foo", result.entry.getKey());
+-        assertEquals("bar", result.entry.getValue());
+-    }
+-    // should work via class annotation
+-    public void testAsObjectRoundtrip() throws Exception
+-    {
+-        MapEntryAsObject input = new MapEntryAsObject("foo" ,"bar");
+-        String json = MAPPER.writeValueAsString(input);
+-        assertEquals(aposToQuotes("{'key':'foo','value':'bar'}"), json);
+-
+-        // 16-Oct-2016, tatu: Happens to work by default because it's NOT basic
+-        //   `Map.Entry` but subtype.
+-        
+-        MapEntryAsObject result = MAPPER.readValue(json, MapEntryAsObject.class);
+-        assertEquals("foo", result.getKey());
+-        assertEquals("bar", result.getValue());
+-    }
+-
+-    // [databind#1895]
+-    public void testDefaultShapeOverride() throws Exception
+-    {
+-        ObjectMapper mapper = new ObjectMapper();
+-        mapper.configOverride(Map.Entry.class)
+-            .setFormat(JsonFormat.Value.forShape(JsonFormat.Shape.OBJECT));
+-        Map.Entry<String,String> input = new BeanWithMapEntry("foo", "bar").entry;
+-        assertEquals(aposToQuotes("{'key':'foo','value':'bar'}"),
+-                mapper.writeValueAsString(input));
+-    }
+ }
+diff --git a/src/test/java/com/fasterxml/jackson/databind/ser/jdk/AtomicTypeSerializationTest.java b/src/test/java/com/fasterxml/jackson/databind/ser/jdk/AtomicTypeSerializationTest.java
+index 19f289018..8da999f6e 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/ser/jdk/AtomicTypeSerializationTest.java
++++ b/src/test/java/com/fasterxml/jackson/databind/ser/jdk/AtomicTypeSerializationTest.java
+@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
+ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+ 
+ /**
+- * Unit tests for verifying serialization of {@link java.util.concurrent.atomic.AtomicReference}
++ * Unit tests for verifying serialization of {@link java.util.concurrent.AtomicReference}
+  * and other atomic types, via various settings.
+  */
+ public class AtomicTypeSerializationTest

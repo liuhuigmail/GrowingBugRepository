@@ -1,0 +1,16 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/deser/std/EnumDeserializer.java b/src/main/java/com/fasterxml/jackson/databind/deser/std/EnumDeserializer.java
+index c697e1ce8..18923cdd4 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/deser/std/EnumDeserializer.java
++++ b/src/main/java/com/fasterxml/jackson/databind/deser/std/EnumDeserializer.java
+@@ -233,11 +233,6 @@ public class EnumDeserializer
+                 if (c >= '0' && c <= '9') {
+                     try {
+                         int index = Integer.parseInt(name);
+-                        if (!ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS)) {
+-                            return ctxt.handleWeirdStringValue(_enumClass(), name,
+-"value looks like quoted Enum index, but `MapperFeature.ALLOW_COERCION_OF_SCALARS` prevents use"
+-                                    );
+-                        }
+                         if (index >= 0 && index < _enumsByIndex.length) {
+                             return _enumsByIndex[index];
+                         }

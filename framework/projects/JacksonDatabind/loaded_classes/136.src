@@ -1,0 +1,7 @@
+com.fasterxml.jackson.databind.AnnotationIntrospector
+com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair
+com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector
+com.fasterxml.jackson.databind.ObjectMapper
+com.fasterxml.jackson.databind.ObjectReader
+com.fasterxml.jackson.databind.ObjectWriter
+com.fasterxml.jackson.databind.type.TypeFactory

@@ -1,0 +1,109 @@
+diff --git a/src/test/java/com/fasterxml/jackson/databind/BaseMapTest.java b/src/test/java/com/fasterxml/jackson/databind/BaseMapTest.java
+index 5d2558fc5..71d17dc2c 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/BaseMapTest.java
++++ b/src/test/java/com/fasterxml/jackson/databind/BaseMapTest.java
+@@ -215,7 +215,7 @@ public abstract class BaseMapTest
+         }
+         return SHARED_MAPPER;
+     }
+-
++    
+     protected ObjectMapper objectMapper() {
+         return sharedMapper();
+     }
+diff --git a/src/test/java/com/fasterxml/jackson/databind/contextual/TestContextAttributeWithDeser.java b/src/test/java/com/fasterxml/jackson/databind/contextual/TestContextAttributeWithDeser.java
+index fe9f10a69..16491fd12 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/contextual/TestContextAttributeWithDeser.java
++++ b/src/test/java/com/fasterxml/jackson/databind/contextual/TestContextAttributeWithDeser.java
+@@ -45,7 +45,7 @@ public class TestContextAttributeWithDeser extends BaseMapTest
+     /**********************************************************
+      */
+ 
+-    final ObjectMapper MAPPER = sharedMapper();
++    final ObjectMapper MAPPER = objectMapper();
+     
+     public void testSimplePerCall() throws Exception
+     {
+diff --git a/src/test/java/com/fasterxml/jackson/databind/contextual/TestContextAttributeWithSer.java b/src/test/java/com/fasterxml/jackson/databind/contextual/TestContextAttributeWithSer.java
+index a6a63d8b4..830621e24 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/contextual/TestContextAttributeWithSer.java
++++ b/src/test/java/com/fasterxml/jackson/databind/contextual/TestContextAttributeWithSer.java
+@@ -47,7 +47,7 @@ public class TestContextAttributeWithSer extends BaseMapTest
+     /**********************************************************
+      */
+ 
+-    final ObjectMapper MAPPER = sharedMapper();
++    final ObjectMapper MAPPER = objectMapper();
+     
+     public void testSimplePerCall() throws Exception
+     {
+diff --git a/src/test/java/com/fasterxml/jackson/databind/convert/NumericConversionTest.java b/src/test/java/com/fasterxml/jackson/databind/convert/NumericConversionTest.java
+index 03f79cfe0..287ad4bb1 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/convert/NumericConversionTest.java
++++ b/src/test/java/com/fasterxml/jackson/databind/convert/NumericConversionTest.java
+@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.exc.MismatchedInputException;
+ 
+ public class NumericConversionTest extends BaseMapTest
+ {
+-    private final ObjectMapper MAPPER = sharedMapper();
++    private final ObjectMapper MAPPER = objectMapper();
+     private final ObjectReader R = MAPPER.reader().without(DeserializationFeature.ACCEPT_FLOAT_AS_INT);
+ 
+     public void testDoubleToInt() throws Exception
+diff --git a/src/test/java/com/fasterxml/jackson/databind/deser/creators/DelegatingArrayCreatorsTest.java b/src/test/java/com/fasterxml/jackson/databind/deser/creators/DelegatingArrayCreatorsTest.java
+index c0ae77ca6..8204c0f71 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/deser/creators/DelegatingArrayCreatorsTest.java
++++ b/src/test/java/com/fasterxml/jackson/databind/deser/creators/DelegatingArrayCreatorsTest.java
+@@ -72,9 +72,9 @@ public class DelegatingArrayCreatorsTest extends BaseMapTest
+         public Bag2324<Value2324> getValues() { return this.bagOfValues; }
+         public void setValues(Bag2324<Value2324> bagOfValues) { this.bagOfValues = bagOfValues; }
+         private Bag2324<Value2324> bagOfValues;
+-    }
++    }    
+ 
+-    private final ObjectMapper MAPPER = sharedMapper();
++    private final ObjectMapper MAPPER = objectMapper();
+ 
+     // [databind#1804]
+     public void testDelegatingArray1804() throws Exception {
+diff --git a/src/test/java/com/fasterxml/jackson/databind/ser/jdk/NumberSerTest.java b/src/test/java/com/fasterxml/jackson/databind/ser/jdk/NumberSerTest.java
+index cff30a4d6..574df45a7 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/ser/jdk/NumberSerTest.java
++++ b/src/test/java/com/fasterxml/jackson/databind/ser/jdk/NumberSerTest.java
+@@ -4,7 +4,6 @@ import java.math.BigDecimal;
+ import java.math.BigInteger;
+ 
+ import com.fasterxml.jackson.annotation.JsonFormat;
+-import com.fasterxml.jackson.annotation.JsonInclude;
+ import com.fasterxml.jackson.annotation.JsonProperty;
+ 
+ import com.fasterxml.jackson.databind.BaseMapTest;
+@@ -17,11 +16,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+  */
+ public class NumberSerTest extends BaseMapTest
+ {
+-    private final ObjectMapper MAPPER = sharedMapper();
+-
+-    private final ObjectMapper NON_EMPTY_MAPPER = newJsonMapper()
+-            .setDefaultPropertyInclusion(JsonInclude.Include.NON_EMPTY)
+-            ;
++    private final ObjectMapper MAPPER = objectMapper();
+ 
+     static class IntWrapper {
+         public int i;
+@@ -119,15 +114,6 @@ public class NumberSerTest extends BaseMapTest
+         assertEquals(aposToQuotes("{'value':'123456'}"), MAPPER.writeValueAsString(new BigIntegerAsString()));
+     }
+ 
+-    public void testNumbersAsStringNonEmpty() throws Exception
+-    {
+-        assertEquals(aposToQuotes("{'value':'3'}"), NON_EMPTY_MAPPER.writeValueAsString(new IntAsString()));
+-        assertEquals(aposToQuotes("{'value':'4'}"), NON_EMPTY_MAPPER.writeValueAsString(new LongAsString()));
+-        assertEquals(aposToQuotes("{'value':'-0.5'}"), NON_EMPTY_MAPPER.writeValueAsString(new DoubleAsString()));
+-        assertEquals(aposToQuotes("{'value':'0.25'}"), NON_EMPTY_MAPPER.writeValueAsString(new BigDecimalAsString()));
+-        assertEquals(aposToQuotes("{'value':'123456'}"), NON_EMPTY_MAPPER.writeValueAsString(new BigIntegerAsString()));
+-    }
+-
+     public void testConfigOverridesForNumbers() throws Exception
+     {
+         ObjectMapper mapper = new ObjectMapper();

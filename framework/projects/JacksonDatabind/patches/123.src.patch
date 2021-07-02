@@ -1,0 +1,20 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/ser/DefaultSerializerProvider.java b/src/main/java/com/fasterxml/jackson/databind/ser/DefaultSerializerProvider.java
+index b4984f372..9e85e30bf 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/ser/DefaultSerializerProvider.java
++++ b/src/main/java/com/fasterxml/jackson/databind/ser/DefaultSerializerProvider.java
+@@ -418,15 +418,10 @@ public abstract class DefaultSerializerProvider
+      */
+     public boolean hasSerializerFor(Class<?> cls, AtomicReference<Throwable> cause)
+     {
+         // 07-Nov-2015, tatu: One special case, Object.class; will work only if
+         //   empty beans are allowed or custom serializer registered. Easiest to
+         //   check here.
+-        if (cls == Object.class) {
+-            if (!_config.isEnabled(SerializationFeature.FAIL_ON_EMPTY_BEANS)) {
+-                return true;
+-            }
+-        }
+         
+         try {
+             JsonSerializer<?> ser = _findExplicitUntypedSerializer(cls);
+             return (ser != null);

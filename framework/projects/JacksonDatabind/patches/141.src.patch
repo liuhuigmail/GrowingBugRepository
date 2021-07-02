@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/deser/std/ThrowableDeserializer.java b/src/main/java/com/fasterxml/jackson/databind/deser/std/ThrowableDeserializer.java
+index 68ee9faf4..c164c1c50 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/deser/std/ThrowableDeserializer.java
++++ b/src/main/java/com/fasterxml/jackson/databind/deser/std/ThrowableDeserializer.java
+@@ -107,7 +107,7 @@ public class ThrowableDeserializer
+             // Maybe it's "message"?
+             if (PROP_NAME_MESSAGE.equals(propName)) {
+                 if (hasStringCreator) {
+-                    throwable = _valueInstantiator.createFromString(ctxt, p.getValueAsString());
++                    throwable = _valueInstantiator.createFromString(ctxt, p.getText());
+                     // any pending values?
+                     if (pending != null) {
+                         for (int i = 0, len = pendingIx; i < len; i += 2) {

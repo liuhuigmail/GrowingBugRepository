@@ -1,0 +1,13 @@
+diff --git a/src/test/java/com/fasterxml/jackson/databind/deser/creators/TestCreators2.java b/src/test/java/com/fasterxml/jackson/databind/deser/creators/TestCreators2.java
+index f7b2f8640..ea221df1d 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/deser/creators/TestCreators2.java
++++ b/src/test/java/com/fasterxml/jackson/databind/deser/creators/TestCreators2.java
+@@ -261,8 +261,6 @@ public class TestCreators2 extends BaseMapTest
+             fail("Should have caught duplicate creator parameters");
+         } catch (JsonMappingException e) {
+             verifyException(e, "duplicate creator property \"bar\"");
+-            verifyException(e, "for type `com.fasterxml.jackson.databind.");
+-            verifyException(e, "$BrokenCreatorBean`");
+         }
+     }
+ 

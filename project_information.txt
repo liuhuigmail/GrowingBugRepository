@@ -31,3 +31,4 @@ https://github.com/FasterXML/jackson-module-jsonSchema.git	jackson-module-jsonSc
 https://github.com/FasterXML/jackson-datatype-joda.git	jackson-datatype-joda
 https://github.com/FasterXML/jackson-dataformats-binary.git	jackson-dataformats-binary-cbor
 https://github.com/FasterXML/jackson-dataformats-binary.git	jackson-dataformats-binary-avro
+https://github.com/FasterXML/jackson-databind.git	jackson-databind

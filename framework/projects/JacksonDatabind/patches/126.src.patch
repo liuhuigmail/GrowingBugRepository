@@ -1,0 +1,61 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/TypeNameIdResolver.java b/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/TypeNameIdResolver.java
+index 9025daff9..734cae341 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/TypeNameIdResolver.java
++++ b/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/TypeNameIdResolver.java
+@@ -1,7 +1,6 @@
+ package com.fasterxml.jackson.databind.jsontype.impl;
+ 
+-import java.util.*;
+ 
+ import com.fasterxml.jackson.annotation.JsonTypeInfo;
+ import com.fasterxml.jackson.databind.BeanDescription;
+ import com.fasterxml.jackson.databind.DatabindContext;
+@@ -9,6 +7,9 @@ import com.fasterxml.jackson.databind.JavaType;
+ import com.fasterxml.jackson.databind.cfg.MapperConfig;
+ import com.fasterxml.jackson.databind.jsontype.NamedType;
+ 
++import java.util.Collection;
++import java.util.HashMap;
++import java.util.TreeSet;
+ public class TypeNameIdResolver extends TypeIdResolverBase
+ {
+     protected final MapperConfig<?> _config;
+@@ -16,15 +18,15 @@ public class TypeNameIdResolver extends TypeIdResolverBase
+     /**
+      * Mappings from class name to type id, used for serialization
+      */
+-    protected final Map<String, String> _typeToId;
++    protected final HashMap<String, String> _typeToId;
+ 
+     /**
+      * Mappings from type id to JavaType, used for deserialization
+      */
+-    protected final Map<String, JavaType> _idToType;
++    protected final HashMap<String, JavaType> _idToType;
+     
+     protected TypeNameIdResolver(MapperConfig<?> config, JavaType baseType,
+-            Map<String, String> typeToId, Map<String, JavaType> idToType)
++            HashMap<String, String> typeToId, HashMap<String, JavaType> idToType)
+     {
+         super(baseType, config.getTypeFactory());
+         _config = config;
+@@ -37,17 +39,16 @@ public class TypeNameIdResolver extends TypeIdResolverBase
+     {
+         // sanity check
+         if (forSer == forDeser) throw new IllegalArgumentException();
+-        Map<String, String> typeToId = null;
+-        Map<String, JavaType> idToType = null;
++        HashMap<String, String> typeToId = null;
++        HashMap<String, JavaType> idToType = null;
+ 
+         if (forSer) {
+             typeToId = new HashMap<String, String>();
+         }
+         if (forDeser) {
+             idToType = new HashMap<String, JavaType>();
+             // 14-Apr-2016, tatu: Apparently needed for special case of `defaultImpl`;
+             //    see [databind#1198] for details.
+-            typeToId = new TreeMap<String, String>();
+         }
+         if (subtypes != null) {
+             for (NamedType t : subtypes) {

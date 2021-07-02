@@ -1,0 +1,12 @@
+diff --git a/src/test/java/com/fasterxml/jackson/failing/CustomAnnotationIntrospector1756Test.java b/src/test/java/com/fasterxml/jackson/failing/CustomAnnotationIntrospector1756Test.java
+index 0dd2e16e8..80e6438e8 100644
+--- a/src/test/java/com/fasterxml/jackson/failing/CustomAnnotationIntrospector1756Test.java
++++ b/src/test/java/com/fasterxml/jackson/failing/CustomAnnotationIntrospector1756Test.java
+@@ -88,7 +88,6 @@ public class CustomAnnotationIntrospector1756Test extends BaseMapTest
+         return null;
+       }
+ 
+-      @SuppressWarnings("deprecation")
+       @Override
+       public boolean hasCreatorAnnotation(Annotated a) {
+         final AnnotatedConstructor ctor = (AnnotatedConstructor) a;

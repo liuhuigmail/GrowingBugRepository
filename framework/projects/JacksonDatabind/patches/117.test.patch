@@ -1,0 +1,16 @@
+diff --git a/src/test/java/com/fasterxml/jackson/databind/node/TestJsonNode.java b/src/test/java/com/fasterxml/jackson/databind/node/TestJsonNode.java
+index 812f37f4d..613864bb9 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/node/TestJsonNode.java
++++ b/src/test/java/com/fasterxml/jackson/databind/node/TestJsonNode.java
+@@ -31,11 +31,6 @@ public class TestJsonNode extends NodeTestBase
+ 
+         assertEquals("foobar", n.asText("barf"));
+         assertEquals("", empty.asText("xyz"));
+-
+-        assertTrue(TextNode.valueOf("true").asBoolean(true));
+-        assertTrue(TextNode.valueOf("true").asBoolean(false));
+-        assertFalse(TextNode.valueOf("false").asBoolean(true));
+-        assertFalse(TextNode.valueOf("false").asBoolean(false));
+     }
+ 
+     public void testBoolean()

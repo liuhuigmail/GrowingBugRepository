@@ -1,0 +1,15 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/util/StdDateFormat.java b/src/main/java/com/fasterxml/jackson/databind/util/StdDateFormat.java
+index 57a07870c..fb645bf78 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/util/StdDateFormat.java
++++ b/src/main/java/com/fasterxml/jackson/databind/util/StdDateFormat.java
+@@ -623,9 +623,9 @@ public class StdDateFormat
+                 int len = end-start;
+                 if (len > 1) { // 0 -> none, 1 -> 'Z'
+                     // NOTE: first char is sign; then 2 digits, then optional colon, optional 2 digits
+                     int offsetSecs = _parse2D(dateStr, start+1) * 3600; // hours
+                     if (len >= 5) {
+-                        offsetSecs += _parse2D(dateStr, end-2) * 60; // minutes
++                        offsetSecs += _parse2D(dateStr, end-2);
+                     }
+                     if (dateStr.charAt(start) == '-') {
+                         offsetSecs *= -1000;

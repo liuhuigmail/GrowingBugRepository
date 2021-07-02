@@ -1,0 +1,33 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/ser/BasicSerializerFactory.java b/src/main/java/com/fasterxml/jackson/databind/ser/BasicSerializerFactory.java
+index ba1038696..62d35bcd5 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/ser/BasicSerializerFactory.java
++++ b/src/main/java/com/fasterxml/jackson/databind/ser/BasicSerializerFactory.java
+@@ -721,11 +722,12 @@ public abstract class BasicSerializerFactory
+                 ser = new EnumMapSerializer(type.getContentType(), staticTyping, enums,
+                     elementTypeSerializer, elementValueSerializer);
+             } else {
+             */
+             Object filterId = findFilterId(config, beanDesc);
+             ser = MapSerializer.construct(config.getAnnotationIntrospector().findPropertiesToIgnore(beanDesc.getClassInfo()),
+                     type, staticTyping, elementTypeSerializer,
+                     keySerializer, elementValueSerializer, filterId);
++            }
+         }
+         // [Issue#120]: Allow post-processing
+         if (_factoryConfig.hasSerializerModifiers()) {
+diff --git a/src/main/java/com/fasterxml/jackson/databind/ser/std/EnumMapSerializer.java b/src/main/java/com/fasterxml/jackson/databind/ser/std/EnumMapSerializer.java
+index da48945b7..80270b956 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/ser/std/EnumMapSerializer.java
++++ b/src/main/java/com/fasterxml/jackson/databind/ser/std/EnumMapSerializer.java
+@@ -25,11 +25,10 @@ import com.fasterxml.jackson.databind.util.EnumValues;
+  * Specialized serializer for {@link EnumMap}s. Somewhat tricky to
+  * implement because actual Enum value type may not be available;
+  * and if not, it can only be gotten from actual instance.
+  * 
+  * @deprecated Since 2.4.4; standard {@link MapSerializer} works better.
+  */
+ @JacksonStdImpl
+-@Deprecated
+ public class EnumMapSerializer
+     extends ContainerSerializer<EnumMap<? extends Enum<?>, ?>>
+     implements ContextualSerializer

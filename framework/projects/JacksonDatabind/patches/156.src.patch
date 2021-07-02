@@ -1,0 +1,15 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/ser/std/StdKeySerializers.java b/src/main/java/com/fasterxml/jackson/databind/ser/std/StdKeySerializers.java
+index 20dae5df3..408dc54c2 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/ser/std/StdKeySerializers.java
++++ b/src/main/java/com/fasterxml/jackson/databind/ser/std/StdKeySerializers.java
+@@ -98,9 +98,9 @@ public abstract class StdKeySerializers
+             if (rawKeyType == Enum.class) {
+                 return new Dynamic();
+             }
+             // 29-Sep-2019, tatu: [databind#2457] can not use 'rawKeyType.isEnum()`, won't work
+             //    for subtypes.
+-            if (Enum.class.isAssignableFrom(rawKeyType)) {
++            if (rawKeyType.isEnum()) {
+                 return EnumKeySerializer.construct(rawKeyType,
+                         EnumValues.constructFromName(config, (Class<Enum<?>>) rawKeyType));
+             }

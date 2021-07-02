@@ -1,0 +1,14 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/cfg/MapperConfigBase.java b/src/main/java/com/fasterxml/jackson/databind/cfg/MapperConfigBase.java
+index 2dd89500f..a8a535c72 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/cfg/MapperConfigBase.java
++++ b/src/main/java/com/fasterxml/jackson/databind/cfg/MapperConfigBase.java
+@@ -672,8 +672,8 @@ public abstract class MapperConfigBase<CFG extends ConfigFeature,
+     {
+         VisibilityChecker<?> vchecker = _configOverrides.getDefaultVisibility();
+         // then global overrides (disabling)
+         // 05-Mar-2018, tatu: As per [databind#1947], need to see if any disabled
+-        if ((_mapperFeatures & AUTO_DETECT_MASK) != AUTO_DETECT_MASK) {
++        if ((_mapperFeatures & AUTO_DETECT_MASK) != 0) {
+             if (!isEnabled(MapperFeature.AUTO_DETECT_FIELDS)) {
+                 vchecker = vchecker.withFieldVisibility(Visibility.NONE);
+             }

@@ -1,0 +1,21 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/ser/impl/IteratorSerializer.java b/src/main/java/com/fasterxml/jackson/databind/ser/impl/IteratorSerializer.java
+index cf756db2b..9fbb7e3f0 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/ser/impl/IteratorSerializer.java
++++ b/src/main/java/com/fasterxml/jackson/databind/ser/impl/IteratorSerializer.java
+@@ -96,6 +96,7 @@ public class IteratorSerializer
+     protected void _serializeDynamicContents(Iterator<?> value, JsonGenerator g,
+             SerializerProvider provider) throws IOException
+     {
++        JsonSerializer<Object> serializer = _elementSerializer;
+         final TypeSerializer typeSer = _valueTypeSerializer;
+         PropertySerializerMap serializers = _dynamicSerializers;
+         do {
+@@ -105,7 +106,7 @@ public class IteratorSerializer
+                 continue;
+             }
+             Class<?> cc = elem.getClass();
+-            JsonSerializer<Object> serializer = serializers.serializerFor(cc);
++            serializers.serializerFor(cc);
+             if (serializer == null) {
+                 if (_elementType.hasGenericTypes()) {
+                     serializer = _findAndAddDynamic(serializers,

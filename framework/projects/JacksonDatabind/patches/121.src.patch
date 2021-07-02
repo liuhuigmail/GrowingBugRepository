@@ -1,0 +1,15 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/ser/std/NumberSerializer.java b/src/main/java/com/fasterxml/jackson/databind/ser/std/NumberSerializer.java
+index 1bf901075..56b30737f 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/ser/std/NumberSerializer.java
++++ b/src/main/java/com/fasterxml/jackson/databind/ser/std/NumberSerializer.java
+@@ -129,9 +129,9 @@ public class NumberSerializer
+ 
+         @Override
+         public boolean isEmpty(SerializerProvider prov, Object value) {
+             // As per [databind#2513], should not delegate; also, never empty (numbers do
+             // have "default value" to filter by, just not "empty"
+-            return false;
++            return valueToString(value).isEmpty();
+         }
+ 
+         @Override

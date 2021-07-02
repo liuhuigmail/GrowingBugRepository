@@ -1,0 +1,14 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/ObjectMapper.java b/src/main/java/com/fasterxml/jackson/databind/ObjectMapper.java
+index f4e571def..adfb09b49 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/ObjectMapper.java
++++ b/src/main/java/com/fasterxml/jackson/databind/ObjectMapper.java
+@@ -962,8 +962,7 @@ public class ObjectMapper
+      */
+     public Set<Object> getRegisteredModuleIds()
+     {
+-        return (_registeredModuleTypes == null) ?
+-                Collections.emptySet() : Collections.unmodifiableSet(_registeredModuleTypes);
++        return Collections.unmodifiableSet(_registeredModuleTypes);
+     }
+ 
+     /**
