@@ -132,7 +132,7 @@ Currently, we resuse all APIs of **Defects4J** (more details at  https://github.
 ## Copyright
 Notably, this bug repository is based on the well-known **Defects4J** https://github.com/rjust/defects4j. We reuse its source code as well as the bugs in **Defects4J**. The key difference is that **growingBugs** levearages **BugBuilder**[1] to exclude bug-irrelevarange changes from bug-fixing commmits automatically whereas **Defects4J** requests human experts to accomplish the same task. Consequently, **growingBugs** can keep growing automatically even ***without human intervention***.  
 
-Under MIT License, you are free to use, modify, and distribute this repository with proper reference/citation.
+
 
 ## Versions
 Because the bug repository keeps growing, let us known if you need a stable version for your study (e.g., evalutions for a research paper), and we will release a specific version where the bugs and patches are fixed (to faciliate the replication of your study).  
