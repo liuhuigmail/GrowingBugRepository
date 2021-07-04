@@ -1,0 +1,9 @@
+org.apache.bcel.classfile.ClassFormatException
+org.apache.bcel.classfile.Utility
+org.apache.bcel.Const
+org.apache.bcel.generic.ArrayType
+org.apache.bcel.generic.BasicType
+org.apache.bcel.generic.ClassGenException
+org.apache.bcel.generic.ObjectType
+org.apache.bcel.generic.ReferenceType
+org.apache.bcel.generic.Type

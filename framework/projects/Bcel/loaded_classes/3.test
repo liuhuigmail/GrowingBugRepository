@@ -1,0 +1,2 @@
+org.apache.bcel.verifier.AbstractVerifierTestCase
+org.apache.bcel.verifier.VerifierReturnTestCase

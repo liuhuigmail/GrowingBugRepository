@@ -1,0 +1,2 @@
+org.apache.bcel.AbstractTestCase
+org.apache.bcel.classfile.ConstantPoolTestCase

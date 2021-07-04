@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/bcel/generic/MethodGen.java b/src/main/java/org/apache/bcel/generic/MethodGen.java
+index 1d2b82ce..178ddc44 100644
+--- a/src/main/java/org/apache/bcel/generic/MethodGen.java
++++ b/src/main/java/org/apache/bcel/generic/MethodGen.java
+@@ -1146,11 +1146,10 @@ public class MethodGen extends FieldGenOrMethodGen {
+                 } else {
+                     paramAnnInvisAttr = rpa;
+                 }
+-                final ParameterAnnotationEntry[] parameterAnnotationEntries = rpa.getParameterAnnotationEntries();
+-                for (int j = 0; j < parameterAnnotationEntries.length; j++)
++                for (int j = 0; j < arg_types.length; j++)
+                 {
+                     // This returns Annotation[] ...
+                     final ParameterAnnotationEntry immutableArray = rpa.getParameterAnnotationEntries()[j];
+                     // ... which needs transforming into an AnnotationGen[] ...
+                     final List<AnnotationEntryGen> mutable = makeMutableVersion(immutableArray.getAnnotationEntries());
+                     // ... then add these to any we already know about

@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/bcel/verifier/structurals/InstConstraintVisitor.java b/src/main/java/org/apache/bcel/verifier/structurals/InstConstraintVisitor.java
+index dd924902..84ecf30f 100644
+--- a/src/main/java/org/apache/bcel/verifier/structurals/InstConstraintVisitor.java
++++ b/src/main/java/org/apache/bcel/verifier/structurals/InstConstraintVisitor.java
+@@ -413,9 +413,6 @@ public class InstConstraintVisitor extends EmptyVisitor{
+             }
+         }
+         if (o instanceof ARETURN){
+-            if (method_type == Type.VOID){
+-                constraintViolated(o, "ARETURN instruction in void method.");
+-            }
+             if (stack().peek() == Type.NULL){
+                 return;
+             }

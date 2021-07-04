@@ -1,0 +1,18 @@
+diff --git a/src/main/java/com/fasterxml/jackson/dataformat/xml/deser/XmlTokenStream.java b/src/main/java/com/fasterxml/jackson/dataformat/xml/deser/XmlTokenStream.java
+index b7ddf149..aabbae4e 100644
+--- a/src/main/java/com/fasterxml/jackson/dataformat/xml/deser/XmlTokenStream.java
++++ b/src/main/java/com/fasterxml/jackson/dataformat/xml/deser/XmlTokenStream.java
+@@ -270,12 +270,9 @@ public class XmlTokenStream
+         }
+         try {
+             String text = _collectUntilTag();
+             // 23-Dec-2015, tatu: Used to require text not to be null, but as per
+             //   [dataformat-xml#167], empty tag does count
+-            if (_xmlReader.getEventType() == XMLStreamReader.END_ELEMENT) {
+-                if (text == null) {
+-                    text = "";
+-                }
++            if (text != null && _xmlReader.getEventType() == XMLStreamReader.END_ELEMENT) {
+                 if (_currentWrapper != null) {
+                     _currentWrapper = _currentWrapper.getParent();
+                 }

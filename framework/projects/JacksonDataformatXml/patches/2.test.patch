@@ -1,0 +1,68 @@
+diff --git a/src/test/java/com/fasterxml/jackson/dataformat/xml/XmlTestBase.java b/src/test/java/com/fasterxml/jackson/dataformat/xml/XmlTestBase.java
+index ab0cfaa3..a14ace27 100644
+--- a/src/test/java/com/fasterxml/jackson/dataformat/xml/XmlTestBase.java
++++ b/src/test/java/com/fasterxml/jackson/dataformat/xml/XmlTestBase.java
+@@ -265,7 +265,7 @@ public abstract class XmlTestBase
+     
+     /**
+      * Helper method that tries to remove unnecessary namespace
+-     * declaration that default JDK XML parser (SJSXP) sees fit
++     * declaration that default JDK XML parser (SJSXP) seems fit
+      * to add.
+      */
+     protected static String removeSjsxpNamespace(String xml)
+diff --git a/src/test/java/com/fasterxml/jackson/dataformat/xml/ser/TestSerializationAttr.java b/src/test/java/com/fasterxml/jackson/dataformat/xml/ser/TestSerializationAttr.java
+index cf0393e3..44b92482 100644
+--- a/src/test/java/com/fasterxml/jackson/dataformat/xml/ser/TestSerializationAttr.java
++++ b/src/test/java/com/fasterxml/jackson/dataformat/xml/ser/TestSerializationAttr.java
+@@ -1,9 +1,8 @@
+ package com.fasterxml.jackson.dataformat.xml.ser;
+ 
+ import java.io.IOException;
+-import java.util.*;
+ 
+-import com.fasterxml.jackson.annotation.*;
++import com.fasterxml.jackson.annotation.JsonProperty;
+ 
+ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+ import com.fasterxml.jackson.dataformat.xml.XmlTestBase;
+@@ -36,22 +35,6 @@ public class TestSerializationAttr extends XmlTestBase
+         @JacksonXmlProperty(isAttribute=true)
+         protected int value = 13;
+     }
+-
+-    @JacksonXmlRootElement(localName = "dynaBean", namespace = "")
+-    @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "class", include = JsonTypeInfo.As.PROPERTY)
+-    public class DynaBean {
+-        private final Map<String, String> _properties = new TreeMap<String, String>();
+-
+-        public DynaBean(Map<String, String> values) {
+-            _properties.putAll(values);
+-        }
+-
+-        @JsonAnyGetter
+-        @JacksonXmlProperty(isAttribute = false)
+-        public Map<String, String> getProperties() {
+-            return _properties;
+-        }
+-    }    
+     
+     /*
+     /**********************************************************
+@@ -98,16 +81,6 @@ public class TestSerializationAttr extends XmlTestBase
+         assertEquals("<Jurisdiction name=\"Foo\" value=\"13\"/>",
+                 _xmlMapper.writeValueAsString(new Jurisdiction()));
+     }
+-
+-    public void testIssue117AnySetterAttrs() throws IOException
+-    {
+-        Map<String, String> values = new HashMap<String, String>();
+-        values.put("prop1", "val1");
+-
+-        String xml = _xmlMapper.writeValueAsString(new DynaBean(values));
+-        assertEquals("<dynaBean class=\"TestSerializationAttr$DynaBean\"><prop1>val1</prop1></dynaBean>",
+-                removeSjsxpNamespace(xml));
+-    }
+     
+     /*
+     /**********************************************************

@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1150`** bugs
+ **`1164`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -69,6 +69,9 @@ from open-source Java projects.
 | 58     | JavaClassmate            | java-classmate |        |       2     | 1-2              |
 | 59     | JacksonModuleJsonSchema            | jackson-module-jsonSchema |      |       2     | 1-2              |
 | 60     | JacksonDatatypeJoda            | jackson-datatype-joda |        |       3     | 1-3              |
+| 61     | Bcel            | commons-bcel |        |       6     | 1-6              |
+| 61     | JacksonDataformatXml            | jackson-dataformat-xml |        |       8     | 1-8              |
+# Setting up GrowingBugs
 
 ## Requirements
  - Java 1.8

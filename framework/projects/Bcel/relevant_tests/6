@@ -1,0 +1,10 @@
+org.apache.bcel.LocalVariableTypeTableTestCase
+org.apache.bcel.PLSETestCase
+org.apache.bcel.PerformanceTest
+org.apache.bcel.classfile.ConstantPoolTestCase
+org.apache.bcel.generic.GeneratingAnnotatedClassesTestCase
+org.apache.bcel.generic.MethodGenTestCase
+org.apache.bcel.util.BCELifierTestCase
+org.apache.bcel.verifier.VerifierArrayAccessTestCase
+org.apache.bcel.verifier.VerifierInvokeTestCase
+org.apache.bcel.verifier.VerifierReturnTestCase

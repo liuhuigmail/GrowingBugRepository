@@ -1,0 +1,93 @@
+diff --git a/src/test/java/com/fasterxml/jackson/dataformat/xml/misc/EmptyPolymorphicTest.java b/src/test/java/com/fasterxml/jackson/dataformat/xml/misc/EmptyPolymorphicTest.java
+deleted file mode 100644
+index e410e757..00000000
+--- a/src/test/java/com/fasterxml/jackson/dataformat/xml/misc/EmptyPolymorphicTest.java
++++ /dev/null
+@@ -1,46 +0,0 @@
+-package com.fasterxml.jackson.dataformat.xml.misc;
+-
+-import com.fasterxml.jackson.annotation.*;
+-
+-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+-import com.fasterxml.jackson.dataformat.xml.XmlTestBase;
+-
+-// test(s) for [dataformat-xml#111]
+-public class EmptyPolymorphicTest extends XmlTestBase
+-{
+-    static class Data {
+-        public String name;
+-
+-        @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.WRAPPER_OBJECT)
+-        @JsonSubTypes({ @JsonSubTypes.Type(EmptyProxy.class) })
+-        public Proxy proxy;
+-
+-        public Data() { }
+-        public Data(String n) {
+-            name = n;
+-            proxy = new EmptyProxy();
+-        }
+-    }
+-
+-    static interface Proxy { }
+-
+-    @JsonTypeName("empty")
+-    static class EmptyProxy implements Proxy { }
+-
+-    /*
+-    /**********************************************************
+-    /* Test methods
+-    /**********************************************************
+-     */
+-    
+-    protected XmlMapper MAPPER = new XmlMapper();
+-    
+-    public void testEmpty() throws Exception
+-    {
+-        String xml = MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(new Data("Foobar"));
+-        System.out.println("XML:\n"+xml);
+-        final Data data = MAPPER.readValue(xml, Data.class);
+-//                "<data><name>Foobar</name><proxy><empty></empty></proxy></data>"
+-        assertNotNull(data);
+-    }
+-}
+diff --git a/src/test/java/com/fasterxml/jackson/dataformat/xml/misc/PolymorphicTypesTest.java b/src/test/java/com/fasterxml/jackson/dataformat/xml/misc/PolymorphicTypesTest.java
+index ce2a425a..98ddc2e2 100644
+--- a/src/test/java/com/fasterxml/jackson/dataformat/xml/misc/PolymorphicTypesTest.java
++++ b/src/test/java/com/fasterxml/jackson/dataformat/xml/misc/PolymorphicTypesTest.java
+@@ -26,7 +26,7 @@ public class PolymorphicTypesTest extends XmlTestBase
+         public SubTypeWithClassProperty() { }
+         public SubTypeWithClassProperty(String s) { name = s; }
+     }
+-
++    
+     @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.WRAPPER_OBJECT)
+     protected static class BaseTypeWithClassObject { }
+ 
+@@ -67,7 +67,7 @@ public class PolymorphicTypesTest extends XmlTestBase
+         super.setUp();
+         _xmlMapper = new XmlMapper();
+     }
+-
++    
+     /*
+     /**********************************************************
+     /* Unit tests
+@@ -79,6 +79,9 @@ public class PolymorphicTypesTest extends XmlTestBase
+         String xml = _xmlMapper.writeValueAsString(new SubTypeWithClassProperty("Foobar"));
+ 
+         // Type info should be written as an attribute, so:
++        /* 13-Jan-2010, tatu: With Jackson 1.7.1, it is possible to override type information
++         *   inclusion, which allows use of attribute over element, so:
++         */
+         final String exp = 
+             "<SubTypeWithClassProperty _class=\"com.fasterxml.jackson.dataformat.xml.misc.PolymorphicTypesTest..SubTypeWithClassProperty\">"
+             //"<SubTypeWithClassProperty><_class>com.fasterxml.jackson.xml.types.TestPolymorphic..SubTypeWithClassProperty</_class>"
+@@ -102,7 +105,7 @@ public class PolymorphicTypesTest extends XmlTestBase
+     }
+ 
+     /**
+-     * Test for [dataformat-xml#81]
++     * Test for issue 81
+      */
+     public void testAsPropertyWithObjectId() throws Exception
+     {

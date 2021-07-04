@@ -1,0 +1,3 @@
+org.apache.bcel.GeneratingAnnotatedClassesTestCase
+org.apache.bcel.PerformanceTest
+org.apache.bcel.generic.MethodGenTestCase

@@ -1,0 +1,66 @@
+diff --git a/src/test/java/com/fasterxml/jackson/dataformat/xml/deser/TestStringValues.java b/src/test/java/com/fasterxml/jackson/dataformat/xml/deser/TestStringValues.java
+index 2edcbbcb..23b85f1e 100644
+--- a/src/test/java/com/fasterxml/jackson/dataformat/xml/deser/TestStringValues.java
++++ b/src/test/java/com/fasterxml/jackson/dataformat/xml/deser/TestStringValues.java
+@@ -15,10 +15,6 @@ public class TestStringValues extends XmlTestBase
+         }
+     }
+ 
+-    static class Issue167Bean {
+-        public String d;
+-    }
+-
+     /*
+     /**********************************************************
+     /* Unit tests
+@@ -94,15 +90,4 @@ public class TestStringValues extends XmlTestBase
+         assertEquals("Bulla", beans[1].text);
+         assertEquals("Good stuff", beans[2].text);
+     }
+-
+-    public void testEmptyElementToString() throws Exception
+-    {
+-        final String XML =
+-"<a xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>\n"+
+-"<d xsi:nil='true'/>\n"+
+-"</a>\n";
+-        Issue167Bean result = MAPPER.readValue(XML, Issue167Bean.class);
+-        assertNotNull(result);
+-        assertEquals("", result.d);
+-    }
+ }
+diff --git a/src/test/java/com/fasterxml/jackson/dataformat/xml/failing/EmptyElement167Test.java b/src/test/java/com/fasterxml/jackson/dataformat/xml/failing/EmptyElement167Test.java
+new file mode 100644
+index 00000000..a46d7b60
+--- /dev/null
++++ b/src/test/java/com/fasterxml/jackson/dataformat/xml/failing/EmptyElement167Test.java
+@@ -0,0 +1,29 @@
++package com.fasterxml.jackson.dataformat.xml.failing;
++
++import com.fasterxml.jackson.dataformat.xml.XmlMapper;
++import com.fasterxml.jackson.dataformat.xml.XmlTestBase;
++
++public class EmptyElement167Test extends XmlTestBase
++{
++    static class A {
++        public String d;
++    }
++
++    /*
++    /**********************************************************
++    /* Test methods
++    /**********************************************************
++     */
++
++    private final XmlMapper MAPPER = new XmlMapper();
++    
++    public void testIssue167() throws Exception
++    {
++        final String XML =
++"<a xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>\n"+
++"<d xsi:nil='true'/>\n"+
++"</a>\n";
++        A result = MAPPER.readValue(XML, A.class);
++        assertNotNull(result);
++    }
++}

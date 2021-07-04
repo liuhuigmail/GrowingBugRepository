@@ -1,0 +1,17 @@
+org.apache.bcel.ElementValueGenTestCase
+org.apache.bcel.InstructionFinderTestCase
+org.apache.bcel.PLSETestCase
+org.apache.bcel.PerformanceTest
+org.apache.bcel.generic.AnnotationGenTestCase
+org.apache.bcel.generic.FieldAnnotationsTestCase
+org.apache.bcel.generic.GeneratingAnnotatedClassesTestCase
+org.apache.bcel.generic.InstructionHandleTestCase
+org.apache.bcel.generic.JDKGenericDumpTestCase
+org.apache.bcel.generic.MethodGenTestCase
+org.apache.bcel.generic.TypeTestCase
+org.apache.bcel.util.BCELifierTestCase
+org.apache.bcel.util.InstructionFinderTest
+org.apache.bcel.verifier.VerifierArrayAccessTestCase
+org.apache.bcel.verifier.VerifierInvokeTestCase
+org.apache.bcel.verifier.VerifierReturnTestCase
+org.apache.bcel.verifier.VerifierTestCase

@@ -1,0 +1,48 @@
+diff --git a/src/test/java/org/apache/bcel/generic/MethodGenTestCase.java b/src/test/java/org/apache/bcel/generic/MethodGenTestCase.java
+index 37756172..4f080999 100644
+--- a/src/test/java/org/apache/bcel/generic/MethodGenTestCase.java
++++ b/src/test/java/org/apache/bcel/generic/MethodGenTestCase.java
+@@ -18,7 +18,6 @@
+ package org.apache.bcel.generic;
+ 
+ import java.util.Arrays;
+-import java.util.List;
+ 
+ import org.apache.bcel.Repository;
+ import org.apache.bcel.classfile.JavaClass;
+@@ -36,20 +35,6 @@ public class MethodGenTestCase extends TestCase {
+         }
+     }
+ 
+-    @interface A {        
+-    }
+-
+-    @interface B {
+-    }
+-
+-    public static class Bar {
+-        public class Inner {
+-            public Inner(@A Object a, @B Object b) {
+-                
+-            }
+-        }
+-    }
+-
+     private MethodGen getMethod(final Class<?> cls, final String name) throws ClassNotFoundException {
+         final JavaClass jc = Repository.lookupClass(cls);
+         final ConstantPoolGen cp = new ConstantPoolGen(jc.getConstantPool());
+@@ -104,14 +89,4 @@ public class MethodGenTestCase extends TestCase {
+         assertNull("scope start", lv.getStart());
+         assertNull("scope end", lv.getEnd());
+     }
+-
+-    public void testAnnotationsAreUnpacked() throws Exception {
+-        final JavaClass jc = Repository.lookupClass(Bar.Inner.class);
+-        final ClassGen cg = new ClassGen(jc);
+-        final MethodGen mg = new MethodGen(cg.getMethodAt(0), cg.getClassName(), cg.getConstantPool());
+-        final List<AnnotationEntryGen> firstParamAnnotations = mg.getAnnotationsOnParameter(0);
+-        assertEquals("Wrong number of annotations in the first parameter", 1, firstParamAnnotations.size());
+-        final List<AnnotationEntryGen> secondParamAnnotations = mg.getAnnotationsOnParameter(1);
+-        assertEquals("Wrong number of annotations in the second parameter", 1, secondParamAnnotations.size());
+-    }
+ }
