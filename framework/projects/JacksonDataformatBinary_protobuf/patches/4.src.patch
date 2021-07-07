@@ -1,0 +1,14 @@
+diff --git a/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufParser.java b/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufParser.java
+index 47032997..df378d1c 100644
+--- a/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufParser.java
++++ b/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufParser.java
+@@ -660,9 +660,8 @@ public class ProtobufParser extends ParserMinimalBase
+             }
+ 
+         case STATE_MESSAGE_END: // occurs if we end with array
+-            close(); // sets state to STATE_CLOSED
+             return (_currToken = JsonToken.END_OBJECT);
+ 
+         case STATE_CLOSED:
+             return null;
+ 

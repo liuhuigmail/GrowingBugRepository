@@ -1,0 +1,130 @@
+diff --git a/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufTestBase.java b/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufTestBase.java
+index 6589970b..deab00bb 100644
+--- a/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufTestBase.java
++++ b/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufTestBase.java
+@@ -485,9 +485,9 @@ public abstract class ProtobufTestBase extends TestCase
+         }
+     }
+ 
+-    protected void assertToken(JsonToken expToken, JsonParser p)
++    protected void assertToken(JsonToken expToken, JsonParser jp)
+     {
+-        assertToken(expToken, p.getCurrentToken());
++        assertToken(expToken, jp.getCurrentToken());
+     }
+ 
+     protected void assertType(Object ob, Class<?> expType)
+diff --git a/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/WritePrimitiveArrayTest.java b/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/WritePrimitiveArrayTest.java
+index 62d35d43..795656cf 100644
+--- a/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/WritePrimitiveArrayTest.java
++++ b/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/WritePrimitiveArrayTest.java
+@@ -48,16 +48,6 @@ public class WritePrimitiveArrayTest extends ProtobufTestBase
+             +" repeated double values = 1 [packed=true];\n"
+             +"}\n"
+     ;
+-
+-    final protected static String PROTOC_FLOAT_ARRAY_SPARSE = "message Floats {\n"
+-            +" repeated float values = 1;\n"
+-            +"}\n"
+-    ;
+-
+-    final protected static String PROTOC_FLOAT_ARRAY_PACKED = "message Floats {\n"
+-            +" repeated float values = 1 [packed=true];\n"
+-            +"}\n"
+-    ;
+     
+     static class IntArray {
+         public int[] values;
+@@ -85,17 +75,8 @@ public class WritePrimitiveArrayTest extends ProtobufTestBase
+             values = v;
+         }
+     }
+-
+-    static class FloatArray {
+-        public float[] values;
+-
+-        protected FloatArray() { }
+-        public FloatArray(float... v) {
+-            values = v;
+-        }
+-    }
+-
+-    final ObjectMapper MAPPER = new ProtobufMapper();
++    
++    final ObjectMapper MAPPER = new ObjectMapper(new ProtobufFactory());
+ 
+     public WritePrimitiveArrayTest() throws Exception { }
+ 
+@@ -224,9 +205,9 @@ public class WritePrimitiveArrayTest extends ProtobufTestBase
+     {
+         ProtobufSchema schema = ProtobufSchemaLoader.std.parse(PROTOC_DOUBLE_ARRAY_SPARSE);
+         final ObjectWriter w = MAPPER.writer(schema);
+-        DoubleArray input = new DoubleArray(0.25, -2.5, 1000.125, 1234567891234567890.5);
++        DoubleArray input = new DoubleArray(0.25, -2.5, 1000.125);
+         byte[] bytes = w.writeValueAsBytes(input);
+-        assertEquals(36, bytes.length);
++        assertEquals(27, bytes.length);
+ 
+         DoubleArray result = MAPPER.readerFor(DoubleArray.class).with(schema)
+                 .readValue(bytes);
+@@ -237,9 +218,9 @@ public class WritePrimitiveArrayTest extends ProtobufTestBase
+     {
+         ProtobufSchema schema = ProtobufSchemaLoader.std.parse(PROTOC_DOUBLE_ARRAY_PACKED);
+         final ObjectWriter w = MAPPER.writer(schema);
+-        DoubleArray input = new DoubleArray(-0.5, 89245.25, 0.625, 1234567891234567890.5);
++        DoubleArray input = new DoubleArray(-0.5, 89245.25, 0.625);
+         byte[] bytes = w.writeValueAsBytes(input);
+-        assertEquals(34, bytes.length);
++        assertEquals(26, bytes.length);
+ 
+         DoubleArray result = MAPPER.readerFor(DoubleArray.class).with(schema)
+                 .readValue(bytes);
+@@ -256,48 +237,4 @@ public class WritePrimitiveArrayTest extends ProtobufTestBase
+             }
+         }
+     }
+-
+-    /*
+-    /**********************************************************
+-    /* Test methods, floating-point arrays
+-    /**********************************************************
+-     */
+-
+-    public void testfloatArraySparse() throws Exception
+-    {
+-        ProtobufSchema schema = ProtobufSchemaLoader.std.parse(PROTOC_FLOAT_ARRAY_SPARSE);
+-        final ObjectWriter w = MAPPER.writer(schema);
+-        FloatArray input = new FloatArray(0.25f, -2.5f, 55555555.5f);
+-        byte[] bytes = w.writeValueAsBytes(input);
+-        assertEquals(15, bytes.length);
+-
+-        FloatArray result = MAPPER.readerFor(FloatArray.class).with(schema)
+-                .readValue(bytes);
+-        _assertEquals(input.values, result.values);
+-    }
+-
+-    public void testfloatArrayPacked() throws Exception
+-    {
+-        ProtobufSchema schema = ProtobufSchemaLoader.std.parse(PROTOC_FLOAT_ARRAY_PACKED);
+-        final ObjectWriter w = MAPPER.writer(schema);
+-        FloatArray input = new FloatArray(-0.5f, 89245.25f, 55555555.5f);
+-        byte[] bytes = w.writeValueAsBytes(input);
+-        assertEquals(14, bytes.length);
+-
+-        FloatArray result = MAPPER.readerFor(FloatArray.class).with(schema)
+-                .readValue(bytes);
+-        _assertEquals(input.values, result.values);
+-    }
+-
+-    private void _assertEquals(float[] exp, float[] act)
+-    {
+-        assertEquals(exp.length, act.length);
+-        for (int i = 0; i < exp.length; ++i) {
+-            // note: caller ensures it only uses values that reliably round-trip
+-            if (exp[i] != act[i]) {
+-                fail("Entry #"+i+" wrong: expected "+exp[i]+", got "+act[i]);
+-            }
+-        }
+-    }
+-
+ }

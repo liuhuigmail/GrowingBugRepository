@@ -57,3 +57,4 @@ Storm_client	storm-client	https://hub.fastgit.org/apache/storm.git	jira	STORM	/(
 James_mime4j_core	james-mime4j-core https://hub.fastgit.org/apache/james-mime4j.git	jira	MIME4J	/MIME4J-\\d+/mi	core	
 JacksonDataformatsText_properties	jackson-dataformats-text-properties	https://hub.fastgit.org/FasterXML/jackson-dataformats-text.git	github	FasterXML/jackson-dataformats-text	/Fix(?:es)?\\s*#(\\d+)/mi	properties	
 JacksonDataformatsText_yaml	jackson-dataformats-text-yaml	https://hub.fastgit.org/FasterXML/jackson-dataformats-text.git	github	FasterXML/jackson-dataformats-text	/Fix(?:es)?\\s*#(\\d+)/mi	yaml	
+JacksonDataformatBinary_protobuf	jackson-dataformats-binary-protobuf	https://hub.fastgit.org/FasterXML/jackson-dataformats-binary.git	github	FasterXML/jackson-dataformats-binary	/Fix(?:es)?\\s*#(\\d+)/mi	protobuf	

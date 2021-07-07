@@ -1,0 +1,118 @@
+diff --git a/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/RoundtripNestedMessageTest.java b/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/RoundtripNestedMessageTest.java
+index 6600bfa2..48bed012 100644
+--- a/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/RoundtripNestedMessageTest.java
++++ b/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/RoundtripNestedMessageTest.java
+@@ -2,10 +2,8 @@ package com.fasterxml.jackson.dataformat.protobuf;
+ 
+ import java.io.IOException;
+ 
+-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+-
+-import com.fasterxml.jackson.core.JsonParser;
+-import com.fasterxml.jackson.core.JsonToken;
++import org.junit.Assert;
++import org.junit.Test;
+ 
+ import com.fasterxml.jackson.dataformat.protobuf.ProtobufMapper;
+ import com.fasterxml.jackson.dataformat.protobuf.schema.ProtobufSchema;
+@@ -97,25 +95,11 @@ public class RoundtripNestedMessageTest extends ProtobufTestBase
+         }
+     }
+ 
+-    // [dataformats-binary#135]: endless END_OBJECT at end of doc
+-    @JsonPropertyOrder({ "name", "age", "emails", "boss" })
+-    static class Employee135 {
+-        public int age;
+- 
+-        public String[] emails;
+-    }
+-
+-    /*
+-    /**********************************************************
+-    /* Test methods
+-    /**********************************************************
+-     */
+-
+-    private final ProtobufMapper MAPPER = new ProtobufMapper();
+-
++    @Test
+     public void testNestedRoundtrip() throws IOException
+     {
+        TestObject testClass = new TestObject();
++       ProtobufMapper om = new ProtobufMapper();
+        ProtobufSchema s = ProtobufSchemaLoader.std.parse(PROTO);
+        testClass.a = VALUE_A;
+        testClass.b = new TestSub();
+@@ -125,53 +109,14 @@ public class RoundtripNestedMessageTest extends ProtobufTestBase
+        testClass.b.d = new TestSubSub();
+        testClass.b.d.a = VALUE_SUB_A;
+ 
+-       byte[] proto = MAPPER.writer(s)
++       byte[] proto = om.writer(s)
+                .writeValueAsBytes(testClass);
+-        TestObject res = MAPPER.readerFor(TestObject.class).with(s)
++        TestObject res = om.readerFor(TestObject.class).with(s)
+                .readValue(proto);
+ 
+-       assertEquals(VALUE_A, res.a);
+-       assertEquals(VALUE_C, res.b.c);
+-       assertEquals(VALUE_B, res.b.b);
+-       assertEquals(VALUE_SUB_A, res.b.d.a);
+-    }
+-
+-    // [dataformats-binary#135]: endless END_OBJECT at end of doc
+-    public void testIssue135() throws Exception
+-    {
+-        String protobuf_str = "message Employee {\n"
+-                + " required int32 age = 1;\n"
+-                + " repeated string emails = 3;\n"
+-                + "}\n";
+-        final ProtobufSchema schema = MAPPER.schemaLoader().parse(protobuf_str);
+-
+-        Employee135 empl = new Employee135();
+-        empl.age = 30;
+-        empl.emails = new String[]{"foo@gmail.com"};
+-
+-        byte[] protobufData = MAPPER.writer(schema)
+-                .writeValueAsBytes(empl);
+-
+-        JsonParser p = new ProtobufFactory().createParser(protobufData);
+-        p.setSchema(schema);
+-
+-        assertToken(JsonToken.START_OBJECT, p.nextToken());
+-
+-        assertToken(JsonToken.FIELD_NAME, p.nextToken());
+-        assertEquals("age", p.currentName());
+-        assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+-        assertEquals(30, p.getIntValue());
+-
+-        assertToken(JsonToken.FIELD_NAME, p.nextToken());
+-        assertEquals("emails", p.currentName());
+-        assertToken(JsonToken.START_ARRAY, p.nextToken());
+-        assertToken(JsonToken.VALUE_STRING, p.nextToken());
+-        assertEquals("foo@gmail.com", p.getText());
+-        assertToken(JsonToken.END_ARRAY, p.nextToken());
+-        
+-        assertToken(JsonToken.END_OBJECT, p.nextToken());
+-
+-        assertNull(p.nextToken());
+-        p.close();
++       Assert.assertEquals(VALUE_A, res.a);
++       Assert.assertEquals(VALUE_C, res.b.c);
++       Assert.assertEquals(VALUE_B, res.b.b);
++       Assert.assertEquals(VALUE_SUB_A, res.b.d.a);
+     }
+ }
+diff --git a/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/WriteBinaryTest.java b/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/WriteBinaryTest.java
+index a6aa8dfa..c2cb2319 100644
+--- a/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/WriteBinaryTest.java
++++ b/protobuf/src/test/java/com/fasterxml/jackson/dataformat/protobuf/WriteBinaryTest.java
+@@ -26,7 +26,7 @@ public class WriteBinaryTest extends ProtobufTestBase
+             this.trailer = trailer;
+         }
+     }
+-
++    
+     /*
+     /**********************************************************
+     /* Test methods

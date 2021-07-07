@@ -1,0 +1,2 @@
+com.fasterxml.jackson.dataformat.protobuf.ProtobufTestBase
+com.fasterxml.jackson.dataformat.protobuf.WritePrimitiveArrayTest

@@ -1,0 +1,16 @@
+com.fasterxml.jackson.dataformat.protobuf.ByteAccumulator
+com.fasterxml.jackson.dataformat.protobuf.ProtobufFactory
+com.fasterxml.jackson.dataformat.protobuf.ProtobufGenerator
+com.fasterxml.jackson.dataformat.protobuf.ProtobufParser
+com.fasterxml.jackson.dataformat.protobuf.ProtobufUtil
+com.fasterxml.jackson.dataformat.protobuf.ProtobufWriteContext
+com.fasterxml.jackson.dataformat.protobuf.schema.EnumLookup
+com.fasterxml.jackson.dataformat.protobuf.schema.FieldLookup
+com.fasterxml.jackson.dataformat.protobuf.schema.FieldType
+com.fasterxml.jackson.dataformat.protobuf.schema.FieldTypes
+com.fasterxml.jackson.dataformat.protobuf.schema.NativeProtobufSchema
+com.fasterxml.jackson.dataformat.protobuf.schema.ProtobufField
+com.fasterxml.jackson.dataformat.protobuf.schema.ProtobufMessage
+com.fasterxml.jackson.dataformat.protobuf.schema.ProtobufSchema
+com.fasterxml.jackson.dataformat.protobuf.schema.ProtobufSchemaLoader
+com.fasterxml.jackson.dataformat.protobuf.schema.TypeResolver

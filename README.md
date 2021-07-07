@@ -70,7 +70,8 @@ from open-source Java projects.
 | 59     | JacksonModuleJsonSchema            | jackson-module-jsonSchema |      |       2     | 1-2              |
 | 60     | JacksonDatatypeJoda            | jackson-datatype-joda |        |       3     | 1-3              |
 | 61     | Bcel            | commons-bcel |        |       6     | 1-6              |
-| 61     | JacksonDataformatXml            | jackson-dataformat-xml |        |       8     | 1-8              |
+| 62     | JacksonDataformatXml            | jackson-dataformat-xml |        |       8     | 1-8              |
+| 63     | JacksonDataformatBinary_protobuf            | jackson-dataformats-binary-protobuf |      protobuf   |       4     | 1-4              |
 # Setting up GrowingBugs
 
 ## Requirements
