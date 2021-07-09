@@ -1,0 +1,9 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,bac2191d09c697203ba2a85b333355a6b4d29a4a,e8b9a283e4ba46ec81d02b60f21270c52d8131c0,55,https://github.com/FasterXML/jackson-dataformat-xml/issues/55
+2,5b5248302ecbc3877695df3dd53b78dfa6aa10be,8ffed5c09b334980286f1c79db61050ed797eaf7,117,https://github.com/FasterXML/jackson-dataformat-xml/issues/117
+3,cd3129c9df30580b63a945b42c6092a913d40f00,a55e73c6f69ee4dc75ab81d1644d5b4da41bae50,169,https://github.com/FasterXML/jackson-dataformat-xml/issues/169
+4,b2b63736af8de8bcef64fcab4c4757f5e8f2d93b,9df7dec0dfaf5d6b19ef08aa45a2001cb2639ae0,167,https://github.com/FasterXML/jackson-dataformat-xml/issues/167
+5,23ab583c46a6a20b0c1232ebb91b16d4058c7502,79a4b57f2bbe08ce46e6dabb0a8b76f4a787141c,204,https://github.com/FasterXML/jackson-dataformat-xml/issues/204
+6,ce61138456e10580c6bf78bc4009de926105c4d6,8aa276ba6b2092a562195f9a94eb562686a3352c,282,https://github.com/FasterXML/jackson-dataformat-xml/issues/282
+7,562c8cdd45e6dd00609d7d4afd13ffb4f2d4052c,a5f2edae2f8fac75e8defc2edd21726e34011622,242,https://github.com/FasterXML/jackson-dataformat-xml/issues/242
+8,f19907672fbd9acdcf7729f2bd96afb61991a6c7,3997aec41d2b4e39f438328ca96a8e88c557371c,451,https://github.com/FasterXML/jackson-dataformat-xml/issues/451

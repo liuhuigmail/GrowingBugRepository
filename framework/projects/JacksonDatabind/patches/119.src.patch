@@ -1,0 +1,18 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/deser/BeanDeserializerBase.java b/src/main/java/com/fasterxml/jackson/databind/deser/BeanDeserializerBase.java
+index 102e28e38..b39c0bd9a 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/deser/BeanDeserializerBase.java
++++ b/src/main/java/com/fasterxml/jackson/databind/deser/BeanDeserializerBase.java
+@@ -461,10 +461,12 @@ public abstract class BeanDeserializerBase
+                     unwrapped = new UnwrappedPropertyHandler();
+                 }
+                 unwrapped.addProperty(prop);
+                 /* 12-Dec-2014, tatu: As per [databind#647], we will have problems if
+                  *    the original property is left in place. So let's remove it now.
+                  */
+-                _beanProperties.remove(prop);
++                if (prop != origProp) {
++                    _beanProperties.replace(prop);
++                }
+                 continue;
+             }
+             // [JACKSON-594]: non-static inner classes too:

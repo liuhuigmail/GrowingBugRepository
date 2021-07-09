@@ -1,0 +1,13 @@
+diff --git a/doxia-modules/doxia-module-apt/src/main/java/org/apache/maven/doxia/module/apt/AptParser.java b/doxia-modules/doxia-module-apt/src/main/java/org/apache/maven/doxia/module/apt/AptParser.java
+index 7fe1291f..dbbcb2a4 100644
+--- a/doxia-modules/doxia-module-apt/src/main/java/org/apache/maven/doxia/module/apt/AptParser.java
++++ b/doxia-modules/doxia-module-apt/src/main/java/org/apache/maven/doxia/module/apt/AptParser.java
+@@ -2652,8 +2652,7 @@ public class AptParser
+                     if ( headers[i] )
+                     {
+                         AptParser.this.sink.tableHeaderCell_();
+                         // DOXIA-404: reset header for next row
+-                        headers[i] = false;
+                     }
+                     else
+                     {

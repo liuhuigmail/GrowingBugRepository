@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/bcel/classfile/ConstantPool.java b/src/main/java/org/apache/bcel/classfile/ConstantPool.java
+index ea255b59..d9f9f8a5 100644
+--- a/src/main/java/org/apache/bcel/classfile/ConstantPool.java
++++ b/src/main/java/org/apache/bcel/classfile/ConstantPool.java
+@@ -131,7 +131,7 @@ public class ConstantPool implements Cloneable, Node {
+             case Const.CONSTANT_NameAndType:
+                 str = constantToString(((ConstantNameAndType) c).getNameIndex(),
+                         Const.CONSTANT_Utf8)
+-                        + " " + constantToString(((ConstantNameAndType) c).getSignatureIndex(),
++                        + ":" + constantToString(((ConstantNameAndType) c).getSignatureIndex(),
+                         Const.CONSTANT_Utf8);
+                 break;
+             case Const.CONSTANT_InterfaceMethodref:

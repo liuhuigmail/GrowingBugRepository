@@ -1,0 +1,4 @@
+org.apache.fontbox.cmap.CIDRange
+org.apache.fontbox.cmap.CMap
+org.apache.fontbox.cmap.CMapParser
+org.apache.fontbox.cmap.CodespaceRange

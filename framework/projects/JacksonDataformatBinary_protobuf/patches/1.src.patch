@@ -1,0 +1,39 @@
+diff --git a/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/schema/ProtobufField.java b/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/schema/ProtobufField.java
+index 310b6fe3..e3690e34 100644
+--- a/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/schema/ProtobufField.java
++++ b/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/schema/ProtobufField.java
+@@ -94,6 +94,7 @@ public class ProtobufField
+             name = "UNKNOWN";
+         } else {
+             id = nativeField.tag();
++            typedTag = (id << 3) + wireType;
+             name = nativeField.name();
+             switch (nativeField.label()) {
+             case REPEATED:
+@@ -114,14 +115,9 @@ public class ProtobufField
+              */
+             packed = _findBooleanOption(nativeField, "packed");
+             deprecated = _findBooleanOption(nativeField, "deprecated");
+ 
+             // 13-Apr-2017, tatu: [databind#79] Need to write length-prefixed for packed arrays
+-            if (repeated && packed) {
+-                typedTag = (id << 3) + WireType.LENGTH_PREFIXED;
+-            } else {
+-                typedTag = (id << 3) + wireType;
+-            }
+         
+         }
+         isObject = (type == FieldType.MESSAGE);
+     }
+@@ -198,9 +191,9 @@ public class ProtobufField
+     }
+ 
+     public final boolean isValidFor(int typeTag) {
+-        return (typeTag == wireType)
++        return (typeTag == type.getWireType()
+                 // 13-Apr-2017, tatu: to fix [dataformats-binary#76]
+-                || (packed && repeated && typeTag == WireType.LENGTH_PREFIXED);
++                || packed && repeated && typeTag == WireType.LENGTH_PREFIXED);
+     }
+ 
+     @Override

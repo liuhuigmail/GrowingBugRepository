@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/bcel/classfile/ConstantUtf8.java b/src/main/java/org/apache/bcel/classfile/ConstantUtf8.java
+index f754f835..22a6e545 100644
+--- a/src/main/java/org/apache/bcel/classfile/ConstantUtf8.java
++++ b/src/main/java/org/apache/bcel/classfile/ConstantUtf8.java
+@@ -46,7 +46,7 @@ public final class ConstantUtf8 extends Constant {
+     private static volatile int created = 0;
+ 
+     // Set the size to 0 or below to skip caching entirely
+-    private static final int MAX_CACHED_SIZE = Integer.getInteger("bcel.maxcached.size", 200).intValue();
++    private static final int MAX_CACHED_SIZE = Integer.getInteger("bcel.maxcached.size");
+     private static final boolean BCEL_STATISTICS = Boolean.getBoolean("bcel.statistics");
+ 
+ 

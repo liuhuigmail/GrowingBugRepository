@@ -1,0 +1,83 @@
+diff --git a/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/ModuleTestBase.java b/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/ModuleTestBase.java
+index cc6725a..785e07a 100644
+--- a/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/ModuleTestBase.java
++++ b/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/ModuleTestBase.java
+@@ -3,7 +3,6 @@ package com.fasterxml.jackson.datatype.jsr310;
+ import java.time.ZoneId;
+ import java.util.Arrays;
+ import java.util.Collections;
+-import java.util.Locale;
+ import java.util.Map;
+ 
+ import com.fasterxml.jackson.databind.JavaType;
+@@ -41,7 +40,6 @@ public class ModuleTestBase
+ 
+     protected static JsonMapper.Builder mapperBuilder() {
+         return JsonMapper.builder()
+-                .defaultLocale(Locale.ENGLISH)
+                 .addModule(new JavaTimeModule());
+     }
+ 
+diff --git a/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/deser/ZonedDateTimeDeserTest.java b/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/deser/ZonedDateTimeDeserTest.java
+index a3f49c9..44f560d 100644
+--- a/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/deser/ZonedDateTimeDeserTest.java
++++ b/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/deser/ZonedDateTimeDeserTest.java
+@@ -14,7 +14,6 @@ import org.junit.Test;
+ 
+ import java.io.IOException;
+ import java.time.ZoneId;
+-import java.time.ZoneOffset;
+ import java.time.ZonedDateTime;
+ import java.time.format.DateTimeParseException;
+ import java.util.Map;
+@@ -28,11 +27,6 @@ public class ZonedDateTimeDeserTest extends ModuleTestBase
+     private final ObjectReader READER = newMapper().readerFor(ZonedDateTime.class);
+     private final TypeReference<Map<String, ZonedDateTime>> MAP_TYPE_REF = new TypeReference<Map<String, ZonedDateTime>>() { };
+ 
+-    static class WrapperWithFeatures {
+-        @JsonFormat(without = JsonFormat.Feature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE)
+-        public ZonedDateTime value;
+-    }
+-
+     @Test
+     public void testDeserializationAsString01() throws Exception
+     {
+@@ -108,17 +102,6 @@ public class ZonedDateTimeDeserTest extends ModuleTestBase
+     	assertNull(value);
+     }
+ 
+-    @Test
+-    public void testDeserializationWithZonePreserved() throws Throwable
+-    {
+-        WrapperWithFeatures wrapper = newMapper()
+-                .readerFor(WrapperWithFeatures.class)
+-                .readValue("{\"value\":\"2000-01-01T12:00+01:00\"}");
+-        assertEquals("Timezone should be preserved.",
+-                ZonedDateTime.of(2000, 1, 1, 12, 0, 0 ,0, ZoneOffset.ofHours(1)),
+-                wrapper.value);
+-    }
+-
+     /*
+     /**********************************************************
+     /* Tests for empty string handling
+diff --git a/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/ser/ZonedDateTimeSerTest.java b/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/ser/ZonedDateTimeSerTest.java
+index 37af45e..8c23bf4 100644
+--- a/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/ser/ZonedDateTimeSerTest.java
++++ b/datetime/src/test/java/com/fasterxml/jackson/datatype/jsr310/ser/ZonedDateTimeSerTest.java
+@@ -23,7 +23,6 @@ import java.time.format.DateTimeFormatter;
+ import java.time.temporal.ChronoField;
+ import java.time.temporal.ChronoUnit;
+ import java.time.temporal.Temporal;
+-import java.util.Locale;
+ import java.util.TimeZone;
+ 
+ import com.fasterxml.jackson.annotation.JsonFormat;
+@@ -107,7 +106,7 @@ public class ZonedDateTimeSerTest
+     public void testSerializationAsTimestamp01NegativeSecondsWithDefaults() throws Exception
+     {
+         // test for Issue #69 using default mapper config
+-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm:ss.SSS zzz", Locale.ENGLISH);
++        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm:ss.SSS zzz");
+         ZonedDateTime original = ZonedDateTime.parse("Apr 13 1969 05:05:38.599 UTC", dtf);
+         String serialized = MAPPER.writeValueAsString(original);
+         ZonedDateTime deserialized = MAPPER.readValue(serialized, ZonedDateTime.class);

@@ -1,0 +1,9 @@
+org.apache.james.mime4j.MimeException
+org.apache.james.mime4j.stream.NameValuePair
+org.apache.james.mime4j.stream.ParserCursor
+org.apache.james.mime4j.stream.RawBody
+org.apache.james.mime4j.stream.RawFieldParser
+org.apache.james.mime4j.util.ByteArrayBuffer
+org.apache.james.mime4j.util.ByteSequence
+org.apache.james.mime4j.util.CharsetUtil
+org.apache.james.mime4j.util.ContentUtil

@@ -1,0 +1,18 @@
+diff --git a/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/ser/GeneratorWithMinimizeTest.java b/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/ser/GeneratorWithMinimizeTest.java
+index 9130c2f..948e974 100644
+--- a/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/ser/GeneratorWithMinimizeTest.java
++++ b/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/ser/GeneratorWithMinimizeTest.java
+@@ -133,13 +133,6 @@ public class GeneratorWithMinimizeTest extends ModuleTestBase
+ 
+         assertEquals("---\n" +
+                 "key: 2.0.1.2.3", yaml);
+-
+-        content.clear();
+-        content.put("key", "-60");
+-        yaml = mapper.writeValueAsString(content).trim();
+-
+-        assertEquals("---\n" +
+-                "key: \"-60\"", yaml);
+     }
+ 
+     public void testNonQuoteNumberStoredAsString() throws Exception

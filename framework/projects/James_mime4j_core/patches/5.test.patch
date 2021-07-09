@@ -1,0 +1,31 @@
+diff --git a/core/src/test/java/org/apache/james/mime4j/stream/MimeEntityTest.java b/core/src/test/java/org/apache/james/mime4j/stream/MimeEntityTest.java
+index 82d4da48..a4663ae9 100644
+--- a/core/src/test/java/org/apache/james/mime4j/stream/MimeEntityTest.java
++++ b/core/src/test/java/org/apache/james/mime4j/stream/MimeEntityTest.java
+@@ -433,8 +433,6 @@ public class MimeEntityTest extends TestCase {
+             fail("MimeException caused by MaxLineLimitException should have been thrown");
+         } catch (MimeException expected) {
+             assertTrue(expected.getCause() instanceof MaxLineLimitException);
+-            // make sure the exception contains the information about the current maxlinelen setting
+-            assertTrue(expected.getMessage().contains(""+config.getMaxLineLen()));
+         }
+     }
+ 
+@@ -490,8 +488,6 @@ public class MimeEntityTest extends TestCase {
+             entity.advance();
+             fail("MimeException caused by MaxLineLimitException should have been thrown");
+         } catch (MaxHeaderLengthLimitException expected) {
+-        	// make sure the message contains the current setting of maxheaderlen
+-        	assertTrue(expected.getMessage().contains(""+config.getMaxHeaderLen()));
+         }
+     }
+ 
+@@ -586,8 +582,6 @@ public class MimeEntityTest extends TestCase {
+             entity.advance();
+             fail("MaxHeaderLimitException should have been thrown");
+         } catch (MaxHeaderLimitException expected) {
+-        	// make sure the message contains the current setting of maxheadercount
+-        	assertTrue(expected.getMessage().contains(""+config.getMaxHeaderCount()));
+         }
+     }
+ 

@@ -1,0 +1,10 @@
+stax2.wstream.TestClosing
+stax2.wstream.TestConfig
+stax2.wstream.TestEscaping
+stax2.wstream.TestNamespaceCopying
+stax2.wstream.TestStreamResult
+stax2.wstream.TestStreamWriter
+stax2.wstream.TestWriterConstruction
+wstream.TestIndentation
+wstream.TestLongerContent
+wstream.TestNameEncoding

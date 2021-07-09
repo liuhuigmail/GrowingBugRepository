@@ -1,0 +1,110 @@
+diff --git a/src/test/java/com/fasterxml/jackson/databind/jsontype/SubTypeResolution1964Test.java b/src/test/java/com/fasterxml/jackson/databind/jsontype/SubTypeResolution1964Test.java
+index 616e316e0..2d13f3952 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/jsontype/SubTypeResolution1964Test.java
++++ b/src/test/java/com/fasterxml/jackson/databind/jsontype/SubTypeResolution1964Test.java
+@@ -2,7 +2,6 @@ package com.fasterxml.jackson.databind.jsontype;
+ 
+ import java.util.*;
+ 
+-import com.fasterxml.jackson.annotation.JsonProperty;
+ import com.fasterxml.jackson.databind.*;
+ 
+ /**
+@@ -16,7 +15,6 @@ import com.fasterxml.jackson.databind.*;
+ @SuppressWarnings("serial")
+ public class SubTypeResolution1964Test extends BaseMapTest
+ {
+-    // [databind#1964]
+     static class AccessModel {
+         private Map<String, Collection<String>> repositoryPrivileges;
+ 
+@@ -34,47 +32,9 @@ public class SubTypeResolution1964Test extends BaseMapTest
+             this.repositoryPrivileges = repositoryPrivileges;
+         }
+     }
+-    static class CustomMap<T> extends LinkedHashMap<Object, T> { }
+-
+-    // [databind#2034]: specialization from `Object` to other types probably should
+-    // just be allowed (at least in serialization case)
+-    interface Dummy {
+-      List<String> getStrings();
+-    }
+-
+-    static class MetaModel<M, B> extends AbstractMetaValue<M, M, B> {
+-
+-        @JsonProperty
+-        protected final Map<String, AbstractMetaValue<M, ?, B>> attributes = new HashMap<>();
+-
+-        public <V> ListMetaAttribute<M, V, B> describeList(final String attributeName) {
+-          final ListMetaAttribute<M, V, B> metaAttribute = new ListMetaAttribute<>();
+-          attributes.put(attributeName, metaAttribute);
+-          return metaAttribute;
+-        }
+-      }
+-
+-    static abstract class AbstractMetaValue<M, V, B> {
+-        public int getBogus() { return 3; }
+-    }
+ 
+-    static class ListMetaAttribute<M, V, B> extends MetaAttribute<M, List<V>, B> {
+-        public ListMetaAttribute() { }
+-    }
+-
+-    static class MetaAttribute<M, V, B> extends AbstractMetaValue<M, V, B> {
+-        public MetaAttribute() { }
+-      }
+-    
+-    /*
+-    /**********************************************************************
+-    /* Unit tests
+-    /**********************************************************************
+-     */
+-
+-    final ObjectMapper MAPPER = newObjectMapper();
++    static class CustomMap<T> extends LinkedHashMap<Object, T> { }
+ 
+-    // [databind#1964]
+     public void testTypeCompatibility1964() throws Exception
+     {
+         // Important! Must use raw type since assignment requires effectively
+@@ -89,17 +49,8 @@ public class SubTypeResolution1964Test extends BaseMapTest
+         AccessModel accessModel = new AccessModel();
+         accessModel.setRepositoryPrivileges(repoPrivilegesMap);
+ 
+-        String jsonStr = MAPPER.writeValueAsString(accessModel);
+-        // ... could/should verify more, perhaps, but for now let it be.
+-        assertNotNull(jsonStr);
+-    }
+-
+-    // [databind#2034]
+-    public void testTypeSpecialization2034() throws Exception
+-    {
+-        MetaModel<Dummy, Dummy> metaModel = new MetaModel<>();
+-        metaModel.describeList("a1");
+-        String jsonStr = MAPPER.writeValueAsString(metaModel);
++        ObjectMapper mapper = new ObjectMapper();
++        String jsonStr = mapper.writeValueAsString(accessModel);
+         // ... could/should verify more, perhaps, but for now let it be.
+         assertNotNull(jsonStr);
+     }
+diff --git a/src/test/java/com/fasterxml/jackson/databind/jsontype/TestScalars.java b/src/test/java/com/fasterxml/jackson/databind/jsontype/TestScalars.java
+index 89481bf7d..c08bf7e54 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/jsontype/TestScalars.java
++++ b/src/test/java/com/fasterxml/jackson/databind/jsontype/TestScalars.java
+@@ -42,14 +42,14 @@ public class TestScalars extends BaseMapTest
+             return this;
+         }
+     }
+-
++    
+     /*
+     /**********************************************************
+     /* Unit tests
+     /**********************************************************
+      */
+ 
+-    final ObjectMapper MAPPER = newObjectMapper();
++    final ObjectMapper MAPPER = new ObjectMapper();
+     
+     /**
+      * Ensure that per-property dynamic types work, both for "native" types

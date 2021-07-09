@@ -1,0 +1,15 @@
+diff --git a/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufGenerator.java b/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufGenerator.java
+index 293e6260..a591da27 100644
+--- a/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufGenerator.java
++++ b/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufGenerator.java
+@@ -1289,9 +1289,8 @@ public class ProtobufGenerator extends GeneratorBase
+     
+     protected void _writeLengthPrefixed(byte[] data, int offset, int len) throws IOException
+     {
+         // 15-Jun-2017, tatu: [dataformats-binary#94]: need to ensure there is actually
+         //    enough space for simple add; if not, need more checking
+-        _ensureRoom(10); // max tag 5 bytes, ditto max length
+         int ptr = _writeTag(_currPtr);
+         ptr = ProtobufUtil.appendLengthLength(len, _currBuffer, ptr);
+ 
+         

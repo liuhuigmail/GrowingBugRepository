@@ -1,0 +1,6 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,2ef7c25e933f2386b7f540266f61fd8714bce2fb,22acd5953ba95face689346420906d5762bb37e2,148,https://github.com/FasterXML/jackson-modules-java8/issues/148
+2,bc966f9622861758cb4da58aa7924c644086d7b7,3d20752aa23eb5fa7f89bd8def4576741b52fa14,196,https://github.com/FasterXML/jackson-modules-java8/issues/196
+3,9532f8f4e1ce975b9b43f63fbfae55ccfece46e6,ed2155003869c59dfc79ee4392376ce2bdfa11f4,127,https://github.com/FasterXML/jackson-modules-java8/issues/127
+4,4ecf483af6efa49a7d4b3558d8bf49692e84a5c6,05d87805757fe8837834a4b6c2b587b93d851071,78,https://github.com/FasterXML/jackson-modules-java8/issues/78
+5,0e6702c5d8f31ccbab320e1903a4d5bf7c205864,67e06eec44ed94e6eeaf84e7eaca334120136141,166,https://github.com/FasterXML/jackson-modules-java8/issues/166

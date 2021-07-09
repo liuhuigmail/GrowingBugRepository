@@ -1,0 +1,338 @@
+diff --git a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/CBORTestBase.java b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/CBORTestBase.java
+index fb2d1320..26f65444 100644
+--- a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/CBORTestBase.java
++++ b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/CBORTestBase.java
+@@ -46,7 +46,8 @@ public abstract class CBORTestBase
+     }
+     
+     protected CBORFactory cborFactory() {
+-        return new CBORFactory();
++        CBORFactory f = new CBORFactory();
++        return f;
+     }
+ 
+     protected byte[] cborDoc(String json) throws IOException {
+diff --git a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/filter/StreamingDecoratorsTest.java b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/filter/StreamingDecoratorsTest.java
+index 3da8f7c3..c940e1a3 100644
+--- a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/filter/StreamingDecoratorsTest.java
++++ b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/filter/StreamingDecoratorsTest.java
+@@ -4,8 +4,8 @@ import java.io.*;
+ 
+ import com.fasterxml.jackson.core.*;
+ import com.fasterxml.jackson.dataformat.cbor.*;
+-import com.fasterxml.jackson.dataformat.cbor.testutil.PrefixInputDecorator;
+-import com.fasterxml.jackson.dataformat.cbor.testutil.PrefixOutputDecorator;
++import com.fasterxml.jackson.dataformat.cbor.util.PrefixInputDecorator;
++import com.fasterxml.jackson.dataformat.cbor.util.PrefixOutputDecorator;
+ 
+ public class StreamingDecoratorsTest extends CBORTestBase
+ {
+diff --git a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/gen/TestGeneratorClosing.java b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/gen/TestGeneratorClosing.java
+deleted file mode 100644
+index a8f67c3a..00000000
+--- a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/gen/TestGeneratorClosing.java
++++ /dev/null
+@@ -1,127 +0,0 @@
+-package com.fasterxml.jackson.dataformat.cbor.gen;
+-
+-import com.fasterxml.jackson.core.*;
+-import com.fasterxml.jackson.dataformat.cbor.CBORTestBase;
+-import com.fasterxml.jackson.dataformat.cbor.CBORFactory;
+-import com.fasterxml.jackson.dataformat.cbor.testutil.ByteOutputStreamForTesting;
+-
+-/**
+- * Set of basic unit tests that verify aspect of closing a
+- * {@link JsonGenerator} instance. This includes both closing
+- * of physical resources (target), and logical content
+- * (json content tree)
+- *<p>
+- * Specifically, features
+- * <code>JsonGenerator.Feature#AUTO_CLOSE_TARGET</code>
+- * and
+- * <code>JsonGenerator.Feature.AUTO_CLOSE_JSON_CONTENT</code>
+- * are tested.
+- */
+-public class TestGeneratorClosing extends CBORTestBase
+-{
+-    /*
+-    /**********************************************************
+-    /* Unit tests
+-    /**********************************************************
+-     */
+-    
+-    /**
+-     * This unit test checks the default behaviour; with no auto-close, no
+-     * automatic closing should occur, nor explicit one unless specific
+-     * forcing method is used.
+-     */
+-    public void testNoAutoCloseGenerator() throws Exception
+-    {
+-        JsonFactory f = cborFactory();
+-
+-        // Check the default settings
+-        assertTrue(f.isEnabled(JsonGenerator.Feature.AUTO_CLOSE_TARGET));
+-        // then change
+-        f.disable(JsonGenerator.Feature.AUTO_CLOSE_TARGET);
+-        assertFalse(f.isEnabled(JsonGenerator.Feature.AUTO_CLOSE_TARGET));
+-
+-        try (final ByteOutputStreamForTesting output = new ByteOutputStreamForTesting()) {
+-            JsonGenerator g = f.createGenerator(output);
+-    
+-            // shouldn't be closed to begin with...
+-            assertFalse(output.isClosed());
+-            g.writeNumber(39);
+-            // regular close won't close it either:
+-            g.close();
+-            assertFalse(output.isClosed());
+-        }
+-    }
+-
+-    public void testCloseGenerator() throws Exception
+-    {
+-        JsonFactory f = cborFactory();
+-        f.enable(JsonGenerator.Feature.AUTO_CLOSE_TARGET);
+-        @SuppressWarnings("resource")
+-        ByteOutputStreamForTesting output = new ByteOutputStreamForTesting();
+-        JsonGenerator g = f.createGenerator(output);
+-
+-        // shouldn't be closed to begin with...
+-        assertFalse(output.isClosed());
+-        g.writeNumber(39);
+-        // but close() should now close the writer
+-        g.close();
+-        assertTrue(output.isClosed());
+-    }
+-
+-    public void testNoAutoCloseOutputStream() throws Exception
+-    {
+-        JsonFactory f = cborFactory();
+-        f.disable(JsonGenerator.Feature.AUTO_CLOSE_TARGET);
+-        @SuppressWarnings("resource")
+-        ByteOutputStreamForTesting output = new ByteOutputStreamForTesting();
+-        JsonGenerator g = f.createGenerator(output, JsonEncoding.UTF8);
+-
+-        assertFalse(output.isClosed());
+-        g.writeNumber(39);
+-        g.close();
+-        assertFalse(output.isClosed());
+-    }
+-
+-    @SuppressWarnings("resource")
+-    public void testAutoFlushOrNot() throws Exception
+-    {
+-        JsonFactory f = cborFactory();
+-
+-        ByteOutputStreamForTesting bytes = new ByteOutputStreamForTesting();
+-        JsonGenerator g = f.createGenerator(bytes, JsonEncoding.UTF8);
+-        g.writeStartArray();
+-        g.writeEndArray();
+-        assertEquals(0, bytes.flushCount);
+-        g.flush();
+-        assertEquals(1, bytes.flushCount);
+-        final int EXP_LENGTH = 2;
+-        assertEquals(EXP_LENGTH, bytes.toByteArray().length);
+-        g.close();
+-
+-        // then disable and we should not see flushing again...
+-        f = newFactoryBuilder()
+-                .disable(StreamWriteFeature.FLUSH_PASSED_TO_STREAM)
+-                // also need to disable this, to prevent implicit flush() on close()
+-                .disable(StreamWriteFeature.AUTO_CLOSE_TARGET)
+-                .build();
+-
+-        // and then with OutputStream
+-        bytes = new ByteOutputStreamForTesting();
+-        g = f.createGenerator(bytes, JsonEncoding.UTF8);
+-        g.writeStartArray();
+-        g.writeEndArray();
+-        assertEquals(0, bytes.flushCount);
+-        g.flush();
+-        assertEquals(0, bytes.flushCount);
+-        // and, as long as we won't be auto-closing, still no flush
+-        g.close();
+-        assertEquals(0, bytes.flushCount);
+-        // and only direct `close()` will do it
+-        bytes.close();
+-        assertEquals(EXP_LENGTH, bytes.toByteArray().length);
+-    }
+-
+-    private TSFBuilder<?, ?> newFactoryBuilder() {
+-        return CBORFactory.builder();
+-    }
+-}
+diff --git a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/mapper/BinaryReadTest.java b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/mapper/BinaryReadTest.java
+index 582ca2e6..26118f25 100644
+--- a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/mapper/BinaryReadTest.java
++++ b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/mapper/BinaryReadTest.java
+@@ -9,7 +9,7 @@ import com.fasterxml.jackson.core.JsonParser;
+ import com.fasterxml.jackson.core.JsonToken;
+ import com.fasterxml.jackson.databind.ObjectMapper;
+ import com.fasterxml.jackson.dataformat.cbor.CBORTestBase;
+-import com.fasterxml.jackson.dataformat.cbor.testutil.ThrottledInputStream;
++import com.fasterxml.jackson.dataformat.cbor.util.ThrottledInputStream;
+ 
+ public class BinaryReadTest extends CBORTestBase
+ {
+diff --git a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/BasicParserTest.java b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/BasicParserTest.java
+index 0465526a..867ec937 100644
+--- a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/BasicParserTest.java
++++ b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/BasicParserTest.java
+@@ -7,7 +7,7 @@ import com.fasterxml.jackson.dataformat.cbor.CBORConstants;
+ import com.fasterxml.jackson.dataformat.cbor.CBORGenerator;
+ import com.fasterxml.jackson.dataformat.cbor.CBORParser;
+ import com.fasterxml.jackson.dataformat.cbor.CBORTestBase;
+-import com.fasterxml.jackson.dataformat.cbor.testutil.ThrottledInputStream;
++import com.fasterxml.jackson.dataformat.cbor.util.ThrottledInputStream;
+ 
+ /**
+  * Unit tests for simple value types.
+diff --git a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/ParserNextXxxTest.java b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/ParserNextXxxTest.java
+index 679e4fda..e356eaa8 100644
+--- a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/ParserNextXxxTest.java
++++ b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/ParserNextXxxTest.java
+@@ -7,7 +7,7 @@ import com.fasterxml.jackson.core.*;
+ import com.fasterxml.jackson.core.io.SerializedString;
+ import com.fasterxml.jackson.dataformat.cbor.CBORFactory;
+ import com.fasterxml.jackson.dataformat.cbor.CBORTestBase;
+-import com.fasterxml.jackson.dataformat.cbor.testutil.ThrottledInputStream;
++import com.fasterxml.jackson.dataformat.cbor.util.ThrottledInputStream;
+ 
+ // note: copied from test of same name from jackson-dataformat-smile
+ public class ParserNextXxxTest extends CBORTestBase
+diff --git a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/ParserNumbersTest.java b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/ParserNumbersTest.java
+index c9225f87..13cf42ff 100644
+--- a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/ParserNumbersTest.java
++++ b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/ParserNumbersTest.java
+@@ -15,7 +15,7 @@ import com.fasterxml.jackson.dataformat.cbor.CBORFactory;
+ import com.fasterxml.jackson.dataformat.cbor.CBORGenerator;
+ import com.fasterxml.jackson.dataformat.cbor.CBORParser;
+ import com.fasterxml.jackson.dataformat.cbor.CBORTestBase;
+-import com.fasterxml.jackson.dataformat.cbor.testutil.ThrottledInputStream;
++import com.fasterxml.jackson.dataformat.cbor.util.ThrottledInputStream;
+ 
+ @SuppressWarnings("resource")
+ public class ParserNumbersTest extends CBORTestBase
+diff --git a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/UnicodeHandlingTest.java b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/UnicodeHandlingTest.java
+index ada8acd1..623f74fd 100644
+--- a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/UnicodeHandlingTest.java
++++ b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/parse/UnicodeHandlingTest.java
+@@ -4,7 +4,7 @@ import java.io.IOException;
+ 
+ import com.fasterxml.jackson.core.JsonToken;
+ import com.fasterxml.jackson.dataformat.cbor.*;
+-import com.fasterxml.jackson.dataformat.cbor.testutil.ThrottledInputStream;
++import com.fasterxml.jackson.dataformat.cbor.util.ThrottledInputStream;
+ 
+ public class UnicodeHandlingTest extends CBORTestBase
+ {
+diff --git a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/ByteOutputStreamForTesting.java b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/ByteOutputStreamForTesting.java
+deleted file mode 100644
+index 086ec124..00000000
+--- a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/ByteOutputStreamForTesting.java
++++ /dev/null
+@@ -1,32 +0,0 @@
+-package com.fasterxml.jackson.dataformat.cbor.testutil;
+-
+-import java.io.ByteArrayOutputStream;
+-import java.io.IOException;
+-
+-/**
+- * Helper class for verifying that {@link java.io.OutputStream} is (or is not)
+- * closed and/or flushed.
+- */
+-public class ByteOutputStreamForTesting extends ByteArrayOutputStream
+-{
+-    public int closeCount = 0;
+-    public int flushCount = 0;
+-
+-    public ByteOutputStreamForTesting() { }
+-
+-    @Override
+-    public void close() throws IOException {
+-        ++closeCount;
+-        super.close();
+-    }
+-
+-    @Override
+-    public void flush() throws IOException
+-    {
+-        ++flushCount;
+-        super.flush();
+-    }
+-
+-    public boolean isClosed() { return closeCount > 0; }
+-    public boolean isFlushed() { return flushCount > 0; }
+-}
+diff --git a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/StringWriterForTesting.java b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/StringWriterForTesting.java
+deleted file mode 100644
+index 7e12086b..00000000
+--- a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/StringWriterForTesting.java
++++ /dev/null
+@@ -1,28 +0,0 @@
+-package com.fasterxml.jackson.dataformat.cbor.testutil;
+-
+-import java.io.IOException;
+-import java.io.StringWriter;
+-
+-public class StringWriterForTesting extends StringWriter
+-{
+-    public int closeCount = 0;
+-    public int flushCount = 0;
+-
+-    public StringWriterForTesting() { }
+-
+-    @Override
+-    public void close() throws IOException {
+-        ++closeCount;
+-        super.close();
+-    }
+-
+-    @Override
+-    public void flush()
+-    {
+-        ++flushCount;
+-        super.flush();
+-    }
+-
+-    public boolean isClosed() { return closeCount > 0; }
+-    public boolean isFlushed() { return flushCount > 0; }
+-}
+diff --git a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/PrefixInputDecorator.java b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/util/PrefixInputDecorator.java
+similarity index 97%
+rename from cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/PrefixInputDecorator.java
+rename to cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/util/PrefixInputDecorator.java
+index 09ca415b..1c882def 100644
+--- a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/PrefixInputDecorator.java
++++ b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/util/PrefixInputDecorator.java
+@@ -1,4 +1,4 @@
+-package com.fasterxml.jackson.dataformat.cbor.testutil;
++package com.fasterxml.jackson.dataformat.cbor.util;
+ 
+ import java.io.ByteArrayInputStream;
+ import java.io.IOException;
+diff --git a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/PrefixOutputDecorator.java b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/util/PrefixOutputDecorator.java
+similarity index 96%
+rename from cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/PrefixOutputDecorator.java
+rename to cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/util/PrefixOutputDecorator.java
+index fe7bb770..7829355c 100644
+--- a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/PrefixOutputDecorator.java
++++ b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/util/PrefixOutputDecorator.java
+@@ -1,4 +1,4 @@
+-package com.fasterxml.jackson.dataformat.cbor.testutil;
++package com.fasterxml.jackson.dataformat.cbor.util;
+ 
+ import java.io.FilterOutputStream;
+ import java.io.IOException;
+diff --git a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/ThrottledInputStream.java b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/util/ThrottledInputStream.java
+similarity index 92%
+rename from cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/ThrottledInputStream.java
+rename to cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/util/ThrottledInputStream.java
+index 544beccc..d65a2e91 100644
+--- a/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/testutil/ThrottledInputStream.java
++++ b/cbor/src/test/java/com/fasterxml/jackson/dataformat/cbor/util/ThrottledInputStream.java
+@@ -1,4 +1,4 @@
+-package com.fasterxml.jackson.dataformat.cbor.testutil;
++package com.fasterxml.jackson.dataformat.cbor.util;
+ 
+ import java.io.*;
+ 

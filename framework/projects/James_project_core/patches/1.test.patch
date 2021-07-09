@@ -1,0 +1,23 @@
+diff --git a/core/src/test/java/org/apache/james/core/MailAddressTest.java b/core/src/test/java/org/apache/james/core/MailAddressTest.java
+index 16e9a5b863..b8f6986960 100644
+--- a/core/src/test/java/org/apache/james/core/MailAddressTest.java
++++ b/core/src/test/java/org/apache/james/core/MailAddressTest.java
+@@ -244,18 +244,6 @@ public class MailAddressTest {
+             .isEqualTo(new MailAddress(GOOD_ADDRESS));
+     }
+ 
+-    @Test
+-    public void equalsShouldReturnFalseWhenOnlyFirstMemberIsANullSender() {
+-        assertThat(MailAddress.getMailSender(GOOD_ADDRESS))
+-            .isNotEqualTo(MailAddress.nullSender());
+-    }
+-
+-    @Test
+-    public void equalsShouldReturnFalseWhenOnlySecondMemberIsANullSender() {
+-        assertThat(MailAddress.nullSender())
+-            .isNotEqualTo(MailAddress.getMailSender(GOOD_ADDRESS));
+-    }
+-
+     @Test
+     public void shouldMatchBeanContract() {
+         EqualsVerifier.forClass(MailAddress.class)

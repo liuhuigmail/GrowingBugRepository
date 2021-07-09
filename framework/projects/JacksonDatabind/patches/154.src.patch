@@ -1,0 +1,26 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/DeserializationContext.java b/src/main/java/com/fasterxml/jackson/databind/DeserializationContext.java
+index 8bb983bf6..7491109b2 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/DeserializationContext.java
++++ b/src/main/java/com/fasterxml/jackson/databind/DeserializationContext.java
+@@ -155,7 +155,9 @@ public abstract class DeserializationContext
+     protected DeserializationContext(DeserializerFactory df,
+             DeserializerCache cache)
+     {
+-        Objects.requireNonNull(df, "Cannot pass null DeserializerFactory");
++        if (df == null) {
++            throw new IllegalArgumentException("Cannot pass null DeserializerFactory");
++        }
+         _factory = df;
+         if (cache == null) {
+             cache = new DeserializerCache();
+@@ -1088,10 +1090,7 @@ targetType, goodValue.getClass()));
+         }
+         // 18-May-2016, tatu: Only wrap if not already a valid type to throw
+         ClassUtil.throwIfIOE(t);
+         // [databind#2164]: but see if wrapping is desired
+-        if (!isEnabled(DeserializationFeature.WRAP_EXCEPTIONS)) {
+-            ClassUtil.throwIfRTE(t);
+-        }
+         throw instantiationException(instClass, t);
+     }
+ 

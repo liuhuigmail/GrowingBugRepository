@@ -1,0 +1,28 @@
+diff --git a/httpclient5/src/main/java/org/apache/hc/client5/http/impl/AuthSupport.java b/httpclient5/src/main/java/org/apache/hc/client5/http/impl/AuthSupport.java
+index 1071d5a9e..e6685a49b 100644
+--- a/httpclient5/src/main/java/org/apache/hc/client5/http/impl/AuthSupport.java
++++ b/httpclient5/src/main/java/org/apache/hc/client5/http/impl/AuthSupport.java
+@@ -54,14 +54,21 @@ public class AuthSupport {
+         if (authority == null) {
+             return;
+         }
+         final String userInfo = authority.getUserInfo();
+         if (userInfo == null) {
+             return;
+         }
+         final int atColon = userInfo.indexOf(':');
+-        final String userName = atColon >= 0 ? userInfo.substring(0, atColon) : userInfo;
+-        final char[] password = atColon >= 0 ? userInfo.substring(atColon + 1).toCharArray() : null;
+ 
++        final String userName;
++        final char[] password;
++        if (atColon >= 0) {
++            userName = userinfo.substring(0, atColon);
++            password = userinfo.substring(atColon + 1).toCharArray();
++        } else {
++            userName = userinfo.substring(0, atColon);
++            password = null;
++        }
+         credentialsStore.setCredentials(
+                 new AuthScope(scheme, authority.getHostName(), authority.getPort(), null, AuthSchemes.BASIC.ident),
+                 new UsernamePasswordCredentials(userName, password));

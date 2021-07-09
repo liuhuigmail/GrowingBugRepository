@@ -1,0 +1,102 @@
+diff --git a/src/test/java/com/fasterxml/jackson/databind/introspect/IgnoredCreatorProperty1572Test.java b/src/test/java/com/fasterxml/jackson/databind/introspect/IgnoredCreatorProperty1572Test.java
+index a6eeca81e..ca53d80b2 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/introspect/IgnoredCreatorProperty1572Test.java
++++ b/src/test/java/com/fasterxml/jackson/databind/introspect/IgnoredCreatorProperty1572Test.java
+@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.*;
+ 
+ import com.fasterxml.jackson.databind.BaseMapTest;
+ import com.fasterxml.jackson.databind.ObjectMapper;
++import com.fasterxml.jackson.databind.introspect.*;
+ 
+ public class IgnoredCreatorProperty1572Test extends BaseMapTest
+ {
+diff --git a/src/test/java/com/fasterxml/jackson/databind/introspect/IntrospectorPairTest.java b/src/test/java/com/fasterxml/jackson/databind/introspect/IntrospectorPairTest.java
+index a862713a7..43e927d4a 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/introspect/IntrospectorPairTest.java
++++ b/src/test/java/com/fasterxml/jackson/databind/introspect/IntrospectorPairTest.java
+@@ -197,17 +197,6 @@ public class IntrospectorPairTest extends BaseMapTest
+             return (String) values.get("findTypeName");
+         }
+ 
+-        /*
+-        /******************************************************
+-        /* Deserialization introspection
+-        /******************************************************
+-         */
+-
+-        @Override
+-        public Boolean hasAnySetter(Annotated a) {
+-            return (Boolean) values.get("hasAnySetter");
+-        }
+-
+         /*
+         /******************************************************
+         /* Helper methods
+@@ -226,7 +215,7 @@ public class IntrospectorPairTest extends BaseMapTest
+     /**********************************************************
+      */
+ 
+-    private final AnnotationIntrospector NO_ANNOTATIONS = AnnotationIntrospector.nopInstance();
++    private final IntrospectorWithMap NO_ANNOTATIONS = new IntrospectorWithMap();
+ 
+     public void testVersion() throws Exception
+     {
+@@ -236,9 +225,8 @@ public class IntrospectorPairTest extends BaseMapTest
+                 .version(v);
+         assertEquals(v,
+                 new AnnotationIntrospectorPair(withVersion, NO_ANNOTATIONS).version());
+-        IntrospectorWithMap noVersion = new IntrospectorWithMap();
+         assertEquals(Version.unknownVersion(),
+-                new AnnotationIntrospectorPair(noVersion, withVersion).version());
++                new AnnotationIntrospectorPair(NO_ANNOTATIONS, withVersion).version());
+     }
+ 
+     public void testAccess() throws Exception
+@@ -407,7 +395,7 @@ public class IntrospectorPairTest extends BaseMapTest
+     /******************************************************
+     /* Property auto-detection
+     /******************************************************
+-     */
++    */
+ 
+     public void testFindAutoDetectVisibility() throws Exception
+     {
+@@ -426,7 +414,7 @@ public class IntrospectorPairTest extends BaseMapTest
+     /******************************************************
+     /* Type handling
+     /******************************************************
+-     */
++    */
+ 
+     public void testFindTypeResolver() throws Exception
+     {
+@@ -457,29 +445,6 @@ public class IntrospectorPairTest extends BaseMapTest
+                 new AnnotationIntrospectorPair(intr2, intr1).findTypeName(null));
+     }
+ 
+-    /*
+-    /******************************************************
+-    /* Deserialization introspection
+-    /******************************************************
+-     */
+-
+-    // for [databind#1672]
+-    public void testHasAnySetter() {
+-        IntrospectorWithMap intr1 = new IntrospectorWithMap()
+-                .add("hasAnySetter", Boolean.TRUE);
+-        IntrospectorWithMap intr2 = new IntrospectorWithMap()
+-                .add("hasAnySetter", Boolean.FALSE);
+-        assertNull(new AnnotationIntrospectorPair(NO_ANNOTATIONS, NO_ANNOTATIONS).hasAnySetter(null));
+-        assertEquals(Boolean.TRUE,
+-                new AnnotationIntrospectorPair(intr1, intr2).hasAnySetter(null));
+-        assertEquals(Boolean.TRUE,
+-                new AnnotationIntrospectorPair(NO_ANNOTATIONS, intr1).hasAnySetter(null));
+-        assertEquals(Boolean.FALSE,
+-                new AnnotationIntrospectorPair(intr2, intr1).hasAnySetter(null));
+-        assertEquals(Boolean.FALSE,
+-                new AnnotationIntrospectorPair(NO_ANNOTATIONS, intr2).hasAnySetter(null));
+-    }
+-
+     /*
+     /**********************************************************
+     /* Test methods, others

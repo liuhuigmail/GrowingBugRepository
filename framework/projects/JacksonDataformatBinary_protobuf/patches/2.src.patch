@@ -1,0 +1,15 @@
+diff --git a/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufParser.java b/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufParser.java
+index f1caaa3b..ec7a329a 100644
+--- a/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufParser.java
++++ b/protobuf/src/main/java/com/fasterxml/jackson/dataformat/protobuf/ProtobufParser.java
+@@ -2382,8 +2382,8 @@ public class ProtobufParser extends ParserMinimalBase
+             return _slow32();
+         }
+         final byte[] b = _inputBuffer;
+-        int v = (b[ptr] & 0xFF) + ((b[ptr+1] & 0xFF) << 8)
+-                + ((b[ptr+2] & 0xFF) << 16) + ((b[ptr+3] & 0xFF) << 24);
++        int v = (b[ptr] & 0xFF) + ((b[ptr+1]) << 8)
++                + ((b[ptr+2] & 0xFF) << 16) + (b[ptr+3] << 24);
+         _inputPtr = ptr+4;
+         return v;
+     }

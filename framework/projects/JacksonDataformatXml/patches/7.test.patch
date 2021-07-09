@@ -1,0 +1,13 @@
+diff --git a/src/test/java/com/fasterxml/jackson/dataformat/xml/deser/TypeAttributeOrder242Test.java b/src/test/java/com/fasterxml/jackson/dataformat/xml/failing/TypeAttributeOrder242Test.java
+similarity index 96%
+rename from src/test/java/com/fasterxml/jackson/dataformat/xml/deser/TypeAttributeOrder242Test.java
+rename to src/test/java/com/fasterxml/jackson/dataformat/xml/failing/TypeAttributeOrder242Test.java
+index 656225c2..1ce76fa4 100644
+--- a/src/test/java/com/fasterxml/jackson/dataformat/xml/deser/TypeAttributeOrder242Test.java
++++ b/src/test/java/com/fasterxml/jackson/dataformat/xml/failing/TypeAttributeOrder242Test.java
+@@ -1,4 +1,4 @@
+-package com.fasterxml.jackson.dataformat.xml.deser;
++package com.fasterxml.jackson.dataformat.xml.failing;
+ 
+ import java.util.List;
+ 

@@ -1,0 +1,4 @@
+org.apache.hc.client5.http.impl.auth.TestBasicAuthCache
+org.apache.hc.client5.http.impl.auth.TestNTLMScheme
+org.apache.hc.client5.http.impl.classic.TestProtocolExec
+org.apache.hc.client5.http.impl.classic.TestRedirectExec

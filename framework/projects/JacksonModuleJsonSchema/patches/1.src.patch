@@ -1,0 +1,35 @@
+diff --git a/src/main/java/com/fasterxml/jackson/module/jsonSchema/factories/VisitorContext.java b/src/main/java/com/fasterxml/jackson/module/jsonSchema/factories/VisitorContext.java
+index b068893..d2c7afe 100644
+--- a/src/main/java/com/fasterxml/jackson/module/jsonSchema/factories/VisitorContext.java
++++ b/src/main/java/com/fasterxml/jackson/module/jsonSchema/factories/VisitorContext.java
+@@ -4,11 +4,12 @@ import com.fasterxml.jackson.databind.JavaType;
+ 
+ import java.util.HashSet;
+ 
+ public class VisitorContext
+ {
+-    private final HashSet<JavaType> seenSchemas = new HashSet<JavaType>();
+ 
+-    public String addSeenSchemaUri(JavaType aSeenSchema) {
++    private static HashSet<JavaType> seenSchemas = new HashSet<JavaType>();
++    static public String addSeenSchemaUri(JavaType aSeenSchema)
++    {
+         if (aSeenSchema != null && !aSeenSchema.isPrimitive()) {
+             seenSchemas.add(aSeenSchema);
+             return javaTypeToUrn(aSeenSchema);
+@@ -16,11 +20,13 @@ public class VisitorContext
+         return null;
+     }
+ 
+-    public String getSeenSchemaUri(JavaType aSeenSchema) {
++    static public String getSeenSchemaUri(JavaType aSeenSchema)
++    {
+         return (seenSchemas.contains(aSeenSchema)) ? javaTypeToUrn(aSeenSchema) : null;
+     }
+ 
+-    public String javaTypeToUrn(JavaType jt) {
++    static public String javaTypeToUrn(JavaType jt)
++    {
+         return "urn:jsonschema:" + jt.toCanonical().replace('.', ':').replace('$', ':');
+     }
+ }

@@ -1,0 +1,16 @@
+diff --git a/yaml/src/main/java/com/fasterxml/jackson/dataformat/yaml/YAMLParser.java b/yaml/src/main/java/com/fasterxml/jackson/dataformat/yaml/YAMLParser.java
+index cf5fbf0..bfd71d7 100644
+--- a/yaml/src/main/java/com/fasterxml/jackson/dataformat/yaml/YAMLParser.java
++++ b/yaml/src/main/java/com/fasterxml/jackson/dataformat/yaml/YAMLParser.java
+@@ -399,10 +399,9 @@ public class YAMLParser extends ParserBase
+                     _parsingContext.setCurrentName(name);
+                     return (_currToken = JsonToken.FIELD_NAME);
+                 }
+-            } else if (_parsingContext.inArray()) {
+-                _parsingContext.expectComma();
+             }
+ 
++            _currentAnchor = null;
+             // Ugh. Why not expose id, to be able to Switch?
+             _currentAnchor = null;
+ 

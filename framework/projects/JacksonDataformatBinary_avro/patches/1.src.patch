@@ -1,0 +1,48 @@
+diff --git a/avro/src/main/java/com/fasterxml/jackson/dataformat/avro/deser/ScalarReaderWrapper.java b/avro/src/main/java/com/fasterxml/jackson/dataformat/avro/deser/ScalarReaderWrapper.java
+index f6e4d970..c7a422e1 100644
+--- a/avro/src/main/java/com/fasterxml/jackson/dataformat/avro/deser/ScalarReaderWrapper.java
++++ b/avro/src/main/java/com/fasterxml/jackson/dataformat/avro/deser/ScalarReaderWrapper.java
+@@ -40,9 +40,8 @@ final class ScalarReaderWrapper extends AvroStructureReader
+         // 19-Jan-2017, tatu: May need to be called multiple times, for root-level
+         //    sequences. Because of this need to check for EOF. But only after reading
+         //    one token successfully...
+-        if (_rootReader) {
+-            JsonToken t = _decoder.isEnd() ? null : _wrappedReader.readValue(_parser, _decoder);
+-            return (_currToken = t);
++        if (_rootReader && _decoder.isEnd()) {
++            return (_currToken = null);
+         }
+         _parser.setAvroContext(getParent());
+         return (_currToken = _wrappedReader.readValue(_parser, _decoder));
+diff --git a/avro/src/main/java/com/fasterxml/jackson/dataformat/avro/deser/UnionReader.java b/avro/src/main/java/com/fasterxml/jackson/dataformat/avro/deser/UnionReader.java
+index 1e7dd5fc..be9b2b78 100644
+--- a/avro/src/main/java/com/fasterxml/jackson/dataformat/avro/deser/UnionReader.java
++++ b/avro/src/main/java/com/fasterxml/jackson/dataformat/avro/deser/UnionReader.java
+@@ -16,6 +16,7 @@ final class UnionReader extends AvroStructureReader
+     private final BinaryDecoder _decoder;
+     private final AvroParserImpl _parser;
+ 
++    private AvroStructureReader _currentReader;    
+     public UnionReader(AvroStructureReader[] memberReaders) {
+         this(null, memberReaders, null, null);
+     }
+@@ -39,15 +41,17 @@ final class UnionReader extends AvroStructureReader
+     @Override
+     public JsonToken nextToken() throws IOException
+     {
++        if (_currentReader == null) {
+         int index = _decoder.readIndex();
+         if (index < 0 || index >= _memberReaders.length) {
+             throw new JsonParseException(_parser, String.format
+                     ("Invalid index (%s); union only has %d types", index, _memberReaders.length));
++            }
++            _currentReader = _memberReaders[index].newReader(_parent, _parser, _decoder);
+         }
+         // important: remember to create new instance
+         // also: must pass our parent (not this instance)
+-        AvroStructureReader reader = _memberReaders[index].newReader(_parent, _parser, _decoder);
+-        return (_currToken = reader.nextToken());
++        return (_currToken = _currentReader.nextToken());
+     }
+ 
+     @Override

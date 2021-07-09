@@ -1,0 +1,9 @@
+com.fasterxml.jackson.dataformat.yaml.JacksonYAMLParseException
+com.fasterxml.jackson.dataformat.yaml.snakeyaml.error.MarkedYAMLException
+com.fasterxml.jackson.dataformat.yaml.snakeyaml.error.YAMLException
+com.fasterxml.jackson.dataformat.yaml.UTF8Reader
+com.fasterxml.jackson.dataformat.yaml.UTF8Writer
+com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+com.fasterxml.jackson.dataformat.yaml.YAMLGenerator
+com.fasterxml.jackson.dataformat.yaml.YAMLMapper
+com.fasterxml.jackson.dataformat.yaml.YAMLParser

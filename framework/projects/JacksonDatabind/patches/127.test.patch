@@ -1,0 +1,13 @@
+diff --git a/src/test/java/com/fasterxml/jackson/databind/jsontype/AbstracTypeMapping1186Test.java b/src/test/java/com/fasterxml/jackson/failing/AbstracTypeMapping1186Test.java
+similarity index 96%
+rename from src/test/java/com/fasterxml/jackson/databind/jsontype/AbstracTypeMapping1186Test.java
+rename to src/test/java/com/fasterxml/jackson/failing/AbstracTypeMapping1186Test.java
+index 9985dc6ab..561de4934 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/jsontype/AbstracTypeMapping1186Test.java
++++ b/src/test/java/com/fasterxml/jackson/failing/AbstracTypeMapping1186Test.java
+@@ -1,4 +1,4 @@
+-package com.fasterxml.jackson.databind.jsontype;
++package com.fasterxml.jackson.failing;
+ 
+ import java.util.List;
+ 

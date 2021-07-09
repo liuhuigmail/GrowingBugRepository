@@ -76,6 +76,9 @@ of the checked-out project version.
     <condition property="classes.dir" value="${build.home}/classes" >
         <available file="${build.home}/classes" />
     </condition>
+    <condition property="classes.dir" value="${d4j.workdir}/target/classes" >
+        <available file="${d4j.workdir}/target/classes" />
+    </condition>
     
     <condition property="test.classes.dir" value="${maven.build.testOutputDir}"  >
         <isset property="maven.build.testOutputDir" />
@@ -86,6 +89,10 @@ of the checked-out project version.
     <condition property="test.classes.dir" value="${build.home}/test-classes" >
         <available file="${build.home}/test-classes" />
     </condition>
+    <condition property="test.classes.dir" value="${build.tests}"  >
+        <isset property="build.tests" />
+    </condition>
+    
     <property name="test.home" value="${test.classes.dir}" />
     <property name="build.home" value="${classes.dir}/.." />
    

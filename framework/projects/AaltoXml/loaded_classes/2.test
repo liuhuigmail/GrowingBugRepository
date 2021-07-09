@@ -1,0 +1,3 @@
+stax2.BaseStax2Test
+stax2.wstream.BaseWriterTest
+stax2.wstream.TestEscaping

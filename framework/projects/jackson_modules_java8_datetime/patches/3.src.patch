@@ -1,0 +1,27 @@
+diff --git a/datetime/src/main/java/com/fasterxml/jackson/datatype/jsr310/ser/key/ZonedDateTimeKeySerializer.java b/datetime/src/main/java/com/fasterxml/jackson/datatype/jsr310/ser/key/ZonedDateTimeKeySerializer.java
+index dababc8..81fd4a4 100644
+--- a/datetime/src/main/java/com/fasterxml/jackson/datatype/jsr310/ser/key/ZonedDateTimeKeySerializer.java
++++ b/datetime/src/main/java/com/fasterxml/jackson/datatype/jsr310/ser/key/ZonedDateTimeKeySerializer.java
+@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
+ import com.fasterxml.jackson.core.JsonGenerator;
+ import com.fasterxml.jackson.core.JsonProcessingException;
+ import com.fasterxml.jackson.databind.JsonSerializer;
+-import com.fasterxml.jackson.databind.SerializationFeature;
+ import com.fasterxml.jackson.databind.SerializerProvider;
+ 
+ public class ZonedDateTimeKeySerializer extends JsonSerializer<ZonedDateTime> {
+@@ -21,14 +20,10 @@ public class ZonedDateTimeKeySerializer extends JsonSerializer<ZonedDateTime> {
+     @Override
+     public void serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOException,
+             JsonProcessingException {
+         /* [modules-java8#127]: Serialization of timezone data is disabled by default, but can be
+          * turned on by enabling `SerializationFeature.WRITE_DATES_WITH_ZONE_ID`
+          */
+-        if (serializers.isEnabled(SerializationFeature.WRITE_DATES_WITH_ZONE_ID)) {
+-            gen.writeFieldName(DateTimeFormatter.ISO_ZONED_DATE_TIME.format(value));
+-        } else {
+             gen.writeFieldName(DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(value));
+-        }
+     }
+ 
+ }

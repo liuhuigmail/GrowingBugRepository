@@ -1,0 +1,5 @@
+com.fasterxml.jackson.datatype.joda.cfg.FormatConfig
+com.fasterxml.jackson.datatype.joda.deser.DateTimeDeserializer
+com.fasterxml.jackson.datatype.joda.deser.IntervalDeserializer
+com.fasterxml.jackson.datatype.joda.ser.DateTimeSerializer
+com.fasterxml.jackson.datatype.joda.ser.IntervalSerializer

@@ -1,0 +1,32 @@
+diff --git a/core/src/main/java/org/apache/james/mime4j/io/MimeBoundaryInputStream.java b/core/src/main/java/org/apache/james/mime4j/io/MimeBoundaryInputStream.java
+index a1a1969e..fc2a15a8 100644
+--- a/core/src/main/java/org/apache/james/mime4j/io/MimeBoundaryInputStream.java
++++ b/core/src/main/java/org/apache/james/mime4j/io/MimeBoundaryInputStream.java
+@@ -234,10 +234,7 @@ public class MimeBoundaryInputStream extends LineReaderInputStream {
+         return initialLength == 0;
+     }
+     
+-    public boolean isFullyConsumed() {
+-        return completed && !buffer.hasBufferedData();
+-    }
+     
+     private void calculateBoundaryLen() throws IOException {
+         boundaryLen = boundary.length;
+         int len = limit - buffer.pos();
+diff --git a/core/src/main/java/org/apache/james/mime4j/stream/MimeEntity.java b/core/src/main/java/org/apache/james/mime4j/stream/MimeEntity.java
+index 1fd8a2e2..e5a8d25a 100644
+--- a/core/src/main/java/org/apache/james/mime4j/stream/MimeEntity.java
++++ b/core/src/main/java/org/apache/james/mime4j/stream/MimeEntity.java
+@@ -188,11 +187,10 @@ class MimeEntity extends AbstractEntity {
+                     return nextMimeEntity();
+                 }
+             }
+-            boolean empty = currentMimePartStream.isFullyConsumed();
+             clearMimePartStream();
+             state = EntityState.T_EPILOGUE;
+-            if (!empty) break;
+             // continue to next state
++            break;
+         case T_EPILOGUE:
+             state = EntityState.T_END_MULTIPART;
+             break;

@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/util/TokenBuffer.java b/src/main/java/com/fasterxml/jackson/databind/util/TokenBuffer.java
+index f31334e77..25ffa8919 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/util/TokenBuffer.java
++++ b/src/main/java/com/fasterxml/jackson/databind/util/TokenBuffer.java
+@@ -1688,7 +1689,7 @@ sb.append("NativeObjectIds=").append(_hasNativeObjectIds).append(",");
+                 if (d < MIN_LONG_D || d > MAX_LONG_D) {
+                     reportOverflowLong();
+                 }
+-                return (long) d;
++                return (int) d;
+             } else if (n instanceof BigDecimal) {
+                 BigDecimal big = (BigDecimal) n;
+                 if (BD_MIN_LONG.compareTo(big) > 0 

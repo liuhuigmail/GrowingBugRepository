@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,25e57176178f5af7da236a88fc7604d0a159813b,f54d618b028d59844b09b91ec7c6c10deebbd6e1,MCHECKSTYLE-168,https://issues.apache.org/jira/browse/MCHECKSTYLE-168

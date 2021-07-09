@@ -1,0 +1,17 @@
+org.apache.hc.client5.http.ConnectTimeoutException
+org.apache.hc.client5.http.DnsResolver
+org.apache.hc.client5.http.HttpHostConnectException
+org.apache.hc.client5.http.HttpRoute
+org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator
+org.apache.hc.client5.http.impl.io.DefaultHttpResponseParserFactory
+org.apache.hc.client5.http.impl.io.ManagedHttpClientConnectionFactory
+org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager
+org.apache.hc.client5.http.io.ConnectionEndpoint
+org.apache.hc.client5.http.io.HttpClientConnectionManager
+org.apache.hc.client5.http.io.HttpClientConnectionOperator
+org.apache.hc.client5.http.io.LeaseRequest
+org.apache.hc.client5.http.io.ManagedHttpClientConnection
+org.apache.hc.client5.http.RouteInfo
+org.apache.hc.client5.http.SchemePortResolver
+org.apache.hc.client5.http.socket.ConnectionSocketFactory
+org.apache.hc.client5.http.UnsupportedSchemeException

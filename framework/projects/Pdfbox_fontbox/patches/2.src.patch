@@ -1,0 +1,19 @@
+diff --git a/fontbox/src/main/java/org/apache/fontbox/ttf/MemoryTTFDataStream.java b/fontbox/src/main/java/org/apache/fontbox/ttf/MemoryTTFDataStream.java
+index 4ba94be41..89c0bbbd6 100644
+--- a/fontbox/src/main/java/org/apache/fontbox/ttf/MemoryTTFDataStream.java
++++ b/fontbox/src/main/java/org/apache/fontbox/ttf/MemoryTTFDataStream.java
+@@ -98,11 +98,11 @@ public class MemoryTTFDataStream extends TTFDataStream
+      */
+     public int read() throws IOException
+     {
+-        if (currentPosition >= data.length)
++        int retval = -1;
++        if( currentPosition < data.length )
+         {
+-            return -1;
++            retval = data[currentPosition];
+         }
+-        int retval = data[currentPosition];
+         currentPosition++;
+         return (retval+256)%256;
+     }

@@ -1,0 +1,8 @@
+org.apache.storm.blobstore.BlobStore
+org.apache.storm.blobstore.ClientBlobStore
+org.apache.storm.blobstore.KeyFilter
+org.apache.storm.daemon.Shutdownable
+org.apache.storm.generated.AuthorizationException
+org.apache.storm.generated.KeyAlreadyExistsException
+org.apache.storm.generated.KeyNotFoundException
+org.apache.storm.generated.SettableBlobMeta

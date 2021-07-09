@@ -1,0 +1,17 @@
+org.apache.hc.client5.http.entity.mime.AbstractContentBody
+org.apache.hc.client5.http.entity.mime.AbstractMultipartFormat
+org.apache.hc.client5.http.entity.mime.ContentBody
+org.apache.hc.client5.http.entity.mime.ContentDescriptor
+org.apache.hc.client5.http.entity.mime.FormBodyPart
+org.apache.hc.client5.http.entity.mime.FormBodyPartBuilder
+org.apache.hc.client5.http.entity.mime.Header
+org.apache.hc.client5.http.entity.mime.HttpMultipartMode
+org.apache.hc.client5.http.entity.mime.HttpRFC6532Multipart
+org.apache.hc.client5.http.entity.mime.HttpRFC7578Multipart
+org.apache.hc.client5.http.entity.mime.HttpStrictMultipart
+org.apache.hc.client5.http.entity.mime.LegacyMultipart
+org.apache.hc.client5.http.entity.mime.MimeField
+org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder
+org.apache.hc.client5.http.entity.mime.MultipartFormEntity
+org.apache.hc.client5.http.entity.mime.MultipartPart
+org.apache.hc.client5.http.entity.mime.StringBody

@@ -1,0 +1,41 @@
+diff --git a/datetime/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/YearDeserializer.java b/datetime/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/YearDeserializer.java
+index 6f61b82..ea16732 100644
+--- a/datetime/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/YearDeserializer.java
++++ b/datetime/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/YearDeserializer.java
+@@ -19,7 +19,6 @@ package com.fasterxml.jackson.datatype.jsr310.deser;
+ import com.fasterxml.jackson.core.JsonParser;
+ import com.fasterxml.jackson.core.JsonToken;
+ import com.fasterxml.jackson.databind.DeserializationContext;
+-import com.fasterxml.jackson.databind.JsonDeserializer;
+ 
+ import java.io.IOException;
+ import java.time.DateTimeException;
+@@ -32,24 +31,22 @@ import java.time.format.DateTimeFormatter;
+  * @author Nick Williams
+  * @since 2.2
+  */
+-public class YearDeserializer extends JSR310DateTimeDeserializerBase<Year>
++public class YearDeserializer extends JSR310DeserializerBase<Year>
+ {
+     private static final long serialVersionUID = 1L;
+ 
+     public static final YearDeserializer INSTANCE = new YearDeserializer();
+ 
++    private final DateTimeFormatter _formatter;
+     private YearDeserializer()
+     {
+         this(null);
+     }
+ 
+     public YearDeserializer(DateTimeFormatter formatter) {
+-        super(Year.class, formatter);
+-    }
+ 
+-    @Override
+-    protected JsonDeserializer<Year> withDateFormat(DateTimeFormatter dtf) {
+-        return new YearDeserializer(dtf);
++        super(Year.class);
++        _formatter = formatter;
+     }
+ 
+     @Override

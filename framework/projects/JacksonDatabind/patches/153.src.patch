@@ -1,0 +1,16 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/util/CompactStringObjectMap.java b/src/main/java/com/fasterxml/jackson/databind/util/CompactStringObjectMap.java
+index cf8024a69..f27c0c72d 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/util/CompactStringObjectMap.java
++++ b/src/main/java/com/fasterxml/jackson/databind/util/CompactStringObjectMap.java
+@@ -53,11 +53,8 @@ public final class CompactStringObjectMap
+         for (Map.Entry<String,T> entry : all.entrySet()) {
+             String key = entry.getKey();
+ 
+             // 09-Sep-2019, tatu: [databind#2309] skip `null`s if any included
+-            if (key == null) {
+-                continue;
+-            }
+             
+             int slot = key.hashCode() & mask;
+             int ix = slot+slot;
+ 

@@ -1,0 +1,34 @@
+diff --git a/core/src/test/java/org/apache/james/mime4j/codec/EncoderUtilTest.java b/core/src/test/java/org/apache/james/mime4j/codec/EncoderUtilTest.java
+index deda6bea..ca90a756 100644
+--- a/core/src/test/java/org/apache/james/mime4j/codec/EncoderUtilTest.java
++++ b/core/src/test/java/org/apache/james/mime4j/codec/EncoderUtilTest.java
+@@ -142,7 +142,7 @@ public class EncoderUtilTest {
+     }
+     
+     @Test
+-    public void testEncodeBEncodedWordSplitForUnicode() throws Exception {
++    public void testEncodeEncodedWordSplitForUnicode() throws Exception {
+         StringBuilder sb = new StringBuilder("z");
+         for (int i = 0; i < 10; i++) {
+             // Append unicode character 𝕫 10 times.
+@@ -155,20 +155,6 @@ public class EncoderUtilTest {
+                 Usage.TEXT_TOKEN, 10, null, Encoding.B));
+     }
+ 
+-    @Test
+-    public void testEncodeQEncodedWordSplitForUnicode() throws Exception {
+-        StringBuilder sb = new StringBuilder("z");
+-        for (int i = 0; i < 6; i++) {
+-            // Append unicode character 𝕫 6 times.
+-            sb.append("\uD835\uDD6b");
+-        }
+-
+-        String expected = "=?UTF-8?Q?z=F0=9D=95=AB=F0=9D=95=AB?= " +
+-                "=?UTF-8?Q?=F0=9D=95=AB=F0=9D=95=AB=F0=9D=95=AB=F0=9D=95=AB?=";
+-        Assert.assertEquals(expected, EncoderUtil.encodeEncodedWord(sb.toString(),
+-                Usage.TEXT_TOKEN, 10, null, Encoding.Q));
+-    }
+-
+     @Test
+     public void testEncodeEncodedWord() throws Exception {
+         Assert.assertEquals("=?US-ASCII?Q??=", EncoderUtil.encodeEncodedWord("",

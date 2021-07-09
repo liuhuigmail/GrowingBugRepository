@@ -1,0 +1,5 @@
+org.apache.james.mime4j.Charsets
+org.apache.james.mime4j.codec.Base64InputStream
+org.apache.james.mime4j.codec.Base64OutputStream
+org.apache.james.mime4j.codec.EncoderUtil
+org.apache.james.mime4j.codec.QuotedPrintableOutputStream

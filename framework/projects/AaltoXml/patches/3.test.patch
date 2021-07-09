@@ -1,0 +1,204 @@
+diff --git a/src/test/java/base/BaseTestCase.java b/src/test/java/base/BaseTestCase.java
+index b58f16c..4bc9e27 100644
+--- a/src/test/java/base/BaseTestCase.java
++++ b/src/test/java/base/BaseTestCase.java
+@@ -35,12 +35,12 @@ public abstract class BaseTestCase
+     protected XMLInputFactory2 getInputFactory()
+     {
+         if (mInputFactory == null) {
+-            mInputFactory = newInputFactory();
++            mInputFactory = getNewInputFactory();
+         }
+         return mInputFactory;
+     }
+ 
+-    protected XMLInputFactory2 newInputFactory()
++    protected XMLInputFactory2 getNewInputFactory()
+     {
+         // Can hard-code things here, being Aalto-specific tests.
+         return new InputFactoryImpl();
+@@ -49,12 +49,12 @@ public abstract class BaseTestCase
+     protected XMLOutputFactory2 getOutputFactory()
+     {
+         if (mOutputFactory == null) {
+-            mOutputFactory = newOutputFactory();
++            mOutputFactory = getNewOutputFactory();
+         }
+         return mOutputFactory;
+     }
+ 
+-    protected XMLOutputFactory2 newOutputFactory()
++    protected XMLOutputFactory2 getNewOutputFactory()
+     {
+         // Can hard-code things here, being Aalto-specific tests.
+         return new OutputFactoryImpl();
+diff --git a/src/test/java/stream/TestDTDSkimming.java b/src/test/java/stream/TestDTDSkimming.java
+index cc3abb6..781e87b 100644
+--- a/src/test/java/stream/TestDTDSkimming.java
++++ b/src/test/java/stream/TestDTDSkimming.java
+@@ -79,7 +79,7 @@ public class TestDTDSkimming extends base.BaseTestCase
+         throws IOException, XMLStreamException
+     {
+         // Let's ensure it's a new factory, to minimize caching probs
+-        XMLInputFactory2 f = newInputFactory();
++        XMLInputFactory2 f = getNewInputFactory();
+         if (enc == null) { // reader-based
+             return (XMLStreamReader2) f.createXMLStreamReader(new StringReader(content));
+         }
+diff --git a/src/test/java/stream/TestNameDecoding.java b/src/test/java/stream/TestNameDecoding.java
+index a00a5ad..5e73039 100644
+--- a/src/test/java/stream/TestNameDecoding.java
++++ b/src/test/java/stream/TestNameDecoding.java
+@@ -64,7 +64,7 @@ public class TestNameDecoding
+         throws IOException, XMLStreamException
+     {
+         // Let's ensure it's a new factory, to minimize caching probs
+-        XMLInputFactory2 f = newInputFactory();
++        XMLInputFactory2 f = getNewInputFactory();
+         byte[] data = content.getBytes(enc);
+         return f.createXMLStreamReader(new ByteArrayInputStream(data));
+     }
+diff --git a/src/test/java/stream/TestSimple.java b/src/test/java/stream/TestSimple.java
+index ba33a76..e83e9f5 100644
+--- a/src/test/java/stream/TestSimple.java
++++ b/src/test/java/stream/TestSimple.java
+@@ -11,7 +11,7 @@ import org.codehaus.stax2.XMLStreamReader2;
+ 
+ public class TestSimple extends base.BaseTestCase
+ {
+-    private final XMLInputFactory2 F2 = newInputFactory();
++    private final XMLInputFactory2 F2 = getNewInputFactory();
+     
+     public void testNamespacesBytes() throws Exception {
+         _testNamespaces(true);
+diff --git a/src/test/java/stream/TestSurrogates.java b/src/test/java/stream/TestSurrogates.java
+index cdf5bed..9384967 100644
+--- a/src/test/java/stream/TestSurrogates.java
++++ b/src/test/java/stream/TestSurrogates.java
+@@ -51,7 +51,7 @@ public class TestSurrogates extends base.BaseTestCase
+     /**********************************************************************
+      */
+ 
+-    private final XMLInputFactory2 F2 = newInputFactory();
++    private final XMLInputFactory2 F2 = getNewInputFactory();
+     
+     XMLStreamReader2 createReader(String content, boolean useBytes)
+         throws IOException, XMLStreamException
+diff --git a/src/test/java/wstream/TestIndentation.java b/src/test/java/wstream/TestIndentation.java
+index 88e0022..8e6e249 100644
+--- a/src/test/java/wstream/TestIndentation.java
++++ b/src/test/java/wstream/TestIndentation.java
+@@ -12,7 +12,7 @@ import base.BaseTestCase;
+ // root. Related to [#7]
+ public class TestIndentation extends BaseTestCase
+ {
+-    final XMLOutputFactory2 OUTPUT_FACTORY = newOutputFactory();
++    final XMLOutputFactory2 OUTPUT_FACTORY = getNewOutputFactory();
+ 
+     public void testRootLevelIndentBytes() throws Exception
+     {
+diff --git a/src/test/java/wstream/TestLongerContent.java b/src/test/java/wstream/TestLongerContent.java
+index 56f5151..3b226e2 100644
+--- a/src/test/java/wstream/TestLongerContent.java
++++ b/src/test/java/wstream/TestLongerContent.java
+@@ -14,9 +14,9 @@ public class TestLongerContent extends BaseTestCase
+ {
+     final static String TEXT_UTF8_2BYTES = "\u00C0"+"c\u00C7ent! ";
+ 
+-    final XMLOutputFactory2 OUTPUT_FACTORY = newOutputFactory();
++    final XMLOutputFactory2 OUTPUT_FACTORY = getNewOutputFactory();
+ 
+-    final XMLInputFactory2 INPUT_FACTORY = newInputFactory();
++    final XMLInputFactory2 INPUT_FACTORY = getNewInputFactory();
+     
+     // To test [#26]
+ 
+diff --git a/src/test/java/wstream/TestNameEncoding.java b/src/test/java/wstream/TestNameEncoding.java
+index 66c2fc3..c568f21 100644
+--- a/src/test/java/wstream/TestNameEncoding.java
++++ b/src/test/java/wstream/TestNameEncoding.java
+@@ -129,7 +129,7 @@ public class TestNameEncoding
+         throws IOException, XMLStreamException
+     {
+         ByteArrayOutputStream bos = new ByteArrayOutputStream();
+-        XMLStreamWriter sw = newOutputFactory().createXMLStreamWriter(bos, enc);
++        XMLStreamWriter sw = getNewOutputFactory().createXMLStreamWriter(bos, enc);
+         sw.writeStartDocument(enc, "1.0");
+         sw.writeStartElement(name);
+         sw.writeEndElement();
+@@ -157,7 +157,7 @@ public class TestNameEncoding
+         throws IOException, XMLStreamException
+     {
+         // Let's ensure it's a new factory, to minimize caching probs
+-        XMLInputFactory2 f = newInputFactory();
++        XMLInputFactory2 f = getNewInputFactory();
+         return f.createXMLStreamReader(new ByteArrayInputStream(content));
+     }
+ }
+diff --git a/src/test/java/stax2/wstream/TestUTF8Surrogates.java b/src/test/java/wstream/TestUTF8Surrogates.java
+similarity index 95%
+rename from src/test/java/stax2/wstream/TestUTF8Surrogates.java
+rename to src/test/java/wstream/TestUTF8Surrogates.java
+index 097906e..9b1332b 100644
+--- a/src/test/java/stax2/wstream/TestUTF8Surrogates.java
++++ b/src/test/java/wstream/TestUTF8Surrogates.java
+@@ -1,9 +1,11 @@
+-package stax2.wstream;
++package wstream;
+ 
+ import java.io.ByteArrayOutputStream;
+ 
+ import org.codehaus.stax2.XMLStreamWriter2;
+ 
++import stax2.wstream.BaseWriterTest;
++
+ public class TestUTF8Surrogates extends BaseWriterTest
+ {
+     public void testWithKappas() throws Exception
+diff --git a/src/test/java/wstream/WriteRawTest.java b/src/test/java/wstream/WriteRawTest.java
+deleted file mode 100644
+index 0ee4c35..0000000
+--- a/src/test/java/wstream/WriteRawTest.java
++++ /dev/null
+@@ -1,41 +0,0 @@
+-package wstream;
+-
+-import java.io.*;
+-
+-import javax.xml.stream.XMLStreamReader;
+-
+-import org.codehaus.stax2.XMLOutputFactory2;
+-import org.codehaus.stax2.XMLStreamWriter2;
+-
+-// for [aalto-xml#46]
+-public class WriteRawTest extends base.BaseTestCase
+-{
+-    public void testSerialization_failsWithUtf8() throws Exception
+-    {
+-        final String TEXT = "Left \u2265 Right";
+-        final String CONTENT = "<problem>"+TEXT+"</problem>";
+-
+-        final XMLOutputFactory2 outputFactory = newOutputFactory();
+-        final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+-        final XMLStreamWriter2 xmlStreamWriter =
+-                (XMLStreamWriter2) outputFactory.createXMLStreamWriter(byteArrayOutputStream, "utf-8");
+-
+-        xmlStreamWriter.writeStartElement("example");
+-        xmlStreamWriter.writeRaw(CONTENT);
+-        xmlStreamWriter.writeEndElement();
+-        xmlStreamWriter.close();
+-
+-        final String xml = byteArrayOutputStream.toString("utf-8");
+-
+-        XMLStreamReader r = newInputFactory().createXMLStreamReader(new StringReader(xml));
+-        assertTokenType(START_ELEMENT, r.next());
+-        assertEquals("example", r.getLocalName());
+-        assertTokenType(START_ELEMENT, r.next());
+-        assertEquals("problem", r.getLocalName());
+-        assertTokenType(CHARACTERS, r.next());
+-        assertEquals(TEXT, r.getText());
+-        assertTokenType(END_ELEMENT, r.next());
+-        assertTokenType(END_ELEMENT, r.next());
+-        r.close();
+-    }
+-}

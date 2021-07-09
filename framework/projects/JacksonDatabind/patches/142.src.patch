@@ -1,0 +1,37 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/ObjectReader.java b/src/main/java/com/fasterxml/jackson/databind/ObjectReader.java
+index d313c4207..428d2edd9 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/ObjectReader.java
++++ b/src/main/java/com/fasterxml/jackson/databind/ObjectReader.java
+@@ -1139,10 +1139,9 @@ public class ObjectReader
+ 
+     @Override
+     public JsonParser treeAsTokens(TreeNode n) {
+         // 05-Dec-2017, tatu: Important! Must clear "valueToUpdate" since we do not
+         //    want update to be applied here, as a side effect
+-        ObjectReader codec = withValueToUpdate(null);
+-        return new TreeTraversingParser((JsonNode) n, codec);
++        return new TreeTraversingParser((JsonNode) n, this);
+     }
+ 
+     /**
+@@ -1285,7 +1282,7 @@ public class ObjectReader
+      *   objectReader.readValue(src.traverse())
+      *</pre>
+      */
+-    @SuppressWarnings({ "unchecked", "resource" })
++    @SuppressWarnings("unchecked")
+     public <T> T readValue(JsonNode src)
+         throws IOException
+     {
+diff --git a/src/main/java/com/fasterxml/jackson/databind/type/PlaceholderForType.java b/src/main/java/com/fasterxml/jackson/databind/type/PlaceholderForType.java
+index 7193d9898..54ed40275 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/type/PlaceholderForType.java
++++ b/src/main/java/com/fasterxml/jackson/databind/type/PlaceholderForType.java
+@@ -83,7 +83,6 @@ public class PlaceholderForType extends TypeBase
+         return _unsupported();
+     }
+ 
+-    @SuppressWarnings("deprecation")
+     @Override
+     protected JavaType _narrow(Class<?> subclass) {
+         return _unsupported();

@@ -1,0 +1,9 @@
+org.apache.hc.client5.http.auth.AuthChallenge
+org.apache.hc.client5.http.auth.AuthenticationException
+org.apache.hc.client5.http.auth.AuthScheme
+org.apache.hc.client5.http.auth.ChallengeType
+org.apache.hc.client5.http.auth.MalformedChallengeException
+org.apache.hc.client5.http.impl.auth.NTLMEngine
+org.apache.hc.client5.http.impl.auth.NTLMEngineException
+org.apache.hc.client5.http.impl.auth.NTLMEngineImpl
+org.apache.hc.client5.http.impl.auth.NTLMScheme

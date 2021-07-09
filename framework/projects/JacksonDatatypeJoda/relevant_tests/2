@@ -1,0 +1,10 @@
+com.fasterxml.jackson.datatype.joda.DateMidnightTest
+com.fasterxml.jackson.datatype.joda.DateTimeTest
+com.fasterxml.jackson.datatype.joda.IntervalSerializationTest
+com.fasterxml.jackson.datatype.joda.JodaMapperTest
+com.fasterxml.jackson.datatype.joda.JodaSerializationTest
+com.fasterxml.jackson.datatype.joda.MixedListTest
+com.fasterxml.jackson.datatype.joda.TestVersions
+com.fasterxml.jackson.datatype.joda.TimeZoneTest
+com.fasterxml.jackson.datatype.joda.deser.MiscDeserializationTest
+com.fasterxml.jackson.datatype.joda.deser.ReadablePeriodDeserializerTest

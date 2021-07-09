@@ -1,0 +1,37 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/deser/BeanDeserializerBase.java b/src/main/java/com/fasterxml/jackson/databind/deser/BeanDeserializerBase.java
+index cefa096e6..2315960be 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/deser/BeanDeserializerBase.java
++++ b/src/main/java/com/fasterxml/jackson/databind/deser/BeanDeserializerBase.java
+@@ -1047,14 +1047,14 @@ public abstract class BeanDeserializerBase
+      * Accessor for finding the property with given name, if POJO
+      * has one. Name used is the external name, i.e. name used
+      * in external data representation (JSON).
+      *
+      * @since 2.0
+      */
+     public SettableBeanProperty findProperty(String propertyName)
+     {
+         SettableBeanProperty prop = (_beanProperties == null) ?
+                 null : _beanProperties.find(propertyName);
+-        if (prop == null && _propertyBasedCreator != null) {
++        if (_neitherNull(prop, _propertyBasedCreator)) {
+             prop = _propertyBasedCreator.findCreatorProperty(propertyName);
+         }
+         return prop;
+@@ -1067,14 +1067,14 @@ public abstract class BeanDeserializerBase
+      * since properties are not directly indexable; however, for most
+      * instances difference is not significant as number of properties
+      * is low.
+      *
+      * @since 2.3
+      */
+     public SettableBeanProperty findProperty(int propertyIndex)
+     {
+         SettableBeanProperty prop = (_beanProperties == null) ?
+                 null : _beanProperties.find(propertyIndex);
+-        if (prop == null && _propertyBasedCreator != null) {
++        if (_neitherNull(prop, _propertyBasedCreator)) {
+             prop = _propertyBasedCreator.findCreatorProperty(propertyIndex);
+         }
+         return prop;
+

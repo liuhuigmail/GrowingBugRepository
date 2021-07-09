@@ -1,0 +1,2 @@
+com.fasterxml.jackson.dataformat.avro.AvroTestBase
+com.fasterxml.jackson.dataformat.avro.RootSequenceTest

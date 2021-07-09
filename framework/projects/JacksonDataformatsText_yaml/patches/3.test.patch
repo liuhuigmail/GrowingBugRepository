@@ -1,0 +1,75 @@
+diff --git a/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/misc/ObjectId63Test.java b/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/failing/ObjectId63Test.java
+similarity index 96%
+rename from yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/misc/ObjectId63Test.java
+rename to yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/failing/ObjectId63Test.java
+index 28ce217..afaf13b 100644
+--- a/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/misc/ObjectId63Test.java
++++ b/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/failing/ObjectId63Test.java
+@@ -1,4 +1,4 @@
+-package com.fasterxml.jackson.dataformat.yaml.misc;
++package com.fasterxml.jackson.dataformat.yaml.failing;
+ 
+ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+diff --git a/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/failing/ObjectIdWithTreeTest.java b/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/failing/ObjectIdTest.java
+similarity index 97%
+rename from yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/failing/ObjectIdWithTreeTest.java
+rename to yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/failing/ObjectIdTest.java
+index 70f94e4..ba8feb6 100644
+--- a/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/failing/ObjectIdWithTreeTest.java
++++ b/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/failing/ObjectIdTest.java
+@@ -10,7 +10,7 @@ import com.fasterxml.jackson.dataformat.yaml.ModuleTestBase;
+  * Although native Object Ids work in general, Tree Model currently
+  * has issues with it (see [dataformat-yaml#24])
+  */
+-public class ObjectIdWithTreeTest extends ModuleTestBase
++public class ObjectIdTest extends ModuleTestBase
+ {
+     @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+     static class Node
+diff --git a/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/misc/ObjectId123Test.java b/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/misc/ObjectId123Test.java
+deleted file mode 100644
+index eb037b7..0000000
+--- a/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/misc/ObjectId123Test.java
++++ /dev/null
+@@ -1,40 +0,0 @@
+-package com.fasterxml.jackson.dataformat.yaml.misc;
+-
+-import com.fasterxml.jackson.annotation.*;
+-import com.fasterxml.jackson.databind.ObjectMapper;
+-import com.fasterxml.jackson.dataformat.yaml.*;
+-
+-//for [dataformats-text#123], problem with YAML, Object Ids
+-public class ObjectId123Test extends ModuleTestBase
+-{
+-    private final ObjectMapper MAPPER = newObjectMapper();
+-    
+-    public void testObjectIdUsingNative() throws Exception
+-    {
+-        final String YAML_CONTENT =
+-                "foo: &foo1\n" +
+-                "  value: bar\n" +
+-                "boo: *foo1\n";
+-        ScratchModel result = MAPPER.readValue(YAML_CONTENT, ScratchModel.class);
+-        assertNotNull(result);
+-        assertNotNull(result.foo);
+-        assertNotNull(result. boo);
+-        assertSame(result.foo, result.boo);
+-    }
+-
+-    static class ScratchModel {
+-        public StringHolder foo;
+-        public StringHolder boo;
+-    }
+-
+-//    @JsonIdentityInfo(generator = ObjectIdGenerators.None.class)
+-    @JsonIdentityInfo(generator = ObjectIdGenerators.StringIdGenerator.class)
+-    static class StringHolder {
+-        public String value;
+-
+-        @Override
+-        public String toString() {
+-            return value;
+-        }
+-    }
+-}

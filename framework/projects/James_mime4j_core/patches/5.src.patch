@@ -1,0 +1,39 @@
+diff --git a/core/src/main/java/org/apache/james/mime4j/io/BufferedLineReaderInputStream.java b/core/src/main/java/org/apache/james/mime4j/io/BufferedLineReaderInputStream.java
+index 887c6262..d512a890 100644
+--- a/core/src/main/java/org/apache/james/mime4j/io/BufferedLineReaderInputStream.java
++++ b/core/src/main/java/org/apache/james/mime4j/io/BufferedLineReaderInputStream.java
+@@ -215,7 +215,7 @@ public class BufferedLineReaderInputStream extends LineReaderInputStream {
+                 total += chunk;
+             }
+             if (this.maxLineLen > 0 && dst.length() >= this.maxLineLen) {
+-                throw new MaxLineLimitException("Maximum line length limit (" + this.maxLineLen +") exceeded");
++                throw new MaxLineLimitException("Maximum line length limit exceeded");
+             }
+         }
+         if (total == 0 && bytesRead == -1) {
+diff --git a/core/src/main/java/org/apache/james/mime4j/io/LineReaderInputStreamAdaptor.java b/core/src/main/java/org/apache/james/mime4j/io/LineReaderInputStreamAdaptor.java
+index 36775846..f167640c 100644
+--- a/core/src/main/java/org/apache/james/mime4j/io/LineReaderInputStreamAdaptor.java
++++ b/core/src/main/java/org/apache/james/mime4j/io/LineReaderInputStreamAdaptor.java
+@@ -92,7 +92,7 @@ public class LineReaderInputStreamAdaptor extends LineReaderInputStream {
+             dst.append(ch);
+             total++;
+             if (this.maxLineLen > 0 && dst.length() >= this.maxLineLen) {
+-                throw new MaxLineLimitException("Maximum line length limit ( "+ this.maxLineLen +") exceeded");
++                throw new MaxLineLimitException("Maximum line length limit exceeded");
+             }
+             if (ch == '\n') {
+                 break;
+diff --git a/core/src/main/java/org/apache/james/mime4j/stream/MimeEntity.java b/core/src/main/java/org/apache/james/mime4j/stream/MimeEntity.java
+index 657fbd72..08de6ebb 100644
+--- a/core/src/main/java/org/apache/james/mime4j/stream/MimeEntity.java
++++ b/core/src/main/java/org/apache/james/mime4j/stream/MimeEntity.java
+@@ -251,7 +251,7 @@ class MimeEntity implements EntityStateMachine {
+                 return false;
+             }
+             if (maxHeaderCount > 0 && headerCount >= maxHeaderCount) {
+-                throw new MaxHeaderLimitException("Maximum header limit (" + maxHeaderCount + ") exceeded");
++                throw new MaxHeaderLimitException("Maximum header limit exceeded");
+             }
+             headerCount++;
+             fieldBuilder.reset();

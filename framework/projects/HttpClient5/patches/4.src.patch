@@ -1,0 +1,22 @@
+diff --git a/httpclient5/src/main/java/org/apache/hc/client5/http/ssl/DefaultHostnameVerifier.java b/httpclient5/src/main/java/org/apache/hc/client5/http/ssl/DefaultHostnameVerifier.java
+index 19e27a40f..5ed5ed49e 100644
+--- a/httpclient5/src/main/java/org/apache/hc/client5/http/ssl/DefaultHostnameVerifier.java
++++ b/httpclient5/src/main/java/org/apache/hc/client5/http/ssl/DefaultHostnameVerifier.java
+@@ -164,7 +164,7 @@ public final class DefaultHostnameVerifier implements HttpClientHostnameVerifier
+             final SubjectName subjectAlt = subjectAlts.get(i);
+             if (subjectAlt.getType() == SubjectName.DNS) {
+                 final String normalizedSubjectAlt = DnsUtils.normalize(subjectAlt.getValue());
+-                if (matchIdentityStrict(normalizedHost, normalizedSubjectAlt, publicSuffixMatcher)) {
++                if (matchIdentityStrict(normalizedHost, normalizedSubjectAlt, publicSuffixMatcher, DomainType.ICANN)) {
+                     return;
+                 }
+             }
+@@ -177,7 +177,7 @@ public final class DefaultHostnameVerifier implements HttpClientHostnameVerifier
+                  final PublicSuffixMatcher publicSuffixMatcher) throws SSLException {
+         final String normalizedHost = DnsUtils.normalize(host);
+         final String normalizedCn = DnsUtils.normalize(cn);
+-        if (!matchIdentityStrict(normalizedHost, normalizedCn, publicSuffixMatcher)) {
++        if (!matchIdentityStrict(normalizedHost, normalizedCn, publicSuffixMatcher, DomainType.ICANN)) {
+             throw new SSLPeerUnverifiedException("Certificate for <" + host + "> doesn't match " +
+                     "common name of the certificate subject: " + cn);
+         }

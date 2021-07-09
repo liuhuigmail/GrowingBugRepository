@@ -1,0 +1,13 @@
+diff --git a/httpclient5/src/main/java/org/apache/hc/client5/http/entity/mime/MultipartEntityBuilder.java b/httpclient5/src/main/java/org/apache/hc/client5/http/entity/mime/MultipartEntityBuilder.java
+index 8ed0b44f0..54135c1bf 100644
+--- a/httpclient5/src/main/java/org/apache/hc/client5/http/entity/mime/MultipartEntityBuilder.java
++++ b/httpclient5/src/main/java/org/apache/hc/client5/http/entity/mime/MultipartEntityBuilder.java
+@@ -232,7 +232,7 @@ public class MultipartEntityBuilder {
+                 form = new LegacyMultipart(charsetCopy, boundaryCopy, multipartPartsCopy);
+                 break;
+             case EXTENDED:
+-                if (contentTypeCopy.isSameMimeType(ContentType.MULTIPART_FORM_DATA)) {
++                if (ContentType.MULTIPART_FORM_DATA.isSameMimeType(ContentType.MULTIPART_FORM_DATA)) {
+                     if (charsetCopy == null) {
+                         charsetCopy = StandardCharsets.UTF_8;
+                     }

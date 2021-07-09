@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,4e6c26633974375e34bbc9152a952284ce4fead6,86c640298c85092631054b0ce0ad79d1dc24e3ca,60,https://github.com/FasterXML/jackson-datatype-joda/issues/60
+2,c9340a90096269975640cc9989526d829aba2de9,a24ccc2211ea6c9af0bd731d6824536193b0ee41,70,https://github.com/FasterXML/jackson-datatype-joda/issues/70
+3,7a34a40c561321e04da1fb33eaabf33e4e50e902,cf110c7da6d49a138d5ea11c914df15faf11a52d,113,https://github.com/FasterXML/jackson-datatype-joda/issues/113

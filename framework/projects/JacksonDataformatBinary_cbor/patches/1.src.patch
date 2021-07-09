@@ -1,0 +1,12 @@
+diff --git a/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORGenerator.java b/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORGenerator.java
+index 21aa6d9e..04574fae 100644
+--- a/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORGenerator.java
++++ b/cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/CBORGenerator.java
+@@ -675,6 +675,7 @@ public class CBORGenerator extends GeneratorBase
+     }
+ 
+     private final void _writeNumberNoCheck(double d) throws IOException {
++        _verifyValueWrite("write number");
+         _ensureRoomForOutput(11);
+         // 17-Apr-2010, tatu: could also use 'doubleToIntBits', but it seems
+         // more accurate to use exact representation; and possibly faster.

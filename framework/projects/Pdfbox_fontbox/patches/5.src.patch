@@ -1,0 +1,16 @@
+diff --git a/fontbox/src/main/java/org/apache/fontbox/ttf/RAFDataStream.java b/fontbox/src/main/java/org/apache/fontbox/ttf/RAFDataStream.java
+index 0e54827cc..7a199d9b1 100644
+--- a/fontbox/src/main/java/org/apache/fontbox/ttf/RAFDataStream.java
++++ b/fontbox/src/main/java/org/apache/fontbox/ttf/RAFDataStream.java
+@@ -96,11 +96,8 @@ class RAFDataStream extends TTFDataStream
+     @Override
+     public void close() throws IOException
+     {
+-        if (raf != null)
+-        {
+             raf.close();
+             raf = null;
+-        }
+     }
+     
+     /**

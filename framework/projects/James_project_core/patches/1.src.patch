@@ -1,0 +1,27 @@
+diff --git a/core/src/main/java/org/apache/james/core/MailAddress.java b/core/src/main/java/org/apache/james/core/MailAddress.java
+index 78db46c354..02b5ce67fe 100644
+--- a/core/src/main/java/org/apache/james/core/MailAddress.java
++++ b/core/src/main/java/org/apache/james/core/MailAddress.java
+@@ -381,18 +381,12 @@ public class MailAddress implements java.io.Serializable {
+             String theString = (String) obj;
+             return toString().equalsIgnoreCase(theString);
+         } else if (obj instanceof MailAddress) {
+-            MailAddress that = (MailAddress) obj;
+-            boolean bothNullSender = this.isNullSender() && that.isNullSender();
+-            boolean onlyOneIsNullSender = isNullSender() ^ that.isNullSender();
+-
+-            if (bothNullSender) {
++            MailAddress addr = (MailAddress) obj;
++            if (isNullSender() && addr.isNullSender()) {
+                 return true;
+             }
+-            if (onlyOneIsNullSender) {
+-                return false;
+-            }
+-            return equalsIgnoreCase(getLocalPart(), that.getLocalPart())
+-                && Objects.equals(getDomain(), that.getDomain());
++            return equalsIgnoreCase(getLocalPart(), addr.getLocalPart())
++                && Objects.equals(getDomain(), addr.getDomain());
+         }
+         return false;
+     }

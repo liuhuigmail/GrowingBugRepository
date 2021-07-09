@@ -1,0 +1,67 @@
+diff --git a/src/test/java/com/fasterxml/jackson/databind/deser/jdk/EnumDeserializationTest.java b/src/test/java/com/fasterxml/jackson/databind/deser/jdk/EnumDeserializationTest.java
+index 7cdcc3874..9117ca9cb 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/deser/jdk/EnumDeserializationTest.java
++++ b/src/test/java/com/fasterxml/jackson/databind/deser/jdk/EnumDeserializationTest.java
+@@ -14,7 +14,6 @@ import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
+ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+ import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+ import com.fasterxml.jackson.databind.exc.MismatchedInputException;
+-import com.fasterxml.jackson.databind.exc.ValueInstantiationException;
+ import com.fasterxml.jackson.databind.json.JsonMapper;
+ import com.fasterxml.jackson.databind.module.SimpleModule;
+ 
+@@ -186,16 +185,6 @@ public class EnumDeserializationTest
+         }
+     }
+ 
+-    // for [databind#2164]
+-    public enum TestEnum2164 {
+-        A, B;
+-
+-        @JsonCreator
+-        public static TestEnum2164 fromString(String input) {
+-            throw new IllegalArgumentException("2164");
+-        }
+-    }
+-
+     // for [databind#2309]
+     static enum Enum2309 {
+         NON_NULL("NON_NULL"),
+@@ -562,31 +551,6 @@ public class EnumDeserializationTest
+         }
+     }
+ 
+-    // [databind#2164]
+-    public void testWrapExceptions() throws Exception
+-    {
+-        // By default, wrap:
+-        try {
+-            MAPPER.readerFor(TestEnum2164.class)
+-                .readValue(quote("B"));
+-            fail("Should not pass");
+-        } catch (ValueInstantiationException e) {
+-            verifyException(e, "2164");
+-        }
+-
+-        // But can disable:
+-        try {
+-            MAPPER.readerFor(TestEnum2164.class)
+-                .without(DeserializationFeature.WRAP_EXCEPTIONS)
+-                .readValue(quote("B"));
+-            fail("Should not pass");
+-        } catch (JsonMappingException e) {
+-            fail("Wrong exception, should not wrap, got: "+e);
+-        } catch (IllegalArgumentException e) {
+-            verifyException(e, "2164");
+-        }
+-    }
+-
+     // [databind#2309]
+     public void testEnumToStringNull2309() throws Exception
+     {
+@@ -595,5 +559,4 @@ public class EnumDeserializationTest
+                 .readValue(quote("NON_NULL"));
+         assertEquals(Enum2309.NON_NULL, value);
+     }
+-
+ }

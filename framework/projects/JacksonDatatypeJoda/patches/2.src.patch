@@ -1,0 +1,81 @@
+diff --git a/src/main/java/com/fasterxml/jackson/datatype/joda/cfg/FormatConfig.java b/src/main/java/com/fasterxml/jackson/datatype/joda/cfg/FormatConfig.java
+index 878940b..23014ef 100644
+--- a/src/main/java/com/fasterxml/jackson/datatype/joda/cfg/FormatConfig.java
++++ b/src/main/java/com/fasterxml/jackson/datatype/joda/cfg/FormatConfig.java
+@@ -23,22 +23,18 @@ public class FormatConfig
+     public final static JacksonJodaDateFormat DEFAULT_TIMEONLY_FORMAT
+         = new JacksonJodaDateFormat(ISODateTimeFormat.time().withZoneUTC());
+ 
+     /* 28-Jul-2015, tatu: As per [datatype-joda#70], there is difference between
+      *    "dateTime()" and "dateTimeParser()"... so we need to differentiate between
+      *    parser/generator it seems.
+      */
+-    public final static JacksonJodaDateFormat DEFAULT_DATETIME_PARSER
+-    	= new JacksonJodaDateFormat(ISODateTimeFormat.dateTimeParser().withZoneUTC());
++    public final static JacksonJodaDateFormat DEFAULT_DATETIME_FORMAT
++        = new JacksonJodaDateFormat(ISODateTimeFormat.dateTime().withZoneUTC());
+ 
+-    public final static JacksonJodaDateFormat DEFAULT_DATETIME_PRINTER
+-    	= new JacksonJodaDateFormat(ISODateTimeFormat.dateTime().withZoneUTC());
+ 
+     /**
+      * @deprecated Since 2.6.1
+      */
+-    @Deprecated
+-    public final static JacksonJodaDateFormat DEFAULT_DATETIME_FORMAT = DEFAULT_DATETIME_PRINTER;
+     
+     public final static JacksonJodaPeriodFormat DEFAULT_PERIOD_FORMAT
+         = new JacksonJodaPeriodFormat(ISOPeriodFormat.standard());
+     
+diff --git a/src/main/java/com/fasterxml/jackson/datatype/joda/deser/DateTimeDeserializer.java b/src/main/java/com/fasterxml/jackson/datatype/joda/deser/DateTimeDeserializer.java
+index 32c3c76..a77ab2b 100644
+--- a/src/main/java/com/fasterxml/jackson/datatype/joda/deser/DateTimeDeserializer.java
++++ b/src/main/java/com/fasterxml/jackson/datatype/joda/deser/DateTimeDeserializer.java
+@@ -32,7 +32,7 @@ public class DateTimeDeserializer
+     public static <T extends ReadableInstant> JsonDeserializer<T> forType(Class<T> cls)
+     {
+         return (JsonDeserializer<T>) new DateTimeDeserializer(cls,
+-                FormatConfig.DEFAULT_DATETIME_PARSER);
++                FormatConfig.DEFAULT_DATETIME_FORMAT);
+     }
+ 
+     @Override
+diff --git a/src/main/java/com/fasterxml/jackson/datatype/joda/deser/IntervalDeserializer.java b/src/main/java/com/fasterxml/jackson/datatype/joda/deser/IntervalDeserializer.java
+index b33d9c3..244df57 100644
+--- a/src/main/java/com/fasterxml/jackson/datatype/joda/deser/IntervalDeserializer.java
++++ b/src/main/java/com/fasterxml/jackson/datatype/joda/deser/IntervalDeserializer.java
+@@ -18,7 +18,7 @@ public class IntervalDeserializer extends JodaDateDeserializerBase<Interval>
+ 
+     public IntervalDeserializer() {
+         // NOTE: not currently used, but must pass something
+-        this(FormatConfig.DEFAULT_DATETIME_PARSER);
++        this(FormatConfig.DEFAULT_DATETIME_FORMAT);
+     }
+ 
+     public IntervalDeserializer(JacksonJodaDateFormat format) {
+diff --git a/src/main/java/com/fasterxml/jackson/datatype/joda/ser/DateTimeSerializer.java b/src/main/java/com/fasterxml/jackson/datatype/joda/ser/DateTimeSerializer.java
+index c858a28..3a9039e 100644
+--- a/src/main/java/com/fasterxml/jackson/datatype/joda/ser/DateTimeSerializer.java
++++ b/src/main/java/com/fasterxml/jackson/datatype/joda/ser/DateTimeSerializer.java
+@@ -15,7 +15,7 @@ public final class DateTimeSerializer
+ {
+     private static final long serialVersionUID = 1L;
+ 
+-    public DateTimeSerializer() { this(FormatConfig.DEFAULT_DATETIME_PRINTER); }
++    public DateTimeSerializer() { this(FormatConfig.DEFAULT_DATETIME_FORMAT); }
+     public DateTimeSerializer(JacksonJodaDateFormat format) {
+         // false -> no arrays (numbers)
+         super(DateTime.class, format, false,
+diff --git a/src/main/java/com/fasterxml/jackson/datatype/joda/ser/IntervalSerializer.java b/src/main/java/com/fasterxml/jackson/datatype/joda/ser/IntervalSerializer.java
+index eea0cb9..94f561e 100644
+--- a/src/main/java/com/fasterxml/jackson/datatype/joda/ser/IntervalSerializer.java
++++ b/src/main/java/com/fasterxml/jackson/datatype/joda/ser/IntervalSerializer.java
+@@ -16,7 +16,7 @@ public class IntervalSerializer extends JodaDateSerializerBase<Interval>
+ {
+     private static final long serialVersionUID = 1L;
+ 
+-    public IntervalSerializer() { this(FormatConfig.DEFAULT_DATETIME_PRINTER); }
++    public IntervalSerializer() { this(FormatConfig.DEFAULT_DATETIME_FORMAT); }
+     public IntervalSerializer(JacksonJodaDateFormat format) {
+         super(Interval.class, format, false,
+                 SerializationFeature.WRITE_DURATIONS_AS_TIMESTAMPS);

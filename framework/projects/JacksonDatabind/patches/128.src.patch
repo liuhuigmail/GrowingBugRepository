@@ -1,0 +1,43 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/deser/BasicDeserializerFactory.java b/src/main/java/com/fasterxml/jackson/databind/deser/BasicDeserializerFactory.java
+index 28fa5eaa4..b219dbe87 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/deser/BasicDeserializerFactory.java
++++ b/src/main/java/com/fasterxml/jackson/databind/deser/BasicDeserializerFactory.java
+@@ -1869,7 +1869,7 @@ public abstract class BasicDeserializerFactory
+             }
+         }
+ 
+-        if (type.isContainerType() || type.isReferenceType()) {
++        if (type.getContentType() != null) { // container type or reference type
+             Object cdDef = intr.findContentDeserializer(member);
+             JsonDeserializer<?> cd = ctxt.deserializerInstance(member, cdDef);
+             if (cd != null) {
+diff --git a/src/main/java/com/fasterxml/jackson/databind/introspect/JacksonAnnotationIntrospector.java b/src/main/java/com/fasterxml/jackson/databind/introspect/JacksonAnnotationIntrospector.java
+index 03abb4000..48ca91d94 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/introspect/JacksonAnnotationIntrospector.java
++++ b/src/main/java/com/fasterxml/jackson/databind/introspect/JacksonAnnotationIntrospector.java
+@@ -467,10 +467,8 @@ public class JacksonAnnotationIntrospector
+         /* As per definition of @JsonTypeInfo, should only apply to contents of container
+          * (collection, map) types, not container types themselves:
+          */
+         // 17-Apr-2016, tatu: For 2.7.4 make sure ReferenceType also included
+-        if (baseType.isContainerType() || baseType.isReferenceType()) {
+-            return null;
+-        }
++        if (baseType.isContainerType()) return null;
+         // No per-member type overrides (yet)
+         return _findTypeResolver(config, am, baseType);
+     }
+diff --git a/src/main/java/com/fasterxml/jackson/databind/ser/BeanSerializerFactory.java b/src/main/java/com/fasterxml/jackson/databind/ser/BeanSerializerFactory.java
+index d0da34b95..32cd77ecb 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/ser/BeanSerializerFactory.java
++++ b/src/main/java/com/fasterxml/jackson/databind/ser/BeanSerializerFactory.java
+@@ -797,7 +798,8 @@ public class BeanSerializerFactory
+         // And how about polymorphic typing? First special to cover JAXB per-field settings:
+         TypeSerializer contentTypeSer = null;
+         // 16-Feb-2014, cgc: contentType serializers for collection-like and map-like types
+-        if (type.isContainerType() || type.isReferenceType()) {
++        if (ClassUtil.isCollectionMapOrArray(type.getRawClass())
++                || type.isCollectionLikeType() || type.isMapLikeType()) {
+             contentTypeSer = findPropertyContentTypeSerializer(type, prov.getConfig(), accessor);
+         }
+         // and if not JAXB collection/array with annotations, maybe regular type info?

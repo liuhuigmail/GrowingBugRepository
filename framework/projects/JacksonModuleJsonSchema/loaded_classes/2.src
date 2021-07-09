@@ -1,0 +1,17 @@
+com.fasterxml.jackson.module.jsonSchema.JsonSchema
+com.fasterxml.jackson.module.jsonSchema.JsonSchemaIdResolver
+com.fasterxml.jackson.module.jsonSchema.types.AdditionalItemsDeserializer
+com.fasterxml.jackson.module.jsonSchema.types.AdditionalPropertiesDeserializer
+com.fasterxml.jackson.module.jsonSchema.types.AnySchema
+com.fasterxml.jackson.module.jsonSchema.types.ArraySchema
+com.fasterxml.jackson.module.jsonSchema.types.BooleanSchema
+com.fasterxml.jackson.module.jsonSchema.types.ContainerTypeSchema
+com.fasterxml.jackson.module.jsonSchema.types.IntegerSchema
+com.fasterxml.jackson.module.jsonSchema.types.LinkDescriptionObject
+com.fasterxml.jackson.module.jsonSchema.types.NullSchema
+com.fasterxml.jackson.module.jsonSchema.types.NumberSchema
+com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
+com.fasterxml.jackson.module.jsonSchema.types.SimpleTypeSchema
+com.fasterxml.jackson.module.jsonSchema.types.StringSchema
+com.fasterxml.jackson.module.jsonSchema.types.UnionTypeSchema
+com.fasterxml.jackson.module.jsonSchema.types.ValueTypeSchema

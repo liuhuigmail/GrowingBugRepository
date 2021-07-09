@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/fasterxml/jackson/core/JsonFactory.java b/src/main/java/com/fasterxml/jackson/core/JsonFactory.java
+index b6412a3c..4c975d20 100644
+--- a/src/main/java/com/fasterxml/jackson/core/JsonFactory.java
++++ b/src/main/java/com/fasterxml/jackson/core/JsonFactory.java
+@@ -290,7 +290,7 @@ public class JsonFactory
+      */
+     protected JsonFactory(JsonFactory src, ObjectCodec codec)
+     {
+-        _objectCodec = codec;
++        _objectCodec = null;
+         _factoryFeatures = src._factoryFeatures;
+         _parserFeatures = src._parserFeatures;
+         _generatorFeatures = src._generatorFeatures;

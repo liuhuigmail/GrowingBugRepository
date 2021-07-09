@@ -1,0 +1,20 @@
+diff --git a/pdfbox/src/main/java/org/apache/pdfbox/pdmodel/common/PDPageLabels.java b/pdfbox/src/main/java/org/apache/pdfbox/pdmodel/common/PDPageLabels.java
+index ecda8ecfa..5b0467527 100644
+--- a/pdfbox/src/main/java/org/apache/pdfbox/pdmodel/common/PDPageLabels.java
++++ b/pdfbox/src/main/java/org/apache/pdfbox/pdmodel/common/PDPageLabels.java
+@@ -300,14 +300,10 @@ public class PDPageLabels implements COSObjectable
+             StringBuilder buf = new StringBuilder();
+             if (labelInfo.getPrefix() != null)
+             {
+                 String label = labelInfo.getPrefix();
+                 // there may be some labels with some null bytes at the end
+                 // which will lead to an incomplete output, see PDFBOX-1047
+-                while (label.lastIndexOf(0) != -1)
+-                {
+-                    label = label.substring(0, label.length()-1);
+-                }
+-                buf.append(label);
++                buf.append(label.trim());
+             }
+             if (labelInfo.getStyle() != null)
+             {

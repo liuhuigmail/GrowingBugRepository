@@ -1,0 +1,2 @@
+com.fasterxml.jackson.dataformat.yaml.ModuleTestBase
+com.fasterxml.jackson.dataformat.yaml.ser.GeneratorWithMinimizeTest

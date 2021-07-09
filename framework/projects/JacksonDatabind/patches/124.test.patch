@@ -1,0 +1,38 @@
+diff --git a/src/test/java/com/fasterxml/jackson/databind/creators/DelegatingExternalProperty1003Test.java b/src/test/java/com/fasterxml/jackson/failing/DelegatingExternalProperty1003Test.java
+similarity index 88%
+rename from src/test/java/com/fasterxml/jackson/databind/creators/DelegatingExternalProperty1003Test.java
+rename to src/test/java/com/fasterxml/jackson/failing/DelegatingExternalProperty1003Test.java
+index 2060d81b2..9de595dcf 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/creators/DelegatingExternalProperty1003Test.java
++++ b/src/test/java/com/fasterxml/jackson/failing/DelegatingExternalProperty1003Test.java
+@@ -1,4 +1,4 @@
+-package com.fasterxml.jackson.databind.creators;
++package com.fasterxml.jackson.failing;
+ 
+ import com.fasterxml.jackson.annotation.*;
+ 
+@@ -35,10 +35,8 @@ public class DelegatingExternalProperty1003Test extends BaseMapTest
+     public interface Hero { }
+ 
+     static class Superman implements Hero {
+-        String name = "superman";
+-
+         public String getName() {
+-            return name;
++            return "superman";
+         }
+     }    
+ 
+@@ -48,8 +46,11 @@ public class DelegatingExternalProperty1003Test extends BaseMapTest
+ 
+         final String json = mapper.writeValueAsString(new HeroBattle(new Superman()));
+ 
++//System.err.println("JSON: "+json);        
+         final HeroBattle battle = mapper.readValue(json, HeroBattle.class);
+ 
+-        assertTrue(battle.getHero() instanceof Superman);
++        assert battle.getHero() instanceof Superman;
+     }
++
++    
+ }

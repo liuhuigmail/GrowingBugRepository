@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/fasterxml/jackson/datatype/joda/ser/InstantSerializer.java b/src/main/java/com/fasterxml/jackson/datatype/joda/ser/InstantSerializer.java
+index 3b2a415..c4bd0f3 100644
+--- a/src/main/java/com/fasterxml/jackson/datatype/joda/ser/InstantSerializer.java
++++ b/src/main/java/com/fasterxml/jackson/datatype/joda/ser/InstantSerializer.java
+@@ -19,7 +19,7 @@ public final class InstantSerializer
+     public InstantSerializer() { this(FormatConfig.DEFAULT_TIMEONLY_FORMAT); }
+     public InstantSerializer(JacksonJodaDateFormat format) {
+         super(Instant.class, format, false,
+-                SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
++                SerializationFeature.WRITE_DURATIONS_AS_TIMESTAMPS);
+     }
+ 
+     @Override

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/ObjectMapper.java b/src/main/java/com/fasterxml/jackson/databind/ObjectMapper.java
+index bb7ccc716..2e32d5c04 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/ObjectMapper.java
++++ b/src/main/java/com/fasterxml/jackson/databind/ObjectMapper.java
+@@ -238,15 +238,15 @@ public class ObjectMapper
+          */
+         @Deprecated // since 2.10
+         public DefaultTypeResolverBuilder(DefaultTyping t) {
+-            this(t, LaissezFaireSubTypeValidator.instance);
++            this(t, null);
+         }
+ 
+         /**
+          * @since 2.10
+          */
+         public DefaultTypeResolverBuilder(DefaultTyping t, PolymorphicTypeValidator ptv) {
+-            _appliesFor = Objects.requireNonNull(t, "Can not pass `null` DefaultTyping");
+-            _subtypeValidator = Objects.requireNonNull(ptv, "Can not pass `null` PolymorphicTypeValidator");
++            _appliesFor = t;
++            _subtypeValidator = ptv;
+         }
+ 
+         /**

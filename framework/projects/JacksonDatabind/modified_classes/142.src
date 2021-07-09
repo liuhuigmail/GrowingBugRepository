@@ -1,0 +1,2 @@
+com.fasterxml.jackson.databind.ObjectReader
+com.fasterxml.jackson.databind.type.PlaceholderForType

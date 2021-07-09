@@ -1,0 +1,13 @@
+diff --git a/pdfbox/src/main/java/org/apache/pdfbox/io/RandomAccessBuffer.java b/pdfbox/src/main/java/org/apache/pdfbox/io/RandomAccessBuffer.java
+index d91f757e2..74c2bde20 100644
+--- a/pdfbox/src/main/java/org/apache/pdfbox/io/RandomAccessBuffer.java
++++ b/pdfbox/src/main/java/org/apache/pdfbox/io/RandomAccessBuffer.java
+@@ -149,7 +149,7 @@ public class RandomAccessBuffer implements RandomAccess
+     private byte[] expandBuffer(byte[] buffer, int newSize) 
+     {
+         byte[] expandedBuffer = new byte[newSize];
+-        System.arraycopy(buffer, 0, expandedBuffer, 0, buffer.length);
++        System.arraycopy(buffer, 0, expandedBuffer, 0, newSize);
+         return expandedBuffer;
+     }
+ }

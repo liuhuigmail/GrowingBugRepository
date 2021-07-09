@@ -1,0 +1,3 @@
+com.fasterxml.jackson.dataformat.yaml.deser.ParserAutoCloseTest
+com.fasterxml.jackson.dataformat.yaml.ModuleTestBase
+com.fasterxml.jackson.dataformat.yaml.ser.GeneratorAutoCloseTest

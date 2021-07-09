@@ -1,0 +1,2 @@
+org.apache.james.mime4j.io.MimeBoundaryInputStream
+core.org.apache.james.mime4j.stream.MimeEntity

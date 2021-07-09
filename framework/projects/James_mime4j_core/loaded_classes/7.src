@@ -1,0 +1,2 @@
+org.apache.james.mime4j.codec.DecodeMonitor
+org.apache.james.mime4j.codec.DecoderUtil

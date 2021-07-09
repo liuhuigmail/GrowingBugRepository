@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/deser/BasicDeserializerFactory.java b/src/main/java/com/fasterxml/jackson/databind/deser/BasicDeserializerFactory.java
+index 645073328..60800a0c2 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/deser/BasicDeserializerFactory.java
++++ b/src/main/java/com/fasterxml/jackson/databind/deser/BasicDeserializerFactory.java
+@@ -216,7 +216,7 @@ public abstract class BasicDeserializerFactory
+         if (_factoryConfig.hasAbstractTypeResolvers()) {
+             for (AbstractTypeResolver resolver : _factoryConfig.abstractTypeResolvers()) {
+                 JavaType concrete = resolver.findTypeMapping(config, type);
+-                if ((concrete != null) && !concrete.hasRawClass(currClass)) {
++                if (ClassUtil.rawClass(concrete) != currClass) {
+                     return concrete;
+                 }
+             }

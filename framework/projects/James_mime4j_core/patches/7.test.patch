@@ -1,0 +1,17 @@
+diff --git a/core/src/test/java/org/apache/james/mime4j/codec/DecoderUtilTest.java b/core/src/test/java/org/apache/james/mime4j/codec/DecoderUtilTest.java
+index a33dd3c7..3a97de35 100644
+--- a/core/src/test/java/org/apache/james/mime4j/codec/DecoderUtilTest.java
++++ b/core/src/test/java/org/apache/james/mime4j/codec/DecoderUtilTest.java
+@@ -99,10 +99,8 @@ public class DecoderUtilTest {
+     @Test
+     public void testEmptyEncodedTextIsIgnored() {
+         // encoded-text requires at least one character according to rfc 2047
+-        // meanwhile in real life there's emails in real world that contain 0
+-        // characters in encoded-text part. Probably makes sense to decode them anyway
+-        Assert.assertEquals("", DecoderUtil.decodeEncodedWords("=?ISO-8859-1?Q??="));
+-        Assert.assertEquals("", DecoderUtil.decodeEncodedWords("=?ISO-8859-1?B??="));
++        Assert.assertEquals("=?ISO-8859-1?Q??=", DecoderUtil.decodeEncodedWords("=?ISO-8859-1?Q??="));
++        Assert.assertEquals("=?ISO-8859-1?B??=", DecoderUtil.decodeEncodedWords("=?ISO-8859-1?B??="));
+     }
+ 
+     // see MIME4J-104

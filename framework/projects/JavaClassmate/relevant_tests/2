@@ -1,0 +1,13 @@
+com.fasterxml.classmate.OddJDKTypesTest
+com.fasterxml.classmate.ResolvedTypeTest
+com.fasterxml.classmate.ResolvedTypeWithMembersTest
+com.fasterxml.classmate.TestMemberGenericTypes
+com.fasterxml.classmate.TestMemberResolver
+com.fasterxml.classmate.TestParameterAnnotations
+com.fasterxml.classmate.TestReadme
+com.fasterxml.classmate.TestSelfRefMemberTypes
+com.fasterxml.classmate.TestSubtypeResolution
+com.fasterxml.classmate.TestTypeDescriptions
+com.fasterxml.classmate.TestTypeResolver
+com.fasterxml.classmate.members.GhostTypeParameterInFieldTest
+com.fasterxml.classmate.members.Issue28Test

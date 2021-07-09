@@ -1,0 +1,40 @@
+diff --git a/src/main/java/org/apache/bcel/generic/LocalVariableGen.java b/src/main/java/org/apache/bcel/generic/LocalVariableGen.java
+index fc81d462..67194b21 100644
+--- a/src/main/java/org/apache/bcel/generic/LocalVariableGen.java
++++ b/src/main/java/org/apache/bcel/generic/LocalVariableGen.java
+@@ -163,13 +163,9 @@ public class LocalVariableGen implements InstructionTargeter, NamedAndTyped, Clo
+         }
+     }
+ 
+     /**
+      * Clear the references from and to this variable when it's removed.
+      */
+-    void dispose() {
+-        setStart(null);
+-        setEnd(null);
+-    }
+ 
+     /**
+      * @return true, if ih is target of this variable
+diff --git a/src/main/java/org/apache/bcel/generic/MethodGen.java b/src/main/java/org/apache/bcel/generic/MethodGen.java
+index eb87546e..9c16da67 100644
+--- a/src/main/java/org/apache/bcel/generic/MethodGen.java
++++ b/src/main/java/org/apache/bcel/generic/MethodGen.java
+@@ -335,7 +335,6 @@ public class MethodGen extends FieldGenOrMethodGen {
+      * with an explicit index argument.
+      */
+     public void removeLocalVariable( LocalVariableGen l ) {
+-        l.dispose();
+         variable_vec.remove(l);
+     }
+ 
+@@ -344,9 +343,6 @@ public class MethodGen extends FieldGenOrMethodGen {
+      * Remove all local variables.
+      */
+     public void removeLocalVariables() {
+-        for (LocalVariableGen lv : variable_vec) {
+-            lv.dispose();
+-        }
+         variable_vec.clear();
+     }
+ 

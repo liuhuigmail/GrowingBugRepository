@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1041`** bugs
+ **`1168`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -17,8 +17,8 @@ from open-source Java projects.
 | 6     | Compress        | commons-compress           |                           |       52       | 1-48,50,52-54       |
 | 7     | Csv             | commons-csv                |                           |       17       | 1-17                |
 | 8     | Gson            | gson                       |                           |       18       | 1-18                |
-| 9     | JacksonCore     | jackson-core               |                           |       26       | 1-26                |
-| 10     | JacksonDatabind | jackson-databind           |                          |      112       | 1-112               |
+| 9     | JacksonCore     | jackson-core               |                           |       29       | 1-26,28-30                |
+| 10     | JacksonDatabind | jackson-databind           |                          |      156       | 1-156               |
 | 11     | JacksonXml      | jackson-dataformat-xml     |                          |        6       | 1-6                 |
 | 12    | Jsoup           | jsoup                      |                           |       93       | 1-93                |
 | 13     | JxPath          | commons-jxpath             |                          |       22       | 1-22                |
@@ -48,10 +48,32 @@ from open-source Java projects.
 | 37     | Jena_core            | jena-core               |    jena-core   |        1       | 2               |
 | 38     | Shiro_web            | shiro-web               |        web      |        3       | 1,3,7               |
 | 39     | MDeploy            | maven-deploy-plugin               |              |        1       | 1               |
-| 40     | Jackrabbit_filevault_vault_validation            | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
+| 40     | Jackrabbit_filevault_vault_validation | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
 | 41     | Jackrabbit_oak_core            | oak-core               |       oak-core       |        2       | 1-2               |
-
+| 42     | Doxia_module_apt            | doxia-module-apt               |   doxia-modules/doxia-module-apt       |       1       | 1               |
+| 43     | HttpCore5            | httpcore5               |       httpcore5       |        1       | 1               |
+| 44     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
+| 45     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
+| 46     | James_project_core            | james-project-core               |       core       |        1       | 1               |
+| 47     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        5       | 1-5               |
+| 48     | AaltoXml            | aalto-xml      |             |        4       | 1-4               |
+| 49     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-7               |
+| 50     | jackson_modules_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |
+| 51     | Pdfbox_pdfbox         | pdfbox-pdfbox |    pdfbox    |        3      | 1-3               |
+| 52     | Storm_client            | storm-client      |       storm-client      |        2       | 1-2              |
+| 53     | James_mime4j_core            | James-mime4j-core |      core   |       8     | 1-8              |
+| 54     | JacksonDataformatsText_yaml            | jackson-dataformats-text-yaml |      yaml   |       7     | 1-7              |
+| 55     | JacksonDataformatsText_properties            | jackson-dataformats-text-properties |      properties   |       2     | 1-2              |
+| 56     | JacksonDataformatBinary_avro            | jackson-dataformats-binary-avro |      avro   |       2     | 1-2              |
+| 57     | JacksonDataformatBinary_cbor            | jackson-dataformats-binary-cbor |      cbor   |       5     | 1-5              |
+| 58     | JavaClassmate            | java-classmate |        |       2     | 1-2              |
+| 59     | JacksonModuleJsonSchema            | jackson-module-jsonSchema |      |       2     | 1-2              |
+| 60     | JacksonDatatypeJoda            | jackson-datatype-joda |        |       3     | 1-3              |
+| 61     | Bcel            | commons-bcel |        |       6     | 1-6              |
+| 62     | JacksonDataformatXml            | jackson-dataformat-xml |        |       8     | 1-8              |
+| 63     | JacksonDataformatBinary_protobuf            | jackson-dataformats-binary-protobuf |      protobuf   |       4     | 1-4              |
 # Setting up GrowingBugs
+
 ## Requirements
  - Java 1.8
  - Git >= 1.9
@@ -111,7 +133,10 @@ Currently, we resuse all APIs of **Defects4J** (more details at  https://github.
 ## Copyright
 Notably, this bug repository is based on the well-known **Defects4J** https://github.com/rjust/defects4j. We reuse its source code as well as the bugs in **Defects4J**. The key difference is that **growingBugs** levearages **BugBuilder**[1] to exclude bug-irrelevarange changes from bug-fixing commmits automatically whereas **Defects4J** requests human experts to accomplish the same task. Consequently, **growingBugs** can keep growing automatically even ***without human intervention***.  
 
-Under MIT License, you are free to use, modify, and distribute this repository with proper reference/citation.
+
+
+## Versions
+Because the bug repository keeps growing, let us known if you need a stable version for your study (e.g., evalutions for a research paper), and we will release a specific version where the bugs and patches are fixed (to faciliate the replication of your study).  
 
 ## Citation
 If you are exploiting our dataset, please kindly cite the following paper:

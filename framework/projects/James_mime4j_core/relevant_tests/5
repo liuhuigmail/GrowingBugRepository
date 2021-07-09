@@ -1,0 +1,14 @@
+org.apache.james.mime4j.io.BufferedLineReaderInputStreamBufferTest
+org.apache.james.mime4j.io.BufferedLineReaderInputStreamTest
+org.apache.james.mime4j.io.MimeBoundaryInputStreamTest
+org.apache.james.mime4j.parser.MimeStreamParserTest
+org.apache.james.mime4j.stream.MimeEntityTest
+org.apache.james.mime4j.stream.MimeStreamTokenMessageRfc822Test
+org.apache.james.mime4j.stream.MimeTokenEmbeddedMessageTest
+org.apache.james.mime4j.stream.MimeTokenNoRecurseTest
+org.apache.james.mime4j.stream.MimeTokenStreamBodyDescriptorTest
+org.apache.james.mime4j.stream.MimeTokenStreamReaderTest
+org.apache.james.mime4j.stream.MimeTokenStreamTest
+org.apache.james.mime4j.stream.MultipartStreamTest
+org.apache.james.mime4j.stream.MultipartTokensTest
+org.apache.james.mime4j.stream.StrictMimeTokenStreamTest

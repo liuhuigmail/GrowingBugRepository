@@ -1,0 +1,4 @@
+com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserTest
+com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserTest
+com.fasterxml.jackson.datatype.jsr310.failing.LocalDateDeserTest
+com.fasterxml.jackson.datatype.jsr310.ModuleTestBase

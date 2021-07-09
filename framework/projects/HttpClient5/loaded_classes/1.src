@@ -1,0 +1,6 @@
+org.apache.hc.client5.http.psl.DomainType
+org.apache.hc.client5.http.psl.PublicSuffixMatcher
+org.apache.hc.client5.http.ssl.DefaultHostnameVerifier
+org.apache.hc.client5.http.ssl.DistinguishedNameParser
+org.apache.hc.client5.http.ssl.HttpClientHostnameVerifier
+org.apache.hc.client5.http.ssl.SubjectName

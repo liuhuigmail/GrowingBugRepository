@@ -1,0 +1,7 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,e103eea0addbbe3781775ac714c89473086d1ad7,8dab4e845ccbdb0a0f287c38ceafd7d15e417c06,BCEL-186,https://issues.apache.org/jira/browse/BCEL-186
+2,101996e7ade8d700263b6fc7504ccfcae4884ef6,c070c23750e4720fe44b92237b2b55559619e8ac,BCEL-207,https://issues.apache.org/jira/browse/BCEL-207
+3,d24936191391128db30ff49e298e2b31aa643d3a,5f029f691332139ea0bb0e938b90799d74806a93,BCEL-184,https://issues.apache.org/jira/browse/BCEL-184
+4,5865fdde89b92235cb080637810e178f21bbfc11,2f2698fa5739eba1cdc3bdf8299a754fb98ae871,BCEL-243,https://issues.apache.org/jira/browse/BCEL-243
+5,8df53e2ef1866726bba923d064319f050413fa49,7ceb5a6b8236517d708d7965f4873344c5630969,BCEL-277,https://issues.apache.org/jira/browse/BCEL-277
+6,5f5fa24f351870d57a196a2280ae7a0b668f26c7,e74df2c0e90e5e4ee92a0d45fcc6f5db5958861a,BCEL-289,https://issues.apache.org/jira/browse/BCEL-289

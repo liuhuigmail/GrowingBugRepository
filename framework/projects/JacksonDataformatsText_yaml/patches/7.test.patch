@@ -1,0 +1,34 @@
+diff --git a/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/misc/ReservedNamesTest.java b/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/misc/ReservedNamesTest.java
+index ee2726e..9e79646 100644
+--- a/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/misc/ReservedNamesTest.java
++++ b/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/misc/ReservedNamesTest.java
+@@ -17,7 +17,7 @@ public class ReservedNamesTest extends ModuleTestBase
+                 "false", "False",
+                 "yes", "no",
+                 // NOTE: single-letter cases left out on purpose
+-                "y", "Y", "n", "N",
++//                "y", "Y", "n", "N",
+                 "on", "off",
+         }) {
+             _testQuotingOfBooleanKeys(value);
+diff --git a/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/ser/DatabindWriteTest.java b/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/ser/DatabindWriteTest.java
+index 6258c5e..37c9bfe 100644
+--- a/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/ser/DatabindWriteTest.java
++++ b/yaml/src/test/java/com/fasterxml/jackson/dataformat/yaml/ser/DatabindWriteTest.java
+@@ -58,14 +58,13 @@ public class DatabindWriteTest extends ModuleTestBase
+         assertFalse(it.hasNext());
+     }
+ 
+-    // Related to [dataformats-text#68], escaping of "reserved" names
++    // Related to [dataformats-test#68], escaping of "reserved" names
+     public void testBasicDatabind2() throws Exception
+     {
+         String yaml = trimDocMarker(MAPPER.writeValueAsString(new Point(1, 2)));
+ 
+         // Just verify 'y' will NOT be escaped
+-        // [dataformats-text#226]: ... actually, will be.
+-        assertEquals("x: 1\n\"y\": 2", yaml);
++        assertEquals("x: 1\ny: 2", yaml);
+ 
+         // Actually let's try reading back, too
+         Point p = MAPPER.readValue(yaml, Point.class);

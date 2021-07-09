@@ -1,0 +1,44 @@
+diff --git a/src/test/java/com/fasterxml/jackson/databind/ser/TestJdkTypes.java b/src/test/java/com/fasterxml/jackson/databind/ser/TestJdkTypes.java
+index 79865449d..98d264fe8 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/ser/TestJdkTypes.java
++++ b/src/test/java/com/fasterxml/jackson/databind/ser/TestJdkTypes.java
+@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.*;
+ public class TestJdkTypes
+     extends com.fasterxml.jackson.databind.BaseMapTest
+ {
+-    private final ObjectMapper MAPPER = objectMapper();
++    private final ObjectMapper MAPPER = new ObjectMapper();
+     
+     /**
+      * Unit test to catch bug [JACKSON-8].
+@@ -144,10 +144,6 @@ public class TestJdkTypes
+             UUID uuid = UUID.fromString(value);
+             String json = MAPPER.writeValueAsString(uuid);
+             assertEquals(quote(uuid.toString()), json);
+-
+-            // Also, wrt [#362], should convert cleanly
+-            String str = MAPPER.convertValue(uuid, String.class);
+-            assertEquals(value, str);
+         }
+         
+         // then use templating; note that these are not exactly valid UUIDs
+diff --git a/src/test/java/com/fasterxml/jackson/databind/util/TestTokenBuffer.java b/src/test/java/com/fasterxml/jackson/databind/util/TestTokenBuffer.java
+index 1e9b566d7..e01bec68e 100644
+--- a/src/test/java/com/fasterxml/jackson/databind/util/TestTokenBuffer.java
++++ b/src/test/java/com/fasterxml/jackson/databind/util/TestTokenBuffer.java
+@@ -237,11 +237,11 @@ public class TestTokenBuffer extends com.fasterxml.jackson.test.BaseTest
+             UUID out = mapper.readValue(buf.asParser(), UUID.class);
+             assertEquals(uuid.toString(), out.toString());
+ 
+-            // second part: As per [#362], should NOT use binary with TokenBuffer
++            // second part: ensure it's written as binary...
+             JsonParser jp = buf.asParser();
+-            assertEquals(JsonToken.VALUE_STRING, jp.nextToken());
+-            String str = jp.getText();
+-            assertEquals(value, str);
++            assertEquals(JsonToken.VALUE_EMBEDDED_OBJECT, jp.nextToken());
++            byte[] raw = jp.getBinaryValue();
++            assertEquals(16, raw.length);
+             jp.close();
+         }
+     }
