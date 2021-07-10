@@ -138,10 +138,10 @@ sub _post_checkout {
         if ($line =~ /maven\.build\.finalName/) {
             my @words = split /-/, $line;
             $version = $words[2];
+            $version =~ s/[\n\r]//g;
         }
     }  
-    close(IN); 
-    copy($project_dir."/generated_sources/"."PackageVersion.java", $work_dir."/src/main/java/com/fasterxml/jackson/databind/cfg/PackageVersion.java");
+    close(IN);
     if ($version ne "UNKNOWN"){
         copy($project_dir."/generated_sources/".$version."/PackageVersion.java", $work_dir."/src/main/java/com/fasterxml/jackson/databind/cfg/PackageVersion.java");
     }
