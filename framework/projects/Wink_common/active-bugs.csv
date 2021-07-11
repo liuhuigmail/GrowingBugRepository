@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,88a88652981fc1510d8505be4287d0f016e634da,84c82d3bc2e6f159bd33aff349185a429c19d85a,WINK-123,https://issues.apache.org/jira/browse/WINK-123
+2,29169e26a730a43c193d20fb539384e54a023dad,f656b3be94bbeaa1bb07a1e8ce36352427f30fe0,WINK-249,https://issues.apache.org/jira/browse/WINK-249
+3,70a39906eb9ae8b2af7f39d995f8ccc87a6210c2,8730a3d190b74fd038cf19c7c22877bf02865954,WINK-264,https://issues.apache.org/jira/browse/WINK-264
+4,4196874d5e855d3c0ff1aa2c4fdabf8cffc40f29,673ccfcff5a704aaf80830caf1f0f6b9e686e55b,WINK-275,https://issues.apache.org/jira/browse/WINK-275

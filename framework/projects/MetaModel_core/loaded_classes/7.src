@@ -1,0 +1,4 @@
+org.apache.metamodel.schema.ColumnType
+org.apache.metamodel.schema.ColumnTypeImpl
+org.apache.metamodel.schema.SuperColumnType
+org.apache.metamodel.util.HasName

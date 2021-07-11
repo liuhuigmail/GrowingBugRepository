@@ -1,0 +1,9 @@
+org.apache.metamodel.QueryPostprocessDataContextTest
+org.apache.metamodel.delete.AbstractRowDeletionCallbackTest
+org.apache.metamodel.query.DefaultCompiledQueryTest
+org.apache.metamodel.query.FilterItemTest
+org.apache.metamodel.query.QueryTest
+org.apache.metamodel.query.builder.WhereBuilderImplTest
+org.apache.metamodel.query.parser.QueryParserTest
+org.apache.metamodel.util.FormatHelperTest
+org.apache.metamodel.util.LegacyDeserializationObjectInputStreamTest

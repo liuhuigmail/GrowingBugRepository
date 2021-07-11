@@ -1,0 +1,13 @@
+diff --git a/core/src/main/java/org/apache/metamodel/query/parser/SelectItemParser.java b/core/src/main/java/org/apache/metamodel/query/parser/SelectItemParser.java
+index 37c59f2f..b2401c0b 100644
+--- a/core/src/main/java/org/apache/metamodel/query/parser/SelectItemParser.java
++++ b/core/src/main/java/org/apache/metamodel/query/parser/SelectItemParser.java
+@@ -62,7 +62,7 @@ public final class SelectItemParser implements QueryPartProcessor {
+         final int indexOfAlias = itemToken.toUpperCase().lastIndexOf(" AS ");
+         if (indexOfAlias != -1) {
+             alias = itemToken.substring(indexOfAlias + " AS ".length());
+-            itemToken = itemToken.substring(0, indexOfAlias).trim();
++            itemToken = itemToken.substring(0, indexOfAlias);
+         }
+ 
+         try {

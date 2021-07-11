@@ -1,0 +1,21 @@
+diff --git a/pojo/src/main/java/org/apache/metamodel/pojo/ObjectTableDataProvider.java b/pojo/src/main/java/org/apache/metamodel/pojo/ObjectTableDataProvider.java
+index 27d3cce2..747267cc 100644
+--- a/pojo/src/main/java/org/apache/metamodel/pojo/ObjectTableDataProvider.java
++++ b/pojo/src/main/java/org/apache/metamodel/pojo/ObjectTableDataProvider.java
+@@ -28,7 +28,6 @@ import java.util.List;
+ import java.util.Map;
+ import java.util.Map.Entry;
+ import java.util.Set;
+-import java.util.TreeMap;
+ 
+ import org.apache.metamodel.schema.ColumnType;
+ import org.apache.metamodel.schema.ColumnTypeImpl;
+@@ -82,7 +81,7 @@ public final class ObjectTableDataProvider<E> implements TableDataProvider<E> {
+     }
+ 
+     private SimpleTableDef createTableDef() {
+-        final Map<String,ColumnType> columns = new TreeMap<String, ColumnType>();
++        final Map<String,ColumnType> columns = new LinkedHashMap<String, ColumnType>();
+ 
+         final Method[] methods = _class.getMethods();
+         for (final Method method : methods) {

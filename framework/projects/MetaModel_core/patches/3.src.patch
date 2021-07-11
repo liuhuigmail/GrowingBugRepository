@@ -1,0 +1,15 @@
+diff --git a/core/src/main/java/org/apache/metamodel/schema/AbstractColumn.java b/core/src/main/java/org/apache/metamodel/schema/AbstractColumn.java
+index 823566fd..8f276f5b 100644
+--- a/core/src/main/java/org/apache/metamodel/schema/AbstractColumn.java
++++ b/core/src/main/java/org/apache/metamodel/schema/AbstractColumn.java
+@@ -77,10 +77,7 @@ public abstract class AbstractColumn implements Column {
+         }
+         if (obj instanceof Column) {
+             Column other = (Column) obj;
+-            if (getColumnNumber() != other.getColumnNumber()) {
+-                return false;
+-            }
+             
+             if (!getName().equals(other.getName())) {
+                 return false;
+             }

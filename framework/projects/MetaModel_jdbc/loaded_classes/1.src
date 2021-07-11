@@ -1,0 +1,4 @@
+org.apache.metamodel.jdbc.dialects.AbstractQueryRewriter
+org.apache.metamodel.jdbc.dialects.DB2QueryRewriter
+org.apache.metamodel.jdbc.dialects.DefaultQueryRewriter
+org.apache.metamodel.jdbc.dialects.IQueryRewriter

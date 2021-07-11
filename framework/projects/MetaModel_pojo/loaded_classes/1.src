@@ -1,0 +1,6 @@
+org.apache.metamodel.pojo.MapTableDataProvider
+org.apache.metamodel.pojo.ObjectTableDataProvider
+org.apache.metamodel.pojo.PojoDataContext
+org.apache.metamodel.pojo.PojoDataSet
+org.apache.metamodel.pojo.PojoUpdateCallback
+org.apache.metamodel.pojo.TableDataProvider

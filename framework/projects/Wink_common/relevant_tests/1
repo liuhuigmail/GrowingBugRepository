@@ -1,0 +1,4 @@
+org.apache.wink.common.internal.providers.entity.OpenSearchProviderTest
+org.apache.wink.common.model.app.AppTest
+org.apache.wink.common.model.atom.AtomTest
+org.apache.wink.common.model.opensearch.OpenSearchTest

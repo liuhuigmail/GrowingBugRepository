@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1183`** bugs
+ **`1204`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -76,6 +76,14 @@ from open-source Java projects.
 | 65     | JacksonDataformatBinary_smile            | jackson-dataformats-binary-smile |    smile     |       2     | 1-2              |
 | 66     | JacksonModuleAfterburner            | jackson-module-afterburner |         |       3     | 1-3              |
 | 67     | Woodstox            | woodstox |         |       7     | 1-7              |
+| 68     | MetaModel_core            | MetaModel-core |         |       9     | 1-9              |
+| 69     | MetaModel_csv            | MetaModel-csv |         |       1     | 1-1              |
+| 70     | MetaModel_excel            | MetaModel-excel |         |       1     | 1-1              |
+| 71     | MetaModel_jdbc            | MetaModel-jdbc |         |       3     | 1-3              |
+| 72     | MetaModel_pojo            | MetaModel-pojo |         |       1     | 1-1              |
+| 73     | MetaModel_salesforce            | MetaModel-salesforce |         |       1     | 1-1              |
+| 74     | Wink_common            | wink-common |         |       4     | 1-4              |
+| 75     | Xbean_naming            | xbean-naming |         |       1     | 1-1              |
 
 # Setting up GrowingBugs
 

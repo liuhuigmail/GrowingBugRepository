@@ -1,0 +1,3 @@
+org.apache.metamodel.MetaModelTestCase
+org.apache.metamodel.MockDataContext
+org.apache.metamodel.QueryPostprocessDataContextTest

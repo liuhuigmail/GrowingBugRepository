@@ -1,0 +1,30 @@
+diff --git a/core/src/main/java/org/apache/metamodel/query/Query.java b/core/src/main/java/org/apache/metamodel/query/Query.java
+index 209e71fc..1fdb6da6 100644
+--- a/core/src/main/java/org/apache/metamodel/query/Query.java
++++ b/core/src/main/java/org/apache/metamodel/query/Query.java
+@@ -294,7 +294,7 @@ public final class Query extends BaseObject implements Cloneable, Serializable {
+     }
+ 
+     private FilterItem findFilterItem(String expression) {
+-        String upperExpression = expression.toUpperCase();
++        String _upperExpression = expression.toUpperCase();
+ 
+         final QueryPartCollectionProcessor collectionProcessor = new QueryPartCollectionProcessor();
+         new QueryPartParser(collectionProcessor, expression, " AND ", " OR ").parse();
+@@ -303,7 +303,6 @@ public final class Query extends BaseObject implements Cloneable, Serializable {
+         final List<String> delims = collectionProcessor.getDelims();
+         if (tokens.size() == 1) {
+             expression = tokens.get(0);
+-            upperExpression = expression.toUpperCase();
+         } else {
+             final LogicalOperator logicalOperator = LogicalOperator.valueOf(delims.get(1).trim());
+ 
+@@ -329,7 +328,7 @@ public final class Query extends BaseObject implements Cloneable, Serializable {
+                 } else {
+                     searchStr = operatorCandidate.toSql();
+                 }
+-                final int operatorIndex = upperExpression.indexOf(searchStr);
++                final int operatorIndex = _upperExpression.indexOf(searchStr);
+                 if (operatorIndex > 0) {
+                     operator = operatorCandidate;
+                     leftSide = expression.substring(0, operatorIndex).trim();

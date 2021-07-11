@@ -1,0 +1,22 @@
+diff --git a/core/src/test/java/org/apache/metamodel/util/WildcardPatternTest.java b/core/src/test/java/org/apache/metamodel/util/WildcardPatternTest.java
+index 4bc45f7f..1e075dd0 100644
+--- a/core/src/test/java/org/apache/metamodel/util/WildcardPatternTest.java
++++ b/core/src/test/java/org/apache/metamodel/util/WildcardPatternTest.java
+@@ -41,16 +41,5 @@ public class WildcardPatternTest extends TestCase {
+ 		assertTrue(pattern.matches("foobarbar"));
+ 		assertFalse(pattern.matches("w00p"));
+ 
+-		pattern = new WildcardPattern("oba%", '%');
+-		assertTrue(pattern.matches("obar"));
+-		assertFalse(pattern.matches("foobar"));
+-
+-		pattern = new WildcardPattern("bar", '%');
+-		assertTrue(pattern.matches("bar"));
+-		assertFalse(pattern.matches("foobar"));
+-
+-		pattern = new WildcardPattern("", '%');
+-		assertTrue(pattern.matches(""));
+-		assertFalse(pattern.matches("foo"));
+ 	}
+ }
+\ No newline at end of file

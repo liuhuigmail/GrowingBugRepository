@@ -1,0 +1,7 @@
+org.apache.metamodel.csv.CsvBigFileMemoryTest
+org.apache.metamodel.csv.CsvConfigurationTest
+org.apache.metamodel.csv.CsvDataContextFactoryTest
+org.apache.metamodel.csv.CsvDataContextTest
+org.apache.metamodel.csv.CsvWriterTest
+org.apache.metamodel.csv.SingleLineCsvDataSetTest
+org.apache.metamodel.intercept.InterceptionCsvIntegrationTest

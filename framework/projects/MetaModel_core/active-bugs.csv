@@ -1,0 +1,10 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,979ac783553cd98ec257437d011cd19a9807103e,f1ca2be89aeb0fff790f9fa7de28c7ca579be032,METAMODEL-58,https://issues.apache.org/jira/browse/METAMODEL-58
+2,a395c5f8023700c2ef47fbb542dd3bf8b88a6ee3,48db730750cc907ec53858be2d567c89fff9a2f0,METAMODEL-69,https://issues.apache.org/jira/browse/METAMODEL-69
+3,796c00aa69e00717260ab5a915ffe37278f8628b,f87201ce9f1114bb0b047e02cf6f13dc30b957b4,METAMODEL-100,https://issues.apache.org/jira/browse/METAMODEL-100
+4,491ab5161b6b9fa7f2357b88ca1749a2cc1c4dd2,c1cc5d803f4cc9579d87c5f257d2072a855d12d3,METAMODEL-138,https://issues.apache.org/jira/browse/METAMODEL-138
+5,d17a10dd01a5e22b8d9c3f5511c553d97e0c5098,b95d74f1fe51ade825a0369fdc56d11b726fc884,METAMODEL-194,https://issues.apache.org/jira/browse/METAMODEL-194
+6,9553357cd5b1b8e38b774c283d859f6b6f8c62ed,9de5b7711d36470cd6b88f6d037e0bab46b8147a,METAMODEL-199,https://issues.apache.org/jira/browse/METAMODEL-199
+7,4f4cefdbbe890291def12107b1b20ca6a5b96141,67a0c96c8f849e112b57ce0cc3e99667e0145384,METAMODEL-228,https://issues.apache.org/jira/browse/METAMODEL-228
+8,250b12dbf5ed5f3620cdd693c67ffedc1e82ac1b,1910d56f40bd5b4cd6a10b1b312d763059dfc8bd,METAMODEL-1103,https://issues.apache.org/jira/browse/METAMODEL-1103
+9,88b537c200d3d4606abd467faf60d9d375726386,6fc258f8e5a812156b710193a2a06cfa7e2122cc,METAMODEL-1171,https://issues.apache.org/jira/browse/METAMODEL-1171

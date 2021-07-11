@@ -1,0 +1,3 @@
+org.apache.metamodel.excel.DefaultSpreadsheetReaderDelegateTest
+org.apache.metamodel.excel.ExcelDataContextTest
+org.apache.metamodel.excel.ExcelUpdateCallbackTest

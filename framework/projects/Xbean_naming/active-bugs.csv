@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,eca2eb51cb3b3109e3af90874ea321ce1518f41f,8de3134fc19784a716a0df750ed6e2afbe9aabf7,XBEAN-122,https://issues.apache.org/jira/browse/XBEAN-122

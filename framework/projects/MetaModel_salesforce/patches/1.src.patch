@@ -1,0 +1,13 @@
+diff --git a/salesforce/src/main/java/org/apache/metamodel/salesforce/SalesforceDataSet.java b/salesforce/src/main/java/org/apache/metamodel/salesforce/SalesforceDataSet.java
+index 85f2d9a7..2b53d1bd 100644
+--- a/salesforce/src/main/java/org/apache/metamodel/salesforce/SalesforceDataSet.java
++++ b/salesforce/src/main/java/org/apache/metamodel/salesforce/SalesforceDataSet.java
+@@ -108,7 +108,7 @@ final class SalesforceDataSet extends AbstractDataSet {
+                 return BooleanComparator.toBoolean(value);
+             }
+             if (columnType.isNumber()) {
+-                return NumberComparator.toNumber(value);
++                return NumberComparator.toNumber(columnType.isNumber());
+             }
+             if (columnType.isTimeBased()) {
+                 final SimpleDateFormat dateFormat;

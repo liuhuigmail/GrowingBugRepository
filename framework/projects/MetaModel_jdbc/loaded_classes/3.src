@@ -1,0 +1,15 @@
+org.apache.metamodel.jdbc.dialects.AbstractQueryRewriter
+org.apache.metamodel.jdbc.dialects.DefaultQueryRewriter
+org.apache.metamodel.jdbc.dialects.IQueryRewriter
+org.apache.metamodel.jdbc.dialects.OffsetFetchQueryRewriter
+org.apache.metamodel.jdbc.dialects.SQLServerQueryRewriter
+org.apache.metamodel.jdbc.FetchSizeCalculator
+org.apache.metamodel.jdbc.JdbcBatchUpdateCallback
+org.apache.metamodel.jdbc.JdbcCompiledQuery
+org.apache.metamodel.jdbc.JdbcCompiledQueryLease
+org.apache.metamodel.jdbc.JdbcDataContext
+org.apache.metamodel.jdbc.JdbcSimpleUpdateCallback
+org.apache.metamodel.jdbc.JdbcUpdateCallback
+org.apache.metamodel.jdbc.MetadataLoader
+org.apache.metamodel.jdbc.RolledBackUpdateException
+org.apache.metamodel.jdbc.UncheckedSQLException

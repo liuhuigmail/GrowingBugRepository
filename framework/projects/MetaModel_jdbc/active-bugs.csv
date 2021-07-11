@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,496a839a26add619dbc27adb5431acacfa025078,8ea5ef52659abee313957fa7164c1b3f55a31674,METAMODEL-239,https://issues.apache.org/jira/browse/METAMODEL-239
+2,3949af857282f7c17a9be279e333348c5d3a0196,5f09375ff7197545f67e9f64982921bfdb8354d7,METAMODEL-1123,https://issues.apache.org/jira/browse/METAMODEL-1123
+3,7ea316f97f579143debcdcba37b9632b4adfc9e6,88b537c200d3d4606abd467faf60d9d375726386,METAMODEL-1169,https://issues.apache.org/jira/browse/METAMODEL-1169

@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,8156d76fd10a9ccc3ae88563e417b9c8700f22a3,3c4c1267309475a185d103508b63921f61ceef57,METAMODEL-152,https://issues.apache.org/jira/browse/METAMODEL-152

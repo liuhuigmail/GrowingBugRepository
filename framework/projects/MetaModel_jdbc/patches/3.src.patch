@@ -1,0 +1,13 @@
+diff --git a/jdbc/src/main/java/org/apache/metamodel/jdbc/dialects/SQLServerQueryRewriter.java b/jdbc/src/main/java/org/apache/metamodel/jdbc/dialects/SQLServerQueryRewriter.java
+index 3fdcf0e1..4c7e588c 100644
+--- a/jdbc/src/main/java/org/apache/metamodel/jdbc/dialects/SQLServerQueryRewriter.java
++++ b/jdbc/src/main/java/org/apache/metamodel/jdbc/dialects/SQLServerQueryRewriter.java
+@@ -114,7 +114,7 @@ public class SQLServerQueryRewriter extends OffsetFetchQueryRewriter {
+ 
+                 final Date date = (Date) operand;
+ 
+-                final DateFormat format = DateUtils.createDateFormat("yyyyMMdd HH:mm:ss.SSS");
++                final DateFormat format = DateUtils.createDateFormat("yyyyMMdd HH:mm:ss");
+                 final String dateTimeValue = "CAST('" + format.format(date) + "' AS DATETIME)";
+ 
+                 sb.append(dateTimeValue);

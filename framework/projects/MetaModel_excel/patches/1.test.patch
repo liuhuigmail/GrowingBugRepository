@@ -1,0 +1,31 @@
+diff --git a/excel/src/test/java/org/apache/metamodel/excel/ExcelDataContextTest.java b/excel/src/test/java/org/apache/metamodel/excel/ExcelDataContextTest.java
+index c7c36968..f553ddf9 100644
+--- a/excel/src/test/java/org/apache/metamodel/excel/ExcelDataContextTest.java
++++ b/excel/src/test/java/org/apache/metamodel/excel/ExcelDataContextTest.java
+@@ -586,15 +586,10 @@ public class ExcelDataContextTest extends TestCase {
+         assertFalse(ds.next());
+     }
+ 
+-    public void testCreateTableXls() throws Exception {
++    public void testCreateTable() throws Exception {
+         // run the same test with both XLS and XLSX (because of different
+         // workbook implementations)
+         runCreateTableTest(new File("target/xls_people_created.xls"));
+-    }
+-
+-    public void testCreateTableXlsx() throws Exception {
+-        // run the same test with both XLS and XLSX (because of different
+-        // workbook implementations)
+         runCreateTableTest(new File("target/xls_people_created.xlsx"));
+     }
+ 
+@@ -685,7 +680,8 @@ public class ExcelDataContextTest extends TestCase {
+ 
+         dc.refreshSchemas();
+ 
+-        assertEquals("[my_table_2]", Arrays.toString(dc.getDefaultSchema().getTableNames()));
++        assertEquals("[my_table_2]", Arrays.toString(schema.getTableNames()));
++
+         assertEquals(1, dc.getDefaultSchema().getTableCount());
+     }
+ 

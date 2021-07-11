@@ -1,0 +1,83 @@
+diff --git a/core/src/test/java/org/apache/metamodel/util/LegacyDeserializationObjectInputStreamTest.java b/core/src/test/java/org/apache/metamodel/util/LegacyDeserializationObjectInputStreamTest.java
+index fffb6795..0557cf93 100644
+--- a/core/src/test/java/org/apache/metamodel/util/LegacyDeserializationObjectInputStreamTest.java
++++ b/core/src/test/java/org/apache/metamodel/util/LegacyDeserializationObjectInputStreamTest.java
+@@ -19,45 +19,47 @@
+ package org.apache.metamodel.util;
+ 
+ import java.io.FileInputStream;
+-
+-import junit.framework.TestCase;
++import java.io.FileOutputStream;
++import java.io.ObjectOutputStream;
+ 
+ import org.apache.metamodel.query.Query;
+ import org.apache.metamodel.schema.Column;
+ import org.apache.metamodel.schema.Table;
+ 
++import junit.framework.TestCase;
++
+ public class LegacyDeserializationObjectInputStreamTest extends TestCase {
+ 
+-    /**
+-     * Method used to generate the input file (requires org.eobjects.metamodel
+-     * available)
+-     * 
+-     * <pre>
+-     * final org.apache.metamodel.schema.MutableSchema schema = new org.apache.metamodel.schema.MutableSchema(&quot;myschema&quot;);
+-     * final org.apache.metamodel.schema.MutableTable table = new org.apache.metamodel.schema.MutableTable(&quot;mytable&quot;,
+-     *         org.apache.metamodel.schema.TableType.TABLE, schema);
+-     * schema.addTable(table);
+-     * 
+-     * table.addColumn(new org.apache.metamodel.schema.MutableColumn(&quot;mycol1&quot;, org.apache.metamodel.schema.ColumnType.INTEGER,
+-     *         table, 0, 16, &quot;int&quot;, false, &quot;my remark 1&quot;, false, &quot;\&quot;&quot;));
+-     * table.addColumn(new org.apache.metamodel.schema.MutableColumn(&quot;mycol1&quot;, org.apache.metamodel.schema.ColumnType.VARCHAR,
+-     *         table, 1, 255, &quot;text&quot;, true, &quot;my remark 2&quot;, true, null));
+-     * 
+-     * final org.apache.metamodel.query.Query q = new org.apache.metamodel.query.Query();
+-     * q.from(table);
+-     * q.select(table.getColumn(0));
+-     * q.where(table.getColumn(1), org.apache.metamodel.query.OperatorType.EQUALS_TO, &quot;foo&quot;);
+-     * 
+-     * final FileOutputStream out = new FileOutputStream(filename);
+-     * try {
+-     *     new ObjectOutputStream(out).writeObject(q);
+-     * } finally {
+-     *     out.close();
+-     * }
+-     * </pre>
+-     */
+     public void testCreateSerializeAndDeserializeOldSchemaAndQuery() throws Exception {
+-        final String filename = "src/test/resources/metamodel-3.4-query-and-schema.ser";
++        final String filename = "target/metamodel-3.4-query-and-schema.ser";
++
++        // create the example serialized object
++        {
++            final org.apache.metamodel.schema.MutableSchema schema = new org.apache.metamodel.schema.MutableSchema(
++                    "myschema");
++            final org.apache.metamodel.schema.MutableTable table = new org.apache.metamodel.schema.MutableTable(
++                    "mytable", org.apache.metamodel.schema.TableType.TABLE, schema);
++            schema.addTable(table);
++
++            table.addColumn(new org.apache.metamodel.schema.MutableColumn("mycol1",
++                    org.apache.metamodel.schema.ColumnType.INTEGER, table, 0, 16, "int", false, "my remark 1", false,
++                    "\""));
++            table.addColumn(new org.apache.metamodel.schema.MutableColumn("mycol1",
++                    org.apache.metamodel.schema.ColumnType.VARCHAR, table, 1, 255, "text", true, "my remark 2", true,
++                    null));
++
++            final org.apache.metamodel.query.Query q = new org.apache.metamodel.query.Query();
++            q.from(table);
++            q.select(table.getColumn(0));
++            q.where(table.getColumn(1), org.apache.metamodel.query.OperatorType.EQUALS_TO, "foo");
++
++            final FileOutputStream out = new FileOutputStream(filename);
++            try {
++                new ObjectOutputStream(out).writeObject(q);
++            } finally {
++                out.close();
++            }
++        }
+ 
+         final Object obj;
+         {

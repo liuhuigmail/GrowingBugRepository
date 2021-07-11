@@ -1,0 +1,26 @@
+diff --git a/wink-common/src/main/java/org/apache/wink/common/internal/UriBuilderImpl.java b/wink-common/src/main/java/org/apache/wink/common/internal/UriBuilderImpl.java
+index 1bc02d4b..4529b1f8 100644
+--- a/wink-common/src/main/java/org/apache/wink/common/internal/UriBuilderImpl.java
++++ b/wink-common/src/main/java/org/apache/wink/common/internal/UriBuilderImpl.java
+@@ -399,10 +399,7 @@ public class UriBuilderImpl extends UriBuilder implements Cloneable {
+ 
+     @Override
+     public UriBuilder host(String host) throws IllegalArgumentException {
+         // null unsets the host so don't check that
+-        if ("".equals(host)) {
+-            throw new IllegalArgumentException();
+-        }
+         this.host = host;
+         return this;
+     }
+@@ -513,10 +509,7 @@ public class UriBuilderImpl extends UriBuilder implements Cloneable {
+ 
+     @Override
+     public UriBuilder port(int port) throws IllegalArgumentException {
+         // -1 unsets the port so don't worry about that
+-        if (port < -1) {
+-            throw new IllegalArgumentException();
+-        }
+         this.port = port;
+         return this;
+     }

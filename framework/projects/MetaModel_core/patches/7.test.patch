@@ -1,0 +1,28 @@
+diff --git a/core/src/test/java/org/apache/metamodel/schema/ColumnTypeImplTest.java b/core/src/test/java/org/apache/metamodel/schema/ColumnTypeTest.java
+similarity index 93%
+rename from core/src/test/java/org/apache/metamodel/schema/ColumnTypeImplTest.java
+rename to core/src/test/java/org/apache/metamodel/schema/ColumnTypeTest.java
+index fbff3dcc..58b843ad 100644
+--- a/core/src/test/java/org/apache/metamodel/schema/ColumnTypeImplTest.java
++++ b/core/src/test/java/org/apache/metamodel/schema/ColumnTypeTest.java
+@@ -31,7 +31,7 @@ import java.util.TreeMap;
+ 
+ import junit.framework.TestCase;
+ 
+-public class ColumnTypeImplTest extends TestCase {
++public class ColumnTypeTest extends TestCase {
+ 
+ 	public void testConvertColumnTypeFromJdbcTypes() throws Exception {
+ 		ColumnType type = ColumnTypeImpl.convertColumnType(Types.VARCHAR);
+@@ -55,10 +55,7 @@ public class ColumnTypeImplTest extends TestCase {
+ 	
+ 	public void testConvertColumnTypeFromJavaClass() throws Exception {
+ 		ColumnType type = ColumnTypeImpl.convertColumnType(String.class);
+-		assertEquals(ColumnType.STRING, type);
+-
+-        type = ColumnTypeImpl.convertColumnType(Number.class);
+-        assertEquals(ColumnType.NUMBER, type);
++		assertEquals(ColumnType.VARCHAR, type);
+ 
+ 		type = ColumnTypeImpl.convertColumnType(Time.class);
+ 		assertEquals(ColumnType.TIME, type);
