@@ -76,6 +76,7 @@ from open-source Java projects.
 | 65     | JacksonDataformatBinary_smile            | jackson-dataformats-binary-smile |    smile     |       2     | 1-2              |
 | 66     | JacksonModuleAfterburner            | jackson-module-afterburner |         |       3     | 1-3              |
 | 67     | Woodstox            | woodstox |         |       7     | 1-7              |
+
 # Setting up GrowingBugs
 
 ## Requirements
