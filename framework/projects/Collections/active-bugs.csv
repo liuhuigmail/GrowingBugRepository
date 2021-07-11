@@ -6,8 +6,4 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 29,1e6435ec103c1d52b119602a3aa48bfa5775d01d,4a9bcd0f5211c91c4c2f47313c8f8013d0dfe03e,COLLECTIONS-599,https://issues.apache.org/jira/browse/COLLECTIONS-599
 30,274c9c1d37a47ae9bc1cdec1b0b0e4189dd44845,b88b065aa955d7a7d8f74c427b05d2243eda0779,COLLECTIONS-673,https://issues.apache.org/jira/browse/COLLECTIONS-673
 31,dc828f8b16a4e34d474b2470041eb0d757853a09,1979a6e31067a18c9ede59ad4518f738512eba82,COLLECTIONS-701,https://issues.apache.org/jira/browse/COLLECTIONS-701
-32,b4ac43e113dfe723856fe0186ef46923ca5ba573,b97da105fbccac149223327e49d29ac9024913fb,COLLECTIONS-710,https://issues.apache.org/jira/browse/COLLECTIONS-710
-33,b97da105fbccac149223327e49d29ac9024913fb,036bbf34d2742af78ff2c44f4223e1b268e1c12c,COLLECTIONS-710,https://issues.apache.org/jira/browse/COLLECTIONS-710
-34,036bbf34d2742af78ff2c44f4223e1b268e1c12c,c46666c5ddbc14bfdb910949de49ac353676f03f,COLLECTIONS-710,https://issues.apache.org/jira/browse/COLLECTIONS-710
 35,f08623354efe4d801e4c1e29c0eb970b166b2c8c,45b6865b59d344910dd8cf09b54e6ea91347752d,COLLECTIONS-734,https://issues.apache.org/jira/browse/COLLECTIONS-734
-36,9fd080442c35d58d5aa6b5aeed387c304a6b1d06,7d06bd77e9ebda68c79eac20075560d488a28364,COLLECTIONS-747,https://issues.apache.org/jira/browse/COLLECTIONS-747

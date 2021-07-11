@@ -1,3 +1,2 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
-1,3570b14bd6913ecfbf268fdeba7781e8dd650dc5,1694e7fb34ac325a0f1b5308a4772624e8100cb2,JENA-149,https://issues.apache.org/jira/browse/JENA-149
 2,fc011bd8f3de500549da13ae4747f8eafd745204,44b1db2161bef957b147409c2c3e85c82c45da85,JENA-1293,https://issues.apache.org/jira/browse/JENA-1293

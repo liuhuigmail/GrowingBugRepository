@@ -2,10 +2,8 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,e7ca7823f0c4ab695b915d960833a265a383f064,1d0c2d0ba1ddc78070e415d05b2bd26cb288cecb,IO-84,https://issues.apache.org/jira/browse/IO-84
 2,a354d0a5ebbb00a9758f93e72d51078177576918,740afb04f70a27cee28eb8ade5d1b819be71c502,IO-101,https://issues.apache.org/jira/browse/IO-101
 3,d981b95df458230c30beffa819f3110274bbf7fe,403949d8075f3aca227825b69de2de21342071e9,IO-112,https://issues.apache.org/jira/browse/IO-112
-4,663372845b665ea4895be4b09ccd896c2616cfdd,6bc05de06fffc5a2f2a67e4e8526bc6d7d0939b4,IO-117,https://issues.apache.org/jira/browse/IO-117
 5,ea3781d3e141599cb3a36f8a236366927a9d10fe,4a02524aef7f78af52cc7c7beedfa1eb83f8ccb5,IO-128,https://issues.apache.org/jira/browse/IO-128
 6,fe3554cc2c0ab534e90742d03d5663c30a173973,5ef9722809594f9e087a5be77c098057ef42969a,IO-128,https://issues.apache.org/jira/browse/IO-128
-7,28757199c60f09e6dafcbdc788d3ee3c8595bac5,2f8d0922c8c7d1be2c12fba6264f08acdbae47d1,IO-141,https://issues.apache.org/jira/browse/IO-141
 8,c3b706ab8852c57446064031067dcbb92380502d,e87486f1a35090a754fdf95f3cd1178bcfd7e2ba,IO-163,https://issues.apache.org/jira/browse/IO-163
 9,0b86b74abdfdc8165eec057be2c579be40aea038,d55dd62cc0b07e1124369d74dd0095cc2b491dfe,IO-179,https://issues.apache.org/jira/browse/IO-179
 10,168faab974a90e242031d39f9e3114dfd55dcddd,d7b629b0288bfeaf7d9fbe93d608ebe8ffe6ee0b,IO-231,https://issues.apache.org/jira/browse/IO-231
@@ -17,15 +15,8 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 16,f113fe9d2f6ad04047bde353994e4e475f83b409,a8d59e345210ca6fd3fc426ab7fb7b3c2563cb04,IO-209,https://issues.apache.org/jira/browse/IO-209
 17,317841f44a515e57356fe50d7eb1be15030dfb5b,a360f974003c5c60c16d019e873314c09d965107,IO-209,https://issues.apache.org/jira/browse/IO-209
 18,58c093f5d823641031e6a4d6655e8dac0a477ede,dccf793eb78ddc93de1f745f39fb58251fc81ad0,IO-257,https://issues.apache.org/jira/browse/IO-257
-19,6322084e97e79ddbc810123960216227c3283cb1,97191772383bc267d16497c884a1c8b90033911b,IO-258,https://issues.apache.org/jira/browse/IO-258
-20,3e8f98cced56c53c41a0bd1dcb2418bb2a440444,cea203aefcd63400f4ab8239a6def11d592922de,IO-263,https://issues.apache.org/jira/browse/IO-263
-21,328b693dce1d280ca149f7efa67c24c2d31f6f71,02dc8c7e77db316553699f0e371f3e7803d3efbd,IO-274,https://issues.apache.org/jira/browse/IO-274
 22,ed1723428847e2e7c24e9a8c3e379fda0c0f7496,49f8c2a817f811bdc9fc3e7f550a8e0b13503e7f,IO-469,https://issues.apache.org/jira/browse/IO-469
-23,35ea189f533c703906d9f770dff684c4557b18a7,afe78a030b57e3f74825e134d6615ef4878778cc,IO-484,https://issues.apache.org/jira/browse/IO-484
-24,afe78a030b57e3f74825e134d6615ef4878778cc,76e45d6a50da6228c44b04a565dca96432c4b197,IO-484,https://issues.apache.org/jira/browse/IO-484
 25,9e2b2c09732ca596331f7ca34ba4e0f03d70093d,a7bd568249f9ec20b69b2a700da6a0648e93a842,IO-483,https://issues.apache.org/jira/browse/IO-483
-26,fcc6361946b1809771e136af566518320006c01e,703228a3d40881ea52faada723726b05f6d77b8a,IO-483,https://issues.apache.org/jira/browse/IO-483
 27,e9eb2d8b5a858bb6810c941ee7891c3adcf9949d,a4705cc3c310ffb422336b319891f63eef021f1c,IO-535,https://issues.apache.org/jira/browse/IO-535
-28,7791a851c4a303f47743b156007fb19c6ed8ed81,2736b6fe0b3fa22ec8e2b4184897ecadb021fc78,IO-559,https://issues.apache.org/jira/browse/IO-559
 29,4597f38c3608cfe8ef872144ed4bfe393a05dc84,c6b8a383de96cd0a8e94037a04510f162e4bbc68,IO-554,https://issues.apache.org/jira/browse/IO-554
 30,58324c1cfb9814b390a8750b0ba97dc5367817a8,d463fa0120fc1041729b7a564b2b5f96de9d6ab6,IO-625,https://issues.apache.org/jira/browse/IO-625

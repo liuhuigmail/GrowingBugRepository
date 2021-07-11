@@ -1,4 +1,3 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,bf24bc0a11daa83ab707c1576a5605609b35d786,8d38e36c861acdfbf6996c924f66e31bbfb01088,TIKA-920,https://issues.apache.org/jira/browse/TIKA-920
-2,d84781a6f6936b95a3f0fbf80584d1ade0dc6c82,e10c23b3ad00dd9d8fb059fdbfc40273b8e2469c,TIKA-1031,https://issues.apache.org/jira/browse/TIKA-1031
 3,2052fc98acca935fa065ffdca302bc84cfe60ac9,39a63cad3ad912f412f75a2dcdca400ab8e37ab6,TIKA-725,https://issues.apache.org/jira/browse/TIKA-725
