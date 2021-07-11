@@ -1,0 +1,38 @@
+diff --git a/src/main/java/com/fasterxml/jackson/module/afterburner/deser/SuperSonicBeanDeserializer.java b/src/main/java/com/fasterxml/jackson/module/afterburner/deser/SuperSonicBeanDeserializer.java
+index 8e3f517..724577f 100644
+--- a/src/main/java/com/fasterxml/jackson/module/afterburner/deser/SuperSonicBeanDeserializer.java
++++ b/src/main/java/com/fasterxml/jackson/module/afterburner/deser/SuperSonicBeanDeserializer.java
+@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.util.NameTransformer;
+ 
+ public final class SuperSonicBeanDeserializer extends BeanDeserializer
+ {
+-    private static final long serialVersionUID = 1;
++    private static final long serialVersionUID = -7537438236857895421L;
+ 
+     /**
+      * Names of properties being deserialized, in ordered they are
+@@ -80,15 +80,12 @@ public final class SuperSonicBeanDeserializer extends BeanDeserializer
+         /* Ok, now; need to find actual property instances to go with order
+          * defined based on property names.
+          */
+         /* 20-Sep-2014, tatu: As per [Afterburner#43], use of `JsonTypeInfo.As.EXTERNAL_PROPERTY`
+          *   will "hide" matching property, leading to no match below.
+          *   But since we don't use optimized path if that case, let's just bail out.
+          */
+-        if (_externalTypeIdHandler != null || _unwrappedPropertyHandler != null) {
+             // should we assign empty array or... ?
+-            return;
+-        }
+         
+         int len = _orderedPropertyNames.length;
+         ArrayList<SettableBeanProperty> props = new ArrayList<SettableBeanProperty>(len);
+         int i = 0;
+@@ -104,7 +95,7 @@ public final class SuperSonicBeanDeserializer extends BeanDeserializer
+         // (may need to revisit in future)
+         if (i == 0) {
+             throw new IllegalStateException("Afterburner internal error: BeanDeserializer for "
+-                    +_beanType+" has no properties that match expected ordering (should have "+len+") -- can not create optimized deserializer");
++                    +_beanType+" has no properties that match expected ordering -- can not create optimized deserializer");
+         }
+         _orderedProperties = props.toArray(new SettableBeanProperty[props.size()]);
+     }

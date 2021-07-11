@@ -1,0 +1,13 @@
+diff --git a/smile/src/main/java/com/fasterxml/jackson/dataformat/smile/SmileFactory.java b/smile/src/main/java/com/fasterxml/jackson/dataformat/smile/SmileFactory.java
+index 0e5d4f43..daa3aa27 100644
+--- a/smile/src/main/java/com/fasterxml/jackson/dataformat/smile/SmileFactory.java
++++ b/smile/src/main/java/com/fasterxml/jackson/dataformat/smile/SmileFactory.java
+@@ -327,7 +327,7 @@ public class SmileFactory extends JsonFactory
+         if (_inputDecorator != null) {
+             InputStream in = _inputDecorator.decorate(ctxt, data, 0, data.length);
+             if (in != null) {
+-                return _createParser(in, ctxt);
++                return _createParser(_decorate(in, ctxt), ctxt);
+             }
+         }
+         return _createParser(data, offset, len, ctxt);

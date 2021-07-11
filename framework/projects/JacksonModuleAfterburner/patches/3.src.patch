@@ -1,0 +1,26 @@
+diff --git a/src/main/java/com/fasterxml/jackson/module/afterburner/ser/SerializerModifier.java b/src/main/java/com/fasterxml/jackson/module/afterburner/ser/SerializerModifier.java
+index cce228a..7755faf 100644
+--- a/src/main/java/com/fasterxml/jackson/module/afterburner/ser/SerializerModifier.java
++++ b/src/main/java/com/fasterxml/jackson/module/afterburner/ser/SerializerModifier.java
+@@ -1,6 +1,5 @@
+ package com.fasterxml.jackson.module.afterburner.ser;
+ 
+-import java.lang.reflect.Member;
+ import java.lang.reflect.Modifier;
+ import java.util.*;
+ 
+@@ -78,13 +78,9 @@ public class SerializerModifier extends BeanSerializerModifier
+             Class<?> type = bpw.getPropertyType();
+             AnnotatedMember member = bpw.getMember();
+ 
+-            Member jdkMember = member.getMember();
+             // 11-Sep-2015, tatu: Let's skip virtual members (related to #57)
+-            if (jdkMember == null) {
+-                continue;
+-            }
+             // We can't access private fields or methods, skip:
+-            if (Modifier.isPrivate(jdkMember.getModifiers())) {
++            if (Modifier.isPrivate(member.getMember().getModifiers())) {
+                 continue;
+             }
+             // (although, interestingly enough, can seem to access private classes...)

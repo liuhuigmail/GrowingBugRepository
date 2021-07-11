@@ -1,0 +1,14 @@
+org.codehaus.stax.test.evt.TestEventCopy
+org.codehaus.stax.test.evt.TestEventDTD
+org.codehaus.stax.test.evt.TestEventReader
+org.codehaus.stax.test.evt.TestEventTypes
+org.codehaus.stax.test.evt.TestEventWriter
+org.codehaus.stax.test.evt.TestFilteredReader
+org.codehaus.stax.test.evt.TestStartDocument
+org.codehaus.stax.test.evt.TestStartElem
+org.codehaus.stax.test.evt.TestSurrogatePairs
+stax2.evt.TestDTDEvent
+stax2.evt.TestEventEquality
+stax2.evt.TestStartElementEvent
+stax2.wstream.TestNamespaceCopying
+wstxtest.evt.TestEventReader

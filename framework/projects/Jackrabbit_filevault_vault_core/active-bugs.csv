@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,35a9089daf47581c45f5664660e54231ef817fbd,87a0f33a57757437dd20b6a25451f9111e3c692f,JCRVLT-117,https://issues.apache.org/jira/browse/JCRVLT-117

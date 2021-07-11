@@ -1,0 +1,39 @@
+diff --git a/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/JSR310DateTimeDeserializerBase.java b/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/JSR310DateTimeDeserializerBase.java
+index 9ef4789..616ca72 100644
+--- a/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/JSR310DateTimeDeserializerBase.java
++++ b/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/JSR310DateTimeDeserializerBase.java
+@@ -1,6 +1,5 @@
+ package com.fasterxml.jackson.datatype.jsr310.deser;
+ 
+-import java.time.ZoneId;
+ import java.time.format.DateTimeFormatter;
+ import java.util.Locale;
+ 
+@@ -43,11 +42,8 @@ public abstract class JSR310DateTimeDeserializerBase<T>
+                     } else {
+                         df = DateTimeFormatter.ofPattern(pattern, locale);
+                     }
+                     //Issue #69: For instant serializers/deserializers we need to configure the formatter with
+                     //a time zone picked up from JsonFormat annotation, otherwise serialization might not work
+-                    if (format.hasTimeZone()) {
+-                        df = df.withZone(format.getTimeZone().toZoneId());
+-                    }
+                     return withDateFormat(df);
+                 }
+                 // any use for TimeZone?
+diff --git a/src/main/java/com/fasterxml/jackson/datatype/jsr310/ser/JSR310FormattedSerializerBase.java b/src/main/java/com/fasterxml/jackson/datatype/jsr310/ser/JSR310FormattedSerializerBase.java
+index 504fa0c..2d4feed 100644
+--- a/src/main/java/com/fasterxml/jackson/datatype/jsr310/ser/JSR310FormattedSerializerBase.java
++++ b/src/main/java/com/fasterxml/jackson/datatype/jsr310/ser/JSR310FormattedSerializerBase.java
+@@ -111,11 +111,8 @@ abstract class JSR310FormattedSerializerBase<T>
+                     } else {
+                         dtf = DateTimeFormatter.ofPattern(pattern, locale);
+                     }
+                     //Issue #69: For instant serializers/deserializers we need to configure the formatter with
+                     //a time zone picked up from JsonFormat annotation, otherwise serialization might not work
+-                    if (format.hasTimeZone()) {
+-                        dtf = dtf.withZone(format.getTimeZone().toZoneId());
+-                    }
+                 }
+                 if (useTimestamp != _useTimestamp || dtf != _formatter) {
+                     return withFormat(useTimestamp, dtf);

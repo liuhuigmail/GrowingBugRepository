@@ -1,0 +1,31 @@
+diff --git a/src/main/java/com/ctc/wstx/dtd/DTDValidator.java b/src/main/java/com/ctc/wstx/dtd/DTDValidator.java
+index 1886291..d750320 100644
+--- a/src/main/java/com/ctc/wstx/dtd/DTDValidator.java
++++ b/src/main/java/com/ctc/wstx/dtd/DTDValidator.java
+@@ -331,10 +331,10 @@ public class DTDValidator
+         throws XMLStreamException
+     {
+         // First, let's remove the top:
+-        final int ix = mElemCount-1;
+ 
+         // [WSTX-200]: need to avoid problems when doing sub-tree
+         //   validation...
++        int ix = mElemCount-1;
+         if (ix < 0) {
+             return XMLValidator.CONTENT_ALLOW_WS;
+         }
+@@ -359,13 +359,10 @@ public class DTDValidator
+             // doesn't really matter; epilog/prolog differently handled:
+             return XMLValidator.CONTENT_ALLOW_WS;
+         }
+ 
+-        final DTDElement element = mElems[ix-1];
+ 
+         // 22-Apr-2020, tatu: `null` validator added for unknown elements
+-        return (element == null)
+-                ? XMLValidator.CONTENT_ALLOW_ANY_TEXT
+-                : element.getAllowedContent();
++        return mElems[ix-1].getAllowedContent();
+     }
+ 
+     //public void validateText(String text, boolean lastTextSegment) ;

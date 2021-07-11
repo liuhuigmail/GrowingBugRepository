@@ -1,0 +1,2 @@
+com.fasterxml.jackson.datatype.jsr310.ModuleTestBase
+com.fasterxml.jackson.datatype.jsr310.TestInstantSerialization

@@ -1,0 +1,23 @@
+diff --git a/smile/src/main/java/com/fasterxml/jackson/dataformat/smile/SmileGenerator.java b/smile/src/main/java/com/fasterxml/jackson/dataformat/smile/SmileGenerator.java
+index fc6329a9..38baaaaa 100644
+--- a/smile/src/main/java/com/fasterxml/jackson/dataformat/smile/SmileGenerator.java
++++ b/smile/src/main/java/com/fasterxml/jackson/dataformat/smile/SmileGenerator.java
+@@ -1770,6 +1770,7 @@ public class SmileGenerator
+     /**********************************************************
+      */
+ 
++    @SuppressWarnings("deprecation")
+     @Override
+     public final void flush() throws IOException
+     {
+@@ -1806,9 +1807,9 @@ public class SmileGenerator
+ 
+         if (_ioContext.isResourceManaged() || isEnabled(JsonGenerator.Feature.AUTO_CLOSE_TARGET)) {
+             _out.close();
+-        } else if (isEnabled(JsonGenerator.Feature.FLUSH_PASSED_TO_STREAM)) {
++        } else {
+             // If we can't close it, we should at least flush
+             // 14-Jan-2019, tatu: [dataformats-binary#155]: unless prevented via feature
+             _out.flush();
+         }
+         // Internal buffer(s) generator has can now be released as well

@@ -1,0 +1,8 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,4debd108e9a9e8423ddb489dee4fe6230bbde761,db22adc6efa9c99814466f8a9dc19e3a3f25136b,13,https://github.com/FasterXML/woodstox/issues/13
+2,c2ffc0f55315d03d86eee23317541e3aeb19fd31,87e136dd23ad0ddc7dfb524ac5f5b4ab9520926f,43,https://github.com/FasterXML/woodstox/issues/43
+3,bae0330b0c2895b4aeb35ac83aa961d7f29bfa66,3175647b0eba4289369e296171dee5ad11444261,47,https://github.com/FasterXML/woodstox/issues/47
+4,100eee2930648867a4846a4ca5903b243eaa2e0d,6adeaa7a5f30452e638b65b12855a3e20831b83f,47,https://github.com/FasterXML/woodstox/issues/47
+5,e5433fbedf06e19d10137822915a58d10008ba87,09f310b910afe074b493dc6ba2a70a6ae8939c1e,104,https://github.com/FasterXML/woodstox/issues/104
+6,913c115e829ffd11bbe082baa70014db5ea7cc95,6d25170c25025ce1bf6b140deb594b4da7abd49b,122,https://github.com/FasterXML/woodstox/issues/122
+7,ff6ad89934de20cab36fbd8395dd774d68f4783d,5fd55bec8bc92a7855b08633da0906942b4a7e33,124,https://github.com/FasterXML/woodstox/issues/124

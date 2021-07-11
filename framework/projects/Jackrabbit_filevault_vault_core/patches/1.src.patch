@@ -1,0 +1,14 @@
+diff --git a/vault-core/src/main/java/org/apache/jackrabbit/vault/util/HtmlProgressListener.java b/vault-core/src/main/java/org/apache/jackrabbit/vault/util/HtmlProgressListener.java
+index 6f250b0..cf3eaab 100644
+--- a/vault-core/src/main/java/org/apache/jackrabbit/vault/util/HtmlProgressListener.java
++++ b/vault-core/src/main/java/org/apache/jackrabbit/vault/util/HtmlProgressListener.java
+@@ -67,9 +68,6 @@ public class HtmlProgressListener implements ProgressTrackerListener {
+ 
+     private void print(Mode mode, String action, String path, String msg) {
+         try {
+-            action = Text.encodeIllegalXMLCharacters(action);
+-            path = Text.encodeIllegalXMLCharacters(path);
+-            msg = msg == null ? null : Text.encodeIllegalXMLCharacters(msg);
+             out.write("<span class=\"");
+             out.write(action);
+             out.write("\">");

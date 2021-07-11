@@ -1,0 +1,4 @@
+stax2.BaseStax2Test
+stax2.vstream.BaseStax2ValidationTest
+stax2.vwstream.BaseOutputTest
+stax2.vwstream.W3CSchemaWrite23Test

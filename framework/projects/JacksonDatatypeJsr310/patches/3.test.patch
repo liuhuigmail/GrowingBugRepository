@@ -1,0 +1,33 @@
+diff --git a/src/test/java/com/fasterxml/jackson/datatype/jsr310/TestLocalDateSerialization.java b/src/test/java/com/fasterxml/jackson/datatype/jsr310/TestLocalDateSerialization.java
+index 77332b8..f8f0944 100644
+--- a/src/test/java/com/fasterxml/jackson/datatype/jsr310/TestLocalDateSerialization.java
++++ b/src/test/java/com/fasterxml/jackson/datatype/jsr310/TestLocalDateSerialization.java
+@@ -21,11 +21,9 @@ import static org.junit.Assert.assertNotNull;
+ import static org.junit.Assert.assertTrue;
+ 
+ import java.time.format.DateTimeParseException;
+-import java.time.Instant;
+ import java.time.LocalDate;
+ import java.time.LocalDateTime;
+ import java.time.Month;
+-import java.time.ZoneOffset;
+ import java.time.temporal.Temporal;
+ 
+ import com.fasterxml.jackson.annotation.JsonFormat;
+@@ -173,16 +171,6 @@ public class TestLocalDateSerialization
+         this.MAPPER.readValue("\"2015-06-19TShouldNotParse\"", LocalDate.class);
+     }
+ 
+-    @Test
+-    public void testDeserializationAsString05() throws Exception
+-    {
+-        Instant instant = Instant.now();
+-        LocalDate value = MAPPER.readValue('"' + instant.toString() + '"', LocalDate.class);
+-
+-        assertNotNull("The value should not be null.", value);
+-        assertEquals("The value is not correct.", LocalDateTime.ofInstant(instant, ZoneOffset.UTC).toLocalDate(), value);
+-    }
+-
+     @Test
+     public void testDeserializationWithTypeInfo01() throws Exception
+     {

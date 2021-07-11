@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,0104604c9160ad34876fd57441c867a5f219eeb4,ae8d8356f009b6875439b0bfd37f6677f54ed953,27,https://github.com/FasterXML/jackson-datatype-jsr310/pull/27
+2,ae8d8356f009b6875439b0bfd37f6677f54ed953,8f3a0440d52ae658eb63b70fb8b2ceb1866e2205,32,https://github.com/FasterXML/jackson-datatype-jsr310/pull/32
+3,34f2c209d052be549f1725f012e6d81ad26bd70c,e74927b0fc1e2b140b6e7b31a423ea2dd18f5f8a,56,https://github.com/FasterXML/jackson-datatype-jsr310/pull/56
+4,f85c7085e5d1b77bafb58c4f40b78a6e8368a12c,0b37e347adb70f469e3d4808f9108ff0ab5c09d2,70,https://github.com/FasterXML/jackson-datatype-jsr310/pull/70

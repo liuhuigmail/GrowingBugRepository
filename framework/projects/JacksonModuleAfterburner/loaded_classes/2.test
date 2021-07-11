@@ -1,0 +1,2 @@
+com.fasterxml.jackson.module.afterburner.AfterburnerTestBase
+com.fasterxml.jackson.module.afterburner.ser.CustomBeanPropertyWriterTest

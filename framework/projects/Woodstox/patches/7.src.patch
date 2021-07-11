@@ -1,0 +1,19 @@
+diff --git a/src/main/java/com/ctc/wstx/io/UTF8Reader.java b/src/main/java/com/ctc/wstx/io/UTF8Reader.java
+index 14579a3..2fb6e7f 100644
+--- a/src/main/java/com/ctc/wstx/io/UTF8Reader.java
++++ b/src/main/java/com/ctc/wstx/io/UTF8Reader.java
+@@ -90,14 +90,10 @@ public final class UTF8Reader
+             cbuf[outPtr++] = mSurrogate;
+             mSurrogate = NULL_CHAR;
+             // No need to load more, already got one char
+             // 05-Apr-2021, tatu: but if at the end must return:
+-            if (mBytePtr >= mByteBufferEnd) {
+-                mCharCount += 1;
+-                return 1;
+-            }
+         } else {
+             // To prevent unnecessary blocking (esp. with network streams),
+             // we'll only require decoding of a single char
+             int left = (mByteBufferEnd - mBytePtr);
+ 
+             /* So; only need to load more if we can't provide at least

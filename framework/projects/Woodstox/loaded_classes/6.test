@@ -1,0 +1,5 @@
+stax2.BaseStax2Test
+wstxtest.BaseWstxTest
+wstxtest.cfg.InputConfigIterator
+wstxtest.stream.BaseStreamTest
+wstxtest.stream.TestAttributeLimits

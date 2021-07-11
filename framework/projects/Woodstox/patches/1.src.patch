@@ -1,0 +1,18 @@
+diff --git a/src/main/java/com/ctc/wstx/sr/BasicStreamReader.java b/src/main/java/com/ctc/wstx/sr/BasicStreamReader.java
+index 6fd92b1..64f6d19 100644
+--- a/src/main/java/com/ctc/wstx/sr/BasicStreamReader.java
++++ b/src/main/java/com/ctc/wstx/sr/BasicStreamReader.java
+@@ -695,11 +694,11 @@ public abstract class BasicStreamReader
+             }
+             break;
+         }
+ 
+-        if (mTokenState < TOKEN_FULL_COALESCED) {
++        if (mTokenState < TOKEN_FULL_SINGLE) {
+             readCoalescedText(mCurrToken, false);
+         }
+ 
+         /* Ok: then a quick check; if it looks like we are directly
+          * followed by the end tag, we need not construct String
+          * quite yet.
+
