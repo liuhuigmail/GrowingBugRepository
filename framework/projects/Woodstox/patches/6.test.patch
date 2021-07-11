@@ -1,0 +1,34 @@
+diff --git a/src/test/java/wstxtest/stream/TestAttributeLimits.java b/src/test/java/wstxtest/stream/TestAttributeLimits.java
+index 03d66f2..61c9981 100644
+--- a/src/test/java/wstxtest/stream/TestAttributeLimits.java
++++ b/src/test/java/wstxtest/stream/TestAttributeLimits.java
+@@ -81,7 +81,7 @@ public class TestAttributeLimits extends BaseStreamTest
+         }
+         r.close();
+     }
+-
++    
+     // [woodstox-core#93]: should use stricter verification of max attr length
+     public void testShorterAttribute() throws Exception
+     {
+@@ -143,20 +143,4 @@ public class TestAttributeLimits extends BaseStreamTest
+         }
+         reader.close(); // never gets here
+     }
+-
+-    // [woodstox-core#122]: problem setting max-attr-size to Integer.MAX_VALUE
+-    public void testMaxAttrMaxIntValue() throws Exception
+-    {
+-        XMLInputFactory factory = getNewInputFactory();
+-        factory.setProperty(WstxInputProperties.P_MAX_ATTRIBUTE_SIZE, Integer.MAX_VALUE);
+-
+-        // First: ok document
+-        XMLStreamReader r = factory.createXMLStreamReader(new StringReader(
+-                "<root attr='1234' other='ab' x='foobar' />"));
+-        assertTokenType(START_ELEMENT, r.next());
+-        assertEquals(3, r.getAttributeCount());
+-        assertEquals("foobar", r.getAttributeValue(2));
+-        assertTokenType(END_ELEMENT, r.next());
+-        r.close();
+-    }
+ }

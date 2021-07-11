@@ -1,0 +1,16 @@
+com.fasterxml.jackson.module.afterburner.AfterburnerModule
+com.fasterxml.jackson.module.afterburner.deser.CreatorOptimizer
+com.fasterxml.jackson.module.afterburner.deser.DeserializerModifier
+com.fasterxml.jackson.module.afterburner.deser.OptimizedSettableBeanProperty
+com.fasterxml.jackson.module.afterburner.deser.OptimizedValueInstantiator
+com.fasterxml.jackson.module.afterburner.deser.PropertyMutatorCollector
+com.fasterxml.jackson.module.afterburner.deser.SuperSonicBeanDeserializer
+com.fasterxml.jackson.module.afterburner.deser.SuperSonicDeserializerBuilder
+com.fasterxml.jackson.module.afterburner.PackageVersion
+com.fasterxml.jackson.module.afterburner.ser.BeanPropertyAccessor
+com.fasterxml.jackson.module.afterburner.ser.ObjectMethodPropertyWriter
+com.fasterxml.jackson.module.afterburner.ser.OptimizedBeanPropertyWriter
+com.fasterxml.jackson.module.afterburner.ser.PropertyAccessorCollector
+com.fasterxml.jackson.module.afterburner.ser.SerializerModifier
+com.fasterxml.jackson.module.afterburner.util.DynamicPropertyAccessorBase
+com.fasterxml.jackson.module.afterburner.util.MyClassLoader

@@ -1,0 +1,112 @@
+diff --git a/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/filter/StreamingDecoratorsTest.java b/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/filter/StreamingDecoratorsTest.java
+index 6cbecff3..f1759ba7 100644
+--- a/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/filter/StreamingDecoratorsTest.java
++++ b/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/filter/StreamingDecoratorsTest.java
+@@ -1,8 +1,9 @@
+ package com.fasterxml.jackson.dataformat.smile.filter;
+ 
+-import java.io.*;
++import java.io.ByteArrayOutputStream;
+ 
+ import com.fasterxml.jackson.core.*;
++
+ import com.fasterxml.jackson.dataformat.smile.*;
+ import com.fasterxml.jackson.dataformat.smile.testutil.PrefixInputDecorator;
+ import com.fasterxml.jackson.dataformat.smile.testutil.PrefixOutputDecorator;
+@@ -11,15 +12,14 @@ public class StreamingDecoratorsTest extends BaseTestForSmile
+ {
+     public void testInputDecorators() throws Exception
+     {
+-        final byte[] DOC = _smileDoc("42   37");
++        final byte[] DOC = _smileDoc("[ 42 ]");
+         final SmileFactory streamF = smileFactory(false,  true,  false);
+         streamF.setInputDecorator(new PrefixInputDecorator(DOC));
+-        JsonParser p = streamF.createParser(new byte[0], 0, 0);
++        JsonParser p = streamF.createParser(new byte[0]);
++        assertToken(JsonToken.START_ARRAY, p.nextToken());
+         assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+         assertEquals(42, p.getIntValue());
+-        assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+-        assertEquals(37, p.getIntValue());
+-        assertNull(p.nextToken());
++        assertToken(JsonToken.END_ARRAY, p.nextToken());
+         p.close();
+     }
+ 
+@@ -40,7 +40,6 @@ public class StreamingDecoratorsTest extends BaseTestForSmile
+         assertEquals(137, p.getIntValue());
+         assertToken(JsonToken.VALUE_STRING, p.nextToken());
+         assertEquals("foo", p.getText());
+-        assertNull(p.nextToken());
+         p.close();
+     }
+ }
+diff --git a/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/testutil/PrefixInputDecorator.java b/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/testutil/PrefixInputDecorator.java
+index d1f47d5f..96e0297d 100644
+--- a/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/testutil/PrefixInputDecorator.java
++++ b/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/testutil/PrefixInputDecorator.java
+@@ -22,10 +22,7 @@ public class PrefixInputDecorator extends InputDecorator
+ 
+     @Override
+     public InputStream decorate(IOContext ctxt, InputStream in) {
+-        if (in instanceof MySequenceInputStream) {
+-            throw new IllegalStateException("Trying to decorate MySequenceInputStream (double-decoration!)");
+-        }
+-        return new MySequenceInputStream(new ByteArrayInputStream(_prefix), in);
++        return new SequenceInputStream(new ByteArrayInputStream(_prefix), in);
+     }
+ 
+     @Override
+@@ -35,21 +32,11 @@ public class PrefixInputDecorator extends InputDecorator
+ 
+     @Override
+     public Reader decorate(IOContext ctxt, Reader r) throws IOException {
+-        if (r instanceof SequenceReader) {
+-            throw new IllegalStateException("Trying to decorate SequenceReader (double-decoration!)");
+-        }
+         String str = new String(_prefix, StandardCharsets.UTF_8);
+         return new SequenceReader(new StringReader(str), r);
+     }
+ 
+-    // sub-class only so we can check for "double decoration"
+-    static class MySequenceInputStream extends SequenceInputStream {
+-        public MySequenceInputStream(InputStream in1, InputStream in2) {
+-            super(in1, in2);
+-        }
+-    }
+-
+-    static class SequenceReader extends Reader {
++    private static class SequenceReader extends Reader {
+         protected Reader _reader1, _reader2;
+ 
+         public SequenceReader(Reader r1, Reader r2) {
+diff --git a/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/testutil/PrefixOutputDecorator.java b/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/testutil/PrefixOutputDecorator.java
+index 5f409eb5..b1383a50 100644
+--- a/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/testutil/PrefixOutputDecorator.java
++++ b/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/testutil/PrefixOutputDecorator.java
+@@ -21,10 +21,8 @@ public class PrefixOutputDecorator extends OutputDecorator
+     public OutputStream decorate(IOContext ctxt, OutputStream out)
+             throws IOException
+     {
+-        if (out instanceof BufferedOut) {
+-            throw new IllegalStateException("Trying to decorate `Buffered` (double-decoration!)");
+-        }
+-        return new BufferedOut(out, _prefix);
++        out.write(_prefix);
++        return out;
+     }
+ 
+     @Override
+@@ -35,10 +33,10 @@ public class PrefixOutputDecorator extends OutputDecorator
+         return w;
+     }
+ 
+-    static class BufferedOut extends FilterOutputStream {
++    static class Buffered extends FilterOutputStream {
+         protected byte[] _prefix;
+ 
+-        public BufferedOut(OutputStream b, byte[] prefix) {
++        public Buffered(OutputStream b, byte[] prefix) {
+             super(b);
+             _prefix = prefix;
+         }

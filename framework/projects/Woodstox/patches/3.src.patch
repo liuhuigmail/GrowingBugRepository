@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/ctc/wstx/sw/BaseStreamWriter.java b/src/main/java/com/ctc/wstx/sw/BaseStreamWriter.java
+index 7ebf62e..a066d5e 100644
+--- a/src/main/java/com/ctc/wstx/sw/BaseStreamWriter.java
++++ b/src/main/java/com/ctc/wstx/sw/BaseStreamWriter.java
+@@ -803,7 +803,7 @@ public abstract class BaseStreamWriter
+ 
+                     // 28-Mar-2017, tatu: Various optimization do not work well when validation so:
+                     if (mValidator != null) {
+-                        writeCharacters(sr.getText());
++                        writeCData(sr.getText());
+                     } else {
+                         sr.getText(wrapAsRawWriter(), preserveEventData);
+                     }

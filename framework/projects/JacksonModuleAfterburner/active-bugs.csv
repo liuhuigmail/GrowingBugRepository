@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,563520be197b509fa04301741357818b4797756f,aac3e8afd50fd7ac70de4ec4803350ca315e5dfe,43,https://github.com/FasterXML/jackson-module-afterburner/issues/43
+2,2390aad0c2526df536204c8bdc2758ea7764e974,7a81b2ceb5efcb95f72fd37e503e2f608d3c7220,52,https://github.com/FasterXML/jackson-module-afterburner/issues/52
+3,d68ed5e4e86d3f7174b8ea0604d6710ee99fb0cd,bda2f9b194e7b5e0d1f001e1aaf951504f96f1c9,57,https://github.com/FasterXML/jackson-module-afterburner/issues/57

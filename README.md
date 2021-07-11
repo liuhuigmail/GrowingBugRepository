@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1166`** bugs
+ **`1183`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -71,6 +71,12 @@ from open-source Java projects.
 | 60     | JacksonDatatypeJoda            | jackson-datatype-joda |        |       3     | 1-3              |
 | 61     | Bcel            | commons-bcel |        |       6     | 1-6              |
 | 62     | JacksonDataformatBinary_protobuf            | jackson-dataformats-binary-protobuf |      protobuf   |       4     | 1-4              |
+| 63     | Jackrabbit_filevault_vault_core            | jackrabbit-filevault-vault-core |      vault-core   |       1     | 1              |
+| 64     | JacksonDatatypeJsr310            | jackson-datatype-jsr310 |         |       4     | 1-4              |
+| 65     | JacksonDataformatBinary_smile            | jackson-dataformats-binary-smile |    smile     |       2     | 1-2              |
+| 66     | JacksonModuleAfterburner            | jackson-module-afterburner |         |       3     | 1-3              |
+| 67     | Woodstox            | woodstox |         |       7     | 1-7              |
+
 # Setting up GrowingBugs
 
 ## Requirements

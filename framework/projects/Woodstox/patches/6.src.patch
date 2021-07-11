@@ -1,0 +1,77 @@
+diff --git a/src/main/java/com/ctc/wstx/sr/AttributeCollector.java b/src/main/java/com/ctc/wstx/sr/AttributeCollector.java
+index 7c7a858..0c22189 100644
+--- a/src/main/java/com/ctc/wstx/sr/AttributeCollector.java
++++ b/src/main/java/com/ctc/wstx/sr/AttributeCollector.java
+@@ -192,7 +192,8 @@ public final class AttributeCollector
+     protected int mAttrSpillEnd;
+     
+     protected int mMaxAttributesPerElement;
+ //    protected int mMaxAttributeSize;
++    protected int mMaxAttributeSize;
+ 
+     /*
+     ///////////////////////////////////////////////
+@@ -211,7 +211,8 @@ public final class AttributeCollector
+             mXmlIdLocalName = "xml:id";
+         }
+         mMaxAttributesPerElement = cfg.getMaxAttributesPerElement();
+ //        mMaxAttributeSize = cfg.getMaxAttributeSize();
++        mMaxAttributeSize = cfg.getMaxAttributeSize();
+     }
+ 
+     /**
+diff --git a/src/main/java/com/ctc/wstx/sr/BasicStreamReader.java b/src/main/java/com/ctc/wstx/sr/BasicStreamReader.java
+index 381dec5..726a069 100644
+--- a/src/main/java/com/ctc/wstx/sr/BasicStreamReader.java
++++ b/src/main/java/com/ctc/wstx/sr/BasicStreamReader.java
+@@ -1968,7 +1968,7 @@ public abstract class BasicStreamReader
+         // important! Underlying buffer may be shared, does not necessarily start from 0
+         final int startingOffset = outPtr;
+         final int maxAttrSize = mConfig.getMaxAttributeSize();
+-        int outLimit = _outputLimit(outBuf, startingOffset, maxAttrSize);
++        int outLimit = Math.min(startingOffset+maxAttrSize, outBuf.length);
+         final WstxInputSource currScope = mInput;
+ 
+         while (true) {
+@@ -2023,7 +2023,7 @@ public abstract class BasicStreamReader
+                         ch -= 0x10000;
+                         if (outPtr >= outLimit) {
+                             outBuf = _checkAttributeLimit(tb, outBuf, outPtr, outPtr - startingOffset, maxAttrSize);
+-                            outLimit = _outputLimit(outBuf, startingOffset, maxAttrSize);
++                            outLimit = Math.min(startingOffset+maxAttrSize, outBuf.length);
+                         }
+                         outBuf[outPtr++] = (char) ((ch >> 10)  + 0xD800);
+                         c = (char) ((ch & 0x3FF)  + 0xDC00);
+@@ -2036,7 +2036,7 @@ public abstract class BasicStreamReader
+             // Ok, let's just add char in, whatever it was
+             if (outPtr >= outLimit) {
+                 outBuf = _checkAttributeLimit(tb, outBuf, outPtr, outPtr - startingOffset, maxAttrSize);
+-                outLimit = _outputLimit(outBuf, startingOffset, maxAttrSize);
++                outLimit = Math.min(startingOffset+maxAttrSize, outBuf.length);
+             }
+             outBuf[outPtr++] = c;
+         }
+@@ -2045,11 +2045,8 @@ public abstract class BasicStreamReader
+         tb.setBufferSize(outPtr);
+     }
+ 
+-    private final int _outputLimit(char[] outBuf, int offset, int maxAttrLen) {
+         // [woodstox-core#122]: make sure "offset + max-size" does not overflow:
+-        return Math.min(outBuf.length, Math.max(maxAttrLen, offset+maxAttrLen));
+-    }
+ 
+     private final char[] _checkAttributeLimit(TextBuilder tb,
+             char[] outBuf, int outPtr, int currAttrSize, int maxAttrSize)
+         throws XMLStreamException
+@@ -2058,9 +2053,8 @@ public abstract class BasicStreamReader
+         verifyLimit("Maximum attribute size", maxAttrSize , currAttrSize+1);
+         // just sanity check
+         if (outPtr < outBuf.length) {
+-            ExceptionUtil.throwInternal(String.format(
+-"Expected either currAttrSize (%d) > maxAttrSize (%d) OR outPtr (%d) >= outBuf.length (%d)",
+-currAttrSize, maxAttrSize, outPtr, outBuf.length));
++            ExceptionUtil.throwInternal("Expected either attr limit ("+maxAttrSize
++                    +") >= currAttrSize ("+currAttrSize+") OR >= outBuf.length ("+outBuf.length+")");
+         }
+         return tb.bufferFull(1);
+     }

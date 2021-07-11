@@ -1,0 +1,47 @@
+diff --git a/src/main/java/com/ctc/wstx/evt/CompactStartElement.java b/src/main/java/com/ctc/wstx/evt/CompactStartElement.java
+index ea87317..7e8c43e 100644
+--- a/src/main/java/com/ctc/wstx/evt/CompactStartElement.java
++++ b/src/main/java/com/ctc/wstx/evt/CompactStartElement.java
+@@ -83,7 +83,7 @@ public class CompactStartElement
+         if (ix < 0) {
+             return null;
+         }
+-        return constructAttr(mRawAttrs, ix, mAttrs.isDefault(ix));
++        return constructAttr(mRawAttrs, ix, !mAttrs.isDefault(ix));
+     }
+ 
+     @Override
+@@ -155,9 +155,9 @@ public class CompactStartElement
+     ////////////////////////////////////////////////////////////
+      */
+ 
+-    protected Attribute constructAttr(String[] raw, int rawIndex, boolean isDef)
++    public Attribute constructAttr(String[] raw, int rawIndex, boolean isDef)
+     {
+         return new AttributeEventImpl(getLocation(), raw[rawIndex], raw[rawIndex+1],
+-                raw[rawIndex+2], raw[rawIndex+3], !isDef);
++                raw[rawIndex+2], raw[rawIndex+3], isDef);
+     }
+ }
+diff --git a/src/main/java/com/ctc/wstx/evt/DefaultEventAllocator.java b/src/main/java/com/ctc/wstx/evt/DefaultEventAllocator.java
+index 81ae5ac..2495b60 100644
+--- a/src/main/java/com/ctc/wstx/evt/DefaultEventAllocator.java
++++ b/src/main/java/com/ctc/wstx/evt/DefaultEventAllocator.java
+@@ -275,14 +275,15 @@ public class DefaultEventAllocator
+     }
+     
+     /*
+     ///////////////////////////////////////////////////////////
+     // ElemCallback implementation
+     ///////////////////////////////////////////////////////////
+      */
+ 
+     @Override
+     public Object withStartElement(Location loc, QName name,
+-            BaseNsContext nsCtxt, ElemAttrs attrs, boolean wasEmpty)
++                                   BaseNsContext nsCtxt, ElemAttrs attrs,
++                                   boolean wasEmpty)
+     {
+         return new CompactStartElement(loc, name, nsCtxt, attrs);
+     }
+

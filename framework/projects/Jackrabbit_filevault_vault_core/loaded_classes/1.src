@@ -1,0 +1,3 @@
+org.apache.jackrabbit.vault.fs.api.ProgressTrackerListener
+org.apache.jackrabbit.vault.util.HtmlProgressListener
+org.apache.jackrabbit.vault.util.Text

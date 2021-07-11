@@ -1,0 +1,4 @@
+com.fasterxml.jackson.dataformat.smile.BaseTestForSmile
+com.fasterxml.jackson.dataformat.smile.filter.StreamingDecoratorsTest
+com.fasterxml.jackson.dataformat.smile.testutil.PrefixInputDecorator
+com.fasterxml.jackson.dataformat.smile.testutil.PrefixOutputDecorator

@@ -1,0 +1,2 @@
+com.fasterxml.jackson.datatype.jsr310.deser.JSR310DateTimeDeserializerBase
+com.fasterxml.jackson.datatype.jsr310.ser.JSR310FormattedSerializerBase

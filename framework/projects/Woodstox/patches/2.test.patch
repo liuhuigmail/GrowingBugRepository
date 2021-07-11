@@ -1,0 +1,90 @@
+diff --git a/src/test/java/stax2/BaseStax2Test.java b/src/test/java/stax2/BaseStax2Test.java
+index ccd6ef0..6aa2ff0 100644
+--- a/src/test/java/stax2/BaseStax2Test.java
++++ b/src/test/java/stax2/BaseStax2Test.java
+@@ -144,10 +144,6 @@ public abstract class BaseStax2Test
+         return (XMLOutputFactory2) XMLOutputFactory.newInstance();
+     }
+ 
+-    protected XMLEventFactory getNewEventFactory() {
+-        return XMLEventFactory.newFactory();
+-    }
+-
+     protected static XMLStreamReader2 constructStreamReader(XMLInputFactory f, String content)
+         throws XMLStreamException
+     {
+diff --git a/src/test/java/stax2/evt/TestStartElementEvent.java b/src/test/java/stax2/evt/TestStartElementEvent.java
+index 82fe8e2..fdd3235 100644
+--- a/src/test/java/stax2/evt/TestStartElementEvent.java
++++ b/src/test/java/stax2/evt/TestStartElementEvent.java
+@@ -7,8 +7,6 @@ import javax.xml.namespace.QName;
+ import javax.xml.stream.*;
+ import javax.xml.stream.events.*;
+ 
+-import com.ctc.wstx.evt.DefaultEventAllocator;
+-
+ import stax2.BaseStax2Test;
+ 
+ /**
+@@ -18,15 +16,18 @@ import stax2.BaseStax2Test;
+ public class TestStartElementEvent
+     extends BaseStax2Test
+ {
+-    private final XMLInputFactory XML_F = getNewInputFactory();
+-
+-    public void testStartEventAttrs() throws Exception
++    /**
++     * This test was inspired by Woodstox bug [WSTX-188]...
++     */
++    public void testStartEventAttrs()
++        throws XMLStreamException
+     {
+         final String DOC = "<a>"
+             +"<b a=\"aaa\" b=\"bbb\" c=\"ccc\" problem=\"problem\">some content</b>"
+             +"<b a=\"aaa\" b=\"bbb\" c=\"ccc\" d=\"ddd\" problem=\"problem\">some content</b>"
+             +"</a>";
+-        XMLEventReader er = XML_F.createXMLEventReader(new StringReader(DOC));
++        XMLInputFactory f = getNewInputFactory();
++        XMLEventReader er = f.createXMLEventReader(new StringReader(DOC));
+ 
+         ArrayList<StartElement> elemEvents = new ArrayList<StartElement>();
+ 
+@@ -49,35 +50,12 @@ public class TestStartElementEvent
+         assertTokenType(END_ELEMENT, er.nextEvent());
+         er.close();
+ 
+-        // Ok, got 3 start elements, and accessing the SECOND one triggers
+-        // the problem
++        /* Ok, got 3 start elements, and accessing the SECOND one triggers
++         * the problem
++         */
+         _verifyAttrCount(elemEvents.get(1), 4, true);
+     }
+ 
+-    // From [woodstox-core#43]
+-    public void testIsDefaultAttr() throws Exception
+-    {
+-        String DOC = "<a b='c'></a>";
+-        XMLStreamReader stream = XML_F.createXMLStreamReader(new StringReader(DOC));
+-        DefaultEventAllocator allocator = DefaultEventAllocator.getDefaultInstance();
+-        XMLEventFactory eventFactory = getNewEventFactory();
+-
+-        assertTokenType(START_ELEMENT, stream.next());
+-        XMLEvent event = allocator.allocate(stream);
+-        assertTrue(event.isStartElement());
+-
+-        StartElement startOrig = event.asStartElement();
+-        Attribute attr = startOrig.getAttributeByName(new QName("b"));
+-        assertNotNull(attr);
+-        assertTrue(attr.isSpecified());
+-        StartElement startAlloc = eventFactory.createStartElement(startOrig.getName(),
+-                startOrig.getAttributes(), startOrig.getNamespaces());
+-
+-        attr = startAlloc.getAttributeByName(new QName("b"));
+-        assertNotNull(attr);
+-        assertTrue(attr.isSpecified());
+-    }
+-
+     /*
+     /////////////////////////////////////////////////
+     // Helper methods

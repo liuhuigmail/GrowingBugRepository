@@ -1,0 +1,24 @@
+diff --git a/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/LocalDateDeserializer.java b/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/LocalDateDeserializer.java
+index 3bcb769..c47fc9e 100644
+--- a/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/LocalDateDeserializer.java
++++ b/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/LocalDateDeserializer.java
+@@ -25,7 +25,6 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
+ import java.io.IOException;
+ import java.time.LocalDate;
+ import java.time.format.DateTimeFormatter;
+-import java.time.format.DateTimeParseException;
+ 
+ /**
+  * Deserializer for Java 8 temporal {@link LocalDate}s.
+@@ -79,11 +78,8 @@ public class LocalDateDeserializer extends JSR310DateTimeDeserializerBase<LocalD
+                 if(string.length() == 0) {
+                     return null;
+                 }
+ 
+-                if(string.contains("T")) {
+-                    return LocalDate.parse(string, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+-                }
+                 
+                 return LocalDate.parse(string, _formatter);
+         }
+ 

@@ -310,6 +310,12 @@ sub _export_relevant_tests {
         if ($test =~ /\.html/){
             next;
         }
+        if ($test =~ /\.xml/){
+            next;
+        }
+        if ($test =~ /\.dtd/){
+            next;
+        }
         if ($test =~ /\.properties/){
             next;
         }
