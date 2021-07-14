@@ -18,7 +18,7 @@ from open-source Java projects.
 | 7     | Csv             | commons-csv                |                           |       17       | 1-17                |
 | 8     | Gson            | gson                       |                           |       18       | 1-18                |
 | 9     | JacksonCore     | jackson-core               |                           |       29       | 1-26,28-30                |
-| 10     | JacksonDatabind | jackson-databind           |                          |      156       | 1-117,119-126,128-129,131-133,135-156               |
+| 10     | JacksonDatabind | jackson-databind           |                          |      152       | 1-117,119-126,128-129,131-133,135-156               |
 | 11     | JacksonXml      | jackson-dataformat-xml     |                          |        12       | 1-12                 |
 | 12    | Jsoup           | jsoup                      |                           |       93       | 1-93                |
 | 13     | JxPath          | commons-jxpath             |                          |       22       | 1-22                |
