@@ -1,0 +1,7 @@
+org.apache.xbean.naming.context.AbstractContext
+org.apache.xbean.naming.context.AbstractFederatedContext
+org.apache.xbean.naming.context.ContextAccess
+org.apache.xbean.naming.context.ContextFederation
+org.apache.xbean.naming.context.ContextUtil
+org.apache.xbean.naming.context.NestedContextFactory
+org.apache.xbean.naming.context.WritableContext

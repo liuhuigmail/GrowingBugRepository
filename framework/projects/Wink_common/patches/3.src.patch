@@ -1,0 +1,22 @@
+diff --git a/wink-common/src/main/java/org/apache/wink/common/internal/UriBuilderImpl.java b/wink-common/src/main/java/org/apache/wink/common/internal/UriBuilderImpl.java
+index 8e95284a..ee5b09da 100644
+--- a/wink-common/src/main/java/org/apache/wink/common/internal/UriBuilderImpl.java
++++ b/wink-common/src/main/java/org/apache/wink/common/internal/UriBuilderImpl.java
+@@ -553,7 +553,7 @@ public class UriBuilderImpl extends UriBuilder implements Cloneable {
+                 // a hierarchical URI
+                 // if a non-valid URI is passed in, the path is parsed as normal
+                 String[] segments = path.split(":", 2);
+-                if (segments.length == 2 && segments[0].length() > 0 && segments[0].indexOf("{") == -1) {
++                if (segments.length == 2 && segments[0].length() > 0) {
+                     String scheme = segments[0];
+                     segments = segments[1].split("#", 2);
+                     if (segments[0].length() > 0) {
+@@ -767,7 +767,7 @@ public class UriBuilderImpl extends UriBuilder implements Cloneable {
+             // a hierarchical URI
+             // if a non-valid URI is passed in, the path is parsed as normal
+             String[] segments = path.split(":", 2);
+-            if (segments.length == 2 && segments[0].length() > 0 && segments[0].indexOf("{") == -1) {
++            if (segments.length == 2 && segments[0].length() > 0) {
+                 String scheme = segments[0];
+                 segments = segments[1].split("#", 2);
+                 if (segments[0].length() > 0) {

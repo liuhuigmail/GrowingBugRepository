@@ -1,0 +1,2 @@
+org.apache.metamodel.data.DefaultRowTest
+org.apache.metamodel.util.LegacyDeserializationObjectInputStreamTest

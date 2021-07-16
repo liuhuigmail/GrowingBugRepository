@@ -1,0 +1,12 @@
+diff --git a/core/src/main/java/org/apache/metamodel/create/AbstractColumnBuilder.java b/core/src/main/java/org/apache/metamodel/create/AbstractColumnBuilder.java
+index 3fd045b1..408eecd7 100644
+--- a/core/src/main/java/org/apache/metamodel/create/AbstractColumnBuilder.java
++++ b/core/src/main/java/org/apache/metamodel/create/AbstractColumnBuilder.java
+@@ -51,7 +51,6 @@ abstract class AbstractColumnBuilder<T extends ColumnBuilder<?>> implements Colu
+         _column.setNativeType(column.getNativeType());
+         _column.setType(column.getType());
+         _column.setNullable(column.isNullable());
+-        _column.setPrimaryKey(column.isPrimaryKey());
+         return getReturnObject();
+     }
+ 

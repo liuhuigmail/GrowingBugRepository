@@ -1,0 +1,18 @@
+diff --git a/excel/src/main/java/org/apache/metamodel/excel/ExcelDataContext.java b/excel/src/main/java/org/apache/metamodel/excel/ExcelDataContext.java
+index 5963e69f..2342e3c3 100644
+--- a/excel/src/main/java/org/apache/metamodel/excel/ExcelDataContext.java
++++ b/excel/src/main/java/org/apache/metamodel/excel/ExcelDataContext.java
+@@ -191,12 +191,7 @@ public final class ExcelDataContext extends QueryPostprocessDataContext implemen
+         }
+     }
+ 
+-    @Override
+-    protected void onSchemaCacheRefreshed() {
+-        super.onSchemaCacheRefreshed();
+-        _spreadsheetReaderDelegate = null;
+-    }
+ 
+     /**
+      * Convenient method for testing and inspecting internal state.
+      * 
+

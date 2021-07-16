@@ -1,0 +1,12 @@
+org.apache.wink.common.internal.application.ApplicationFileLoaderTest
+org.apache.wink.common.internal.application.ApplicationValidatorTest
+org.apache.wink.common.internal.application.SimpleWinkApplicationTest
+org.apache.wink.common.internal.lifecycle.DefaultOFFactoryTest
+org.apache.wink.common.internal.lifecycle.OFFactoryTest
+org.apache.wink.common.internal.providers.ProvidersContextResolverTest
+org.apache.wink.common.internal.providers.ProvidersErrorMapperTest
+org.apache.wink.common.internal.providers.entity.ProvidersMessageBodyTest
+org.apache.wink.common.internal.registry.ProvidersRegistry11Test
+org.apache.wink.common.internal.registry.ProvidersRegistryTest
+org.apache.wink.common.internal.registry.metadata.ResourceMetadataCollectorTest
+org.apache.wink.common.model.atom.AtomTest

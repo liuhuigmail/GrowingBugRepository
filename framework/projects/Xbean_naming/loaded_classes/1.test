@@ -1,0 +1,2 @@
+org.apache.xbean.naming.context.AbstractContextTest
+org.apache.xbean.naming.context.WritableContextTest

@@ -1,0 +1,16 @@
+diff --git a/pojo/src/test/java/org/apache/metamodel/pojo/PojoDataContextTest.java b/pojo/src/test/java/org/apache/metamodel/pojo/PojoDataContextTest.java
+index e345a8c0..778ed1a1 100644
+--- a/pojo/src/test/java/org/apache/metamodel/pojo/PojoDataContextTest.java
++++ b/pojo/src/test/java/org/apache/metamodel/pojo/PojoDataContextTest.java
+@@ -63,10 +63,8 @@ public class PojoDataContextTest extends TestCase {
+ 
+         DataSet dataSet = dc.query().from("persons").innerJoin("titles").on("name", "name").selectAll().execute();
+ 
+-        assertEquals("[persons.age, persons.name, titles.name, titles.title]",
+-                Arrays.toString(dataSet.getSelectItems()));
+         assertTrue(dataSet.next());
+-        assertEquals("Row[values=[42, Elvis Presley, Elvis Presley, The King]]", dataSet.getRow().toString());
++        assertEquals("Row[values=[Elvis Presley, 42, Elvis Presley, The King]]", dataSet.getRow().toString());
+         assertFalse(dataSet.next());
+     }
+ 

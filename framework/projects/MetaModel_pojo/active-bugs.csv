@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,85e457f3cb05975d9bf832deba589c93e346e3d6,39c4a391b55e360eaa4132c598648e0b27563756,METAMODEL-70,https://issues.apache.org/jira/browse/METAMODEL-70

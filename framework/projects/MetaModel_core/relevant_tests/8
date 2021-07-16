@@ -1,0 +1,2 @@
+org.apache.metamodel.query.FilterItemTest
+org.apache.metamodel.util.WildcardPatternTest

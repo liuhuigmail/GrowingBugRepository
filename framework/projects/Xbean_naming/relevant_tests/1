@@ -1,0 +1,4 @@
+org.apache.xbean.naming.context.ContextAccessControlListTest
+org.apache.xbean.naming.context.FederationTest
+org.apache.xbean.naming.context.UnmodifiableContextTest
+org.apache.xbean.naming.context.WritableContextTest

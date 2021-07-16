@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,a2f97111044949998005b049bb375682cd9b262e,fff3a930dc2ab6c4540cc22e96ef4c019f8e290b,METAMODEL-95,https://issues.apache.org/jira/browse/METAMODEL-95

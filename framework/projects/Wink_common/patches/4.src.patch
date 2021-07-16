@@ -1,0 +1,15 @@
+diff --git a/wink-common/src/main/java/org/apache/wink/common/internal/registry/metadata/ResourceMetadataCollector.java b/wink-common/src/main/java/org/apache/wink/common/internal/registry/metadata/ResourceMetadataCollector.java
+index eb0c6ddb..a10f3f01 100644
+--- a/wink-common/src/main/java/org/apache/wink/common/internal/registry/metadata/ResourceMetadataCollector.java
++++ b/wink-common/src/main/java/org/apache/wink/common/internal/registry/metadata/ResourceMetadataCollector.java
+@@ -62,10 +62,7 @@ public class ResourceMetadataCollector extends AbstractMetadataCollector {
+     }
+ 
+     public static boolean isStaticResource(Class<?> cls) {
+-        if(Modifier.isInterface(cls.getModifiers()) || Modifier.isAbstract(cls.getModifiers())) {
+-            return false;
+-        }
+         
+         if (cls.getAnnotation(Path.class) != null) {
+             return true;
+         }

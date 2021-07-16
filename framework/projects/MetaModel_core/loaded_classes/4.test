@@ -1,0 +1,2 @@
+org.apache.metamodel.MockDataContext
+org.apache.metamodel.query.parser.QueryParserTest

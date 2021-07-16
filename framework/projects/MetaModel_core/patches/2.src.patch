@@ -1,0 +1,13 @@
+diff --git a/core/src/main/java/org/apache/metamodel/util/LegacyDeserializationObjectInputStream.java b/core/src/main/java/org/apache/metamodel/util/LegacyDeserializationObjectInputStream.java
+index 5e91494d..993bd895 100644
+--- a/core/src/main/java/org/apache/metamodel/util/LegacyDeserializationObjectInputStream.java
++++ b/core/src/main/java/org/apache/metamodel/util/LegacyDeserializationObjectInputStream.java
+@@ -235,7 +235,7 @@ public class LegacyDeserializationObjectInputStream extends ObjectInputStream {
+     @Override
+     protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {
+         final String className = desc.getName();
+-        if (className.startsWith("org.eobjects.metamodel") || className.startsWith("[Lorg.eobjects.metamodel")) {
++        if (className.startsWith("org.apache.metamodel") || className.startsWith("[Lorg.apache.metamodel")) {
+             final String newClassName;
+             if (OLD_CLASS_NAME_COLUMN_TYPE.equals(className)) {
+                 // since ColumnType was changed from enum to interface, there's

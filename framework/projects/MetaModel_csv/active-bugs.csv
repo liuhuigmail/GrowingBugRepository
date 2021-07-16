@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,8a17fbfbb4c37c702fd362a25bc401268a08e3f1,9c8f0b9d100853431f20b5761b4364c04276452b,METAMODEL-1113,https://issues.apache.org/jira/browse/METAMODEL-1113

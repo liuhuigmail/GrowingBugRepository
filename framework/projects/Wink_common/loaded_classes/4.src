@@ -1,0 +1,10 @@
+org.apache.wink.common.annotations.Parent
+org.apache.wink.common.annotations.Workspace
+org.apache.wink.common.DynamicResource
+org.apache.wink.common.internal.i18n.MessageBundle
+org.apache.wink.common.internal.i18n.Messages
+org.apache.wink.common.internal.registry.metadata.AbstractMetadata
+org.apache.wink.common.internal.registry.metadata.AbstractMetadataCollector
+org.apache.wink.common.internal.registry.metadata.ClassMetadata
+org.apache.wink.common.internal.registry.metadata.ConstructorMetadata
+org.apache.wink.common.internal.registry.metadata.ResourceMetadataCollector

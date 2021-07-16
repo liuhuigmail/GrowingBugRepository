@@ -144,6 +144,7 @@ of the checked-out project version.
         <fileset dir="${maven.repo.local}">
                <include name="**/*.jar" />
         </fileset>
+        
     </path>
     <!-- List of all developer-written tests that reliably pass on the fixed version -->
     <!-- Manually generalize test patterns if analyzer produces incorrect outputs -->

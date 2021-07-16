@@ -1,0 +1,16 @@
+diff --git a/core/src/test/java/org/apache/metamodel/query/parser/QueryParserTest.java b/core/src/test/java/org/apache/metamodel/query/parser/QueryParserTest.java
+index 401dcf71..a6c2e9e4 100644
+--- a/core/src/test/java/org/apache/metamodel/query/parser/QueryParserTest.java
++++ b/core/src/test/java/org/apache/metamodel/query/parser/QueryParserTest.java
+@@ -113,11 +113,6 @@ public class QueryParserTest extends TestCase {
+         assertEquals("SELECT MIN(tbl.foo) FROM sch.tbl", q.toSql());
+     }
+ 
+-    public void testSelectEmptySpacesBeforeAs() throws Exception {
+-        Query q = MetaModelHelper.parseQuery(dc, "SELECT tbl.foo    AS alias FROM sch.tbl");
+-        assertEquals("SELECT tbl.foo AS alias FROM sch.tbl", q.toSql());
+-    }
+-
+     public void testSelectAvgInLowerCase() throws Exception {
+         Query q = MetaModelHelper.parseQuery(dc, "SELECT avg(tbl.foo) FROM sch.tbl");
+         assertEquals("SELECT AVG(tbl.foo) FROM sch.tbl", q.toSql());

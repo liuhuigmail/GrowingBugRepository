@@ -1,0 +1,5 @@
+--- org.apache.metamodel.jdbc.DerbyTest::testWorkingWithDates
+--- org.apache.metamodel.jdbc.DerbyTest::testCharOfSizeOne
+--- org.apache.metamodel.jdbc.DerbyTest::testDifferentOperators
+--- org.apache.metamodel.jdbc.DerbyTest::testInterpretationOfNull
+--- org.apache.metamodel.jdbc.DerbyTest::testConvertClobToString

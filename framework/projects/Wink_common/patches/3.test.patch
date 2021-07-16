@@ -1,0 +1,19 @@
+diff --git a/wink-common/src/test/java/org/apache/wink/common/internal/UriBuilderImplTest.java b/wink-common/src/test/java/org/apache/wink/common/internal/UriBuilderImplTest.java
+index e3235543..06d6a7a2 100644
+--- a/wink-common/src/test/java/org/apache/wink/common/internal/UriBuilderImplTest.java
++++ b/wink-common/src/test/java/org/apache/wink/common/internal/UriBuilderImplTest.java
+@@ -549,14 +549,4 @@ public class UriBuilderImplTest extends TestCase {
+         assertEquals("http://localhost?something", UriBuilder.fromUri("http://localhost?something")
+             .build().toString());
+     }
+-    
+-
+-    public void testWithPathTemplate() {
+-        UriBuilder builder = UriBuilder.fromPath("/myResource/{entity_id: [0-9]+}");
+-        assertEquals("/myResource/3", builder.build("3").toString());
+-        
+-        builder = UriBuilder.fromPath("http://localhost:8080/myResource");
+-        builder.path("{entity_id: [0-9]+}");
+-        assertEquals("http://localhost:8080/myResource/3", builder.build("3").toString());
+-    }
+ }

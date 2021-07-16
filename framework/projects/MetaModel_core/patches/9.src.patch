@@ -1,0 +1,40 @@
+diff --git a/core/src/main/java/org/apache/metamodel/util/FormatHelper.java b/core/src/main/java/org/apache/metamodel/util/FormatHelper.java
+index 22efc8e7..6eff30fe 100644
+--- a/core/src/main/java/org/apache/metamodel/util/FormatHelper.java
++++ b/core/src/main/java/org/apache/metamodel/util/FormatHelper.java
+@@ -24,7 +24,6 @@ import java.text.DecimalFormatSymbols;
+ import java.text.NumberFormat;
+ import java.text.ParseException;
+ import java.util.Date;
+-import java.util.regex.Pattern;
+ 
+ import org.apache.metamodel.query.QueryParameter;
+ import org.apache.metamodel.schema.ColumnType;
+@@ -33,10 +32,7 @@ import org.apache.metamodel.schema.ColumnType;
+  * Helper class for formatting
+  */
+ public final class FormatHelper {
+     
+-    private static Pattern DATE_PATTERN = Pattern.compile("(?:(?:DATE *['(\"])|(?:['(\"]))?([^')\"]*)[')\"]?");
+-    private static Pattern TIME_PATTERN = Pattern.compile("(?:(?:TIME *['(\"])|(?:['(\"]))?([^')\"]*)[')\"]?");
+-    private static Pattern TIMESTAMP_PATTERN = Pattern.compile("(?:(?:TIMESTAMP *['(\"])|(?:['(\"]))?([^')\"]*)[')\"]?");
+ 
+     /**
+      * Creates a uniform number format which is similar to that of eg. Java
+@@ -163,14 +158,11 @@ public final class FormatHelper {
+         final String[] formats;
+         if (columnType.isTimeBased()) {
+             if (columnType == ColumnType.DATE) {
+-                value = DATE_PATTERN.matcher(value).replaceFirst("$1");
+                 formats = new String[] { "yyyy-MM-dd" };
+             } else if (columnType == ColumnType.TIME) {
+-                value = TIME_PATTERN.matcher(value).replaceFirst("$1");
+-                formats = new String[] { "HH:mm:ss.SSS", "HH:mm:ss", "HH:mm" };
++                formats = new String[] { "HH:mm:ss", "HH:mm" };
+             } else {
+-                value = TIMESTAMP_PATTERN.matcher(value).replaceFirst("$1");
+-                formats = new String[] { "yyyy-MM-dd HH:mm:ss.SSS", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy-MM-dd" };
++                formats = new String[] { "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy-MM-dd" };
+             }
+         } else {
+             throw new IllegalArgumentException("Cannot parse time value of type: " + columnType);

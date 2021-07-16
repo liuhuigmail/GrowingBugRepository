@@ -1,0 +1,25 @@
+diff --git a/wink-common/src/main/java/org/apache/wink/common/model/atom/AtomJAXBUtils.java b/wink-common/src/main/java/org/apache/wink/common/model/atom/AtomJAXBUtils.java
+index 30fb5569..82a57e22 100644
+--- a/wink-common/src/main/java/org/apache/wink/common/model/atom/AtomJAXBUtils.java
++++ b/wink-common/src/main/java/org/apache/wink/common/model/atom/AtomJAXBUtils.java
+@@ -710,9 +710,9 @@ public class AtomJAXBUtils {
+                 }
+                 if (isXmlOpen) {
+                     result = result.trim();
+-                    if (!result.startsWith("<") && !isXhtml) {
++                    if (!result.startsWith("<")) {
+                         throw new RuntimeException(
+                                 "Illegal atom content: must contain a single child element");
+                     }
+                 }
+                 return result;
+@@ -722,6 +722,9 @@ public class AtomJAXBUtils {
+                 return elementCounter == 0;
+             }
+ 
++            public void setContentIsXhtml(boolean isContentXhtml) {
++                this.isXhtml = isContentXhtml;
++            }
+             private boolean isFirstElement() {
+                 return elementCounter == 1;
+             }

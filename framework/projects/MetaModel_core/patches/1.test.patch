@@ -1,0 +1,51 @@
+diff --git a/core/src/test/java/org/apache/metamodel/create/AbstractCreateTableBuilderTest.java b/core/src/test/java/org/apache/metamodel/create/AbstractCreateTableBuilderTest.java
+index 1884a413..40815ce3 100644
+--- a/core/src/test/java/org/apache/metamodel/create/AbstractCreateTableBuilderTest.java
++++ b/core/src/test/java/org/apache/metamodel/create/AbstractCreateTableBuilderTest.java
+@@ -56,11 +56,14 @@ public class AbstractCreateTableBuilderTest extends TestCase {
+ 
+         assertEquals("tablename", table.getName());
+         assertEquals(3, table.getColumnCount());
+-        assertEquals("Column[name=foo,columnNumber=0,type=VARCHAR,nullable=true,nativeType=vch,columnSize=1234]",
++        assertEquals(
++                "Column[name=foo,columnNumber=0,type=VARCHAR,nullable=true,nativeType=vch,columnSize=1234]",
+                 table.getColumns()[0].toString());
+-        assertEquals("Column[name=bar,columnNumber=1,type=null,nullable=null,nativeType=null,columnSize=null]",
++        assertEquals(
++                "Column[name=bar,columnNumber=1,type=null,nullable=null,nativeType=null,columnSize=null]",
+                 table.getColumns()[1].toString());
+-        assertEquals("Column[name=baz,columnNumber=2,type=null,nullable=false,nativeType=null,columnSize=null]",
++        assertEquals(
++                "Column[name=baz,columnNumber=2,type=null,nullable=false,nativeType=null,columnSize=null]",
+                 table.getColumns()[2].toString());
+ 
+         assertEquals("CREATE TABLE schema.tablename (foo VARCHAR(1234) PRIMARY KEY,bar,baz NOT NULL)", builder.toSql());
+@@ -83,7 +86,7 @@ public class AbstractCreateTableBuilderTest extends TestCase {
+ 
+         MutableTable likeTable = new MutableTable("blablablabla");
+         likeTable.addColumn(new MutableColumn("foo", ColumnType.VARCHAR, likeTable, 0, 1234, "vch", true, null, false,
+-                null).setPrimaryKey(true));
++                null));
+         likeTable.addColumn(new MutableColumn("bar"));
+         likeTable.addColumn(new MutableColumn("baz"));
+ 
+@@ -94,13 +97,14 @@ public class AbstractCreateTableBuilderTest extends TestCase {
+ 
+         assertEquals("tablename", table.getName());
+         assertEquals(3, table.getColumnCount());
+-        assertEquals("Column[name=foo,columnNumber=0,type=VARCHAR,nullable=true,nativeType=vch,columnSize=1234]",
++        assertEquals(
++                "Column[name=foo,columnNumber=0,type=VARCHAR,nullable=true,nativeType=vch,columnSize=1234]",
+                 table.getColumns()[0].toString());
+-        assertTrue(table.getColumns()[0].isPrimaryKey());
+-
+-        assertEquals("Column[name=bar,columnNumber=1,type=null,nullable=null,nativeType=null,columnSize=null]",
++        assertEquals(
++                "Column[name=bar,columnNumber=1,type=null,nullable=null,nativeType=null,columnSize=null]",
+                 table.getColumns()[1].toString());
+-        assertEquals("Column[name=baz,columnNumber=2,type=null,nullable=null,nativeType=null,columnSize=null]",
++        assertEquals(
++                "Column[name=baz,columnNumber=2,type=null,nullable=null,nativeType=null,columnSize=null]",
+                 table.getColumns()[2].toString());
+     }
+ }

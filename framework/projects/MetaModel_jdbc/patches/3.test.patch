@@ -1,0 +1,17 @@
+diff --git a/jdbc/src/test/java/org/apache/metamodel/dialects/SQLServerQueryRewriterTest.java b/jdbc/src/test/java/org/apache/metamodel/dialects/SQLServerQueryRewriterTest.java
+index ca07d131..f160036c 100644
+--- a/jdbc/src/test/java/org/apache/metamodel/dialects/SQLServerQueryRewriterTest.java
++++ b/jdbc/src/test/java/org/apache/metamodel/dialects/SQLServerQueryRewriterTest.java
+@@ -122,10 +122,10 @@ public class SQLServerQueryRewriterTest extends TestCase {
+                 .select(column)
+                 .select(timestampColumn)
+                 .where(new FilterItem(new SelectItem(timestampColumn), OperatorType.LESS_THAN, TimeComparator
+-                        .toDate("2014-06-28 14:06:00.123")));
++                        .toDate("2014-06-28 14:06:00")));
+ 
+         assertEquals(
+-                "SELECT MY_SCHEMA.\"foo\".\"bar\", timestamp FROM MY_SCHEMA.\"foo\" WHERE timestamp < CAST('20140628 14:06:00.123' AS DATETIME)",
++                "SELECT MY_SCHEMA.\"foo\".\"bar\", timestamp FROM MY_SCHEMA.\"foo\" WHERE timestamp < CAST('20140628 14:06:00' AS DATETIME)",
+                 qr.rewriteQuery(q));
+     }
+ 
