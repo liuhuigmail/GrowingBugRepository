@@ -1,0 +1,25 @@
+diff --git a/apache-rat-plugin/src/test/java/org/apache/rat/mp/util/ExclusionHelperTest.java b/apache-rat-plugin/src/test/java/org/apache/rat/mp/util/ExclusionHelperTest.java
+index 696ea620..d444f349 100644
+--- a/apache-rat-plugin/src/test/java/org/apache/rat/mp/util/ExclusionHelperTest.java
++++ b/apache-rat-plugin/src/test/java/org/apache/rat/mp/util/ExclusionHelperTest.java
+@@ -49,7 +49,7 @@ public class ExclusionHelperTest {
+                 ECLIPSE_DEFAULT_EXCLUDES.size());
+         assertEquals("Did you change the number of idea excludes?", 4,
+                 IDEA_DEFAULT_EXCLUDES.size());
+-        assertEquals("Did you change the number of mvn excludes?", 7,
++        assertEquals("Did you change the number of mvn excludes?", 6,
+                 MAVEN_DEFAULT_EXCLUDES.size());
+     }
+ 
+@@ -81,9 +81,9 @@ public class ExclusionHelperTest {
+         addMavenDefaults(log, false, exclusion);
+         assertTrue(exclusion.isEmpty());
+         addMavenDefaults(log, true, exclusion);
+-        assertEquals(7, exclusion.size());
++        assertEquals(6, exclusion.size());
+         addMavenDefaults(log, true, exclusion);
+-        assertEquals(7, exclusion.size());
++        assertEquals(6, exclusion.size());
+     }
+ 
+     @Test

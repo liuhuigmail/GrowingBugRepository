@@ -1,0 +1,16 @@
+diff --git a/nifi-mock/src/main/java/org/apache/nifi/util/CapturingLogger.java b/nifi-mock/src/main/java/org/apache/nifi/util/CapturingLogger.java
+index a289eaae66..25b37a050e 100644
+--- a/nifi-mock/src/main/java/org/apache/nifi/util/CapturingLogger.java
++++ b/nifi-mock/src/main/java/org/apache/nifi/util/CapturingLogger.java
+@@ -372,11 +372,7 @@ public class CapturingLogger implements Logger {
+         logger.error(format, arg1, arg2);
+     }
+ 
+-    public void error(String format, Object arg1, Throwable t) {
+-        errorMessages.add(new LogMessage(null, format, t, arg1));
+-        logger.error(format, arg1, t);
+-    }
+ 
+     @Override
+     public void error(String format, Object... arguments) {
+         errorMessages.add(new LogMessage(null, format, null, arguments));

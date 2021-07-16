@@ -1,0 +1,4 @@
+org.apache.james.server.core.MailImpl
+org.apache.james.server.core.MimeMessageCopyOnWriteProxy
+org.apache.james.server.core.MimeMessageInputStreamSource
+org.apache.james.server.core.MimeMessageSource

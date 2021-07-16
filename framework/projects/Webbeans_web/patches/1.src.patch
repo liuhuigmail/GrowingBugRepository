@@ -1,0 +1,14 @@
+diff --git a/webbeans-web/src/main/java/org/apache/webbeans/web/context/WebContextsService.java b/webbeans-web/src/main/java/org/apache/webbeans/web/context/WebContextsService.java
+index 5c81f9e85..1000963da 100644
+--- a/webbeans-web/src/main/java/org/apache/webbeans/web/context/WebContextsService.java
++++ b/webbeans-web/src/main/java/org/apache/webbeans/web/context/WebContextsService.java
+@@ -616,8 +616,7 @@ public class WebContextsService extends AbstractContextsService
+         if(applicationContext != null && !applicationContext.isDestroyed())
+         {
+             webBeansContext.getBeanManagerImpl().fireContextLifecyleEvent(
+-                endObject != null ? endObject : new Object(),
+-                BeforeDestroyedLiteral.INSTANCE_APPLICATION_SCOPED);
++                endObject, BeforeDestroyedLiteral.INSTANCE_APPLICATION_SCOPED);
+ 
+             applicationContext.destroy();
+             // this is needed to get rid of ApplicationScoped beans which are cached inside the proxies...

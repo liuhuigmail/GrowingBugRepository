@@ -1,0 +1,4 @@
+org.apache.johnzon.core.JsonPatchBuilderTest
+org.apache.johnzon.core.JsonPatchDiffTest
+org.apache.johnzon.core.JsonPatchTest
+org.apache.johnzon.core.JsonPointerTest

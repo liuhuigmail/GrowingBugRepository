@@ -1,0 +1,13 @@
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonGeneratorImpl.java b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonGeneratorImpl.java
+index ae481ac..916542d 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonGeneratorImpl.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonGeneratorImpl.java
+@@ -355,7 +355,7 @@ class JsonGeneratorImpl implements JsonGenerator, JsonChars, Serializable {
+     @Override
+     public JsonGenerator writeEnd() {
+         final GeneratorState last = state.pop();
+-        if (last == null || !last.endable || last == GeneratorState.ROOT_VALUE) {
++        if (last == null || !last.endable) {
+             throw new JsonGenerationException("Can't end current context: " + last);
+         }
+         depth--;

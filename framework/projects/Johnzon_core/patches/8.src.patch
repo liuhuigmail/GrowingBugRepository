@@ -1,0 +1,42 @@
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/AbstractJsonFactory.java b/johnzon-core/src/main/java/org/apache/johnzon/core/AbstractJsonFactory.java
+index 40194bd..4f09d38 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/AbstractJsonFactory.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/AbstractJsonFactory.java
+@@ -22,6 +22,7 @@ import java.io.Serializable;
+ import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.HashMap;
++import java.util.Locale;
+ import java.util.Map;
+ import java.util.logging.Logger;
+ 
+@@ -53,7 +54,7 @@ public abstract class AbstractJsonFactory implements Serializable {
+     protected BufferStrategy getBufferProvider() {
+         final Object name = internalConfig.get(BUFFER_STRATEGY);
+         if (name != null) {
+-            return BufferStrategyFactory.valueOf(name.toString());
++            return BufferStrategyFactory.valueOf(name.toString().toUpperCase(Locale.ENGLISH));
+         }
+         return DEFAULT_BUFFER_STRATEGY;
+     }
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/BufferStrategyFactory.java b/johnzon-core/src/main/java/org/apache/johnzon/core/BufferStrategyFactory.java
+index 03ebf4f..a52d379 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/BufferStrategyFactory.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/BufferStrategyFactory.java
+@@ -17,7 +17,6 @@
+ package org.apache.johnzon.core;
+ 
+ import java.util.HashMap;
+-import java.util.Locale;
+ import java.util.Map;
+ import java.util.concurrent.ConcurrentLinkedQueue;
+ 
+@@ -96,7 +95,7 @@ public class BufferStrategyFactory {
+      * @throws IllegalArgumentException if the given strategyName does not resolve to a BufferStrategy.
+      */
+     public static BufferStrategy valueOf(String strategyName) {
+-        BufferStrategy bufferStrategy = DEFAULT_STRATEGIES.get(strategyName.toUpperCase(Locale.ENGLISH));
++        BufferStrategy bufferStrategy = DEFAULT_STRATEGIES.get(strategyName);
+         if (bufferStrategy == null) {
+             // try to load the BufferStrategy via reflection
+             Class<?> bsClass = ClassUtil.loadClassOptional(strategyName, false);

@@ -1,0 +1,7 @@
+org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalTest
+org.apache.tinkerpop.gremlin.process.traversal.step.filter.SampleGlobalStepTest
+org.apache.tinkerpop.gremlin.process.util.BulkSetTest
+org.apache.tinkerpop.gremlin.structure.io.gryo.GryoMapperTest
+org.apache.tinkerpop.gremlin.structure.io.gryo.GryoPoolTest
+org.apache.tinkerpop.gremlin.structure.io.gryo.GryoReaderWriterTest
+org.apache.tinkerpop.gremlin.util.function.BulkSetSupplierTest

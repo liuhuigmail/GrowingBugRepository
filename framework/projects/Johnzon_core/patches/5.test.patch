@@ -1,0 +1,44 @@
+diff --git a/johnzon-core/src/test/java/org/apache/johnzon/core/JsonPatchTest.java b/johnzon-core/src/test/java/org/apache/johnzon/core/JsonPatchTest.java
+index 59696e8..6c96329 100644
+--- a/johnzon-core/src/test/java/org/apache/johnzon/core/JsonPatchTest.java
++++ b/johnzon-core/src/test/java/org/apache/johnzon/core/JsonPatchTest.java
+@@ -27,7 +27,6 @@ import javax.json.JsonArrayBuilder;
+ import javax.json.JsonException;
+ import javax.json.JsonObject;
+ import javax.json.JsonPatch;
+-import javax.json.JsonPatchBuilder;
+ import javax.json.JsonStructure;
+ import javax.json.JsonValue;
+ import java.io.StringReader;
+@@ -60,31 +59,6 @@ public class JsonPatchTest {
+         assertEquals("{\"foo\":\"bar\",\"baz\":\"qux\"}", toJsonString(patched));
+     }
+ 
+-    /**
+-     * {@linkplain} https://issues.apache.org/jira/browse/JOHNZON-172
+-     */
+-    @Test
+-    public void testAddToRootContainingEmptyJsonObject() {
+-        JsonObject object = Json.createObjectBuilder()
+-                               .add("request", Json.createObjectBuilder()
+-                                                   .add("test", JsonValue.EMPTY_JSON_OBJECT))
+-                               .build();
+-
+-        JsonPatchImpl patch = new JsonPatchImpl(new JsonPatchImpl.PatchValue(JsonPatch.Operation.ADD,
+-                                                                             "/name",
+-                                                                             null,
+-                                                                             new JsonStringImpl("aName")));
+-
+-        JsonObject patched = patch.apply(object);
+-        assertNotNull(patched);
+-
+-        JsonObject requestJson = patched.getJsonObject("request");
+-        assertNotNull(requestJson);
+-        assertEquals(JsonValue.EMPTY_JSON_OBJECT, requestJson.getJsonObject("test"));
+-
+-        assertEquals("aName", patched.getString("name"));
+-    }
+-
+     @Test
+     public void testAddArrayElementWithIndex() {
+ 

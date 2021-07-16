@@ -1,0 +1,15 @@
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonLongImpl.java b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonLongImpl.java
+index 0719a3f..883bde5 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonLongImpl.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonLongImpl.java
+@@ -97,9 +97,6 @@ public final class JsonLongImpl implements JsonNumber, Serializable {
+ 
+     @Override
+     public boolean equals(final Object obj) {
+-        if (JsonLongImpl.class.isInstance(obj)) {
+-            return JsonLongImpl.class.cast(obj).value == value;
+-        }
+-        return JsonNumber.class.isInstance(obj) && JsonNumber.class.cast(obj).bigDecimalValue().equals(bigDecimalValue());
++        return JsonNumber.class.isInstance(obj) && JsonNumber.class.cast(obj).longValue() == value;
+     }
+ }

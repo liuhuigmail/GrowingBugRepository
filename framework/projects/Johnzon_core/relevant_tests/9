@@ -1,0 +1,14 @@
+org.apache.johnzon.core.BufferStrategyFactoryTest
+org.apache.johnzon.core.JsonArrayBuilderImplTest
+org.apache.johnzon.core.JsonArrayImplTest
+org.apache.johnzon.core.JsonGeneratorImplTest
+org.apache.johnzon.core.JsonNumberTest
+org.apache.johnzon.core.JsonObjectBuilderImplTest
+org.apache.johnzon.core.JsonObjectImplTest
+org.apache.johnzon.core.JsonParserTest
+org.apache.johnzon.core.JsonPatchTest
+org.apache.johnzon.core.JsonPointerTest
+org.apache.johnzon.core.JsonReaderImplTest
+org.apache.johnzon.core.JsonWriterImplTest
+org.apache.johnzon.core.OverflowTest
+org.apache.johnzon.core.SerializationTest

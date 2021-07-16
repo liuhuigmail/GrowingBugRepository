@@ -1,0 +1,6 @@
+org.apache.webbeans.web.tests.BeforeDestroyTest
+org.apache.webbeans.web.tests.WebBeansTest
+org.apache.webbeans.web.tests.WebContextsServiceTest
+org.apache.webbeans.web.tests.initialization.InitializedSessionScopedTest
+org.apache.webbeans.web.tests.interceptor.CachedInterceptorHandlerTest
+org.apache.webbeans.web.tests.interceptor.SerializationTest

@@ -1,0 +1,23 @@
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/JohnzonJsonParserImpl.java b/johnzon-core/src/main/java/org/apache/johnzon/core/JohnzonJsonParserImpl.java
+index 5caa5b0..5feb3d9 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/JohnzonJsonParserImpl.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/JohnzonJsonParserImpl.java
+@@ -58,18 +58,10 @@ public abstract class JohnzonJsonParserImpl implements JohnzonJsonParser {
+         JsonReaderImpl jsonReader = new JsonReaderImpl(this, true);
+         return jsonReader.readValue();
+     }
+ 
+-    @Override
+-    public void skipObject() {
+         // could surely get improved.
+         // But no need for now as this method is not used that often.
+-        getObject();
+-    }
+ 
+-    @Override
+-    public void skipArray() {
+         // could surely get improved.
+         // But no need for now as this method is not used that often.
+-        getArray();
+-    }
+ }

@@ -1,0 +1,21 @@
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonObjectImpl.java b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonObjectImpl.java
+index a260e25..bb3a5ae 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonObjectImpl.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonObjectImpl.java
+@@ -27,7 +27,6 @@ import java.io.ObjectStreamException;
+ import java.io.Serializable;
+ import java.util.AbstractMap;
+ import java.util.Iterator;
+-import java.util.LinkedHashMap;
+ import java.util.Map;
+ import java.util.Set;
+ 
+@@ -55,7 +54,7 @@ final class JsonObjectImpl extends AbstractMap<String, JsonValue> implements Jso
+ 
+     JsonObjectImpl(final Map<String, JsonValue> backingMap) {
+         super();
+-        this.unmodifieableBackingMap = new LinkedHashMap<>(backingMap);
++        this.unmodifieableBackingMap = backingMap;
+     }
+ 
+     @Override

@@ -1,0 +1,31 @@
+diff --git a/apache-rat-core/src/test/java/org/apache/rat/document/impl/guesser/ArchiveGuesserTest.java b/apache-rat-core/src/test/java/org/apache/rat/document/impl/guesser/ArchiveGuesserTest.java
+index 5a963551..ab1fd57b 100644
+--- a/apache-rat-core/src/test/java/org/apache/rat/document/impl/guesser/ArchiveGuesserTest.java
++++ b/apache-rat-core/src/test/java/org/apache/rat/document/impl/guesser/ArchiveGuesserTest.java
+@@ -33,12 +33,6 @@ public class ArchiveGuesserTest {
+         assertTrue(ArchiveGuesser.isArchive(new MockDocument("42.tar")));
+         assertTrue(ArchiveGuesser.isArchive(new MockDocument("42.bz")));
+         assertTrue(ArchiveGuesser.isArchive(new MockDocument("42.bz2")));
+-        assertTrue(ArchiveGuesser.isArchive(new MockDocument("42.odb")));
+-        assertTrue(ArchiveGuesser.isArchive(new MockDocument("42.odf")));
+-        assertTrue(ArchiveGuesser.isArchive(new MockDocument("42.odg")));
+-        assertTrue(ArchiveGuesser.isArchive(new MockDocument("42.odp")));
+-        assertTrue(ArchiveGuesser.isArchive(new MockDocument("42.ods")));
+-        assertTrue(ArchiveGuesser.isArchive(new MockDocument("42.odt")));
+     }
+     
+     @Test
+@@ -49,12 +43,7 @@ public class ArchiveGuesserTest {
+         assertTrue(ArchiveGuesser.isArchive("42.tar"));
+         assertTrue(ArchiveGuesser.isArchive("42.bz"));
+         assertTrue(ArchiveGuesser.isArchive("42.bz2"));
+-        assertTrue(ArchiveGuesser.isArchive("42.odb"));
+-        assertTrue(ArchiveGuesser.isArchive("42.odf"));
+-        assertTrue(ArchiveGuesser.isArchive("42.odg"));
+-        assertTrue(ArchiveGuesser.isArchive("42.odp"));
+-        assertTrue(ArchiveGuesser.isArchive("42.ods"));
+-        assertTrue(ArchiveGuesser.isArchive("42.odt"));
+     }
++    
+ 
+ }

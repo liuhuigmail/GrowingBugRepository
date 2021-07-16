@@ -1,0 +1,49 @@
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonDoubleImpl.java b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonDoubleImpl.java
+index 3c467e4..daa7b57 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonDoubleImpl.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonDoubleImpl.java
+@@ -27,8 +27,7 @@ import java.util.Objects;
+ final class JsonDoubleImpl implements JsonNumber, Serializable {
+     private final double value;
+ 
+-    private Integer hashCode = null;
+ 
+     JsonDoubleImpl(final double value) {
+         
+         if(Double.isInfinite(value) || Double.isNaN(value)) {
+@@ -102,11 +100,9 @@ final class JsonDoubleImpl implements JsonNumber, Serializable {
+ 
+     @Override
+     public int hashCode() {
+-        if (hashCode == null) {
+             hashCode = bigDecimalValue().hashCode();
+-        }
+ 
+         return hashCode;
+     }
+ 
+     @Override
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonLongImpl.java b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonLongImpl.java
+index 5428a87..0719a3f 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonLongImpl.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonLongImpl.java
+@@ -25,7 +25,6 @@ import java.math.BigInteger;
+ 
+ public final class JsonLongImpl implements JsonNumber, Serializable {
+     private final long value;
+-    private Integer hashCode = null;
+ 
+     JsonLongImpl(final long value) {
+         this.value = value;
+@@ -93,10 +92,7 @@ public final class JsonLongImpl implements JsonNumber, Serializable {
+ 
+     @Override
+     public int hashCode() {
+-        if (hashCode == null) {
+-            hashCode = bigDecimalValue().hashCode();
+-        }
+-        return hashCode;
++        return (int) value;
+     }
+ 
+     @Override

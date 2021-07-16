@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,95c0c4cd7832869b190c9205e22ce57240e7a3b3,378376d7247b572cad489a4a17bf868489801fee,RAT-159,https://issues.apache.org/jira/browse/RAT-159

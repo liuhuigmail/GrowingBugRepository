@@ -1,0 +1,4 @@
+org.apache.nifi.state.MockStateManager
+org.apache.nifi.state.MockStateMap
+org.apache.nifi.util.MockControllerServiceLookup
+org.apache.nifi.util.MockProcessContext

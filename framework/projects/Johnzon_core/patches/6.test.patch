@@ -1,0 +1,39 @@
+diff --git a/johnzon-core/src/test/java/org/apache/johnzon/core/JsonObjectImplTest.java b/johnzon-core/src/test/java/org/apache/johnzon/core/JsonObjectImplTest.java
+index 2e418e6..1557070 100644
+--- a/johnzon-core/src/test/java/org/apache/johnzon/core/JsonObjectImplTest.java
++++ b/johnzon-core/src/test/java/org/apache/johnzon/core/JsonObjectImplTest.java
+@@ -24,10 +24,7 @@ import static org.junit.Assert.assertNull;
+ import static org.junit.Assert.assertTrue;
+ import static org.junit.Assert.fail;
+ 
+-import java.util.stream.IntStream;
+-
+ import javax.json.Json;
+-import javax.json.JsonArrayBuilder;
+ import javax.json.JsonObject;
+ import javax.json.JsonObjectBuilder;
+ import javax.json.JsonValue;
+@@ -35,23 +32,6 @@ import javax.json.JsonValue;
+ import org.junit.Test;
+ 
+ public class JsonObjectImplTest {
+-    @Test
+-    public void reuseObjectBuilder() {
+-        final JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+-        final JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
+-        IntStream.range(1, 10).forEach(numer -> {
+-            jsonObjectBuilder.add("key", String.format("Key %d", numer));
+-            jsonObjectBuilder.add("value", String.format("Value %d", numer));
+-            jsonArrayBuilder.add(jsonObjectBuilder);
+-        });
+-        final String message = jsonArrayBuilder.build().toString();
+-        assertEquals("[{\"key\":\"Key 1\",\"value\":\"Value 1\"},{\"key\":\"Key 2\",\"value\":\"Value 2\"}," +
+-                "{\"key\":\"Key 3\",\"value\":\"Value 3\"},{\"key\":\"Key 4\",\"value\":\"Value 4\"},{\"key\":\"Key " +
+-                "5\",\"value\":\"Value 5\"},{\"key\":\"Key 6\",\"value\":\"Value 6\"},{\"key\":\"Key 7\"," +
+-                "\"value\":\"Value 7\"},{\"key\":\"Key 8\",\"value\":\"Value 8\"},{\"key\":\"Key 9\"," +
+-                "\"value\":\"Value 9\"}]", message);
+-    }
+-
+     @Test
+     public void boolErrors() {
+         {

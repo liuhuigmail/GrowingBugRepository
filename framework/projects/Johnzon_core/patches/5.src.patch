@@ -1,0 +1,45 @@
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonPointerImpl.java b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonPointerImpl.java
+index 50c19f7..b674ad9 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonPointerImpl.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonPointerImpl.java
+@@ -358,7 +358,7 @@ public class JsonPointerImpl implements JsonPointer {
+             JsonObject jsonObject = (JsonObject) jsonValue;
+             JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+ 
+-            if (jsonObject.isEmpty() && isPositionToAdd(currentPath)) {
++            if (jsonObject.isEmpty()) {
+                 objectBuilder.add(lastReferenceToken, newValue);
+             } else {
+                 for (Map.Entry<String, JsonValue> entry : jsonObject.entrySet()) {
+@@ -367,7 +367,8 @@ public class JsonPointerImpl implements JsonPointer {
+                     objectBuilder.add(entry.getKey(), addInternal(entry.getValue(), newValue, currentPath));
+                     currentPath.remove(entry.getKey());
+ 
+-                    if (isPositionToAdd(currentPath)) {
++                    if (currentPath.size() == referenceTokens.size() - 1 &&
++                        currentPath.get(currentPath.size() - 1).equals(referenceTokens.get(referenceTokens.size() - 2))) {
+                         objectBuilder.add(lastReferenceToken, newValue);
+                     }
+                 }
+@@ -378,7 +379,8 @@ public class JsonPointerImpl implements JsonPointer {
+             JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+ 
+             int arrayIndex = -1;
+-            if (isPositionToAdd(currentPath)) {
++            if (currentPath.size() == referenceTokens.size() - 1 &&
++                currentPath.get(currentPath.size() - 1).equals(referenceTokens.get(referenceTokens.size() - 2))) {
+                 arrayIndex = getArrayIndex(lastReferenceToken, jsonArray, true);
+             }
+ 
+@@ -401,11 +404,7 @@ public class JsonPointerImpl implements JsonPointer {
+         return jsonValue;
+     }
+ 
+-    private boolean isPositionToAdd(List<String> currentPath) {
+-        return currentPath.size() == referenceTokens.size() - 1 &&
+-                currentPath.get(currentPath.size() - 1).equals(referenceTokens.get(referenceTokens.size() - 2));
+-    }
+ 
+     private JsonValue remove(JsonValue jsonValue, int currentPosition, int referencePosition) {
+         if (jsonValue instanceof JsonObject) {
+             JsonObject jsonObject = (JsonObject) jsonValue;

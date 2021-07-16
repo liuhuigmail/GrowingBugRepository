@@ -1,0 +1,18 @@
+diff --git a/johnzon-core/src/test/java/org/apache/johnzon/core/JsonNumberTest.java b/johnzon-core/src/test/java/org/apache/johnzon/core/JsonNumberTest.java
+index 2a2a12d..f994444 100644
+--- a/johnzon-core/src/test/java/org/apache/johnzon/core/JsonNumberTest.java
++++ b/johnzon-core/src/test/java/org/apache/johnzon/core/JsonNumberTest.java
+@@ -86,13 +86,4 @@ public class JsonNumberTest {
+         final JsonNumber jsonNumber = Json.createReader(new StringReader(asJson)).readObject().getJsonNumber("value");
+         Assert.assertEquals(new BigInteger("10002000000000000000"), jsonNumber.bigIntegerValue());
+     }
+-
+-    @Test
+-    public void testHashCode() {
+-        JsonNumber a = Json.createObjectBuilder().add("a", 1).build().getJsonNumber("a");
+-        JsonNumber b = Json.createObjectBuilder().add("b", 1.1).build().getJsonNumber("b");
+-
+-        Assert.assertEquals(a.hashCode(), a.bigDecimalValue().hashCode());
+-        Assert.assertEquals(b.hashCode(), b.bigDecimalValue().hashCode());
+-    }
+ }

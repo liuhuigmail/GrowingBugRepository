@@ -1,0 +1,5 @@
+org.apache.johnzon.core.JsonGeneratorImplTest
+org.apache.johnzon.core.JsonNumberTest
+org.apache.johnzon.core.JsonPatchTest
+org.apache.johnzon.core.JsonWriterImplTest
+org.apache.johnzon.core.OverflowTest

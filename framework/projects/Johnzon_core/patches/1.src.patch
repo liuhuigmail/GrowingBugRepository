@@ -1,0 +1,20 @@
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonStreamParserImpl.java b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonStreamParserImpl.java
+index b78106b..c083b69 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonStreamParserImpl.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonStreamParserImpl.java
+@@ -243,12 +244,12 @@ public class JsonStreamParserImpl implements JsonChars, JsonParser{
+     }
+ 
+     //read the next char from the stream and set/increment the bufferPos
+     //will also refill buffer if necessary
+     //if we are currently processing a value (string or number) and buffer 
+     //refill is necessary copy the already read value part into the value buffer
+     private char readNextChar() {
+ 
+-        if ((availableCharsInBuffer - bufferPos) <= 1) {
++        if ((buffer.length - bufferPos) <= 1) {
+             //fillbuffer
+ 
+             //copy content from old buffer to valuebuffer
+
+ 

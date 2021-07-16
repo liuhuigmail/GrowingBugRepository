@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,56f696e97728532584c367905b3e0d2d35295460,432ced2c015c5a6b4fc404a538d53ee23cba6e6c,OWB-1223,https://issues.apache.org/jira/browse/OWB-1223

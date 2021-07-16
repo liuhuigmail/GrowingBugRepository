@@ -1,0 +1,2 @@
+org.apache.johnzon.core.AbstractJsonFactory
+johnzon-core.org.apache.johnzon.core.BufferStrategyFactory

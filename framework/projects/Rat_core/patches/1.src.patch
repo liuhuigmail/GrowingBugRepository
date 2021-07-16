@@ -1,0 +1,14 @@
+diff --git a/apache-rat-core/src/main/java/org/apache/rat/document/impl/guesser/ArchiveGuesser.java b/apache-rat-core/src/main/java/org/apache/rat/document/impl/guesser/ArchiveGuesser.java
+index 85207019..5b6a79fc 100644
+--- a/apache-rat-core/src/main/java/org/apache/rat/document/impl/guesser/ArchiveGuesser.java
++++ b/apache-rat-core/src/main/java/org/apache/rat/document/impl/guesser/ArchiveGuesser.java
+@@ -31,9 +31,6 @@ public class ArchiveGuesser {
+         "rar", "war",
+         "ear", "mar",
+         "par", "xar",
+-        "odb", "odf",
+-        "odg", "odp",
+-        "ods", "odt",
+     };
+ 
+     public static final boolean isArchive(final Document document) {

@@ -1,0 +1,44 @@
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonGeneratorImpl.java b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonGeneratorImpl.java
+index 13a062c..6730ec7 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonGeneratorImpl.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonGeneratorImpl.java
+@@ -258,8 +258,12 @@ class JsonGeneratorImpl implements JsonGenerator, JsonChars, Serializable {
+                 write(JsonString.class.cast(value).getString());
+                 break;
+             case NUMBER:
+                 final JsonNumber number = JsonNumber.class.cast(value);
+-                write(number.bigDecimalValue());
++                if (number.isIntegral()) {
++                    write(number.longValueExact());
++                } else {
++                    write(number.bigDecimalValue());
++                }
+                 break;
+             case TRUE:
+                 write(true);
+@@ -384,14 +389,14 @@ class JsonGeneratorImpl implements JsonGenerator, JsonChars, Serializable {
+     @Override
+     public JsonGenerator write(final BigDecimal value) {
+         checkArrayOrValue();
+-        writeValue(value.toString());
++        writeValue(String.valueOf(value));
+         return this;
+     }
+ 
+     @Override
+     public JsonGenerator write(final BigInteger value) {
+         checkArrayOrValue();
+-        writeValue(value.toString());
++        writeValue(String.valueOf(value));
+         return this;
+     }
+ 
+@@ -690,7 +695,7 @@ class JsonGeneratorImpl implements JsonGenerator, JsonChars, Serializable {
+         if (peek == GeneratorState.START_ARRAY || peek == GeneratorState.IN_ARRAY) {
+             writeIndent();
+         }
+-        justWrite(value);
++        justWrite(String.valueOf(value));
+         alignState();
+     }
+ 

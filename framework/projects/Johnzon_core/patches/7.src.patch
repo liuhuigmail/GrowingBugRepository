@@ -1,0 +1,70 @@
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonGeneratorImpl.java b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonGeneratorImpl.java
+index 49f52e1..ec303c5 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonGeneratorImpl.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonGeneratorImpl.java
+@@ -376,42 +376,42 @@ class JsonGeneratorImpl implements JsonGenerator, JsonChars, Serializable {
+ 
+     @Override
+     public JsonGenerator write(final String value) {
+-        checkArray(true);
++        checkArray(false);
+         writeValueAsJsonString(value);
+         return this;
+     }
+ 
+     @Override
+     public JsonGenerator write(final BigDecimal value) {
+-        checkArray(true);
++        checkArray(false);
+         writeValue(String.valueOf(value));
+         return this;
+     }
+ 
+     @Override
+     public JsonGenerator write(final BigInteger value) {
+-        checkArray(true);
++        checkArray(false);
+         writeValue(String.valueOf(value));
+         return this;
+     }
+ 
+     @Override
+     public JsonGenerator write(final int value) {
+-        checkArray(true);
++        checkArray(false);
+         writeValue(value);
+         return this;
+     }
+ 
+     @Override
+     public JsonGenerator write(final long value) {
+-        checkArray(true);
++        checkArray(false);
+         writeValue(value);
+         return this;
+     }
+ 
+     @Override
+     public JsonGenerator write(final double value) {
+-        checkArray(true);
++        checkArray(false);
+         checkDoubleRange(value);
+         writeValue(String.valueOf(value));
+         return this;
+@@ -419,14 +419,14 @@ class JsonGeneratorImpl implements JsonGenerator, JsonChars, Serializable {
+ 
+     @Override
+     public JsonGenerator write(final boolean value) {
+-        checkArray(true);
++        checkArray(false);
+         writeValue(String.valueOf(value));
+         return this;
+     }
+ 
+     @Override
+     public JsonGenerator writeNull() {
+-        checkArray(true);
++        checkArray(false);
+         writeValue(NULL);
+         return this;
+     }

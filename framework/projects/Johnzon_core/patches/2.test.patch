@@ -1,0 +1,22 @@
+diff --git a/johnzon-core/src/test/java/org/apache/johnzon/core/JsonNumberTest.java b/johnzon-core/src/test/java/org/apache/johnzon/core/JsonNumberTest.java
+index 194017c..55c3754 100644
+--- a/johnzon-core/src/test/java/org/apache/johnzon/core/JsonNumberTest.java
++++ b/johnzon-core/src/test/java/org/apache/johnzon/core/JsonNumberTest.java
+@@ -28,17 +28,9 @@ import java.io.StringReader;
+ import java.io.StringWriter;
+ import java.math.BigInteger;
+ 
+-import static org.junit.Assert.assertFalse;
+ 
+ 
+ public class JsonNumberTest {
+-    @Test
+-    public void equals() {
+-        final JsonNumber a = Json.createObjectBuilder().add("a", 1).build().getJsonNumber("a");
+-        final JsonNumber b = Json.createObjectBuilder().add("b", 1.1).build().getJsonNumber("b");
+-        assertFalse(a.equals(b));
+-        assertFalse(b.equals(a));
+-    }
+     
+     @Test(expected=ArithmeticException.class)
+     public void testBigIntegerExact() {

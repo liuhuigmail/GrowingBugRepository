@@ -1,0 +1,18 @@
+diff --git a/tez-common/src/test/java/org/apache/tez/common/TestTezUtils.java b/tez-common/src/test/java/org/apache/tez/common/TestTezUtils.java
+index 04eb2c0d9..16efc8f52 100644
+--- a/tez-common/src/test/java/org/apache/tez/common/TestTezUtils.java
++++ b/tez-common/src/test/java/org/apache/tez/common/TestTezUtils.java
+@@ -81,11 +81,11 @@ public class TestTezUtils {
+   public void testBitSetToByteArray() {
+     BitSet bitSet = createBitSet(0);
+     byte[] bytes = TezUtilsInternal.toByteArray(bitSet);
+-    Assert.assertEquals(bytes.length, (bitSet.length() + 7) / 8);
++    Assert.assertTrue(bytes.length == ((bitSet.length() / 8) + 1));
+ 
+     bitSet = createBitSet(1000);
+     bytes = TezUtilsInternal.toByteArray(bitSet);
+-    Assert.assertEquals(bytes.length, (bitSet.length() + 7) / 8);
++    Assert.assertTrue(bytes.length == ((bitSet.length() / 8) + 1));
+   }
+ 
+   @Test (timeout=2000)

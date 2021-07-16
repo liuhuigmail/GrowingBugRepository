@@ -1,0 +1,3 @@
+org.apache.johnzon.core.JsonParserTest
+org.apache.johnzon.core.JsonReaderImplTest
+org.apache.johnzon.core.LocationTest

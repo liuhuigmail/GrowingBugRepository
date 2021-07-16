@@ -1,0 +1,2 @@
+org.apache.rat.document.impl.guesser.ArchiveGuesserTest
+org.apache.rat.document.MockDocument

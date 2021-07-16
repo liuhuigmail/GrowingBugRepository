@@ -1,0 +1,5 @@
+org.apache.johnzon.core.JsonArrayBuilderImplTest
+org.apache.johnzon.core.JsonNumberTest
+org.apache.johnzon.core.JsonObjectBuilderImplTest
+org.apache.johnzon.core.JsonProviderTest
+org.apache.johnzon.core.SerializationTest

@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1183`** bugs
+ **`1218`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -18,7 +18,7 @@ from open-source Java projects.
 | 7     | Csv             | commons-csv                |                           |       17       | 1-17                |
 | 8     | Gson            | gson                       |                           |       18       | 1-18                |
 | 9     | JacksonCore     | jackson-core               |                           |       29       | 1-26,28-30                |
-| 10     | JacksonDatabind | jackson-databind           |                          |      156       | 1-156               |
+| 10     | JacksonDatabind | jackson-databind           |                          |      155       | 1-119,121-156               |
 | 11     | JacksonXml      | jackson-dataformat-xml     |                          |        12       | 1-12                 |
 | 12    | Jsoup           | jsoup                      |                           |       93       | 1-93                |
 | 13     | JxPath          | commons-jxpath             |                          |       22       | 1-22                |
@@ -76,6 +76,22 @@ from open-source Java projects.
 | 65     | JacksonDataformatBinary_smile            | jackson-dataformats-binary-smile |    smile     |       2     | 1-2              |
 | 66     | JacksonModuleAfterburner            | jackson-module-afterburner |         |       3     | 1-3              |
 | 67     | Woodstox            | woodstox |         |       7     | 1-7              |
+| 68     | MetaModel_core            | MetaModel-core | core        |       9     | 1-9              |
+| 69     | MetaModel_csv            | MetaModel-csv |  csv       |       1     | 1              |
+| 70     | MetaModel_excel            | MetaModel-excel |  excel        |       1     | 1              |
+| 71     | MetaModel_jdbc            | MetaModel-jdbc |  jdbc       |       3     | 1-3              |
+| 72     | MetaModel_pojo            | MetaModel-pojo |  pojo       |       1     | 1              |
+| 73     | MetaModel_salesforce            | MetaModel-salesforce |   salesforce      |       1     | 1              |
+| 74     | Wink_common            | wink-common |  wink-common       |       4     | 1-4              |
+| 75     | Xbean_naming            | xbean-naming |  xbean-naming       |       1     | 1              |
+| 76     | James_project_server_container_core            | james-project-server-container-core |  server/container/core       |       1     | 1              |
+| 77     | Johnzon_core            | johnzon-core |  johnzon-core       |       11     | 1-11              |
+| 78     | Nifi_mock            | nifi-mock |  nifi-mock       |       2     | 1-2              |
+| 79     | Rat_core            | apache-rat-core |  apache-rat-core       |       1     | 1              |
+| 80     | Rat_plugin            | apache-rat-plugin |  apache-rat-plugin       |       1     | 1              |
+| 81     | Tez_common            | tez-common |  tez-common       |       1     | 1              |
+| 82     | Tinkerpop_gremlin_core            | gremlin-core |  gremlin-core       |       1     | 1              |
+| 83     | Webbeans_web            | webbeans-web |  webbeans-web       |       1     | 1              |
 
 # Setting up GrowingBugs
 

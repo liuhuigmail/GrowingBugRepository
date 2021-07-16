@@ -1,0 +1,3 @@
+org.apache.rat.ReportTest
+org.apache.rat.analysis.AnalyserFactoryTest
+org.apache.rat.document.impl.guesser.ArchiveGuesserTest

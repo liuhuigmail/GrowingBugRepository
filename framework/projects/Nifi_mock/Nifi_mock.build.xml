@@ -1,0 +1,164 @@
+<!--
+Copyright (c) 2014-2019 René Just, Darioush Jalali, and Defects4J contributors.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+################################################################################
+               This is the project-specific build file for Nifi_mock.
+
+It defines project-specific properties and targets, and imports the build file
+of the checked-out project version.
+#############################################################################-->
+<project name="D4j-Nifi_mock" basedir="${basedir}">
+    <!-- TODO: Make sure that the following properties and paths are defined:
+           - source.home        ->  Directory of sources
+           - test.home          ->  Directory of test sources
+           - build.home         ->  Root directory for compiled (test) classes
+           - test.classpath     ->  Classpath to compile tests
+           - compile.classpath  ->  Classpath to compile sources
+    -->
+
+    <property name="junit.jar" value="${d4j.home}/framework/projects/lib/junit-4.11.jar"/>
+
+    <!-- Do not download maven dependencies -->
+    <property name="maven.settings.offline" value="true" />
+    <property name="maven.repo.local" value="${d4j.dir.projects}/Nifi_mock/lib/" />
+
+    <!-- Generate all debugging information -->
+    <property name="compile.debug" value="yes" />
+
+    <!-- Include existing project build file -->
+    <import file="${d4j.workdir}/build.xml"/>
+    
+    <condition property="src-dir" value="${maven.build.srcDir.0}">
+    	<isset property="maven.build.srcDir.0" />
+    </condition>
+    <condition property="src-dir" value="${source.home}" >
+    	<isset property="source.home" />
+    </condition>
+    <condition property="src-dir" value="${basedir}/src/java" >
+    	<available file="${basedir}/src/java" />
+    </condition>
+    
+    
+    <condition property="test-dir" value="${maven.build.testDir.0}" >
+    	<isset property="maven.build.testDir.0" />
+    </condition> 
+    <condition property="test-dir" value="${test.home}"  >
+    	<isset property="test.home" />
+    </condition> 
+    <condition property="test-dir" value="${basedir}/src/test">
+    	<available file="${basedir}/src/test" />
+    </condition> 
+    
+    <condition property="classes.dir" value="${maven.build.outputDir}"  >
+        <isset property="maven.build.outputDir" />
+    </condition>
+    <condition property="classes.dir" value="${classesdir}">
+        <isset property="classesdir" />
+    </condition>
+    <condition property="classes.dir" value="${build.home}/classes" >
+        <available file="${build.home}/classes" />
+    </condition>
+    
+    <condition property="test.classes.dir" value="${maven.build.testOutputDir}"  >
+        <isset property="maven.build.testOutputDir" />
+    </condition>
+    <condition property="test.classes.dir" value="${testclassesdir}"  >
+        <isset property="testclassesdir" />
+    </condition>
+    <condition property="test.classes.dir" value="${build.home}/test-classes" >
+        <available file="${build.home}/test-classes" />
+    </condition>
+    <property name="test.home" value="${test.classes.dir}" />
+    <property name="build.home" value="${classes.dir}/.." />
+   
+    <!-- Project properties targets -->
+    <if> <isset property="ant.refid:compile.classpath" />
+          <then>
+            <property name="test.dir" value="${test.home}" />
+          </then>
+          <else>
+            <property name="oldversion"    value="yes" />
+
+            <!-- the classpath needs to include jar -->
+             <!--
+                <fileset dir="${maven.repo.local}">
+                    <include name="**/*.jar" />
+                </fileset>
+             -->
+            <path id="compile.classpath"      >
+                <path refid="build.classpath" />
+            </path>
+            <path id="test.classpath"      >
+                <path refid="build.test.classpath" />
+            </path>
+            
+            <property name="dir.src.classes"  value="${src-dir}"/>
+            <property name="dir.src.tests"    value="${test-dir}"/>
+            <property name="test.dir"         value="${test-dir}" />
+            <property name="source.home"      value="${src-dir}"/>
+            <property name="d4j.test.dir"     value="${test-dir}"/>
+            
+          </else>
+    </if>
+
+    <!--
+        if else statement in xml
+        <condition property="test.classes.dir" value="build/class" else="target/class">
+            <available file="build/classes" />
+        </condition>
+         
+        echo  print the var
+        <echo message="${abc}" />
+    -->
+
+    <property name="build.home" value="${classes.dir}/.." />
+
+    <!-- Classpath to run developer-written tests -->
+    <path id="d4j.test.classpath">
+        <path refid="test.classpath"/>
+        <pathelement location="${classes.dir}"/>
+        <pathelement location="${test.classes.dir}"/>
+        <pathelement path="${junit.jar}" />
+        <!--
+        <pathelement path="${dependency.jar}" />
+        <pathelement location="${user.home}/.m2/repository"/>
+        -->
+        <fileset dir="${maven.repo.local}">
+               <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+    <!-- List of all developer-written tests that reliably pass on the fixed version -->
+    <!-- Manually generalize test patterns if analyzer produces incorrect outputs -->
+    <fileset id="all.manual.tests" dir="${test-dir}" excludes="${d4j.tests.exclude}">
+        <!--include name="____" /-->
+        <!--exclude name="____" /-->
+    </fileset>
+
+    <!-- List of relevant developer-written tests that reliably pass on the fixed version -->
+    <fileset id="rel.manual.tests" dir="${test.home}"
+        includesfile="${d4j.dir.projects}/${d4j.project.id}/relevant_tests/${d4j.bug.id}" />
+    <!--
+        <target name="compile" depends="build" />
+        <target name="compile.tests" depends="compile-tests" />
+    -->
+        
+</project>

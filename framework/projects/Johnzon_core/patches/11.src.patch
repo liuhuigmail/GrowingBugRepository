@@ -1,0 +1,14 @@
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonStreamParserImpl.java b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonStreamParserImpl.java
+index c511e0d..9d42c87 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonStreamParserImpl.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonStreamParserImpl.java
+@@ -197,9 +197,7 @@ public class JsonStreamParserImpl extends JohnzonJsonParserImpl implements JsonC
+         final char[] newArray = new char[fallBackCopyBuffer.length + Math.max(getBufferExtends(fallBackCopyBuffer.length), length)];
+         // TODO: log to adjust size once?
+         System.arraycopy(fallBackCopyBuffer, 0, newArray, 0, fallBackCopyBufferLength);
+-        if (startOfValueInBuffer != -1) {
+             System.arraycopy(buffer, startOfValueInBuffer, newArray, fallBackCopyBufferLength, length);
+-        }
+         if (releaseFallBackCopyBufferLength) {
+             bufferProvider.release(fallBackCopyBuffer);
+             releaseFallBackCopyBufferLength = false;

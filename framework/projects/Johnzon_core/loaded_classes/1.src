@@ -1,0 +1,14 @@
+org.apache.johnzon.core.BufferStrategy
+org.apache.johnzon.core.JsonBuilderFactoryImpl
+org.apache.johnzon.core.JsonChars
+org.apache.johnzon.core.JsonGeneratorFactoryImpl
+org.apache.johnzon.core.JsonObjectBuilderImpl
+org.apache.johnzon.core.JsonObjectImpl
+org.apache.johnzon.core.JsonParserFactoryImpl
+org.apache.johnzon.core.JsonProviderImpl
+org.apache.johnzon.core.JsonReaderFactoryImpl
+org.apache.johnzon.core.JsonReaderImpl
+org.apache.johnzon.core.JsonStreamParserImpl
+org.apache.johnzon.core.JsonStringImpl
+org.apache.johnzon.core.JsonWriterFactoryImpl
+org.apache.johnzon.core.RFC4627AwareInputStreamReader

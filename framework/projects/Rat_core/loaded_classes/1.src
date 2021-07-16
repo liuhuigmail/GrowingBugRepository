@@ -1,0 +1,3 @@
+org.apache.rat.api.Document
+org.apache.rat.api.MetaData
+org.apache.rat.document.impl.guesser.ArchiveGuesser

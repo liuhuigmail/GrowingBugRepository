@@ -1,0 +1,12 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,c0ebe9d2acbd8515a6169e7c1c80ecbe3ae67988,b5b99cf4046bb73e37cd6921417a20deea2fd921,JOHNZON-18,https://issues.apache.org/jira/browse/JOHNZON-18
+2,f283c1e896526c136afbba5fc07faf657a40fb32,f6979d363c18fed6ce06f42b635f673e65225b07,JOHNZON-122,https://issues.apache.org/jira/browse/JOHNZON-122
+3,c8b6c1fe05f0d2240874dc374d1edbe4b15d9106,8c30a68fb646b3e0aff0804e405a2b19c1d20820,JOHNZON-123,https://issues.apache.org/jira/browse/JOHNZON-123
+4,05effff6e0a555d1a2c62e65d1891745df028ea7,d455deafbf01675b5c607a8241adfde56ea11a6f,JOHNZON-139,https://issues.apache.org/jira/browse/JOHNZON-139
+5,3c28e350141d12a0bac3f7ceaf66352261caca5d,b594980702cb9ce0f7814ebee1e1bf603775c9ae,JOHNZON-172,https://issues.apache.org/jira/browse/JOHNZON-172
+6,297654206d56de2dd7b2de11e9de1f1eb7a81d41,b2d205738c65fb53e768fca445fa611515417c19,JOHNZON-193,https://issues.apache.org/jira/browse/JOHNZON-193
+7,78ad82adb99fc9083506dca9afc5fb3089bbf37c,54c0b11ab8d84fceff6547612d54b2849fecc3a6,JOHNZON-195,https://issues.apache.org/jira/browse/JOHNZON-195
+8,67b761c40f6e6ad0d16ed82313915166afffad31,4d6c30df35b6edbfaf8465ed73aceab836667601,JOHNZON-217,https://issues.apache.org/jira/browse/JOHNZON-217
+9,c159515c7c34c3e8f930cccc3b8c2f1bf93de590,51b120fa031524623715704560780e3468529de7,JOHNZON-267,https://issues.apache.org/jira/browse/JOHNZON-267
+10,1dfbf224c920872cfee892dc8684d8e1e9100258,5a55c6677a6749eff4d4ddb11cd818a6e1cbd2ee,JOHNZON-265,https://issues.apache.org/jira/browse/JOHNZON-265
+11,b836513b68d94f4f7f97a0477f67ee9c047486c2,48c34e68c51791b0aea15b94cb013ea8586e29da,JOHNZON-346,https://issues.apache.org/jira/browse/JOHNZON-346

@@ -1,0 +1,12 @@
+diff --git a/apache-rat-plugin/src/main/java/org/apache/rat/mp/util/ExclusionHelper.java b/apache-rat-plugin/src/main/java/org/apache/rat/mp/util/ExclusionHelper.java
+index a1f7b6b7..b7656fd9 100644
+--- a/apache-rat-plugin/src/main/java/org/apache/rat/mp/util/ExclusionHelper.java
++++ b/apache-rat-plugin/src/main/java/org/apache/rat/mp/util/ExclusionHelper.java
+@@ -42,7 +42,6 @@ public final class ExclusionHelper {
+                     "cobertura.ser", //
+                     "release.properties", //
+                     ".repository", // Used by Jenkins when a Maven job uses a private repository that is "Local to the workspace"
+-                    "build.log", // RAT-160: until now maven-invoker-plugin runs create a build.log that is not part of a release
+                     ".mvn", // Project configuration since Maven 3.3.1 which contains maven.config, jvm.config, extensions.xml
+                     "pom.xml.releaseBackup"));
+ 

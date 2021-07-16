@@ -1,0 +1,13 @@
+diff --git a/nifi-mock/src/main/java/org/apache/nifi/util/MockProcessContext.java b/nifi-mock/src/main/java/org/apache/nifi/util/MockProcessContext.java
+index e850bc8881..3e9b7e06fd 100644
+--- a/nifi-mock/src/main/java/org/apache/nifi/util/MockProcessContext.java
++++ b/nifi-mock/src/main/java/org/apache/nifi/util/MockProcessContext.java
+@@ -399,7 +399,7 @@ public class MockProcessContext extends MockControllerServiceLookup implements P
+     @Override
+     public String decrypt(final String encrypted) {
+         if (encrypted.startsWith("enc{") && encrypted.endsWith("}")) {
+-            return encrypted.substring(4, encrypted.length() - 1);
++            return encrypted.substring(4, encrypted.length() - 2);
+         }
+         return encrypted;
+     }

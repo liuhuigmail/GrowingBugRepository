@@ -1,0 +1,17 @@
+org.apache.johnzon.core.AbstractJsonFactory
+org.apache.johnzon.core.BufferStrategy
+org.apache.johnzon.core.BufferStrategyFactory
+org.apache.johnzon.core.CommentsJsonStreamParserImpl
+org.apache.johnzon.core.HStack
+org.apache.johnzon.core.JohnzonJsonParser
+org.apache.johnzon.core.JohnzonJsonParserImpl
+org.apache.johnzon.core.JsonBuilderFactoryImpl
+org.apache.johnzon.core.JsonChars
+org.apache.johnzon.core.JsonGeneratorFactoryImpl
+org.apache.johnzon.core.JsonGeneratorImpl
+org.apache.johnzon.core.JsonParserFactoryImpl
+org.apache.johnzon.core.JsonProviderImpl
+org.apache.johnzon.core.JsonReaderFactoryImpl
+org.apache.johnzon.core.JsonStreamParserImpl
+org.apache.johnzon.core.JsonWriterFactoryImpl
+org.apache.johnzon.core.util.ClassUtil

@@ -1,0 +1,2 @@
+org.apache.james.server.core.MailImplTest
+org.apache.james.server.core.MailTestAllImplementations
