@@ -1,0 +1,3 @@
+org.eclipse.hono.client.impl.AbstractHonoClient
+org.eclipse.hono.client.impl.AbstractRequestResponseClient
+org.eclipse.hono.client.RequestResponseClient

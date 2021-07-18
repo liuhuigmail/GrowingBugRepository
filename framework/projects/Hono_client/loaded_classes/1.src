@@ -1,0 +1,3 @@
+org.eclipse.hono.client.HonoClient
+org.eclipse.hono.client.impl.HonoClientImpl
+org.eclipse.hono.client.MessageSender

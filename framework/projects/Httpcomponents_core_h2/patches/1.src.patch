@@ -1,0 +1,26 @@
+diff --git a/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/hpack/HPackDecoder.java b/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/hpack/HPackDecoder.java
+index dd9379c89..62ad3bb6c 100644
+--- a/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/hpack/HPackDecoder.java
++++ b/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/hpack/HPackDecoder.java
+@@ -133,7 +133,7 @@ public final class HPackDecoder {
+         if (src.hasArray()) {
+             final byte[] b = src.array();
+             final int off = src.position();
+-            buffer.append(b, src.arrayOffset() + off, strLen);
++            buffer.append(b, off, strLen);
+             src.position(off + strLen);
+         } else {
+             for (int i = 0; i < strLen; i++) {
+diff --git a/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/hpack/HPackEncoder.java b/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/hpack/HPackEncoder.java
+index 2824760a5..dc3179da9 100644
+--- a/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/hpack/HPackEncoder.java
++++ b/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/hpack/HPackEncoder.java
+@@ -113,7 +113,7 @@ public final class HPackEncoder {
+             if (src.hasArray()) {
+                 final byte[] b = src.array();
+                 final int off = src.position();
+-                dst.append(b, src.arrayOffset() + off, strLen);
++                dst.append(b, off, strLen);
+                 src.position(off + strLen);
+             } else {
+                 while (src.hasRemaining()) {

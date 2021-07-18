@@ -64,3 +64,8 @@ https://github.com/apache/creadur-rat.git	apache-rat-plugin
 https://github.com/apache/tez.git	tez-common
 https://github.com/apache/tinkerpop.git	gremlin-core
 https://github.com/apache/openwebbeans.git	webbeans-web
+https://github.com/apache/johnzon.git	johnzon-jsonb
+https://github.com/apache/johnzon.git	johnzon-jaxrs
+https://github.com/eclipse/hono.git	hono-client	
+https://github.com/apache/httpcomponents-core.git	httpcomponents-core-h2
+https://github.com/apache/httpcomponents-core.git	httpcomponents-core-httpcore5

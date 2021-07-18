@@ -64,4 +64,9 @@ Rat_core	apache-rat-core	https://github.com/apache/creadur-rat.git	jira	RAT	/(RA
 Rat_plugin	apache-rat-plugin	https://github.com/apache/creadur-rat.git	jira	RAT	/(RAT-\\d+)/mi	apache-rat-plugin	
 Tez_common	tez-common	https://github.com/apache/tez.git	jira	TEZ	/(TEZ-\\d+)/mi	tez-common	
 Tinkerpop_gremlin_core	gremlin-core	https://github.com/apache/tinkerpop.git	jira	TINKERPOP	/(TINKERPOP-\\d+)/mi	gremlin-core	
-Webbeans_web	webbeans-web	https://github.com/apache/openwebbeans.git	jira	OWB	/(OWB-\\d+)/mi	webbeans-web	
+Webbeans_web	webbeans-web	https://github.com/apache/openwebbeans.git	jira	OWB	/(OWB-\\d+)/mi	webbeans-web
+Johnzon_jsonb	johnzon-jsonb	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-jsonb	
+Johnzon_jaxrs	johnzon-jaxrs	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-jaxrs	
+Hono_client	hono-client	https://github.com/eclipse/hono.git	github	eclipse/hono	/#(\\d+)/mi	client	
+Httpcomponents_core_h2	httpcore5-h2	https://github.com/apache/httpcomponents-core.git	jira	HTTPCORE	/(HTTPCORE-\\d+)/mi	httpcore5-h2	
+Httpcomponents_core_httpcore5	httpcore5	https://github.com/apache/httpcomponents-core.git	jira	HTTPCORE	/(HTTPCORE-\\d+)/mi	httpcore5	

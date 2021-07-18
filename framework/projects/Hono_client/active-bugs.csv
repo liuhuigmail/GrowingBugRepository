@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,e317e2298dc6aff6349ec64275087d3fea94d4b5,c1550b3e8b39f061226873d180eb14ec52bb8e20,231,https://github.com/eclipse/hono/issues/231
+2,9d59a1023976f84b503513c2c761afefbb373bf9,43468221cbef4a3fbbc48849791c8b32b1b65777,232,https://github.com/eclipse/hono/issues/232
+3,7b8bb1b7de6d4e165f67fb45a270723d96dca4a2,9f8536476182f48a97219edb3e50c75dc3ea49f9,380,https://github.com/eclipse/hono/issues/380
+4,44f266c226de8470cb173871974259127919082a,d28707b75a197c4484beee6295b42090ae81cac5,1073,https://github.com/eclipse/hono/issues/1073

@@ -1,0 +1,21 @@
+diff --git a/johnzon-jaxrs/src/main/java/org/apache/johnzon/jaxrs/JohnzonMessageBodyWriter.java b/johnzon-jaxrs/src/main/java/org/apache/johnzon/jaxrs/JohnzonMessageBodyWriter.java
+index e6a8d36..07d6367 100644
+--- a/johnzon-jaxrs/src/main/java/org/apache/johnzon/jaxrs/JohnzonMessageBodyWriter.java
++++ b/johnzon-jaxrs/src/main/java/org/apache/johnzon/jaxrs/JohnzonMessageBodyWriter.java
+@@ -34,6 +34,7 @@ import java.io.InputStream;
+ import java.io.OutputStream;
+ import java.io.Writer;
+ import java.lang.annotation.Annotation;
++import java.lang.reflect.ParameterizedType;
+ import java.lang.reflect.Type;
+ import java.util.Collection;
+ 
+@@ -81,7 +82,7 @@ public class JohnzonMessageBodyWriter<T> extends IgnorableTypes implements Messa
+                         final OutputStream entityStream) throws IOException {
+         if (rawType.isArray()) {
+             mapper.writeArray(t, entityStream);
+-        } else if (Collection.class.isInstance(t)) {
++        } else if (Collection.class.isAssignableFrom(rawType) && ParameterizedType.class.isInstance(genericType)) {
+             mapper.writeArray(Collection.class.cast(t), entityStream);
+         } else {
+             mapper.writeObject(t, entityStream);

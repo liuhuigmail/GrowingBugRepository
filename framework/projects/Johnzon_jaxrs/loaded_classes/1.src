@@ -1,0 +1,5 @@
+org.apache.johnzon.jaxrs.DelegateProvider
+org.apache.johnzon.jaxrs.IgnorableTypes
+org.apache.johnzon.jaxrs.JohnzonMessageBodyReader
+org.apache.johnzon.jaxrs.JohnzonMessageBodyWriter
+org.apache.johnzon.jaxrs.JohnzonProvider

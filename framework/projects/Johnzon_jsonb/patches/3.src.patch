@@ -1,0 +1,66 @@
+diff --git a/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/JohnzonJsonb.java b/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/JohnzonJsonb.java
+index a9adada..adb5d66 100644
+--- a/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/JohnzonJsonb.java
++++ b/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/JohnzonJsonb.java
+@@ -26,7 +26,6 @@ import org.apache.johnzon.mapper.Mapper;
+ import org.apache.johnzon.mapper.MapperException;
+ import org.apache.johnzon.mapper.reflection.JohnzonParameterizedType;
+ 
+-import javax.json.JsonArray;
+ import javax.json.JsonNumber;
+ import javax.json.JsonString;
+ import javax.json.JsonStructure;
+@@ -61,8 +60,6 @@ public class JohnzonJsonb implements Jsonb, AutoCloseable, JsonbExtension {
+         try {
+             if (isArray(type)) {
+                 return delegate.readTypedArray(new StringReader(str), type.getComponentType(), type);
+-            } else if (JsonArray.class == type) {
+-                return (T) delegate.readJsonArray(new StringReader(str));
+             } else if (Collection.class.isAssignableFrom(type)) {
+                 return (T) delegate.readCollection(new StringReader(str), new JohnzonParameterizedType(type, Object.class));
+             }
+@@ -120,8 +117,6 @@ public class JohnzonJsonb implements Jsonb, AutoCloseable, JsonbExtension {
+             if (isArray(runtimeType)) {
+                 final Class cast = Class.class.cast(runtimeType);
+                 return (T) delegate.readTypedArray(new StringReader(str), cast.getComponentType(), cast);
+-            } else if (JsonArray.class == runtimeType) {
+-                return (T) delegate.readJsonArray(new StringReader(str));
+             } else if (isCollection(runtimeType)) {
+                 return (T) delegate.readCollection(new StringReader(str), ParameterizedType.class.cast(runtimeType));
+             }
+@@ -145,8 +140,6 @@ public class JohnzonJsonb implements Jsonb, AutoCloseable, JsonbExtension {
+         try {
+             if (isArray(type)) {
+                 return delegate.readTypedArray(reader, type.getComponentType(), type);
+-            } else if (JsonArray.class == type) {
+-                return (T) delegate.readJsonArray(reader);
+             } else if (Collection.class.isAssignableFrom(type)) {
+                 return (T) delegate.readCollection(reader, new JohnzonParameterizedType(type, Object.class));
+             }
+@@ -171,8 +164,6 @@ public class JohnzonJsonb implements Jsonb, AutoCloseable, JsonbExtension {
+             if (isArray(runtimeType)) {
+                 final Class<T> type = Class.class.cast(runtimeType);
+                 return delegate.readTypedArray(reader, type.getComponentType(), type);
+-            } else if (JsonArray.class == runtimeType) {
+-                return (T) delegate.readJsonArray(reader);
+             } else if (isCollection(runtimeType)) {
+                 return (T) delegate.readCollection(reader, ParameterizedType.class.cast(runtimeType));
+             }
+@@ -192,8 +183,6 @@ public class JohnzonJsonb implements Jsonb, AutoCloseable, JsonbExtension {
+         try {
+             if (isArray(type)) {
+                 return delegate.readTypedArray(stream, type.getComponentType(), type);
+-            } else if (JsonArray.class == type) {
+-                return (T) delegate.readJsonArray(stream);
+             } else if (Collection.class.isAssignableFrom(type)) {
+                 return (T) delegate.readCollection(stream, new JohnzonParameterizedType(type, Object.class));
+             }
+@@ -214,8 +203,6 @@ public class JohnzonJsonb implements Jsonb, AutoCloseable, JsonbExtension {
+             if (isArray(runtimeType)) {
+                 final Class<T> type = Class.class.cast(runtimeType);
+                 return delegate.readTypedArray(stream, type.getComponentType(), type);
+-            } else if (JsonArray.class == runtimeType) {
+-                return (T) delegate.readJsonArray(stream);
+             } else if (isCollection(runtimeType)) {
+                 return (T) delegate.readCollection(stream, ParameterizedType.class.cast(runtimeType));
+             }

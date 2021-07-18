@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1218`** bugs
+ **`1233`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -92,7 +92,11 @@ from open-source Java projects.
 | 81     | Tez_common            | tez-common |  tez-common       |       1     | 1              |
 | 82     | Tinkerpop_gremlin_core            | gremlin-core |  gremlin-core       |       1     | 1              |
 | 83     | Webbeans_web            | webbeans-web |  webbeans-web       |       1     | 1              |
-
+| 84     | Hono_client            | hono-client |  client       |       4     | 1-4              |
+| 85     | Httpcomponents_core_h2            | httpcore5-h2 |  httpcore5-h2       |       1     | 1              |
+| 86     | Httpcomponents_core_httpcore5            | httpcore5 |  httpcore5       |       3     | 1-3              |
+| 87     | Johnzon_jsonb            | johnzon-jsonb |  johnzon-jsonb       |       6     | 1-6              |
+| 88     | Johnzon_jaxrs            | johnzon-jaxrs |  johnzon-jaxrs       |       1     | 1              |
 # Setting up GrowingBugs
 
 ## Requirements

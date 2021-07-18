@@ -1,0 +1,15 @@
+diff --git a/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/serializer/JohnzonDeserializationContext.java b/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/serializer/JohnzonDeserializationContext.java
+index c531449..a3b58dd 100644
+--- a/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/serializer/JohnzonDeserializationContext.java
++++ b/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/serializer/JohnzonDeserializationContext.java
+@@ -63,10 +63,6 @@ public class JohnzonDeserializationContext implements DeserializationContext {
+                 parseObject(null, parser, objectBuilder);
+                 return objectBuilder.build();
+             }
+-            case END_OBJECT:
+-                return JsonValue.EMPTY_JSON_OBJECT;
+-            case END_ARRAY:
+-                return JsonValue.EMPTY_JSON_ARRAY;
+             case START_ARRAY:
+                 final JsonArrayBuilder arrayBuilder = builderFactory.createArrayBuilder();
+                 parseArray(parser, arrayBuilder);

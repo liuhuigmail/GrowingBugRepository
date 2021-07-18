@@ -1,0 +1,13 @@
+diff --git a/client/src/main/java/org/eclipse/hono/client/Command.java b/client/src/main/java/org/eclipse/hono/client/Command.java
+index 18fc0525b..a4e182eb9 100644
+--- a/client/src/main/java/org/eclipse/hono/client/Command.java
++++ b/client/src/main/java/org/eclipse/hono/client/Command.java
+@@ -148,7 +148,7 @@ public final class Command {
+                         validationErrorJoiner.add("reply-to part after tenant not set: " + message.getReplyTo());
+                     } else {
+                         message.setReplyTo(
+-                                String.format("%s/%s/%s", CommandConstants.COMMAND_RESPONSE_ENDPOINT, tenantId,
++                                String.format("%s/%s/%s", CommandConstants.COMMAND_ENDPOINT, tenantId,
+                                         getDeviceFacingReplyToId(originalReplyToId, deviceId, replyToLegacyEndpointUsed)));
+                     }
+                 }

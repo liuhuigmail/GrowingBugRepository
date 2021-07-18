@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,00926e8bcd358fc7c5beeb6a8e8864aa4821fe7c,784878de35003c414a620f27538614558d0398a4,HTTPCORE-648,https://issues.apache.org/jira/browse/HTTPCORE-648

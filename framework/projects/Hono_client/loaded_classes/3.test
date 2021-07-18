@@ -1,0 +1,2 @@
+org.eclipse.hono.client.impl.AbstractRequestResponseClientTest
+org.eclipse.hono.client.impl.SimpleRequestResponseResult

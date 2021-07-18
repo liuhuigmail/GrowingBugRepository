@@ -1,0 +1,4 @@
+org.apache.johnzon.jsonb.ClassConverterTest
+org.apache.johnzon.jsonb.SerializerTest
+org.apache.johnzon.jsonb.SerializersRoundTripTest
+org.apache.johnzon.jsonb.serializer.DeserializationContextTest

@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,18cc4df6ca82e4d248de47126e2627435a3ac785,029fdfe9b9c7f5147d57244984613857174b9f2a,HTTPCORE-559,https://issues.apache.org/jira/browse/HTTPCORE-559
+2,589fe21a0bd3481431f08d296fff1e323a8f497d,7068d0c3750cd54a136df7fadb1dbbac9cd3e201,HTTPCORE-573,https://issues.apache.org/jira/browse/HTTPCORE-573
+3,964775edb9cbe4095964f038b2aa088ac6393624,41ff6a8f1f4d20e1233fdc3df543f921f41d856e,HTTPCORE-638,https://issues.apache.org/jira/browse/HTTPCORE-638

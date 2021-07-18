@@ -1,0 +1,11 @@
+org.apache.johnzon.jsonb.api.experimental.JsonbExtension
+org.apache.johnzon.jsonb.cdi.CDIs
+org.apache.johnzon.jsonb.cdi.JohnzonCdiExtension
+org.apache.johnzon.jsonb.DefaultPropertyVisibilityStrategy
+org.apache.johnzon.jsonb.factory.SimpleJohnzonAdapterFactory
+org.apache.johnzon.jsonb.JohnzonBuilder
+org.apache.johnzon.jsonb.JohnzonJsonb
+org.apache.johnzon.jsonb.JohnzonProvider
+org.apache.johnzon.jsonb.JsonbAccessMode
+org.apache.johnzon.jsonb.PropertyNamingStrategyFactory
+org.apache.johnzon.jsonb.spi.JohnzonAdapterFactory

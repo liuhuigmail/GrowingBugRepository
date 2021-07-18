@@ -1,0 +1,28 @@
+diff --git a/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/IdentityDecoder.java b/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/IdentityDecoder.java
+index 06935ac8c..08f03a388 100644
+--- a/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/IdentityDecoder.java
++++ b/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/IdentityDecoder.java
+@@ -92,9 +92,8 @@ public class IdentityDecoder extends AbstractContentDecoder implements FileConte
+ 
+         long bytesRead;
+         if (this.buffer.hasData()) {
+-            final int maxLen = this.buffer.length();
+             dst.position(position);
+-            bytesRead = this.buffer.read(dst, count < maxLen ? (int)count : maxLen);
++            bytesRead = this.buffer.read(dst);
+         } else {
+             if (this.channel.isOpen()) {
+                 if (position > dst.size()) {
+diff --git a/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/LengthDelimitedDecoder.java b/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/LengthDelimitedDecoder.java
+index 46849b81d..1a0071828 100644
+--- a/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/LengthDelimitedDecoder.java
++++ b/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/LengthDelimitedDecoder.java
+@@ -119,7 +119,7 @@ public class LengthDelimitedDecoder extends AbstractContentDecoder implements Fi
+         if (this.buffer.hasData()) {
+             final int maxLen = Math.min(chunk, this.buffer.length());
+             dst.position(position);
+-            bytesRead = this.buffer.read(dst, count < maxLen ? (int)count : maxLen);
++            bytesRead = this.buffer.read(dst, maxLen);
+         } else {
+             if (this.channel.isOpen()) {
+                 if (position > dst.size()) {

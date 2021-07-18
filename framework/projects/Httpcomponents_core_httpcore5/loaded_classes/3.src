@@ -1,0 +1,11 @@
+org.apache.hc.core5.http.Header
+org.apache.hc.core5.http.impl.nio.ExpandableBuffer
+org.apache.hc.core5.http.NameValuePair
+org.apache.hc.core5.http.nio.DataStreamChannel
+org.apache.hc.core5.http.nio.StreamChannel
+org.apache.hc.core5.http.nio.support.classic.AbstractSharedBuffer
+org.apache.hc.core5.http.nio.support.classic.ContentOutputBuffer
+org.apache.hc.core5.http.nio.support.classic.SharedOutputBuffer
+org.apache.hc.core5.util.Args
+org.apache.hc.core5.util.Timeout
+org.apache.hc.core5.util.TimeValue

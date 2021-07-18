@@ -1,0 +1,15 @@
+org.apache.hc.core5.http2.hpack.FifoBuffer
+org.apache.hc.core5.http2.hpack.FifoLinkedList
+org.apache.hc.core5.http2.hpack.HeaderListConstraintException
+org.apache.hc.core5.http2.hpack.HPackDecoder
+org.apache.hc.core5.http2.hpack.HPackEncoder
+org.apache.hc.core5.http2.hpack.HPackEntry
+org.apache.hc.core5.http2.hpack.HPackException
+org.apache.hc.core5.http2.hpack.HPackHeader
+org.apache.hc.core5.http2.hpack.Huffman
+org.apache.hc.core5.http2.hpack.HuffmanDecoder
+org.apache.hc.core5.http2.hpack.HuffmanEncoder
+org.apache.hc.core5.http2.hpack.HuffmanNode
+org.apache.hc.core5.http2.hpack.InboundDynamicTable
+org.apache.hc.core5.http2.hpack.OutboundDynamicTable
+org.apache.hc.core5.http2.hpack.StaticTable

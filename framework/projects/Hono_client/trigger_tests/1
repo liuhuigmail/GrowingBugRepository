@@ -1,0 +1,2 @@
+--- org.eclipse.hono.client.impl.HonoClientImplTest::testDownstreamDisconnectClearsSenderCreationLocks
+io.vertx.core.impl.NoStackTraceThrowable: sender link not established yet

@@ -1,0 +1,140 @@
+diff --git a/johnzon-jsonb/src/test/java/org/apache/johnzon/jsonb/JohnzonJsonbTest.java b/johnzon-jsonb/src/test/java/org/apache/johnzon/jsonb/JohnzonJsonbTest.java
+index 01e790d..759a16a 100644
+--- a/johnzon-jsonb/src/test/java/org/apache/johnzon/jsonb/JohnzonJsonbTest.java
++++ b/johnzon-jsonb/src/test/java/org/apache/johnzon/jsonb/JohnzonJsonbTest.java
+@@ -30,8 +30,6 @@ import org.apache.johnzon.jsonb.test.JsonbRule;
+ import org.junit.Rule;
+ import org.junit.Test;
+ 
+-import java.io.ByteArrayOutputStream;
+-import java.nio.charset.StandardCharsets;
+ import java.util.List;
+ 
+ public class JohnzonJsonbTest {
+@@ -70,126 +68,6 @@ public class JohnzonJsonbTest {
+         assertEquals(Long.MIN_VALUE, rule.fromJson(min, LongWrapper.class).value, 0);
+     }
+ 
+-    @Test
+-    public void intArray() {
+-        int[] input = new int[] { 0, 1, 2, 3, 4, 5, 6 };
+-        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+-        rule.toJson(input, output);
+-        assertEquals("[0,1,2,3,4,5,6]", new String(output.toByteArray(), StandardCharsets.UTF_8));
+-    }
+-
+-    @Test
+-    public void charArray() {
+-        char[] input = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g' };
+-        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+-        rule.toJson(input, output);
+-        assertEquals("[\"a\",\"b\",\"c\",\"d\",\"e\",\"f\",\"g\"]", new String(output.toByteArray(), StandardCharsets.UTF_8));
+-    }
+-
+-    @Test
+-    public void byteArray() {
+-        byte[] input = new byte[] { 0x00, 0x01 };
+-        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+-        rule.toJson(input, output);
+-        assertEquals("[0,1]", new String(output.toByteArray(), StandardCharsets.UTF_8));
+-    }
+-
+-    @Test
+-    public void longArray() {
+-        long[] input = new long[] { 0L, 1L, 2L, 3L, 4L, 5L, 6L };
+-        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+-        rule.toJson(input, output);
+-        assertEquals("[0,1,2,3,4,5,6]", new String(output.toByteArray(), StandardCharsets.UTF_8));
+-    }
+-
+-    @Test
+-    public void shortArray() {
+-        short[] input = new short[] { 0, 1, 2 };
+-        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+-        rule.toJson(input, output);
+-        assertEquals("[0,1,2]", new String(output.toByteArray(), StandardCharsets.UTF_8));
+-    }
+-
+-    @Test
+-    public void booleanArray() {
+-        boolean[] input = new boolean[] { true, false };
+-        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+-        rule.toJson(input, output);
+-        assertEquals("[true,false]", new String(output.toByteArray(), StandardCharsets.UTF_8));
+-    }
+-
+-    @Test
+-    public void floatArray() {
+-        float[] input = new float[] { 1.0f, 1.1f };
+-        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+-        rule.toJson(input, output);
+-        assertEquals("[1.0,1.1]", new String(output.toByteArray(), StandardCharsets.UTF_8));
+-    }
+-
+-    @Test
+-    public void doubleArray() {
+-        double[] input = new double[] { 1.0, 1.1 };
+-        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+-        rule.toJson(input, output);
+-        assertEquals("[1.0,1.1]", new String(output.toByteArray(), StandardCharsets.UTF_8));
+-    }
+-
+-    @Test
+-    public void intArrayRuntimeType() {
+-        int[] input = new int[] { 0, 1, 2, 3, 4, 5, 6 };
+-        final String output = rule.toJson(input, int[].class);
+-        assertEquals("[0,1,2,3,4,5,6]", output);
+-    }
+-
+-    @Test
+-    public void charArrayRuntimeType() {
+-        char[] input = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g' };
+-        final String output = rule.toJson(input, char[].class);
+-        assertEquals("[\"a\",\"b\",\"c\",\"d\",\"e\",\"f\",\"g\"]", output);
+-    }
+-
+-    @Test
+-    public void byteArrayRuntimeType() {
+-        byte[] input = new byte[] { 0x00, 0x01 };
+-        final String output = rule.toJson(input, byte[].class);
+-        assertEquals("[0,1]", output);
+-    }
+-
+-    @Test
+-    public void longArrayRuntimeType() {
+-        long[] input = new long[] { 0L, 1L, 2L, 3L, 4L, 5L, 6L };
+-        final String output = rule.toJson(input, long[].class);
+-        assertEquals("[0,1,2,3,4,5,6]", output);
+-    }
+-
+-    @Test
+-    public void shortArrayRuntimeType() {
+-        short[] input = new short[] { 0, 1, 2 };
+-        final String output = rule.toJson(input, short[].class);
+-        assertEquals("[0,1,2]", output);
+-    }
+-
+-    @Test
+-    public void booleanArrayRuntimeType() {
+-        boolean[] input = new boolean[] { true, false };
+-        final String output = rule.toJson(input, boolean[].class);
+-        assertEquals("[true,false]", output);
+-    }
+-
+-    @Test
+-    public void floatArrayRuntimeType() {
+-        float[] input = new float[] { 1.0f, 1.1f };
+-        final String output = rule.toJson(input, float[].class);
+-        assertEquals("[1.0,1.1]", output);
+-    }
+-
+-    @Test
+-    public void doubleArrayRuntimeType() {
+-        double[] input = new double[] { 1.0, 1.1 };
+-        final String output = rule.toJson(input, double[].class);
+-        assertEquals("[1.0,1.1]", output);
+-    }
+-
+     public static class LongWrapper {
+         public Long value;
+ 

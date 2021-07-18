@@ -1,0 +1,20 @@
+diff --git a/client/src/main/java/org/eclipse/hono/client/impl/AbstractRequestResponseClient.java b/client/src/main/java/org/eclipse/hono/client/impl/AbstractRequestResponseClient.java
+index 34471663e..10cd89f44 100644
+--- a/client/src/main/java/org/eclipse/hono/client/impl/AbstractRequestResponseClient.java
++++ b/client/src/main/java/org/eclipse/hono/client/impl/AbstractRequestResponseClient.java
+@@ -232,12 +232,12 @@ public abstract class AbstractRequestResponseClient<R extends RequestResponseRes
+     }
+ 
+     private R getRequestResponseResult(final Message message) {
+-        final Integer status = MessageHelper.getApplicationProperty(
++        final String status = MessageHelper.getApplicationProperty(
+                 message.getApplicationProperties(),
+                 MessageHelper.APP_PROPERTY_STATUS,
+-                Integer.class);
++                String.class);
+         final String payload = MessageHelper.getPayload(message);
+-        return getResult(status, payload);
++        return getResult(Integer.valueOf(status), payload);
+     }
+ 
+     /**

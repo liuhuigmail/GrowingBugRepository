@@ -1,0 +1,14 @@
+diff --git a/httpcore5/src/main/java/org/apache/hc/core5/http/impl/io/DefaultBHttpClientConnection.java b/httpcore5/src/main/java/org/apache/hc/core5/http/impl/io/DefaultBHttpClientConnection.java
+index 03351ba34..87a381fb0 100644
+--- a/httpcore5/src/main/java/org/apache/hc/core5/http/impl/io/DefaultBHttpClientConnection.java
++++ b/httpcore5/src/main/java/org/apache/hc/core5/http/impl/io/DefaultBHttpClientConnection.java
+@@ -205,6 +205,9 @@ public class DefaultBHttpClientConnection extends BHttpConnectionBase
+         Args.notNull(response, "HTTP response");
+         final SocketHolder socketHolder = ensureOpen();
+         final long len = this.incomingContentStrategy.determineLength(response);
++        if (len == ContentLengthStrategy.UNDEFINED) {
++            return;
++        }
+         response.setEntity(createIncomingEntity(response, this.inBuffer, socketHolder.getInputStream(), len));
+     }
+ }

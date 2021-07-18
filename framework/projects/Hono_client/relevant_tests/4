@@ -1,0 +1,4 @@
+org.eclipse.hono.client.CommandResponseTest
+org.eclipse.hono.client.CommandTest
+org.eclipse.hono.client.impl.DelegateViaDownstreamPeerCommandHandlerTest
+org.eclipse.hono.client.impl.GatewayMappingCommandHandlerTest
