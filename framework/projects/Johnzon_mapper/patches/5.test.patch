@@ -1,0 +1,58 @@
+diff --git a/johnzon-mapper/src/test/java/org/apache/johnzon/mapper/EnumTest.java b/johnzon-mapper/src/test/java/org/apache/johnzon/mapper/EnumTest.java
+index f69ea3b..841e4ec 100644
+--- a/johnzon-mapper/src/test/java/org/apache/johnzon/mapper/EnumTest.java
++++ b/johnzon-mapper/src/test/java/org/apache/johnzon/mapper/EnumTest.java
+@@ -23,7 +23,6 @@ import org.junit.Test;
+ 
+ import java.util.Arrays;
+ import java.util.Comparator;
+-import java.util.EnumSet;
+ import java.util.List;
+ 
+ public class EnumTest {
+@@ -90,21 +89,6 @@ public class EnumTest {
+             .build());
+     }
+ 
+-    @Test
+-    public void testEnumSet() {
+-        EnumSetObject eso = new EnumSetObject();
+-        eso.setEnumset(EnumSet.of(AdvancedEnum.VALUE_1, AdvancedEnum.VALUE_2));
+-
+-        String json = newTestMapperBuilder().build().writeObjectAsString(eso);
+-
+-        EnumSetObject eso2 = newTestMapperBuilder().build().readObject(json, EnumSetObject.class);
+-        Assert.assertNotNull(eso2);
+-        Assert.assertNotNull(eso2.getEnumset());
+-        Assert.assertEquals(2, eso2.getEnumset().size());
+-        Assert.assertTrue(eso2.getEnumset().contains(AdvancedEnum.VALUE_1));
+-        Assert.assertTrue(eso2.getEnumset().contains(AdvancedEnum.VALUE_2));
+-    }
+-
+     private void testAdvancedEnum(Mapper mapper) {
+         AdvancedEnumObject object = new AdvancedEnumObject(AdvancedEnum.VALUE_1, Arrays.asList(AdvancedEnum.VALUE_2,
+             AdvancedEnum.VALUE_1,
+@@ -162,22 +146,10 @@ public class EnumTest {
+         }
+     }
+ 
+-    public static class EnumSetObject {
+-        private EnumSet<AdvancedEnum> enumset;
+-
+-        public EnumSet<AdvancedEnum> getEnumset() {
+-            return enumset;
+-        }
+-
+-        public void setEnumset(EnumSet<AdvancedEnum> enumset) {
+-            this.enumset = enumset;
+-        }
+-    }
+ 
+     public enum AdvancedEnum {
+         VALUE_1("one", 1),
+-        VALUE_2("two", 2),
+-        VALUE_3("three", 3);
++        VALUE_2("two", 2);
+ 
+         private String string;
+         private int i;

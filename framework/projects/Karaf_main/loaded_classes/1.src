@@ -1,0 +1,6 @@
+org.apache.karaf.main.BootstrapLogManager
+org.apache.karaf.main.Lock
+org.apache.karaf.main.Main
+org.apache.karaf.main.SimpleFileLock
+org.apache.karaf.main.StringMap
+org.apache.karaf.main.Utils

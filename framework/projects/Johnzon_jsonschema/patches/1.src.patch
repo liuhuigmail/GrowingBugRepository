@@ -1,0 +1,52 @@
+diff --git a/johnzon-jsonschema/src/main/java/org/apache/johnzon/jsonschema/spi/builtin/TypeValidation.java b/johnzon-jsonschema/src/main/java/org/apache/johnzon/jsonschema/spi/builtin/TypeValidation.java
+index 18a5697..182c6a1 100644
+--- a/johnzon-jsonschema/src/main/java/org/apache/johnzon/jsonschema/spi/builtin/TypeValidation.java
++++ b/johnzon-jsonschema/src/main/java/org/apache/johnzon/jsonschema/spi/builtin/TypeValidation.java
+@@ -26,7 +26,6 @@ import java.util.Optional;
+ import java.util.function.Function;
+ import java.util.stream.Stream;
+ 
+-import javax.json.JsonArray;
+ import javax.json.JsonString;
+ import javax.json.JsonValue;
+ 
+@@ -38,31 +37,22 @@ public class TypeValidation implements ValidationExtension {
+     @Override
+     public Optional<Function<JsonValue, Stream<ValidationResult.ValidationError>>> create(final ValidationContext model) {
+         final JsonValue value = model.getSchema().get("type");
+-        if (JsonString.class.isInstance(value)) {
+-            return Optional.of(new Impl(model.toPointer(), model.getValueProvider(), mapType(JsonString.class.cast(value)).toArray(JsonValue.ValueType[]::new)));
++        if (!JsonString.class.isInstance(value)) { // todo: other types?
++            return Optional.empty();
+         }
+-        if (JsonArray.class.isInstance(value)) {
+-            return Optional.of(new Impl(model.toPointer(), model.getValueProvider(),
+-                    value.asJsonArray().stream().flatMap(this::mapType).toArray(JsonValue.ValueType[]::new)));
+-        }
+-        throw new IllegalArgumentException(value + " is neither an array or string nor a string");
+-    }
+ 
+-    private Stream<? extends JsonValue.ValueType> mapType(final JsonValue value) {
+         switch (JsonString.class.cast(value).getString()) {
+-            case "null":
+-                return Stream.of(JsonValue.ValueType.NULL);
+             case "string":
+-                return Stream.of(JsonValue.ValueType.STRING);
++                return Optional.of(new Impl(model.toPointer(), model.getValueProvider(), JsonValue.ValueType.STRING));
+             case "number":
+-                return Stream.of(JsonValue.ValueType.NUMBER);
++                return Optional.of(new Impl(model.toPointer(), model.getValueProvider(), JsonValue.ValueType.NUMBER));
+             case "array":
+-                return Stream.of(JsonValue.ValueType.ARRAY);
++                return Optional.of(new Impl(model.toPointer(), model.getValueProvider(), JsonValue.ValueType.ARRAY));
+             case "boolean":
+-                return Stream.of(JsonValue.ValueType.FALSE, JsonValue.ValueType.TRUE);
++                return Optional.of(new Impl(model.toPointer(), model.getValueProvider(), JsonValue.ValueType.FALSE, JsonValue.ValueType.TRUE));
+             case "object":
+             default:
+-                return Stream.of(JsonValue.ValueType.OBJECT);
++                return Optional.of(new Impl(model.toPointer(), model.getValueProvider(), JsonValue.ValueType.OBJECT));
+         }
+     }
+ 
+

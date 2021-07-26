@@ -1,0 +1,5 @@
+org.apache.johnzon.mapper.LiteralTest
+org.apache.johnzon.mapper.MapperEnhancedTest
+org.apache.johnzon.mapper.MapperTest
+org.apache.johnzon.mapper.MapperVersionTest
+org.apache.johnzon.mapper.NullTest

@@ -1,0 +1,14 @@
+diff --git a/johnzon-jsonschema/src/main/java/org/apache/johnzon/jsonschema/spi/builtin/BaseNumberValidation.java b/johnzon-jsonschema/src/main/java/org/apache/johnzon/jsonschema/spi/builtin/BaseNumberValidation.java
+index 14c5ee4..35e920b 100644
+--- a/johnzon-jsonschema/src/main/java/org/apache/johnzon/jsonschema/spi/builtin/BaseNumberValidation.java
++++ b/johnzon-jsonschema/src/main/java/org/apache/johnzon/jsonschema/spi/builtin/BaseNumberValidation.java
+@@ -37,6 +37,9 @@ abstract class BaseNumberValidation extends BaseValidation {
+     @Override
+     protected Stream<ValidationResult.ValidationError> onNumber(final JsonNumber number) {
+         final double val = number.doubleValue();
++        if (val <= 0) {
++            return toError(val);
++        }
+         if (isValid(val)) {
+             return Stream.empty();
+         }

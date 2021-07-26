@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,1aea0bbf4a01de4b131ff21f743d9e744c937e1f,297654206d56de2dd7b2de11e9de1f1eb7a81d41,JOHNZON-191,https://issues.apache.org/jira/browse/JOHNZON-191
+2,b1c44d56f764d32f2500f3438689b19ddfedde3a,5ac4924ac45f2985673ab048f650b33b7b81e81b,JOHNZON-322,https://issues.apache.org/jira/browse/JOHNZON-322

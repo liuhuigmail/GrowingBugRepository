@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,db56ee2264f79bb939cb4117c26d3d48d618f1d4,135792e9f649693684d85d68b83a6a258e782a10,TAMAYA-326,https://issues.apache.org/jira/browse/TAMAYA-326
+2,135792e9f649693684d85d68b83a6a258e782a10,ca4de3dc49fefa020e89073b8032be7de20ab27d,TAMAYA-327,https://issues.apache.org/jira/browse/TAMAYA-327

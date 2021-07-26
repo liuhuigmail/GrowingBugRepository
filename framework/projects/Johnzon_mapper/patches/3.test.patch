@@ -1,0 +1,26 @@
+diff --git a/johnzon-mapper/src/test/java/org/apache/johnzon/mapper/MapperTest.java b/johnzon-mapper/src/test/java/org/apache/johnzon/mapper/MapperTest.java
+index f0196d0..1ff65f3 100644
+--- a/johnzon-mapper/src/test/java/org/apache/johnzon/mapper/MapperTest.java
++++ b/johnzon-mapper/src/test/java/org/apache/johnzon/mapper/MapperTest.java
+@@ -137,21 +137,6 @@ public class MapperTest {
+ 
+         assertEquals(instance, instance2);
+     }
+-    
+-    
+-   @Test
+-   public void writeShortArray() {
+-        StringWriter writer = new StringWriter();
+-        new MapperBuilder().build().writeArray(new Short[]{(short)1,(short)2,(short)3},writer);
+-        assertEquals("[1,2,3]", writer.toString());
+-   }
+-   
+-   @Test
+-   public void writeByteArray() {
+-       StringWriter writer = new StringWriter();
+-       new MapperBuilder().build().writeArray(new Byte[]{(byte)1,(byte)2,(byte)3},writer);
+-       assertEquals("[1,2,3]", writer.toString());
+-   }
+ 
+     static class Bool {
+         private boolean bool;

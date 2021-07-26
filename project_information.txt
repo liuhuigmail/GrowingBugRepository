@@ -69,3 +69,9 @@ https://github.com/apache/johnzon.git	johnzon-jaxrs
 https://github.com/eclipse/hono.git	hono-client	
 https://github.com/apache/httpcomponents-core.git	httpcomponents-core-h2
 https://github.com/apache/httpcomponents-core.git	httpcomponents-core-httpcore5
+https://github.com/apache/hbase.git	hbase-common
+https://github.com/apache/incubator-retired-tamaya.git	incubator-retired-tamaya-api
+https://github.com/apache/james-project.git	james-project-mailet-standard
+https://github.com/apache/johnzon.git	johnzon-jsonschema
+https://github.com/apache/johnzon.git	johnzon-mapper
+https://github.com/apache/karaf.git	karaf-main

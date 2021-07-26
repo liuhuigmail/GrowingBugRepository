@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,5a781fb1a72e97234159a1831f57c60a6f561c74,6e6fdae820ebba821bc2850eba066bbf71aa13a7,JAMES-2015,https://issues.apache.org/jira/browse/JAMES-2015

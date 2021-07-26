@@ -1,0 +1,13 @@
+diff --git a/mailet/standard/src/test/java/org/apache/james/transport/matchers/SMTPAuthSuccessfulTest.java b/mailet/standard/src/test/java/org/apache/james/transport/matchers/SMTPAuthSuccessfulTest.java
+index 0ca0337b52..238374e2df 100644
+--- a/mailet/standard/src/test/java/org/apache/james/transport/matchers/SMTPAuthSuccessfulTest.java
++++ b/mailet/standard/src/test/java/org/apache/james/transport/matchers/SMTPAuthSuccessfulTest.java
+@@ -65,7 +65,7 @@ public class SMTPAuthSuccessfulTest {
+ 
+         Collection<MailAddress> results =  testee.match(fakeMail);
+ 
+-        assertThat(results).isEmpty();
++        assertThat(results).isNull();
+     }
+ 
+ }

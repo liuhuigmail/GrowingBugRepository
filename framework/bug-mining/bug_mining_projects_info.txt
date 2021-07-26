@@ -70,3 +70,9 @@ Johnzon_jaxrs	johnzon-jaxrs	https://github.com/apache/johnzon.git	jira	JOHNZON	/
 Hono_client	hono-client	https://github.com/eclipse/hono.git	github	eclipse/hono	/#(\\d+)/mi	client	
 Httpcomponents_core_h2	httpcore5-h2	https://github.com/apache/httpcomponents-core.git	jira	HTTPCORE	/(HTTPCORE-\\d+)/mi	httpcore5-h2	
 Httpcomponents_core_httpcore5	httpcore5	https://github.com/apache/httpcomponents-core.git	jira	HTTPCORE	/(HTTPCORE-\\d+)/mi	httpcore5	
+Hbase_common	hbase-common	https://github.com/apache/hbase.git	jira	HBASE	/(HBASE-\\d+)/mi	hbase-common
+Incubator_tamaya_api	incubator-retired-tamaya-api	https://github.com/apache/incubator-retired-tamaya.git	jira	TAMAYA	/(TAMAYA-\\d+)/mi	code/api
+Johnzon_jsonschema	johnzon-jsonschema	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-jsonschema	
+James_project_mailet_standard	james-project-mailet-standard	https://hub.fastgit.org/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	mailet/standard   
+Johnzon_mapper	johnzon-mapper	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-mapper	
+Karaf_main	karaf-main	https://github.com/apache/karaf.git	jira	KARAF	/(KARAF-\\d+)/mi	main	

@@ -1,0 +1,3 @@
+org.apache.tamaya.ConfigurationTest
+org.apache.tamaya.spi.ServiceContextManagerTest
+org.apache.tamaya.spi.ServiceContextTest

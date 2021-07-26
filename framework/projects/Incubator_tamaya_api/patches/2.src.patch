@@ -1,0 +1,32 @@
+diff --git a/code/api/src/main/java/org/apache/tamaya/spi/ConversionContext.java b/code/api/src/main/java/org/apache/tamaya/spi/ConversionContext.java
+index 5fc32737..ac8de68d 100644
+--- a/code/api/src/main/java/org/apache/tamaya/spi/ConversionContext.java
++++ b/code/api/src/main/java/org/apache/tamaya/spi/ConversionContext.java
+@@ -23,7 +23,7 @@ import org.apache.tamaya.TypeLiteral;
+ 
+ import java.lang.reflect.AnnotatedElement;
+ import java.util.ArrayList;
+-import java.util.LinkedHashSet;
++import java.util.HashSet;
+ import java.util.List;
+ import java.util.Objects;
+ import java.util.Set;
+@@ -39,7 +39,7 @@ public class ConversionContext {
+     private final String key;
+     private final TypeLiteral<?> targetType;
+     private final AnnotatedElement annotatedElement;
+-    private final Set<String> supportedFormats = new LinkedHashSet<>();
++    private final List<String> supportedFormats = new ArrayList<>();
+     private final ConfigurationContext configurationContext;
+ 
+     /**
+@@ -144,8 +144,8 @@ public class ConversionContext {
+         private TypeLiteral<?> targetType;
+         /** The injection target (only set with injection used). */
+         private AnnotatedElement annotatedElement;
+         /** The ordered set of formats tried. */
+-        private final Set<String> supportedFormats = new LinkedHashSet<>();
++        private final Set<String> supportedFormats = new HashSet<>();
+ 
+         /**
+          * Creates a new Builder instance.

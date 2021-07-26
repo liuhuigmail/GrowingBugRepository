@@ -1,0 +1,21 @@
+diff --git a/mailet/standard/src/main/java/org/apache/james/transport/matchers/SMTPAuthSuccessful.java b/mailet/standard/src/main/java/org/apache/james/transport/matchers/SMTPAuthSuccessful.java
+index 016aeca669..9d36095d98 100644
+--- a/mailet/standard/src/main/java/org/apache/james/transport/matchers/SMTPAuthSuccessful.java
++++ b/mailet/standard/src/main/java/org/apache/james/transport/matchers/SMTPAuthSuccessful.java
+@@ -21,7 +21,6 @@
+ 
+ package org.apache.james.transport.matchers;
+ 
+-import com.google.common.collect.ImmutableList;
+ import org.apache.mailet.base.GenericMatcher;
+ import org.apache.mailet.Mail;
+ import org.apache.mailet.MailAddress;
+@@ -49,7 +48,7 @@ public class SMTPAuthSuccessful extends GenericMatcher {
+         if (authUser != null) {
+             return mail.getRecipients();
+         } else {
+-            return ImmutableList.of();
++            return null;
+         }
+     }
+ }

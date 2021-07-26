@@ -1,0 +1,17 @@
+diff --git a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
+index 9f037d5..0883b57 100644
+--- a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
++++ b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
+@@ -598,11 +598,7 @@ public class Mapper {
+                 return false;
+             }
+             if (JsonNumber.class.isInstance(jsonValue)) {
+-                final JsonNumber jsonNumber = JsonNumber.class.cast(jsonValue);
+-                if(jsonNumber.isIntegral()) {
+-                    return jsonNumber.intValue();
+-                }
+-                return jsonNumber.doubleValue();
++                return JsonNumber.class.cast(jsonValue).intValue();
+             }
+         }
+ 

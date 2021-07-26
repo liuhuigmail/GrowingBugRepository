@@ -1,0 +1,60 @@
+diff --git a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
+index 45899c4..e733af0 100644
+--- a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
++++ b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
+@@ -317,7 +317,7 @@ public class Mapper {
+ 
+             if (Map.class.isInstance(object)) {
+                 gen = gen.writeStartObject();
+-                gen = writeMapBody((Map<?, ?>) object, gen, null);
++                gen = writeMapBody((Map<?, ?>) object, gen);
+                 gen = gen.writeEnd();
+                 return gen;
+             }
+@@ -368,7 +368,7 @@ public class Mapper {
+         return generator;
+     }
+ 
+-    private JsonGenerator writeMapBody(final Map<?, ?> object, final JsonGenerator gen, final Converter itemConverter) throws InvocationTargetException, IllegalAccessException {
++    private JsonGenerator writeMapBody(final Map<?, ?> object, final JsonGenerator gen) throws InvocationTargetException, IllegalAccessException {
+         JsonGenerator generator = gen;
+         for (final Map.Entry<?, ?> entry : ((Map<?, ?>) object).entrySet()) {
+             final Object value = entry.getValue();
+@@ -390,7 +390,7 @@ public class Mapper {
+             final boolean collection = clazz || primitive || array ? false : Collection.class.isAssignableFrom(valueClass);
+             final boolean map = clazz || primitive || array || collection ? false : Map.class.isAssignableFrom(valueClass);
+             generator = writeValue(generator, valueClass,
+-                    primitive, array, collection, map, itemConverter,
++                    primitive, array, collection, map, null /* TODO? */,
+                     key == null ? "null" : key.toString(), value);
+         }
+         return generator;
+@@ -427,7 +427,7 @@ public class Mapper {
+             return gen.writeEnd();
+         } else if (map) {
+             JsonGenerator gen = generator.writeStartObject(key);
+-            gen = writeMapBody((Map<?, ?>) value, gen, itemConverter);
++            gen = writeMapBody((Map<?, ?>) value, gen);
+             return gen.writeEnd();
+         } else if (primitive) {
+             return writePrimitives(generator, key, type, value);
+diff --git a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/reflection/Mappings.java b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/reflection/Mappings.java
+index b75823c..69cf6bb 100644
+--- a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/reflection/Mappings.java
++++ b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/reflection/Mappings.java
+@@ -168,6 +168,7 @@ public class Mappings {
+             this.reader = reader;
+             this.version = version;
+             this.array = array;
++            this.map = map && converter == null;
+             this.collection = collection;
+             this.primitive = primitive;
+             if (converter != null && matches(reader.getType(), converter)) {
+@@ -180,7 +181,6 @@ public class Mappings {
+                 this.converter = null;
+                 this.itemConverter = null;
+             }
+-            this.map = map && this.converter == null;
+         }
+ 
+         @Override

@@ -1,0 +1,5 @@
+org.apache.tamaya.ConfigurationTest
+org.apache.tamaya.spi.TestLowerOrdinalServiceContext
+org.apache.tamaya.spi.TestServiceContext
+org.apache.tamaya.TestConfiguration
+org.apache.tamaya.TestConfigurationProvider

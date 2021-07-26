@@ -1,0 +1,51 @@
+diff --git a/johnzon-mapper/src/test/java/org/apache/johnzon/mapper/LiteralTest.java b/johnzon-mapper/src/test/java/org/apache/johnzon/mapper/LiteralTest.java
+index dc74f24..228cd28 100644
+--- a/johnzon-mapper/src/test/java/org/apache/johnzon/mapper/LiteralTest.java
++++ b/johnzon-mapper/src/test/java/org/apache/johnzon/mapper/LiteralTest.java
+@@ -18,17 +18,13 @@
+  */
+ package org.apache.johnzon.mapper;
+ 
+-import org.apache.johnzon.mapper.reflection.JohnzonParameterizedType;
+ import org.junit.Test;
+ 
+ import java.io.StringReader;
+ import java.io.StringWriter;
+ import java.math.BigDecimal;
+ import java.math.BigInteger;
+-import java.util.ArrayList;
+-import java.util.Collection;
+ import java.util.Comparator;
+-import java.util.List;
+ 
+ import static org.junit.Assert.assertEquals;
+ 
+@@ -63,28 +59,6 @@ public class LiteralTest {
+ 
+     }
+ 
+-    @Test
+-    public void writeReadIterables() {
+-        final List<Object> values = new ArrayList<Object>();
+-        final StringWriter sw = new StringWriter();
+-        values.add(1);
+-        values.add("my text");
+-        values.add(1.5d);
+-        final String expectedJson = "[1,\"my text\",1.5]";
+-        final Comparator<String> attributeOrder = new Comparator<String>() {
+-            @Override
+-            public int compare(final String o1, final String o2) {
+-                return expectedJson.indexOf(o1) - expectedJson.indexOf(o2);
+-            }
+-        };
+-        new MapperBuilder().setAttributeOrder(attributeOrder).build().writeIterable(values, sw);
+-        assertEquals(expectedJson, sw.toString());
+-        final Collection<Object> read = new MapperBuilder().setAttributeOrder(attributeOrder).build()
+-                .readCollection(new StringReader(sw.toString()), new JohnzonParameterizedType(List.class, Object.class));
+-        assertEquals(values, read);
+-
+-    }
+-
+     @Test(expected = NumberFormatException.class)
+     public void writeReadNumbersInf() {
+         final NumberClass nc = new NumberClass();

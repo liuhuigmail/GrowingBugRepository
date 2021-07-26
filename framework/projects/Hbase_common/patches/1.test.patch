@@ -1,0 +1,18 @@
+diff --git a/hbase-common/src/test/java/org/apache/hadoop/hbase/util/TestBytes.java b/hbase-common/src/test/java/org/apache/hadoop/hbase/util/TestBytes.java
+index da4a566914..cf7f7e0dd2 100644
+--- a/hbase-common/src/test/java/org/apache/hadoop/hbase/util/TestBytes.java
++++ b/hbase-common/src/test/java/org/apache/hadoop/hbase/util/TestBytes.java
+@@ -290,13 +290,5 @@ public class TestBytes extends TestCase {
+     assertFalse(bytes == copy);
+     assertTrue(Bytes.equals(bytes, copy));
+   }
+-
+-  public void testToBytesBinaryTrailingBackslashes() throws Exception {
+-    try {
+-      Bytes.toBytesBinary("abc\\x00\\x01\\");
+-    } catch (StringIndexOutOfBoundsException ex) {
+-      fail("Illegal string access: " + ex.getMessage());
+-    }
+-  }
+ }
+ 

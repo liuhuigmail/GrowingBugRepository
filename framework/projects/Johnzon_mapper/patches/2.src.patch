@@ -1,0 +1,18 @@
+diff --git a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
+index 561edbb..9f037d5 100644
+--- a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
++++ b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
+@@ -511,12 +511,8 @@ public class Mapper {
+         }
+     }
+ 
+-    private Object buildObject(final Type inType, final JsonObject object) throws Exception {
+-        Type type = inType;
+-        if (inType == Object.class) {
+-            type = new JohnzonParameterizedType(Map.class, String.class, Object.class);
+-        }
+ 
++    private Object buildObject(final Type type, final JsonObject object) throws Exception {
+         final Mappings.ClassMapping classMapping = mappings.findOrCreateClassMapping(type);
+ 
+         if (classMapping == null) {

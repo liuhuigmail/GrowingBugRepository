@@ -1,0 +1,5 @@
+org.apache.tamaya.Configuration
+org.apache.tamaya.spi.ConfigurationContext
+org.apache.tamaya.spi.ConversionContext
+org.apache.tamaya.spi.PropertyConverter
+org.apache.tamaya.TypeLiteral

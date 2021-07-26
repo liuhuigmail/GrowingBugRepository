@@ -1,0 +1,10 @@
+org.apache.johnzon.mapper.CircularExceptionTest
+org.apache.johnzon.mapper.EnumTest
+org.apache.johnzon.mapper.JPATest
+org.apache.johnzon.mapper.LiteralTest
+org.apache.johnzon.mapper.MapperEnhancedTest
+org.apache.johnzon.mapper.MapperTest
+org.apache.johnzon.mapper.MapperVersionTest
+org.apache.johnzon.mapper.NoWarningTest
+org.apache.johnzon.mapper.NullTest
+org.apache.johnzon.mapper.ObjectConverterTest

@@ -1,0 +1,13 @@
+diff --git a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/MappingGeneratorImpl.java b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/MappingGeneratorImpl.java
+index 1b7721e..f022562 100644
+--- a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/MappingGeneratorImpl.java
++++ b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/MappingGeneratorImpl.java
+@@ -569,8 +569,6 @@ public class MappingGeneratorImpl implements MappingGenerator {
+                 if (valJsonPointer != null) {
+                     // write the JsonPointer as String natively
+                     generator.write(valJsonPointer);
+-                } else if (o instanceof JsonValue) {
+-                    generator.write((JsonValue) o);
+                 } else {
+                     writeItem(itemConverter != null ? itemConverter.from(o) : o, ignoredProperties, isDeduplicateObjects ? new JsonPointerTracker(jsonPointer, i) : null);
+                 }

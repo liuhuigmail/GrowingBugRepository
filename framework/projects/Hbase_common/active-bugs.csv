@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,e153a0c9ac987adb9a4b637f4587ca7100124a63,0c13da349bd12bbf2568b69a22d73dd1cbe01798,HBASE-6518,https://issues.apache.org/jira/browse/HBASE-6518

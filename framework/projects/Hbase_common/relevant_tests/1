@@ -1,0 +1,3 @@
+org.apache.hadoop.hbase.TestKeyValue
+org.apache.hadoop.hbase.util.TestBytes
+org.apache.hadoop.hbase.util.TestLoadTestKVGenerator

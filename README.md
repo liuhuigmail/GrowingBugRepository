@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1233`** bugs
+ **`1246`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -97,6 +97,12 @@ from open-source Java projects.
 | 86     | Httpcomponents_core_httpcore5            | httpcore5 |  httpcore5       |       3     | 1-3              |
 | 87     | Johnzon_jsonb            | johnzon-jsonb |  johnzon-jsonb       |       6     | 1-6              |
 | 88     | Johnzon_jaxrs            | johnzon-jaxrs |  johnzon-jaxrs       |       1     | 1              |
+| 89     | Hbase_common            | hbase-common |  hbase-common       |       1     | 1              |
+| 90     | Incubator_tamaya_api            | incubator-retired-tamaya-api |  code/api       |       2     | 1-2              |
+| 91     | James_project_mailet_standard            | james-project-mailet-standard |  mailet/standard       |       1     | 1              |
+| 92     | Johnzon_jsonschema            | johnzon-jsonschema |  johnzon-jsonschema       |       2     | 1-2              |
+| 93     | Johnzon_mapper            | johnzon-mapper |  johnzon-mapper       |       6     | 1-6              |
+| 94     | Karaf_main            | karaf-main |  main       |       1     | 1              |
 # Setting up GrowingBugs
 
 ## Requirements
