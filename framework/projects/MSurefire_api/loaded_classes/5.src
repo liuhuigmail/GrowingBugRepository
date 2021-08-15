@@ -1,2 +1,0 @@
-org.apache.maven.surefire.report.LegacyPojoStackTraceWriter
-org.apache.maven.surefire.report.StackTraceWriter

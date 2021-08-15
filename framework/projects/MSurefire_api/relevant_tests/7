@@ -1,4 +1,0 @@
-org.apache.maven.JUnit4SuiteTest
-org.apache.maven.surefire.testset.FundamentalFilterTest
-org.apache.maven.surefire.testset.ResolvedTestTest
-org.apache.maven.surefire.testset.TestListResolverTest

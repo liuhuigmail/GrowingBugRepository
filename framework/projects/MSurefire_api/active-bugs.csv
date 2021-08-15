@@ -1,8 +1,0 @@
-bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
-1,197f61069b44700281753f85357c614d80d54511,34dcaa6c1a5f4be2dac75f1648fcfa77089e9907,SUREFIRE-313,https://issues.apache.org/jira/browse/SUREFIRE-313
-2,7dfcdaf53dc330efb275f16bf0a7bac488c6bee7,5e4121a00cbc78a4c05f05dfcbd8bc77b5bc3c55,SUREFIRE-166,https://issues.apache.org/jira/browse/SUREFIRE-166
-3,fc6f114913dc86e21d9cfcddefccf7274bc0495f,8ede9305bfc581b9660d2d6599a6c09740ace3bc,SUREFIRE-467,https://issues.apache.org/jira/browse/SUREFIRE-467
-4,7bdbf3004010576ed5d0c4a7660e35b294b86e4f,8b684f7d6f1d9ce84b653105e7b9161e977ce5a4,SUREFIRE-775,https://issues.apache.org/jira/browse/SUREFIRE-775
-5,c89aa69fa23c9e3a0d75c6736cf64c3f716febcd,6e5fb5695a48ad072cc354e31b8fd82656b9d320,SUREFIRE-986,https://issues.apache.org/jira/browse/SUREFIRE-986
-6,225e3cbe650421c23084e86b149cea24544f4b77,9b5752f99be3408ff64f608ccce1373e69d1f010,SUREFIRE-1181,https://issues.apache.org/jira/browse/SUREFIRE-1181
-7,02d665cef290fb5ba02169367e4bc2e2a8f494f7,52681e56db036fa7f648ac43c084ac9f0747213e,SUREFIRE-1250,https://issues.apache.org/jira/browse/SUREFIRE-1250

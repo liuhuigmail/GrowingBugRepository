@@ -1,5 +1,0 @@
-org.apache.maven.surefire.testset.GenericTestPattern
-org.apache.maven.surefire.testset.IncludedExcludedPatterns
-org.apache.maven.surefire.testset.ResolvedTest
-org.apache.maven.surefire.testset.TestFilter
-org.apache.maven.surefire.testset.TestListResolver

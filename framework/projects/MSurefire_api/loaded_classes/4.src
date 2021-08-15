@@ -1,7 +1,0 @@
-org.apache.maven.surefire.booter.ForkingRunListener
-org.apache.maven.surefire.report.ConsoleLogger
-org.apache.maven.surefire.report.ConsoleOutputReceiver
-org.apache.maven.surefire.report.RunListener
-org.apache.maven.surefire.util.internal.ByteBuffer
-org.apache.maven.surefire.util.internal.StringUtils
-org.apache.maven.surefire.util.NestedRuntimeException
