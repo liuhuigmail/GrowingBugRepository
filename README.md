@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1246`** bugs
+ **`1254`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -103,6 +103,12 @@ from open-source Java projects.
 | 92     | Johnzon_jsonschema            | johnzon-jsonschema |  johnzon-jsonschema       |       2     | 1-2              |
 | 93     | Johnzon_mapper            | johnzon-mapper |  johnzon-mapper       |       6     | 1-6              |
 | 94     | Karaf_main            | karaf-main |  main       |       1     | 1              |
+| 95     | Appformer_uberfire_commons_editor_backend            | uberfire-commons-editor-backend |  uberfire-extensions/uberfire-commons-editor/uberfire-commons-editor-backend       |       1     | 1              |
+| 96     | Kie_pmml_commons            | kie-pmml-commons |  kie-pmml-trusty/kie-pmml-commons       |       3     | 1-3              |
+| 97     | Kie_memory_compiler            | kie-memory-compiler |  kie-memory-compiler       |       1     | 1              |
+| 98     | Jbpm_human_task_workitems            | jbpm-human-task-workitems |  jbpm-human-task/jbpm-human-task-workitems       |       1     | 1              |
+| 99     | Drools_traits            | drools-traits |  drools-traits       |       1     | 1              |
+| 100     | Drools_model_compiler            | drools-model-compiler |  drools-model/drools-model-compiler       |       1     | 1              |
 # Setting up GrowingBugs
 
 ## Requirements

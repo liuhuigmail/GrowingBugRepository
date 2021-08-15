@@ -1,0 +1,10 @@
+org.kie.memorycompiler.AbstractJavaCompiler
+org.kie.memorycompiler.JavaCompiler
+org.kie.memorycompiler.JavaCompilerSettings
+org.kie.memorycompiler.jdknative.NativeJavaCompiler
+org.kie.memorycompiler.KieMemoryCompiler
+org.kie.memorycompiler.KieMemoryCompilerException
+org.kie.memorycompiler.resources.MemoryResourceReader
+org.kie.memorycompiler.resources.MemoryResourceStore
+org.kie.memorycompiler.resources.ResourceReader
+org.kie.memorycompiler.resources.ResourceStore

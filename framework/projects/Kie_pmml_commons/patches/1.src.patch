@@ -1,0 +1,13 @@
+diff --git a/kie-pmml-trusty/kie-pmml-commons/src/main/java/org/kie/pmml/commons/utils/KiePMMLModelUtils.java b/kie-pmml-trusty/kie-pmml-commons/src/main/java/org/kie/pmml/commons/utils/KiePMMLModelUtils.java
+index d66d29ac71..0c4c3c3698 100644
+--- a/kie-pmml-trusty/kie-pmml-commons/src/main/java/org/kie/pmml/commons/utils/KiePMMLModelUtils.java
++++ b/kie-pmml-trusty/kie-pmml-commons/src/main/java/org/kie/pmml/commons/utils/KiePMMLModelUtils.java
+@@ -27,7 +27,7 @@ public class KiePMMLModelUtils {
+      * @return
+      */
+     public static String getSanitizedPackageName(String modelName) {
+-        return modelName.replace(" ", "").replace("-", "").replace("_", "").toLowerCase();
++        return modelName.replace(" ", "").replace("_", "").toLowerCase();
+     }
+ 
+     /**

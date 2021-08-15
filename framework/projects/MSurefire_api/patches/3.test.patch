@@ -1,0 +1,13 @@
+diff --git a/surefire-api/src/test/java/org/apache/maven/surefire/util/UrlUtilsTest.java b/surefire-api/src/test/java/org/apache/maven/surefire/util/UrlUtilsTest.java
+index b41b49dce..2599a6bbe 100644
+--- a/surefire-api/src/test/java/org/apache/maven/surefire/util/UrlUtilsTest.java
++++ b/surefire-api/src/test/java/org/apache/maven/surefire/util/UrlUtilsTest.java
+@@ -70,7 +70,7 @@ public class UrlUtilsTest
+         throws IOException
+     {
+         File f = new File( homeDir, "fo\u00DC.txt" );
+-        assertEquals( new URL( "file:" + homeDir + "/fo%c3%9c.txt" ), UrlUtils.getURL( f ) );
++        assertEquals( new URL( "file:" + homeDir + "/fo%C3%9C.txt" ), UrlUtils.getURL( f ) );
+     }
+ 
+ }

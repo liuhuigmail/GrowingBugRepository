@@ -76,3 +76,9 @@ Johnzon_jsonschema	johnzon-jsonschema	https://github.com/apache/johnzon.git	jira
 James_project_mailet_standard	james-project-mailet-standard	https://hub.fastgit.org/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	mailet/standard   
 Johnzon_mapper	johnzon-mapper	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-mapper	
 Karaf_main	karaf-main	https://github.com/apache/karaf.git	jira	KARAF	/(KARAF-\\d+)/mi	main	
+Appformer_uberfire_commons_editor_backend	uberfire-commons-editor-backend	https://github.com/kiegroup/appformer.git	jira	AF	/(AF-\\d+)/mi	uberfire-extensions/uberfire-commons-editor/uberfire-commons-editor-backend	
+Kie_pmml_commons	kie-pmml-commons	https://github.com/kiegroup/drools.git	jira	DROOLS	/(DROOLS-\\d+)/mi	kie-pmml-trusty/kie-pmml-commons	
+Kie_memory_compiler	kie-memory-compiler	https://github.com/kiegroup/drools.git	jira	DROOLS	/(DROOLS-\\d+)/mi	kie-memory-compiler	
+Jbpm_human_task_workitems	jbpm-human-task-workitems	https://github.com/kiegroup/jbpm.git	jira	JBPM	/(JBPM-\\d+)/mi	jbpm-human-task/jbpm-human-task-workitems	
+Drools_traits	drools-traits	https://github.com/kiegroup/drools.git	jira	DROOLS	/(DROOLS-\\d+)/mi	drools-traits	
+Drools_model_compiler	drools-model-compiler	https://github.com/kiegroup/drools.git	jira	DROOLS	/(DROOLS-\\d+)/mi	drools-model/drools-model-compiler

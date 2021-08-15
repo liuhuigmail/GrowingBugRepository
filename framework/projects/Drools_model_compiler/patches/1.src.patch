@@ -1,0 +1,21 @@
+diff --git a/drools-model/drools-model-compiler/src/main/java/org/drools/modelcompiler/builder/generator/Consequence.java b/drools-model/drools-model-compiler/src/main/java/org/drools/modelcompiler/builder/generator/Consequence.java
+index 4c362b9eb7..93d94db397 100644
+--- a/drools-model/drools-model-compiler/src/main/java/org/drools/modelcompiler/builder/generator/Consequence.java
++++ b/drools-model/drools-model-compiler/src/main/java/org/drools/modelcompiler/builder/generator/Consequence.java
+@@ -151,13 +151,12 @@ public class Consequence {
+     }
+ 
+     public static boolean containsWord(String word, String body) {
+         // $ is quite a common character for a drools binding but it's not considered a word for the regexp engine
+         // By converting to a character is easier to write the regexp
+-        final String wordWithDollarReplaced = word.replace("$", "犬");
+-        final String bodyWithDollarReplaced = body.replace("$", "犬");
+ 
+-        Pattern p = Pattern.compile("\\b" + wordWithDollarReplaced + "\\b");
+-        Matcher m = p.matcher(bodyWithDollarReplaced);
++        final String withoutSpecialCharacters = word.replace("$", "");
++        Pattern p = Pattern.compile("\\b" + withoutSpecialCharacters + "\\b");
++        Matcher m = p.matcher(body);
+         return m.find();
+     }
+ 

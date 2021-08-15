@@ -1,0 +1,2 @@
+org.apache.maven.surefire.report.PojoStackTraceWriterTest
+org.apache.maven.surefire.report.XMLReporterTest

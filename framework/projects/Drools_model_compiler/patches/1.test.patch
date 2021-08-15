@@ -1,0 +1,12 @@
+diff --git a/drools-model/drools-model-compiler/src/test/java/org/drools/modelcompiler/builder/generator/ConsequenceTest.java b/drools-model/drools-model-compiler/src/test/java/org/drools/modelcompiler/builder/generator/ConsequenceTest.java
+index 531788a489..b680d8d856 100644
+--- a/drools-model/drools-model-compiler/src/test/java/org/drools/modelcompiler/builder/generator/ConsequenceTest.java
++++ b/drools-model/drools-model-compiler/src/test/java/org/drools/modelcompiler/builder/generator/ConsequenceTest.java
+@@ -11,6 +11,5 @@ public class ConsequenceTest {
+     public void containsWordTest() throws Exception {
+         assertFalse(containsWord("$cheesery", "results.add($cheeseryResult);\n"));
+         assertTrue(containsWord("$cheeseryResult", "results.add($cheeseryResult);\n"));
+-        assertFalse(containsWord("cheesery", "results.add($cheesery);\n"));
+     }
+ }
+\ No newline at end of file

@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,5a109336dbc8c6f71b0ab08aaecf42bf80d43a19,f115f62f72638f390a398f1cd373a5adb177a0cc,AF-2341,https://issues.redhat.com/browse/AF-2341

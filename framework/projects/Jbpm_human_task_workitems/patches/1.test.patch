@@ -1,0 +1,30 @@
+diff --git a/jbpm-human-task/jbpm-human-task-workitems/src/test/java/org/jbpm/services/task/wih/util/PeopleAssignmentHelperTest.java b/jbpm-human-task/jbpm-human-task-workitems/src/test/java/org/jbpm/services/task/wih/util/PeopleAssignmentHelperTest.java
+index aff5b5536..0ba71b508 100644
+--- a/jbpm-human-task/jbpm-human-task-workitems/src/test/java/org/jbpm/services/task/wih/util/PeopleAssignmentHelperTest.java
++++ b/jbpm-human-task/jbpm-human-task-workitems/src/test/java/org/jbpm/services/task/wih/util/PeopleAssignmentHelperTest.java
+@@ -88,25 +88,6 @@ public class PeopleAssignmentHelperTest  extends AbstractBaseTest {
+ 		assertTrue(organizationalEntities.contains(createGroup("Project Manager")));
+ 		
+ 	}
+-
+-	@Test
+-	public void testProcessPeopleAssignmentsWithEmptyStrings() {
+-
+-		List<OrganizationalEntity> organizationalEntities = new ArrayList<OrganizationalEntity>();
+-
+-		String ids = "bpmsAdmin,";
+-		assertTrue(organizationalEntities.isEmpty());
+-		peopleAssignmentHelper.processPeopleAssignments(ids, organizationalEntities, true);
+-		assertTrue(organizationalEntities.size() == 1);
+-		assertTrue(organizationalEntities.contains(createUser("bpmsAdmin")));
+-
+-		ids = ",bpmsAdmin";
+-		organizationalEntities = new ArrayList<OrganizationalEntity>();
+-		assertTrue(organizationalEntities.isEmpty());
+-		peopleAssignmentHelper.processPeopleAssignments(ids, organizationalEntities, true);
+-		assertTrue(organizationalEntities.size() == 1);
+-		assertTrue(organizationalEntities.contains(createUser("bpmsAdmin")));
+-	}
+ 	
+ 	@Test
+ 	public void testAssignActors() {

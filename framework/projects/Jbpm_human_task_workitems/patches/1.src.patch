@@ -1,0 +1,14 @@
+diff --git a/jbpm-human-task/jbpm-human-task-workitems/src/main/java/org/jbpm/services/task/wih/util/PeopleAssignmentHelper.java b/jbpm-human-task/jbpm-human-task-workitems/src/main/java/org/jbpm/services/task/wih/util/PeopleAssignmentHelper.java
+index 7c84b13b5..0a867c215 100644
+--- a/jbpm-human-task/jbpm-human-task-workitems/src/main/java/org/jbpm/services/task/wih/util/PeopleAssignmentHelper.java
++++ b/jbpm-human-task/jbpm-human-task-workitems/src/main/java/org/jbpm/services/task/wih/util/PeopleAssignmentHelper.java
+@@ -205,9 +205,7 @@ public class PeopleAssignmentHelper {
+             String[] ids = peopleAssignmentIds.split(separator);
+             for (String id : ids) {
+                 id = id.trim();
+                 // JBPM-7356 - ignore empty strings
+-                if(id.length()==0)
+-                    continue;
+                 boolean exists = false;
+                 for (OrganizationalEntity orgEntity : organizationalEntities) {
+                     if (orgEntity.getId().equals(id)) {

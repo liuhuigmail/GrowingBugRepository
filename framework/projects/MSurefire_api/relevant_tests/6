@@ -1,0 +1,2 @@
+org.apache.maven.JUnit4SuiteTest
+org.apache.maven.surefire.booter.MasterProcessCommandTest

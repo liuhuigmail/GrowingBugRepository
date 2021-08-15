@@ -1,0 +1,50 @@
+diff --git a/surefire-api/src/main/java/org/apache/maven/surefire/report/PojoStackTraceWriter.java b/surefire-api/src/main/java/org/apache/maven/surefire/report/PojoStackTraceWriter.java
+index 58cd5eb4c..6115bace1 100644
+--- a/surefire-api/src/main/java/org/apache/maven/surefire/report/PojoStackTraceWriter.java
++++ b/surefire-api/src/main/java/org/apache/maven/surefire/report/PojoStackTraceWriter.java
+@@ -61,18 +61,12 @@ public class PojoStackTraceWriter
+ 
+         String[] lines = StringUtils.split( text, "\n" );
+         int lastLine = lines.length - 1;
+-        int causedByLine = -1;
+         // skip first
+         for ( int i = 1; i < lines.length; i++ )
+         {
+-            String line = lines[i].trim();
+-            if ( line.startsWith( marker ) )
++            if ( lines[i].trim().startsWith( marker ) )
+             {
+                 lastLine = i;
+-            } else if ( line.startsWith( "Caused by" ) ) 
+-            {
+-                causedByLine = i;
+-                break;
+             }
+         }
+ 
+@@ -83,14 +77,21 @@ public class PojoStackTraceWriter
+             trace.append( "\n" );
+         }
+ 
+-        if ( causedByLine != -1 )
++        for ( int i = lastLine; i < lines.length; i++ )
+         {
+-            for ( int i = causedByLine; i < lines.length; i++ )
++            if ( lines[i].trim().startsWith( "Caused by" ) )
+             {
+-                trace.append( lines[i] );
+-                trace.append( "\n" );
++                lastLine = i;
++                break;
+             }
+         }
++
++        for ( int i = lastLine; i < lines.length; i++ )
++        {
++            trace.append( lines[i] );
++            trace.append( "\n" );
++        }
++
+         return trace.toString();
+     }
+ 

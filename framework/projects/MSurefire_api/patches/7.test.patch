@@ -1,0 +1,90 @@
+diff --git a/surefire-api/src/test/java/org/apache/maven/surefire/testset/TestListResolverTest.java b/surefire-api/src/test/java/org/apache/maven/surefire/testset/TestListResolverTest.java
+index 69febe544..fbd510839 100644
+--- a/surefire-api/src/test/java/org/apache/maven/surefire/testset/TestListResolverTest.java
++++ b/surefire-api/src/test/java/org/apache/maven/surefire/testset/TestListResolverTest.java
+@@ -409,85 +409,6 @@ public class TestListResolverTest
+         assertThat( tlr.isEmpty(), is( false ) );
+     }
+ 
+-    public void testRegexRuleViolationQuotedHashMark()
+-    {
+-        try
+-        {
+-            new TestListResolver( "%regex[.\\Q#\\E.]" );
+-            fail( "IllegalArgumentException is expected" );
+-        }
+-        catch ( IllegalArgumentException iea )
+-        {
+-            // expected
+-        }
+-    }
+-
+-    public void testRegexRuleViolationEnclosedMethodSeparator()
+-    {
+-        try
+-        {
+-            new TestListResolver( "%regex[(.|.#.)]" );
+-            fail( "IllegalArgumentException is expected" );
+-        }
+-        catch ( IllegalArgumentException iea )
+-        {
+-            // expected
+-        }
+-    }
+-
+-    public void testRegexRuleViolationMultipleHashmarkWithClassConstraint()
+-    {
+-        try
+-        {
+-            new TestListResolver( "%regex[.*#.|#.]" );
+-            fail( "IllegalArgumentException is expected" );
+-        }
+-        catch ( IllegalArgumentException iea )
+-        {
+-            // expected
+-        }
+-    }
+-
+-    public void testRegexRuleViolationMultipleHashmarkForMethods()
+-    {
+-        try
+-        {
+-            new TestListResolver( "%regex[#.|#.]" );
+-            fail( "IllegalArgumentException is expected" );
+-        }
+-        catch ( IllegalArgumentException iea )
+-        {
+-            // expected
+-        }
+-    }
+-
+-    public void testRegexRuleViolationInvalidClassPattern()
+-    {
+-        try
+-        {
+-            new TestListResolver( "%regex[.(.]" )
+-                    .shouldRun( "x", "x" );
+-            fail( "IllegalArgumentException is expected" );
+-        }
+-        catch ( IllegalArgumentException iea )
+-        {
+-            // expected
+-        }
+-    }
+-
+-    public void testRegexRuleViolationInvalidMethodPattern()
+-    {
+-        try
+-        {
+-            new TestListResolver( "%regex[#.(.]" );
+-            fail( "IllegalArgumentException is expected" );
+-        }
+-        catch ( IllegalArgumentException iea )
+-        {
+-            // expected
+-        }
+-    }
+-
+     private static Set<ResolvedTest> resolveClass( String patterns )
+     {
+         Set<ResolvedTest> resolved = new HashSet<ResolvedTest>();

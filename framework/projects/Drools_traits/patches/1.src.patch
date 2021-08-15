@@ -1,0 +1,17 @@
+diff --git a/drools-traits/src/main/java/org/drools/traits/core/reteoo/TraitKieComponentFactory.java b/drools-traits/src/main/java/org/drools/traits/core/reteoo/TraitKieComponentFactory.java
+index a4c4df18f2..f611531bf5 100644
+--- a/drools-traits/src/main/java/org/drools/traits/core/reteoo/TraitKieComponentFactory.java
++++ b/drools-traits/src/main/java/org/drools/traits/core/reteoo/TraitKieComponentFactory.java
+@@ -92,11 +92,10 @@ public class TraitKieComponentFactory extends KieComponentFactory {
+         return traitClassBuilderFactory;
+     }
+ 
+-    private TraitFactHandleFactory traitFactHandleFactory = new TraitFactHandleFactory();
+ 
+     @Override
+     public FactHandleFactory getFactHandleFactoryService() {
+-        return traitFactHandleFactory;
++        return new TraitFactHandleFactory();
+     }
+ 
+     @Override

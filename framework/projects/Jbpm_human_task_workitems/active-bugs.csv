@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,dd4432e65155e512c8f8fe81c046a99994d6c8ec,b4a68043351dde7f564016bc1e525739984eb417,JBPM-7356,https://issues.redhat.com/browse/JBPM-7356

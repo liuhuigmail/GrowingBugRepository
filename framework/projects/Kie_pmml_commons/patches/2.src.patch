@@ -1,0 +1,21 @@
+diff --git a/kie-pmml-trusty/kie-pmml-commons/src/main/java/org/kie/pmml/commons/utils/KiePMMLModelUtils.java b/kie-pmml-trusty/kie-pmml-commons/src/main/java/org/kie/pmml/commons/utils/KiePMMLModelUtils.java
+index 4353706a0d..d66d29ac71 100644
+--- a/kie-pmml-trusty/kie-pmml-commons/src/main/java/org/kie/pmml/commons/utils/KiePMMLModelUtils.java
++++ b/kie-pmml-trusty/kie-pmml-commons/src/main/java/org/kie/pmml/commons/utils/KiePMMLModelUtils.java
+@@ -27,7 +27,7 @@ public class KiePMMLModelUtils {
+      * @return
+      */
+     public static String getSanitizedPackageName(String modelName) {
+-        return modelName.replaceAll("[^A-Za-z0-9]", "").toLowerCase();
++        return modelName.replace(" ", "").replace("-", "").replace("_", "").toLowerCase();
+     }
+ 
+     /**
+@@ -37,6 +37,6 @@ public class KiePMMLModelUtils {
+      */
+     public static String getSanitizedClassName(String input) {
+         String upperCasedInput = input.substring(0, 1).toUpperCase() + input.substring(1);
+-        return upperCasedInput.replaceAll("[^A-Za-z0-9]", "");
++        return upperCasedInput.replace(".", "").replace("-", "").replace("_", "").replace(" ", "");
+     }
+ }

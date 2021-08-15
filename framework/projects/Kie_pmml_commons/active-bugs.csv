@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,fdccf1829fbc8e7f6fcb9ee5af45a70d3de916b6,eac2a63b7414aba00fcfedd0ba162e31d1f8131f,DROOLS-6094,https://issues.redhat.com/browse/DROOLS-6094
+2,e05cd7b388c4b0255d41e00f17d3c98065fbfc41,d96410478c3dd359c303f6b3d2b760bdf411e1f9,DROOLS-6235,https://issues.redhat.com/browse/DROOLS-6235
+3,a608f8741b31314d30551495d9cac14c56f73bb3,9c95403195e6d000f45837d022e9683fa524f5fc,DROOLS-6272,https://issues.redhat.com/browse/DROOLS-6272

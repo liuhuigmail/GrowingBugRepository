@@ -1,0 +1,2 @@
+org.kie.memorycompiler.KieMemoryCompilerTest
+org.kie.memorycompiler.SystemJavaCompilerFailureTest

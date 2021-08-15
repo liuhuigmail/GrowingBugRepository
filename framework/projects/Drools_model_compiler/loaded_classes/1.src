@@ -1,0 +1,2 @@
+org.drools.modelcompiler.builder.generator.Consequence
+org.drools.modelcompiler.consequence.DroolsImpl

@@ -1,0 +1,13 @@
+org.drools.traits.UseOfRuleFlowGroupPlusLockOnTest
+org.drools.traits.compiler.factmodel.traits.LegacyTraitTest
+org.drools.traits.compiler.factmodel.traits.LogicalTraitTest
+org.drools.traits.compiler.factmodel.traits.StandaloneTest
+org.drools.traits.compiler.factmodel.traits.TraitFieldsAndLegacyClassesTest
+org.drools.traits.compiler.factmodel.traits.TraitMapCoreTest
+org.drools.traits.compiler.factmodel.traits.TraitTest
+org.drools.traits.compiler.integrationtests.TraitTypeGenerationTest
+org.drools.traits.core.factmodel.ClassBuilderTest
+org.drools.traits.core.factmodel.InstancesHashcodedTest
+org.drools.traits.core.factmodel.JeneratorTest
+org.drools.traits.core.meta.org.MetadataTest
+org.drools.traits.persistence.PersistenceTest

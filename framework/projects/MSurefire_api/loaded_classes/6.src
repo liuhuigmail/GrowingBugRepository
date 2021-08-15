@@ -1,0 +1,3 @@
+org.apache.maven.surefire.booter.MasterProcessCommand
+org.apache.maven.surefire.booter.Shutdown
+org.apache.maven.surefire.util.internal.StringUtils

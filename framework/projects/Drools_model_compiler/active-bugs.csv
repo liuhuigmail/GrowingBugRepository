@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,7e1bad83d6023b7790bcb1698817d643a32edac3,d1b864df4fb9d6d3cb098c84f36a5d05f424b5cd,DROOLS-2625,https://issues.redhat.com/browse/DROOLS-2625

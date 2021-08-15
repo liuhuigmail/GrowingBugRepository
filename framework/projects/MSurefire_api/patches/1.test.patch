@@ -1,0 +1,17 @@
+diff --git a/surefire-api/src/test/java/org/apache/maven/surefire/util/UrlUtilsTest.java b/surefire-api/src/test/java/org/apache/maven/surefire/util/UrlUtilsTest.java
+index fff907491..3f8f5011b 100644
+--- a/surefire-api/src/test/java/org/apache/maven/surefire/util/UrlUtilsTest.java
++++ b/surefire-api/src/test/java/org/apache/maven/surefire/util/UrlUtilsTest.java
+@@ -65,12 +65,5 @@ public class UrlUtilsTest
+         File f = new File( homeDir, "foo bar.txt" );
+         assertEquals( new URL( "file:" + homeDir + "/foo%20bar.txt" ), UrlUtils.getURL( f ) );
+     }
+-    
+-    public void testTestWithUmlaut()
+-        throws IOException
+-    {
+-        File f = new File( homeDir, "fo‹.txt" );
+-        assertEquals( new URL( "file:" + homeDir + "/fo‹.txt" ), UrlUtils.getURL( f ) );
+-    }
+ 
+ }

@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,93d74a23981fa8dd6aa6830048913637f46e7766,1d92caebdcf73f786f19f9404a49831564e385bb,DROOLS-5721,https://issues.redhat.com/browse/DROOLS-5721
