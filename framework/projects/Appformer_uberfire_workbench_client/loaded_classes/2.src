@@ -1,0 +1,7 @@
+org.uberfire.client.workbench.docks.UberfireDocksContainer
+org.uberfire.client.workbench.widgets.dnd.WorkbenchDragAndDropManager
+org.uberfire.client.workbench.widgets.dnd.WorkbenchPickupDragController
+org.uberfire.client.workbench.WorkbenchLayout
+org.uberfire.client.workbench.WorkbenchLayoutImpl
+org.uberfire.client.workbench.WorkbenchLayoutInfo
+org.uberfire.client.workbench.WorkbenchLayoutInfoImpl

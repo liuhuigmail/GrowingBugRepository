@@ -1,0 +1,2 @@
+org.uberfire.ext.security.management.client.ClientSecurityExceptionMessageResolver
+org.uberfire.ext.security.management.client.resources.i18n.UsersManagementClientConstants

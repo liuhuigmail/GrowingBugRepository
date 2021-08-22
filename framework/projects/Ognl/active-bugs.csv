@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,dc8d1a5f2959d8ca84cba8ce9d70a79674c57b92,6587abc4cb8d9c0481c3a5eb57b74162f2134378,OGNL-9,https://issues.apache.org/jira/browse/OGNL-9

@@ -1,0 +1,12 @@
+org.apache.qpid.jms.JmsDestination
+org.apache.qpid.jms.JmsTopic
+org.apache.qpid.jms.jndi.JNDIStorable
+org.apache.qpid.jms.message.facade.JmsBytesMessageFacade
+org.apache.qpid.jms.message.facade.JmsMapMessageFacade
+org.apache.qpid.jms.message.facade.JmsMessageFacade
+org.apache.qpid.jms.message.facade.JmsObjectMessageFacade
+org.apache.qpid.jms.message.facade.JmsStreamMessageFacade
+org.apache.qpid.jms.message.facade.JmsTextMessageFacade
+org.apache.qpid.jms.message.JmsMessage
+org.apache.qpid.jms.message.JmsMessageFactory
+org.apache.qpid.jms.message.JmsMessagePropertyIntercepter

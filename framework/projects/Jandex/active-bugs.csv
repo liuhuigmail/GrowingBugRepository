@@ -1,0 +1,7 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,c05209a900c5920e56250cf25ea27d2fa55bede4,c5e3a883eb5a2af392419bfed869c197e5a953b2,JANDEX-20,https://issues.redhat.com/browse/JANDEX-20
+2,c05209a900c5920e56250cf25ea27d2fa55bede4,c412a714421597ae671a3d92ec58bf1fedd67d99,JANDEX-20,https://issues.redhat.com/browse/JANDEX-20
+3,9930fcb9b573f4c692cb7f859d62744fb8e8021c,c682961a725d1b0507aae1ed6053737be280bc7f,JANDEX-35,https://issues.redhat.com/browse/JANDEX-35
+4,d72291d5dd408f1c85817b81ecb707051555799e,8996177aea4e0626f849ead5f9ab110383d70d79,JANDEX-37,https://issues.redhat.com/browse/JANDEX-37
+5,d72291d5dd408f1c85817b81ecb707051555799e,7d69a7ffe4586f6e376f74b442ec08122a37016b,JANDEX-37,https://issues.redhat.com/browse/JANDEX-37
+6,c107579771ec68a32d8267cc64ac25eb8888d678,5d55ee3fdfe011b967bb37628c2bf6b63b7a495d,JANDEX-47,https://issues.redhat.com/browse/JANDEX-47

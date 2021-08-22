@@ -1,0 +1,17 @@
+diff --git a/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/amqp/AmqpConsumer.java b/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/amqp/AmqpConsumer.java
+index 877cd1ba..9d95fa46 100644
+--- a/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/amqp/AmqpConsumer.java
++++ b/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/amqp/AmqpConsumer.java
+@@ -218,12 +218,8 @@ public class AmqpConsumer extends AmqpAbstractResource<JmsConsumerInfo, Receiver
+             LOG.debug("Consumed Ack of message: {}", envelope);
+             if (!delivery.isSettled()) {
+                 if (session.isTransacted() && !getResourceInfo().isBrowser()) {
+ 
+-                    if (session.isTransactionFailed()) {
+-                        LOG.trace("Skipping ack of message {} in failed transaction.", envelope);
+-                        return;
+-                    }
+ 
+                     Binary txnId = session.getTransactionContext().getAmqpTransactionId();
+                     if (txnId != null) {
+                         TransactionalState txState = new TransactionalState();

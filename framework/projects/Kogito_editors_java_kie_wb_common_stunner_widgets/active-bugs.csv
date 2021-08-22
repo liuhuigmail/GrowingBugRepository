@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,e8c9b3f8e82b481c1f1643b439acf180268b5c1c,d4086c191abb368179ac7d4b97e9e669630f7280,KOGITO-1014,https://issues.redhat.com/browse/KOGITO-1014

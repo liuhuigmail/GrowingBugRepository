@@ -1,0 +1,18 @@
+diff --git a/environments/se/core/src/main/java/org/jboss/weld/environment/se/Weld.java b/environments/se/core/src/main/java/org/jboss/weld/environment/se/Weld.java
+index 602eba623..c8c5d1d66 100644
+--- a/environments/se/core/src/main/java/org/jboss/weld/environment/se/Weld.java
++++ b/environments/se/core/src/main/java/org/jboss/weld/environment/se/Weld.java
+@@ -85,12 +85,12 @@ public class Weld
+       // Start the container
+       bootstrap.startInitialization();
+       bootstrap.deployBeans();
++      getInstanceByType(bootstrap.getManager(deployment.loadBeanDeploymentArchive(ShutdownManager.class)), ShutdownManager.class).setBootstrap(bootstrap);
+       bootstrap.validateBeans();
+       bootstrap.endInitialization();
+ 
+       // Set up the ShutdownManager for later
+       this.shutdownManager = getInstanceByType(bootstrap.getManager(deployment.loadBeanDeploymentArchive(ShutdownManager.class)), ShutdownManager.class);
+-      this.shutdownManager.setBootstrap(bootstrap);
+ 
+       return getInstanceByType(bootstrap.getManager(deployment.loadBeanDeploymentArchive(WeldContainer.class)), WeldContainer.class);
+    }

@@ -1,0 +1,24 @@
+diff --git a/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/test/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionEditorTest.java b/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/test/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionEditorTest.java
+index 9c05a64315..59797ff822 100644
+--- a/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/test/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionEditorTest.java
++++ b/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/test/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionEditorTest.java
+@@ -147,7 +147,6 @@ public class SessionEditorTest extends AbstractCanvasHandlerViewerTest {
+                never()).destroy();
+         verify(view,
+                times(1)).clear();
+-        assertNull(tested.getDiagram());
+     }
+ 
+     @Override
+diff --git a/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/test/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionViewerTest.java b/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/test/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionViewerTest.java
+index 326f5168c3..c9347a45ec 100644
+--- a/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/test/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionViewerTest.java
++++ b/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/test/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionViewerTest.java
+@@ -128,7 +128,6 @@ public class SessionViewerTest extends AbstractCanvasHandlerViewerTest {
+                times(1)).destroy();
+         verify(view,
+                times(1)).clear();
+-        assertNull(tested.getDiagram());
+     }
+ 
+     @Override

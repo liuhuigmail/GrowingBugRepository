@@ -82,3 +82,13 @@ Kie_memory_compiler	kie-memory-compiler	https://github.com/kiegroup/drools.git	j
 Jbpm_human_task_workitems	jbpm-human-task-workitems	https://github.com/kiegroup/jbpm.git	jira	JBPM	/(JBPM-\\d+)/mi	jbpm-human-task/jbpm-human-task-workitems	
 Drools_traits	drools-traits	https://github.com/kiegroup/drools.git	jira	DROOLS	/(DROOLS-\\d+)/mi	drools-traits	
 Drools_model_compiler	drools-model-compiler	https://github.com/kiegroup/drools.git	jira	DROOLS	/(DROOLS-\\d+)/mi	drools-model/drools-model-compiler
+Appformer_uberfire_security_management_client	uberfire-security-management-client	https://github.com/kiegroup/appformer.git	jira	AF	/(AF-\\d+)/mi	uberfire-extensions/uberfire-security/uberfire-security-management/uberfire-security-management-client
+Appformer_uberfire_workbench_client	uberfire-workbench-client	https://github.com/kiegroup/appformer.git	jira	AF	/(AF-\\d+)/mi	uberfire-workbench/uberfire-workbench-client
+Deltaspike_api	deltaspike-core-api	https://github.com/apache/deltaspike.git	jira	DELTASPIKE	/(DELTASPIKE-\\d+)/mi	deltaspike/core/api
+Flume_ngcore	flume-ng-core	https://github.com/apache/flume.git	jira	FLUME	/(FLUME-\\d+)/mi	flume-ng-core	
+Jandex	jandex	https://github.com/wildfly/jandex.git	jira	JANDEX	/(JANDEX-\\d+)/mi	.
+Kogito_editors_java_kie_wb_common_stunner_widgets	kie-wb-common-stunner-widgets	https://github.com/kiegroup/kogito-editors-java.git	jira	KOGITO	/(KOGITO-\\d+)/mi	kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets
+Ognl	commons-ognl	https://github.com/apache/commons-ognl.git	jira	OGNL	/(OGNL-\\d+)/mi	.
+Qpid_client	qpid-jms-client	https://github.com/apache/qpid-jms.git	jira	QPIDJMS	/(QPIDJMS-\\d+)/mi	qpid-jms-client
+Switchyard_admin	switchyard-admin	https://github.com/jboss-switchyard/core.git	jira	SWITCHYARD	/(SWITCHYARD-\\d+)/mi	admin
+Weld_se_core	weld-se-core	https://github.com/weld/core.git	jira	WELD	/(WELD-\\d+)/mi	environments/se/core

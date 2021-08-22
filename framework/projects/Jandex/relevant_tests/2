@@ -1,0 +1,3 @@
+org.jboss.jandex.test.BasicTestCase
+org.jboss.jandex.test.CompositeTestCase
+org.jboss.jandex.test.DotNameTestCase

@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,b78f362d6fbcbd4b908149a888eeb5fb8e8e6170,36a46f606add71baa13e4074925268feba601e80,AF-900,https://issues.redhat.com/browse/AF-900
+2,90b39c4da20941c7695e63c220091cfc7fd6a987,20554d6e00cd4a1c8d0516f1fbe907e24cf1fe58,AF-1252,https://issues.redhat.com/browse/AF-1252
+3,16e1858ef23192abdb03142cb095e52170f8c619,60ef2272a0c2296e5aa3b945b045d84425f7d49b,AF-2232,https://issues.redhat.com/browse/AF-2232

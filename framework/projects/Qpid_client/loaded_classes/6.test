@@ -1,0 +1,3 @@
+org.apache.qpid.jms.message.facade.test.JmsTestMessageFacade
+org.apache.qpid.jms.util.FifoMessageQueueTest
+org.apache.qpid.jms.util.PriorityMessageQueueTest

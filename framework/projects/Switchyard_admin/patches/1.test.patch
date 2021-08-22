@@ -1,0 +1,31 @@
+diff --git a/admin/src/test/java/org/switchyard/admin/base/SwitchYardBuilderTest.java b/admin/src/test/java/org/switchyard/admin/base/SwitchYardBuilderTest.java
+index 2c4463e3..b1ac3195 100644
+--- a/admin/src/test/java/org/switchyard/admin/base/SwitchYardBuilderTest.java
++++ b/admin/src/test/java/org/switchyard/admin/base/SwitchYardBuilderTest.java
+@@ -24,6 +24,7 @@ import javax.xml.namespace.QName;
+ import org.junit.Assert;
+ import org.junit.Before;
+ import org.junit.Test;
++import org.switchyard.admin.Service;
+ import org.switchyard.config.model.ModelPuller;
+ import org.switchyard.config.model.switchyard.SwitchYardModel;
+ import org.switchyard.deploy.event.ApplicationDeployedEvent;
+@@ -64,18 +65,6 @@ public class SwitchYardBuilderTest {
+         Assert.assertEquals(2, _switchYard.getApplication(TEST_APP).getComponentServices().size());
+     }
+ 
+-    @Test
+-    public void testNoComponentService() throws Exception{
+-        Deployment testDeployment = new MockDeployment(
+-                new ModelPuller<SwitchYardModel>().pull("switchyard_multiappweb.xml", getClass()), 
+-                QName.valueOf("{urn:switchyard-quickstart-demo:multiapp:0.1.0}web"));
+-        BaseSwitchYard switchYard = new BaseSwitchYard("1.0");
+-        SwitchYardBuilder builder = new SwitchYardBuilder(switchYard);
+-        builder.notify(new ApplicationDeployedEvent(testDeployment));
+-        
+-        Assert.assertEquals(1, switchYard.getApplications().size());
+-    }
+-
+ }
+ 
+ class MockDeployment extends Deployment {

@@ -1,0 +1,9 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,52b170c72372cb39393293871d07157a4db78d42,f2181f997ec2cb38dacc7c603c00c0b4e424d752,QPIDJMS-116,https://issues.apache.org/jira/browse/QPIDJMS-116
+2,2f97ccb04b19b9203c7a7b1e42513152c65d5508,5a55b46e6593f32113f6c69bdf21b0e91b6945ac,QPIDJMS-114,https://issues.apache.org/jira/browse/QPIDJMS-114
+3,5a55b46e6593f32113f6c69bdf21b0e91b6945ac,12e77cac7f84d0059010c21efe5e39a5f5733c9b,QPIDJMS-117,https://issues.apache.org/jira/browse/QPIDJMS-117
+4,12e77cac7f84d0059010c21efe5e39a5f5733c9b,689bd88b78a6cdaa17a88fe7f8e38544db0877a8,QPIDJMS-115,https://issues.apache.org/jira/browse/QPIDJMS-115
+5,a76b51ac1a0f4cc8ac0734e982ec861d67a830a3,03b491240d88ff5dde1b3759d000e7963ee1492d,QPIDJMS-116,https://issues.apache.org/jira/browse/QPIDJMS-116
+6,f82bf5032bceab98d87f9ac5c8a5a9c3163d112c,301e32d69552bc183fadee471c45a1717a6347f1,QPIDJMS-118,https://issues.apache.org/jira/browse/QPIDJMS-118
+7,bb56d0ffd2a415447249a5edc19803451e841a10,26f881bf3be693b4734a52aedd26f12357549e97,QPIDJMS-130,https://issues.apache.org/jira/browse/QPIDJMS-130
+8,974a8510bf95d48fe9174c25ad178198145771e1,c4c79e5c549e643fb5bcc03222ffbf955b6b8da1,QPIDJMS-126,https://issues.apache.org/jira/browse/QPIDJMS-126

@@ -1,0 +1,2 @@
+org.apache.flume.client.avro.LineReader
+org.apache.flume.client.avro.SpoolingFileLineReader

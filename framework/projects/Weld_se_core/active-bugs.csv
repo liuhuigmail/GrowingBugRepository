@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,d69174bbf1485759699956183438d17657fd3c3d,e0a65e37efc380d87a9632042cb57db080b6525f,WELD-798,https://issues.redhat.com/browse/WELD-798

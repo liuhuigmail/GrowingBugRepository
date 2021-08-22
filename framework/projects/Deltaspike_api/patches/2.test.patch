@@ -1,0 +1,73 @@
+diff --git a/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java b/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java
+index 6afdce76..b2745f79 100644
+--- a/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java
++++ b/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java
+@@ -21,7 +21,6 @@ package org.apache.deltaspike.test.api.config;
+ import org.apache.deltaspike.core.api.config.ConfigResolver;
+ import org.apache.deltaspike.core.api.projectstage.ProjectStage;
+ import org.apache.deltaspike.core.spi.config.ConfigFilter;
+-import org.apache.deltaspike.core.spi.config.ConfigSource;
+ import org.apache.deltaspike.core.util.ProjectStageProducer;
+ import org.junit.Assert;
+ import org.junit.Before;
+@@ -161,8 +160,8 @@ public class ConfigResolverTest
+             String url = ConfigResolver.getPropertyValue("deltaspike.test.nonexisting.variable", true);
+             Assert.assertEquals("${does.not.exist}/someservice/myendpoint", url);
+         }
+-    }
+ 
++    }
+     @Test
+     public void testConfigVariableRecursiveDeclaration()
+     {
+@@ -174,44 +173,6 @@ public class ConfigResolverTest
+         Assert.assertEquals("pre-crazy-post/ohgosh/crazy", tr.getValue());
+     }
+ 
+-    @Test
+-    public void testTypedResolver_NonExistingValue()
+-    {
+-        final String key = "non.existing.key";
+-
+-        ConfigResolver.TypedResolver<String> resolver = ConfigResolver.resolve(key)
+-            .logChanges(true);
+-
+-        Assert.assertNull(resolver.getValue());
+-
+-        setTestConfigSourceValue(key, "somevalue");
+-        Assert.assertEquals("somevalue", resolver.getValue());
+-
+-        setTestConfigSourceValue(key, null);
+-        Assert.assertNull(resolver.getValue());
+-    }
+-
+-    private void setTestConfigSourceValue(String key, String value)
+-    {
+-        ConfigSource[] configSources = ConfigResolver.getConfigSources();
+-        for (ConfigSource configSource : configSources)
+-        {
+-            if (configSource instanceof TestConfigSource)
+-            {
+-                if (value == null)
+-                {
+-                    configSource.getProperties().remove(key);
+-                }
+-                else
+-                {
+-                    configSource.getProperties().put(key, value);
+-                }
+-
+-                break;
+-            }
+-        }
+-    }
+-
+     public static class TestConfigFilter implements ConfigFilter
+     {
+         @Override
+@@ -234,5 +195,4 @@ public class ConfigResolverTest
+             return value;
+         }
+     }
+-
+ }

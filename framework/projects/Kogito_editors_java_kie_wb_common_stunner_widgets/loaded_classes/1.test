@@ -1,0 +1,3 @@
+org.kie.workbench.common.stunner.client.widgets.presenters.AbstractCanvasHandlerViewerTest
+org.kie.workbench.common.stunner.client.widgets.presenters.session.impl.SessionEditorTest
+org.kie.workbench.common.stunner.client.widgets.presenters.session.impl.SessionViewerTest

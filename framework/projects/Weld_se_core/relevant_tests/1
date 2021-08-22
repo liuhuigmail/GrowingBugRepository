@@ -1,0 +1,7 @@
+org.jboss.weld.environment.se.test.DecoratorsTest
+org.jboss.weld.environment.se.test.EventsTest
+org.jboss.weld.environment.se.test.InterceptorsTest
+org.jboss.weld.environment.se.test.ScopesTest
+org.jboss.weld.environment.se.test.StartMainTest
+org.jboss.weld.environment.se.test.ThreadContextTest
+org.jboss.weld.environment.se.test.WeldMainTest

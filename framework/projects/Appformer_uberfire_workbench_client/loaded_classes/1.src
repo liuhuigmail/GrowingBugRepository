@@ -1,0 +1,11 @@
+org.uberfire.client.authz.ActivityAction
+org.uberfire.client.authz.PerspectiveAction
+org.uberfire.client.authz.PerspectiveTreeProvider
+org.uberfire.client.mvp.AbstractActivity
+org.uberfire.client.mvp.AbstractWorkbenchPerspectiveActivity
+org.uberfire.client.mvp.Activity
+org.uberfire.client.mvp.ActivityBeansCache
+org.uberfire.client.mvp.ContextSensitiveActivity
+org.uberfire.client.mvp.PerspectiveActivity
+org.uberfire.client.mvp.PlaceManager
+org.uberfire.client.resources.i18n.PermissionTreeI18n

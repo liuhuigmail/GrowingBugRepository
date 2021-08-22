@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,e6c64a8e3fd4d2ffe5d8505041738bdd4cc3f667,c2bcda202e24c426329425a11623946c9df0b102,FLUME-1470,https://issues.apache.org/jira/browse/FLUME-1470
+2,d5ce8af76d40e75624a2efe88e5aeb58146bda10,c145b2b8c1ed7bc04e1b018085c519555cf61a21,FLUME-1683,https://issues.apache.org/jira/browse/FLUME-1683

@@ -1,0 +1,42 @@
+diff --git a/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/main/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionEditorImpl.java b/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/main/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionEditorImpl.java
+index eae055c5f9..66d73694f1 100644
+--- a/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/main/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionEditorImpl.java
++++ b/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/main/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionEditorImpl.java
+@@ -16,7 +16,6 @@
+ 
+ package org.kie.workbench.common.stunner.client.widgets.presenters.session.impl;
+ 
+-import java.util.Objects;
+ import java.util.function.Supplier;
+ 
+ import javax.enterprise.context.Dependent;
+@@ -97,7 +96,7 @@ public class SessionEditorImpl<S extends EditorSession>
+ 
+     @Override
+     protected Diagram getDiagram() {
+-        return Objects.nonNull(diagramSupplier) ? diagramSupplier.get() : null;
++        return diagramSupplier.get();
+     }
+ 
+     @Override
+diff --git a/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/main/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionViewerImpl.java b/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/main/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionViewerImpl.java
+index 86286e8e62..f16794aa35 100644
+--- a/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/main/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionViewerImpl.java
++++ b/kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets/src/main/java/org/kie/workbench/common/stunner/client/widgets/presenters/session/impl/SessionViewerImpl.java
+@@ -16,7 +16,6 @@
+ 
+ package org.kie.workbench.common.stunner.client.widgets.presenters.session.impl;
+ 
+-import java.util.Objects;
+ import java.util.function.Supplier;
+ 
+ import javax.enterprise.context.Dependent;
+@@ -77,7 +76,7 @@ public class SessionViewerImpl<S extends ViewerSession>
+ 
+     @Override
+     protected Diagram getDiagram() {
+-        return Objects.nonNull(diagramSupplier) ? diagramSupplier.get() : null;
++        return diagramSupplier.get();
+     }
+ 
+     @Override

@@ -1,0 +1,13 @@
+diff --git a/uberfire-workbench/uberfire-workbench-client/src/main/java/org/uberfire/client/mvp/PlaceManagerImpl.java b/uberfire-workbench/uberfire-workbench-client/src/main/java/org/uberfire/client/mvp/PlaceManagerImpl.java
+index 1639ab090..3adeef666 100644
+--- a/uberfire-workbench/uberfire-workbench-client/src/main/java/org/uberfire/client/mvp/PlaceManagerImpl.java
++++ b/uberfire-workbench/uberfire-workbench-client/src/main/java/org/uberfire/client/mvp/PlaceManagerImpl.java
+@@ -1131,8 +1131,6 @@ public class PlaceManagerImpl implements PlaceManager {
+                 } else {
+                     return;
+                 }
+-            } else {
+-                activity.onClose();
+             }
+ 
+             getPlaceHistoryHandler().registerClose(activity,

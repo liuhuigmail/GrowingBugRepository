@@ -1,0 +1,12 @@
+diff --git a/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java b/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java
+index f8f522be..5a54abb5 100644
+--- a/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java
++++ b/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java
+@@ -245,6 +245,7 @@ public final class ConfigResolver
+         String value = getPropertyValue(key + '.' + ps, configResolverContext);
+         if (value == null)
+         {
++            configResolverContext.setProjectStageAware(false);            
+             value = getPropertyValue(key, configResolverContext);
+         }
+ 

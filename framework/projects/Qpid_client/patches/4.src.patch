@@ -1,0 +1,13 @@
+diff --git a/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java b/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
+index 02c4c82b..33cc1edb 100644
+--- a/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
++++ b/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
+@@ -960,7 +960,7 @@ public class FailoverProvider extends DefaultProviderListener implements Provide
+ 
+         @Override
+         public void onFailure(final Throwable result) {
+-            if (result instanceof JMSException || closingConnection.get() || closed.get() || failed.get()) {
++            if (closingConnection.get() || closed.get() || failed.get()) {
+                 requests.remove(id);
+                 super.onFailure(result);
+             } else {

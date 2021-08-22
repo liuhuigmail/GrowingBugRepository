@@ -1,0 +1,11 @@
+org.apache.qpid.jms.message.facade.JmsMessageFacade
+org.apache.qpid.jms.message.JmsInboundMessageDispatch
+org.apache.qpid.jms.message.JmsMessage
+org.apache.qpid.jms.meta.JmsAbstractResourceId
+org.apache.qpid.jms.meta.JmsResourceId
+org.apache.qpid.jms.util.AbstractMessageQueue
+org.apache.qpid.jms.util.FifoMessageQueue
+org.apache.qpid.jms.util.IdGenerator
+org.apache.qpid.jms.util.InetAddressUtil
+org.apache.qpid.jms.util.MessageQueue
+org.apache.qpid.jms.util.PriorityMessageQueue

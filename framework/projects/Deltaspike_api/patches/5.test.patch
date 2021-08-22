@@ -1,0 +1,18 @@
+diff --git a/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java b/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java
+index d1d6a99f..9911ae0b 100644
+--- a/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java
++++ b/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java
+@@ -253,13 +253,6 @@ public class ConfigResolverTest
+         Assert.assertTrue(intValues.contains(17));
+     }
+ 
+-    @Test
+-    public void testConfiguredListValues_NotExisting() {
+-        List<Integer> intValues = ConfigResolver.resolve("test.list.not_existing").as(Integer.class).asList().getValue();
+-        Assert.assertNotNull(intValues);
+-        Assert.assertEquals(0, intValues.size());
+-    }
+-
+     private void setTestConfigSourceValue(String key, String value)
+     {
+         ConfigSource[] configSources = ConfigResolver.getConfigSources();

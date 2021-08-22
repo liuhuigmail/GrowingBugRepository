@@ -1,0 +1,18 @@
+diff --git a/admin/src/main/java/org/switchyard/admin/base/BaseApplication.java b/admin/src/main/java/org/switchyard/admin/base/BaseApplication.java
+index bae6ef76..4d3b9e46 100644
+--- a/admin/src/main/java/org/switchyard/admin/base/BaseApplication.java
++++ b/admin/src/main/java/org/switchyard/admin/base/BaseApplication.java
+@@ -157,13 +157,11 @@ public class BaseApplication implements Application {
+             return;
+         }
+         for (ComponentModel component : _config.getComposite().getComponents()) {
+             // TODO: we need a separate node for components, to support cases
+             // where the component implements no services.  Should also consider
+             // multiple services per component.
+-            if (component.getServices().size() > 0) {
+                 ComponentServiceModel service = component.getServices().get(0);
+                 _componentServices.put(service.getQName(), new BaseComponentService(service, component, this));
+-            }
+         }
+     }
+ }

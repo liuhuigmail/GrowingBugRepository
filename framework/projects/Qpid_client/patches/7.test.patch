@@ -1,0 +1,32 @@
+diff --git a/qpid-jms-client/src/test/java/org/apache/qpid/jms/message/JmsMessageTest.java b/qpid-jms-client/src/test/java/org/apache/qpid/jms/message/JmsMessageTest.java
+index a6cb1a40..4aaf1e59 100644
+--- a/qpid-jms-client/src/test/java/org/apache/qpid/jms/message/JmsMessageTest.java
++++ b/qpid-jms-client/src/test/java/org/apache/qpid/jms/message/JmsMessageTest.java
+@@ -349,27 +349,6 @@ public class JmsMessageTest {
+         assertNotNull(msg.getJMSMessageID());
+     }
+ 
+-    @Test
+-    public void testClearPropertiesClearsReadOnly() throws Exception {
+-        JmsMessage msg = factory.createMessage();
+-        msg.onDispatch();
+-
+-        try {
+-            msg.setObjectProperty("test", "value");
+-            fail("should throw exception");
+-        } catch (MessageNotWriteableException e) {
+-            // Expected
+-        }
+-
+-        assertTrue(msg.isReadOnlyProperties());
+-
+-        msg.clearProperties();
+-
+-        msg.setObjectProperty("test", "value");
+-
+-        assertFalse(msg.isReadOnlyProperties());
+-    }
+-
+     @Test
+     public void testClearPropertiesClearsFacadeGroupSequence() throws JMSException {
+         JmsMessageFacade facade = Mockito.mock(JmsMessageFacade.class);

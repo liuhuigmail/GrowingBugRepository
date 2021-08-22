@@ -1,0 +1,154 @@
+diff --git a/qpid-jms-client/src/test/java/org/apache/qpid/jms/util/FifoMessageQueueTest.java b/qpid-jms-client/src/test/java/org/apache/qpid/jms/util/FifoMessageQueueTest.java
+index 82354785..4a349189 100644
+--- a/qpid-jms-client/src/test/java/org/apache/qpid/jms/util/FifoMessageQueueTest.java
++++ b/qpid-jms-client/src/test/java/org/apache/qpid/jms/util/FifoMessageQueueTest.java
+@@ -277,41 +277,6 @@ public class FifoMessageQueueTest {
+         assertSame(message, queue.dequeue(-1));
+     }
+ 
+-    @Test(timeout = 10000)
+-    public void testDequeueWaitsUntilMessageArrivesWhenLockNotified() throws InterruptedException {
+-        doDequeueWaitsUntilMessageArrivesWhenLockNotifiedTestImpl(-1);
+-    }
+-
+-    @Test(timeout = 10000)
+-    public void testTimedDequeueWaitsUntilMessageArrivesWhenLockNotified() throws InterruptedException {
+-        doDequeueWaitsUntilMessageArrivesWhenLockNotifiedTestImpl(100000);
+-    }
+-
+-    private void doDequeueWaitsUntilMessageArrivesWhenLockNotifiedTestImpl(int timeout) throws InterruptedException {
+-        final JmsInboundMessageDispatch message = createEnvelope();
+-        Thread runner = new Thread(new Runnable() {
+-
+-            @Override
+-            public void run() {
+-                try {
+-                    TimeUnit.MILLISECONDS.sleep(100);
+-                } catch (InterruptedException e) {
+-                }
+-                synchronized (queue.getLock()) {
+-                    queue.getLock().notify();
+-                }
+-                try {
+-                    TimeUnit.MILLISECONDS.sleep(100);
+-                } catch (InterruptedException e) {
+-                }
+-                queue.enqueueFirst(message);
+-            }
+-        });
+-        runner.start();
+-
+-        assertSame(message, queue.dequeue(timeout));
+-    }
+-
+     @Test(timeout = 10000)
+     public void testDequeueReturnsWhenQueueIsStopped() throws InterruptedException {
+         Thread runner = new Thread(new Runnable() {
+@@ -319,7 +284,7 @@ public class FifoMessageQueueTest {
+             @Override
+             public void run() {
+                 try {
+-                    TimeUnit.MILLISECONDS.sleep(100);
++                    TimeUnit.MILLISECONDS.sleep(500);
+                 } catch (InterruptedException e) {
+                 }
+                 queue.stop();
+diff --git a/qpid-jms-client/src/test/java/org/apache/qpid/jms/util/PriorityMessageQueueTest.java b/qpid-jms-client/src/test/java/org/apache/qpid/jms/util/PriorityMessageQueueTest.java
+index b62043e8..1b460923 100644
+--- a/qpid-jms-client/src/test/java/org/apache/qpid/jms/util/PriorityMessageQueueTest.java
++++ b/qpid-jms-client/src/test/java/org/apache/qpid/jms/util/PriorityMessageQueueTest.java
+@@ -285,22 +285,32 @@ public class PriorityMessageQueueTest {
+ 
+     @Test(timeout = 10000)
+     public void testDequeueWaitsUntilMessageArrives() throws InterruptedException {
+-        doDequeueWaitsUntilMessageArrivesTestImpl(-1);
++        final JmsInboundMessageDispatch message = createEnvelope();
++        Thread runner = new Thread(new Runnable() {
++
++            @Override
++            public void run() {
++                try {
++                    TimeUnit.MILLISECONDS.sleep(200);
++                } catch (InterruptedException e) {
++                }
++                queue.enqueueFirst(message);
++            }
++        });
++        runner.start();
++
++        assertSame(message, queue.dequeue(-1));
+     }
+ 
+     @Test(timeout = 10000)
+     public void testDequeueTimedWaitsUntilMessageArrives() throws InterruptedException {
+-        doDequeueWaitsUntilMessageArrivesTestImpl(5000);
+-    }
+-
+-    private void doDequeueWaitsUntilMessageArrivesTestImpl(int timeout) throws InterruptedException {
+         final JmsInboundMessageDispatch message = createEnvelope();
+         Thread runner = new Thread(new Runnable() {
+ 
+             @Override
+             public void run() {
+                 try {
+-                    TimeUnit.MILLISECONDS.sleep(100);
++                    TimeUnit.MILLISECONDS.sleep(500);
+                 } catch (InterruptedException e) {
+                 }
+                 queue.enqueueFirst(message);
+@@ -308,34 +318,25 @@ public class PriorityMessageQueueTest {
+         });
+         runner.start();
+ 
+-        assertSame(message, queue.dequeue(timeout));
++        assertSame(message, queue.dequeue(5000));
+     }
+ 
+     @Test(timeout = 10000)
+     public void testDequeueWaitsUntilMessageArrivesWhenLockNotified() throws InterruptedException {
+-        doDequeueWaitsUntilMessageArrivesWhenLockNotifiedTestImpl(-1);
+-    }
+-
+-    @Test(timeout = 10000)
+-    public void testTimedDequeueWaitsUntilMessageArrivesWhenLockNotified() throws InterruptedException {
+-        doDequeueWaitsUntilMessageArrivesWhenLockNotifiedTestImpl(100000);
+-    }
+-
+-    private void doDequeueWaitsUntilMessageArrivesWhenLockNotifiedTestImpl(int timeout) throws InterruptedException {
+         final JmsInboundMessageDispatch message = createEnvelope();
+         Thread runner = new Thread(new Runnable() {
+ 
+             @Override
+             public void run() {
+                 try {
+-                    TimeUnit.MILLISECONDS.sleep(100);
++                    TimeUnit.MILLISECONDS.sleep(200);
+                 } catch (InterruptedException e) {
+                 }
+                 synchronized (queue.getLock()) {
+                     queue.getLock().notify();
+                 }
+                 try {
+-                    TimeUnit.MILLISECONDS.sleep(100);
++                    TimeUnit.MILLISECONDS.sleep(200);
+                 } catch (InterruptedException e) {
+                 }
+                 queue.enqueueFirst(message);
+@@ -343,7 +344,7 @@ public class PriorityMessageQueueTest {
+         });
+         runner.start();
+ 
+-        assertSame(message, queue.dequeue(timeout));
++        assertSame(message, queue.dequeue(-1));
+     }
+ 
+     @Test(timeout = 10000)
+@@ -353,7 +354,7 @@ public class PriorityMessageQueueTest {
+             @Override
+             public void run() {
+                 try {
+-                    TimeUnit.MILLISECONDS.sleep(100);
++                    TimeUnit.MILLISECONDS.sleep(500);
+                 } catch (InterruptedException e) {
+                 }
+                 queue.stop();

@@ -1,0 +1,3 @@
+org.uberfire.ext.security.management.client.ClientSecurityExceptionMessageResolverTest
+org.uberfire.ext.security.management.client.ClientUserSystemManagerTest
+org.uberfire.ext.security.management.client.editor.user.UserEditorDriverTest

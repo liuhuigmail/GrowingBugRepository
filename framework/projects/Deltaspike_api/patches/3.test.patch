@@ -1,0 +1,38 @@
+diff --git a/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java b/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java
+index 66c288ab..6afdce76 100644
+--- a/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java
++++ b/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java
+@@ -28,6 +28,7 @@ import org.junit.Before;
+ import org.junit.Test;
+ 
+ import java.util.List;
++import java.util.concurrent.TimeUnit;
+ 
+ public class ConfigResolverTest
+ {
+@@ -81,12 +82,6 @@ public class ConfigResolverTest
+         Assert.assertEquals("testvalue", ConfigResolver.getPropertyValue("testkey3", null));
+         Assert.assertEquals("", ConfigResolver.getProjectStageAwarePropertyValue("testkey3"));
+         Assert.assertEquals(DEFAULT_VALUE, ConfigResolver.getProjectStageAwarePropertyValue("testkey3", DEFAULT_VALUE));
+-
+-        Assert.assertEquals(DEFAULT_VALUE, ConfigResolver.getProjectStageAwarePropertyValue("deltaspike.test.projectstagefallback", DEFAULT_VALUE));
+-        Assert.assertEquals("", ConfigResolver.getProjectStageAwarePropertyValue("deltaspike.test.projectstagefallback"));
+-
+-        Assert.assertEquals(DEFAULT_VALUE, ConfigResolver.resolve("deltaspike.test.projectstagefallback").as(String.class).withDefault(DEFAULT_VALUE).withCurrentProjectStage(true).getValue());
+-        Assert.assertEquals("", ConfigResolver.resolve("deltaspike.test.projectstagefallback").as(String.class).withCurrentProjectStage(true).getValue());
+     }
+ 
+     @Test
+diff --git a/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/TestConfigSource.java b/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/TestConfigSource.java
+index e5e4e288..c0f34c77 100644
+--- a/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/TestConfigSource.java
++++ b/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/TestConfigSource.java
+@@ -89,8 +89,6 @@ public class TestConfigSource implements ConfigSource
+         props.put("deltaspike.test.recursive.variable2", "pre-${deltaspike.test.recursive.variable3}-post");
+         props.put("deltaspike.test.recursive.variable3", "crazy");
+ 
+-        props.put("deltaspike.test.projectstagefallback.UnitTest", "");
+-        props.put("deltaspike.test.projectstagefallback", "Value without ProjectStage");
+     }
+ 
+     @Override

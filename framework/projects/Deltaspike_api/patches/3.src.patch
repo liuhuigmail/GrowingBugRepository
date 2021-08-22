@@ -1,0 +1,48 @@
+diff --git a/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java b/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java
+index 778614bf..a2b8ed6a 100644
+--- a/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java
++++ b/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java
+@@ -760,7 +759,6 @@ public final class ConfigResolver
+ 
+         private Class<?> configEntryType = String.class;
+ 
+-        private boolean withDefault = false;
+         private T defaultValue;
+ 
+         private boolean projectStageAware = true;
+@@ -812,7 +810,6 @@ public final class ConfigResolver
+         public TypedResolver<T> withDefault(T value)
+         {
+             defaultValue = value;
+-            withDefault = true;
+             return this;
+         }
+ 
+@@ -826,7 +823,6 @@ public final class ConfigResolver
+             }
+ 
+             defaultValue = convert(value);
+-            withDefault = true;
+             return this;
+         }
+ 
+@@ -902,10 +898,7 @@ public final class ConfigResolver
+             String valueStr = resolveStringValue();
+             T value = convert(valueStr);
+ 
+-            if (withDefault)
+-            {
+                 value = fallbackToDefaultIfEmpty(keyResolved, value, defaultValue);
+-            }
+ 
+             if (logChanges && (value != null && !value.equals(lastValue) || (value == null && lastValue != null)) )
+             {
+@@ -976,7 +969,7 @@ public final class ConfigResolver
+             }
+ 
+             // make initial resolution of longest key
+-            value = getPropertyValue(keyResolved, evaluateVariables);
++            value = getPropertyValue(keyResolved, null, evaluateVariables);
+ 
+             // try fallbacks if not strictly
+             if (value == null && !strictly)

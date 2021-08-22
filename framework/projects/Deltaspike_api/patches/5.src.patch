@@ -1,0 +1,13 @@
+diff --git a/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java b/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java
+index 57d1d085..39616780 100644
+--- a/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java
++++ b/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java
+@@ -1017,7 +1017,7 @@ public final class ConfigResolver
+         {
+             List list = new ArrayList();
+             StringBuilder currentValue = new StringBuilder();
+-            int length = valueStr != null ? valueStr.length() : 0;
++            int length = valueStr.length();
+             for (int i = 0; i < length; i++)
+             {
+                 char c = valueStr.charAt(i);

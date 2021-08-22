@@ -1,0 +1,15 @@
+diff --git a/qpid-jms-client/src/main/java/org/apache/qpid/jms/util/AbstractMessageQueue.java b/qpid-jms-client/src/main/java/org/apache/qpid/jms/util/AbstractMessageQueue.java
+index 0b692909..18f69916 100644
+--- a/qpid-jms-client/src/main/java/org/apache/qpid/jms/util/AbstractMessageQueue.java
++++ b/qpid-jms-client/src/main/java/org/apache/qpid/jms/util/AbstractMessageQueue.java
+@@ -43,9 +43,8 @@ public abstract class AbstractMessageQueue implements MessageQueue {
+                 if (timeout == -1) {
+                     lock.wait();
+                 } else {
+-                    long start = System.currentTimeMillis();
+                     lock.wait(timeout);
+-                    timeout = Math.max(timeout + start - System.currentTimeMillis(), 0);
++                    break;
+                 }
+             }
+ 

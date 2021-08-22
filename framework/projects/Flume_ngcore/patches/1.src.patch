@@ -1,0 +1,13 @@
+diff --git a/flume-ng-core/src/main/java/org/apache/flume/source/SyslogUtils.java b/flume-ng-core/src/main/java/org/apache/flume/source/SyslogUtils.java
+index 4cded116..a660d025 100644
+--- a/flume-ng-core/src/main/java/org/apache/flume/source/SyslogUtils.java
++++ b/flume-ng-core/src/main/java/org/apache/flume/source/SyslogUtils.java
+@@ -196,7 +196,7 @@ public class SyslogUtils {
+     if(!isBadEvent){
+       pri = Integer.parseInt(prio.toString());
+       sev = pri % 8;
+-      facility = pri / 8;
++      facility = pri - sev;
+       formatHeaders();
+     }
+ 

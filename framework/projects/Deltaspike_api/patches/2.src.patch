@@ -1,0 +1,23 @@
+diff --git a/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java b/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java
+index a2b8ed6a..98de4f12 100644
+--- a/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java
++++ b/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/api/config/ConfigResolver.java
+@@ -900,16 +900,16 @@ public final class ConfigResolver
+ 
+             value = fallbackToDefaultIfEmpty(keyResolved, value, defaultValue);
+ 
+-            if (logChanges && (value != null && !value.equals(lastValue) || (value == null && lastValue != null)) )
++            if (logChanges && (value != null && lastValue == null || !value.equals(lastValue)) )
+             {
+                 LOG.log(Level.INFO, "New value {0} for key {1}.",
+                     new Object[]{filterConfigValueForLog(keyOriginal, valueStr), keyOriginal});
+             }
+ 
+-            lastValue = value;
+ 
+             if (cacheTimeMs > 0)
+             {
++                lastValue = value;
+                 reloadAfter = now + cacheTimeMs;
+             }
+ 

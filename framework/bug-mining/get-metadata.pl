@@ -319,6 +319,9 @@ sub _export_relevant_tests {
         if ($test =~ /\.properties/){
             next;
         }
+        if ($test =~ /\.xsl/){
+            next;
+        }
         
         if ($test =~ /\.java\.bak/){
             next;

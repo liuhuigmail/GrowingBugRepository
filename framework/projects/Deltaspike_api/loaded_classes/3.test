@@ -1,0 +1,3 @@
+org.apache.deltaspike.test.api.config.ConfigResolverTest
+org.apache.deltaspike.test.api.config.TestConfigSource
+org.apache.deltaspike.test.api.config.TestConfigSourceProvider

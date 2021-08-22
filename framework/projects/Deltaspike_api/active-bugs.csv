@@ -1,0 +1,7 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,6e62f8eb3048fdffd2ce5fef53d6e338d4c05747,b4dd2ba9c18de97a70bda142d4dcb1adee3792fc,DELTASPIKE-781,https://issues.apache.org/jira/browse/DELTASPIKE-781
+2,07f5199529a0e2cdb6dfbda20e4b16f060378b84,e60776cc76c12e10b214db5950fcbf0d80f883e3,DELTASPIKE-1139,https://issues.apache.org/jira/browse/DELTASPIKE-1139
+3,138eec6167cf7cfa428d3dab78a7b870eb72920d,c25a89f1dd0ab8654396acedb60e1e1975386a41,DELTASPIKE-1147,https://issues.apache.org/jira/browse/DELTASPIKE-1147
+4,0596f9db2cc9344ab76a9cbc610f2f527e4e3373,7215f7b7fdea436017c8a331d5468dc8fc5c7145,DELTASPIKE-1208,https://issues.apache.org/jira/browse/DELTASPIKE-1208
+5,618dd99b6861c80250d2724208e77807c14b5f32,651c9a56937f8da2f92859bf5720362459bc3202,DELTASPIKE-1287,https://issues.apache.org/jira/browse/DELTASPIKE-1287
+6,1af137d843c9ba2e07015e654a4d84b59fc2a738,b5f94113b15716e7fed81ea643f3948040079422,DELTASPIKE-1317,https://issues.apache.org/jira/browse/DELTASPIKE-1317

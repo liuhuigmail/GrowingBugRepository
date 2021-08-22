@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1254`** bugs
+ **`1284`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -109,6 +109,16 @@ from open-source Java projects.
 | 98     | Jbpm_human_task_workitems            | jbpm-human-task-workitems |  jbpm-human-task/jbpm-human-task-workitems       |       1     | 1              |
 | 99     | Drools_traits            | drools-traits |  drools-traits       |       1     | 1              |
 | 100     | Drools_model_compiler            | drools-model-compiler |  drools-model/drools-model-compiler       |       1     | 1              |
+| 101     | Appformer_uberfire_security_management_client            | uberfire-security-management-client | uberfire-extensions/uberfire-security/uberfire-security-management/uberfire-security-management-client  |       1     | 1              |
+| 102     | Appformer_uberfire_workbench_client            | uberfire-workbench-client |  uberfire-workbench/uberfire-workbench-client       |       3     | 1-3              |
+| 103     | Deltaspike_api            | deltaspike-core-api |  deltaspike/core/api       |       6     | 1-6              |
+| 104     | Flume_ngcore            | flume-ng-core |  flume-ng-core       |       2     | 1-2              |
+| 105     | Jandex            | jandex |         |       6     | 1-6              |
+| 106     | Kogito_editors_java_kie_wb_common_stunner_widgets            | kie-wb-common-stunner-widgets |  kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets       |       1     | 1              |
+| 107     | Ognl            | commons-ognl |         |       1     | 1              |
+| 108     | Qpid_client            | qpid-jms-client |  qpid-jms-client       |       8     | 1-8              |
+| 109     | Switchyard_admin            | switchyard-admin |  admin       |       1     | 1              |
+| 110     | Weld_se_core            | weld-se-core |  environments/se/core       |       1     | 1              |
 # Setting up GrowingBugs
 
 ## Requirements

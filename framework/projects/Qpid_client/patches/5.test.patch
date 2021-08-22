@@ -1,0 +1,109 @@
+diff --git a/qpid-jms-client/src/test/java/org/apache/qpid/jms/integration/ConsumerIntegrationTest.java b/qpid-jms-client/src/test/java/org/apache/qpid/jms/integration/ConsumerIntegrationTest.java
+index 9388755c..75fe3735 100644
+--- a/qpid-jms-client/src/test/java/org/apache/qpid/jms/integration/ConsumerIntegrationTest.java
++++ b/qpid-jms-client/src/test/java/org/apache/qpid/jms/integration/ConsumerIntegrationTest.java
+@@ -20,16 +20,13 @@ package org.apache.qpid.jms.integration;
+ 
+ import static org.hamcrest.Matchers.equalTo;
+ import static org.hamcrest.Matchers.notNullValue;
+-import static org.junit.Assert.assertEquals;
+ import static org.junit.Assert.assertNotNull;
+-import static org.junit.Assert.assertNull;
+ import static org.junit.Assert.assertTrue;
+ import static org.junit.Assert.fail;
+ 
+ import java.io.IOException;
+ import java.util.concurrent.CountDownLatch;
+ import java.util.concurrent.TimeUnit;
+-import java.util.concurrent.atomic.AtomicInteger;
+ 
+ import javax.jms.Connection;
+ import javax.jms.IllegalStateException;
+@@ -48,7 +45,6 @@ import org.apache.qpid.jms.test.testpeer.AmqpPeerRunnable;
+ import org.apache.qpid.jms.test.testpeer.TestAmqpPeer;
+ import org.apache.qpid.jms.test.testpeer.basictypes.AmqpError;
+ import org.apache.qpid.jms.test.testpeer.describedtypes.sections.AmqpValueDescribedType;
+-import org.apache.qpid.jms.test.testpeer.matchers.AcceptedMatcher;
+ import org.apache.qpid.jms.test.testpeer.matchers.ModifiedMatcher;
+ import org.apache.qpid.jms.test.testpeer.matchers.ReleasedMatcher;
+ import org.apache.qpid.proton.amqp.DescribedType;
+@@ -351,78 +347,11 @@ public class ConsumerIntegrationTest extends QpidJmsTestCase {
+ 
+             try {
+                 consumer.receiveNoWait();
++
+                 fail("An exception should have been thrown");
+             } catch (JMSException jmse) {
+                 // Expected
+             }
+         }
+     }
+-
+-    @Test(timeout=20000)
+-    public void testSetMessageListenerAfterStartAndSend() throws Exception {
+-        final AtomicInteger counter = new AtomicInteger(0);
+-        final CountDownLatch done = new CountDownLatch(1);
+-
+-        try (TestAmqpPeer testPeer = new TestAmqpPeer();) {
+-            Connection connection = testFixture.establishConnecton(testPeer);
+-            connection.start();
+-
+-            testPeer.expectBegin();
+-
+-            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+-            Queue destination = session.createQueue(getTestName());
+-            connection.start();
+-
+-            final int messageCount = 4;
+-            testPeer.expectReceiverAttach();
+-            testPeer.expectLinkFlowRespondWithTransfer(null, null, null, null, new AmqpValueDescribedType("content"), messageCount);
+-
+-            MessageConsumer consumer = session.createConsumer(destination);
+-
+-            for (int i = 0; i < messageCount; i++) {
+-                testPeer.expectDisposition(true, new AcceptedMatcher());
+-            }
+-
+-            testPeer.expectDetach(true, true, true);
+-
+-            consumer.setMessageListener(new MessageListener() {
+-                @Override
+-                public void onMessage(Message m) {
+-                    LOG.debug("Async consumer got Message: {}", m);
+-                    counter.incrementAndGet();
+-                    if (counter.get() == messageCount) {
+-                        done.countDown();
+-                    }
+-                }
+-            });
+-
+-            assertTrue(done.await(1000, TimeUnit.MILLISECONDS));
+-            assertEquals(messageCount, counter.get());
+-
+-            consumer.close();
+-
+-            testPeer.waitForAllHandlersToComplete(2000);
+-        }
+-    }
+-
+-    @Test //(timeout=20000)
+-    public void testNoReceivedMessagesWhenConnectionNotStarted() throws Exception {
+-        try (TestAmqpPeer testPeer = new TestAmqpPeer();) {
+-            Connection connection = testFixture.establishConnecton(testPeer);
+-
+-            testPeer.expectBegin();
+-
+-            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+-            Queue destination = session.createQueue(getTestName());
+-
+-            testPeer.expectReceiverAttach();
+-            testPeer.expectLinkFlowRespondWithTransfer(null, null, null, null, new AmqpValueDescribedType("content"), 3);
+-
+-            MessageConsumer consumer = session.createConsumer(destination);
+-
+-            assertNull(consumer.receive(500));
+-
+-            testPeer.waitForAllHandlersToComplete(2000);
+-        }
+-    }
+ }

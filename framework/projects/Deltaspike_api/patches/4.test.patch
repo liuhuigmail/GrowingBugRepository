@@ -1,0 +1,53 @@
+diff --git a/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java b/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java
+index be24c623..54e47ac5 100644
+--- a/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java
++++ b/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/ConfigResolverTest.java
+@@ -197,27 +197,15 @@ public class ConfigResolverTest
+     }
+     
+     @Test
+-    public void testProjectStageAwarePropertyValueReference_1() {
+-        final String expectedFooUrl =
+-                "http://bar-dev/services";
+-
+-        final String actualFooUrl =
+-                ConfigResolver.getProjectStageAwarePropertyValue(
+-                "foo.url");
+-
+-        Assert.assertEquals(expectedFooUrl, actualFooUrl);
+-    }
+-
+-    @Test
+-    public void testProjectStageAwarePropertyValueReference_2() {
+-        final String expected =
++    public void testProjectStageAwarePropertyValueReference() {
++        final String expected = 
+                 "projectStageAware-exampleEntry-1-is-tomato-UnitTest";
+-
+-        final String projectStageAwareExampleEntry1 =
++        
++        final String projectStageAwareExampleEntry1 = 
+                 ConfigResolver.getProjectStageAwarePropertyValue(
+                 "deltaspike.test.exampleEntry-2", 
+                 "");
+-
++        
+         Assert.assertEquals(expected, projectStageAwareExampleEntry1);
+     }
+ 
+diff --git a/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/TestConfigSource.java b/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/TestConfigSource.java
+index ad177b0c..4798f67a 100644
+--- a/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/TestConfigSource.java
++++ b/deltaspike/core/api/src/test/java/org/apache/deltaspike/test/api/config/TestConfigSource.java
+@@ -93,11 +93,6 @@ public class TestConfigSource implements ConfigSource
+         props.put("deltaspike.test.projectstagefallback", "Value without ProjectStage");
+         
+         // ProjectStage aware property value with resolved reference
+-        props.put("foo.url", "${bar.url}/services");
+-        props.put("bar.url", "undefined");
+-        props.put("bar.url.UnitTest", "http://bar-dev");
+-        props.put("bar.url.Production", "http://bar-prod");
+-
+         props.put("deltaspike.test.exampleEntry-1", "tomato");
+         props.put("deltaspike.test.exampleEntry-1.UnitTest", "tomato-UnitTest");
+         props.put("deltaspike.test.exampleEntry-2", "default-exampleEntry-1-is-${deltaspike.test.exampleEntry-1}");

@@ -1,0 +1,13 @@
+diff --git a/qpid-jms-client/src/test/java/org/apache/qpid/jms/provider/failover/FailoverIntegrationTest.java b/qpid-jms-client/src/test/java/org/apache/qpid/jms/provider/failover/FailoverIntegrationTest.java
+index fdb95d4c..e1060088 100644
+--- a/qpid-jms-client/src/test/java/org/apache/qpid/jms/provider/failover/FailoverIntegrationTest.java
++++ b/qpid-jms-client/src/test/java/org/apache/qpid/jms/provider/failover/FailoverIntegrationTest.java
+@@ -281,7 +281,7 @@ public class FailoverIntegrationTest extends QpidJmsTestCase {
+             originalPeer.dropAfterLastHandler();
+ 
+             final JmsConnection connection = establishAnonymousConnecton(
+-                "failover.initialReconnectDelay=1&failover.reconnectDelay=600&failover.maxReconnectAttempts=10",
++                "?failover.initialReconnectDelay=1&failover.reconnectDelay=600&failover.maxReconnectAttempts=10",
+                 originalPeer, finalPeer);
+             connection.addConnectionListener(new JmsDefaultConnectionListener() {
+                 @Override

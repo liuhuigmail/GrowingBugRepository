@@ -1,0 +1,22 @@
+diff --git a/uberfire-workbench/uberfire-workbench-client/src/test/java/org/uberfire/client/workbench/panels/impl/PlaceManagerTest.java b/uberfire-workbench/uberfire-workbench-client/src/test/java/org/uberfire/client/workbench/panels/impl/PlaceManagerTest.java
+index 5364d703a..e10e1a82d 100644
+--- a/uberfire-workbench/uberfire-workbench-client/src/test/java/org/uberfire/client/workbench/panels/impl/PlaceManagerTest.java
++++ b/uberfire-workbench/uberfire-workbench-client/src/test/java/org/uberfire/client/workbench/panels/impl/PlaceManagerTest.java
+@@ -422,17 +422,6 @@ public class PlaceManagerTest {
+         assertFalse(placeManager.getActivePlaceRequests().contains(kansas));
+     }
+ 
+-    @Test
+-    public void testClosePlaceAlwaysCloseActivityBeforeDestroy() {
+-        when(kansasActivity.isType(any())).thenReturn(false);
+-
+-        placeManager.closePlace(kansas);
+-
+-        InOrder inOrder = inOrder(activityManager, kansasActivity);
+-        inOrder.verify(kansasActivity).onClose();
+-        inOrder.verify(activityManager).destroyActivity(kansasActivity);
+-    }
+-
+     @Test
+     public void testCanceledCloseExistingScreenActivity() throws Exception {
+         when(kansasActivity.onMayClose()).thenReturn(false);

@@ -1,0 +1,4 @@
+--- org.apache.flume.sink.TestAvroSink::testProcess
+--- org.apache.flume.sink.TestAvroSink::testLifecycle
+--- org.apache.flume.sink.TestAvroSink::testFailedConnect
+--- org.apache.flume.source.TestExecSource::testShutdown

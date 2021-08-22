@@ -1,0 +1,13 @@
+diff --git a/qpid-jms-client/src/main/java/org/apache/qpid/jms/JmsMessageConsumer.java b/qpid-jms-client/src/main/java/org/apache/qpid/jms/JmsMessageConsumer.java
+index 98a2bc5f..e347f1c9 100644
+--- a/qpid-jms-client/src/main/java/org/apache/qpid/jms/JmsMessageConsumer.java
++++ b/qpid-jms-client/src/main/java/org/apache/qpid/jms/JmsMessageConsumer.java
+@@ -675,7 +675,7 @@ public class JmsMessageConsumer implements MessageConsumer, JmsMessageAvailableC
+      * @param forcePull TODO
+      */
+     protected void performPullIfRequired(long timeout, boolean forcePull) throws JMSException {
+-        if ((isPullConsumer() || forcePull) && messageQueue.isRunning() && messageQueue.isEmpty()) {
++        if ((isPullConsumer() || forcePull) && !messageQueue.isClosed() && messageQueue.isEmpty()) {
+             connection.pull(getConsumerId(), timeout);
+         }
+     }

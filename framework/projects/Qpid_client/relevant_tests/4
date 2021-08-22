@@ -1,0 +1,6 @@
+org.apache.qpid.jms.provider.failover.FailoverIntegrationTest
+org.apache.qpid.jms.provider.failover.FailoverProviderClosedTest
+org.apache.qpid.jms.provider.failover.FailoverProviderOfflineBehaviorTest
+org.apache.qpid.jms.provider.failover.FailoverProviderTest
+org.apache.qpid.jms.provider.failover.FailoverRedirectTest
+org.apache.qpid.jms.provider.failover.FiloverProviderFactoryTest

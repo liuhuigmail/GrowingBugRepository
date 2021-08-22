@@ -1,0 +1,12 @@
+diff --git a/qpid-jms-client/src/main/java/org/apache/qpid/jms/message/JmsMessage.java b/qpid-jms-client/src/main/java/org/apache/qpid/jms/message/JmsMessage.java
+index fb788fe3..4fb1df95 100644
+--- a/qpid-jms-client/src/main/java/org/apache/qpid/jms/message/JmsMessage.java
++++ b/qpid-jms-client/src/main/java/org/apache/qpid/jms/message/JmsMessage.java
+@@ -249,7 +249,6 @@ public class JmsMessage implements javax.jms.Message {
+     @Override
+     public void clearProperties() throws JMSException {
+         JmsMessagePropertyIntercepter.clearProperties(facade, true);
+-        setReadOnlyProperties(false);
+     }
+ 
+     @Override

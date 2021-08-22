@@ -1,0 +1,6 @@
+org.jboss.jandex.test.AnnotationInstanceFilterTestCase
+org.jboss.jandex.test.BasicTestCase
+org.jboss.jandex.test.BoundedWildcardTestCase
+org.jboss.jandex.test.CompositeTestCase
+org.jboss.jandex.test.DotNameTestCase
+org.jboss.jandex.test.TypeAnnotationTestCase

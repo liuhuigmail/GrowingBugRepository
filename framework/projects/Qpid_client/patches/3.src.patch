@@ -1,0 +1,24 @@
+diff --git a/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java b/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
+index 33cc1edb..b9d5fcb8 100644
+--- a/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
++++ b/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
+@@ -91,7 +91,6 @@ public class FailoverProvider extends DefaultProviderListener implements Provide
+     private final AtomicReference<JmsMessageFactory> messageFactory = new AtomicReference<JmsMessageFactory>();
+ 
+     // Current state of connection / reconnection
+-    private boolean firstAttempt = true;
+     private boolean firstConnection = true;
+     private long reconnectAttempts;
+     private long nextReconnectDelay = -1;
+@@ -618,10 +617,8 @@ public class FailoverProvider extends DefaultProviderListener implements Provide
+                     return;
+                 }
+ 
+-                boolean first = firstAttempt;
+-                firstAttempt = false;
+ 
+-                if (!delayed && !first && initialReconnectDelay > 0 && reconnectAttempts == 0) {
++                if (!delayed && initialReconnectDelay > 0 && reconnectAttempts == 0) {
+                     delayed = true;
+                     LOG.trace("Delayed initial reconnect attempt will be in {} milliseconds", initialReconnectDelay);
+                     connectionHub.schedule(this, initialReconnectDelay, TimeUnit.MILLISECONDS);

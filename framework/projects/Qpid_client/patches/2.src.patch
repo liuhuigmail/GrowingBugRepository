@@ -1,0 +1,23 @@
+diff --git a/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java b/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
+index b9d5fcb8..5c4ef135 100644
+--- a/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
++++ b/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
+@@ -604,8 +604,7 @@ public class FailoverProvider extends DefaultProviderListener implements Provide
+         }
+ 
+         connectionHub.execute(new Runnable() {
+-            boolean delayed = false;
+ 
+             @Override
+             public void run() {
+                 if (provider != null || closingConnection.get() || closed.get() || failed.get()) {
+@@ -617,8 +615,7 @@ public class FailoverProvider extends DefaultProviderListener implements Provide
+                     return;
+                 }
+ 
+-                if (!delayed && initialReconnectDelay > 0 && reconnectAttempts == 0) {
+-                    delayed = true;
++                if (initialReconnectDelay > 0 && reconnectAttempts == 0) {
+                     LOG.trace("Delayed initial reconnect attempt will be in {} milliseconds", initialReconnectDelay);
+                     connectionHub.schedule(this, initialReconnectDelay, TimeUnit.MILLISECONDS);
+                     return;

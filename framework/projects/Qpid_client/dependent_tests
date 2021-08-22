@@ -1,0 +1,2 @@
+--- org.apache.qpid.jms.integration.SessionIntegrationTest::testAsyncDeliveryOrder
+--- org.apache.qpid.jms.integration.ConsumerIntegrationTest::testConsumerTimedReceiveThrowsIfConnectionLost

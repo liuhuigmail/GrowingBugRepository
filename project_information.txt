@@ -80,3 +80,17 @@ https://github.com/kiegroup/drools.git	kie-memory-compiler
 https://github.com/kiegroup/jbpm.git	jbpm-human-task-workitems
 https://github.com/kiegroup/drools.git	drools-traits
 https://github.com/kiegroup/drools.git	drools-model-compiler
+https://github.com/kiegroup/appformer.git	uberfire-security-management-client
+https://github.com/kiegroup/appformer.git	uberfire-workbench-client
+https://github.com/apache/deltaspike.git	deltaspike-core-api
+https://github.com/apache/flume.git	flume-ng-core
+https://github.com/wildfly/jandex.git	jandex
+https://github.com/kiegroup/kogito-editors-java.git	kie-wb-common-stunner-widgets
+https://github.com/apache/commons-ognl.git	commons-ognl
+https://github.com/apache/qpid-jms.git	qpid-jms-client
+https://github.com/jboss-switchyard/core.git	switchyard-admin
+https://github.com/weld/core.git	weld-se-core
+
+
+
+

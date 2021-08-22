@@ -1,0 +1,20 @@
+diff --git a/flume-ng-core/src/main/java/org/apache/flume/client/avro/SpoolingFileLineReader.java b/flume-ng-core/src/main/java/org/apache/flume/client/avro/SpoolingFileLineReader.java
+index b37b7303..abd2f61b 100644
+--- a/flume-ng-core/src/main/java/org/apache/flume/client/avro/SpoolingFileLineReader.java
++++ b/flume-ng-core/src/main/java/org/apache/flume/client/avro/SpoolingFileLineReader.java
+@@ -306,14 +305,8 @@ public class SpoolingFileLineReader implements LineReader {
+     } else {
+       Collections.sort(candidateFiles, new Comparator<File>() {
+         public int compare(File a, File b) {
+-          int timeComparison = new Long(a.lastModified()).compareTo(
++          return new Long(a.lastModified()).compareTo(
+               new Long(b.lastModified()));
+-          if (timeComparison != 0) {
+-            return timeComparison;
+-          }
+-          else {
+-            return a.getName().compareTo(b.getName());
+-          }
+         }
+       });
+       File nextFile = candidateFiles.get(0);

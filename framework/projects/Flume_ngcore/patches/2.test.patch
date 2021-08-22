@@ -1,0 +1,13 @@
+diff --git a/flume-ng-core/src/test/java/org/apache/flume/client/avro/TestSpoolingFileLineReader.java b/flume-ng-core/src/test/java/org/apache/flume/client/avro/TestSpoolingFileLineReader.java
+index 8463176b..9f84d9f4 100644
+--- a/flume-ng-core/src/test/java/org/apache/flume/client/avro/TestSpoolingFileLineReader.java
++++ b/flume-ng-core/src/test/java/org/apache/flume/client/avro/TestSpoolingFileLineReader.java
+@@ -399,7 +399,7 @@ public class TestSpoolingFileLineReader {
+     List<File> outFiles = Lists.newArrayList(tmpDir.listFiles());
+     assertEquals(2, outFiles.size());
+     assertTrue(outFiles.contains(
+-        new File(tmpDir + "/file1" + completedSuffix)));
++        new File(tmpDir + "/file1")));
+     assertTrue(outFiles.contains(
+         new File(tmpDir + "/file2" + completedSuffix)));
+   }

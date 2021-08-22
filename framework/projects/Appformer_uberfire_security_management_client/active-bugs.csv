@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,0df68ea67304750409a1fb1a375c2cc2d426526d,e9ef4b415905a1e85184b0a4eda2b8c858c04270,AF-483,https://issues.redhat.com/browse/AF-483

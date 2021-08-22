@@ -1,0 +1,13 @@
+org.switchyard.admin.Application
+org.switchyard.admin.base.BaseApplication
+org.switchyard.admin.base.BaseComponentReference
+org.switchyard.admin.base.BaseComponentService
+org.switchyard.admin.base.BaseService
+org.switchyard.admin.base.BaseSwitchYard
+org.switchyard.admin.base.MessageMetricsSupport
+org.switchyard.admin.base.SwitchYardBuilder
+org.switchyard.admin.ComponentReference
+org.switchyard.admin.ComponentService
+org.switchyard.admin.MessageMetrics
+org.switchyard.admin.Service
+org.switchyard.admin.SwitchYard
