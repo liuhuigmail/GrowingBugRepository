@@ -109,7 +109,7 @@ from open-source Java projects.
 | 98     | Jbpm_human<br/>_task_workitems            | jbpm-human-task-workitems |  jbpm-human-task/jbpm-human-task-workitems       |       1     | 1              |
 | 99     | Drools_traits            | drools-traits |  drools-traits       |       1     | 1              |
 | 100     | Drools_model_compiler            | drools-model-compiler |  drools-model/drools-model-compiler       |       1     | 1              |
-| 101     | Appformer_uberfire<br/>_security_management_client            | uberfire-security-management-client | uberfire-extensions/uberfire-security/uberfire-security-management/uberfire-security-management-client  |       1     | 1              |
+| 101     | Appformer_uberfire<br/>_security_management</br>_client            | uberfire-security-management-client | uberfire-extensions/uberfire-security/uberfire-security-management/uberfire-security-management-client  |       1     | 1              |
 | 102     | Appformer_uberfire<br/>_workbench_client            | uberfire-workbench-client |  uberfire-workbench/uberfire-workbench-client       |       3     | 1-3              |
 | 103     | Deltaspike_api            | deltaspike-core-api |  deltaspike/core/api       |       6     | 1-6              |
 | 104     | Flume_ngcore            | flume-ng-core |  flume-ng-core       |       2     | 1-2              |
