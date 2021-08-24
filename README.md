@@ -18,33 +18,33 @@ from open-source Java projects.
 | 7     | Csv             | commons-csv                |                           |       17       | 1-17                |
 | 8     | Gson            | gson                       |                           |       18       | 1-18                |
 | 9     | JacksonCore     | jackson-core               |                           |       29       | 1-26,28-30                |
-| 10     | JacksonDatabind | jackson-databind           |                          |      151       | 1-117,119,121-126,128-129,131-133,135-156               |
+| 10     | JacksonDatabind | jackson-databind           |                          |      151       | 1-117,119,121-126,</br>128-129,131-133,135-156               |
 | 11     | JacksonXml      | jackson-dataformat-xml     |                          |        12       | 1-12                 |
 | 12    | Jsoup           | jsoup                      |                           |       93       | 1-93                |
 | 13     | JxPath          | commons-jxpath             |                          |       22       | 1-22                |
-| 14     | Lang            | commons-lang               |                          |       73       | 1,3-65,69,71,73,76,80-84              |
+| 14     | Lang            | commons-lang               |                          |       73       | 1,3-65,69,71,73,</br>76,80-84              |
 | 15     | Math            | commons-math               |                          |      142       | 1-142               |
 | 16     | Mockito         | mockito                    |                          |       38       | 1-38                |
 | 17     | Time            | joda-time                  |                          |       26       | 1-20,22-27          |
 | 18     | Dbutils         | commons-dbutils            |                          |        2       | 1-2                 |
 | 19     | Functor         | commons-functor            |                          |        2       | 1-2                 |
 | 20     | Imaging         | commons-imaging            |                          |        10      | 1,3-8,10-11,14  |
-| 21     | IO              | commons-io                 |                          |        21       | 1-3,5-6,8-18,22,25,27,29-30                |
+| 21     | IO              | commons-io                 |                          |        21       | 1-3,5-6,8-18,</br>22,25,27,29-30                |
 | 22     | JXR             | maven-jxr                  |                          |        1       | 1                   |
 | 23     | MShade          | maven-shade-plugin         |                          |        6       | 1-4,6-7                 |
 | 24     | Tika            | tika                       |                          |        5       | 1-2,5-7               |
-| 25     | Validator       | commons-validator          |                          |        21      | 1-2,4,6-9,11,13-25 |
-| 26     | Pool            | commons-pool               |                          |        19      | 1-2,4-7,10-14,16,20-21,24,26-27,29-30|
+| 25     | Validator       | commons-validator          |                          |        21      | 1-2,4,6-9,11,</br>13-25 |
+| 26     | Pool            | commons-pool               |                          |        19      | 1-2,4-7,10-14,</br>16,20-21,24,</br>26-27,29-30|
 | 27     | Email           | commons-email              |                          |        4       | 2-5                 |
 | 28     | Graph           | commons-graph              |                          |        3       | 1-3                 |
-| 29     | Net             | commons-net                |                          |        18      | 1,3,5,7,9,10,12,14-18,20-21,23-26             |
+| 29     | Net             | commons-net                |                          |        18      | 1,3,5,7,9,10,12,</br>14-18,20-21,</br>23-26             |
 | 30     | Numbers_angle   | commons-numbers-angle            |  commons-numbers-angle         |        2       | 1-2               |
 | 31     | Geometry_core   | commons-geometry-core           |    commons-geometry-core |        2       | 1,3               |
 | 32     | MGpg            | maven-gpg-plugin           ||        1       | 1               |
 | 33     | Text            | commons-text               ||        4       | 1-2,4-5               |
-| 34     | Tika_core            | tika-core               |  tika-core |        6       | 4,6,9,11,17,20               |
+| 34     | Tika_core            | tika-core               |  tika-core |        6       | 4,6,9,11,</br>17,20               |
 | 35     | Tika_app            | tika-app               |   tika-app     |        2       | 1,3               |
-| 36     | Shiro_core            | shiro-core               |      core      |        9       | 37,40,46,52,98,144,176,181,202               |
+| 36     | Shiro_core            | shiro-core               |      core      |        9       | 37,40,46,52,98,</br>144,176,181,202               |
 | 37     | Jena_core            | jena-core               |    jena-core   |        1       | 2               |
 | 38     | Shiro_web            | shiro-web               |        web      |        3       | 1,3,7               |
 | 39     | MDeploy            | maven-deploy-plugin               |              |        1       | 1               |
