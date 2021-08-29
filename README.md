@@ -18,37 +18,37 @@ from open-source Java projects.
 | 7     | Csv             | commons-csv                |                           |       17       | 1-17                |
 | 8     | Gson            | gson                       |                           |       18       | 1-18                |
 | 9     | JacksonCore     | jackson-core               |                           |       29       | 1-26,28-30                |
-| 10     | JacksonDatabind | jackson-databind           |                          |      151       | 1-117,119,121-126,128-129,131-133,135-156               |
+| 10     | JacksonDatabind | jackson-databind           |                          |      151       | 1-117,119,121-126,</br>128-129,131-133,135-156               |
 | 11     | JacksonXml      | jackson-dataformat-xml     |                          |        12       | 1-12                 |
 | 12    | Jsoup           | jsoup                      |                           |       93       | 1-93                |
 | 13     | JxPath          | commons-jxpath             |                          |       22       | 1-22                |
-| 14     | Lang            | commons-lang               |                          |       73       | 1,3-65,69,71,73,76,80-84              |
+| 14     | Lang            | commons-lang               |                          |       73       | 1,3-65,69,71,73,</br>76,80-84              |
 | 15     | Math            | commons-math               |                          |      142       | 1-142               |
 | 16     | Mockito         | mockito                    |                          |       38       | 1-38                |
 | 17     | Time            | joda-time                  |                          |       26       | 1-20,22-27          |
 | 18     | Dbutils         | commons-dbutils            |                          |        2       | 1-2                 |
 | 19     | Functor         | commons-functor            |                          |        2       | 1-2                 |
 | 20     | Imaging         | commons-imaging            |                          |        10      | 1,3-8,10-11,14  |
-| 21     | IO              | commons-io                 |                          |        21       | 1-3,5-6,8-18,22,25,27,29-30                |
+| 21     | IO              | commons-io                 |                          |        21       | 1-3,5-6,8-18,</br>22,25,27,29-30                |
 | 22     | JXR             | maven-jxr                  |                          |        1       | 1                   |
 | 23     | MShade          | maven-shade-plugin         |                          |        6       | 1-4,6-7                 |
 | 24     | Tika            | tika                       |                          |        5       | 1-2,5-7               |
-| 25     | Validator       | commons-validator          |                          |        21      | 1-2,4,6-9,11,13-25 |
-| 26     | Pool            | commons-pool               |                          |        19      | 1-2,4-7,10-14,16,20-21,24,26-27,29-30|
+| 25     | Validator       | commons-validator          |                          |        21      | 1-2,4,6-9,11,</br>13-25 |
+| 26     | Pool            | commons-pool               |                          |        19      | 1-2,4-7,10-14,</br>16,20-21,24,</br>26-27,29-30|
 | 27     | Email           | commons-email              |                          |        4       | 2-5                 |
 | 28     | Graph           | commons-graph              |                          |        3       | 1-3                 |
-| 29     | Net             | commons-net                |                          |        18      | 1,3,5,7,9,10,12,14-18,20-21,23-26             |
+| 29     | Net             | commons-net                |                          |        18      | 1,3,5,7,9,10,12,</br>14-18,20-21,</br>23-26             |
 | 30     | Numbers_angle   | commons-numbers-angle            |  commons-numbers-angle         |        2       | 1-2               |
 | 31     | Geometry_core   | commons-geometry-core           |    commons-geometry-core |        2       | 1,3               |
 | 32     | MGpg            | maven-gpg-plugin           ||        1       | 1               |
 | 33     | Text            | commons-text               ||        4       | 1-2,4-5               |
-| 34     | Tika_core            | tika-core               |  tika-core |        6       | 4,6,9,11,17,20               |
+| 34     | Tika_core            | tika-core               |  tika-core |        6       | 4,6,9,11,</br>17,20               |
 | 35     | Tika_app            | tika-app               |   tika-app     |        2       | 1,3               |
-| 36     | Shiro_core            | shiro-core               |      core      |        9       | 37,40,46,52,98,144,176,181,202               |
+| 36     | Shiro_core            | shiro-core               |      core      |        9       | 37,40,46,52,98,</br>144,176,181,202               |
 | 37     | Jena_core            | jena-core               |    jena-core   |        1       | 2               |
 | 38     | Shiro_web            | shiro-web               |        web      |        3       | 1,3,7               |
 | 39     | MDeploy            | maven-deploy-plugin               |              |        1       | 1               |
-| 40     | Jackrabbit_filevault_vault_validation | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
+| 40     | Jackrabbit_filevault<br/>_vault_validation | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
 | 41     | Jackrabbit_oak_core            | oak-core               |       oak-core       |        2       | 1-2               |
 | 42     | Doxia_module_apt            | doxia-module-apt               |   doxia-modules/doxia-module-apt       |       1       | 1               |
 | 43     | HttpCore5            | httpcore5               |       httpcore5       |        1       | 1               |
@@ -58,22 +58,22 @@ from open-source Java projects.
 | 47     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        5       | 1-5               |
 | 48     | AaltoXml            | aalto-xml      |             |        4       | 1-4               |
 | 49     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-7               |
-| 50     | jackson_modules_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |
+| 50     | jackson_modules<br/>_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |
 | 51     | Pdfbox_pdfbox         | pdfbox-pdfbox |    pdfbox    |        3      | 1-3               |
 | 52     | Storm_client            | storm-client      |       storm-client      |        2       | 1-2              |
 | 53     | James_mime4j_core            | James-mime4j-core |      core   |       8     | 1-8              |
-| 54     | JacksonDataformatsText_yaml            | jackson-dataformats-text-yaml |      yaml   |       7     | 1-7              |
-| 55     | JacksonDataformatsText_properties            | jackson-dataformats-text-properties |      properties   |       2     | 1-2              |
-| 56     | JacksonDataformatBinary_avro            | jackson-dataformats-binary-avro |      avro   |       2     | 1-2              |
-| 57     | JacksonDataformatBinary_cbor            | jackson-dataformats-binary-cbor |      cbor   |       5     | 1-5              |
+| 54     | JacksonDataformatsText<br/>_yaml            | jackson-dataformats-text-yaml |      yaml   |       7     | 1-7              |
+| 55     | JacksonDataformatsText<br/>_properties            | jackson-dataformats-text-properties |      properties   |       2     | 1-2              |
+| 56     | JacksonDataformatBinary<br/>_avro            | jackson-dataformats-binary-avro |      avro   |       2     | 1-2              |
+| 57     | JacksonDataformatBinary<br/>_cbor            | jackson-dataformats-binary-cbor |      cbor   |       5     | 1-5              |
 | 58     | JavaClassmate            | java-classmate |        |       2     | 1-2              |
 | 59     | JacksonModuleJsonSchema            | jackson-module-jsonSchema |      |       2     | 1-2              |
 | 60     | JacksonDatatypeJoda            | jackson-datatype-joda |        |       3     | 1-3              |
 | 61     | Bcel            | commons-bcel |        |       6     | 1-6              |
-| 62     | JacksonDataformatBinary_protobuf            | jackson-dataformats-binary-protobuf |      protobuf   |       4     | 1-4              |
-| 63     | Jackrabbit_filevault_vault_core            | jackrabbit-filevault-vault-core |      vault-core   |       1     | 1              |
+| 62     | JacksonDataformatBinary<br/>_protobuf            | jackson-dataformats-binary-protobuf |      protobuf   |       4     | 1-4              |
+| 63     | Jackrabbit_filevault<br/>_vault_core            | jackrabbit-filevault-vault-core |      vault-core   |       1     | 1              |
 | 64     | JacksonDatatypeJsr310            | jackson-datatype-jsr310 |         |       4     | 1-4              |
-| 65     | JacksonDataformatBinary_smile            | jackson-dataformats-binary-smile |    smile     |       2     | 1-2              |
+| 65     | JacksonDataformatBinary<br/>_smile            | jackson-dataformats-binary-smile |    smile     |       2     | 1-2              |
 | 66     | JacksonModuleAfterburner            | jackson-module-afterburner |         |       3     | 1-3              |
 | 67     | Woodstox            | woodstox |         |       7     | 1-7              |
 | 68     | MetaModel_core            | MetaModel-core | core        |       9     | 1-9              |
@@ -84,7 +84,7 @@ from open-source Java projects.
 | 73     | MetaModel_salesforce            | MetaModel-salesforce |   salesforce      |       1     | 1              |
 | 74     | Wink_common            | wink-common |  wink-common       |       4     | 1-4              |
 | 75     | Xbean_naming            | xbean-naming |  xbean-naming       |       1     | 1              |
-| 76     | James_project_server_container_core            | james-project-server-container-core |  server/container/core       |       1     | 1              |
+| 76     | James_project_<br/>server_container_core            | james-project-server-container-core |  server/container/core       |       1     | 1              |
 | 77     | Johnzon_core            | johnzon-core |  johnzon-core       |       11     | 1-11              |
 | 78     | Nifi_mock            | nifi-mock |  nifi-mock       |       2     | 1-2              |
 | 79     | Rat_core            | apache-rat-core |  apache-rat-core       |       1     | 1              |
@@ -94,27 +94,27 @@ from open-source Java projects.
 | 83     | Webbeans_web            | webbeans-web |  webbeans-web       |       1     | 1              |
 | 84     | Hono_client            | hono-client |  client       |       4     | 1-4              |
 | 85     | Httpcomponents_core_h2            | httpcore5-h2 |  httpcore5-h2       |       1     | 1              |
-| 86     | Httpcomponents_core_httpcore5            | httpcore5 |  httpcore5       |       3     | 1-3              |
+| 86     | Httpcomponents_core<br/>_httpcore5            | httpcore5 |  httpcore5       |       3     | 1-3              |
 | 87     | Johnzon_jsonb            | johnzon-jsonb |  johnzon-jsonb       |       6     | 1-6              |
 | 88     | Johnzon_jaxrs            | johnzon-jaxrs |  johnzon-jaxrs       |       1     | 1              |
 | 89     | Hbase_common            | hbase-common |  hbase-common       |       1     | 1              |
 | 90     | Incubator_tamaya_api            | incubator-retired-tamaya-api |  code/api       |       2     | 1-2              |
-| 91     | James_project_mailet_standard            | james-project-mailet-standard |  mailet/standard       |       1     | 1              |
+| 91     | James_project_<br/>mailet_standard            | james-project-mailet-standard |  mailet/standard       |       1     | 1              |
 | 92     | Johnzon_jsonschema            | johnzon-jsonschema |  johnzon-jsonschema       |       2     | 1-2              |
 | 93     | Johnzon_mapper            | johnzon-mapper |  johnzon-mapper       |       6     | 1-6              |
 | 94     | Karaf_main            | karaf-main |  main       |       1     | 1              |
-| 95     | Appformer_uberfire_commons_editor_backend            | uberfire-commons-editor-backend |  uberfire-extensions/uberfire-commons-editor/uberfire-commons-editor-backend       |       1     | 1              |
+| 95     | Appformer_uberfire_<br/>commons_editor_backend            | uberfire-commons-editor-backend |  uberfire-extensions/uberfire-commons-editor/uberfire-commons-editor-backend       |       1     | 1              |
 | 96     | Kie_pmml_commons            | kie-pmml-commons |  kie-pmml-trusty/kie-pmml-commons       |       3     | 1-3              |
 | 97     | Kie_memory_compiler            | kie-memory-compiler |  kie-memory-compiler       |       1     | 1              |
-| 98     | Jbpm_human_task_workitems            | jbpm-human-task-workitems |  jbpm-human-task/jbpm-human-task-workitems       |       1     | 1              |
+| 98     | Jbpm_human<br/>_task_workitems            | jbpm-human-task-workitems |  jbpm-human-task/jbpm-human-task-workitems       |       1     | 1              |
 | 99     | Drools_traits            | drools-traits |  drools-traits       |       1     | 1              |
 | 100     | Drools_model_compiler            | drools-model-compiler |  drools-model/drools-model-compiler       |       1     | 1              |
-| 101     | Appformer_uberfire_security_management_client            | uberfire-security-management-client | uberfire-extensions/uberfire-security/uberfire-security-management/uberfire-security-management-client  |       1     | 1              |
-| 102     | Appformer_uberfire_workbench_client            | uberfire-workbench-client |  uberfire-workbench/uberfire-workbench-client       |       3     | 1-3              |
+| 101     | Appformer_uberfire<br/>_security_management</br>_client            | uberfire-security-management-client | uberfire-extensions/uberfire-security/uberfire-security-management/uberfire-security-management-client  |       1     | 1              |
+| 102     | Appformer_uberfire<br/>_workbench_client            | uberfire-workbench-client |  uberfire-workbench/uberfire-workbench-client       |       3     | 1-3              |
 | 103     | Deltaspike_api            | deltaspike-core-api |  deltaspike/core/api       |       6     | 1-6              |
 | 104     | Flume_ngcore            | flume-ng-core |  flume-ng-core       |       2     | 1-2              |
 | 105     | Jandex            | jandex |         |       6     | 1-6              |
-| 106     | Kogito_editors_java_kie_wb_common_stunner_widgets            | kie-wb-common-stunner-widgets |  kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets       |       1     | 1              |
+| 106     | Kogito_editors<br/>_java_kie_wb_common</br>_stunner_widgets            | kie-wb-common-stunner-widgets |  kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets       |       1     | 1              |
 | 107     | Ognl            | commons-ognl |         |       1     | 1              |
 | 108     | Qpid_client            | qpid-jms-client |  qpid-jms-client       |       8     | 1-8              |
 | 109     | Switchyard_admin            | switchyard-admin |  admin       |       1     | 1              |
