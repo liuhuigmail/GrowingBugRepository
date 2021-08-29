@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,f4a9081eb9b59b548fff4fd85b646d4c598c8735,ece53b548aaf2b4f8d87bffa067ed8c4137430f2,XGC-111,https://issues.apache.org/jira/browse/XGC-111
+2,57393912eb87b994c7fed39ddf30fb778a275183,ee025383c3e79ce23ae19e6da961189b636915eb,XGC-123,https://issues.apache.org/jira/browse/XGC-123

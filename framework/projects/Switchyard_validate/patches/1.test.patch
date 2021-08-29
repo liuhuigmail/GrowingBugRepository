@@ -1,0 +1,12 @@
+diff --git a/validate/src/test/java/org/switchyard/validate/config/model/ValidatorUtilTest.java b/validate/src/test/java/org/switchyard/validate/config/model/ValidatorUtilTest.java
+index d3dda180..32034db3 100644
+--- a/validate/src/test/java/org/switchyard/validate/config/model/ValidatorUtilTest.java
++++ b/validate/src/test/java/org/switchyard/validate/config/model/ValidatorUtilTest.java
+@@ -60,7 +60,6 @@ public class ValidatorUtilTest {
+ 
+         Assert.assertTrue(!(validator instanceof TestValidator));
+         Assert.assertTrue(validator.validate(new B()));
+-        Assert.assertEquals(B.class, validator.getType());
+     }
+ 
+     @Test

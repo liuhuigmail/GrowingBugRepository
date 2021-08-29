@@ -1,0 +1,13 @@
+org.jboss.naming.remote.client.InitialContextFactory
+org.wildfly.naming.client._private.Messages
+org.wildfly.naming.client.NamingContextFactory
+org.wildfly.naming.client.NamingProvider
+org.wildfly.naming.client.NamingProviderFactory
+org.wildfly.naming.client.ProviderEnvironment
+org.wildfly.naming.client.remote.RemoteNamingContextFactory
+org.wildfly.naming.client.remote.RemoteNamingProviderFactory
+org.wildfly.naming.client.util.EnvironmentUtils
+org.wildfly.naming.client.util.FastHashtable
+org.wildfly.naming.client.Version
+org.wildfly.naming.client.WildFlyInitialContextFactory
+org.wildfly.naming.client.WildFlyRootContext

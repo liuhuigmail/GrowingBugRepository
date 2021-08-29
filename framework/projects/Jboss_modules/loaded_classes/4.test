@@ -1,0 +1,4 @@
+org.jboss.modules.AbstractModuleTestCase
+org.jboss.modules.AbstractResourceLoaderTestCase
+org.jboss.modules.SymlinkResourceLoaderTest
+org.jboss.modules.util.Util

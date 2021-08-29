@@ -1,0 +1,8 @@
+org.apache.vysper.charset.CharsetUtil
+org.apache.vysper.xml.sax.impl.Attribute
+org.apache.vysper.xml.sax.impl.DefaultAttributes
+org.apache.vysper.xml.sax.impl.DefaultNonBlockingXMLReader
+org.apache.vysper.xml.sax.impl.ParserNamespaceResolver
+org.apache.vysper.xml.sax.impl.XMLParser
+org.apache.vysper.xml.sax.impl.XMLTokenizer
+org.apache.vysper.xml.sax.NonBlockingXMLReader

@@ -89,7 +89,15 @@ https://github.com/kiegroup/kogito-editors-java.git	kie-wb-common-stunner-widget
 https://github.com/apache/commons-ognl.git	commons-ognl
 https://github.com/apache/qpid-jms.git	qpid-jms-client
 https://github.com/jboss-switchyard/core.git	switchyard-admin
-https://github.com/weld/core.git	weld-se-core
+https://github.com/weld/core.git	jboss-modules
+https://github.com/jbossas/jboss-threads.git	jboss-threads
+https://github.com/apache/mina-ftpserver.git	ftpserver-api
+https://github.com/apache/sling-org-apache-sling-validation-core.git	sling-org-apache-sling-validation-core
+https://github.com/jboss-switchyard/core.git	switchyard-config
+https://github.com/jboss-switchyard/core.git	switchyard-validate
+https://github.com/apache/mina-vysper.git	vysper-nbxml
+https://github.com/wildfly/wildfly-naming-client.git	wildfly-naming-client
+https://github.com/apache/xmlgraphics-commons.git	xmlgraphics-commons
 
 
 

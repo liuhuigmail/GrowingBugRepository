@@ -1,0 +1,13 @@
+diff --git a/nbxml/src/main/java/org/apache/vysper/xml/sax/impl/XMLParser.java b/nbxml/src/main/java/org/apache/vysper/xml/sax/impl/XMLParser.java
+index 6be4bb4e..96ca0409 100644
+--- a/nbxml/src/main/java/org/apache/vysper/xml/sax/impl/XMLParser.java
++++ b/nbxml/src/main/java/org/apache/vysper/xml/sax/impl/XMLParser.java
+@@ -54,7 +54,7 @@ public class XMLParser implements TokenListener {
+ 
+     public static final Pattern NAME_PREFIX_PATTERN = Pattern.compile("^xml", Pattern.CASE_INSENSITIVE);
+ 
+-    public static final Pattern UNESCAPE_UNICODE_PATTERN = Pattern.compile("\\&\\#(x?)([0-9a-fA-F]++);");
++    public static final Pattern UNESCAPE_UNICODE_PATTERN = Pattern.compile("\\&\\#(x?)(.+);");
+ 
+     private ContentHandler contentHandler;
+ 

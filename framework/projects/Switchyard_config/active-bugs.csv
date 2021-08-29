@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,e35de16bfbd6e3af2d3c866e7e079a696a326459,f506c5ff34f507fecfdc24c89b065525a1cfa424,SWITCHYARD-980,https://issues.redhat.com/browse/SWITCHYARD-980

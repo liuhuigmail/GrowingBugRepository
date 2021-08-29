@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,1ec2479cbcdd11944c7962dc5a20c00693754d01,72fc9a4258fce50b716fc513cb605c1a1a2492f9,VYSPER-18,https://issues.apache.org/jira/browse/VYSPER-18
+2,10f86930a43f1ebb6fa719869549ea52b6bca579,498b51bc178a8e65ef29ed12695ff3f62edb6ceb,VYSPER-341,https://issues.apache.org/jira/browse/VYSPER-341

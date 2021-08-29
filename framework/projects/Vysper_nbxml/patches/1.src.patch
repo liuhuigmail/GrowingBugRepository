@@ -1,0 +1,23 @@
+diff --git a/nbxml/src/main/java/org/apache/vysper/xml/decoder/XMLElementListener.java b/nbxml/src/main/java/org/apache/vysper/xml/decoder/XMLElementListener.java
+index ac81f1cc..f4eb235d 100644
+--- a/nbxml/src/main/java/org/apache/vysper/xml/decoder/XMLElementListener.java
++++ b/nbxml/src/main/java/org/apache/vysper/xml/decoder/XMLElementListener.java
+@@ -23,5 +23,4 @@ import org.apache.vysper.xml.fragment.XMLElement;
+ 
+ public interface XMLElementListener {
+     void element(XMLElement element);
+-    void close();
+ }
+\ No newline at end of file
+diff --git a/nbxml/src/main/java/org/apache/vysper/xml/decoder/XMPPContentHandler.java b/nbxml/src/main/java/org/apache/vysper/xml/decoder/XMPPContentHandler.java
+index 1767922b..e2a4d0d2 100644
+--- a/nbxml/src/main/java/org/apache/vysper/xml/decoder/XMPPContentHandler.java
++++ b/nbxml/src/main/java/org/apache/vysper/xml/decoder/XMPPContentHandler.java
+@@ -139,7 +139,6 @@ public class XMPPContentHandler implements ContentHandler {
+      * End of the XMPP stream. Tell the XML listener we're done.
+      */
+     public void endDocument() throws SAXException { 
+-    	this.listener.close();
+     }
+ 
+     /**

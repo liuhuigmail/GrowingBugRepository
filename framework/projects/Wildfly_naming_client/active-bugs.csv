@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,7f62895ecf728e64a73d63d8038968e34f1246d9,583bbe256eeb9e3b3ca2eb0e66063f4102c65527,WFNC-56,https://issues.redhat.com/browse/WFNC-56
+2,7f62895ecf728e64a73d63d8038968e34f1246d9,5a931cbdbbe7eae09b7cb06a0b27c2eb133908c9,WFNC-56,https://issues.redhat.com/browse/WFNC-56

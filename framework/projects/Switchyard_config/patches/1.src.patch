@@ -1,0 +1,26 @@
+diff --git a/config/src/main/java/org/switchyard/config/DOMConfiguration.java b/config/src/main/java/org/switchyard/config/DOMConfiguration.java
+index 40436810..ddd91273 100644
+--- a/config/src/main/java/org/switchyard/config/DOMConfiguration.java
++++ b/config/src/main/java/org/switchyard/config/DOMConfiguration.java
+@@ -44,7 +44,6 @@ import org.w3c.dom.Element;
+ import org.w3c.dom.NamedNodeMap;
+ import org.w3c.dom.Node;
+ import org.w3c.dom.NodeList;
+-import org.w3c.dom.Text;
+ 
+ /**
+  * A DOM (Document Object Model) representation of a Configuration.
+@@ -120,12 +119,7 @@ public class DOMConfiguration extends BaseConfiguration {
+     @Override
+     public String getValue() {
+         Node text_node = getTextNode(false);
+-        if (text_node instanceof Text) {
+-            return ((Text)text_node).getWholeText();
+-        } else if (text_node != null) {
+-            return text_node.getNodeValue();
+-        }
+-        return null;
++        return text_node != null ? text_node.getNodeValue() : null;
+     }
+ 
+     /**

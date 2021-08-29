@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1284`** bugs
+ **`1302`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -119,6 +119,15 @@ from open-source Java projects.
 | 108     | Qpid_client            | qpid-jms-client |  qpid-jms-client       |       8     | 1-8              |
 | 109     | Switchyard_admin            | switchyard-admin |  admin       |       1     | 1              |
 | 110     | Weld_se_core            | weld-se-core |  environments/se/core       |       1     | 1              |
+| 111     | Jboss_modules            | jboss-modules |        |       7     | 1-7              |
+| 112     | Jboss_threads            | jboss-threads |        |       1     | 1              |
+| 113     | Minaftp_api            | ftpserver-api |  ftplet-api       |       1     | 1              |
+| 114     | Sling_validation            | sling-org-apache-sling-validation-core |       |       1     | 1              |
+| 115     | Switchyard_config            | switchyard-config |  config       |       1     | 1              |
+| 116     | Switchyard_validate            | switchyard-validate |  validate       |       1     | 1              |
+| 117     | Vysper_nbxml            | vysper-nbxml |  nbxml       |       2     | 1-2              |
+| 118     | Wildfly_naming_client            | wildfly-naming-client |     |       2     | 1-2              |
+| 119     | Xmlgraphics            | xmlgraphics-commons |       |       2     | 1-2              |
 # Setting up GrowingBugs
 
 ## Requirements

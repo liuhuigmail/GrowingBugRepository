@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,184b641cb9e6e128c9c2187d8dc93d568809c172,c0394d584ba148f7e92c52097a0455e19933b668,FTPSERVER-383,https://issues.apache.org/jira/browse/FTPSERVER-383

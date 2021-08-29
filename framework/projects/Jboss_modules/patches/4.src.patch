@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/jboss/modules/PathResourceLoader.java b/src/main/java/org/jboss/modules/PathResourceLoader.java
+index 8457282e..8dd4820d 100644
+--- a/src/main/java/org/jboss/modules/PathResourceLoader.java
++++ b/src/main/java/org/jboss/modules/PathResourceLoader.java
+@@ -24,7 +24,6 @@ import java.net.MalformedURLException;
+ import java.net.URI;
+ import java.net.URL;
+ import java.nio.file.FileSystems;
+-import java.nio.file.FileVisitOption;
+ import java.nio.file.Files;
+ import java.nio.file.InvalidPathException;
+ import java.nio.file.Path;
+@@ -169,7 +168,7 @@ class PathResourceLoader extends AbstractResourceLoader implements IterableResou
+             } catch (InvalidPathException ignored) {
+                 return Collections.emptyIterator();
+             }
+-            return Files.walk(path, recursive ? Integer.MAX_VALUE : 1, FileVisitOption.FOLLOW_LINKS)
++            return Files.walk(path, recursive ? Integer.MAX_VALUE : 1)
+                     .filter(it -> !Files.isDirectory(it))
+                     .<Resource>map(resourcePath -> new PathResource(resourcePath, PathUtils.toGenericSeparators(root.relativize(resourcePath).toString()), context))
+                     .iterator();
+@@ -181,7 +180,7 @@ class PathResourceLoader extends AbstractResourceLoader implements IterableResou
+     @Override
+     public Collection<String> getPaths() {
+         try {
+-            return doPrivilegedIfNeeded(context, IOException.class, () -> Files.walk(root, FileVisitOption.FOLLOW_LINKS)
++            return doPrivilegedIfNeeded(context, IOException.class, () -> Files.walk(root)
+                     .filter(Files::isDirectory)
+                     .map(dir -> {
+                         final String result = root.relativize(dir).toString();

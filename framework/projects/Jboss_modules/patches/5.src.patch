@@ -1,0 +1,53 @@
+diff --git a/src/main/java/org/jboss/modules/IterableModuleFinder.java b/src/main/java/org/jboss/modules/IterableModuleFinder.java
+index 560c7b9f..043ac868 100644
+--- a/src/main/java/org/jboss/modules/IterableModuleFinder.java
++++ b/src/main/java/org/jboss/modules/IterableModuleFinder.java
+@@ -49,13 +49,10 @@ public interface IterableModuleFinder extends ModuleFinder {
+      * @param recursive {@code true} to find recursively nested modules, {@code false} to only find immediately nested
+      * modules; ignored if this module finder does not have a concept of nested modules
+      * @return an iterator for the modules in this module finder
+      * @deprecated Use {@link #iterateModules(String, boolean, ModuleLoader)} instead.
+      */
+     default Iterator<String> iterateModules(String baseName, boolean recursive) {
+-        return iterateModules(baseName, recursive, null);
+-    }
+ 
+-    default Iterator<String> iterateModules(String baseName, boolean recursive, final ModuleLoader delegateLoader) {
+         return IteratorUtils.transformingIterator(iterateModules(baseName == null ? null : ModuleIdentifier.fromString(baseName), recursive), ModuleIdentifier::toString);
+     }
+ }
+diff --git a/src/main/java/org/jboss/modules/LocalModuleFinder.java b/src/main/java/org/jboss/modules/LocalModuleFinder.java
+index e1b867d3..3277c04a 100644
+--- a/src/main/java/org/jboss/modules/LocalModuleFinder.java
++++ b/src/main/java/org/jboss/modules/LocalModuleFinder.java
+@@ -264,7 +264,7 @@ public final class LocalModuleFinder implements IterableModuleFinder, AutoClosea
+         }
+     };
+ 
+-    public Iterator<String> iterateModules(final String baseName, final boolean recursive, final ModuleLoader delegateLoader) {
++    public Iterator<String> iterateModules(final String baseName, final boolean recursive) {
+         return new Iterator<String>() {
+             private final Iterator<File> rootIter = Arrays.asList(repoRoots).iterator();
+             private final Set<String> found = new HashSet<>();
+@@ -296,7 +296,7 @@ public final class LocalModuleFinder implements IterableModuleFinder, AutoClosea
+                             continue;
+                         }
+                         try (InputStream stream = Files.newInputStream(nextPath)) {
+-                            final ModuleSpec moduleSpec = ModuleXmlParser.parseModuleXml(ModuleXmlParser.ResourceRootFactory.getDefault(), nextPath.getParent().toString(), stream, nextPath.toString(), delegateLoader, (String)null);
++                            final ModuleSpec moduleSpec = ModuleXmlParser.parseModuleXml(ModuleXmlParser.ResourceRootFactory.getDefault(), nextPath.getParent().toString(), stream, nextPath.toString(), null, (String)null);
+                             this.next = moduleSpec.getName();
+                             if (found.add(this.next)) {
+                                 return true;
+diff --git a/src/main/java/org/jboss/modules/ModuleLoader.java b/src/main/java/org/jboss/modules/ModuleLoader.java
+index f58657f2..ff853c35 100644
+--- a/src/main/java/org/jboss/modules/ModuleLoader.java
++++ b/src/main/java/org/jboss/modules/ModuleLoader.java
+@@ -341,7 +341,7 @@ public class ModuleLoader {
+                         }
+                         final ModuleFinder finder = finders[idx++];
+                         if (finder instanceof IterableModuleFinder) {
+-                            nested = ((IterableModuleFinder) finder).iterateModules(baseName, recursive, ModuleLoader.this);
++                            nested = ((IterableModuleFinder) finder).iterateModules(baseName, recursive);
+                         }
+                     }
+ 

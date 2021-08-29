@@ -1,0 +1,3 @@
+org.jboss.modules.AbstractModuleTestCase
+org.jboss.modules.MODULES_377_Test
+org.jboss.modules.util.Util

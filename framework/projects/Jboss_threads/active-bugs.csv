@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,076592d052758904ad377fa86c1c815f7f9e2dc8,41e3577057cbe84ed7f2eb07a498a6a2c7acaf56,JBTHR-87,https://issues.redhat.com/browse/JBTHR-87

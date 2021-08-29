@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/jboss/threads/ViewExecutor.java b/src/main/java/org/jboss/threads/ViewExecutor.java
+index 169500a..56020c9 100644
+--- a/src/main/java/org/jboss/threads/ViewExecutor.java
++++ b/src/main/java/org/jboss/threads/ViewExecutor.java
+@@ -306,7 +306,6 @@ public final class ViewExecutor extends AbstractExecutorService {
+         }
+ 
+         public void run() {
+-            boolean removeFromAllWrappersAfterCompletion = true;
+             thread = Thread.currentThread();
+             try {
+                 for (;;) {
+@@ -353,7 +352,6 @@ public final class ViewExecutor extends AbstractExecutorService {
+                     }
+                     try {
+                         delegate.execute(this);
+-                        removeFromAllWrappersAfterCompletion = false;
+                         // resubmitted this task for execution, so return
+                         return;
+                     } catch (Throwable t) {
+@@ -363,9 +361,6 @@ public final class ViewExecutor extends AbstractExecutorService {
+                     }
+                 }
+             } finally {
+-                if (removeFromAllWrappersAfterCompletion) {
+-                    allWrappers.remove(this);
+-                }
+                 thread = null;
+             }
+         }

@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/jboss/naming/remote/client/InitialContextFactory.java b/src/main/java/org/jboss/naming/remote/client/InitialContextFactory.java
+index 962065a..243d271 100644
+--- a/src/main/java/org/jboss/naming/remote/client/InitialContextFactory.java
++++ b/src/main/java/org/jboss/naming/remote/client/InitialContextFactory.java
+@@ -96,10 +96,6 @@ public final class InitialContextFactory implements javax.naming.spi.InitialCont
+             if (entry.getKey() instanceof String && entry.getValue() instanceof String) {
+                 properties.setProperty((String) entry.getKey(), (String) entry.getValue());
+             }
+-            if (entry.getKey() instanceof String &&
+-                    (entry.getValue() instanceof Integer || entry.getValue() instanceof Long)) {
+-                properties.setProperty((String) entry.getKey(), String.valueOf(entry.getValue()));
+-            }
+         }
+ 
+         return properties;

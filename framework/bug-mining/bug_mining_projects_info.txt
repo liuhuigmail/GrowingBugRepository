@@ -92,3 +92,12 @@ Ognl	commons-ognl	https://github.com/apache/commons-ognl.git	jira	OGNL	/(OGNL-\\
 Qpid_client	qpid-jms-client	https://github.com/apache/qpid-jms.git	jira	QPIDJMS	/(QPIDJMS-\\d+)/mi	qpid-jms-client
 Switchyard_admin	switchyard-admin	https://github.com/jboss-switchyard/core.git	jira	SWITCHYARD	/(SWITCHYARD-\\d+)/mi	admin
 Weld_se_core	weld-se-core	https://github.com/weld/core.git	jira	WELD	/(WELD-\\d+)/mi	environments/se/core
+Jboss_modules	jboss-modules	https://github.com/jboss-modules/jboss-modules.git	jira	MODULES	/(MODULES-\\d+)/mi	.
+Jboss_threads	jboss-threads	https://github.com/jbossas/jboss-threads.git	jira	JBTHR	/(JBTHR-\\d+)/mi	.
+Minaftp_api	ftpserver-api	https://github.com/apache/mina-ftpserver.git	jira	FTPSERVER	/(FTPSERVER-\\d+)/mi	ftplet-api	
+Sling_validation	sling-org-apache-sling-validation-core	https://github.com/apache/sling-org-apache-sling-validation-core.git	jira	SLING	/(SLING-\\d+)/mi	.
+Switchyard_config	switchyard-config	https://github.com/jboss-switchyard/core.git	jira	SWITCHYARD	/(SWITCHYARD-\\d+)/mi	config
+Switchyard_validate	switchyard-validate	https://github.com/jboss-switchyard/core.git	jira	SWITCHYARD	/(SWITCHYARD-\\d+)/mi	validate
+Vysper_nbxml	vysper-nbxml	https://github.com/apache/mina-vysper.git	jira	VYSPER	/(VYSPER-\\d+)/mi	nbxml	
+Wildfly_naming_client	wildfly-naming-client	https://github.com/wildfly/wildfly-naming-client.git	jira	WFNC	/(WFNC-\\d+)/mi	.
+Xmlgraphics	xmlgraphics-commons	https://github.com/apache/xmlgraphics-commons.git	jira	XGC	/(XGC-\\d+)/mi	.

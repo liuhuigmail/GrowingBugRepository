@@ -1,0 +1,3 @@
+org.jboss.modules.IterableModuleFinder
+org.jboss.modules.LocalModuleFinder
+org.jboss.modules.ModuleLoader

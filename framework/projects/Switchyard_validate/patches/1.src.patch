@@ -1,0 +1,13 @@
+diff --git a/validate/src/main/java/org/switchyard/validate/ValidatorUtil.java b/validate/src/main/java/org/switchyard/validate/ValidatorUtil.java
+index 5ccba5ce..756e08e3 100644
+--- a/validate/src/main/java/org/switchyard/validate/ValidatorUtil.java
++++ b/validate/src/main/java/org/switchyard/validate/ValidatorUtil.java
+@@ -250,7 +250,7 @@ public final class ValidatorUtil {
+             
+             @Override
+             public Class<?> getType() {
+-                return publicMethod.getParameterTypes()[0];
++                return publicMethod.getReturnType();
+             }
+         };
+ 

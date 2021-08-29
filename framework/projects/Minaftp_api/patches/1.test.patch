@@ -1,0 +1,23 @@
+diff --git a/ftplet-api/src/test/java/org/apache/ftpserver/ftplet/DefaultFtpReplyTest.java b/ftplet-api/src/test/java/org/apache/ftpserver/ftplet/DefaultFtpReplyTest.java
+index 56b5db80..6abd560d 100644
+--- a/ftplet-api/src/test/java/org/apache/ftpserver/ftplet/DefaultFtpReplyTest.java
++++ b/ftplet-api/src/test/java/org/apache/ftpserver/ftplet/DefaultFtpReplyTest.java
+@@ -36,18 +36,6 @@ public class DefaultFtpReplyTest extends TestCase {
+         assertEquals("123 foo bar\r\n", response.toString());
+     }
+ 
+-    public void testSingleLineWithTrailingLineFeedToString() {
+-        DefaultFtpReply response = new DefaultFtpReply(123, "foo bar\n");
+-
+-        assertEquals("123 foo bar\r\n", response.toString());
+-    }
+-
+-    public void testCarriageReturnToString() {
+-        DefaultFtpReply response = new DefaultFtpReply(123, "foo \rbar\r\n");
+-
+-        assertEquals("123 foo bar\r\n", response.toString());
+-    }
+-    
+     public void testNullToString() {
+         DefaultFtpReply response = new DefaultFtpReply(123, (String) null);
+ 

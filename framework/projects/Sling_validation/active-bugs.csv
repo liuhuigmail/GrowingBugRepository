@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,9a603e4605faa771417759cd1fc67210d92751f5,10c2515830fe0b05e9ce01a517725665ca674703,SLING-7289,https://issues.apache.org/jira/browse/SLING-7289

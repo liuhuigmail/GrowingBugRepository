@@ -1,0 +1,6 @@
+org.jboss.modules.maven.MavenArtifactUtil
+org.jboss.modules.maven.MavenSettings
+org.jboss.modules.ResourceLoader
+org.jboss.modules.xml.MXParser
+org.jboss.modules.xml.XmlPullParser
+org.jboss.modules.xml.XmlPullParserException

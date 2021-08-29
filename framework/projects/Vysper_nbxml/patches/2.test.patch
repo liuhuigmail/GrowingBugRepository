@@ -1,0 +1,23 @@
+diff --git a/nbxml/src/test/java/org/apache/vysper/xml/sax/impl/ParseTextTestCase.java b/nbxml/src/test/java/org/apache/vysper/xml/sax/impl/ParseTextTestCase.java
+index d3128287..5305a9b5 100644
+--- a/nbxml/src/test/java/org/apache/vysper/xml/sax/impl/ParseTextTestCase.java
++++ b/nbxml/src/test/java/org/apache/vysper/xml/sax/impl/ParseTextTestCase.java
+@@ -88,18 +88,6 @@ public class ParseTextTestCase extends AbstractAsyncXMLReaderTestCase {
+         assertFalse(events.hasNext());
+     }
+ 
+-    public void testConsecutiveUnicodeEscape() throws Exception {
+-        Iterator<TestEvent> events = parse("<root>&#160;&#160;&#160;&#160;</root>").iterator();
+-
+-        assertStartDocument(events.next());
+-        assertStartElement("", "root", "root", events.next());
+-        assertText("\u00A0\u00A0\u00A0\u00A0", events.next());
+-        assertEndElement("", "root", "root", events.next());
+-        assertEndDocument(events.next());
+-
+-        assertFalse(events.hasNext());
+-    }
+-
+     public void testTextOnly() throws Exception {
+         Iterator<TestEvent> events = parse("text</root>").iterator();
+ 

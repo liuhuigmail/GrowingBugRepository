@@ -1,0 +1,4 @@
+org.jboss.modules.MavenResource2Test
+org.jboss.modules.MavenResourceTest
+org.jboss.modules.maven.MavenSettingsTest
+org.jboss.modules.maven.NonProxyHostTest

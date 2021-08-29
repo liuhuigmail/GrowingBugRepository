@@ -1,0 +1,2 @@
+org.jboss.modules.MavenResourceTest
+org.jboss.modules.maven.MavenSettingsTest

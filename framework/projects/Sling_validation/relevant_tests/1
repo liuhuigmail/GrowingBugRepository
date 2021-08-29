@@ -1,0 +1,2 @@
+org.apache.sling.validation.impl.ValidationServiceImplTest
+org.apache.sling.validation.impl.ValidatorMapTest

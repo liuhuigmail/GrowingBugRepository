@@ -1,0 +1,4 @@
+org.switchyard.config.BaseConfiguration
+org.switchyard.config.Configuration
+org.switchyard.config.ConfigurationPuller
+org.switchyard.config.DOMConfiguration

@@ -1,0 +1,3 @@
+org.apache.vysper.xml.sax.impl.AbstractAsyncXMLReaderTestCase
+org.apache.vysper.xml.sax.impl.ParseTextTestCase
+org.apache.vysper.xml.sax.impl.TestHandler

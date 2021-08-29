@@ -1,0 +1,15 @@
+org.apache.vysper.charset.CharsetUtil
+org.apache.vysper.xml.decoder.XMLElementBuilderFactory
+org.apache.vysper.xml.decoder.XMLElementListener
+org.apache.vysper.xml.decoder.XMPPContentHandler
+org.apache.vysper.xml.fragment.AbstractXMLElementBuilder
+org.apache.vysper.xml.fragment.XMLElement
+org.apache.vysper.xml.fragment.XMLElementBuilder
+org.apache.vysper.xml.fragment.XMLFragment
+org.apache.vysper.xml.fragment.XMLSemanticError
+org.apache.vysper.xml.sax.impl.DefaultAttributes
+org.apache.vysper.xml.sax.impl.DefaultNonBlockingXMLReader
+org.apache.vysper.xml.sax.impl.ParserNamespaceResolver
+org.apache.vysper.xml.sax.impl.XMLParser
+org.apache.vysper.xml.sax.impl.XMLTokenizer
+org.apache.vysper.xml.sax.NonBlockingXMLReader

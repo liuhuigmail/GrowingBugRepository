@@ -1,0 +1,6 @@
+org.switchyard.config.ConfigurationTests
+org.switchyard.config.model.composite.CompositeModelTests
+org.switchyard.config.model.switchyard.EsbInterfaceTests
+org.switchyard.config.model.switchyard.PolicyConfigTests
+org.switchyard.config.model.switchyard.SwitchYardModelTests
+org.switchyard.config.util.classpath.ConfigClasspathScanTest

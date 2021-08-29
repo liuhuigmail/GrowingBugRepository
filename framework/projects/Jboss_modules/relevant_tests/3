@@ -1,0 +1,8 @@
+org.jboss.modules.ClassPathModuleLoaderTest
+org.jboss.modules.ConditionalResourceTest
+org.jboss.modules.FileResourceLoaderTest
+org.jboss.modules.FileSystemClassPathModuleLoaderTest
+org.jboss.modules.ModuleClassLoaderAliasTest
+org.jboss.modules.PathResourceLoaderTest
+org.jboss.modules.ResourceRootPathsTest
+org.jboss.modules.SymlinkResourceLoaderTest

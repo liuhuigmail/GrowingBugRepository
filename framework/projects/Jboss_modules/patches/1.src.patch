@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/jboss/modules/maven/MavenSettings.java b/src/main/java/org/jboss/modules/maven/MavenSettings.java
+index 172f9f12..8608232c 100644
+--- a/src/main/java/org/jboss/modules/maven/MavenSettings.java
++++ b/src/main/java/org/jboss/modules/maven/MavenSettings.java
+@@ -268,7 +268,7 @@ final class MavenSettings {
+         }
+ 
+         localRepositoryPath = System.getProperty("maven.repo.local");
+-        if (localRepositoryPath != null && !localRepositoryPath.trim().isEmpty()) {
++        if (localRepositoryPath != null) {
+             localRepository = java.nio.file.Paths.get(localRepositoryPath);
+         }
+         String remoteRepository = System.getProperty("remote.maven.repo");

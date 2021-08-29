@@ -1,0 +1,53 @@
+diff --git a/src/test/java/org/jboss/naming/remote/client/LegacyClientPropertiesTestCase.java b/src/test/java/jboss/naming/remote/client/LegacyClientPropertiesTestCase.java
+similarity index 95%
+rename from src/test/java/org/jboss/naming/remote/client/LegacyClientPropertiesTestCase.java
+rename to src/test/java/jboss/naming/remote/client/LegacyClientPropertiesTestCase.java
+index 818dcec..c6117b2 100644
+--- a/src/test/java/org/jboss/naming/remote/client/LegacyClientPropertiesTestCase.java
++++ b/src/test/java/jboss/naming/remote/client/LegacyClientPropertiesTestCase.java
+@@ -11,8 +11,9 @@ See the License for the specific language governing permissions and
+ limitations under the License.
+  */
+ 
+-package org.jboss.naming.remote.client;
++package jboss.naming.remote.client;
+ 
++import org.jboss.naming.remote.client.InitialContextFactory;
+ import org.junit.Assert;
+ import org.junit.Test;
+ 
+diff --git a/src/test/java/org/jboss/naming/remote/client/InitialContextFactoryTestCase.java b/src/test/java/org/jboss/naming/remote/client/InitialContextFactoryTestCase.java
+deleted file mode 100644
+index 5c553e2..0000000
+--- a/src/test/java/org/jboss/naming/remote/client/InitialContextFactoryTestCase.java
++++ /dev/null
+@@ -1,29 +0,0 @@
+-package org.jboss.naming.remote.client;
+-
+-import org.junit.Assert;
+-import org.junit.Test;
+-
+-import javax.naming.Context;
+-import javax.naming.NamingException;
+-import java.util.Hashtable;
+-
+-
+-@SuppressWarnings("UnnecessaryBoxing")
+-public class InitialContextFactoryTestCase {
+-
+-    @Test
+-    public void testGetInitialContext() throws NamingException {
+-        Hashtable<Object, Object> inputEnv = new Hashtable<>();
+-        inputEnv.put("string.prop", "1");
+-        inputEnv.put("integer.prop", Integer.valueOf(2));
+-        inputEnv.put("long.prop", Long.valueOf(3));
+-
+-        InitialContextFactory factory = new InitialContextFactory();
+-        Context initialContext = factory.getInitialContext(inputEnv);
+-        Hashtable<?, ?> contextEnv = initialContext.getEnvironment();
+-
+-        Assert.assertEquals("1", contextEnv.get("string.prop"));
+-        Assert.assertEquals("2", contextEnv.get("integer.prop"));
+-        Assert.assertEquals("3", contextEnv.get("long.prop"));
+-    }
+-}

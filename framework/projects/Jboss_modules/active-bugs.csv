@@ -1,0 +1,8 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,862464701cd9210d7e1629575497058059bec91b,6812cc2fef35b3453587eec9023d182080502c2c,MODULES-237,https://issues.redhat.com/browse/MODULES-237
+2,862464701cd9210d7e1629575497058059bec91b,edfc69a6aa79484c164681eb63c2f0680b6b3c8b,MODULES-237,https://issues.redhat.com/browse/MODULES-237
+3,3a82b3f06f7c233ee3876d034f1947d8b65d98b9,8825165cd5d7d7161b466e045254fed440f97473,MODULES-378,https://issues.redhat.com/browse/MODULES-378
+4,48e8b865992c51b0dd23ef0959062a8d3d65aa9f,2ce0bf3dffd831e7d7a5f6d5afa712abb59dc48b,MODULES-378,https://issues.redhat.com/browse/MODULES-378
+5,a498bc6609965135beb9593bf33b90eaefe22643,ca2210e244350e2dc20ccf46febe937a150a7a37,MODULES-377,https://issues.redhat.com/browse/MODULES-377
+6,eb309b6f83ed89dc6171c8d6c675151041837530,0399324741a77001a751b293625bab733847300a,MODULES-405,https://issues.redhat.com/browse/MODULES-405
+7,eb309b6f83ed89dc6171c8d6c675151041837530,6b76923594087d8e5f8a667c2b72db2d1c46f4fa,MODULES-405,https://issues.redhat.com/browse/MODULES-405

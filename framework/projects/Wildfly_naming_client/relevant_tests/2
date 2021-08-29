@@ -1,0 +1,2 @@
+org.jboss.naming.remote.client.InitialContextFactoryTestCase
+org.jboss.naming.remote.client.LegacyClientPropertiesTestCase

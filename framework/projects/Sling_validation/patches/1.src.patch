@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/sling/validation/impl/ValidatorMap.java b/src/main/java/org/apache/sling/validation/impl/ValidatorMap.java
+index 846edfb..71d80d5 100644
+--- a/src/main/java/org/apache/sling/validation/impl/ValidatorMap.java
++++ b/src/main/java/org/apache/sling/validation/impl/ValidatorMap.java
+@@ -222,7 +222,7 @@ public class ValidatorMap {
+         } else {
+             // only actually remove if the service reference is equal
+             if (entry.serviceReference.equals(serviceReference)) {
+-                validatorMap.remove(id);
++                //validatorMap.remove(id);
+                 return true;
+             } else {
+                 LOG.warn("Could not remove validator with id '{}' from map because it is only contained with a different service reference!", id);

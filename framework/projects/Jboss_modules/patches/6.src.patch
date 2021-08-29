@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/jboss/modules/maven/MavenSettings.java b/src/main/java/org/jboss/modules/maven/MavenSettings.java
+index e46886d8..9273f388 100644
+--- a/src/main/java/org/jboss/modules/maven/MavenSettings.java
++++ b/src/main/java/org/jboss/modules/maven/MavenSettings.java
+@@ -156,8 +156,7 @@ final class MavenSettings {
+                     switch (reader.getName()) {
+                         case "localRepository": {
+                             String localRepository = reader.nextText();
+-                            boolean localRepositoryNotDefinedViaProperty = mavenSettings.getLocalRepository() == null;
+-                            if (localRepositoryNotDefinedViaProperty && localRepository != null && !localRepository.trim().isEmpty()) {
++                            if (localRepository != null && !localRepository.trim().isEmpty()) {
+                                 mavenSettings.setLocalRepository(Paths.get(interpolateVariables(localRepository)));
+                             }
+                             break;
