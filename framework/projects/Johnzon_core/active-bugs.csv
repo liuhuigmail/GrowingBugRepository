@@ -1,7 +1,6 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,c0ebe9d2acbd8515a6169e7c1c80ecbe3ae67988,b5b99cf4046bb73e37cd6921417a20deea2fd921,JOHNZON-18,https://issues.apache.org/jira/browse/JOHNZON-18
 2,f283c1e896526c136afbba5fc07faf657a40fb32,f6979d363c18fed6ce06f42b635f673e65225b07,JOHNZON-122,https://issues.apache.org/jira/browse/JOHNZON-122
-3,c8b6c1fe05f0d2240874dc374d1edbe4b15d9106,8c30a68fb646b3e0aff0804e405a2b19c1d20820,JOHNZON-123,https://issues.apache.org/jira/browse/JOHNZON-123
 4,05effff6e0a555d1a2c62e65d1891745df028ea7,d455deafbf01675b5c607a8241adfde56ea11a6f,JOHNZON-139,https://issues.apache.org/jira/browse/JOHNZON-139
 5,3c28e350141d12a0bac3f7ceaf66352261caca5d,b594980702cb9ce0f7814ebee1e1bf603775c9ae,JOHNZON-172,https://issues.apache.org/jira/browse/JOHNZON-172
 6,297654206d56de2dd7b2de11e9de1f1eb7a81d41,b2d205738c65fb53e768fca445fa611515417c19,JOHNZON-193,https://issues.apache.org/jira/browse/JOHNZON-193

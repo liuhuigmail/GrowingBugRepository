@@ -1,3 +1,2 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,10692e81f9d1d5cb5a37f013fc1c34391f18ad96,d924e7fd9f8f62c7af380cedd7fc19687452b38b,47,https://github.com/FasterXML/jackson-module-jsonSchema/issues/47
-2,2a94ecf5c75730e17d4a6b1f5518b690fab2c35e,e24d5d83300a1ec4f30109a602f4b21bc0770999,117,https://github.com/FasterXML/jackson-module-jsonSchema/issues/117
