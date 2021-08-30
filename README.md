@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1302`** bugs
+ **`1298`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -51,13 +51,13 @@ from open-source Java projects.
 | 40     | Jackrabbit_filevault<br/>_vault_validation | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
 | 41     | Jackrabbit_oak_core            | oak-core               |       oak-core       |        2       | 1-2               |
 | 42     | Doxia_module_apt            | doxia-module-apt               |   doxia-modules/doxia-module-apt       |       1       | 1               |
-| 43     | HttpCore5            | httpcore5               |       httpcore5       |        1       | 1               |
+| 43     | Xmlgraphics            | xmlgraphics-commons |       |       2     | 1-2              |
 | 44     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
 | 45     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
 | 46     | James_project_core            | james-project-core               |       core       |        1       | 1               |
 | 47     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        5       | 1-5               |
 | 48     | AaltoXml            | aalto-xml      |             |        4       | 1-4               |
-| 49     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-7               |
+| 49     | HttpClient5            | httpclient5      |       httpclient5      |        6       | 1-2,4-7               |
 | 50     | jackson_modules<br/>_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |
 | 51     | Pdfbox_pdfbox         | pdfbox-pdfbox |    pdfbox    |        3      | 1-3               |
 | 52     | Storm_client            | storm-client      |       storm-client      |        2       | 1-2              |
@@ -67,7 +67,7 @@ from open-source Java projects.
 | 56     | JacksonDataformatBinary<br/>_avro            | jackson-dataformats-binary-avro |      avro   |       2     | 1-2              |
 | 57     | JacksonDataformatBinary<br/>_cbor            | jackson-dataformats-binary-cbor |      cbor   |       5     | 1-5              |
 | 58     | JavaClassmate            | java-classmate |        |       2     | 1-2              |
-| 59     | JacksonModuleJsonSchema            | jackson-module-jsonSchema |      |       2     | 1-2              |
+| 59     | JacksonModuleJsonSchema            | jackson-module-jsonSchema |      |       1     | 1              |
 | 60     | JacksonDatatypeJoda            | jackson-datatype-joda |        |       3     | 1-3              |
 | 61     | Bcel            | commons-bcel |        |       6     | 1-6              |
 | 62     | JacksonDataformatBinary<br/>_protobuf            | jackson-dataformats-binary-protobuf |      protobuf   |       4     | 1-4              |
@@ -85,7 +85,7 @@ from open-source Java projects.
 | 74     | Wink_common            | wink-common |  wink-common       |       4     | 1-4              |
 | 75     | Xbean_naming            | xbean-naming |  xbean-naming       |       1     | 1              |
 | 76     | James_project_<br/>server_container_core            | james-project-server-container-core |  server/container/core       |       1     | 1              |
-| 77     | Johnzon_core            | johnzon-core |  johnzon-core       |       11     | 1-11              |
+| 77     | Johnzon_core            | johnzon-core |  johnzon-core       |       10     | 1-2,4-11              |
 | 78     | Nifi_mock            | nifi-mock |  nifi-mock       |       2     | 1-2              |
 | 79     | Rat_core            | apache-rat-core |  apache-rat-core       |       1     | 1              |
 | 80     | Rat_plugin            | apache-rat-plugin |  apache-rat-plugin       |       1     | 1              |
@@ -127,7 +127,6 @@ from open-source Java projects.
 | 116     | Switchyard_validate            | switchyard-validate |  validate       |       1     | 1              |
 | 117     | Vysper_nbxml            | vysper-nbxml |  nbxml       |       2     | 1-2              |
 | 118     | Wildfly_naming_client            | wildfly-naming-client |     |       2     | 1-2              |
-| 119     | Xmlgraphics            | xmlgraphics-commons |       |       2     | 1-2              |
 # Setting up GrowingBugs
 
 ## Requirements
