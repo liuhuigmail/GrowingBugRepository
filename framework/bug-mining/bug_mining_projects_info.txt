@@ -15,7 +15,6 @@ Lang	commons-lang	https://github.com/apache/commons-lang.git	jira	LANG	/(LANG-\\
 Math	commons-math	https://github.com/apache/commons-math.git	jira	MATH	/(MATH-\\d+)/mi
 Mockito	mockito	https://github.com/mockito/mockito.git	github	mockito/mockito	/Fix(?:es)?\\s*#(\\d+)/mi
 Time	joda-time	https://github.com/JodaOrg/joda-time.git	github	JodaOrg/joda-time	/Fix(?:es)?\\s*#(\\d+)/mi
-Time	joad-time	https://github.com/JodaOrg/joda-time.git	sourceforge	joda-time	/\[.*?(\\d+)/mi
 Dbutils	commons-dbutils	https://github.com/apache/commons-dbutils.git	jira	DBUTILS	/(DBUTILS-\\d+)/mi
 Functor	commons-functor	https://github.com/apache/commons-functor.git	jira	FUNCTOR	/(FUNCTOR-\\d+)/mi
 Imaging	commons-imaging	https://github.com/apache/commons-imaging.git	jira	IMAGING	/(IMAGING-\\d+)/mi
@@ -39,25 +38,42 @@ Jena_core	jena-core	https://github.com/apache/jena.git	jira	JENA	/(JENA-\\d+)/mi
 Shiro_web	shiro-web	https://github.com/apache/shiro.git	jira	SHIRO	/(SHIRO-\\d+)/mi	web
 Jackrabbit_oak_core	oak-core	https://github.com/apache/jackrabbit-oak.git	jira	OAK	/(OAK-\\d+)/mi	oak-core	
 MDeploy	maven-deploy-plugin	https://github.com/apache/maven-deploy-plugin.git	jira	MDEPLOY	/(MDEPLOY-\\d+)/mi	
-Jackrabbit_filevault_vault_validation	jackrabbit-filevault-vault-validation	https://hub.fastgit.org/apache/jackrabbit-filevault.git	jira	JCRVLT	/(JCRVLT-\\d+)/mi	vault-validation	
-Doxia_module_apt doxia-module-apt https://hub.fastgit.org/apache/maven-doxia.git jira DOXIA /(DOXIA-\\d+)/mi doxia-modules/doxia-module-apt	
-HttpCore5 httpcore5 https://hub.fastgit.org/apache/httpcomponents-core.git jira HTTPCORE /(HTTPCORE-\\d+)/mi httpcore5	
-Rdf_jena commons-rdf-jena https://github.com/apache/commons-rdf.git jira COMMONSRDF /(COMMONSRDF-\\d+)/mi commons-rdf-jena	
-Maven_checkstyle_plugin	maven-checkstyle-plugin	https://hub.fastgit.org/apache/maven-checkstyle-plugin.git	jira	MCHECKSTYLE	/(MCHECKSTYLE-\\d+)/mi	.	
-James_project_core	james-project-core	https://hub.fastgit.org/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	core	
+Jackrabbit_filevault_vault_validation	jackrabbit-filevault-vault-validation	https://www.github.com/apache/jackrabbit-filevault.git	jira	JCRVLT	/(JCRVLT-\\d+)/mi	vault-validation	
+Doxia_module_apt	doxia-module-apt	https://www.github.com/apache/maven-doxia.git	jira	DOXIA	/(DOXIA-\\d+)/mi doxia-modules/doxia-module-apt	
+Xmlgraphics	xmlgraphics-commons	https://github.com/apache/xmlgraphics-commons.git	jira	XGC	/(XGC-\\d+)/mi	
+Rdf_jena	commons-rdf-jena	https://github.com/apache/commons-rdf.git	jira	COMMONSRDF	/(COMMONSRDF-\\d+)/mi	commons-rdf-jena	
+Maven_checkstyle_plugin	maven-checkstyle-plugin	https://www.github.com/apache/maven-checkstyle-plugin.git	jira	MCHECKSTYLE	/(MCHECKSTYLE-\\d+)/mi	.	
+James_project_core	james-project-core	https://www.github.com/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	core	
 Pdfbox_fontbox	pdfbox-fontbox	https://github.com/apache/pdfbox.git	jira	PDFBOX	/(PDFBOX-\\d+)/mi	fontbox	
-Jackrabbit_filevault_vault_core	jackrabbit-filevault-vault-core	https://hub.fastgit.org/apache/jackrabbit-filevault.git	jira	JCRVLT	/(JCRVLT-\\d+)/mi	vault-core	
 AaltoXml	aalto-xml	https://github.com/FasterXML/aalto-xml.git	github	FasterXML/aalto-xml	/Fix(?:es)?\\s*#(\\d+)/mi	.	
-HttpClient5	httpclient5	https://hub.fastgit.org/apache/httpcomponents-client.git	jira	HTTPCLIENT	/(HTTPCLIENT-\\d+)/mi	httpclient5	
-jackson_modules_java8_datetime	jackson-modules-java8-datetime	https://hub.fastgit.org/FasterXML/jackson-modules-java8.git	github	FasterXML/jackson-modules-java8	/Fix(?:es)?\\s*#(\\d+)/mi	datetime	
-JacksonCore	jackson-core	https://hub.fastgit.org/FasterXML/jackson-core.git	github	FasterXML/jackson-core	/Fix(?:es)?\\s*#(\\d+)/mi	.		
-Pdfbox_pdfbox	pdfbox-pdfbox	https://hub.fastgit.org/apache/pdfbox.git	jira	PDFBOX	/(PDFBOX-\\d+)/mi	pdfbox		
-Storm_client	storm-client	https://hub.fastgit.org/apache/storm.git	jira	STORM	/(STORM-\\d+)/mi	storm-client
-James_mime4j_core	james-mime4j-core https://hub.fastgit.org/apache/james-mime4j.git	jira	MIME4J	/MIME4J-\\d+/mi	core	
-JacksonDataformatsText_properties	jackson-dataformats-text-properties	https://hub.fastgit.org/FasterXML/jackson-dataformats-text.git	github	FasterXML/jackson-dataformats-text	/Fix(?:es)?\\s*#(\\d+)/mi	properties	
-JacksonDataformatsText_yaml	jackson-dataformats-text-yaml	https://hub.fastgit.org/FasterXML/jackson-dataformats-text.git	github	FasterXML/jackson-dataformats-text	/Fix(?:es)?\\s*#(\\d+)/mi	yaml	
-JacksonDataformatBinary_protobuf	jackson-dataformats-binary-protobuf	https://hub.fastgit.org/FasterXML/jackson-dataformats-binary.git	github	FasterXML/jackson-dataformats-binary	/Fix(?:es)?\\s*#(\\d+)/mi	protobuf	
-James_project_server_container_core	james-project-server-container-core	https://hub.fastgit.org/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	server/container/core	
+HttpClient5	httpclient5	https://www.github.com/apache/httpcomponents-client.git	jira	HTTPCLIENT	/(HTTPCLIENT-\\d+)/mi	httpclient5	
+jackson_modules_java8_datetime	jackson-modules-java8-datetime	https://www.github.com/FasterXML/jackson-modules-java8.git	github	FasterXML/jackson-modules-java8	/Fix(?:es)?\\s*#(\\d+)/mi	datetime	
+Pdfbox_pdfbox	pdfbox-pdfbox	https://www.github.com/apache/pdfbox.git	jira	PDFBOX	/(PDFBOX-\\d+)/mi	pdfbox		
+Storm_client	storm-client	https://www.github.com/apache/storm.git	jira	STORM	/(STORM-\\d+)/mi	storm-client
+James_mime4j_core	james-mime4j-core https://www.github.com/apache/james-mime4j.git	jira	MIME4J	/MIME4J-\\d+/mi	core	
+JacksonDataformatsText_yaml	jackson-dataformats-text-yaml	https://www.github.com/FasterXML/jackson-dataformats-text.git	github	FasterXML/jackson-dataformats-text	/Fix(?:es)?\\s*#(\\d+)/mi	yaml	
+JacksonDataformatsText_properties	jackson-dataformats-text-properties	https://www.github.com/FasterXML/jackson-dataformats-text.git	github	FasterXML/jackson-dataformats-text	/Fix(?:es)?\\s*#(\\d+)/mi	properties	
+JacksonDataformatBinary_avro	jackson-dataformats-binary-avro	https://www.github.com/FasterXML/jackson-dataformats-binary.git	github	FasterXML/jackson-dataformats-binary	/Fix(?:es)?\\s*#(\\d+)/mi	avro	
+JacksonDataformatBinary_cbor	jackson-dataformats-binary-cbor	https://www.github.com/FasterXML/jackson-dataformats-binary.git	github	FasterXML/jackson-dataformats-binary	/Fix(?:es)?\\s*#(\\d+)/mi	cbor	
+JavaClassmate	java-classmate	https://www.github.com/FasterXML/java-classmate.git	github	FasterXML/java-classmate	/#(\\d+)/mi	.	
+JacksonModuleJsonSchema	jackson-module-jsonSchema	https://www.github.com/FasterXML/jackson-module-jsonSchema.git	github	FasterXML/jackson-module-jsonSchema	/Fix(?:es)?\\s*#(\\d+)/mi	.	
+JacksonDatatypeJoda	jackson-datatype-joda	https://www.github.com/FasterXML/jackson-datatype-joda.git	github	FasterXML/jackson-datatype-joda	/Fix(?:es)?\\s*#(\\d+)/mi	.	
+Bcel	commons-bcel	https://www.github.com/apache/commons-bcel.git	jira	BCEL	/(BCEL-\\d+)/mi	.	
+JacksonDataformatBinary_protobuf	jackson-dataformats-binary-protobuf	https://www.github.com/FasterXML/jackson-dataformats-binary.git	github	FasterXML/jackson-dataformats-binary	/Fix(?:es)?\\s*#(\\d+)/mi	protobuf	
+Jackrabbit_filevault_vault_core	jackrabbit-filevault-vault-core	https://www.github.com/apache/jackrabbit-filevault.git	jira	JCRVLT	/(JCRVLT-\\d+)/mi	vault-core	
+JacksonDatatypeJsr310 jackson-datatype-jsr310	https://www.github.com/FasterXML/jackson-datatype-jsr310.git	github	FasterXML/jackson-datatype-jsr310	/.*#(\\d+)/mi	.	
+JacksonDataformatBinary_smile	jackson-dataformats-binary-smile	https://www.github.com/FasterXML/jackson-dataformats-binary.git	github	FasterXML/jackson-dataformats-binary	/Fix(?:es)?\\s*#(\\d+)/mi	smile	
+JacksonModuleAfterburner jackson-module-afterburner	https://www.github.com/FasterXML/jackson-module-afterburner.git	github	FasterXML/jackson-module-afterburner	/Fix(?:es)?\\s*#(\\d+)/mi	.	
+Woodstox	woodstox	https://www.github.com/FasterXML/woodstox.git	github	FasterXML/woodstox	/Fix(?:es)?\\s*#(\\d+)/mi	.	
+MetaModel_core	MetaModel-core	https://github.com/apache/metamodel.git	jira	METAMODEL	/(METAMODEL-\\d+)/mi	core	
+MetaModel_csv	MetaModel-csv	https://github.com/apache/metamodel.git	jira	METAMODEL	/(METAMODEL-\\d+)/mi	csv	
+MetaModel_excel	MetaModel-excel	https://github.com/apache/metamodel.git	jira	METAMODEL	/(METAMODEL-\\d+)/mi	excel	
+MetaModel_jdbc	MetaModel-jdbc	https://github.com/apache/metamodel.git	jira	METAMODEL	/(METAMODEL-\\d+)/mi	jdbc	
+MetaModel_pojo	MetaModel-pojo	https://github.com/apache/metamodel.git	jira	METAMODEL	/(METAMODEL-\\d+)/mi	pojo	
+MetaModel_salesforce	MetaModel-salesforce	https://github.com/apache/metamodel.git	jira	METAMODEL	/(METAMODEL-\\d+)/mi	salesforce	
+Wink_common	wink-common	https://github.com/apache/wink.git	jira	WINK	/(WINK-\\d+)/mi	wink-common	
+Xbean_naming	xbean-naming	https://github.com/apache/geronimo-xbean.git	jira	XBEAN	/(XBEAN-\\d+)/mi	xbean-naming	
+James_project_server_container_core	james-project-server-container-core	https://www.github.com/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	server/container/core	
 Johnzon_core	johnzon-core	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-core	
 Nifi_mock	nifi-mock	https://github.com/apache/nifi.git	jira	NIFI	/(NIFI-\\d+)/mi	nifi-mock
 Rat_core	apache-rat-core	https://github.com/apache/creadur-rat.git	jira	RAT	/(RAT-\\d+)/mi	apache-rat-core	
@@ -65,15 +81,15 @@ Rat_plugin	apache-rat-plugin	https://github.com/apache/creadur-rat.git	jira	RAT	
 Tez_common	tez-common	https://github.com/apache/tez.git	jira	TEZ	/(TEZ-\\d+)/mi	tez-common	
 Tinkerpop_gremlin_core	gremlin-core	https://github.com/apache/tinkerpop.git	jira	TINKERPOP	/(TINKERPOP-\\d+)/mi	gremlin-core	
 Webbeans_web	webbeans-web	https://github.com/apache/openwebbeans.git	jira	OWB	/(OWB-\\d+)/mi	webbeans-web
-Johnzon_jsonb	johnzon-jsonb	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-jsonb	
-Johnzon_jaxrs	johnzon-jaxrs	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-jaxrs	
 Hono_client	hono-client	https://github.com/eclipse/hono.git	github	eclipse/hono	/#(\\d+)/mi	client	
 Httpcomponents_core_h2	httpcore5-h2	https://github.com/apache/httpcomponents-core.git	jira	HTTPCORE	/(HTTPCORE-\\d+)/mi	httpcore5-h2	
 Httpcomponents_core_httpcore5	httpcore5	https://github.com/apache/httpcomponents-core.git	jira	HTTPCORE	/(HTTPCORE-\\d+)/mi	httpcore5	
+Johnzon_jsonb	johnzon-jsonb	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-jsonb	
+Johnzon_jaxrs	johnzon-jaxrs	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-jaxrs	
 Hbase_common	hbase-common	https://github.com/apache/hbase.git	jira	HBASE	/(HBASE-\\d+)/mi	hbase-common
 Incubator_tamaya_api	incubator-retired-tamaya-api	https://github.com/apache/incubator-retired-tamaya.git	jira	TAMAYA	/(TAMAYA-\\d+)/mi	code/api
+James_project_mailet_standard	james-project-mailet-standard	https://www.github.com/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	mailet/standard   
 Johnzon_jsonschema	johnzon-jsonschema	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-jsonschema	
-James_project_mailet_standard	james-project-mailet-standard	https://hub.fastgit.org/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	mailet/standard   
 Johnzon_mapper	johnzon-mapper	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-mapper	
 Karaf_main	karaf-main	https://github.com/apache/karaf.git	jira	KARAF	/(KARAF-\\d+)/mi	main	
 Appformer_uberfire_commons_editor_backend	uberfire-commons-editor-backend	https://github.com/kiegroup/appformer.git	jira	AF	/(AF-\\d+)/mi	uberfire-extensions/uberfire-commons-editor/uberfire-commons-editor-backend	
@@ -81,23 +97,23 @@ Kie_pmml_commons	kie-pmml-commons	https://github.com/kiegroup/drools.git	jira	DR
 Kie_memory_compiler	kie-memory-compiler	https://github.com/kiegroup/drools.git	jira	DROOLS	/(DROOLS-\\d+)/mi	kie-memory-compiler	
 Jbpm_human_task_workitems	jbpm-human-task-workitems	https://github.com/kiegroup/jbpm.git	jira	JBPM	/(JBPM-\\d+)/mi	jbpm-human-task/jbpm-human-task-workitems	
 Drools_traits	drools-traits	https://github.com/kiegroup/drools.git	jira	DROOLS	/(DROOLS-\\d+)/mi	drools-traits	
-Drools_model_compiler	drools-model-compiler	https://github.com/kiegroup/drools.git	jira	DROOLS	/(DROOLS-\\d+)/mi	drools-model/drools-model-compiler
-Appformer_uberfire_security_management_client	uberfire-security-management-client	https://github.com/kiegroup/appformer.git	jira	AF	/(AF-\\d+)/mi	uberfire-extensions/uberfire-security/uberfire-security-management/uberfire-security-management-client
-Appformer_uberfire_workbench_client	uberfire-workbench-client	https://github.com/kiegroup/appformer.git	jira	AF	/(AF-\\d+)/mi	uberfire-workbench/uberfire-workbench-client
-Deltaspike_api	deltaspike-core-api	https://github.com/apache/deltaspike.git	jira	DELTASPIKE	/(DELTASPIKE-\\d+)/mi	deltaspike/core/api
+Drools_model_compiler	drools-model-compiler	https://github.com/kiegroup/drools.git	jira	DROOLS	/(DROOLS-\\d+)/mi	drools-model/drools-model-compiler	
+Appformer_uberfire_security_management_client	uberfire-security-management-client	https://github.com/kiegroup/appformer.git	jira	AF	/(AF-\\d+)/mi	uberfire-extensions/uberfire-security/uberfire-security-management/uberfire-security-management-client	
+Appformer_uberfire_workbench_client	uberfire-workbench-client	https://github.com/kiegroup/appformer.git	jira	AF	/(AF-\\d+)/mi	uberfire-workbench/uberfire-workbench-client	
+Deltaspike_api	deltaspike-core-api	https://github.com/apache/deltaspike.git	jira	DELTASPIKE	/(DELTASPIKE-\\d+)/mi	deltaspike/core/api	
 Flume_ngcore	flume-ng-core	https://github.com/apache/flume.git	jira	FLUME	/(FLUME-\\d+)/mi	flume-ng-core	
 Jandex	jandex	https://github.com/wildfly/jandex.git	jira	JANDEX	/(JANDEX-\\d+)/mi	.
-Kogito_editors_java_kie_wb_common_stunner_widgets	kie-wb-common-stunner-widgets	https://github.com/kiegroup/kogito-editors-java.git	jira	KOGITO	/(KOGITO-\\d+)/mi	kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets
+Kogito_editors_java_kie_wb_common_stunner_widgets	kie-wb-common-stunner-widgets	https://github.com/kiegroup/kogito-editors-java.git	jira	KOGITO	/(KOGITO-\\d+)/mi	kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets	
 Ognl	commons-ognl	https://github.com/apache/commons-ognl.git	jira	OGNL	/(OGNL-\\d+)/mi	.
-Qpid_client	qpid-jms-client	https://github.com/apache/qpid-jms.git	jira	QPIDJMS	/(QPIDJMS-\\d+)/mi	qpid-jms-client
-Switchyard_admin	switchyard-admin	https://github.com/jboss-switchyard/core.git	jira	SWITCHYARD	/(SWITCHYARD-\\d+)/mi	admin
-Weld_se_core	weld-se-core	https://github.com/weld/core.git	jira	WELD	/(WELD-\\d+)/mi	environments/se/core
-Jboss_modules	jboss-modules	https://github.com/jboss-modules/jboss-modules.git	jira	MODULES	/(MODULES-\\d+)/mi	.
-Jboss_threads	jboss-threads	https://github.com/jbossas/jboss-threads.git	jira	JBTHR	/(JBTHR-\\d+)/mi	.
+Qpid_client	qpid-jms-client	https://github.com/apache/qpid-jms.git	jira	QPIDJMS	/(QPIDJMS-\\d+)/mi	qpid-jms-client	
+Switchyard_admin	switchyard-admin	https://github.com/jboss-switchyard/core.git	jira	SWITCHYARD	/(SWITCHYARD-\\d+)/mi	admin	
+Weld_se_core	weld-se-core	https://github.com/weld/core.git	jira	WELD	/(WELD-\\d+)/mi	environments/se/core	
+Jboss_modules	jboss-modules	https://github.com/jboss-modules/jboss-modules.git	jira	MODULES	/(MODULES-\\d+)/mi	.	
+Jboss_threads	jboss-threads	https://github.com/jbossas/jboss-threads.git	jira	JBTHR	/(JBTHR-\\d+)/mi	.	
 Minaftp_api	ftpserver-api	https://github.com/apache/mina-ftpserver.git	jira	FTPSERVER	/(FTPSERVER-\\d+)/mi	ftplet-api	
-Sling_validation	sling-org-apache-sling-validation-core	https://github.com/apache/sling-org-apache-sling-validation-core.git	jira	SLING	/(SLING-\\d+)/mi	.
-Switchyard_config	switchyard-config	https://github.com/jboss-switchyard/core.git	jira	SWITCHYARD	/(SWITCHYARD-\\d+)/mi	config
-Switchyard_validate	switchyard-validate	https://github.com/jboss-switchyard/core.git	jira	SWITCHYARD	/(SWITCHYARD-\\d+)/mi	validate
+Sling_validation	sling-org-apache-sling-validation-core	https://github.com/apache/sling-org-apache-sling-validation-core.git	jira	SLING	/(SLING-\\d+)/mi	.	
+Switchyard_config	switchyard-config	https://github.com/jboss-switchyard/core.git	jira	SWITCHYARD	/(SWITCHYARD-\\d+)/mi	config	
+Switchyard_validate	switchyard-validate	https://github.com/jboss-switchyard/core.git	jira	SWITCHYARD	/(SWITCHYARD-\\d+)/mi	validate	
 Vysper_nbxml	vysper-nbxml	https://github.com/apache/mina-vysper.git	jira	VYSPER	/(VYSPER-\\d+)/mi	nbxml	
-Wildfly_naming_client	wildfly-naming-client	https://github.com/wildfly/wildfly-naming-client.git	jira	WFNC	/(WFNC-\\d+)/mi	.
-Xmlgraphics	xmlgraphics-commons	https://github.com/apache/xmlgraphics-commons.git	jira	XGC	/(XGC-\\d+)/mi	.
+Wildfly_naming_client	wildfly-naming-client	https://github.com/wildfly/wildfly-naming-client.git	jira	WFNC	/(WFNC-\\d+)/mi	.	
+Time	joad-time	https://github.com/JodaOrg/joda-time.git	sourceforge	joda-time	/\[.*?(\\d+)/mi	
