@@ -158,7 +158,7 @@ from open-source Java projects.
     
     Example:
   
-    - `defects4j checkout -p Shiro_core -v 1b -w /tmp/Shiro_core_1_buggy -s core`
+    - `defects4j checkout -p Shiro_core -v 37b -w /tmp/Shiro_core_37_buggy -s core`
     - `defects4j checkout -p Dbutils -v 1b -w /tmp/dbutils_1_buggy`
 
    Notably, **GrowingBugs**  supports sub-projects that are not suported by Defects4J. To this end, yor should specify the sub-project with  `-s` parameter in the `checkout`  command. The preceding example common leverages `-s core` to check out sub-proejct `core` from the enclosing project `Shiro_core`. For the `compile` and `test` commands, you should also switch to the sub-project's folder to compile and test the sub-project.
@@ -171,7 +171,7 @@ from open-source Java projects.
    
    Example1：
    
-   - `cd /tmp/Shiro_core_1_buggy/core`
+   - `cd /tmp/Shiro_core_37_buggy/core`
    - `defects4j compile`
    - `defects4j test`
 
