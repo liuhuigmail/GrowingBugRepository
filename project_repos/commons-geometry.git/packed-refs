@@ -1,0 +1,25 @@
+# pack-refs with: peeled fully-peeled sorted 
+c47308d13c371652d9798037b390676c13564e48 refs/remotes/origin/1.0-beta1-release
+4f8c39bd1c55643a68961c832c804a3b7fd42063 refs/remotes/origin/1.0-release
+1eafd0f0fdc8fb90703265b784ae0dd6c2124abd refs/remotes/origin/GEOMETRY-53
+6bfaf0653730bc8edc701b4e34f24d04adbaa78a refs/remotes/origin/GEOMETRY-54
+c5f125508851531d60a088c1acc82039bef9ebe3 refs/remotes/origin/GEOMETRY-56
+b00020d34aaf657697dd30e0f730c917233dc79f refs/remotes/origin/master
+d6c3ac11f04fa1b201a490d19ca16ade013cb4a8 refs/tags/commons-geometry-1.0-beta1-rc1
+^cc94f654e13954c805650d6ab9f6bee333c75a31
+311e4082efe7028fafed251cf07c82c0648dfc27 refs/tags/commons-geometry-1.0-beta1-rc2
+^418dbb4bb050554ad409ac3c28754822d13a9134
+e8ea92085f56e364357f9d5d2166d2e94124d404 refs/tags/commons-geometry-1.0-beta1-rc3
+^c47308d13c371652d9798037b390676c13564e48
+fb71c9d0681aba45e642897173b764454e86ed19 refs/tags/commons-geometry-1.0-rc1
+^61ea6625233d2e46b805f009ec9e6cb6340d5e65
+6531204bcf936e6f971b33e1b8b9fa5fed46a4c9 refs/tags/commons-geometry-1.0-rc2
+^88f1de81740c6012739c90612b996273ce68ec1f
+4ef89cad5d976cbc3eff40a727b8213ac0eea46f refs/tags/commons-geometry-1.0-rc3
+^aad4aa0b860097b05ce5bb193f47d42f93083ff5
+8296de92f7c85971cf5585f073e4d9543594e738 refs/tags/commons-geometry-1.0-rc4
+^5326851864f93a486409562628afaaa485b6d99f
+91ae74d9d77a77427a160d38c4dbf24a27f46b18 refs/tags/rel/commons-geometry-1.0
+^5326851864f93a486409562628afaaa485b6d99f
+824b3d2ade6a5cb197d53c531cb3849c05290efd refs/tags/rel/commons-geometry-1.0-beta1
+^c47308d13c371652d9798037b390676c13564e48
