@@ -224,10 +224,10 @@ sub _remove_test_method {
      
     for (my $i=0; $i<=$#lines; ++$i) {
      my $temp_method=$method;
-     system("echo $method");
+     system("echo $method") ;#and die;
      #$temp_method=~ s/\[/\\\[/g;
      #$temp_method =~ s/\]/\\\]/g; 
-        if ($lines[$i] =~ /^([^\/]*)public.+$temp_method/) {
+        if ($lines[$i] =~ /^([^\/]*)public.+$temp_method\(\)/) {
             my $index = $i;
             # Found the test to exclude
             my $space = $1;
@@ -246,8 +246,12 @@ sub _remove_test_method {
             # proper parser that computes a line-number table for all methods.
             my @tmp = @lines[$index..$#lines];
             foreach (@tmp) {
+                # Special case on escaped backslashes -- Strings and chars.
+                s/"\\\\"/""/g;
+                s/'\\\\'/''/g;
                 # This captures String literals -- accounting for escaped quotes
                 # (\") and non-escaped quotes (" and \\")
+
                 s/([\"'])(?:\\(\\\\)*\1|.)*?\1/$1$1/g;
                 s/\/\/.*/\/\//;
             }
