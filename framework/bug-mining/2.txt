@@ -1,2 +1,0 @@
-jackrabbit_oak_core	oak-core	https://hub.fastgit.org/apache/jackrabbit-oak.git	jira	OAK	/(OAK-\\d+)/mi	oak-core
-jackrabbit_oak_commons	oak-commons	https://hub.fastgit.org/apache/jackrabbit-oak.git	jira	OAK	/(OAK-\\d+)/mi	oak-commons
