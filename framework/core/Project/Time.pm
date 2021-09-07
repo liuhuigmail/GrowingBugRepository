@@ -60,7 +60,7 @@ sub new {
 }
 
 sub _post_checkout {
-    @_ == 3 or die $ARG_ERROR;
+    @_ == 4 or die $ARG_ERROR;
     my ($self, $rev_id, $work_dir) = @_;
 
     # remove the JodaTime super directory (move things one dir up)

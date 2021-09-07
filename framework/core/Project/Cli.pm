@@ -211,38 +211,8 @@ sub initialize_revision {
     $self->SUPER::initialize_revision($rev_id);
 
     my $work_dir = $self->{prog_root};
-    my $result  = _ant_layout($work_dir) // _maven_layout($work_dir);
+    my $result  = determine_layout($self, $rev_id);
     
-    if (-e "$work_dir/src/main/java" and -e "$work_dir/src/test/java"){
-        $result = {src=>"src/main/java", test=>"src/test/java"} unless defined $result;
-    }
-    elsif (-e "$work_dir/src/main/java" and -e "$work_dir/src/tests/java"){
-        $result = {src=>"src/main/java", test=>"src/tests/java"} unless defined $result;
-    }
-    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/testcases"){
-        $result = {src=>"src/main", test=>"src/testcases"} unless defined $result;
-    }
-    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/tests/junit"){
-        $result = {src=>"src/main", test=>"src/tests/junit"} unless defined $result;
-    }
-    elsif (-e "$work_dir/src/main" and -e "$work_dir/src/tests"){
-        $result = {src=>"src/main", test=>"src/tests"} unless defined $result;
-    }
-    elsif (-e "$work_dir/src/java" and -e "$work_dir/src/test"){
-        $result = {src=>"src/java", test=>"src/test"} unless defined $result;
-    }
-    elsif (-e "$work_dir/src/java" and -e "$work_dir/src/tests"){
-        $result = {src=>"src/java", test=>"src/tests"} unless defined $result;
-    }
-    else {
-        if (-e "$work_dir"){
-      	  system("tree -d $work_dir");
-          die "Unknown directory layout" unless defined $result;
-    	}
-        else { 
-    	    $result = {src=>"$sub_project", test=>"$sub_project"} unless defined $result;
-    	}
-    }
     
     $self->_add_to_layout_map($rev_id, $sub_project."/".$result->{src}, $sub_project."/".$result->{test});
     $self->_cache_layout_map(); # Force cache rebuild

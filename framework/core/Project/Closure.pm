@@ -66,7 +66,6 @@ sub determine_layout {
 }
 
 sub _post_checkout {
-    @_ == 3 or die $ARG_ERROR;
     my ($self, $rev_id, $work_dir) = @_;
 
     open FH, "$work_dir/build.xml" or die $!;
