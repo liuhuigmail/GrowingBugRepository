@@ -68,7 +68,7 @@ sub determine_layout {
 
 sub _post_checkout {
     # Fix compilation errors if necessary
-    @_ == 3 or die $ARG_ERROR;
+    @_ == 4 or die $ARG_ERROR;
     my ($self, $revision_id, $work_dir) = @_;
 
     my $compile_errors = "$PROJECTS_DIR/$self->{pid}/compile-errors/";
