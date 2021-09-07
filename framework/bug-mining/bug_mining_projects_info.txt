@@ -34,12 +34,12 @@ Text	commons-text	https://github.com/apache/commons-text.git	jira	TEXT	/(TEXT-\\
 Tika_core	tika-core	https://github.com/apache/tika.git	jira	TIKA	/(TIKA-\\d+)/mi	tika-core	
 Tika_app	tika-app	https://github.com/apache/tika.git	jira	TIKA	/(TIKA-\\d+)/mi	tika-app
 Shiro_core	shiro-core	https://github.com/apache/shiro.git	jira	SHIRO	/(SHIRO-\\d+)/mi	core	
-Jena_core	jena-core	https://github.com/apache/jena.git	jira	JENA	/(JENA-\\d+)/mi	jena-core
+Jena_core	jena-core	https://github.com/apache/jena.git	jira	JENA	/(JENA-\\d+)/mi	jena-core	
 Shiro_web	shiro-web	https://github.com/apache/shiro.git	jira	SHIRO	/(SHIRO-\\d+)/mi	web
 Jackrabbit_oak_core	oak-core	https://github.com/apache/jackrabbit-oak.git	jira	OAK	/(OAK-\\d+)/mi	oak-core	
 MDeploy	maven-deploy-plugin	https://github.com/apache/maven-deploy-plugin.git	jira	MDEPLOY	/(MDEPLOY-\\d+)/mi	
 Jackrabbit_filevault_vault_validation	jackrabbit-filevault-vault-validation	https://www.github.com/apache/jackrabbit-filevault.git	jira	JCRVLT	/(JCRVLT-\\d+)/mi	vault-validation	
-Doxia_module_apt	doxia-module-apt	https://www.github.com/apache/maven-doxia.git	jira	DOXIA	/(DOXIA-\\d+)/mi doxia-modules/doxia-module-apt	
+Doxia_module_apt	doxia-module-apt	https://www.github.com/apache/maven-doxia.git	jira	DOXIA	/(DOXIA-\\d+)/mi	doxia-modules/doxia-module-apt	
 Xmlgraphics	xmlgraphics-commons	https://github.com/apache/xmlgraphics-commons.git	jira	XGC	/(XGC-\\d+)/mi	
 Rdf_jena	commons-rdf-jena	https://github.com/apache/commons-rdf.git	jira	COMMONSRDF	/(COMMONSRDF-\\d+)/mi	commons-rdf-jena	
 Maven_checkstyle_plugin	maven-checkstyle-plugin	https://www.github.com/apache/maven-checkstyle-plugin.git	jira	MCHECKSTYLE	/(MCHECKSTYLE-\\d+)/mi	.	
@@ -49,8 +49,8 @@ AaltoXml	aalto-xml	https://github.com/FasterXML/aalto-xml.git	github	FasterXML/a
 HttpClient5	httpclient5	https://www.github.com/apache/httpcomponents-client.git	jira	HTTPCLIENT	/(HTTPCLIENT-\\d+)/mi	httpclient5	
 jackson_modules_java8_datetime	jackson-modules-java8-datetime	https://www.github.com/FasterXML/jackson-modules-java8.git	github	FasterXML/jackson-modules-java8	/Fix(?:es)?\\s*#(\\d+)/mi	datetime	
 Pdfbox_pdfbox	pdfbox-pdfbox	https://www.github.com/apache/pdfbox.git	jira	PDFBOX	/(PDFBOX-\\d+)/mi	pdfbox		
-Storm_client	storm-client	https://www.github.com/apache/storm.git	jira	STORM	/(STORM-\\d+)/mi	storm-client
-James_mime4j_core	james-mime4j-core https://www.github.com/apache/james-mime4j.git	jira	MIME4J	/MIME4J-\\d+/mi	core	
+Storm_client	storm-client	https://www.github.com/apache/storm.git	jira	STORM	/(STORM-\\d+)/mi	storm-client	
+James_mime4j_core	james-mime4j-core	https://www.github.com/apache/james-mime4j.git	jira	MIME4J	/MIME4J-\\d+/mi	core	
 JacksonDataformatsText_yaml	jackson-dataformats-text-yaml	https://www.github.com/FasterXML/jackson-dataformats-text.git	github	FasterXML/jackson-dataformats-text	/Fix(?:es)?\\s*#(\\d+)/mi	yaml	
 JacksonDataformatsText_properties	jackson-dataformats-text-properties	https://www.github.com/FasterXML/jackson-dataformats-text.git	github	FasterXML/jackson-dataformats-text	/Fix(?:es)?\\s*#(\\d+)/mi	properties	
 JacksonDataformatBinary_avro	jackson-dataformats-binary-avro	https://www.github.com/FasterXML/jackson-dataformats-binary.git	github	FasterXML/jackson-dataformats-binary	/Fix(?:es)?\\s*#(\\d+)/mi	avro	
@@ -61,9 +61,9 @@ JacksonDatatypeJoda	jackson-datatype-joda	https://www.github.com/FasterXML/jacks
 Bcel	commons-bcel	https://www.github.com/apache/commons-bcel.git	jira	BCEL	/(BCEL-\\d+)/mi	.	
 JacksonDataformatBinary_protobuf	jackson-dataformats-binary-protobuf	https://www.github.com/FasterXML/jackson-dataformats-binary.git	github	FasterXML/jackson-dataformats-binary	/Fix(?:es)?\\s*#(\\d+)/mi	protobuf	
 Jackrabbit_filevault_vault_core	jackrabbit-filevault-vault-core	https://www.github.com/apache/jackrabbit-filevault.git	jira	JCRVLT	/(JCRVLT-\\d+)/mi	vault-core	
-JacksonDatatypeJsr310 jackson-datatype-jsr310	https://www.github.com/FasterXML/jackson-datatype-jsr310.git	github	FasterXML/jackson-datatype-jsr310	/.*#(\\d+)/mi	.	
+JacksonDatatypeJsr310	jackson-datatype-jsr310	https://www.github.com/FasterXML/jackson-datatype-jsr310.git	github	FasterXML/jackson-datatype-jsr310	/.*#(\\d+)/mi	.	
 JacksonDataformatBinary_smile	jackson-dataformats-binary-smile	https://www.github.com/FasterXML/jackson-dataformats-binary.git	github	FasterXML/jackson-dataformats-binary	/Fix(?:es)?\\s*#(\\d+)/mi	smile	
-JacksonModuleAfterburner jackson-module-afterburner	https://www.github.com/FasterXML/jackson-module-afterburner.git	github	FasterXML/jackson-module-afterburner	/Fix(?:es)?\\s*#(\\d+)/mi	.	
+JacksonModuleAfterburner	jackson-module-afterburner	https://www.github.com/FasterXML/jackson-module-afterburner.git	github	FasterXML/jackson-module-afterburner	/Fix(?:es)?\\s*#(\\d+)/mi	.	
 Woodstox	woodstox	https://www.github.com/FasterXML/woodstox.git	github	FasterXML/woodstox	/Fix(?:es)?\\s*#(\\d+)/mi	.	
 MetaModel_core	MetaModel-core	https://github.com/apache/metamodel.git	jira	METAMODEL	/(METAMODEL-\\d+)/mi	core	
 MetaModel_csv	MetaModel-csv	https://github.com/apache/metamodel.git	jira	METAMODEL	/(METAMODEL-\\d+)/mi	csv	
@@ -88,7 +88,7 @@ Johnzon_jsonb	johnzon-jsonb	https://github.com/apache/johnzon.git	jira	JOHNZON	/
 Johnzon_jaxrs	johnzon-jaxrs	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-jaxrs	
 Hbase_common	hbase-common	https://github.com/apache/hbase.git	jira	HBASE	/(HBASE-\\d+)/mi	hbase-common
 Incubator_tamaya_api	incubator-retired-tamaya-api	https://github.com/apache/incubator-retired-tamaya.git	jira	TAMAYA	/(TAMAYA-\\d+)/mi	code/api
-James_project_mailet_standard	james-project-mailet-standard	https://www.github.com/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	mailet/standard   
+James_project_mailet_standard	james-project-mailet-standard	https://www.github.com/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	mailet/standard	
 Johnzon_jsonschema	johnzon-jsonschema	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-jsonschema	
 Johnzon_mapper	johnzon-mapper	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-mapper	
 Karaf_main	karaf-main	https://github.com/apache/karaf.git	jira	KARAF	/(KARAF-\\d+)/mi	main	
@@ -116,4 +116,3 @@ Switchyard_config	switchyard-config	https://github.com/jboss-switchyard/core.git
 Switchyard_validate	switchyard-validate	https://github.com/jboss-switchyard/core.git	jira	SWITCHYARD	/(SWITCHYARD-\\d+)/mi	validate	
 Vysper_nbxml	vysper-nbxml	https://github.com/apache/mina-vysper.git	jira	VYSPER	/(VYSPER-\\d+)/mi	nbxml	
 Wildfly_naming_client	wildfly-naming-client	https://github.com/wildfly/wildfly-naming-client.git	jira	WFNC	/(WFNC-\\d+)/mi	.	
-Time	joad-time	https://github.com/JodaOrg/joda-time.git	sourceforge	joda-time	/\[.*?(\\d+)/mi	
