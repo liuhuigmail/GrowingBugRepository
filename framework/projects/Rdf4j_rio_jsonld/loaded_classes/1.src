@@ -1,0 +1,6 @@
+org.eclipse.rdf4j.rio.jsonld.JSONLDInternalRDFParser
+org.eclipse.rdf4j.rio.jsonld.JSONLDInternalTripleCallback
+org.eclipse.rdf4j.rio.jsonld.JSONLDParser
+org.eclipse.rdf4j.rio.jsonld.JSONLDParserFactory
+org.eclipse.rdf4j.rio.jsonld.JSONLDWriter
+org.eclipse.rdf4j.rio.jsonld.JSONLDWriterFactory

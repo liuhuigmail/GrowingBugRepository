@@ -1,0 +1,25 @@
+diff --git a/gateway-provider-identity-assertion-common/src/main/java/org/apache/hadoop/gateway/identityasserter/common/filter/IdentityAsserterHttpServletRequestWrapper.java b/gateway-provider-identity-assertion-common/src/main/java/org/apache/hadoop/gateway/identityasserter/common/filter/IdentityAsserterHttpServletRequestWrapper.java
+index a4e8546af..835a7a33a 100644
+--- a/gateway-provider-identity-assertion-common/src/main/java/org/apache/hadoop/gateway/identityasserter/common/filter/IdentityAsserterHttpServletRequestWrapper.java
++++ b/gateway-provider-identity-assertion-common/src/main/java/org/apache/hadoop/gateway/identityasserter/common/filter/IdentityAsserterHttpServletRequestWrapper.java
+@@ -203,18 +203,18 @@ private static SpiGatewayMessages log = MessagesFactory.get( SpiGatewayMessages.
+         } else {
+           for( int i = 0; i < values.length; i++ ) {
+             String value = values[ i ];
++            if( value != null ) {
+               if( sb.length() > 0 ) {
+                 sb.append( "&" );
+               }
+               try {
+                 sb.append( urlEncode( name, encoding ) );
+-                if( value != null ) {
+                   sb.append("=");
+                   sb.append(urlEncode(value, encoding));
+-                }
+               } catch( IllegalArgumentException e ) {
+                 log.skippingUnencodableParameter( name, value, encoding, e );
+               }
++            }
+           }
+         }
+       }

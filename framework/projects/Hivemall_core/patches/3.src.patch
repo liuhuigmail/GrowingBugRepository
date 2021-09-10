@@ -1,0 +1,12 @@
+diff --git a/core/src/main/java/hivemall/GeneralLearnerBaseUDTF.java b/core/src/main/java/hivemall/GeneralLearnerBaseUDTF.java
+index 8400a2c3..04f65e87 100644
+--- a/core/src/main/java/hivemall/GeneralLearnerBaseUDTF.java
++++ b/core/src/main/java/hivemall/GeneralLearnerBaseUDTF.java
+@@ -565,6 +565,7 @@ public abstract class GeneralLearnerBaseUDTF extends LearnerBaseUDTF {
+     @VisibleForTesting
+     public void finalizeTraining() throws HiveException {
+         if (count == 0L) {
++            this.model = null;
+             return;
+         }
+         if (is_mini_batch) { // Update model with accumulated delta

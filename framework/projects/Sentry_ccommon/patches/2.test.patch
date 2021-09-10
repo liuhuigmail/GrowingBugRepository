@@ -1,0 +1,45 @@
+diff --git a/sentry-core/sentry-core-common/src/test/java/org/apache/sentry/core/common/utils/TestPathUtils.java b/sentry-core/sentry-core-common/src/test/java/org/apache/sentry/core/common/utils/TestPathUtils.java
+index 329e6688..8419b9d5 100644
+--- a/sentry-core/sentry-core-common/src/test/java/org/apache/sentry/core/common/utils/TestPathUtils.java
++++ b/sentry-core/sentry-core-common/src/test/java/org/apache/sentry/core/common/utils/TestPathUtils.java
+@@ -21,11 +21,8 @@ import static org.junit.Assert.assertFalse;
+ import static org.junit.Assert.assertTrue;
+ import static org.junit.Assert.fail;
+ 
+-import com.google.common.collect.Lists;
+ import java.net.URI;
+ 
+-import java.util.Arrays;
+-import java.util.List;
+ import org.junit.Test;
+ 
+ public class TestPathUtils {
+@@ -149,28 +146,4 @@ public class TestPathUtils {
+     assertEquals("file://localhost:9999/tmp/hive-user",
+         PathUtils.parseLocalURI("file://localhost:9999/tmp/hive-user"));
+   }
+-
+-  @Test
+-  public void testStripSurplusSlashesAndSplitPath() throws Exception {
+-
+-    List<String> expected = Arrays.asList("a", "b", "c");
+-
+-    String path = "a/b/c";
+-    assertEquals("Invalid split doesn't match expected output", expected, Lists.newArrayList(PathUtils.splitPath(path)));
+-
+-    path = "/a/b/c";
+-    assertEquals("Invalid split doesn't match expected output", expected, Lists.newArrayList(PathUtils.splitPath(path)));
+-
+-    path = "a/b/c/";
+-    assertEquals("Invalid split doesn't match expected output", expected, Lists.newArrayList(PathUtils.splitPath(path)));
+-
+-    path = "/a/b/c/";
+-    assertEquals("Invalid split doesn't match expected output", expected, Lists.newArrayList(PathUtils.splitPath(path)));
+-
+-    path = "/////a/b/c///";
+-    assertEquals("Invalid split doesn't match expected output", expected, Lists.newArrayList(PathUtils.splitPath(path)));
+-
+-    path = "/////a//b//c///";
+-    assertEquals("Invalid split doesn't match expected output", expected, Lists.newArrayList(PathUtils.splitPath(path)));
+-  }
+ }

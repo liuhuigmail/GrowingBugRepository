@@ -1,0 +1,22 @@
+diff --git a/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java b/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java
+index efcc9aaf5..ed989c781 100644
+--- a/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java
++++ b/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java
+@@ -1254,16 +1254,13 @@ public class TurtleParser extends AbstractRDFParser {
+ 	 * @throws IOException
+ 	 */
+ 	protected void unread(String string) throws IOException {
+-		int i = string.length();
+-		while (i > 0) {
++		for (int i = string.codePointCount(0, string.length()); i >= 1; i--) {
+ 			final int codePoint = string.codePointBefore(i);
+ 			if (Character.isSupplementaryCodePoint(codePoint)) {
+ 				final char[] surrogatePair = Character.toChars(codePoint);
+ 				reader.unread(surrogatePair);
+-				i -= surrogatePair.length;
+ 			} else {
+ 				reader.unread(codePoint);
+-				i--;
+ 			}
+ 		}
+ 	}

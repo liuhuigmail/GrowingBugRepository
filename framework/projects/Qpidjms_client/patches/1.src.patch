@@ -1,0 +1,48 @@
+diff --git a/client/src/main/java/org/apache/qpid/client/message/AMQMessageDelegate_0_10.java b/client/src/main/java/org/apache/qpid/client/message/AMQMessageDelegate_0_10.java
+index dde0a1b72..398a6e865 100644
+--- a/client/src/main/java/org/apache/qpid/client/message/AMQMessageDelegate_0_10.java
++++ b/client/src/main/java/org/apache/qpid/client/message/AMQMessageDelegate_0_10.java
+@@ -21,7 +21,6 @@
+ 
+ package org.apache.qpid.client.message;
+ 
+-import java.nio.charset.StandardCharsets;
+ import java.util.ArrayList;
+ import java.util.Collections;
+ import java.util.Enumeration;
+@@ -253,13 +252,13 @@ public class AMQMessageDelegate_0_10 extends AbstractAMQMessageDelegate
+ 
+     public void setJMSCorrelationID(String correlationId) throws JMSException
+     {
+-        setJMSCorrelationIDAsBytes(correlationId == null ? null : correlationId.getBytes(StandardCharsets.UTF_8));
++        setJMSCorrelationIDAsBytes(correlationId == null ? null : correlationId.getBytes());
+     }
+ 
+     public String getJMSCorrelationID() throws JMSException
+     {
+         byte[] correlationIDAsBytes = getJMSCorrelationIDAsBytes();
+-        return correlationIDAsBytes == null ? null : new String(correlationIDAsBytes, StandardCharsets.UTF_8);
++        return correlationIDAsBytes == null ? null : new String(correlationIDAsBytes);
+     }
+ 
+     public Destination getJMSReplyTo()
+diff --git a/client/src/main/java/org/apache/qpid/client/message/AMQMessageDelegate_0_8.java b/client/src/main/java/org/apache/qpid/client/message/AMQMessageDelegate_0_8.java
+index cb61770f3..8e8e00d6e 100644
+--- a/client/src/main/java/org/apache/qpid/client/message/AMQMessageDelegate_0_8.java
++++ b/client/src/main/java/org/apache/qpid/client/message/AMQMessageDelegate_0_8.java
+@@ -252,13 +252,12 @@ public class AMQMessageDelegate_0_8 extends AbstractAMQMessageDelegate
+ 
+     public byte[] getJMSCorrelationIDAsBytes() throws JMSException
+     {
+-        final AMQShortString correlationId = getContentHeaderProperties().getCorrelationId();
+-        return correlationId == null ? null : correlationId.getBytes();
++        return getContentHeaderProperties().getCorrelationIdAsString().getBytes();
+     }
+ 
+     public void setJMSCorrelationIDAsBytes(byte[] bytes) throws JMSException
+     {
+-        getContentHeaderProperties().setCorrelationId(new AMQShortString(bytes));
++        getContentHeaderProperties().setCorrelationId(new String(bytes));
+     }
+ 
+     public void setJMSCorrelationID(String correlationId) throws JMSException

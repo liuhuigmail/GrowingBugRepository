@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,caf4e4682e5707a9870333d8ad3e2d548f89018c,3ada7e68cfafc5a28461dd72b88353469ca1bc8e,1920,https://github.com/eclipse/rdf4j/pull/1920
+2,26b5bcbb60dd7918cb923914a2839039ebe52d45,beb82f906a305a8244d528e0fdaaf7bc09c0627c,2674,https://github.com/eclipse/rdf4j/pull/2674

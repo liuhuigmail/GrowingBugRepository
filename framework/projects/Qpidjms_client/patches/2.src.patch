@@ -1,0 +1,39 @@
+diff --git a/client/src/main/java/org/apache/qpid/client/BrokerDetails.java b/client/src/main/java/org/apache/qpid/client/BrokerDetails.java
+index 5b992858a..c7865effd 100644
+--- a/client/src/main/java/org/apache/qpid/client/BrokerDetails.java
++++ b/client/src/main/java/org/apache/qpid/client/BrokerDetails.java
+@@ -23,12 +23,8 @@ package org.apache.qpid.client;
+ import java.io.Serializable;
+ import java.net.URI;
+ import java.net.URISyntaxException;
+-import java.util.Arrays;
+-import java.util.Collections;
+ import java.util.HashMap;
+-import java.util.HashSet;
+ import java.util.Map;
+-import java.util.Set;
+ 
+ import org.apache.qpid.configuration.ClientProperties;
+ import org.apache.qpid.transport.ConnectionSettings;
+@@ -69,12 +65,6 @@ public class BrokerDetails implements Serializable
+     public static final String OPTIONS_ENCRYPTION_KEY_STORE = "encryption_key_store";
+     public static final String OPTIONS_ENCRYPTION_KEY_STORE_PASSWORD = "encryption_key_store_password";
+ 
+-    private static final Set<String> PASSWORD_YIELDING_OPTIONS =
+-            Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
+-                    OPTIONS_TRUST_STORE_PASSWORD,
+-                    OPTIONS_KEY_STORE_PASSWORD,
+-                    OPTIONS_ENCRYPTION_TRUST_STORE_PASSWORD,
+-                    OPTIONS_ENCRYPTION_KEY_STORE_PASSWORD)));
+ 
+     public static final int DEFAULT_PORT = 5672;
+     public static final String TCP = "tcp";
+@@ -437,7 +427,7 @@ public class BrokerDetails implements Serializable
+ 
+                 optionsURL.append("='");
+ 
+-                if (PASSWORD_YIELDING_OPTIONS.contains(key))
++                if (OPTIONS_TRUST_STORE_PASSWORD.equals(key) || OPTIONS_KEY_STORE_PASSWORD.equals(key))
+                 {
+                     optionsURL.append("********");
+                 }

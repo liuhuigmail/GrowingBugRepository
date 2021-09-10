@@ -1,0 +1,10 @@
+org.apache.qpid.client.AMQSession_0_10Test
+org.apache.qpid.client.AMQSession_0_8Test
+org.apache.qpid.client.BasicMessageConsumer_0_8_Test
+org.apache.qpid.client.DispatcherDaemonTest
+org.apache.qpid.client.message.AMQMessageDelegate_0_10Test
+org.apache.qpid.client.message.AMQPEncodedListMessageUnitTest
+org.apache.qpid.client.message.AbstractJMSMessageTest
+org.apache.qpid.client.message.Encrypted010MessageFactoryTest
+org.apache.qpid.client.message.Encrypted091MessageFactoryTest
+org.apache.qpid.test.unit.message.MessageConverterTest

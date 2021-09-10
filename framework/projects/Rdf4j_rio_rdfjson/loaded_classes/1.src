@@ -1,0 +1,4 @@
+org.eclipse.rdf4j.rio.rdfjson.RDFJSONParser
+org.eclipse.rdf4j.rio.rdfjson.RDFJSONParserFactory
+org.eclipse.rdf4j.rio.rdfjson.RDFJSONWriter
+org.eclipse.rdf4j.rio.rdfjson.RDFJSONWriterFactory

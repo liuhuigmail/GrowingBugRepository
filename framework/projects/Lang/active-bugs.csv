@@ -31,7 +31,6 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 31,0cc451d5e5cb565eb7311308466f487bc534ebaf,38bf7048571f3bc8dd34d14691906426444e4381,LANG-607,https://issues.apache.org/jira/browse/LANG-607
 32,1c606c3d96838e595a0664cbafdd60caae34aa0e,006fca88e86bd6f650d4d021d2ff3573a572827d,LANG-586,https://issues.apache.org/jira/browse/LANG-586
 33,575be16474e8e8246d4bbde6f243fdf38c34ad5b,0603aef594fa60126c2d45f2ab164eee39f7b44c,LANG-587,https://issues.apache.org/jira/browse/LANG-587
-34,3f900a7395e31eaa72e0fa2fb43c090e5a8fa4ed,496525b0d626dd5049528cdef61d71681154b660,LANG-586,https://issues.apache.org/jira/browse/LANG-586
 35,48bf241d4149919e0928e39616bee2e3783e2987,80bd78ea0685d28ddec9b8162d652db9dec949ce,LANG-571,https://issues.apache.org/jira/browse/LANG-571
 36,ec0c4e5508dbd8af83253f7c50f8b728a1003388,da0612b348fcfa7679b92a5e9b8e1603e8e2da3a,LANG-521,https://issues.apache.org/jira/browse/LANG-521
 37,b5906d3f325ca3a1147d5fa68912975e2e6c347e,ea140fb5c327e2b58f6c5bf1057c7dede909a50c,LANG-567,https://issues.apache.org/jira/browse/LANG-567

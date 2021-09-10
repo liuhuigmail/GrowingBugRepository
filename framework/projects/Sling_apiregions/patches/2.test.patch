@@ -1,0 +1,18 @@
+diff --git a/src/test/java/org/apache/sling/feature/extension/apiregions/api/config/validation/ConfigurationValidatorTest.java b/src/test/java/org/apache/sling/feature/extension/apiregions/api/config/validation/ConfigurationValidatorTest.java
+index 1cfff34..2d7d697 100644
+--- a/src/test/java/org/apache/sling/feature/extension/apiregions/api/config/validation/ConfigurationValidatorTest.java
++++ b/src/test/java/org/apache/sling/feature/extension/apiregions/api/config/validation/ConfigurationValidatorTest.java
+@@ -120,13 +120,6 @@ public class ConfigurationValidatorTest {
+         result = validator.validate(cfg, cd, Region.INTERNAL);
+         assertTrue(result.isValid());
+         assertEquals(2, result.getPropertyResults().size());
+-
+-        // allowed if lenient
+-        cd.setMode(Mode.LENIENT);
+-        result = validator.validate(cfg, cd, Region.GLOBAL);
+-        assertTrue(result.isValid());
+-        assertEquals(2, result.getPropertyResults().size());
+-
+     }
+ 
+     @Test public void testInvalidProperty() {

@@ -1,0 +1,13 @@
+diff --git a/tiles-core/src/main/java/org/apache/tiles/renderer/impl/BasicRendererFactory.java b/tiles-core/src/main/java/org/apache/tiles/renderer/impl/BasicRendererFactory.java
+index 82db4bb8..fa1e068a 100644
+--- a/tiles-core/src/main/java/org/apache/tiles/renderer/impl/BasicRendererFactory.java
++++ b/tiles-core/src/main/java/org/apache/tiles/renderer/impl/BasicRendererFactory.java
+@@ -151,7 +151,7 @@ public class BasicRendererFactory implements RendererFactory,
+         Map<String, String> completeParams = new HashMap<String, String>(
+                 DEFAULT_TYPE_2_RENDERER);
+         if (typeRenderersParam != null) {
+-            String[] pairs = typeRenderersParam.split("\\s*;\\s*");
++            String[] pairs = typeRenderersParam.split("\\s*;\\s");
+             for (int i = 0; i < pairs.length; i++) {
+                 String[] pair = pairs[i].split("\\s*,\\s*");
+                 if (pair == null || pair.length != 2) {

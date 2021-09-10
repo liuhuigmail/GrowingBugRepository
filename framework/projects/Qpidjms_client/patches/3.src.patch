@@ -1,0 +1,13 @@
+diff --git a/client/src/main/java/org/apache/qpid/client/BrokerDetails.java b/client/src/main/java/org/apache/qpid/client/BrokerDetails.java
+index 0ce3fd3f3..609dd59f5 100644
+--- a/client/src/main/java/org/apache/qpid/client/BrokerDetails.java
++++ b/client/src/main/java/org/apache/qpid/client/BrokerDetails.java
+@@ -559,7 +559,7 @@ public class BrokerDetails implements Serializable
+ 
+         if (getProperty(BrokerDetails.OPTIONS_ENCRYPTION_TRUST_STORE_PASSWORD) != null)
+         {
+-            conSettings.setEncryptionTrustStorePassword(
++            conSettings.setEncryptionKeyStorePassword(
+                     getProperty(BrokerDetails.OPTIONS_ENCRYPTION_TRUST_STORE_PASSWORD));
+         }
+ 

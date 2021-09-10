@@ -1,0 +1,243 @@
+diff --git a/core/rio/turtle/src/test/java/org/eclipse/rdf4j/rio/turtle/AbstractTurtleWriterTest.java b/core/rio/turtle/src/test/java/org/eclipse/rdf4j/rio/turtle/AbstractTurtleWriterTest.java
+index 7d18b1d80..b62338f00 100644
+--- a/core/rio/turtle/src/test/java/org/eclipse/rdf4j/rio/turtle/AbstractTurtleWriterTest.java
++++ b/core/rio/turtle/src/test/java/org/eclipse/rdf4j/rio/turtle/AbstractTurtleWriterTest.java
+@@ -7,17 +7,11 @@
+  *******************************************************************************/
+ package org.eclipse.rdf4j.rio.turtle;
+ 
+-import org.eclipse.rdf4j.model.Model;
+-import org.eclipse.rdf4j.model.impl.LinkedHashModel;
+-import org.eclipse.rdf4j.model.util.Values;
+-import org.eclipse.rdf4j.model.vocabulary.RDF;
+-import org.eclipse.rdf4j.model.vocabulary.XSD;
+ import org.eclipse.rdf4j.rio.RDFParserFactory;
+ import org.eclipse.rdf4j.rio.RDFWriterFactory;
+ import org.eclipse.rdf4j.rio.RDFWriterTest;
+ import org.eclipse.rdf4j.rio.RioSetting;
+ import org.eclipse.rdf4j.rio.helpers.BasicWriterSettings;
+-import org.eclipse.rdf4j.rio.helpers.TurtleWriterSettings;
+ 
+ /**
+  * @author Jeen Broekstra
+@@ -35,16 +29,7 @@ public abstract class AbstractTurtleWriterTest extends RDFWriterTest {
+ 				BasicWriterSettings.XSD_STRING_TO_PLAIN_LITERAL,
+ 				BasicWriterSettings.PRETTY_PRINT,
+ 				BasicWriterSettings.INLINE_BLANK_NODES,
+-				BasicWriterSettings.BASE_DIRECTIVE,
+-				TurtleWriterSettings.ABBREVIATE_NUMBERS
++				BasicWriterSettings.BASE_DIRECTIVE
+ 		};
+ 	}
+-
+-	protected Model getAbbrevTestModel() {
+-		Model m = new LinkedHashModel();
+-		m.add(Values.iri("http://www.example.com/double"), RDF.VALUE, Values.literal("1234567.89", XSD.DOUBLE));
+-		m.add(Values.iri("http://www.example.com/int"), RDF.VALUE, Values.literal("-2", XSD.INTEGER));
+-		m.add(Values.iri("http://www.example.com/decimal"), RDF.VALUE, Values.literal("55.66", XSD.DECIMAL));
+-		return m;
+-	}
+ }
+diff --git a/core/rio/turtle/src/test/java/org/eclipse/rdf4j/rio/turtle/TurtlePrettyWriterTest.java b/core/rio/turtle/src/test/java/org/eclipse/rdf4j/rio/turtle/TurtlePrettyWriterTest.java
+index e05717f67..980897cb2 100644
+--- a/core/rio/turtle/src/test/java/org/eclipse/rdf4j/rio/turtle/TurtlePrettyWriterTest.java
++++ b/core/rio/turtle/src/test/java/org/eclipse/rdf4j/rio/turtle/TurtlePrettyWriterTest.java
+@@ -7,19 +7,12 @@
+  *******************************************************************************/
+ package org.eclipse.rdf4j.rio.turtle;
+ 
+-import static org.junit.Assert.assertTrue;
+-
+ import java.io.IOException;
+-import java.io.StringWriter;
+ 
+-import org.eclipse.rdf4j.rio.RDFFormat;
+ import org.eclipse.rdf4j.rio.RDFHandlerException;
+ import org.eclipse.rdf4j.rio.RDFParseException;
+-import org.eclipse.rdf4j.rio.Rio;
+ import org.eclipse.rdf4j.rio.WriterConfig;
+ import org.eclipse.rdf4j.rio.helpers.BasicWriterSettings;
+-import org.eclipse.rdf4j.rio.helpers.TurtleWriterSettings;
+-import org.junit.Test;
+ 
+ /**
+  * @author Arjohn Kampman
+@@ -108,35 +101,4 @@ public class TurtlePrettyWriterTest extends AbstractTurtleWriterTest {
+ 			inlineBlankNodes = true;
+ 		}
+ 	}
+-
+-	@Test
+-	public void testAbbreviateNumbers() throws Exception {
+-		StringWriter sw = new StringWriter();
+-
+-		WriterConfig config = new WriterConfig();
+-		config.set(BasicWriterSettings.PRETTY_PRINT, true);
+-
+-		Rio.write(getAbbrevTestModel(), sw, RDFFormat.TURTLE, config);
+-
+-		String result = sw.toString();
+-		assertTrue(result.contains("1.23456789E6 ."));
+-		assertTrue(result.contains("-2 ."));
+-		assertTrue(result.contains("55.66 ."));
+-	}
+-
+-	@Test
+-	public void testDontAbbreviateNumbers() throws Exception {
+-		StringWriter sw = new StringWriter();
+-
+-		WriterConfig config = new WriterConfig();
+-		config.set(BasicWriterSettings.PRETTY_PRINT, true)
+-				.set(TurtleWriterSettings.ABBREVIATE_NUMBERS, false);
+-
+-		Rio.write(getAbbrevTestModel(), sw, RDFFormat.TURTLE, config);
+-
+-		String result = sw.toString();
+-		assertTrue(result.contains("\"1234567.89\"^^<http://www.w3.org/2001/XMLSchema#double>"));
+-		assertTrue(result.contains("\"-2\"^^<http://www.w3.org/2001/XMLSchema#integer>"));
+-		assertTrue(result.contains("\"55.66\"^^<http://www.w3.org/2001/XMLSchema#decimal>"));
+-	}
+ }
+diff --git a/core/rio/turtle/src/test/java/org/eclipse/rdf4j/rio/turtle/TurtleWriterTest.java b/core/rio/turtle/src/test/java/org/eclipse/rdf4j/rio/turtle/TurtleWriterTest.java
+index 893434be5..0bf68f7c8 100644
+--- a/core/rio/turtle/src/test/java/org/eclipse/rdf4j/rio/turtle/TurtleWriterTest.java
++++ b/core/rio/turtle/src/test/java/org/eclipse/rdf4j/rio/turtle/TurtleWriterTest.java
+@@ -19,7 +19,6 @@ import org.eclipse.rdf4j.rio.RDFFormat;
+ import org.eclipse.rdf4j.rio.Rio;
+ import org.eclipse.rdf4j.rio.WriterConfig;
+ import org.eclipse.rdf4j.rio.helpers.BasicWriterSettings;
+-import org.eclipse.rdf4j.rio.helpers.TurtleWriterSettings;
+ import org.junit.Ignore;
+ import org.junit.Test;
+ 
+@@ -89,6 +88,8 @@ public class TurtleWriterTest extends AbstractTurtleWriterTest {
+ 		config.set(BasicWriterSettings.INLINE_BLANK_NODES, true);
+ 		Rio.write(expected, stringWriter, RDFFormat.TURTLE, config);
+ 
++//		System.out.println(stringWriter.toString());
++
+ 		Model actual = Rio.parse(new StringReader(stringWriter.toString()), "", RDFFormat.TURTLE);
+ 
+ 		assertTrue(Models.isomorphic(expected, actual));
+@@ -113,6 +114,8 @@ public class TurtleWriterTest extends AbstractTurtleWriterTest {
+ 		config.set(BasicWriterSettings.INLINE_BLANK_NODES, true);
+ 		Rio.write(expected, stringWriter, RDFFormat.TURTLE, config);
+ 
++//		System.out.println(stringWriter.toString());
++
+ 		Model actual = Rio.parse(new StringReader(stringWriter.toString()), "", RDFFormat.TURTLE);
+ 
+ 		assertTrue(Models.isomorphic(expected, actual));
+@@ -186,6 +189,8 @@ public class TurtleWriterTest extends AbstractTurtleWriterTest {
+ 		config.set(BasicWriterSettings.PRETTY_PRINT, false);
+ 		Rio.write(expected, stringWriter, RDFFormat.TURTLE, config);
+ 
++//		System.out.println(stringWriter.toString());
++
+ 		Model actual = Rio.parse(new StringReader(stringWriter.toString()), "", RDFFormat.TURTLE);
+ 		assertTrue(Models.isomorphic(expected, actual));
+ 	}
+@@ -307,6 +312,10 @@ public class TurtleWriterTest extends AbstractTurtleWriterTest {
+ 				"               ]\n" +
+ 				"] .\n";
+ 
++//		System.out.println("### EXPECTED ###");
++//		System.out.println(data);
++//		System.out.println("#################\n");
++
+ 		Model expected = Rio.parse(new StringReader(data), "", RDFFormat.TURTLE);
+ 
+ 		StringWriter stringWriter = new StringWriter();
+@@ -314,6 +323,10 @@ public class TurtleWriterTest extends AbstractTurtleWriterTest {
+ 		config.set(BasicWriterSettings.INLINE_BLANK_NODES, true);
+ 		Rio.write(expected, stringWriter, RDFFormat.TURTLE, config);
+ 
++//		System.out.println("### ACTUAL ###");
++//		System.out.println(stringWriter.toString());
++//		System.out.println("#################\n");
++
+ 		Model actual = Rio.parse(new StringReader(stringWriter.toString()), "", RDFFormat.TURTLE);
+ 		assertTrue(Models.isomorphic(expected, actual));
+ 	}
+@@ -325,6 +338,10 @@ public class TurtleWriterTest extends AbstractTurtleWriterTest {
+ 				"\n" +
+ 				"ex:a  ex:list   (_:b0 _:b0) .";
+ 
++//		System.out.println("### EXPECTED ###");
++//		System.out.println(data);
++//		System.out.println("#################\n");
++
+ 		Model expected = Rio.parse(new StringReader(data), "", RDFFormat.TURTLE);
+ 
+ 		StringWriter stringWriter = new StringWriter();
+@@ -332,6 +349,10 @@ public class TurtleWriterTest extends AbstractTurtleWriterTest {
+ 		config.set(BasicWriterSettings.INLINE_BLANK_NODES, true);
+ 		Rio.write(expected, stringWriter, RDFFormat.TURTLE, config);
+ 
++//		System.out.println("### ACTUAL ###");
++//		System.out.println(stringWriter.toString());
++//		System.out.println("#################\n");
++
+ 		Model actual = Rio.parse(new StringReader(stringWriter.toString()), "", RDFFormat.TURTLE);
+ 		assertTrue(Models.isomorphic(expected, actual));
+ 	}
+@@ -383,6 +404,10 @@ public class TurtleWriterTest extends AbstractTurtleWriterTest {
+ 				"                   .\n" +
+ 				"";
+ 
++//		System.out.println("### EXPECTED ###");
++//		System.out.println(data);
++//		System.out.println("#################\n");
++
+ 		Model expected = Rio.parse(new StringReader(data), "", RDFFormat.TURTLE);
+ 
+ 		StringWriter stringWriter = new StringWriter();
+@@ -390,6 +415,10 @@ public class TurtleWriterTest extends AbstractTurtleWriterTest {
+ 		config.set(BasicWriterSettings.INLINE_BLANK_NODES, true);
+ 		Rio.write(expected, stringWriter, RDFFormat.TURTLE, config);
+ 
++//		System.out.println("### ACTUAL ###");
++//		System.out.println(stringWriter.toString());
++//		System.out.println("#################\n");
++
+ 		Model actual = Rio.parse(new StringReader(stringWriter.toString()), "", RDFFormat.TURTLE);
+ 		assertTrue(Models.isomorphic(expected, actual));
+ 	}
+@@ -552,29 +581,20 @@ public class TurtleWriterTest extends AbstractTurtleWriterTest {
+ 
+ 		Model expected = Rio.parse(new StringReader(data), "", RDFFormat.TURTLE);
+ 
++//		System.out.println("### EXPECTEd ###");
++//		System.out.println(data);
++//		System.out.println("#################\n");
++
+ 		StringWriter stringWriter = new StringWriter();
+ 		WriterConfig config = new WriterConfig();
+ 		config.set(BasicWriterSettings.INLINE_BLANK_NODES, true);
+ 		Rio.write(expected, stringWriter, RDFFormat.TURTLE, config);
+ 
++//		System.out.println("### ACTUAL ###");
++//		System.out.println(stringWriter.toString());
++//		System.out.println("#################\n");
++
+ 		Model actual = Rio.parse(new StringReader(stringWriter.toString()), "", RDFFormat.TURTLE);
+ 		assertTrue(Models.isomorphic(expected, actual));
+ 	}
+-
+-	@Test
+-	public void testIgnoreAbbreviateNumbers() throws Exception {
+-		StringWriter sw = new StringWriter();
+-
+-		WriterConfig config = new WriterConfig();
+-		// abbreviate numbers should be ignored when pretty print is false
+-		config.set(BasicWriterSettings.PRETTY_PRINT, false)
+-				.set(TurtleWriterSettings.ABBREVIATE_NUMBERS, true);
+-
+-		Rio.write(getAbbrevTestModel(), sw, RDFFormat.TURTLE, config);
+-
+-		String result = sw.toString();
+-		assertTrue(result.contains("\"1234567.89\"^^<http://www.w3.org/2001/XMLSchema#double>"));
+-		assertTrue(result.contains("\"-2\"^^<http://www.w3.org/2001/XMLSchema#integer>"));
+-		assertTrue(result.contains("\"55.66\"^^<http://www.w3.org/2001/XMLSchema#decimal>"));
+-	}
+ }

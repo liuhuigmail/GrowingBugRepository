@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/sling/feature/cpconverter/handlers/RepPolicyEntryHandler.java b/src/main/java/org/apache/sling/feature/cpconverter/handlers/RepPolicyEntryHandler.java
+index 6b8407c..7e0109a 100644
+--- a/src/main/java/org/apache/sling/feature/cpconverter/handlers/RepPolicyEntryHandler.java
++++ b/src/main/java/org/apache/sling/feature/cpconverter/handlers/RepPolicyEntryHandler.java
+@@ -115,10 +115,8 @@ public final class RepPolicyEntryHandler extends AbstractRegexEntryHandler {
+                     acls.add(aclManager.addAcl(principalName, operation, privileges, path));
+                 } else if (REP_RESTRICTIONS.equals(primaryType) && !acls.isEmpty()) {
+                     String restriction = attributes.getValue(REP_GLOB);
+ 
+-                    if (restriction != null && !restriction.isEmpty()) {
+-                        acls.peek().addRestriction(REP_GLOB + ',' + restriction);
+-                    }
++                    acls.peek().addRestriction(restriction);
+                 }
+             } else {
+                 super.startElement(uri, localName, qName, attributes);

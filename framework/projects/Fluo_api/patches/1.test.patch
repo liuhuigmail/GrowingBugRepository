@@ -1,0 +1,41 @@
+diff --git a/modules/api/src/test/java/io/fluo/api/config/FluoConfigurationTest.java b/modules/api/src/test/java/io/fluo/api/config/FluoConfigurationTest.java
+index 59bb8838..c1ca9754 100644
+--- a/modules/api/src/test/java/io/fluo/api/config/FluoConfigurationTest.java
++++ b/modules/api/src/test/java/io/fluo/api/config/FluoConfigurationTest.java
+@@ -15,7 +15,6 @@
+  */
+ package io.fluo.api.config;
+ 
+-import java.io.File;
+ import java.util.NoSuchElementException;
+ 
+ import org.junit.Assert;
+@@ -71,7 +70,7 @@ public class FluoConfigurationTest {
+   @Test
+   public void testSetGet() {
+     FluoConfiguration config = new FluoConfiguration();
+-    Assert.assertEquals("path1,path2", config.setAccumuloClasspath("path1,path2").getAccumuloClasspath());
++    Assert.assertEquals("path", config.setAccumuloClasspath("path").getAccumuloClasspath());
+     Assert.assertEquals("instance", config.setAccumuloInstance("instance").getAccumuloInstance());
+     Assert.assertEquals("pass", config.setAccumuloPassword("pass").getAccumuloPassword());
+     Assert.assertEquals("table", config.setAccumuloTable("table").getAccumuloTable());
+@@ -145,19 +144,4 @@ public class FluoConfigurationTest {
+     config.setAccumuloTable("table");
+     Assert.assertTrue(config.hasRequiredMiniFluoProps());
+   }
+-  
+-  @Test
+-  public void testLoadingPropsFile() {
+-    File propsFile = new File("../distribution/src/main/config/fluo.properties");
+-    Assert.assertTrue(propsFile.exists());
+-    
+-    FluoConfiguration config = new FluoConfiguration(propsFile);
+-    // make sure classpath contains comma.  otherwise it was shortened
+-    Assert.assertTrue(config.getAccumuloClasspath().contains(","));
+-    // check for values set in prop file
+-    Assert.assertEquals("localhost", config.getZookeepers());
+-    Assert.assertEquals("", config.getAccumuloUser());
+-    Assert.assertEquals("", config.getAccumuloPassword());
+-    Assert.assertEquals("", config.getAccumuloTable());
+-  }
+ }

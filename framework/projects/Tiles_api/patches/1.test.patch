@@ -1,0 +1,29 @@
+diff --git a/tiles-api/src/test/java/org/apache/tiles/TestDefinition.java b/tiles-api/src/test/java/org/apache/tiles/TestDefinition.java
+index 555a4660..2b3aecfb 100644
+--- a/tiles-api/src/test/java/org/apache/tiles/TestDefinition.java
++++ b/tiles-api/src/test/java/org/apache/tiles/TestDefinition.java
+@@ -157,24 +157,4 @@ public class TestDefinition extends TestCase {
+                 "localLanguage", context.getTemplateAttribute()
+                         .getExpressionObject().getLanguage());
+     }
+-
+-    /**
+-     * Tests {@link Definition#toString()}.
+-     */
+-    public void testToString() {
+-        Definition definition = new Definition();
+-        definition.setName("myDefinitionName");
+-        assertEquals(
+-                "{name=myDefinitionName, template=<null>, role=<null>, preparerInstance=null, attributes=null}",
+-                definition.toString());
+-        definition.setTemplateAttribute(Attribute.createTemplateAttribute("myTemplate"));
+-        assertEquals(
+-                "{name=myDefinitionName, template=myTemplate, role=null, preparerInstance=null, attributes=null}",
+-                definition.toString());
+-        definition.putAttribute("myAttributeName", new Attribute("myAttributeValue"));
+-        assertEquals(
+-                "{name=myDefinitionName, template=myTemplate, role=null, preparerInstance=null, "
+-                        + "attributes={myAttributeName=myAttributeValue}}",
+-                definition.toString());
+-    }
+ }

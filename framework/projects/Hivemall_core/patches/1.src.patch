@@ -1,0 +1,17 @@
+diff --git a/core/src/main/java/hivemall/ftvec/scaling/RescaleUDF.java b/core/src/main/java/hivemall/ftvec/scaling/RescaleUDF.java
+index a73150cd..a3e4799c 100644
+--- a/core/src/main/java/hivemall/ftvec/scaling/RescaleUDF.java
++++ b/core/src/main/java/hivemall/ftvec/scaling/RescaleUDF.java
+@@ -106,12 +106,6 @@ public final class RescaleUDF extends UDF {
+         if (min == max) {
+             return 0.5f;
+         }
+-        if (value < min) {
+-            return 0.f;
+-        }
+-        if (value > max) {
+-            return 1.f;
+-        }
+         return (value - min) / (max - min);
+     }
+ 

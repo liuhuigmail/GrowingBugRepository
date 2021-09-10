@@ -1,0 +1,25 @@
+diff --git a/common/src/test/java/org/apache/cxf/dosgi/common/proxy/ServiceInvocationHandlerTest.java b/common/src/test/java/org/apache/cxf/dosgi/common/proxy/ServiceInvocationHandlerTest.java
+index af31b4d9..43a90a74 100644
+--- a/common/src/test/java/org/apache/cxf/dosgi/common/proxy/ServiceInvocationHandlerTest.java
++++ b/common/src/test/java/org/apache/cxf/dosgi/common/proxy/ServiceInvocationHandlerTest.java
+@@ -30,6 +30,7 @@ import java.util.List;
+ import java.util.Map;
+ 
+ import org.junit.Test;
++import org.osgi.framework.ServiceException;
+ 
+ public class ServiceInvocationHandlerTest {
+ 
+@@ -83,7 +84,11 @@ public class ServiceInvocationHandlerTest {
+         proxy.throwException2();
+     }
+     
+-    @Test(expected = IOException.class)
++    /**
++     * Shows issue https://issues.apache.org/jira/projects/DOSGI/issues/DOSGI-254
++     * We would expect an IOexcpetion here
++     */
++    @Test(expected = ServiceException.class)
+     public void testInheritedException() throws IOException {
+         MySubService proxy = ProxyFactory.create(new MyServiceImpl(), MySubService.class);
+         proxy.throwException1();

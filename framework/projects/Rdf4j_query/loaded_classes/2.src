@@ -1,0 +1,6 @@
+org.eclipse.rdf4j.query.AbstractBindingSet
+org.eclipse.rdf4j.query.Binding
+org.eclipse.rdf4j.query.BindingSet
+org.eclipse.rdf4j.query.impl.ListBindingSet
+org.eclipse.rdf4j.query.impl.MapBindingSet
+org.eclipse.rdf4j.query.impl.SimpleBinding

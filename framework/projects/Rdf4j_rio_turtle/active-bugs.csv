@@ -1,0 +1,12 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,f427fdbc2ebb1125d96f0913e6d3586603313d72,cc9077e5b32619e7882d7c4f6f736e95b44c0c6a,264,https://github.com/eclipse/rdf4j/issues/264
+2,c1ada486c7e2efec118f07aea6eec122902b92ba,d5fa7185243c8c3661a04a44cb90e8f2c5ecca95,265,https://github.com/eclipse/rdf4j/pull/265
+3,e2190d8a7660cbf57ff81f9e6ed03556b5693925,46b83ed38d0a66fa298c3ea245b255f25b0eebaf,1886,https://github.com/eclipse/rdf4j/pull/1886
+4,032da3107ffb10ba8cdc1674170e1c09872c307b,c59447ae783494e89c0a3bfc9b53bdcb1028e6e3,2316,https://github.com/eclipse/rdf4j/pull/2316
+5,045cd44e72e05b47d6564164c2fed4fd3c973c77,73149a3d826b76fdbfaf726fdb62392cac2290e9,2320,https://github.com/eclipse/rdf4j/pull/2320
+6,663e59d7fc5c6277fb98a5dd6bde05e1c8902b12,381a45952f42eaba3fcc7f58d8f4eeae2b97bfa8,2339,https://github.com/eclipse/rdf4j/pull/2339
+7,4811aaea22945604f1a6b1ec5d886f5d69f0ccc5,f18d0f7801bb5a42afb6d7aec85642990f75e028,2342,https://github.com/eclipse/rdf4j/pull/2342
+8,7d68d6ad0f10d5ead60606c515b76f41f8b30ff7,bb42955c0564492de043a75ad50cfe4c022faa2b,2531,https://github.com/eclipse/rdf4j/pull/2531
+9,08944557b0971c6735b6fe41278304adfb1139e7,c0f31a46b152803182b3aa4688abe65a3236aeca,2901,https://github.com/eclipse/rdf4j/pull/2901
+10,2549f873716cf07eb4e8ce597046a8cf3314b55c,8c9220cbba15a2fc992901e06b64ab2e8664df6f,2934,https://github.com/eclipse/rdf4j/pull/2934
+11,14ea85ae0ebf66144413ba208f757e1e681213d2,9a5121439448813ab17fa2c78a7cebdd141f46f0,2939,https://github.com/eclipse/rdf4j/pull/2939

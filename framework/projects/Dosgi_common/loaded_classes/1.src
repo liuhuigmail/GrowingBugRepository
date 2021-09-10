@@ -1,0 +1,3 @@
+org.apache.cxf.dosgi.common.api.IntentsProvider
+org.apache.cxf.dosgi.common.intent.impl.IntentManagerImpl
+org.apache.cxf.dosgi.common.intent.IntentManager

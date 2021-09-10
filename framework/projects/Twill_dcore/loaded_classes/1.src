@@ -1,0 +1,3 @@
+org.apache.twill.discovery.DefaultServiceDiscovered
+org.apache.twill.discovery.DiscoverableWrapper
+org.apache.twill.discovery.InMemoryDiscoveryService

@@ -1,0 +1,3 @@
+org.apache.cxf.dosgi.common.proxy.ExceptionMapper
+org.apache.cxf.dosgi.common.proxy.ProxyFactory
+org.apache.cxf.dosgi.common.proxy.ServiceInvocationHandler

@@ -1,0 +1,2 @@
+org.apache.qpid.test.unit.client.BrokerDetails.BrokerDetailsTest
+org.apache.qpid.test.utils.QpidTestCase

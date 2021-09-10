@@ -1,0 +1,17 @@
+diff --git a/modules/api/src/main/java/io/fluo/api/config/FluoConfiguration.java b/modules/api/src/main/java/io/fluo/api/config/FluoConfiguration.java
+index 82bfc6b7..cddf6604 100644
+--- a/modules/api/src/main/java/io/fluo/api/config/FluoConfiguration.java
++++ b/modules/api/src/main/java/io/fluo/api/config/FluoConfiguration.java
+@@ -112,11 +112,8 @@ public class FluoConfiguration extends CompositeConfiguration {
+   public FluoConfiguration(File propertiesFile) {
+     this();
+     try {
+-      PropertiesConfiguration config = new PropertiesConfiguration();
+       // disabled to prevent accumulo classpath value from being shortened
+-      config.setDelimiterParsingDisabled(true);
+-      config.load(propertiesFile);
+-      addConfiguration(config);
++      addConfiguration(new PropertiesConfiguration(propertiesFile));
+     } catch (ConfigurationException e) {
+       throw new IllegalArgumentException(e);
+     }

@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1301`** bugs
+ **`1344`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -14,16 +14,16 @@ from open-source Java projects.
 | 3     | Closure         | closure-compiler           |                           |      174       | 1-62,64-92,94-176   |
 | 4     | Codec           | commons-codec              |                           |       18       | 1-18                |
 | 5     | Collections     | commons-collections        |                           |        8       | 25-31,35               |
-| 6     | Compress        | commons-compress           |                           |       52       | 1-48,50,52-54       |
+| 6     | Compress        | commons-compress           |                           |       51       | 1-48,50,52-53       |
 | 7     | Csv             | commons-csv                |                           |       17       | 1-17                |
 | 8     | Gson            | gson                       |                           |       18       | 1-18                |
 | 9     | JacksonCore     | jackson-core               |                           |       29       | 1-26,28-30                |
 | 10     | JacksonDatabind | jackson-databind           |                          |      151       | 1-117,119,121-126,</br>128-129,131-133,135-156               |
-| 11     | JacksonXml      | jackson-dataformat-xml     |                          |        12       | 1-12                 |
+| 11     | JacksonXml      | jackson-dataformat-xml     |                          |        6       | 1-6                 |
 | 12    | Jsoup           | jsoup                      |                           |       93       | 1-93                |
 | 13     | JxPath          | commons-jxpath             |                          |       22       | 1-22                |
-| 14     | Lang            | commons-lang               |                          |       73       | 1,3-65,69,71,73,</br>76,80-84              |
-| 15     | Math            | commons-math               |                          |      142       | 1-142               |
+| 14     | Lang            | commons-lang               |                          |       72       | 1,3-33,35-65,69,71,73,</br>76,80-84              |
+| 15     | Math            | commons-math               |                          |      140       | 1-6,8-135, 137-142               |
 | 16     | Mockito         | mockito                    |                          |       38       | 1-38                |
 | 17     | Time            | joda-time                  |                          |       26       | 1-20,22-27          |
 | 18     | Dbutils         | commons-dbutils            |                          |        2       | 1-2                 |
@@ -34,10 +34,10 @@ from open-source Java projects.
 | 23     | MShade          | maven-shade-plugin         |                          |        6       | 1-4,6-7                 |
 | 24     | Tika            | tika                       |                          |        5       | 1-2,5-7               |
 | 25     | Validator       | commons-validator          |                          |        21      | 1-2,4,6-9,11,</br>13-25 |
-| 26     | Pool            | commons-pool               |                          |        19      | 1-2,4-7,10-14,</br>16,20-21,24,</br>26-27,29-30|
-| 27     | Email           | commons-email              |                          |        4       | 2-5                 |
+| 26     | Pool            | commons-pool               |                          |        18      | 1-2,5-7,10-14,</br>16,20-21,24,</br>26-27,29-30|
+| 27     | Email           | commons-email              |                          |        3       | 3-5                 |
 | 28     | Graph           | commons-graph              |                          |        3       | 1-3                 |
-| 29     | Net             | commons-net                |                          |        18      | 1,3,5,7,9,10,12,</br>14-18,20-21,</br>23-26             |
+| 29     | Net             | commons-net                |                          |        14      | 9,10,12,</br>14-18,20-21,</br>23-26             |
 | 30     | Numbers_angle   | commons-numbers-angle            |  commons-numbers-angle         |        2       | 1-2               |
 | 31     | Geometry_core   | commons-geometry-core           |    commons-geometry-core |        2       | 1,3               |
 | 32     | MGpg            | maven-gpg-plugin           ||        1       | 1               |
@@ -62,7 +62,7 @@ from open-source Java projects.
 | 51     | Pdfbox_pdfbox         | pdfbox-pdfbox |    pdfbox    |        3      | 1-3               |
 | 52     | Storm_client            | storm-client      |       storm-client      |        2       | 1-2              |
 | 53     | James_mime4j_core            | James-mime4j-core |      core   |       8     | 1-8              |
-| 54     | JacksonDataformatsText<br/>_yaml            | jackson-dataformats-text-yaml |      yaml   |       7     | 1-7              |
+| 54     | JacksonDataformatsText<br/>_yaml            | jackson-dataformats-text-yaml |      yaml   |       6     | 1-2,4-7              |
 | 55     | JacksonDataformatsText<br/>_properties            | jackson-dataformats-text-properties |      properties   |       2     | 1-2              |
 | 56     | JacksonDataformatBinary<br/>_avro            | jackson-dataformats-binary-avro |      avro   |       2     | 1-2              |
 | 57     | JacksonDataformatBinary<br/>_cbor            | jackson-dataformats-binary-cbor |      cbor   |       5     | 1-5              |
@@ -127,6 +127,26 @@ from open-source Java projects.
 | 116     | Switchyard_validate            | switchyard-validate |  validate       |       1     | 1              |
 | 117     | Vysper_nbxml            | vysper-nbxml |  nbxml       |       2     | 1-2              |
 | 118     | Wildfly_naming_client            | wildfly-naming-client |     |       2     | 1-2              |
+| 119     | Xmlgraphics            | xmlgraphics-commons |     |       2     | 1-2              |
+| 120     | Dosgi_common            | dosgi-common | common    |       2     | 1-2              |
+| 121     | Fluo_api            | fluo-api | modules/api     |       4     | 1-4              |
+| 122     | Hivemall_core            | core |  core   |       3     | 1-3              |
+| 123     | Knox_assertion_common            | gateway-provider-</br>identity-assertion</br>-common |  gateway-provider-</br>identity-assertion</br>-common     |       1     | 1              |
+| 124     | Oozie_client            | oozie-client | client |       2     | 1-2              |
+| 125     | Qpidjms_client            | qpidjms-client | client  |       3     | 1-3              |
+| 126     | Rdf4j_query            | rdf4j-query | core/query    |       4     | 1-4              |
+| 128     | Rdf4j_rio_api            | rdf4j-rio-api | core/rio/api  |       2     | 1-2              |
+| 129     | Rdf4j_rio_jsonld            | rdf4j-rio-jsonld | core/rio/jsonld  |       2     | 1-2              |
+| 130     | Rdf4j_rio_rdfjson            | rdf4j-rio-rdfjson | core/rio/rdfjson |       2     | 1-2              |
+| 131     | Rdf4j_rio_rdfxml            | rdf4j-rio-rdfxml | core/rio/rdfxml    |       3     | 1-3              |
+| 132     | Rdf4j_rio_turtle            | rdf4j-rio-turtle | core/rio/turtle    |       11    | 1-11              |
+| 133     | Sentry_ccommon            | sentry-core-common |  sentry-core/sentry-core-common   |       2     | 1-2              |
+| 134     | Sling_apiregions            | sling-apiregions |     |       3     | 1-3              |
+| 135     | Sling_cpconverter            | sling-cpconverter |     |       3     | 1-3              |
+| 136     | Sling_feature            | sling-feature |     |       3     | 1-3              |
+| 137     | Tiles_api            | tiles-api | tiles-api    |       2     | 1-2              |
+| 138     | Tiles_core            | tiles-core |  tiles-core   |       3     | 1-3              |
+| 139     | Twill_dcore            | twill-discovery-core |  twill-discovery-core   |       1     | 1              |
 # Setting up GrowingBugs
 
 ## Requirements

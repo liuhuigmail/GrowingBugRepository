@@ -1,0 +1,2 @@
+org.apache.sling.feature.cpconverter.ContentPackage2FeatureModelConverterTest
+org.apache.sling.feature.cpconverter.handlers.RepPolicyEntryHandlerTest

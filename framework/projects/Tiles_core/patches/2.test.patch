@@ -1,0 +1,47 @@
+diff --git a/tiles-core/src/test/java/org/apache/tiles/config/tiles-defs-2.1.xml b/tiles-core/src/test/java/org/apache/tiles/config/tiles-defs-2.1.xml
+index df11fd29..9c740daa 100644
+--- a/tiles-core/src/test/java/org/apache/tiles/config/tiles-defs-2.1.xml
++++ b/tiles-core/src/test/java/org/apache/tiles/config/tiles-defs-2.1.xml
+@@ -80,11 +80,4 @@
+           templateType="mytype" >
+       <put-attribute name="body" expression="${my.attribute.expression}" />
+   </definition>
+-
+-  <definition name="test.inherit.othertype.base" template="/layout.ftl" templateType="freemarker">
+-      <put-attribute name="body" value="/jsp/body.jsp" />
+-  </definition>
+-
+-  <definition name="test.inherit.othertype" extends="test.inherit.othertype.base">
+-  </definition>
+ </tiles-definitions>
+diff --git a/tiles-core/src/test/java/org/apache/tiles/definition/dao/ResolvingLocaleUrlDefinitionDAOTest.java b/tiles-core/src/test/java/org/apache/tiles/definition/dao/ResolvingLocaleUrlDefinitionDAOTest.java
+index 731f751c..4303d61b 100644
+--- a/tiles-core/src/test/java/org/apache/tiles/definition/dao/ResolvingLocaleUrlDefinitionDAOTest.java
++++ b/tiles-core/src/test/java/org/apache/tiles/definition/dao/ResolvingLocaleUrlDefinitionDAOTest.java
+@@ -722,26 +722,4 @@ public class ResolvingLocaleUrlDefinitionDAOTest extends TestCase {
+         List<Attribute> attributes = (List<Attribute>) listAttribute.getValue();
+         assertEquals(2, attributes.size());
+     }
+-
+-    /**
+-     * Tests
+-     * {@link ResolvingLocaleUrlDefinitionDAO#getDefinition(String, Locale)}
+-     * to solve the TILES-512 issue.
+-     *
+-     * @throws IOException If something goes wrong.
+-     */
+-    public void testTiles512() throws IOException {
+-        URL url = this.getClass().getClassLoader().getResource(
+-                "org/apache/tiles/config/tiles-defs-2.1.xml");
+-        definitionDao.addSourceURL(url);
+-        TilesApplicationContext applicationContext = EasyMock
+-                .createMock(TilesApplicationContext.class);
+-        definitionDao.setReader(new DigesterDefinitionsReader());
+-        EasyMock.replay(applicationContext);
+-
+-        Definition definition = definitionDao.getDefinition(
+-                "test.inherit.othertype", Locale.ITALIAN);
+-        assertEquals("/layout.ftl", definition.getTemplateAttribute().getValue());
+-        assertEquals("freemarker", definition.getTemplateAttribute().getRenderer());
+-    }
+ }

@@ -1,0 +1,2 @@
+org.apache.twill.discovery.InMemoryDiscoveryServiceTest
+org.apache.twill.discovery.ZKDiscoveryServiceTest

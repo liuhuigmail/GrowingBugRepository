@@ -1,0 +1,18 @@
+diff --git a/sentry-core/sentry-core-common/src/test/java/org/apache/sentry/core/common/utils/TestKeyValue.java b/sentry-core/sentry-core-common/src/test/java/org/apache/sentry/core/common/utils/TestKeyValue.java
+index 0c5dfcca..ca44a245 100644
+--- a/sentry-core/sentry-core-common/src/test/java/org/apache/sentry/core/common/utils/TestKeyValue.java
++++ b/sentry-core/sentry-core-common/src/test/java/org/apache/sentry/core/common/utils/TestKeyValue.java
+@@ -55,13 +55,6 @@ public class TestKeyValue {
+     doTest(kv1, kv2, kv3);
+   }
+ 
+-  @Test
+-  public void testKeyValueCaseInsensitive() throws Exception {
+-    KeyValue kv1 = new KeyValue("k1", "v1");
+-    KeyValue kv2 = new KeyValue("K1", "V1");
+-    Assert.assertEquals(kv1, kv2);
+-  }
+-
+   private void doTest(KeyValue kv1, KeyValue kv2, KeyValue kv3) {
+     Assert.assertEquals(kv1, kv2);
+     Assert.assertFalse(kv1.equals(kv3));

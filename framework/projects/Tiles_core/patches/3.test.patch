@@ -1,0 +1,78 @@
+diff --git a/tiles-core/src/test/java/org/apache/tiles/definition/pattern/PatternUtilTest.java b/tiles-core/src/test/java/org/apache/tiles/definition/pattern/PatternUtilTest.java
+index 17a5cf07..ddbfacfd 100644
+--- a/tiles-core/src/test/java/org/apache/tiles/definition/pattern/PatternUtilTest.java
++++ b/tiles-core/src/test/java/org/apache/tiles/definition/pattern/PatternUtilTest.java
+@@ -250,73 +250,4 @@ public class PatternUtilTest {
+                 "some-${requestScope.someVariable}-other-value1-${requestScope.someOtherVariable}.jsp",
+                 nudef.getAttribute("something").getExpressionObject().getExpression());
+     }
+-
+-    /**
+-     * Test method for
+-     * {@link PatternUtil#replacePlaceholders(Definition, String, Object[])}.
+-     */
+-    @Test
+-    public void testReplacePlaceholdersEL_conditional() {
+-        Map<String, Attribute> attributes = new HashMap<String, Attribute>();
+-        Attribute attribute = new Attribute("{1}/some-other-{2}-${requestScope.someBoolean ? 'a' : 'b'}.jsp");
+-        attribute.setExpressionObject(new Expression((String)attribute.getValue()));
+-        attributes.put("something", attribute);
+-        Definition definition = new Definition("definitionName", new Attribute("template"), attributes);
+-        Definition nudef = PatternUtil.replacePlaceholders(definition, "nudef", "value0", "value1", "value2", "value3");
+-        assertEquals("nudef", nudef.getName());
+-
+-        assertEquals(
+-                "value1/some-other-value2-${requestScope.someBoolean ? 'a' : 'b'}.jsp",
+-                nudef.getAttribute("something").getValue());
+-
+-        assertEquals(
+-                "value1/some-other-value2-${requestScope.someBoolean ? 'a' : 'b'}.jsp",
+-                nudef.getAttribute("something").getExpressionObject().getExpression());
+-    }
+-
+-    /**
+-     * Test method for
+-     * {@link PatternUtil#replacePlaceholders(Definition, String, Object[])}.
+-     */
+-    @Test
+-    public void testReplacePlaceholdersEL_twice() {
+-        Map<String, Attribute> attributes = new HashMap<String, Attribute>();
+-        Attribute attribute = new Attribute("some-${requestScope.firstVariable}-${requestScope.secondVariable}.jsp");
+-        attribute.setExpressionObject(new Expression((String)attribute.getValue()));
+-        attributes.put("something", attribute);
+-        Definition definition = new Definition("definitionName", new Attribute("template"), attributes);
+-        Definition nudef = PatternUtil.replacePlaceholders(definition, "nudef", "value0", "value1", "value2", "value3");
+-        assertEquals("nudef", nudef.getName());
+-
+-        assertEquals(
+-                "some-${requestScope.firstVariable}-${requestScope.secondVariable}.jsp",
+-                nudef.getAttribute("something").getValue());
+-
+-        assertEquals(
+-                "some-${requestScope.firstVariable}-${requestScope.secondVariable}.jsp",
+-                nudef.getAttribute("something").getExpressionObject().getExpression());
+-    }
+-
+-    /**
+-     * Test method for
+-     * {@link PatternUtil#replacePlaceholders(Definition, String, Object[])}.
+-     */
+-    @Test
+-    public void testReplacePlaceholdersEL_options() {
+-        Map<String, Attribute> attributes = new HashMap<String, Attribute>();
+-        Attribute attribute = new Attribute("{1}/{options[my_fallback}}/some-other-{2}-${requestScope.someVariable}.jsp");
+-        attribute.setExpressionObject(new Expression((String)attribute.getValue()));
+-        attributes.put("something", attribute);
+-        Definition definition = new Definition("definitionName", new Attribute("template"), attributes);
+-        Definition nudef = PatternUtil.replacePlaceholders(definition, "nudef", "value0", "value1", "value2", "value3");
+-        assertEquals("nudef", nudef.getName());
+-
+-        assertEquals(
+-                "value1/{options[my_fallback}}/some-other-value2-${requestScope.someVariable}.jsp",
+-                nudef.getAttribute("something").getValue());
+-
+-        assertEquals(
+-                "value1/{options[my_fallback}}/some-other-value2-${requestScope.someVariable}.jsp",
+-                nudef.getAttribute("something").getExpressionObject().getExpression());
+-    }
+ }

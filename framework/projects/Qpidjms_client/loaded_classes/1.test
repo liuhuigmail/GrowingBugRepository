@@ -1,0 +1,2 @@
+org.apache.qpid.test.unit.message.MessageTest
+org.apache.qpid.test.utils.QpidTestCase

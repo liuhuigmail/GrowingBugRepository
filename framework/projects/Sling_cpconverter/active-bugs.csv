@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,bed04b3c4995c109903c6b97134c6184ed6f1789,b85d162afa7e62adc52d2e56e387f437b14b769d,SLING-8381,https://issues.apache.org/jira/browse/SLING-8381
+2,c06dd911b0449bc71e90f42b96b06e76c19ef44f,16eed311862fb5df9eed1daaf367e0f8c5c6120c,SLING-8384,https://issues.apache.org/jira/browse/SLING-8384
+3,4c64dee451bee0b03aa00283a52ac07e1f2236d5,812794edee8f406b036449b4d901f08f175903e8,SLING-8527,https://issues.apache.org/jira/browse/SLING-8527

@@ -1,0 +1,24 @@
+diff --git a/modules/api/src/main/java/io/fluo/api/config/FluoConfiguration.java b/modules/api/src/main/java/io/fluo/api/config/FluoConfiguration.java
+index 156c38bf..2d8bd37d 100644
+--- a/modules/api/src/main/java/io/fluo/api/config/FluoConfiguration.java
++++ b/modules/api/src/main/java/io/fluo/api/config/FluoConfiguration.java
+@@ -28,7 +28,6 @@ import java.util.concurrent.TimeUnit;
+ import javax.xml.bind.DatatypeConverter;
+ 
+ import com.google.common.base.Charsets;
+-import org.apache.commons.configuration.AbstractConfiguration;
+ import org.apache.commons.configuration.CompositeConfiguration;
+ import org.apache.commons.configuration.Configuration;
+ import org.apache.commons.configuration.ConfigurationException;
+@@ -125,11 +124,7 @@ public class FluoConfiguration extends CompositeConfiguration {
+   
+   public FluoConfiguration(Configuration configuration) {
+     this();
+-    if(configuration instanceof AbstractConfiguration){
+-      AbstractConfiguration aconf = (AbstractConfiguration) configuration;
+-      aconf.setDelimiterParsingDisabled(true);
+-    }
+     
+     addConfiguration(configuration);
+   }
+   

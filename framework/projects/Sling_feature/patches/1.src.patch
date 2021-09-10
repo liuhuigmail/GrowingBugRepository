@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/sling/feature/extension/apiregions/analyser/CheckConfigurationApi.java b/src/main/java/org/apache/sling/feature/extension/apiregions/analyser/CheckConfigurationApi.java
+index 56d569c..0e84ed9 100644
+--- a/src/main/java/org/apache/sling/feature/extension/apiregions/analyser/CheckConfigurationApi.java
++++ b/src/main/java/org/apache/sling/feature/extension/apiregions/analyser/CheckConfigurationApi.java
+@@ -76,7 +76,7 @@ public class CheckConfigurationApi implements AnalyserTask{
+                         for(final Map.Entry<String, PropertyValidationResult> propEntry : entry.getValue().getPropertyResults().entrySet()) {
+                             if ( !propEntry.getValue().isValid() ) {
+                                 for(final String err : propEntry.getValue().getErrors()) {
+-                                    context.reportError("Configuration " + entry.getKey() + "." + propEntry.getKey() + " : " + err);
++                                    context.reportWarning("Configuration " + entry.getKey() + "." + propEntry.getKey() + " : " + err);
+                                 }
+                             }
+                         }

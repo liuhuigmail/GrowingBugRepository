@@ -1,0 +1,19 @@
+diff --git a/sentry-core/sentry-core-common/src/main/java/org/apache/sentry/core/common/utils/PathUtils.java b/sentry-core/sentry-core-common/src/main/java/org/apache/sentry/core/common/utils/PathUtils.java
+index 2d67a5ba..cef8bd73 100644
+--- a/sentry-core/sentry-core-common/src/main/java/org/apache/sentry/core/common/utils/PathUtils.java
++++ b/sentry-core/sentry-core-common/src/main/java/org/apache/sentry/core/common/utils/PathUtils.java
+@@ -215,13 +215,12 @@ public class PathUtils {
+    * Split path into elements.
+    * May evolve to do something smarter, e.g. path canonicalization,
+    * but for now simple split on "/" is sufficient.
+    *
+    * Remove leading, following, and consecutive slashes from path so
+    * input like "//a/b//c///" when split gives
+    * {a,b,c} instead of {"","",a,b,"",c,"","",""}
+    */
+   public static String[] splitPath(String path) {
+-    path = path.replaceAll("(^/+)|(/+$)", "");
+-    return path.split("/+");
++    return (path != null) ? path.split("/+") : null;
+   }
+ }

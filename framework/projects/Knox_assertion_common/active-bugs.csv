@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,3a394adb19573ecff255b1b8858f4586e2d88457,b4fea509fde4d292893bd98043f1efc5231d0103,KNOX-790,https://issues.apache.org/jira/browse/KNOX-790

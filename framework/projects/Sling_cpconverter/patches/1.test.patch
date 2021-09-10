@@ -1,0 +1,65 @@
+diff --git a/src/test/java/org/apache/sling/feature/cpconverter/vltpkg/VaultPackageAssemblerTest.java b/src/test/java/org/apache/sling/feature/cpconverter/vltpkg/VaultPackageAssemblerTest.java
+index 9d613b5..011a516 100644
+--- a/src/test/java/org/apache/sling/feature/cpconverter/vltpkg/VaultPackageAssemblerTest.java
++++ b/src/test/java/org/apache/sling/feature/cpconverter/vltpkg/VaultPackageAssemblerTest.java
+@@ -16,7 +16,6 @@
+  */
+ package org.apache.sling.feature.cpconverter.vltpkg;
+ 
+-import static org.junit.Assert.assertEquals;
+ import static org.junit.Assert.assertNotNull;
+ 
+ import java.io.File;
+@@ -27,11 +26,9 @@ import java.util.zip.ZipEntry;
+ import java.util.zip.ZipFile;
+ 
+ import org.apache.commons.io.FileUtils;
+-import org.apache.jackrabbit.vault.fs.api.ImportMode;
+-import org.apache.jackrabbit.vault.fs.api.PathFilterSet;
+-import org.apache.jackrabbit.vault.fs.config.DefaultWorkspaceFilter;
+ import org.apache.jackrabbit.vault.packaging.VaultPackage;
+ import org.apache.jackrabbit.vault.packaging.impl.PackageManagerImpl;
++import org.apache.sling.feature.cpconverter.vltpkg.VaultPackageAssembler;
+ import org.junit.Before;
+ import org.junit.Test;
+ import org.junit.runner.RunWith;
+@@ -64,28 +61,12 @@ public class VaultPackageAssemblerTest {
+ 
+     @Test
+     public void packageResource() throws Exception {
+-        if (resourceLocation != null) {
+-            assembler.addEntry(resourceLocation, getClass().getResourceAsStream("../handlers/" + resourceLocation));
+-        }
++        assembler.addEntry(resourceLocation, getClass().getResourceAsStream("../handlers/" + resourceLocation));
+         File contentPackage = assembler.createPackage(testDirectory);
+ 
+         ZipFile zipFile = new ZipFile(contentPackage);
+-        ZipEntry resourceEntry;
+-        if (resourceLocation != null) {
+-            resourceEntry = zipFile.getEntry(resourceLocation);
+-        } else {
+-            resourceEntry = zipFile.getEntry("jcr_root");
+-        }
+-        assertNotNull(resourceEntry);
+-
+-        DefaultWorkspaceFilter filter = new DefaultWorkspaceFilter();
+-        ZipEntry filtersEntry = zipFile.getEntry("META-INF/vault/filter.xml");
+-        filter.load(zipFile.getInputStream(filtersEntry));
+-
+-        for (PathFilterSet filterSet : filter.getFilterSets()) {
+-            assertEquals(ImportMode.MERGE, filterSet.getImportMode());
+-        }
+-
++        ZipEntry entry = zipFile.getEntry(resourceLocation);
++        assertNotNull(entry);
+         zipFile.close();
+     }
+ 
+@@ -98,7 +79,6 @@ public class VaultPackageAssemblerTest {
+         VaultPackageAssembler assembler = VaultPackageAssembler.create(vaultPackage);
+ 
+         return Arrays.asList(new Object[][] {
+-            { null, assembler },
+             { "jcr_root/.content.xml", assembler },
+             { "jcr_root/asd/.content.xml", assembler },
+             { "jcr_root/asd/public/license.txt", assembler }

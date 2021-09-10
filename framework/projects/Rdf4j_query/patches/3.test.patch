@@ -1,0 +1,133 @@
+diff --git a/core/query/src/test/java/org/eclipse/rdf4j/query/BindingSetTest.java b/core/query/src/test/java/org/eclipse/rdf4j/query/BindingSetTest.java
+deleted file mode 100644
+index 9d4a362bd..000000000
+--- a/core/query/src/test/java/org/eclipse/rdf4j/query/BindingSetTest.java
++++ /dev/null
+@@ -1,44 +0,0 @@
+-/*******************************************************************************
+- * Copyright (c) 2016 Eclipse RDF4J contributors.
+- * All rights reserved. This program and the accompanying materials
+- * are made available under the terms of the Eclipse Distribution License v1.0
+- * which accompanies this distribution, and is available at
+- * http://www.eclipse.org/org/documents/edl-v10.php.
+- *******************************************************************************/
+-package org.eclipse.rdf4j.query;
+-
+-import static org.junit.Assert.assertEquals;
+-
+-import org.junit.Test;
+-
+-/**
+- * Unit tests for BindingSet implementations.
+- * 
+- * @author jeen
+- */
+-public abstract class BindingSetTest<T extends BindingSet> {
+-
+-	/**
+-	 * Verifies that the BindingSet implementation honors the API spec for {@link BindingSet#equals(Object)}
+-	 * and {@link BindingSet#hashCode()}.
+-	 */
+-	@Test
+-	public void testEqualsHashcode() {
+-
+-		T[] bindingSets = createTwoEqualReorderedBindingSets();
+-
+-		T bs1 = bindingSets[0];
+-		T bs2 = bindingSets[1];
+-
+-		assertEquals(bs1, bs2);
+-
+-		assertEquals(bs1.hashCode(), bs2.hashCode());
+-	}
+-
+-	/**
+-	 * Creates two equal, but differently ordered, BindingSet objects.
+-	 * 
+-	 * @return an array of two equal but differently ordered BindingSets.
+-	 */
+-	protected abstract T[] createTwoEqualReorderedBindingSets();
+-}
+diff --git a/core/query/src/test/java/org/eclipse/rdf4j/query/impl/ListBindingSetTest.java b/core/query/src/test/java/org/eclipse/rdf4j/query/impl/ListBindingSetTest.java
+deleted file mode 100644
+index ddad783bc..000000000
+--- a/core/query/src/test/java/org/eclipse/rdf4j/query/impl/ListBindingSetTest.java
++++ /dev/null
+@@ -1,34 +0,0 @@
+-/*******************************************************************************
+- * Copyright (c) 2016 Eclipse RDF4J contributors.
+- * All rights reserved. This program and the accompanying materials
+- * are made available under the terms of the Eclipse Distribution License v1.0
+- * which accompanies this distribution, and is available at
+- * http://www.eclipse.org/org/documents/edl-v10.php.
+- *******************************************************************************/
+-package org.eclipse.rdf4j.query.impl;
+-
+-import java.util.Arrays;
+-import java.util.List;
+-
+-import org.eclipse.rdf4j.model.vocabulary.RDF;
+-import org.eclipse.rdf4j.query.BindingSetTest;
+-
+-/**
+- * Unit tests for {@link ListBindingSet}
+- * 
+- * @author Jeen Broekstra
+- */
+-public class ListBindingSetTest extends BindingSetTest<ListBindingSet> {
+-
+-	@Override
+-	protected ListBindingSet[] createTwoEqualReorderedBindingSets() {
+-
+-		List<String> names1 = Arrays.asList(new String[] { "x", "y", "z" });
+-		List<String> names2 = Arrays.asList(new String[] { "y", "z", "x" });
+-
+-		ListBindingSet bindingSet1 = new ListBindingSet(names1, RDF.ALT, RDF.BAG, RDF.FIRST);
+-		ListBindingSet bindingSet2 = new ListBindingSet(names2, RDF.BAG, RDF.FIRST, RDF.ALT);
+-		return new ListBindingSet[] { bindingSet1, bindingSet2 };
+-	}
+-
+-}
+diff --git a/core/query/src/test/java/org/eclipse/rdf4j/query/impl/MapBindingSetTest.java b/core/query/src/test/java/org/eclipse/rdf4j/query/impl/MapBindingSetTest.java
+deleted file mode 100644
+index fda9530c2..000000000
+--- a/core/query/src/test/java/org/eclipse/rdf4j/query/impl/MapBindingSetTest.java
++++ /dev/null
+@@ -1,37 +0,0 @@
+-/*******************************************************************************
+- * Copyright (c) 2016 Eclipse RDF4J contributors.
+- * All rights reserved. This program and the accompanying materials
+- * are made available under the terms of the Eclipse Distribution License v1.0
+- * which accompanies this distribution, and is available at
+- * http://www.eclipse.org/org/documents/edl-v10.php.
+- *******************************************************************************/
+-package org.eclipse.rdf4j.query.impl;
+-
+-import org.eclipse.rdf4j.model.vocabulary.RDF;
+-import org.eclipse.rdf4j.query.BindingSetTest;
+-
+-/**
+- * Unit tests for {@link MapBindingSet}
+- * 
+- * @author Jeen Broekstra
+- */
+-public class MapBindingSetTest extends BindingSetTest<MapBindingSet> {
+-
+-	@Override
+-	protected MapBindingSet[] createTwoEqualReorderedBindingSets() {
+-
+-		MapBindingSet bindingSet1 = new MapBindingSet();
+-		MapBindingSet bindingSet2 = new MapBindingSet();
+-
+-		bindingSet1.addBinding("x", RDF.ALT);
+-		bindingSet1.addBinding("y", RDF.BAG);
+-		bindingSet1.addBinding("z", RDF.FIRST);
+-
+-		bindingSet2.addBinding("y", RDF.BAG);
+-		bindingSet2.addBinding("x", RDF.ALT);
+-		bindingSet2.addBinding("z", RDF.FIRST);
+-
+-		return new MapBindingSet[] { bindingSet1, bindingSet2 };
+-	}
+-
+-}

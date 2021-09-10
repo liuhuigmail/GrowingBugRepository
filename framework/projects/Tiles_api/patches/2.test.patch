@@ -1,0 +1,569 @@
+diff --git a/tiles-api/src/test/java/org/apache/tiles/BasicAttributeContextTest.java b/tiles-api/src/test/java/org/apache/tiles/BasicAttributeContextTest.java
+index bc51c6b6..210bfd98 100644
+--- a/tiles-api/src/test/java/org/apache/tiles/BasicAttributeContextTest.java
++++ b/tiles-api/src/test/java/org/apache/tiles/BasicAttributeContextTest.java
+@@ -20,9 +20,6 @@
+  */
+ package org.apache.tiles;
+ 
+-import static org.junit.Assert.*;
+-import static org.easymock.EasyMock.*;
+-
+ import java.util.ArrayList;
+ import java.util.HashMap;
+ import java.util.HashSet;
+@@ -31,19 +28,20 @@ import java.util.List;
+ import java.util.Map;
+ import java.util.Set;
+ 
+-import org.junit.Test;
++import org.easymock.EasyMock;
++
++import junit.framework.TestCase;
+ 
+ /**
+  * Tests <code>BasicAttributeContext</code>.
+  *
+  * @version $Rev$ $Date$
+  */
+-public class BasicAttributeContextTest {
++public class BasicAttributeContextTest extends TestCase {
+ 
+     /**
+      * Tests {@link BasicAttributeContext#BasicAttributeContext()}.
+      */
+-    @Test
+     public void testBasicAttributeContext() {
+         AttributeContext context = new BasicAttributeContext();
+         assertNull("There are some spurious attributes", context
+@@ -55,7 +53,6 @@ public class BasicAttributeContextTest {
+     /**
+      * Tests {@link BasicAttributeContext#BasicAttributeContext(Map)}.
+      */
+-    @Test
+     public void testBasicAttributeContextMapOfStringAttribute() {
+         Map<String, Attribute> name2attrib = new HashMap<String, Attribute>();
+         Attribute attribute = new Attribute("Value 1");
+@@ -77,7 +74,6 @@ public class BasicAttributeContextTest {
+      * Tests
+      * {@link BasicAttributeContext#BasicAttributeContext(AttributeContext)}.
+      */
+-    @Test
+     public void testBasicAttributeContextAttributeContext() {
+         Set<String> localAttributes = new LinkedHashSet<String>();
+         Set<String> cascadedAttributes = new LinkedHashSet<String>();
+@@ -85,27 +81,28 @@ public class BasicAttributeContextTest {
+         localAttributes.add("local2");
+         cascadedAttributes.add("cascaded1");
+         cascadedAttributes.add("cascaded2");
+-        AttributeContext toCopy = createMock(AttributeContext.class);
+-        expect(toCopy.getLocalAttributeNames()).andReturn(localAttributes);
+-        expect(toCopy.getLocalAttribute("local1")).andReturn(
++        AttributeContext toCopy = EasyMock.createMock(AttributeContext.class);
++        EasyMock.expect(toCopy.getLocalAttributeNames()).andReturn(
++                localAttributes);
++        EasyMock.expect(toCopy.getLocalAttribute("local1")).andReturn(
+                 new Attribute("value1")).anyTimes();
+-        expect(toCopy.getLocalAttribute("local2")).andReturn(
++        EasyMock.expect(toCopy.getLocalAttribute("local2")).andReturn(
+                 new Attribute("value2")).anyTimes();
+-        expect(toCopy.getCascadedAttributeNames())
+-                .andReturn(cascadedAttributes);
+-        expect(toCopy.getCascadedAttribute("cascaded1")).andReturn(
++        EasyMock.expect(toCopy.getCascadedAttributeNames()).andReturn(
++                cascadedAttributes);
++        EasyMock.expect(toCopy.getCascadedAttribute("cascaded1")).andReturn(
+                 new Attribute("value3")).anyTimes();
+-        expect(toCopy.getCascadedAttribute("cascaded2")).andReturn(
++        EasyMock.expect(toCopy.getCascadedAttribute("cascaded2")).andReturn(
+                 new Attribute("value4")).anyTimes();
+         Attribute templateAttribute = new Attribute("/template.jsp", Expression
+                 .createExpression("expression", null), "role1,role2",
+                 "template");
+-        expect(toCopy.getTemplateAttribute()).andReturn(templateAttribute);
++        EasyMock.expect(toCopy.getTemplateAttribute()).andReturn(templateAttribute);
+         Set<String> roles = new HashSet<String>();
+         roles.add("role1");
+         roles.add("role2");
+-        expect(toCopy.getPreparer()).andReturn("my.preparer.Preparer");
+-        replay(toCopy);
++        EasyMock.expect(toCopy.getPreparer()).andReturn("my.preparer.Preparer");
++        EasyMock.replay(toCopy);
+         BasicAttributeContext context = new BasicAttributeContext(toCopy);
+         assertEquals("The template has not been set correctly",
+                 "/template.jsp", context.getTemplateAttribute().getValue());
+@@ -136,12 +133,10 @@ public class BasicAttributeContextTest {
+ 
+     /**
+      * Tests
+-     * {@link BasicAttributeContext#BasicAttributeContext(BasicAttributeContext)}
+-     * .
++     * {@link BasicAttributeContext#BasicAttributeContext(BasicAttributeContext)}.
+      */
+-    @Test
+     public void testBasicAttributeContextBasicAttributeContext() {
+-        BasicAttributeContext toCopy = new BasicAttributeContext();
++        AttributeContext toCopy = new BasicAttributeContext();
+         toCopy.putAttribute("name1", new Attribute("value1"), false);
+         toCopy.putAttribute("name2", new Attribute("value2"), true);
+         Attribute templateAttribute = Attribute
+@@ -170,11 +165,8 @@ public class BasicAttributeContextTest {
+     }
+ 
+     /**
+-     * Tests
+-     * {@link BasicAttributeContext#inheritCascadedAttributes(AttributeContext)}
+-     * .
++     * Tests {@link BasicAttributeContext#inheritCascadedAttributes(AttributeContext)}.
+      */
+-    @Test
+     public void testInheritCascadedAttributes() {
+         AttributeContext toCopy = new BasicAttributeContext();
+         toCopy.putAttribute("name1", new Attribute("value1"), false);
+@@ -194,7 +186,6 @@ public class BasicAttributeContextTest {
+      * testing inheritance between {@link ListAttribute} instances.
+      */
+     @SuppressWarnings("unchecked")
+-    @Test
+     public void testInheritListAttribute() {
+         AttributeContext toCopy = new BasicAttributeContext();
+         ListAttribute parentListAttribute = new ListAttribute();
+@@ -212,8 +203,7 @@ public class BasicAttributeContextTest {
+         assertNotNull("The list must exist", value);
+         assertEquals("The size is not correct", 2, value.size());
+         assertEquals("The first element is not correct", "first", value.get(0));
+-        assertEquals("The second element is not correct", "second", value
+-                .get(1));
++        assertEquals("The second element is not correct", "second", value.get(1));
+ 
+         context = new BasicAttributeContext();
+         listAttribute = new ListAttribute();
+@@ -225,110 +215,23 @@ public class BasicAttributeContextTest {
+         value = (List<Object>) result.getValue();
+         assertNotNull("The list must exist", value);
+         assertEquals("The size is not correct", 1, value.size());
+-        assertEquals("The second element is not correct", "second", value
+-                .get(0));
++        assertEquals("The second element is not correct", "second", value.get(0));
+     }
+ 
+     /**
+-     * Tests
+-     * {@link BasicAttributeContext#inheritCascadedAttributes(AttributeContext)}
+-     * .
++     * Tests {@link BasicAttributeContext#inheritCascadedAttributes(AttributeContext)}.
+      */
+-    @Test
+     public void testInherit() {
+         AttributeContext toCopy = new BasicAttributeContext();
+-        Attribute parentTemplateAttribute = new Attribute();
+-        parentTemplateAttribute.setValue("/parent/template.jsp");
+-        toCopy.setTemplateAttribute(parentTemplateAttribute);
+         toCopy.putAttribute("name1", new Attribute("value1"), true);
+         toCopy.putAttribute("name2", new Attribute("value2"), true);
+         toCopy.putAttribute("name3", new Attribute("value3"), false);
+         toCopy.putAttribute("name4", new Attribute("value4"), false);
+         AttributeContext context = new BasicAttributeContext();
+-        Attribute templateAttribute = new Attribute();
+-        templateAttribute.setRole("role1,role2");
+-        context.setTemplateAttribute(templateAttribute);
+-        context.putAttribute("name1", new Attribute("newValue1"), true);
+-        context.putAttribute("name3", new Attribute("newValue3"), false);
+-        context.inherit(toCopy);
+-        Attribute attribute = context.getTemplateAttribute();
+-        assertEquals("/parent/template.jsp", attribute.getValue());
+-        assertTrue(attribute.getRoles().contains("role1"));
+-        assertTrue(attribute.getRoles().contains("role2"));
+-        attribute = context.getCascadedAttribute("name1");
+-        assertNotNull("Attribute name1 not found", attribute);
+-        assertEquals("Attribute name1 has not been set correctly", "newValue1",
+-                attribute.getValue());
+-        attribute = context.getCascadedAttribute("name2");
+-        assertNotNull("Attribute name2 not found", attribute);
+-        assertEquals("Attribute name2 has not been set correctly", "value2",
+-                attribute.getValue());
+-        attribute = context.getLocalAttribute("name3");
+-        assertNotNull("Attribute name3 not found", attribute);
+-        assertEquals("Attribute name3 has not been set correctly", "newValue3",
+-                attribute.getValue());
+-        attribute = context.getLocalAttribute("name4");
+-        assertNotNull("Attribute name4 not found", attribute);
+-        assertEquals("Attribute name4 has not been set correctly", "value4",
+-                attribute.getValue());
+-
+-        toCopy = new BasicAttributeContext();
+-        toCopy.putAttribute("name1", new Attribute("value1"), true);
+-        toCopy.putAttribute("name2", new Attribute("value2"), true);
+-        toCopy.putAttribute("name3", new Attribute("value3"), false);
+-        toCopy.putAttribute("name4", new Attribute("value4"), false);
+-        context = new BasicAttributeContext();
+-        context.inherit(toCopy);
+-        attribute = context.getCascadedAttribute("name1");
+-        assertNotNull("Attribute name1 not found", attribute);
+-        assertEquals("Attribute name1 has not been set correctly", "value1",
+-                attribute.getValue());
+-        attribute = context.getCascadedAttribute("name2");
+-        assertNotNull("Attribute name2 not found", attribute);
+-        assertEquals("Attribute name2 has not been set correctly", "value2",
+-                attribute.getValue());
+-        attribute = context.getLocalAttribute("name3");
+-        assertNotNull("Attribute name3 not found", attribute);
+-        assertEquals("Attribute name3 has not been set correctly", "value3",
+-                attribute.getValue());
+-        attribute = context.getLocalAttribute("name4");
+-        assertNotNull("Attribute name4 not found", attribute);
+-        assertEquals("Attribute name4 has not been set correctly", "value4",
+-                attribute.getValue());
+-    }
+-
+-    /**
+-     * Tests
+-     * {@link BasicAttributeContext#inherit(AttributeContext)}
+-     * .
+-     */
+-    @Test
+-    public void testInheritAttributeContext() {
+-        AttributeContext toCopy = createMock(AttributeContext.class);
+-        Attribute templateAttribute = Attribute.createTemplateAttribute("/my/template.jsp");
+-        expect(toCopy.getTemplateAttribute()).andReturn(templateAttribute);
+-        expect(toCopy.getPreparer()).andReturn("my.preparer");
+-        Set<String> cascadedNames = new HashSet<String>();
+-        cascadedNames.add("name1");
+-        cascadedNames.add("name2");
+-        expect(toCopy.getCascadedAttributeNames()).andReturn(cascadedNames);
+-        expect(toCopy.getCascadedAttribute("name1")).andReturn(new Attribute("value1"));
+-        expect(toCopy.getCascadedAttribute("name2")).andReturn(new Attribute("value2"));
+-        Set<String> names = new HashSet<String>();
+-        names.add("name3");
+-        names.add("name4");
+-        expect(toCopy.getLocalAttributeNames()).andReturn(names);
+-        expect(toCopy.getLocalAttribute("name3")).andReturn(new Attribute("value3"));
+-        expect(toCopy.getLocalAttribute("name4")).andReturn(new Attribute("value4"));
+-
+-        replay(toCopy);
+-        AttributeContext context = new BasicAttributeContext();
+-        context.putAttribute("name1", new Attribute("newValue1"), true);
+-        context.putAttribute("name3", new Attribute("newValue3"), false);
++        toCopy.putAttribute("name1", new Attribute("newValue1"), true);
++        toCopy.putAttribute("name3", new Attribute("newValue3"), false);
+         context.inherit(toCopy);
+         Attribute attribute = context.getCascadedAttribute("name1");
+-        assertEquals("/my/template.jsp", context.getTemplateAttribute().getValue());
+-        assertEquals("my.preparer", context.getPreparer());
+         assertNotNull("Attribute name1 not found", attribute);
+         assertEquals("Attribute name1 has not been set correctly", "newValue1",
+                 attribute.getValue());
+@@ -344,80 +247,11 @@ public class BasicAttributeContextTest {
+         assertNotNull("Attribute name4 not found", attribute);
+         assertEquals("Attribute name4 has not been set correctly", "value4",
+                 attribute.getValue());
+-        verify(toCopy);
+-    }
+-
+-    /**
+-     * Tests {@link BasicAttributeContext#inherit(AttributeContext)}
+-     * testing inheritance between {@link ListAttribute} instances.
+-     */
+-    @SuppressWarnings("unchecked")
+-    @Test
+-    public void testInheritAttributeContextListAttribute() {
+-        AttributeContext toCopy = createMock(AttributeContext.class);
+-        Attribute templateAttribute = Attribute.createTemplateAttribute("/my/template.jsp");
+-        expect(toCopy.getTemplateAttribute()).andReturn(templateAttribute).times(2);
+-        expect(toCopy.getPreparer()).andReturn("my.preparer").times(2);
+-        ListAttribute parentListAttribute = new ListAttribute();
+-        parentListAttribute.add("first");
+-        ListAttribute parentListAttribute2 = new ListAttribute();
+-        parentListAttribute2.add("third");
+-        Set<String> names = new HashSet<String>();
+-        names.add("list");
+-        Set<String> cascadedNames = new HashSet<String>();
+-        cascadedNames.add("list2");
+-        expect(toCopy.getCascadedAttributeNames()).andReturn(cascadedNames).times(2);
+-        expect(toCopy.getCascadedAttribute("list2")).andReturn(parentListAttribute2).times(2);
+-        expect(toCopy.getLocalAttributeNames()).andReturn(names).times(2);
+-        expect(toCopy.getLocalAttribute("list")).andReturn(parentListAttribute).times(2);
+-
+-        replay(toCopy);
+-        AttributeContext context = new BasicAttributeContext();
+-        ListAttribute listAttribute = new ListAttribute();
+-        listAttribute.setInherit(true);
+-        listAttribute.add("second");
+-        context.putAttribute("list", listAttribute, false);
+-        ListAttribute listAttribute2 = new ListAttribute();
+-        listAttribute2.setInherit(true);
+-        listAttribute2.add("fourth");
+-        context.putAttribute("list2", listAttribute2, true);
+-        context.inherit(toCopy);
+-        ListAttribute result = (ListAttribute) context.getAttribute("list");
+-        assertNotNull("The attribute must exist", result);
+-        List<Object> value = (List<Object>) result.getValue();
+-        assertNotNull("The list must exist", value);
+-        assertEquals("The size is not correct", 2, value.size());
+-        assertEquals("The first element is not correct", "first", value.get(0));
+-        assertEquals("The second element is not correct", "second", value
+-                .get(1));
+-        result = (ListAttribute) context.getAttribute("list2");
+-        assertNotNull("The attribute must exist", result);
+-        value = (List<Object>) result.getValue();
+-        assertNotNull("The list must exist", value);
+-        assertEquals("The size is not correct", 2, value.size());
+-        assertEquals("The first element is not correct", "third", value.get(0));
+-        assertEquals("The second element is not correct", "fourth", value
+-                .get(1));
+-
+-        context = new BasicAttributeContext();
+-        listAttribute = new ListAttribute();
+-        listAttribute.add("second");
+-        context.putAttribute("list", listAttribute);
+-        context.inherit(toCopy);
+-        result = (ListAttribute) context.getAttribute("list");
+-        assertNotNull("The attribute must exist", result);
+-        value = (List<Object>) result.getValue();
+-        assertNotNull("The list must exist", value);
+-        assertEquals("The size is not correct", 1, value.size());
+-        assertEquals("The second element is not correct", "second", value
+-                .get(0));
+-        verify(toCopy);
+     }
+ 
+     /**
+      * Tests {@link BasicAttributeContext#addAll(Map)}.
+      */
+-    @Test
+     public void testAddAll() {
+         AttributeContext context = new BasicAttributeContext();
+         Map<String, Attribute> name2attrib = new HashMap<String, Attribute>();
+@@ -434,38 +268,11 @@ public class BasicAttributeContextTest {
+         assertNotNull("Attribute name2 not found", attribute);
+         assertEquals("Attribute name2 has not been set correctly", "Value 2",
+                 attribute.getValue());
+-
+-        context.addAll(null);
+-        attribute = context.getAttribute("name1");
+-        assertNotNull("Attribute name1 not found", attribute);
+-        assertEquals("Attribute name1 has not been set correctly", "Value 1",
+-                attribute.getValue());
+-        attribute = context.getAttribute("name2");
+-        assertNotNull("Attribute name2 not found", attribute);
+-        assertEquals("Attribute name2 has not been set correctly", "Value 2",
+-                attribute.getValue());
+-
+-        name2attrib = new HashMap<String, Attribute>();
+-        name2attrib.put("name3", new Attribute("Value 3"));
+-        context.addAll(name2attrib);
+-        attribute = context.getAttribute("name1");
+-        assertNotNull("Attribute name1 not found", attribute);
+-        assertEquals("Attribute name1 has not been set correctly", "Value 1",
+-                attribute.getValue());
+-        attribute = context.getAttribute("name2");
+-        assertNotNull("Attribute name2 not found", attribute);
+-        assertEquals("Attribute name2 has not been set correctly", "Value 2",
+-                attribute.getValue());
+-        attribute = context.getAttribute("name3");
+-        assertNotNull("Attribute name3 not found", attribute);
+-        assertEquals("Attribute name3 has not been set correctly", "Value 3",
+-                attribute.getValue());
+     }
+ 
+     /**
+      * Tests {@link BasicAttributeContext#addMissing(Map)}.
+      */
+-    @Test
+     public void testAddMissing() {
+         Map<String, Attribute> name2attrib = new HashMap<String, Attribute>();
+         Attribute attribute = new Attribute("Value 1");
+@@ -489,74 +296,11 @@ public class BasicAttributeContextTest {
+         assertNotNull("Attribute name3 not found", attribute);
+         assertEquals("Attribute name3 has not been set correctly", "Value 3",
+                 attribute.getValue());
+-
+-        context.addMissing(null);
+-        attribute = context.getAttribute("name1");
+-        assertNotNull("Attribute name1 not found", attribute);
+-        assertEquals("Attribute name1 has not been set correctly", "Value 1",
+-                attribute.getValue());
+-        attribute = context.getAttribute("name2");
+-        assertNotNull("Attribute name2 not found", attribute);
+-        assertEquals("Attribute name2 has not been set correctly", "Value 2",
+-                attribute.getValue());
+-        attribute = context.getAttribute("name3");
+-        assertNotNull("Attribute name3 not found", attribute);
+-        assertEquals("Attribute name3 has not been set correctly", "Value 3",
+-                attribute.getValue());
+-
+-        context = new BasicAttributeContext();
+-        name2attrib = new HashMap<String, Attribute>();
+-        name2attrib.put("name1", new Attribute("Value 1a"));
+-        name2attrib.put("name3", new Attribute("Value 3"));
+-        context.addMissing(name2attrib);
+-        attribute = context.getAttribute("name1");
+-        assertNotNull("Attribute name1 not found", attribute);
+-        assertEquals("Attribute name1 has not been set correctly", "Value 1a",
+-                attribute.getValue());
+-        attribute = context.getAttribute("name3");
+-        assertNotNull("Attribute name3 not found", attribute);
+-        assertEquals("Attribute name3 has not been set correctly", "Value 3",
+-                attribute.getValue());
+-
+-        context = new BasicAttributeContext();
+-        context.putAttribute("name2", new Attribute("Value 2a"), true);
+-        name2attrib = new HashMap<String, Attribute>();
+-        name2attrib.put("name1", new Attribute("Value 1a"));
+-        name2attrib.put("name3", new Attribute("Value 3"));
+-        context.addMissing(name2attrib);
+-        attribute = context.getAttribute("name1");
+-        assertNotNull("Attribute name1 not found", attribute);
+-        assertEquals("Attribute name1 has not been set correctly", "Value 1a",
+-                attribute.getValue());
+-        attribute = context.getAttribute("name2");
+-        assertNotNull("Attribute name2 not found", attribute);
+-        assertEquals("Attribute name2 has not been set correctly", "Value 2a",
+-                attribute.getValue());
+-        attribute = context.getAttribute("name3");
+-        assertNotNull("Attribute name3 not found", attribute);
+-        assertEquals("Attribute name3 has not been set correctly", "Value 3",
+-                attribute.getValue());
+-
+-        context = new BasicAttributeContext();
+-        context.putAttribute("name2", new Attribute("Value 2a"), true);
+-        name2attrib = new HashMap<String, Attribute>();
+-        name2attrib.put("name2", new Attribute("Value 2b"));
+-        name2attrib.put("name3", new Attribute("Value 3"));
+-        context.addMissing(name2attrib);
+-        attribute = context.getAttribute("name2");
+-        assertNotNull("Attribute name2 not found", attribute);
+-        assertEquals("Attribute name2 has not been set correctly", "Value 2a",
+-                attribute.getValue());
+-        attribute = context.getAttribute("name3");
+-        assertNotNull("Attribute name3 not found", attribute);
+-        assertEquals("Attribute name3 has not been set correctly", "Value 3",
+-                attribute.getValue());
+     }
+ 
+     /**
+      * Tests {@link BasicAttributeContext#getAttribute(String)}.
+      */
+-    @Test
+     public void testGetAttribute() {
+         AttributeContext context = new BasicAttributeContext();
+         context.putAttribute("name1", new Attribute("value1"), false);
+@@ -580,7 +324,6 @@ public class BasicAttributeContextTest {
+     /**
+      * Tests {@link BasicAttributeContext#getLocalAttribute(String)}.
+      */
+-    @Test
+     public void testGetLocalAttribute() {
+         AttributeContext context = new BasicAttributeContext();
+         context.putAttribute("name1", new Attribute("value1"), false);
+@@ -602,7 +345,6 @@ public class BasicAttributeContextTest {
+     /**
+      * Tests {@link BasicAttributeContext#getCascadedAttribute(String)}.
+      */
+-    @Test
+     public void testGetCascadedAttribute() {
+         AttributeContext context = new BasicAttributeContext();
+         context.putAttribute("name1", new Attribute("value1"), false);
+@@ -624,7 +366,6 @@ public class BasicAttributeContextTest {
+     /**
+      * Tests {@link BasicAttributeContext#getLocalAttributeNames()}.
+      */
+-    @Test
+     public void testGetLocalAttributeNames() {
+         AttributeContext context = new BasicAttributeContext();
+         context.putAttribute("name1", new Attribute("value1"), false);
+@@ -640,7 +381,6 @@ public class BasicAttributeContextTest {
+     /**
+      * Tests {@link BasicAttributeContext#getCascadedAttributeNames()}.
+      */
+-    @Test
+     public void testGetCascadedAttributeNames() {
+         AttributeContext context = new BasicAttributeContext();
+         context.putAttribute("name1", new Attribute("value1"), false);
+@@ -656,7 +396,6 @@ public class BasicAttributeContextTest {
+     /**
+      * Tests {@link BasicAttributeContext#putAttribute(String, Attribute)}.
+      */
+-    @Test
+     public void testPutAttributeStringAttribute() {
+         AttributeContext context = new BasicAttributeContext();
+         context.putAttribute("name1", new Attribute("value1"));
+@@ -672,7 +411,6 @@ public class BasicAttributeContextTest {
+      * Tests
+      * {@link BasicAttributeContext#putAttribute(String, Attribute, boolean)}.
+      */
+-    @Test
+     public void testPutAttributeStringAttributeBoolean() {
+         AttributeContext context = new BasicAttributeContext();
+         context.putAttribute("name1", new Attribute("value1"), false);
+@@ -694,7 +432,6 @@ public class BasicAttributeContextTest {
+     /**
+      * Tests {@link BasicAttributeContext#clear()}.
+      */
+-    @Test
+     public void testClear() {
+         AttributeContext context = new BasicAttributeContext();
+         context.putAttribute("name1", new Attribute("value1"), false);
+@@ -708,62 +445,9 @@ public class BasicAttributeContextTest {
+                 || names.isEmpty());
+     }
+ 
+-    /**
+-     * Tests {@link BasicAttributeContext#equals(Object)}.
+-     */
+-    @Test
+-    public void testEquals() {
+-        BasicAttributeContext attributeContext = new BasicAttributeContext();
+-        attributeContext.setPreparer("my.preparer");
+-        attributeContext.setTemplateAttribute(Attribute.createTemplateAttribute("/my/template.jsp"));
+-        attributeContext.putAttribute("attribute1", new Attribute("value1"), true);
+-        attributeContext.putAttribute("attribute2", new Attribute("value2"), true);
+-        attributeContext.putAttribute("attribute3", new Attribute("value3"), false);
+-        BasicAttributeContext toCompare = new BasicAttributeContext(attributeContext);
+-        assertTrue(toCompare.equals(attributeContext));
+-        toCompare = new BasicAttributeContext(attributeContext);
+-        toCompare.putAttribute("attribute4", new Attribute("value4"), true);
+-        assertFalse(toCompare.equals(attributeContext));
+-        toCompare = new BasicAttributeContext(attributeContext);
+-        toCompare.putAttribute("attribute4", new Attribute("value4"), false);
+-        assertFalse(toCompare.equals(attributeContext));
+-        toCompare = new BasicAttributeContext(attributeContext);
+-        toCompare.setPreparer("another.preparer");
+-        assertFalse(toCompare.equals(attributeContext));
+-        toCompare = new BasicAttributeContext(attributeContext);
+-        toCompare.setTemplateAttribute(Attribute.createTemplateAttribute("/another/template.jsp"));
+-        assertFalse(toCompare.equals(attributeContext));
+-    }
+-
+-    /**
+-     * Tests {@link BasicAttributeContext#hashCode()}.
+-     */
+-    @Test
+-    public void testHashCode() {
+-        BasicAttributeContext attributeContext = new BasicAttributeContext();
+-        attributeContext.setPreparer("my.preparer");
+-        Attribute templateAttribute = Attribute.createTemplateAttribute("/my/template.jsp");
+-        attributeContext.setTemplateAttribute(templateAttribute);
+-        Attribute attribute1 = new Attribute("value1");
+-        Attribute attribute2 = new Attribute("value2");
+-        Attribute attribute3 = new Attribute("value3");
+-        attributeContext.putAttribute("attribute1", attribute1, true);
+-        attributeContext.putAttribute("attribute2", attribute2, true);
+-        attributeContext.putAttribute("attribute3", attribute3, false);
+-        Map<String, Attribute> cascadedAttributes = new HashMap<String, Attribute>();
+-        cascadedAttributes.put("attribute1", attribute1);
+-        cascadedAttributes.put("attribute2", attribute2);
+-        Map<String, Attribute> attributes = new HashMap<String, Attribute>();
+-        attributes.put("attribute3", attribute3);
+-        assertEquals(templateAttribute.hashCode() + "my.preparer".hashCode()
+-                + attributes.hashCode() + cascadedAttributes.hashCode(),
+-                attributeContext.hashCode());
+-    }
+-
+     /**
+      * Tests {@link BasicAttributeContext} for the TILES-429 bug.
+      */
+-    @Test
+     public void testTiles429() {
+         AttributeContext toCopy = new BasicAttributeContext();
+         toCopy.putAttribute("name1", new Attribute("value1"), false);

@@ -1,0 +1,2 @@
+org.apache.cxf.dosgi.common.intent.impl.DummyServiceWithLogging
+org.apache.cxf.dosgi.common.intent.impl.IntentManagerImplTest

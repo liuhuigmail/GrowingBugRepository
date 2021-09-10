@@ -1,0 +1,14 @@
+org.apache.sling.feature.extension.apiregions.api.config.AttributeableEntity
+org.apache.sling.feature.extension.apiregions.api.config.ConfigurableEntity
+org.apache.sling.feature.extension.apiregions.api.config.ConfigurationDescription
+org.apache.sling.feature.extension.apiregions.api.config.DescribableEntity
+org.apache.sling.feature.extension.apiregions.api.config.FactoryConfigurationDescription
+org.apache.sling.feature.extension.apiregions.api.config.Mode
+org.apache.sling.feature.extension.apiregions.api.config.PlaceholderPolicy
+org.apache.sling.feature.extension.apiregions.api.config.PropertyDescription
+org.apache.sling.feature.extension.apiregions.api.config.PropertyType
+org.apache.sling.feature.extension.apiregions.api.config.Region
+org.apache.sling.feature.extension.apiregions.api.config.validation.ConfigurationValidationResult
+org.apache.sling.feature.extension.apiregions.api.config.validation.ConfigurationValidator
+org.apache.sling.feature.extension.apiregions.api.config.validation.PropertyValidationResult
+org.apache.sling.feature.extension.apiregions.api.config.validation.PropertyValidator

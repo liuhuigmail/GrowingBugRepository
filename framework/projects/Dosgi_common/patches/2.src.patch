@@ -1,0 +1,14 @@
+diff --git a/common/src/main/java/org/apache/cxf/dosgi/common/proxy/ExceptionMapper.java b/common/src/main/java/org/apache/cxf/dosgi/common/proxy/ExceptionMapper.java
+index 2e3044b9..77c72b29 100644
+--- a/common/src/main/java/org/apache/cxf/dosgi/common/proxy/ExceptionMapper.java
++++ b/common/src/main/java/org/apache/cxf/dosgi/common/proxy/ExceptionMapper.java
+@@ -54,9 +54,6 @@ public class ExceptionMapper {
+         for (Method m : iType.getDeclaredMethods()) {
+             addExceptions(m);
+         }
+-        for (Method m : iType.getMethods()) {
+-            addExceptions(m);
+-        }
+     }
+ 
+     private void addExceptions(Method m) {

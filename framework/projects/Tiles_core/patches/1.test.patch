@@ -1,0 +1,24 @@
+diff --git a/tiles-core/src/test/java/org/apache/tiles/renderer/impl/BasicRendererFactoryTest.java b/tiles-core/src/test/java/org/apache/tiles/renderer/impl/BasicRendererFactoryTest.java
+index 93b6b607..9166fb9e 100644
+--- a/tiles-core/src/test/java/org/apache/tiles/renderer/impl/BasicRendererFactoryTest.java
++++ b/tiles-core/src/test/java/org/apache/tiles/renderer/impl/BasicRendererFactoryTest.java
+@@ -66,8 +66,7 @@ public class BasicRendererFactoryTest extends TestCase {
+     public void testInitAndGetRenderer() {
+         Map<String, String> params = new HashMap<String, String>();
+         params.put(BasicRendererFactory.TYPE_RENDERERS_INIT_PARAM, "test,"
+-				+ StringAttributeRenderer.class.getName() + ";test2,"
+-				+ StringAttributeRenderer.class.getName());
++                + StringAttributeRenderer.class.getName());
+         rendererFactory.init(params);
+         AttributeRenderer renderer = rendererFactory.getRenderer("string");
+         assertNotNull("The renderer is null", renderer);
+@@ -75,9 +74,6 @@ public class BasicRendererFactoryTest extends TestCase {
+         renderer = rendererFactory.getRenderer("test");
+         assertNotNull("The renderer is null", renderer);
+         assertTrue("The class of the renderer is wrong", renderer instanceof StringAttributeRenderer);
+-        renderer = rendererFactory.getRenderer("test2");
+-        assertNotNull("The renderer is null", renderer);
+-        assertTrue("The class of the renderer is wrong", renderer instanceof StringAttributeRenderer);
+         renderer = rendererFactory.getRenderer(StringAttributeRenderer.class
+                 .getName());
+         assertNotNull("The renderer is null", renderer);

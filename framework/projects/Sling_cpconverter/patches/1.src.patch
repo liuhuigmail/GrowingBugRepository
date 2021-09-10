@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/sling/feature/cpconverter/vltpkg/VaultPackageAssembler.java b/src/main/java/org/apache/sling/feature/cpconverter/vltpkg/VaultPackageAssembler.java
+index 941bf27..08d4e81 100644
+--- a/src/main/java/org/apache/sling/feature/cpconverter/vltpkg/VaultPackageAssembler.java
++++ b/src/main/java/org/apache/sling/feature/cpconverter/vltpkg/VaultPackageAssembler.java
+@@ -28,7 +28,6 @@ import java.util.Properties;
+ import java.util.regex.Pattern;
+ 
+ import org.apache.commons.io.IOUtils;
+-import org.apache.jackrabbit.vault.fs.api.ImportMode;
+ import org.apache.jackrabbit.vault.fs.api.PathFilterSet;
+ import org.apache.jackrabbit.vault.fs.api.WorkspaceFilter;
+ import org.apache.jackrabbit.vault.fs.config.DefaultWorkspaceFilter;
+@@ -44,8 +43,7 @@ import org.codehaus.plexus.archiver.util.DefaultFileSet;
+ 
+ public final class VaultPackageAssembler implements EntryHandler {
+ 
+-    private static final String JCR_ROOT_DIR_NAME = "jcr_root";
+ 
+     private static final String META_INF_VAULT_DIRECTORY = "META-INF/vault/";
+ 
+     private static final String VAULT_PROPERTIES_FILE = META_INF_VAULT_DIRECTORY + "properties.xml";
+@@ -62,9 +59,8 @@ public final class VaultPackageAssembler implements EntryHandler {
+ 
+     public static VaultPackageAssembler create(VaultPackage vaultPackage) {
+         File storingDirectory = new File(TMP_DIR, vaultPackage.getFile().getName() + "-deflated");
+         // avoid any possible Stream is not a content package. Missing 'jcr_root' error
+-        File jcrRootDirectory = new File(storingDirectory, JCR_ROOT_DIR_NAME);
+-        jcrRootDirectory.mkdirs();
++        storingDirectory.mkdirs();
+ 
+         PackageProperties packageProperties = vaultPackage.getProperties();
+ 
+@@ -124,8 +119,7 @@ public final class VaultPackageAssembler implements EntryHandler {
+     public void mergeFilters(WorkspaceFilter filter) {
+         for (PathFilterSet pathFilterSet : filter.getFilterSets()) {
+             if (!OSGI_BUNDLE_PATTERN.matcher(pathFilterSet.getRoot()).matches()) {
+                 // make sure (empty sub-)content-packages override existing content
+-                pathFilterSet.setImportMode(ImportMode.MERGE);
+                 this.filter.add(pathFilterSet);
+             }
+         }

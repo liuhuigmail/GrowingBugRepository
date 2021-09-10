@@ -1,0 +1,11 @@
+org.apache.sling.feature.cpconverter.acl.AclManager
+org.apache.sling.feature.cpconverter.ContentPackage2FeatureModelConverter
+org.apache.sling.feature.cpconverter.handlers.AbstractConfigurationEntryHandler
+org.apache.sling.feature.cpconverter.handlers.AbstractRegexEntryHandler
+org.apache.sling.feature.cpconverter.handlers.ConfigurationEntryHandler
+org.apache.sling.feature.cpconverter.RegexBasedResourceFilter
+org.apache.sling.feature.cpconverter.RunmodeMapper
+org.apache.sling.feature.cpconverter.spi.ArtifactWriter
+org.apache.sling.feature.cpconverter.spi.BundlesDeployer
+org.apache.sling.feature.cpconverter.spi.EntryHandler
+org.apache.sling.feature.cpconverter.vltpkg.VaultPackageAssembler

@@ -1,0 +1,2 @@
+org.apache.sling.feature.cpconverter.spi.EntryHandler
+org.apache.sling.feature.cpconverter.vltpkg.VaultPackageAssembler

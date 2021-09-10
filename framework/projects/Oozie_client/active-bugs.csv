@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,b42ea8eea7e64a5d9c0ae7a028a59bd58f949475,f5d4dfe21280ddbbb6cd79579bf7ec2e43c08223,OOZIE-785,https://issues.apache.org/jira/browse/OOZIE-785
+2,4927f857d9be8ca5709ca0c7bd260bd34ec6e6d7,41a5a31aba4f303efb3fe9c5e2d0ad0dd6bd2c52,OOZIE-1482,https://issues.apache.org/jira/browse/OOZIE-1482

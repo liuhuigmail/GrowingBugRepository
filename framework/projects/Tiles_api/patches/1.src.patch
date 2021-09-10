@@ -1,0 +1,21 @@
+diff --git a/tiles-api/src/main/java/org/apache/tiles/Definition.java b/tiles-api/src/main/java/org/apache/tiles/Definition.java
+index a11ddd54..41b009d6 100644
+--- a/tiles-api/src/main/java/org/apache/tiles/Definition.java
++++ b/tiles-api/src/main/java/org/apache/tiles/Definition.java
+@@ -299,13 +299,13 @@ public class Definition extends BasicAttributeContext {
+         return "{name="
+             + name
+             + ", template="
+-            + (templateAttribute != null ? templateAttribute.getValue() : "<null>")
++            + templateAttribute.getValue()
+             + ", role="
+-            + (templateAttribute != null ? templateAttribute.getRoles() : "<null>")
++            + templateAttribute.getRoles()
+             + ", preparerInstance="
+             + preparer
+             + ", attributes="
+             + attributes
+-            + "}";
++            + "}\n";
+     }
+ }

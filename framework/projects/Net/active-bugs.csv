@@ -1,8 +1,4 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
-1,de60ce3803c67c2791d74e058495e008af3e5fac,eacb4eb812111f8cb8315b291e9b8e8115849270,NET-170,https://issues.apache.org/jira/browse/NET-170
-3,8f6ddb5b26c910e94ab3b6e4d86bbf3d9f945698,c65ef9d7f1a985cc2edf754f77498654891ee553,NET-230,https://issues.apache.org/jira/browse/NET-230
-5,ddd40b701b587c73c51d6b25e5a7422e622ff765,3687706250eede3c6f1906a3011d5adc9ea2a216,NET-265,https://issues.apache.org/jira/browse/NET-265
-7,06d7e6eb7ea8410369576a3baa52db1a8bc29ae6,46548634f12fcfacd2e455a6f45245aaee81c773,NET-294,https://issues.apache.org/jira/browse/NET-294
 9,2b248a62e4148b5f92ec7c8d10a7eac1184bb015,46c9b97454b17150b3ee7b2de973eae4aed8522a,NET-268,https://issues.apache.org/jira/browse/NET-268
 10,432510450e21779226669b40d0b3531baaf8e27b,5278cd419abc3ccaabc352ba67631b1985eb4bed,NET-428,https://issues.apache.org/jira/browse/NET-428
 12,ceb54335d722859644f74774554a5a02f100aae3,9d090d40ef488c6c8e0784da877b93a05034e339,NET-511,https://issues.apache.org/jira/browse/NET-511

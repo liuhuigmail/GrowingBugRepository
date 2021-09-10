@@ -1,0 +1,3 @@
+org.apache.qpid.client.BrokerDetails
+org.apache.qpid.url.URLHelper
+org.apache.qpid.url.URLSyntaxException

@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,5c8373aa4ac7ec7ce4c4e96fe080c433d01ab693,0bf78791e4bb59ee52b3c11706262bdab576e973,676,https://github.com/eclipse/rdf4j/issues/676
+2,1606411178f724db76b84da8d1e37583f67ef6dd,e3ebbdd888b4711804415b1665ddf9c0685c3c22,677,https://github.com/eclipse/rdf4j/pull/677
+3,7a6abb9966da1288c3c926d77aceb53ec5de509a,246a35b84fc04405b029afb3ead2843be5aaa468,216,https://github.com/eclipse/rdf4j/issues/216
+4,2e730c6258922b9369d448490b2cea4482b25c44,189aa8c5fb00331da91b430a137b0ff7f17715eb,677,https://github.com/eclipse/rdf4j/pull/677

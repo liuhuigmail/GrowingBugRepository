@@ -1,0 +1,7 @@
+org.eclipse.rdf4j.rio.turtle.TurtleHandlingTest
+org.eclipse.rdf4j.rio.turtle.TurtlePrettyWriterTest
+org.eclipse.rdf4j.rio.turtle.TurtleWriterTest
+org.eclipse.rdf4j.rio.turtlestar.TurtleStarHandlingTest
+org.eclipse.rdf4j.rio.turtlestar.TurtleStarMimeTypeRDFFormatTest
+org.eclipse.rdf4j.rio.turtlestar.TurtleStarPrettyWriterTest
+org.eclipse.rdf4j.rio.turtlestar.TurtleStarWriterTest

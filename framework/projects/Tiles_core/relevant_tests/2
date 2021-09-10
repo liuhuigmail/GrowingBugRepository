@@ -1,0 +1,7 @@
+org.apache.tiles.definition.LocaleDefinitionsFactoryTest
+org.apache.tiles.definition.dao.CachingLocaleUrlDefinitionDAOTest
+org.apache.tiles.definition.dao.LocaleUrlDefinitionDAOTest
+org.apache.tiles.definition.dao.ResolvingLocaleUrlDefinitionDAOTest
+org.apache.tiles.definition.digester.TestDigesterDefinitionsReader
+org.apache.tiles.factory.BasicTilesContainerFactoryTest
+org.apache.tiles.impl.BasicTilesContainerTest

@@ -1,0 +1,28 @@
+diff --git a/gateway-provider-identity-assertion-common/src/test/java/org/apache/hadoop/gateway/identityasserter/filter/IdentityAssertionHttpServletRequestWrapperTest.java b/gateway-provider-identity-assertion-common/src/test/java/org/apache/hadoop/gateway/identityasserter/filter/IdentityAssertionHttpServletRequestWrapperTest.java
+index e89271712..8bb042043 100644
+--- a/gateway-provider-identity-assertion-common/src/test/java/org/apache/hadoop/gateway/identityasserter/filter/IdentityAssertionHttpServletRequestWrapperTest.java
++++ b/gateway-provider-identity-assertion-common/src/test/java/org/apache/hadoop/gateway/identityasserter/filter/IdentityAssertionHttpServletRequestWrapperTest.java
+@@ -205,23 +205,6 @@ public class IdentityAssertionHttpServletRequestWrapperTest {
+     assertThat( output, not( containsString( "input-user" ) ) );
+   }
+ 
+-  @Test
+-  public void testParameterWithNullValueInQueryString() {
+-    String input = "paramWithNullValue&param2=abc";
+-
+-    MockHttpServletRequest request = new MockHttpServletRequest();
+-    request.setQueryString( input );
+-
+-    IdentityAsserterHttpServletRequestWrapper wrapper
+-      = new IdentityAsserterHttpServletRequestWrapper( request, "output-user" );
+-
+-    String output = wrapper.getQueryString();
+-
+-    assertThat( output, containsString( "user.name=output-user" ) );
+-    assertThat( output, containsString( "paramWithNullValue" ) );
+-    assertThat( output, containsString( "param2=abc" ) );
+-  }
+-
+   @Test
+   public void testUrlEncode() {
+     String s;

@@ -1,0 +1,88 @@
+diff --git a/core/rio/api/src/test/java/org/eclipse/rdf4j/rio/AbstractParserHandlingTest.java b/core/rio/api/src/test/java/org/eclipse/rdf4j/rio/AbstractParserHandlingTest.java
+index 58c953407..21b7b1c19 100644
+--- a/core/rio/api/src/test/java/org/eclipse/rdf4j/rio/AbstractParserHandlingTest.java
++++ b/core/rio/api/src/test/java/org/eclipse/rdf4j/rio/AbstractParserHandlingTest.java
+@@ -98,11 +98,6 @@ public abstract class AbstractParserHandlingTest {
+ 	 */
+ 	private static final String KNOWN_LANGUAGE_TAG = "en-AU";
+ 
+-	/**
+-	 * Test URI used for testing support for handling RDF langString with no Language tag.
+-	 */
+-	private static final IRI EMPTY_DATATYPE_URI = null;
+-
+ 	private final ValueFactory vf = SimpleValueFactory.getInstance();
+ 
+ 	private RDFParser testParser;
+@@ -155,18 +150,6 @@ public abstract class AbstractParserHandlingTest {
+ 		return serialize(model);
+ 	}
+ 
+-	/**
+-	 * Returns an {@link InputStream} containing the given RDF statements in a format that is recognised by the
+-	 * RDFParser returned by {@link #getParser()}.
+-	 * 
+-	 * @param RDFLangStringWithNoLanguageStatements A {@link Model} containing statements which all contain statements
+-	 *                                              that have RDF langString with no language tag.
+-	 * @return An InputStream based on the given parameters.
+-	 */
+-	protected InputStream getRDFLangStringWithNoLanguageStream(Model model) throws Exception {
+-		return serialize(model);
+-	}
+-
+ 	/**
+ 	 * Concrete test classes can override this to return a new instance of the RDFParser that is being tested.
+ 	 * 
+@@ -884,19 +867,6 @@ public abstract class AbstractParserHandlingTest {
+ 		assertModel(expectedModel);
+ 	}
+ 
+-	@Test
+-	public final void testNoLanguageWithRDFLangStringNoFailCase1() throws Exception {
+-		Model expectedModel = getTestModel(KNOWN_LANGUAGE_VALUE, EMPTY_DATATYPE_URI);
+-		InputStream input = getRDFLangStringWithNoLanguageStream(expectedModel);
+-
+-		testParser.getParserConfig().set(BasicParserSettings.VERIFY_DATATYPE_VALUES, false);
+-
+-		testParser.parse(input, BASE_URI);
+-
+-		assertErrorListener(0, 0, 0);
+-		assertModel(expectedModel);
+-	}
+-
+ 	@Test
+ 	public final void testSkolemization() throws Exception {
+ 		Model expectedModel = new LinkedHashModel();
+diff --git a/core/rio/api/src/test/java/org/eclipse/rdf4j/rio/helpers/RDFParserHelperTest.java b/core/rio/api/src/test/java/org/eclipse/rdf4j/rio/helpers/RDFParserHelperTest.java
+index 1f20fed17..7664b91f9 100644
+--- a/core/rio/api/src/test/java/org/eclipse/rdf4j/rio/helpers/RDFParserHelperTest.java
++++ b/core/rio/api/src/test/java/org/eclipse/rdf4j/rio/helpers/RDFParserHelperTest.java
+@@ -157,27 +157,13 @@ public class RDFParserHelperTest {
+ 	 * cases where {@link RDF#LANGSTRING} is given and there is NO given language.
+ 	 * <p>
+ 	 * SES-2203 : This was inconsistent, so has been changed to verify failure.
+-	 * <p>
+-	 * GH-2004 : Changed to handle cases when VERIFY_DATATYPE_VALUES is set to false and {@link RDF#LANGSTRING} is given
+-	 * and there is NO given language.
+ 	 */
+ 	@Test
+-	public final void testCreateLiteralLabelNoLanguageWithRDFLangStringWithVerify() throws Exception {
+-		parserConfig.set(BasicParserSettings.VERIFY_DATATYPE_VALUES, true);
+-		assertTrue(parserConfig.get(BasicParserSettings.VERIFY_DATATYPE_VALUES));
++	public final void testCreateLiteralLabelNoLanguageWithRDFLangString() throws Exception {
+ 		thrown.expect(RDFParseException.class);
+ 		RDFParserHelper.createLiteral(LABEL_TESTA, null, RDF.LANGSTRING, parserConfig, errListener, valueFactory);
+ 	}
+ 
+-	@Test
+-	public final void testCreateLiteralLabelNoLanguageWithRDFLangStringWithNoVerify() throws Exception {
+-		parserConfig.set(BasicParserSettings.VERIFY_DATATYPE_VALUES, false);
+-		Literal literal = RDFParserHelper.createLiteral(LABEL_TESTA, null, RDF.LANGSTRING, parserConfig, errListener,
+-				valueFactory);
+-		assertFalse(literal.getLanguage().isPresent());
+-		assertEquals(XMLSchema.STRING, literal.getDatatype());
+-	}
+-
+ 	@Test
+ 	public final void testReportErrorStringFatalActive() throws Exception {
+ 		parserConfig.set(BasicParserSettings.VERIFY_DATATYPE_VALUES, true);

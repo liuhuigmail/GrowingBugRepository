@@ -1,0 +1,9 @@
+org.apache.oozie.client.BundleJob
+org.apache.oozie.client.CoordinatorAction
+org.apache.oozie.client.CoordinatorJob
+org.apache.oozie.client.JMSConnectionInfo
+org.apache.oozie.client.Job
+org.apache.oozie.client.rest.JsonToBean
+org.apache.oozie.client.rest.JsonUtils
+org.apache.oozie.client.WorkflowAction
+org.apache.oozie.client.WorkflowJob

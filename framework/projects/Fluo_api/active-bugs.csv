@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,3340f5d3a909ae76f0c8309d3913b1639574811c,7d86080479b593684452d96eab574d59d2950c2a,218,https://github.com/apache/fluo/issues/218
+2,3340f5d3a909ae76f0c8309d3913b1639574811c,ddc0d601e5d6e278b42f87c9da2347e234e9742c,219,https://github.com/apache/fluo/pull/219
+3,86248f67e3a631a567c18078c448c0f050e2294d,0a5876c8fa7e3aabde7790385fb87d6f6ca53523,323,https://github.com/apache/fluo/issues/323
+4,4edaa615874ea4db9eda615c413b6c35688122bf,5a549d1777a83ab016c0fa2c339b6bba71cdd22b,324,https://github.com/apache/fluo/pull/324

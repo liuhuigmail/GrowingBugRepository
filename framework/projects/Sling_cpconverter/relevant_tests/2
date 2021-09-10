@@ -1,0 +1,7 @@
+org.apache.sling.feature.cpconverter.ContentPackage2FeatureModelConverterTest
+org.apache.sling.feature.cpconverter.handlers.BundleEntryHandlerTest
+org.apache.sling.feature.cpconverter.handlers.ConfigEntryHandlerTest
+org.apache.sling.feature.cpconverter.handlers.ConfigurationEntryHandlerTest
+org.apache.sling.feature.cpconverter.handlers.JsonConfigurationEntryHandlerTest
+org.apache.sling.feature.cpconverter.handlers.RepPolicyEntryHandlerTest
+org.apache.sling.feature.cpconverter.handlers.SystemUsersEntryHandlerTest

@@ -1,0 +1,21 @@
+diff --git a/sentry-core/sentry-core-common/src/main/java/org/apache/sentry/core/common/utils/KeyValue.java b/sentry-core/sentry-core-common/src/main/java/org/apache/sentry/core/common/utils/KeyValue.java
+index 500b98f1..4e944e5f 100644
+--- a/sentry-core/sentry-core-common/src/main/java/org/apache/sentry/core/common/utils/KeyValue.java
++++ b/sentry-core/sentry-core-common/src/main/java/org/apache/sentry/core/common/utils/KeyValue.java
+@@ -95,14 +84,14 @@ public class KeyValue {
+       if (other.key != null) {
+         return false;
+       }
+-    } else if (!key.equalsIgnoreCase(other.key)) {
++    } else if (!key.equals(other.key)) {
+       return false;
+     }
+     if (value == null) {
+       if (other.value != null) {
+         return false;
+       }
+-    } else if (!value.equalsIgnoreCase(other.value)) {
++    } else if (!value.equals(other.value)) {
+       return false;
+     }
+     return true;

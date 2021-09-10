@@ -50,4 +50,3 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 50,ec0f5850f8342c0b1eecb20eca7286a9a4a362e1,f4044dd0d86684959764783583f24f2b8baf44b0,COMPRESS-212,https://issues.apache.org/jira/browse/COMPRESS-212
 52,50cd7550e2b6634c42b93a4c321aae900a672db0,dd71368488dd8e0fb0bf8f7aabd4f702502d5615,COMPRESS-289,https://issues.apache.org/jira/browse/COMPRESS-289
 53,d85561d9017d4fb0d4fa0a75ca97d617aaae549b,1930eed89459d1ea726762e362143a5aa2ccaeb4,COMPRESS-324,https://issues.apache.org/jira/browse/COMPRESS-324
-54,7778533696b9644be3680228f25fce21e680e364,bd3e6cf204f249c2d60eca2268c8b9f402149f1b,COMPRESS-447,https://issues.apache.org/jira/browse/COMPRESS-447

@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,bcae1534a2894d98746210ed20985c115a99678e,50867c178784bee74bbb0abcc8209266e7665764,HIVEMALL-72,https://issues.apache.org/jira/browse/HIVEMALL-72
+2,912010305286f673cc7e8bcbdf1555be4a38921a,8ac3165db33a63cf3da9c2598b9051c26736cdd1,HIVEMALL-219,https://issues.apache.org/jira/browse/HIVEMALL-219
+3,04fa7545b4e4b540a6a8c610c36450a8e2320ba7,e86815a5e88a161803a62c70ebbd00d5d688be2c,HIVEMALL-296,https://issues.apache.org/jira/browse/HIVEMALL-296

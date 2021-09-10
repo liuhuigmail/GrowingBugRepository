@@ -1,0 +1,3 @@
+org.apache.sling.feature.extension.apiregions.analyser.CheckConfigurationApiTest
+org.apache.sling.feature.extension.apiregions.api.config.validation.ConfigurationValidatorTest
+org.apache.sling.feature.extension.apiregions.api.config.validation.FeatureValidatorTest

@@ -1,0 +1,7 @@
+org.apache.tiles.definition.dao.CachingLocaleUrlDefinitionDAOTest
+org.apache.tiles.definition.dao.ResolvingLocaleUrlDefinitionDAOTest
+org.apache.tiles.definition.pattern.BasicPatternDefinitionResolverTest
+org.apache.tiles.definition.pattern.PatternUtilTest
+org.apache.tiles.definition.pattern.PrefixedPatternDefinitionResolverTest
+org.apache.tiles.definition.pattern.regexp.RegexpDefinitionPatternMatcherTest
+org.apache.tiles.definition.pattern.wildcard.WildcardDefinitionPatternMatcherTest

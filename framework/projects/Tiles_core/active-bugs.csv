@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,bd0d2d9a21bfae333a8fceff4c18cad4f5ac38fd,764404322620cda1b0a996965e8232467da6389a,TILES-322,https://issues.apache.org/jira/browse/TILES-322
+2,1d34986318a0c7284398de5f1f53d7abdc22c333,149cb7b2a7a0fb3f28851249c2831ff548072ed1,TILES-512,https://issues.apache.org/jira/browse/TILES-512
+3,109bc00ab6bf345de6108782500b72f707f03f31,951d6a227dd4caaf402ab4ec11fbfda7db1dbcb4,TILES-574,https://issues.apache.org/jira/browse/TILES-574

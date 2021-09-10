@@ -1,0 +1,32 @@
+diff --git a/tiles-api/src/main/java/org/apache/tiles/BasicAttributeContext.java b/tiles-api/src/main/java/org/apache/tiles/BasicAttributeContext.java
+index 77340d3a..94b11d4d 100644
+--- a/tiles-api/src/main/java/org/apache/tiles/BasicAttributeContext.java
++++ b/tiles-api/src/main/java/org/apache/tiles/BasicAttributeContext.java
+@@ -72,6 +72,7 @@ public class BasicAttributeContext implements AttributeContext, Serializable {
+      * @since 2.1.0
+      */
+     public BasicAttributeContext() {
++        super();
+     }
+ 
+     /**
+@@ -256,9 +257,8 @@ public class BasicAttributeContext implements AttributeContext, Serializable {
+         }
+ 
+         if (attributes == null) {
+-            attributes = new HashMap<String, Attribute>();
++            attributes = new HashMap<String, Attribute>(defaultAttributes);
+             if (cascadedAttributes == null || cascadedAttributes.isEmpty()) {
+-                attributes.putAll(defaultAttributes);
+                 return;
+             }
+         }
+@@ -267,7 +267,7 @@ public class BasicAttributeContext implements AttributeContext, Serializable {
+         for (Map.Entry<String, Attribute> entry : entries) {
+             String key = entry.getKey();
+             if (!attributes.containsKey(key)
+-                    && (cascadedAttributes == null || !cascadedAttributes
++                    && (cascadedAttributes == null || cascadedAttributes
+                             .containsKey(key))) {
+                 attributes.put(entry.getKey(), entry.getValue());
+             }

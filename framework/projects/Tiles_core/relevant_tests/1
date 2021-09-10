@@ -1,0 +1,6 @@
+org.apache.tiles.factory.BasicTilesContainerFactoryTest
+org.apache.tiles.factory.KeyedDefinitionsFactoryTilesContainerFactoryTest
+org.apache.tiles.factory.TilesContainerFactoryTest
+org.apache.tiles.impl.BasicTilesContainerTest
+org.apache.tiles.impl.KeyedDefinitionsFactoryTilesContainerTest
+org.apache.tiles.renderer.impl.BasicRendererFactoryTest

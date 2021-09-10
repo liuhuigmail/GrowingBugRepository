@@ -1,0 +1,29 @@
+diff --git a/common/src/main/java/org/apache/cxf/dosgi/common/intent/impl/IntentManagerImpl.java b/common/src/main/java/org/apache/cxf/dosgi/common/intent/impl/IntentManagerImpl.java
+index 67d82a76..10e4a05b 100644
+--- a/common/src/main/java/org/apache/cxf/dosgi/common/intent/impl/IntentManagerImpl.java
++++ b/common/src/main/java/org/apache/cxf/dosgi/common/intent/impl/IntentManagerImpl.java
+@@ -31,7 +31,6 @@ import java.util.concurrent.Callable;
+ import org.apache.cxf.dosgi.common.api.IntentsProvider;
+ import org.apache.cxf.dosgi.common.intent.IntentManager;
+ import org.apache.cxf.dosgi.common.util.PropertyHelper;
+-import org.apache.cxf.feature.Features;
+ import org.osgi.framework.BundleContext;
+ import org.osgi.framework.Filter;
+ import org.osgi.framework.FrameworkUtil;
+@@ -198,16 +197,6 @@ public class IntentManagerImpl implements IntentManager {
+         if (serviceBean instanceof IntentsProvider) {
+             intents.addAll(((IntentsProvider)serviceBean).getIntents());
+         }
+-        Features features = serviceBean.getClass().getAnnotation(Features.class);
+-        if (features != null && features.classes() != null) {
+-            for (Class<?> clazz : features.classes()) {
+-                try {
+-                    intents.add(clazz.newInstance());
+-                } catch (Exception e) {
+-                    throw new RuntimeException("Could not instantiate feature from class " + clazz.getName(), e);
+-                }
+-            }
+-        }
+         return intents;
+     }
+     

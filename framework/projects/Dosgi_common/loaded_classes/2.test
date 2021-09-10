@@ -1,0 +1,4 @@
+org.apache.cxf.dosgi.common.proxy.MyBaseService
+org.apache.cxf.dosgi.common.proxy.MyServiceImpl
+org.apache.cxf.dosgi.common.proxy.MySubService
+org.apache.cxf.dosgi.common.proxy.ServiceInvocationHandlerTest

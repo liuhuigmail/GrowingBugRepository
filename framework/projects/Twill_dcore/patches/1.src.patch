@@ -1,0 +1,13 @@
+diff --git a/twill-discovery-core/src/main/java/org/apache/twill/discovery/DefaultServiceDiscovered.java b/twill-discovery-core/src/main/java/org/apache/twill/discovery/DefaultServiceDiscovered.java
+index 63df8ad..9734683 100644
+--- a/twill-discovery-core/src/main/java/org/apache/twill/discovery/DefaultServiceDiscovered.java
++++ b/twill-discovery-core/src/main/java/org/apache/twill/discovery/DefaultServiceDiscovered.java
+@@ -49,7 +49,7 @@ final class DefaultServiceDiscovered implements ServiceDiscovered {
+   }
+ 
+   void setDiscoverables(Set<Discoverable> discoverables) {
+-    this.discoverables.set(ImmutableSet.copyOf(discoverables));
++    this.discoverables.set(discoverables);
+ 
+     // Collect all listeners with a read lock to the listener list.
+     List<ListenerCaller> callers = Lists.newArrayList();

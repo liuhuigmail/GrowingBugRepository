@@ -1,0 +1,15 @@
+diff --git a/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/ArrangedWriter.java b/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/ArrangedWriter.java
+index c81d8f0c1..f04302e9e 100644
+--- a/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/ArrangedWriter.java
++++ b/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/ArrangedWriter.java
+@@ -328,10 +328,6 @@ class ArrangedWriter implements RDFWriter {
+ 
+ 	private void getUsedNamespaces(Set<Statement> stmts, Set<String> used) {
+ 		for (Statement st : stmts) {
+-			if (st.getSubject() instanceof IRI) {
+-				IRI uri = (IRI) st.getSubject();
+-				used.add(uri.getNamespace());
+-			}
+ 			used.add(st.getPredicate().getNamespace());
+ 			if (st.getObject() instanceof IRI) {
+ 				IRI uri = (IRI) st.getObject();

@@ -1,0 +1,4 @@
+org.eclipse.rdf4j.rio.jsonld.JSONLDHierarchicalWriterTest
+org.eclipse.rdf4j.rio.jsonld.JSONLDParserHandlerTest
+org.eclipse.rdf4j.rio.jsonld.JSONLDWriterBackgroundTest
+org.eclipse.rdf4j.rio.jsonld.JSONLDWriterTest

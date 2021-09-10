@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,472aea78d0ca77144000aacdd932ebb4a8fed192,8774a1c38d596e17683aac1a285ec437d82c7767,QPID-7897,https://issues.apache.org/jira/browse/QPID-7897
+2,78cf85c60fbedddfc08f978262aaa23061cae2b4,97347f0fb0e0782398bd16a7ba2d318bbb759bd1,QPID-8135,https://issues.apache.org/jira/browse/QPID-8135
+3,5b87b511c8b6d02fe50544ed33c2a152c34ebc22,e3a88f02b5c099fe4b21bec1790cae7731795810,QPID-8283,https://issues.apache.org/jira/browse/QPID-8283

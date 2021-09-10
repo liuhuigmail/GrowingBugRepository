@@ -1,0 +1,20 @@
+diff --git a/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java b/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java
+index aa14afc4a..2052a4ed0 100644
+--- a/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java
++++ b/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java
+@@ -1263,15 +1263,11 @@ public class TurtleParser extends AbstractRDFParser {
+ 			c = readCodePoint();
+ 		}
+ 
+-		if (c == 0xA) {
+-			lineNumber++;
+-		}
+ 		
+ 		// c is equal to -1, \r or \n.
+ 		// In case c is equal to \r, we should also read a following \n.
+ 		if (c == 0xD) {
+ 			c = readCodePoint();
+-			lineNumber++;
+ 
+ 			if (c != 0xA) {
+ 				unread(c);

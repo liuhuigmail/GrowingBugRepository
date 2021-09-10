@@ -1,0 +1,37 @@
+diff --git a/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java b/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java
+index 58eea98f2..71f50f1c7 100644
+--- a/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java
++++ b/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java
+@@ -1157,7 +1157,6 @@ public class TurtleParser extends AbstractRDFParser {
+ 				// we only count line feeds (LF), not carriage return (CR), as
+ 				// normally a CR is immediately followed by a LF.
+ 				lineNumber++;
+-				reportLocation();
+ 			}
+ 
+ 			c = readCodePoint();
+@@ -1180,15 +1179,11 @@ public class TurtleParser extends AbstractRDFParser {
+ 			c = readCodePoint();
+ 		}
+ 
+-		if (c == 0xA) {
+-			lineNumber++;
+-		}
+ 		
+ 		// c is equal to -1, \r or \n.
+ 		// In case c is equal to \r, we should also read a following \n.
+ 		if (c == 0xD) {
+ 			c = readCodePoint();
+-			lineNumber++;
+ 
+ 			if (c != 0xA) {
+ 				unread(c);
+@@ -1315,7 +1309,7 @@ public class TurtleParser extends AbstractRDFParser {
+ 		throw new RDFParseException("Unexpected end of file");
+ 	}
+ 
+-	protected int getLineNumber() {
++	private int getLineNumber() {
+ 		return lineNumber;
+ 	}
+ }

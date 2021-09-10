@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/sling/feature/extension/apiregions/launcher/LauncherProperties.java b/src/main/java/org/apache/sling/feature/extension/apiregions/launcher/LauncherProperties.java
+index 9cfc1f7..091450c 100644
+--- a/src/main/java/org/apache/sling/feature/extension/apiregions/launcher/LauncherProperties.java
++++ b/src/main/java/org/apache/sling/feature/extension/apiregions/launcher/LauncherProperties.java
+@@ -90,7 +90,7 @@ public class LauncherProperties
+                 {
+                     features = new HashSet<>();
+                 }
+-                features.addAll(Arrays.asList(bundle.getFeatureOrigins(app.getId())));
++                features.addAll(Arrays.asList(bundle.getFeatureOrigins()));
+                 return features;
+             });
+         }

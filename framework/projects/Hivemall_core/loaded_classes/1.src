@@ -1,0 +1,2 @@
+hivemall.ftvec.scaling.RescaleUDF
+hivemall.utils.hadoop.WritableUtils

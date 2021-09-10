@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/sling/feature/extension/apiregions/api/config/validation/ConfigurationValidator.java b/src/main/java/org/apache/sling/feature/extension/apiregions/api/config/validation/ConfigurationValidator.java
+index ad1c176..540548b 100644
+--- a/src/main/java/org/apache/sling/feature/extension/apiregions/api/config/validation/ConfigurationValidator.java
++++ b/src/main/java/org/apache/sling/feature/extension/apiregions/api/config/validation/ConfigurationValidator.java
+@@ -168,7 +168,7 @@ public class ConfigurationValidator {
+ 
+                 if ( desc.getInternalPropertyNames().contains(propName ) ) {
+                     if  ( region != Region.INTERNAL ) {
+-                        PropertyValidator.setResult(result, null, mode, "Property is not allowed");
++                        result.getErrors().add("Property is not allowed");
+                     }
+                 } else if ( Constants.SERVICE_RANKING.equalsIgnoreCase(propName) ) {
+                     final Object value = properties.get(propName);
+@@ -176,7 +176,7 @@ public class ConfigurationValidator {
+                         PropertyValidator.setResult(result, 0, mode, "service.ranking must be of type Integer");
+                     }    
+                 } else if ( !isAllowedProperty(propName) && region != Region.INTERNAL && !desc.isAllowAdditionalProperties() ) {
+-                    PropertyValidator.setResult(result, null, mode, "Property is not allowed");
++                    result.getErrors().add("Property is not allowed");
+                 }
+             }
+         }
