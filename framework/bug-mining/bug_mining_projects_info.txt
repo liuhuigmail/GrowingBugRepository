@@ -1,12 +1,12 @@
 Chart	jfreechart	https://github.com/jfree/jfreechart.git	github	jfree/jfreechart	/Fix(?:es)?\\s*#(\\d+)/mi	
-Cli	commons-cli	https://github.com/apache/commons-cli.git	jira	CLI	/(CLI-\\d+)/mi
+Cli	commons-cli	https://github.com/apache/commons-cli.git	jira	CLI	/(CLI-\\d+)/mi	
 Closure	closure-compiler	https://github.com/google/closure-compiler.git	google	closure-compiler	/issue[^\\d]*(\\d+)/mi	
 Codec	commons-codec	https://github.com/apache/commons-codec.git	jira	CODEC	/(CODEC-\\d+)/mi
 Collections	commons-collections	https://github.com/apache/commons-collections.git	jira	COLLECTIONS	/(COLLECTIONS-\\d+)/mi
-Compress	commons-compress	https://github.com/apache/commons-compress.git	jira	COMPRESS	/(COMPRESS-\\d+)/mi
+Compress	commons-compress	https://github.com/apache/commons-compress.git	jira	COMPRESS	/(COMPRESS-\\d+)/mi	
 Csv	commons-csv	https://github.com/apache/commons-csv.git	jira	CSV	/(CSV-\\d+)/mi
 Gson	gson	https://github.com/google/gson.git	github	google/gson	/Fix(?:es)?\\s*#(\\d+)/mi
-JacksonCore	jackson-core	https://github.com/FasterXML/jackson-core.git	github	FasterXML/jackson-core	/Fix(?:es)?\\s*#(\\d+)/mi
+JacksonCore	jackson-core	https://github.com/FasterXML/jackson-core.git	github	FasterXML/jackson-core	/Fix(?:es)?\\s*#(\\d+)/mi	
 JacksonDatabind	jackson-databind	https://github.com/FasterXML/jackson-databind.git	github	FasterXML/jackson-databind	/Fix(?:es)?\\s*#(\\d+)/mi
 JacksonXml	jackson-dataformat-xml	https://github.com/FasterXML/jackson-dataformat-xml.git	github	FasterXML/jackson-dataformat-xml	/Fix(?:es)?\\s*#(\\d+)/mi	
 Jsoup	jsoup	https://github.com/jhy/jsoup.git	github	jhy/jsoup	/Fix(?:es)?\\s*#(\\d+)/mi
@@ -136,4 +136,3 @@ Sling_feature	sling-feature	https://github.com/apache/sling-org-apache-sling-fea
 Tiles_api	tiles-api	https://github.com/apache/tiles.git	jira	TILES	/(TILES-\\d+)/mi	tiles-api
 Tiles_core	tiles-core	https://github.com/apache/tiles.git	jira	TILES	/(TILES-\\d+)/mi	tiles-core
 Twill_dcore	twill-discovery-core	https://github.com/apache/twill.git	jira	TWILL	/(TWILL-\\d+)/mi	twill-discovery-core
-
