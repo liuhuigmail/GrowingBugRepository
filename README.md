@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1342`** bugs
+ **`1340`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -127,26 +127,25 @@ from open-source Java projects.
 | 116     | Switchyard_validate            | switchyard-validate |  validate       |       1     | 1              |
 | 117     | Vysper_nbxml            | vysper-nbxml |  nbxml       |       2     | 1-2              |
 | 118     | Wildfly_naming_client            | wildfly-naming-client |     |       2     | 1-2              |
-| 119     | Xmlgraphics            | xmlgraphics-commons |     |       2     | 1-2              |
-| 120     | Dosgi_common            | dosgi-common | common    |       2     | 1-2              |
-| 121     | Fluo_api            | fluo-api | modules/api     |       4     | 1-4              |
-| 122     | Hivemall_core            | core |  core   |       3     | 1-3              |
-| 123     | Knox_assertion_common            | gateway-provider-</br>identity-assertion</br>-common |  gateway-provider-</br>identity-assertion</br>-common     |       1     | 1              |
-| 124     | Oozie_client            | oozie-client | client |       2     | 1-2              |
-| 125     | Qpidjms_client            | qpidjms-client | client  |       3     | 1-3              |
-| 126     | Rdf4j_query            | rdf4j-query | core/query    |       4     | 1-4              |
-| 128     | Rdf4j_rio_api            | rdf4j-rio-api | core/rio/api  |       2     | 1-2              |
-| 129     | Rdf4j_rio_jsonld            | rdf4j-rio-jsonld | core/rio/jsonld  |       2     | 1-2              |
-| 130     | Rdf4j_rio_rdfjson            | rdf4j-rio-rdfjson | core/rio/rdfjson |       2     | 1-2              |
-| 131     | Rdf4j_rio_rdfxml            | rdf4j-rio-rdfxml | core/rio/rdfxml    |       3     | 1-3              |
-| 132     | Rdf4j_rio_turtle            | rdf4j-rio-turtle | core/rio/turtle    |       11    | 1-11              |
-| 133     | Sentry_ccommon            | sentry-core-common |  sentry-core/sentry-core-common   |       2     | 1-2              |
-| 134     | Sling_apiregions            | sling-apiregions |     |       3     | 1-3              |
-| 135     | Sling_cpconverter            | sling-cpconverter |     |       3     | 1-3              |
-| 136     | Sling_feature            | sling-feature |     |       3     | 1-3              |
-| 137     | Tiles_api            | tiles-api | tiles-api    |       2     | 1-2              |
-| 138     | Tiles_core            | tiles-core |  tiles-core   |       3     | 1-3              |
-| 139     | Twill_dcore            | twill-discovery-core |  twill-discovery-core   |       1     | 1              |
+| 119     | Dosgi_common            | dosgi-common | common    |       2     | 1-2              |
+| 120     | Fluo_api            | fluo-api | modules/api     |       4     | 1-4              |
+| 121     | Hivemall_core            | core |  core   |       3     | 1-3              |
+| 122     | Knox_assertion_common            | gateway-provider-</br>identity-assertion</br>-common |  gateway-provider-</br>identity-assertion</br>-common     |       1     | 1              |
+| 123     | Oozie_client            | oozie-client | client |       2     | 1-2              |
+| 124     | Qpidjms_client            | qpidjms-client | client  |       3     | 1-3              |
+| 125     | Rdf4j_query            | rdf4j-query | core/query    |       4     | 1-4              |
+| 126     | Rdf4j_rio_api            | rdf4j-rio-api | core/rio/api  |       2     | 1-2              |
+| 127     | Rdf4j_rio_jsonld            | rdf4j-rio-jsonld | core/rio/jsonld  |       2     | 1-2              |
+| 128     | Rdf4j_rio_rdfjson            | rdf4j-rio-rdfjson | core/rio/rdfjson |       2     | 1-2              |
+| 129     | Rdf4j_rio_rdfxml            | rdf4j-rio-rdfxml | core/rio/rdfxml    |       3     | 1-3              |
+| 130     | Rdf4j_rio_turtle            | rdf4j-rio-turtle | core/rio/turtle    |       11    | 1-11              |
+| 131     | Sentry_ccommon            | sentry-core-common |  sentry-core/sentry-core-common   |       2     | 1-2              |
+| 132     | Sling_apiregions            | sling-apiregions |     |       3     | 1-3              |
+| 133     | Sling_cpconverter            | sling-cpconverter |     |       3     | 1-3              |
+| 134     | Sling_feature            | sling-feature |     |       3     | 1-3              |
+| 135     | Tiles_api            | tiles-api | tiles-api    |       2     | 1-2              |
+| 136     | Tiles_core            | tiles-core |  tiles-core   |       3     | 1-3              |
+| 137     | Twill_dcore            | twill-discovery-core |  twill-discovery-core   |       1     | 1              |
 # Setting up GrowingBugs
 
 ## Requirements
