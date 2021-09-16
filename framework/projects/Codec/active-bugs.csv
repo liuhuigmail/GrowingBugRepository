@@ -17,8 +17,3 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 16,38357dffa2dd39c91c4523beade08c12e8009acb,c82fe35c48bd0082c16644d16d82d1be79d6b9d1,CODEC-200,https://issues.apache.org/jira/browse/CODEC-200
 17,1a4d9cc2572d220664f1b7c377cd318cd253052e,d2f27093d7d95a07da901902f894d88b4ecc3e95,CODEC-229,https://issues.apache.org/jira/browse/CODEC-229
 18,ca30fae3acb59a5caef3c3c21eecae7c928827e0,5ef5bd199a4e3df74479b4b363fa29b0b3092547,CODEC-231,https://issues.apache.org/jira/browse/CODEC-231
-19,2d744c87c2c498510f84b5a91dc14ec703d7b022,1490fbf959fc0e7bc5d8be43250689ebf625942d,CODEC-269,https://issues.apache.org/jira/browse/CODEC-269
-20,7b1961506509391ec847bb1dc3783a87f8069057,52396f8136b0328b17afd715b1c3f5a1f7e94608,CODEC-270,https://issues.apache.org/jira/browse/CODEC-270
-21,a3a4eddd3e6180385ca38efd9ff4965c07995e64,a84f53d38f93504036fed5cf3fd42f57a8637b16,CODEC-259,https://issues.apache.org/jira/browse/CODEC-259
-22,a84f53d38f93504036fed5cf3fd42f57a8637b16,2311c5e58e6922825d7ecb53ef596b7a8c156bf1,CODEC-259,https://issues.apache.org/jira/browse/CODEC-259
-23,24059898ceb92d790f21f680730023b4ce3ab937,f5a61f0cd029f18666163f414f848ba0e1b39976,CODEC-264,https://issues.apache.org/jira/browse/CODEC-264
