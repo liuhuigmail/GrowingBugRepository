@@ -1,0 +1,19 @@
+diff --git a/maven-project/src/main/java/org/apache/maven/profiles/DefaultProfileManager.java b/maven-project/src/main/java/org/apache/maven/profiles/DefaultProfileManager.java
+index d17a67cc8..cfa63aaa0 100644
+--- a/maven-project/src/main/java/org/apache/maven/profiles/DefaultProfileManager.java
++++ b/maven-project/src/main/java/org/apache/maven/profiles/DefaultProfileManager.java
+@@ -332,12 +332,12 @@ public class DefaultProfileManager
+ 
+         List settingsProfiles = settings.getProfiles();
+ 
+-        List settingsActiveProfileIds = settings.getActiveProfiles();
+ 
+-        explicitlyActivate( settingsActiveProfileIds );
+ 
+         if ( settingsProfiles != null && !settingsProfiles.isEmpty() )
+         {
++            List settingsActiveProfileIds = settings.getActiveProfiles();
++            explicitlyActivate( settingsActiveProfileIds );
+             for ( Iterator it = settings.getProfiles().iterator(); it.hasNext(); )
+             {
+                 org.apache.maven.settings.Profile rawProfile = (org.apache.maven.settings.Profile) it.next();

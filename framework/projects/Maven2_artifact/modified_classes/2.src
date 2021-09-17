@@ -1,0 +1,2 @@
+org.apache.maven.artifact.resolver.DefaultArtifactCollector
+maven-artifact.org.apache.maven.artifact.resolver.ResolutionNode

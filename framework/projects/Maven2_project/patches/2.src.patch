@@ -1,0 +1,18 @@
+diff --git a/maven-project/src/main/java/org/apache/maven/project/inheritance/DefaultModelInheritanceAssembler.java b/maven-project/src/main/java/org/apache/maven/project/inheritance/DefaultModelInheritanceAssembler.java
+index 926680768..82a06a1c7 100644
+--- a/maven-project/src/main/java/org/apache/maven/project/inheritance/DefaultModelInheritanceAssembler.java
++++ b/maven-project/src/main/java/org/apache/maven/project/inheritance/DefaultModelInheritanceAssembler.java
+@@ -499,12 +499,8 @@ public class DefaultModelInheritanceAssembler
+             uncleanPath = uncleanPath.substring( protocolIdx + 3 );
+         }
+ 
+-        if ( uncleanPath.startsWith( "//" ) )
+-        {
+             // preserve leading double slash for UNC paths like "file:////host/pom.xml"
+-            cleanedPath += "//";
+-        }
+-        else if ( uncleanPath.startsWith( "/" ) )
++        if ( uncleanPath.startsWith( "/" ) )
+         {
+             cleanedPath += "/";
+         }

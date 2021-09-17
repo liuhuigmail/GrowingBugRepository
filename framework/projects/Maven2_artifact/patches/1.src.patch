@@ -1,0 +1,34 @@
+diff --git a/maven-artifact/src/main/java/org/apache/maven/artifact/handler/ArtifactHandler.java b/maven-artifact/src/main/java/org/apache/maven/artifact/handler/ArtifactHandler.java
+index ee0423036..e1faaa2ba 100644
+--- a/maven-artifact/src/main/java/org/apache/maven/artifact/handler/ArtifactHandler.java
++++ b/maven-artifact/src/main/java/org/apache/maven/artifact/handler/ArtifactHandler.java
+@@ -31,6 +31,5 @@ public interface ArtifactHandler
+     String getClassifier();
+ 
+     String getPackaging();
+ 
+-    boolean isIncludesDependencies();
+ }
+diff --git a/maven-artifact/src/main/java/org/apache/maven/artifact/handler/DefaultArtifactHandler.java b/maven-artifact/src/main/java/org/apache/maven/artifact/handler/DefaultArtifactHandler.java
+index f14058c8b..3c8a51b9c 100644
+--- a/maven-artifact/src/main/java/org/apache/maven/artifact/handler/DefaultArtifactHandler.java
++++ b/maven-artifact/src/main/java/org/apache/maven/artifact/handler/DefaultArtifactHandler.java
+@@ -33,8 +33,7 @@ public class DefaultArtifactHandler
+ 
+     private String packaging;
+ 
+-    private boolean includesDependencies;
+ 
+     public DefaultArtifactHandler()
+     {
+     }
+@@ -80,9 +78,5 @@ public class DefaultArtifactHandler
+         }
+         return packaging;
+     }
+ 
+-    public boolean isIncludesDependencies()
+-    {
+-        return includesDependencies;
+-    }
+ }

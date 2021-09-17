@@ -1,0 +1,3 @@
+org.apache.maven.profiles.activation.ProfileActivationException
+org.apache.maven.profiles.DefaultProfileManager
+org.apache.maven.profiles.ProfileManager

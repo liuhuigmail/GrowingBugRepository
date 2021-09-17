@@ -1,0 +1,2 @@
+org.apache.maven.project.inheritance.DefaultModelInheritanceAssembler
+org.apache.maven.project.inheritance.ModelInheritanceAssembler

@@ -1,0 +1,15 @@
+diff --git a/maven-artifact/src/test/java/org/apache/maven/artifact/resolver/DefaultArtifactCollectorTest.java b/maven-artifact/src/test/java/org/apache/maven/artifact/resolver/DefaultArtifactCollectorTest.java
+index b6e3bdac1..74ee70d9c 100644
+--- a/maven-artifact/src/test/java/org/apache/maven/artifact/resolver/DefaultArtifactCollectorTest.java
++++ b/maven-artifact/src/test/java/org/apache/maven/artifact/resolver/DefaultArtifactCollectorTest.java
+@@ -497,8 +497,9 @@ public class DefaultArtifactCollectorTest
+         throws ArtifactResolutionException, InvalidVersionSpecificationException
+     {
+         ArtifactSpec a = createArtifact( "a", "1.0" );
++        createArtifact( "b", "1.0", true );
+ 
+-        ArtifactSpec b = createArtifact( "b", "1.0", true );
++        ArtifactSpec b = createArtifact( "b", "1.0" );
+ 
+         ArtifactResolutionResult res = collect( createSet( new Object[]{a.artifact, b.artifact} ) );
+         assertEquals( "Check artifact list", createSet( new Object[]{a.artifact, b.artifact} ), res.getArtifacts() );

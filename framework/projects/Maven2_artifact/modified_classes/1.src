@@ -1,0 +1,2 @@
+org.apache.maven.artifact.handler.ArtifactHandler
+maven-artifact.org.apache.maven.artifact.handler.DefaultArtifactHandler

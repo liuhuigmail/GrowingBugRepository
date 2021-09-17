@@ -1,0 +1,38 @@
+diff --git a/maven-artifact/src/main/java/org/apache/maven/artifact/resolver/DefaultArtifactCollector.java b/maven-artifact/src/main/java/org/apache/maven/artifact/resolver/DefaultArtifactCollector.java
+index 3daff677e..8f26cc7d9 100644
+--- a/maven-artifact/src/main/java/org/apache/maven/artifact/resolver/DefaultArtifactCollector.java
++++ b/maven-artifact/src/main/java/org/apache/maven/artifact/resolver/DefaultArtifactCollector.java
+@@ -82,7 +82,7 @@ public class DefaultArtifactCollector
+                     if ( node.filterTrail( filter ) )
+                     {
+                         // If it was optional, we don't add it or its children, just allow the update of the version and scope
+-                        if ( node.isChildOfRootNode() || !artifact.isOptional() )
++                        if ( !artifact.isOptional() )
+                         {
+                             artifact.setDependencyTrail( node.getDependencyTrail() );
+ 
+@@ -224,7 +224,7 @@ public class DefaultArtifactCollector
+             {
+                 ResolutionNode child = (ResolutionNode) i.next();
+                 // We leave in optional ones, but don't pick up its dependencies
+-                if ( !child.isResolved() && ( !child.getArtifact().isOptional() || child.isChildOfRootNode() ) )
++                if ( !child.isResolved() && !child.getArtifact().isOptional() )
+                 {
+                     Artifact artifact = child.getArtifact();
+                     try
+diff --git a/maven-artifact/src/main/java/org/apache/maven/artifact/resolver/ResolutionNode.java b/maven-artifact/src/main/java/org/apache/maven/artifact/resolver/ResolutionNode.java
+index c3f1f666b..ef477942d 100644
+--- a/maven-artifact/src/main/java/org/apache/maven/artifact/resolver/ResolutionNode.java
++++ b/maven-artifact/src/main/java/org/apache/maven/artifact/resolver/ResolutionNode.java
+@@ -146,11 +146,7 @@ public class ResolutionNode
+     {
+         return children != null;
+     }
+     
+-    public boolean isChildOfRootNode()
+-    {
+-        return parent != null && parent.parent == null;
+-    }
+ 
+     public Iterator getChildrenIterator()
+     {

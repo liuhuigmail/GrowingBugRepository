@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,22000809c3190f69fa56593d1111be30d478cb30,d8875a4f7d3c4a56fb81a4668775a3becb3d5c75,MNG-818,https://issues.apache.org/jira/browse/MNG-818
+2,ed7cc01b88173ef0be12fbab4cfc56fc19c5c223,1bdeecccadb9951fd48550a7aa3b9ee23ea111bc,MNG-1205,https://issues.apache.org/jira/browse/MNG-1205
