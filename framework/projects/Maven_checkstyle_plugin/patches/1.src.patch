@@ -11,11 +11,11 @@ index 03b40ad..a2adba1 100644
 -            if ( fileName.startsWith( sourceDirectoryPath + "/" ) )
 -            {
 -                currentFile = StringUtils.substring( fileName, sourceDirectoryPath.length() + 1 );
++            currentFile = StringUtils.substring( event.getFileName(), sourceDirectory.getPath().length() + 1 );
++            currentFile = StringUtils.replace( currentFile, "\\", "/" );
  
                  events = getResults().getFileViolations( currentFile );
 -            }
-+            currentFile = StringUtils.substring( event.getFileName(), sourceDirectory.getPath().length() + 1 );
-+            currentFile = StringUtils.replace( currentFile, "\\", "/" );
          }
  
          if ( events == null )
