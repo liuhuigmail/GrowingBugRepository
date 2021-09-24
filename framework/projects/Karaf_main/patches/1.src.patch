@@ -9,11 +9,7 @@ index c0414b6507..441ac30b23 100644
          File[] libs = new File(karafHome, "lib").listFiles();
 -        if (libs != null) {
              for (File f : libs) {
--                if (f.isFile() && f.canRead() && f.getName().endsWith(".jar")) {
--                    urls.add(f.toURI().toURL());
--                }
-+            if (f.isFile() && f.canRead() && f.getName().endsWith(".jar")) {
-+                urls.add(f.toURI().toURL());
-             }
-         }
+                 if (f.isFile() && f.canRead() && f.getName().endsWith(".jar")) {
+                     urls.add(f.toURI().toURL());
+                 }
  
