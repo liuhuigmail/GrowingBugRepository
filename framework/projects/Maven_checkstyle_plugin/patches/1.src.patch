@@ -10,7 +10,7 @@ index 03b40ad..a2adba1 100644
 -            String fileName = StringUtils.replace( event.getFileName(), "\\", "/" );
 -            if ( fileName.startsWith( sourceDirectoryPath + "/" ) )
 -            {
--            currentFile = StringUtils.substring( fileName, sourceDirectoryPath.length() + 1 );
+-                currentFile = StringUtils.substring( fileName, sourceDirectoryPath.length() + 1 );
 +            currentFile = StringUtils.substring( event.getFileName(), sourceDirectoryPath.length() + 1 );
 +            currentFile = StringUtils.replace( currentFile, "\\", "/" );
  
