@@ -23,7 +23,7 @@ index 61a4ccd..729bb18 100644
  
      public SimpleRelocator(String patt, String shadedPattern, List excludes)
      {
-@@ -60,20 +59,14 @@ public class SimpleRelocator
+@@ -60,20 +59,15 @@ public class SimpleRelocator
  
          if ( excludes != null && !excludes.isEmpty() )
          {
@@ -34,7 +34,7 @@ index 61a4ccd..729bb18 100644
              {
                  String e = (String) i.next();
  
--                String classExclude = e.replace( '.', '/' );
+                 String classExclude = e.replace( '.', '/' );
 -                this.excludes.add( classExclude );
  
 -                if ( classExclude.endsWith( "/*" ) )
@@ -42,7 +42,7 @@ index 61a4ccd..729bb18 100644
 -                    String packageExclude = classExclude.substring( 0, classExclude.lastIndexOf( '/' ) );
 -                    this.excludes.add( packageExclude );
 -                }
-+                this.excludes.add(e.replace('.', '/'));
++                this.excludes.add(classExclude);
              }
          }
      }
