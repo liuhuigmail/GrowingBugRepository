@@ -2,17 +2,16 @@ diff --git a/main/src/main/java/org/apache/karaf/main/Main.java b/main/src/main/
 index c0414b6507..441ac30b23 100644
 --- a/main/src/main/java/org/apache/karaf/main/Main.java
 +++ b/main/src/main/java/org/apache/karaf/main/Main.java
-@@ -913,12 +913,9 @@ public class Main {
+@@ -913,12 +913,10 @@ public class Main {
  
          List<URL> urls = new ArrayList<URL>();
          urls.add( bundleFile.toURI().toURL() );
--        File[] libs = new File(karafHome, "lib").listFiles();
+         File[] libs = new File(karafHome, "lib").listFiles();
 -        if (libs != null) {
--            for (File f : libs) {
+             for (File f : libs) {
 -                if (f.isFile() && f.canRead() && f.getName().endsWith(".jar")) {
 -                    urls.add(f.toURI().toURL());
 -                }
-+        for (File f : new File(karafHome, "lib").listFiles()) {
 +            if (f.isFile() && f.canRead() && f.getName().endsWith(".jar")) {
 +                urls.add(f.toURI().toURL());
              }
