@@ -159,7 +159,7 @@ my %SUPPORTED_TRACKERS = (
                 },
     'github' => {
     # https://v2.kkpp.cc https://api.github.com
-                    'default_tracker_uri' => 'https://v2.kkpp.cc/repos/',
+                    'default_tracker_uri' => 'https://api.github.com/repos/',
                     'default_query' => '',
                     'default_limit' => 100,
                     'build_uri' => sub {
