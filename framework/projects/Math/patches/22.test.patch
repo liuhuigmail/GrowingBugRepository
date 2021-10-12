@@ -1,43 +1,33 @@
-diff --git a/src/test/java/org/apache/commons/math3/distribution/RealDistributionAbstractTest.java b/src/test/java/org/apache/commons/math3/distribution/RealDistributionAbstractTest.java
-index c693b14..1c41113 100644
---- a/src/test/java/org/apache/commons/math3/distribution/RealDistributionAbstractTest.java
-+++ b/src/test/java/org/apache/commons/math3/distribution/RealDistributionAbstractTest.java
-@@ -338,38 +338,6 @@ public abstract class RealDistributionAbstractTest {
-                                     integrationTestPoints.get(i)), tol);
-         }
+diff --git a/src/test/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSetTest.java b/src/test/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSetTest.java
+index 94b51bad9..2bac0922b 100644
+--- a/src/test/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSetTest.java
++++ b/src/test/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSetTest.java
+@@ -1066,28 +1066,6 @@ public class PolygonsSetTest {
+         Assert.assertEquals(1, verticies.length);
      }
--    
--    /**
--     * Verify that isSupportLowerBoundInclusvie returns true iff the lower bound
--     * is finite and density is non-NaN, non-infinite there.
--     */
--    @Test
--    public void testIsSupportLowerBoundInclusive() {
--        final double lowerBound = distribution.getSupportLowerBound();
--        double result = Double.NaN;
--        result = distribution.density(lowerBound);
--        Assert.assertEquals(
--                !Double.isInfinite(lowerBound) && !Double.isNaN(result) &&
--                !Double.isInfinite(result),
--                distribution.isSupportLowerBoundInclusive());
--         
--    }
--    
--    /**
--     * Verify that isSupportUpperBoundInclusvie returns true iff the upper bound
--     * is finite and density is non-NaN, non-infinite there.
--     */
--    @Test
--    public void testIsSupportUpperBoundInclusive() {
--        final double upperBound = distribution.getSupportUpperBound();
--        double result = Double.NaN;
--        result = distribution.density(upperBound);
--        Assert.assertEquals(
--                !Double.isInfinite(upperBound) && !Double.isNaN(result) &&
--                !Double.isInfinite(result),
--                distribution.isSupportUpperBoundInclusive());
--         
--    }
  
-     //------------------ Getters / Setters for test instance data -----------
-     /**
+-    @Test
+-    public void testTooThinBox() {
+-        Assert.assertEquals(0.0,
+-                            new PolygonsSet(0.0, 0.0, 0.0, 10.3206397147574, 1.0e-10).getSize(),
+-                            1.0e-10);
+-    }
+-
+-    @Test
+-    public void testWrongUsage() {
+-        // the following is a wrong usage of the constructor.
+-        // as explained in the javadoc, the failure is NOT detected at construction
+-        // time but occurs later on
+-        PolygonsSet ps = new PolygonsSet(new BSPTree<Euclidean2D>(), 1.0e-10);
+-        Assert.assertNotNull(ps);
+-        try {
+-            ps.getSize();
+-            Assert.fail("an exception should have been thrown");
+-        } catch (NullPointerException npe) {
+-            // this is expected
+-        }
+-    }
+-
+     private PolygonsSet buildSet(Vector2D[][] vertices) {
+         ArrayList<SubHyperplane<Euclidean2D>> edges = new ArrayList<SubHyperplane<Euclidean2D>>();
+         for (int i = 0; i < vertices.length; ++i) {

@@ -1,16 +1,27 @@
-diff --git a/src/main/java/org/apache/commons/math3/optimization/fitting/HarmonicFitter.java b/src/main/java/org/apache/commons/math3/optimization/fitting/HarmonicFitter.java
-index c7af9ae..1da2c45 100644
---- a/src/main/java/org/apache/commons/math3/optimization/fitting/HarmonicFitter.java
-+++ b/src/main/java/org/apache/commons/math3/optimization/fitting/HarmonicFitter.java
-@@ -320,11 +320,8 @@ public class HarmonicFitter extends CurveFitter<HarmonicOscillator.Parametric> {
-                 }
-                 a = 0.5 * (yMax - yMin);
-             } else {
--                if (c2 == 0) {
-                     // In some ill-conditioned cases (cf. MATH-844), the guesser
-                     // procedure cannot produce sensible results.
--                    throw new MathIllegalStateException(LocalizedFormats.ZERO_DENOMINATOR);
--                }
+diff --git a/src/main/java/org/apache/commons/math3/optim/linear/LinearConstraintSet.java b/src/main/java/org/apache/commons/math3/optim/linear/LinearConstraintSet.java
+index b2a120996..cf5279a34 100644
+--- a/src/main/java/org/apache/commons/math3/optim/linear/LinearConstraintSet.java
++++ b/src/main/java/org/apache/commons/math3/optim/linear/LinearConstraintSet.java
+@@ -16,11 +16,11 @@
+  */
+ package org.apache.commons.math3.optim.linear;
  
-                 a = FastMath.sqrt(c1 / c2);
-                 omega = FastMath.sqrt(c2 / c3);
+-import java.util.LinkedHashSet;
+ import java.util.Set;
++import java.util.HashSet;
+ import java.util.Collection;
+ import java.util.Collections;
+ 
+ import org.apache.commons.math3.optim.OptimizationData;
+ 
+ /**
+@@ -31,7 +30,8 @@ import org.apache.commons.math3.optim.OptimizationData;
+  */
+ public class LinearConstraintSet implements OptimizationData {
+     /** Set of constraints. */
+-    private final Set<LinearConstraint> linearConstraints = new LinkedHashSet<LinearConstraint>();
++    private final Set<LinearConstraint> linearConstraints
++        = new HashSet<LinearConstraint>();
+ 
+     /**
+      * Creates a set containing the given constraints.

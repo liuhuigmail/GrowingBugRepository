@@ -1,21 +1,13 @@
-diff --git a/src/main/java/org/apache/commons/math3/optimization/general/AbstractLeastSquaresOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/general/AbstractLeastSquaresOptimizer.java
-index 982e559..99d86e9 100644
---- a/src/main/java/org/apache/commons/math3/optimization/general/AbstractLeastSquaresOptimizer.java
-+++ b/src/main/java/org/apache/commons/math3/optimization/general/AbstractLeastSquaresOptimizer.java
-@@ -559,16 +559,7 @@ public abstract class AbstractLeastSquaresOptimizer
-      * @return the square-root of the weight matrix.
+diff --git a/src/main/java/org/apache/commons/math4/ode/UnknownParameterException.java b/src/main/java/org/apache/commons/math4/ode/UnknownParameterException.java
+index bbbaa4a16..75c621056 100644
+--- a/src/main/java/org/apache/commons/math4/ode/UnknownParameterException.java
++++ b/src/main/java/org/apache/commons/math4/ode/UnknownParameterException.java
+@@ -38,7 +38,7 @@ public class UnknownParameterException extends MathIllegalArgumentException {
+      * @param name parameter name.
       */
-     private RealMatrix squareRoot(RealMatrix m) {
--        if (m instanceof DiagonalMatrix) {
--            final int dim = m.getRowDimension();
--            final RealMatrix sqrtM = new DiagonalMatrix(dim);
--            for (int i = 0; i < dim; i++) {
--               sqrtM.setEntry(i, i, FastMath.sqrt(m.getEntry(i, i)));
--            }
--            return sqrtM;
--        } else {
-             final EigenDecomposition dec = new EigenDecomposition(m);
-             return dec.getSquareRoot();
--        }
+     public UnknownParameterException(final String name) {
+-        super(LocalizedFormats.UNKNOWN_PARAMETER, name);
++        super(LocalizedFormats.UNKNOWN_PARAMETER);
+         this.name = name;
      }
- }
+ 

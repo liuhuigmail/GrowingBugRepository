@@ -98,7 +98,7 @@ https://github.com/jboss-switchyard/core.git	switchyard-validate
 https://github.com/apache/mina-vysper.git	vysper-nbxml
 https://github.com/wildfly/wildfly-naming-client.git	wildfly-naming-client
 https://github.com/apache/xmlgraphics-commons.git	xmlgraphics-commons
-
+https://github.com/haidaros/defects4j-math.git	commons-math4j
 
 
 

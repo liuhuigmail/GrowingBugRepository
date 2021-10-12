@@ -1,3 +1,0 @@
-org.apache.commons.math.estimation.GaussNewtonEstimatorTest
-org.apache.commons.math.estimation.LevenbergMarquardtEstimatorTest
-org.apache.commons.math.estimation.MinpackTest

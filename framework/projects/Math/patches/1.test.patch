@@ -1,39 +1,37 @@
-diff --git a/src/test/java/org/apache/commons/math3/fraction/BigFractionTest.java b/src/test/java/org/apache/commons/math3/fraction/BigFractionTest.java
-index 71efb97..7b06ded 100644
---- a/src/test/java/org/apache/commons/math3/fraction/BigFractionTest.java
-+++ b/src/test/java/org/apache/commons/math3/fraction/BigFractionTest.java
-@@ -154,9 +154,6 @@ public class BigFractionTest {
-         assertFraction(8, 13, new BigFraction(0.6152, 99));
-         assertFraction(510, 829, new BigFraction(0.6152, 999));
-         assertFraction(769, 1250, new BigFraction(0.6152, 9999));
--        
--        // MATH-996
--        assertFraction(1, 2, new BigFraction(0.5000000001, 10));
+diff --git a/src/test/java/org/apache/commons/math4/distribution/HypergeometricDistributionTest.java b/src/test/java/org/apache/commons/math4/distribution/HypergeometricDistributionTest.java
+index 7e7ce8cee..e12c5b42c 100644
+--- a/src/test/java/org/apache/commons/math4/distribution/HypergeometricDistributionTest.java
++++ b/src/test/java/org/apache/commons/math4/distribution/HypergeometricDistributionTest.java
+@@ -311,32 +311,6 @@ public class HypergeometricDistributionTest extends IntegerDistributionAbstractT
+         Assert.assertTrue(Precision.compareTo(1.0, upper, 1) == 0);
      }
  
-     @Test
-diff --git a/src/test/java/org/apache/commons/math3/fraction/FractionTest.java b/src/test/java/org/apache/commons/math3/fraction/FractionTest.java
-index 96b7c08..37e22d1 100644
---- a/src/test/java/org/apache/commons/math3/fraction/FractionTest.java
-+++ b/src/test/java/org/apache/commons/math3/fraction/FractionTest.java
-@@ -129,9 +129,6 @@ public class FractionTest {
-         assertFraction(8, 13,     new Fraction(0.6152,   99));
-         assertFraction(510, 829,  new Fraction(0.6152,  999));
-         assertFraction(769, 1250, new Fraction(0.6152, 9999));
+-    @Test
+-    public void testZeroTrial() {
+-        final int n = 11; // population
+-        final int m = 4;  // successes in population
+-        final int s = 0;  // number of trials
 -
--        // MATH-996
--        assertFraction(1, 2, new Fraction(0.5000000001, 10));
-     }
- 
+-        final HypergeometricDistribution dist = new HypergeometricDistribution(n, m, 0);
+-
+-        for (int i = 1; i <= n; i++) {
+-            final double p = dist.probability(i);
+-            Assert.assertEquals("p=" + p, 0, p, 0d);
+-        }
+-    }
+-
+-    @Test
+-    public void testMath1356() {
+-        final int n = 11;  // population
+-        final int m = 11;  // successes in population
+-
+-        for (int s = 0; s <= n; s++) {
+-            final HypergeometricDistribution dist = new HypergeometricDistribution(n, m, s);
+-            final double p = dist.probability(s);
+-            Assert.assertEquals("p=" + p, 1, p, 0d);
+-        }
+-    }
+-
      @Test
-@@ -144,9 +141,7 @@ public class FractionTest {
- 
-     private void checkIntegerOverflow(double a) {
-         try {
--            @SuppressWarnings("unused")
--            Fraction f = new Fraction(a, 1.0e-12, 1000);
--            //System.out.println(f.getNumerator() + "/" + f.getDenominator());
-+            new Fraction(a, 1.0e-12, 1000);
-             Assert.fail("an exception should have been thrown");
-         } catch (ConvergenceException ce) {
-             // expected behavior
+     public void testMath1021() {
+         final int N = 43130568;

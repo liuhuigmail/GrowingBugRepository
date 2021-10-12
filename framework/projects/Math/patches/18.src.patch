@@ -1,39 +1,14 @@
-diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
-index 866c8fd..bc754a5 100644
---- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
-+++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
-@@ -929,7 +929,7 @@ public class CMAESOptimizer
-             double[] res = new double[x.length];
-             for (int i = 0; i < x.length; i++) {
-                 double diff = boundaries[1][i] - boundaries[0][i];
--                res[i] = x[i] / diff;
-+                res[i] = (x[i] - boundaries[0][i]) / diff;
-             }
-             return res;
-         }
-@@ -955,7 +955,7 @@ public class CMAESOptimizer
-             double[] res = new double[x.length];
-             for (int i = 0; i < x.length; i++) {
-                 double diff = boundaries[1][i] - boundaries[0][i];
--                res[i] = diff * x[i];
-+                res[i] = diff * x[i] + boundaries[0][i];
-             }
-             return res;
-         }
-@@ -987,14 +987,12 @@ public class CMAESOptimizer
-                 return true;
-             }
- 
--            final double[] bLoEnc = encode(boundaries[0]);
--            final double[] bHiEnc = encode(boundaries[1]);
- 
-             for (int i = 0; i < x.length; i++) {
--                if (x[i] < bLoEnc[i]) {
-+                if (x[i] < 0) {
-                     return false;
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/hull/MonotoneChain.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/hull/MonotoneChain.java
+index 50fd6b752..2ade7a69e 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/hull/MonotoneChain.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/hull/MonotoneChain.java
+@@ -160,8 +160,8 @@ public class MonotoneChain extends AbstractConvexHullGenerator2D {
+                 } else {
+                     if (distanceToCurrent > distanceToLast) {
+                         hull.remove(size - 1);
+-                        hull.add(point);
+                     }
++                    hull.add(point);
                  }
--                if (x[i] > bHiEnc[i]) {
-+                if (x[i] > 1.0) {
-                     return false;
-                 }
-             }
+                 return;
+             } else if (offset > 0) {

@@ -1,20 +1,22 @@
-diff --git a/src/main/java/org/apache/commons/math3/distribution/DiscreteDistribution.java b/src/main/java/org/apache/commons/math3/distribution/DiscreteDistribution.java
-index 879eb2a..5cb0e43 100644
---- a/src/main/java/org/apache/commons/math3/distribution/DiscreteDistribution.java
-+++ b/src/main/java/org/apache/commons/math3/distribution/DiscreteDistribution.java
-@@ -178,13 +178,13 @@ public class DiscreteDistribution<T> {
-      * @throws NotStrictlyPositiveException if {@code sampleSize} is not
-      * positive.
+diff --git a/src/main/java/org/apache/commons/math4/fraction/Fraction.java b/src/main/java/org/apache/commons/math4/fraction/Fraction.java
+index 39eba8dff..0713b8596 100644
+--- a/src/main/java/org/apache/commons/math4/fraction/Fraction.java
++++ b/src/main/java/org/apache/commons/math4/fraction/Fraction.java
+@@ -566,7 +566,7 @@ public class Fraction
       */
--    public Object[] sample(int sampleSize) throws NotStrictlyPositiveException {
-+    public T[] sample(int sampleSize) throws NotStrictlyPositiveException {
-         if (sampleSize <= 0) {
-             throw new NotStrictlyPositiveException(LocalizedFormats.NUMBER_OF_SAMPLES,
-                     sampleSize);
-         }
+     @Override
+     public Fraction multiply(final int i) {
+-        return multiply(new Fraction(i));
++        return new Fraction(numerator * i, denominator);
+     }
  
--        final Object[] out = new Object[sampleSize];
-+        final T[]out = (T[]) java.lang.reflect.Array.newInstance(singletons.get(0).getClass(), sampleSize);
+     /**
+@@ -597,7 +597,7 @@ public class Fraction
+      * @return this * i
+      */
+     public Fraction divide(final int i) {
+-        return divide(new Fraction(i));
++        return new Fraction(numerator, denominator * i);
+     }
  
-         for (int i = 0; i < sampleSize; i++) {
-             out[i] = sample();
+     /**

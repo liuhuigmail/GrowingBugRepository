@@ -1,21 +1,18 @@
-diff --git a/src/test/java/org/apache/commons/math3/fraction/FractionTest.java b/src/test/java/org/apache/commons/math3/fraction/FractionTest.java
-index 37e22d1..c112ab7 100644
---- a/src/test/java/org/apache/commons/math3/fraction/FractionTest.java
-+++ b/src/test/java/org/apache/commons/math3/fraction/FractionTest.java
-@@ -60,7 +60,6 @@ public class FractionTest {
-         } catch (MathArithmeticException ex) {
-             // success
-         }
--
-         assertFraction(0, 1, new Fraction(0.00000000000001));
-         assertFraction(2, 5, new Fraction(0.40000000000001));
-         assertFraction(15, 1, new Fraction(15.0000000000001));
-@@ -135,8 +134,6 @@ public class FractionTest {
-     public void testIntegerOverflow() {
-         checkIntegerOverflow(0.75000000001455192);
-         checkIntegerOverflow(1.0e10);
--        checkIntegerOverflow(-1.0e10);
--        checkIntegerOverflow(-43979.60679604749);
+diff --git a/src/test/java/org/apache/commons/math3/util/PrecisionTest.java b/src/test/java/org/apache/commons/math3/util/PrecisionTest.java
+index f73d11752..ca833fcb5 100644
+--- a/src/test/java/org/apache/commons/math3/util/PrecisionTest.java
++++ b/src/test/java/org/apache/commons/math3/util/PrecisionTest.java
+@@ -490,13 +490,6 @@ public class PrecisionTest {
+         Assert.assertEquals(0.0f, Precision.round(0.0f, 2), 0.0f);
+         Assert.assertEquals(Float.POSITIVE_INFINITY, Precision.round(Float.POSITIVE_INFINITY, 2), 0.0f);
+         Assert.assertEquals(Float.NEGATIVE_INFINITY, Precision.round(Float.NEGATIVE_INFINITY, 2), 0.0f);
+-        
+-        // MATH-1070
+-        Assert.assertEquals(0.0f, Precision.round(0f, 2, BigDecimal.ROUND_UP), 0.0f);
+-        Assert.assertEquals(0.05f, Precision.round(0.05f, 2, BigDecimal.ROUND_UP), 0.0f);
+-        Assert.assertEquals(0.06f, Precision.round(0.051f, 2, BigDecimal.ROUND_UP), 0.0f);
+-        Assert.assertEquals(0.06f, Precision.round(0.0505f, 2, BigDecimal.ROUND_UP), 0.0f);
+-        Assert.assertEquals(0.06f, Precision.round(0.059f, 2, BigDecimal.ROUND_UP), 0.0f);
      }
  
-     private void checkIntegerOverflow(double a) {
+ 

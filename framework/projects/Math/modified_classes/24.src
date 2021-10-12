@@ -1,1 +1,1 @@
-org.apache.commons.math3.optimization.univariate.BrentOptimizer
+src.main.java.org.apache.commons.math3.util.Precision

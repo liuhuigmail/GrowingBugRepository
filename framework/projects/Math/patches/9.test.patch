@@ -1,25 +1,22 @@
-diff --git a/src/test/java/org/apache/commons/math3/geometry/euclidean/threed/LineTest.java b/src/test/java/org/apache/commons/math3/geometry/euclidean/threed/LineTest.java
-index 6c996c7..5da16c9 100644
---- a/src/test/java/org/apache/commons/math3/geometry/euclidean/threed/LineTest.java
-+++ b/src/test/java/org/apache/commons/math3/geometry/euclidean/threed/LineTest.java
-@@ -129,20 +129,4 @@ public class LineTest {
-         Assert.assertNull(l.intersection(new Line(new Vector3D(0, -4, 0), new Vector3D(1, -4, 0))));
+diff --git a/src/test/java/org/apache/commons/math4/distribution/NormalDistributionTest.java b/src/test/java/org/apache/commons/math4/distribution/NormalDistributionTest.java
+index 4e00f5662..3ced97c90 100644
+--- a/src/test/java/org/apache/commons/math4/distribution/NormalDistributionTest.java
++++ b/src/test/java/org/apache/commons/math4/distribution/NormalDistributionTest.java
+@@ -111,17 +111,6 @@ public class NormalDistributionTest extends RealDistributionAbstractTest {
+         verifyInverseCumulativeProbabilities();
      }
  
+-    // MATH-1257
 -    @Test
--    public void testRevert() {
--        
--        // setup
--        Line line = new Line(new Vector3D(1653345.6696423641, 6170370.041579291, 90000),
--                             new Vector3D(1650757.5050732433, 6160710.879908984, 0.9));
--        Vector3D expected = line.getDirection().negate();
--
--        // action
--        Line reverted = line.revert();
--
--        // verify
--        Assert.assertArrayEquals(expected.toArray(), reverted.getDirection().toArray(), 0);
--
+-    public void testCumulativeProbability() {
+-        final RealDistribution dist = new NormalDistribution(0, 1);
+-        double x = -10;
+-        double expected = 7.61985e-24;
+-        double v = dist.cumulativeProbability(x);
+-        double tol = 1e-5;
+-        Assert.assertEquals(1, v / expected, 1e-5);
 -    }
 -
- }
+     @Test
+     public void testGetMean() {
+         NormalDistribution distribution = (NormalDistribution) getDistribution();

@@ -1,12 +1,19 @@
-diff --git a/src/main/java/org/apache/commons/math3/genetics/ListPopulation.java b/src/main/java/org/apache/commons/math3/genetics/ListPopulation.java
-index 3f3919c..1eb0053 100644
---- a/src/main/java/org/apache/commons/math3/genetics/ListPopulation.java
-+++ b/src/main/java/org/apache/commons/math3/genetics/ListPopulation.java
-@@ -206,6 +206,6 @@ public abstract class ListPopulation implements Population {
-      * @return chromosome iterator
-      */
-     public Iterator<Chromosome> iterator() {
--        return getChromosomes().iterator();
-+        return chromosomes.iterator();
-     }
- }
+diff --git a/src/java/org/apache/commons/math/estimation/AbstractEstimator.java b/src/java/org/apache/commons/math/estimation/AbstractEstimator.java
+index 8e5fe1ad0..19e06a052 100644
+--- a/src/java/org/apache/commons/math/estimation/AbstractEstimator.java
++++ b/src/java/org/apache/commons/math/estimation/AbstractEstimator.java
+@@ -199,12 +199,12 @@ public abstract class AbstractEstimator implements Estimator {
+     public double[] guessParametersErrors(EstimationProblem problem)
+       throws EstimationException {
+         int m = problem.getMeasurements().length;
+-        int p = problem.getUnboundParameters().length;
++        int p = problem.getAllParameters().length;
+         if (m <= p) {
+             throw new EstimationException("no degrees of freedom ({0} measurements, {1} parameters)",
+                                           new Object[] { new Integer(m), new Integer(p)});
+         }
+-        double[] errors = new double[problem.getUnboundParameters().length];
++        double[] errors = new double[problem.getAllParameters().length];
+         final double c = Math.sqrt(getChiSquare(problem) / (m - p));
+         double[][] covar = getCovariances(problem);
+         for (int i = 0; i < errors.length; ++i) {

@@ -1,37 +1,15 @@
-diff --git a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
-index 294ac57..8214827 100644
---- a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
-+++ b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
-@@ -346,9 +346,10 @@ public class OpenMapRealVector extends SparseRealVector
-          * this only. Indeed, if this[i] = 0d and v[i] = 0d, then
-          * this[i] / v[i] = NaN, and not 0d.
-          */
--        final int n = getDimension();
--        for (int i = 0; i < n; i++) {
--            res.setEntry(i, this.getEntry(i) / v.getEntry(i));
-+        Iterator iter = entries.iterator();
-+        while (iter.hasNext()) {
-+            iter.advance();
-+            res.setEntry(iter.key(), iter.value() / v.getEntry(iter.key()));
-         }
-         return res;
-     }
-@@ -370,18 +371,6 @@ public class OpenMapRealVector extends SparseRealVector
-          *
-          * These special cases are handled below.
-          */
--        if (v.isNaN() || v.isInfinite()) {
--            final int n = getDimension();
--            for (int i = 0; i < n; i++) {
--                final double y = v.getEntry(i);
--                if (Double.isNaN(y)) {
--                    res.setEntry(i, Double.NaN);
--                } else if (Double.isInfinite(y)) {
--                    final double x = this.getEntry(i);
--                    res.setEntry(i, x * y);
--                }
--            }
--        }
-         return res;
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Line.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Line.java
+index 7c9a28f14..0c3941168 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Line.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Line.java
+@@ -84,9 +84,7 @@ public class Line implements Embedding<Euclidean3D, Euclidean1D> {
+      * @return a new instance, with reversed direction
+      */
+     public Line revert() {
+-        final Line reverted = new Line(this);
+-        reverted.direction = reverted.direction.negate();
+-        return reverted;
++        return new Line(zero, zero.subtract(direction));
      }
  
+     /** Get the normalized direction vector.

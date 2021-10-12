@@ -1,9 +1,10 @@
---- org.apache.commons.math3.dfp.DfpTest::testMultiply
-junit.framework.AssertionFailedError: assersion failed Multiply #37 x = NaN flags = 1
+--- org.apache.commons.math3.distribution.BinomialDistributionTest::testDegenerate2
+junit.framework.AssertionFailedError: Incorrect density value returned for 0 expected:<1.0> but was:<NaN>
 	at org.junit.Assert.fail(Assert.java:88)
-	at org.junit.Assert.assertTrue(Assert.java:41)
-	at org.apache.commons.math3.dfp.DfpTest.test(DfpTest.java:74)
-	at org.apache.commons.math3.dfp.DfpTest.testMultiply(DfpTest.java:909)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:494)
+	at org.apache.commons.math3.distribution.IntegerDistributionAbstractTest.verifyDensities(IntegerDistributionAbstractTest.java:158)
+	at org.apache.commons.math3.distribution.BinomialDistributionTest.testDegenerate2(BinomialDistributionTest.java:141)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -23,7 +24,7 @@ junit.framework.AssertionFailedError: assersion failed Multiply #37 x = NaN flag
 	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
 	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnit4TestMethodAdapter.run(JUnit4TestMethodAdapter.java:109)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)

@@ -1,38 +1,44 @@
-diff --git a/src/test/java/org/apache/commons/math3/optimization/fitting/PolynomialFitterTest.java b/src/test/java/org/apache/commons/math3/optimization/fitting/PolynomialFitterTest.java
-index 74bd8ee..7f7743e 100644
---- a/src/test/java/org/apache/commons/math3/optimization/fitting/PolynomialFitterTest.java
-+++ b/src/test/java/org/apache/commons/math3/optimization/fitting/PolynomialFitterTest.java
-@@ -223,33 +223,6 @@ public class PolynomialFitterTest {
-         checkUnsolvableProblem(new GaussNewtonOptimizer(true, new SimpleVectorValueChecker(1e-15, 1e-15)), false);
+diff --git a/src/test/java/org/apache/commons/math4/ode/JacobianMatricesTest.java b/src/test/java/org/apache/commons/math4/ode/JacobianMatricesTest.java
+index b4e20edfa..b50fe7af6 100644
+--- a/src/test/java/org/apache/commons/math4/ode/JacobianMatricesTest.java
++++ b/src/test/java/org/apache/commons/math4/ode/JacobianMatricesTest.java
+@@ -102,33 +102,20 @@ public class JacobianMatricesTest {
+         Assert.assertTrue(residualsP1.getStandardDeviation() < 0.008);
      }
  
 -    @Test
--    public void testLargeSample() {
--        Random randomizer = new Random(0x5551480dca5b369bl);
--        double maxError = 0;
--        for (int degree = 0; degree < 10; ++degree) {
--            PolynomialFunction p = buildRandomPolynomial(degree, randomizer);
--
--            PolynomialFitter fitter = new PolynomialFitter(new LevenbergMarquardtOptimizer());
--            for (int i = 0; i < 40000; ++i) {
--                double x = -1.0 + i / 20000.0;
--                fitter.addObservedPoint(1.0, x,
--                                        p.value(x) + 0.1 * randomizer.nextGaussian());
--            }
--
--            final double[] init = new double[degree + 1];
--            PolynomialFunction fitted = new PolynomialFunction(fitter.fit(init));
--
--            for (double x = -1.0; x < 1.0; x += 0.01) {
--                double error = FastMath.abs(p.value(x) - fitted.value(x)) /
--                              (1.0 + FastMath.abs(p.value(x)));
--                maxError = FastMath.max(maxError, error);
--                Assert.assertTrue(FastMath.abs(error) < 0.01);
--            }
+-    public void testWrongParameterName() {
+-        final String name = "an-unknown-parameter";
+-        try {
+-            ParamBrusselator brusselator = new ParamBrusselator(2.9);
+-            brusselator.setParameter(name, 3.0);
+-            Assert.fail("an exception should have been thrown");
+-        } catch (UnknownParameterException upe) {
+-            Assert.assertTrue(upe.getMessage().contains(name));
+-            Assert.assertEquals(name, upe.getName());
 -        }
--        Assert.assertTrue(maxError > 0.001);
 -    }
 -
-     private void checkUnsolvableProblem(DifferentiableMultivariateVectorOptimizer optimizer,
-                                         boolean solvable) {
-         Random randomizer = new Random(1248788532l);
+     @Test
+     public void testInternalDifferentiation()
+-                    throws NumberIsTooSmallException, DimensionMismatchException,
+-                    MaxCountExceededException, NoBracketingException,
+-                    UnknownParameterException, MismatchedEquations {
++        throws NumberIsTooSmallException, DimensionMismatchException,
++               MaxCountExceededException, NoBracketingException,
++               UnknownParameterException, MismatchedEquations {
+         AbstractIntegrator integ =
+-                        new DormandPrince54Integrator(1.0e-8, 100.0, new double[] { 1.0e-4, 1.0e-4 }, new double[] { 1.0e-4, 1.0e-4 });
++            new DormandPrince54Integrator(1.0e-8, 100.0, new double[] { 1.0e-4, 1.0e-4 }, new double[] { 1.0e-4, 1.0e-4 });
+         double hP = 1.0e-12;
+         double hY = 1.0e-12;
+         SummaryStatistics residualsP0 = new SummaryStatistics();
+         SummaryStatistics residualsP1 = new SummaryStatistics();
+         for (double b = 2.88; b < 3.08; b += 0.001) {
+-                ParamBrusselator brusselator = new ParamBrusselator(b);
+-                brusselator.setParameter(ParamBrusselator.B, b);
++            ParamBrusselator brusselator = new ParamBrusselator(b);
++            brusselator.setParameter(ParamBrusselator.B, b);
+             double[] z = { 1.3, b };
+             double[][] dZdZ0 = new double[2][2];
+             double[]   dZdP  = new double[2];

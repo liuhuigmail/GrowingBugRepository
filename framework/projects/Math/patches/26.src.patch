@@ -1,22 +1,15 @@
-diff --git a/src/main/java/org/apache/commons/math3/fraction/Fraction.java b/src/main/java/org/apache/commons/math3/fraction/Fraction.java
-index 08d3b95..f81ff0a 100644
---- a/src/main/java/org/apache/commons/math3/fraction/Fraction.java
-+++ b/src/main/java/org/apache/commons/math3/fraction/Fraction.java
-@@ -178,7 +178,7 @@ public class Fraction
-         long overflow = Integer.MAX_VALUE;
-         double r0 = value;
-         long a0 = (long)FastMath.floor(r0);
--        if (FastMath.abs(a0) > overflow) {
-+        if (a0 > overflow) {
-             throw new FractionConversionException(value, a0, 1l);
-         }
- 
-@@ -206,7 +206,7 @@ public class Fraction
-             long a1 = (long)FastMath.floor(r1);
-             p2 = (a1 * p1) + p0;
-             q2 = (a1 * q1) + q0;
--            if ((FastMath.abs(p2) > overflow) || (FastMath.abs(q2) > overflow)) {
-+            if ((p2 > overflow) || (q2 > overflow)) {
-                 throw new FractionConversionException(value, p2, q2);
+diff --git a/src/main/java/org/apache/commons/math3/util/Precision.java b/src/main/java/org/apache/commons/math3/util/Precision.java
+index f0b0c4ff7..ef3b57f39 100644
+--- a/src/main/java/org/apache/commons/math3/util/Precision.java
++++ b/src/main/java/org/apache/commons/math3/util/Precision.java
+@@ -515,10 +516,8 @@ public class Precision {
              }
- 
+             break;
+         case BigDecimal.ROUND_UP :
+             // do not round if the discarded fraction is equal to zero
+-            if (unscaled != FastMath.floor(unscaled)) {
+                 unscaled = FastMath.ceil(FastMath.nextAfter(unscaled, Double.POSITIVE_INFINITY));
+-            }
+             break;
+         default :
+             throw new MathIllegalArgumentException(LocalizedFormats.INVALID_ROUNDING_METHOD,

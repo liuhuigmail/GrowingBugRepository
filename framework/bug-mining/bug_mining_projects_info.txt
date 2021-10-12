@@ -12,6 +12,7 @@ JacksonXml	jackson-dataformat-xml	https://github.com/FasterXML/jackson-dataforma
 Jsoup	jsoup	https://github.com/jhy/jsoup.git	github	jhy/jsoup	/Fix(?:es)?\\s*#(\\d+)/mi
 JxPath	commons-jxpath	https://github.com/apache/commons-jxpath.git	jira	JXPATH	/(JXPATH-\\d+)/mi
 Lang	commons-lang	https://github.com/apache/commons-lang.git	jira	LANG	/(LANG-\\d+)/mi
+Math_4j	commons-math4j	https://github.com/haidaros/defects4j-math.git	jira	MATH	/(MATH-\\d+)/mi
 Math	commons-math	https://github.com/apache/commons-math.git	jira	MATH	/(MATH-\\d+)/mi
 Mockito	mockito	https://github.com/mockito/mockito.git	github	mockito/mockito	/Fix(?:es)?\\s*#(\\d+)/mi
 Time	joda-time	https://github.com/JodaOrg/joda-time.git	github	JodaOrg/joda-time	/Fix(?:es)?\\s*#(\\d+)/mi

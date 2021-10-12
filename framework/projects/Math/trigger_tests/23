@@ -1,8 +1,11 @@
---- org.apache.commons.math3.optimization.univariate.BrentOptimizerTest::testKeepInitIfBest
-junit.framework.AssertionFailedError: Best point not reported
-	at org.junit.Assert.fail(Assert.java:88)
-	at org.junit.Assert.assertTrue(Assert.java:41)
-	at org.apache.commons.math3.optimization.univariate.BrentOptimizerTest.testKeepInitIfBest(BrentOptimizerTest.java:221)
+--- org.apache.commons.math3.fitting.leastsquares.LevenbergMarquardtOptimizerTest::testEvaluationCount
+junit.framework.AssertionFailedError: 
+Expected: is <1>
+     but: was <2>
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+	at org.junit.Assert.assertThat(Assert.java:865)
+	at org.junit.Assert.assertThat(Assert.java:832)
+	at org.apache.commons.math3.fitting.leastsquares.LevenbergMarquardtOptimizerTest.testEvaluationCount(LevenbergMarquardtOptimizerTest.java:288)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -20,7 +23,7 @@ junit.framework.AssertionFailedError: Best point not reported
 	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
 	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnit4TestMethodAdapter.run(JUnit4TestMethodAdapter.java:109)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)

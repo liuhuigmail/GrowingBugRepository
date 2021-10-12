@@ -1,55 +1,22 @@
-diff --git a/src/test/java/org/apache/commons/math3/util/FastMathTest.java b/src/test/java/org/apache/commons/math3/util/FastMathTest.java
-index 282e7b2..9490e1e 100644
---- a/src/test/java/org/apache/commons/math3/util/FastMathTest.java
-+++ b/src/test/java/org/apache/commons/math3/util/FastMathTest.java
-@@ -158,50 +158,6 @@ public class FastMathTest {
+diff --git a/src/test/java/org/apache/commons/math3/stat/inference/MannWhitneyUTestTest.java b/src/test/java/org/apache/commons/math3/stat/inference/MannWhitneyUTestTest.java
+index 4e76b9604..45587a70d 100644
+--- a/src/test/java/org/apache/commons/math3/stat/inference/MannWhitneyUTestTest.java
++++ b/src/test/java/org/apache/commons/math3/stat/inference/MannWhitneyUTestTest.java
+@@ -112,17 +112,4 @@ public class MannWhitneyUTestTest {
+         double result = testStatistic.mannWhitneyUTest(d1, d2);
+         Assert.assertTrue(result > 0.1);
      }
- 
-     @Test
--    public void testMath905LargePositive() {
--        final double start = StrictMath.log(Double.MAX_VALUE);
--        final double endT = StrictMath.sqrt(2) * StrictMath.sqrt(Double.MAX_VALUE);
--        final double end = 2 * StrictMath.log(endT);
--
--        double maxErr = 0;
--        for (double x = start; x < end; x += 1e-3) {
--            final double tst = FastMath.cosh(x);
--            final double ref = Math.cosh(x);
--            maxErr = FastMath.max(maxErr, FastMath.abs(ref - tst) / FastMath.ulp(ref));            
--        }
--        Assert.assertEquals(0, maxErr, 3);
--
--        for (double x = start; x < end; x += 1e-3) {
--            final double tst = FastMath.sinh(x);
--            final double ref = Math.sinh(x);
--            maxErr = FastMath.max(maxErr, FastMath.abs(ref - tst) / FastMath.ulp(ref));            
--        }
--        Assert.assertEquals(0, maxErr, 3);
--    }
--
+-    
 -    @Test
--    public void testMath905LargeNegative() {
--        final double start = -StrictMath.log(Double.MAX_VALUE);
--        final double endT = StrictMath.sqrt(2) * StrictMath.sqrt(Double.MAX_VALUE);
--        final double end = -2 * StrictMath.log(endT);
--
--        double maxErr = 0;
--        for (double x = start; x > end; x -= 1e-3) {
--            final double tst = FastMath.cosh(x);
--            final double ref = Math.cosh(x);
--            maxErr = FastMath.max(maxErr, FastMath.abs(ref - tst) / FastMath.ulp(ref));            
+-    public void testBigDataSetOverflow() {
+-        // MATH-1145
+-        double[] d1 = new double[110000];
+-        double[] d2 = new double[110000];
+-        for (int i = 0; i < 110000; i++) {
+-            d1[i] = i;
+-            d2[i] = i;
 -        }
--        Assert.assertEquals(0, maxErr, 3);
--
--        for (double x = start; x > end; x -= 1e-3) {
--            final double tst = FastMath.sinh(x);
--            final double ref = Math.sinh(x);
--            maxErr = FastMath.max(maxErr, FastMath.abs(ref - tst) / FastMath.ulp(ref));            
--        }
--        Assert.assertEquals(0, maxErr, 3);
+-        double result = testStatistic.mannWhitneyUTest(d1, d2);
+-        Assert.assertTrue(result == 1.0);
 -    }
--
--    @Test
-     public void testHyperbolicInverses() {
-         double maxErr = 0;
-         for (double x = -30; x < 30; x += 0.01) {
+ }

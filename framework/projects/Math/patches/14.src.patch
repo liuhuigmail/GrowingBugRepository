@@ -1,37 +1,13 @@
-diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/Weight.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/Weight.java
-index aa3299a..b8225ad 100644
---- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/Weight.java
-+++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/Weight.java
-@@ -40,7 +40,10 @@ public class Weight implements OptimizationData {
-      */
-     public Weight(double[] weight) {
-         final int dim = weight.length;
--        weightMatrix = new DiagonalMatrix(weight);
-+        weightMatrix = org.apache.commons.math3.linear.MatrixUtils.createRealMatrix(dim, dim);
-+        for (int i = 0; i < dim; i++) {
-+            weightMatrix.setEntry(i, i, weight[i]);
-+        }
-     }
+diff --git a/src/main/java/org/apache/commons/math4/analysis/solvers/UnivariateSolverUtils.java b/src/main/java/org/apache/commons/math4/analysis/solvers/UnivariateSolverUtils.java
+index 49742d84b..2521c9b5a 100644
+--- a/src/main/java/org/apache/commons/math4/analysis/solvers/UnivariateSolverUtils.java
++++ b/src/main/java/org/apache/commons/math4/analysis/solvers/UnivariateSolverUtils.java
+@@ -314,7 +314,7 @@ public class UnivariateSolverUtils {
+         double delta = 0;
  
-     /**
-diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/AbstractLeastSquaresOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/AbstractLeastSquaresOptimizer.java
-index ef52943..d12ebea 100644
---- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/AbstractLeastSquaresOptimizer.java
-+++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/AbstractLeastSquaresOptimizer.java
-@@ -264,16 +264,7 @@ public abstract class AbstractLeastSquaresOptimizer
-      * @return the square-root of the weight matrix.
-      */
-     private RealMatrix squareRoot(RealMatrix m) {
--        if (m instanceof DiagonalMatrix) {
--            final int dim = m.getRowDimension();
--            final RealMatrix sqrtM = new DiagonalMatrix(dim);
--            for (int i = 0; i < dim; i++) {
--                sqrtM.setEntry(i, i, FastMath.sqrt(m.getEntry(i, i)));
--            }
--            return sqrtM;
--        } else {
-             final EigenDecomposition dec = new EigenDecomposition(m);
-             return dec.getSquareRoot();
--        }
-     }
- }
+         for (int numIterations = 0;
+-             (numIterations < maximumIterations) && (a > lowerBound || b < upperBound);
++             (numIterations < maximumIterations) && (a > lowerBound || b > upperBound);
+              ++numIterations) {
+ 
+             final double previousA  = a;

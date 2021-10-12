@@ -1,13 +1,13 @@
-diff --git a/src/main/java/org/apache/commons/math3/distribution/MultivariateNormalDistribution.java b/src/main/java/org/apache/commons/math3/distribution/MultivariateNormalDistribution.java
-index fd18c28..1570681 100644
---- a/src/main/java/org/apache/commons/math3/distribution/MultivariateNormalDistribution.java
-+++ b/src/main/java/org/apache/commons/math3/distribution/MultivariateNormalDistribution.java
-@@ -180,7 +180,7 @@ public class MultivariateNormalDistribution
-             throw new DimensionMismatchException(vals.length, dim);
-         }
+diff --git a/src/main/java/org/apache/commons/math4/util/ResizableDoubleArray.java b/src/main/java/org/apache/commons/math4/util/ResizableDoubleArray.java
+index 7d9547c0f..6377141a0 100644
+--- a/src/main/java/org/apache/commons/math4/util/ResizableDoubleArray.java
++++ b/src/main/java/org/apache/commons/math4/util/ResizableDoubleArray.java
+@@ -287,7 +287,7 @@ public class ResizableDoubleArray implements DoubleArray, Serializable {
+         numElements = 0;
+         startIndex = 0;
  
--        return FastMath.pow(2 * FastMath.PI, -0.5 * dim) *
-+        return FastMath.pow(2 * FastMath.PI, -dim / 2) *
-             FastMath.pow(covarianceMatrixDeterminant, -0.5) *
-             getExponentTerm(vals);
+-        if (data != null && data.length > 0) {
++        if (data != null && data.length > 1) {
+             addElements(data);
+         }
      }

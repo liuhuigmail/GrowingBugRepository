@@ -1,21 +1,18 @@
-diff --git a/src/main/java/org/apache/commons/math3/util/FastMath.java b/src/main/java/org/apache/commons/math3/util/FastMath.java
-index 9dc84c6..d571325 100644
---- a/src/main/java/org/apache/commons/math3/util/FastMath.java
-+++ b/src/main/java/org/apache/commons/math3/util/FastMath.java
-@@ -310,7 +310,6 @@ public class FastMath {
-     /** 2^52 - double numbers this large must be integral (no fraction) or NaN or Infinite */
-     private static final double TWO_POWER_52 = 4503599627370496.0;
-     /** 2^53 - double numbers this large must be even. */
--    private static final double TWO_POWER_53 = 2 * TWO_POWER_52;
- 
-     /** Constant: {@value}. */
-     private static final double F_1_3 = 1d / 3d;
-@@ -1539,7 +1538,7 @@ public class FastMath {
-         /* Handle special case x<0 */
-         if (x < 0) {
-             // y is an even integer in this case
--            if (y >= TWO_POWER_53 || y <= -TWO_POWER_53) {
-+            if (y >= TWO_POWER_52 || y <= -TWO_POWER_52) {
-                 return pow(-x, y);
-             }
- 
+diff --git a/src/main/java/org/apache/commons/math3/stat/inference/KolmogorovSmirnovTest.java b/src/main/java/org/apache/commons/math3/stat/inference/KolmogorovSmirnovTest.java
+index 131d0c656..6154eeb7b 100644
+--- a/src/main/java/org/apache/commons/math3/stat/inference/KolmogorovSmirnovTest.java
++++ b/src/main/java/org/apache/commons/math3/stat/inference/KolmogorovSmirnovTest.java
+@@ -240,11 +240,10 @@ public class KolmogorovSmirnovTest {
+      * @throws NullArgumentException if either {@code x} or {@code y} is null
+      */
+     public double kolmogorovSmirnovTest(double[] x, double[] y, boolean strict) {
+-        final long lengthProduct = (long) x.length * y.length;
+-        if (lengthProduct < SMALL_SAMPLE_PRODUCT) {
++        if (x.length * y.length < SMALL_SAMPLE_PRODUCT) {
+             return exactP(kolmogorovSmirnovStatistic(x, y), x.length, y.length, strict);
+         }
+-        if (lengthProduct < LARGE_SAMPLE_PRODUCT) {
++        if (x.length * y.length < LARGE_SAMPLE_PRODUCT) {
+             return monteCarloP(kolmogorovSmirnovStatistic(x, y), x.length, y.length, strict, MONTE_CARLO_ITERATIONS);
+         }
+         return approximateP(kolmogorovSmirnovStatistic(x, y), x.length, y.length);

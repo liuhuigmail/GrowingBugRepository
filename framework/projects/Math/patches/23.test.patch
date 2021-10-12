@@ -1,59 +1,55 @@
-diff --git a/src/test/java/org/apache/commons/math3/optimization/univariate/BrentOptimizerTest.java b/src/test/java/org/apache/commons/math3/optimization/univariate/BrentOptimizerTest.java
-index 55b62ca..2151c48 100644
---- a/src/test/java/org/apache/commons/math3/optimization/univariate/BrentOptimizerTest.java
-+++ b/src/test/java/org/apache/commons/math3/optimization/univariate/BrentOptimizerTest.java
-@@ -185,43 +185,6 @@ public final class BrentOptimizerTest {
+diff --git a/src/test/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizerTest.java b/src/test/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizerTest.java
+index e0d762944..055d720cc 100644
+--- a/src/test/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizerTest.java
++++ b/src/test/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizerTest.java
+@@ -22,13 +22,11 @@ import org.apache.commons.math3.analysis.MultivariateVectorFunction;
+ import org.apache.commons.math3.exception.DimensionMismatchException;
+ import org.apache.commons.math3.exception.TooManyEvaluationsException;
+ import org.apache.commons.math3.fitting.leastsquares.LeastSquaresOptimizer.Optimum;
+-import org.apache.commons.math3.fitting.leastsquares.LeastSquaresProblem.Evaluation;
+ import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
+ import org.apache.commons.math3.linear.DiagonalMatrix;
+ import org.apache.commons.math3.linear.RealMatrix;
+ import org.apache.commons.math3.linear.RealVector;
+ import org.apache.commons.math3.linear.SingularMatrixException;
+-import org.apache.commons.math3.optim.ConvergenceChecker;
+ import org.apache.commons.math3.util.FastMath;
+ import org.apache.commons.math3.util.Precision;
+ import org.junit.Assert;
+@@ -37,8 +35,6 @@ import org.junit.Test;
+ import java.util.ArrayList;
+ import java.util.List;
+ 
+-import static org.hamcrest.CoreMatchers.is;
+-
+ /**
+  * <p>Some of the unit tests are re-implementations of the MINPACK <a
+  * href="http://www.netlib.org/minpack/ex/file17">file17</a> and <a
+@@ -268,27 +264,6 @@ public class LevenbergMarquardtOptimizerTest
+         Assert.assertEquals(radius, paramFound[2], asymptoticStandardErrorFound[2]);
      }
  
-     /**
--     * Contrived example showing that prior to the resolution of MATH-855
--     * (second revision), the algorithm would not return the best point if
--     * it happened to be the initial guess.
--     */
 -    @Test
--    public void testKeepInitIfBest() {
--        final double minSin = 3 * Math.PI / 2;
--        final double offset = 1e-8;
--        final double delta = 1e-7;
--        final UnivariateFunction f1 = new Sin();
--        final UnivariateFunction f2 = new StepFunction(new double[] { minSin, minSin + offset, minSin + 2 * offset},
--                                                       new double[] { 0, -1, 0 });
--        final UnivariateFunction f = FunctionUtils.add(f1, f2);
--        // A slightly less stringent tolerance would make the test pass
--        // even with the previous implementation.
--        final double relTol = 1e-8;
--        final UnivariateOptimizer optimizer = new BrentOptimizer(relTol, 1e-100);
--        final double init = minSin + 1.5 * offset;
--        final UnivariatePointValuePair result
--            = optimizer.optimize(200, f, GoalType.MINIMIZE,
--                                 minSin - 6.789 * delta,
--                                 minSin + 9.876 * delta,
--                                 init);
--        final int numEval = optimizer.getEvaluations();
+-    public void testEvaluationCount() {
+-        //setup
+-        LeastSquaresProblem lsp = new LinearProblem(new double[][] {{1}}, new double[] {1})
+-                .getBuilder()
+-                .checker(new ConvergenceChecker<Evaluation>() {
+-                    public boolean converged(int iteration, Evaluation previous, Evaluation current) {
+-                        return true;
+-                    }
+-                })
+-                .build();
 -
--        final double sol = result.getPoint();
--        final double expected = init;
+-        //action
+-        Optimum optimum = optimizer.optimize(lsp);
 -
--//         System.out.println("numEval=" + numEval);
--//         System.out.println("min=" + init + " f=" + f.value(init));
--//         System.out.println("sol=" + sol + " f=" + f.value(sol));
--//         System.out.println("exp=" + expected + " f=" + f.value(expected));
--
--        Assert.assertTrue("Best point not reported", f.value(sol) <= f.value(expected));
+-        //verify
+-        //check iterations and evaluations are not switched.
+-        Assert.assertThat(optimum.getIterations(), is(1));
+-        Assert.assertThat(optimum.getEvaluations(), is(2));
 -    }
 -
--    /**
-      * Contrived example showing that prior to the resolution of MATH-855,
-      * the algorithm, by always returning the last evaluated point, would
-      * sometimes not report the best point it had found.
-@@ -237,9 +200,7 @@ public final class BrentOptimizerTest {
-         final UnivariateFunction f = FunctionUtils.add(f1, f2);
-         final UnivariateOptimizer optimizer = new BrentOptimizer(1e-8, 1e-100);
-         final UnivariatePointValuePair result
--            = optimizer.optimize(200, f, GoalType.MINIMIZE,
--                                 minSin - 6.789 * delta,
--                                 minSin + 9.876 * delta);
-+            = optimizer.optimize(200, f, GoalType.MINIMIZE, minSin - 6.789 * delta, minSin + 9.876 * delta);
-         final int numEval = optimizer.getEvaluations();
- 
-         final double sol = result.getPoint();
+     //TODO delete or use
+     private static class QuadraticProblem {
+         private List<Double> x;

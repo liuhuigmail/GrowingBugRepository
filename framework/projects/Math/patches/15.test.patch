@@ -1,21 +1,27 @@
-diff --git a/src/test/java/org/apache/commons/math3/util/FastMathTest.java b/src/test/java/org/apache/commons/math3/util/FastMathTest.java
-index aee304e..282e7b2 100644
---- a/src/test/java/org/apache/commons/math3/util/FastMathTest.java
-+++ b/src/test/java/org/apache/commons/math3/util/FastMathTest.java
-@@ -158,16 +158,6 @@ public class FastMathTest {
+diff --git a/src/test/java/org/apache/commons/math3/stat/inference/KolmogorovSmirnovTestTest.java b/src/test/java/org/apache/commons/math3/stat/inference/KolmogorovSmirnovTestTest.java
+index 9ac5c7cf5..98baf6d8f 100644
+--- a/src/test/java/org/apache/commons/math3/stat/inference/KolmogorovSmirnovTestTest.java
++++ b/src/test/java/org/apache/commons/math3/stat/inference/KolmogorovSmirnovTestTest.java
+@@ -254,22 +254,6 @@ public class KolmogorovSmirnovTestTest {
+         Assert.assertEquals(0.0319983962391632, test.kolmogorovSmirnovTest(gaussian, gaussian2), TOLERANCE);
+         Assert.assertEquals(0.202352941176471, test.kolmogorovSmirnovStatistic(gaussian, gaussian2), TOLERANCE);
      }
- 
-     @Test
--    public void testMath904() {
--        final double x = -1;
--        final double y = (5 + 1e-15) * 1e15;
--        Assert.assertEquals(Math.pow(x, y),
--                            FastMath.pow(x, y), 0);
--        Assert.assertEquals(Math.pow(x, -y),
--                            FastMath.pow(x, -y), 0);
+-    
+-    /** 
+-     * MATH-1181
+-     * Verify that large sample method is selected for sample product > Integer.MAX_VALUE
+-     * (integer overflow in sample product)
+-     */
+-    @Test(timeout=5000)
+-    public void testTwoSampleProductSizeOverflow() {
+-        final int n = 50000;
+-        Assert.assertTrue(n * n < 0);
+-        double[] x = new double[n];
+-        double[] y = new double[n];
+-        final KolmogorovSmirnovTest test = new KolmogorovSmirnovTest();
+-        Assert.assertFalse(Double.isNaN(test.kolmogorovSmirnovTest(x, y)));
 -    }
--
--    @Test
-     public void testMath905LargePositive() {
-         final double start = StrictMath.log(Double.MAX_VALUE);
-         final double endT = StrictMath.sqrt(2) * StrictMath.sqrt(Double.MAX_VALUE);
+-    
+ 
+     /**
+      * Verifies that Monte Carlo simulation gives results close to exact p values. This test is a

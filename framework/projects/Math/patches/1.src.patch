@@ -1,28 +1,24 @@
-diff --git a/src/main/java/org/apache/commons/math3/fraction/BigFraction.java b/src/main/java/org/apache/commons/math3/fraction/BigFraction.java
-index 4ca33eb..ed4108d 100644
---- a/src/main/java/org/apache/commons/math3/fraction/BigFraction.java
-+++ b/src/main/java/org/apache/commons/math3/fraction/BigFraction.java
-@@ -303,9 +303,6 @@ public class BigFraction
-             if ((p2 > overflow) || (q2 > overflow)) {
-                 // in maxDenominator mode, if the last fraction was very close to the actual value
-                 // q2 may overflow in the next iteration; in this case return the last one.
--                if (epsilon == 0.0 && FastMath.abs(q1) < maxDenominator) {
--                    break;
--                }
-                 throw new FractionConversionException(value, p2, q2);
+diff --git a/src/main/java/org/apache/commons/math4/distribution/SaddlePointExpansion.java b/src/main/java/org/apache/commons/math4/distribution/SaddlePointExpansion.java
+index aea0e3c17..01b0f652a 100644
+--- a/src/main/java/org/apache/commons/math4/distribution/SaddlePointExpansion.java
++++ b/src/main/java/org/apache/commons/math4/distribution/SaddlePointExpansion.java
+@@ -159,9 +159,6 @@ final class SaddlePointExpansion {
              }
- 
-diff --git a/src/main/java/org/apache/commons/math3/fraction/Fraction.java b/src/main/java/org/apache/commons/math3/fraction/Fraction.java
-index 002dae9..8065885 100644
---- a/src/main/java/org/apache/commons/math3/fraction/Fraction.java
-+++ b/src/main/java/org/apache/commons/math3/fraction/Fraction.java
-@@ -212,9 +212,6 @@ public class Fraction
-             if ((FastMath.abs(p2) > overflow) || (FastMath.abs(q2) > overflow)) {
-                 // in maxDenominator mode, if the last fraction was very close to the actual value
-                 // q2 may overflow in the next iteration; in this case return the last one.
--                if (epsilon == 0.0 && FastMath.abs(q1) < maxDenominator) {
--                    break;
+             ret = s1;
+         } else {
+-            if (x == 0) {
+-                return mu;
+-            }
+             ret = x * FastMath.log(x / mu) + mu - x;
+         }
+         return ret;
+@@ -183,9 +180,6 @@ final class SaddlePointExpansion {
+             if (p < 0.1) {
+                 ret = -getDeviancePart(n, n * q) - n * p;
+             } else {
+-                if (n == 0) {
+-                    return 0;
 -                }
-                 throw new FractionConversionException(value, p2, q2);
+                 ret = n * FastMath.log(q);
              }
- 
+         } else if (x == n) {

@@ -1,6 +1,2 @@
-org.apache.commons.math3.analysis.function.SincTest
-org.apache.commons.math3.dfp.BracketingNthOrderBrentSolverDFPTest
-org.apache.commons.math3.dfp.DfpDecTest
-org.apache.commons.math3.dfp.DfpMathTest
-org.apache.commons.math3.dfp.DfpTest
-org.apache.commons.math3.util.FastMathTest
+org.apache.commons.math3.distribution.BinomialDistributionTest
+org.apache.commons.math3.stat.inference.BinomialTestTest

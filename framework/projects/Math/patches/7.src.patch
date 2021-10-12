@@ -1,44 +1,13 @@
-diff --git a/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java b/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
-index 6e0237f..f24f87c 100644
---- a/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
-+++ b/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
-@@ -343,10 +343,8 @@ public abstract class AbstractIntegrator implements FirstOrderIntegrator {
-                 final double[] eventY = interpolator.getInterpolatedState().clone();
+diff --git a/src/main/java/org/apache/commons/math4/util/FastMath.java b/src/main/java/org/apache/commons/math4/util/FastMath.java
+index 46c8752a0..a4a9a1b10 100644
+--- a/src/main/java/org/apache/commons/math4/util/FastMath.java
++++ b/src/main/java/org/apache/commons/math4/util/FastMath.java
+@@ -1723,7 +1723,7 @@ public class FastMath {
+             // d^(2p)
+             Split d2p = new Split(full, high, low);
  
-                 // advance all event states to current time
--                for (final EventState state : eventsStates) {
--                    state.stepAccepted(eventT, eventY);
--                    isLastStep = isLastStep || state.stop();
--                }
-+                currentEvent.stepAccepted(eventT, eventY);
-+                isLastStep = currentEvent.stop();
+-            for (long p = e; p != 0; p >>>= 1) {
++            for (long p = e; p != 0; p >>= 1) {
  
-                 // handle the first part of the step, up to the event
-                 for (final StepHandler handler : stepHandlers) {
-@@ -356,19 +354,22 @@ public abstract class AbstractIntegrator implements FirstOrderIntegrator {
-                 if (isLastStep) {
-                     // the event asked to stop integration
-                     System.arraycopy(eventY, 0, y, 0, y.length);
-+                    for (final EventState remaining : occuringEvents) {
-+                        remaining.stepAccepted(eventT, eventY);
-+                    }
-                     return eventT;
-                 }
- 
--                boolean needReset = false;
--                for (final EventState state : eventsStates) {
--                    needReset =  needReset || state.reset(eventT, eventY);
--                }
-+                boolean needReset = currentEvent.reset(eventT, eventY);
-                 if (needReset) {
-                     // some event handler has triggered changes that
-                     // invalidate the derivatives, we need to recompute them
-                     System.arraycopy(eventY, 0, y, 0, y.length);
-                     computeDerivatives(eventT, y, yDot);
-                     resetOccurred = true;
-+                    for (final EventState remaining : occuringEvents) {
-+                        remaining.stepAccepted(eventT, eventY);
-+                    }
-                     return eventT;
-                 }
- 
+                 if ((p & 0x1) != 0) {
+                     // accurate multiplication result = result * d^(2p) using Veltkamp TwoProduct algorithm

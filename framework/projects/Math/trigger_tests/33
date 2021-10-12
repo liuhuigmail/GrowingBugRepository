@@ -1,9 +1,10 @@
---- org.apache.commons.math3.optimization.linear.SimplexSolverTest::testMath781
-junit.framework.AssertionFailedError
-	at org.junit.Assert.fail(Assert.java:86)
-	at org.junit.Assert.assertTrue(Assert.java:41)
-	at org.junit.Assert.assertTrue(Assert.java:52)
-	at org.apache.commons.math3.optimization.linear.SimplexSolverTest.testMath781(SimplexSolverTest.java:45)
+--- org.apache.commons.math.optimization.linear.SimplexSolverTest::testMath290
+java.lang.NullPointerException
+	at org.apache.commons.math.optimization.linear.SimplexTableau.initialize(SimplexTableau.java:249)
+	at org.apache.commons.math.optimization.linear.SimplexTableau.<init>(SimplexTableau.java:115)
+	at org.apache.commons.math.optimization.linear.SimplexSolver.doOptimize(SimplexSolver.java:186)
+	at org.apache.commons.math.optimization.linear.AbstractLinearOptimizer.optimize(AbstractLinearOptimizer.java:106)
+	at org.apache.commons.math.optimization.linear.SimplexSolverTest.testMath290(SimplexSolverTest.java:83)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -21,7 +22,7 @@ junit.framework.AssertionFailedError
 	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
 	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnit4TestMethodAdapter.run(JUnit4TestMethodAdapter.java:109)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)
