@@ -1,0 +1,18 @@
+diff --git a/wicket-request/src/main/java/org/apache/wicket/request/Url.java b/wicket-request/src/main/java/org/apache/wicket/request/Url.java
+index 2e24b5cad7..c9ddc699f5 100755
+--- a/wicket-request/src/main/java/org/apache/wicket/request/Url.java
++++ b/wicket-request/src/main/java/org/apache/wicket/request/Url.java
+@@ -714,12 +714,8 @@ public class Url implements Serializable
+ 
+ 
+ 		result.append(path);
+         
+-        final String queryString = getQueryString(charset);
+-        if (queryString != null)
+-        {
+-            result.append('?').append(queryString);
+-        }
++		result.append(getQueryString(charset));
+ 		return result.toString();
+ 	}
+ 

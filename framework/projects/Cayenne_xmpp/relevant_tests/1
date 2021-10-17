@@ -1,0 +1,2 @@
+org.apache.cayenne.event.XMPPBridgeProviderTest
+org.apache.cayenne.event.XMPPModuleIT

@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,e41a6523c0dc266b3f6d05e4e586dee9a91c8d17,a382917f7f5b502d72277de9a29b3fcca67209ca,WICKET-5442,https://issues.apache.org/jira/browse/WICKET-5442
+2,f0a6399c0bda530513734a6c76c7941d028b4c6f,2fc6a3957da8b59443afb6e97e849510983a411b,WICKET-5720,https://issues.apache.org/jira/browse/WICKET-5720
+3,988f0fa57195ed60fcf1ac00d1023ca024647ca5,bcea89fc8a196d2e1ebdcecf9c81298a06b4f5cb,WICKET-5751,https://issues.apache.org/jira/browse/WICKET-5751
+4,1861b9f7b6f0b47a14a2337a3ab47be7d4baac39,e93fdd5ab088d8638c5f1f58e2d337823cbcc020,WICKET-5838,https://issues.apache.org/jira/browse/WICKET-5838

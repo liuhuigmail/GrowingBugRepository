@@ -1,0 +1,13 @@
+diff --git a/wicket-request/src/main/java/org/apache/wicket/request/Url.java b/wicket-request/src/main/java/org/apache/wicket/request/Url.java
+index 9ca2c0d8b4..12ca5f0b4d 100755
+--- a/wicket-request/src/main/java/org/apache/wicket/request/Url.java
++++ b/wicket-request/src/main/java/org/apache/wicket/request/Url.java
+@@ -674,7 +674,7 @@ public class Url implements Serializable
+ 				result.append(port);
+ 			}
+ 
+-			if (segments.contains(".."))
++			if (path.contains(".."))
+ 			{
+ 				throw new IllegalStateException("Cannot render this url in " +
+ 					StringMode.FULL.name() + " mode because it has a `..` segment: " + toString());

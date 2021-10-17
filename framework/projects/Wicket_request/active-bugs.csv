@@ -1,0 +1,7 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,e0d2b7c38188f34d669a47c6f22d8965fa0c295a,518c933bb31c35b736253936ba080ac21e6cb19f,WICKET-5114,https://issues.apache.org/jira/browse/WICKET-5114
+2,908dc6f8e429270e2ae95d7049a28db3e9bbef91,961f2477660925a111c581660909c5632d15ef4b,WICKET-5157,https://issues.apache.org/jira/browse/WICKET-5157
+3,ff4ebd898e1f6a88979fb5a5bb078498e391adaa,2fcb34178a13b54e9718f40b0b4fe19475fa5dad,WICKET-4664,https://issues.apache.org/jira/browse/WICKET-4664
+4,f5d586b9b039a4b16e6e856f1a5d9947ce737074,a9e56e1e8d75ac87a5db4a55dadb52de7d90f770,WICKET-5259,https://issues.apache.org/jira/browse/WICKET-5259
+5,ad1b70e2fae5a8eb808dbb0fd27caf48ea0710be,f45ce896d02aeda3c09d56bc4ceac425929973a1,WICKET-5698,https://issues.apache.org/jira/browse/WICKET-5698
+6,1cb35a0670c29536ff35a7f91aa9b2e88e85fb79,cf6172bd5acceac19f4322dcf7ce2ec7aef76a38,WICKET-5770,https://issues.apache.org/jira/browse/WICKET-5770

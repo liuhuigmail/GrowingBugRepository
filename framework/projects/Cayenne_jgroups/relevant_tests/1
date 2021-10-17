@@ -1,0 +1,2 @@
+org.apache.cayenne.event.JGroupsModuleIT
+org.apache.cayenne.event.JavaGroupsBridgeProviderTest

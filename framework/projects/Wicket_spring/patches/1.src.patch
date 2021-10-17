@@ -1,0 +1,13 @@
+diff --git a/wicket-spring/src/main/java/org/apache/wicket/spring/injection/annot/AnnotProxyFieldValueFactory.java b/wicket-spring/src/main/java/org/apache/wicket/spring/injection/annot/AnnotProxyFieldValueFactory.java
+index 54d11de842..6b7d071164 100644
+--- a/wicket-spring/src/main/java/org/apache/wicket/spring/injection/annot/AnnotProxyFieldValueFactory.java
++++ b/wicket-spring/src/main/java/org/apache/wicket/spring/injection/annot/AnnotProxyFieldValueFactory.java
+@@ -124,7 +123,7 @@ public class AnnotProxyFieldValueFactory implements IFieldValueFactory
+ 			{
+ 				Named named = field.getAnnotation(Named.class);
+ 				name = named != null ? named.value() : "";
+-				required = true;
++				required = false;
+ 			}
+ 
+ 			String beanName = getBeanName(field, name, required);

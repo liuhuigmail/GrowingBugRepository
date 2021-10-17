@@ -138,3 +138,9 @@ Tiles_core	tiles-core	https://github.com/apache/tiles.git	jira	TILES	/(TILES-\\d
 Twill_dcore	twill-discovery-core	https://github.com/apache/twill.git	jira	TWILL	/(TWILL-\\d+)/mi	twill-discovery-core
 Maven2_artifact	maven-artifact	https://github.com/apache/maven-2.git	jira	MNG	/(MNG-\\d+)/mi	maven-artifact	
 Maven2_project	maven-project	https://github.com/apache/maven-2.git	jira	MNG	/(MNG-\\d+)/mi	maven-project	
+Wicket_request	wicket-request	https://github.com/apache/wicket.git	jira	WICKET	/(WICKET-\\d+)/mi	wicket-request	
+Cayenne_xmpp	cayenne-xmpp	https://github.com/apache/cayenne.git	jira	CAY	/(CAY-\\d+)/mi	cayenne-xmpp	
+Wicket_util	wicket-util	https://github.com/apache/wicket.git	jira	WICKET	/(WICKET-\\d+)/mi	wicket-util	
+Wicket_spring	wicket-spring	https://github.com/apache/wicket.git	jira	WICKET	/(WICKET-\\d+)/mi	wicket-spring	
+Cayenne_jgroups	cayenne-jgroups	https://github.com/apache/cayenne.git	jira	CAY	/(CAY-\\d+)/mi	cayenne-jgroups	
+Cayenne_jms	cayenne-jms	https://github.com/apache/cayenne.git	jira	CAY	/(CAY-\\d+)/mi	cayenne-jms	

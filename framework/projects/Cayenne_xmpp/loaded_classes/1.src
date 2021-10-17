@@ -1,0 +1,3 @@
+org.apache.cayenne.event.XMPPBridge
+org.apache.cayenne.event.XMPPBridgeProvider
+org.apache.cayenne.event.XMPPModule

@@ -1,0 +1,27 @@
+diff --git a/cayenne-jms/src/test/java/org/apache/cayenne/event/JMSModuleIT.java b/cayenne-jms/src/test/java/org/apache/cayenne/event/JMSModuleIT.java
+index 459fff71f..c8391eab6 100644
+--- a/cayenne-jms/src/test/java/org/apache/cayenne/event/JMSModuleIT.java
++++ b/cayenne-jms/src/test/java/org/apache/cayenne/event/JMSModuleIT.java
+@@ -28,7 +28,6 @@ import org.apache.cayenne.di.Module;
+ import org.junit.Test;
+ 
+ import static org.hamcrest.CoreMatchers.instanceOf;
+-import static org.junit.Assert.assertNotSame;
+ import static org.junit.Assert.assertThat;
+ 
+ /**
+@@ -46,13 +45,9 @@ public class JMSModuleIT {
+         };
+ 
+         Injector injector = DIBootstrap.createInjector(new ServerModule(), new JMSModule(), configModule);
+-
+         EventBridge bridge = injector.getInstance(EventBridge.class);
+-        assertThat(bridge, instanceOf(JMSBridge.class));
+ 
+-        EventBridge bridge2 = injector.getInstance(EventBridge.class);
+-        assertThat(bridge2, instanceOf(JMSBridge.class));
+-        assertNotSame(bridge, bridge2);
++        assertThat(bridge, instanceOf(JMSBridge.class));
+     }
+ 
+ }

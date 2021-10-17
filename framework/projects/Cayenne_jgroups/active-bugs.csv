@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,4724ab3f97869620397e8801f97f9b88be8d972d,e338bbaf356060b1437e2bd3dbf0c7ca10c7efce,CAY-2505,https://issues.apache.org/jira/browse/CAY-2505

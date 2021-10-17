@@ -1,0 +1,27 @@
+diff --git a/cayenne-jgroups/src/test/java/org/apache/cayenne/event/JGroupsModuleIT.java b/cayenne-jgroups/src/test/java/org/apache/cayenne/event/JGroupsModuleIT.java
+index 75f5521ff..cc5e7e0b6 100644
+--- a/cayenne-jgroups/src/test/java/org/apache/cayenne/event/JGroupsModuleIT.java
++++ b/cayenne-jgroups/src/test/java/org/apache/cayenne/event/JGroupsModuleIT.java
+@@ -28,7 +28,6 @@ import org.apache.cayenne.di.Module;
+ import org.junit.Test;
+ 
+ import static org.hamcrest.CoreMatchers.instanceOf;
+-import static org.junit.Assert.assertNotSame;
+ import static org.junit.Assert.assertThat;
+ 
+ /**
+@@ -46,13 +45,9 @@ public class JGroupsModuleIT {
+         };
+ 
+         Injector injector = DIBootstrap.createInjector(new ServerModule(), new JGroupsModule(), configModule);
+-
+         EventBridge bridge = injector.getInstance(EventBridge.class);
+-        assertThat(bridge, instanceOf(JavaGroupsBridge.class));
+ 
+-        EventBridge bridge2 = injector.getInstance(EventBridge.class);
+-        assertThat(bridge2, instanceOf(JavaGroupsBridge.class));
+-        assertNotSame(bridge, bridge2);
++        assertThat(bridge, instanceOf(JavaGroupsBridge.class));
+     }
+ 
+ }

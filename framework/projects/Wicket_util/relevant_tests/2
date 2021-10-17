@@ -1,0 +1,13 @@
+org.apache.wicket.util.convert.converter.BigIntegerConverterTest
+org.apache.wicket.util.convert.converters.ConvertersTest
+org.apache.wicket.util.encoding.UrlDecoderTest
+org.apache.wicket.util.file.FilesTest
+org.apache.wicket.util.file.WebXmlFileTest
+org.apache.wicket.util.io.LastModifiedTest
+org.apache.wicket.util.io.XmlReaderTest
+org.apache.wicket.util.resource.ResourceUtilsTest
+org.apache.wicket.util.string.StringListTest
+org.apache.wicket.util.string.StringValueTest
+org.apache.wicket.util.string.StringsTest
+org.apache.wicket.util.string.interpolator.VariableInterpolatorTest
+org.apache.wicket.util.value.ValueMapTest

@@ -1,0 +1,8 @@
+org.apache.wicket.util.io.LastModifiedTest
+org.apache.wicket.util.string.StringValueTest
+org.apache.wicket.util.time.DurationTest
+org.apache.wicket.util.time.TimeFrameTest
+org.apache.wicket.util.time.TimeMapTest
+org.apache.wicket.util.time.TimeOfDayTest
+org.apache.wicket.util.time.TimeTest
+org.apache.wicket.util.value.ValueMapTest

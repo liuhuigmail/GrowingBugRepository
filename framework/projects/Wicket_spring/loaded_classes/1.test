@@ -1,0 +1,6 @@
+org.apache.wicket.spring.injection.annot.AnnotProxyFieldValueFactoryTest
+org.apache.wicket.spring.injection.annot.JavaxInjectAnnotProxyFieldValueFactoryTest
+org.apache.wicket.spring.injection.util.Bean
+org.apache.wicket.spring.injection.util.Bean2
+org.apache.wicket.spring.injection.util.InjectableInterface
+org.apache.wicket.spring.injection.util.JavaxInjectInjectable

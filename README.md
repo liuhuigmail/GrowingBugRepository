@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a concise pat
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1344`** bugs
+ **`1358`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -149,6 +149,12 @@ from open-source Java projects.
 | 138     | Maven2_artifact            | maven-artifact |  maven-artifact   |       2     | 1-2              |
 | 139     | Maven2_project            | maven-project |  maven-project   |       2     | 1-2              |
 | 140     | Math            | commons-math               |                          |      35       | 1-35               |
+| 141     | Wicket_request            | wicket-request               |     wicket-request                     |      6       | 1-6               |
+| 142     | Cayenne_xmpp            | cayenne-xmpp               |    cayenne-xmpp                      |      1       | 1               |
+| 143     | Wicket_util            | wicket-util               |     wicket-util                     |     4       | 1-4               |
+| 144     | Wicket_spring            | wicket-spring               |        wicket-spring                  |      1       | 1               |
+| 145     | Cayenne_jgroups            | cayenne-jgroups               |    cayenne-jgroups                      |      1       | 1               |
+| 146     | Cayenne_jms            | cayenne-jms               |     cayenne-jms                     |      1       | 1               |
 
 # Setting up GrowingBugs
 

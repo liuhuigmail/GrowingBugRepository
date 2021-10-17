@@ -1,0 +1,35 @@
+diff --git a/wicket-util/src/test/java/org/apache/wicket/util/string/StringsTest.java b/wicket-util/src/test/java/org/apache/wicket/util/string/StringsTest.java
+index b0e39705f0..182b476b89 100644
+--- a/wicket-util/src/test/java/org/apache/wicket/util/string/StringsTest.java
++++ b/wicket-util/src/test/java/org/apache/wicket/util/string/StringsTest.java
+@@ -17,8 +17,6 @@
+ package org.apache.wicket.util.string;
+ 
+ import java.io.UnsupportedEncodingException;
+-import java.util.Arrays;
+-import java.util.List;
+ 
+ import org.apache.wicket.util.lang.Args;
+ import org.junit.Assert;
+@@ -555,20 +553,7 @@ public class StringsTest extends Assert
+ 		assertTrue(exceptionString.length() > 1);
+ 		assertTrue(exceptionString.contains("RuntimeException"));
+ 	}
+-	
+-	/**
+-	 * Tests the <code>join</code> method.
+-	 */
+-	@Test
+-	public void testJoin() throws Exception
+-	{
+-		List<String> fragments = Arrays.asList("foo", "bar", "baz");
+-		
+-		assertEquals("foo-bar-baz", Strings.join("-", fragments));
+-		
+-		//empty separator
+-		assertEquals("foobarbaz", Strings.join("", fragments));		
+-	}
++
+ 	/**
+ 	 * Asserts that both string arrays are equal.
+ 	 * 

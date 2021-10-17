@@ -1,0 +1,12 @@
+diff --git a/cayenne-jgroups/src/main/java/org/apache/cayenne/event/JGroupsModule.java b/cayenne-jgroups/src/main/java/org/apache/cayenne/event/JGroupsModule.java
+index dcbea94af..77738c317 100644
+--- a/cayenne-jgroups/src/main/java/org/apache/cayenne/event/JGroupsModule.java
++++ b/cayenne-jgroups/src/main/java/org/apache/cayenne/event/JGroupsModule.java
+@@ -58,6 +58,6 @@ public class JGroupsModule implements Module {
+         contributeMulticastAddress(binder, JavaGroupsBridge.MCAST_ADDRESS_DEFAULT);
+         contributeMulticastPort(binder, JavaGroupsBridge.MCAST_PORT_DEFAULT_INT);
+ 
+-        binder.bind(EventBridge.class).toProvider(JavaGroupsBridgeProvider.class).withoutScope();
++        binder.bind(EventBridge.class).toProvider(JavaGroupsBridgeProvider.class);
+     }
+ }

@@ -1,0 +1,34 @@
+diff --git a/wicket-util/src/test/java/org/apache/wicket/util/time/TimeOfDayTest.java b/wicket-util/src/test/java/org/apache/wicket/util/time/TimeOfDayTest.java
+index 2dc79493e4..544a71183f 100644
+--- a/wicket-util/src/test/java/org/apache/wicket/util/time/TimeOfDayTest.java
++++ b/wicket-util/src/test/java/org/apache/wicket/util/time/TimeOfDayTest.java
+@@ -33,7 +33,6 @@ public final class TimeOfDayTest extends Assert
+ 	public void test()
+ 	{
+ 		assertEquals(0, TimeOfDay.MIDNIGHT.hour());
+-		assertEquals(21, TimeOfDay.time(9, 30, TimeOfDay.PM).hour());
+ 		assertEquals(TimeOfDay.MIDNIGHT, TimeOfDay.valueOf(TimeOfDay.MIDNIGHT.next()));
+ 
+ 		final TimeOfDay three = TimeOfDay.time(3, 0, TimeOfDay.PM);
+diff --git a/wicket-util/src/test/java/org/apache/wicket/util/time/TimeTest.java b/wicket-util/src/test/java/org/apache/wicket/util/time/TimeTest.java
+index cc88b83a40..cbd9c21df0 100644
+--- a/wicket-util/src/test/java/org/apache/wicket/util/time/TimeTest.java
++++ b/wicket-util/src/test/java/org/apache/wicket/util/time/TimeTest.java
+@@ -53,17 +53,4 @@ public final class TimeTest extends Assert
+ 
+ 		assertEquals(y2k, Time.valueOf(y2k).toString());
+ 	}
+-
+-	/**
+-	 * WICKET-5442 getHour() should be on 24-hour clock
+-	 */
+-	@Test
+-	public void hour() throws Exception
+-	{
+-
+-		Time time = Time.valueOf("2000.10.30-9.30PM");
+-
+-		assertEquals(21, time.getHour());
+-	}
+-
+ }

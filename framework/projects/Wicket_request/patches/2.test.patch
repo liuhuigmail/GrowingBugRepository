@@ -1,0 +1,24 @@
+diff --git a/wicket-request/src/test/java/org/apache/wicket/request/UrlTest.java b/wicket-request/src/test/java/org/apache/wicket/request/UrlTest.java
+index 49df8de9e4..9daedf57e8 100644
+--- a/wicket-request/src/test/java/org/apache/wicket/request/UrlTest.java
++++ b/wicket-request/src/test/java/org/apache/wicket/request/UrlTest.java
+@@ -965,19 +965,4 @@ public class UrlTest extends Assert
+ 		url = Url.parse("/path");
+ 		assertFalse(url.isFull());
+ 	}
+-
+-	/**
+-	 * Should accept parameter values containing equals sign(s)
+-	 * https://issues.apache.org/jira/browse/WICKET-5157
+-	 */
+-	@Test
+-	public void parseQueryStringWithEqualsSignInParameterValue()
+-	{
+-		String s = "/?a=b=c&d=e=f";
+-		Url url = Url.parse(s);
+-		assertTrue(url.isContextAbsolute());
+-		checkSegments(url, "", "");
+-		checkQueryParams(url, "a", "b=c", "d", "e=f");
+-	}
+-
+ }

@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,450d89da0b8a322ea99c943e726d654728264b66,8e794fc468c1142b218d33ea3cbb67584d6c1441,WICKET-5686,https://issues.apache.org/jira/browse/WICKET-5686

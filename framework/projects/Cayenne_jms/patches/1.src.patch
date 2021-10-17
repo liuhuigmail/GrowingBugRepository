@@ -1,0 +1,12 @@
+diff --git a/cayenne-jms/src/main/java/org/apache/cayenne/event/JMSModule.java b/cayenne-jms/src/main/java/org/apache/cayenne/event/JMSModule.java
+index 7e87dc718..b532bc545 100644
+--- a/cayenne-jms/src/main/java/org/apache/cayenne/event/JMSModule.java
++++ b/cayenne-jms/src/main/java/org/apache/cayenne/event/JMSModule.java
+@@ -49,6 +49,6 @@ public class JMSModule implements Module {
+         // init properties' defaults
+         contributeTopicConnectionFactory(binder, JMSBridge.TOPIC_CONNECTION_FACTORY_DEFAULT);
+ 
+-        binder.bind(EventBridge.class).toProvider(JMSBridgeProvider.class).withoutScope();
++        binder.bind(EventBridge.class).toProvider(JMSBridgeProvider.class);
+     }
+ }

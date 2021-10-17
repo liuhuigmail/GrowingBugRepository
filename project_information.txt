@@ -99,6 +99,10 @@ https://github.com/apache/mina-vysper.git	vysper-nbxml
 https://github.com/wildfly/wildfly-naming-client.git	wildfly-naming-client
 https://github.com/apache/xmlgraphics-commons.git	xmlgraphics-commons
 https://github.com/haidaros/defects4j-math.git	commons-math4j
-
-
+https://github.com/apache/wicket.git	wicket-request
+https://github.com/apache/cayenne.git	cayenne-xmpp
+https://github.com/apache/wicket.git	wicket-util
+https://github.com/apache/wicket.git	wicket-spring
+https://github.com/apache/cayenne.git	cayenne-jgroups
+https://github.com/apache/cayenne.git	cayenne-jms
 

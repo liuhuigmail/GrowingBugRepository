@@ -1,0 +1,13 @@
+diff --git a/wicket-util/src/main/java/org/apache/wicket/util/time/Time.java b/wicket-util/src/main/java/org/apache/wicket/util/time/Time.java
+index 2aac2be5b5..cc5f630b97 100755
+--- a/wicket-util/src/main/java/org/apache/wicket/util/time/Time.java
++++ b/wicket-util/src/main/java/org/apache/wicket/util/time/Time.java
+@@ -349,7 +349,7 @@ public final class Time extends AbstractTime
+ 	 */
+ 	public int getHour(final Calendar calendar)
+ 	{
+-		return get(calendar, Calendar.HOUR_OF_DAY);
++		return get(calendar, Calendar.HOUR);
+ 	}
+ 
+ 	/**

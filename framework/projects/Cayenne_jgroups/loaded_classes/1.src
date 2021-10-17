@@ -1,0 +1,3 @@
+org.apache.cayenne.event.JavaGroupsBridge
+org.apache.cayenne.event.JavaGroupsBridgeProvider
+org.apache.cayenne.event.JGroupsModule

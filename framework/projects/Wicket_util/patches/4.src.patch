@@ -1,0 +1,12 @@
+diff --git a/wicket-util/src/main/java/org/apache/wicket/util/io/Connections.java b/wicket-util/src/main/java/org/apache/wicket/util/io/Connections.java
+index 167cefd71c..5336af676f 100644
+--- a/wicket-util/src/main/java/org/apache/wicket/util/io/Connections.java
++++ b/wicket-util/src/main/java/org/apache/wicket/util/io/Connections.java
+@@ -57,6 +57,7 @@ public class Connections
+ 
+ 		// otherwise open the url and proceed
+ 		URLConnection connection = url.openConnection();
++		connection.setDoInput(false);
+ 
+ 		final long milliseconds;
+ 

@@ -1,0 +1,4 @@
+org.apache.wicket.spring.injection.annot.AnnotProxyFieldValueFactory
+org.apache.wicket.spring.injection.annot.SpringBean
+org.apache.wicket.spring.ISpringContextLocator
+org.apache.wicket.spring.test.ApplicationContextMock

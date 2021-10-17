@@ -1,0 +1,12 @@
+diff --git a/cayenne-xmpp/src/main/java/org/apache/cayenne/event/XMPPModule.java b/cayenne-xmpp/src/main/java/org/apache/cayenne/event/XMPPModule.java
+index 4e02504cd..83c8f0aad 100644
+--- a/cayenne-xmpp/src/main/java/org/apache/cayenne/event/XMPPModule.java
++++ b/cayenne-xmpp/src/main/java/org/apache/cayenne/event/XMPPModule.java
+@@ -66,6 +66,6 @@ public class XMPPModule implements Module {
+         // init properties' defaults
+         contributeChatService(binder, XMPPBridge.DEFAULT_CHAT_SERVICE);
+ 
+-        binder.bind(EventBridge.class).toProvider(XMPPBridgeProvider.class).withoutScope();
++        binder.bind(EventBridge.class).toProvider(XMPPBridgeProvider.class);
+     }
+ }

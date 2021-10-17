@@ -1,0 +1,13 @@
+diff --git a/wicket-util/src/main/java/org/apache/wicket/util/string/Strings.java b/wicket-util/src/main/java/org/apache/wicket/util/string/Strings.java
+index fdb75a471c..f3ebe1bca1 100755
+--- a/wicket-util/src/main/java/org/apache/wicket/util/string/Strings.java
++++ b/wicket-util/src/main/java/org/apache/wicket/util/string/Strings.java
+@@ -677,7 +677,7 @@ public final class Strings
+ 				{
+ 					boolean lhsClosed = fragments[i - 1].endsWith(separator);
+ 					boolean rhsClosed = fragment.startsWith(separator);
+-					if (!Strings.isEmpty(separator) && lhsClosed && rhsClosed)
++					if (lhsClosed && rhsClosed)
+ 					{
+ 						buff.append(fragment.substring(1));
+ 					}

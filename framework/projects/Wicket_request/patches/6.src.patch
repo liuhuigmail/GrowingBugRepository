@@ -1,0 +1,25 @@
+diff --git a/wicket-request/src/main/java/org/apache/wicket/request/mapper/parameter/PageParametersEncoder.java b/wicket-request/src/main/java/org/apache/wicket/request/mapper/parameter/PageParametersEncoder.java
+index aa095deea2..13e45ec64b 100644
+--- a/wicket-request/src/main/java/org/apache/wicket/request/mapper/parameter/PageParametersEncoder.java
++++ b/wicket-request/src/main/java/org/apache/wicket/request/mapper/parameter/PageParametersEncoder.java
+@@ -18,7 +18,6 @@ package org.apache.wicket.request.mapper.parameter;
+ 
+ import org.apache.wicket.request.Url;
+ import org.apache.wicket.request.Url.QueryParameter;
+-import org.apache.wicket.util.string.Strings;
+ 
+ /**
+  * Simple encoder with direct indexed/named parameters mapping.
+@@ -48,11 +47,8 @@ public class PageParametersEncoder implements IPageParametersEncoder
+ 
+ 		for (QueryParameter p : url.getQueryParameters())
+ 		{
+ 			String parameterName = p.getName();
+-			if (Strings.isEmpty(parameterName) == false)
+-			{
+-				parameters.add(parameterName, p.getValue(), INamedParameters.Type.QUERY_STRING);
+-			}
++			parameters.add(parameterName, p.getValue(), INamedParameters.Type.QUERY_STRING);
+ 		}
+ 
+ 		return parameters.isEmpty() ? null : parameters;

@@ -1,0 +1,3 @@
+org.apache.cayenne.event.JMSBridge
+org.apache.cayenne.event.JMSBridgeProvider
+org.apache.cayenne.event.JMSModule

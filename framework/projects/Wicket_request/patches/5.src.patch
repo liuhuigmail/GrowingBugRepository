@@ -1,0 +1,18 @@
+diff --git a/wicket-request/src/main/java/org/apache/wicket/request/mapper/CompoundRequestMapper.java b/wicket-request/src/main/java/org/apache/wicket/request/mapper/CompoundRequestMapper.java
+index 94635b392a..bbd6277ca6 100644
+--- a/wicket-request/src/main/java/org/apache/wicket/request/mapper/CompoundRequestMapper.java
++++ b/wicket-request/src/main/java/org/apache/wicket/request/mapper/CompoundRequestMapper.java
+@@ -251,12 +251,7 @@ public class CompoundRequestMapper implements ICompoundRequestMapper
+ 
+ 		for (IRequestMapper mapper : this)
+ 		{
+-			if (mapper instanceof ICompoundRequestMapper)
+-			{
+-				ICompoundRequestMapper inner = (ICompoundRequestMapper) mapper;
+-				inner.unmount(path);
+-			}
+-			else if (mapper.mapRequest(request) != null)
++			if (mapper.mapRequest(request) != null)
+ 			{
+ 				remove(mapper);
+ 			}

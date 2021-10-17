@@ -1,0 +1,13 @@
+diff --git a/wicket-util/src/main/java/org/apache/wicket/util/collections/IntHashMap.java b/wicket-util/src/main/java/org/apache/wicket/util/collections/IntHashMap.java
+index 7a8d180929..7b377fc9c9 100644
+--- a/wicket-util/src/main/java/org/apache/wicket/util/collections/IntHashMap.java
++++ b/wicket-util/src/main/java/org/apache/wicket/util/collections/IntHashMap.java
+@@ -1145,8 +1145,7 @@ public class IntHashMap<V> implements Cloneable, Serializable
+ 	private void readObject(final java.io.ObjectInputStream s) throws IOException,
+ 		ClassNotFoundException
+ 	{
+-		modCount = new AtomicInteger(0);
+ 
+ 		// Read in the threshold, loadfactor, and any hidden stuff
+ 		s.defaultReadObject();
+ 
