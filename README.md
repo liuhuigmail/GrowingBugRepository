@@ -212,6 +212,7 @@ from open-source Java projects.
 
 Currently, we resuse all APIs of **Defects4J** (more details at  https://github.com/rjust/defects4j), and thus all applications relying on **Defects4J** could be transferred smoothly to **GrowingBugs**. 
 
+GrowingBugRepository's docker image has been uploaded to Ali Cloud, you can use `docker pull registry.cn-hangzhou.aliyuncs.com/bit-zhuzhihao/growingbugrepository:0.2` to pull.
 
 
 ## Copyright
