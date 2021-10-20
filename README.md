@@ -1,6 +1,6 @@
 # A bug repository that keeps growing, called ***growingBugs***
 
-Notably, each bug is composed of a buggy version, a fixed version, a concise patch (bug-fixing changes only), and one or more triggering test cases.
+Notably, each bug is composed of a buggy version, a fixed version, a ***concise patch*** (bug-fixing changes only), and one or more triggering test cases.
 
 # Contents of growingBugs
 To date, growingBugs contains 
@@ -212,8 +212,12 @@ from open-source Java projects.
 
 Currently, we resuse all APIs of **Defects4J** (more details at  https://github.com/rjust/defects4j), and thus all applications relying on **Defects4J** could be transferred smoothly to **GrowingBugs**. 
 
-GrowingBugRepository's docker image has been uploaded to Ali Cloud, you can use `docker pull registry.cn-hangzhou.aliyuncs.com/bit-zhuzhihao/growingbugrepository:0.2` to pull.
+## Docker Image
+To free users (especially beginers) of the repository from the complex configuration of the environments, we create and publish a Docker image of the system. You may download it by the following command:
 
+- `docker pull registry.cn-hangzhou.aliyuncs.com/bit-zhuzhihao/growingbugrepository:0.2`
+
+By simply loading the image with Docker, you can make the system ready for evaluation where all configurations (e.g., Java versions, patch settings, and even all data within the repository) should have been well set.  
 
 ## Copyright
 Notably, this bug repository is based on the well-known **Defects4J** https://github.com/rjust/defects4j. We reuse its source code as well as the bugs in **Defects4J**. The key difference is that **growingBugs** levearages **BugBuilder**[1] to exclude bug-irrelevarange changes from bug-fixing commmits automatically whereas **Defects4J** requests human experts to accomplish the same task. Consequently, **growingBugs** can keep growing automatically even ***without human intervention***.  
