@@ -1,0 +1,7 @@
+org.apache.wicket.core.request.mapper.AbstractMapperTest
+org.apache.wicket.core.request.mapper.CryptoMapperTest
+org.apache.wicket.core.request.mapper.TestMapperContext
+org.apache.wicket.MockComponent
+org.apache.wicket.MockPage
+org.apache.wicket.pageStore.memory.DummyPageManagerContext
+org.apache.wicket.versioning.InMemoryPageStore

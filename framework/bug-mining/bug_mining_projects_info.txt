@@ -144,3 +144,6 @@ Wicket_util	wicket-util	https://github.com/apache/wicket.git	jira	WICKET	/(WICKE
 Wicket_spring	wicket-spring	https://github.com/apache/wicket.git	jira	WICKET	/(WICKET-\\d+)/mi	wicket-spring	
 Cayenne_jgroups	cayenne-jgroups	https://github.com/apache/cayenne.git	jira	CAY	/(CAY-\\d+)/mi	cayenne-jgroups	
 Cayenne_jms	cayenne-jms	https://github.com/apache/cayenne.git	jira	CAY	/(CAY-\\d+)/mi	cayenne-jms	
+Struts1_core	struts1-core	https://github.com/apache/struts1.git	jira	STR	/(STR-\\d+)/mi	core	
+Wicket_cdi	wicket-cdi	https://github.com/apache/wicket.git	jira	WICKET	/(WICKET-\\d+)/mi	wicket-cdi	
+Wicket_core	wicket-core	https://github.com/apache/wicket.git	jira	WICKET	/(WICKET-\\d+)/mi	wicket-core	

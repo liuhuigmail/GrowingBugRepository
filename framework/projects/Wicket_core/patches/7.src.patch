@@ -1,0 +1,13 @@
+diff --git a/wicket-core/src/main/java/org/apache/wicket/request/resource/PackageResourceReference.java b/wicket-core/src/main/java/org/apache/wicket/request/resource/PackageResourceReference.java
+index cc7273173d..ea2ddb6817 100644
+--- a/wicket-core/src/main/java/org/apache/wicket/request/resource/PackageResourceReference.java
++++ b/wicket-core/src/main/java/org/apache/wicket/request/resource/PackageResourceReference.java
+@@ -173,7 +173,7 @@ public class PackageResourceReference extends ResourceReference
+ 	private String internalGetMinifiedName()
+ 	{
+ 		String minifiedName = MINIFIED_NAMES_CACHE.get(this);
+-		if (minifiedName != null)
++		if (minifiedName != null && minifiedName != NO_MINIFIED_NAME)
+ 		{
+ 			return minifiedName;
+ 		}

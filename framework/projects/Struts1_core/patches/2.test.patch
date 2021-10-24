@@ -1,0 +1,19 @@
+diff --git a/core/src/test/java/org/apache/struts/validator/TestValidWhen.java b/core/src/test/java/org/apache/struts/validator/TestValidWhen.java
+index 7ee415ed5..ad57d837e 100644
+--- a/core/src/test/java/org/apache/struts/validator/TestValidWhen.java
++++ b/core/src/test/java/org/apache/struts/validator/TestValidWhen.java
+@@ -198,14 +198,6 @@ public class TestValidWhen extends TestCase {
+ 
+         // Null
+         doParse("(*this* == null)", testBean, 0, "stringValue2", true);
+-
+-        // 0-length empty string
+-        testBean.setStringValue2("");
+-        doParse("(*this* == null)", testBean, 0, "stringValue2", true);
+-
+-        // N-length empty string
+-        testBean.setStringValue2("  ");
+-        doParse("(*this* == null)", testBean, 0, "stringValue2", true);
+     }
+ 
+     /**

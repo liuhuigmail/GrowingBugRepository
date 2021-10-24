@@ -1,0 +1,13 @@
+diff --git a/wicket-core/src/main/java/org/apache/wicket/validation/validator/UrlValidator.java b/wicket-core/src/main/java/org/apache/wicket/validation/validator/UrlValidator.java
+index b7eee1510a..a259c51175 100644
+--- a/wicket-core/src/main/java/org/apache/wicket/validation/validator/UrlValidator.java
++++ b/wicket-core/src/main/java/org/apache/wicket/validation/validator/UrlValidator.java
+@@ -115,7 +115,7 @@ public class UrlValidator implements IValidator<String>
+ 	private static final int PARSE_AUTHORITY_PORT = 4;
+ 	private static final int PARSE_AUTHORITY_EXTRA = 5; // Should always be empty.
+ 
+-	private static final String PATH_PATTERN = "^(/[-\\w:@&?=+,.!/~*'%$_;\\(\\)]*)?$";
++	private static final String PATH_PATTERN = "^(/[-\\w:@&?=+,.!/~*'%$_;]*)?$";
+ 
+ 	private static final String QUERY_PATTERN = "^(.*)$";
+ 

@@ -1,0 +1,2 @@
+org.apache.wicket.settings.DebugSettingsTest
+org.apache.wicket.util.tester.TagTesterTest

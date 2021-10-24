@@ -1,0 +1,2 @@
+--- org.apache.wicket.core.request.mapper.AbstractBookmarkableMapperTest::testProcessHybridWithAuthorizationException
+org.apache.wicket.RestartResponseAtInterceptPageException

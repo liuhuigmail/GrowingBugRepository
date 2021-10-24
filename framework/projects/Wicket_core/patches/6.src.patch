@@ -1,0 +1,13 @@
+diff --git a/wicket-core/src/main/java/org/apache/wicket/core/request/mapper/CryptoMapper.java b/wicket-core/src/main/java/org/apache/wicket/core/request/mapper/CryptoMapper.java
+index bb65517056..86c551a50b 100755
+--- a/wicket-core/src/main/java/org/apache/wicket/core/request/mapper/CryptoMapper.java
++++ b/wicket-core/src/main/java/org/apache/wicket/core/request/mapper/CryptoMapper.java
+@@ -234,8 +234,7 @@ public class CryptoMapper implements IRequestMapper
+ 			}
+ 
+ 			url.getQueryParameters().addAll(originalUrl.getQueryParameters());
+ 			// WICKET-4923 additional parameters
+-			url.getQueryParameters().addAll(encryptedUrl.getQueryParameters());
+ 		}
+ 		catch (Exception e)
+ 		{

@@ -1,0 +1,20 @@
+diff --git a/core/src/main/java/org/apache/struts/validator/validwhen/ValidWhenParser.java b/core/src/main/java/org/apache/struts/validator/validwhen/ValidWhenParser.java
+index 1b7e27f71..c7c7eeaf6 100644
+--- a/core/src/main/java/org/apache/struts/validator/validwhen/ValidWhenParser.java
++++ b/core/src/main/java/org/apache/struts/validator/validwhen/ValidWhenParser.java
+@@ -69,12 +69,12 @@ String value;
+         boolean intCompare = true;
+ 	if ((v1 == null) || (v2 == null)) {
+ 		if (String.class.isInstance(v1)) {
+-			if (((String) v1).trim().length() == 0) {
++			if (((String) v1).length() == 0) {
+ 				v1 = null;
+ 			}
+ 		}
+ 		if (String.class.isInstance(v2)) {
+-			if (((String) v2).trim().length() == 0) {
++			if (((String) v2).length() == 0) {
+ 				v2 = null;
+ 			}
+ 		}
+

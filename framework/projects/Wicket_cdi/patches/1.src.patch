@@ -1,0 +1,14 @@
+diff --git a/wicket-cdi/src/main/java/org/apache/wicket/cdi/ComponentInjector.java b/wicket-cdi/src/main/java/org/apache/wicket/cdi/ComponentInjector.java
+index c921706b7c..0316004c1c 100644
+--- a/wicket-cdi/src/main/java/org/apache/wicket/cdi/ComponentInjector.java
++++ b/wicket-cdi/src/main/java/org/apache/wicket/cdi/ComponentInjector.java
+@@ -48,8 +48,7 @@ class ComponentInjector extends AbstractInjector implements IComponentInstantiat
+ 	{
+ 		Class<? extends Component> componentClass = component.getClass();
+ 
+-		if (componentClass.isAnonymousClass() ||
+-			(componentClass.isMemberClass() && Modifier.isStatic(componentClass.getModifiers()) == false))
++		if (componentClass.isMemberClass() && Modifier.isStatic(componentClass.getModifiers()) == false)
+ 		{
+ 			LOG.debug("Skipping non-static inner class '{}' ", componentClass);
+ 		}

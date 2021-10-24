@@ -1,0 +1,151 @@
+diff --git a/wicket-core/src/test/java/org/apache/wicket/ajax/markup/html/ajaxLink/AjaxLinkPageExpectedResult.html b/wicket-core/src/test/java/org/apache/wicket/ajax/markup/html/ajaxLink/AjaxLinkPageExpectedResult.html
+index 5cae1daa15..147a640d83 100644
+--- a/wicket-core/src/test/java/org/apache/wicket/ajax/markup/html/ajaxLink/AjaxLinkPageExpectedResult.html
++++ b/wicket-core/src/test/java/org/apache/wicket/ajax/markup/html/ajaxLink/AjaxLinkPageExpectedResult.html
+@@ -10,7 +10,7 @@ Wicket.Ajax.DebugWindow.enabled=true;
+ </script>
+ <script type="text/javascript" id="wicket-ajax-base-url">
+ /*<![CDATA[*/
+-Wicket.Ajax.baseUrl="wicket/bookmarkable/org.apache.wicket.ajax.markup.html.ajaxLink.AjaxLinkPage?0";
++Wicket.Ajax.baseUrl="wicket/bookmarkable/org.apache.wicket.ajax.markup.html.ajaxLink.AjaxLinkPage";
+ /*]]>*/
+ </script>
+ <script type="text/javascript" >
+diff --git a/wicket-core/src/test/java/org/apache/wicket/ajax/markup/html/ajaxLink/AjaxLinkWithBorderPageExpectedResult.html b/wicket-core/src/test/java/org/apache/wicket/ajax/markup/html/ajaxLink/AjaxLinkWithBorderPageExpectedResult.html
+index aed0fb7776..1316cbcad8 100644
+--- a/wicket-core/src/test/java/org/apache/wicket/ajax/markup/html/ajaxLink/AjaxLinkWithBorderPageExpectedResult.html
++++ b/wicket-core/src/test/java/org/apache/wicket/ajax/markup/html/ajaxLink/AjaxLinkWithBorderPageExpectedResult.html
+@@ -10,7 +10,7 @@ Wicket.Ajax.DebugWindow.enabled=true;
+ </script>
+ <script type="text/javascript" id="wicket-ajax-base-url">
+ /*<![CDATA[*/
+-Wicket.Ajax.baseUrl="wicket/bookmarkable/org.apache.wicket.ajax.markup.html.ajaxLink.AjaxLinkWithBorderPage?0";
++Wicket.Ajax.baseUrl="wicket/bookmarkable/org.apache.wicket.ajax.markup.html.ajaxLink.AjaxLinkWithBorderPage";
+ /*]]>*/
+ </script>
+ <script type="text/javascript" >
+diff --git a/wicket-core/src/test/java/org/apache/wicket/ajax/markup/html/ajaxLink/AjaxPage2_ExpectedResult.html b/wicket-core/src/test/java/org/apache/wicket/ajax/markup/html/ajaxLink/AjaxPage2_ExpectedResult.html
+index 1a0da1e56a..1d0a9094a8 100644
+--- a/wicket-core/src/test/java/org/apache/wicket/ajax/markup/html/ajaxLink/AjaxPage2_ExpectedResult.html
++++ b/wicket-core/src/test/java/org/apache/wicket/ajax/markup/html/ajaxLink/AjaxPage2_ExpectedResult.html
+@@ -10,7 +10,7 @@ Wicket.Ajax.DebugWindow.enabled=true;
+ </script>
+ <script type="text/javascript" id="wicket-ajax-base-url">
+ /*<![CDATA[*/
+-Wicket.Ajax.baseUrl="wicket/bookmarkable/org.apache.wicket.ajax.markup.html.ajaxLink.AjaxPage2?0";
++Wicket.Ajax.baseUrl="wicket/bookmarkable/org.apache.wicket.ajax.markup.html.ajaxLink.AjaxPage2";
+ /*]]>*/
+ </script>
+ <script type="text/javascript" >
+diff --git a/wicket-core/src/test/java/org/apache/wicket/markup/html/basic/SimplePageExpectedResult_13.html b/wicket-core/src/test/java/org/apache/wicket/markup/html/basic/SimplePageExpectedResult_13.html
+index 0639e2e7e9..15cea8acf8 100644
+--- a/wicket-core/src/test/java/org/apache/wicket/markup/html/basic/SimplePageExpectedResult_13.html
++++ b/wicket-core/src/test/java/org/apache/wicket/markup/html/basic/SimplePageExpectedResult_13.html
+@@ -13,7 +13,7 @@ Wicket.Ajax.DebugWindow.enabled=true;
+ </script>
+ <script type="text/javascript" id="wicket-ajax-base-url">
+ /*<![CDATA[*/
+-Wicket.Ajax.baseUrl="wicket/bookmarkable/org.apache.wicket.markup.html.basic.SimplePage_13?0";
++Wicket.Ajax.baseUrl="wicket/bookmarkable/org.apache.wicket.markup.html.basic.SimplePage_13";
+ /*]]>*/
+ </script>
+ <link rel="stylesheet" type="text/css" href="../../BasePage.css" />
+diff --git a/wicket-core/src/test/java/org/apache/wicket/markup/html/border/HideableBorderPage_ExpectedResult.html b/wicket-core/src/test/java/org/apache/wicket/markup/html/border/HideableBorderPage_ExpectedResult.html
+index 47458976df..b227b6ed12 100644
+--- a/wicket-core/src/test/java/org/apache/wicket/markup/html/border/HideableBorderPage_ExpectedResult.html
++++ b/wicket-core/src/test/java/org/apache/wicket/markup/html/border/HideableBorderPage_ExpectedResult.html
+@@ -10,7 +10,7 @@ Wicket.Ajax.DebugWindow.enabled=true;
+ </script>
+ <script type="text/javascript" id="wicket-ajax-base-url">
+ /*<![CDATA[*/
+-Wicket.Ajax.baseUrl="wicket/bookmarkable/org.apache.wicket.markup.html.border.HideableBorderPage?0";
++Wicket.Ajax.baseUrl="wicket/bookmarkable/org.apache.wicket.markup.html.border.HideableBorderPage";
+ /*]]>*/
+ </script>
+ <script type="text/javascript" >
+diff --git a/wicket-core/src/test/java/org/apache/wicket/markup/html/panel/InlinePanelPageExpectedResult_7.html b/wicket-core/src/test/java/org/apache/wicket/markup/html/panel/InlinePanelPageExpectedResult_7.html
+index 76e33823fe..26eb4e75dc 100644
+--- a/wicket-core/src/test/java/org/apache/wicket/markup/html/panel/InlinePanelPageExpectedResult_7.html
++++ b/wicket-core/src/test/java/org/apache/wicket/markup/html/panel/InlinePanelPageExpectedResult_7.html
+@@ -10,7 +10,7 @@ Wicket.Ajax.DebugWindow.enabled=true;
+ </script>
+ <script type="text/javascript" id="wicket-ajax-base-url">
+ /*<![CDATA[*/
+-Wicket.Ajax.baseUrl="wicket/bookmarkable/org.apache.wicket.markup.html.panel.InlinePanelPage_7?0";
++Wicket.Ajax.baseUrl="wicket/bookmarkable/org.apache.wicket.markup.html.panel.InlinePanelPage_7";
+ /*]]>*/
+ </script>
+ <script type="text/javascript" >
+diff --git a/wicket-core/src/test/java/org/apache/wicket/markup/html/panel/InlinePanelPageExpectedResult_8.html b/wicket-core/src/test/java/org/apache/wicket/markup/html/panel/InlinePanelPageExpectedResult_8.html
+index 6c6238f028..b6d33ec3f2 100644
+--- a/wicket-core/src/test/java/org/apache/wicket/markup/html/panel/InlinePanelPageExpectedResult_8.html
++++ b/wicket-core/src/test/java/org/apache/wicket/markup/html/panel/InlinePanelPageExpectedResult_8.html
+@@ -10,7 +10,7 @@ Wicket.Ajax.DebugWindow.enabled=true;
+ </script>
+ <script type="text/javascript" id="wicket-ajax-base-url">
+ /*<![CDATA[*/
+-Wicket.Ajax.baseUrl="wicket/bookmarkable/org.apache.wicket.markup.html.panel.InlinePanelPage_8?0";
++Wicket.Ajax.baseUrl="wicket/bookmarkable/org.apache.wicket.markup.html.panel.InlinePanelPage_8";
+ /*]]>*/
+ </script>
+ <script type="text/javascript" >
+diff --git a/wicket-core/src/test/java/org/apache/wicket/page/PageStatelessnessTest.java b/wicket-core/src/test/java/org/apache/wicket/page/PageStatelessnessTest.java
+deleted file mode 100644
+index 0340a95dc3..0000000000
+--- a/wicket-core/src/test/java/org/apache/wicket/page/PageStatelessnessTest.java
++++ /dev/null
+@@ -1,54 +0,0 @@
+-/*
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *      http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+- */
+-package org.apache.wicket.page;
+-
+-import org.apache.wicket.Page;
+-import org.apache.wicket.WicketTestCase;
+-import org.apache.wicket.markup.html.WebPage;
+-import org.junit.Test;
+-
+-/**
+- * Tests for Page#isPageStateless
+- */
+-public class PageStatelessnessTest extends WicketTestCase
+-{
+-	/**
+-	 * Tests that a page is not stateless if it adds stateful components in #onInitialize()
+-	 * https://issues.apache.org/jira/browse/WICKET-5083
+-	 */
+-	@Test
+-	public void isPageStatelessWithOnInitialize()
+-	{
+-		Page page = new TestPage();
+-		assertFalse(page.isPageStateless());
+-	}
+-
+-	public static class TestPage extends WebPage
+-	{
+-
+-		public TestPage()
+-		{
+-		}
+-
+-		@Override
+-		protected void onInitialize() {
+-			super.onInitialize();
+-
+-			setStatelessHint(false);
+-		}
+-	}
+-}

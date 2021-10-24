@@ -1,0 +1,5 @@
+org.apache.wicket.markup.parser.IXmlPullParser
+org.apache.wicket.markup.parser.XmlPullParser
+org.apache.wicket.markup.parser.XmlTag
+org.apache.wicket.util.tester.TagTester
+org.apache.wicket.WicketRuntimeException

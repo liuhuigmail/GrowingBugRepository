@@ -1,0 +1,15 @@
+diff --git a/wicket-core/src/main/java/org/apache/wicket/protocol/https/HttpsMapper.java b/wicket-core/src/main/java/org/apache/wicket/protocol/https/HttpsMapper.java
+index aaa1a3e120..a5f765a123 100644
+--- a/wicket-core/src/main/java/org/apache/wicket/protocol/https/HttpsMapper.java
++++ b/wicket-core/src/main/java/org/apache/wicket/protocol/https/HttpsMapper.java
+@@ -170,7 +170,10 @@ public class HttpsMapper implements IRequestMapper
+ 			// the generated url does not have the correct scheme, set it (which in turn will cause
+ 			// the url to be rendered in its full representation)
+ 			url.setProtocol(desired.urlName());
++			if (url.getPort() != null || !desired.usesStandardPort(config))
++			{
+ 			url.setPort(desired.getPort(config));
++			}
+ 		}
+ 		return url;
+ 	}

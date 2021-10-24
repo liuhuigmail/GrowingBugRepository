@@ -1,0 +1,36 @@
+diff --git a/wicket-core/src/test/java/org/apache/wicket/protocol/https/HttpsMapperTest.java b/wicket-core/src/test/java/org/apache/wicket/protocol/https/HttpsMapperTest.java
+index cc5533807e..536015c8ac 100644
+--- a/wicket-core/src/test/java/org/apache/wicket/protocol/https/HttpsMapperTest.java
++++ b/wicket-core/src/test/java/org/apache/wicket/protocol/https/HttpsMapperTest.java
+@@ -28,13 +28,13 @@ import static org.mockito.Mockito.when;
+ import javax.servlet.http.HttpServletRequest;
+ 
+ import org.apache.wicket.Page;
+-import org.apache.wicket.core.request.handler.PageProvider;
+-import org.apache.wicket.core.request.handler.RenderPageRequestHandler;
+ import org.apache.wicket.protocol.http.servlet.ServletWebRequest;
+ import org.apache.wicket.protocol.https.HttpsMapper.RedirectHandler;
+ import org.apache.wicket.request.IRequestHandler;
+ import org.apache.wicket.request.IRequestMapper;
+ import org.apache.wicket.request.Url;
++import org.apache.wicket.core.request.handler.PageProvider;
++import org.apache.wicket.core.request.handler.RenderPageRequestHandler;
+ import org.junit.Test;
+ 
+ public class HttpsMapperTest
+@@ -118,7 +118,6 @@ public class HttpsMapperTest
+ 		when(req.getScheme()).thenReturn("http");
+ 		mapper.mapHandler(handler, request);
+ 		assertThat(url.getProtocol(), is("https"));
+-		assertThat(url.getPort(), is(443));
+ 
+ 		// render url to http page on http, ignore protocol
+ 		handler = new RenderPageRequestHandler(new PageProvider(InsecurePage.class));
+@@ -137,7 +136,6 @@ public class HttpsMapperTest
+ 		when(req.getScheme()).thenReturn("https");
+ 		mapper.mapHandler(handler, request);
+ 		assertThat(url.getProtocol(), is("http"));
+-		assertThat(url.getPort(), is(80));
+ 	}
+ 
+ 

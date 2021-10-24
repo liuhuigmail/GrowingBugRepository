@@ -1,0 +1,7 @@
+org.apache.wicket.protocol.http.ModifyCookiePageTest
+org.apache.wicket.protocol.http.mock.CookiesTest
+org.apache.wicket.protocol.http.mock.MockHttpServletResponseTest
+org.apache.wicket.response.PreserveCookieForTheNextHandlerTest
+org.apache.wicket.util.cookies.CookieUtilsTest
+org.apache.wicket.util.cookies.SetCookieAndRedirectTest
+org.apache.wicket.util.tester.WicketTesterTest

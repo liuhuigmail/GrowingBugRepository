@@ -1,0 +1,27 @@
+diff --git a/wicket-core/src/main/java/org/apache/wicket/request/resource/ResourceStreamResource.java b/wicket-core/src/main/java/org/apache/wicket/request/resource/ResourceStreamResource.java
+index 3c70f3aa43..7e79b239ab 100644
+--- a/wicket-core/src/main/java/org/apache/wicket/request/resource/ResourceStreamResource.java
++++ b/wicket-core/src/main/java/org/apache/wicket/request/resource/ResourceStreamResource.java
+@@ -49,6 +49,7 @@ public class ResourceStreamResource extends AbstractResource
+ 
+ 	private Duration cacheDuration;
+ 
++	private transient IResourceStream requestScopedStream = null;
+ 	/**
+ 	 * Constructor.
+ 	 */
+@@ -128,9 +134,11 @@ public class ResourceStreamResource extends AbstractResource
+ 
+ 	private IResourceStream internalGetResourceStream()
+ 	{
+-		final IResourceStream resourceStream = getResourceStream();
+-		Checks.notNull(resourceStream, "%s#getResourceStream() should not return null!", getClass().getName());
+-		return resourceStream;
++		if (requestScopedStream == null) {
++			requestScopedStream = getResourceStream();
++			Checks.notNull(requestScopedStream, "%s#getResourceStream() should not return null!", getClass().getName());
++		}
++		return requestScopedStream;
+ 	}
+ 
+ 	@Override

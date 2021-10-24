@@ -1,0 +1,13 @@
+diff --git a/wicket-core/src/main/java/org/apache/wicket/Page.java b/wicket-core/src/main/java/org/apache/wicket/Page.java
+index 86c0472eda..1467798dcb 100644
+--- a/wicket-core/src/main/java/org/apache/wicket/Page.java
++++ b/wicket-core/src/main/java/org/apache/wicket/Page.java
+@@ -450,8 +450,7 @@ public abstract class Page extends MarkupContainer implements IRedirectListener,
+ 
+ 		if (stateless == null)
+ 		{
+-			internalInitialize();
+ 
+ 			if (isStateless() == false)
+ 			{
+ 				stateless = Boolean.FALSE;

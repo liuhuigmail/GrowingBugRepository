@@ -1,0 +1,13 @@
+diff --git a/wicket-core/src/main/java/org/apache/wicket/Component.java b/wicket-core/src/main/java/org/apache/wicket/Component.java
+index 947f69c042..e59fabb837 100644
+--- a/wicket-core/src/main/java/org/apache/wicket/Component.java
++++ b/wicket-core/src/main/java/org/apache/wicket/Component.java
+@@ -928,7 +928,7 @@ public abstract class Component
+ 		finally
+ 		{
+ 			// this flag must always be set to false.
+-			markRendering(false);
++			setFlag(FLAG_RENDERING, false);
+ 		}
+ 	}
+ 

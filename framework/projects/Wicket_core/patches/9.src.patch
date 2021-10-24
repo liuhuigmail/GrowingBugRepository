@@ -1,0 +1,20 @@
+diff --git a/wicket-core/src/main/java/org/apache/wicket/core/request/mapper/AbstractBookmarkableMapper.java b/wicket-core/src/main/java/org/apache/wicket/core/request/mapper/AbstractBookmarkableMapper.java
+index 93c22d2df7..668d0a46fd 100644
+--- a/wicket-core/src/main/java/org/apache/wicket/core/request/mapper/AbstractBookmarkableMapper.java
++++ b/wicket-core/src/main/java/org/apache/wicket/core/request/mapper/AbstractBookmarkableMapper.java
+@@ -246,14 +246,10 @@ public abstract class AbstractBookmarkableMapper extends AbstractComponentMapper
+ 
+ 		if (listenerInterface != null)
+ 		{
+-			if (pageInfo.getPageId() != null)
+-			{
+ 				// WICKET-4594 - ignore the parsed parameters for stateful pages
+-				pageParameters = null;
+-			}
+ 
+ 			PageAndComponentProvider provider = new PageAndComponentProvider(pageInfo.getPageId(),
+-				pageClass, pageParameters, renderCount, componentInfo.getComponentPath());
++				pageClass, null, renderCount, componentInfo.getComponentPath());
+ 
+ 			provider.setPageSource(getContext());
+ 

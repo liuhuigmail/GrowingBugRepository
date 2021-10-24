@@ -1,0 +1,21 @@
+diff --git a/wicket-core/src/test/java/org/apache/wicket/validation/validator/UrlValidatorTest.java b/wicket-core/src/test/java/org/apache/wicket/validation/validator/UrlValidatorTest.java
+index febc2ad954..712360f373 100644
+--- a/wicket-core/src/test/java/org/apache/wicket/validation/validator/UrlValidatorTest.java
++++ b/wicket-core/src/test/java/org/apache/wicket/validation/validator/UrlValidatorTest.java
+@@ -52,16 +52,6 @@ public class UrlValidatorTest extends TestCase
+ 	{
+ 	}
+ 
+-	/**
+-	 * WICKET-5112
+-	 */
+-	public void testParentheses()
+-	{
+-		String[] schemes = { "http" };
+-		UrlValidator urlValidator = new UrlValidator(schemes);
+-		assertTrue(urlValidator.isValid("http://en.wikipedia.org/wiki/Genus_(mathematics)"));
+-	}
+-
+ 	/**
+ 	 * test
+ 	 */

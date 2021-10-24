@@ -1,0 +1,3 @@
+org.apache.wicket.page.PageStatelessnessTest
+org.apache.wicket.WicketJUnitRunner
+org.apache.wicket.WicketTestCase

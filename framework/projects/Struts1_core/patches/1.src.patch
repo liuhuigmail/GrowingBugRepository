@@ -1,0 +1,18 @@
+diff --git a/core/src/main/java/org/apache/struts/validator/validwhen/ValidWhenParser.java b/core/src/main/java/org/apache/struts/validator/validwhen/ValidWhenParser.java
+index c7c7eeaf6..e981c5ef1 100644
+--- a/core/src/main/java/org/apache/struts/validator/validwhen/ValidWhenParser.java
++++ b/core/src/main/java/org/apache/struts/validator/validwhen/ValidWhenParser.java
+@@ -273,11 +273,12 @@ public ValidWhenParser(ParserSharedInputState state) {
+ 			argStack.push(ValidatorUtils.getValueAsString(form, i3 + "[" + i4 + "]" + i5));
+ 			
+ 		}
+-		else if ((LA(1)==IDENTIFIER) && (LA(2)==LBRACKET) && ((LA(3) >= DECIMAL_LITERAL && LA(3) <= OCTAL_LITERAL)) && (LA(4)==RBRACKET) && (_tokenSet_0.member(LA(5)))) {
++		else if ((LA(1)==IDENTIFIER) && (LA(2)==LBRACKET) && ((LA(3) >= DECIMAL_LITERAL && LA(3) <= OCTAL_LITERAL)) && (LA(4)==RBRACKET) && (LA(5)==LBRACKET)) {
+ 			identifier();
+ 			match(LBRACKET);
+ 			integer();
+ 			match(RBRACKET);
++			match(LBRACKET);
+ 			
+ 			Object i7 = argStack.pop();
+ 			Object i6 = argStack.pop();

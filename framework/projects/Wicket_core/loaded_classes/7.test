@@ -1,0 +1,3 @@
+org.apache.wicket.request.resource.MinifiedAwareResourceReferenceTest
+org.apache.wicket.WicketJUnitRunner
+org.apache.wicket.WicketTestCase

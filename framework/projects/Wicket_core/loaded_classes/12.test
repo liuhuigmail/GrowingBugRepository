@@ -1,0 +1,5 @@
+org.apache.wicket.queueing.transparentresolvers.BasePage
+org.apache.wicket.queueing.transparentresolvers.DequeueingTransparentWebMarkupContainerTest
+org.apache.wicket.queueing.transparentresolvers.HtmlTag
+org.apache.wicket.queueing.transparentresolvers.SubPage
+org.apache.wicket.WicketTestCase

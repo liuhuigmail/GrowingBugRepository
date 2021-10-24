@@ -1,0 +1,14 @@
+diff --git a/wicket-core/src/main/java/org/apache/wicket/markup/html/form/Form.java b/wicket-core/src/main/java/org/apache/wicket/markup/html/form/Form.java
+index d3c9b8bacc..9d46baf7cc 100644
+--- a/wicket-core/src/main/java/org/apache/wicket/markup/html/form/Form.java
++++ b/wicket-core/src/main/java/org/apache/wicket/markup/html/form/Form.java
+@@ -170,7 +170,8 @@ public class Form<T> extends WebMarkupContainer implements IFormSubmitListener
+ 				return;
+ 			}
+ 
+-			if (formComponent.isVisibleInHierarchy() && formComponent.isEnabledInHierarchy())
++			if (formComponent.isVisibleInHierarchy() && formComponent.isValid() &&
++				formComponent.isEnabledInHierarchy())
+ 			{
+ 				validate(formComponent);
+ 			}

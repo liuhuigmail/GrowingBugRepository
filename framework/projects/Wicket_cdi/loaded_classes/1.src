@@ -1,0 +1,5 @@
+org.apache.wicket.cdi.AbstractInjector
+org.apache.wicket.cdi.CdiContainer
+org.apache.wicket.cdi.ComponentInjector
+org.apache.wicket.cdi.ConversationIdMetaKey
+org.apache.wicket.cdi.INonContextualManager

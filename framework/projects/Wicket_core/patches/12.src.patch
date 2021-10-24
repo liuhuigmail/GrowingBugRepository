@@ -1,0 +1,13 @@
+diff --git a/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java b/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java
+index 3eef517b1c..0a3cab4e84 100644
+--- a/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java
++++ b/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java
+@@ -2096,7 +2096,7 @@ public abstract class MarkupContainer extends Component implements Iterable<Comp
+ 			{
+ 				// could not dequeue, or does not contain children
+ 	
+-				if (tag.isOpen() && !tag.hasNoCloseTag())
++				if (tag.isOpen())
+ 				{
+ 					dequeue.skipToCloseTag();
+ 				}

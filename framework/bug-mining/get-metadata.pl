@@ -322,6 +322,27 @@ sub _export_relevant_tests {
         if ($test =~ /\.xsl/){
             next;
         }
+        if ($test =~ /\.js/){
+            next;
+        }
+        if ($test =~ /\.css/){
+            next;
+        }
+        if ($test =~ /\.txt/){
+            next;
+        }
+        if ($test =~ /\.png/){
+            next;
+        }
+        if ($test =~ /\.tmpl/){
+            next;
+        }
+        if ($test =~ /\.jpg/){
+            next;
+        }
+        if ($test =~ /\.less/){
+            next;
+        }
         
         if ($test =~ /\.java\.bak/){
             next;

@@ -1,0 +1,4 @@
+org.apache.wicket.ResourceTest
+org.apache.wicket.protocol.http.HeaderBufferingWebResponseTest
+org.apache.wicket.protocol.http.WebExternalResourceTest
+org.apache.wicket.resource.TextTemplateResourceReferenceTest

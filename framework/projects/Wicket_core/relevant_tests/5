@@ -1,0 +1,2 @@
+org.apache.wicket.protocol.https.HttpsMapperApplicationTest
+org.apache.wicket.protocol.https.HttpsMapperTest

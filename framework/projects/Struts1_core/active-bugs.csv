@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,c6d96ed883afa264ef72c3f4fc72c24a29b8b892,108d1109a394741782ac4f9a1f753c576f74cab9,STR-2802,https://issues.apache.org/jira/browse/STR-2802
+2,a197a2151b1aa2d3e0fca59989a706b670ed3739,4b67567a26acf31d7e52ac31c52c4055ecdb6f89,STR-3088,https://issues.apache.org/jira/browse/STR-3088

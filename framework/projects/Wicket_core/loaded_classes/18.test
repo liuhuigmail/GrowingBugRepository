@@ -1,0 +1,2 @@
+org.apache.wicket.core.request.handler.ListenerInterfaceRequestHandlerTest
+org.apache.wicket.WicketTestCase

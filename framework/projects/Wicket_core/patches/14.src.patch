@@ -1,0 +1,15 @@
+diff --git a/wicket-core/src/main/java/org/apache/wicket/util/tester/TagTester.java b/wicket-core/src/main/java/org/apache/wicket/util/tester/TagTester.java
+index b5aac3ece9..415117d138 100644
+--- a/wicket-core/src/main/java/org/apache/wicket/util/tester/TagTester.java
++++ b/wicket-core/src/main/java/org/apache/wicket/util/tester/TagTester.java
+@@ -540,10 +540,6 @@ public class TagTester
+ 				{
+ 					tester = new TagTester(parser, openTag, closeTag);
+ 				}
+-				else if (openTag != null)
+-				{
+-					tester = new TagTester(parser, openTag, openTag);
+-				}
+ 			}
+ 			catch (Exception e)
+ 			{

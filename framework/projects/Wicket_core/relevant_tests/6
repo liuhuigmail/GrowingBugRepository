@@ -1,0 +1,2 @@
+org.apache.wicket.core.request.mapper.CryptoMapperTest
+org.apache.wicket.protocol.http.request.CryptedUrlWebRequestCodingStrategyTest
