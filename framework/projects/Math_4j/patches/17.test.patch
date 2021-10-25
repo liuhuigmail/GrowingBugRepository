@@ -1,33 +1,28 @@
-diff --git a/src/test/java/org/apache/commons/math3/optimization/direct/CMAESOptimizerTest.java b/src/test/java/org/apache/commons/math3/optimization/direct/CMAESOptimizerTest.java
-index 4ebd1b0..9d43909 100644
---- a/src/test/java/org/apache/commons/math3/optimization/direct/CMAESOptimizerTest.java
-+++ b/src/test/java/org/apache/commons/math3/optimization/direct/CMAESOptimizerTest.java
-@@ -350,8 +350,8 @@ public class CMAESOptimizerTest {
+diff --git a/src/test/java/org/apache/commons/math3/dfp/DfpTest.java b/src/test/java/org/apache/commons/math3/dfp/DfpTest.java
+index 6f22466..f754976 100644
+--- a/src/test/java/org/apache/commons/math3/dfp/DfpTest.java
++++ b/src/test/java/org/apache/commons/math3/dfp/DfpTest.java
+@@ -906,17 +906,13 @@ public class DfpTest {
+              nan,
+              0, "Multiply #36");
+ 
+-        test(field.newDfp("1").multiply(10000),
+-             field.newDfp("10000"),
+-             0, "Multiply #37");
+-
+-        test(field.newDfp("2").multiply(1000000),
+-             field.newDfp("2000000"),
+-             0, "Multiply #38");
++        test(field.newDfp("1").multiply(10000),  // out of range
++             nan,
++             DfpField.FLAG_INVALID, "Multiply #37");
+ 
+-        test(field.newDfp("1").multiply(-1),
+-             field.newDfp("-1"),
+-             0, "Multiply #39");
++        test(field.newDfp("1").multiply(-1),  // out of range
++             nan,
++             DfpField.FLAG_INVALID, "Multiply #38");
+     }
  
      @Test
-     public void testConstrainedRosen() {
--        double[] startPoint = point(DIM, 0.7);
--        double[] insigma = point(DIM, 0.1);
-+        double[] startPoint = point(DIM, 0.1);
-+        double[] insigma = point(DIM, 1);
-         double[][] boundaries = boundaries(DIM, -1, 2);
-         PointValuePair expected =
-             new PointValuePair(point(DIM,1.0),0.0);
-@@ -427,7 +427,7 @@ public class CMAESOptimizerTest {
-     /**
-      * Cf. MATH-867
-      */
--    @Test
-+    @Ignore@Test
-     public void testFitAccuracyDependsOnBoundary() {
-         final CMAESOptimizer optimizer = new CMAESOptimizer();
-         final MultivariateFunction fitnessFunction = new MultivariateFunction() {
-@@ -439,7 +439,7 @@ public class CMAESOptimizerTest {
-             };
- 
-         final double[] start = { 1 };
-- 
-+
-         // No bounds.
-         PointValuePair result = optimizer.optimize(100000, fitnessFunction, GoalType.MINIMIZE,
-                                                    start);

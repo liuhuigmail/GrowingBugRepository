@@ -1,8 +1,3 @@
-org.apache.commons.math.analysis.LaguerreSolverTest
-org.apache.commons.math.complex.ComplexFormatTest
-org.apache.commons.math.complex.ComplexTest
-org.apache.commons.math.complex.ComplexUtilsTest
-org.apache.commons.math.complex.FrenchComplexFormatTest
-org.apache.commons.math.transform.FastCosineTransformerTest
-org.apache.commons.math.transform.FastFourierTransformerTest
-org.apache.commons.math.transform.FastSineTransformerTest
+org.apache.commons.math.distribution.FDistributionTest
+org.apache.commons.math.stat.inference.OneWayAnovaTest
+org.apache.commons.math.stat.inference.TestUtilsTest

@@ -1,8 +1,2 @@
-org.apache.commons.math3.distribution.FDistributionTest
-org.apache.commons.math3.distribution.UniformRealDistributionTest
-org.apache.commons.math3.optimization.fitting.PolynomialFitterTest
-org.apache.commons.math3.optimization.general.LevenbergMarquardtOptimizerTest
-org.apache.commons.math3.stat.descriptive.AggregateSummaryStatisticsTest
-org.apache.commons.math3.stat.inference.OneWayAnovaTest
-org.apache.commons.math3.stat.inference.TestUtilsTest
-org.apache.commons.math3.util.MathUtilsTest
+org.apache.commons.math3.linear.RectangularCholeskyDecompositionTest
+org.apache.commons.math3.stat.regression.GLSMultipleLinearRegressionTest

@@ -1,115 +1,54 @@
-diff --git a/src/test/java/org/apache/commons/math/optimization/direct/BOBYQAOptimizerTest.java b/src/test/java/org/apache/commons/math/optimization/direct/BOBYQAOptimizerTest.java
-index fe64f9e..7eb7742 100644
---- a/src/test/java/org/apache/commons/math/optimization/direct/BOBYQAOptimizerTest.java
-+++ b/src/test/java/org/apache/commons/math/optimization/direct/BOBYQAOptimizerTest.java
-@@ -231,60 +231,6 @@ public class BOBYQAOptimizerTest {
-                 1e-13, 1e-6, 2000, expected);
+diff --git a/src/test/java/org/apache/commons/math/complex/ComplexTest.java b/src/test/java/org/apache/commons/math/complex/ComplexTest.java
+index c31cb90..f694310 100644
+--- a/src/test/java/org/apache/commons/math/complex/ComplexTest.java
++++ b/src/test/java/org/apache/commons/math/complex/ComplexTest.java
+@@ -996,13 +996,6 @@ public class ComplexTest {
+         Complex z = new Complex(3, 4);
+         Complex expected = new Complex(-0.000187346, 0.999356);
+         TestUtils.assertEquals(expected, z.tan(), 1.0e-5);
+-        /* Check that no overflow occurs (MATH-722) */
+-        Complex actual = new Complex(3.0, 1E10).tan();
+-        expected = new Complex(0, 1);
+-        TestUtils.assertEquals(expected, actual, 1.0e-5);
+-        actual = new Complex(3.0, -1E10).tan();
+-        expected = new Complex(0, -1);
+-        TestUtils.assertEquals(expected, actual, 1.0e-5);
      }
  
--    // See MATH-728
--    @Test
--    public void testConstrainedRosenWithMoreInterpolationPoints() {
--        final double[] startPoint = point(DIM, 0.1);
--        final double[][] boundaries = boundaries(DIM, -1, 2);
--        final RealPointValuePair expected = new RealPointValuePair(point(DIM, 1.0), 0.0);
--
--        // This should have been 78 because in the code the hard limit is
--        // said to be
--        //   ((DIM + 1) * (DIM + 2)) / 2 - (2 * DIM + 1)
--        // i.e. 78 in this case, but the test fails for 48, 59, 62, 63, 64,
--        // 65, 66, ...
--        final int maxAdditionalPoints = 47;
--
--        for (int num = 1; num <= maxAdditionalPoints; num++) {
--            doTest(new Rosen(), startPoint, boundaries,
--                   GoalType.MINIMIZE,
--                   1e-12, 1e-6, 2000,
--                   num,
--                   expected,
--                   "num=" + num);
--        }
--    }
--
--    /**
--     * @param func Function to optimize.
--     * @param startPoint Starting point.
--     * @param boundaries Upper / lower point limit.
--     * @param goal Minimization or maximization.
--     * @param fTol Tolerance relative error on the objective function.
--     * @param pointTol Tolerance for checking that the optimum is correct.
--     * @param maxEvaluations Maximum number of evaluations.
--     * @param expected Expected point / value.
--     */
--    private void doTest(MultivariateFunction func,
--                        double[] startPoint,
--                        double[][] boundaries,
--                        GoalType goal,
--                        double fTol,
--                        double pointTol,
--                        int maxEvaluations,
--                        RealPointValuePair expected) {
--        doTest(func,
--               startPoint,
--               boundaries,
--               goal,
--               fTol,
--               pointTol,
--               maxEvaluations,
--               0,
--               expected,
--               "");
--    }
--
-     /**
-      * @param func Function to optimize.
-      * @param startPoint Starting point.
-@@ -293,20 +239,16 @@ public class BOBYQAOptimizerTest {
-      * @param fTol Tolerance relative error on the objective function.
-      * @param pointTol Tolerance for checking that the optimum is correct.
-      * @param maxEvaluations Maximum number of evaluations.
--     * @param additionalInterpolationPoints Number of interpolation to used
--     * in addition to the default (2 * dim + 1).
-      * @param expected Expected point / value.
-      */
-     private void doTest(MultivariateFunction func,
--                        double[] startPoint,
--                        double[][] boundaries,
--                        GoalType goal,
--                        double fTol,
--                        double pointTol,
--                        int maxEvaluations,
--                        int additionalInterpolationPoints,
--                        RealPointValuePair expected,
--                        String assertMsg) {
-+            double[] startPoint,
-+            double[][] boundaries,
-+            GoalType goal,
-+            double fTol,
-+            double pointTol,
-+            int maxEvaluations,
-+            RealPointValuePair expected) {
+     @Test
+@@ -1012,8 +1005,8 @@ public class ComplexTest {
  
-         System.out.println(func.getClass().getName() + " BEGIN"); // XXX
+     @Test
+     public void testTanInf() {
+-        TestUtils.assertSame(Complex.valueOf(0.0, 1.0), oneInf.tan());
+-        TestUtils.assertSame(Complex.valueOf(0.0, -1.0), oneNegInf.tan());
++        TestUtils.assertSame(zeroNaN, oneInf.tan());
++        TestUtils.assertSame(zeroNaN, oneNegInf.tan());
+         TestUtils.assertSame(Complex.NaN, infOne.tan());
+         TestUtils.assertSame(Complex.NaN, negInfOne.tan());
+         TestUtils.assertSame(Complex.NaN, infInf.tan());
+@@ -1033,13 +1026,6 @@ public class ComplexTest {
+         Complex z = new Complex(3, 4);
+         Complex expected = new Complex(1.00071, 0.00490826);
+         TestUtils.assertEquals(expected, z.tanh(), 1.0e-5);
+-        /* Check that no overflow occurs (MATH-722) */
+-        Complex actual = new Complex(1E10, 3.0).tanh();
+-        expected = new Complex(1, 0);
+-        TestUtils.assertEquals(expected, actual, 1.0e-5);
+-        actual = new Complex(-1E10, 3.0).tanh();
+-        expected = new Complex(-1, 0);
+-        TestUtils.assertEquals(expected, actual, 1.0e-5);
+     }
  
-@@ -316,17 +258,17 @@ public class BOBYQAOptimizerTest {
- //        RealPointValuePair result = optim.optimize(100000, func, goal, startPoint);
-         final double[] lB = boundaries == null ? null : boundaries[0];
-         final double[] uB = boundaries == null ? null : boundaries[1];
--        final int numIterpolationPoints = 2 * dim + 1 + additionalInterpolationPoints;
--        BOBYQAOptimizer optim = new BOBYQAOptimizer(numIterpolationPoints);
-+        BOBYQAOptimizer optim = new BOBYQAOptimizer(2 * dim + 1);
-         RealPointValuePair result = optim.optimize(maxEvaluations, func, goal, startPoint, lB, uB);
- //        System.out.println(func.getClass().getName() + " = " 
- //              + optim.getEvaluations() + " f(");
- //        for (double x: result.getPoint())  System.out.print(x + " ");
- //        System.out.println(") = " +  result.getValue());
--        Assert.assertEquals(assertMsg, expected.getValue(), result.getValue(), fTol);
-+        Assert.assertEquals(expected.getValue(),
-+                result.getValue(), fTol);
-         for (int i = 0; i < dim; i++) {
-             Assert.assertEquals(expected.getPoint()[i],
--                                result.getPoint()[i], pointTol);
-+                    result.getPoint()[i], pointTol);
-         }
- 
-         System.out.println(func.getClass().getName() + " END"); // XXX
+     @Test
+@@ -1051,8 +1037,8 @@ public class ComplexTest {
+     public void testTanhInf() {
+         TestUtils.assertSame(Complex.NaN, oneInf.tanh());
+         TestUtils.assertSame(Complex.NaN, oneNegInf.tanh());
+-        TestUtils.assertSame(Complex.valueOf(1.0, 0.0), infOne.tanh());
+-        TestUtils.assertSame(Complex.valueOf(-1.0, 0.0), negInfOne.tanh());
++        TestUtils.assertSame(nanZero, infOne.tanh());
++        TestUtils.assertSame(nanZero, negInfOne.tanh());
+         TestUtils.assertSame(Complex.NaN, infInf.tanh());
+         TestUtils.assertSame(Complex.NaN, infNegInf.tanh());
+         TestUtils.assertSame(Complex.NaN, negInfInf.tanh());

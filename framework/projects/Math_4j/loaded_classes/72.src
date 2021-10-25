@@ -7,5 +7,4 @@ org.apache.commons.math.ConvergenceException
 org.apache.commons.math.ConvergingAlgorithm
 org.apache.commons.math.ConvergingAlgorithmImpl
 org.apache.commons.math.MathException
-org.apache.commons.math.MathRuntimeException
 org.apache.commons.math.MaxIterationsExceededException

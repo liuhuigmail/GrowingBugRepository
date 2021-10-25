@@ -1,16 +1,30 @@
-diff --git a/src/main/java/org/apache/commons/math/util/MathUtils.java b/src/main/java/org/apache/commons/math/util/MathUtils.java
-index ad77a56..46368dc 100644
---- a/src/main/java/org/apache/commons/math/util/MathUtils.java
-+++ b/src/main/java/org/apache/commons/math/util/MathUtils.java
-@@ -1621,9 +1621,9 @@ public final class MathUtils {
-      * @return the L<sub>2</sub> distance between the two points
-      */
-     public static double distance(int[] p1, int[] p2) {
--      double sum = 0;
-+      int sum = 0;
-       for (int i = 0; i < p1.length; i++) {
--          final double dp = p1[i] - p2[i];
-+          final int dp = p1[i] - p2[i];
-           sum += dp * dp;
-       }
-       return Math.sqrt(sum);
+diff --git a/src/main/java/org/apache/commons/math/ode/events/EventState.java b/src/main/java/org/apache/commons/math/ode/events/EventState.java
+index ff09646..5006065 100644
+--- a/src/main/java/org/apache/commons/math/ode/events/EventState.java
++++ b/src/main/java/org/apache/commons/math/ode/events/EventState.java
+@@ -188,7 +188,6 @@ public class EventState {
+                 if (g0Positive ^ (gb >= 0)) {
+                     // there is a sign change: an event is expected during this step
+ 
+-                    if (ga * gb > 0) {
+                         // this is a corner case:
+                         // - there was an event near ta,
+                         // - there is another event between ta and tb
+@@ -196,17 +195,7 @@ public class EventState {
+                         // this implies that the real sign of ga is the same as gb, so we need to slightly
+                         // shift ta to make sure ga and gb get opposite signs and the solver won't complain
+                         // about bracketing
+-                        final double epsilon = (forward ? 0.25 : -0.25) * convergence;
+-                        for (int k = 0; (k < 4) && (ga * gb > 0); ++k) {
+-                            ta += epsilon;
+-                            interpolator.setInterpolatedTime(ta);
+-                            ga = handler.g(ta, interpolator.getInterpolatedState());
+-                        }
+-                        if (ga * gb > 0) {
+                             // this should never happen
+-                            throw MathRuntimeException.createInternalError(null);
+-                        }
+-                    }
+                          
+                     // variation direction, with respect to the integration direction
+                     increasing = gb >= ga;

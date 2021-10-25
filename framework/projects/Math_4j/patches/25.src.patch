@@ -1,22 +1,16 @@
-diff --git a/src/main/java/org/apache/commons/math3/fraction/Fraction.java b/src/main/java/org/apache/commons/math3/fraction/Fraction.java
-index 08d3b95..f81ff0a 100644
---- a/src/main/java/org/apache/commons/math3/fraction/Fraction.java
-+++ b/src/main/java/org/apache/commons/math3/fraction/Fraction.java
-@@ -178,7 +178,7 @@ public class Fraction
-         long overflow = Integer.MAX_VALUE;
-         double r0 = value;
-         long a0 = (long)FastMath.floor(r0);
--        if (FastMath.abs(a0) > overflow) {
-+        if (a0 > overflow) {
-             throw new FractionConversionException(value, a0, 1l);
-         }
+diff --git a/src/main/java/org/apache/commons/math3/optimization/fitting/HarmonicFitter.java b/src/main/java/org/apache/commons/math3/optimization/fitting/HarmonicFitter.java
+index c7af9ae..1da2c45 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/fitting/HarmonicFitter.java
++++ b/src/main/java/org/apache/commons/math3/optimization/fitting/HarmonicFitter.java
+@@ -320,11 +320,8 @@ public class HarmonicFitter extends CurveFitter<HarmonicOscillator.Parametric> {
+                 }
+                 a = 0.5 * (yMax - yMin);
+             } else {
+-                if (c2 == 0) {
+                     // In some ill-conditioned cases (cf. MATH-844), the guesser
+                     // procedure cannot produce sensible results.
+-                    throw new MathIllegalStateException(LocalizedFormats.ZERO_DENOMINATOR);
+-                }
  
-@@ -206,7 +206,7 @@ public class Fraction
-             long a1 = (long)FastMath.floor(r1);
-             p2 = (a1 * p1) + p0;
-             q2 = (a1 * q1) + q0;
--            if ((FastMath.abs(p2) > overflow) || (FastMath.abs(q2) > overflow)) {
-+            if ((p2 > overflow) || (q2 > overflow)) {
-                 throw new FractionConversionException(value, p2, q2);
-             }
- 
+                 a = FastMath.sqrt(c1 / c2);
+                 omega = FastMath.sqrt(c2 / c3);

@@ -1,1 +1,2 @@
-org.apache.commons.math.optimization.general.MinpackTest
+org.apache.commons.math.analysis.QuinticFunction
+org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest

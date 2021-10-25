@@ -1,22 +1,21 @@
 diff --git a/src/test/java/org/apache/commons/math3/fraction/FractionTest.java b/src/test/java/org/apache/commons/math3/fraction/FractionTest.java
-index c112ab7..c5071cc 100644
+index 37e22d1..c112ab7 100644
 --- a/src/test/java/org/apache/commons/math3/fraction/FractionTest.java
 +++ b/src/test/java/org/apache/commons/math3/fraction/FractionTest.java
-@@ -243,17 +243,6 @@ public class FractionTest {
+@@ -60,7 +60,6 @@ public class FractionTest {
+         } catch (MathArithmeticException ex) {
+             // success
+         }
+-
+         assertFraction(0, 1, new Fraction(0.00000000000001));
+         assertFraction(2, 5, new Fraction(0.40000000000001));
+         assertFraction(15, 1, new Fraction(15.0000000000001));
+@@ -135,8 +134,6 @@ public class FractionTest {
+     public void testIntegerOverflow() {
+         checkIntegerOverflow(0.75000000001455192);
+         checkIntegerOverflow(1.0e10);
+-        checkIntegerOverflow(-1.0e10);
+-        checkIntegerOverflow(-43979.60679604749);
      }
  
-     @Test
--    public void testMath835() {
--        final int numer = Integer.MAX_VALUE / 99;
--        final int denom = 1;
--        final double percentage = 100 * ((double) numer) / denom;
--        final Fraction frac = new Fraction(numer, denom);
--        // With the implementation that preceded the fix suggested in MATH-835,
--        // this test was failing, due to overflow.
--        Assert.assertEquals(percentage, frac.percentageValue(), Math.ulp(percentage));
--    }
--
--    @Test
-     public void testReciprocal() {
-         Fraction f = null;
- 
+     private void checkIntegerOverflow(double a) {

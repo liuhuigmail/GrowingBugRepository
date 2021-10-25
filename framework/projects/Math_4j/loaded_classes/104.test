@@ -1,1 +1,2 @@
-org.apache.commons.math.stat.regression.SimpleRegressionTest
+org.apache.commons.math.special.GammaTest
+org.apache.commons.math.TestUtils

@@ -1,1 +1,1 @@
-org.apache.commons.math.optimization.direct.MultiDirectional
+org.apache.commons.math.optimization.linear.SimplexTableau

@@ -1,1 +1,2 @@
-org.apache.commons.math.util.MathUtils
+org.apache.commons.math.linear.BigMatrixImpl
+org.apache.commons.math.linear.RealMatrixImpl

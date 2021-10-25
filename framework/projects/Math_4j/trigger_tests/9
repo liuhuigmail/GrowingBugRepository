@@ -1,10 +1,9 @@
---- org.apache.commons.math3.analysis.differentiation.DerivativeStructureTest::testAtan2SpecialCases
-junit.framework.AssertionFailedError: expected:<0.0> but was:<NaN>
-	at org.junit.Assert.fail(Assert.java:88)
-	at org.junit.Assert.failNotEquals(Assert.java:743)
-	at org.junit.Assert.assertEquals(Assert.java:494)
-	at org.junit.Assert.assertEquals(Assert.java:592)
-	at org.apache.commons.math3.analysis.differentiation.DerivativeStructureTest.testAtan2SpecialCases(DerivativeStructureTest.java:816)
+--- org.apache.commons.math3.geometry.euclidean.threed.LineTest::testRevert
+junit.framework.AssertionFailedError: arrays first differed at element [0]; expected:<0.028581782127907646> but was:<0.028581782243293483>
+	at org.junit.internal.ComparisonCriteria.arrayEquals(ComparisonCriteria.java:50)
+	at org.junit.Assert.assertArrayEquals(Assert.java:419)
+	at org.junit.Assert.assertArrayEquals(Assert.java:430)
+	at org.apache.commons.math3.geometry.euclidean.threed.LineTest.testRevert(LineTest.java:144)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

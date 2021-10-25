@@ -1,1 +1,2 @@
-org.apache.commons.math3.stat.inference.MannWhitneyUTestTest
+org.apache.commons.math3.linear.RealVectorAbstractTest
+org.apache.commons.math3.linear.SparseRealVectorTest

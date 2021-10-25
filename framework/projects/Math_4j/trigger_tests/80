@@ -1,12 +1,11 @@
---- org.apache.commons.math.linear.EigenDecompositionImplTest::testMath308
-java.lang.ArrayIndexOutOfBoundsException: -1
-	at org.apache.commons.math.linear.EigenDecompositionImpl.computeShiftIncrement(EigenDecompositionImpl.java:1544)
-	at org.apache.commons.math.linear.EigenDecompositionImpl.goodStep(EigenDecompositionImpl.java:1071)
-	at org.apache.commons.math.linear.EigenDecompositionImpl.processGeneralBlock(EigenDecompositionImpl.java:893)
-	at org.apache.commons.math.linear.EigenDecompositionImpl.findEigenvalues(EigenDecompositionImpl.java:657)
-	at org.apache.commons.math.linear.EigenDecompositionImpl.decompose(EigenDecompositionImpl.java:246)
-	at org.apache.commons.math.linear.EigenDecompositionImpl.<init>(EigenDecompositionImpl.java:205)
-	at org.apache.commons.math.linear.EigenDecompositionImplTest.testMath308(EigenDecompositionImplTest.java:134)
+--- org.apache.commons.math.linear.EigenDecompositionImplTest::testMathpbx02
+junit.framework.AssertionFailedError: expected:<16828.208208485466> but was:<20654.74511575945>
+	at junit.framework.Assert.fail(Assert.java:57)
+	at junit.framework.Assert.failNotEquals(Assert.java:329)
+	at junit.framework.Assert.assertEquals(Assert.java:120)
+	at junit.framework.Assert.assertEquals(Assert.java:129)
+	at junit.framework.TestCase.assertEquals(TestCase.java:288)
+	at org.apache.commons.math.linear.EigenDecompositionImplTest.testMathpbx02(EigenDecompositionImplTest.java:181)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

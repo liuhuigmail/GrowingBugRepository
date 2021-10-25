@@ -1,6 +1,6 @@
-org.apache.commons.math.analysis.LaguerreSolverTest
-org.apache.commons.math.analysis.MullerSolverTest
-org.apache.commons.math.analysis.RiddersSolverTest
+org.apache.commons.math.analysis.solvers.LaguerreSolverTest
+org.apache.commons.math.analysis.solvers.MullerSolverTest
+org.apache.commons.math.analysis.solvers.RiddersSolverTest
 org.apache.commons.math.complex.ComplexTest
 org.apache.commons.math.distribution.BinomialDistributionTest
 org.apache.commons.math.distribution.HypergeometricDistributionTest

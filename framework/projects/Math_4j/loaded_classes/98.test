@@ -1,1 +1,2 @@
-org.apache.commons.math.util.MathUtilsTest
+org.apache.commons.math.linear.BigMatrixImplTest
+org.apache.commons.math.linear.RealMatrixImplTest

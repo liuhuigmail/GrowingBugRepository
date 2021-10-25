@@ -1,2 +1,5 @@
-org.apache.commons.math.analysis.solvers.BaseSecantSolverAbstractTest
-org.apache.commons.math.analysis.solvers.BracketingNthOrderBrentSolverTest
+org.apache.commons.math.ode.nonstiff.DormandPrince853IntegratorTest
+org.apache.commons.math.ode.TestProblem1
+org.apache.commons.math.ode.TestProblem4
+org.apache.commons.math.ode.TestProblem5
+org.apache.commons.math.ode.TestProblemAbstract

@@ -1,21 +1,33 @@
-diff --git a/src/test/java/org/apache/commons/math3/stat/inference/MannWhitneyUTestTest.java b/src/test/java/org/apache/commons/math3/stat/inference/MannWhitneyUTestTest.java
-index 0255208..8032922 100644
---- a/src/test/java/org/apache/commons/math3/stat/inference/MannWhitneyUTestTest.java
-+++ b/src/test/java/org/apache/commons/math3/stat/inference/MannWhitneyUTestTest.java
-@@ -100,16 +100,4 @@ public class MannWhitneyUTestTest {
-             // expected
+diff --git a/src/test/java/org/apache/commons/math3/linear/SparseRealVectorTest.java b/src/test/java/org/apache/commons/math3/linear/SparseRealVectorTest.java
+index 3978fa5..d5e09f9 100644
+--- a/src/test/java/org/apache/commons/math3/linear/SparseRealVectorTest.java
++++ b/src/test/java/org/apache/commons/math3/linear/SparseRealVectorTest.java
+@@ -237,25 +237,14 @@ public class SparseRealVectorTest extends RealVectorAbstractTest {
+ 
+         @Override
+         public boolean isNaN() {
+-            boolean isNaN = false;
+-            for (int i = 0; i < data.length; i++) {
+-                isNaN |= Double.isNaN(data[i]);
+-            }
+-            return isNaN;
++            throw unsupported();
          }
+ 
+         @Override
+         public boolean isInfinite() {
+-            boolean isInfinite = false;
+-            for (int i = 0; i < data.length; i++) {
+-                final double x = data[i];
+-                if (Double.isNaN(x)) {
+-                    return false;
+-                }
+-                isInfinite |= Double.isInfinite(x);
+-            }
+-            return isInfinite;
++            throw unsupported();
+         }
++
      }
--    
--    @Test
--    public void testBigDataSet() throws Exception {
--        double[] d1 = new double[1500];
--        double[] d2 = new double[1500];
--        for (int i = 0; i < 1500; i++) {
--            d1[i] = 2 * i;
--            d2[i] = 2 * i + 1;
--        }
--        double result = testStatistic.mannWhitneyUTest(d1, d2);
--        Assert.assertTrue(result > 0.1);
--    }
- }
+ 
+     @Override

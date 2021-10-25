@@ -1,23 +1,33 @@
-diff --git a/src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java b/src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java
-index a08eac5..02810e1 100644
---- a/src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java
-+++ b/src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java
-@@ -106,18 +106,8 @@ public class NormalDistributionImpl extends AbstractContinuousDistribution
-      * convergence exception is caught and 0 or 1 is returned.
-      */
-     public double cumulativeProbability(double x) throws MathException {
--        try {
-             return 0.5 * (1.0 + Erf.erf((x - mean) /
-                     (standardDeviation * Math.sqrt(2.0))));
--        } catch (MaxIterationsExceededException ex) {
--            if (x < (mean - 20 * standardDeviation)) { // JDK 1.5 blows at 38
--                return 0.0d;
--            } else if (x > (mean + 20 * standardDeviation)) {
--                return 1.0d;
--            } else {
--                throw ex;
--            }
+diff --git a/src/java/org/apache/commons/math/stat/inference/ChiSquareTestImpl.java b/src/java/org/apache/commons/math/stat/inference/ChiSquareTestImpl.java
+index 984d56d..c87b010 100644
+--- a/src/java/org/apache/commons/math/stat/inference/ChiSquareTestImpl.java
++++ b/src/java/org/apache/commons/math/stat/inference/ChiSquareTestImpl.java
+@@ -71,28 +71,11 @@ public class ChiSquareTestImpl implements UnknownDistributionChiSquareTest {
+             throw new IllegalArgumentException(
+                 "observed counts must be non-negative and expected counts must be postive");
+         }
+-        double sumExpected = 0d;
+-        double sumObserved = 0d;
+-        for (int i = 0; i < observed.length; i++) {
+-            sumExpected += expected[i];
+-            sumObserved += observed[i];
 -        }
+-        double ratio = 1.0d;
+-        boolean rescale = false;
+-        if (Math.abs(sumExpected - sumObserved) > 10E-6) {
+-            ratio = sumObserved / sumExpected;
+-            rescale = true;
+-        }
+         double sumSq = 0.0d;
+         double dev = 0.0d;
+         for (int i = 0; i < observed.length; i++) {
+-            if (rescale) {
+-                dev = ((double) observed[i] - ratio * expected[i]);
+-                sumSq += dev * dev / (ratio * expected[i]);
+-            } else {
+                 dev = ((double) observed[i] - expected[i]);
+                 sumSq += dev * dev / expected[i];
+-            }
+         }
+         return sumSq;
      }
-     
-     /**

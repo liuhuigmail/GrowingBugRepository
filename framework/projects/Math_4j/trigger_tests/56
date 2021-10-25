@@ -1,9 +1,10 @@
---- org.apache.commons.math.stat.clustering.KMeansPlusPlusClustererTest::testSmallDistances
-junit.framework.AssertionFailedError
-	at org.junit.Assert.fail(Assert.java:86)
-	at org.junit.Assert.assertTrue(Assert.java:41)
-	at org.junit.Assert.assertTrue(Assert.java:52)
-	at org.apache.commons.math.stat.clustering.KMeansPlusPlusClustererTest.testSmallDistances(KMeansPlusPlusClustererTest.java:249)
+--- org.apache.commons.math.util.MultidimensionalCounterTest::testIterationConsistency
+junit.framework.AssertionFailedError: Wrong multidimensional index for [3][2] expected:<3> but was:<2>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:555)
+	at org.apache.commons.math.util.MultidimensionalCounterTest.testIterationConsistency(MultidimensionalCounterTest.java:172)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

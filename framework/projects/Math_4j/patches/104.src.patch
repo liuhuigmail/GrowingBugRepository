@@ -1,13 +1,13 @@
-diff --git a/src/java/org/apache/commons/math/stat/regression/SimpleRegression.java b/src/java/org/apache/commons/math/stat/regression/SimpleRegression.java
-index d9fa592..dcf512b 100644
---- a/src/java/org/apache/commons/math/stat/regression/SimpleRegression.java
-+++ b/src/java/org/apache/commons/math/stat/regression/SimpleRegression.java
-@@ -261,7 +261,7 @@ public class SimpleRegression implements Serializable {
-      * @return sum of squared errors associated with the regression model
-      */
-     public double getSumSquaredErrors() {
--        return Math.max(0d, sumYY - sumXY * sumXY / sumXX);
-+        return sumYY - sumXY * sumXY / sumXX;
-     }
+diff --git a/src/java/org/apache/commons/math/special/Gamma.java b/src/java/org/apache/commons/math/special/Gamma.java
+index ba2c4db..8c565cb 100644
+--- a/src/java/org/apache/commons/math/special/Gamma.java
++++ b/src/java/org/apache/commons/math/special/Gamma.java
+@@ -34,7 +34,7 @@ public class Gamma implements Serializable {
+     private static final long serialVersionUID = -6587513359895466954L;
  
-     /**
+     /** Maximum allowed numerical error. */
+-    private static final double DEFAULT_EPSILON = 10e-15;
++    private static final double DEFAULT_EPSILON = 10e-9;
+ 
+     /** Lanczos coefficients */
+     private static double[] lanczos =

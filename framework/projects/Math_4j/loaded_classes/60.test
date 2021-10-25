@@ -1,2 +1,2 @@
-org.apache.commons.math.distribution.IntegerDistributionAbstractTest
-org.apache.commons.math.distribution.PoissonDistributionTest
+org.apache.commons.math.distribution.ContinuousDistributionAbstractTest
+org.apache.commons.math.distribution.NormalDistributionTest

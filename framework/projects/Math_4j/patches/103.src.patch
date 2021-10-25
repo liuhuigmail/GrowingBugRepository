@@ -1,13 +1,23 @@
-diff --git a/src/java/org/apache/commons/math/special/Gamma.java b/src/java/org/apache/commons/math/special/Gamma.java
-index ba2c4db..8c565cb 100644
---- a/src/java/org/apache/commons/math/special/Gamma.java
-+++ b/src/java/org/apache/commons/math/special/Gamma.java
-@@ -34,7 +34,7 @@ public class Gamma implements Serializable {
-     private static final long serialVersionUID = -6587513359895466954L;
- 
-     /** Maximum allowed numerical error. */
--    private static final double DEFAULT_EPSILON = 10e-15;
-+    private static final double DEFAULT_EPSILON = 10e-9;
- 
-     /** Lanczos coefficients */
-     private static double[] lanczos =
+diff --git a/src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java b/src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java
+index a08eac5..02810e1 100644
+--- a/src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java
++++ b/src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java
+@@ -106,18 +106,8 @@ public class NormalDistributionImpl extends AbstractContinuousDistribution
+      * convergence exception is caught and 0 or 1 is returned.
+      */
+     public double cumulativeProbability(double x) throws MathException {
+-        try {
+             return 0.5 * (1.0 + Erf.erf((x - mean) /
+                     (standardDeviation * Math.sqrt(2.0))));
+-        } catch (MaxIterationsExceededException ex) {
+-            if (x < (mean - 20 * standardDeviation)) { // JDK 1.5 blows at 38
+-                return 0.0d;
+-            } else if (x > (mean + 20 * standardDeviation)) {
+-                return 1.0d;
+-            } else {
+-                throw ex;
+-            }
+-        }
+     }
+     
+     /**

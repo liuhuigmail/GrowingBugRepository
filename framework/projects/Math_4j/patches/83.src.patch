@@ -1,29 +1,27 @@
-diff --git a/src/main/java/org/apache/commons/math/optimization/direct/MultiDirectional.java b/src/main/java/org/apache/commons/math/optimization/direct/MultiDirectional.java
-index 929560c..42a4d9d 100644
---- a/src/main/java/org/apache/commons/math/optimization/direct/MultiDirectional.java
-+++ b/src/main/java/org/apache/commons/math/optimization/direct/MultiDirectional.java
-@@ -61,7 +61,6 @@ public class MultiDirectional extends DirectSearchOptimizer {
-     protected void iterateSimplex(final Comparator<RealPointValuePair> comparator)
-         throws FunctionEvaluationException, OptimizationException, IllegalArgumentException {
- 
--        final RealConvergenceChecker checker = getConvergenceChecker();
-         while (true) {
- 
-             incrementIterationsCounter();
-@@ -90,16 +89,8 @@ public class MultiDirectional extends DirectSearchOptimizer {
-             final RealPointValuePair contracted = evaluateNewSimplex(original, gamma, comparator);
-             if (comparator.compare(contracted, best) < 0) {
-                 // accept the contracted simplex
--                return;
--            }
- 
-             // check convergence
--            final int iter = getIterations();
--            boolean converged = true;
--            for (int i = 0; i < simplex.length; ++i) {
--                converged &= checker.converged(iter, original[i], simplex[i]);
--            }
--            if (converged) {
-                 return;
-             }
- 
+diff --git a/src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java b/src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java
+index b387767..0cf01af 100644
+--- a/src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java
++++ b/src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java
+@@ -289,7 +289,7 @@ class SimplexTableau implements Serializable {
+      */
+     private Integer getBasicRow(final int col, boolean ignoreObjectiveRows) {
+         Integer row = null;
+-        int start = ignoreObjectiveRows ? getNumObjectiveFunctions() : 0;
++        int start = getNumObjectiveFunctions();
+         for (int i = start; i < getHeight(); i++) {
+             if (MathUtils.equals(getEntry(i, col), 1.0, epsilon) && (row == null)) {
+                 row = i;
+@@ -338,11 +338,11 @@ class SimplexTableau implements Serializable {
+      */
+     protected RealPointValuePair getSolution() {
+       double[] coefficients = new double[getOriginalNumDecisionVariables()];
+-      Integer negativeVarBasicRow = getBasicRowForSolution(getNegativeDecisionVariableOffset());
++      Integer negativeVarBasicRow = getBasicRow(getNegativeDecisionVariableOffset());
+       double mostNegative = negativeVarBasicRow == null ? 0 : getEntry(negativeVarBasicRow, getRhsOffset());
+       Set<Integer> basicRows = new HashSet<Integer>();
+       for (int i = 0; i < coefficients.length; i++) {
+-          Integer basicRow = getBasicRowForSolution(getNumObjectiveFunctions() + i);
++          Integer basicRow = getBasicRow(getNumObjectiveFunctions() + i);
+           if (basicRows.contains(basicRow)) {
+               // if multiple variables can take a given value 
+               // then we choose the first and set the rest equal to 0

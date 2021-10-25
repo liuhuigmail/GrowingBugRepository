@@ -1,16 +1,22 @@
-diff --git a/src/main/java/org/apache/commons/math3/optimization/fitting/HarmonicFitter.java b/src/main/java/org/apache/commons/math3/optimization/fitting/HarmonicFitter.java
-index c7af9ae..1da2c45 100644
---- a/src/main/java/org/apache/commons/math3/optimization/fitting/HarmonicFitter.java
-+++ b/src/main/java/org/apache/commons/math3/optimization/fitting/HarmonicFitter.java
-@@ -320,11 +320,8 @@ public class HarmonicFitter extends CurveFitter<HarmonicOscillator.Parametric> {
-                 }
-                 a = 0.5 * (yMax - yMin);
-             } else {
--                if (c2 == 0) {
-                     // In some ill-conditioned cases (cf. MATH-844), the guesser
-                     // procedure cannot produce sensible results.
--                    throw new MathIllegalStateException(LocalizedFormats.ZERO_DENOMINATOR);
--                }
+diff --git a/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java
+index cff5bfd..b6ce68e 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java
+@@ -227,7 +227,7 @@ public class BrentOptimizer extends BaseAbstractUnivariateOptimizer {
  
-                 a = FastMath.sqrt(c1 / c2);
-                 omega = FastMath.sqrt(c2 / c3);
+                 if (checker != null) {
+                     if (checker.converged(iter, previous, current)) {
+-                        return best(current, previous, isMinim);
++                        return current;
+                     }
+                 }
+ 
+@@ -264,7 +264,7 @@ public class BrentOptimizer extends BaseAbstractUnivariateOptimizer {
+                     }
+                 }
+             } else { // Default termination (Brent's criterion).
+-                return best(current, previous, isMinim);
++                return current;
+             }
+             ++iter;
+         }

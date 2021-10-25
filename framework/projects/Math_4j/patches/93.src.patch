@@ -1,13 +1,37 @@
 diff --git a/src/java/org/apache/commons/math/util/MathUtils.java b/src/java/org/apache/commons/math/util/MathUtils.java
-index df71405..c5342ae 100644
+index 1389d5a..7d8aa4d 100644
 --- a/src/java/org/apache/commons/math/util/MathUtils.java
 +++ b/src/java/org/apache/commons/math/util/MathUtils.java
-@@ -409,7 +409,7 @@ public final class MathUtils {
-      * @since 1.1
+@@ -342,10 +342,8 @@ public final class MathUtils {
+      * @throws IllegalArgumentException if n < 0
       */
-     public static int gcd(int u, int v) {
--        if ((u == 0) || (v == 0)) {
-+        if (u * v == 0) {
-             return (Math.abs(u) + Math.abs(v));
+     public static long factorial(final int n) {
+-        if (n < 0) {
+-            throw new IllegalArgumentException("must have n >= 0 for n!");
+-        }
+-        if (n > 20) {
++        long result = Math.round(factorialDouble(n));
++        if (result == Long.MAX_VALUE) {
+             throw new ArithmeticException(
+                     "factorial value is too large to fit in a long");
          }
-         // keep u and v negative, as negative integers range down to
+@@ -376,9 +374,6 @@ public final class MathUtils {
+         if (n < 0) {
+             throw new IllegalArgumentException("must have n >= 0 for n!");
+         }
+-        if (n < 21) {
+-            return factorial(n);
+-        }
+         return Math.floor(Math.exp(factorialLog(n)) + 0.5);
+     }
+ 
+@@ -399,9 +394,6 @@ public final class MathUtils {
+         if (n < 0) {
+             throw new IllegalArgumentException("must have n > 0 for n!");
+         }
+-        if (n < 21) {
+-            return Math.log(factorial(n));
+-        }
+         double logSum = 0;
+         for (int i = 2; i <= n; i++) {
+             logSum += Math.log((double)i);

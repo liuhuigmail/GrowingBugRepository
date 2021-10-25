@@ -1,69 +1,48 @@
-diff --git a/src/test/org/apache/commons/math/util/MathUtilsTest.java b/org/apache/commons/math/util/MathUtilsTest.java
-index 20b61df..26433d6 100644
---- a/src/test/org/apache/commons/math/util/MathUtilsTest.java
-+++ b/src/test/org/apache/commons/math/util/MathUtilsTest.java
-@@ -429,28 +429,12 @@ public final class MathUtilsTest extends TestCase {
-         assertEquals(3 * (1<<15), MathUtils.gcd(3 * (1<<20), 9 * (1<<15)));
- 
-         assertEquals(Integer.MAX_VALUE, MathUtils.gcd(Integer.MAX_VALUE, 0));
--        assertEquals(Integer.MAX_VALUE, MathUtils.gcd(-Integer.MAX_VALUE, 0));
--        assertEquals(1<<30, MathUtils.gcd(1<<30, -Integer.MIN_VALUE));
-+        // abs(Integer.MIN_VALUE) == Integer.MIN_VALUE
-+        assertEquals(Integer.MIN_VALUE, MathUtils.gcd(Integer.MIN_VALUE, 0));
-         try {
--            // gcd(Integer.MIN_VALUE, 0) > Integer.MAX_VALUE
--            MathUtils.gcd(Integer.MIN_VALUE, 0);
--            fail("expecting ArithmeticException");
--        } catch (ArithmeticException expected) {
--            // expected
--        }
--        try {
--            // gcd(0, Integer.MIN_VALUE) > Integer.MAX_VALUE
--            MathUtils.gcd(0, Integer.MIN_VALUE);
--            fail("expecting ArithmeticException");
--        } catch (ArithmeticException expected) {
--            // expected
--        }
--        try {
--            // gcd(Integer.MIN_VALUE, Integer.MIN_VALUE) > Integer.MAX_VALUE
-             MathUtils.gcd(Integer.MIN_VALUE, Integer.MIN_VALUE);
--            fail("expecting ArithmeticException");
-         } catch (ArithmeticException expected) {
--            // expected
-+            //
-         }
+diff --git a/src/test/org/apache/commons/math/linear/BigMatrixImplTest.java b/src/test/org/apache/commons/math/linear/BigMatrixImplTest.java
+index 2f52c35..f30e04b 100644
+--- a/src/test/org/apache/commons/math/linear/BigMatrixImplTest.java
++++ b/src/test/org/apache/commons/math/linear/BigMatrixImplTest.java
+@@ -435,20 +435,6 @@ public final class BigMatrixImplTest extends TestCase {
+             ;
+         }      
      }
- 
-@@ -574,32 +558,8 @@ public final class MathUtilsTest extends TestCase {
-         assertEquals(150, MathUtils.lcm(a, b));
-         assertEquals(150, MathUtils.lcm(-a, b));
-         assertEquals(150, MathUtils.lcm(a, -b));
--        assertEquals(150, MathUtils.lcm(-a, -b));
-         assertEquals(2310, MathUtils.lcm(a, c));
- 
--        // Assert that no intermediate value overflows:
--        // The naive implementation of lcm(a,b) would be (a*b)/gcd(a,b)
--        assertEquals((1<<20)*15, MathUtils.lcm((1<<20)*3, (1<<20)*5));
 -
--        // Special case
--        assertEquals(0, MathUtils.lcm(0, 0));
+-    /** test issue MATH-209 */
+-    public void testMath209() {
+-        BigMatrix a = new BigMatrixImpl(new BigDecimal[][] {
+-                { new BigDecimal(1), new BigDecimal(2) },
+-                { new BigDecimal(3), new BigDecimal(4) },
+-                { new BigDecimal(5), new BigDecimal(6) }
+-        }, false);
+-        BigDecimal[] b = a.operate(new BigDecimal[] { new BigDecimal(1), new BigDecimal(1) });
+-        assertEquals(a.getRowDimension(), b.length);
+-        assertEquals( 3.0, b[0].doubleValue(), 1.0e-12);
+-        assertEquals( 7.0, b[1].doubleValue(), 1.0e-12);
+-        assertEquals(11.0, b[2].doubleValue(), 1.0e-12);
+-    }
+     
+     /** test transpose */
+     public void testTranspose() {
+diff --git a/src/test/org/apache/commons/math/linear/RealMatrixImplTest.java b/src/test/org/apache/commons/math/linear/RealMatrixImplTest.java
+index 383a959..7553f36 100644
+--- a/src/test/org/apache/commons/math/linear/RealMatrixImplTest.java
++++ b/src/test/org/apache/commons/math/linear/RealMatrixImplTest.java
+@@ -342,18 +342,6 @@ public final class RealMatrixImplTest extends TestCase {
+             ;
+         }      
+     }
 -
--        try {
--            // lcm == abs(MIN_VALUE) cannot be represented as a nonnegative int
--            MathUtils.lcm(Integer.MIN_VALUE, 1);
--            fail("Expecting ArithmeticException");
--        } catch (ArithmeticException ex) {
--            // expected
--        }
--        
--        try {
--            // lcm == abs(MIN_VALUE) cannot be represented as a nonnegative int
--            MathUtils.lcm(Integer.MIN_VALUE, 1<<20);
--            fail("Expecting ArithmeticException");
--        } catch (ArithmeticException ex) {
--            // expected
--        }
--
-         try {
-             MathUtils.lcm(Integer.MAX_VALUE, Integer.MAX_VALUE - 1);
-             fail("Expecting ArithmeticException");
+-    /** test issue MATH-209 */
+-    public void testMath209() {
+-        RealMatrix a = new RealMatrixImpl(new double[][] {
+-                { 1, 2 }, { 3, 4 }, { 5, 6 }
+-        }, false);
+-        double[] b = a.operate(new double[] { 1, 1 });
+-        assertEquals(a.getRowDimension(), b.length);
+-        assertEquals( 3.0, b[0], 1.0e-12);
+-        assertEquals( 7.0, b[1], 1.0e-12);
+-        assertEquals(11.0, b[2], 1.0e-12);
+-    }
+     
+     /** test transpose */
+     public void testTranspose() {

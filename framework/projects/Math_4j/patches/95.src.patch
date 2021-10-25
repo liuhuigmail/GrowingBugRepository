@@ -1,13 +1,18 @@
-diff --git a/src/java/org/apache/commons/math/complex/Complex.java b/src/java/org/apache/commons/math/complex/Complex.java
-index 8b622cb..3571567 100644
---- a/src/java/org/apache/commons/math/complex/Complex.java
-+++ b/src/java/org/apache/commons/math/complex/Complex.java
-@@ -255,7 +255,7 @@ public class Complex implements Serializable  {
-                 if (rhs.isNaN()) {
-                     ret = this.isNaN();
-                 } else {
--                    ret = (real == rhs.real) && (imaginary == rhs.imaginary); 
-+                    ret = (Double.doubleToRawLongBits(real) == Double.doubleToRawLongBits(rhs.getReal())) && (Double.doubleToRawLongBits(imaginary) == Double.doubleToRawLongBits(rhs.getImaginary())); 
-                 }
-             } catch (ClassCastException ex) {
-                 // ignore exception
+diff --git a/src/java/org/apache/commons/math/distribution/FDistributionImpl.java b/src/java/org/apache/commons/math/distribution/FDistributionImpl.java
+index 59aeb07..e19e97a 100644
+--- a/src/java/org/apache/commons/math/distribution/FDistributionImpl.java
++++ b/src/java/org/apache/commons/math/distribution/FDistributionImpl.java
+@@ -141,12 +141,10 @@ public class FDistributionImpl
+      * @return initial domain value
+      */
+     protected double getInitialDomain(double p) {
+-        double ret = 1.0;
++        double ret;
+         double d = getDenominatorDegreesOfFreedom();
+-        if (d > 2.0) {
+             // use mean
+             ret = d / (d - 2.0);
+-        }
+         return ret;
+     }
+     

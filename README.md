@@ -23,7 +23,7 @@ from open-source Java projects.
 | 12    | Jsoup           | jsoup                      |                           |       93       | 1-93                |
 | 13     | JxPath          | commons-jxpath             |                          |       22       | 1-22                |
 | 14     | Lang            | commons-lang               |                          |       72       | 1,3-33,35-65,69,71,73,</br>76,80-84              |
-| 15     | Math_4j            | commons-math4j               |                          |      105       | 1-105               |
+| 15     | Math_4j            | commons-math4j               |                          |      105       | 1-6,8-106               |
 | 16     | Mockito         | mockito                    |                          |       38       | 1-38                |
 | 17     | Time            | joda-time                  |                          |       26       | 1-20,22-27          |
 | 18     | Dbutils         | commons-dbutils            |                          |        2       | 1-2                 |

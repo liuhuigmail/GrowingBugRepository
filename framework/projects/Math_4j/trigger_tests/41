@@ -1,9 +1,10 @@
---- org.apache.commons.math.optimization.linear.SimplexSolverTest::testMath713NegativeVariable
-junit.framework.AssertionFailedError
-	at org.junit.Assert.fail(Assert.java:86)
-	at org.junit.Assert.assertTrue(Assert.java:41)
-	at org.junit.Assert.assertTrue(Assert.java:52)
-	at org.apache.commons.math.optimization.linear.SimplexSolverTest.testMath713NegativeVariable(SimplexSolverTest.java:43)
+--- org.apache.commons.math.stat.descriptive.moment.VarianceTest::testEvaluateArraySegmentWeighted
+junit.framework.AssertionFailedError: expected:<1.6644508338125354> but was:<0.31909161062727365>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:494)
+	at org.junit.Assert.assertEquals(Assert.java:592)
+	at org.apache.commons.math.stat.descriptive.UnivariateStatisticAbstractTest.testEvaluateArraySegmentWeighted(UnivariateStatisticAbstractTest.java:130)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

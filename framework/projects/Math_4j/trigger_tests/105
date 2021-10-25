@@ -1,8 +1,10 @@
---- org.apache.commons.math.fraction.FractionFormatTest::testParseProperInvalidMinus
-junit.framework.AssertionFailedError: invalid minus in improper fraction.
-	at junit.framework.Assert.fail(Assert.java:57)
-	at junit.framework.TestCase.fail(TestCase.java:227)
-	at org.apache.commons.math.fraction.FractionFormatTest.testParseProperInvalidMinus(FractionFormatTest.java:236)
+--- org.apache.commons.math.stat.regression.SimpleRegressionTest::testSSENonNegative
+junit.framework.AssertionFailedError
+	at junit.framework.Assert.fail(Assert.java:55)
+	at junit.framework.Assert.assertTrue(Assert.java:22)
+	at junit.framework.Assert.assertTrue(Assert.java:31)
+	at junit.framework.TestCase.assertTrue(TestCase.java:201)
+	at org.apache.commons.math.stat.regression.SimpleRegressionTest.testSSENonNegative(SimpleRegressionTest.java:275)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

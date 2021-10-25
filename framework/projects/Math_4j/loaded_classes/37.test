@@ -1,1 +1,2 @@
-org.apache.commons.math.optimization.direct.BOBYQAOptimizerTest
+org.apache.commons.math.complex.ComplexTest
+org.apache.commons.math.TestUtils

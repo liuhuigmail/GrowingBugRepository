@@ -1,3 +1,2 @@
-org.apache.commons.math.stat.descriptive.moment.VarianceTest
-org.apache.commons.math.stat.descriptive.StorelessUnivariateStatisticAbstractTest
-org.apache.commons.math.stat.descriptive.UnivariateStatisticAbstractTest
+org.apache.commons.math.analysis.solvers.BaseSecantSolverAbstractTest
+org.apache.commons.math.analysis.solvers.BracketingNthOrderBrentSolverTest

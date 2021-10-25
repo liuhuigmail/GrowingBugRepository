@@ -1,1 +1,2 @@
-org.apache.commons.math.linear.CholeskyDecompositionImplTest
+org.apache.commons.math.distribution.ContinuousDistributionAbstractTest
+org.apache.commons.math.distribution.NormalDistributionTest

@@ -1,48 +1,32 @@
-diff --git a/src/test/org/apache/commons/math/linear/BigMatrixImplTest.java b/src/test/org/apache/commons/math/linear/BigMatrixImplTest.java
-index 2f52c35..f30e04b 100644
---- a/src/test/org/apache/commons/math/linear/BigMatrixImplTest.java
-+++ b/src/test/org/apache/commons/math/linear/BigMatrixImplTest.java
-@@ -435,20 +435,6 @@ public final class BigMatrixImplTest extends TestCase {
-             ;
-         }      
+diff --git a/src/test/org/apache/commons/math/analysis/BrentSolverTest.java b/src/test/org/apache/commons/math/analysis/BrentSolverTest.java
+index 49c93aa..ea1ba68 100644
+--- a/src/test/org/apache/commons/math/analysis/BrentSolverTest.java
++++ b/src/test/org/apache/commons/math/analysis/BrentSolverTest.java
+@@ -31,7 +31,7 @@ import junit.framework.TestSuite;
+  * default absolute accuracy of 10E-8 for sinus and the quintic function around
+  * zero, and 5..10 iterations for the other zeros.
+  * 
+- * @version $Revision:670469 $ $Date:2008-06-23 10:01:38 +0200 (lun., 23 juin 2008) $ 
++ * @version $Revision$ $Date$ 
+  */
+ public final class BrentSolverTest extends TestCase {
+ 
+@@ -268,18 +268,6 @@ public final class BrentSolverTest extends TestCase {
+         assertEquals(result, 1.0, 1E-6);
      }
--
--    /** test issue MATH-209 */
--    public void testMath209() {
--        BigMatrix a = new BigMatrixImpl(new BigDecimal[][] {
--                { new BigDecimal(1), new BigDecimal(2) },
--                { new BigDecimal(3), new BigDecimal(4) },
--                { new BigDecimal(5), new BigDecimal(6) }
--        }, false);
--        BigDecimal[] b = a.operate(new BigDecimal[] { new BigDecimal(1), new BigDecimal(1) });
--        assertEquals(a.getRowDimension(), b.length);
--        assertEquals( 3.0, b[0].doubleValue(), 1.0e-12);
--        assertEquals( 7.0, b[1].doubleValue(), 1.0e-12);
--        assertEquals(11.0, b[2].doubleValue(), 1.0e-12);
--    }
      
-     /** test transpose */
-     public void testTranspose() {
-diff --git a/src/test/org/apache/commons/math/linear/RealMatrixImplTest.java b/src/test/org/apache/commons/math/linear/RealMatrixImplTest.java
-index 383a959..7553f36 100644
---- a/src/test/org/apache/commons/math/linear/RealMatrixImplTest.java
-+++ b/src/test/org/apache/commons/math/linear/RealMatrixImplTest.java
-@@ -342,18 +342,6 @@ public final class RealMatrixImplTest extends TestCase {
-             ;
-         }      
-     }
+-    public void testRootEndpoints() throws Exception {
+-        UnivariateRealFunction f = new SinFunction();
+-        UnivariateRealSolver solver = new BrentSolver(f);
+-        
+-        // endpoint is root
+-        double result = solver.solve(Math.PI, 4);
+-        assertEquals(result, Math.PI, solver.getAbsoluteAccuracy());
 -
--    /** test issue MATH-209 */
--    public void testMath209() {
--        RealMatrix a = new RealMatrixImpl(new double[][] {
--                { 1, 2 }, { 3, 4 }, { 5, 6 }
--        }, false);
--        double[] b = a.operate(new double[] { 1, 1 });
--        assertEquals(a.getRowDimension(), b.length);
--        assertEquals( 3.0, b[0], 1.0e-12);
--        assertEquals( 7.0, b[1], 1.0e-12);
--        assertEquals(11.0, b[2], 1.0e-12);
+-        result = solver.solve(3, Math.PI);
+-        assertEquals(result, Math.PI, solver.getAbsoluteAccuracy());
 -    }
-     
-     /** test transpose */
-     public void testTranspose() {
+-    
+     public void testBadEndpoints() throws Exception {
+         UnivariateRealFunction f = new SinFunction();
+         UnivariateRealSolver solver = new BrentSolver(f);

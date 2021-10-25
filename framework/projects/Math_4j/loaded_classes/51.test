@@ -1,1 +1,2 @@
-org.apache.commons.math.geometry.euclidean.threed.RotationTest
+org.apache.commons.math.analysis.solvers.BaseSecantSolverAbstractTest
+org.apache.commons.math.analysis.solvers.RegulaFalsiSolverTest

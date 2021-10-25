@@ -1,9 +1,10 @@
---- org.apache.commons.math.complex.ComplexTest::testAddNaN
-junit.framework.AssertionFailedError
-	at org.junit.Assert.fail(Assert.java:86)
-	at org.junit.Assert.assertTrue(Assert.java:41)
-	at org.junit.Assert.assertTrue(Assert.java:52)
-	at org.apache.commons.math.complex.ComplexTest.testAddNaN(ComplexTest.java:116)
+--- org.apache.commons.math.geometry.euclidean.threed.RotationTest::testIssue639
+junit.framework.AssertionFailedError: expected:<0.6228370359608201> but was:<NaN>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:494)
+	at org.junit.Assert.assertEquals(Assert.java:592)
+	at org.apache.commons.math.geometry.euclidean.threed.RotationTest.testIssue639(RotationTest.java:488)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

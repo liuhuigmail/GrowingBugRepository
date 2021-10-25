@@ -1,9 +1,3 @@
-org.apache.commons.math.analysis.solvers.LaguerreSolverTest
-org.apache.commons.math.complex.ComplexFieldTest
-org.apache.commons.math.complex.ComplexFormatTest
-org.apache.commons.math.complex.ComplexTest
-org.apache.commons.math.complex.ComplexUtilsTest
-org.apache.commons.math.complex.FrenchComplexFormatTest
-org.apache.commons.math.transform.FastCosineTransformerTest
-org.apache.commons.math.transform.FastFourierTransformerTest
-org.apache.commons.math.transform.FastSineTransformerTest
+org.apache.commons.math.geometry.euclidean.threed.PlaneTest
+org.apache.commons.math.geometry.euclidean.threed.PolyhedronsSetTest
+org.apache.commons.math.geometry.euclidean.threed.RotationTest

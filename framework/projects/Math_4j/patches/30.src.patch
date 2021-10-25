@@ -1,73 +1,13 @@
-diff --git a/src/main/java/org/apache/commons/math3/util/ContinuedFraction.java b/src/main/java/org/apache/commons/math3/util/ContinuedFraction.java
-index 253f3c5..b881bb2 100644
---- a/src/main/java/org/apache/commons/math3/util/ContinuedFraction.java
-+++ b/src/main/java/org/apache/commons/math3/util/ContinuedFraction.java
-@@ -131,6 +131,8 @@ public abstract class ContinuedFraction {
+diff --git a/src/main/java/org/apache/commons/math3/stat/inference/MannWhitneyUTest.java b/src/main/java/org/apache/commons/math3/stat/inference/MannWhitneyUTest.java
+index a161737..ce694ce 100644
+--- a/src/main/java/org/apache/commons/math3/stat/inference/MannWhitneyUTest.java
++++ b/src/main/java/org/apache/commons/math3/stat/inference/MannWhitneyUTest.java
+@@ -170,7 +170,7 @@ public class MannWhitneyUTest {
+                                              final int n2)
+         throws ConvergenceException, MaxCountExceededException {
  
-         int n = 1;
-         double dPrev = 0.0;
-+        double p0 = 1.0;
-+        double q1 = 1.0;
-         double cPrev = hPrev;
-         double hN = hPrev;
+-        final double n1n2prod = n1 * n2;
++        final int n1n2prod = n1 * n2;
  
-@@ -138,18 +140,34 @@ public abstract class ContinuedFraction {
-             final double a = getA(n, x);
-             final double b = getB(n, x);
- 
--            double dN = a + b * dPrev;
--            if (Precision.equals(dN, 0.0, small)) {
--                dN = small;
--            }
--            double cN = a + b / cPrev;
--            if (Precision.equals(cN, 0.0, small)) {
--                cN = small;
-+            double cN = a * hPrev + b * p0;
-+            double q2 = a * q1 + b * dPrev;
-+            if (Double.isInfinite(cN) || Double.isInfinite(q2)) {
-+                double scaleFactor = 1d;
-+                double lastScaleFactor = 1d;
-+                final int maxPower = 5;
-+                final double scale = FastMath.max(a,b);
-+                if (scale <= 0) {  // Can't scale
-+                    throw new ConvergenceException(LocalizedFormats.CONTINUED_FRACTION_INFINITY_DIVERGENCE, x);
-+                }
-+                for (int i = 0; i < maxPower; i++) {
-+                    lastScaleFactor = scaleFactor;
-+                    scaleFactor *= scale;
-+                    if (a != 0.0 && a > b) {
-+                        cN = hPrev / lastScaleFactor + (b / scaleFactor * p0);
-+                        q2 = q1 / lastScaleFactor + (b / scaleFactor * dPrev);
-+                    } else if (b != 0) {
-+                        cN = (a / scaleFactor * hPrev) + p0 / lastScaleFactor;
-+                        q2 = (a / scaleFactor * q1) + dPrev / lastScaleFactor;
-+                    }
-+                    if (!(Double.isInfinite(cN) || Double.isInfinite(q2))) {
-+                        break;
-+                    }
-+                }
-             }
- 
--            dN = 1 / dN;
--            final double deltaN = cN * dN;
--            hN = hPrev * deltaN;
-+            final double deltaN = cN / q2 / cPrev;
-+            hN = cPrev * deltaN;
- 
-             if (Double.isInfinite(hN)) {
-                 throw new ConvergenceException(LocalizedFormats.CONTINUED_FRACTION_INFINITY_DIVERGENCE,
-@@ -164,9 +182,11 @@ public abstract class ContinuedFraction {
-                 break;
-             }
- 
--            dPrev = dN;
--            cPrev = cN;
--            hPrev = hN;
-+            dPrev = q1;
-+            cPrev = cN / q2;
-+            p0 = hPrev;
-+            hPrev = cN;
-+            q1 = q2;
-             n++;
-         }
- 
+         // http://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U#Normal_approximation
+         final double EU = n1n2prod / 2.0;

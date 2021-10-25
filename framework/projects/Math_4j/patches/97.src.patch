@@ -1,26 +1,38 @@
-diff --git a/src/java/org/apache/commons/math/linear/BigMatrixImpl.java b/src/java/org/apache/commons/math/linear/BigMatrixImpl.java
-index 919a5ba..7cd61cb 100644
---- a/src/java/org/apache/commons/math/linear/BigMatrixImpl.java
-+++ b/src/java/org/apache/commons/math/linear/BigMatrixImpl.java
-@@ -988,7 +988,7 @@ public class BigMatrixImpl implements BigMatrix, Serializable {
+diff --git a/src/java/org/apache/commons/math/analysis/BrentSolver.java b/src/java/org/apache/commons/math/analysis/BrentSolver.java
+index 57f64a9..766d87e 100644
+--- a/src/java/org/apache/commons/math/analysis/BrentSolver.java
++++ b/src/java/org/apache/commons/math/analysis/BrentSolver.java
+@@ -135,31 +135,17 @@ public class BrentSolver extends UnivariateRealSolverImpl {
+         
+         // Verify bracketing
+         double sign = yMin * yMax;
+-        if (sign > 0) {
++        if (sign >= 0) {
+             // check if either value is close to a zero
+-            if (Math.abs(yMin) <= functionValueAccuracy) {
+-                setResult(min, 0);
+-                ret = min;
+-            } else if (Math.abs(yMax) <= functionValueAccuracy) {
+-                setResult(max, 0);
+-                ret = max;
+-            } else {
+                 // neither value is close to zero and min and max do not bracket root.
+                 throw new IllegalArgumentException
+                 ("Function values at endpoints do not have different signs." +
+                         "  Endpoints: [" + min + "," + max + "]" + 
+                         "  Values: [" + yMin + "," + yMax + "]");
+-            }
+-        } else if (sign < 0){
++        } else {
+             // solve using only the first endpoint as initial guess
+             ret = solve(min, yMin, max, yMax, min, yMin);
+-        } else {
+             // either min or max is a root
+-            if (yMin == 0.0) {
+-                ret = min;
+-            } else {
+-                ret = max;
+-            }
          }
-         final int nRows = this.getRowDimension();
-         final int nCols = this.getColumnDimension();
--        final BigDecimal[] out = new BigDecimal[nRows];
-+        final BigDecimal[] out = new BigDecimal[v.length];
-         for (int row = 0; row < nRows; row++) {
-             BigDecimal sum = ZERO;
-             for (int i = 0; i < nCols; i++) {
-diff --git a/src/java/org/apache/commons/math/linear/RealMatrixImpl.java b/src/java/org/apache/commons/math/linear/RealMatrixImpl.java
-index 3a717ff..7910644 100644
---- a/src/java/org/apache/commons/math/linear/RealMatrixImpl.java
-+++ b/src/java/org/apache/commons/math/linear/RealMatrixImpl.java
-@@ -776,7 +776,7 @@ public class RealMatrixImpl implements RealMatrix, Serializable {
-         if (v.length != nCols) {
-             throw new IllegalArgumentException("vector has wrong length");
-         }
--        final double[] out = new double[nRows];
-+        final double[] out = new double[v.length];
-         for (int row = 0; row < nRows; row++) {
-             final double[] dataRow = data[row];
-             double sum = 0;
+ 
+         return ret;

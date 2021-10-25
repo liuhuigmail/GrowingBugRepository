@@ -1,30 +1,33 @@
-diff --git a/src/main/java/org/apache/commons/math/ode/events/EventState.java b/src/main/java/org/apache/commons/math/ode/events/EventState.java
-index ff09646..5006065 100644
---- a/src/main/java/org/apache/commons/math/ode/events/EventState.java
-+++ b/src/main/java/org/apache/commons/math/ode/events/EventState.java
-@@ -188,7 +188,6 @@ public class EventState {
-                 if (g0Positive ^ (gb >= 0)) {
-                     // there is a sign change: an event is expected during this step
+diff --git a/src/main/java/org/apache/commons/math/linear/ArrayRealVector.java b/src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
+index 22d0a28..37c4417 100644
+--- a/src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
++++ b/src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
+@@ -718,7 +718,7 @@ public class ArrayRealVector extends AbstractRealVector implements Serializable
+     public double getLInfNorm() {
+         double max = 0;
+         for (double a : data) {
+-            max = Math.max(max, Math.abs(a));
++            max += Math.max(max, Math.abs(a));
+         }
+         return max;
+     }
+diff --git a/src/main/java/org/apache/commons/math/linear/OpenMapRealVector.java b/src/main/java/org/apache/commons/math/linear/OpenMapRealVector.java
+index eb5be1b..e025960 100644
+--- a/src/main/java/org/apache/commons/math/linear/OpenMapRealVector.java
++++ b/src/main/java/org/apache/commons/math/linear/OpenMapRealVector.java
+@@ -495,6 +495,15 @@ public class OpenMapRealVector extends AbstractRealVector implements SparseRealV
+         return max;
+     }
  
--                    if (ga * gb > 0) {
-                         // this is a corner case:
-                         // - there was an event near ta,
-                         // - there is another event between ta and tb
-@@ -196,17 +195,7 @@ public class EventState {
-                         // this implies that the real sign of ga is the same as gb, so we need to slightly
-                         // shift ta to make sure ga and gb get opposite signs and the solver won't complain
-                         // about bracketing
--                        final double epsilon = (forward ? 0.25 : -0.25) * convergence;
--                        for (int k = 0; (k < 4) && (ga * gb > 0); ++k) {
--                            ta += epsilon;
--                            interpolator.setInterpolatedTime(ta);
--                            ga = handler.g(ta, interpolator.getInterpolatedState());
--                        }
--                        if (ga * gb > 0) {
-                             // this should never happen
--                            throw MathRuntimeException.createInternalError(null);
--                        }
--                    }
-                          
-                     // variation direction, with respect to the integration direction
-                     increasing = gb >= ga;
++    public double getLInfNorm() {
++        double max = 0;
++        Iterator iter = entries.iterator();
++        while (iter.hasNext()) {
++            iter.advance();
++            max += iter.value();
++        }
++        return max;
++    }
+     /**
+      * Optimized method to compute LInfDistance.
+      * @param v The vector to compute from

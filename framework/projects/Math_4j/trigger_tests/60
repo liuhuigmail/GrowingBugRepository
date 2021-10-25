@@ -1,9 +1,11 @@
---- org.apache.commons.math.distribution.PoissonDistributionTest::testMean
-org.apache.commons.math.MathRuntimeException$4: the Poisson mean must be positive (-1)
-	at org.apache.commons.math.MathRuntimeException.createIllegalArgumentException(MathRuntimeException.java:387)
-	at org.apache.commons.math.distribution.PoissonDistributionImpl.<init>(PoissonDistributionImpl.java:94)
-	at org.apache.commons.math.distribution.PoissonDistributionImpl.<init>(PoissonDistributionImpl.java:80)
-	at org.apache.commons.math.distribution.PoissonDistributionTest.testMean(PoissonDistributionTest.java:140)
+--- org.apache.commons.math.distribution.NormalDistributionTest::testExtremeValues
+org.apache.commons.math.ConvergenceException: Continued fraction diverged to NaN for value ∞
+	at org.apache.commons.math.util.ContinuedFraction.evaluate(ContinuedFraction.java:186)
+	at org.apache.commons.math.special.Gamma.regularizedGammaQ(Gamma.java:266)
+	at org.apache.commons.math.special.Gamma.regularizedGammaP(Gamma.java:173)
+	at org.apache.commons.math.special.Erf.erf(Erf.java:51)
+	at org.apache.commons.math.distribution.NormalDistributionImpl.cumulativeProbability(NormalDistributionImpl.java:127)
+	at org.apache.commons.math.distribution.NormalDistributionTest.testExtremeValues(NormalDistributionTest.java:174)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

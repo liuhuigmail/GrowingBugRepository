@@ -1,39 +1,16 @@
-diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
-index 866c8fd..bc754a5 100644
---- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
-+++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
-@@ -929,7 +929,7 @@ public class CMAESOptimizer
-             double[] res = new double[x.length];
-             for (int i = 0; i < x.length; i++) {
-                 double diff = boundaries[1][i] - boundaries[0][i];
--                res[i] = x[i] / diff;
-+                res[i] = (x[i] - boundaries[0][i]) / diff;
-             }
-             return res;
-         }
-@@ -955,7 +955,7 @@ public class CMAESOptimizer
-             double[] res = new double[x.length];
-             for (int i = 0; i < x.length; i++) {
-                 double diff = boundaries[1][i] - boundaries[0][i];
--                res[i] = diff * x[i];
-+                res[i] = diff * x[i] + boundaries[0][i];
-             }
-             return res;
-         }
-@@ -987,14 +987,12 @@ public class CMAESOptimizer
-                 return true;
-             }
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index 3a91982..0f78330 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1600,11 +1600,7 @@ public class Dfp implements FieldElement<Dfp> {
+      * @return product of this and x
+      */
+     public Dfp multiply(final int x) {
+-        if (x >= 0 && x < RADIX) {
+             return multiplyFast(x);
+-        } else {
+-            return multiply(newInstance(x));
+-        }
+     }
  
--            final double[] bLoEnc = encode(boundaries[0]);
--            final double[] bHiEnc = encode(boundaries[1]);
- 
-             for (int i = 0; i < x.length; i++) {
--                if (x[i] < bLoEnc[i]) {
-+                if (x[i] < 0) {
-                     return false;
-                 }
--                if (x[i] > bHiEnc[i]) {
-+                if (x[i] > 1.0) {
-                     return false;
-                 }
-             }
+     /** Multiply this by a single digit 0&lt;=x&lt;radix.

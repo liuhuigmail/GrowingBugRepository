@@ -1,38 +1,25 @@
-diff --git a/src/test/java/org/apache/commons/math3/analysis/differentiation/DerivativeStructureTest.java b/src/test/java/org/apache/commons/math3/analysis/differentiation/DerivativeStructureTest.java
-index 1d357fd..4da9b42 100644
---- a/src/test/java/org/apache/commons/math3/analysis/differentiation/DerivativeStructureTest.java
-+++ b/src/test/java/org/apache/commons/math3/analysis/differentiation/DerivativeStructureTest.java
-@@ -808,33 +808,6 @@ public class DerivativeStructureTest {
+diff --git a/src/test/java/org/apache/commons/math3/geometry/euclidean/threed/LineTest.java b/src/test/java/org/apache/commons/math3/geometry/euclidean/threed/LineTest.java
+index 6c996c7..5da16c9 100644
+--- a/src/test/java/org/apache/commons/math3/geometry/euclidean/threed/LineTest.java
++++ b/src/test/java/org/apache/commons/math3/geometry/euclidean/threed/LineTest.java
+@@ -129,20 +129,4 @@ public class LineTest {
+         Assert.assertNull(l.intersection(new Line(new Vector3D(0, -4, 0), new Vector3D(1, -4, 0))));
      }
  
-     @Test
--    public void testAtan2SpecialCases() {
+-    @Test
+-    public void testRevert() {
+-        
+-        // setup
+-        Line line = new Line(new Vector3D(1653345.6696423641, 6170370.041579291, 90000),
+-                             new Vector3D(1650757.5050732433, 6160710.879908984, 0.9));
+-        Vector3D expected = line.getDirection().negate();
 -
--        DerivativeStructure pp =
--                DerivativeStructure.atan2(new DerivativeStructure(2, 2, 1, +0.0),
--                                          new DerivativeStructure(2, 2, 1, +0.0));
--        Assert.assertEquals(0, pp.getValue(), 1.0e-15);
--        Assert.assertEquals(+1, FastMath.copySign(1, pp.getValue()), 1.0e-15);
+-        // action
+-        Line reverted = line.revert();
 -
--        DerivativeStructure pn =
--                DerivativeStructure.atan2(new DerivativeStructure(2, 2, 1, +0.0),
--                                          new DerivativeStructure(2, 2, 1, -0.0));
--        Assert.assertEquals(FastMath.PI, pn.getValue(), 1.0e-15);
--
--        DerivativeStructure np =
--                DerivativeStructure.atan2(new DerivativeStructure(2, 2, 1, -0.0),
--                                          new DerivativeStructure(2, 2, 1, +0.0));
--        Assert.assertEquals(0, np.getValue(), 1.0e-15);
--        Assert.assertEquals(-1, FastMath.copySign(1, np.getValue()), 1.0e-15);
--
--        DerivativeStructure nn =
--                DerivativeStructure.atan2(new DerivativeStructure(2, 2, 1, -0.0),
--                                          new DerivativeStructure(2, 2, 1, -0.0));
--        Assert.assertEquals(-FastMath.PI, nn.getValue(), 1.0e-15);
+-        // verify
+-        Assert.assertArrayEquals(expected.toArray(), reverted.getDirection().toArray(), 0);
 -
 -    }
 -
--    @Test
-     public void testSinhDefinition() {
-         double[] epsilon = new double[] { 3.0e-16, 3.0e-16, 5.0e-16, 2.0e-15, 6.0e-15 };
-         for (int maxOrder = 0; maxOrder < 5; ++maxOrder) {
+ }

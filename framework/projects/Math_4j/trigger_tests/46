@@ -3,7 +3,7 @@ junit.framework.AssertionFailedError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
 	at org.junit.Assert.assertTrue(Assert.java:52)
-	at org.apache.commons.math.complex.ComplexTest.testAtanI(ComplexTest.java:579)
+	at org.apache.commons.math.complex.ComplexTest.testAtanI(ComplexTest.java:577)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -45,12 +45,12 @@ junit.framework.AssertionFailedError
 	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
 	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
 --- org.apache.commons.math.complex.ComplexTest::testDivideZero
-junit.framework.AssertionFailedError: expected:<(NaN, NaN)> but was:<(Infinity, Infinity)>
+junit.framework.AssertionFailedError: expected:<(Infinity, Infinity)> but was:<(NaN, NaN)>
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotEquals(Assert.java:743)
 	at org.junit.Assert.assertEquals(Assert.java:118)
 	at org.junit.Assert.assertEquals(Assert.java:144)
-	at org.apache.commons.math.complex.ComplexTest.testDivideZero(ComplexTest.java:232)
+	at org.apache.commons.math.complex.ComplexTest.testDivideZero(ComplexTest.java:233)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

@@ -24,8 +24,11 @@ org.apache.commons.math.exception.NullArgumentException
 org.apache.commons.math.exception.NumberIsTooLargeException
 org.apache.commons.math.exception.NumberIsTooSmallException
 org.apache.commons.math.exception.TooManyEvaluationsException
+org.apache.commons.math.exception.util.ArgUtils
+org.apache.commons.math.exception.util.ExceptionContext
 org.apache.commons.math.exception.util.ExceptionContextProvider
 org.apache.commons.math.exception.util.Localizable
+org.apache.commons.math.exception.util.LocalizedFormats
 org.apache.commons.math.util.FastMath
 org.apache.commons.math.util.Incrementor
 org.apache.commons.math.util.MathUtils

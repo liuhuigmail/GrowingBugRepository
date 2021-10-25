@@ -1,1 +1,1 @@
-org.apache.commons.math3.util.FastMathTest
+org.apache.commons.math3.fitting.PolynomialFitterTest

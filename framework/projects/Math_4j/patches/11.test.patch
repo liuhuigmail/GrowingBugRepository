@@ -1,66 +1,37 @@
-diff --git a/src/test/java/org/apache/commons/math3/distribution/RealDistributionAbstractTest.java b/src/test/java/org/apache/commons/math3/distribution/RealDistributionAbstractTest.java
-index e259233..c693b14 100644
---- a/src/test/java/org/apache/commons/math3/distribution/RealDistributionAbstractTest.java
-+++ b/src/test/java/org/apache/commons/math3/distribution/RealDistributionAbstractTest.java
-@@ -19,11 +19,6 @@ package org.apache.commons.math3.distribution;
+diff --git a/src/test/java/org/apache/commons/math3/distribution/MultivariateNormalDistributionTest.java b/src/test/java/org/apache/commons/math3/distribution/MultivariateNormalDistributionTest.java
+index 9666618..756c009 100644
+--- a/src/test/java/org/apache/commons/math3/distribution/MultivariateNormalDistributionTest.java
++++ b/src/test/java/org/apache/commons/math3/distribution/MultivariateNormalDistributionTest.java
+@@ -20,7 +20,6 @@ package org.apache.commons.math3.distribution;
+ import org.apache.commons.math3.stat.correlation.Covariance;
+ import org.apache.commons.math3.linear.RealMatrix;
  
- import java.util.ArrayList;
- import java.util.Collections;
--import java.io.ByteArrayInputStream;
--import java.io.ByteArrayOutputStream;
--import java.io.IOException;
--import java.io.ObjectInputStream;
--import java.io.ObjectOutputStream;
- 
- import org.apache.commons.math3.TestUtils;
- import org.apache.commons.math3.util.FastMath;
-@@ -376,24 +371,6 @@ public abstract class RealDistributionAbstractTest {
-          
+-import java.util.Random;
+ import org.junit.After;
+ import org.junit.Assert;
+ import org.junit.Before;
+@@ -131,24 +130,4 @@ public class MultivariateNormalDistributionTest {
+             Assert.assertEquals(correctDensities[i], densities[i], 1e-16);
+         }
      }
- 
--    @Test
--    public void testDistributionClone()
--        throws IOException,
--               ClassNotFoundException {
--        // Construct a distribution and initialize its internal random
--        // generator, using a fixed seed for deterministic results.
--        distribution.reseedRandomGenerator(123);
--        distribution.sample();
 -
--        // Clone the distribution.
--        final RealDistribution cloned = deepClone();
--
--        // Make sure they still produce the same samples.
--        final double s1 = distribution.sample();
--        final double s2 = cloned.sample();
--        Assert.assertEquals(s1, s2, 0d);
--    }
--
-     //------------------ Getters / Setters for test instance data -----------
-     /**
-      * @return Returns the cumulativeTestPoints.
-@@ -487,24 +464,4 @@ public abstract class RealDistributionAbstractTest {
-         this.tolerance = tolerance;
-     }
- 
 -    /**
--     * Serialization and deserialization loop of the {@link #distribution}.
+-     * Test the accuracy of the distribution when calculating densities.
 -     */
--    private RealDistribution deepClone()
--        throws IOException,
--               ClassNotFoundException {
--        // Serialize to byte array.
--        final ByteArrayOutputStream bOut = new ByteArrayOutputStream();
--        final ObjectOutputStream oOut = new ObjectOutputStream(bOut);
--        oOut.writeObject(distribution);
--        final byte[] data = bOut.toByteArray();
+-    @Test
+-    public void testUnivariateDistribution() {
+-        final double[] mu = { -1.5 };
+-        final double[][] sigma = { { 1 } };
+- 
+-        final MultivariateNormalDistribution multi = new MultivariateNormalDistribution(mu, sigma);
 -
--        // Deserialize from byte array.
--        final ByteArrayInputStream bIn = new ByteArrayInputStream(data);
--        final ObjectInputStream oIn = new ObjectInputStream(bIn);
--        final Object clone = oIn.readObject();
--        oIn.close();
--
--        return (RealDistribution) clone;
+-        final NormalDistribution uni = new NormalDistribution(mu[0], sigma[0][0]);
+-        final Random rng = new Random();
+-        final int numCases = 100;
+-        final double tol = Math.ulp(1d);
+-        for (int i = 0; i < numCases; i++) {
+-            final double v = rng.nextDouble() * 10 - 5;
+-            Assert.assertEquals(uni.density(v), multi.density(new double[] { v }), tol);
+-        }
 -    }
  }

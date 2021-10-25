@@ -1,74 +1,115 @@
-diff --git a/src/test/java/org/apache/commons/math/ode/nonstiff/DormandPrince853IntegratorTest.java b/src/test/java/org/apache/commons/math/ode/nonstiff/DormandPrince853IntegratorTest.java
-index f622998..7d5e9b7 100644
---- a/src/test/java/org/apache/commons/math/ode/nonstiff/DormandPrince853IntegratorTest.java
-+++ b/src/test/java/org/apache/commons/math/ode/nonstiff/DormandPrince853IntegratorTest.java
-@@ -177,32 +177,6 @@ public class DormandPrince853IntegratorTest {
-   }
+diff --git a/src/test/java/org/apache/commons/math/optimization/direct/BOBYQAOptimizerTest.java b/src/test/java/org/apache/commons/math/optimization/direct/BOBYQAOptimizerTest.java
+index fe64f9e..7eb7742 100644
+--- a/src/test/java/org/apache/commons/math/optimization/direct/BOBYQAOptimizerTest.java
++++ b/src/test/java/org/apache/commons/math/optimization/direct/BOBYQAOptimizerTest.java
+@@ -231,60 +231,6 @@ public class BOBYQAOptimizerTest {
+                 1e-13, 1e-6, 2000, expected);
+     }
  
-   @Test
--  public void testTooLargeFirstStep() {
+-    // See MATH-728
+-    @Test
+-    public void testConstrainedRosenWithMoreInterpolationPoints() {
+-        final double[] startPoint = point(DIM, 0.1);
+-        final double[][] boundaries = boundaries(DIM, -1, 2);
+-        final RealPointValuePair expected = new RealPointValuePair(point(DIM, 1.0), 0.0);
 -
--      AdaptiveStepsizeIntegrator integ =
--              new DormandPrince853Integrator(0, Double.POSITIVE_INFINITY, Double.NaN, Double.NaN);
--      final double start = 0.0;
--      final double end   = 0.001;
--      FirstOrderDifferentialEquations equations = new FirstOrderDifferentialEquations() {
+-        // This should have been 78 because in the code the hard limit is
+-        // said to be
+-        //   ((DIM + 1) * (DIM + 2)) / 2 - (2 * DIM + 1)
+-        // i.e. 78 in this case, but the test fails for 48, 59, 62, 63, 64,
+-        // 65, 66, ...
+-        final int maxAdditionalPoints = 47;
 -
--          public int getDimension() {
--              return 1;
--          }
+-        for (int num = 1; num <= maxAdditionalPoints; num++) {
+-            doTest(new Rosen(), startPoint, boundaries,
+-                   GoalType.MINIMIZE,
+-                   1e-12, 1e-6, 2000,
+-                   num,
+-                   expected,
+-                   "num=" + num);
+-        }
+-    }
 -
--          public void computeDerivatives(double t, double[] y, double[] yDot) {
--              Assert.assertTrue(t >= FastMath.nextAfter(start, Double.NEGATIVE_INFINITY));
--              Assert.assertTrue(t <= FastMath.nextAfter(end,   Double.POSITIVE_INFINITY));
--              yDot[0] = -100.0 * y[0];
--          }
+-    /**
+-     * @param func Function to optimize.
+-     * @param startPoint Starting point.
+-     * @param boundaries Upper / lower point limit.
+-     * @param goal Minimization or maximization.
+-     * @param fTol Tolerance relative error on the objective function.
+-     * @param pointTol Tolerance for checking that the optimum is correct.
+-     * @param maxEvaluations Maximum number of evaluations.
+-     * @param expected Expected point / value.
+-     */
+-    private void doTest(MultivariateFunction func,
+-                        double[] startPoint,
+-                        double[][] boundaries,
+-                        GoalType goal,
+-                        double fTol,
+-                        double pointTol,
+-                        int maxEvaluations,
+-                        RealPointValuePair expected) {
+-        doTest(func,
+-               startPoint,
+-               boundaries,
+-               goal,
+-               fTol,
+-               pointTol,
+-               maxEvaluations,
+-               0,
+-               expected,
+-               "");
+-    }
 -
--      };
--
--      integ.setStepSizeControl(0, 1.0, 1.0e-6, 1.0e-8);
--      integ.integrate(equations, start, new double[] { 1.0 }, end, new double[1]);
--
--  }
--
--  @Test
-   public void testBackward()
-       {
+     /**
+      * @param func Function to optimize.
+      * @param startPoint Starting point.
+@@ -293,20 +239,16 @@ public class BOBYQAOptimizerTest {
+      * @param fTol Tolerance relative error on the objective function.
+      * @param pointTol Tolerance for checking that the optimum is correct.
+      * @param maxEvaluations Maximum number of evaluations.
+-     * @param additionalInterpolationPoints Number of interpolation to used
+-     * in addition to the default (2 * dim + 1).
+      * @param expected Expected point / value.
+      */
+     private void doTest(MultivariateFunction func,
+-                        double[] startPoint,
+-                        double[][] boundaries,
+-                        GoalType goal,
+-                        double fTol,
+-                        double pointTol,
+-                        int maxEvaluations,
+-                        int additionalInterpolationPoints,
+-                        RealPointValuePair expected,
+-                        String assertMsg) {
++            double[] startPoint,
++            double[][] boundaries,
++            GoalType goal,
++            double fTol,
++            double pointTol,
++            int maxEvaluations,
++            RealPointValuePair expected) {
  
-diff --git a/src/test/java/org/apache/commons/math/ode/nonstiff/GraggBulirschStoerIntegratorTest.java b/src/test/java/org/apache/commons/math/ode/nonstiff/GraggBulirschStoerIntegratorTest.java
-index f516b2b..0be4a0c 100644
---- a/src/test/java/org/apache/commons/math/ode/nonstiff/GraggBulirschStoerIntegratorTest.java
-+++ b/src/test/java/org/apache/commons/math/ode/nonstiff/GraggBulirschStoerIntegratorTest.java
-@@ -256,32 +256,6 @@ public class GraggBulirschStoerIntegratorTest {
-   }
+         System.out.println(func.getClass().getName() + " BEGIN"); // XXX
  
-   @Test
--  public void testTooLargeFirstStep() {
--
--      AdaptiveStepsizeIntegrator integ =
--              new GraggBulirschStoerIntegrator(0, Double.POSITIVE_INFINITY, Double.NaN, Double.NaN);
--      final double start = 0.0;
--      final double end   = 0.001;
--      FirstOrderDifferentialEquations equations = new FirstOrderDifferentialEquations() {
--
--          public int getDimension() {
--              return 1;
--          }
--
--          public void computeDerivatives(double t, double[] y, double[] yDot) {
--              Assert.assertTrue(t >= FastMath.nextAfter(start, Double.NEGATIVE_INFINITY));
--              Assert.assertTrue(t <= FastMath.nextAfter(end,   Double.POSITIVE_INFINITY));
--              yDot[0] = -100.0 * y[0];
--          }
--
--      };
--
--      integ.setStepSizeControl(0, 1.0, 1.0e-6, 1.0e-8);
--      integ.integrate(equations, start, new double[] { 1.0 }, end, new double[1]);
--
--  }
--
--  @Test
-   public void testUnstableDerivative() {
-     final StepProblem stepProblem = new StepProblem(0.0, 1.0, 2.0);
-     FirstOrderIntegrator integ =
+@@ -316,17 +258,17 @@ public class BOBYQAOptimizerTest {
+ //        RealPointValuePair result = optim.optimize(100000, func, goal, startPoint);
+         final double[] lB = boundaries == null ? null : boundaries[0];
+         final double[] uB = boundaries == null ? null : boundaries[1];
+-        final int numIterpolationPoints = 2 * dim + 1 + additionalInterpolationPoints;
+-        BOBYQAOptimizer optim = new BOBYQAOptimizer(numIterpolationPoints);
++        BOBYQAOptimizer optim = new BOBYQAOptimizer(2 * dim + 1);
+         RealPointValuePair result = optim.optimize(maxEvaluations, func, goal, startPoint, lB, uB);
+ //        System.out.println(func.getClass().getName() + " = " 
+ //              + optim.getEvaluations() + " f(");
+ //        for (double x: result.getPoint())  System.out.print(x + " ");
+ //        System.out.println(") = " +  result.getValue());
+-        Assert.assertEquals(assertMsg, expected.getValue(), result.getValue(), fTol);
++        Assert.assertEquals(expected.getValue(),
++                result.getValue(), fTol);
+         for (int i = 0; i < dim; i++) {
+             Assert.assertEquals(expected.getPoint()[i],
+-                                result.getPoint()[i], pointTol);
++                    result.getPoint()[i], pointTol);
+         }
+ 
+         System.out.println(func.getClass().getName() + " END"); // XXX

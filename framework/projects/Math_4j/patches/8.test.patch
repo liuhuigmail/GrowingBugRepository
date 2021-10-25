@@ -1,25 +1,34 @@
-diff --git a/src/test/java/org/apache/commons/math3/geometry/euclidean/threed/LineTest.java b/src/test/java/org/apache/commons/math3/geometry/euclidean/threed/LineTest.java
-index 6c996c7..5da16c9 100644
---- a/src/test/java/org/apache/commons/math3/geometry/euclidean/threed/LineTest.java
-+++ b/src/test/java/org/apache/commons/math3/geometry/euclidean/threed/LineTest.java
-@@ -129,20 +129,4 @@ public class LineTest {
-         Assert.assertNull(l.intersection(new Line(new Vector3D(0, -4, 0), new Vector3D(1, -4, 0))));
-     }
+diff --git a/src/test/java/org/apache/commons/math3/distribution/DiscreteRealDistributionTest.java b/src/test/java/org/apache/commons/math3/distribution/DiscreteRealDistributionTest.java
+index cd639f6..1a7ef53 100644
+--- a/src/test/java/org/apache/commons/math3/distribution/DiscreteRealDistributionTest.java
++++ b/src/test/java/org/apache/commons/math3/distribution/DiscreteRealDistributionTest.java
+@@ -16,15 +16,11 @@
+  */
+ package org.apache.commons.math3.distribution;
  
+-import java.util.ArrayList;
+-import java.util.List;
+-
+ import org.apache.commons.math3.exception.DimensionMismatchException;
+ import org.apache.commons.math3.exception.MathArithmeticException;
+ import org.apache.commons.math3.exception.MathIllegalArgumentException;
+ import org.apache.commons.math3.exception.NotPositiveException;
+ import org.apache.commons.math3.util.FastMath;
+-import org.apache.commons.math3.util.Pair;
+ import org.junit.Assert;
+ import org.junit.Test;
+ 
+@@ -203,13 +199,4 @@ public class DiscreteRealDistributionTest {
+         Assert.assertEquals(testDistribution.getNumericalVariance(),
+                 sumOfSquares / n - FastMath.pow(sum / n, 2), 1e-2);
+     }
+-
 -    @Test
--    public void testRevert() {
--        
--        // setup
--        Line line = new Line(new Vector3D(1653345.6696423641, 6170370.041579291, 90000),
--                             new Vector3D(1650757.5050732433, 6160710.879908984, 0.9));
--        Vector3D expected = line.getDirection().negate();
--
--        // action
--        Line reverted = line.revert();
--
--        // verify
--        Assert.assertArrayEquals(expected.toArray(), reverted.getDirection().toArray(), 0);
--
+-    public void testIssue942() {
+-        List<Pair<Object,Double>> list = new ArrayList<Pair<Object, Double>>();
+-        list.add(new Pair<Object, Double>(new Object() {}, new Double(0)));
+-        list.add(new Pair<Object, Double>(new Object() {}, new Double(1)));
+-        Assert.assertEquals(1, new DiscreteDistribution<Object>(list).sample(1).length);
 -    }
 -
  }

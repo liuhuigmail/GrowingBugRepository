@@ -1,9 +1,5 @@
-org.apache.commons.math.analysis.polynomials.PolynomialsUtilsTest
-org.apache.commons.math.distribution.KolmogorovSmirnovDistributionTest
-org.apache.commons.math.fraction.BigFractionFieldTest
-org.apache.commons.math.fraction.BigFractionFormatTest
-org.apache.commons.math.fraction.BigFractionTest
-org.apache.commons.math.linear.MatrixUtilsTest
-org.apache.commons.math.ode.nonstiff.AdamsBashforthIntegratorTest
-org.apache.commons.math.ode.nonstiff.AdamsMoultonIntegratorTest
-org.apache.commons.math.ode.sampling.NordsieckStepInterpolatorTest
+org.apache.commons.math3.genetics.ElitisticListPopulationTest
+org.apache.commons.math3.genetics.FitnessCachingTest
+org.apache.commons.math3.genetics.GeneticAlgorithmTestBinary
+org.apache.commons.math3.genetics.GeneticAlgorithmTestPermutations
+org.apache.commons.math3.genetics.TournamentSelectionTest

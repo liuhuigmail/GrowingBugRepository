@@ -1,6 +1,6 @@
 --- org.apache.commons.math.stat.FrequencyTest::testAddNonComparable
-java.lang.IllegalArgumentException: Value not comparable to existing values.
-	at org.apache.commons.math.stat.Frequency.addValue(Frequency.java:134)
+java.lang.ClassCastException: java.lang.Object cannot be cast to java.lang.Comparable
+	at org.apache.commons.math.stat.Frequency.addValue(Frequency.java:110)
 	at org.apache.commons.math.stat.FrequencyTest.testAddNonComparable(FrequencyTest.java:195)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)

@@ -1,21 +1,24 @@
-diff --git a/src/main/java/org/apache/commons/math3/optimization/general/AbstractLeastSquaresOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/general/AbstractLeastSquaresOptimizer.java
-index 982e559..99d86e9 100644
---- a/src/main/java/org/apache/commons/math3/optimization/general/AbstractLeastSquaresOptimizer.java
-+++ b/src/main/java/org/apache/commons/math3/optimization/general/AbstractLeastSquaresOptimizer.java
-@@ -559,16 +559,7 @@ public abstract class AbstractLeastSquaresOptimizer
-      * @return the square-root of the weight matrix.
-      */
-     private RealMatrix squareRoot(RealMatrix m) {
--        if (m instanceof DiagonalMatrix) {
--            final int dim = m.getRowDimension();
--            final RealMatrix sqrtM = new DiagonalMatrix(dim);
--            for (int i = 0; i < dim; i++) {
--               sqrtM.setEntry(i, i, FastMath.sqrt(m.getEntry(i, i)));
--            }
--            return sqrtM;
--        } else {
-             final EigenDecomposition dec = new EigenDecomposition(m);
-             return dec.getSquareRoot();
--        }
-     }
- }
+diff --git a/src/main/java/org/apache/commons/math3/random/BitsStreamGenerator.java b/src/main/java/org/apache/commons/math3/random/BitsStreamGenerator.java
+index fab295b..4d166c2 100644
+--- a/src/main/java/org/apache/commons/math3/random/BitsStreamGenerator.java
++++ b/src/main/java/org/apache/commons/math3/random/BitsStreamGenerator.java
+@@ -16,7 +16,6 @@
+  */
+ package org.apache.commons.math3.random;
+ 
+-import java.io.Serializable;
+ 
+ import org.apache.commons.math3.exception.NotStrictlyPositiveException;
+ import org.apache.commons.math3.util.FastMath;
+@@ -27,10 +26,8 @@ import org.apache.commons.math3.util.FastMath;
+  * @since 2.0
+  */
+ public abstract class BitsStreamGenerator
+-    implements RandomGenerator,
+-               Serializable {
++    implements RandomGenerator {
+     /** Serializable version identifier */
+-    private static final long serialVersionUID = 20130104L;
+     /** Next gaussian. */
+     private double nextGaussian;
+ 

@@ -1,1 +1,1 @@
-org.apache.commons.math.optimization.linear.SimplexTableau
+org.apache.commons.math.linear.CholeskyDecompositionImpl
