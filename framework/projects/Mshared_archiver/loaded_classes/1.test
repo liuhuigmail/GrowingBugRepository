@@ -1,0 +1,2 @@
+org.apache.maven.archiver.MavenArchiverTest
+org.apache.maven.archiver.MockArtifact

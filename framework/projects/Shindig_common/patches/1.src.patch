@@ -1,0 +1,13 @@
+diff --git a/java/common/src/main/java/org/apache/shindig/common/JsonSerializer.java b/java/common/src/main/java/org/apache/shindig/common/JsonSerializer.java
+index 4f6ba4a24..d7d9af38f 100644
+--- a/java/common/src/main/java/org/apache/shindig/common/JsonSerializer.java
++++ b/java/common/src/main/java/org/apache/shindig/common/JsonSerializer.java
+@@ -163,7 +163,7 @@ public final class JsonSerializer {
+     } else if (value instanceof JSONObject) {
+       appendJsonObject(buf, (JSONObject) value);
+     } else if (value instanceof JSONArray) {
+-      appendJsonArray(buf, (JSONArray) value);
++      buf.append(value.toString());
+     } else if (value instanceof Map) {
+       appendMap(buf, (Map<String, Object>) value);
+     } else if (value instanceof Collection) {

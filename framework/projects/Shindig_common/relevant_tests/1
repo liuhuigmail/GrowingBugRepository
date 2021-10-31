@@ -1,0 +1,3 @@
+org.apache.shindig.common.AllTests
+org.apache.shindig.common.JsonSerializerTest
+org.apache.shindig.protocol.JsonRpcServletTest

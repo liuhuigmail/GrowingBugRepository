@@ -1,0 +1,2 @@
+org.apache.shindig.common.JsonAssert
+org.apache.shindig.common.JsonSerializerTest

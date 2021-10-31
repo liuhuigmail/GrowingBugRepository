@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a ***concise 
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1379`** bugs
+ **`1381`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -158,7 +158,8 @@ from open-source Java projects.
 | 147     | Struts1_core            | struts1-core               |     core                     |      2       | 1-2               |
 | 148     | Wicket_cdi            | wicket-cdi               |     wicket-cdi                     |      1       | 1               |
 | 149     | Wicket_core            | wicket-core               |     wicket-core                     |      18       | 1-18               |
-
+| 150     | Mshared_archiver            | maven-archiver               |     maven-archiver                     |      1       | 1               |
+| 151     | Shindig_common            | shindig-common               |     java/common                     |      1       | 1               |
 # Setting up GrowingBugs
 
 ## Requirements

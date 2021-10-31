@@ -105,4 +105,5 @@ https://github.com/apache/wicket.git	wicket-util
 https://github.com/apache/wicket.git	wicket-spring
 https://github.com/apache/cayenne.git	cayenne-jgroups
 https://github.com/apache/cayenne.git	cayenne-jms
-
+https://github.com/apache/shindig.git	shindig-common
+https://github.com/apache/maven-shared.git	maven-archiver

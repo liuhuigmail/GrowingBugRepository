@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,f70f5b9060f4dc749a28ba5d306ba5a294512e4d,394fb610888a4b584c266e5ac7a0dd5e21306c7f,SHINDIG-965,https://issues.apache.org/jira/browse/SHINDIG-965

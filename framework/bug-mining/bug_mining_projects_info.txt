@@ -147,3 +147,5 @@ Cayenne_jms	cayenne-jms	https://github.com/apache/cayenne.git	jira	CAY	/(CAY-\\d
 Struts1_core	struts1-core	https://github.com/apache/struts1.git	jira	STR	/(STR-\\d+)/mi	core	
 Wicket_cdi	wicket-cdi	https://github.com/apache/wicket.git	jira	WICKET	/(WICKET-\\d+)/mi	wicket-cdi	
 Wicket_core	wicket-core	https://github.com/apache/wicket.git	jira	WICKET	/(WICKET-\\d+)/mi	wicket-core	
+Shindig_common	shindig-common	https://github.com/apache/shindig.git	jira	SHINDIG	/(SHINDIG-\\d+)/mi	java/common	
+Mshared_archiver	maven-archiver	https://github.com/apache/maven-shared.git	jira	MSHARED	/(MSHARED-\\d+)/mi	maven-archiver		

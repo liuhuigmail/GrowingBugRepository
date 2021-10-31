@@ -1,0 +1,4 @@
+org.apache.maven.archiver.ManifestConfiguration
+org.apache.maven.archiver.MavenArchiveConfiguration
+org.apache.maven.archiver.MavenArchiver
+org.apache.maven.archiver.PomPropertiesUtil

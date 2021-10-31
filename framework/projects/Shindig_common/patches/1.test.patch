@@ -1,0 +1,38 @@
+diff --git a/java/common/src/test/java/org/apache/shindig/common/JsonSerializerTest.java b/java/common/src/test/java/org/apache/shindig/common/JsonSerializerTest.java
+index f9d41101d..f3e49d845 100644
+--- a/java/common/src/test/java/org/apache/shindig/common/JsonSerializerTest.java
++++ b/java/common/src/test/java/org/apache/shindig/common/JsonSerializerTest.java
+@@ -44,8 +44,6 @@ import java.util.Map;
+  */
+ public class JsonSerializerTest {
+ 
+-  private static final String JSON_POJO_AS_JSON = "{string:'string-value',integer:100,'simple!':3}";
+-
+   @Test
+   public void serializeSimpleJsonObject() throws Exception {
+     String json = "{foo:'bar'}";
+@@ -79,15 +77,6 @@ public class JsonSerializerTest {
+     assertJsonEquals("['foo','bar','baz']", JsonSerializer.serialize(array));
+   }
+ 
+-  @Test
+-  public void serializeJsonObjectWithComplexArray() throws Exception {
+-    JSONArray array = new JSONArray();
+-    array.put(new JsonPojo());
+-    JSONObject object = new JSONObject();
+-    object.put("array", array);
+-    assertJsonEquals("{'array': [" + JSON_POJO_AS_JSON + "]}", JsonSerializer.serialize(object));
+-  }
+-
+   @Test
+   public void serializePrimitives() throws Exception {
+     assertEquals("null", JsonSerializer.serialize((Object) null));
+@@ -129,7 +118,7 @@ public class JsonSerializerTest {
+   public void serializePojo() throws Exception {
+     JsonPojo pojo = new JsonPojo();
+ 
+-    assertJsonEquals(JSON_POJO_AS_JSON,
++    assertJsonEquals("{string:'string-value',integer:100,'simple!':3}",
+         JsonSerializer.serialize(pojo));
+   }
+ 

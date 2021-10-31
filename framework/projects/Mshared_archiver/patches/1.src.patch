@@ -1,0 +1,23 @@
+diff --git a/maven-archiver/src/main/java/org/apache/maven/archiver/MavenArchiver.java b/maven-archiver/src/main/java/org/apache/maven/archiver/MavenArchiver.java
+index f7e2e474..93a626b6 100644
+--- a/maven-archiver/src/main/java/org/apache/maven/archiver/MavenArchiver.java
++++ b/maven-archiver/src/main/java/org/apache/maven/archiver/MavenArchiver.java
+@@ -418,15 +418,14 @@ public class MavenArchiver
+                 Artifact artifact = (Artifact) iter.next();
+                 if ( "jar".equals( artifact.getType() ) )
+                 {
+-                    String artifactId = artifact.getArtifactId().replace('.', '_');
+-                    String ename = artifactId + "-Extension-Name";
++                    String ename = artifact.getArtifactId() + "-Extension-Name";
+                     addManifestAttribute( m, entries, ename, artifact.getArtifactId() );
+-                    String iname = artifactId + "-Implementation-Version";
++                    String iname = artifact.getArtifactId() + "-Implementation-Version";
+                     addManifestAttribute( m, entries, iname, artifact.getVersion() );
+ 
+                     if ( artifact.getRepository() != null )
+                     {
+-                        iname = artifactId + "-Implementation-URL";
++                        iname = artifact.getArtifactId() + "-Implementation-URL";
+                         String url = artifact.getRepository().getUrl() + "/" + artifact.toString();
+                         addManifestAttribute( m, entries, iname, url );
+                     }
