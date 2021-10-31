@@ -219,7 +219,7 @@ Currently, we resuse all APIs of **Defects4J** (more details at  https://github.
 ## Docker Image
 To free users (especially beginers) of the repository from the complex configuration of the environments, we create and publish a Docker image of the system. You may download it by the following command:
 
-- `docker pull registry.cn-hangzhou.aliyuncs.com/bit-zhuzhihao/growingbugrepository:0.2`
+- `docker pull registry.cn-hangzhou.aliyuncs.com/bit-zhuzhihao/growingbugrepository:0.3`
 
 By simply loading the image with Docker, you can make the system ready for evaluation where all configurations (e.g., Java versions, paths, and even all data within the repository) should have been well set.  
 
