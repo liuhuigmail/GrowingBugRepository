@@ -2,30 +2,22 @@ diff --git a/uberfire-extensions/uberfire-commons-editor/uberfire-commons-editor
 index a021a2ae7..05cb19b72 100644
 --- a/uberfire-extensions/uberfire-commons-editor/uberfire-commons-editor-backend/src/main/java/org/uberfire/ext/editor/commons/backend/version/VersionServiceImpl.java
 +++ b/uberfire-extensions/uberfire-commons-editor/uberfire-commons-editor-backend/src/main/java/org/uberfire/ext/editor/commons/backend/version/VersionServiceImpl.java
-@@ -18,7 +18,6 @@ package org.uberfire.ext.editor.commons.backend.version;
- 
- import java.net.URI;
- import java.util.List;
--
- import javax.enterprise.context.ApplicationScoped;
- import javax.inject.Inject;
- import javax.inject.Named;
-@@ -50,9 +49,6 @@ public class VersionServiceImpl
+@@ -50,9 +49,7 @@ public class VersionServiceImpl
      @Inject
      private VersionRecordService versionRecordService;
  
 -    @Inject
 -    private PathResolver pathResolver;
--
+ 
      @Override
      public List<VersionRecord> getVersions(final Path path) {
  
-@@ -72,9 +68,7 @@ public class VersionServiceImpl
+@@ -72,9 +68,8 @@ public class VersionServiceImpl
      public Path restore(final Path _path,
                          final String comment) {
          try {
 -            ioService.startBatch(Paths.convert(_path).getFileSystem());
--
+ 
 -            final org.uberfire.java.nio.file.Path path = pathResolver.resolveMainFilePath(convert(_path));
 +            final org.uberfire.java.nio.file.Path path = convert(_path);
              final org.uberfire.java.nio.file.Path target = path.getFileSystem().getPath(path.toString());
