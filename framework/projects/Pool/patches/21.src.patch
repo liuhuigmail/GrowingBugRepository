@@ -2,30 +2,12 @@ diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.
 index 697ae052..eb335d69 100644
 --- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
 +++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
-@@ -476,7 +476,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
-             throw new IllegalStateException(
-                     "Returned object not currently part of this pool");
-         }
--
-+        
-         synchronized(p) {
-             final PooledObjectState state = p.getState();
-             if (state != PooledObjectState.ALLOCATED) {
-@@ -907,7 +907,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
-                         if (objectDeque == null) {
-                             continue;
-                         }
--
-+                        
-                         final Deque<PooledObject<T>> idleObjects = objectDeque.getIdleObjects();
-                         evictionIterator = new EvictionIterator(idleObjects);
-                         if (evictionIterator.hasNext()) {
-@@ -1004,8 +1004,6 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+@@ -1004,8 +1004,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
          final int maxTotalPerKeySave = getMaxTotalPerKey(); // Per key
          final int maxTotal = getMaxTotal();   // All keys
  
 -        final ObjectDeque<T> objectDeque = poolMap.get(key);
--
+ 
          // Check against the overall limit
          boolean loop = true;
  
@@ -67,15 +49,6 @@ index 697ae052..eb335d69 100644
              throw e;
          }
  
-@@ -1443,7 +1433,7 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
- 
-         /*
-          * The map is keyed on pooled instances, wrapped to ensure that
--         * they work properly as keys.
-+         * they work properly as keys.  
-          */
-         private final Map<IdentityWrapper<S>, PooledObject<S>> allObjects =
-                 new ConcurrentHashMap<IdentityWrapper<S>, PooledObject<S>>();
 diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
 index b5ef9bd8..6c8dc710 100644
 --- a/src/main/java/org/apache/commons/pool2/impl/GenericObjectPool.java
