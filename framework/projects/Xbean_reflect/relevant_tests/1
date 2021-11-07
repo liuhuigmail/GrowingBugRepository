@@ -1,0 +1,15 @@
+org.apache.xbean.propertyeditor.DateEditorTest
+org.apache.xbean.recipe.AllPropertiesTest
+org.apache.xbean.recipe.CaseInsensitivePropertiesTest
+org.apache.xbean.recipe.EnumTest
+org.apache.xbean.recipe.ExplicitInjectionStyleTest
+org.apache.xbean.recipe.GenericCollectionsTest
+org.apache.xbean.recipe.HiddenPropertiesTest
+org.apache.xbean.recipe.MatchBytypeTest
+org.apache.xbean.recipe.MissingPropertiesTest
+org.apache.xbean.recipe.MixedRecipeTest
+org.apache.xbean.recipe.ObjectGraphNestedTest
+org.apache.xbean.recipe.ObjectGraphReferenceTest
+org.apache.xbean.recipe.ObjectRecipeTest
+org.apache.xbean.recipe.ScratchPadTest
+org.apache.xbean.recipe.UnsetPropertiesTest

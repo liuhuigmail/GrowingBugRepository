@@ -46,13 +46,67 @@ of the checked-out project version.
     <!-- Include existing project build file -->
     <import file="${d4j.workdir}/build.xml"/>
     
-    <condition property="classes.dir" value="build/classes" else="target/classes">
+    <condition property="classes.dir" value="build/classes" >
         <available file="build/classes" />
     </condition>
-    <condition property="test.classes.dir" value="build/test-classes" else="target/test-classes" >
+    <condition property="test.classes.dir" value="build/test-classes"  >
         <!--isset property="build.test-classes.dir" -->
          <available file="build/test-classes" />
     </condition>
+    
+    <condition property="src-dir" value="${maven.build.srcDir.0}">
+    	<isset property="maven.build.srcDir.0" />
+    </condition>
+    <condition property="src-dir" value="${source.home}" >
+    	<isset property="source.home" />
+    </condition>
+    <condition property="src-dir" value="src/java" >
+    	<available file="src/java" />
+    </condition>
+    <condition property="src-dir" value="${basedir}/src/java" >
+    	<available file="${basedir}/src/java" />
+    </condition>
+    <condition property="src-dir" value="src/main/java" >
+    	<available file="src/main/java" />
+    </condition>
+    
+    
+    <condition property="test-dir" value="${maven.build.testDir.0}" >
+    	<isset property="maven.build.testDir.0" />
+    </condition> 
+    <condition property="test-dir" value="${test.home}"  >
+    	<isset property="test.home" />
+    </condition> 
+    <condition property="test-dir" value="src/test/java">
+    	<available file="src/test/java" />
+    </condition> 
+    <condition property="test-dir" value="src/test">
+    	<available file="src/test" />
+    </condition>
+    <condition property="test-dir" value="${basedir}/src/test">
+    	<available file="${basedir}/src/test" />
+    </condition>
+    
+    <condition property="classes.dir" value="${maven.build.outputDir}"  >
+        <isset property="maven.build.outputDir" />
+    </condition>
+    <condition property="classes.dir" value="${classesdir}">
+        <isset property="classesdir" />
+    </condition>
+    <condition property="classes.dir" value="${build.home}/classes" >
+        <available file="${build.home}/classes" />
+    </condition>
+    
+    <condition property="test.classes.dir" value="${maven.build.testOutputDir}"  >
+        <isset property="maven.build.testOutputDir" />
+    </condition>
+    <condition property="test.classes.dir" value="${testclassesdir}"  >
+        <isset property="testclassesdir" />
+    </condition>
+    <condition property="test.classes.dir" value="${build.home}/test-classes" >
+        <available file="${build.home}/test-classes" />
+    </condition>
+    
     <property name="test.home" value="${test.classes.dir}" />
     
     <!-- Project properties targets -->
@@ -76,14 +130,7 @@ of the checked-out project version.
             <fileset dir="${maven.repo.local}">
             <include name="**/*.jar"/>
             </fileset>
-        </path>
-            <condition property="src-dir" value="src/java" else="src/main/java">
-                <available file="src/java" />
-            </condition>
-            <condition property="test-dir" value="src/test" else="src/test/java">
-                <available file="src/test" />
-            </condition>
-		<echo message="Hello, ${src-dir}" />  
+        </path> 
             <property name="dir.src.classes"  value="${src-dir}"/>
             <property name="dir.src.tests"    value="${test-dir}"/>
             <property name="test.dir"         value="${test-dir}" />
@@ -117,17 +164,16 @@ of the checked-out project version.
  <include name='${test.entry}' />
 <include name='**/${test}.java' />
 <include name='**/Test*.java' />
-<exclude name='org/apache/commons/pool2/impl/TestSoftRefOutOfMemory.java' />
-<exclude name='org/apache/commons/pool/impl/TestSoftRefOutOfMemory.java' />
+<exclude name='**/*TestSoftRefOutOfMemory.java' />
 <exclude name='**/Test*$*.java' />
 <exclude name='**/TestKeyedObjectPoolFactory.java' />
 <exclude name='**/TestKeyedObjectPool.java' />
 <exclude name='**/TestObjectPoolFactory.java' />
 <exclude name='**/TestObjectPool.java' />
-<exclude name='**/TestSoftRefOutOfMemory.java' />
 <exclude name='**/TestAll.java' />
 <exclude name='**/TestGenericObjectPool.java' />
 <exclude name='**/TestSynchronizedPooledObjectFactory.java' />
+<exclude name='**/TestGenericObjectPoolClassLoaders.java' />
     </fileset>
 
     <!-- List of relevant developer-written tests that reliably pass on the fixed version -->
@@ -135,26 +181,7 @@ of the checked-out project version.
         includesfile="${d4j.dir.projects}/${d4j.project.id}/relevant_tests/${d4j.bug.id}" />
    
         <target name="compile.tests" depends="compile-tests" />
- <!--   
- <target name="compile" depends="init" description="compiles source files">
-      <mkdir dir="${build.classes.dir}"/>
-      <javac destdir="${build.classes.dir}"
-             srcdir="${src.java.dir}"
-             debug="${javac.debug}"
-             classpath="${classpath}"
-             deprecation="${javac.deprecation}"
-             optimize="${javac.optimize}"
-             target="${javac.target.version}"
-             source="${javac.src.version}">
-         <classpath>
-      	<path refid="compile.classpath"/>
-      	    <fileset  dir="${maven.repo.local}"> 
-		<include name="**/*.jar" /> 
-    	    </fileset>
-      	</classpath>
-      </javac>
-   </target>
- -->   
+ 
    <target name="init">
       <tstamp/>
 

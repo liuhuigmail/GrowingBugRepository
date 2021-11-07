@@ -1,0 +1,29 @@
+diff --git a/xbean-reflect/src/test/java/org/apache/xbean/recipe/ObjectRecipeTest.java b/xbean-reflect/src/test/java/org/apache/xbean/recipe/ObjectRecipeTest.java
+index e74a3469..f862adda 100644
+--- a/xbean-reflect/src/test/java/org/apache/xbean/recipe/ObjectRecipeTest.java
++++ b/xbean-reflect/src/test/java/org/apache/xbean/recipe/ObjectRecipeTest.java
+@@ -108,24 +108,6 @@ public class ObjectRecipeTest extends TestCase {
+         doTest(objectRecipe, PERSON_FACTORY_4_ARG);
+     }
+ 
+-    public void testWhitespaceInjection() throws Exception {
+-        String name = " Foo Bar ";
+-        char ch = ' ';
+-        
+-        ObjectRecipe objectRecipe = new ObjectRecipe(Value.class);
+-        objectRecipe.setProperty("name", name);
+-        objectRecipe.setProperty("type", " ");
+-        Value c = (Value) objectRecipe.create();
+-        
+-        assertEquals(name, c.name);
+-        assertEquals(ch, c.type);
+-    }
+-    
+-    public static class Value {
+-        public String name;
+-        public char type;
+-    }
+-    
+     private void doTest(ObjectRecipe objectRecipe, Person.ConstructionCalled expectedConstruction) throws Exception {
+         Person expected = new Person("Joe", 21, new URL("http://www.acme.org"), new Car("Mini", "Cooper", 2008));
+ 

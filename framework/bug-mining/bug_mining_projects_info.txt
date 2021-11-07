@@ -1,47 +1,47 @@
-Chart	jfreechart	https://github.com/jfree/jfreechart.git	github	jfree/jfreechart	/Fix(?:es)?\\s*#(\\d+)/mi	
-Cli	commons-cli	https://github.com/apache/commons-cli.git	jira	CLI	/(CLI-\\d+)/mi	
-Closure	closure-compiler	https://github.com/google/closure-compiler.git	google	closure-compiler	/issue[^\\d]*(\\d+)/mi	
-Codec	commons-codec	https://github.com/apache/commons-codec.git	jira	CODEC	/(CODEC-\\d+)/mi
-Collections	commons-collections	https://github.com/apache/commons-collections.git	jira	COLLECTIONS	/(COLLECTIONS-\\d+)/mi
-Compress	commons-compress	https://github.com/apache/commons-compress.git	jira	COMPRESS	/(COMPRESS-\\d+)/mi	
-Csv	commons-csv	https://github.com/apache/commons-csv.git	jira	CSV	/(CSV-\\d+)/mi
-Gson	gson	https://github.com/google/gson.git	github	google/gson	/Fix(?:es)?\\s*#(\\d+)/mi
-JacksonCore	jackson-core	https://github.com/FasterXML/jackson-core.git	github	FasterXML/jackson-core	/Fix(?:es)?\\s*#(\\d+)/mi	
-JacksonDatabind	jackson-databind	https://github.com/FasterXML/jackson-databind.git	github	FasterXML/jackson-databind	/Fix(?:es)?\\s*#(\\d+)/mi
-JacksonXml	jackson-dataformat-xml	https://github.com/FasterXML/jackson-dataformat-xml.git	github	FasterXML/jackson-dataformat-xml	/Fix(?:es)?\\s*#(\\d+)/mi	
-Jsoup	jsoup	https://github.com/jhy/jsoup.git	github	jhy/jsoup	/Fix(?:es)?\\s*#(\\d+)/mi
-JxPath	commons-jxpath	https://github.com/apache/commons-jxpath.git	jira	JXPATH	/(JXPATH-\\d+)/mi
-Lang	commons-lang	https://github.com/apache/commons-lang.git	jira	LANG	/(LANG-\\d+)/mi
-Math_4j	commons-math4j	https://github.com/haidaros/defects4j-math.git	jira	MATH	/(MATH-\\d+)/mi
-Math	commons-math	https://github.com/apache/commons-math.git	jira	MATH	/(MATH-\\d+)/mi
-Mockito	mockito	https://github.com/mockito/mockito.git	github	mockito/mockito	/Fix(?:es)?\\s*#(\\d+)/mi
-Time	joda-time	https://github.com/JodaOrg/joda-time.git	github	JodaOrg/joda-time	/Fix(?:es)?\\s*#(\\d+)/mi
-Dbutils	commons-dbutils	https://github.com/apache/commons-dbutils.git	jira	DBUTILS	/(DBUTILS-\\d+)/mi
-Functor	commons-functor	https://github.com/apache/commons-functor.git	jira	FUNCTOR	/(FUNCTOR-\\d+)/mi
-Imaging	commons-imaging	https://github.com/apache/commons-imaging.git	jira	IMAGING	/(IMAGING-\\d+)/mi
-IO	commons-io	https://github.com/apache/commons-io.git	jira	IO	/(IO-\\d+)/mi
-JXR	maven-jxr	https://github.com/apache/maven-jxr.git	jira	JXR	/(JXR-\\d+)/mi
-MShade	maven-shade-plugin	https://github.com/apache/maven-shade-plugin.git	jira	MSHADE	/(MSHADE-\\d+)/mi
-Tika	tika	https://github.com/apache/tika.git	jira	TIKA	/(TIKA-\\d+)/mi
-Validator	commons-validator	https://github.com/apache/commons-validator.git	jira	VALIDATOR	/(VALIDATOR-\\d+)/mi
-Pool	commons-pool	https://github.com/apache/commons-pool.git	jira	POOL	/(POOL-\\d+)/mi
-Email	commons-email	https://github.com/apache/commons-email.git	jira	EMAIL	/(EMAIL-\\d+)/mi
-Graph	commons-graph	https://github.com/apache/commons-graph.git	jira	SANDBOX	/(SANDBOX-\\d+)/mi
-Net	commons-net	https://github.com/apache/commons-net.git	jira	NET	/(NET-\\d+)/mi
+Chart	jfreechart	https://github.com/jfree/jfreechart.git	github	jfree/jfreechart	/Fix(?:es)?\\s*#(\\d+)/mi	.	
+Cli	commons-cli	https://github.com/apache/commons-cli.git	jira	CLI	/(CLI-\\d+)/mi	.	
+Closure	closure-compiler	https://github.com/google/closure-compiler.git	google	closure-compiler	/issue[^\\d]*(\\d+)/mi	.	
+Codec	commons-codec	https://github.com/apache/commons-codec.git	jira	CODEC	/(CODEC-\\d+)/mi	.	
+Collections	commons-collections	https://github.com/apache/commons-collections.git	jira	COLLECTIONS	/(COLLECTIONS-\\d+)/mi	.	
+Compress	commons-compress	https://github.com/apache/commons-compress.git	jira	COMPRESS	/(COMPRESS-\\d+)/mi	.	
+Csv	commons-csv	https://github.com/apache/commons-csv.git	jira	CSV	/(CSV-\\d+)/mi	.	
+Gson	gson	https://github.com/google/gson.git	github	google/gson	/Fix(?:es)?\\s*#(\\d+)/mi	.	
+JacksonCore	jackson-core	https://github.com/FasterXML/jackson-core.git	github	FasterXML/jackson-core	/Fix(?:es)?\\s*#(\\d+)/mi	.		
+JacksonDatabind	jackson-databind	https://github.com/FasterXML/jackson-databind.git	github	FasterXML/jackson-databind	/Fix(?:es)?\\s*#(\\d+)/mi	.	
+JacksonXml	jackson-dataformat-xml	https://github.com/FasterXML/jackson-dataformat-xml.git	github	FasterXML/jackson-dataformat-xml	/Fix(?:es)?\\s*#(\\d+)/mi	.	
+Jsoup	jsoup	https://github.com/jhy/jsoup.git	github	jhy/jsoup	/Fix(?:es)?\\s*#(\\d+)/mi	.	
+JxPath	commons-jxpath	https://github.com/apache/commons-jxpath.git	jira	JXPATH	/(JXPATH-\\d+)/mi	.	
+Lang	commons-lang	https://github.com/apache/commons-lang.git	jira	LANG	/(LANG-\\d+)/mi	.	
+Math_4j	commons-math4j	https://github.com/haidaros/defects4j-math.git	jira	MATH	/(MATH-\\d+)/mi	.	
+Math	commons-math	https://github.com/apache/commons-math.git	jira	MATH	/(MATH-\\d+)/mi	.	
+Mockito	mockito	https://github.com/mockito/mockito.git	github	mockito/mockito	/Fix(?:es)?\\s*#(\\d+)/mi	.	
+Time	joda-time	https://github.com/JodaOrg/joda-time.git	github	JodaOrg/joda-time	/Fix(?:es)?\\s*#(\\d+)/mi	.	
+Dbutils	commons-dbutils	https://github.com/apache/commons-dbutils.git	jira	DBUTILS	/(DBUTILS-\\d+)/mi	.	
+Functor	commons-functor	https://github.com/apache/commons-functor.git	jira	FUNCTOR	/(FUNCTOR-\\d+)/mi	.	
+Imaging	commons-imaging	https://github.com/apache/commons-imaging.git	jira	IMAGING	/(IMAGING-\\d+)/mi	.	
+IO	commons-io	https://github.com/apache/commons-io.git	jira	IO	/(IO-\\d+)/mi	.	
+JXR	maven-jxr	https://github.com/apache/maven-jxr.git	jira	JXR	/(JXR-\\d+)/mi	.	
+MShade	maven-shade-plugin	https://github.com/apache/maven-shade-plugin.git	jira	MSHADE	/(MSHADE-\\d+)/mi	.	
+Tika	tika	https://github.com/apache/tika.git	jira	TIKA	/(TIKA-\\d+)/mi	.	
+Validator	commons-validator	https://github.com/apache/commons-validator.git	jira	VALIDATOR	/(VALIDATOR-\\d+)/mi	.	
+Pool	commons-pool	https://github.com/apache/commons-pool.git	jira	POOL	/(POOL-\\d+)/mi	.	
+Email	commons-email	https://github.com/apache/commons-email.git	jira	EMAIL	/(EMAIL-\\d+)/mi	.	
+Graph	commons-graph	https://github.com/apache/commons-graph.git	jira	SANDBOX	/(SANDBOX-\\d+)/mi	.	
+Net	commons-net	https://github.com/apache/commons-net.git	jira	NET	/(NET-\\d+)/mi	.	
 Numbers_angle	commons-numbers-angle	https://github.com/apache/commons-numbers.git	jira	NUMBERS	/(NUMBERS-\\d+)/mi	commons-numbers-angle
 Geometry_core	commons-geometry-core	https://github.com/apache/commons-geometry.git	jira	GEOMETRY	/(GEOMETRY-\\d+)/mi	commons-geometry-core
-MGpg	maven-gpg-plugin	https://github.com/apache/maven-gpg-plugin.git	jira	MGPG	/(MGPG-\\d+)/mi
-Text	commons-text	https://github.com/apache/commons-text.git	jira	TEXT	/(TEXT-\\d+)/mi
+MGpg	maven-gpg-plugin	https://github.com/apache/maven-gpg-plugin.git	jira	MGPG	/(MGPG-\\d+)/mi	.	
+Text	commons-text	https://github.com/apache/commons-text.git	jira	TEXT	/(TEXT-\\d+)/mi	.	
 Tika_core	tika-core	https://github.com/apache/tika.git	jira	TIKA	/(TIKA-\\d+)/mi	tika-core	
-Tika_app	tika-app	https://github.com/apache/tika.git	jira	TIKA	/(TIKA-\\d+)/mi	tika-app
+Tika_app	tika-app	https://github.com/apache/tika.git	jira	TIKA	/(TIKA-\\d+)/mi	tika-app	
 Shiro_core	shiro-core	https://github.com/apache/shiro.git	jira	SHIRO	/(SHIRO-\\d+)/mi	core	
 Jena_core	jena-core	https://github.com/apache/jena.git	jira	JENA	/(JENA-\\d+)/mi	jena-core	
-Shiro_web	shiro-web	https://github.com/apache/shiro.git	jira	SHIRO	/(SHIRO-\\d+)/mi	web
+Shiro_web	shiro-web	https://github.com/apache/shiro.git	jira	SHIRO	/(SHIRO-\\d+)/mi	web	
 Jackrabbit_oak_core	oak-core	https://github.com/apache/jackrabbit-oak.git	jira	OAK	/(OAK-\\d+)/mi	oak-core	
-MDeploy	maven-deploy-plugin	https://github.com/apache/maven-deploy-plugin.git	jira	MDEPLOY	/(MDEPLOY-\\d+)/mi	
+MDeploy	maven-deploy-plugin	https://github.com/apache/maven-deploy-plugin.git	jira	MDEPLOY	/(MDEPLOY-\\d+)/mi	.	
 Jackrabbit_filevault_vault_validation	jackrabbit-filevault-vault-validation	https://www.github.com/apache/jackrabbit-filevault.git	jira	JCRVLT	/(JCRVLT-\\d+)/mi	vault-validation	
 Doxia_module_apt	doxia-module-apt	https://www.github.com/apache/maven-doxia.git	jira	DOXIA	/(DOXIA-\\d+)/mi	doxia-modules/doxia-module-apt	
-Xmlgraphics	xmlgraphics-commons	https://github.com/apache/xmlgraphics-commons.git	jira	XGC	/(XGC-\\d+)/mi	
+Xmlgraphics	xmlgraphics-commons	https://github.com/apache/xmlgraphics-commons.git	jira	XGC	/(XGC-\\d+)/mi	.	
 Rdf_jena	commons-rdf-jena	https://github.com/apache/commons-rdf.git	jira	COMMONSRDF	/(COMMONSRDF-\\d+)/mi	commons-rdf-jena	
 Maven_checkstyle_plugin	maven-checkstyle-plugin	https://www.github.com/apache/maven-checkstyle-plugin.git	jira	MCHECKSTYLE	/(MCHECKSTYLE-\\d+)/mi	.	
 James_project_core	james-project-core	https://www.github.com/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	core	
@@ -76,19 +76,19 @@ Wink_common	wink-common	https://github.com/apache/wink.git	jira	WINK	/(WINK-\\d+
 Xbean_naming	xbean-naming	https://github.com/apache/geronimo-xbean.git	jira	XBEAN	/(XBEAN-\\d+)/mi	xbean-naming	
 James_project_server_container_core	james-project-server-container-core	https://www.github.com/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	server/container/core	
 Johnzon_core	johnzon-core	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-core	
-Nifi_mock	nifi-mock	https://github.com/apache/nifi.git	jira	NIFI	/(NIFI-\\d+)/mi	nifi-mock
+Nifi_mock	nifi-mock	https://github.com/apache/nifi.git	jira	NIFI	/(NIFI-\\d+)/mi	nifi-mock	
 Rat_core	apache-rat-core	https://github.com/apache/creadur-rat.git	jira	RAT	/(RAT-\\d+)/mi	apache-rat-core	
 Rat_plugin	apache-rat-plugin	https://github.com/apache/creadur-rat.git	jira	RAT	/(RAT-\\d+)/mi	apache-rat-plugin	
 Tez_common	tez-common	https://github.com/apache/tez.git	jira	TEZ	/(TEZ-\\d+)/mi	tez-common	
 Tinkerpop_gremlin_core	gremlin-core	https://github.com/apache/tinkerpop.git	jira	TINKERPOP	/(TINKERPOP-\\d+)/mi	gremlin-core	
-Webbeans_web	webbeans-web	https://github.com/apache/openwebbeans.git	jira	OWB	/(OWB-\\d+)/mi	webbeans-web
+Webbeans_web	webbeans-web	https://github.com/apache/openwebbeans.git	jira	OWB	/(OWB-\\d+)/mi	webbeans-web	
 Hono_client	hono-client	https://github.com/eclipse/hono.git	github	eclipse/hono	/#(\\d+)/mi	client	
 Httpcomponents_core_h2	httpcore5-h2	https://github.com/apache/httpcomponents-core.git	jira	HTTPCORE	/(HTTPCORE-\\d+)/mi	httpcore5-h2	
 Httpcomponents_core_httpcore5	httpcore5	https://github.com/apache/httpcomponents-core.git	jira	HTTPCORE	/(HTTPCORE-\\d+)/mi	httpcore5	
 Johnzon_jsonb	johnzon-jsonb	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-jsonb	
 Johnzon_jaxrs	johnzon-jaxrs	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-jaxrs	
-Hbase_common	hbase-common	https://github.com/apache/hbase.git	jira	HBASE	/(HBASE-\\d+)/mi	hbase-common
-Incubator_tamaya_api	incubator-retired-tamaya-api	https://github.com/apache/incubator-retired-tamaya.git	jira	TAMAYA	/(TAMAYA-\\d+)/mi	code/api
+Hbase_common	hbase-common	https://github.com/apache/hbase.git	jira	HBASE	/(HBASE-\\d+)/mi	hbase-common	
+Incubator_tamaya_api	incubator-retired-tamaya-api	https://github.com/apache/incubator-retired-tamaya.git	jira	TAMAYA	/(TAMAYA-\\d+)/mi	code/api	
 James_project_mailet_standard	james-project-mailet-standard	https://www.github.com/apache/james-project.git	jira	JAMES	/(JAMES-\\d+)/mi	mailet/standard	
 Johnzon_jsonschema	johnzon-jsonschema	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-jsonschema	
 Johnzon_mapper	johnzon-mapper	https://github.com/apache/johnzon.git	jira	JOHNZON	/(JOHNZON-\\d+)/mi	johnzon-mapper	
@@ -103,9 +103,9 @@ Appformer_uberfire_security_management_client	uberfire-security-management-clien
 Appformer_uberfire_workbench_client	uberfire-workbench-client	https://github.com/kiegroup/appformer.git	jira	AF	/(AF-\\d+)/mi	uberfire-workbench/uberfire-workbench-client	
 Deltaspike_api	deltaspike-core-api	https://github.com/apache/deltaspike.git	jira	DELTASPIKE	/(DELTASPIKE-\\d+)/mi	deltaspike/core/api	
 Flume_ngcore	flume-ng-core	https://github.com/apache/flume.git	jira	FLUME	/(FLUME-\\d+)/mi	flume-ng-core	
-Jandex	jandex	https://github.com/wildfly/jandex.git	jira	JANDEX	/(JANDEX-\\d+)/mi	.
+Jandex	jandex	https://github.com/wildfly/jandex.git	jira	JANDEX	/(JANDEX-\\d+)/mi	.	
 Kogito_editors_java_kie_wb_common_stunner_widgets	kie-wb-common-stunner-widgets	https://github.com/kiegroup/kogito-editors-java.git	jira	KOGITO	/(KOGITO-\\d+)/mi	kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets	
-Ognl	commons-ognl	https://github.com/apache/commons-ognl.git	jira	OGNL	/(OGNL-\\d+)/mi	.
+Ognl	commons-ognl	https://github.com/apache/commons-ognl.git	jira	OGNL	/(OGNL-\\d+)/mi	.	
 Qpid_client	qpid-jms-client	https://github.com/apache/qpid-jms.git	jira	QPIDJMS	/(QPIDJMS-\\d+)/mi	qpid-jms-client	
 Switchyard_admin	switchyard-admin	https://github.com/jboss-switchyard/core.git	jira	SWITCHYARD	/(SWITCHYARD-\\d+)/mi	admin	
 Weld_se_core	weld-se-core	https://github.com/weld/core.git	jira	WELD	/(WELD-\\d+)/mi	environments/se/core	
@@ -116,7 +116,7 @@ Sling_validation	sling-org-apache-sling-validation-core	https://github.com/apach
 Switchyard_config	switchyard-config	https://github.com/jboss-switchyard/core.git	jira	SWITCHYARD	/(SWITCHYARD-\\d+)/mi	config	
 Switchyard_validate	switchyard-validate	https://github.com/jboss-switchyard/core.git	jira	SWITCHYARD	/(SWITCHYARD-\\d+)/mi	validate	
 Vysper_nbxml	vysper-nbxml	https://github.com/apache/mina-vysper.git	jira	VYSPER	/(VYSPER-\\d+)/mi	nbxml	
-Wildfly_naming_client	wildfly-naming-client	https://github.com/wildfly/wildfly-naming-client.git	jira	WFNC	/(WFNC-\\d+)/mi	.
+Wildfly_naming_client	wildfly-naming-client	https://github.com/wildfly/wildfly-naming-client.git	jira	WFNC	/(WFNC-\\d+)/mi	.	
 Dosgi_common	dosgi-common	https://github.com/apache/cxf-dosgi.git	jira	DOSGI	/(DOSGI-\\d+)/mi	common	
 Fluo_api	fluo-api	https://github.com/apache/fluo.git	github	apache/fluo	/#(\\d+)/mi	modules/api	
 Hivemall_core	core	https://github.com/apache/incubator-hivemall.git	jira	HIVEMALL	/(HIVEMALL-\\d+)/mi	core	
@@ -124,18 +124,18 @@ Knox_assertion_common	gateway-provider-identity-assertion-common	https://github.
 Oozie_client	oozie-client	https://github.com/apache/oozie.git	jira	OOZIE	/(OOZIE-\\d+)/mi	client	
 Qpidjms_client	qpidjms-client	https://github.com/apache/qpid-jms-amqp-0-x.git	jira	QPID	/(QPID-\\d+)/mi	client	
 Rdf4j_query	rdf4j-query	https://github.com/eclipse/rdf4j.git	github	eclipse/rdf4j	/#(\\d+)/mi	core/query	
-Rdf4j_rio_api	rdf4j-rio-api	https://github.com/eclipse/rdf4j.git	github	eclipse/rdf4j	/#(\\d+)/mi	core/rio/api
-Rdf4j_rio_jsonld	rdf4j-rio-jsonld	https://github.com/eclipse/rdf4j.git	github	eclipse/rdf4j	/#(\\d+)/mi	core/rio/jsonld
-Rdf4j_rio_rdfjson	rdf4j-rio-rdfjson	https://github.com/eclipse/rdf4j.git	github	eclipse/rdf4j	/#(\\d+)/mi	core/rio/rdfjson
-Rdf4j_rio_rdfxml	rdf4j-rio-rdfxml	https://github.com/eclipse/rdf4j.git	github	eclipse/rdf4j	/#(\\d+)/mi	core/rio/rdfxml
-Rdf4j_rio_turtle	rdf4j-rio-turtle	https://github.com/eclipse/rdf4j.git	github	eclipse/rdf4j	/#(\\d+)/mi	core/rio/turtle
-Sentry_ccommon	sentry-core-common	https://github.com/apache/sentry.git	jira	SENTRY	/(SENTRY-\\d+)/mi	sentry-core/sentry-core-common
-Sling_apiregions	sling-apiregions	https://github.com/apache/sling-org-apache-sling-feature-extension-apiregions.git	jira	SLING	/(SLING-\\d+)/mi	.
-Sling_cpconverter	sling-cpconverter	https://github.com/apache/sling-org-apache-sling-feature-cpconverter.git	jira	SLING	/(SLING-\\d+)/mi	.
-Sling_feature	sling-feature	https://github.com/apache/sling-org-apache-sling-feature-extension-apiregions.git	jira	SLING	/(SLING-\\d+)/mi	.
-Tiles_api	tiles-api	https://github.com/apache/tiles.git	jira	TILES	/(TILES-\\d+)/mi	tiles-api
-Tiles_core	tiles-core	https://github.com/apache/tiles.git	jira	TILES	/(TILES-\\d+)/mi	tiles-core
-Twill_dcore	twill-discovery-core	https://github.com/apache/twill.git	jira	TWILL	/(TWILL-\\d+)/mi	twill-discovery-core
+Rdf4j_rio_api	rdf4j-rio-api	https://github.com/eclipse/rdf4j.git	github	eclipse/rdf4j	/#(\\d+)/mi	core/rio/api	
+Rdf4j_rio_jsonld	rdf4j-rio-jsonld	https://github.com/eclipse/rdf4j.git	github	eclipse/rdf4j	/#(\\d+)/mi	core/rio/jsonld	
+Rdf4j_rio_rdfjson	rdf4j-rio-rdfjson	https://github.com/eclipse/rdf4j.git	github	eclipse/rdf4j	/#(\\d+)/mi	core/rio/rdfjson	
+Rdf4j_rio_rdfxml	rdf4j-rio-rdfxml	https://github.com/eclipse/rdf4j.git	github	eclipse/rdf4j	/#(\\d+)/mi	core/rio/rdfxml	
+Rdf4j_rio_turtle	rdf4j-rio-turtle	https://github.com/eclipse/rdf4j.git	github	eclipse/rdf4j	/#(\\d+)/mi	core/rio/turtle	
+Sentry_ccommon	sentry-core-common	https://github.com/apache/sentry.git	jira	SENTRY	/(SENTRY-\\d+)/mi	sentry-core/sentry-core-common	
+Sling_apiregions	sling-apiregions	https://github.com/apache/sling-org-apache-sling-feature-extension-apiregions.git	jira	SLING	/(SLING-\\d+)/mi	.	
+Sling_cpconverter	sling-cpconverter	https://github.com/apache/sling-org-apache-sling-feature-cpconverter.git	jira	SLING	/(SLING-\\d+)/mi	.	
+Sling_feature	sling-feature	https://github.com/apache/sling-org-apache-sling-feature-extension-apiregions.git	jira	SLING	/(SLING-\\d+)/mi	.	
+Tiles_api	tiles-api	https://github.com/apache/tiles.git	jira	TILES	/(TILES-\\d+)/mi	tiles-api	
+Tiles_core	tiles-core	https://github.com/apache/tiles.git	jira	TILES	/(TILES-\\d+)/mi	tiles-core	
+Twill_dcore	twill-discovery-core	https://github.com/apache/twill.git	jira	TWILL	/(TWILL-\\d+)/mi	twill-discovery-core	
 Maven2_artifact	maven-artifact	https://github.com/apache/maven-2.git	jira	MNG	/(MNG-\\d+)/mi	maven-artifact	
 Maven2_project	maven-project	https://github.com/apache/maven-2.git	jira	MNG	/(MNG-\\d+)/mi	maven-project	
 Wicket_request	wicket-request	https://github.com/apache/wicket.git	jira	WICKET	/(WICKET-\\d+)/mi	wicket-request	
@@ -148,4 +148,5 @@ Struts1_core	struts1-core	https://github.com/apache/struts1.git	jira	STR	/(STR-\
 Wicket_cdi	wicket-cdi	https://github.com/apache/wicket.git	jira	WICKET	/(WICKET-\\d+)/mi	wicket-cdi	
 Wicket_core	wicket-core	https://github.com/apache/wicket.git	jira	WICKET	/(WICKET-\\d+)/mi	wicket-core	
 Shindig_common	shindig-common	https://github.com/apache/shindig.git	jira	SHINDIG	/(SHINDIG-\\d+)/mi	java/common	
-Mshared_archiver	maven-archiver	https://github.com/apache/maven-shared.git	jira	MSHARED	/(MSHARED-\\d+)/mi	maven-archiver		
+Mshared_archiver	maven-archiver	https://github.com/apache/maven-shared.git	jira	MSHARED	/(MSHARED-\\d+)/mi	maven-archiver	
+Xbean_reflect	xbean-reflect	https://github.com/apache/geronimo-xbean.git	jira	XBEAN	/(XBEAN-\\d+)/mi	xbean-reflect		

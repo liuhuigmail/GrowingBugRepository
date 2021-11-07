@@ -1,0 +1,188 @@
+diff --git a/src/test/java/com/fasterxml/jackson/core/json/TestJsonParser.java b/src/test/java/com/fasterxml/jackson/core/json/TestJsonParser.java
+index 2f4d9015..4a76e245 100644
+--- a/src/test/java/com/fasterxml/jackson/core/json/TestJsonParser.java
++++ b/src/test/java/com/fasterxml/jackson/core/json/TestJsonParser.java
+@@ -172,6 +172,29 @@ public class TestJsonParser
+         assertToken(JsonToken.END_OBJECT, jp.nextToken());
+     }
+ 
++    public void testInvalidKeywordsStream() throws Exception {
++        _testInvalidKeywords(true);
++    }
++    
++    public void testInvalidKeywordsReader() throws Exception {
++        _testInvalidKeywords(false);
++    }
++
++    private void _testInvalidKeywords(boolean useStream) throws Exception
++    {
++        doTestInvalidKeyword1(useStream, "nul");
++        doTestInvalidKeyword1(useStream, "Null");
++        doTestInvalidKeyword1(useStream, "nulla");
++        doTestInvalidKeyword1(useStream, "fal");
++        doTestInvalidKeyword3(useStream, "False");
++        doTestInvalidKeyword1(useStream, "fals0");
++        doTestInvalidKeyword1(useStream, "falsett0");
++        doTestInvalidKeyword1(useStream, "tr");
++        doTestInvalidKeyword1(useStream, "truE");
++        doTestInvalidKeyword1(useStream, "treu");
++        doTestInvalidKeyword1(useStream, "trueenough");
++    }
++
+     public void testSkipping()
+         throws Exception
+     {
+@@ -422,7 +445,7 @@ public class TestJsonParser
+         assertToken(JsonToken.END_OBJECT, jp.nextToken());
+         jp.close();
+     }
+-
++    
+     /*
+     /**********************************************************
+     /* Helper methods
+@@ -460,5 +483,61 @@ public class TestJsonParser
+         verifyJsonSpecSampleDoc(jp, verify);
+         jp.close();
+     }
++
++    private void doTestInvalidKeyword1(boolean useStream, String value)
++        throws IOException
++    {
++        final String doc = "{ \"key1\" : "+value+" }";
++        JsonParser jp = useStream ? createParserUsingStream(doc, "UTF-8")
++                : createParserUsingReader(doc);
++        assertToken(JsonToken.START_OBJECT, jp.nextToken());
++        /* 24-Nov-2008, tatu: Note that depending on parser impl, we may
++         *   get the exception early or late...
++         */
++        try {
++            assertToken(JsonToken.FIELD_NAME, jp.nextToken());
++            jp.nextToken();
++            fail("Expected an exception for malformed value keyword");
++        } catch (JsonParseException jex) {
++            verifyException(jex, "Unrecognized token");
++            verifyException(jex, value);
++        } finally {
++            jp.close();
++        }
++
++        // Try as root-level value as well:
++        jp = useStream ? createParserUsingStream(value, "UTF-8")
++                : createParserUsingReader(value);
++        try {
++            jp.nextToken();
++            fail("Expected an exception for malformed value keyword");
++        } catch (JsonParseException jex) {
++            verifyException(jex, "Unrecognized token");
++            verifyException(jex, value);
++        } finally {
++            jp.close();
++        }
++    }
++
++    private void doTestInvalidKeyword3(boolean useStream, String value)
++        throws IOException
++    {
++        final String doc = "{ \"key1\" : "+value+" }";
++        JsonParser jp = useStream ? createParserUsingStream(doc, "UTF-8")
++                : this.createParserUsingReader(doc);
++        assertToken(JsonToken.START_OBJECT, jp.nextToken());
++        /* 24-Nov-2008, tatu: Note that depending on parser impl, we may
++         *   get the exception early or late...
++         */
++        try {
++            assertToken(JsonToken.FIELD_NAME, jp.nextToken());
++            jp.nextToken();
++            fail("Expected an exception for malformed value keyword");
++        } catch (JsonParseException jex) {
++            verifyException(jex, "expected a valid value");
++        } finally {
++            jp.close();
++        }
++    }
+ }
+ 
+diff --git a/src/test/java/com/fasterxml/jackson/core/json/TestParserErrorHandling.java b/src/test/java/com/fasterxml/jackson/core/json/TestParserErrorHandling.java
+deleted file mode 100644
+index 6e0c3ac9..00000000
+--- a/src/test/java/com/fasterxml/jackson/core/json/TestParserErrorHandling.java
++++ /dev/null
+@@ -1,77 +0,0 @@
+-package com.fasterxml.jackson.core.json;
+-
+-import java.io.IOException;
+-
+-import com.fasterxml.jackson.core.JsonParseException;
+-import com.fasterxml.jackson.core.JsonParser;
+-import com.fasterxml.jackson.core.JsonToken;
+-
+-public class TestParserErrorHandling
+-    extends com.fasterxml.jackson.test.BaseTest
+-{
+-
+-    public void testInvalidKeywordsStream() throws Exception {
+-        _testInvalidKeywords(true);
+-    }
+-    
+-    public void testInvalidKeywordsReader() throws Exception {
+-        _testInvalidKeywords(false);
+-    }
+-
+-    /*
+-    /**********************************************************
+-    /* Helper methods
+-    /**********************************************************
+-     */
+-    
+-    private void _testInvalidKeywords(boolean useStream) throws Exception
+-    {
+-        doTestInvalidKeyword1(useStream, "nul");
+-        doTestInvalidKeyword1(useStream, "Null");
+-        doTestInvalidKeyword1(useStream, "nulla");
+-        doTestInvalidKeyword1(useStream, "fal");
+-        doTestInvalidKeyword1(useStream, "False");
+-        doTestInvalidKeyword1(useStream, "fals0");
+-        doTestInvalidKeyword1(useStream, "falsett0");
+-        doTestInvalidKeyword1(useStream, "tr");
+-        doTestInvalidKeyword1(useStream, "truE");
+-        doTestInvalidKeyword1(useStream, "treu");
+-        doTestInvalidKeyword1(useStream, "trueenough");
+-        doTestInvalidKeyword1(useStream, "C");
+-    }
+-
+-    private void doTestInvalidKeyword1(boolean useStream, String value)
+-        throws IOException
+-    {
+-        final String doc = "{ \"key1\" : "+value+" }";
+-        JsonParser jp = useStream ? createParserUsingStream(doc, "UTF-8")
+-                : createParserUsingReader(doc);
+-        assertToken(JsonToken.START_OBJECT, jp.nextToken());
+-        /* 24-Nov-2008, tatu: Note that depending on parser impl, we may
+-         *   get the exception early or late...
+-         */
+-        try {
+-            assertToken(JsonToken.FIELD_NAME, jp.nextToken());
+-            jp.nextToken();
+-            fail("Expected an exception for malformed value keyword");
+-        } catch (JsonParseException jex) {
+-            verifyException(jex, "Unrecognized token");
+-            verifyException(jex, value);
+-        } finally {
+-            jp.close();
+-        }
+-
+-        // Try as root-level value as well:
+-        jp = useStream ? createParserUsingStream(value, "UTF-8")
+-                : createParserUsingReader(value);
+-        try {
+-            jp.nextToken();
+-            fail("Expected an exception for malformed value keyword");
+-        } catch (JsonParseException jex) {
+-            verifyException(jex, "Unrecognized token");
+-            verifyException(jex, value);
+-        } finally {
+-            jp.close();
+-        }
+-    }
+-}

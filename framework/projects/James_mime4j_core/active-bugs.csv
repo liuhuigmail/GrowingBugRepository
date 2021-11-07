@@ -7,3 +7,4 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 6,d924dcb518f4aa85a7e7ff21920a472251345c0d,03c1f6fcb5e1fc0d78371d03af5310a5c6cb1f98,MIME4J-273,https://issues.apache.org/jira/browse/MIME4J-273
 7,c33617db27d2c31825946706c91843f3cfbadce5,db390c15702eff7ba6b0cdb5855ffc5503bb9b5c,MIME4J-263,https://issues.apache.org/jira/browse/MIME4J-263
 8,fefae5a68b1f70f495dcfa6aa5adacb5c8f8f8b8,6ec1135e813fc845875cfae3c1055ad534a418b9,MIME4J-273,https://issues.apache.org/jira/browse/MIME4J-273
+9,8a8942badaf4d7dc574130e74a9c7892a09bd1a9,68bc1194428d9cf057e60a0178469821d49d1d42,MIME4J-203,https://issues.apache.org/jira/browse/MIME4J-203

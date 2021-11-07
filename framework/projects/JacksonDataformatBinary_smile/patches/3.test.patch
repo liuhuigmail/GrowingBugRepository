@@ -1,0 +1,66 @@
+diff --git a/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/fuzz/Fuzz3168BigDecimalTest.java b/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/fuzz/Fuzz3168BigDecimalTest.java
+deleted file mode 100644
+index cc173786..00000000
+--- a/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/fuzz/Fuzz3168BigDecimalTest.java
++++ /dev/null
+@@ -1,29 +0,0 @@
+-package com.fasterxml.jackson.dataformat.smile.fuzz;
+-
+-import com.fasterxml.jackson.core.exc.StreamReadException;
+-
+-import com.fasterxml.jackson.databind.ObjectMapper;
+-
+-import com.fasterxml.jackson.dataformat.smile.BaseTestForSmile;
+-
+-public class Fuzz3168BigDecimalTest extends BaseTestForSmile
+-{
+-    private final ObjectMapper MAPPER = smileMapper();
+-
+-    // Payload:
+-    public void testInvalidBigDecimal() throws Exception
+-    {
+-        final byte[] input = new byte[] {
+-                0x3A, 0x29, 0x0A, 0x00, // smile signature
+-                0x2A, // BigDecimal
+-                (byte) 0xBF, // scale: -32
+-                (byte) 0x80 // length: 0 (invalid
+-        };
+-        try {
+-            /*JsonNode root =*/ MAPPER.readTree(input);
+-            fail("Should not pass");
+-        } catch (StreamReadException e) {
+-            verifyException(e, "Invalid encoding of `BigDecimal` value: length 0");
+-        }
+-    }
+-}
+diff --git a/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/mapper/BiggerDataParseTest.java b/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/mapper/BiggerDataParseTest.java
+index 5578cb6d..f4bcd9c0 100644
+--- a/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/mapper/BiggerDataParseTest.java
++++ b/smile/src/test/java/com/fasterxml/jackson/dataformat/smile/mapper/BiggerDataParseTest.java
+@@ -4,7 +4,6 @@ import java.io.*;
+ import java.util.*;
+ 
+ import com.fasterxml.jackson.databind.*;
+-import com.fasterxml.jackson.databind.json.JsonMapper;
+ import com.fasterxml.jackson.dataformat.smile.BaseTestForSmile;
+ 
+ /**
+@@ -80,12 +79,12 @@ public class BiggerDataParseTest extends BaseTestForSmile
+     /**********************************************************
+      */
+ 
+-    private final ObjectMapper JSON_MAPPER = new JsonMapper();
+-
+-    public void testReading() throws Exception
+-    {
+-        Citm citm0 = JSON_MAPPER.readValue(getClass().getResourceAsStream("/data/citm_catalog.json"),
+-                Citm.class);
++	final ObjectMapper JSON_MAPPER = new ObjectMapper();
++	
++	public void testReading() throws Exception
++	{
++		Citm citm0 = JSON_MAPPER.readValue(getClass().getResourceAsStream("/data/citm_catalog.json"),
++				Citm.class);
+ 
+ 		ObjectMapper smiler = smileMapper(false);
+ 		byte[] smile = smiler.writeValueAsBytes(citm0);

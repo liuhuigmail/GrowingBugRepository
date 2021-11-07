@@ -1,1 +1,2 @@
 --- org.apache.commons.pool.impl.TestGenericObjectPool::testStartAndStopEvictor
+--- org.apache.commons.pool2.impl.TestGenericKeyedObjectPool::testConcurrentInvalidate

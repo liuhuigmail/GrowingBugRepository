@@ -1,0 +1,19 @@
+diff --git a/core/src/test/java/org/apache/james/mime4j/stream/RawFieldTest.java b/core/src/test/java/org/apache/james/mime4j/stream/RawFieldTest.java
+index b62d69e9..4678ecd6 100644
+--- a/core/src/test/java/org/apache/james/mime4j/stream/RawFieldTest.java
++++ b/core/src/test/java/org/apache/james/mime4j/stream/RawFieldTest.java
+@@ -51,14 +51,4 @@ public class RawFieldTest extends TestCase {
+         Assert.assertEquals("raw: ", field2.toString());
+     }
+ 
+-    public void testTabAfterDelimiter() throws Exception {
+-        String s = "raw:\tstuff;\r\n  more stuff";
+-        ByteSequence raw = ContentUtil.encode(s);
+-        RawField field = new RawField(raw, 3, "raw", null);
+-        Assert.assertSame(raw, field.getRaw());
+-        Assert.assertEquals("raw", field.getName());
+-        Assert.assertEquals("stuff;  more stuff", field.getBody());
+-        Assert.assertEquals(s, field.toString());
+-    }
+-    
+ }

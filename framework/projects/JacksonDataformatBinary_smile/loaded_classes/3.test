@@ -1,0 +1,2 @@
+com.fasterxml.jackson.dataformat.smile.BaseTestForSmile
+com.fasterxml.jackson.dataformat.smile.fuzz.Fuzz3168BigDecimalTest

@@ -1,0 +1,11 @@
+org.apache.johnzon.core.JsonGeneratorImplTest
+org.apache.johnzon.core.JsonMergeBatchDiffTest
+org.apache.johnzon.core.JsonMergeBatchTest
+org.apache.johnzon.core.JsonNumberTest
+org.apache.johnzon.core.JsonParserTest
+org.apache.johnzon.core.JsonPatchDiffTest
+org.apache.johnzon.core.JsonPatchTest
+org.apache.johnzon.core.JsonPointerTest
+org.apache.johnzon.core.JsonReaderImplTest
+org.apache.johnzon.core.LocationTest
+org.apache.johnzon.core.SerializationTest

@@ -1,0 +1,24 @@
+diff --git a/httpclient5/src/main/java/org/apache/hc/client5/http/impl/classic/HttpClientBuilder.java b/httpclient5/src/main/java/org/apache/hc/client5/http/impl/classic/HttpClientBuilder.java
+index e01a2b46a..49e223e05 100644
+--- a/httpclient5/src/main/java/org/apache/hc/client5/http/impl/classic/HttpClientBuilder.java
++++ b/httpclient5/src/main/java/org/apache/hc/client5/http/impl/classic/HttpClientBuilder.java
+@@ -452,9 +452,6 @@ public class HttpClientBuilder {
+     public final HttpClientBuilder addExecInterceptorFirst(final String name, final ExecChainHandler interceptor) {
+         Args.notNull(name, "Name");
+         Args.notNull(interceptor, "Interceptor");
+-        if (execInterceptors == null) {
+-            execInterceptors = new LinkedList<>();
+-        }
+         execInterceptors.add(new ExecInterceptorEntry(ExecInterceptorEntry.Postion.FIRST, name, interceptor, null));
+         return this;
+     }
+@@ -465,9 +462,6 @@ public class HttpClientBuilder {
+     public final HttpClientBuilder addExecInterceptorLast(final String name, final ExecChainHandler interceptor) {
+         Args.notNull(name, "Name");
+         Args.notNull(interceptor, "Interceptor");
+-        if (execInterceptors == null) {
+-            execInterceptors = new LinkedList<>();
+-        }
+         execInterceptors.add(new ExecInterceptorEntry(ExecInterceptorEntry.Postion.LAST, name, interceptor, null));
+         return this;
+     }

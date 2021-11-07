@@ -28,3 +28,4 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 28,6f496e7a104700250ad0fa567c7338618f797438,cfeaed0a935b3901c1fbccaf979efbac4a819d6d,213,https://github.com/FasterXML/jackson-core/issues/213
 29,bec821b8eadc8130240f942242f1d56f450de24f,bf550f3165e37029966b46d8514753a770cdeec2,460,https://github.com/FasterXML/jackson-core/issues/460
 30,bf550f3165e37029966b46d8514753a770cdeec2,233640bc97d4afe32d34ad2f335098045835cef9,516,https://github.com/FasterXML/jackson-core/issues/516
+31,26894d0dcf9317aff005797bf58e1ee05809366e,ad28e352b60c5b50e13b7535fe003aa1afc7d1a6,77,https://github.com/FasterXML/jackson-core/issues/77

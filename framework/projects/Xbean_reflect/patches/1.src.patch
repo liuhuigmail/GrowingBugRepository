@@ -1,0 +1,71 @@
+diff --git a/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/AbstractConverter.java b/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/AbstractConverter.java
+index adc37723..9b027670 100644
+--- a/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/AbstractConverter.java
++++ b/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/AbstractConverter.java
+@@ -27,7 +27,6 @@ import java.beans.PropertyEditorSupport;
+  */
+ public abstract class AbstractConverter extends PropertyEditorSupport implements Converter {
+     private final Class type;
+-    private final boolean trim;
+ 
+     /**
+      * Creates an abstract converter for the specified type.
+@@ -35,14 +34,10 @@ public abstract class AbstractConverter extends PropertyEditorSupport implements
+      * @param type type of the property editor
+      */
+     protected AbstractConverter(Class type) {
+-        this(type, true);
+-    }
+     
+-    protected AbstractConverter(Class type, boolean trim) {
+         super();
+         if (type == null) throw new NullPointerException("type is null");
+         this.type = type;
+-        this.trim = trim;
+     }
+ 
+     public final Class getType() {
+@@ -56,7 +50,7 @@ public abstract class AbstractConverter extends PropertyEditorSupport implements
+     }
+ 
+     public final void setAsText(String text) {
+-        Object value = toObject((trim) ? text.trim() : text);
++        Object value = toObject(text.trim());
+         super.setValue(value);
+     }
+ 
+@@ -83,7 +77,7 @@ public abstract class AbstractConverter extends PropertyEditorSupport implements
+             return null;
+         }
+ 
+-        Object value = toObjectImpl((trim) ? text.trim() : text);
++        Object value = toObjectImpl(text.trim());
+         return value;
+     }
+ 
+diff --git a/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/CharacterEditor.java b/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/CharacterEditor.java
+index 0b11518c..10ad665a 100644
+--- a/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/CharacterEditor.java
++++ b/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/CharacterEditor.java
+@@ -21,7 +21,7 @@ package org.apache.xbean.propertyeditor;
+  */
+ public class CharacterEditor extends AbstractConverter {
+     public CharacterEditor() {
+-        super(Character.class, false);
++        super(Character.class);
+     }
+ 
+     protected Object toObjectImpl(String text) {
+diff --git a/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/StringEditor.java b/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/StringEditor.java
+index 2882c9f3..e6fa16da 100644
+--- a/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/StringEditor.java
++++ b/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/StringEditor.java
+@@ -21,7 +21,7 @@ package org.apache.xbean.propertyeditor;
+  */
+ public class StringEditor extends AbstractConverter {
+     public StringEditor() {
+-        super(String.class, false);
++        super(String.class);
+     }
+ 
+     protected Object toObjectImpl(String text) {

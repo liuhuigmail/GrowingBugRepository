@@ -1,0 +1,3 @@
+org.apache.xbean.propertyeditor.AbstractConverter
+xbean-reflect.org.apache.xbean.propertyeditor.CharacterEditor
+xbean-reflect.org.apache.xbean.propertyeditor.StringEditor

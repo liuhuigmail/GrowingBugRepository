@@ -1,0 +1,18 @@
+diff --git a/doxia-modules/doxia-module-apt/src/main/java/org/apache/maven/doxia/module/apt/AptParser.java b/doxia-modules/doxia-module-apt/src/main/java/org/apache/maven/doxia/module/apt/AptParser.java
+index 50c946f7..7fe1291f 100644
+--- a/doxia-modules/doxia-module-apt/src/main/java/org/apache/maven/doxia/module/apt/AptParser.java
++++ b/doxia-modules/doxia-module-apt/src/main/java/org/apache/maven/doxia/module/apt/AptParser.java
+@@ -477,12 +477,8 @@ public class AptParser
+                                     logMessage( "ambiguousLink", msg );
+                                 }
+ 
+                                 // link##anchor means literal
+-                                if( hash.startsWith( "#" ) )
+-                                {
+-                                    linkAnchor = linkAnchor.substring( 0, hashIndex ) + hash;
+-                                }
+-                                else if ( !DoxiaUtils.isValidId( hash ) )
++                                if ( !DoxiaUtils.isValidId( hash ) )
+                                 {
+                                     linkAnchor =
+                                         linkAnchor.substring( 0, hashIndex ) + "#"

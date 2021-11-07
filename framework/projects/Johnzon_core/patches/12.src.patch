@@ -1,0 +1,29 @@
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonReaderImpl.java b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonReaderImpl.java
+index c7a3189..4ceb803 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonReaderImpl.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonReaderImpl.java
+@@ -107,22 +107,13 @@ public class JsonReaderImpl implements JsonReader {
+ 
+     @Override
+     public JsonObject readObject() {
+-        final JsonStructure read = read();
+-        checkType(JsonObject.class, read);
+-        return JsonObject.class.cast(read);
++        return JsonObject.class.cast(read());
+     }
+ 
+     @Override
+     public JsonArray readArray() {
+-        final JsonStructure read = read();
+-        checkType(JsonArray.class, read);
+-        return JsonArray.class.cast(read);
+-    }
+ 
+-    private void checkType(final Class<?> expected, final JsonStructure read) {
+-        if (!expected.isInstance(read)) {
+-            throw new JsonParsingException("Expecting " + expected + " but got " + read, parser.getLocation());
+-        }
++        return JsonArray.class.cast(read());
+     }
+ 
+     @Override

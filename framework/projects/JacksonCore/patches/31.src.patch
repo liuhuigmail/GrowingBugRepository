@@ -1,0 +1,38 @@
+diff --git a/src/main/java/com/fasterxml/jackson/core/json/ReaderBasedJsonParser.java b/src/main/java/com/fasterxml/jackson/core/json/ReaderBasedJsonParser.java
+index d9f1d812..d692a2e4 100644
+--- a/src/main/java/com/fasterxml/jackson/core/json/ReaderBasedJsonParser.java
++++ b/src/main/java/com/fasterxml/jackson/core/json/ReaderBasedJsonParser.java
+@@ -1383,11 +1383,8 @@ public final class ReaderBasedJsonParser
+             }
+             return _handleInvalidNumberStart(_inputBuffer[_inputPtr++], false);
+         }
+         // [Issue#77] Try to decode most likely token
+-        if (Character.isJavaIdentifierStart(i)) {
+-            _reportInvalidToken(""+((char) i), "('true', 'false' or 'null')");
+-        }
+         // but if it doesn't look like a token:
+         _reportUnexpectedChar(i, "expected a valid value (number, String, array, object, 'true', 'false' or 'null')");
+         return null;
+     }
+diff --git a/src/main/java/com/fasterxml/jackson/core/json/UTF8StreamJsonParser.java b/src/main/java/com/fasterxml/jackson/core/json/UTF8StreamJsonParser.java
+index 3c33e93f..148545ed 100644
+--- a/src/main/java/com/fasterxml/jackson/core/json/UTF8StreamJsonParser.java
++++ b/src/main/java/com/fasterxml/jackson/core/json/UTF8StreamJsonParser.java
+@@ -2275,15 +2275,13 @@ public final class UTF8StreamJsonParser
+             }
+             return _handleInvalidNumberStart(_inputBuffer[_inputPtr++] & 0xFF, false);
+         }
+         // [Issue#77] Try to decode most likely token
+-        if (Character.isJavaIdentifierStart(c)) {
+-            _reportInvalidToken(""+((char) c), "('true', 'false' or 'null')");
+-        }
+         // but if it doesn't look like a token:
+         _reportUnexpectedChar(c, "expected a valid value (number, String, array, object, 'true', 'false' or 'null')");
+         return null;
+     }
+ 
++    
+     protected JsonToken _handleApostropheValue()
+         throws IOException, JsonParseException
+     {
+

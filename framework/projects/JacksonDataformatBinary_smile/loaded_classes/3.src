@@ -1,0 +1,11 @@
+com.fasterxml.jackson.dataformat.smile.async.NonBlockingByteArrayParser
+com.fasterxml.jackson.dataformat.smile.async.NonBlockingParserBase
+com.fasterxml.jackson.dataformat.smile.databind.SmileMapper
+com.fasterxml.jackson.dataformat.smile.SmileBufferRecycler
+com.fasterxml.jackson.dataformat.smile.SmileFactory
+com.fasterxml.jackson.dataformat.smile.SmileFactoryBuilder
+com.fasterxml.jackson.dataformat.smile.SmileGenerator
+com.fasterxml.jackson.dataformat.smile.SmileParser
+com.fasterxml.jackson.dataformat.smile.SmileParserBase
+com.fasterxml.jackson.dataformat.smile.SmileParserBootstrapper
+com.fasterxml.jackson.dataformat.smile.SmileUtil

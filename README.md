@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a ***concise 
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1381`** bugs
+ **`1388`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -17,7 +17,7 @@ from open-source Java projects.
 | 6     | Compress        | commons-compress           |                           |       51       | 1-48,50,52-53       |
 | 7     | Csv             | commons-csv                |                           |       17       | 1-17                |
 | 8     | Gson            | gson                       |                           |       18       | 1-18                |
-| 9     | JacksonCore     | jackson-core               |                           |       29       | 1-26,28-30                |
+| 9     | JacksonCore     | jackson-core               |                           |       30       | 1-26,28-31                |
 | 10     | JacksonDatabind | jackson-databind           |                          |      151       | 1-117,119,121-126,</br>128-129,131-133,135-156               |
 | 11     | JacksonXml      | jackson-dataformat-xml     |                          |        6       | 1-6                 |
 | 12    | Jsoup           | jsoup                      |                           |       93       | 1-93                |
@@ -50,18 +50,18 @@ from open-source Java projects.
 | 39     | MDeploy            | maven-deploy-plugin               |              |        1       | 1               |
 | 40     | Jackrabbit_filevault<br/>_vault_validation | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
 | 41     | Jackrabbit_oak_core            | oak-core               |       oak-core       |        5       | 1-5               |
-| 42     | Doxia_module_apt            | doxia-module-apt               |   doxia-modules/doxia-module-apt       |       1       | 1               |
+| 42     | Doxia_module_apt            | doxia-module-apt               |   doxia-modules/doxia-module-apt       |       2       | 1-2               |
 | 43     | Xmlgraphics            | xmlgraphics-commons |       |       2     | 1-2              |
 | 44     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
 | 45     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
 | 46     | James_project_core            | james-project-core               |       core       |        1       | 1               |
 | 47     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        5       | 1-5               |
 | 48     | AaltoXml            | aalto-xml      |             |        4       | 1-4               |
-| 49     | HttpClient5            | httpclient5      |       httpclient5      |        6       | 1-2,4-7               |
+| 49     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-2,4-8               |
 | 50     | jackson_modules<br/>_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |
 | 51     | Pdfbox_pdfbox         | pdfbox-pdfbox |    pdfbox    |        3      | 1-3               |
 | 52     | Storm_client            | storm-client      |       storm-client      |        2       | 1-2              |
-| 53     | James_mime4j_core            | James-mime4j-core |      core   |       8     | 1-8              |
+| 53     | James_mime4j_core            | James-mime4j-core |      core   |       9     | 1-9              |
 | 54     | JacksonDataformatsText<br/>_yaml            | jackson-dataformats-text-yaml |      yaml   |       6     | 1-2,4-7              |
 | 55     | JacksonDataformatsText<br/>_properties            | jackson-dataformats-text-properties |      properties   |       2     | 1-2              |
 | 56     | JacksonDataformatBinary<br/>_avro            | jackson-dataformats-binary-avro |      avro   |       2     | 1-2              |
@@ -73,7 +73,7 @@ from open-source Java projects.
 | 62     | JacksonDataformatBinary<br/>_protobuf            | jackson-dataformats-binary-protobuf |      protobuf   |       4     | 1-4              |
 | 63     | Jackrabbit_filevault<br/>_vault_core            | jackrabbit-filevault-vault-core |      vault-core   |       1     | 1              |
 | 64     | JacksonDatatypeJsr310            | jackson-datatype-jsr310 |         |       4     | 1-4              |
-| 65     | JacksonDataformatBinary<br/>_smile            | jackson-dataformats-binary-smile |    smile     |       2     | 1-2              |
+| 65     | JacksonDataformatBinary<br/>_smile            | jackson-dataformats-binary-smile |    smile     |       3     | 1-3              |
 | 66     | JacksonModuleAfterburner            | jackson-module-afterburner |         |       3     | 1-3              |
 | 67     | Woodstox            | woodstox |         |       7     | 1-7              |
 | 68     | MetaModel_core            | MetaModel-core | core        |       9     | 1-9              |
@@ -85,7 +85,7 @@ from open-source Java projects.
 | 74     | Wink_common            | wink-common |  wink-common       |       4     | 1-4              |
 | 75     | Xbean_naming            | xbean-naming |  xbean-naming       |       1     | 1              |
 | 76     | James_project_<br/>server_container_core            | james-project-server-container-core |  server/container/core       |       1     | 1              |
-| 77     | Johnzon_core            | johnzon-core |  johnzon-core       |       10     | 1-2,4-11              |
+| 77     | Johnzon_core            | johnzon-core |  johnzon-core       |       11     | 1-2,4-12              |
 | 78     | Nifi_mock            | nifi-mock |  nifi-mock       |       2     | 1-2              |
 | 79     | Rat_core            | apache-rat-core |  apache-rat-core       |       1     | 1              |
 | 80     | Rat_plugin            | apache-rat-plugin |  apache-rat-plugin       |       1     | 1              |
@@ -97,7 +97,7 @@ from open-source Java projects.
 | 86     | Httpcomponents_core<br/>_httpcore5            | httpcore5 |  httpcore5       |       3     | 1-3              |
 | 87     | Johnzon_jsonb            | johnzon-jsonb |  johnzon-jsonb       |       6     | 1-6              |
 | 88     | Johnzon_jaxrs            | johnzon-jaxrs |  johnzon-jaxrs       |       1     | 1              |
-| 89     | Hbase_common            | hbase-common |  hbase-common       |       1     | 1              |
+| 89     | Hbase_common        JacksonData    | hbase-common |  hbase-common       |       1     | 1              |
 | 90     | Incubator_tamaya_api            | incubator-retired-tamaya-api |  code/api       |       2     | 1-2              |
 | 91     | James_project_<br/>mailet_standard            | james-project-mailet-standard |  mailet/standard       |       1     | 1              |
 | 92     | Johnzon_jsonschema            | johnzon-jsonschema |  johnzon-jsonschema       |       2     | 1-2              |
@@ -160,6 +160,7 @@ from open-source Java projects.
 | 149     | Wicket_core            | wicket-core               |     wicket-core                     |      18       | 1-18               |
 | 150     | Mshared_archiver            | maven-archiver               |     maven-archiver                     |      1       | 1               |
 | 151     | Shindig_common            | shindig-common               |     java/common                     |      1       | 1               |
+| 152     | Xbean_reflect            | xbean-reflect               |     xbean-reflect                     |      1       | 1               |
 # Setting up GrowingBugs
 
 ## Requirements

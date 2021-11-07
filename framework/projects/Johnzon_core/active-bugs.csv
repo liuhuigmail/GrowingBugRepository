@@ -9,3 +9,4 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 9,c159515c7c34c3e8f930cccc3b8c2f1bf93de590,51b120fa031524623715704560780e3468529de7,JOHNZON-267,https://issues.apache.org/jira/browse/JOHNZON-267
 10,1dfbf224c920872cfee892dc8684d8e1e9100258,5a55c6677a6749eff4d4ddb11cd818a6e1cbd2ee,JOHNZON-265,https://issues.apache.org/jira/browse/JOHNZON-265
 11,b836513b68d94f4f7f97a0477f67ee9c047486c2,48c34e68c51791b0aea15b94cb013ea8586e29da,JOHNZON-346,https://issues.apache.org/jira/browse/JOHNZON-346
+12,5852983bbc16c0c07c60d30fcd39fd6c308d48bd,17fdff13f3a65695ede0faab9db48ea42235ff09,JOHNZON-111,https://issues.apache.org/jira/browse/JOHNZON-111

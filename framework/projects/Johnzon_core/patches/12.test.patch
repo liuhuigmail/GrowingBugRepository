@@ -1,0 +1,29 @@
+diff --git a/johnzon-core/src/test/java/org/apache/johnzon/core/JsonReaderImplTest.java b/johnzon-core/src/test/java/org/apache/johnzon/core/JsonReaderImplTest.java
+index eda5979..21bb463 100644
+--- a/johnzon-core/src/test/java/org/apache/johnzon/core/JsonReaderImplTest.java
++++ b/johnzon-core/src/test/java/org/apache/johnzon/core/JsonReaderImplTest.java
+@@ -42,7 +42,6 @@ import javax.json.JsonReaderFactory;
+ import javax.json.JsonString;
+ import javax.json.JsonStructure;
+ import javax.json.JsonValue;
+-import javax.json.stream.JsonParsingException;
+ 
+ import org.junit.Test;
+ 
+@@ -64,16 +63,6 @@ public class JsonReaderImplTest {
+         return Collections.EMPTY_MAP;
+     }
+ 
+-    @Test(expected = JsonParsingException.class)
+-    public void badTypeObject() {
+-        Json.createReaderFactory(getFactoryConfig()).createReader(new StringReader("[]")).readObject();
+-    }
+-
+-    @Test(expected = JsonParsingException.class)
+-    public void badTypeArray() {
+-        Json.createReaderFactory(getFactoryConfig()).createReader(new StringReader("{}")).readArray();
+-    }
+-
+     @Test
+     public void simple() {
+         final JsonReader reader = Json.createReaderFactory(getFactoryConfig()).createReader(

@@ -1,0 +1,6 @@
+org.apache.maven.doxia.module.apt.AptMarkup
+org.apache.maven.doxia.module.apt.AptParseException
+org.apache.maven.doxia.module.apt.AptParser
+org.apache.maven.doxia.module.apt.AptReaderSource
+org.apache.maven.doxia.module.apt.AptSource
+org.apache.maven.doxia.module.apt.AptUtils

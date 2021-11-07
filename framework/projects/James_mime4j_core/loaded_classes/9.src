@@ -1,0 +1,7 @@
+org.apache.james.mime4j.stream.Field
+org.apache.james.mime4j.stream.RawField
+org.apache.james.mime4j.util.ByteArrayBuffer
+org.apache.james.mime4j.util.ByteSequence
+org.apache.james.mime4j.util.CharsetUtil
+org.apache.james.mime4j.util.ContentUtil
+org.apache.james.mime4j.util.MimeUtil
