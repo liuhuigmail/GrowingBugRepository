@@ -58,6 +58,9 @@ of the checked-out project version.
     <condition property="test-dir" value="${test.home}"  >
     	<isset property="test.home" />
     </condition> 
+        <condition property="test-dir" value="${basedir}/src/test/java">
+    	<available file="${basedir}/src/test/java" />
+    </condition> 
     <condition property="test-dir" value="${basedir}/src/test">
     	<available file="${basedir}/src/test" />
     </condition> 
