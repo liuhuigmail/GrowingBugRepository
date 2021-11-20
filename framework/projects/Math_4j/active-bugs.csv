@@ -5,6 +5,7 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 4,d609e65f7bfb38c66e2a8670242e72108b3d0e98,277e61721f34be16a20da663fd597edf6b51939b,MATH-988,https://issues.apache.org/jira/browse/MATH-988
 5,f5bcba812fb8bc59ff5e4bc055811039b610aa2b,e54a1c92302f3167b06bc04859b87ac0681bcdf3,MATH-934,https://issues.apache.org/jira/browse/MATH-934
 6,6c9d06a658d87c01fb02d1efce15bf6b74eb7aab,419a052c6842192e78f747d9f5af619c2ca56e78,MATH-949,https://issues.apache.org/jira/browse/MATH-949
+7,96cd02e82c219349086092cdc2c5a450efc8be13,1cd68eed57febf806c385bf04a596b922f4c1964,MATH-950,https://issues.apache.org/jira/browse/MATH-950
 8,55046479fe33e47a002ab4f4949bd944ba70d37d,196e63174afdb3df1529c1b97bb8437b16831cc3,MATH-942,https://issues.apache.org/jira/browse/MATH-942
 9,c929aee12a2b777152371fc061e4b79f088fa039,de98c0f0a566060ac143c39036f06a03f141dc52,MATH-938,https://issues.apache.org/jira/browse/MATH-938
 10,d2a916e325a1c47f12137ea902aaac100ed1f5db,7e2ffcc9034de41d7787f0b33b5670474f7a10de,MATH-935,https://issues.apache.org/jira/browse/MATH-935
