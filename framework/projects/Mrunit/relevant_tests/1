@@ -1,0 +1,10 @@
+org.apache.hadoop.mrunit.internal.mapreduce.MockReduceContextWrapperTest
+org.apache.hadoop.mrunit.mapreduce.TestCounters
+org.apache.hadoop.mrunit.mapreduce.TestDistributedCache
+org.apache.hadoop.mrunit.mapreduce.TestMapDriver
+org.apache.hadoop.mrunit.mapreduce.TestMapReduceDriver
+org.apache.hadoop.mrunit.mapreduce.TestMultipleOutput
+org.apache.hadoop.mrunit.mapreduce.TestReduceDriver
+org.apache.hadoop.mrunit.mapreduce.TestReducerInputValueReuse
+org.apache.hadoop.mrunit.mapreduce.TestStatefulMapReduce
+org.apache.hadoop.mrunit.mapreduce.TestWordCount

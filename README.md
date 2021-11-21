@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a ***concise 
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1389`** bugs
+ **`1391`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -161,6 +161,7 @@ from open-source Java projects.
 | 150     | Mshared_archiver            | maven-archiver               |     maven-archiver                     |      1       | 1               |
 | 151     | Shindig_common            | shindig-common               |     java/common                     |      1       | 1               |
 | 152     | Xbean_reflect            | xbean-reflect               |     xbean-reflect                     |      1       | 1               |
+| 153     | Mrunit            | mrunit               |                          |      2       | 1-2               |
 # Setting up GrowingBugs
 
 ## Requirements

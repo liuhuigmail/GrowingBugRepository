@@ -1,0 +1,16 @@
+org.apache.hadoop.mrunit.internal.counters.CounterWrapper
+org.apache.hadoop.mrunit.internal.io.Serialization
+org.apache.hadoop.mrunit.internal.mapreduce.AbstractMockContextWrapper
+org.apache.hadoop.mrunit.internal.mapreduce.ContextDriver
+org.apache.hadoop.mrunit.internal.mapreduce.MockReduceContextWrapper
+org.apache.hadoop.mrunit.internal.output.MockMultipleOutputs
+org.apache.hadoop.mrunit.internal.output.MockOutputCollector
+org.apache.hadoop.mrunit.internal.output.MockOutputCreator
+org.apache.hadoop.mrunit.internal.output.OutputCollectable
+org.apache.hadoop.mrunit.internal.util.ArgumentChecker
+org.apache.hadoop.mrunit.mapreduce.ReduceDriver
+org.apache.hadoop.mrunit.mapreduce.ReduceFeeder
+org.apache.hadoop.mrunit.ReduceDriverBase
+org.apache.hadoop.mrunit.TestDriver
+org.apache.hadoop.mrunit.types.KeyValueReuseList
+org.apache.hadoop.mrunit.types.Pair

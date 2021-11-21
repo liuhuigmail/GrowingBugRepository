@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,2929a3a9659e6c511b61273026691ea7fb5e3054,2c24ab2af152bc7b41c4d52cba4883aacba40764,MRUNIT-186,https://issues.apache.org/jira/browse/MRUNIT-186
+2,2c24ab2af152bc7b41c4d52cba4883aacba40764,57196c39a73cf2251e0f2ba7da225731362407ba,MRUNIT-193,https://issues.apache.org/jira/browse/MRUNIT-193
