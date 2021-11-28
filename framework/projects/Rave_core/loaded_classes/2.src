@@ -1,0 +1,12 @@
+org.apache.rave.portal.model.impl.PersonImpl
+org.apache.rave.portal.model.impl.UserImpl
+org.apache.rave.portal.model.impl.WidgetCommentImpl
+org.apache.rave.portal.model.Person
+org.apache.rave.portal.model.User
+org.apache.rave.portal.model.WidgetComment
+org.apache.rave.portal.repository.WidgetCommentRepository
+org.apache.rave.portal.security.impl.AbstractModelPermissionEvaluator
+org.apache.rave.portal.security.impl.DefaultWidgetCommentPermissionEvaluator
+org.apache.rave.portal.security.impl.RaveSecurityContext
+org.apache.rave.portal.security.ModelPermissionEvaluator
+org.apache.rave.portal.security.util.AuthenticationUtils

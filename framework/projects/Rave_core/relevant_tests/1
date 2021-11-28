@@ -1,0 +1,9 @@
+org.apache.rave.portal.repository.AbstractJpaRepositoryTest
+org.apache.rave.portal.repository.JpaAuthorityRepositoryTest
+org.apache.rave.portal.repository.JpaPageRepositoryTest
+org.apache.rave.portal.repository.JpaRegionRepositoryTest
+org.apache.rave.portal.repository.JpaRegionWidgetRepositoryTest
+org.apache.rave.portal.repository.JpaUserRepositoryTest
+org.apache.rave.portal.repository.JpaWidgetRatingRepositoryTest
+org.apache.rave.portal.repository.JpaWidgetRepositoryTest
+org.apache.rave.portal.security.impl.RavePermissionEvaluatorTest

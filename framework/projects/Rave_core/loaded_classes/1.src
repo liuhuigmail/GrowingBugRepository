@@ -1,0 +1,3 @@
+org.apache.rave.portal.security.impl.AbstractModelPermissionEvaluator
+org.apache.rave.portal.security.impl.RavePermissionEvaluator
+org.apache.rave.portal.security.ModelPermissionEvaluator

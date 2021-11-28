@@ -1,0 +1,16 @@
+diff --git a/rave-components/rave-core/src/main/java/org/apache/rave/portal/security/impl/RavePermissionEvaluator.java b/rave-components/rave-core/src/main/java/org/apache/rave/portal/security/impl/RavePermissionEvaluator.java
+index 84aedda5..904edb25 100644
+--- a/rave-components/rave-core/src/main/java/org/apache/rave/portal/security/impl/RavePermissionEvaluator.java
++++ b/rave-components/rave-core/src/main/java/org/apache/rave/portal/security/impl/RavePermissionEvaluator.java
+@@ -83,11 +83,8 @@ public class RavePermissionEvaluator implements PermissionEvaluator {
+      */
+     @Override
+     public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permissionString) {
+-        if (targetDomainObject == null) {
+-            return false;
+-        }
+         // find the appropriate ModelPermissionEvaluator from the map based on
+         // the targetDomainObject's class and invoke the hasPermission function        
+         return getEvaluator(targetDomainObject.getClass().getName()).hasPermission(authentication, targetDomainObject,
+                 getPermission(targetDomainObject, (String) permissionString));
+     }

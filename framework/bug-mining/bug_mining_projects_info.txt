@@ -150,4 +150,5 @@ Wicket_core	wicket-core	https://github.com/apache/wicket.git	jira	WICKET	/(WICKE
 Shindig_common	shindig-common	https://github.com/apache/shindig.git	jira	SHINDIG	/(SHINDIG-\\d+)/mi	java/common	
 Mshared_archiver	maven-archiver	https://github.com/apache/maven-shared.git	jira	MSHARED	/(MSHARED-\\d+)/mi	maven-archiver	
 Xbean_reflect	xbean-reflect	https://github.com/apache/geronimo-xbean.git	jira	XBEAN	/(XBEAN-\\d+)/mi	xbean-reflect	
-Mrunit	mrunit	https://github.com/apache/mrunit.git	jira	MRUNIT	/(MRUNIT-\\d+)/mi	.		
+Mrunit	mrunit	https://github.com/apache/mrunit.git	jira	MRUNIT	/(MRUNIT-\\d+)/mi	.
+Rave_core	rave-core	https://github.com/apache/rave.git	jira	RAVE	/(RAVE-\\d+)/mi	rave-components/rave-core			

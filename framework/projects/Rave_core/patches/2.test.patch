@@ -1,0 +1,51 @@
+diff --git a/rave-components/rave-core/src/test/java/org/apache/rave/portal/security/impl/DefaultWidgetCommentPermissionEvaluatorTest.java b/rave-components/rave-core/src/test/java/org/apache/rave/portal/security/impl/DefaultWidgetCommentPermissionEvaluatorTest.java
+index 58c7bb7e..84ee45bf 100644
+--- a/rave-components/rave-core/src/test/java/org/apache/rave/portal/security/impl/DefaultWidgetCommentPermissionEvaluatorTest.java
++++ b/rave-components/rave-core/src/test/java/org/apache/rave/portal/security/impl/DefaultWidgetCommentPermissionEvaluatorTest.java
+@@ -116,7 +116,8 @@ public class DefaultWidgetCommentPermissionEvaluatorTest {
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, widgetComment, Permission.READ), is(true));
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, widgetComment, Permission.DELETE), is(true));
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, widgetComment, Permission.UPDATE), is(true));
+-        assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, widgetComment, Permission.CREATE_OR_UPDATE), is(true));
++
++        assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, widgetComment, Permission.CREATE_OR_UPDATE), is(false));
+         verify(mockAuthentication);
+         verify(mockWidgetCommentRepository);
+     }
+@@ -135,6 +136,7 @@ public class DefaultWidgetCommentPermissionEvaluatorTest {
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, widgetComment, Permission.DELETE), is(false));
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, widgetComment, Permission.UPDATE), is(false));
+ 
++
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, widgetComment, Permission.CREATE_OR_UPDATE), is(false));
+         verify(mockAuthentication);
+         verify(mockWidgetCommentRepository);
+@@ -153,7 +155,9 @@ public class DefaultWidgetCommentPermissionEvaluatorTest {
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, VALID_COMMENT_ID, WidgetComment.class.getName(), Permission.READ), is(true));
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, VALID_COMMENT_ID, WidgetComment.class.getName(), Permission.DELETE), is(true));
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, VALID_COMMENT_ID, WidgetComment.class.getName(), Permission.UPDATE), is(true));
+-        assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, VALID_COMMENT_ID, WidgetComment.class.getName(), Permission.CREATE_OR_UPDATE), is(true));
++
++
++        assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, VALID_COMMENT_ID, WidgetComment.class.getName(), Permission.CREATE_OR_UPDATE), is(false));
+         verify(mockAuthentication);
+         verify(mockWidgetCommentRepository);
+     }
+@@ -172,6 +176,7 @@ public class DefaultWidgetCommentPermissionEvaluatorTest {
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, VALID_COMMENT_ID, WidgetComment.class.getName(), Permission.DELETE), is(false));
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, VALID_COMMENT_ID, WidgetComment.class.getName(), Permission.UPDATE), is(false));
+ 
++
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, VALID_COMMENT_ID, WidgetComment.class.getName(), Permission.CREATE_OR_UPDATE), is(false));
+         verify(mockAuthentication);
+         verify(mockWidgetCommentRepository);
+@@ -189,7 +194,8 @@ public class DefaultWidgetCommentPermissionEvaluatorTest {
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, raveSecurityContext, WidgetComment.class.getName(), Permission.READ), is(true));
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, raveSecurityContext, WidgetComment.class.getName(), Permission.DELETE), is(true));
+         assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, raveSecurityContext, WidgetComment.class.getName(), Permission.UPDATE), is(true));
+-        assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, raveSecurityContext, WidgetComment.class.getName(), Permission.CREATE_OR_UPDATE), is(true));
++
++        assertThat(defaultWidgetCommentPermissionEvaluator.hasPermission(mockAuthentication, raveSecurityContext, WidgetComment.class.getName(), Permission.CREATE_OR_UPDATE), is(false));
+         verify(mockAuthentication);
+     }
+ 

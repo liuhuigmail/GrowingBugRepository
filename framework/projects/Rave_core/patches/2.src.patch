@@ -1,0 +1,20 @@
+diff --git a/rave-components/rave-core/src/main/java/org/apache/rave/portal/security/impl/DefaultWidgetCommentPermissionEvaluator.java b/rave-components/rave-core/src/main/java/org/apache/rave/portal/security/impl/DefaultWidgetCommentPermissionEvaluator.java
+index 153bd395..0f56f2c0 100644
+--- a/rave-components/rave-core/src/main/java/org/apache/rave/portal/security/impl/DefaultWidgetCommentPermissionEvaluator.java
++++ b/rave-components/rave-core/src/main/java/org/apache/rave/portal/security/impl/DefaultWidgetCommentPermissionEvaluator.java
+@@ -110,7 +110,6 @@ public class DefaultWidgetCommentPermissionEvaluator extends AbstractModelPermis
+                 hasPermission =  true;
+                 break;
+             case CREATE:
+-            case CREATE_OR_UPDATE:
+                 hasPermission = isWidgetCommentOwnerById(authentication, widgetComment.getUser().getId());
+                 break;
+             case DELETE:
+@@ -148,7 +147,6 @@ public class DefaultWidgetCommentPermissionEvaluator extends AbstractModelPermis
+                 case CREATE:
+                 case DELETE:
+                 case UPDATE:
+-                case CREATE_OR_UPDATE:
+                     // anyone can create, delete, read, or update a page that they own
+                     hasPermission = isWidgetCommentOwnerById(authentication, (Long)raveSecurityContext.getId());
+                     break;

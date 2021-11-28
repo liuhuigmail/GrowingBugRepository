@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,48dc9356a8ca78e6c37adb2a6fa6a031c8598644,559bdaaa85cf18e8b57d4a850a87bcfd88740f19,RAVE-331,https://issues.apache.org/jira/browse/RAVE-331
+2,0a4916025a995119e22313e2398935afaa549345,92ebd49c897911eb46843471ac94976415f58881,RAVE-723,https://issues.apache.org/jira/browse/RAVE-723
