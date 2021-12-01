@@ -56,10 +56,9 @@ do
     #rm -rf $work_dir
    nums=$(wc -l < $work_dir/framework/projects/$project_id/active-bugs.csv)
    nums=`expr $nums - 1`
-   #3470
    #for((i=7000;i<=$nums;i++));    
-    for((i=1;i<=$nums;i++)); 
-   #for((i=$nums;i>=1;i--));
+    #for((i=1;i<=$nums;i++)); 
+    for((i=1;i>=1;i--));
    #for((i=$nums;i>=1;i--));  
    #arr=(1019);
    #for i in ${arr[@]}
@@ -97,11 +96,12 @@ do
    fi
    
    perl ./get-metadata.pl -p $project_id -w $work_dir -b $i -s $sub_project
+   
    perl ./minimize-patch.pl  -p $project_id -b $i -w $work_dir -s $sub_project
    if [ $? != 0 ]
    then
     echo -e "Minimize patch $project_id failed!\n\n"
-    echo "${project_id}, minimize patch  error!" >> error_info.txt
+    echo "${project_id}-${i}, minimize patch  error!" >> error_info.txt
     continue
    fi
  

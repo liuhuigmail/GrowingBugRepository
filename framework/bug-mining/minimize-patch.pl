@@ -153,16 +153,10 @@ if (! -e "$outputPath"){
          die "Failed to generate the patch!";
 }
 
-#
+system("mkdir -p $WORK_DIR/minimum_patches ; cp -f $outputPath $WORK_DIR/minimum_patches/$src_patch");
 system("rm -rf $TMP_DIR/$PID-${BID}f");
 $project->checkout_vid("${BID}f",  "$TMP_DIR/$PID-${BID}f", 1,$SUB_PROJECT) == 1 or die;
 $project->apply_patch($CHECKOUT_DIR, "$outputPath") or die "Cannot apply patch";
-
-
-# Copy the non-minimized patch
-#Utils::exec_cmd("cp $PATCH_DIR/$src_patch $TMP_DIR", "Back up original patch")
-#     or die "Cannot backup patch file";
-
 
 
 # Check whether patch could be successfully minimized
@@ -219,6 +213,7 @@ if (compare("$local_trigger_tests-reason.original", "$local_trigger_tests-reason
 system("cat $local_trigger_tests > $trigger_tests");
 
 # Store minimized patch
+system("cp -f $PATCH_DIR/$src_patch $PATCH_DIR/$src_patch.bak");
 Utils::exec_cmd("cd $CHECKOUT_DIR; git diff $orig $min -- $src_path $src_path > $PATCH_DIR/$src_patch",
   "Export minimized patch") or die "Cannot export patch";
 
@@ -229,4 +224,4 @@ if (!Utils::exec_cmd("./get-metadata.pl -p $PID -w $WORK_DIR -b $BID", "Re-runni
 }
 
 # Remove temporary directory 
-# system("rm -rf $TMP_DIR");
+system("rm -rf $TMP_DIR");
