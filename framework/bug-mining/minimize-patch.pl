@@ -200,7 +200,10 @@ system("cat \"$local_trigger_tests.sorted.original\" | while read -r trigger_tes
                 "grep -A10 --no-group-separator \"^\$trigger_test_case\$\" $trigger_tests | grep -v \"	at \" >> $local_trigger_tests-reason.original; " .
                 "grep -A10 --no-group-separator \"^\$trigger_test_case\$\" $local_trigger_tests | grep -v \"	at \" >> $local_trigger_tests-reason.minimal; " .
            "done");
-
+           
+# sort temp2.txt temp1.txt temp1.txt | uniq -u > temp3.txt ; cat temp3.txt temp2-temp1 should be empty (if temp2 is temp1's subset)
+#system("cat $local_trigger_tests-reason.original");
+#system("cat $local_trigger_tests-reason.minimal");
 if (compare("$local_trigger_tests-reason.original", "$local_trigger_tests-reason.minimal") == 1) {
   print("Triggering test cases now fail due to other reasons:\n");
   system("cat $local_trigger_tests-reason.original");
