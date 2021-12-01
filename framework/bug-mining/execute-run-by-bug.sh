@@ -58,16 +58,15 @@ do
    nums=`expr $nums - 1`
    #3470
    #for((i=7000;i<=$nums;i++));    
-   #for((i=1;i<=$nums;i++)); 
+    for((i=1;i<=$nums;i++)); 
    #for((i=$nums;i>=1;i--));
    #for((i=$nums;i>=1;i--));  
-   arr=( 12 15 16 35 40 44 46 47 49 55 66 67 69 76 78 94 102 103 106 109 112 117 121 129 132);
    #arr=(1019);
-   for i in ${arr[@]}
+   #for i in ${arr[@]}
 do    
    # Initialize the project revisions
-   perl ./initialize-revisions.pl -p $project_id -w $work_dir -s $sub_project -b $i -n $project_name
-    if [ $? != 0 ]
+    perl ./initialize-revisions.pl -p $project_id -w $work_dir -s $sub_project -b $i -n $project_name
+   if [ $? != 0 ]
     then
      echo -e "Initialize the project $project_id revisions failed!\n\n"
      echo "${project_id}, Initialize the revisions error!" >> error_info.txt
@@ -96,8 +95,15 @@ do
     echo "${project_id}, Determine triggering tests of the project error!" >> error_info.txt
     continue
    fi
-   perl ./get-metadata.pl -p $project_id -w $work_dir -b $i -s $sub_project
    
+   perl ./get-metadata.pl -p $project_id -w $work_dir -b $i -s $sub_project
+   perl ./minimize-patch.pl  -p $project_id -b $i -w $work_dir -s $sub_project
+   if [ $? != 0 ]
+   then
+    echo -e "Minimize patch $project_id failed!\n\n"
+    echo "${project_id}, minimize patch  error!" >> error_info.txt
+    continue
+   fi
  
 done   
    # trigger_dir="$work_dir/framework/projects/$project_id/trigger_tests";
