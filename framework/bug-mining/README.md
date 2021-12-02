@@ -121,3 +121,22 @@ For example, if you want to first `Codec` bug, and your working directory is `bu
 Note: Make sure to specify the `-b` option as the default is to promote all
 bugs!
 
+## Troubleshooting
+
+* If you encounter the following error when running `./execute-run-by-bug.sh`:
+
+   ```
+  Can't locate JSON/Parse.pm in @INC (you may need to install the JSON::Parse module)
+   ```
+   - Make sure that you have installed all of the perl dependencies listed in [cpanfile](https://github.com/rjust/defects4j/blob/master/cpanfile). As mentioned in the top-level [README](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/README.md), these can automatically installed by running: `cpanm --installdeps .`
+   
+## Limitations of the bug-mining framework
+
+- Although some scripts in the bug-mining framework are agnostic to the version
+  control system used by a project and even support different version control
+  systems, there are some other scripts that are Git dependent.
+- If a project uses more than one issue tracker only one can be mined.
+- Although the `Mockito` project in `Defects4J` database uses
+  [Gradle](https://gradle.org/) as its build system, the current bug-mining
+  framework only supports [Apache Ant](https://ant.apache.org/) and
+  [Apache Maven](https://maven.apache.org/).
