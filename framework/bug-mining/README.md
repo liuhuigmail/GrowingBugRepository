@@ -128,7 +128,7 @@ bugs!
    ```
   Can't locate JSON/Parse.pm in @INC (you may need to install the JSON::Parse module)
    ```
-   - Make sure that you have installed all of the perl dependencies listed in [cpanfile](https://github.com/rjust/defects4j/blob/master/cpanfile). As mentioned in the top-level [README](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/README.md), these can automatically installed by running: `cpanm --installdeps .`
+   - Make sure that you have installed all of the perl dependencies listed in [cpanfile](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/cpanfile). As mentioned in the top-level [README](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/README.md), these can automatically installed by running: `cpanm --installdeps .`
    
 ## Limitations of the bug-mining framework
 
@@ -136,7 +136,7 @@ bugs!
   control system used by a project and even support different version control
   systems, there are some other scripts that are Git dependent.
 - If a project uses more than one issue tracker only one can be mined.
-- Although the `Mockito` project in `Defects4J` database uses
+- Although the `Mockito` project in `GrowingBugRepository` database uses
   [Gradle](https://gradle.org/) as its build system, the current bug-mining
   framework only supports [Apache Ant](https://ant.apache.org/) and
   [Apache Maven](https://maven.apache.org/).
