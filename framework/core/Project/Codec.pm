@@ -93,6 +93,24 @@ sub _post_checkout {
         }
     }
 
+    
+    if (-e "$work_dir/maven-build.xml"){
+        rename("$work_dir/maven-build.xml", "$work_dir/maven-build.xml".'.bak');
+        open(IN, '<'."$work_dir/maven-build.xml".'.bak') or die $!;
+        open(OUT, '>'."$work_dir/maven-build.xml") or die $!;
+        while(<IN>) {
+            $_ =~ s/compile-tests/compile\.tests/g;
+            #$_ =~ s/classesdir/classes\.dir/g;
+            #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
+            #$_ =~ s/src\//$SUBPROJ\/src\//g;
+            #support java8
+            $_ =~ s/fork="false"/fork="true"/g;
+            print OUT $_;
+        }
+        close(IN);
+        close(OUT);
+    }
+    
     # Convert the file encoding of problematic files
     my $result = determine_layout($self, $rev_id);
     if (-e $work_dir."/".$result->{test}."/org/apache/commons/codec/language/DoubleMetaphoneTest.java"){

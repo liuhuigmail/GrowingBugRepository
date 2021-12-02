@@ -1,12 +1,20 @@
-diff --git a/src/test/java/org/apache/commons/codec/digest/MurmurHash3Test.java b/src/test/java/org/apache/commons/codec/digest/MurmurHash3Test.java
-index d7c21aab..a07dbb1f 100644
---- a/src/test/java/org/apache/commons/codec/digest/MurmurHash3Test.java
-+++ b/src/test/java/org/apache/commons/codec/digest/MurmurHash3Test.java
-@@ -597,7 +597,6 @@ public class MurmurHash3Test {
-             offset += block;
-             final int h2 = inc.end();
-             Assert.assertEquals("Hashes differ", h1, h2);
--            Assert.assertEquals("Hashes differ after no additional data", h1, inc.end());
-         }
+diff --git a/src/test/org/apache/commons/codec/language/RefinedSoundexTest.java b/src/test/org/apache/commons/codec/language/RefinedSoundexTest.java
+index c827cf3b..52bc8614 100755
+--- a/src/test/org/apache/commons/codec/language/RefinedSoundexTest.java
++++ b/src/test/org/apache/commons/codec/language/RefinedSoundexTest.java
+@@ -104,13 +104,10 @@ public class RefinedSoundexTest extends StringEncoderAbstractTest {
+         assertEquals("T60", this.getEncoder().encode("the"));
+         assertEquals("L7050", this.getEncoder().encode("lazy"));
+         assertEquals("D6043", this.getEncoder().encode("dogs"));
+-
+-        // Testing CODEC-56
+-        assertEquals("D6043", RefinedSoundex.US_ENGLISH.encode("dogs"));
      }
- }
+ 
+ 	public void testGetMappingCodeNonLetter() {
+ 		char code = this.getEncoder().getMappingCode('#');
+ 		assertEquals("Code does not equals zero", 0, code);
+ 	}
+-}
++}
+\ No newline at end of file

@@ -17,3 +17,4 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 16,38357dffa2dd39c91c4523beade08c12e8009acb,c82fe35c48bd0082c16644d16d82d1be79d6b9d1,CODEC-200,https://issues.apache.org/jira/browse/CODEC-200
 17,1a4d9cc2572d220664f1b7c377cd318cd253052e,d2f27093d7d95a07da901902f894d88b4ecc3e95,CODEC-229,https://issues.apache.org/jira/browse/CODEC-229
 18,ca30fae3acb59a5caef3c3c21eecae7c928827e0,5ef5bd199a4e3df74479b4b363fa29b0b3092547,CODEC-231,https://issues.apache.org/jira/browse/CODEC-231
+19,e65d67e1c41746e811503255fadacef6de645eec,a50a203248662d2b4fe6f5b6952d3066ab3ab8ba,CODEC-56,https://issues.apache.org/jira/browse/CODEC-56

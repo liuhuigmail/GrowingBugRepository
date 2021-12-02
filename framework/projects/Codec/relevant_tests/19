@@ -1,0 +1,2 @@
+org.apache.commons.codec.language.AllTests
+org.apache.commons.codec.language.RefinedSoundexTest
