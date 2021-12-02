@@ -33,7 +33,7 @@ Here are the details about the general properties above from left to right seque
   Considering the project may consists of several modules(we call it subproject), the project id can be named as `project_subproject`.
 - The **project name** (`PROJECT_NAME`) must not include spaces, but can be
   hyphenated. For example, the project name for the Apache Commons-Lang project,
-  already included in Defects4J, is *commons-lang*, and its project id is *Lang*.
+  already included in GrowingBugRepository, is *commons-lang*, and its project id is *Lang*.
   Similarly, for subproject,  the project name can be `project-subproject`.
 - The **issue tracker id** (`ISSUE_TRACKER_NAME`) identifies the issue tracker
   for the project you are interested in. GrowingBugRepository's bug-mining framework
