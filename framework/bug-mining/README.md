@@ -1,15 +1,17 @@
 This is the guidance for bug-mining, it will be updated later.
 # Overview of the bug-mining process
 
-1. Initialize a bug-mining working directory and configure the projects for bug mining.
+1. Configure the projects for bug mining.
 
-2. Run the script to mine the bug.
+2. Modify the script to configure bug-mining working directory and text file which has stored the mining information.
 
-3. Check the mining result.
+3. Run the script to mine the bug.
 
-4. Promote all reproducible minimized bugs to the main database!
+4. Check the mining result.
 
-## Initialize a bug-mining working directory and configure the projects for bug mining
+5. Promote all reproducible minimized bugs to the main database!
+
+## Configure the projects for bug mining
 
 Suppose we want to mine reproducible bugs from the
 [Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)
@@ -68,4 +70,32 @@ the `active-bugs.csv` for Chart):
 
 Please refer to [bug_mining_projects_info.txt](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/framework/bug-mining/bug_mining_projects_info.txt) for details.
 
+## Modify the script to configure bug-mining working directory and text file which has stored the mining information
+
+Once all projects and their own properties have been defined, the
+[execute-run-by-bug.sh](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/framework/bug-mining/execute-run-by-bug.sh) should be modified.
+The context from line 2 to line 4 is shown as below:
+
+```bash
+WORK_DIR="bug-mining"
+echo "WORK_DIR: $WORK_DIR"
+cat example.txt | while read line 
+```
+What you need to do is to chanhge `bug-mining` to the working directory you want to use and change `example.txt` to the text file you used in step1.
+
+
 ## Run the script to mine the bug
+
+Based on the step1 and step2, the `execute-run-by-bug.sh` should be executed as:
+
+```bash
+./execute-run-by-bug.sh 
+```
+
+## Check the mining result
+
+After `execute-run-by-bug.sh` has finished, you can check the working :
+
+```bash
+./execute-run-by-bug.sh 
+```
