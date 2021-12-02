@@ -1,7 +1,7 @@
 #!/bin/bash
-WORK_DIR="metadata"
+WORK_DIR="bug-mining"
 echo "WORK_DIR: $WORK_DIR"
-cat metadata.txt | while read line
+cat example.txt | while read line 
 do
     # read project information
     read -ra strarr <<<"$line"
