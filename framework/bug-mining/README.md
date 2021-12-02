@@ -15,7 +15,7 @@ Suppose we want to mine reproducible bugs from the
 [Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)
 project.
 
-Firstly, create text file txt to store the general properties, also you can use [exapmle.txt](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/framework/bug-mining/example.txt).
+Firstly, create a text file to store the general properties, also you can use [exapmle.txt](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/framework/bug-mining/example.txt).
 Next, define the general properties of the project in the file. For the Apache Commons Codec project, these are:
 
 ```bash
