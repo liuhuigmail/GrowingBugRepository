@@ -16,19 +16,19 @@ Suppose we want to mine reproducible bugs from the
 project.
 
 Firstly, create a text file to store the general properties, also you can use [exapmle.txt](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/framework/bug-mining/example.txt).
-Next, define the general properties of the project in the file. For the Apache Commons Codec project, these are:
+Next, define the general properties of the projects in the file line by line. For the Apache Commons Codec project, these are:
 
 ```bash
 Codec	commons-codec	https://github.com/apache/commons-codec.git	jira	CODEC	/(CODEC-\\d+)/mi	.	
 ```
-
+Note: please split each word by `\t` rather than blank space.
 
 Here are the details about the general properties above from left to right sequentially.
 
 - The **project id** (i.e., `PROJECT_ID`) should **start with an upper-case letter**
   and should be **short yet descriptive** (keep in mind that this id is used for
   commands such as `defects4j checkout -p <PROJECT_ID>`).
-  Considering the project may consists of several modules(we call it subproject), the **project id** can be named as `project_subproject`.
+  Considering the project may consists of several modules(we call it subproject), the project id can be named as `project_subproject`.
 - The **project name** (`PROJECT_NAME`) must not include spaces, but can be
   hyphenated. For example, the project name for the Apache Commons-Lang project,
   already included in Defects4J, is *commons-lang*, and its project id is *Lang*.
@@ -49,7 +49,23 @@ Here are the details about the general properties above from left to right seque
   all bug-fixing commits of the Apache Commons-Lang project. Note that the
   regular expression has to capture the issue number.
 - The **sub project** is a relevant path that matches the project's module,
-  e.g., if the project exists the dictionary named `ratis-common` 
-  which can be regarded as a module, you can set `ratis-common` or `./ratis-common` as sub project option .
+  e.g., if the project exists the dictionary named `tika-core` 
+  which can be regarded as a module, you can set `tika-core` or `./tika-core` as the sub project option .
   Note that if you want to mine a common project,
   you just need to input `.` as default configuration. 
+  
+  The following table reports the issue trackers, issue tracker project IDs, and
+regular expressions previously used in `GrowingBugRepository` (note that we manually built
+the `active-bugs.csv` for Chart):
+
+| Project ID | Issue tracker | Issue tracker project ID | Regexp                    | Sub project            |
+|------------|---------------|--------------------------|---------------------------|---------------------------|
+| Chart      |               |                          |                           | .                         |
+| Closure    | google        | closure-compiler         | `/issue[^\\d]*(\\d+)/mi`    | .                         |
+| Lang       | jira          | LANG                     | `/(LANG-\\d+)/mi`          | .                        |
+| Time       | github        | JodaOrg/joda-time        | `/Fix(?:es)?\s*#(\\d+)/mi` | .                        |
+| Tika_core       |jira       | TIKA        | `/(TIKA-\\d+)/mi` | 	tika-core       |
+
+Please refer to [bug_mining_projects_info.txt](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/framework/bug-mining/bug_mining_projects_info.txt) for details.
+
+## Run the script to mine the bug
