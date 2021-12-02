@@ -57,8 +57,8 @@ do
    nums=$(wc -l < $work_dir/framework/projects/$project_id/active-bugs.csv)
    nums=`expr $nums - 1`
    #for((i=7000;i<=$nums;i++));    
-    #for((i=1;i<=$nums;i++)); 
-    for((i=3;i>=3;i--));
+    for((i=1;i<=$nums;i++)); 
+    #for((i=3;i>=3;i--));
    #for((i=$nums;i>=1;i--));  
    #arr=(1019);
    #for i in ${arr[@]}
