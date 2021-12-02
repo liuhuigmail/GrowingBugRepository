@@ -4,7 +4,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a ***concise 
 
 # Contents of growingBugs
 To date, growingBugs contains 
- **`1393`** bugs
+ **`1394`** bugs
 from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -12,7 +12,7 @@ from open-source Java projects.
 | 1     | Chart           | jfreechart                 |                           |       26       | 1-26                |
 | 2     | Cli             | commons-cli                |                           |       41       | 1-5,7-42            |
 | 3     | Closure         | closure-compiler           |                           |      174       | 1-62,64-92,94-176   |
-| 4     | Codec           | commons-codec              |                           |       18       | 1-18                |
+| 4     | Codec           | commons-codec              |                           |       19       | 1-19                |
 | 5     | Collections     | commons-collections        |                           |        8       | 25-31,35               |
 | 6     | Compress        | commons-compress           |                           |       51       | 1-48,50,52-53       |
 | 7     | Csv             | commons-csv                |                           |       17       | 1-17                |
