@@ -15,8 +15,8 @@ Suppose we want to mine reproducible bugs from the
 [Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)
 project.
 
-Firstly, create text file txt to store the general properties, also you can use [exapmle.txt](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/framework/bug-mining/example.txt)
-Next, define the general properties of the project. For the Apache Commons Codec project, these are:
+Firstly, create text file txt to store the general properties, also you can use [exapmle.txt](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/framework/bug-mining/example.txt).
+Next, define the general properties of the project in the file. For the Apache Commons Codec project, these are:
 
 ```bash
 Codec	commons-codec	https://github.com/apache/commons-codec.git	jira	CODEC	/(CODEC-\\d+)/mi	.	
@@ -50,5 +50,6 @@ Here are the details about the general properties above from left to right seque
   regular expression has to capture the issue number.
 - The **sub project** is a relevant path that matches the project's module,
   e.g., if the project exists the dictionary named `ratis-common` 
-  which can be regarded as a module.Note that if you just want to mine a common project,
-  you need to choose `.` as default configuration. 
+  which can be regarded as a module, you can set `ratis-common` or `./ratis-common` as sub project option .
+  Note that if you want to mine a common project,
+  you just need to input `.` as default configuration. 
