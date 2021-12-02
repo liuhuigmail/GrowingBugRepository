@@ -81,7 +81,7 @@ WORK_DIR="bug-mining"
 echo "WORK_DIR: $WORK_DIR"
 cat example.txt | while read line 
 ```
-What you need to do is to chanhge `bug-mining` to the working directory you want to use and change `example.txt` to the text file you used in previous step.
+What you need to do is to change `bug-mining` to the working directory you want to use and change `example.txt` to the text file you used in previous step.
 
 
 ## Run the script to mine the bug
