@@ -1,0 +1,4 @@
+Ratis_common	ratis-common	https://hub.fastgit.org/apache/ratis.git	jira	RATIS	/(RATIS-\\d+)/mi	ratis-common	
+Codec	commons-codec	https://github.com/apache/commons-codec.git	jira	CODEC	/(CODEC-\\d+)/mi	.	
+MInvoker	maven-invoker	https://hub.fastgit.org/apache/maven-invoker.git	jira	MSHARED	/(MSHARED-\\d+)/mi	.		
+	
