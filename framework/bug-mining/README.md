@@ -70,7 +70,7 @@ the `active-bugs.csv` for Chart):
 
 Please refer to [bug_mining_projects_info.txt](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/framework/bug-mining/bug_mining_projects_info.txt) for details.
 
-## Modify the script to configure bug-mining working directory and text file which has stored the mining information
+## Modify the script to configure
 
 Once all projects and their own properties have been defined, the
 [execute-run-by-bug.sh](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/framework/bug-mining/execute-run-by-bug.sh) should be modified.
