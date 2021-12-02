@@ -36,7 +36,7 @@ Here are the details about the general properties above from left to right seque
   already included in Defects4J, is *commons-lang*, and its project id is *Lang*.
   Similarly, for subproject,  the project name can be `project-subproject`.
 - The **issue tracker id** (`ISSUE_TRACKER_NAME`) identifies the issue tracker
-  for the project you are interested in. Defects4j's bug-mining framework
+  for the project you are interested in. GrowingBugRepository's bug-mining framework
   supports the following issue trackers:
     - [google-code](https://code.google.com/) ('google' for short)
     - [jira](https://issues.apache.org/jira/)
@@ -81,12 +81,12 @@ WORK_DIR="bug-mining"
 echo "WORK_DIR: $WORK_DIR"
 cat example.txt | while read line 
 ```
-What you need to do is to chanhge `bug-mining` to the working directory you want to use and change `example.txt` to the text file you used in step1.
+What you need to do is to chanhge `bug-mining` to the working directory you want to use and change `example.txt` to the text file you used in previous step.
 
 
 ## Run the script to mine the bug
 
-Based on the step1 and step2, the `execute-run-by-bug.sh` should be executed as:
+Based on the previous steps, the `execute-run-by-bug.sh` should be executed as:
 
 ```bash
 ./execute-run-by-bug.sh 
@@ -94,8 +94,30 @@ Based on the step1 and step2, the `execute-run-by-bug.sh` should be executed as:
 
 ## Check the mining result
 
-After `execute-run-by-bug.sh` has finished, you can check the working :
+After the script `execute-run-by-bug.sh` finished, please check the `$WORK_DIR\$project id\minimum_patches` file,
+all the successful bugs' patches will be store in it
+(**successful bug** means that is has as least one trigger test, and its src patch is concise). 
+
+## Promoting reproducible bugs to the main database
+
+For each fault, if the diff is minimal (i.e., does not include features or
+refactorings), promote the fault to the main `GrowingBugRepository` database.
 
 ```bash
-./execute-run-by-bug.sh 
+./promote-to-db.pl -p $PROJECT_ID \
+                   -w $WORK_DIR \
+                   -r $WORK_DIR/project_repos/$PROJECT_NAME.git \
+                   -b <bid>
 ```
+
+For example, if you want to first `Codec` bug, and your working directory is `bug-mining`, you can run as:
+```bash
+./promote-to-db.pl -p "Codec" \
+                   -w "bug-mining/Codec" \
+                   -r "bug-mining/Codec/project_repos/commons-codec.git" \
+                   -b 3
+```
+
+Note: Make sure to specify the `-b` option as the default is to promote all
+bugs!
+
