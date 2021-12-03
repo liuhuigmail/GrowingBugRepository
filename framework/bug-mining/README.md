@@ -1,4 +1,7 @@
 This is the guidance for bug-mining, it will be updated later.
+
+ **Before execute bug-mining process, please verify `GrowingBugRepository` has been configured already(refer to [README.md](https://github.com/liuhuigmail/GrowingBugRepository/blob/main/README.md)).**
+ 
 # Overview of the bug-mining process
 
 1. Configure the projects for bug mining.
