@@ -26,7 +26,7 @@ This is the guidance of bug-mining.The first part is about setting up GrowingBug
     
     Example:
   
-    - `defects4j checkout -p Collections -v 2b -w /tmp/Shiro_core_37_buggy -s core`
+    - `defects4j checkout -p Shiro_core -v 2b -w /tmp/Shiro_core_37_buggy -s core`
     - `defects4j checkout -p Collections -v 2b -w /tmp/Collections_2_buggy -s  .`
 
    Notably, **GrowingBugs**  supports sub-projects that are not suported by Defects4J. To this end, yor should specify the sub-project with  `-s` parameter in the `checkout`  command. The preceding example common leverages `-s core` to check out sub-proejct `core` from the enclosing project `Shiro_core`. For the `compile` and `test` commands, you should also switch to the sub-project's folder to compile and test the sub-project.
