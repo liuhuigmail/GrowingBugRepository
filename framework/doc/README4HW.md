@@ -76,7 +76,7 @@ Firstly, create a text file to store the general properties, also you can use [e
 Next, define the general properties of the projects in the file line by line. For the Apache Commons Codec project, these are:
 
 ```bash
-Codec	commons-codec	https://github.com/apache/commons-codec.git	jira	CODEC	/(CODEC-\\d+)/mi	.	
+Codec commons-codec https://github.com/apache/commons-codec.git jira CODEC /(CODEC-\\d+)/mi .
 ```
 Note: please split each word by `\t` rather than blank space.
 
