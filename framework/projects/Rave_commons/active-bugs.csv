@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,cdcf2b000525dc07e1999cf2b37a6869366eca09,90cb88376366702ff098dfe9cd3b884b952d7ada,RAVE-502,https://issues.apache.org/jira/browse/RAVE-502

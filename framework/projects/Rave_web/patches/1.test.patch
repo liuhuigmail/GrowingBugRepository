@@ -1,0 +1,40 @@
+diff --git a/rave-components/rave-web/src/test/java/org/apache/rave/portal/web/model/PortalPreferenceFormTest.java b/rave-components/rave-web/src/test/java/org/apache/rave/portal/web/model/PortalPreferenceFormTest.java
+index 49fe22f0..5dc479ee 100644
+--- a/rave-components/rave-web/src/test/java/org/apache/rave/portal/web/model/PortalPreferenceFormTest.java
++++ b/rave-components/rave-web/src/test/java/org/apache/rave/portal/web/model/PortalPreferenceFormTest.java
+@@ -28,10 +28,7 @@ import java.util.HashMap;
+ import java.util.Map;
+ 
+ import static junit.framework.Assert.assertEquals;
+-import static org.apache.rave.portal.web.util.PortalPreferenceKeys.INITIAL_WIDGET_STATUS;
+-import static org.apache.rave.portal.web.util.PortalPreferenceKeys.JAVASCRIPT_DEBUG_MODE;
+-import static org.apache.rave.portal.web.util.PortalPreferenceKeys.PAGE_SIZE;
+-import static org.apache.rave.portal.web.util.PortalPreferenceKeys.TITLE_SUFFIX;
++import static org.apache.rave.portal.web.util.PortalPreferenceKeys.*;
+ 
+ /**
+  * Test for {@link PortalPreferenceForm}
+@@ -47,8 +44,6 @@ public class PortalPreferenceFormTest {
+         preferenceMap.put(PAGE_SIZE, pageSizePref);
+         PortalPreference javaScriptDebugMode = new PortalPreferenceImpl(JAVASCRIPT_DEBUG_MODE, "0");
+         preferenceMap.put(JAVASCRIPT_DEBUG_MODE, javaScriptDebugMode);
+-        PortalPreference initialWidgetStatus = new PortalPreferenceImpl(INITIAL_WIDGET_STATUS, "PUBLISHED");
+-        preferenceMap.put(INITIAL_WIDGET_STATUS, initialWidgetStatus);
+     }
+ 
+     @Test
+@@ -57,7 +52,6 @@ public class PortalPreferenceFormTest {
+         assertEquals("Test portal", form.getTitleSuffix().getValue());
+         assertEquals("20", form.getPageSize().getValue());
+         assertEquals("0", form.getJavaScriptDebugMode().getValue());
+-        assertEquals("PUBLISHED", form.getInitialWidgetStatus().getValue());
+     }
+ 
+     @Test
+@@ -66,6 +60,5 @@ public class PortalPreferenceFormTest {
+         assertEquals(PortalPreferenceForm.DEFAULT_PAGE_SIZE, form.getPageSize().getValue());
+         assertEquals(PortalPreferenceForm.DEFAULT_TITLE_SUFFIX, form.getTitleSuffix().getValue());
+         assertEquals(PortalPreferenceForm.DEFAULT_JAVASCRIPT_DEBUG_MODE, form.getJavaScriptDebugMode().getValue());
+-        assertEquals(PortalPreferenceForm.DEFAULT_INITIAL_WIDGET_STATUS, form.getInitialWidgetStatus().getValue());
+     }
+ }

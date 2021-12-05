@@ -1,0 +1,13 @@
+diff --git a/rave-components/rave-commons/src/main/java/org/apache/rave/jdbc/util/DataSourcePopulator.java b/rave-components/rave-commons/src/main/java/org/apache/rave/jdbc/util/DataSourcePopulator.java
+index 2ad9cc0e..e7a04a96 100644
+--- a/rave-components/rave-commons/src/main/java/org/apache/rave/jdbc/util/DataSourcePopulator.java
++++ b/rave-components/rave-commons/src/main/java/org/apache/rave/jdbc/util/DataSourcePopulator.java
+@@ -180,7 +180,7 @@ public class DataSourcePopulator implements Serializable {
+     }
+ 
+     protected static ResultSet executeQuery(Connection conn, String executeScriptQuery) throws SQLException {
+-        Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
++        Statement statement = conn.createStatement();
+         return statement.executeQuery(executeScriptQuery);
+     }
+ 

@@ -144,9 +144,9 @@ my $src_path = $project->src_dir("${BID}f");
 my $outputPath= "$TMP_DIR/$src_patch";
 system("rm  -f $outputPath");
 my $bbcmd = "java -jar $LIB_DIR/Bug_Builder.jar $TMP_DIR/$PID-${BID}b/$src_path_buggy $TMP_DIR/$PID-${BID}f/$src_path $outputPath";
-my $exec_status=Utils::exec_cmd($bbcmd, "Running BugBuilder to minimize patch   ") ;
-#print("$bbcmd \n");
-#system($bbcmd); 
+#my $exec_status=Utils::exec_cmd($bbcmd, "Running BugBuilder to minimize patch   ") ;
+print("$bbcmd \n");
+system($bbcmd); 
 
 if (! -e "$outputPath"){
 	system("rm -rf $TMP_DIR");
@@ -156,6 +156,7 @@ if (! -e "$outputPath"){
 system("mkdir -p $WORK_DIR/minimum_patches ; cp -f $outputPath $WORK_DIR/minimum_patches/$src_patch");
 system("rm -rf $TMP_DIR/$PID-${BID}f");
 $project->checkout_vid("${BID}f",  "$TMP_DIR/$PID-${BID}f", 1,$SUB_PROJECT) == 1 or die;
+system("cat $outputPath");
 $project->apply_patch($CHECKOUT_DIR, "$outputPath") or die "Cannot apply patch";
 
 

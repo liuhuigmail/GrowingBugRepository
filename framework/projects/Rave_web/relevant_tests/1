@@ -1,0 +1,3 @@
+org.apache.rave.portal.web.controller.admin.PortalPreferenceControllerTest
+org.apache.rave.portal.web.model.PortalPreferenceFormTest
+org.apache.rave.portal.web.validator.PortalPreferenceFormValidatorTest

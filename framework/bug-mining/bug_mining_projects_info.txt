@@ -151,4 +151,6 @@ Shindig_common	shindig-common	https://github.com/apache/shindig.git	jira	SHINDIG
 Mshared_archiver	maven-archiver	https://github.com/apache/maven-shared.git	jira	MSHARED	/(MSHARED-\\d+)/mi	maven-archiver	
 Xbean_reflect	xbean-reflect	https://github.com/apache/geronimo-xbean.git	jira	XBEAN	/(XBEAN-\\d+)/mi	xbean-reflect	
 Mrunit	mrunit	https://github.com/apache/mrunit.git	jira	MRUNIT	/(MRUNIT-\\d+)/mi	.
-Rave_core	rave-core	https://github.com/apache/rave.git	jira	RAVE	/(RAVE-\\d+)/mi	rave-components/rave-core			
+Rave_core	rave-core	https://github.com/apache/rave.git	jira	RAVE	/(RAVE-\\d+)/mi	rave-components/rave-core	
+Rave_commons	rave-commons	https://github.com/apache/rave.git	jira	RAVE	/(RAVE-\\d+)/mi	rave-components/rave-commons	
+Rave_web	rave-web	https://github.com/apache/rave.git	jira	RAVE	/(RAVE-\\d+)/mi	rave-components/rave-web			

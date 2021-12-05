@@ -1,0 +1,40 @@
+diff --git a/rave-components/rave-commons/src/test/java/org/apache/rave/jdbc/util/DataSourcePopulatorTest.java b/rave-components/rave-commons/src/test/java/org/apache/rave/jdbc/util/DataSourcePopulatorTest.java
+index 5128733b..022ce6bf 100644
+--- a/rave-components/rave-commons/src/test/java/org/apache/rave/jdbc/util/DataSourcePopulatorTest.java
++++ b/rave-components/rave-commons/src/test/java/org/apache/rave/jdbc/util/DataSourcePopulatorTest.java
+@@ -91,7 +91,7 @@ public class DataSourcePopulatorTest {
+         expect(populate.execute(INSERT)).andReturn(true).once();
+         replay(populate);
+ 
+-        expect(connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)).andReturn(check).once();
++        expect(connection.createStatement()).andReturn(check).once();
+         expect(connection.createStatement()).andReturn(populate).once();
+         connection.close();
+         expectLastCall();
+@@ -116,7 +116,7 @@ public class DataSourcePopulatorTest {
+         expect(populate.execute(INSERT)).andReturn(true).once();
+         replay(populate);
+ 
+-        expect(connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)).andReturn(check).once();
++        expect(connection.createStatement()).andReturn(check).once();
+         expect(connection.createStatement()).andReturn(populate).once();
+         connection.close();
+         expectLastCall();
+@@ -137,7 +137,7 @@ public class DataSourcePopulatorTest {
+         expect(populate.execute(INSERT)).andThrow(new SQLException());
+         replay(populate);
+ 
+-        expect(connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)).andReturn(check).once();
++        expect(connection.createStatement()).andReturn(check).once();
+         expect(connection.createStatement()).andReturn(populate).once();
+         connection.close();
+         expectLastCall();
+@@ -161,7 +161,7 @@ public class DataSourcePopulatorTest {
+         expect(check.executeQuery(CHECK_QUERY)).andReturn(rs);
+         replay(check);
+ 
+-        expect(connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)).andReturn(check).once();
++        expect(connection.createStatement()).andReturn(check).once();
+         connection.close();
+         expectLastCall().andThrow(new SQLException());
+         replay(connection);

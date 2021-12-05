@@ -1,0 +1,2 @@
+org.apache.rave.jdbc.util.DataSourcePopulatorTest
+org.apache.rave.persistence.jpa.PopulatedLocalContainerEntityManagerFactoryTest

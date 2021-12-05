@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,5923660ff5cca14233c38421fe9343f92a74a8e2,ad35fcefa7d2657b34d039df499288973c3c3674,RAVE-746,https://issues.apache.org/jira/browse/RAVE-746
