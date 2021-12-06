@@ -11,13 +11,12 @@ This is the guidance of bug-mining.The first part is about setting up GrowingBug
 1. Initialize GrowingBugs:
 
     Download the project repositories and external libraries that are not included in the git repository for size purposes and to avoid redundancies. We provide a mechanism to download them automatically as follows:
+    - Unzip GrowingBugRepository.zip 
+    - `cd GrowingBugRepository` %get into the root to the unzipped GrowingBugRepository.zip 
+    - `cpanm --installdeps .` % intall some Perl library 
+
     
-    - `cd GrowingBugRepository`
-    - `cpanm --installdeps .`
-    - `./init.sh`
-    - `./repos.sh`
-    
-3. Add GrowingBugs's executables to your PATH:
+2. Add GrowingBugs's executables to your PATH:
     - `export PATH=$PATH:"path2growingbugs"/framework/bin`
 
 ##  Using GrowingBugs
