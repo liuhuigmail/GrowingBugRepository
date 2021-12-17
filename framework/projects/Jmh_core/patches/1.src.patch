@@ -1,0 +1,44 @@
+diff --git a/jmh-core/src/main/java/org/openjdk/jmh/util/ListStatistics.java b/jmh-core/src/main/java/org/openjdk/jmh/util/ListStatistics.java
+index da8995c5..d54af752 100644
+--- a/jmh-core/src/main/java/org/openjdk/jmh/util/ListStatistics.java
++++ b/jmh-core/src/main/java/org/openjdk/jmh/util/ListStatistics.java
+@@ -30,7 +30,6 @@ import java.util.AbstractMap;
+ import java.util.Arrays;
+ import java.util.Iterator;
+ import java.util.Map;
+-import java.util.NoSuchElementException;
+ 
+ /**
+  * Calculate statistics over a list of doubles.
+@@ -182,9 +181,6 @@ public class ListStatistics extends AbstractStatistics {
+ 
+         @Override
+         public Map.Entry<Double, Long> next() {
+-            if (!hasNext()) {
+-                throw new NoSuchElementException("No more elements.");
+-            }
+             return new AbstractMap.SimpleImmutableEntry<>(values[currentIndex++], 1L);
+         }
+ 
+diff --git a/jmh-core/src/main/java/org/openjdk/jmh/util/SingletonStatistics.java b/jmh-core/src/main/java/org/openjdk/jmh/util/SingletonStatistics.java
+index 5e0a4011..dc23796a 100644
+--- a/jmh-core/src/main/java/org/openjdk/jmh/util/SingletonStatistics.java
++++ b/jmh-core/src/main/java/org/openjdk/jmh/util/SingletonStatistics.java
+@@ -27,7 +27,6 @@ package org.openjdk.jmh.util;
+ import java.util.AbstractMap;
+ import java.util.Iterator;
+ import java.util.Map;
+-import java.util.NoSuchElementException;
+ 
+ /**
+  * Calculate statistics with just a single value.
+@@ -99,9 +98,6 @@ public class SingletonStatistics extends AbstractStatistics {
+ 
+         @Override
+         public Map.Entry<Double, Long> next() {
+-            if (entryReturned) {
+-                throw new NoSuchElementException("No more elements.");
+-            }
+             entryReturned = true;
+             return new AbstractMap.SimpleImmutableEntry<>(value, 1L);
+         }
