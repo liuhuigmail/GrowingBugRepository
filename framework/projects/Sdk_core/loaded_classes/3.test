@@ -1,0 +1,4 @@
+com.ibm.cloud.sdk.core.test.BaseServiceUnitTest
+com.ibm.cloud.sdk.core.test.security.Cp4dAuthenticatorTest
+com.ibm.cloud.sdk.core.test.security.IamAuthenticatorTest
+com.ibm.cloud.sdk.core.test.TestUtils

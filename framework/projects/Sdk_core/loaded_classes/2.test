@@ -1,0 +1,4 @@
+com.ibm.cloud.sdk.core.test.model.generated.Car
+com.ibm.cloud.sdk.core.test.model.generated.Truck
+com.ibm.cloud.sdk.core.test.model.generated.Vehicle
+com.ibm.cloud.sdk.core.test.service.RequestBuilderTest

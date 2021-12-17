@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/ibm/cloud/sdk/core/util/RequestUtils.java b/src/main/java/com/ibm/cloud/sdk/core/util/RequestUtils.java
+index e4d4a609..ef206214 100644
+--- a/src/main/java/com/ibm/cloud/sdk/core/util/RequestUtils.java
++++ b/src/main/java/com/ibm/cloud/sdk/core/util/RequestUtils.java
+@@ -165,7 +165,7 @@ public final class RequestUtils {
+       details.add(propertyName + "=" + System.getProperty(propertyName));
+     }
+ 
+-    return "ibm-java-sdk-core-" + loadCoreVersion() + " " + getSystemInfo();
++    return "ibm-java-sdk-core/" + loadCoreVersion() + " " + getSystemInfo();
+   }
+ 
+   public static String getSystemInfo() {

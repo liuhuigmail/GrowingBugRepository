@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,6cd63c4f17e5145fcdedc91f26f2f2ca6f4dad95,386a772d0bb63b657e6ee6db21641b0f3d564ef0,15,https://github.com/IBM/java-sdk-core/pull/15
+2,5e8e603470a9f16a8a09f8bd3a01cdea7754fcc6,a6d65419c4edccb039ea094e485fd4c8ba13f02c,75,https://github.com/IBM/java-sdk-core/pull/75
+3,aa73a1197f0a945b6542c20b297712be7feae554,349ca1ad5bb8b59dfb3fbccf309be90e93740663,83,https://github.com/IBM/java-sdk-core/pull/83

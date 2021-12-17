@@ -1,0 +1,88 @@
+diff --git a/src/test/java/com/ibm/cloud/sdk/core/test/security/Cp4dAuthenticatorTest.java b/src/test/java/com/ibm/cloud/sdk/core/test/security/Cp4dAuthenticatorTest.java
+index 59726921..45c325dd 100644
+--- a/src/test/java/com/ibm/cloud/sdk/core/test/security/Cp4dAuthenticatorTest.java
++++ b/src/test/java/com/ibm/cloud/sdk/core/test/security/Cp4dAuthenticatorTest.java
+@@ -281,29 +281,6 @@ public class Cp4dAuthenticatorTest extends BaseServiceUnitTest {
+ 
+     Request.Builder requestBuilder = new Request.Builder().url("https://test.com");
+ 
+-    // Calling authenticate should result in an exception.
+-    try {
+-      authenticator.authenticate(requestBuilder);
+-      fail("Expected authenticate() to result in exception!");
+-    } catch (ServiceResponseException excp) {
+-      assertTrue(excp instanceof ServiceResponseException);
+-    } catch (Throwable t) {
+-      fail("Expected ServiceResponseException, not " + t.getClass().getSimpleName());
+-    }
+-  }
+-
+-  @Test
+-  public void testApiErrorResponse() throws Throwable {
+-    server.enqueue(jsonResponse("{'}"));
+-
+-    // Mock current time to ensure the token is valid.
+-    PowerMockito.mockStatic(Clock.class);
+-    PowerMockito.when(Clock.getCurrentTimeInSeconds()).thenReturn((long) 100);
+-
+-    CloudPakForDataAuthenticator authenticator = new CloudPakForDataAuthenticator(url, testUsername, testPassword);
+-
+-    Request.Builder requestBuilder = new Request.Builder().url("https://test.com");
+-
+     // Calling authenticate should result in an exception.
+     try {
+       authenticator.authenticate(requestBuilder);
+@@ -311,7 +288,7 @@ public class Cp4dAuthenticatorTest extends BaseServiceUnitTest {
+     } catch (RuntimeException excp) {
+       Throwable causedBy = excp.getCause();
+       assertNotNull(causedBy);
+-      assertTrue(causedBy instanceof IllegalStateException);
++      assertTrue(causedBy instanceof ServiceResponseException);
+     } catch (Throwable t) {
+       fail("Expected RuntimeException, not " + t.getClass().getSimpleName());
+     }
+diff --git a/src/test/java/com/ibm/cloud/sdk/core/test/security/IamAuthenticatorTest.java b/src/test/java/com/ibm/cloud/sdk/core/test/security/IamAuthenticatorTest.java
+index 062cc9fb..3b17b915 100644
+--- a/src/test/java/com/ibm/cloud/sdk/core/test/security/IamAuthenticatorTest.java
++++ b/src/test/java/com/ibm/cloud/sdk/core/test/security/IamAuthenticatorTest.java
+@@ -338,31 +338,6 @@ public class IamAuthenticatorTest extends BaseServiceUnitTest {
+     PowerMockito.when(Clock.getCurrentTimeInSeconds()).thenReturn((long) 100);
+ 
+     IamAuthenticator authenticator = new IamAuthenticator(API_KEY);
+-    authenticator.setURL(url);
+-
+-    Request.Builder requestBuilder = new Request.Builder().url("https://test.com");
+-
+-    // Calling authenticate should result in an exception.
+-    try {
+-      authenticator.authenticate(requestBuilder);
+-      fail("Expected authenticate() to result in exception!");
+-    } catch (ServiceResponseException excp) {
+-      assertTrue(excp instanceof ServiceResponseException);
+-    } catch (Throwable t) {
+-      fail("Expected ServiceResponseException, not " + t.getClass().getSimpleName());
+-    }
+-  }
+-
+-  @Test
+-  public void testApiResponseError() throws Throwable {
+-    server.enqueue(jsonResponse("{'}"));
+-
+-    // Mock current time to ensure the token is valid.
+-    PowerMockito.mockStatic(Clock.class);
+-    PowerMockito.when(Clock.getCurrentTimeInSeconds()).thenReturn((long) 100);
+-
+-    IamAuthenticator authenticator = new IamAuthenticator(API_KEY);
+-    authenticator.setURL(url);
+ 
+     Request.Builder requestBuilder = new Request.Builder().url("https://test.com");
+ 
+@@ -373,7 +348,7 @@ public class IamAuthenticatorTest extends BaseServiceUnitTest {
+     } catch (RuntimeException excp) {
+       Throwable causedBy = excp.getCause();
+       assertNotNull(causedBy);
+-      assertTrue(causedBy instanceof IllegalStateException);
++      assertTrue(causedBy instanceof ServiceResponseException);
+     } catch (Throwable t) {
+       fail("Expected RuntimeException, not " + t.getClass().getSimpleName());
+     }

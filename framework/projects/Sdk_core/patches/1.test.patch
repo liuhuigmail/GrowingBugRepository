@@ -1,0 +1,12 @@
+diff --git a/src/test/java/com/ibm/cloud/sdk/core/test/util/RequestUtilsTest.java b/src/test/java/com/ibm/cloud/sdk/core/test/util/RequestUtilsTest.java
+index 132c74f7..c44aab17 100644
+--- a/src/test/java/com/ibm/cloud/sdk/core/test/util/RequestUtilsTest.java
++++ b/src/test/java/com/ibm/cloud/sdk/core/test/util/RequestUtilsTest.java
+@@ -109,6 +109,6 @@ public class RequestUtilsTest {
+   @Test
+   public void testUserAgent() {
+     assertNotNull(RequestUtils.getUserAgent());
+-    assertTrue(RequestUtils.getUserAgent().startsWith("ibm-java-sdk-core-"));
++    assertTrue(RequestUtils.getUserAgent().startsWith("ibm-java-sdk-core/"));
+   }
+ }
