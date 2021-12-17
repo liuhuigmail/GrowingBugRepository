@@ -97,7 +97,7 @@ from open-source Java projects.
 | 86     | Httpcomponents_core<br/>_httpcore5            | httpcore5 |  httpcore5       |       3     | 1-3              |
 | 87     | Johnzon_jsonb            | johnzon-jsonb |  johnzon-jsonb       |       6     | 1-6              |
 | 88     | Johnzon_jaxrs            | johnzon-jaxrs |  johnzon-jaxrs       |       1     | 1              |
-| 89     | Hbase_common        JacksonData    | hbase-common |  hbase-common       |       1     | 1              |
+| 89     | Hbase_common      | hbase-common |  hbase-common       |       1     | 1              |
 | 90     | Incubator_tamaya_api            | incubator-retired-tamaya-api |  code/api       |       2     | 1-2              |
 | 91     | James_project_<br/>mailet_standard            | james-project-mailet-standard |  mailet/standard       |       1     | 1              |
 | 92     | Johnzon_jsonschema            | johnzon-jsonschema |  johnzon-jsonschema       |       2     | 1-2              |
