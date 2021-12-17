@@ -3,9 +3,7 @@
 Notably, each bug is composed of a buggy version, a fixed version, a ***concise patch*** (bug-fixing changes only), and one or more triggering test cases.
 
 # Contents of growingBugs
-To date, growingBugs contains 
- **`1399`** bugs
-from open-source Java projects. 
+To date, growingBugs contains **`1400`** bugs from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -165,7 +163,8 @@ from open-source Java projects.
 | 154     | Rave_core            | rave-core               |          rave-components/rave-core         |      2       | 1-2               |
 | 155     | Rave_commons            | rave-commons               |          rave-components/rave-commons         |      1       | 1               |
 | 156     | Rave_web            | rave-web               |          rave-components/rave-web         |      1       | 1               |
-| 157     | Sdk_core            | sdk-core               |                   |      2       | 1-2               |
+| 157     | Jmh_core            | jmh-core               |          jmh-core         |      1       | 1               |
+| 158     | Sdk_core            | sdk-core               |                   |      3       | 1-3               |
 # Setting up GrowingBugs
 
 ## Requirements
