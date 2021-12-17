@@ -153,4 +153,6 @@ Xbean_reflect	xbean-reflect	https://github.com/apache/geronimo-xbean.git	jira	XB
 Mrunit	mrunit	https://github.com/apache/mrunit.git	jira	MRUNIT	/(MRUNIT-\\d+)/mi	.
 Rave_core	rave-core	https://github.com/apache/rave.git	jira	RAVE	/(RAVE-\\d+)/mi	rave-components/rave-core	
 Rave_commons	rave-commons	https://github.com/apache/rave.git	jira	RAVE	/(RAVE-\\d+)/mi	rave-components/rave-commons	
-Rave_web	rave-web	https://github.com/apache/rave.git	jira	RAVE	/(RAVE-\\d+)/mi	rave-components/rave-web			
+Rave_web	rave-web	https://github.com/apache/rave.git	jira	RAVE	/(RAVE-\\d+)/mi	rave-components/rave-web	
+Jmh_core	jmh-core	https://github.com/openjdk/jmh.git	jira	CODETOOLS	/(CODETOOLS-\\d+)/mi	jmh-core
+Sdk_core	sdk-core	https://github.com/IBM/java-sdk-core.git	github	IBM/java-sdk-core	/#(\\d+)/mi	.
