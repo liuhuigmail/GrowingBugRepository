@@ -1,0 +1,116 @@
+diff --git a/jmh-core/src/test/java/org/openjdk/jmh/util/TestListStatistics.java b/jmh-core/src/test/java/org/openjdk/jmh/util/TestListStatistics.java
+index 40959151..193b74a1 100644
+--- a/jmh-core/src/test/java/org/openjdk/jmh/util/TestListStatistics.java
++++ b/jmh-core/src/test/java/org/openjdk/jmh/util/TestListStatistics.java
+@@ -30,7 +30,6 @@ import org.junit.Test;
+ 
+ import java.util.Iterator;
+ import java.util.Map;
+-import java.util.NoSuchElementException;
+ 
+ import static org.junit.Assert.assertEquals;
+ 
+@@ -408,14 +407,7 @@ public class TestListStatistics {
+             Assert.assertEquals(entry.getKey(), item);
+             Assert.assertEquals(entry.getValue().longValue(), 1L);
+         }
+-
+         Assert.assertFalse(listIter.hasNext());
+-        try {
+-            listIter.next();
+-            Assert.fail("Expected NoSuchElementException");
+-        } catch (NoSuchElementException e) {
+-            // expected
+-        }
+     }
+ 
+ }
+diff --git a/jmh-core/src/test/java/org/openjdk/jmh/util/TestMultisetStatistics.java b/jmh-core/src/test/java/org/openjdk/jmh/util/TestMultisetStatistics.java
+index e77f34c7..7a203cba 100644
+--- a/jmh-core/src/test/java/org/openjdk/jmh/util/TestMultisetStatistics.java
++++ b/jmh-core/src/test/java/org/openjdk/jmh/util/TestMultisetStatistics.java
+@@ -28,9 +28,7 @@ import junit.framework.Assert;
+ import org.junit.BeforeClass;
+ import org.junit.Test;
+ 
+-import java.util.Iterator;
+ import java.util.Map;
+-import java.util.NoSuchElementException;
+ 
+ import static org.junit.Assert.assertEquals;
+ 
+@@ -396,8 +394,7 @@ public class TestMultisetStatistics {
+     @Test
+     public strictfp void testRawDataIterator_no_duplicates() {
+         int itemCount = 0;
+-        Iterator<Map.Entry<Double, Long>> it = instance.getRawData();
+-        for (Map.Entry<Double, Long> entry : Utils.adaptForLoop(it)) {
++        for (Map.Entry<Double, Long> entry : Utils.adaptForLoop(instance.getRawData())) {
+             Assert.assertEquals(entry.getValue().longValue(), 1L);
+ 
+             // Check if key (the actual data) is in the VALUES collection,
+@@ -416,14 +413,6 @@ public class TestMultisetStatistics {
+             itemCount++;
+         }
+         Assert.assertEquals(itemCount, VALUES.length);
+-
+-        Assert.assertFalse(it.hasNext());
+-        try {
+-            it.next();
+-            Assert.fail("Expected NoSuchElementException");
+-        } catch (NoSuchElementException e) {
+-            // expected
+-        }
+     }
+ 
+     /**
+@@ -437,21 +426,12 @@ public class TestMultisetStatistics {
+             s.addValue(c * 10, c);
+         }
+ 
+-        Iterator<Map.Entry<Double, Long>> it = s.getRawData();
+         int itemCount = 0;
+-        for (Map.Entry<Double, Long> entry : Utils.adaptForLoop(it)) {
++        for (Map.Entry<Double, Long> entry : Utils.adaptForLoop(s.getRawData())) {
+             Assert.assertEquals(entry.getKey(), (double)(entry.getValue() * 10));
+             itemCount++;
+         }
+         Assert.assertEquals(itemCount, 10);
+-
+-        Assert.assertFalse(it.hasNext());
+-        try {
+-            it.next();
+-            Assert.fail("Expected NoSuchElementException");
+-        } catch (NoSuchElementException e) {
+-            // expected
+-        }
+     }
+ 
+ }
+diff --git a/jmh-core/src/test/java/org/openjdk/jmh/util/TestSingletonStatistics.java b/jmh-core/src/test/java/org/openjdk/jmh/util/TestSingletonStatistics.java
+index 3e363608..145dba5b 100644
+--- a/jmh-core/src/test/java/org/openjdk/jmh/util/TestSingletonStatistics.java
++++ b/jmh-core/src/test/java/org/openjdk/jmh/util/TestSingletonStatistics.java
+@@ -30,7 +30,6 @@ import org.junit.Test;
+ 
+ import java.util.Iterator;
+ import java.util.Map;
+-import java.util.NoSuchElementException;
+ 
+ import static org.junit.Assert.assertEquals;
+ 
+@@ -259,14 +258,7 @@ public class TestSingletonStatistics {
+         Map.Entry<Double, Long> entry = singIter.next();
+         Assert.assertEquals(entry.getKey(), VALUE);
+         Assert.assertEquals(entry.getValue().longValue(), 1L);
+-
+         Assert.assertFalse(singIter.hasNext());
+-        try {
+-            singIter.next();
+-            Assert.fail("Expected NoSuchElementException");
+-        } catch (NoSuchElementException e) {
+-            // expected
+-        }
+     }
+ 
+ }
