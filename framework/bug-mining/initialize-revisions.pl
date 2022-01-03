@@ -140,7 +140,7 @@ sub _init_version {
     system("mkdir -p $ANALYZER_OUTPUT/$bid");
     if (-e "$work_dir/pom.xml") {
         #here are two patterns : one is just deleting -SNAPSHOT , the other is changing the version and deleting -SNAPSHOT
-    	#system("sed -i \"s/<xmlsec\.version>2\.2\.0-SNAPSHOT<\/xmlsec\.version>/<xmlsec\.version>2\.2\.3-SNAPSHOT<\/xmlsec\.version>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
+    	 #system("sed -i \"s/<xmlsec\.version>2\.2\.0-SNAPSHOT<\/xmlsec\.version>/<xmlsec\.version>2\.2\.3-SNAPSHOT<\/xmlsec\.version>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
     	#sed -i \"s/-SNAPSHOT//g\"  `grep SNAPSHOT -rl $temp_work_dir`"
     	#system("sed -i \"s/\<bundle\.version\>2\.0-SNAPSHOT\<\\/bundle\.version\>/\<bundle\.version\>2\.0\<\\/bundle\.version\>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
     	
@@ -154,7 +154,7 @@ sub _init_version {
     	
         # Run maven-ant plugin and overwrite the original build.xml whenever a maven build file exists
         my $cmd = " cd $work_dir" .
-                  " && mvn ant:ant -Doverwrite=true 2>&1 -Dhttps.protocols=TLSv1.2" .
+                  " && mvn ant:ant -Doverwrite=true 2>&1 -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2,TLSv1.3 " .
                   " && patch build.xml $PROJECT_DIR/build.xml.patch 2>&1" .
                   " && rm -rf $GEN_BUILDFILE_DIR/$rev_id && mkdir -p $GEN_BUILDFILE_DIR/$rev_id 2>&1" .
                   " && cp maven-build.* $GEN_BUILDFILE_DIR/$rev_id 2>&1" .

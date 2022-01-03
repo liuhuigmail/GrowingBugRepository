@@ -1,0 +1,6 @@
+com.ibm.cloud.sdk.core.test.security.Cp4dAuthenticatorTest
+com.ibm.cloud.sdk.core.test.security.IamAuthenticatorTest
+com.ibm.cloud.sdk.core.test.service.ErrorResponseTest
+com.ibm.cloud.sdk.core.test.service.HeadersTest
+com.ibm.cloud.sdk.core.test.service.RequestBuilderTest
+com.ibm.cloud.sdk.core.test.service.ResponseTest

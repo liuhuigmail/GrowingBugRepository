@@ -1,0 +1,16 @@
+diff --git a/src/main/java/com/ibm/cloud/sdk/core/security/TokenRequestBasedAuthenticator.java b/src/main/java/com/ibm/cloud/sdk/core/security/TokenRequestBasedAuthenticator.java
+index 6d5c2210..2562dd60 100644
+--- a/src/main/java/com/ibm/cloud/sdk/core/security/TokenRequestBasedAuthenticator.java
++++ b/src/main/java/com/ibm/cloud/sdk/core/security/TokenRequestBasedAuthenticator.java
+@@ -250,11 +250,7 @@ public abstract class TokenRequestBasedAuthenticator<T extends AbstractToken, R
+     // Check to see if an exception occurred during our last interaction with the token server.
+     if (this.tokenData.getException() != null) {
+         Throwable t = tokenData.getException();
+-        if (t instanceof RuntimeException) {
+-          throw (RuntimeException) t;
+-        } else {
+           throw new RuntimeException(ERRORMSG_REQ_FAILED, tokenData.getException());
+-        }
+       }
+ 
+     // Return the access token from our stored tokenData object.

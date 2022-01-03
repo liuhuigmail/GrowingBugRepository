@@ -140,7 +140,7 @@ Utils::exec_cmd("./create-project.pl -p $PID"
                                  . " -n $NAME"
                                  . " -w $WORK_DIR"
                                  . " -r $REPOSITORY_URL",
-                "Configuring project for Defects4J") or die "Failed to configure project for Defects4J!";
+                "Configuring project for Defects4J")  ;
 
 # Does project exist in the Defects4J database? If yes, copy over the required
 # (and existing) files to build the project.
@@ -183,7 +183,7 @@ if (-e "$CORE_DIR/Project/$PID.pm") {
     system("grep -vFf $COMMIT_DB_FILE.orig $COMMIT_DB_FILE > $COMMIT_DB_FILE.filter && mv $COMMIT_DB_FILE.filter $COMMIT_DB_FILE");
     # Print header to the active bugs csv
     my $active_header = $BUGS_CSV_BUGID.",".$BUGS_CSV_COMMIT_BUGGY.",".$BUGS_CSV_COMMIT_FIXED.",".$BUGS_CSV_ISSUE_ID.",".$BUGS_CSV_ISSUE_URL;
-    system("echo $active_header > $COMMIT_DB_FILE.new && cat $COMMIT_DB_FILE >> $COMMIT_DB_FILE.new && mv $COMMIT_DB_FILE.new $COMMIT_DB_FILE");
+    system(" $active_header > $COMMIT_DB_FILE.new && cat $COMMIT_DB_FILE >> $COMMIT_DB_FILE.new && mv $COMMIT_DB_FILE.new $COMMIT_DB_FILE");
 }
 
 print("Project $PID has been successfully initialized!\n");

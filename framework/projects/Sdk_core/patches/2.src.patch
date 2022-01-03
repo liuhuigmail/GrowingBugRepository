@@ -1,0 +1,19 @@
+diff --git a/src/main/java/com/ibm/cloud/sdk/core/http/RequestBuilder.java b/src/main/java/com/ibm/cloud/sdk/core/http/RequestBuilder.java
+index a49f2228..492ae13f 100644
+--- a/src/main/java/com/ibm/cloud/sdk/core/http/RequestBuilder.java
++++ b/src/main/java/com/ibm/cloud/sdk/core/http/RequestBuilder.java
+@@ -337,11 +337,11 @@ public class RequestBuilder {
+   public RequestBuilder bodyContent(String contentType, Object jsonContent, Object jsonPatchContent,
+     InputStream nonJsonContent) {
+     if (contentType != null) {
+-      Gson requestGson = GsonSingleton.getGsonWithoutPrettyPrinting().newBuilder().create();
++      Gson requestGson = GsonSingleton.getGson().newBuilder().create();
+       if (BaseService.isJsonMimeType(contentType)) {
+-        this.bodyContent(requestGson.toJson(jsonContent), contentType);
++        this.bodyContent(requestGson.toJsonTree(jsonContent).getAsJsonObject().toString(), contentType);
+       } else if (BaseService.isJsonPatchMimeType(contentType)) {
+-        this.bodyContent(requestGson.toJson(jsonPatchContent), contentType);
++        this.bodyContent(requestGson.toJsonTree(jsonPatchContent).getAsJsonObject().toString(), contentType);
+       } else {
+         this.bodyContent(nonJsonContent, contentType);
+       }

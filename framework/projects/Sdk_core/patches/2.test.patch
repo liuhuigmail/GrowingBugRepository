@@ -1,0 +1,56 @@
+diff --git a/src/test/java/com/ibm/cloud/sdk/core/test/service/RequestBuilderTest.java b/src/test/java/com/ibm/cloud/sdk/core/test/service/RequestBuilderTest.java
+index 18a273d7..01e8d09b 100644
+--- a/src/test/java/com/ibm/cloud/sdk/core/test/service/RequestBuilderTest.java
++++ b/src/test/java/com/ibm/cloud/sdk/core/test/service/RequestBuilderTest.java
+@@ -17,11 +17,6 @@ import com.google.gson.JsonObject;
+ import com.ibm.cloud.sdk.core.http.HttpMediaType;
+ import com.ibm.cloud.sdk.core.http.RequestBuilder;
+ import com.ibm.cloud.sdk.core.test.TestUtils;
+-import com.ibm.cloud.sdk.core.test.model.generated.Car;
+-import com.ibm.cloud.sdk.core.test.model.generated.Truck;
+-import com.ibm.cloud.sdk.core.test.model.generated.Vehicle;
+-import com.ibm.cloud.sdk.core.util.GsonSingleton;
+-
+ import okhttp3.HttpUrl;
+ import okhttp3.MediaType;
+ import okhttp3.Request;
+@@ -31,10 +26,7 @@ import org.junit.Test;
+ 
+ import java.io.File;
+ import java.io.IOException;
+-import java.io.InputStream;
+ import java.util.Arrays;
+-import java.util.ArrayList;
+-import java.util.List;
+ 
+ import static org.junit.Assert.assertEquals;
+ import static org.junit.Assert.assertNotNull;
+@@ -204,28 +196,6 @@ public class RequestBuilderTest {
+ 
+   }
+ 
+-  /**
+-   * Test with list of models.
+-   *
+-   * @throws IOException Signals that an I/O exception has occurred.
+-   */
+-  @Test
+-  public void testBodyContentList() throws IOException {
+-    // add list of actual models
+-    final List<Vehicle> listOfModels = new ArrayList<>();
+-    listOfModels.add(new Truck.Builder().vehicleType("Truck").make("Ford").engineType("raptor").build());
+-    listOfModels.add(new Car.Builder().vehicleType("Car").make("Ford").bodyStyle("mach-e").build());
+-
+-    final Request request = RequestBuilder.post(HttpUrl.parse(urlWithQuery))
+-        .bodyContent("application/json", listOfModels, null, (InputStream) null).build();
+-    final RequestBody requestedBody = request.body();
+-    final Buffer buffer = new Buffer();
+-    requestedBody.writeTo(buffer);
+-
+-    assertEquals(GsonSingleton.getGsonWithoutPrettyPrinting().toJson(listOfModels), buffer.readUtf8());
+-    assertEquals(HttpMediaType.JSON, requestedBody.contentType());
+-  }
+-
+   /**
+    * Test with form object array.
+    *
