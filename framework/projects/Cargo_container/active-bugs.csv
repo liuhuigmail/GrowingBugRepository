@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,f162e15de7bdac4c9b8d54ac5868df49d146e921,6854b89b6ceab0b9c2307e4ca0b882493b39fb8b,CARGO-778,https://codehaus-cargo.atlassian.net/browse/CARGO-778
+2,4dcaebd43d87ce887a907d7910481fafd1ec42f1,a8b19f14578e29129538f0d2a24b0d06c4025463,CARGO-581,https://codehaus-cargo.atlassian.net/browse/CARGO-581
+3,d76a1d003bbe41b59d565f87eb71c704f4332e60,f2743efe68588ce97007d859a0d3bab89b90d976,CARGO-526,https://codehaus-cargo.atlassian.net/browse/CARGO-526
+4,cf7184c441ee78e0e6a22f974b573ffa58057b8f,d832b004e144c71da69f0495a13b36b33912d964,CARGO-1131,https://codehaus-cargo.atlassian.net/browse/CARGO-1131

@@ -1,0 +1,17 @@
+diff --git a/core/api/container/src/main/java/org/codehaus/cargo/container/deployable/WAR.java b/core/api/container/src/main/java/org/codehaus/cargo/container/deployable/WAR.java
+index 5f37d8627..0d489863a 100644
+--- a/core/api/container/src/main/java/org/codehaus/cargo/container/deployable/WAR.java
++++ b/core/api/container/src/main/java/org/codehaus/cargo/container/deployable/WAR.java
+@@ -51,11 +51,7 @@ public class WAR extends AbstractDeployable
+     public synchronized void setContext(String context)
+     {
+         // Ensure the context is also well-formed by removing any extra leading "/".
+-        this.context = context.trim();
+-        if (this.context.startsWith("/")) 
+-        {
+-            this.context = this.context.substring(1); 
+-        }
++        this.context = context.replace('/', ' ').trim();
+     }
+ 
+     /**

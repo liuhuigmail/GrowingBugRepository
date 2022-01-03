@@ -1,0 +1,39 @@
+diff --git a/core/api/container/src/test/java/org/codehaus/cargo/container/property/UserTest.java b/core/api/container/src/test/java/org/codehaus/cargo/container/property/UserTest.java
+index 4d0da680d..eae8e0bbb 100644
+--- a/core/api/container/src/test/java/org/codehaus/cargo/container/property/UserTest.java
++++ b/core/api/container/src/test/java/org/codehaus/cargo/container/property/UserTest.java
+@@ -87,12 +87,12 @@ public class UserTest extends TestCase
+     {
+         try
+         {
+-            User.parseUser("name:password:role:");
++            User.parseUser("name:role");
+             fail("Should have raised an exception here");
+         }
+         catch (ContainerException expected)
+         {
+-            assertEquals("Invalid format for [name:password:role:]", expected.getMessage());
++            assertEquals("Invalid format for [name:role]", expected.getMessage());
+         }
+     }
+ 
+@@ -110,19 +110,6 @@ public class UserTest extends TestCase
+         assertEquals(expectedUser, user);
+     }
+ 
+-    /**
+-     * Test user parsing with no roles.
+-     */
+-    public void testParseUserWithNoRoles()
+-    {
+-        User expectedUser = new User();
+-        expectedUser.setName("name");
+-        expectedUser.setPassword("pwd");
+-
+-        User user = User.parseUser("name:pwd");
+-        assertEquals(expectedUser, user);
+-    }
+-
+     /**
+      * Test role to users list map creation.
+      */

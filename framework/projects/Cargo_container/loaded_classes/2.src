@@ -1,0 +1,3 @@
+org.codehaus.cargo.container.deployable.Deployable
+org.codehaus.cargo.container.deployable.WAR
+org.codehaus.cargo.container.spi.deployable.AbstractDeployable

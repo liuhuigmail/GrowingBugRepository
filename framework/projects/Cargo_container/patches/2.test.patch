@@ -1,0 +1,18 @@
+diff --git a/core/api/container/src/test/java/org/codehaus/cargo/container/deployable/WARTest.java b/core/api/container/src/test/java/org/codehaus/cargo/container/deployable/WARTest.java
+index 4a692b5e5..b4b05339c 100644
+--- a/core/api/container/src/test/java/org/codehaus/cargo/container/deployable/WARTest.java
++++ b/core/api/container/src/test/java/org/codehaus/cargo/container/deployable/WARTest.java
+@@ -54,13 +54,6 @@ public class WARTest extends TestCase
+         assertEquals("", war.getContext());
+     }
+ 
+-    public void testGetContextWhenOverrideAndMiddleSlash()
+-    {
+-        WAR war = new WAR("c:/some/path/to/war/test.war");
+-        war.setContext("/a/b");
+-        assertEquals("a/b", war.getContext());
+-    }
+-
+     public void testLoggerWhenCallingGetContext()
+     {
+         MockLogger logger = new MockLogger();

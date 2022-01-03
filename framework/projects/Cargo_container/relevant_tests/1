@@ -1,0 +1,2 @@
+org.codehaus.cargo.container.property.ResourceConverterTest
+org.codehaus.cargo.container.spi.configuration.LocalConfigurationTest

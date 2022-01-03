@@ -1,0 +1,44 @@
+diff --git a/core/api/container/src/main/java/org/codehaus/cargo/container/property/User.java b/core/api/container/src/main/java/org/codehaus/cargo/container/property/User.java
+index 4d54fb019..f3e6abb77 100644
+--- a/core/api/container/src/main/java/org/codehaus/cargo/container/property/User.java
++++ b/core/api/container/src/main/java/org/codehaus/cargo/container/property/User.java
+@@ -188,35 +188,18 @@ public final class User
+             else
+             {
+                 user.setPassword(token);
++                if (!":".equals(fieldTokens.nextToken()))
++                {
++                    throw new ContainerException("Invalid format for [" + userAsString + "]");
++                }
+             }
+-        }
+-        catch (NoSuchElementException exception)
+-        {
+-            throw new ContainerException("Invalid format for [" + userAsString + "]");
+-        }
+ 
+-        try
+-        {
+-            if (user.getPassword().length() > 0 && !":".equals(fieldTokens.nextToken()))
+-            {
+-                throw new ContainerException("Invalid format for [" + userAsString + "]");
+-            }
+             user.addRoles(parseRoles(fieldTokens.nextToken()));
+         }
+         catch (NoSuchElementException exception)
+         {
+-            // CARGO-526: No roles defined, that's OK
+-        }
+-
+-        try
+-        {
+-            fieldTokens.nextToken();
+             throw new ContainerException("Invalid format for [" + userAsString + "]");
+         }
+-        catch (NoSuchElementException exception)
+-        {
+-            // That's expected: we only have 3 tokens
+-        }
+ 
+         return user;
+     }
