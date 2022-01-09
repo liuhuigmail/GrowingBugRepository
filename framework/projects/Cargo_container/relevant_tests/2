@@ -1,0 +1,4 @@
+org.codehaus.cargo.container.deployable.DeployableTypeTest
+org.codehaus.cargo.container.deployable.WARTest
+org.codehaus.cargo.container.spi.deployer.CopyingDeployerTest
+org.codehaus.cargo.container.spi.deployer.RemoteDeployerTest

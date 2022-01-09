@@ -156,3 +156,4 @@ Rave_commons	rave-commons	https://github.com/apache/rave.git	jira	RAVE	/(RAVE-\\
 Rave_web	rave-web	https://github.com/apache/rave.git	jira	RAVE	/(RAVE-\\d+)/mi	rave-components/rave-web	
 Jmh_core	jmh-core	https://github.com/openjdk/jmh.git	jira	CODETOOLS	/(CODETOOLS-\\d+)/mi	jmh-core
 Sdk_core	sdk-core	https://github.com/IBM/java-sdk-core.git	github	IBM/java-sdk-core	/#(\\d+)/mi	.
+Cargo_container	cargo-container	https://github.com/codehaus-cargo/cargo.git	jira	CARGO	/(CARGO-\\d+)/mi	core/api/container	

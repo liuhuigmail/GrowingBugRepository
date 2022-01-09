@@ -583,7 +583,7 @@ sub get_failing_tests {
                     if ($lines[$i] =~ /junit\./) {
                         # Skip junit entries in the stack trace
                         ++$i;
-                    } elsif ($lines[$i] =~ /$classname\.java:(\d+)/) {
+                    } elsif ($lines[$i] =~  /'\Q$classname\E'\.java:(\d+)/  ) {
                         # We found the right entry in the stack trace
                         my $line = $1;
                         $list->{asserts}->{"${class}::$method"} = $line;

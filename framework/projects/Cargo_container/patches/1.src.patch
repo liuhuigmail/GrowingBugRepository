@@ -1,0 +1,14 @@
+diff --git a/core/api/container/src/main/java/org/codehaus/cargo/container/property/ResourceConverter.java b/core/api/container/src/main/java/org/codehaus/cargo/container/property/ResourceConverter.java
+index 91cad8525..910cfaccc 100644
+--- a/core/api/container/src/main/java/org/codehaus/cargo/container/property/ResourceConverter.java
++++ b/core/api/container/src/main/java/org/codehaus/cargo/container/property/ResourceConverter.java
+@@ -68,8 +68,7 @@ public class ResourceConverter
+ 
+         String parametersAsASemicolonDelimitedString =
+             properties.getProperty(ResourcePropertySet.PARAMETERS);
+-        data.setParameters(getParametersFromString(
+-            PropertyUtils.escapeBackSlashesIfNotNull(parametersAsASemicolonDelimitedString)));
++        data.setParameters(getParametersFromString(parametersAsASemicolonDelimitedString));
+         return data;
+     }
+ 

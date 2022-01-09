@@ -1,0 +1,3 @@
+org.codehaus.cargo.container.configuration.entry.Resource
+org.codehaus.cargo.container.internal.util.PropertyUtils
+org.codehaus.cargo.container.property.ResourceConverter

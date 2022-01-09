@@ -1,0 +1,28 @@
+diff --git a/core/api/container/src/test/java/org/codehaus/cargo/container/property/ResourceConverterTest.java b/core/api/container/src/test/java/org/codehaus/cargo/container/property/ResourceConverterTest.java
+index a5b3783fd..3f0acb766 100644
+--- a/core/api/container/src/test/java/org/codehaus/cargo/container/property/ResourceConverterTest.java
++++ b/core/api/container/src/test/java/org/codehaus/cargo/container/property/ResourceConverterTest.java
+@@ -76,23 +76,6 @@ public class ResourceConverterTest extends TestCase
+ 
+         }
+     }
+-    
+-    public void testGetParametersAsStringContainingBackslashes() {
+-        String propertyString = "user=APP;path=c:\\users\\me";
+-        String driverPropertyString = ResourcePropertySet.PARAMETERS + "=" + propertyString;
+-        Resource ds = ResourceConverter.fromPropertyString(driverPropertyString);
+-        try
+-        {
+-            assertEquals(propertyString, ResourceConverter
+-                .getParametersAsASemicolonDelimitedString(ds));
+-        }
+-        catch (ComparisonFailure e)
+-        {
+-            assertEquals("path=c:\\users\\me;user=APP", ResourceConverter
+-                .getParametersAsASemicolonDelimitedString(ds));
+-
+-        }
+-    }
+ 
+     public void testGetEmptyParameters()
+     {
