@@ -166,6 +166,7 @@ To date, growingBugs contains **`1404`** bugs from open-source Java projects.
 | 157     | Jmh_core            | jmh-core               |          jmh-core         |      1       | 1               |
 | 158     | Sdk_core            | sdk-core               |                   |      3       | 1-3               |
 | 159     | Cargo_container            | cargo-container               |          core/api/container         |      4       | 1-4               |
+| 160     | Oak_commons            | oak-commons               |          oak-commons         |      1       | 1               |
 # Setting up GrowingBugs
 
 ## Requirements
