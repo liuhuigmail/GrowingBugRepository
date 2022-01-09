@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,2b62838ae3876fed42c82cb5655a89fe60afca4d,05caed7a20b128119f02eaa810b3dbda6328b8ec,OAK-888,https://issues.apache.org/jira/browse/OAK-888

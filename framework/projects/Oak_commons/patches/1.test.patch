@@ -1,0 +1,60 @@
+diff --git a/oak-commons/src/test/java/org/apache/jackrabbit/oak/commons/PathUtilsTest.java b/oak-commons/src/test/java/org/apache/jackrabbit/oak/commons/PathTest.java
+similarity index 97%
+rename from oak-commons/src/test/java/org/apache/jackrabbit/oak/commons/PathUtilsTest.java
+rename to oak-commons/src/test/java/org/apache/jackrabbit/oak/commons/PathTest.java
+index 699deabaf3..791b3b9f85 100644
+--- a/oak-commons/src/test/java/org/apache/jackrabbit/oak/commons/PathUtilsTest.java
++++ b/oak-commons/src/test/java/org/apache/jackrabbit/oak/commons/PathTest.java
+@@ -18,19 +18,17 @@ package org.apache.jackrabbit.oak.commons;
+ 
+ import junit.framework.AssertionFailedError;
+ import junit.framework.TestCase;
+-import org.junit.Test;
+ 
+ /**
+  * Test the PathUtils class.
+  */
+-public class PathUtilsTest extends TestCase {
++public class PathTest extends TestCase {
+     static boolean assertsEnabled;
+ 
+     static {
+         assert assertsEnabled = true;
+     }
+ 
+-    @Test
+     public void test() {
+ 
+         try {
+@@ -59,17 +57,6 @@ public class PathUtilsTest extends TestCase {
+         test("x", "y");
+     }
+ 
+-    @Test
+-    public void testGetDepth() {
+-        assertEquals(0, PathUtils.getDepth("/"));
+-        assertEquals(0, PathUtils.getDepth(""));
+-        assertEquals(1, PathUtils.getDepth("/a"));
+-        assertEquals(1, PathUtils.getDepth("a"));
+-        assertEquals(2, PathUtils.getDepth("/a/b"));
+-        assertEquals(2, PathUtils.getDepth("a/b"));
+-    }
+-
+-
+     private static int getElementCount(String path) {
+         int count = 0;
+         for (String p : PathUtils.elements(path)) {
+@@ -171,6 +158,13 @@ public class PathUtilsTest extends TestCase {
+         assertTrue(PathUtils.denotesRoot("/"));
+         assertFalse(PathUtils.denotesRoot("/" + parent));
+ 
++        // getDepth
++        assertEquals(0, PathUtils.getDepth("/"));
++        assertEquals(1, PathUtils.getDepth("/" + parent));
++        assertEquals(2, PathUtils.getDepth("/" + parent + "/" + child));
++        assertEquals(1, PathUtils.getDepth(parent));
++        assertEquals(2, PathUtils.getDepth(parent + "/" + child));
++
+         // getName
+         assertEquals("", PathUtils.getName("/"));
+         assertEquals(parent, PathUtils.getName("/" + parent));

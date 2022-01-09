@@ -1,0 +1,14 @@
+diff --git a/oak-commons/src/main/java/org/apache/jackrabbit/oak/commons/PathUtils.java b/oak-commons/src/main/java/org/apache/jackrabbit/oak/commons/PathUtils.java
+index f82ec9339d..6e68cb07ba 100644
+--- a/oak-commons/src/main/java/org/apache/jackrabbit/oak/commons/PathUtils.java
++++ b/oak-commons/src/main/java/org/apache/jackrabbit/oak/commons/PathUtils.java
+@@ -185,9 +185,6 @@ public final class PathUtils {
+     public static int getDepth(String path) {
+         assert isValid(path);
+ 
+-        if (path.isEmpty()) {
+-            return 0;
+-        }
+         int count = 1, i = 0;
+         if (isAbsolutePath(path)) {
+             if (denotesRootPath(path)) {
