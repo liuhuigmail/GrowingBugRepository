@@ -1,5 +1,3 @@
-# The newly mined Bugs in  ***growingBugs***
-
 # Contents of growingBugs(newly mined)
 To date, growingBugs contains **`551`** newly mined bugs from open-source Java projects. 
 
