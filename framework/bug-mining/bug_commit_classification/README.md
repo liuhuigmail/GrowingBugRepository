@@ -47,6 +47,7 @@ pandas
 transformers
 sklearn
 SNgramExtractor
+pydriller
 tqdm （可选）
 ```
 

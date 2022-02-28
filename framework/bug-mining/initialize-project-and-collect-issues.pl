@@ -84,7 +84,8 @@ URI.
 =item B<-l C<fetching_limit>>
 
 The maximum number of issues to fetch at a time. Most issue trackers will limit
-the number of results returned by the query, and suitable defaults have been
+the number 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
+of results returned by the query, and suitable defaults have been
 chosen for each supported tracker.
 
 =item B<-e C<bug_matching_perl_regexp>>
@@ -97,6 +98,7 @@ The version control system: git (default) or svn.
 
 
 =cut
+
 use warnings;
 use strict;
 use File::Basename;
@@ -173,6 +175,35 @@ Utils::exec_cmd("./vcs-log-xref.pl -e '$REGEXP'"
                                . " -i $ISSUES_FILE"
                                . " -f $COMMIT_DB_FILE",
                 "Cross-referencing the commit log with the issue numbers known to be bugs") or die "Cannot collect all issues from the project issue tracker!";
+
+#use bug_commmit_classification
+# GetFeature.py -p <projectname> -r <repositorypath> -o <outputfile>
+# dataloader.py -p <projectname> -i <inputfile> -o <outputfile>
+# run_model.py -p <projectname> -i <inputfile> -o <outputfile>
+
+my $bcccmd = "cd ./bug_commit_classification  "
+		. "&& python3 ./code/GetFeature.py "
+		. "-p $PID "
+		. " -r $REPOSITORY_DIR"
+		. " -o ./data/$PID.csv "
+		. " && python3 ./code/dataloader.py "
+		. "-p $PID "
+		. " -i ./data/$PID.csv"
+		. " -o ./data/$PID.json"
+		. "&& python3 ./code/run_model.py "
+		. "-p $PID "
+		. " -i ./data/$PID.json"
+		. " -o $WORK_DIR/framework/projects/$PID/active-bugs-from-bcc.csv"
+		. " && cd ../ "
+		. " && mv $WORK_DIR/framework/projects/$PID/active-bugs.csv $WORK_DIR/framework/projects/$PID/active-bugs-from-cr.csv"
+		. " && python3 ./duplicate_removal.py "
+		. " -f $WORK_DIR/framework/projects/$PID/active-bugs-from-cr.csv "
+		. " -s $WORK_DIR/framework/projects/$PID/active-bugs-from-bcc.csv"
+		. " -o $WORK_DIR/framework/projects/$PID/active-bugs.csv"
+		 ;
+Utils::exec_cmd( $bcccmd ,"Using bug_commmit_classification") or die "Cannot use bug_commmit_classification!";
+
+#print $bcccmd ; 
 
 # Does project exist in the Defects4J database? If yes, discard faults that
 # have already been mined.

@@ -8,7 +8,8 @@ import sys
 import re
 from AnalyseDiff import analysis
 import getopt
-
+import warnings
+warnings.filterwarnings("ignore")
 
 bag_of_words = ['fix', 'fixing', 'fixed', 'error', 'errors', 'bug', 'bugs', 'buggy', 'mistake', 'mistakes', 'incorrect', 'fault', 'faulty',
                 'defect', 'defects', 'flaw', 'flaws', 'repair', 'repairs', 'repaired', 'repairing']
@@ -50,8 +51,9 @@ def find_father_version(project_path, version):
     # 切换当前的工作目录
     # os.chdir(project_path)
     # 找到父版本的命令
-    command = 'git '+' --git-dir=' + project_path + '.git' + ' rev-list --parents -n 1 ' + version
+    command = 'git '+' --git-dir=' + project_path  + ' rev-list --parents -n 1 ' + version
     platform = sys.platform
+    #print(command)
     out = None
     if "win" in platform:
         p = subprocess.Popen(command,
@@ -95,9 +97,10 @@ def find_diff(project_path, cur_version, father_version):
 
 
 def get_commit_log(project_path):
-    command = '''git  -C ''' + project_path + ''' log --date=iso --pretty=format:\'\"%h\",\"%an\",\"%ad\",\"%s\"\' > ./data/''' + project+'''_log.csv'''
+    command = '''git  -C ''' + project_path + ''' log --date=iso --pretty=format:\'\"%H\",\"%an\",\"%ad\",\"%s\"\' > ./data/''' + project+'''_log.csv'''
     platform = sys.platform 
     log = None
+    #print(command)
     if "win" in platform:
         p = subprocess.Popen(command,
                              stdin=subprocess.PIPE,
@@ -135,7 +138,7 @@ if __name__ == '__main__':
             sys.exit()
 
     project = project_name
-    project_path = repositorypath
+    project_path = repositorypath#+".git"
     get_commit_log(project_path)    
     df = read_csv('./data/' + project+'_log.csv') 
     df['father_version'] = ''
@@ -147,28 +150,25 @@ if __name__ == '__main__':
                'src_class_add_num', 'src_class_sub_num', 'src_class_modify_num',
                'src_method_add_num', 'src_method_sub_num', 'src_method_modify_num']
     
-    # print(df)
     platform = sys.platform
     for metric in metrics:
         df[metric] = 0
     # 新建一个new_df存储数据
     new_df = df.copy()
     new_df.drop(new_df.index, inplace=True)
-    new_df = new_df.drop(index=new_df.index)
-
+    new_df = new_df.drop(index=new_df.index)    
     for index, row in df.iterrows():
-        # try:
+        try:
             if not judge_fix_commit(row['commit-info']):
                 continue
             father_versions = find_father_version(project_path, row['number'])
             for father_version in father_versions:
                 diff = find_diff(project_path, row['number'], father_version) 
                 res = analysis(diff, project_path, row['number'])
-                
                 for i in range(0, len(res)):
                     row[metrics[i]] = res[i]
                 row['father_version'] = father_version
-                new_df = new_df.append(row)
-        # except:
-        #     continue
+                new_df = new_df.append(row) #warning
+        except:
+             continue
     new_df.to_csv(output_file, index=None)

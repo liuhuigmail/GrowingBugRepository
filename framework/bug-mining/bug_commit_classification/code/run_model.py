@@ -12,8 +12,11 @@ import json
 import sys
 import getopt
 import csv
+import warnings
+
 from preprocesser import process_commit_info
 
+warnings.filterwarnings("ignore")
 # see https://github.com/huggingface/transformers/blob/05fa1a7ac17bb7aa07b9e0c1e138ecb31a28bbfe/src/transformers/models/roberta/modeling_roberta.py#L1438
 class CommitMetricClassifier(nn.Module):
     
@@ -54,8 +57,7 @@ class CommitMetricClassifier(nn.Module):
 
 
 # Environ Hyperparams
-device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
-
+device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu") 
 #input arguments
 project_name = None
 input_file = None
@@ -113,7 +115,7 @@ for param in model.parameters():
     num_params += param.numel()
 print("model size", num_params, end=" ")
 model.to(device)
-model.load_state_dict(torch.load('saveT.pt'))
+model.load_state_dict(torch.load('saveT.pt') if torch.cuda.is_available() else torch.load('saveT.pt', map_location='cpu')  )
 model.eval()
 
 labels_list=[]
@@ -170,9 +172,7 @@ for batch_idx in range((n_eval-1)//batch_size + 1):
     for i, positive_threshold in enumerate(positive_thresholds):
         th_predictions = (positive_probs > positive_threshold).astype(np.int32)
         labels_list.extend(th_predictions)
-print("ok!")
 
-# print(labels_list)
 print(len(labels_list))
 
 
