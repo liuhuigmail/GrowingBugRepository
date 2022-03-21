@@ -143,13 +143,13 @@ my $src_path = $project->src_dir("${BID}f");
 
 my $outputPath= "$TMP_DIR/$src_patch";
 system("rm  -f $outputPath");
-my $bbcmd = "java -jar $LIB_DIR/Bug_Builder.jar $TMP_DIR/$PID-${BID}b/$src_path_buggy $TMP_DIR/$PID-${BID}f/$src_path $outputPath";
+my $bbcmd = "java -jar $LIB_DIR/Bug_Builder.jar $TMP_DIR/$PID-${BID}b/$SUB_PROJECT/$src_path_buggy $TMP_DIR/$PID-${BID}f/$SUB_PROJECT/$src_path $outputPath";
 #my $exec_status=Utils::exec_cmd($bbcmd, "Running BugBuilder to minimize patch   ") ;
 print("$bbcmd \n");
 system($bbcmd); 
-
+die;
 if (! -e "$outputPath"){
-	system("rm -rf $TMP_DIR");
+	 system("rm -rf $TMP_DIR");
          die "Failed to generate the patch!";
 }
 
