@@ -77,6 +77,8 @@ $cmd_descr{compile}="compile a checked-out project version";
 
 =pod
 
+
+
 =item * L<B<test>|d4j::d4j-test/>
 
 run tests on a checked-out project version.
@@ -85,6 +87,7 @@ run tests on a checked-out project version.
 $cmd_descr{test}="run tests on a checked-out project version";
 
 =pod
+
 
 =item * L<B<monitor.test>|d4j::d4j-monitor.test/>
 
@@ -163,6 +166,21 @@ query the metadata for a particular project for automation purposes.
 =back
 
 =cut
+
+=item * L<B<compile4bugmining>|d4j::d4j-compile4bugmining/>
+
+run tests on a checked-out project version.
+=cut
+$cmd_descr{compile4bugmining}="compile a checked-out project version in bugmining";
+
+=item * L<B<test4bugmining>|d4j::d4j-test4bugmining/>
+
+run tests on a checked-out project version.
+
+=cut
+$cmd_descr{test4bugmining}="run tests on a checked-out project version in bugmining";
+
+
 $cmd_descr{query}="query the metadata for a particular project for automation purposes";
 
 #

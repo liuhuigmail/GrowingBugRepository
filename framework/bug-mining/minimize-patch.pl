@@ -97,8 +97,7 @@ $BID =~ /^(\d+)$/ or die "Wrong version id format: $BID -- expected: (\\d+)!";
 
 # Add script and core directory to @INC
 unshift(@INC, "$WORK_DIR/framework/core");
-
-# Override global constants
+# Override global constantsf
 $REPO_DIR = "$WORK_DIR/project_repos";
 $PROJECTS_DIR = "$WORK_DIR/framework/projects";
 
@@ -133,16 +132,22 @@ system("rm -rf $CHECKOUT_DIR && mkdir -p $CHECKOUT_DIR");
 # Minimize patch with Bugbuilder 
 #system("$EDITOR $CHECKOUT_DIR");???
 # Checkout v1
-$project->{prog_root} = "$TMP_DIR/$PID-${BID}b";
+$project->{prog_root} = "$TMP_DIR/$PID-${BID}b/$SUB_PROJECT";
 $project->checkout_vid("${BID}b",  "$TMP_DIR/$PID-${BID}b",1,$SUB_PROJECT) == 1 or die; 
-my $src_path_buggy = $project->src_dir("${BID}b");
+$project->compile();
+#$project->compile_tests();
+my $src_path_buggy = $project->src_dir("${BID}b"); 
 # Checkout v2
-$project->{prog_root} = "$TMP_DIR/$PID-${BID}f";
+$project->{prog_root} = "$TMP_DIR/$PID-${BID}f/$SUB_PROJECT";
 $project->checkout_vid("${BID}f",  "$TMP_DIR/$PID-${BID}f", 1,$SUB_PROJECT) == 1 or die;
+$project->compile();
+#$project->compile_tests();
 my $src_path = $project->src_dir("${BID}f");
 
 my $outputPath= "$TMP_DIR/$src_patch";
 system("rm  -f $outputPath");
+
+
 my $bbcmd = "java -jar $LIB_DIR/Bug_Builder.jar $TMP_DIR/$PID-${BID}b/$SUB_PROJECT/$src_path_buggy $TMP_DIR/$PID-${BID}f/$SUB_PROJECT/$src_path $outputPath";
 #my $exec_status=Utils::exec_cmd($bbcmd, "Running BugBuilder to minimize patch   ") ;
 print("$bbcmd \n");
