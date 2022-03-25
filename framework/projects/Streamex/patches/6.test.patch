@@ -1,0 +1,311 @@
+diff --git a/src/test/java/one/util/streamex/EntryStreamTest.java b/src/test/java/one/util/streamex/EntryStreamTest.java
+index 2a84ae2..abba8f4 100644
+--- a/src/test/java/one/util/streamex/EntryStreamTest.java
++++ b/src/test/java/one/util/streamex/EntryStreamTest.java
+@@ -153,11 +153,12 @@ public class EntryStreamTest {
+         // Test equals contract
+         assertNotEquals(new Object(), entry);
+         assertNotEquals(entry, new Object());
+-        assertEquals(new AbstractMap.SimpleImmutableEntry<>(0, "a"), entry);
+         assertEquals(entry, new AbstractMap.SimpleImmutableEntry<>(0, "a"));
++    }
+ 
+-        assertThrows(UnsupportedOperationException.class, () ->
+-                EntryStream.of(Collections.singletonList("1")).forEach(e -> e.setValue("2")));
++    @Test(expected = UnsupportedOperationException.class)
++    public void testWithIndexModify() {
++        EntryStream.of(Collections.singletonList("1")).forEach(entry -> entry.setValue("2"));
+     }
+ 
+     @Test
+diff --git a/src/test/java/one/util/streamex/IntStreamExTest.java b/src/test/java/one/util/streamex/IntStreamExTest.java
+index 7d5a033..d7c7a55 100644
+--- a/src/test/java/one/util/streamex/IntStreamExTest.java
++++ b/src/test/java/one/util/streamex/IntStreamExTest.java
+@@ -31,6 +31,7 @@ import java.util.function.*;
+ import java.util.stream.Collectors;
+ import java.util.stream.IntStream;
+ import java.util.stream.IntStream.Builder;
++import java.util.stream.StreamSupport;
+ 
+ import static one.util.streamex.TestHelpers.*;
+ import static org.junit.Assert.*;
+@@ -164,8 +165,11 @@ public class IntStreamExTest {
+ 
+         assertEquals(0, IntStreamEx.range(0, Integer.MIN_VALUE, 2).spliterator().getExactSizeIfKnown());
+         assertEquals(0, IntStreamEx.range(0, Integer.MAX_VALUE, -2).spliterator().getExactSizeIfKnown());
++    }
+ 
+-        assertThrows(IllegalArgumentException.class, () -> IntStreamEx.range(0, 1000, 0));
++    @Test(expected = IllegalArgumentException.class)
++    public void testRangeIllegalStep() {
++        IntStreamEx.range(0, 1000, 0);
+     }
+ 
+     @Test
+@@ -215,10 +219,21 @@ public class IntStreamExTest {
+         assertEquals(0, IntStreamEx.rangeClosed(0, 1000, -2).count());
+         assertEquals(0, IntStreamEx.rangeClosed(0, 1, -2).count());
+         assertEquals(0, IntStreamEx.rangeClosed(0, -1, 2).count());
++    }
++
++    @Test(expected = ArrayIndexOutOfBoundsException.class)
++    public void testArrayOffsetUnderflow() {
++        IntStreamEx.of(EVEN_BYTES, -1, 3).findAny();
++    }
++
++    @Test(expected = ArrayIndexOutOfBoundsException.class)
++    public void testArrayOffsetWrong() {
++        IntStreamEx.of(EVEN_BYTES, 3, 1).findAny();
++    }
+ 
+-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> IntStreamEx.of(EVEN_BYTES, -1, 3).findAny());
+-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> IntStreamEx.of(EVEN_BYTES, 3, 1).findAny());
+-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> IntStreamEx.of(EVEN_BYTES, 3, 6).findAny());
++    @Test(expected = ArrayIndexOutOfBoundsException.class)
++    public void testArrayLengthOverflow() {
++        IntStreamEx.of(EVEN_BYTES, 3, 6).findAny();
+     }
+ 
+     @Test
+diff --git a/src/test/java/one/util/streamex/LongStreamExTest.java b/src/test/java/one/util/streamex/LongStreamExTest.java
+index 0b5f90c..a231d52 100644
+--- a/src/test/java/one/util/streamex/LongStreamExTest.java
++++ b/src/test/java/one/util/streamex/LongStreamExTest.java
+@@ -28,7 +28,6 @@ import java.util.function.*;
+ import java.util.stream.LongStream;
+ import java.util.stream.LongStream.Builder;
+ 
+-import static one.util.streamex.TestHelpers.assertThrows;
+ import static one.util.streamex.TestHelpers.checkSpliterator;
+ import static org.junit.Assert.*;
+ 
+@@ -152,8 +151,11 @@ public class LongStreamExTest {
+ 
+         assertEquals(0, LongStreamEx.range(0, Long.MIN_VALUE, 2).spliterator().getExactSizeIfKnown());
+         assertEquals(0, LongStreamEx.range(0, Long.MAX_VALUE, -2).spliterator().getExactSizeIfKnown());
++    }
+ 
+-        assertThrows(IllegalArgumentException.class, () -> LongStreamEx.range(0, 1000, 0));
++    @Test(expected = IllegalArgumentException.class)
++    public void testRangeIllegalStep() {
++        LongStreamEx.range(0, 1000, 0);
+     }
+ 
+     @Test
+diff --git a/src/test/java/one/util/streamex/StreamExTest.java b/src/test/java/one/util/streamex/StreamExTest.java
+index e3decab..ea60e2f 100644
+--- a/src/test/java/one/util/streamex/StreamExTest.java
++++ b/src/test/java/one/util/streamex/StreamExTest.java
+@@ -38,7 +38,6 @@ import java.util.concurrent.atomic.AtomicReference;
+ import java.util.function.*;
+ import java.util.regex.Matcher;
+ import java.util.regex.Pattern;
+-import java.util.regex.PatternSyntaxException;
+ import java.util.stream.Collector;
+ import java.util.stream.Collectors;
+ import java.util.stream.IntStream;
+@@ -140,9 +139,9 @@ public class StreamExTest {
+         assertEquals(expectedSet, actualSet);
+     }
+ 
+-    @Test
+-    public void testZip() {
+-        assertThrows(IllegalArgumentException.class, () -> StreamEx.zip(asList("A"), asList("b", "c"), String::concat));
++    @Test(expected = IllegalArgumentException.class)
++    public void testZipThrows() {
++        StreamEx.zip(asList("A"), asList("b", "c"), String::concat);
+     }
+ 
+     @Test
+@@ -219,7 +218,6 @@ public class StreamExTest {
+         Integer[] emptyArray = {};
+         assertSame(emptyArray, StreamEx.of(1, 2, 3).filter(x -> x > 3).toArray(emptyArray));
+         assertArrayEquals(new Integer[] { 1, 2, 3 }, StreamEx.of(1, 2, 3).remove(x -> x > 3).toArray(emptyArray));
+-        assertThrows(IllegalArgumentException.class, () -> StreamEx.of().toArray(new Integer[1]));
+     }
+ 
+     @Test
+@@ -1370,9 +1368,11 @@ public class StreamExTest {
+         assertNotEquals(entry, new Object());
+         assertNotEquals(new Object(), entry);
+         assertEquals(entry, new AbstractMap.SimpleImmutableEntry<>(1, 1L));
++    }
+ 
+-        assertThrows(UnsupportedOperationException.class, () ->
+-                StreamEx.of("1", "1", "1").runLengths().forEach(e -> e.setValue(5L)));
++    @Test(expected = UnsupportedOperationException.class)
++    public void testRunLengthsModify() {
++        StreamEx.of("1", "1", "1").runLengths().forEach(e -> e.setValue(5L));
+     }
+ 
+     @Test
+@@ -1472,7 +1472,6 @@ public class StreamExTest {
+     @Test
+     public void testSubListsStep() {
+         List<Integer> input = IntStreamEx.range(12).boxed().toList();
+-        assertThrows(IllegalArgumentException.class, () -> StreamEx.ofSubLists(input, 0, Integer.MAX_VALUE));
+         assertEquals("[0, 1, 2, 3, 4]", StreamEx.ofSubLists(input, 5, Integer.MAX_VALUE).joining("-"));
+         assertEquals("[0, 1, 2, 3, 4]", StreamEx.ofSubLists(input, 5, 12).joining("-"));
+         assertEquals("[0, 1, 2, 3, 4]-[11]", StreamEx.ofSubLists(input, 5, 11).joining("-"));
+@@ -1502,9 +1501,16 @@ public class StreamExTest {
+         assertEquals(1, StreamEx.ofSubLists(myList, Integer.MAX_VALUE - 2, 1).count());
+         assertEquals(998, StreamEx.ofSubLists(myList, Integer.MAX_VALUE - 3, Integer.MAX_VALUE - 1000).skip(1)
+                 .findFirst().get().size());
++    }
++
++    @Test(expected = IllegalArgumentException.class)
++    public void testSubListsArg() {
++        StreamEx.ofSubLists(Collections.emptyList(), 0);
++    }
+ 
+-        assertThrows(IllegalArgumentException.class, () -> StreamEx.ofSubLists(Collections.emptyList(), 0));
+-        assertThrows(IllegalArgumentException.class, () -> StreamEx.ofSubLists(Collections.emptyList(), 1, 0));
++    @Test(expected = IllegalArgumentException.class)
++    public void testSubListsStepArg() {
++        StreamEx.ofSubLists(Collections.emptyList(), 1, 0);
+     }
+ 
+     @Test
+@@ -1758,13 +1764,6 @@ public class StreamExTest {
+         streamEx(() -> StreamEx.split("ab.cd...", "\\w"), s -> assertEquals("||.||...", s.get().joining("|")));
+         streamEx(() -> StreamEx.split("ab.cd...", "\\W"), s -> assertEquals("ab|cd", s.get().joining("|")));
+         streamEx(() -> StreamEx.split("ab|cd|e", "\\|"), s -> assertEquals("ab,cd,e", s.get().joining(",")));
+-        assertEquals(CharSpliterator.class, StreamEx.split("a#a", "\\#").spliterator().getClass());
+-        assertThrows(PatternSyntaxException.class, () -> StreamEx.split("a", "\\0"));
+-        asList('9', 'A', 'Z', 'z').forEach(ch ->
+-                assertEquals(asList("a" + ch + "a"), StreamEx.split("a" + ch + "a", "\\" + ch).toList()));
+-        assertEquals(asList("aaa"), StreamEx.split("aaa", "\\a").toList());
+-        asList(Character.MIN_HIGH_SURROGATE, Character.MAX_HIGH_SURROGATE).forEach(ch ->
+-                assertEquals(asList("a", "a"), StreamEx.split("a" + ch + "a", "\\" + ch).toList()));
+     }
+ 
+     @Test
+@@ -2021,37 +2020,6 @@ public class StreamExTest {
+         assertEquals(Integer.MAX_VALUE + 10, c.size());
+     }
+ 
+-    @Test
+-    public void testIntoArrayListEnsureCapacityOptimization() {
+-        CapacityEnsuredAssertingArrayList<Integer> list = new CapacityEnsuredAssertingArrayList<>();
+-        Collection<Integer> collection = list;
+-        StreamEx.<Integer>of().into(collection);
+-        StreamEx.of(asList(1)).into(collection);
+-        int maxAvailableSize = Integer.MAX_VALUE - collection.size();
+-        StreamEx.<Integer>of(emptySpliteratorWithExactSize(maxAvailableSize + 1)).into(collection);
+-        StreamEx.<Integer>of(emptySpliteratorWithExactSize(Long.MAX_VALUE)).into(collection);
+-        StreamEx.<Integer>of(emptySpliteratorWithExactSize(maxAvailableSize)).into(collection);
+-        assertEquals(Integer.MAX_VALUE, list.ensuredCapacity);
+-    }
+-
+-    private static class CapacityEnsuredAssertingArrayList<E> extends ArrayList<E> {
+-        private int ensuredCapacity = 0;
+-
+-        @Override
+-        public boolean add(E element) {
+-            if (size() >= ensuredCapacity)
+-                fail("ArrayList capacity was not ensured");
+-            return super.add(element);
+-        }
+-
+-        @Override
+-        public void ensureCapacity(int minCapacity) {
+-            if (minCapacity <= ensuredCapacity)
+-                fail("Not required ensureCapacity call");
+-            ensuredCapacity = minCapacity;
+-        }
+-    }
+-
+     @Test
+     public void testFilterBy() {
+         assertEquals(3, StreamEx.of("a", "bb", "c", "e", "ddd").filterBy(String::length, 1).count());
+@@ -2114,21 +2082,16 @@ public class StreamExTest {
+                 assertEquals(asList("[]"), s.get().map(Arrays::toString).collect(Collectors.toList())));
+         streamEx(() -> StreamEx.ofCombinations(5, 5), s ->
+                 assertEquals(asList("[0, 1, 2, 3, 4]"), s.get().map(Arrays::toString).collect(Collectors.toList())));
+-
+-        assertThrows(IllegalArgumentException.class, () -> StreamEx.ofCombinations(-1, 0));
+-        assertThrows(IllegalArgumentException.class, () -> StreamEx.ofCombinations(0, -1));
+     }
+ 
+-    @Test
+-    public void testMapToEntry() {
+-        assertEquals(Collections.singletonMap(1, "a"),
+-                StreamEx.of("a").mapToEntry(String::length, Function.identity()).toMap());
++    @Test(expected = IllegalArgumentException.class)
++    public void testOfCombinationsNegativeN() {
++        StreamEx.ofCombinations(-1, 0);
+     }
+ 
+-    @Test
+-    public void testFlatMapToEntry() {
+-        assertEquals(Collections.singletonMap(1, "a"),
+-                StreamEx.of("a").flatMapToEntry(s -> Collections.singletonMap(s.length(), s)).toMap());
++    @Test(expected = IllegalArgumentException.class)
++    public void testOfCombinationsNegativeK() {
++        StreamEx.ofCombinations(0, -1);
+     }
+ 
+     @Test
+diff --git a/src/test/java/one/util/streamex/TestHelpers.java b/src/test/java/one/util/streamex/TestHelpers.java
+index 1acb835..3d4966d 100644
+--- a/src/test/java/one/util/streamex/TestHelpers.java
++++ b/src/test/java/one/util/streamex/TestHelpers.java
+@@ -23,7 +23,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
+ import java.util.concurrent.ThreadLocalRandom;
+ import java.util.concurrent.atomic.AtomicBoolean;
+ import java.util.concurrent.atomic.AtomicInteger;
+-import java.util.function.*;
++import java.util.function.Consumer;
++import java.util.function.Function;
++import java.util.function.IntConsumer;
++import java.util.function.Supplier;
+ import java.util.stream.Collector;
+ import java.util.stream.Collectors;
+ import java.util.stream.Stream;
+@@ -36,7 +39,6 @@ import static org.junit.Assert.*;
+  * @author Tagir Valeev
+  */
+ public class TestHelpers {
+-
+     enum Mode {
+         NORMAL, SPLITERATOR, PARALLEL, APPEND, PREPEND, RANDOM
+     }
+@@ -413,37 +415,4 @@ public class TestHelpers {
+                 fail("wrong exception message: " + exmsg);
+         }
+     }
+-
+-    @FunctionalInterface
+-    interface Statement {
+-        void evaluate() throws Throwable;
+-    }
+-
+-    static void assertThrows(Class<? extends Throwable> expected, Statement statement) {
+-        try {
+-            statement.evaluate();
+-            fail("Expected exception: " + expected.getName());
+-        } catch (Throwable e) {
+-            if (!expected.isAssignableFrom(e.getClass())) {
+-                fail("Unexpected exception, " +
+-                        "expected<" + expected.getName() + "> " +
+-                        "but was<" + e.getClass().getName() + ">");
+-            }
+-        }
+-    }
+-
+-    static <T> Spliterator<T> emptySpliteratorWithExactSize(long exactSize) {
+-        return new Spliterators.AbstractSpliterator<T>(0, Spliterator.SIZED) {
+-
+-            @Override
+-            public long getExactSizeIfKnown() {
+-                return exactSize;
+-            }
+-
+-            @Override
+-            public boolean tryAdvance(Consumer<? super T> ignored) {
+-                return false;
+-            }
+-        };
+-    }
+ }

@@ -1,0 +1,7 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,6540b17c9583ee9d01250c9779402f26b5f04d41,8ded57a542b33e87d16b0c2bf5e9994ba20c9e20,54,https://github.com/amaembo/streamex/issues/54
+2,760976f6291e9c69cee61f4363efcff8acecf188,9672cb18b708ee009c88c82c80af96d5f3937e95,55,https://github.com/amaembo/streamex/issues/55
+3,ace9f29fe9eaea9003a2a25cd7595617bc392986,40f00795cc74ab10c9ffa1f96956df09109c2fed,57,https://github.com/amaembo/streamex/issues/57
+4,e4fef072a1924c1ecf4f4a9c336feab853759951,26c29a0adf50a4db61d20ec2a35c5d6a27acc738,59,https://github.com/amaembo/streamex/issues/59
+5,cdcd4ec897340cd26c8c6eda08375967bb68680d,c63b210d454360d63f298fae01ed095d90a1ab5e,71,https://github.com/amaembo/streamex/issues/71
+6,c7c7ae7dcfcc34e55857c9168ff2037b6c324325,a3f1ddfcc9947d7ccfab282e59b53d0f1516a802,201,https://github.com/amaembo/streamex/pull/201

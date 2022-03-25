@@ -1,0 +1,17 @@
+diff --git a/src/test/java/one/util/streamex/MoreCollectorsTest.java b/src/test/java/one/util/streamex/MoreCollectorsTest.java
+index 5d9c7dc..a71c093 100644
+--- a/src/test/java/one/util/streamex/MoreCollectorsTest.java
++++ b/src/test/java/one/util/streamex/MoreCollectorsTest.java
+@@ -84,12 +84,6 @@ public class MoreCollectorsTest {
+             assertArrayEquals(new String[] { "eee", "ddd" }, result.get(3));
+         });
+     }
+-    
+-    @Test
+-    public void testEmpty() {
+-        List<Integer> list = Arrays.asList(1, 2, 3).stream().collect(MoreCollectors.head(0));
+-        assertTrue(list.isEmpty());
+-    }
+ 
+     @Test
+     public void testDistinctCount() {

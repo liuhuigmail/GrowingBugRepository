@@ -1,0 +1,104 @@
+diff --git a/src/test/java/one/util/streamex/PrependSpliteratorTest.java b/src/test/java/one/util/streamex/PrependSpliteratorTest.java
+deleted file mode 100644
+index 7ef60fb..0000000
+--- a/src/test/java/one/util/streamex/PrependSpliteratorTest.java
++++ /dev/null
+@@ -1,50 +0,0 @@
+-/*
+- * Copyright 2015, 2016 Tagir Valeev
+- * 
+- * Licensed under the Apache License, Version 2.0 (the "License");
+- * you may not use this file except in compliance with the License.
+- * You may obtain a copy of the License at
+- * 
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- * 
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+- */
+-package one.util.streamex;
+-
+-import java.util.Spliterator;
+-import java.util.stream.IntStream;
+-import java.util.stream.LongStream;
+-
+-import org.junit.Test;
+-
+-import static one.util.streamex.TestHelpers.*;
+-import static org.junit.Assert.*;
+-
+-/**
+- * @author Tagir Valeev
+- */
+-public class PrependSpliteratorTest {
+-    @Test
+-    public void testSpliterator() {
+-        checkSpliterator("prepend", IntStreamEx.range(100).boxed().toList(), () -> new PrependSpliterator<>(IntStream
+-                .range(1, 100).spliterator(), 0));
+-        assertTrue(new PrependSpliterator<>(IntStream.range(1, 100).spliterator(), 0)
+-                .hasCharacteristics(Spliterator.SIZED));
+-        assertTrue(new PrependSpliterator<>(LongStream.range(0, Long.MAX_VALUE - 2).spliterator(), 0L)
+-                .hasCharacteristics(Spliterator.SIZED));
+-        assertFalse(new PrependSpliterator<>(LongStream.range(0, Long.MAX_VALUE - 1).spliterator(), 0L)
+-                .hasCharacteristics(Spliterator.SIZED));
+-        assertFalse(new PrependSpliterator<>(LongStream.range(0, Long.MAX_VALUE).spliterator(), 0L)
+-                .hasCharacteristics(Spliterator.SIZED));
+-        assertEquals(Long.MAX_VALUE - 1, new PrependSpliterator<>(
+-                LongStream.range(0, Long.MAX_VALUE - 2).spliterator(), 0L).estimateSize());
+-        assertEquals(Long.MAX_VALUE,
+-            new PrependSpliterator<>(LongStream.range(0, Long.MAX_VALUE - 1).spliterator(), 0L).estimateSize());
+-        assertEquals(Long.MAX_VALUE, new PrependSpliterator<>(LongStream.range(0, Long.MAX_VALUE).spliterator(), 0L)
+-                .estimateSize());
+-    }
+-}
+diff --git a/src/test/java/one/util/streamex/StreamExHeadTailTest.java b/src/test/java/one/util/streamex/StreamExHeadTailTest.java
+index 5f01187..c80e3e0 100644
+--- a/src/test/java/one/util/streamex/StreamExHeadTailTest.java
++++ b/src/test/java/one/util/streamex/StreamExHeadTailTest.java
+@@ -16,8 +16,12 @@
+ package one.util.streamex;
+ 
+ import static java.util.Arrays.asList;
+-import static one.util.streamex.TestHelpers.*;
+-import static org.junit.Assert.*;
++import static one.util.streamex.TestHelpers.emptyStreamEx;
++import static one.util.streamex.TestHelpers.repeat;
++import static one.util.streamex.TestHelpers.streamEx;
++import static org.junit.Assert.assertEquals;
++import static org.junit.Assert.assertFalse;
++import static org.junit.Assert.assertTrue;
+ 
+ import java.io.StringReader;
+ import java.util.ArrayDeque;
+@@ -31,7 +35,6 @@ import java.util.Objects;
+ import java.util.Random;
+ import java.util.Map.Entry;
+ import java.util.Set;
+-import java.util.Spliterator;
+ import java.util.concurrent.atomic.AtomicBoolean;
+ import java.util.concurrent.atomic.AtomicInteger;
+ import java.util.function.BiFunction;
+@@ -508,20 +511,4 @@ public class StreamExHeadTailTest {
+             (head, tail) -> tail.mapFirst(first -> first + head)).toList());
+         
+     }
+-    
+-    @Test
+-    public void testSpliterator() {
+-        Spliterator<Integer> spltr = map(StreamEx.of(1,2,3,4), x -> x*2).spliterator();
+-        assertTrue(spltr.hasCharacteristics(Spliterator.ORDERED));
+-        assertEquals(4, spltr.estimateSize());
+-        assertTrue(spltr.tryAdvance(x -> assertEquals(2, (int)x)));
+-        assertEquals(3, spltr.estimateSize());
+-        assertTrue(spltr.tryAdvance(x -> assertEquals(4, (int)x)));
+-        assertEquals(2, spltr.estimateSize());
+-        assertTrue(spltr.tryAdvance(x -> assertEquals(6, (int)x)));
+-        assertEquals(1, spltr.estimateSize());
+-        assertTrue(spltr.tryAdvance(x -> assertEquals(8, (int)x)));
+-        assertFalse(spltr.tryAdvance(x -> fail("Should not be called")));
+-        assertEquals(0, spltr.estimateSize());
+-    }
+ }

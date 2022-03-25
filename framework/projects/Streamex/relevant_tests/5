@@ -1,0 +1,6 @@
+one.util.streamex.AverageLongTest
+one.util.streamex.CustomPoolTest
+one.util.streamex.EntryStreamTest
+one.util.streamex.MoreCollectorsTest
+one.util.streamex.StreamExHeadTailTest
+one.util.streamex.StreamExTest

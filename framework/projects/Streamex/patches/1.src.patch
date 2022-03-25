@@ -1,0 +1,14 @@
+diff --git a/src/main/java/one/util/streamex/HeadTailSpliterator.java b/src/main/java/one/util/streamex/HeadTailSpliterator.java
+index 6412255..b3a5985 100644
+--- a/src/main/java/one/util/streamex/HeadTailSpliterator.java
++++ b/src/main/java/one/util/streamex/HeadTailSpliterator.java
+@@ -91,8 +91,6 @@ import static one.util.streamex.StreamExInternals.*;
+ 
+     @Override
+     public Spliterator<U> tail() {
+-        if(!init())
+-            return Spliterators.emptySpliterator();
+-        return target;
++        return target == null ? this : target;
+     }
+ }

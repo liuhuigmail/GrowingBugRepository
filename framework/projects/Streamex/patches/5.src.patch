@@ -1,0 +1,14 @@
+diff --git a/src/main/java/one/util/streamex/MoreCollectors.java b/src/main/java/one/util/streamex/MoreCollectors.java
+index b0a2b3a..5e106b6 100644
+--- a/src/main/java/one/util/streamex/MoreCollectors.java
++++ b/src/main/java/one/util/streamex/MoreCollectors.java
+@@ -78,8 +78,7 @@ public final class MoreCollectors {
+     private static <T, U> Collector<T, ?, U> empty(Supplier<U> supplier) {
+         return new CancellableCollectorImpl<>(() -> NONE, (acc, t) -> {
+             // empty
+-            }, selectFirst(), acc -> supplier.get(), acc -> true, EnumSet.of(Characteristics.UNORDERED,
+-                Characteristics.CONCURRENT));
++            }, selectFirst(), acc -> supplier.get(), acc -> true, EnumSet.allOf(Characteristics.class));
+     }
+ 
+     private static <T> Collector<T, ?, List<T>> empty() {

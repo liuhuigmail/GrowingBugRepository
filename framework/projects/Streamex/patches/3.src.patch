@@ -1,0 +1,22 @@
+diff --git a/src/main/java/one/util/streamex/StreamEx.java b/src/main/java/one/util/streamex/StreamEx.java
+index 1bb3d18..28f22cb 100644
+--- a/src/main/java/one/util/streamex/StreamEx.java
++++ b/src/main/java/one/util/streamex/StreamEx.java
+@@ -2282,7 +2282,7 @@ public class StreamEx<T> extends AbstractStreamEx<T, StreamEx<T>> {
+      */
+     public static <T> StreamEx<List<T>> cartesianProduct(Collection<? extends Collection<T>> source) {
+         if (source.isEmpty())
+-            return StreamEx.of(new ConstSpliterator.OfRef<>(Collections.emptyList(), 1, true));
++            return StreamEx.<List<T>>of(Collections.emptyList());
+         return of(new CrossSpliterator.ToList<>(source));
+     }
+ 
+@@ -2364,7 +2364,7 @@ public class StreamEx<T> extends AbstractStreamEx<T, StreamEx<T>> {
+      */
+     public static <T> StreamEx<List<T>> cartesianPower(int n, Collection<T> source) {
+         if (n == 0)
+-            return StreamEx.of(new ConstSpliterator.OfRef<>(Collections.emptyList(), 1, true));
++            return StreamEx.<List<T>>of(Collections.emptyList());
+         return of(new CrossSpliterator.ToList<>(Collections.nCopies(n, source)));
+     }
+ 

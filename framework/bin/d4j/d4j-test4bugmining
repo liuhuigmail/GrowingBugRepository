@@ -28,7 +28,7 @@ d4j-test-bugmining -- run tests on a checked-out project version.
 
 =head1 SYNOPSIS
 
-  d4j-test-bugmining [-w work_dir] [-r | [-t single_test] [-s test_suite]]  [-t temp_work_dir]
+  d4j-test-bugmining [-w work_dir] [-r | [-t single_test] [-s test_suite]]  [-e temp_work_dir]
 
 =head1 DESCRIPTION
 
@@ -61,7 +61,7 @@ The archive file name of an external test suite (optional). The default test sui
 developer-written test suite of the checked-out project version.
 See L<Test suites|/"Test suites">.
 
-=item  -temp F<temp_work_dir>
+=item  -e F<temp_work_dir>
 
 temp_work_dir
 
@@ -98,11 +98,11 @@ use Getopt::Std;
 use Pod::Usage;
 
 my %cmd_opts;
-getopts('t:w:rs:temp:', \%cmd_opts) or pod2usage( { -verbose => 1, -input => __FILE__} );
+getopts('t:w:rs:e:', \%cmd_opts) or pod2usage( { -verbose => 1, -input => __FILE__} );
 
 
 my $WORK_DIR = Utils::get_abs_path($cmd_opts{w} // ".");
-my $temp_work_dir=Utils::get_abs_path($cmd_opts{temp});
+my $temp_work_dir=Utils::get_abs_path($cmd_opts{e});
 unless(defined $temp_work_dir) {
     print(STDERR "temp_work_dir needs to be defined!\n");
     exit 1;

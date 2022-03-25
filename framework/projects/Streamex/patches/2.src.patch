@@ -1,0 +1,55 @@
+diff --git a/src/main/java/one/util/streamex/EntryStream.java b/src/main/java/one/util/streamex/EntryStream.java
+index b82f804..36e764a 100644
+--- a/src/main/java/one/util/streamex/EntryStream.java
++++ b/src/main/java/one/util/streamex/EntryStream.java
+@@ -18,6 +18,7 @@ package one.util.streamex;
+ import java.util.AbstractMap.SimpleImmutableEntry;
+ import java.util.Arrays;
+ import java.util.Collection;
++import java.util.Collections;
+ import java.util.HashMap;
+ import java.util.Iterator;
+ import java.util.List;
+@@ -329,7 +330,7 @@ public class EntryStream<K, V> extends AbstractStreamEx<Entry<K, V>, EntryStream
+      * @return the new stream
+      */
+     public EntryStream<K, V> append(K key, V value) {
+-        return appendSpliterator(null, Arrays.<Entry<K, V>> asList(new SimpleImmutableEntry<>(key, value)).spliterator());
++        return appendSpliterator(null, Collections.singleton(new SimpleImmutableEntry<>(key, value)).spliterator());
+     }
+ 
+     /**
+@@ -408,7 +409,7 @@ public class EntryStream<K, V> extends AbstractStreamEx<Entry<K, V>, EntryStream
+      * @return the new stream
+      */
+     public EntryStream<K, V> prepend(K key, V value) {
+-        return prependSpliterator(null, Arrays.<Entry<K, V>> asList(new SimpleImmutableEntry<>(key, value)).spliterator());
++        return prependSpliterator(null, Collections.singleton(new SimpleImmutableEntry<>(key, value)).spliterator());
+     }
+ 
+     /**
+diff --git a/src/main/java/one/util/streamex/TailConcatSpliterator.java b/src/main/java/one/util/streamex/TailConcatSpliterator.java
+index cb0a1ca..71a00e4 100644
+--- a/src/main/java/one/util/streamex/TailConcatSpliterator.java
++++ b/src/main/java/one/util/streamex/TailConcatSpliterator.java
+@@ -52,9 +52,7 @@ import one.util.streamex.StreamExInternals.TailSpliterator;
+             }
+             left = null;
+         }
+-        if(right != null)
+-            right = TailSpliterator.tryAdvanceWithTail(right, action);
+-        return right != null;
++        return right.tryAdvance(action);
+     }
+ 
+     @Override
+@@ -73,8 +71,7 @@ import one.util.streamex.StreamExInternals.TailSpliterator;
+     public void forEachRemaining(Consumer<? super T> action) {
+         if (left != null)
+             left.forEachRemaining(action);
+-        if(right != null)
+-            TailSpliterator.forEachWithTail(right, action);
++        right.forEachRemaining(action);
+     }
+ 
+     @Override

@@ -1,0 +1,5 @@
+one.util.streamex.EntryStreamTest
+one.util.streamex.PairSpliteratorTest
+one.util.streamex.PrependSpliteratorTest
+one.util.streamex.StreamExHeadTailTest
+one.util.streamex.StreamExTest

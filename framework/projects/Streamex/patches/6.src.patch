@@ -1,0 +1,28 @@
+diff --git a/src/main/java/one/util/streamex/StreamEx.java b/src/main/java/one/util/streamex/StreamEx.java
+index 1cfe0f9..96e2600 100644
+--- a/src/main/java/one/util/streamex/StreamEx.java
++++ b/src/main/java/one/util/streamex/StreamEx.java
+@@ -1028,7 +1028,7 @@ public class StreamEx<T> extends AbstractStreamEx<T, StreamEx<T>> {
+             Spliterator<T> spltr = spliterator();
+             if (collection instanceof ArrayList) {
+                 long size = spltr.getExactSizeIfKnown();
+-                if (size > 0 && size <= Integer.MAX_VALUE - collection.size())
++                if (size >= 0 && size < Integer.MAX_VALUE - collection.size())
+                     ((ArrayList<?>) collection).ensureCapacity((int) (collection.size() + size));
+             }
+             spltr.forEachRemaining(collection::add);
+@@ -2589,11 +2589,12 @@ public class StreamEx<T> extends AbstractStreamEx<T, StreamEx<T>> {
+             return IntStreamEx.ofChars(str).mapToObj(ch -> new String(new char[] { (char) ch }));
+         }
+         char ch = regex.charAt(0);
+-        if (regex.length() == 1 && isNotRegexSpecialCaseStarter(ch)) {
++        if (regex.length() == 1 && ".$|()[{^?*+\\".indexOf(ch) == -1) {
+             return split(str, ch);
+         } else if (regex.length() == 2 && ch == '\\') {
+             ch = regex.charAt(1);
+-            if (isTransparentlyQuotableCharacter(ch)) {
++            if ((ch < '0' || ch > '9') && (ch < 'A' || ch > 'Z') && (ch < 'a' || ch > 'z')
++                && (ch < Character.MIN_HIGH_SURROGATE || ch > Character.MAX_LOW_SURROGATE)) {
+                 return split(str, ch);
+             }
+         }

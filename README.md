@@ -3,7 +3,7 @@
 Notably, each bug is composed of a buggy version, a fixed version, a ***concise patch*** (bug-fixing changes only), and one or more triggering test cases.
 
 # Contents of growingBugs
-To date, growingBugs contains **`1404`** bugs from open-source Java projects. 
+To date, growingBugs contains **`1410`** bugs from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -167,6 +167,7 @@ To date, growingBugs contains **`1404`** bugs from open-source Java projects.
 | 158     | Sdk_core            | sdk-core               |                   |      3       | 1-3               |
 | 159     | Cargo_container            | cargo-container               |          core/api/container         |      4       | 1-4               |
 | 160     | Oak_commons            | oak-commons               |          oak-commons         |      1       | 1               |
+| 161     | Streamex            | streamex               |                   |      6       | 1-6               |
 # Setting up GrowingBugs
 
 ## Requirements
