@@ -1,0 +1,30 @@
+diff --git a/src/main/java/com/squareup/javawriter/JavaWriter.java b/src/main/java/com/squareup/javawriter/JavaWriter.java
+index ed747a0..a99cd22 100644
+--- a/src/main/java/com/squareup/javawriter/JavaWriter.java
++++ b/src/main/java/com/squareup/javawriter/JavaWriter.java
+@@ -187,14 +187,14 @@ public class JavaWriter implements Closeable {
+       String imported = importedTypes.get(name);
+       if (imported != null) {
+         sb.append(imported);
+-      } else if (isClassInPackage(name, packagePrefix)) {
++      } else if (isClassInPackage(name)) {
+         String compressed = name.substring(packagePrefix.length());
+         if (isAmbiguous(compressed)) {
+           sb.append(name);
+         } else {
+           sb.append(compressed);
+         }
+-      } else if (isClassInPackage(name, "java.lang.")) {
++      } else if (name.startsWith("java.lang.")) {
+         sb.append(name.substring("java.lang.".length()));
+       } else {
+         sb.append(name);
+@@ -204,7 +204,7 @@ public class JavaWriter implements Closeable {
+     return sb.toString();
+   }
+ 
+-  private static boolean isClassInPackage(String name, String packagePrefix) {
++  private boolean isClassInPackage(String name) {
+     if (name.startsWith(packagePrefix)) {
+       if (name.indexOf('.', packagePrefix.length()) == -1) {
+         return true;

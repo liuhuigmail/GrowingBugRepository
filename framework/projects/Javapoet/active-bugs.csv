@@ -1,0 +1,9 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,5fd4670eb4ea534ae25261eaba7bc3f0075a1ec1,5a34049e7ce96c334077db15459b05257af2a9e3,5,https://github.com/square/javapoet/pull/5
+2,737879fb79e3cbc17fe6808e4b6b62e94df6168d,17605c52dfe212a4b9d205f32097e752027fbd0d,8,https://github.com/square/javapoet/issues/8
+3,737879fb79e3cbc17fe6808e4b6b62e94df6168d,834f118d58933a531787fcc59681a8e631b4f03e,9,https://github.com/square/javapoet/pull/9
+4,087d2d7983f27e5a405cbd7aa31d6f098b91c13f,7d57a5909c7c54502db6ffa27ea0ccc08d0cd696,6,https://github.com/square/javapoet/issues/6
+5,9f648476fdd63a1d34997e45ab49d696ad305706,7cf6e171e1309364cd12f73ecce33ce3a6911cdb,40,https://github.com/square/javapoet/pull/40
+6,c5de70d09debc3aa90819b073a596f652fd5117e,181c7ca6d6fe328628b855bdf9582b238bf7d896,49,https://github.com/square/javapoet/pull/49
+7,2dccc7175cd0cf6bfca7f047cb10717f54d16376,cb24911fdcfe3a96a54c30f5f63871a7f03c16f9,55,https://github.com/square/javapoet/pull/55
+8,edb9565883a140c635aac17dbcb5555c20d143b7,6fff17a988deb4e0d8c35cf6b7607d7db83035ff,60,https://github.com/square/javapoet/pull/60

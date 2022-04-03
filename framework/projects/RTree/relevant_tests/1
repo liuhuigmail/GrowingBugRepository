@@ -1,0 +1,12 @@
+com.github.davidmoten.rtree.BackpressureTest
+com.github.davidmoten.rtree.EntryTest
+com.github.davidmoten.rtree.LatLongExampleTest
+com.github.davidmoten.rtree.LeafTest
+com.github.davidmoten.rtree.OnSubscribeSearchTest
+com.github.davidmoten.rtree.RTreeTest
+com.github.davidmoten.rtree.SplitterRStarTest
+com.github.davidmoten.rtree.geometry.CircleTest
+com.github.davidmoten.rtree.geometry.GeometriesTest
+com.github.davidmoten.rtree.geometry.IntersectsTest
+com.github.davidmoten.rtree.geometry.PointTest
+com.github.davidmoten.rtree.geometry.RectangleTest

@@ -1,0 +1,8 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,bcd1193fbf765eda32b94e2d54b09e978ad39cc6,adc99ad31b7a1b4debe74e84121c054c733cc829,28,https://github.com/davidmoten/rtree/issues/28
+2,f158eab63606b7339bf6f94e3f6ded9b031f7257,bb3b0b3b773630a286a9e16797aad2861ebf0765,34,https://github.com/davidmoten/rtree/issues/34
+3,271e224c8aefce9fa9bb7dc2859bec2529eb07b9,7e53efecdebff95c8e3bd6911cee6843e381d0fd,38,https://github.com/davidmoten/rtree/issues/38
+4,3f5a55d7fa0308cb7ceac846a2ae24be8799e0a8,c74e1b397b7caa3771c679eaf48b4d95c18cded4,40,https://github.com/davidmoten/rtree/issues/40
+5,14fd4d1e62c4354ab9d11fbf76a02950887c12ea,75da48987d7235afe1cfc970df4717c6f1c2f957,60,https://github.com/davidmoten/rtree/issues/60
+6,236680b5ce46a14265b5c027356c66d2ee9d9f8b,8786a08157f31ccd61ed75437912a9a4c3b21b48,91,https://github.com/davidmoten/rtree/issues/91
+7,6798826689a85050c248dac32879518c910cf1a9,3cb0490709bb98d49990d49113009a4951aff5d8,92,https://github.com/davidmoten/rtree/pull/92

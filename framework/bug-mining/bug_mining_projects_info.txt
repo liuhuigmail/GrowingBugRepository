@@ -158,4 +158,7 @@ Jmh_core	jmh-core	https://github.com/openjdk/jmh.git	jira	CODETOOLS	/(CODETOOLS-
 Sdk_core	sdk-core	https://github.com/IBM/java-sdk-core.git	github	IBM/java-sdk-core	/#(\\d+)/mi	.
 Cargo_container	cargo-container	https://github.com/codehaus-cargo/cargo.git	jira	CARGO	/(CARGO-\\d+)/mi	core/api/container
 Oak_commons	oak-commons	https://github.com/apache/jackrabbit-oak.git	jira	OAK	/(OAK-\\d+)/mi	oak-commons	
-Streamex	streamex	https://www.github.com/amaembo/streamex.git	github	amaembo/streamex	/#(\\d+)/mi	.	
+Streamex	streamex	https://www.github.com/amaembo/streamex.git	github	amaembo/streamex	/#(\\d+)/mi	.
+RTree	rtree	https://www.github.com/davidmoten/rtree.git	github	davidmoten/rtree	/#(\\d+)/mi	.
+Javapoet	javapoet	https://www.github.com/square/javapoet.git	github	square/javapoet	/#(\\d+)/mi	.
+Streamex	streamex	https://www.github.com/amaembo/streamex.git	github	amaembo/streamex	/#(\\d+)/mi	.

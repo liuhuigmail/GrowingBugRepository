@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/github/davidmoten/rtree/geometry/Point.java b/src/main/java/com/github/davidmoten/rtree/geometry/Point.java
+index 57b4cb2..bf16bf1 100644
+--- a/src/main/java/com/github/davidmoten/rtree/geometry/Point.java
++++ b/src/main/java/com/github/davidmoten/rtree/geometry/Point.java
+@@ -119,7 +119,7 @@ public final class Point implements Rectangle {
+ 
+     @Override
+     public boolean contains(double x, double y) {
+-        return this.x == x && this.y == y;
++        return x == x && y == y;
+     }
+ 
+     @Override

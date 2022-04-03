@@ -1,0 +1,6 @@
+com.github.davidmoten.rtree.geometry.Geometries
+com.github.davidmoten.rtree.geometry.Geometry
+com.github.davidmoten.rtree.geometry.HasGeometry
+com.github.davidmoten.rtree.geometry.Rectangle
+com.github.davidmoten.rtree.Util
+com.github.davidmoten.util.ObjectsHelper

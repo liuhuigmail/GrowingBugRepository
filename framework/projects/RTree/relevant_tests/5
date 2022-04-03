@@ -1,0 +1,13 @@
+com.github.davidmoten.internal.operators.OperatorBoundedPriorityQueueTest
+com.github.davidmoten.rtree.EntriesTest
+com.github.davidmoten.rtree.LatLongExampleTest
+com.github.davidmoten.rtree.OnSubscribeSearchTest
+com.github.davidmoten.rtree.RTreeTest
+com.github.davidmoten.rtree.SerializersTest
+com.github.davidmoten.rtree.SplitterRStarTest
+com.github.davidmoten.rtree.fbs.SerializerFlatBuffersTest
+com.github.davidmoten.rtree.geometry.CircleTest
+com.github.davidmoten.rtree.geometry.GeometriesTest
+com.github.davidmoten.rtree.geometry.IntersectsTest
+com.github.davidmoten.rtree.geometry.LineTest
+com.github.davidmoten.rtree.geometry.PointTest

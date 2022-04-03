@@ -1,0 +1,44 @@
+diff --git a/src/main/java/one/util/streamex/StreamEx.java b/src/main/java/one/util/streamex/StreamEx.java
+index 24c7e93..3bddc03 100644
+--- a/src/main/java/one/util/streamex/StreamEx.java
++++ b/src/main/java/one/util/streamex/StreamEx.java
+@@ -1250,7 +1250,7 @@ public class StreamEx<T> extends AbstractStreamEx<T, StreamEx<T>> {
+      * @since 0.3.3
+      */
+     public EntryStream<T, Long> runLengths() {
+-        return strategy().newEntryStream(collapseInternal(Objects::equals, t -> new ObjLongBox<>(t, 1L), (acc, t) -> {
++        return EntryStream.of(collapseInternal(Objects::equals, t -> new ObjLongBox<>(t, 1L), (acc, t) -> {
+             acc.b++;
+             return acc;
+         }, (e1, e2) -> {
+diff --git a/src/main/java/one/util/streamex/StreamFactory.java b/src/main/java/one/util/streamex/StreamFactory.java
+index 82287b0..aa5b05b 100644
+--- a/src/main/java/one/util/streamex/StreamFactory.java
++++ b/src/main/java/one/util/streamex/StreamFactory.java
+@@ -63,7 +63,7 @@ import java.util.stream.Stream;
+         }
+ 
+         @Override
+-        public <K, V> EntryStream<K, V> newEntryStream(Stream<? extends Entry<K, V>> src) {
++        public <K, V> EntryStream<K, V> newEntryStream(Stream<Entry<K, V>> src) {
+             return new CustomEntryStream<>(src, this);
+         }
+ 
+@@ -94,7 +94,7 @@ import java.util.stream.Stream;
+     static final class CustomEntryStream<K, V> extends EntryStream<K, V> {
+         private final CustomPoolStreamFactory strategy;
+ 
+-        CustomEntryStream(Stream<? extends Entry<K, V>> stream, CustomPoolStreamFactory strategy) {
++        CustomEntryStream(Stream<Entry<K, V>> stream, CustomPoolStreamFactory strategy) {
+             super(stream);
+             this.strategy = strategy;
+         }
+@@ -521,7 +521,7 @@ import java.util.stream.Stream;
+         return new StreamEx<>(src);
+     }
+ 
+-    public <K, V> EntryStream<K, V> newEntryStream(Stream<? extends Entry<K, V>> src) {
++    public <K, V> EntryStream<K, V> newEntryStream(Stream<Entry<K, V>> src) {
+         return new EntryStream<>(src);
+     }
+ 

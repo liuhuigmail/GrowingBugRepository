@@ -1,0 +1,33 @@
+diff --git a/src/main/java/com/squareup/java/JavaWriter.java b/src/main/java/com/squareup/java/JavaWriter.java
+index 78d9cda..969612a 100644
+--- a/src/main/java/com/squareup/java/JavaWriter.java
++++ b/src/main/java/com/squareup/java/JavaWriter.java
+@@ -143,12 +143,8 @@ public final class JavaWriter implements Closeable {
+       if (imported != null) {
+         sb.append(imported);
+       } else if (isClassInPackage(name)) {
+         String compressed = name.substring(packagePrefix.length());
+-        if (isAmbiguous(compressed)) {
+-          sb.append(name);
+-        } else {
+           sb.append(compressed);
+-        }
+       } else if (name.startsWith("java.lang.")) {
+         sb.append(name.substring("java.lang.".length()));
+       } else {
+@@ -172,15 +167,12 @@ public final class JavaWriter implements Closeable {
+     return false;
+   }
+ 
+   /**
+    * Returns true if the imports contain a class with same simple name as {@code compressed}.
+    *
+    * @param compressed simple name of the type
+    */
+-  private boolean isAmbiguous(String compressed) {
+-    return importedTypes.values().contains(compressed);
+-  }
+ 
+   /**
+    * Emits a type declaration.
+    *

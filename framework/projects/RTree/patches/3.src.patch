@@ -1,0 +1,29 @@
+diff --git a/src/main/java/com/github/davidmoten/rx/operators/OperatorBoundedPriorityQueue.java b/src/main/java/com/github/davidmoten/rx/operators/OperatorBoundedPriorityQueue.java
+index 47fab81..245c24d 100644
+--- a/src/main/java/com/github/davidmoten/rx/operators/OperatorBoundedPriorityQueue.java
++++ b/src/main/java/com/github/davidmoten/rx/operators/OperatorBoundedPriorityQueue.java
+@@ -2,11 +2,11 @@ package com.github.davidmoten.rx.operators;
+ 
+ import java.util.Comparator;
+ 
+-import com.google.common.collect.MinMaxPriorityQueue;
+ 
+ import rx.Observable.Operator;
+ import rx.Subscriber;
+ 
++import com.google.common.collect.MinMaxPriorityQueue;
+ public final class OperatorBoundedPriorityQueue<T> implements Operator<T, T> {
+ 
+     private final int maximumSize;
+@@ -23,11 +23,7 @@ public final class OperatorBoundedPriorityQueue<T> implements Operator<T, T> {
+                 .maximumSize(maximumSize).create();
+         return new Subscriber<T>(child) {
+ 
+-            @Override
+-            public void onStart() {
+-                request(Long.MAX_VALUE);
+-            }
+ 
+             @Override
+             public void onCompleted() {
+                 while (true) {

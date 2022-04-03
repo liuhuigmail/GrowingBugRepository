@@ -1,0 +1,23 @@
+diff --git a/src/test/java/com/squareup/javawriter/JavaWriterTest.java b/src/test/java/com/squareup/javawriter/JavaWriterTest.java
+index d19d1de..baad8f5 100644
+--- a/src/test/java/com/squareup/javawriter/JavaWriterTest.java
++++ b/src/test/java/com/squareup/javawriter/JavaWriterTest.java
+@@ -737,18 +737,6 @@ public final class JavaWriterTest {
+     assertThat(actual).isEqualTo("Binding<denominator.Provider>");
+   }
+ 
+-  @Test public void compressJavaLangClass() throws IOException {
+-    javaWriter.emitPackage("com.blah");
+-    String actual = javaWriter.compressType("java.lang.Class");
+-    assertThat(actual).isEqualTo("Class");
+-  }
+-
+-  @Test public void compressJavaLangSubPackageClass() throws IOException {
+-    javaWriter.emitPackage("com.blah");
+-    String actual = javaWriter.compressType("java.lang.annotation.Annotation");
+-    assertThat(actual).isEqualTo("java.lang.annotation.Annotation");
+-  }
+-
+   @Test public void configurableIndent() throws IOException {
+     javaWriter.setIndent("    ");
+     javaWriter.emitPackage("com.squareup");

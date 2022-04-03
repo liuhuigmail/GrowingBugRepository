@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/squareup/javawriter/JavaWriter.java b/src/main/java/com/squareup/javawriter/JavaWriter.java
+index 821d3bb..c6cb13c 100644
+--- a/src/main/java/com/squareup/javawriter/JavaWriter.java
++++ b/src/main/java/com/squareup/javawriter/JavaWriter.java
+@@ -95,7 +95,7 @@ public class JavaWriter implements Closeable {
+   public JavaWriter emitImports(Class<?>... types) throws IOException {
+     List<String> classNames = new ArrayList<String>(types.length);
+     for (Class<?> classToImport : types) {
+-      classNames.add(classToImport.getCanonicalName());
++      classNames.add(classToImport.getName());
+     }
+     return emitImports(classNames);
+   }

@@ -1,0 +1,14 @@
+diff --git a/src/test/java/one/util/streamex/CustomPoolTest.java b/src/test/java/one/util/streamex/CustomPoolTest.java
+index 5ca0b3c..cdacab8 100644
+--- a/src/test/java/one/util/streamex/CustomPoolTest.java
++++ b/src/test/java/one/util/streamex/CustomPoolTest.java
+@@ -100,9 +100,6 @@ public class CustomPoolTest {
+                 this.checkThread(list);
+                 return list;
+             }));
+-        
+-        assertEquals(Collections.singletonMap(1, 3L), StreamEx.of(1, 1, 1).parallel(pool).peek(this::checkThread)
+-                .runLengths().toMap());
+     }
+ 
+     @Test

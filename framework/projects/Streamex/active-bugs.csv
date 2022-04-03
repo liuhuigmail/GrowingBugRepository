@@ -5,3 +5,4 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 4,e4fef072a1924c1ecf4f4a9c336feab853759951,26c29a0adf50a4db61d20ec2a35c5d6a27acc738,59,https://github.com/amaembo/streamex/issues/59
 5,cdcd4ec897340cd26c8c6eda08375967bb68680d,c63b210d454360d63f298fae01ed095d90a1ab5e,71,https://github.com/amaembo/streamex/issues/71
 6,c7c7ae7dcfcc34e55857c9168ff2037b6c324325,a3f1ddfcc9947d7ccfab282e59b53d0f1516a802,201,https://github.com/amaembo/streamex/pull/201
+7,6b6bbf5202e13e021872113d80881ae10c7414db,c86dd7ad4c07011a80a21fb0f850c84b9a480a17,51,https://github.com/amaembo/streamex/issues/51

@@ -1,0 +1,61 @@
+diff --git a/src/test/java/com/github/davidmoten/rtree/RTreeTest.java b/src/test/java/com/github/davidmoten/rtree/RTreeTest.java
+index 624604c..05de420 100644
+--- a/src/test/java/com/github/davidmoten/rtree/RTreeTest.java
++++ b/src/test/java/com/github/davidmoten/rtree/RTreeTest.java
+@@ -1140,5 +1140,5 @@ public class RTreeTest {
+                 .assertValueCount(22) //
+                 .assertCompleted();
+     }
+-    
++
+ }
+diff --git a/src/test/java/com/github/davidmoten/rtree/geometry/LineTest.java b/src/test/java/com/github/davidmoten/rtree/geometry/LineTest.java
+index 34766d8..6ef9991 100644
+--- a/src/test/java/com/github/davidmoten/rtree/geometry/LineTest.java
++++ b/src/test/java/com/github/davidmoten/rtree/geometry/LineTest.java
+@@ -5,9 +5,6 @@ import static org.junit.Assert.assertEquals;
+ import static org.junit.Assert.assertFalse;
+ import static org.junit.Assert.assertTrue;
+ 
+-import java.awt.geom.Line2D;
+-import java.awt.geom.Rectangle2D;
+-
+ import org.junit.Test;
+ 
+ public final class LineTest {
+@@ -193,35 +190,6 @@ public final class LineTest {
+     @Test
+     public void testLineDoesIntersectPoint() {
+         assertTrue(Geometries.line(1.5, 1.5, 2.5, 2.5).intersects(point(2, 2)));
+-        Rectangle2D d;
+-    }
+-    
+-    @Test
+-    public void testLineDoubleIntersectsWithHorizontalLine() {
+-        {  // test expectation on Line2D.Double.intersectsLine which we depend on 
+-            Line2D.Double line = new Line2D.Double(35.0d, -25.0d, 45.0d, -25.0d);
+-            assertTrue(line.intersectsLine(40.0d, -20.0d, 45.0d, -40.0d));
+-        }
+-        {
+-            Line line = Geometries.line(40.0d, -20.0d, 45.0d, -40.0d);
+-            Line horizontalLine = Geometries.line(35.0d, -25.0d, 45.0d, -25.0d);
+-            
+-            assertTrue(line.intersects(horizontalLine.mbr()));
+-        }
+-    }
+-    
+-    @Test
+-    public void testLineFloatIntersectsWithHorizontalLine() {
+-        {  // test expectation on Line2D.Double.intersectsLine which we depend on 
+-            Line2D.Float line = new Line2D.Float(35.0f, -25.0f, 45.0f, -25.0f);
+-            assertTrue(line.intersectsLine(40.0f, -20.0f, 45.0f, -40.0f));
+-        }
+-        {
+-            Line line = Geometries.line(40.0f, -20.0f, 45.0f, -40.0f);
+-            Line horizontalLine = Geometries.line(35.0f, -25.0f, 45.0f, -25.0f);
+-            
+-            assertTrue(line.intersects(horizontalLine.mbr()));
+-        }
+     }
+ 
+ }

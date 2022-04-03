@@ -1,0 +1,32 @@
+diff --git a/src/main/java/com/github/davidmoten/rtree/OnSubscribeSearch.java b/src/main/java/com/github/davidmoten/rtree/OnSubscribeSearch.java
+index 8774c37..1f23865 100644
+--- a/src/main/java/com/github/davidmoten/rtree/OnSubscribeSearch.java
++++ b/src/main/java/com/github/davidmoten/rtree/OnSubscribeSearch.java
+@@ -4,7 +4,6 @@ import java.util.concurrent.atomic.AtomicLong;
+ 
+ import com.github.davidmoten.guavamini.annotations.VisibleForTesting;
+ import com.github.davidmoten.rtree.geometry.Geometry;
+-import com.github.davidmoten.rx.util.BackpressureUtils;
+ import com.github.davidmoten.util.ImmutableStack;
+ 
+ import rx.Observable.OnSubscribe;
+@@ -73,16 +72,17 @@ final class OnSubscribeSearch<T, S extends Geometry> implements OnSubscribe<Entr
+ 
+             // rxjava used AtomicLongFieldUpdater instead of AtomicLong
+             // but benchmarks showed no benefit here so reverted to AtomicLong
+-            long previousCount = BackpressureUtils.getAndAddRequest(requested, n);
++            long previousCount = requested.getAndAdd(n);
+             if (previousCount == 0) {
+                 // don't touch stack every time during the loop because
+                 // is a volatile and every write forces a thread memory
+                 // cache flush
+                 ImmutableStack<NodePosition<T, S>> st = stack;
+                 while (true) {
+                     // minimize atomic reads by assigning to a variable here
+                     long r = requested.get();
+-                    st = Backpressure.search(condition, subscriber, st, r);
++                    long numToEmit = r;
++                    st = Backpressure.search(condition, subscriber, st, numToEmit);
+                     if (st.isEmpty()) {
+                         if (!subscriber.isUnsubscribed()) {
+                             subscriber.onCompleted();

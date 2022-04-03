@@ -1,0 +1,3 @@
+com.github.davidmoten.rtree.RTreeTest
+com.github.davidmoten.rtree.geometry.LineTest
+com.github.davidmoten.rtree.internal.RectangleUtilTest
