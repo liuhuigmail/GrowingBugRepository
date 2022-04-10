@@ -162,3 +162,4 @@ Streamex	streamex	https://www.github.com/amaembo/streamex.git	github	amaembo/str
 RTree	rtree	https://www.github.com/davidmoten/rtree.git	github	davidmoten/rtree	/#(\\d+)/mi	.
 Javapoet	javapoet	https://www.github.com/square/javapoet.git	github	square/javapoet	/#(\\d+)/mi	.
 Streamex	streamex	https://www.github.com/amaembo/streamex.git	github	amaembo/streamex	/#(\\d+)/mi	.
+Spoon	spoon	https://www.github.com/INRIA/spoon.git	github	INRIA/spoon	/#(\\d+)/mi	.
