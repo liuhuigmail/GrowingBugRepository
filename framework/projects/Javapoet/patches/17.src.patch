@@ -1,0 +1,36 @@
+diff --git a/src/main/java/com/squareup/javawriter/JavaWriter.java b/src/main/java/com/squareup/javawriter/JavaWriter.java
+index 285a40c..7e58fd1 100644
+--- a/src/main/java/com/squareup/javawriter/JavaWriter.java
++++ b/src/main/java/com/squareup/javawriter/JavaWriter.java
+@@ -681,22 +681,26 @@ public final class JavaWriter implements Closeable {
+           result.append("\\\\");
+           break;
+         case '\t':
+-          result.append("\\\t");
++          result.append("\\t");
+           break;
+         case '\b':
+-          result.append("\\\b");
++          result.append("\\b");
+           break;
+         case '\n':
+-          result.append("\\\n");
++          result.append("\\n");
+           break;
+         case '\r':
+-          result.append("\\\r");
++          result.append("\\r");
+           break;
+         case '\f':
+-          result.append("\\\f");
++          result.append("\\f");
+           break;
+         default:
++          if (Character.isISOControl(c)) {
++            result.append(String.format("\\u%04x", (int) c));
++          } else {
+           result.append(c);
++          }
+       }
+     }
+     result.append('"');

@@ -1,0 +1,25 @@
+diff --git a/src/main/java/spoon/support/compiler/jdt/ReferenceBuilder.java b/src/main/java/spoon/support/compiler/jdt/ReferenceBuilder.java
+index 983dc6a3..1b4b51f1 100644
+--- a/src/main/java/spoon/support/compiler/jdt/ReferenceBuilder.java
++++ b/src/main/java/spoon/support/compiler/jdt/ReferenceBuilder.java
+@@ -538,7 +538,7 @@ public class ReferenceBuilder {
+ 			inner = main;
+ 		}
+ 		if (res == null) {
+-			return this.jdtTreeBuilder.getFactory().Type().createReference(nameParameterized);
++			return this.jdtTreeBuilder.getFactory().Type().createReference(CharOperation.toString(ref.getParameterizedTypeName()));
+ 		}
+ 
+ 		if (inner.getPackage() == null) {
+@@ -546,9 +546,9 @@ public class ReferenceBuilder {
+ 			CtPackageReference packageReference = index >= 0 ? packageFactory.getOrCreate(concatSubArray(namesParameterized, index)).getReference() : packageFactory.topLevel();
+ 			inner.setPackage(packageReference);
+ 		}
+-		if (!res.toString().replace(", ?", ",?").endsWith(nameParameterized)) {
++		if (!res.toString().replace(", ?", ",?").endsWith(CharOperation.toString(ref.getParameterizedTypeName()))) {
+ 			// verify that we did not match a class that have the same name in a different package
+-			return this.jdtTreeBuilder.getFactory().Type().createReference(typeName);
++			return this.jdtTreeBuilder.getFactory().Type().createReference(CharOperation.toString(ref.getParameterizedTypeName()));
+ 		}
+ 		return res;
+ 	}

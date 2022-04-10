@@ -1,0 +1,22 @@
+diff --git a/src/test/java/com/squareup/javawriter/JavaWriterTest.java b/src/test/java/com/squareup/javawriter/JavaWriterTest.java
+index 0f82a2d..6450af9 100644
+--- a/src/test/java/com/squareup/javawriter/JavaWriterTest.java
++++ b/src/test/java/com/squareup/javawriter/JavaWriterTest.java
+@@ -552,17 +552,6 @@ public final class JavaWriterTest {
+         + " */\n");
+   }
+ 
+-  @Test public void multilineJavadocDoesNotEmitTrailingSpaceForEmptyLines() throws IOException {
+-    javaWriter.emitJavadoc("Foo\n\nBar");
+-    assertCode(""
+-        + "/**\n"
+-        + " * Foo\n"
+-        + " *\n"
+-        + " * Bar\n"
+-        + " */\n"
+-    );
+-  }
+-
+   @Test public void testStringLiteral() {
+     assertThat(JavaWriter.stringLiteral("")).isEqualTo("\"\"");
+     assertThat(JavaWriter.stringLiteral("JavaWriter")).isEqualTo("\"JavaWriter\"");

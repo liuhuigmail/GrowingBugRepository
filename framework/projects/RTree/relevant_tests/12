@@ -1,0 +1,4 @@
+com.github.davidmoten.internal.operators.OperatorBoundedPriorityQueueTest
+com.github.davidmoten.rtree.LatLongExampleTest
+com.github.davidmoten.rtree.RTreeTest
+com.github.davidmoten.rtree.geometry.PointTest

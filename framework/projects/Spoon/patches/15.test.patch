@@ -1,0 +1,44 @@
+diff --git a/src/test/java/spoon/test/generics/GenericsTest.java b/src/test/java/spoon/test/generics/GenericsTest.java
+index 6e9b3c8b..1fa89947 100644
+--- a/src/test/java/spoon/test/generics/GenericsTest.java
++++ b/src/test/java/spoon/test/generics/GenericsTest.java
+@@ -49,7 +49,6 @@ import spoon.test.generics.testclasses2.LikeCtClass;
+ import spoon.test.generics.testclasses2.LikeCtClassImpl;
+ import spoon.test.generics.testclasses2.SameSignature2;
+ import spoon.test.generics.testclasses2.SameSignature3;
+-import spoon.test.main.MainTest;
+ import spoon.test.generics.testclasses.EnumSetOf;
+ import spoon.test.generics.testclasses.FakeTpl;
+ import spoon.test.generics.testclasses.Lunch;
+@@ -1398,9 +1397,6 @@ public class GenericsTest {
+ 		 */
+ 		assertEquals(adaptedMethod.getParameters().get(0).getType(), classGetter.getType());
+ 		assertEquals(adaptedMethod.getParameters().get(0).getType(), classSetter.getParameters().get(0).getType());
+-		
+-		MainTest.checkParentConsistency(launcher.getFactory().getModel().getRootPackage());
+-		MainTest.checkParentConsistency(adaptedMethod);
+ 	}
+ 	
+ }
+diff --git a/src/test/java/spoon/test/main/MainTest.java b/src/test/java/spoon/test/main/MainTest.java
+index 3839f29f..426acf69 100644
+--- a/src/test/java/spoon/test/main/MainTest.java
++++ b/src/test/java/spoon/test/main/MainTest.java
+@@ -310,7 +310,7 @@ public class MainTest {
+ 
+ 	}
+ 
+-	public static void checkParentConsistency(CtElement ele) {
++	private void checkParentConsistency(CtPackage pack) {
+ 		final Set<CtElement> inconsistentParents = new HashSet<>();
+ 		new CtScanner() {
+ 			private Deque<CtElement> previous = new ArrayDeque();
+@@ -343,7 +343,7 @@ public class MainTest {
+ 				}
+ 				super.exit(e);
+ 			}
+-		}.scan(ele);
++		}.visitCtPackage(pack);
+ 		assertEquals("All parents have to be consistent", 0, inconsistentParents.size());
+ 	}
+ 	

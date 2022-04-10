@@ -1,0 +1,15 @@
+diff --git a/src/main/java/com/squareup/javawriter/JavaWriter.java b/src/main/java/com/squareup/javawriter/JavaWriter.java
+index e375f39..5ebc71d 100644
+--- a/src/main/java/com/squareup/javawriter/JavaWriter.java
++++ b/src/main/java/com/squareup/javawriter/JavaWriter.java
+@@ -448,9 +448,7 @@ public class JavaWriter implements Closeable {
+     out.write("/**\n");
+     for (String line : formatted.split("\n")) {
+       indent();
+-      out.write(" *");
+-      if (!line.isEmpty()) {
+-        out.write(" ");
++      {out.write(" * ");
+         out.write(line);
+       }
+       out.write("\n");

@@ -1,0 +1,13 @@
+diff --git a/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java b/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java
+index 55253c6c..d408420c 100644
+--- a/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java
++++ b/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java
+@@ -1268,7 +1268,7 @@ public class DefaultJavaPrettyPrinter implements CtVisitor, PrettyPrinter {
+ 			}
+ 		}
+ 		if (newArray.getDimensionExpressions().size() == 0) {
+-			try (ListPrinter lp = elementPrinterHelper.createListPrinter(false, "{", true, false, ",", true, true, "}")) {
++			try (ListPrinter lp = elementPrinterHelper.createListPrinter(false, "{", true, true, ",", true, true, "}")) {
+ 				for (CtExpression e : newArray.getElements()) {
+ 					lp.printSeparatorIfAppropriate();
+ 					scan(e);

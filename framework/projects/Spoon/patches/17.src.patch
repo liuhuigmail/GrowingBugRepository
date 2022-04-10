@@ -1,0 +1,24 @@
+diff --git a/src/main/java/spoon/support/reflect/code/CtVariableAccessImpl.java b/src/main/java/spoon/support/reflect/code/CtVariableAccessImpl.java
+index f82008a0..7b78ad32 100644
+--- a/src/main/java/spoon/support/reflect/code/CtVariableAccessImpl.java
++++ b/src/main/java/spoon/support/reflect/code/CtVariableAccessImpl.java
+@@ -34,11 +34,15 @@ public abstract class CtVariableAccessImpl<T> extends CtExpressionImpl<T> implem
+ 
+ 	@Override
+ 	public CtVariableReference<T> getVariable() {
+-		if (variable == null && getFactory() != null) {
+-			variable = getFactory().Core().createLocalVariableReference();
+-			variable.setParent(this);
++		if (variable != null) {
++			return (CtVariableReference<T>) variable;
++		}
++		if (getFactory() != null) {
++			CtVariableReference<Object> ref = getFactory().Core().createLocalVariableReference();
++			ref.setParent(this);
++			return (CtVariableReference<T>) ref;
+ 		}
+-		return (CtVariableReference<T>) variable;
++		return null;
+ 	}
+ 
+ 	@Override

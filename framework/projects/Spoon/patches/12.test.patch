@@ -1,0 +1,42 @@
+diff --git a/src/test/java/spoon/test/annotation/AnnotationTest.java b/src/test/java/spoon/test/annotation/AnnotationTest.java
+index 1f8d78fe..2920f918 100644
+--- a/src/test/java/spoon/test/annotation/AnnotationTest.java
++++ b/src/test/java/spoon/test/annotation/AnnotationTest.java
+@@ -117,7 +117,7 @@ public class AnnotationTest {
+ 	@Test
+ 	public void testWritingAnnotParamArray() throws Exception {
+ 		CtType<?> type = this.factory.Type().get("spoon.test.annotation.testclasses.AnnotParam");
+-		assertEquals("@java.lang.SuppressWarnings({ \"unused\", \"rawtypes\" })",
++		assertEquals("@java.lang.SuppressWarnings({ \"unused\" , \"rawtypes\" })",
+ 				type.getElements(new TypeFilter<>(CtAnnotation.class)).get(0).toString());
+ 	}
+ 
+diff --git a/src/test/java/spoon/test/annotation/AnnotationValuesTest.java b/src/test/java/spoon/test/annotation/AnnotationValuesTest.java
+index 106bd357..acd67dc1 100644
+--- a/src/test/java/spoon/test/annotation/AnnotationValuesTest.java
++++ b/src/test/java/spoon/test/annotation/AnnotationValuesTest.java
+@@ -132,9 +132,9 @@ public class AnnotationValuesTest {
+ 
+ 	private static final String nl = System.lineSeparator();
+ 
+-	private static final String strCtClassOracle = "@com.squareup.javapoet.AnnotationSpecTest.HasDefaultsAnnotation(o = com.squareup.javapoet.AnnotationSpecTest.Breakfast.PANCAKES, p = 1701, f = 11.1, m = { 9, 8, 1 }, l = java.lang.Override.class, j = @com.squareup.javapoet.AnnotationSpecTest.AnnotationA" +
++	private static final String strCtClassOracle = "@com.squareup.javapoet.AnnotationSpecTest.HasDefaultsAnnotation(o = com.squareup.javapoet.AnnotationSpecTest.Breakfast.PANCAKES, p = 1701, f = 11.1, m = { 9 , 8 , 1 }, l = java.lang.Override.class, j = @com.squareup.javapoet.AnnotationSpecTest.AnnotationA" +
+ 			", q = @com.squareup.javapoet.AnnotationSpecTest.AnnotationC(\"bar\")" +
+-			", r = { java.lang.Float.class, java.lang.Double.class })" + nl +
++			", r = { java.lang.Float.class , java.lang.Double.class })" + nl +
+ 			"public class IsAnnotated {}";
+ 
+ 	static class Request {
+diff --git a/src/test/java/spoon/test/template/TemplateArrayAccessTest.java b/src/test/java/spoon/test/template/TemplateArrayAccessTest.java
+index 52994ed1..ee8dc561 100644
+--- a/src/test/java/spoon/test/template/TemplateArrayAccessTest.java
++++ b/src/test/java/spoon/test/template/TemplateArrayAccessTest.java
+@@ -25,7 +25,7 @@ public class TemplateArrayAccessTest {
+ 
+ 		CtClass<?> resultKlass = factory.Class().create("Result");
+ 		CtStatement result = new SubstituteArrayAccessTemplate(new String[]{"a",null,"b"}).apply(resultKlass);
+-		assertEquals("new java.lang.String[]{ \"a\", null, \"b\" }.toString()", result.toString());
++		assertEquals("new java.lang.String[]{ \"a\" , null , \"b\" }.toString()", result.toString());
+ 	}
+ 
+ 	@Test

@@ -1,0 +1,18 @@
+diff --git a/src/main/java/spoon/support/visitor/AbstractTypingContext.java b/src/main/java/spoon/support/visitor/AbstractTypingContext.java
+index a8633c56..864aac24 100644
+--- a/src/main/java/spoon/support/visitor/AbstractTypingContext.java
++++ b/src/main/java/spoon/support/visitor/AbstractTypingContext.java
+@@ -58,11 +58,10 @@ abstract class AbstractTypingContext implements GenericTypeAdapter {
+ 				CtElement parent = result.getParent();
+ 				result = result.clone();
+ 				result.setParent(parent);
+-				List<CtTypeReference<?>> actTypeArgs = new ArrayList<>(result.getActualTypeArguments());
++				List<CtTypeReference<?>> actTypeArgs = result.getActualTypeArguments();
+ 				for (int i = 0; i < actTypeArgs.size(); i++) {
+-					actTypeArgs.set(i, adaptType(actTypeArgs.get(i)).clone());
++					actTypeArgs.set(i, adaptType(actTypeArgs.get(i)));
+ 				}
+-				result.setActualTypeArguments(actTypeArgs);
+ 			}
+ 		}
+ 		return result;

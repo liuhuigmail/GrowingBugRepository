@@ -1,0 +1,17 @@
+diff --git a/src/main/java/spoon/support/reflect/declaration/CtAnnotationImpl.java b/src/main/java/spoon/support/reflect/declaration/CtAnnotationImpl.java
+index 552c00a2..13fc7052 100644
+--- a/src/main/java/spoon/support/reflect/declaration/CtAnnotationImpl.java
++++ b/src/main/java/spoon/support/reflect/declaration/CtAnnotationImpl.java
+@@ -225,8 +225,11 @@ public class CtAnnotationImpl<A extends Annotation> extends CtElementImpl
+ 			PartialEvaluator eval = getFactory().Eval()
+ 					.createPartialEvaluator();
+ 			Object ret = eval.evaluate(null, (CtCodeElement) value);
++			if (!(ret instanceof CtCodeElement)) {
++				return convertValue(ret);
++			}
+ 
+-			return this.convertValue(ret);
++			return ret;
+ 		} else if (value instanceof CtTypeReference) {
+ 			// Get RT class for References
+ 			return ((CtTypeReference<?>) value).getActualClass();

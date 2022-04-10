@@ -1,0 +1,57 @@
+diff --git a/src/test/java/com/squareup/javawriter/JavaWriterTest.java b/src/test/java/com/squareup/javawriter/JavaWriterTest.java
+index c98c7e5..f8cf2fd 100644
+--- a/src/test/java/com/squareup/javawriter/JavaWriterTest.java
++++ b/src/test/java/com/squareup/javawriter/JavaWriterTest.java
+@@ -433,7 +433,9 @@ public final class JavaWriterTest {
+     assertCode(""
+         + "package com.squareup;\n"
+         + "\n"
+-        + "@Module(overrides = true)\n"
++        + "@Module(\n"
++        + "  overrides = true\n"
++        + ")\n"
+         + "class FooModule {\n"
+         + "}\n");
+   }
+@@ -454,41 +456,6 @@ public final class JavaWriterTest {
+         + "}\n");
+   }
+ 
+-  @Test public void annotatedWithTwoNonArrayAttributes() throws IOException {
+-    Map<String, Object> attributes = new LinkedHashMap<String, Object>();
+-    attributes.put("overrides", true);
+-    attributes.put("foo", "bar");
+-
+-    javaWriter.emitPackage("com.squareup");
+-    javaWriter.emitAnnotation("Module", attributes);
+-    javaWriter.beginType("com.squareup.FooModule", "class", EnumSet.noneOf(Modifier.class));
+-    javaWriter.endType();
+-    assertCode(""
+-        + "package com.squareup;\n"
+-        + "\n"
+-        + "@Module(overrides = true, foo = bar)\n"
+-        + "class FooModule {\n"
+-        + "}\n");
+-  }
+-
+-  @Test public void annotatedWithThreeNonArrayAttributes() throws IOException {
+-    Map<String, Object> attributes = new LinkedHashMap<String, Object>();
+-    attributes.put("overrides", true);
+-    attributes.put("foo", "bar");
+-    attributes.put("bar", "baz");
+-
+-    javaWriter.emitPackage("com.squareup");
+-    javaWriter.emitAnnotation("Module", attributes);
+-    javaWriter.beginType("com.squareup.FooModule", "class", EnumSet.noneOf(Modifier.class));
+-    javaWriter.endType();
+-    assertCode(""
+-        + "package com.squareup;\n"
+-        + "\n"
+-        + "@Module(overrides = true, foo = bar, bar = baz)\n"
+-        + "class FooModule {\n"
+-        + "}\n");
+-  }
+-
+   @Test public void annotatedWithAttributes() throws IOException {
+     Map<String, Object> attributes = new LinkedHashMap<String, Object>();
+     attributes.put("overrides", true);

@@ -1,0 +1,63 @@
+diff --git a/src/main/java/com/squareup/javawriter/JavaWriter.java b/src/main/java/com/squareup/javawriter/JavaWriter.java
+index 47b0d53..3390dc2 100644
+--- a/src/main/java/com/squareup/javawriter/JavaWriter.java
++++ b/src/main/java/com/squareup/javawriter/JavaWriter.java
+@@ -438,39 +438,27 @@ public final class JavaWriter implements Closeable {
+     indent();
+     out.write("@");
+     emitType(annotation);
+-    switch (attributes.size()) {
+-      case 0:
+-        break;
+-      case 1:
+-        Entry<String, ?> onlyEntry = attributes.entrySet().iterator().next();
+-        if ("value".equals(onlyEntry.getKey())) {
+-          out.write("(");
+-          emitAnnotationValue(onlyEntry.getValue());
+-          out.write(")");
+-          break;
+-        }
+-      default:
+-        out.write("(");
+-        pushScope(Scope.ANNOTATION_ATTRIBUTE);
+-        boolean firstAttribute = true;
+-        for (Map.Entry<String, ?> entry : attributes.entrySet()) {
+-          if (firstAttribute) {
+-            firstAttribute = false;
+-            out.write("\n");
+-          } else {
+-            out.write(",\n");
+-          }
+-          indent();
+-          out.write(entry.getKey());
+-          out.write(" = ");
+-          Object value = entry.getValue();
+-          emitAnnotationValue(value);
++    if (!attributes.isEmpty()) {
++      out.write("(");
++      pushScope(Scope.ANNOTATION_ATTRIBUTE);
++      boolean firstAttribute = true;
++      for (Map.Entry<String, ?> entry : attributes.entrySet()) {
++        if (firstAttribute) {
++          firstAttribute = false;
++          out.write("\n");
++        } else {
++          out.write(",\n");
+         }
+-        popScope(Scope.ANNOTATION_ATTRIBUTE);
+-        out.write("\n");
+         indent();
+-        out.write(")");
+-        break;
++        out.write(entry.getKey());
++        out.write(" = ");
++        Object value = entry.getValue();
++        emitAnnotationValue(value);
++      }
++      popScope(Scope.ANNOTATION_ATTRIBUTE);
++      out.write("\n");
++      indent();
++      out.write(")");
+     }
+     out.write("\n");
+     return this;

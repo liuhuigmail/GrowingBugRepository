@@ -1,0 +1,19 @@
+diff --git a/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java b/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java
+index 89be7ff9..3ddc39f7 100644
+--- a/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java
++++ b/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java
+@@ -1316,7 +1316,6 @@ public class DefaultJavaPrettyPrinter implements CtVisitor, PrettyPrinter {
+ 					write("this");
+ 				} else {
+ 					if (invocation.getTarget() != null) {
+-						write(invocation.getTarget().getSignature() + '.');
+ 					}
+ 					write("super");
+ 				}
+@@ -2213,4 +2212,4 @@ public class DefaultJavaPrettyPrinter implements CtVisitor, PrettyPrinter {
+ 	public Printingcontext getContext() {
+ 		return context;
+ 	}
+-}
+\ No newline at end of file
++}

@@ -1,0 +1,21 @@
+diff --git a/src/main/java/com/github/davidmoten/rtree/geometry/Line.java b/src/main/java/com/github/davidmoten/rtree/geometry/Line.java
+index c200f56..85732c7 100644
+--- a/src/main/java/com/github/davidmoten/rtree/geometry/Line.java
++++ b/src/main/java/com/github/davidmoten/rtree/geometry/Line.java
+@@ -2,6 +2,7 @@ package com.github.davidmoten.rtree.geometry;
+ 
+ import java.awt.geom.Line2D;
+ import java.awt.geom.Line2D.Float;
++import java.awt.geom.Rectangle2D;
+ 
+ import com.vividsolutions.jts.geom.Coordinate;
+ import com.vividsolutions.jts.geom.GeometryFactory;
+@@ -79,7 +80,7 @@ public final class Line implements Geometry {
+         f.setHeight(r.y2() - r.y1());
+         Polygon rect = f.createRectangle();
+         LineSegment line = new LineSegment(x1, y1, x2, y2);
+-        return RectangleIntersects.intersects(rect, line.toGeometry(gf));
++        return new Line2D.Float(x1, y1, x2, y2).intersects(new Rectangle2D.Float(r.x1(), r.y1(), r.x2(), r.y2()));
+     }
+ 
+     public float x1() {

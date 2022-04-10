@@ -1,0 +1,9 @@
+spoon.test.annotation.AnnotationTest
+spoon.test.control.ControlTest
+spoon.test.eval.EvalTest
+spoon.test.fieldaccesses.FieldAccessTest
+spoon.test.generics.GenericsTest
+spoon.test.limits.utils.InternalTest
+spoon.test.prettyprinter.LinesTest
+spoon.test.prettyprinter.PrinterTest
+spoon.test.secondaryclasses.ClassesTest

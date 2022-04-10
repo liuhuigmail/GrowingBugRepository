@@ -1,0 +1,53 @@
+diff --git a/src/main/java/spoon/support/reflect/reference/CtTypeReferenceImpl.java b/src/main/java/spoon/support/reflect/reference/CtTypeReferenceImpl.java
+index ad09066a..ecd2e7b4 100644
+--- a/src/main/java/spoon/support/reflect/reference/CtTypeReferenceImpl.java
++++ b/src/main/java/spoon/support/reflect/reference/CtTypeReferenceImpl.java
+@@ -497,15 +497,24 @@ public class CtTypeReferenceImpl<T> extends CtReferenceImpl implements CtTypeRef
+ 
+ 	@Override
+ 	public CtTypeReference<?> getSuperclass() {
+-		try {
+-			CtType<T> t = getTypeDeclaration();
+-			if (t != null) {
+-				return t.getSuperclass();
++		CtType<T> t = getDeclaration();
++		if (t != null) {
++			return t.getSuperclass();
++		} else {
++			try {
++				Class<T> c = getActualClass();
++				Class<?> sc = c.getSuperclass();
++				if (sc == null) {
++					return null;
++				}
++				return getFactory().Type().createReference(sc);
++			} catch (final SpoonClassNotFoundException e) {
++				if (getFactory().getEnvironment().getNoClasspath()) {
++					return null;
++				}
++				throw e;
+ 			}
+-		} catch (SpoonClassNotFoundException e) {
+-			return null;
+ 		}
+-		return null;
+ 	}
+ 
+ 	@Override
+diff --git a/src/main/java/spoon/support/visitor/equals/CloneHelper.java b/src/main/java/spoon/support/visitor/equals/CloneHelper.java
+index ec3df4b4..1f86b937 100644
+--- a/src/main/java/spoon/support/visitor/equals/CloneHelper.java
++++ b/src/main/java/spoon/support/visitor/equals/CloneHelper.java
+@@ -30,6 +30,12 @@ import java.util.Map;
+ import java.util.Set;
+ import java.util.TreeSet;
+ 
++import spoon.SpoonException;
++import spoon.reflect.declaration.CtElement;
++import spoon.support.util.EmptyClearableList;
++import spoon.support.util.EmptyClearableSet;
++import spoon.support.visitor.clone.CloneVisitor;
++
+ /**
+  * {@link CloneHelper} is responsible for creating clones of {@link CtElement} AST nodes including the whole subtree.
+  *

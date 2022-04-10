@@ -1,0 +1,56 @@
+diff --git a/src/test/java/spoon/test/imports/ImportTest.java b/src/test/java/spoon/test/imports/ImportTest.java
+index 14bae826..5d7dec6c 100644
+--- a/src/test/java/spoon/test/imports/ImportTest.java
++++ b/src/test/java/spoon/test/imports/ImportTest.java
+@@ -1230,26 +1230,4 @@ public class ImportTest {
+ 
+ 		assertEquals(3, cu.getImports().size());
+ 	}
+-
+-	@Test
+-	public void testImportWithGenerics() throws IOException {
+-		// contract: in noclasspath autoimport, we should be able to use generic type
+-		final Launcher launcher = new Launcher();
+-		launcher.addInputResource("./src/test/resources/import-with-generics/TestWithGenerics.java");
+-		launcher.getEnvironment().setAutoImports(true);
+-		launcher.getEnvironment().setShouldCompile(true);
+-		launcher.getEnvironment().setNoClasspath(true);
+-		launcher.setSourceOutputDirectory("./target/import-with-generics");
+-		launcher.run();
+-
+-		PrettyPrinter prettyPrinter = launcher.createPrettyPrinter();
+-		CtType element = launcher.getFactory().Class().get("spoon.test.imports.testclasses.TestWithGenerics");
+-		List<CtType<?>> toPrint = new ArrayList<>();
+-		toPrint.add(element);
+-
+-		prettyPrinter.calculate(element.getPosition().getCompilationUnit(), toPrint);
+-		String output = prettyPrinter.getResult();
+-
+-		assertTrue(output.contains("import spoon.test.imports.testclasses.withgenerics.Target;"));
+-	}
+ }
+diff --git a/src/test/java/spoon/test/reference/TypeReferenceTest.java b/src/test/java/spoon/test/reference/TypeReferenceTest.java
+index b69af090..35b686b0 100644
+--- a/src/test/java/spoon/test/reference/TypeReferenceTest.java
++++ b/src/test/java/spoon/test/reference/TypeReferenceTest.java
+@@ -623,20 +623,4 @@ public class TypeReferenceTest {
+ 
+ 		assertEquals(parameterRef1, parameterRef2);
+ 	}
+-
+-	@Test
+-	public void testTypeReferenceWithGenerics() throws Exception {
+-		// contract: in noclasspath, a generic type name should not contain generic information
+-		final Launcher launcher = new Launcher();
+-		launcher.addInputResource("./src/test/resources/import-with-generics/TestWithGenerics.java");
+-		launcher.getEnvironment().setAutoImports(true);
+-		launcher.getEnvironment().setNoClasspath(true);
+-		launcher.buildModel();
+-
+-		CtField field = launcher.getModel().getElements(new TypeFilter<CtField>(CtField.class)).get(0);
+-		CtTypeReference fieldTypeRef = field.getType();
+-
+-		assertEquals("spoon.test.imports.testclasses.withgenerics.Target", fieldTypeRef.getQualifiedName());
+-		assertEquals(2, fieldTypeRef.getActualTypeArguments().size());
+-	}
+ }

@@ -1,0 +1,20 @@
+diff --git a/src/main/java/com/squareup/javawriter/JavaWriter.java b/src/main/java/com/squareup/javawriter/JavaWriter.java
+index c765f39..0b7a5ed 100644
+--- a/src/main/java/com/squareup/javawriter/JavaWriter.java
++++ b/src/main/java/com/squareup/javawriter/JavaWriter.java
+@@ -167,7 +167,6 @@ public class JavaWriter implements Closeable {
+   public String compressType(String type) {
+     Matcher trailer = TYPE_TRAILER.matcher(type);
+     if (trailer.matches()) {
+-      type = trailer.group(1);
+     }
+ 
+     StringBuilder sb = new StringBuilder();
+@@ -209,7 +208,6 @@ public class JavaWriter implements Closeable {
+     }
+ 
+     if (trailer.matches()) {
+-      sb.append(trailer.group(2));
+     }
+     return sb.toString();
+   }

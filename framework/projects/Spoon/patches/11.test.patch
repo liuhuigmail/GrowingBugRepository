@@ -1,0 +1,55 @@
+diff --git a/src/test/java/spoon/test/annotation/AnnotationTest.java b/src/test/java/spoon/test/annotation/AnnotationTest.java
+index c0899221..5eb41abd 100644
+--- a/src/test/java/spoon/test/annotation/AnnotationTest.java
++++ b/src/test/java/spoon/test/annotation/AnnotationTest.java
+@@ -145,31 +145,6 @@ public class AnnotationTest
+ 		assertEquals(3.14159, annot.d(), 0);
+ 		assertEquals(AnnotParamTypeEnum.G, annot.e());
+ 		assertEquals("dd", annot.ia().value());
+-
+-		// tests binary expressions
+-		CtMethod<?> m3 = type.getElements(new NameFilter<CtMethod<?>>("m3")).get(0);
+-
+-		annotations = m3.getAnnotations();
+-		assertEquals(1, annotations.size());
+-
+-		a = annotations.get(0);
+-		annot = (AnnotParamTypes) a.getActualAnnotation();
+-		assertEquals(45, annot.integer());
+-		assertEquals(2, annot.integers().length);
+-		assertEquals(40, annot.integers()[0]);
+-		assertEquals(42*3, annot.integers()[1]);
+-		assertEquals("Hello World!concatenated", annot.string());
+-		assertEquals(2, annot.strings().length);
+-		assertEquals("Helloconcatenated", annot.strings()[0]);
+-		assertEquals("worldconcatenated", annot.strings()[1]);
+-		assertEquals(true, annot.b());
+-		assertEquals(42^1, annot.byt());
+-		assertEquals((short) 42 / 2, annot.s());
+-		assertEquals(43, annot.l());
+-		assertEquals(3.14f * 2f, annot.f(), 0f);
+-		assertEquals(3.14159d / 3d, annot.d(), 0);
+-		assertEquals(AnnotParamTypeEnum.G, annot.e());
+-		assertEquals("dddd", annot.ia().value());
+ 	}
+ 
+ 	@Test
+diff --git a/src/test/java/spoon/test/annotation/testclasses/Main.java b/src/test/java/spoon/test/annotation/testclasses/Main.java
+index dbbe0572..270a11e1 100644
+--- a/src/test/java/spoon/test/annotation/testclasses/Main.java
++++ b/src/test/java/spoon/test/annotation/testclasses/Main.java
+@@ -38,14 +38,6 @@ public class Main {
+ 		e=AnnotParamTypeEnum.G, ia=@InnerAnnot("dd"))
+ 	public void m2() {}
+ 
+-	@AnnotParamTypes(
+-			integer=INTEGER+3, integers={INTEGER-2, INTEGER*3},
+-			string=STRING+"concatenated", strings={STRING1+"concatenated",STRING2+"concatenated"},
+-			clazz=Integer.class, classes={Integer.class, String.class},
+-			b=!BOOLEAN, byt=BYTE^1, c=CHAR|'d', s=SHORT/2, l=LONG+1, f=FLOAT*2f, d=DOUBLE/3d,
+-			e=AnnotParamTypeEnum.G, ia=@InnerAnnot("dd" + "dd"))
+-	public void m3() {}
+-
+ 	@Override
+ 	public String toString()
+ 	{

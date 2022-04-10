@@ -1,0 +1,52 @@
+diff --git a/src/main/java/com/squareup/javawriter/JavaWriter.java b/src/main/java/com/squareup/javawriter/JavaWriter.java
+index 4f18637..6a9d6ae 100644
+--- a/src/main/java/com/squareup/javawriter/JavaWriter.java
++++ b/src/main/java/com/squareup/javawriter/JavaWriter.java
+@@ -528,36 +528,34 @@ public final class JavaWriter implements Closeable {
+         break;
+       case 1:
+         Entry<String, ?> onlyEntry = attributes.entrySet().iterator().next();
++        if ("value".equals(onlyEntry.getKey())) {
+         out.write("(");
+-        if (!"value".equals(onlyEntry.getKey())) {
+-          out.write(onlyEntry.getKey());
+-          out.write(" = ");
++          emitAnnotationValue(onlyEntry.getValue());
++          out.write(")");
++          break;
+         }
+-        emitAnnotationValue(onlyEntry.getValue());
+-        out.write(")");
+-        break;
+       default:
+         boolean split = attributes.size() > MAX_SINGLE_LINE_ATTRIBUTES
+             || containsArray(attributes.values());
+         out.write("(");
+         pushScope(Scope.ANNOTATION_ATTRIBUTE);
+-        String separator = split ? "\n" : "";
++        boolean firstAttribute = true;
+         for (Map.Entry<String, ?> entry : attributes.entrySet()) {
+-          out.write(separator);
+-          separator = split ? ",\n" : ", ";
+-          if (split) {
+-            indent();
++          if (firstAttribute) {
++            firstAttribute = false;
++            out.write("\n");
++          } else {
++            out.write(",\n");
+           }
++          indent();
+           out.write(entry.getKey());
+           out.write(" = ");
+           Object value = entry.getValue();
+           emitAnnotationValue(value);
+         }
+         popScope(Scope.ANNOTATION_ATTRIBUTE);
+-        if (split) {
+           out.write("\n");
+           indent();
+-        }
+         out.write(")");
+         break;
+     }

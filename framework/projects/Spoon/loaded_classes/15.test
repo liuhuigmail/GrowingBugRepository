@@ -1,0 +1,4 @@
+spoon.test.generics.GenericsTest
+spoon.test.generics.testclasses2.LikeCtClass
+spoon.test.generics.testclasses2.LikeCtClassImpl
+spoon.test.main.MainTest

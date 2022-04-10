@@ -1,0 +1,21 @@
+diff --git a/src/main/java/spoon/support/compiler/jdt/JDTTreeBuilder.java b/src/main/java/spoon/support/compiler/jdt/JDTTreeBuilder.java
+index 37f81354..881a9ca0 100644
+--- a/src/main/java/spoon/support/compiler/jdt/JDTTreeBuilder.java
++++ b/src/main/java/spoon/support/compiler/jdt/JDTTreeBuilder.java
+@@ -2563,9 +2563,6 @@ public class JDTTreeBuilder extends ASTVisitor {
+ 					.getOrCreate(
+ 							new String(typeDeclaration.binding.fPackage
+ 									.readableName()));
+-			pack.setDocComment(this.getJavaDoc(typeDeclaration.javadoc, scope.referenceContext));
+-
+-			context.compilationunitdeclaration = scope.referenceContext;
+ 			context.enter(pack, typeDeclaration);
+ 
+ 			// AST bug HACK
+@@ -2643,4 +2640,4 @@ public class JDTTreeBuilder extends ASTVisitor {
+ 		return true;
+ 	}
+ 
+-}
++}
+\ No newline at end of file

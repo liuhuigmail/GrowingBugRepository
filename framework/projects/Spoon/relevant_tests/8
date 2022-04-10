@@ -1,0 +1,6 @@
+spoon.test.annotation.AnnotationTest
+spoon.test.api.APITest
+spoon.test.api.FileSystemFolderTest
+spoon.test.api.NoClasspathTest
+spoon.test.exceptions.ExceptionTest
+spoon.test.support.ResourceTest

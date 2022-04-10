@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/squareup/javawriter/JavaWriter.java b/src/main/java/com/squareup/javawriter/JavaWriter.java
+index 35a4528..01654af 100644
+--- a/src/main/java/com/squareup/javawriter/JavaWriter.java
++++ b/src/main/java/com/squareup/javawriter/JavaWriter.java
+@@ -784,7 +784,7 @@ public class JavaWriter implements Closeable {
+       Scope.NON_ABSTRACT_METHOD, Scope.CONSTRUCTOR, Scope.CONTROL_FLOW, Scope.INITIALIZER);
+ 
+   private void checkInMethod() {
+-    if (!METHOD_SCOPES.contains(scopes.peekFirst())) {
++    if (scopes.peekFirst() != Scope.NON_ABSTRACT_METHOD && scopes.peekFirst() != Scope.CONTROL_FLOW && scopes.peekFirst() != Scope.INITIALIZER) {
+       throw new IllegalArgumentException();
+     }
+   }

@@ -1,0 +1,4 @@
+com.github.davidmoten.rtree.BackpressureTest
+com.github.davidmoten.rtree.ComparatorsTest
+com.github.davidmoten.rtree.FunctionsTest
+com.github.davidmoten.util.TestingUtil

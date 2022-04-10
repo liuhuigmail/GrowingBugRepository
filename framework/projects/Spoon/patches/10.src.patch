@@ -1,0 +1,17 @@
+diff --git a/src/main/java/spoon/support/visitor/SignaturePrinter.java b/src/main/java/spoon/support/visitor/SignaturePrinter.java
+index 167eb4fa..66046c40 100644
+--- a/src/main/java/spoon/support/visitor/SignaturePrinter.java
++++ b/src/main/java/spoon/support/visitor/SignaturePrinter.java
+@@ -253,9 +253,9 @@ public class SignaturePrinter implements CtVisitor {
+ 
+ 	public <T> void visitCtExecutableReference(
+ 			CtExecutableReference<T> reference) {
+-		if (reference.getDeclaringType()!=null) { // null in noclasspath
+-		  write(reference.getDeclaringType().getQualifiedName());
+-		}
++		write(reference.getType().getQualifiedName());
++		write(" ");
++		write(reference.getDeclaringType().getQualifiedName());
+ 		write(CtExecutable.EXECUTABLE_SEPARATOR);
+ 		write(reference.getSimpleName());
+ 		write("(");

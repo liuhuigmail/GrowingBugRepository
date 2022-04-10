@@ -1,0 +1,42 @@
+diff --git a/src/main/java/com/github/davidmoten/rtree/Backpressure.java b/src/main/java/com/github/davidmoten/rtree/Backpressure.java
+index e8b72af..b8c3f75 100644
+--- a/src/main/java/com/github/davidmoten/rtree/Backpressure.java
++++ b/src/main/java/com/github/davidmoten/rtree/Backpressure.java
+@@ -11,9 +11,7 @@ import com.github.davidmoten.util.ImmutableStack;
+  */
+ final class Backpressure {
+ 
+-    private Backpressure() {
+         // prevent instantiation
+-    }
+ 
+     static <T> ImmutableStack<NodePosition<T>> search(
+             final Func1<? super Geometry, Boolean> condition,
+diff --git a/src/main/java/com/github/davidmoten/rtree/Comparators.java b/src/main/java/com/github/davidmoten/rtree/Comparators.java
+index 357eadc..5d564f1 100644
+--- a/src/main/java/com/github/davidmoten/rtree/Comparators.java
++++ b/src/main/java/com/github/davidmoten/rtree/Comparators.java
+@@ -16,9 +16,7 @@ import com.github.davidmoten.rtree.geometry.Rectangle;
+  */
+ public final class Comparators {
+     
+-    private Comparators() {
+         //prevent instantiation
+-    }
+ 
+     public static final Comparator<ListPair<?>> overlapListPairComparator = toComparator(Functions.overlapListPair);
+ 
+diff --git a/src/main/java/com/github/davidmoten/rtree/Functions.java b/src/main/java/com/github/davidmoten/rtree/Functions.java
+index ce881b0..0dfc9b0 100644
+--- a/src/main/java/com/github/davidmoten/rtree/Functions.java
++++ b/src/main/java/com/github/davidmoten/rtree/Functions.java
+@@ -14,9 +14,7 @@ import com.github.davidmoten.rtree.geometry.Rectangle;
+  */
+ public final class Functions {
+ 
+-    private Functions() {
+         // prevent instantiation
+-    }
+ 
+     public static final Func1<ListPair<? extends HasGeometry>, Double> overlapListPair = new Func1<ListPair<? extends HasGeometry>, Double>() {
+ 

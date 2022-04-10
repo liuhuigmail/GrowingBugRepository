@@ -1,0 +1,14 @@
+diff --git a/src/main/java/com/github/davidmoten/rx/operators/OperatorBoundedPriorityQueue.java b/src/main/java/com/github/davidmoten/rx/operators/OperatorBoundedPriorityQueue.java
+index 245c24d..04fd034 100644
+--- a/src/main/java/com/github/davidmoten/rx/operators/OperatorBoundedPriorityQueue.java
++++ b/src/main/java/com/github/davidmoten/rx/operators/OperatorBoundedPriorityQueue.java
+@@ -25,8 +25,7 @@ public final class OperatorBoundedPriorityQueue<T> implements Operator<T, T> {
+ 
+             @Override
+             public void onCompleted() {
+-                while (true) {
+-                    T t = q.poll();
++                for (T t : q) {
+                     if (t == null)
+                         break;
+                     else if (!isUnsubscribed())

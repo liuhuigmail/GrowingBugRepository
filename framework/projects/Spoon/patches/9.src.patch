@@ -1,0 +1,12 @@
+diff --git a/src/main/java/spoon/support/reflect/code/CtStatementImpl.java b/src/main/java/spoon/support/reflect/code/CtStatementImpl.java
+index 351c1676..4d70eae4 100644
+--- a/src/main/java/spoon/support/reflect/code/CtStatementImpl.java
++++ b/src/main/java/spoon/support/reflect/code/CtStatementImpl.java
+@@ -99,7 +99,6 @@ public abstract class CtStatementImpl extends CtCodeElementImpl implements
+                 return;
+ 			} else {
+ 				CtBlock<?> block = target.getFactory().Core().createBlock();
+-				target.setParent(block);
+ 				block.addStatement(stat);
+ 				if (inThen)
+ 					((CtIf) targetParent).setThenStatement(block);

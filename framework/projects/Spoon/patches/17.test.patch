@@ -1,0 +1,66 @@
+diff --git a/src/test/java/spoon/reflect/visitor/CtScannerTest.java b/src/test/java/spoon/reflect/visitor/CtScannerTest.java
+index 1cf17e06..075438e1 100644
+--- a/src/test/java/spoon/reflect/visitor/CtScannerTest.java
++++ b/src/test/java/spoon/reflect/visitor/CtScannerTest.java
+@@ -248,9 +248,9 @@ public class CtScannerTest {
+ 		// interesting, this is never called because of covariance, only CtElement or Collection is called
+ 		assertEquals(0, counter.nObject);
+ 		// this is a coarse-grain check to see if the scanner changes
+-		assertEquals(3972, counter.nElement);
+-		assertEquals(2599, counter.nEnter);
+-		assertEquals(2599, counter.nExit);
++		assertEquals(3968, counter.nElement);
++		assertEquals(2595, counter.nEnter);
++		assertEquals(2595, counter.nExit);
+ 
+ 	}
+ }
+diff --git a/src/test/java/spoon/test/reference/VariableAccessTest.java b/src/test/java/spoon/test/reference/VariableAccessTest.java
+index 709abc33..bcab61c2 100644
+--- a/src/test/java/spoon/test/reference/VariableAccessTest.java
++++ b/src/test/java/spoon/test/reference/VariableAccessTest.java
+@@ -3,10 +3,8 @@ package spoon.test.reference;
+ import org.junit.Test;
+ import spoon.Launcher;
+ import spoon.reflect.code.CtArrayWrite;
+-import spoon.reflect.code.CtInvocation;
+ import spoon.reflect.code.CtLiteral;
+ import spoon.reflect.code.CtLocalVariable;
+-import spoon.reflect.code.CtSuperAccess;
+ import spoon.reflect.code.CtVariableAccess;
+ import spoon.reflect.declaration.CtClass;
+ import spoon.reflect.declaration.CtExecutable;
+@@ -254,15 +252,4 @@ public class VariableAccessTest {
+ 			}
+ 		}).get(0);
+ 	}
+-	
+-	@Test
+-	public void testSuperAccess() throws Exception {
+-		// contract: the type of "super" variable is set and correct		
+-		CtClass<?> type = build("spoon.test.reference.testclasses", "SuperAccess");
+-		CtMethod<?> method = type.getMethodsByName("method").get(0);
+-		CtInvocation<?> invocation = method.getBody().getStatement(0);
+-		CtSuperAccess<?> superAccess = (CtSuperAccess<?>) invocation.getTarget();
+-		assertNotNull(superAccess.getType());
+-		assertEquals("spoon.test.reference.testclasses.Parent", superAccess.getType().getQualifiedName());
+-	}
+ }
+diff --git a/src/test/java/spoon/test/reference/testclasses/SuperAccess.java b/src/test/java/spoon/test/reference/testclasses/SuperAccess.java
+deleted file mode 100644
+index 27316a50..00000000
+--- a/src/test/java/spoon/test/reference/testclasses/SuperAccess.java
++++ /dev/null
+@@ -1,12 +0,0 @@
+-package spoon.test.reference.testclasses;
+-
+-public class SuperAccess  extends Parent {
+-	@Override
+-	void method() {
+-		super.method();
+-	}
+-}
+-
+-class Parent {
+-	void method() {}
+-}

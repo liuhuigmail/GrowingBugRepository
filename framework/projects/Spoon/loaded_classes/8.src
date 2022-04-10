@@ -1,0 +1,6 @@
+spoon.compiler.SpoonFile
+spoon.compiler.SpoonFolder
+spoon.compiler.SpoonResource
+spoon.compiler.SpoonResourceHelper
+spoon.SpoonException
+spoon.support.compiler.FileSystemFolder

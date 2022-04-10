@@ -1,0 +1,5 @@
+spoon.test.annotation.AnnotationTest
+spoon.test.annotation.testclasses.AnnotParamTypeEnum
+spoon.test.annotation.testclasses.AnnotParamTypes
+spoon.test.annotation.testclasses.InnerAnnot
+spoon.test.annotation.testclasses.Main

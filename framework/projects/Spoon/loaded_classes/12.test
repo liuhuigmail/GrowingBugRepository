@@ -1,0 +1,4 @@
+spoon.test.annotation.AnnotationTest
+spoon.test.annotation.AnnotationValuesTest
+spoon.test.template.TemplateArrayAccessTest
+spoon.test.template.testclasses.SubstituteArrayAccessTemplate

@@ -1,0 +1,28 @@
+diff --git a/src/test/java/com/squareup/javawriter/JavaWriterTest.java b/src/test/java/com/squareup/javawriter/JavaWriterTest.java
+index 09228eb..06eb75d 100644
+--- a/src/test/java/com/squareup/javawriter/JavaWriterTest.java
++++ b/src/test/java/com/squareup/javawriter/JavaWriterTest.java
+@@ -162,23 +162,6 @@ public final class JavaWriterTest {
+         + "}\n");
+   }
+ 
+-  @Test public void simpleConstructor() throws IOException {
+-    javaWriter.emitPackage("com.squareup");
+-    javaWriter.beginType("com.squareup.Foo", "class");
+-    javaWriter.beginConstructor(EnumSet.of(PUBLIC), "java.lang.String", "s");
+-    javaWriter.emitStatement("if (%s == null) throw new NullPointerException()", "s");
+-    javaWriter.endConstructor();
+-    javaWriter.endType();
+-    assertCode(""
+-        + "package com.squareup;\n"
+-        + "\n"
+-        + "class Foo {\n"
+-        + "  public Foo(String s) {\n"
+-        + "    if (s == null) throw new NullPointerException();\n"
+-        + "  }\n"
+-        + "}\n");
+-  }
+-
+   @Test public void constructorDeclarationInNestedTypes() throws IOException {
+     javaWriter.emitPackage("com.squareup");
+     javaWriter.beginType("com.squareup.Foo", "class");

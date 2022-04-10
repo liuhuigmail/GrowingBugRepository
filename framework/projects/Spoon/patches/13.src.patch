@@ -1,0 +1,59 @@
+diff --git a/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java b/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java
+index 083cf30e..40e23ced 100644
+--- a/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java
++++ b/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java
+@@ -1750,15 +1750,11 @@ public class DefaultJavaPrettyPrinter implements CtVisitor, PrettyPrinter {
+ 
+ 		// we need to compute imports only for annotations
+ 		// we don't want to get all imports coming from content of package
+-		for (CtAnnotation annotation : pack.getAnnotations()) {
+-			this.importsContext.computeImports(annotation);
+-		}
+ 		elementPrinterHelper.writeAnnotations(pack);
+ 
+ 		if (!pack.isUnnamedPackage()) {
+ 			elementPrinterHelper.writePackageLine(pack.getQualifiedName());
+ 		}
+-		elementPrinterHelper.writeImports(this.importsContext.getAllImports());
+ 		return printer.getPrinterHelper().toString();
+ 	}
+ 
+diff --git a/src/main/java/spoon/reflect/visitor/ElementPrinterHelper.java b/src/main/java/spoon/reflect/visitor/ElementPrinterHelper.java
+index e4b4ca81..b11a863c 100644
+--- a/src/main/java/spoon/reflect/visitor/ElementPrinterHelper.java
++++ b/src/main/java/spoon/reflect/visitor/ElementPrinterHelper.java
+@@ -275,16 +275,12 @@ public class ElementPrinterHelper {
+ 		boolean isFirst = true;
+ 		for (String importLine : sortedImports) {
+ 			if (isFirst) {
+-				printer.writeln();
+-				printer.writeln();
+-				isFirst = false;
+ 			}
+ 			printer.writeKeyword("import").writeSpace();
+ 			writeQualifiedName(importLine).writeSeparator(";").writeln();
+ 		}
+ 		if (setStaticImports.size() > 0) {
+ 			if (isFirst) {
+-				printer.writeln();
+ 			}
+ 			printer.writeln();
+ 			List<String> sortedStaticImports = new ArrayList<>(setStaticImports);
+@@ -308,15 +304,15 @@ public class ElementPrinterHelper {
+ 			if (!types.get(0).getPackage().isUnnamedPackage()) {
+ 				writePackageLine(types.get(0).getPackage().getQualifiedName());
+ 			}
++			printer.writeln().writeln();
+ 			this.writeImports(imports);
+ 			printer.writeln();
+-			printer.writeln();
+ 		}
+ 	}
+ 
+ 	public void writePackageLine(String packageQualifiedName) {
+ 		printer.writeKeyword("package").writeSpace();
+-		writeQualifiedName(packageQualifiedName).writeSeparator(";").writeln();
++		writeQualifiedName(packageQualifiedName).writeSeparator(";");
+ 	}
+ 
+ 	private String removeInnerTypeSeparator(String fqn) {

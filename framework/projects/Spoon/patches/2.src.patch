@@ -1,0 +1,50 @@
+diff --git a/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java b/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java
+index 415b61cc..b29b0a93 100644
+--- a/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java
++++ b/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java
+@@ -427,6 +427,27 @@ public class DefaultJavaPrettyPrinter implements CtVisitor, PrettyPrinter {
+ 		return this;
+ 	}
+ 
++	private boolean isHiddenByField(CtType<?> container, CtTypeReference<?> type) {
++		if (container == null) {
++			return false;
++		}
++		// TODO: Deal with anonymous class better
++		if ((container.getSimpleName() == null)
++				|| container.getSimpleName().equals("")) {
++			return false;
++		}
++		// TODO: Deal with internal class better
++		if (container.getQualifiedName().contains("$")) {
++			return false;
++		}
++		// TODO: this is really bad to need reflection to do this...
++		for (CtFieldReference<?> f : container.getReference().getAllFields()) {
++			if (f.getSimpleName().equals(type.getSimpleName())) {
++				return true;
++			}
++		}
++		return false;
++	}
+ 	private boolean isWhite(char c) {
+ 		return (c == ' ') || (c == '\t') || (c == '\n') || (c == '\r');
+ 	}
+@@ -1326,7 +1347,9 @@ public class DefaultJavaPrettyPrinter implements CtVisitor, PrettyPrinter {
+ 				try {
+ 					CtTypeReference<?> type = invocation.getExecutable()
+ 							.getDeclaringType();
+-					if (env.isAutoImports()) {
++					if (env.isAutoImports()
++							&& isHiddenByField(
++									invocation.getParent(CtType.class), type)) {
+ 						importsContext.imports.remove(type.getSimpleName());
+ 					}
+ 					context.ignoreGenerics = true;
+@@ -2210,4 +2233,4 @@ public class DefaultJavaPrettyPrinter implements CtVisitor, PrettyPrinter {
+ 	public Printingcontext getContext() {
+ 		return context;
+ 	}
+-}
+\ No newline at end of file
++}

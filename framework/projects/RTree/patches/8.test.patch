@@ -1,0 +1,132 @@
+diff --git a/src/test/java/com/github/davidmoten/rtree/BackpressureTest.java b/src/test/java/com/github/davidmoten/rtree/BackpressureTest.java
+index 4b38497..c797a8d 100644
+--- a/src/test/java/com/github/davidmoten/rtree/BackpressureTest.java
++++ b/src/test/java/com/github/davidmoten/rtree/BackpressureTest.java
+@@ -18,15 +18,9 @@ import rx.functions.Func1;
+ 
+ import com.github.davidmoten.rtree.geometry.Geometry;
+ import com.github.davidmoten.util.ImmutableStack;
+-import com.github.davidmoten.util.TestingUtil;
+ 
+ public class BackpressureTest {
+ 
+-    @Test
+-    public void testConstructorIsPrivate() {
+-        TestingUtil.callConstructorAndCheckIsPrivate(Backpressure.class);
+-    }
+-
+     @SuppressWarnings("unchecked")
+     @Test
+     public void testBackpressureSearch() {
+diff --git a/src/test/java/com/github/davidmoten/rtree/ComparatorsTest.java b/src/test/java/com/github/davidmoten/rtree/ComparatorsTest.java
+deleted file mode 100644
+index 4a0f1e6..0000000
+--- a/src/test/java/com/github/davidmoten/rtree/ComparatorsTest.java
++++ /dev/null
+@@ -1,14 +0,0 @@
+-package com.github.davidmoten.rtree;
+-
+-import org.junit.Test;
+-
+-import com.github.davidmoten.util.TestingUtil;
+-
+-public class ComparatorsTest {
+-
+-    @Test
+-    public void  testConstructorIsPrivate() {
+-        TestingUtil.callConstructorAndCheckIsPrivate(Comparators.class);
+-    }
+-    
+-}
+diff --git a/src/test/java/com/github/davidmoten/rtree/FunctionsTest.java b/src/test/java/com/github/davidmoten/rtree/FunctionsTest.java
+deleted file mode 100644
+index e3e8ebd..0000000
+--- a/src/test/java/com/github/davidmoten/rtree/FunctionsTest.java
++++ /dev/null
+@@ -1,13 +0,0 @@
+-package com.github.davidmoten.rtree;
+-
+-import org.junit.Test;
+-
+-import com.github.davidmoten.util.TestingUtil;
+-
+-public class FunctionsTest {
+-
+-    @Test
+-    public void testConstructorIsPrivate() {
+-        TestingUtil.callConstructorAndCheckIsPrivate(Functions.class);
+-    }
+-}
+diff --git a/src/test/java/com/github/davidmoten/rtree/UtilTest.java b/src/test/java/com/github/davidmoten/rtree/UtilTest.java
+index a8f1fab..a0ae028 100644
+--- a/src/test/java/com/github/davidmoten/rtree/UtilTest.java
++++ b/src/test/java/com/github/davidmoten/rtree/UtilTest.java
+@@ -2,13 +2,11 @@ package com.github.davidmoten.rtree;
+ 
+ import org.junit.Test;
+ 
+-import com.github.davidmoten.util.TestingUtil;
+-
+ public class UtilTest {
+ 
+     @Test
+     public void coverPrivateConstructor() {
+-        TestingUtil.callConstructorAndCheckIsPrivate(Util.class);
++        Util.instantiateForTestCoveragePurposesOnly();
+     }
+ 
+ }
+diff --git a/src/test/java/com/github/davidmoten/util/TestingUtil.java b/src/test/java/com/github/davidmoten/util/TestingUtil.java
+deleted file mode 100644
+index cad67b9..0000000
+--- a/src/test/java/com/github/davidmoten/util/TestingUtil.java
++++ /dev/null
+@@ -1,47 +0,0 @@
+-package com.github.davidmoten.util;
+-
+-import static org.junit.Assert.assertTrue;
+-
+-import java.lang.reflect.Constructor;
+-import java.lang.reflect.InvocationTargetException;
+-import java.lang.reflect.Modifier;
+-
+-/**
+- * Utility methods for unit tests.
+- * 
+- * @author dave
+- * 
+- */
+-public class TestingUtil {
+-
+-    /**
+-     * Checks that a class has a no-argument private constructor and calls that
+-     * constructor to instantiate the class.
+-     * 
+-     * @param cls
+-     */
+-    public static <T> void callConstructorAndCheckIsPrivate(Class<T> cls) {
+-        Constructor<T> constructor;
+-        try {
+-            constructor = cls.getDeclaredConstructor();
+-        } catch (NoSuchMethodException e1) {
+-            throw new RuntimeException(e1);
+-        } catch (SecurityException e1) {
+-            throw new RuntimeException(e1);
+-        }
+-        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+-        constructor.setAccessible(true);
+-        try {
+-            constructor.newInstance();
+-        } catch (InstantiationException e) {
+-            throw new RuntimeException(e);
+-        } catch (IllegalAccessException e) {
+-            throw new RuntimeException(e);
+-        } catch (IllegalArgumentException e) {
+-            throw new RuntimeException(e);
+-        } catch (InvocationTargetException e) {
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-}
+\ No newline at end of file
