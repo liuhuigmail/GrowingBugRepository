@@ -1,5 +1,5 @@
-# Contents of growingBugs(newly mined)
-To date, growingBugs contains **`551`** newly mined bugs from open-source Java projects. 
+# Unique Bugs in growingBugs
+To date, growingBugs contains **`551`** unique bugs from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
