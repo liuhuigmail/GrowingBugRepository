@@ -5,7 +5,7 @@ Notably, each bug is composed of a buggy version, a fixed version, a ***concise 
 # Contents of growingBugs
 To date, growingBugs contains **`1457`** bugs from open-source Java projects. 
 
-|   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
+|   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
 | 1     | Chart           | jfreechart                 |                           |       26       | 1-26                |
 | 2     | Cli             | commons-cli                |                           |       41       | 1-5,7-42            |
@@ -198,7 +198,7 @@ To date, growingBugs contains **`1457`** bugs from open-source Java projects.
 
 # Using GrowingBugs
 1. Checkout a buggy source code version (If the project doesn't hava subproject, `-s` parameter can be ignored):
-    - `defects4j checkout -p project_id -v version_id -w work_dir -s subproject_name` 
+    - `defects4j checkout -p project_id -v version_id -w work_dir -s subproject_locator` 
     
     Example:
   
