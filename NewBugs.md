@@ -1,5 +1,5 @@
 # Unique Bugs in growingBugs
-To date, growingBugs contains **`551`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`656`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -9,7 +9,7 @@ To date, growingBugs contains **`551`** unique bugs that are not included in Def
 | 4     | Compress        | commons-compress           |                           |       4      | 48,50,52-53       |
 | 5     | Csv             | commons-csv                |                           |       1      | 17                |
 | 6     | JacksonCore     | jackson-core               |                           |       4      | 28-31                |
-| 7     | JacksonDatabind | jackson-databind          |                          |       19     | 113-117,119,121-126,</br>128-129,131-133,135-156               |
+| 7     | JacksonDatabind | jackson-databind          |                          |       39     | 113-117,119,121-126,</br>128-129,131-133,135-156               |
 | 8     | Lang            | commons-lang              |                          |       9       |69,71,73,</br>76,80-84              |
 | 9     | Dbutils         | commons-dbutils           |                          |        2       | 1-2                 |
 | 10     | Functor         | commons-functor           |                          |        2       | 1-2                 |
@@ -154,3 +154,11 @@ To date, growingBugs contains **`551`** unique bugs that are not included in Def
 | 149     | Sdk_core            | sdk-core               |                   |      3       | 1-3               |
 | 150     | Cargo_container            | cargo-container               |          core/api/container         |      4       | 1-4               |
 | 151     | Oak_commons            | oak-commons               |          oak-commons         |      1       | 1               |
+| 152     | Streamex            | streamex               |                   |      7       | 1-7               |
+| 153     | Javapoet            | javapoet               |                   |      17       | 1-17               |
+| 154     | RTree            | rtree               |                   |      12       | 1-12               |
+| 155     | Spoon            | spoon               |                   |      17       | 1-17               |
+| 156     | Canvas_api            | canvas-api               |                 |      1       | 1               |
+| 157     | Coveralls_maven_plugin            | coveralls-maven-plugin               |                  |      6       | 1-6               |
+| 158     | Slack_java_webhook            | slack-java-webhook               |                 |      1       | 1               |
+| 159     | Zip4j            | zip4j               |                  |      26       | 1-26               |
