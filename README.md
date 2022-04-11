@@ -209,7 +209,7 @@ To date, growingBugs contains **`1457`** bugs from open-source Java projects.
 
 2. Change to the working directory, compile sources and tests, and run tests:
 
-   - `cd work_dir/subproject_name`
+   - `cd work_dir/subproject_locator`
    - `defects4j compile`
    - `defects4j test`
    
