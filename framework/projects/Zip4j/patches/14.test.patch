@@ -1,0 +1,27 @@
+diff --git a/src/test/java/net/lingala/zip4j/ZipFileTest.java b/src/test/java/net/lingala/zip4j/ZipFileTest.java
+index 8cea3bd..8aa785f 100644
+--- a/src/test/java/net/lingala/zip4j/ZipFileTest.java
++++ b/src/test/java/net/lingala/zip4j/ZipFileTest.java
+@@ -34,22 +34,6 @@ public class ZipFileTest {
+     zipFile = new ZipFile(sourceZipFile);
+   }
+ 
+-  @Test
+-  public void testZipFileConstructorThrowsIllegalArgumentExceptionWhenFileParameterIsNull() {
+-    expectedException.expect(IllegalArgumentException.class);
+-    expectedException.expectMessage("input zip file parameter is null");
+-
+-    new ZipFile((File) null);
+-  }
+-
+-  @Test
+-  public void testZipFileConstructorWithPasswordThrowsIllegalArgumentExceptionWhenFileParameterIsNull() {
+-    expectedException.expect(IllegalArgumentException.class);
+-    expectedException.expectMessage("input zip file parameter is null");
+-
+-    new ZipFile((File) null, "password".toCharArray());
+-  }
+-
+   @Test
+   public void testCreateZipFileThrowsExceptionWhenZipFileExists() throws ZipException {
+     reset(sourceZipFile);

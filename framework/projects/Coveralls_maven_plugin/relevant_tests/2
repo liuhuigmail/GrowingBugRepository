@@ -1,0 +1,5 @@
+org.eluder.coveralls.maven.plugin.cobertura.CoberturaMojoTest
+org.eluder.coveralls.maven.plugin.domain.JobTest
+org.eluder.coveralls.maven.plugin.jacoco.JaCoCoMojoTest
+org.eluder.coveralls.maven.plugin.logging.JobLoggerTest
+org.eluder.coveralls.maven.plugin.validation.JobValidatorTest

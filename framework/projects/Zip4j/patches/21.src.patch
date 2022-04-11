@@ -1,0 +1,16 @@
+diff --git a/src/main/java/net/lingala/zip4j/io/inputstream/AesCipherInputStream.java b/src/main/java/net/lingala/zip4j/io/inputstream/AesCipherInputStream.java
+index 066980e..a3cb2ef 100644
+--- a/src/main/java/net/lingala/zip4j/io/inputstream/AesCipherInputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/inputstream/AesCipherInputStream.java
+@@ -158,11 +158,7 @@ class AesCipherInputStream extends CipherInputStream<AESDecrypter> {
+     }
+ 
+     AESExtraDataRecord aesExtraDataRecord = localFileHeader.getAesExtraDataRecord();
+-
+-    if (aesExtraDataRecord.getAesKeyStrength() == null) {
+-      throw new IOException("Invalid aes key strength in aes extra data record");
+-    }
+ 
+     byte[] saltBytes = new byte[aesExtraDataRecord.getAesKeyStrength().getSaltLength()];
+     readRaw(saltBytes);
+     return saltBytes;

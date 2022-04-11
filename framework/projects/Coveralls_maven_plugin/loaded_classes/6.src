@@ -1,0 +1,3 @@
+org.eluder.coveralls.maven.plugin.service.AbstractServiceSetup
+org.eluder.coveralls.maven.plugin.service.ServiceSetup
+org.eluder.coveralls.maven.plugin.service.Wercker

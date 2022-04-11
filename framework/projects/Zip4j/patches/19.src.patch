@@ -1,0 +1,20 @@
+diff --git a/src/main/java/net/lingala/zip4j/tasks/ExtractFileTask.java b/src/main/java/net/lingala/zip4j/tasks/ExtractFileTask.java
+index ccdb420..661a686 100644
+--- a/src/main/java/net/lingala/zip4j/tasks/ExtractFileTask.java
++++ b/src/main/java/net/lingala/zip4j/tasks/ExtractFileTask.java
+@@ -39,7 +39,6 @@ public class ExtractFileTask extends AbstractExtractFileTask<ExtractFileTaskPara
+       List<FileHeader> fileHeadersUnderDirectory = getFileHeadersToExtract(taskParameters.fileHeader);
+       byte[] readBuff = new byte[taskParameters.zip4jConfig.getBufferSize()];
+       for (FileHeader fileHeader : fileHeadersUnderDirectory) {
+-        splitInputStream.prepareExtractionForFileHeader(fileHeader);
+         String newFileName = determineNewFileName(taskParameters.newFileName, taskParameters.fileHeader, fileHeader);
+         extractFile(zipInputStream, fileHeader, taskParameters.outputPath, newFileName, progressMonitor, readBuff);
+       }
+@@ -67,6 +66,7 @@ public class ExtractFileTask extends AbstractExtractFileTask<ExtractFileTaskPara
+ 
+   private ZipInputStream createZipInputStream(FileHeader fileHeader, Zip4jConfig zip4jConfig) throws IOException {
+     splitInputStream = UnzipUtil.createSplitInputStream(getZipModel());
++    splitInputStream.prepareExtractionForFileHeader(fileHeader);
+     return new ZipInputStream(splitInputStream, password, zip4jConfig);
+   }
+ 

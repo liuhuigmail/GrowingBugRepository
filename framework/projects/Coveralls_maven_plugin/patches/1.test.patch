@@ -1,0 +1,43 @@
+diff --git a/src/test/java/org/eluder/coveralls/maven/plugin/logging/DryRunLoggerTest.java b/src/test/java/org/eluder/coveralls/maven/plugin/logging/DryRunLoggerTest.java
+index d4e5c2a..60d7f4e 100644
+--- a/src/test/java/org/eluder/coveralls/maven/plugin/logging/DryRunLoggerTest.java
++++ b/src/test/java/org/eluder/coveralls/maven/plugin/logging/DryRunLoggerTest.java
+@@ -47,7 +47,7 @@ public class DryRunLoggerTest {
+         
+         new DryRunLogger(true, coverallsFileMock).log(logMock);
+         
+-        verify(logMock).info("Dry run enabled, Coveralls report will NOT be submitted to API");
++        verify(logMock).info("Dry run enabled, Coveralls report will not be submitted to API");
+         verify(logMock).info("1024 bytes of data was recorded in /target/coveralls.json");
+     }
+ }
+diff --git a/src/test/java/org/eluder/coveralls/maven/plugin/logging/JobLoggerTest.java b/src/test/java/org/eluder/coveralls/maven/plugin/logging/JobLoggerTest.java
+index 296c6ec..4c0e55c 100644
+--- a/src/test/java/org/eluder/coveralls/maven/plugin/logging/JobLoggerTest.java
++++ b/src/test/java/org/eluder/coveralls/maven/plugin/logging/JobLoggerTest.java
+@@ -66,24 +66,13 @@ public class JobLoggerTest {
+         when(jobMock.getServiceName()).thenReturn("service");
+         when(jobMock.getServiceJobId()).thenReturn("666");
+         when(jobMock.getRepoToken()).thenReturn("123456789");
+-        when(jobMock.isDryRun()).thenReturn(true);
+         when(jobMock.getGit()).thenReturn(git);
+         
+         new JobLogger(jobMock).log(logMock);
+         
+-        verify(logMock).info("Starting Coveralls job for service (666) in dry run mode");
++        verify(logMock).info("Starting Coveralls job for service (666)");
+         verify(logMock).info("Using repository token <secret>");
+         verify(logMock).info("Git commit ab679cf in master");
+         verifyNoMoreInteractions(logMock);
+     }
+-    
+-    @Test
+-    public void testLogDryRun() {
+-        when(jobMock.isDryRun()).thenReturn(true);
+-        
+-        new JobLogger(jobMock).log(logMock);
+-        
+-        verify(logMock).info("Starting Coveralls job in dry run mode");
+-        verifyNoMoreInteractions(logMock);        
+-    }
+ }

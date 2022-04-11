@@ -1,0 +1,26 @@
+diff --git a/src/test/java/net/lingala/zip4j/AddFilesToZipIT.java b/src/test/java/net/lingala/zip4j/AddFilesToZipIT.java
+index 38b9f0a..067afa3 100644
+--- a/src/test/java/net/lingala/zip4j/AddFilesToZipIT.java
++++ b/src/test/java/net/lingala/zip4j/AddFilesToZipIT.java
+@@ -163,21 +163,6 @@ public class AddFilesToZipIT extends AbstractIT {
+         null, null);
+   }
+ 
+-  @Test
+-  public void testAddFileWithDifferentFileNameSetsTheNewFileName() throws IOException {
+-    ZipFile zipFile = new ZipFile(generatedZipFile);
+-    ZipParameters zipParameters = new ZipParameters();
+-    zipParameters.setFileNameInZip("/data/newfile.txt");
+-
+-    zipFile.addFile(TestUtils.getTestFileFromResources("sample_text_large.txt"), zipParameters);
+-
+-    zipFile = new ZipFile(generatedZipFile);
+-    assertThat(zipFile.getFileHeaders()).hasSize(1);
+-    assertThat(zipFile.getFileHeader("/data/newfile.txt")).isNotNull();
+-    assertThat(zipFile.getFileHeader("sample_text_large.txt")).isNull();
+-    zipFile.extractAll(outputFolder.getPath());
+-  }
+-
+   @Test
+   public void testAddFileRemovesExistingFileWithAesEncryption() throws IOException {
+     ZipParameters zipParameters = createZipParameters(EncryptionMethod.AES, AesKeyStrength.KEY_STRENGTH_256);

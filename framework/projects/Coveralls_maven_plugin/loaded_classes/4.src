@@ -1,0 +1,4 @@
+org.eluder.coveralls.maven.plugin.domain.CoverallsResponse
+org.eluder.coveralls.maven.plugin.domain.JsonObject
+org.eluder.coveralls.maven.plugin.httpclient.CoverallsClient
+org.eluder.coveralls.maven.plugin.ProcessingException

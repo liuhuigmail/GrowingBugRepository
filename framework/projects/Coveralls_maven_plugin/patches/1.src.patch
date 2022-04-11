@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/eluder/coveralls/maven/plugin/logging/DryRunLogger.java b/src/main/java/org/eluder/coveralls/maven/plugin/logging/DryRunLogger.java
+index b712f70..3516d5e 100644
+--- a/src/main/java/org/eluder/coveralls/maven/plugin/logging/DryRunLogger.java
++++ b/src/main/java/org/eluder/coveralls/maven/plugin/logging/DryRunLogger.java
+@@ -25,7 +25,7 @@ public class DryRunLogger implements Logger {
+     @Override
+     public void log(final Log log) {
+         if (dryRun) {
+-            log.info("Dry run enabled, Coveralls report will NOT be submitted to API");
++            log.info("Dry run enabled, Coveralls report will not be submitted to API");
+             log.info(coverallsFile.length() + " bytes of data was recorded in " + coverallsFile.getAbsolutePath());
+         }
+     }
+diff --git a/src/main/java/org/eluder/coveralls/maven/plugin/logging/JobLogger.java b/src/main/java/org/eluder/coveralls/maven/plugin/logging/JobLogger.java
+index f23ffab..5eb922b 100644
+--- a/src/main/java/org/eluder/coveralls/maven/plugin/logging/JobLogger.java
++++ b/src/main/java/org/eluder/coveralls/maven/plugin/logging/JobLogger.java
+@@ -54,9 +54,6 @@ public class JobLogger implements Logger {
+                 starting += " (" + job.getServiceJobId() + ")";
+             }
+         }
+-        if (job.isDryRun()) {
+-            starting += " in dry run mode";
+-        }
+         log.info(starting);
+         
+         if (job.getRepoToken() != null) {

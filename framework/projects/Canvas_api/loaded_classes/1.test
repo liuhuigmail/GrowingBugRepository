@@ -1,0 +1,3 @@
+edu.ksu.canvas.LocalServerTestBase
+edu.ksu.canvas.net.SimpleRestClientUTest
+edu.ksu.canvas.util.JsonTestUtil

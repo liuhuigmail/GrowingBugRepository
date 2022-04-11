@@ -1,0 +1,32 @@
+diff --git a/src/test/java/in/ashwanthkumar/slack/webhook/SlackTest.java b/src/test/java/in/ashwanthkumar/slack/webhook/SlackTest.java
+index 704571c..387c219 100644
+--- a/src/test/java/in/ashwanthkumar/slack/webhook/SlackTest.java
++++ b/src/test/java/in/ashwanthkumar/slack/webhook/SlackTest.java
+@@ -40,26 +40,4 @@ public class SlackTest {
+         new Slack(null);
+     }
+ 
+-    @Test
+-    public void shouldAddColonToIconName() throws IOException {
+-        Slack slack = new Slack("mockUrl", slackService);
+-        slack.icon("ghost");
+-        ArgumentCaptor<String> iconCaptor = ArgumentCaptor.forClass(String.class);
+-        SlackMessage message = new SlackMessage("hello");
+-        doNothing().when(slackService).push(anyString(), eq(message), anyString(), iconCaptor.capture(), anyString(), anyString());
+-        slack.sendToChannel("test-channel").push(message);
+-        assertThat(iconCaptor.getValue(), is(":ghost:"));
+-    }
+-
+-    @Test
+-    public void shouldNotAddColonToIconNameIfAlreadyExists() throws IOException {
+-        Slack slack = new Slack("mockUrl", slackService);
+-        slack.icon(":ghost:");
+-        ArgumentCaptor<String> iconCaptor = ArgumentCaptor.forClass(String.class);
+-        SlackMessage message = new SlackMessage("hello");
+-        doNothing().when(slackService).push(anyString(), eq(message), anyString(), iconCaptor.capture(), anyString(), anyString());
+-        slack.sendToChannel("test-channel").push(message);
+-        assertThat(iconCaptor.getValue(), is(":ghost:"));
+-    }
+-
+ }
+\ No newline at end of file

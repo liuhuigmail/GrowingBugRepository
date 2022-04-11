@@ -1,0 +1,17 @@
+diff --git a/src/main/java/net/lingala/zip4j/headers/FileHeaderFactory.java b/src/main/java/net/lingala/zip4j/headers/FileHeaderFactory.java
+index 7da21f1..c4837d1 100644
+--- a/src/main/java/net/lingala/zip4j/headers/FileHeaderFactory.java
++++ b/src/main/java/net/lingala/zip4j/headers/FileHeaderFactory.java
+@@ -58,12 +58,8 @@ public class FileHeaderFactory {
+     //For files added by this library, this attribute will be set after closeEntry is done
+     fileHeader.setExternalFileAttributes(new byte[4]);
+     fileHeader.setDirectory(isZipEntryDirectory(fileName));
+ 
+-    if (zipParameters.isWriteExtendedLocalFileHeader() && zipParameters.getEntrySize() == -1) {
+-      fileHeader.setUncompressedSize(0);
+-    } else {
+       fileHeader.setUncompressedSize(zipParameters.getEntrySize());
+-    }
+ 
+     if (zipParameters.isEncryptFiles() && zipParameters.getEncryptionMethod() == EncryptionMethod.ZIP_STANDARD) {
+       fileHeader.setCrc(zipParameters.getEntryCRC());

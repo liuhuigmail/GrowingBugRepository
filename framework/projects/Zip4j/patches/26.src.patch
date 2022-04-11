@@ -1,0 +1,15 @@
+diff --git a/src/main/java/net/lingala/zip4j/io/inputstream/ZipEntryInputStream.java b/src/main/java/net/lingala/zip4j/io/inputstream/ZipEntryInputStream.java
+index 68d032a..9d92593 100644
+--- a/src/main/java/net/lingala/zip4j/io/inputstream/ZipEntryInputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/inputstream/ZipEntryInputStream.java
+@@ -58,10 +58,7 @@ class ZipEntryInputStream extends InputStream {
+ 
+     int readLen = inputStream.read(b);
+ 
+-    if (readLen == -1) {
+-      throw new IOException("Unexpected EOF reached when trying to read stream");
+-    }
+ 
+     if (readLen != b.length) {
+       readLen = readUntilBufferIsFull(b, readLen);
+ 

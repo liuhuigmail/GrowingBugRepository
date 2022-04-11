@@ -1,0 +1,22 @@
+diff --git a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+index 63292ee..466cc42 100755
+--- a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
++++ b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+@@ -193,7 +193,7 @@ public class HeaderReader {
+         String fileName = decodeStringWithCharset(fileNameBuff, fileHeader.isFileNameUTF8Encoded(), charset);
+         fileHeader.setFileName(fileName);
+       } else {
+-        throw new ZipException("Invalid entry name in file header");
++        fileHeader.setFileName(null);
+       }
+ 
+       fileHeader.setDirectory(isDirectory(fileHeader.getExternalFileAttributes(), fileHeader.getFileName()));
+@@ -558,7 +558,7 @@ public class HeaderReader {
+       localFileHeader.setFileName(fileName);
+       localFileHeader.setDirectory(fileName.endsWith("/") || fileName.endsWith("\\"));
+     } else {
+-      throw new ZipException("Invalid entry name in local file header");
++      localFileHeader.setFileName(null);
+     }
+ 
+     readExtraDataRecords(inputStream, localFileHeader);

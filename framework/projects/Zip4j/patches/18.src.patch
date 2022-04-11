@@ -1,0 +1,27 @@
+diff --git a/src/main/java/net/lingala/zip4j/ZipFile.java b/src/main/java/net/lingala/zip4j/ZipFile.java
+index eb2b518..c19b0b1 100755
+--- a/src/main/java/net/lingala/zip4j/ZipFile.java
++++ b/src/main/java/net/lingala/zip4j/ZipFile.java
+@@ -99,6 +99,7 @@ public class ZipFile implements Closeable {
+   private ExecutorService executorService;
+   private int bufferSize = InternalZipConstants.BUFF_SIZE;
+   private List<InputStream> openInputStreams = new ArrayList<>();
++  private boolean zipFileClosed = false;
+ 
+   /**
+    * Creates a new ZipFile instance with the zip file at the location specified in zipFile.
+@@ -1078,10 +1079,14 @@ public class ZipFile implements Closeable {
+    */
+   @Override
+   public void close() throws IOException {
++    if (zipFileClosed) {
++      return;
++    }
+     for (InputStream inputStream : openInputStreams) {
+       inputStream.close();
+     }
+     openInputStreams.clear();
++    zipFileClosed = true;
+   }
+ 
+   /**

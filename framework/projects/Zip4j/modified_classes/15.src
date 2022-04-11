@@ -1,0 +1,2 @@
+net.lingala.zip4j.headers.HeaderReader
+net.lingala.zip4j.io.outputstream.ZipOutputStream

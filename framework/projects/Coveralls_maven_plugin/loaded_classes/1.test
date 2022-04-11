@@ -1,0 +1,2 @@
+org.eluder.coveralls.maven.plugin.logging.DryRunLoggerTest
+org.eluder.coveralls.maven.plugin.logging.JobLoggerTest

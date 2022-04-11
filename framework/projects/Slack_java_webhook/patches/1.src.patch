@@ -1,0 +1,20 @@
+diff --git a/src/main/java/in/ashwanthkumar/slack/webhook/Slack.java b/src/main/java/in/ashwanthkumar/slack/webhook/Slack.java
+index fdd3984..985ffde 100644
+--- a/src/main/java/in/ashwanthkumar/slack/webhook/Slack.java
++++ b/src/main/java/in/ashwanthkumar/slack/webhook/Slack.java
+@@ -82,15 +82,7 @@ public class Slack {
+      * @param imageOrIcon Icon Image URL or emoji code from http://www.emoji-cheat-sheet.com/
+      */
+     public Slack icon(String imageOrIcon) {
+-        if (imageOrIcon != null && !imageOrIcon.isEmpty()) {
+-            if (!imageOrIcon.startsWith(":")) {
+-                imageOrIcon = ":" + imageOrIcon;
+-            }
+-            if (!imageOrIcon.endsWith(":")) {
+-                imageOrIcon = imageOrIcon + ":";
+-            }
+-        }
+ 
+         this.icon = imageOrIcon;
+         return this;
+     }

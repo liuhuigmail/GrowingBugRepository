@@ -1,0 +1,4 @@
+--- net.lingala.zip4j.MiscZipFileIT::testCustomThreadFactory
+--- net.lingala.zip4j.headers.FileHeaderFactoryTest::testVersionMadeByWindowsWithUnixModeOff
+--- net.lingala.zip4j.util.ZipVersionUtilsTest::testDetermineVersionMadeByWindows
+--- net.lingala.zip4j.AddFilesToZipIT::testAddFileWithProgressMonitor

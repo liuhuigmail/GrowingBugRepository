@@ -1,0 +1,30 @@
+diff --git a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+index 57688ca..b515ebd 100755
+--- a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
++++ b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+@@ -267,11 +267,8 @@ public class HeaderReader {
+   private List<ExtraDataRecord> readExtraDataRecords(RandomAccessFile zip4jRaf, int extraFieldLength)
+       throws IOException {
+ 
+-    if (extraFieldLength < 4) {
+-      if (extraFieldLength > 0) {
+-        zip4jRaf.skipBytes(extraFieldLength);
+-      }
+ 
++    if (extraFieldLength <= 0) {
+       return null;
+     }
+ 
+@@ -283,11 +279,8 @@ public class HeaderReader {
+   private List<ExtraDataRecord> readExtraDataRecords(InputStream inputStream, int extraFieldLength)
+       throws IOException {
+ 
+-    if (extraFieldLength < 4) {
+-      if (extraFieldLength > 0) {
+-        inputStream.skip(extraFieldLength);
+-      }
+ 
++    if (extraFieldLength <= 0) {
+       return null;
+     }
+ 

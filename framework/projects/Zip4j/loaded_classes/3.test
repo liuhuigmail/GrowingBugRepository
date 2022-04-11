@@ -1,0 +1,3 @@
+net.lingala.zip4j.AbstractIT
+net.lingala.zip4j.MiscZipFileIT
+net.lingala.zip4j.testutils.TestUtils

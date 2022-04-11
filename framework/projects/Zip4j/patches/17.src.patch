@@ -1,0 +1,21 @@
+diff --git a/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java b/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
+index 33e7eee..98e086b 100755
+--- a/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
+@@ -38,7 +38,7 @@ public class ZipOutputStream extends OutputStream {
+   private long uncompressedSizeForThisEntry = 0;
+   private Zip4jConfig zip4jConfig;
+   private boolean streamClosed;
+-  private boolean entryClosed = true;
++  private boolean entryClosed = false;
+ 
+   public ZipOutputStream(OutputStream outputStream) throws IOException {
+     this(outputStream, null, null);
+@@ -126,6 +126,7 @@ public class ZipOutputStream extends OutputStream {
+   public void close() throws IOException {
+     if (!this.entryClosed) {
+       closeEntry();
++      this.entryClosed = true;
+     }
+ 
+     zipModel.getEndOfCentralDirectoryRecord().setOffsetOfStartOfCentralDirectory(countingOutputStream.getNumberOfBytesWritten());

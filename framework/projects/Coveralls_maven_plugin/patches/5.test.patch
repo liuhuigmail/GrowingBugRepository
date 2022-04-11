@@ -1,0 +1,36 @@
+diff --git a/src/test/java/org/eluder/coveralls/maven/plugin/service/WerckerTest.java b/src/test/java/org/eluder/coveralls/maven/plugin/service/WerckerTest.java
+index e7161d7..abd5903 100644
+--- a/src/test/java/org/eluder/coveralls/maven/plugin/service/WerckerTest.java
++++ b/src/test/java/org/eluder/coveralls/maven/plugin/service/WerckerTest.java
+@@ -39,9 +39,7 @@ public class WerckerTest {
+     
+     private Map<String, String> env() {
+         Map<String, String> env = new HashMap<String, String>();
+-        env.put("WERCKER", "true");
+-        env.put("WERCKER_BUILD_URL", "https://app.wercker.com/build/123456789");
+-        env.put("WERCKER_BUILD_ID", "123456789");
++        env.put("WERCKER_RUN_URL", "https://app.wercker.com/build/123456789");
+         env.put("WERCKER_GIT_BRANCH", "master");
+         return env;
+     }
+@@ -52,7 +50,7 @@ public class WerckerTest {
+     }
+     
+     @Test
+-    public void testIsSelectedForWercker() {
++    public void testIsSelectedForTravis() {
+         assertTrue(new Wercker(env()).isSelected());
+     }
+     
+@@ -66,11 +64,6 @@ public class WerckerTest {
+         assertEquals("123456789", new Wercker(env()).getJobId());
+     }
+ 
+-    @Test
+-    public void testGetBuildUrl() {
+-        assertEquals("https://app.wercker.com/build/123456789", new Wercker(env()).getBuildUrl());
+-    }
+-
+     @Test
+     public void testGetBranch() {
+         assertEquals("master", new Wercker(env()).getBranch());

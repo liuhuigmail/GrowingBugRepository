@@ -170,6 +170,10 @@ To date, growingBugs contains **`1426`** bugs from open-source Java projects.
 | 161     | Streamex            | streamex               |                   |      7       | 1-7               |
 | 162     | Javapoet            | javapoet               |                   |      8       | 1-8               |
 | 164     | RTree            | rtree               |                   |      7       | 1-7               |
+| 165     | Canvas_api            | canvas-api               |     kstateome/canvas-api              |      1       | 1               |
+| 166     | Coveralls_maven_plugin            | coveralls-maven-plugin               |     trautonen/coveralls-maven-plugin              |      6       | 1-6               |
+| 167     | Slack_java_webhook            | slack-java-webhook               |     ashwanthkumar/slack-java-webhook              |      1       | 1               |
+| 168     | Zip4j            | zip4j               |     srikanth-lingala/zip4j              |      26       | 1-26               |
 # Setting up GrowingBugs
 
 ## Requirements

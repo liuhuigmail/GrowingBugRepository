@@ -1,0 +1,7 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,cbbd1e3e0ce1ad2702e78b99b7bf44517346f5f8,b42861ae147755ba6a4f35de2739840a332be1fb,13,https://github.com/trautonen/coveralls-maven-plugin/issues/13
+2,78fac3d88634ba96d66a4f98b9c73ae48b802948,4168307f266187e061620aa517d3351e72278c96,24,https://github.com/trautonen/coveralls-maven-plugin/issues/24
+3,79a7bd961bba44afa2a47120c4d0e417a7da1123,ed66669cf039f7c2c560c87629482ddbe935dfa2,95,https://github.com/trautonen/coveralls-maven-plugin/issues/95
+4,82768a8135fad38a356cd77d9b4ac0204865f08f,0240da3cc053bfc6f48e5da81442069f0307937f,96,https://github.com/trautonen/coveralls-maven-plugin/pull/96
+5,0c780b01d1b083793563320b2e85f900629e7fe8,a07d85b4b3330a92326454f5fd3c570beda01e0a,100,https://github.com/trautonen/coveralls-maven-plugin/pull/100
+6,e7640980c43c620bdc40c935768b8793357954f8,0c780b01d1b083793563320b2e85f900629e7fe8,unknown,unknown

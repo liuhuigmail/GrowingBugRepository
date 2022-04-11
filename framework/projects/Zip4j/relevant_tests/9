@@ -1,0 +1,14 @@
+net.lingala.zip4j.AddFilesToZipIT
+net.lingala.zip4j.CreateZipFileIT
+net.lingala.zip4j.ExtractZipFileIT
+net.lingala.zip4j.MiscZipFileIT
+net.lingala.zip4j.RemoveFilesFromZipIT
+net.lingala.zip4j.RenameFilesInZipIT
+net.lingala.zip4j.ZipFileTest
+net.lingala.zip4j.ZipFileZip64IT
+net.lingala.zip4j.headers.HeaderReaderIT
+net.lingala.zip4j.headers.HeaderWriterIT
+net.lingala.zip4j.io.inputstream.ZipInputStreamIT
+net.lingala.zip4j.io.outputstream.ZipOutputStreamIT
+net.lingala.zip4j.util.RawIOIT
+net.lingala.zip4j.util.UnzipUtilIT

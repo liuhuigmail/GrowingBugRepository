@@ -1,0 +1,3 @@
+edu.ksu.canvas.ApiFactoryUTest
+edu.ksu.canvas.net.RefreshingRestClientUTest
+edu.ksu.canvas.net.SimpleRestClientUTest

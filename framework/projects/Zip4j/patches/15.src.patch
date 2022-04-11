@@ -1,0 +1,34 @@
+diff --git a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+index 1a4b122..8ff1870 100755
+--- a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
++++ b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+@@ -39,6 +39,7 @@ import net.lingala.zip4j.util.RawIO;
+ import java.io.IOException;
+ import java.io.InputStream;
+ import java.io.RandomAccessFile;
++import java.math.BigInteger;
+ import java.nio.charset.Charset;
+ import java.util.ArrayList;
+ import java.util.Collections;
+@@ -584,7 +585,7 @@ public class HeaderReader {
+       if (localFileHeader.getEncryptionMethod() == EncryptionMethod.AES) {
+         //Do nothing
+       } else {
+-        if (isBitSet(localFileHeader.getGeneralPurposeFlag()[0], 6)) {
++        if (BigInteger.valueOf(localFileHeader.getGeneralPurposeFlag()[0]).testBit(6)) {
+           localFileHeader.setEncryptionMethod(EncryptionMethod.ZIP_STANDARD_VARIANT_STRONG);
+         } else {
+           localFileHeader.setEncryptionMethod(EncryptionMethod.ZIP_STANDARD);
+diff --git a/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java b/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
+index 8a5d752..3f76e61 100755
+--- a/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
+@@ -184,8 +184,6 @@ public class ZipOutputStream extends OutputStream {
+       return new AesCipherOutputStream(zipEntryOutputStream, zipParameters, password);
+     } else if (zipParameters.getEncryptionMethod() == EncryptionMethod.ZIP_STANDARD) {
+       return new ZipStandardCipherOutputStream(zipEntryOutputStream, zipParameters, password);
+-    } else if (zipParameters.getEncryptionMethod() == EncryptionMethod.ZIP_STANDARD_VARIANT_STRONG) {
+-      throw new ZipException(EncryptionMethod.ZIP_STANDARD_VARIANT_STRONG + " encryption method is not supported");
+     } else {
+       throw new ZipException("Invalid encryption method");
+     }

@@ -1,0 +1,7 @@
+org.eluder.coveralls.maven.plugin.domain.Git
+org.eluder.coveralls.maven.plugin.domain.Job
+org.eluder.coveralls.maven.plugin.domain.JsonObject
+org.eluder.coveralls.maven.plugin.logging.DryRunLogger
+org.eluder.coveralls.maven.plugin.logging.JobLogger
+org.eluder.coveralls.maven.plugin.logging.Logger
+org.eluder.coveralls.maven.plugin.validation.ValidationErrors

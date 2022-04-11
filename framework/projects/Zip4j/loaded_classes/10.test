@@ -1,0 +1,7 @@
+net.lingala.zip4j.AbstractIT
+net.lingala.zip4j.testutils.HeaderVerifier
+net.lingala.zip4j.testutils.RandomInputStream
+net.lingala.zip4j.testutils.SlowTests
+net.lingala.zip4j.testutils.TestUtils
+net.lingala.zip4j.testutils.ZipFileVerifier
+net.lingala.zip4j.ZipFileZip64IT

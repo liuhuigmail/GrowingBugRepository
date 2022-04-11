@@ -1,0 +1,14 @@
+diff --git a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+index 7b458af..63292ee 100755
+--- a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
++++ b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+@@ -650,8 +650,7 @@ public class HeaderReader {
+ 
+       if (extraDataRecord.getHeader() == HeaderSignature.AES_EXTRA_DATA_RECORD.getValue()) {
+ 
+-        byte[] aesExtraDataRecordBytes = extraDataRecord.getData();
+-        if (aesExtraDataRecordBytes == null || aesExtraDataRecordBytes.length != 9) {
++        if (extraDataRecord.getData() == null) {
+           throw new ZipException("corrupt AES extra data records");
+         }
+ 

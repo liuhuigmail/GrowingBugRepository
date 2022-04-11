@@ -1,0 +1,88 @@
+diff --git a/src/test/java/edu/ksu/canvas/net/SimpleRestClientUTest.java b/src/test/java/edu/ksu/canvas/net/SimpleRestClientUTest.java
+index b130ab1..1df1986 100644
+--- a/src/test/java/edu/ksu/canvas/net/SimpleRestClientUTest.java
++++ b/src/test/java/edu/ksu/canvas/net/SimpleRestClientUTest.java
+@@ -1,23 +1,20 @@
+ package edu.ksu.canvas.net;
+ 
+-import edu.ksu.canvas.LocalServerTestBase;
+-import edu.ksu.canvas.exception.CanvasException;
+-import edu.ksu.canvas.exception.InvalidOauthTokenException;
+-import edu.ksu.canvas.exception.UnauthorizedException;
+-import edu.ksu.canvas.oauth.NonRefreshableOauthToken;
+-import edu.ksu.canvas.oauth.OauthToken;
++import static org.junit.Assert.assertNull;
++
++import java.io.IOException;
++import java.util.Collections;
++
+ import org.apache.http.HttpHeaders;
+-import org.junit.Rule;
+ import org.junit.Test;
+-import org.junit.rules.ExpectedException;
+ import org.junit.runner.RunWith;
+ import org.junit.runners.JUnit4;
+ 
+-import java.io.IOException;
+-import java.util.Collections;
+-import java.util.HashMap;
+-
+-import static org.junit.Assert.assertNull;
++import edu.ksu.canvas.LocalServerTestBase;
++import edu.ksu.canvas.exception.InvalidOauthTokenException;
++import edu.ksu.canvas.exception.UnauthorizedException;
++import edu.ksu.canvas.oauth.NonRefreshableOauthToken;
++import edu.ksu.canvas.oauth.OauthToken;
+ 
+ 
+ 
+@@ -50,49 +47,5 @@ public class SimpleRestClientUTest extends LocalServerTestBase {
+ 
+         final Response response = restClient.sendApiGet(emptyAdminToken, baseUrl + url, 100, 100);
+         assertNull(response.getContent());
+-
+-    }
+-
+-    @Rule
+-    public ExpectedException expectedException = ExpectedException.none();
+-
+-    @Test
+-    public void testErrorMessageWithoutErrorArray() throws Exception{
+-        // The url can be any string
+-        String url = "/canvasException";
+-        HashMap<String, String> map = new HashMap<>();
+-        map.put("Content-Type", "application/json");
+-        String jsonFilePath = "/SampleJson/sampleErrorMessageWithoutErrorArray.json";
+-        registerUrlResponse(url, jsonFilePath, 400, map);
+-        expectedException.expect(CanvasException.class);
+-        String errorMessage = "Sample error message";
+-        expectedException.expectMessage(errorMessage);
+-        restClient.sendApiGet(emptyAdminToken, baseUrl + url, 100, 100);
+     }
+-
+-    @Test
+-    public void testErrorMessageWithErrorArray() throws Exception{
+-        String url = "/canvasException";
+-        HashMap<String, String> map = new HashMap<>();
+-        map.put("Content-Type", "application/json");
+-        String jsonFilePath = "/SampleJson/sampleErrorMessageWithErrorArray.json";
+-        registerUrlResponse(url, jsonFilePath, 400, map);
+-        expectedException.expect(CanvasException.class);
+-        String errorMessages = "sample error message 1, sample error message 2";
+-        expectedException.expectMessage(errorMessages);
+-        restClient.sendApiGet(emptyAdminToken, baseUrl + url, 100, 100);
+-    }
+-
+-    @Test
+-    public void testErrorMessageWithWrongContentType() throws Exception{
+-        String url = "/canvasException";
+-        // It doesn't matter what file because error message will be null if content type isn't json
+-        String jsonFilePath = "/SampleJson/sampleErrorMessageWithoutErrorArray.json";
+-        // By default, the content type will be plain text if just using Collections.emptyMap()
+-        registerUrlResponse(url, jsonFilePath, 400, Collections.emptyMap());
+-        expectedException.expect(CanvasException.class);
+-        expectedException.expectMessage("null");
+-        restClient.sendApiGet(emptyAdminToken, baseUrl + url, 100, 100);
+-    }
+-
+ }

@@ -1,0 +1,15 @@
+diff --git a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+index 0a39e36..b957f69 100755
+--- a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
++++ b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+@@ -76,10 +76,7 @@ public class HeaderReader {
+       throw new ZipException("Zip headers not found. Probably not a zip file or a corrupted zip file", e);
+     }
+ 
+-    if (zipModel.getEndOfCentralDirectoryRecord().getTotalNumberOfEntriesInCentralDirectory() == 0) {
+-      return zipModel;
+-    }
+ 
+     // If file is Zip64 format, Zip64 headers have to be read before reading central directory
+     zipModel.setZip64EndOfCentralDirectoryLocator(readZip64EndOfCentralDirectoryLocator(zip4jRaf, rawIO));
+ 

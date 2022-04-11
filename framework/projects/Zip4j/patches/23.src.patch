@@ -1,0 +1,25 @@
+diff --git a/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java b/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
+index 7061cc6..dcd1b06 100755
+--- a/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
+@@ -80,7 +80,6 @@ public class ZipOutputStream extends OutputStream {
+       clonedZipParameters.setWriteExtendedLocalFileHeader(false);
+       clonedZipParameters.setCompressionMethod(CompressionMethod.STORE);
+       clonedZipParameters.setEncryptFiles(false);
+-      clonedZipParameters.setEntrySize(0);
+     }
+     initializeAndWriteFileHeader(clonedZipParameters);
+ 
+diff --git a/src/main/java/net/lingala/zip4j/model/ZipParameters.java b/src/main/java/net/lingala/zip4j/model/ZipParameters.java
+index fccf3ee..1e4c151 100755
+--- a/src/main/java/net/lingala/zip4j/model/ZipParameters.java
++++ b/src/main/java/net/lingala/zip4j/model/ZipParameters.java
+@@ -58,7 +58,7 @@ public class ZipParameters {
+   private String defaultFolderPath;
+   private String fileNameInZip;
+   private long lastModifiedFileTime = System.currentTimeMillis();
+-  private long entrySize = -1;
++  private long entrySize = 0;
+   private boolean writeExtendedLocalFileHeader = true;
+   private boolean overrideExistingFilesInZip = true;
+   private String rootFolderNameInZip;

@@ -1,0 +1,30 @@
+diff --git a/src/main/java/edu/ksu/canvas/net/SimpleRestClient.java b/src/main/java/edu/ksu/canvas/net/SimpleRestClient.java
+index cea7c09..0039927 100644
+--- a/src/main/java/edu/ksu/canvas/net/SimpleRestClient.java
++++ b/src/main/java/edu/ksu/canvas/net/SimpleRestClient.java
+@@ -1,6 +1,5 @@
+ package edu.ksu.canvas.net;
+ 
+-import com.google.gson.Gson;
+ import edu.ksu.canvas.exception.CanvasException;
+ import edu.ksu.canvas.exception.InvalidOauthTokenException;
+ import edu.ksu.canvas.exception.ObjectNotFoundException;
+@@ -32,7 +32,8 @@ import org.apache.http.params.HttpParams;
+ import org.apache.http.util.EntityUtils;
+ import org.apache.log4j.Logger;
+ 
++import com.google.gson.Gson;
+ import javax.validation.constraints.NotNull;
+ import java.io.IOException;
+ import java.net.URI;
+ import java.util.ArrayList;
+@@ -267,9 +270,6 @@ public class SimpleRestClient implements RestClient {
+                     //I have only ever seen a single error message but it is an array so presumably there could be more.
+                     return errors.stream().map(e -> e.getMessage()).collect(Collectors.joining(", "));
+                 }
+-                else{
+-                    return responseBody;
+-                }
+             } catch (Exception e) {
+                 //Returned JSON was not in expected format. Fall back to returning the whole response body, if any
+                 if(StringUtils.isNotBlank(responseBody)) {

@@ -1,0 +1,14 @@
+diff --git a/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java b/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
+index a061da8..58d92df 100644
+--- a/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
++++ b/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
+@@ -39,8 +39,7 @@ public abstract class AbstractExtractFileTask<T> extends AsyncZipTask<T> {
+     progressMonitor.setFileName(outputFile.getAbsolutePath());
+ 
+     // make sure no file is extracted outside of the target directory (a.k.a zip slip)
+-    String outputCanonicalPath = (new File(outputPath).getCanonicalPath()) + File.separator;
+-    if (!outputFile.getCanonicalPath().startsWith(outputCanonicalPath)) {
++    if (!outputFile.getCanonicalPath().startsWith(new File(outputPath).getCanonicalPath())) {
+       throw new ZipException("illegal file name that breaks out of the target directory: "
+           + fileHeader.getFileName());
+     }

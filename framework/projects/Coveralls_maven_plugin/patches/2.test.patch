@@ -1,0 +1,34 @@
+diff --git a/src/test/java/org/eluder/coveralls/maven/plugin/domain/JobTest.java b/src/test/java/org/eluder/coveralls/maven/plugin/domain/JobTest.java
+deleted file mode 100644
+index a6bfb0b..0000000
+--- a/src/test/java/org/eluder/coveralls/maven/plugin/domain/JobTest.java
++++ /dev/null
+@@ -1,28 +0,0 @@
+-package org.eluder.coveralls.maven.plugin.domain;
+-
+-import static org.junit.Assert.assertEquals;
+-
+-import java.util.Arrays;
+-import java.util.List;
+-
+-import org.eluder.coveralls.maven.plugin.domain.Git.Head;
+-import org.eluder.coveralls.maven.plugin.domain.Git.Remote;
+-import org.junit.Test;
+-
+-public class JobTest {
+-
+-    @Test
+-    public void testGetBranchWithRemote() {
+-        List<Remote> remotes = Arrays.asList(new Remote("origin", "git@github.com"));
+-        Git git = new Git(new Head(null, null, null, null, null, null), "master", remotes);
+-        
+-        Job job = new Job().withBranch("origin/master").withGit(git);
+-        assertEquals("master", job.getBranch());
+-    }
+-    
+-    @Test
+-    public void testGetBranch() {
+-        Job job = new Job().withBranch("master");
+-        assertEquals("master", job.getBranch());
+-    }
+-}

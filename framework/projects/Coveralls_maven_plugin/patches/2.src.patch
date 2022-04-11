@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/eluder/coveralls/maven/plugin/domain/Job.java b/src/main/java/org/eluder/coveralls/maven/plugin/domain/Job.java
+index c6c4c90..9c669fe 100644
+--- a/src/main/java/org/eluder/coveralls/maven/plugin/domain/Job.java
++++ b/src/main/java/org/eluder/coveralls/maven/plugin/domain/Job.java
+@@ -3,7 +3,6 @@ package org.eluder.coveralls.maven.plugin.domain;
+ import java.util.Date;
+ import java.util.Properties;
+ 
+-import org.eluder.coveralls.maven.plugin.domain.Git.Remote;
+ import org.eluder.coveralls.maven.plugin.validation.JobValidator;
+ import org.eluder.coveralls.maven.plugin.validation.ValidationErrors;
+ 
+@@ -139,13 +138,6 @@ public class Job {
+     }
+     
+     public String getBranch() {
+-        if (branch != null && getGit() != null && getGit().getRemotes() != null) {
+-            for (Remote remote : getGit().getRemotes()) {
+-                if (branch.startsWith(remote.getName() + "/")) {
+-                    return branch.substring(remote.getName().length() + 1);
+-                }
+-            }
+-        }
+         return branch;
+     }
+     

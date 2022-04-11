@@ -1,0 +1,5 @@
+net.lingala.zip4j.AbstractIT
+net.lingala.zip4j.AddFilesToZipIT
+net.lingala.zip4j.testutils.HeaderVerifier
+net.lingala.zip4j.testutils.TestUtils
+net.lingala.zip4j.testutils.ZipFileVerifier

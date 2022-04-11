@@ -1,0 +1,20 @@
+diff --git a/src/test/java/net/lingala/zip4j/io/inputstream/ZipInputStreamIT.java b/src/test/java/net/lingala/zip4j/io/inputstream/ZipInputStreamIT.java
+index 730efee..939f3a8 100644
+--- a/src/test/java/net/lingala/zip4j/io/inputstream/ZipInputStreamIT.java
++++ b/src/test/java/net/lingala/zip4j/io/inputstream/ZipInputStreamIT.java
+@@ -301,15 +301,6 @@ public class ZipInputStreamIT extends AbstractIT {
+         null, InternalZipConstants.BUFF_SIZE, false, 2);
+   }
+ 
+-  @Test
+-  public void testExtractZipFileWithNullAesExtraDataRecordThrowsException() throws IOException {
+-    expectedException.expect(IOException.class);
+-    expectedException.expectMessage("Invalid aes key strength in aes extra data record");
+-
+-    extractZipFileWithInputStreams(TestUtils.getTestArchiveFromResources("null-aes-key-strength-in-aes-extra-data-record"),
+-        null, InternalZipConstants.BUFF_SIZE, false, 1);
+-  }
+-
+   private void extractZipFileWithInputStreams(File zipFile, char[] password) throws IOException {
+     extractZipFileWithInputStreams(zipFile, password, InternalZipConstants.BUFF_SIZE);
+   }
