@@ -171,10 +171,10 @@ To date, growingBugs contains **`1491`** bugs from open-source Java projects.
 | 162     | Javapoet            | javapoet               |                   |      17       | 1-17               |
 | 164     | RTree            | rtree               |                   |      12       | 1-12               |
 | 165     | Spoon            | spoon               |                   |      17       | 1-17               |
-| 166     | Canvas_api            | canvas-api               |     kstateome/canvas-api              |      1       | 1               |
-| 167     | Coveralls_maven_plugin            | coveralls-maven-plugin               |     trautonen/coveralls-maven-plugin              |      6       | 1-6               |
-| 168     | Slack_java_webhook            | slack-java-webhook               |     ashwanthkumar/slack-java-webhook              |      1       | 1               |
-| 169     | Zip4j            | zip4j               |     srikanth-lingala/zip4j              |      26       | 1-26               |
+| 166     | Canvas_api            | canvas-api               |                 |      1       | 1               |
+| 167     | Coveralls_maven_plugin            | coveralls-maven-plugin               |                  |      6       | 1-6               |
+| 168     | Slack_java_webhook            | slack-java-webhook               |                 |      1       | 1               |
+| 169     | Zip4j            | zip4j               |                  |      26       | 1-26               |
 
 # Setting up GrowingBugs
 
