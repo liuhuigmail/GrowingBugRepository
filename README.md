@@ -3,9 +3,9 @@
 Notably, each bug is composed of a buggy version, a fixed version, a ***concise patch*** (bug-fixing changes only), and one or more triggering test cases.
 
 # Contents of growingBugs
-To date, growingBugs contains **`1426`** bugs from open-source Java projects. 
+To date, growingBugs contains **`1491`** bugs from open-source Java projects. 
 
-|   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
+|   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
 | 1     | Chart           | jfreechart                 |                           |       26       | 1-26                |
 | 2     | Cli             | commons-cli                |                           |       41       | 1-5,7-42            |
@@ -168,12 +168,14 @@ To date, growingBugs contains **`1426`** bugs from open-source Java projects.
 | 159     | Cargo_container            | cargo-container               |          core/api/container         |      4       | 1-4               |
 | 160     | Oak_commons            | oak-commons               |          oak-commons         |      1       | 1               |
 | 161     | Streamex            | streamex               |                   |      7       | 1-7               |
-| 162     | Javapoet            | javapoet               |                   |      8       | 1-8               |
-| 164     | RTree            | rtree               |                   |      7       | 1-7               |
-| 165     | Canvas_api            | canvas-api               |     kstateome/canvas-api              |      1       | 1               |
-| 166     | Coveralls_maven_plugin            | coveralls-maven-plugin               |     trautonen/coveralls-maven-plugin              |      6       | 1-6               |
-| 167     | Slack_java_webhook            | slack-java-webhook               |     ashwanthkumar/slack-java-webhook              |      1       | 1               |
-| 168     | Zip4j            | zip4j               |     srikanth-lingala/zip4j              |      26       | 1-26               |
+| 162     | Javapoet            | javapoet               |                   |      17       | 1-17               |
+| 164     | RTree            | rtree               |                   |      12       | 1-12               |
+| 165     | Spoon            | spoon               |                   |      17       | 1-17               |
+| 166     | Canvas_api            | canvas-api               |     kstateome/canvas-api              |      1       | 1               |
+| 167     | Coveralls_maven_plugin            | coveralls-maven-plugin               |     trautonen/coveralls-maven-plugin              |      6       | 1-6               |
+| 168     | Slack_java_webhook            | slack-java-webhook               |     ashwanthkumar/slack-java-webhook              |      1       | 1               |
+| 169     | Zip4j            | zip4j               |     srikanth-lingala/zip4j              |      26       | 1-26               |
+
 # Setting up GrowingBugs
 
 ## Requirements
@@ -201,7 +203,7 @@ To date, growingBugs contains **`1426`** bugs from open-source Java projects.
 
 # Using GrowingBugs
 1. Checkout a buggy source code version (If the project doesn't hava subproject, `-s` parameter can be ignored):
-    - `defects4j checkout -p project_id -v version_id -w work_dir -s subproject_name` 
+    - `defects4j checkout -p project_id -v version_id -w work_dir -s subproject_locator` 
     
     Example:
   
@@ -212,7 +214,7 @@ To date, growingBugs contains **`1426`** bugs from open-source Java projects.
 
 2. Change to the working directory, compile sources and tests, and run tests:
 
-   - `cd work_dir/subproject_name`
+   - `cd work_dir/subproject_locator`
    - `defects4j compile`
    - `defects4j test`
    
