@@ -1,0 +1,22 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/node/TreeTraversingParser.java b/src/main/java/com/fasterxml/jackson/databind/node/TreeTraversingParser.java
+index c287658..c3fb68f 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/node/TreeTraversingParser.java
++++ b/src/main/java/com/fasterxml/jackson/databind/node/TreeTraversingParser.java
+@@ -304,17 +304,11 @@ public class TreeTraversingParser extends ParserMinimalBase
+ 
+     @Override
+     public int getIntValue() throws IOException {
+-        if (!(NumericNode) currentNumericNode().canConvertToInt()) {
+-            reportOverflowInt();
+-        }
+         return (NumericNode) currentNumericNode().intValue();
+     }
+ 
+     @Override
+     public long getLongValue() throws IOException {
+-        if (!(NumericNode) currentNumericNode().canConvertToInt()) {
+-            reportOverflowLong();
+-        }
+         return (NumericNode) currentNumericNode().longValue();
+     }
+ 
