@@ -161,4 +161,4 @@ To date, growingBugs contains **`656+13`** unique bugs that are not included in 
 | 156     | Canvas_api            | canvas-api               |                 |      1       | 1               |
 | 157     | Coveralls_maven_plugin            | coveralls-maven-plugin               |                  |      6       | 1-6               |
 | 158     | Slack_java_webhook            | slack-java-webhook               |                 |      1       | 1               |
-| 159     | Zip4j            | zip4j               |                  |      26       | 1-26               |
+| 159     | Zip4j            | zip4j               |                  |      34       | 1-34               |
