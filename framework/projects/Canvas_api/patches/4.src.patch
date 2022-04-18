@@ -1,0 +1,406 @@
+diff --git a/src/main/java/edu/ksu/canvas/model/Assignment.java b/src/main/java/edu/ksu/canvas/model/Assignment.java
+index 00f15e7..738ffed 100644
+--- a/src/main/java/edu/ksu/canvas/model/Assignment.java
++++ b/src/main/java/edu/ksu/canvas/model/Assignment.java
+@@ -3,6 +3,7 @@ package edu.ksu.canvas.model;
+ import edu.ksu.canvas.annotation.CanvasField;
+ import edu.ksu.canvas.annotation.CanvasObject;
+ import java.io.Serializable;
++import java.util.Date;
+ import java.util.List;
+ 
+ /**
+@@ -16,33 +17,33 @@ public class Assignment extends BaseCanvasModel implements Serializable{
+     private String id;
+     private String name;
+     private String description;
+-    private String createdAt;
+-    private String updatedAt;
+-    private String dueAt;
+-    private String lockAt;
+-    private String unlockAt;
++    private Date createdAt;
++    private Date updatedAt;
++    private Date dueAt;
++    private Date lockAt;
++    private Date unlockAt;
+     private String allDates;
+     private String courseId;
+     private String htmlUrl;
+     private String assingmentGroupId;
+     private String[] allowedExtensions;
+     private Boolean turnitinEnabled;
+-    private String turnitinSettings;
++    private TurnitinSettings turnitinSettings;
+     private Boolean gradeGroupStudentsIndividually;
+-    private String externalToolTagAttributes;
++    private ExternalToolTagAttribute externalToolTagAttributes;
+     private Boolean peerReviews;
+     private Boolean automaticPeerReviews;
+     private String peerReviewCount;
+-    private String peerReviewsAssignAt;
++    private Date peerReviewsAssignAt;
+     private String groupCategoryId;
+-    private String needsGradingCount;
+-    private String needsGradingCountBySection;
++    private Integer needsGradingCount;
++    private NeedsGradingCount needsGradingCountBySection;
+     private String position;
+     private Boolean postToSis;
+     private String integrationId;
+     private Object integrationData;
+     private String muted;
+-    private Integer pointsPossible;
++    private Double pointsPossible;
+     private List<String> submissionTypes;
+     private String gradingType;
+     private String gradingStandardId;
+@@ -50,6 +51,8 @@ public class Assignment extends BaseCanvasModel implements Serializable{
+     private Boolean unpublishable;
+     private Boolean onlyVisibleToOverrides;
+     private Boolean lockedForUser;
++    private LockInfo lockInfo;
++    private String lockExplanation;
+     private Boolean notifyOfUpdate;
+ 
+ 
+@@ -79,46 +82,46 @@ public class Assignment extends BaseCanvasModel implements Serializable{
+         this.description = description;
+     }
+ 
+-    public String getCreatedAt() {
++    public Date getCreatedAt() {
+         return createdAt;
+     }
+ 
+-    public void setCreatedAt(String createdAt) {
++    public void setCreatedAt(Date createdAt) {
+         this.createdAt = createdAt;
+     }
+ 
+-    public String getUpdatedAt() {
++    public Date getUpdatedAt() {
+         return updatedAt;
+     }
+ 
+-    public void setUpdatedAt(String updatedAt) {
++    public void setUpdatedAt(Date updatedAt) {
+         this.updatedAt = updatedAt;
+     }
+ 
+     @CanvasField(postKey = "due_at")
+-    public String getDueAt() {
++    public Date getDueAt() {
+         return dueAt;
+     }
+ 
+-    public void setDueAt(String dueAt) {
++    public void setDueAt(Date dueAt) {
+         this.dueAt = dueAt;
+     }
+ 
+     @CanvasField(postKey = "lock_at")
+-    public String getLockAt() {
++    public Date getLockAt() {
+         return lockAt;
+     }
+ 
+-    public void setLockAt(String lockAt) {
++    public void setLockAt(Date lockAt) {
+         this.lockAt = lockAt;
+     }
+ 
+     @CanvasField(postKey = "unlock_at")
+-    public String getUnlockAt() {
++    public Date getUnlockAt() {
+         return unlockAt;
+     }
+ 
+-    public void setUnlockAt(String unlockAt) {
++    public void setUnlockAt(Date unlockAt) {
+         this.unlockAt = unlockAt;
+     }
+ 
+@@ -171,11 +174,11 @@ public class Assignment extends BaseCanvasModel implements Serializable{
+         this.turnitinEnabled = turnitinEnabled;
+     }
+ 
+-    public String getTurnitinSettings() {
++    public TurnitinSettings getTurnitinSettings() {
+         return turnitinSettings;
+     }
+ 
+-    public void setTurnitinSettings(String turnitinSettings) {
++    public void setTurnitinSettings(TurnitinSettings turnitinSettings) {
+         this.turnitinSettings = turnitinSettings;
+     }
+ 
+@@ -188,11 +191,11 @@ public class Assignment extends BaseCanvasModel implements Serializable{
+         this.gradeGroupStudentsIndividually = gradeGroupStudentsIndividually;
+     }
+ 
+-    public String getExternalToolTagAttributes() {
++    public ExternalToolTagAttribute getExternalToolTagAttributes() {
+         return externalToolTagAttributes;
+     }
+ 
+-    public void setExternalToolTagAttributes(String externalToolTagAttributes) {
++    public void setExternalToolTagAttributes(ExternalToolTagAttribute externalToolTagAttributes) {
+         this.externalToolTagAttributes = externalToolTagAttributes;
+     }
+ 
+@@ -222,11 +225,11 @@ public class Assignment extends BaseCanvasModel implements Serializable{
+         this.peerReviewCount = peerReviewCount;
+     }
+ 
+-    public String getPeerReviewsAssignAt() {
++    public Date getPeerReviewsAssignAt() {
+         return peerReviewsAssignAt;
+     }
+ 
+-    public void setPeerReviewsAssignAt(String peerReviewsAssignAt) {
++    public void setPeerReviewsAssignAt(Date peerReviewsAssignAt) {
+         this.peerReviewsAssignAt = peerReviewsAssignAt;
+     }
+ 
+@@ -239,19 +242,19 @@ public class Assignment extends BaseCanvasModel implements Serializable{
+         this.groupCategoryId = groupCategoryId;
+     }
+ 
+-    public String getNeedsGradingCount() {
++    public Integer getNeedsGradingCount() {
+         return needsGradingCount;
+     }
+ 
+-    public void setNeedsGradingCount(String needsGradingCount) {
++    public void setNeedsGradingCount(Integer needsGradingCount) {
+         this.needsGradingCount = needsGradingCount;
+     }
+ 
+-    public String getNeedsGradingCountBySection() {
++    public NeedsGradingCount getNeedsGradingCountBySection() {
+         return needsGradingCountBySection;
+     }
+ 
+-    public void setNeedsGradingCountBySection(String needsGradingCountBySection) {
++    public void setNeedsGradingCountBySection(NeedsGradingCount needsGradingCountBySection) {
+         this.needsGradingCountBySection = needsGradingCountBySection;
+     }
+ 
+@@ -300,11 +303,11 @@ public class Assignment extends BaseCanvasModel implements Serializable{
+     }
+ 
+     @CanvasField(postKey = "points_possible")
+-    public Integer getPointsPossible() {
++    public Double getPointsPossible() {
+         return pointsPossible;
+     }
+ 
+-    public void setPointsPossible(Integer pointsPossible) {
++    public void setPointsPossible(Double pointsPossible) {
+         this.pointsPossible = pointsPossible;
+     }
+ 
+@@ -368,6 +371,22 @@ public class Assignment extends BaseCanvasModel implements Serializable{
+         this.lockedForUser = lockedForUser;
+     }
+ 
++    public LockInfo getLockInfo() {
++        return lockInfo;
++    }
++
++    public void setLockInfo(LockInfo lockInfo) {
++        this.lockInfo = lockInfo;
++    }
++
++    public String getLockExplanation() {
++        return lockExplanation;
++    }
++
++    public void setLockExplanation(String lockExplanation) {
++        this.lockExplanation = lockExplanation;
++    }
++
+     @CanvasField(postKey = "notify_of_update")
+     public Boolean isNotifyOfUpdate() {
+         return notifyOfUpdate;
+@@ -376,4 +395,179 @@ public class Assignment extends BaseCanvasModel implements Serializable{
+     public void setNotifyOfUpdate(Boolean notifyOfUpdate) {
+         this.notifyOfUpdate = notifyOfUpdate;
+     }
++
++    public class ExternalToolTagAttribute {
++        private String url;
++        private Boolean newTab;
++        private String resourceLinkId;
++
++        public String getUrl() {
++            return url;
++        }
++
++        public void setUrl(String url) {
++            this.url = url;
++        }
++
++        public Boolean getNewTab() {
++            return newTab;
++        }
++
++        public void setNewTab(Boolean newTab) {
++            this.newTab = newTab;
++        }
++
++        public String getResourceLinkId() {
++            return resourceLinkId;
++        }
++
++        public void setResourceLinkId(String resourceLinkId) {
++            this.resourceLinkId = resourceLinkId;
++        }
++    }
++
++    public class LockInfo {
++        private String assetString;
++        private Date unlockAt;
++        private Date lockAt;
++        private Object contextModule; //TODO: what is this object? a "module" as in this? https://canvas.instructure.com/doc/api/modules.html#Module
++        private Boolean manuallyLocked;
++
++        public String getAssetString() {
++            return assetString;
++        }
++
++        public void setAssetString(String assetString) {
++            this.assetString = assetString;
++        }
++
++        public Date getUnlockAt() {
++            return unlockAt;
++        }
++
++        public void setUnlockAt(Date unlockAt) {
++            this.unlockAt = unlockAt;
++        }
++
++        public Date getLockAt() {
++            return lockAt;
++        }
++
++        public void setLockAt(Date lockAt) {
++            this.lockAt = lockAt;
++        }
++
++        public Object getContextModule() {
++            return contextModule;
++        }
++
++        public void setContextModule(Object contextModule) {
++            this.contextModule = contextModule;
++        }
++
++        public Boolean getManuallyLocked() {
++            return manuallyLocked;
++        }
++
++        public void setManuallyLocked(Boolean manuallyLocked) {
++            this.manuallyLocked = manuallyLocked;
++        }
++    }
++
++    public class TurnitinSettings {
++        private String originalityReportVisibility;
++        private Boolean sPaperCheck;
++        private Boolean internetCheck;
++        private Boolean journalCheck;
++        private Boolean excludeBiblio;
++        private Boolean excludeQuoted;
++        private String excludeSmallMatchesType;
++        private String excludeSmallMatchesValue;
++
++        public String getOriginalityReportVisibility() {
++            return originalityReportVisibility;
++        }
++
++        public void setOriginalityReportVisibility(
++                String originalityReportVisibility) {
++            this.originalityReportVisibility = originalityReportVisibility;
++        }
++
++        public Boolean getsPaperCheck() {
++            return sPaperCheck;
++        }
++
++        public void setsPaperCheck(Boolean sPaperCheck) {
++            this.sPaperCheck = sPaperCheck;
++        }
++
++        public Boolean getInternetCheck() {
++            return internetCheck;
++        }
++
++        public void setInternetCheck(Boolean internetCheck) {
++            this.internetCheck = internetCheck;
++        }
++
++        public Boolean getJournalCheck() {
++            return journalCheck;
++        }
++
++        public void setJournalCheck(Boolean journalCheck) {
++            this.journalCheck = journalCheck;
++        }
++
++        public Boolean getExcludeBiblio() {
++            return excludeBiblio;
++        }
++
++        public void setExcludeBiblio(Boolean excludeBiblio) {
++            this.excludeBiblio = excludeBiblio;
++        }
++
++        public Boolean getExcludeQuoted() {
++            return excludeQuoted;
++        }
++
++        public void setExcludeQuoted(Boolean excludeQuoted) {
++            this.excludeQuoted = excludeQuoted;
++        }
++
++        public String getExcludeSmallMatchesType() {
++            return excludeSmallMatchesType;
++        }
++
++        public void setExcludeSmallMatchesType(String excludeSmallMatchesType) {
++            this.excludeSmallMatchesType = excludeSmallMatchesType;
++        }
++
++        public String getExcludeSmallMatchesValue() {
++            return excludeSmallMatchesValue;
++        }
++
++        public void setExcludeSmallMatchesValue(String excludeSmallMatchesValue) {
++            this.excludeSmallMatchesValue = excludeSmallMatchesValue;
++        }
++    }
++
++    public class NeedsGradingCount {
++        private String sectionId;
++        private Integer needsGradingCount;
++
++        public String getSectionId() {
++            return sectionId;
++        }
++
++        public void setSectionId(String sectionId) {
++            this.sectionId = sectionId;
++        }
++
++        public Integer getNeedsGradingCount() {
++            return needsGradingCount;
++        }
++
++        public void setNeedsGradingCount(Integer needsGradingCount) {
++            this.needsGradingCount = needsGradingCount;
++        }
++    }
+ }

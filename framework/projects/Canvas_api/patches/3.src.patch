@@ -1,0 +1,36 @@
+diff --git a/src/main/java/edu/ksu/canvas/oauth/RefreshableOauthToken.java b/src/main/java/edu/ksu/canvas/oauth/RefreshableOauthToken.java
+index 9aabc65..cd39e1a 100644
+--- a/src/main/java/edu/ksu/canvas/oauth/RefreshableOauthToken.java
++++ b/src/main/java/edu/ksu/canvas/oauth/RefreshableOauthToken.java
+@@ -1,5 +1,8 @@
+ package edu.ksu.canvas.oauth;
+ 
++import edu.ksu.canvas.exception.InvalidOauthTokenException;
++import org.apache.log4j.Logger;
++
+ import java.io.IOException;
+ import java.util.Date;
+ 
+@@ -52,7 +55,7 @@ public class RefreshableOauthToken implements OauthToken {
+         TokenExpiration(Long timeToLive) {
+             this.lastRefreshed = new Date();
+             if (timeToLive != null) {
+-                this.timeToLive = timeToLive - expireWindowMS;
++                this.timeToLive = timeToLive * 1000;
+             }
+         }
+ 
+diff --git a/src/main/java/edu/ksu/canvas/oauth/TokenRefreshResponse.java b/src/main/java/edu/ksu/canvas/oauth/TokenRefreshResponse.java
+index 1922972..8932a25 100644
+--- a/src/main/java/edu/ksu/canvas/oauth/TokenRefreshResponse.java
++++ b/src/main/java/edu/ksu/canvas/oauth/TokenRefreshResponse.java
+@@ -27,6 +27,9 @@ public class TokenRefreshResponse {
+     }
+ 
+     public Long getExpiresIn() {
++        if (expiresIn == null || expiresIn == 0) {
++            return null;
++        }
+         return expiresIn;
+     }
+ 

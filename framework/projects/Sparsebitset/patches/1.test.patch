@@ -1,0 +1,375 @@
+diff --git a/src/test/java/com/zaxxer/sparsebits/PreviousClearBitTest.java b/src/test/java/com/zaxxer/sparsebits/PreviousClearBitTest.java
+index 730dbcc..dbba8a7 100644
+--- a/src/test/java/com/zaxxer/sparsebits/PreviousClearBitTest.java
++++ b/src/test/java/com/zaxxer/sparsebits/PreviousClearBitTest.java
+@@ -8,10 +8,6 @@ import java.util.HashSet;
+ import java.util.Random;
+ import java.util.Set;
+ 
+-import static com.zaxxer.sparsebits.SparseBitSet.SHIFT1;
+-import static com.zaxxer.sparsebits.SparseBitSet.SHIFT2;
+-import static com.zaxxer.sparsebits.SparseBitSet.SHIFT3;
+-
+ /**
+  * @author <a href="mailto:brent.n.douglas@gmail.com">Brent Douglas</a>
+  */
+@@ -25,7 +21,7 @@ public class PreviousClearBitTest extends Assert {
+     }
+ 
+     @Test
+-    public void minusOne() throws Exception {
++    public void munisOne() throws Exception {
+         final int ret = set.previousClearBit(-1);
+ 
+         assertEquals(-1, ret);
+@@ -47,96 +43,15 @@ public class PreviousClearBitTest extends Assert {
+ 
+     @Test
+     public void sameBit() throws Exception {
+-        set.set(12345);
++        set.flip(12345);
+         final int ret = set.previousClearBit(12345);
+ 
+         assertEquals(12344, ret);
+     }
+ 
+-    @Test
+-    public void level1Miss() throws Exception {
+-        final int i = (1 << (SHIFT1 + SHIFT3));
+-        set.set(i);
+-        final int ret = set.previousClearBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level1MissPlus1() throws Exception {
+-        final int i = (1 << (SHIFT1 + SHIFT3)) + 1;
+-        set.set(i);
+-        final int ret = set.previousClearBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level1MissMinus1() throws Exception {
+-        final int i = (1 << (SHIFT1 + SHIFT3)) - 1;
+-        set.set(i);
+-        final int ret = set.previousClearBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level2Miss() throws Exception {
+-        final int i = (1 << (SHIFT3 + SHIFT2));
+-        set.set(i);
+-        final int ret = set.previousClearBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level2MissPlus1() throws Exception {
+-        final int i = (1 << (SHIFT3 + SHIFT2)) + 1;
+-        set.set(i);
+-        final int ret = set.previousClearBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level2MissMinus1() throws Exception {
+-        final int i = (1 << (SHIFT3 + SHIFT2)) - 1;
+-        set.set(i);
+-        final int ret = set.previousClearBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level3Miss() throws Exception {
+-        final int i = (1 << SHIFT3);
+-        set.set(i);
+-        final int ret = set.previousClearBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level3MissPlus1() throws Exception {
+-        final int i = (1 << SHIFT3) + 1;
+-        set.set(i);
+-        final int ret = set.previousClearBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level3MissMinus1() throws Exception {
+-        final int i = (1 << SHIFT3) - 1;
+-        set.set(i);
+-        final int ret = set.previousClearBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+     @Test
+     public void noneBelow() throws Exception {
+-        set.set(1);
++        set.flip(1);
+         final int ret = set.previousClearBit(1);
+ 
+         assertEquals(0, ret);
+@@ -144,7 +59,7 @@ public class PreviousClearBitTest extends Assert {
+ 
+     @Test
+     public void oneBelow() throws Exception {
+-        set.set(1);
++        set.flip(1);
+         final int ret = set.previousClearBit(2);
+ 
+         assertEquals(2, ret);
+@@ -152,7 +67,7 @@ public class PreviousClearBitTest extends Assert {
+ 
+     @Test
+     public void threeNoSet() throws Exception {
+-        set.set(1);
++        set.flip(1);
+         final int ret = set.previousClearBit(3);
+ 
+         assertEquals(3, ret);
+@@ -160,7 +75,7 @@ public class PreviousClearBitTest extends Assert {
+ 
+     @Test
+     public void threeSet() throws Exception {
+-        set.set(3);
++        set.flip(3);
+         final int ret = set.previousClearBit(3);
+ 
+         assertEquals(2, ret);
+@@ -193,7 +108,7 @@ public class PreviousClearBitTest extends Assert {
+             set = new SparseBitSet();
+             for (int j = 0; j < 1000; ++j) {
+                 final int x = Math.abs(random.nextInt() + 1);
+-                set.set(x);
++                set.flip(x);
+                 values.add(x);
+             }
+             final int x = Math.abs(random.nextInt() + 1);
+diff --git a/src/test/java/com/zaxxer/sparsebits/PreviousSetBitTest.java b/src/test/java/com/zaxxer/sparsebits/PreviousSetBitTest.java
+index 488518b..9649063 100644
+--- a/src/test/java/com/zaxxer/sparsebits/PreviousSetBitTest.java
++++ b/src/test/java/com/zaxxer/sparsebits/PreviousSetBitTest.java
+@@ -9,10 +9,6 @@ import java.util.Collections;
+ import java.util.List;
+ import java.util.Random;
+ 
+-import static com.zaxxer.sparsebits.SparseBitSet.SHIFT1;
+-import static com.zaxxer.sparsebits.SparseBitSet.SHIFT2;
+-import static com.zaxxer.sparsebits.SparseBitSet.SHIFT3;
+-
+ /**
+  * @author <a href="mailto:brent.n.douglas@gmail.com">Brent Douglas</a>
+  */
+@@ -34,7 +30,7 @@ public class PreviousSetBitTest extends Assert {
+ 
+     @Test
+     public void bottomBit() throws Exception {
+-        set.set(0);
++        set.flip(0);
+         final int ret = set.previousSetBit(0);
+ 
+         assertEquals(0, ret);
+@@ -42,28 +38,16 @@ public class PreviousSetBitTest extends Assert {
+ 
+     @Test
+     public void betweenTwo() throws Exception {
+-        set.set(4);
+-        set.set(8);
++        set.flip(4);
++        set.flip(8);
+         final int ret = set.previousSetBit(5);
+ 
+         assertEquals(4, ret);
+     }
+ 
+-    @Test
+-    public void inRun() throws Exception {
+-        set.set(4);
+-        set.set(8);
+-        set.set(13);
+-        set.set(25);
+-        set.set(268);
+-        final int ret = set.previousSetBit(22);
+-
+-        assertEquals(13, ret);
+-    }
+-
+     @Test
+     public void sameBit() throws Exception {
+-        set.set(12345);
++        set.flip(12345);
+         final int ret = set.previousSetBit(12345);
+ 
+         assertEquals(12345, ret);
+@@ -71,7 +55,7 @@ public class PreviousSetBitTest extends Assert {
+ 
+     @Test
+     public void noneBelow() throws Exception {
+-        set.set(1);
++        set.flip(1);
+         final int ret = set.previousSetBit(0);
+ 
+         assertEquals(-1, ret);
+@@ -79,7 +63,7 @@ public class PreviousSetBitTest extends Assert {
+ 
+     @Test
+     public void oneBelow() throws Exception {
+-        set.set(1);
++        set.flip(1);
+         final int ret = set.previousSetBit(2);
+ 
+         assertEquals(1, ret);
+@@ -87,7 +71,7 @@ public class PreviousSetBitTest extends Assert {
+ 
+     @Test
+     public void twoBelow() throws Exception {
+-        set.set(1);
++        set.flip(1);
+         final int ret = set.previousSetBit(3);
+ 
+         assertEquals(1, ret);
+@@ -96,93 +80,12 @@ public class PreviousSetBitTest extends Assert {
+     @Test
+     public void topBit() throws Exception {
+         final int i = Integer.MAX_VALUE - 1;
+-        set.set(i);
++        set.flip(i);
+         final int ret = set.previousSetBit(i);
+ 
+         assertEquals(i, ret);
+     }
+ 
+-    @Test
+-    public void level1Miss() throws Exception {
+-        final int i = (1 << (SHIFT1 + SHIFT3));
+-        set.set(i - 1);
+-        final int ret = set.previousSetBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level1MissPlus1() throws Exception {
+-        final int i = (1 << (SHIFT1 + SHIFT3)) + 1;
+-        set.set(i - 1);
+-        final int ret = set.previousSetBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level1MissMinus1() throws Exception {
+-        final int i = (1 << (SHIFT1 + SHIFT3)) - 1;
+-        set.set(i - 1);
+-        final int ret = set.previousSetBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level2Miss() throws Exception {
+-        final int i = (1 << (SHIFT3 + SHIFT2));
+-        set.set(i - 1);
+-        final int ret = set.previousSetBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level2MissPlus1() throws Exception {
+-        final int i = (1 << (SHIFT3 + SHIFT2)) + 1;
+-        set.set(i - 1);
+-        final int ret = set.previousSetBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level2MissMinus1() throws Exception {
+-        final int i = (1 << (SHIFT3 + SHIFT2)) - 1;
+-        set.set(i - 1);
+-        final int ret = set.previousSetBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level3Miss() throws Exception {
+-        final int i = (1 << SHIFT3);
+-        set.set(i - 1);
+-        final int ret = set.previousSetBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level3MissPlus1() throws Exception {
+-        final int i = (1 << SHIFT3) + 1;
+-        set.set(i - 1);
+-        final int ret = set.previousSetBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+-    @Test
+-    public void level3MissMinus1() throws Exception {
+-        final int i = (1 << SHIFT3) - 1;
+-        set.set(i - 1);
+-        final int ret = set.previousSetBit(i);
+-
+-        assertEquals(i - 1, ret);
+-    }
+-
+     @Test
+     public void randomSingleEntry() throws Exception {
+         final int max = Integer.MAX_VALUE - 1;
+@@ -190,7 +93,7 @@ public class PreviousSetBitTest extends Assert {
+         for (int i = 0; i < 10000; ++i) {
+             set = new SparseBitSet();
+             final int x = Math.abs(random.nextInt() + 1);
+-            set.set(x);
++            set.flip(x);
+             final int ret = set.previousSetBit(max);
+             assertEquals("Failed on i = " + i, x, ret);
+         }
+@@ -198,25 +101,16 @@ public class PreviousSetBitTest extends Assert {
+ 
+     @Test
+     public void randomMultiEntry() throws Exception {
+-        randomMultiEntry(Integer.MAX_VALUE);
+-    }
+-
+-    @Test
+-    public void randomMultiEntryTight() throws Exception {
+-        randomMultiEntry(2000);
+-    }
+-
+-    public void randomMultiEntry(final int max) throws Exception {
+         final Random random = new Random(0);
+         final List<Integer> values = new ArrayList<Integer>();
+         for (int i = 0; i < 10000; ++i) {
+             set = new SparseBitSet();
+             for (int j = 0; j < 1000; ++j) {
+-                final int x = Math.abs(random.nextInt() + 1) % max;
+-                set.set(x);
++                final int x = Math.abs(random.nextInt() + 1);
++                set.flip(x);
+                 values.add(x);
+             }
+-            final int x = Math.abs(random.nextInt() + 1) % max;
++            final int x = Math.abs(random.nextInt() + 1);
+             Collections.sort(values);
+             int expected = -1;
+             for (final Integer val : values) {

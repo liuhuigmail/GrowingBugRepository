@@ -1,0 +1,97 @@
+diff --git a/src/main/java/org/eluder/coveralls/maven/plugin/AbstractCoverallsMojo.java b/src/main/java/org/eluder/coveralls/maven/plugin/AbstractCoverallsMojo.java
+index 9ec86c6..5115770 100644
+--- a/src/main/java/org/eluder/coveralls/maven/plugin/AbstractCoverallsMojo.java
++++ b/src/main/java/org/eluder/coveralls/maven/plugin/AbstractCoverallsMojo.java
+@@ -191,6 +191,8 @@ public abstract class AbstractCoverallsMojo extends AbstractMojo {
+             if (!job.isDryRun()) {
+                 submitData(client, writer.getCoverallsFile());
+             }
++        } catch (MojoFailureException ex) {
++            throw ex;
+         } catch (ProcessingException ex) {
+             throw new MojoFailureException("Processing of input or output data failed", ex);
+         } catch (IOException ex) {
+@@ -300,24 +302,19 @@ public abstract class AbstractCoverallsMojo extends AbstractMojo {
+         }
+     }
+     
+-    private void submitData(final CoverallsClient client, final File coverallsFile) throws ProcessingException, IOException {
++    private void submitData(final CoverallsClient client, final File coverallsFile) throws MojoFailureException, ProcessingException, IOException {
+         getLog().info("Submitting Coveralls data to API");
+         long now = System.currentTimeMillis();
+-        try {
+             CoverallsResponse response = client.submit(coverallsFile);
+             long duration = System.currentTimeMillis() - now;
++        if (!response.isError()) {
+             getLog().info("Successfully submitted Coveralls data in " + duration + "ms for " + response.getMessage());
+             getLog().info(response.getUrl());
+             getLog().info("*** It might take hours for Coveralls to update the actual coverage numbers for a job");
+             getLog().info("    If you see question marks in the report, please be patient");
+-        } catch (ProcessingException ex) {
+-            long duration = System.currentTimeMillis() - now;
+-            getLog().error("Submission failed in " + duration + "ms while processing data");
+-            throw ex;
+-        } catch (IOException ex) {
+-            long duration = System.currentTimeMillis() - now;
+-            getLog().error("Submission failed in " + duration + "ms while handling I/O operations");
+-            throw ex;
++        } else {
++            getLog().error("Failed to submit Coveralls data in " + duration + "ms");
++            throw new MojoFailureException("Failed to submit coveralls report: " + response.getMessage());
+         }
+     }
+     
+diff --git a/src/main/java/org/eluder/coveralls/maven/plugin/httpclient/CoverallsClient.java b/src/main/java/org/eluder/coveralls/maven/plugin/httpclient/CoverallsClient.java
+index 0e632b2..c7ff360 100644
+--- a/src/main/java/org/eluder/coveralls/maven/plugin/httpclient/CoverallsClient.java
++++ b/src/main/java/org/eluder/coveralls/maven/plugin/httpclient/CoverallsClient.java
+@@ -48,6 +48,9 @@ import org.codehaus.plexus.util.StringUtils;
+ import org.eluder.coveralls.maven.plugin.ProcessingException;
+ import org.eluder.coveralls.maven.plugin.domain.CoverallsResponse;
+ 
++import com.fasterxml.jackson.core.JsonProcessingException;
++import com.fasterxml.jackson.databind.ObjectMapper;
++
+ public class CoverallsClient {
+ 
+     static {
+@@ -92,36 +95,16 @@ public class CoverallsClient {
+     private CoverallsResponse parseResponse(final HttpResponse response) throws ProcessingException, IOException {
+         HttpEntity entity = response.getEntity();
+         ContentType contentType = ContentType.getOrDefault(entity);
+-        InputStreamReader reader = null;
++        InputStreamReader reader = new InputStreamReader(entity.getContent(), contentType.getCharset());
+         try {
+-            reader = new InputStreamReader(entity.getContent(), contentType.getCharset());
+-            CoverallsResponse cr = objectMapper.readValue(reader, CoverallsResponse.class);
+-            if (cr.isError()) {
+-                throw new ProcessingException(getResponseErrorMessage(response, cr.getMessage()));
+-            }
+-            return cr;
++            return objectMapper.readValue(reader, CoverallsResponse.class);
+         } catch (JsonProcessingException ex) {
+-            throw new ProcessingException(getResponseErrorMessage(response, ex.getMessage()), ex);
+-        } catch (IOException ex) {
+-            throw new IOException(getResponseErrorMessage(response, ex.getMessage()), ex);
++            throw new ProcessingException(ex);
+         } finally {
+             IOUtil.close(reader);
+         }
+     }
+     
+-    private String getResponseErrorMessage(final HttpResponse response, final String message) {
+-        int status = response.getStatusLine().getStatusCode();
+-        String reason = response.getStatusLine().getReasonPhrase();
+-        String errorMessage = "Report submission to Coveralls API failed with HTTP status " + status + ":";
+-        if (StringUtils.isNotBlank(reason)) {
+-            errorMessage += " " + reason;
+-        }
+-        if (StringUtils.isNotBlank(message)) {
+-            errorMessage += " (" + message + ")";
+-        }
+-        return errorMessage;
+-    }
+-    
+     private static HttpClient createDefaultClient() {
+         RequestConfig requestConfig = RequestConfig.custom()
+                 .setConnectTimeout(DEFAULT_CONNECTION_TIMEOUT)

@@ -1,0 +1,89 @@
+diff --git a/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java b/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
+index fe19406..e437285 100644
+--- a/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
++++ b/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
+@@ -39,7 +39,7 @@ public abstract class AbstractExtractFileTask<T> extends AsyncZipTask<T> {
+     // make sure no file is extracted outside of the target directory (a.k.a zip slip)
+     String fileName = fileHeader.getFileName();
+     String completePath = outPath + fileName;
+-    if (!new File(completePath).getCanonicalPath().startsWith(new File(outPath).getCanonicalPath())) {
++    if (!new File(completePath).getCanonicalPath().startsWith(new File(outPath).getPath())) {
+       throw new ZipException("illegal file name that breaks out of the target directory: "
+           + fileHeader.getFileName());
+     }
+diff --git a/src/main/java/net/lingala/zip4j/tasks/AddFolderToZipTask.java b/src/main/java/net/lingala/zip4j/tasks/AddFolderToZipTask.java
+index db8dce0..3f6a5d7 100644
+--- a/src/main/java/net/lingala/zip4j/tasks/AddFolderToZipTask.java
++++ b/src/main/java/net/lingala/zip4j/tasks/AddFolderToZipTask.java
+@@ -41,13 +41,13 @@ public class AddFolderToZipTask extends AbstractAddFileToZipTask<AddFolderToZipT
+     return calculateWorkForFiles(filesToAdd, taskParameters.zipParameters);
+   }
+ 
+-  private void setDefaultFolderPath(AddFolderToZipTaskParameters taskParameters) throws IOException {
++  private void setDefaultFolderPath(AddFolderToZipTaskParameters taskParameters) {
+     String rootFolderPath;
+     File folderToAdd = taskParameters.folderToAdd;
+     if (taskParameters.zipParameters.isIncludeRootFolder()) {
+-      rootFolderPath = folderToAdd.getParentFile().getCanonicalPath();
++      rootFolderPath = folderToAdd.getParentFile().getPath();
+     } else {
+-      rootFolderPath = folderToAdd.getCanonicalPath();
++      rootFolderPath = folderToAdd.getAbsolutePath();
+     }
+ 
+     taskParameters.zipParameters.setDefaultFolderPath(rootFolderPath);
+diff --git a/src/main/java/net/lingala/zip4j/util/FileUtils.java b/src/main/java/net/lingala/zip4j/util/FileUtils.java
+index 2ce95f9..4faaaa9 100644
+--- a/src/main/java/net/lingala/zip4j/util/FileUtils.java
++++ b/src/main/java/net/lingala/zip4j/util/FileUtils.java
+@@ -181,25 +181,23 @@ public class FileUtils {
+     return splitZipFiles;
+   }
+ 
+-  public static String getRelativeFileName(String file, String rootFolderPath) throws ZipException {
++  public static String getRelativeFileName(String file, String rootFolderPath) {
+ 
+     String fileName;
+-    try {
+-      String fileCanonicalPath = new File(file).getCanonicalPath();
+       if (isStringNotNullAndNotEmpty(rootFolderPath)) {
+         File rootFolderFile = new File(rootFolderPath);
+-        String rootFolderFileRef = rootFolderFile.getCanonicalPath();
++        String rootFolderFileRef = rootFolderFile.getPath();
+ 
+         if (!rootFolderFileRef.endsWith(FILE_SEPARATOR)) {
+           rootFolderFileRef += FILE_SEPARATOR;
+         }
+ 
+-        String tmpFileName = fileCanonicalPath.substring(rootFolderFileRef.length());
++        String tmpFileName = file.substring(rootFolderFileRef.length());
+         if (tmpFileName.startsWith(System.getProperty("file.separator"))) {
+           tmpFileName = tmpFileName.substring(1);
+         }
+ 
+-        File tmpFile = new File(fileCanonicalPath);
++        File tmpFile = new File(file);
+ 
+         if (tmpFile.isDirectory()) {
+           tmpFileName = tmpFileName.replaceAll("\\\\", "/");
+@@ -211,16 +209,13 @@ public class FileUtils {
+         }
+ 
+         fileName = tmpFileName;
++    } else {
++      File relFile = new File(file);
++      if (relFile.isDirectory()) {
++        fileName = relFile.getName() + ZIP_FILE_SEPARATOR;
+       } else {
+-        File relFile = new File(fileCanonicalPath);
+-        if (relFile.isDirectory()) {
+-          fileName = relFile.getName() + ZIP_FILE_SEPARATOR;
+-        } else {
+           fileName = relFile.getName();
+-        }
+       }
+-    } catch (IOException e) {
+-      throw new ZipException(e);
+     }
+ 
+     return fileName;

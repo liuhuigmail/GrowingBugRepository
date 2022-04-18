@@ -1,0 +1,6 @@
+org.eluder.coveralls.maven.plugin.CoverageParser
+org.eluder.coveralls.maven.plugin.CoverallsReportMojo
+org.eluder.coveralls.maven.plugin.Environment
+org.eluder.coveralls.maven.plugin.ProcessingException
+org.eluder.coveralls.maven.plugin.service.ServiceSetup
+org.eluder.coveralls.maven.plugin.source.SourceCallback

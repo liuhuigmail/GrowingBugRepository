@@ -1,0 +1,15 @@
+edu.ksu.canvas.ApiFactoryUTest
+edu.ksu.canvas.BaseCanvasModelUTest
+edu.ksu.canvas.BaseImplUTest
+edu.ksu.canvas.EnrollmentUTest
+edu.ksu.canvas.oauth.OauthTokenRefresherUTest
+edu.ksu.canvas.tests.account.AccountReaderUTest
+edu.ksu.canvas.tests.assignment.AssignmentRetrieverUTest
+edu.ksu.canvas.tests.course.CourseManagerUTest
+edu.ksu.canvas.tests.course.DropCourseUTest
+edu.ksu.canvas.tests.course.UserManagerUTest
+edu.ksu.canvas.tests.gson.GsonDateParsingUTest
+edu.ksu.canvas.tests.quiz.QuizQuestionRetrieverUTest
+edu.ksu.canvas.tests.quiz.QuizRetrieverUTest
+edu.ksu.canvas.tests.quiz.QuizSubmissionRetrieverUTest
+edu.ksu.canvas.tests.user.UserRetrieverUTest

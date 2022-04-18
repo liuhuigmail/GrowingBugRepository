@@ -1,0 +1,40 @@
+diff --git a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+index 421c5cd..182b64f 100755
+--- a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
++++ b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+@@ -418,21 +418,13 @@ public class HeaderReader {
+ 
+     fileHeader.setZip64ExtendedInfo(zip64ExtendedInfo);
+ 
+-    if (zip64ExtendedInfo.getUncompressedSize() != -1) {
+       fileHeader.setUncompressedSize(zip64ExtendedInfo.getUncompressedSize());
+-    }
+ 
+-    if (zip64ExtendedInfo.getCompressedSize() != -1) {
+       fileHeader.setCompressedSize(zip64ExtendedInfo.getCompressedSize());
+-    }
+ 
+-    if (zip64ExtendedInfo.getOffsetLocalHeader() != -1) {
+       fileHeader.setOffsetLocalHeader(zip64ExtendedInfo.getOffsetLocalHeader());
+-    }
+ 
+-    if (zip64ExtendedInfo.getDiskNumberStart() != -1) {
+       fileHeader.setDiskNumberStart(zip64ExtendedInfo.getDiskNumberStart());
+-    }
+   }
+ 
+   private void readZip64ExtendedInfo(LocalFileHeader localFileHeader, RawIO rawIO) throws ZipException {
+@@ -452,13 +444,9 @@ public class HeaderReader {
+ 
+     localFileHeader.setZip64ExtendedInfo(zip64ExtendedInfo);
+ 
+-    if (zip64ExtendedInfo.getUncompressedSize() != -1) {
+       localFileHeader.setUncompressedSize(zip64ExtendedInfo.getUncompressedSize());
+-    }
+ 
+-    if (zip64ExtendedInfo.getCompressedSize() != -1) {
+       localFileHeader.setCompressedSize(zip64ExtendedInfo.getCompressedSize());
+-    }
+   }
+ 
+   private Zip64ExtendedInfo readZip64ExtendedInfo(List<ExtraDataRecord> extraDataRecords, RawIO rawIO)

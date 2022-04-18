@@ -1,0 +1,3 @@
+com.zaxxer.sparsebits.InitWithZeroTest
+com.zaxxer.sparsebits.PreviousClearBitTest
+com.zaxxer.sparsebits.PreviousSetBitTest

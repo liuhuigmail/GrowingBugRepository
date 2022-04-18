@@ -1,0 +1,32 @@
+diff --git a/src/main/java/net/lingala/zip4j/headers/HeaderUtil.java b/src/main/java/net/lingala/zip4j/headers/HeaderUtil.java
+index 9ab9eae..9f51514 100644
+--- a/src/main/java/net/lingala/zip4j/headers/HeaderUtil.java
++++ b/src/main/java/net/lingala/zip4j/headers/HeaderUtil.java
+@@ -64,19 +64,19 @@ public class HeaderUtil {
+   }
+ 
+   public static String decodeStringWithCharset(byte[] data, boolean isUtf8Encoded, Charset charset) {
+-    if (InternalZipConstants.CHARSET_UTF_8.equals(charset) && !isUtf8Encoded) {
+-      try {
+-        return new String(data, ZIP_STANDARD_CHARSET);
+-      } catch (UnsupportedEncodingException e) {
+-        return new String(data);
+-      }
+-    }
+ 
+     if(charset != null) {
+       return new String(data, charset);
+     }
+ 
+-    return new String(data, InternalZipConstants.CHARSET_UTF_8);
++    if (isUtf8Encoded) {
++      return new String(data, InternalZipConstants.CHARSET_UTF_8);
++    }
++    try {
++      return new String(data, ZIP_STANDARD_CHARSET);
++    } catch (UnsupportedEncodingException e) {
++      return new String(data);
++    }
+   }
+ 
+ 

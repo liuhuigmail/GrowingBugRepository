@@ -1,0 +1,16 @@
+diff --git a/src/test/java/net/lingala/zip4j/ExtractZipFileIT.java b/src/test/java/net/lingala/zip4j/ExtractZipFileIT.java
+index 30d37ac..00bef2a 100644
+--- a/src/test/java/net/lingala/zip4j/ExtractZipFileIT.java
++++ b/src/test/java/net/lingala/zip4j/ExtractZipFileIT.java
+@@ -433,11 +433,6 @@ public class ExtractZipFileIT extends AbstractIT {
+     zipFile.extractFile("file_PDF_1MB.pdf", outputFolder.getPath());
+   }
+ 
+-  @Test
+-  public void testExtractZipFileWithCommentLengthGreaterThanZipFileLength() throws IOException {
+-    verifyZipFileByExtractingAllFiles(getTestArchiveFromResources("zip_with_corrupt_comment_length.zip"), outputFolder, 1);
+-  }
+-
+   private void addFileToZip(ZipFile zipFile, String fileName, EncryptionMethod encryptionMethod, String password) throws ZipException {
+     ZipParameters zipParameters = new ZipParameters();
+     zipParameters.setEncryptFiles(encryptionMethod != null);

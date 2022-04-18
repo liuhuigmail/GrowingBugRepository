@@ -1,0 +1,2 @@
+net.lingala.zip4j.io.outputstream.CompressedOutputStream
+net.lingala.zip4j.io.outputstream.DeflaterOutputStream

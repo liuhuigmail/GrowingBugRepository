@@ -1,0 +1,4 @@
+org.apache.pirk.serialization.JavaSerializer
+org.apache.pirk.serialization.JsonSerializer
+org.apache.pirk.serialization.SerializationService
+org.apache.pirk.serialization.Storable

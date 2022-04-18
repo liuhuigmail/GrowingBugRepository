@@ -1,0 +1,63 @@
+diff --git a/src/main/java/net/lingala/zip4j/io/outputstream/CompressedOutputStream.java b/src/main/java/net/lingala/zip4j/io/outputstream/CompressedOutputStream.java
+index 294fc44..6f9e6c1 100644
+--- a/src/main/java/net/lingala/zip4j/io/outputstream/CompressedOutputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/outputstream/CompressedOutputStream.java
+@@ -26,6 +26,9 @@ abstract class CompressedOutputStream extends OutputStream {
+     cipherOutputStream.write(b, off, len);
+   }
+ 
++  protected void decrementBytesWrittenForThisEntry(int value) {
++    cipherOutputStream.decrementBytesWrittenForThisEntry(value);
++  }
+   protected void closeEntry() throws IOException {
+     cipherOutputStream.closeEntry();
+   }
+diff --git a/src/main/java/net/lingala/zip4j/io/outputstream/DeflaterOutputStream.java b/src/main/java/net/lingala/zip4j/io/outputstream/DeflaterOutputStream.java
+index 8141b64..f0efbff 100755
+--- a/src/main/java/net/lingala/zip4j/io/outputstream/DeflaterOutputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/outputstream/DeflaterOutputStream.java
+@@ -27,10 +27,13 @@ class DeflaterOutputStream extends CompressedOutputStream {
+ 
+   private byte[] buff = new byte[BUFF_SIZE];
+   protected Deflater deflater;
++  private boolean firstBytesRead;
+ 
+   public DeflaterOutputStream(CipherOutputStream cipherOutputStream, CompressionLevel compressionLevel) {
+     super(cipherOutputStream);
+-    deflater = new Deflater(compressionLevel.getLevel(), true);
++    deflater = new Deflater();
++    deflater.setLevel(compressionLevel.getLevel());
++    firstBytesRead = false;
+   }
+ 
+   public void write(byte[] b) throws IOException {
+@@ -53,7 +56,20 @@ class DeflaterOutputStream extends CompressedOutputStream {
+   private void deflate() throws IOException {
+     int len = deflater.deflate(buff, 0, buff.length);
+     if (len > 0) {
+-      super.write(buff, 0, len);
++      if (deflater.finished()) {
++        if (len == 4) return;
++        if (len < 4) {
++          decrementBytesWrittenForThisEntry(4 - len);
++          return;
++        }
++        len -= 4;
++      }
++      if (!firstBytesRead) {
++        super.write(buff, 2, len - 2);
++        firstBytesRead = true;
++      } else {
++        super.write(buff, 0, len);
++      }
+     }
+   }
+ 
+@@ -64,6 +80,7 @@ class DeflaterOutputStream extends CompressedOutputStream {
+         deflate();
+       }
+     }
++    firstBytesRead = false;
+     deflater.end();
+     super.closeEntry();
+   }

@@ -1,0 +1,113 @@
+diff --git a/src/test/java/edu/ksu/canvas/oauth/RefreshableTokenUTest.java b/src/test/java/edu/ksu/canvas/oauth/RefreshableTokenUTest.java
+index c5bb19b..fcc1a26 100644
+--- a/src/test/java/edu/ksu/canvas/oauth/RefreshableTokenUTest.java
++++ b/src/test/java/edu/ksu/canvas/oauth/RefreshableTokenUTest.java
+@@ -6,12 +6,15 @@ import org.junit.runner.RunWith;
+ import org.mockito.Mock;
+ import org.mockito.runners.MockitoJUnitRunner;
+ 
++import java.util.Date;
++
+ import static org.junit.Assert.assertEquals;
+ import static org.mockito.Mockito.when;
+ 
+ @RunWith(MockitoJUnitRunner.class)
+ public class RefreshableTokenUTest {
+     private static final long EXPIRE_TIME_SECONDS = 3600;
++    private static final long DEFAULT_TIME_DELTA_MS = 1000;
+     private final String refreshToken = "arbitraryToken";
+     private final TokenRefreshResponse firstToken = new TokenRefreshResponse();
+     private final TokenRefreshResponse secondToken = new TokenRefreshResponse();
+@@ -32,7 +35,7 @@ public class RefreshableTokenUTest {
+     public void tokenIsRefreshedUponConstruction() throws Exception {
+         when(tokenRefresher.getNewToken(refreshToken)).thenReturn(secondToken);
+ 
+-        token = new RefreshableOauthToken(tokenRefresher, refreshToken);
++        token = new RefreshableOauthTokenForTests(tokenRefresher, refreshToken, DEFAULT_TIME_DELTA_MS);
+ 
+         assertEquals("Expected token to be refreshed upon construction", secondToken.getAccessToken(), token.getAccessToken());
+     }
+@@ -42,7 +45,7 @@ public class RefreshableTokenUTest {
+         when(tokenRefresher.getNewToken(refreshToken))
+                 .thenReturn(firstToken)
+                 .thenReturn(secondToken);
+-        token = new RefreshableOauthToken(tokenRefresher, refreshToken);
++        token = new RefreshableOauthTokenForTests(tokenRefresher, refreshToken, DEFAULT_TIME_DELTA_MS);
+ 
+         token.refresh();
+ 
+@@ -51,11 +54,12 @@ public class RefreshableTokenUTest {
+ 
+     @Test
+     public void tokenIsRefreshedWhenExpireTimeReached() throws Exception {
+-        firstToken.setExpiresIn(0l);
++        firstToken.setExpiresIn(1l);
++        long timeDelta = 1001l;
+         when(tokenRefresher.getNewToken(refreshToken))
+                 .thenReturn(firstToken)
+                 .thenReturn(secondToken);
+-        token = new RefreshableOauthToken(tokenRefresher, refreshToken);
++        token = new RefreshableOauthTokenForTests(tokenRefresher, refreshToken, timeDelta);
+ 
+         String accessToken = token.getAccessToken();
+ 
+@@ -67,11 +71,11 @@ public class RefreshableTokenUTest {
+         when(tokenRefresher.getNewToken(refreshToken))
+                 .thenReturn(firstToken)
+                 .thenReturn(secondToken);
+-        token = new RefreshableOauthToken(tokenRefresher, refreshToken);
++        token = new RefreshableOauthTokenForTests(tokenRefresher, refreshToken, DEFAULT_TIME_DELTA_MS);
+ 
+         String accessToken = token.getAccessToken();
+ 
+-        assertEquals("Expected token to not be refreshed when not expired", secondToken.getAccessToken(), accessToken);
++        assertEquals("Expected token to not be refreshed when not expired", firstToken.getAccessToken(), accessToken);
+     }
+ 
+     @Test
+@@ -80,11 +84,44 @@ public class RefreshableTokenUTest {
+         when(tokenRefresher.getNewToken(refreshToken))
+                 .thenReturn(firstToken)
+                 .thenReturn(secondToken);
+-        token = new RefreshableOauthToken(tokenRefresher, refreshToken);
++        token = new RefreshableOauthTokenForTests(tokenRefresher, refreshToken, DEFAULT_TIME_DELTA_MS);
+ 
+         String accessToken = token.getAccessToken();
+ 
+         assertEquals("Expected token to not be refreshed when expire time is null", firstToken.getAccessToken(), accessToken);
+     }
+ 
++    @Test
++    public void tokenIsNotExpiredWhen0TimeToLive() throws Exception {
++        firstToken.setExpiresIn(0l);
++        when(tokenRefresher.getNewToken(refreshToken))
++                .thenReturn(firstToken)
++                .thenReturn(secondToken);
++        token = new RefreshableOauthTokenForTests(tokenRefresher, refreshToken, DEFAULT_TIME_DELTA_MS);
++
++        String accessToken = token.getAccessToken();
++
++        assertEquals("Expected token to not be refreshed when expire time is 0", firstToken.getAccessToken(), accessToken);
++    }
++
++    private class RefreshableOauthTokenForTests extends RefreshableOauthToken {
++        private long timeDelta;
++        private boolean inFuture;
++
++        RefreshableOauthTokenForTests(OauthTokenRefresher tokenRefresher, String refreshToken, long timeDelta) {
++            super(tokenRefresher, refreshToken);
++            this.timeDelta = timeDelta;
++        }
++
++        @Override
++        protected Date now() {
++            if (!inFuture) {
++                inFuture = true;
++                return new Date();
++            } else {
++                inFuture = false;
++                return new Date(new Date().getTime() + timeDelta);
++            }
++        }
++    }
+ }

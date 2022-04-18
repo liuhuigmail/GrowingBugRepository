@@ -1,0 +1,2 @@
+org.eluder.coveralls.maven.plugin.AbstractCoverallsMojo
+org.eluder.coveralls.maven.plugin.httpclient.CoverallsClient

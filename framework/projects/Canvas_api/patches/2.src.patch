@@ -1,0 +1,21 @@
+diff --git a/src/main/java/edu/ksu/canvas/impl/GsonResponseParser.java b/src/main/java/edu/ksu/canvas/impl/GsonResponseParser.java
+index 2c8b752..b7f5aef 100644
+--- a/src/main/java/edu/ksu/canvas/impl/GsonResponseParser.java
++++ b/src/main/java/edu/ksu/canvas/impl/GsonResponseParser.java
+@@ -71,16 +71,6 @@ public class GsonResponseParser implements ResponseParser {
+                     throw new JsonParseException(e);
+                 }
+             }
+-        }).registerTypeAdapter(Date.class, new JsonSerializer<Date>() {
+-            @Override
+-            public JsonElement serialize(Date src, Type typeOfSrc, JsonSerializationContext context) {
+-                if(src == null) {
+-                    return null;
+-                }
+-                String dateString = ZonedDateTime.ofInstant(src.toInstant(), ZoneId.systemDefault())
+-                        .format(DateTimeFormatter.ISO_INSTANT);
+-                return new JsonPrimitive(dateString);
+-            }
+         });
+         return gsonBuilder.create();
+     }

@@ -1,0 +1,3 @@
+net.lingala.zip4j.AbstractIT
+net.lingala.zip4j.io.inputstream.ZipInputStreamIT
+net.lingala.zip4j.utils.TestUtils

@@ -1,0 +1,66 @@
+diff --git a/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java b/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
+index 9c14b21..2e48023 100755
+--- a/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
+@@ -58,10 +58,7 @@ public class ZipInputStream extends InputStream {
+   }
+ 
+   public LocalFileHeader getNextEntry() throws IOException {
+-    return getNextEntry(null);
+-  }
+ 
+-  public LocalFileHeader getNextEntry(FileHeader fileHeader) throws IOException {
+     localFileHeader = headerReader.readLocalFileHeader(inputStream);
+ 
+     if (localFileHeader == null) {
+@@ -71,11 +68,6 @@ public class ZipInputStream extends InputStream {
+     verifyLocalFileHeader(localFileHeader);
+     crc32.reset();
+ 
+-    if (fileHeader != null) {
+-      localFileHeader.setCrc(fileHeader.getCrc());
+-      localFileHeader.setCompressedSize(fileHeader.getCompressedSize());
+-      localFileHeader.setUncompressedSize(fileHeader.getUncompressedSize());
+-    }
+ 
+     if (!isZipEntryDirectory(localFileHeader.getFileName())) {
+       this.decompressedInputStream = initializeEntryInputStream(localFileHeader);
+diff --git a/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java b/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
+index 8dc19d1..2c21e51 100644
+--- a/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
++++ b/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
+@@ -78,7 +78,7 @@ public abstract class AbstractExtractFileTask<T> extends AsyncZipTask<T> {
+   }
+ 
+   private void verifyNextEntry(ZipInputStream zipInputStream, FileHeader fileHeader) throws IOException {
+-    LocalFileHeader localFileHeader = zipInputStream.getNextEntry(fileHeader);
++    LocalFileHeader localFileHeader = zipInputStream.getNextEntry();
+ 
+     if (localFileHeader == null) {
+       throw new ZipException("Could not read corresponding local file header for file header: "
+diff --git a/src/main/java/net/lingala/zip4j/tasks/ExtractAllFilesTask.java b/src/main/java/net/lingala/zip4j/tasks/ExtractAllFilesTask.java
+index 583c8cd..73a7520 100644
+--- a/src/main/java/net/lingala/zip4j/tasks/ExtractAllFilesTask.java
++++ b/src/main/java/net/lingala/zip4j/tasks/ExtractAllFilesTask.java
+@@ -27,7 +27,7 @@ public class ExtractAllFilesTask extends AbstractExtractFileTask<ExtractAllFiles
+       for (FileHeader fileHeader : getZipModel().getCentralDirectory().getFileHeaders()) {
+         if (fileHeader.getFileName().startsWith("__MACOSX")) {
+           progressMonitor.updateWorkCompleted(fileHeader.getUncompressedSize());
+-          zipInputStream.getNextEntry(fileHeader);
++          zipInputStream.getNextEntry();
+           continue;
+         }
+ 
+diff --git a/src/main/java/net/lingala/zip4j/util/UnzipUtil.java b/src/main/java/net/lingala/zip4j/util/UnzipUtil.java
+index 35bf6cb..0066fa0 100755
+--- a/src/main/java/net/lingala/zip4j/util/UnzipUtil.java
++++ b/src/main/java/net/lingala/zip4j/util/UnzipUtil.java
+@@ -24,7 +24,7 @@ public class UnzipUtil {
+       splitInputStream.prepareExtractionForFileHeader(fileHeader);
+ 
+       ZipInputStream zipInputStream = new ZipInputStream(splitInputStream, password);
+-      if (zipInputStream.getNextEntry(fileHeader) == null) {
++      if (zipInputStream.getNextEntry() == null) {
+         throw new ZipException("Could not locate local file header for corresponding file header");
+       }
+ 

@@ -1,0 +1,6 @@
+org.eluder.coveralls.maven.plugin.EnvironmentTest
+org.eluder.coveralls.maven.plugin.chain.ChainMojoTest
+org.eluder.coveralls.maven.plugin.cobertura.CoberturaMojoTest
+org.eluder.coveralls.maven.plugin.httpclient.CoverallsClientTest
+org.eluder.coveralls.maven.plugin.jacoco.JaCoCoMojoTest
+org.eluder.coveralls.maven.plugin.saga.SagaMojoTest

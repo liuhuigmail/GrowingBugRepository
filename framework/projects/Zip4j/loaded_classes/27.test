@@ -1,0 +1,4 @@
+net.lingala.zip4j.AbstractIT
+net.lingala.zip4j.ExtractZipFileIT
+net.lingala.zip4j.utils.TestUtils
+net.lingala.zip4j.utils.ZipFileVerifier

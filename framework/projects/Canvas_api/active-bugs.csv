@@ -1,2 +1,5 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,27e7c85790d17a77577462f6f12c8da3ddcba71f,f2cc44d704eb2ab7b6aed40f490f806e5259f74f,90,https://github.com/kstateome/canvas-api/pull/90
+2,b74e6f41d382719aa716cc7a5876bbc364f8976d,f4c66aba0ac27daa465335f9903941b77cad23c1,43,https://github.com/kstateome/canvas-api/pull/43
+3,349859619436bf83de7040eb33aa36ae422c5d2a,894d8a7a9cc769b3e53007b88eff0fd74e667c44,unknown,unknown
+4,c5ab407346bb3db13d3468378058d312c5db6a70,dcf10e7c984498fdb82bd370d25b33485de75379,unknown,unknown

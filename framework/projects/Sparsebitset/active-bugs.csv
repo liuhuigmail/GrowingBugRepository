@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,37ec0681635c8e0c536f0d63fc52d8d19367110a,0622dfd9721e7e2ae8a1cc2e8dcdd0e31daaaad1,7,https://github.com/brettwooldridge/SparseBitSet/issues/7
+2,e8d1c80f14184cb069478d4f445ef97ead2f2a84,cc7b16f6328df8ce5c8ef74c92e8c72b193de2fa,15,https://github.com/brettwooldridge/SparseBitSet/issues/15

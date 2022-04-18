@@ -1,0 +1,20 @@
+diff --git a/src/test/java/com/zaxxer/sparsebits/PreviousClearBitTest.java b/src/test/java/com/zaxxer/sparsebits/PreviousClearBitTest.java
+index d7b639b..730dbcc 100644
+--- a/src/test/java/com/zaxxer/sparsebits/PreviousClearBitTest.java
++++ b/src/test/java/com/zaxxer/sparsebits/PreviousClearBitTest.java
+@@ -206,14 +206,4 @@ public class PreviousClearBitTest extends Assert {
+             values.clear();
+         }
+     }
+-
+-    @Test
+-    public void bug15() throws Exception {
+-        set.set(1);
+-        set.set(64);
+-        assertEquals(63, set.previousClearBit(64));
+-        set.clear(0);
+-        set.set(1);
+-        assertEquals(63, set.previousClearBit(64));
+-    }
+ }
+\ No newline at end of file

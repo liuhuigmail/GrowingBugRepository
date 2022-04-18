@@ -165,5 +165,9 @@ Streamex	streamex	https://www.github.com/amaembo/streamex.git	github	amaembo/str
 Spoon	spoon	https://www.github.com/INRIA/spoon.git	github	INRIA/spoon	/#(\\d+)/mi	.
 Canvas_api	canvas-api	https://github.com/kstateome/canvas-api.git	github	kstateome/canvas-api	/#(\\d+)/mi	.
 Coveralls_maven_plugin	coveralls-maven-plugin	https://github.com/trautonen/coveralls-maven-plugin.git	github	trautonen/coveralls-maven-plugin	/#(\\d+)/mi	.
-Slack_java_webhook	slack-java-webhook	https://github.com/ashwanthkumar/slack-java-webhook.git	github	ashwanthkumar/slack-java-webhook	/#(\\d+)/mi	.
-Zip4j	zip4j	https://github.com/srikanth-lingala/zip4j.git	github	srikanth-lingala/zip4j	/#(\\d+)/mi	.	
+Slack_java_webhook	slack-java-webhook	https://github.com/ashwanthkumar/slack-java-webhook.git	github	ashwanthkumar/slack-java-webhook	/#(\\d+)/mi	.	
+Zip4j	zip4j	https://github.com/srikanth-lingala/zip4j.git	github	srikanth-lingala/zip4j	/#(\\d+)/mi	.
+Sparsebitset	SparseBitSet	https://github.com/brettwooldridge/SparseBitSet.git	github	brettwooldridge/SparseBitSet	/#(\\d+)/mi	.	
+Incubator_retired_pirk	incubator-retired-pirk	https://github.com/apache/incubator-retired-pirk.git	github	apache/incubator-retired-pirk	/#(\\d+)/mi	.	
+Coveralls_maven_plugin	coveralls-maven-plugin	https://github.com/trautonen/coveralls-maven-plugin.git	github	trautonen/coveralls-maven-plugin	/#(\\d+)/mi	.
+

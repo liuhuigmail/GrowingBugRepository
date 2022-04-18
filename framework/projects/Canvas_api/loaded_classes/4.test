@@ -1,0 +1,6 @@
+edu.ksu.canvas.CanvasTestBase
+edu.ksu.canvas.config.BaseTestConfig
+edu.ksu.canvas.config.CommonTestConfig
+edu.ksu.canvas.net.FakeRestClient
+edu.ksu.canvas.tests.assignment.AssignmentRetrieverUTest
+edu.ksu.canvas.util.JsonTestUtil

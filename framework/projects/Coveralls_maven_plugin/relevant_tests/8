@@ -1,0 +1,2 @@
+org.eluder.coveralls.maven.plugin.CoverallsReportMojoTest
+org.eluder.coveralls.maven.plugin.EnvironmentTest
