@@ -3,7 +3,7 @@
 Notably, each bug is composed of a buggy version, a fixed version, a ***concise patch*** (bug-fixing changes only), and one or more triggering test cases.
 
 # Contents of growingBugs
-To date, growingBugs contains **`1491`** bugs from open-source Java projects. 
+To date, growingBugs contains **`1507`** bugs from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -171,11 +171,12 @@ To date, growingBugs contains **`1491`** bugs from open-source Java projects.
 | 162     | Javapoet            | javapoet               |                   |      17       | 1-17               |
 | 164     | RTree            | rtree               |                   |      12       | 1-12               |
 | 165     | Spoon            | spoon               |                   |      17       | 1-17               |
-| 166     | Canvas_api            | canvas-api               |                 |      1       | 1               |
-| 167     | Coveralls_maven_plugin            | coveralls-maven-plugin               |                  |      6       | 1-6               |
+| 166     | Canvas_api            | canvas-api               |                 |      4       | 1-4               |
+| 167     | Coveralls_maven_plugin            | coveralls-maven-plugin               |                  |      8       | 1-8               |
 | 168     | Slack_java_webhook            | slack-java-webhook               |                 |      1       | 1               |
-| 169     | Zip4j            | zip4j               |                  |      26       | 1-26               |
-
+| 169     | Zip4j            | zip4j               |                  |      34       | 1-34               |
+| 170     | Incubator_retired_pirk            | incubator-retired-pirk               |                  |      1       | 1               |
+| 171     | Sparsebitset             | Sparsebitset                |                  |      2       | 1-2               |
 # Setting up GrowingBugs
 
 ## Requirements
