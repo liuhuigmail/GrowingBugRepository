@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math/analysis/solvers/BrentSolver.java b/src/main/java/org/apache/commons/math/analysis/solvers/BrentSolver.java
+index 187a653..bb8313a 100644
+--- a/src/main/java/org/apache/commons/math/analysis/solvers/BrentSolver.java
++++ b/src/main/java/org/apache/commons/math/analysis/solvers/BrentSolver.java
+@@ -133,11 +133,6 @@ public class BrentSolver extends UnivariateRealSolverImpl {
+             return solve(f, initial, yInitial, max, yMax, initial, yInitial);
+         }
+ 
+-        if (yMin * yMax > 0) {
+-            throw MathRuntimeException.createIllegalArgumentException(
+-                    "function values at endpoints do not have different signs.  " +
+-                            "Endpoints: [{0}, {1}], Values: [{2}, {3}]", min, max, yMin, yMax);
+-        }
+ 
+         // full Brent algorithm starting with provided initial guess
+         return solve(f, min, yMin, max, yMax, initial, yInitial);

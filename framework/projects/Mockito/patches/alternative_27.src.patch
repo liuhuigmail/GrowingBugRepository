@@ -1,0 +1,26 @@
+diff --git a/src/org/mockito/internal/util/MockUtil.java b/src/org/mockito/internal/util/MockUtil.java
+index 0f7bb2d..b10e9cc 100644
+--- a/src/org/mockito/internal/util/MockUtil.java
++++ b/src/org/mockito/internal/util/MockUtil.java
+@@ -18,6 +18,8 @@ import org.mockito.internal.util.reflection.LenientCopyTool;
+ 
+ import java.io.Serializable;
+ 
++import static org.mockito.Mockito.RETURNS_DEFAULTS;
++import static org.mockito.Mockito.withSettings;
+ @SuppressWarnings("unchecked")
+ public class MockUtil {
+     
+@@ -63,9 +65,9 @@ public class MockUtil {
+ 
+     public <T> void resetMock(T mock) {
+         MockHandlerInterface<T> oldMockHandler = getMockHandler(mock);
+-        MockHandler<T> mockHandler = new MockHandler<T>(oldMockHandler.getMockSettings());
+-        InvocationNotifierHandler<T> invocationNotifierHandler = new InvocationNotifierHandler<T>(mockHandler, oldMockHandler.getMockSettings());
+-        MethodInterceptorFilter newFilter = MethodInterceptorFilter(invocationNotifierHandler, oldMockHandler.getMockSettings());
++        MockHandler<T> newMockHandler = new MockHandler<T>(oldMockHandler);
++        MethodInterceptorFilter newFilter = new MethodInterceptorFilter(newMockHandler, 
++                        (MockSettingsImpl) withSettings().defaultAnswer(RETURNS_DEFAULTS));
+         ((Factory) mock).setCallback(0, newFilter);
+     }
+ 

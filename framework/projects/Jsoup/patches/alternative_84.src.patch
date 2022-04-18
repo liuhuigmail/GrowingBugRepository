@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/jsoup/helper/W3CDom.java b/src/main/java/org/jsoup/helper/W3CDom.java
+index c396e50..5f75f8e 100644
+--- a/src/main/java/org/jsoup/helper/W3CDom.java
++++ b/src/main/java/org/jsoup/helper/W3CDom.java
+@@ -87,8 +87,7 @@ public class W3CDom {
+                 String prefix = updateNamespaces(sourceEl);
+                 String namespace = namespacesStack.peek().get(prefix);
+ 
+-                Element el = namespace == null && sourceEl.tagName().contains(":") ?
+-                    doc.createElementNS("", sourceEl.tagName()) : // doesn't have a real namespace defined
++                Element el = 
+                     doc.createElementNS(namespace, sourceEl.tagName());
+                 copyAttributes(sourceEl, el);
+                 if (dest == null) { // sets up the root
