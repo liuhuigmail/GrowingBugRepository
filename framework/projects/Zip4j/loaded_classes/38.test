@@ -1,0 +1,6 @@
+net.lingala.zip4j.AbstractIT
+net.lingala.zip4j.RemoveFilesFromZipIT
+net.lingala.zip4j.RenameFilesInZipIT
+net.lingala.zip4j.testutils.HeaderVerifier
+net.lingala.zip4j.testutils.TestUtils
+net.lingala.zip4j.testutils.ZipFileVerifier

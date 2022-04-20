@@ -33,3 +33,9 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 32,a7d4b245498af60b6bb1e4ced01bcd0c34c4adf2,5676742a4ca2e3d8480d966f165100d02798363f,65,https://github.com/srikanth-lingala/zip4j/issues/65
 33,58f8582d151e310b4f7503192be64c6f5615f252,30974c6b5b8d983126d34d72f315996baa382c91,162,https://github.com/srikanth-lingala/zip4j/issues/162
 34,7fb9db6c804970e274ba9eeef20e55bf995ae399,bd9d7325c4402241025aef89a25896ee877a455f,166,https://github.com/srikanth-lingala/zip4j/issues/166
+35,7be1b0620bf9dbb4c023a1682698ac5436b41fad,d5c5b413a2996bceb65db4adfd353030baf21d94,194,https://github.com/srikanth-lingala/zip4j/issues/194
+36,d5c5b413a2996bceb65db4adfd353030baf21d94,179e3766c03f850b93b5204cdc7aee6c04f9f95b,194,https://github.com/srikanth-lingala/zip4j/issues/194
+37,8ce786808a33bae964c9e549d0b77db93b967002,3d9f8dec9a35efdb528d56afaecc95aa073d5f57,202,https://github.com/srikanth-lingala/zip4j/issues/202
+38,ffe28c2db5b3d3717d5a5a48f6cf33dbf5d600eb,aae1798a3dbae113d7ef61f7cae2bf3e9dd2eebd,220,https://github.com/srikanth-lingala/zip4j/issues/220
+39,aae1798a3dbae113d7ef61f7cae2bf3e9dd2eebd,9de9fbf737b836241232c12178cfef0dfc740591,220,https://github.com/srikanth-lingala/zip4j/issues/220
+40,a20fcf8a48c88279493ec578356cdf361a045bb3,576b664c05154ae8ffce6b7044ff9b5a2a56868b,245,https://github.com/srikanth-lingala/zip4j/pull/245

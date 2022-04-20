@@ -1,0 +1,3 @@
+net.lingala.zip4j.tasks.AbstractModifyFileTask
+net.lingala.zip4j.tasks.RemoveFilesFromZipTask
+net.lingala.zip4j.tasks.RenameFilesTask

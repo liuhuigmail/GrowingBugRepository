@@ -1,0 +1,29 @@
+diff --git a/src/main/java/net/lingala/zip4j/exception/ZipException.java b/src/main/java/net/lingala/zip4j/exception/ZipException.java
+index 6ab74b2..aa3a6fd 100755
+--- a/src/main/java/net/lingala/zip4j/exception/ZipException.java
++++ b/src/main/java/net/lingala/zip4j/exception/ZipException.java
+@@ -56,7 +56,6 @@ public class ZipException extends IOException {
+     CHECKSUM_MISMATCH,
+     UNKNOWN_COMPRESSION_METHOD,
+     FILE_NOT_FOUND,
+-    UNSUPPORTED_ENCRYPTION,
+     UNKNOWN
+   }
+ }
+diff --git a/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java b/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
+index ff96ed5..314c858 100755
+--- a/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
+@@ -194,11 +194,8 @@ public class ZipInputStream extends InputStream {
+ 
+     if (localFileHeader.getEncryptionMethod() == EncryptionMethod.AES) {
+       return new AesCipherInputStream(zipEntryInputStream, localFileHeader, password);
+-    } else if (localFileHeader.getEncryptionMethod() == EncryptionMethod.ZIP_STANDARD) {
+-      return new ZipStandardCipherInputStream(zipEntryInputStream, localFileHeader, password);
+     } else {
+-      final String message = String.format("Entry [%s] Strong Encryption not supported", localFileHeader.getFileName());
+-      throw new ZipException(message, ZipException.Type.UNSUPPORTED_ENCRYPTION);
++      return new ZipStandardCipherInputStream(zipEntryInputStream, localFileHeader, password);
+     }
+   }
+ 

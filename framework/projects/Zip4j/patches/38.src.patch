@@ -1,0 +1,258 @@
+diff --git a/src/main/java/net/lingala/zip4j/headers/HeaderUtil.java b/src/main/java/net/lingala/zip4j/headers/HeaderUtil.java
+index f4caac9..b695514 100644
+--- a/src/main/java/net/lingala/zip4j/headers/HeaderUtil.java
++++ b/src/main/java/net/lingala/zip4j/headers/HeaderUtil.java
+@@ -32,6 +32,39 @@ public class HeaderUtil {
+     return fileHeader;
+   }
+ 
++  public static int getIndexOfFileHeader(ZipModel zipModel, FileHeader fileHeader) throws ZipException {
++
++    if (zipModel == null || fileHeader == null) {
++      throw new ZipException("input parameters is null, cannot determine index of file header");
++    }
++
++    if (zipModel.getCentralDirectory() == null
++        || zipModel.getCentralDirectory().getFileHeaders() == null
++        || zipModel.getCentralDirectory().getFileHeaders().size() <= 0) {
++      return -1;
++    }
++
++    String fileName = fileHeader.getFileName();
++
++    if (!isStringNotNullAndNotEmpty(fileName)) {
++      throw new ZipException("file name in file header is empty or null, cannot determine index of file header");
++    }
++
++    List<FileHeader> fileHeadersFromCentralDir = zipModel.getCentralDirectory().getFileHeaders();
++    for (int i = 0; i < fileHeadersFromCentralDir.size(); i++) {
++      FileHeader fileHeaderFromCentralDir = fileHeadersFromCentralDir.get(i);
++      String fileNameForHdr = fileHeaderFromCentralDir.getFileName();
++      if (!isStringNotNullAndNotEmpty(fileNameForHdr)) {
++        continue;
++      }
++
++      if (fileName.equalsIgnoreCase(fileNameForHdr)) {
++        return i;
++      }
++    }
++    return -1;
++  }
++
+   public static String decodeStringWithCharset(byte[] data, boolean isUtf8Encoded, Charset charset) {
+     if (InternalZipConstants.CHARSET_UTF_8.equals(charset) && !isUtf8Encoded) {
+       try {
+@@ -48,6 +81,18 @@ public class HeaderUtil {
+     return new String(data, InternalZipConstants.CHARSET_UTF_8);
+   }
+ 
++
++  public static long getOffsetOfNextEntry(ZipModel zipModel, FileHeader fileHeader) throws ZipException {
++    int indexOfFileHeader = getIndexOfFileHeader(zipModel, fileHeader);
++
++    List<FileHeader> fileHeaders = zipModel.getCentralDirectory().getFileHeaders();
++    if (indexOfFileHeader == fileHeaders.size() - 1) {
++      return getOffsetStartOfCentralDirectory(zipModel);
++    } else {
++      return fileHeaders.get(indexOfFileHeader + 1).getOffsetLocalHeader();
++    }
++  }
++
+   public static long getOffsetStartOfCentralDirectory(ZipModel zipModel) {
+     if (zipModel.isZip64Format()) {
+       return zipModel.getZip64EndOfCentralDirectoryRecord().getOffsetStartCentralDirectoryWRTStartDiskNumber();
+diff --git a/src/main/java/net/lingala/zip4j/tasks/AbstractModifyFileTask.java b/src/main/java/net/lingala/zip4j/tasks/AbstractModifyFileTask.java
+index 524ebe5..8581e05 100644
+--- a/src/main/java/net/lingala/zip4j/tasks/AbstractModifyFileTask.java
++++ b/src/main/java/net/lingala/zip4j/tasks/AbstractModifyFileTask.java
+@@ -1,6 +1,7 @@
+ package net.lingala.zip4j.tasks;
+ 
+ import net.lingala.zip4j.exception.ZipException;
++import net.lingala.zip4j.headers.HeaderUtil;
+ import net.lingala.zip4j.model.FileHeader;
+ import net.lingala.zip4j.model.ZipModel;
+ import net.lingala.zip4j.progress.ProgressMonitor;
+@@ -10,7 +11,6 @@ import java.io.File;
+ import java.io.IOException;
+ import java.io.OutputStream;
+ import java.io.RandomAccessFile;
+-import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Random;
+ 
+@@ -31,16 +31,17 @@ abstract class AbstractModifyFileTask<T> extends AsyncZipTask<T> {
+     return tmpFile;
+   }
+ 
+-  void updateOffsetsForAllSubsequentFileHeaders(List<FileHeader> sortedFileHeaders, ZipModel zipModel,
+-                                                FileHeader fileHeaderModified, long offsetToAdd) throws ZipException {
+-    int indexOfFileHeader = getIndexOfFileHeader(sortedFileHeaders, fileHeaderModified);
++  void updateOffsetsForAllSubsequentFileHeaders(ZipModel zipModel, FileHeader fileHeaderModified, long offsetToAdd) throws ZipException {
++    int indexOfFileHeader = HeaderUtil.getIndexOfFileHeader(zipModel, fileHeaderModified);
+ 
+     if (indexOfFileHeader == -1) {
+       throw new ZipException("Could not locate modified file header in zipModel");
+     }
+ 
+-    for (int i = indexOfFileHeader + 1; i < sortedFileHeaders.size(); i++) {
+-      FileHeader fileHeaderToUpdate = sortedFileHeaders.get(i);
++    List<FileHeader> allFileHeaders = zipModel.getCentralDirectory().getFileHeaders();
++
++    for (int i = indexOfFileHeader + 1; i < allFileHeaders.size(); i++) {
++      FileHeader fileHeaderToUpdate = allFileHeaders.get(i);
+       fileHeaderToUpdate.setOffsetLocalHeader(fileHeaderToUpdate.getOffsetLocalHeader() + offsetToAdd);
+ 
+       if (zipModel.isZip64Format()
+@@ -70,30 +71,6 @@ abstract class AbstractModifyFileTask<T> extends AsyncZipTask<T> {
+     return length;
+   }
+ 
+-  List<FileHeader> cloneAndSortFileHeadersByOffset(List<FileHeader> allFileHeaders) {
+-    List<FileHeader> clonedFileHeaders = new ArrayList<>(allFileHeaders);
+-    clonedFileHeaders.sort((o1, o2) -> {
+-      if (o1.getFileName().equals(o2.getFileName())) {
+-        return 0;
+-      }
+-
+-      return o1.getOffsetLocalHeader() < o2.getOffsetLocalHeader() ? -1 : 1;
+-    });
+-
+-    return clonedFileHeaders;
+-  }
+-
+-  long getOffsetOfNextEntry(List<FileHeader> sortedFileHeaders, FileHeader fileHeader,
+-                                   long offsetStartOfCentralDirectory) throws ZipException {
+-    int indexOfFileHeader = getIndexOfFileHeader(sortedFileHeaders, fileHeader);
+-
+-    if (indexOfFileHeader == sortedFileHeaders.size() - 1) {
+-      return offsetStartOfCentralDirectory;
+-    } else {
+-      return sortedFileHeaders.get(indexOfFileHeader + 1).getOffsetLocalHeader();
+-    }
+-  }
+-
+   private void restoreFileName(File zipFile, File temporaryZipFile) throws ZipException {
+     if (zipFile.delete()) {
+       if (!temporaryZipFile.renameTo(zipFile)) {
+@@ -103,15 +80,4 @@ abstract class AbstractModifyFileTask<T> extends AsyncZipTask<T> {
+       throw new ZipException("cannot delete old zip file");
+     }
+   }
+-
+-  private int getIndexOfFileHeader(List<FileHeader> allFileHeaders, FileHeader fileHeaderForIndex) throws ZipException {
+-    for (int i = 0; i < allFileHeaders.size(); i++) {
+-      FileHeader fileHeader = allFileHeaders.get(i);
+-      if (fileHeader.equals(fileHeaderForIndex)) {
+-        return i;
+-      }
+-    }
+-
+-    throw new ZipException("Could not find file header in list of central directory file headers");
+-  }
+ }
+diff --git a/src/main/java/net/lingala/zip4j/tasks/RemoveFilesFromZipTask.java b/src/main/java/net/lingala/zip4j/tasks/RemoveFilesFromZipTask.java
+index 72caacc..dea258c 100644
+--- a/src/main/java/net/lingala/zip4j/tasks/RemoveFilesFromZipTask.java
++++ b/src/main/java/net/lingala/zip4j/tasks/RemoveFilesFromZipTask.java
+@@ -44,19 +44,17 @@ public class RemoveFilesFromZipTask extends AbstractModifyFileTask<RemoveFilesFr
+ 
+     File temporaryZipFile = getTemporaryFile(zipModel.getZipFile().getPath());
+     boolean successFlag = false;
+-    long offsetOfCentralDirectoryBeforeModification = HeaderUtil.getOffsetStartOfCentralDirectory(zipModel);
+ 
+     try (SplitOutputStream outputStream = new SplitOutputStream(temporaryZipFile);
+          RandomAccessFile inputStream = new RandomAccessFile(zipModel.getZipFile(), RandomAccessFileMode.READ.getValue())){
+ 
+       long currentFileCopyPointer = 0;
+-      List<FileHeader> sortedFileHeaders = cloneAndSortFileHeadersByOffset(zipModel.getCentralDirectory().getFileHeaders());
++      List<FileHeader> allUnchangedFileHeaders = new ArrayList<>(zipModel.getCentralDirectory().getFileHeaders());
+ 
+-      for (FileHeader fileHeader : sortedFileHeaders) {
+-        long lengthOfCurrentEntry = getOffsetOfNextEntry(sortedFileHeaders, fileHeader,
+-            offsetOfCentralDirectoryBeforeModification) - outputStream.getFilePointer();
++      for (FileHeader fileHeader : allUnchangedFileHeaders) {
++        long lengthOfCurrentEntry = HeaderUtil.getOffsetOfNextEntry(zipModel, fileHeader) - outputStream.getFilePointer();
+         if (shouldEntryBeRemoved(fileHeader, entriesToRemove)) {
+-          updateHeaders(sortedFileHeaders, fileHeader, lengthOfCurrentEntry);
++          updateHeaders(fileHeader, lengthOfCurrentEntry);
+ 
+           if (!zipModel.getCentralDirectory().getFileHeaders().remove(fileHeader)) {
+             throw new ZipException("Could not remove entry from list of central directory headers");
+@@ -104,8 +102,8 @@ public class RemoveFilesFromZipTask extends AbstractModifyFileTask<RemoveFilesFr
+     return false;
+   }
+ 
+-  private void updateHeaders(List<FileHeader> sortedFileHeaders, FileHeader fileHeaderThatWasRemoved, long offsetToSubtract) throws ZipException {
+-    updateOffsetsForAllSubsequentFileHeaders(sortedFileHeaders, zipModel, fileHeaderThatWasRemoved, negate(offsetToSubtract));
++  private void updateHeaders(FileHeader fileHeaderThatWasRemoved, long offsetToSubtract) throws ZipException {
++    updateOffsetsForAllSubsequentFileHeaders(zipModel, fileHeaderThatWasRemoved, negate(offsetToSubtract));
+ 
+     EndOfCentralDirectoryRecord endOfCentralDirectoryRecord = zipModel.getEndOfCentralDirectoryRecord();
+     endOfCentralDirectoryRecord.setOffsetOfStartOfCentralDirectory(
+diff --git a/src/main/java/net/lingala/zip4j/tasks/RenameFilesTask.java b/src/main/java/net/lingala/zip4j/tasks/RenameFilesTask.java
+index 1b9a634..6e0319d 100644
+--- a/src/main/java/net/lingala/zip4j/tasks/RenameFilesTask.java
++++ b/src/main/java/net/lingala/zip4j/tasks/RenameFilesTask.java
+@@ -17,6 +17,7 @@ import java.io.IOException;
+ import java.io.OutputStream;
+ import java.io.RandomAccessFile;
+ import java.nio.charset.Charset;
++import java.util.ArrayList;
+ import java.util.HashMap;
+ import java.util.List;
+ import java.util.Map;
+@@ -49,21 +50,19 @@ public class RenameFilesTask extends AbstractModifyFileTask<RenameFilesTask.Rena
+         SplitOutputStream outputStream = new SplitOutputStream(temporaryFile)) {
+ 
+       long currentFileCopyPointer = 0;
+-      long offsetOfCentralDirectoryBeforeModification = HeaderUtil.getOffsetStartOfCentralDirectory(zipModel);
+ 
+       // Maintain a different list to iterate, so that when the file name is changed in the central directory
+       // we still have access to the original file names. If iterating on the original list from central directory,
+       // it might be that a file name has changed because of other file name, ex: if a directory name has to be changed
+       // and the file is part of that directory, by the time the file has to be changed, its name might have changed
+       // when changing the name of the directory. There is some overhead with this approach, but is safer.
+-      List<FileHeader> sortedFileHeaders = cloneAndSortFileHeadersByOffset(zipModel.getCentralDirectory().getFileHeaders());
++      List<FileHeader> allUnchangedFileHeaders = new ArrayList<>(zipModel.getCentralDirectory().getFileHeaders());
+ 
+-      for (FileHeader fileHeader : sortedFileHeaders) {
++      for (FileHeader fileHeader : allUnchangedFileHeaders) {
+         Map.Entry<String, String> fileNameMapForThisEntry = getCorrespondingEntryFromMap(fileHeader, fileNamesMap);
+         progressMonitor.setFileName(fileHeader.getFileName());
+ 
+-        long lengthToCopy = getOffsetOfNextEntry(sortedFileHeaders, fileHeader,
+-            offsetOfCentralDirectoryBeforeModification) - outputStream.getFilePointer();
++        long lengthToCopy = HeaderUtil.getOffsetOfNextEntry(zipModel, fileHeader) - outputStream.getFilePointer();
+         if (fileNameMapForThisEntry == null) {
+           // copy complete entry without any changes
+           currentFileCopyPointer += copyFile(inputStream, outputStream, currentFileCopyPointer, lengthToCopy, progressMonitor);
+@@ -75,7 +74,7 @@ public class RenameFilesTask extends AbstractModifyFileTask<RenameFilesTask.Rena
+           currentFileCopyPointer = copyEntryAndChangeFileName(newFileNameBytes, fileHeader, currentFileCopyPointer, lengthToCopy,
+               inputStream, outputStream, progressMonitor);
+ 
+-          updateHeadersInZipModel(sortedFileHeaders, fileHeader, newFileName, newFileNameBytes, headersOffset);
++          updateHeadersInZipModel(fileHeader, newFileName, newFileNameBytes, headersOffset);
+         }
+ 
+         verifyIfTaskIsCancelled();
+@@ -134,8 +133,8 @@ public class RenameFilesTask extends AbstractModifyFileTask<RenameFilesTask.Rena
+     return null;
+   }
+ 
+-  private void updateHeadersInZipModel(List<FileHeader> sortedFileHeaders, FileHeader fileHeader, String newFileName,
+-                                       byte[] newFileNameBytes, int headersOffset) throws ZipException {
++  private void updateHeadersInZipModel(FileHeader fileHeader, String newFileName, byte[] newFileNameBytes,
++                                       int headersOffset) throws ZipException {
+ 
+     FileHeader fileHeaderToBeChanged = HeaderUtil.getFileHeader(zipModel, fileHeader.getFileName());
+ 
+@@ -148,7 +147,7 @@ public class RenameFilesTask extends AbstractModifyFileTask<RenameFilesTask.Rena
+     fileHeaderToBeChanged.setFileName(newFileName);
+     fileHeaderToBeChanged.setFileNameLength(newFileNameBytes.length);
+ 
+-    updateOffsetsForAllSubsequentFileHeaders(sortedFileHeaders, zipModel, fileHeaderToBeChanged, headersOffset);
++    updateOffsetsForAllSubsequentFileHeaders(zipModel, fileHeaderToBeChanged, headersOffset);
+ 
+     zipModel.getEndOfCentralDirectoryRecord().setOffsetOfStartOfCentralDirectory(
+         zipModel.getEndOfCentralDirectoryRecord().getOffsetOfStartOfCentralDirectory() + headersOffset);
