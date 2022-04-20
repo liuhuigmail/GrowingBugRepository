@@ -1,5 +1,5 @@
 # Unique Bugs in growingBugs
-To date, growingBugs contains **`656`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`672`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -158,7 +158,9 @@ To date, growingBugs contains **`656`** unique bugs that are not included in Def
 | 153     | Javapoet            | javapoet               |                   |      17       | 1-17               |
 | 154     | RTree            | rtree               |                   |      12       | 1-12               |
 | 155     | Spoon            | spoon               |                   |      17       | 1-17               |
-| 156     | Canvas_api            | canvas-api               |                 |      1       | 1               |
-| 157     | Coveralls_maven_plugin            | coveralls-maven-plugin               |                  |      6       | 1-6               |
+| 156     | Canvas_api            | canvas-api               |                 |      4       | 1-4               |
+| 157     | Coveralls_maven_plugin            | coveralls-maven-plugin               |                  |      8       | 1-8               |
 | 158     | Slack_java_webhook            | slack-java-webhook               |                 |      1       | 1               |
-| 159     | Zip4j            | zip4j               |                  |      26       | 1-26               |
+| 159     | Zip4j            | zip4j               |                  |      34       | 1-34               |
+| 160     | Sparsebitset             | Sparsebitset                |                  |      2       | 1-2               |
+ 161     | Incubator_retired_pirk            | incubator-retired-pirk               |                  |      1       | 1               |
