@@ -1,7 +1,7 @@
 Table of Contents
 =================
 
-   * [A bug repository that keeps growing, called growingBugs](#A-bug-repository-that-keeps-growing,-called-***growingBugs***)
+   * [A bug repository that keeps growing, called growingBugs](#A-bug-repository-that-keeps-growing-,-called-***growingBugs***)
    * [Contents of growingBugs](#Contents-of-growingBugs)
    * [Setting up GrowingBugs](#Setting-up-GrowingBugs)
       * [Requirements](#Requirements)
@@ -11,7 +11,7 @@ Table of Contents
       * [Copyright](#Copyright)
       * [Versions](#Versions)
       * [Citation](#Citation)
-
+      
 # A bug repository that keeps growing, called ***growingBugs***
 
 Notably, each bug is composed of a buggy version, a fixed version, a ***concise patch*** (bug-fixing changes only), and one or more triggering test cases.
