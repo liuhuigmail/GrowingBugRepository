@@ -1,0 +1,17 @@
+diff --git a/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java b/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
+index fea6922..e37bea5 100755
+--- a/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
+@@ -302,8 +302,10 @@ public class ZipInputStream extends InputStream {
+   }
+ 
+   private void readUntilEndOfEntry() throws IOException {
+-    if (localFileHeader.isDirectory()
+-        || (localFileHeader.getCompressedSize() == 0 && !localFileHeader.isDataDescriptorExists())) {
++    // If data descriptor exists, proceed to reading the entry, or else skip if the entry is directory
++    // or compressed size is 0
++    if (!localFileHeader.isDataDescriptorExists()
++        && (localFileHeader.isDirectory() || localFileHeader.getCompressedSize() == 0)) {
+       return;
+     }
+ 

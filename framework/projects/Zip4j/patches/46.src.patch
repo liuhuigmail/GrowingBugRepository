@@ -1,0 +1,38 @@
+diff --git a/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java b/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
+index 98e086b..1b819ff 100755
+--- a/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
+@@ -38,7 +38,6 @@ public class ZipOutputStream extends OutputStream {
+   private long uncompressedSizeForThisEntry = 0;
+   private Zip4jConfig zip4jConfig;
+   private boolean streamClosed;
+-  private boolean entryClosed = false;
+ 
+   public ZipOutputStream(OutputStream outputStream) throws IOException {
+     this(outputStream, null, null);
+@@ -78,7 +77,6 @@ public class ZipOutputStream extends OutputStream {
+     //because local header data should be written first and then the encryption header data
+     //and below initialisation writes encryption header data
+     compressedOutputStream = initializeCompressedOutputStream(zipParameters);
+-    this.entryClosed = false;
+   }
+ 
+   public void write(int b) throws IOException {
+@@ -118,17 +116,11 @@ public class ZipOutputStream extends OutputStream {
+       headerWriter.writeExtendedLocalHeader(localFileHeader, countingOutputStream);
+     }
+     reset();
+-    this.entryClosed = true;
+     return fileHeader;
+   }
+ 
+   @Override
+   public void close() throws IOException {
+-    if (!this.entryClosed) {
+-      closeEntry();
+-      this.entryClosed = true;
+-    }
+-
+     zipModel.getEndOfCentralDirectoryRecord().setOffsetOfStartOfCentralDirectory(countingOutputStream.getNumberOfBytesWritten());
+     headerWriter.finalizeZipFile(zipModel, countingOutputStream, zip4jConfig.getCharset());
+     countingOutputStream.close();
