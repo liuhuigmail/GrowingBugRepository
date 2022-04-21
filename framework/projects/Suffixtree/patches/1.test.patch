@@ -1,0 +1,59 @@
+diff --git a/src/test/java/com/abahgat/suffixtree/SuffixTreeTest.java b/src/test/java/com/abahgat/suffixtree/SuffixTreeTest.java
+index 35a2e43..0e092c5 100644
+--- a/src/test/java/com/abahgat/suffixtree/SuffixTreeTest.java
++++ b/src/test/java/com/abahgat/suffixtree/SuffixTreeTest.java
+@@ -23,10 +23,6 @@ import static com.abahgat.suffixtree.Utils.getSubstrings;
+ 
+ public class SuffixTreeTest extends TestCase {
+ 
+-    public static <E> void assertEmpty(Collection<E> collection) {
+-        assertTrue("Expected empty collection.", collection.isEmpty());
+-    }
+-
+     public void testBasicTreeGeneration() {
+         GeneralizedSuffixTree in = new GeneralizedSuffixTree();
+ 
+@@ -37,9 +33,9 @@ public class SuffixTreeTest extends TestCase {
+         for (String s : getSubstrings(word)) {
+             assertTrue(in.search(s).contains(0));
+         }
+-        assertEmpty(in.search("caco"));
+-        assertEmpty(in.search("cacaoo"));
+-        assertEmpty(in.search("ccacao"));
++        assertNull(in.search("caco"));
++        assertNull(in.search("cacaoo"));
++        assertNull(in.search("ccacao"));
+ 
+         in = new GeneralizedSuffixTree();
+         word = "bookkeeper";
+@@ -47,9 +43,9 @@ public class SuffixTreeTest extends TestCase {
+         for (String s : getSubstrings(word)) {
+             assertTrue(in.search(s).contains(0));
+         }
+-        assertEmpty(in.search("books"));
+-        assertEmpty(in.search("boke"));
+-        assertEmpty(in.search("ookepr"));
++        assertNull(in.search("books"));
++        assertNull(in.search("boke"));
++        assertNull(in.search("ookepr"));
+     }
+ 
+     public void testWeirdword() {
+@@ -142,7 +138,7 @@ public class SuffixTreeTest extends TestCase {
+         in.computeCount();
+         testResultsCount(in.getRoot());
+ 
+-        assertEmpty(in.search("aoca"));
++        assertNull(in.search("aoca"));
+     }
+ 
+     public void testSampleAddition() {
+@@ -205,7 +201,7 @@ public class SuffixTreeTest extends TestCase {
+         in.computeCount();
+         testResultsCount(in.getRoot());
+ 
+-        assertEmpty(in.search("aoca"));
++        assertNull(in.search("aoca"));
+     }
+ 
+     private void testResultsCount(Node n) {

@@ -1,0 +1,12 @@
+diff --git a/src/main/java/org/skife/config/TimeSpan.java b/src/main/java/org/skife/config/TimeSpan.java
+index a0341db..c90852a 100644
+--- a/src/main/java/org/skife/config/TimeSpan.java
++++ b/src/main/java/org/skife/config/TimeSpan.java
+@@ -22,7 +22,6 @@ public class TimeSpan
+         UNITS.put("second", TimeUnit.SECONDS);
+         UNITS.put("seconds", TimeUnit.SECONDS);
+         UNITS.put("m", TimeUnit.MINUTES);
+-        UNITS.put("min", TimeUnit.MINUTES);
+         UNITS.put("minute", TimeUnit.MINUTES);
+         UNITS.put("minutes", TimeUnit.MINUTES);
+         UNITS.put("h", TimeUnit.HOURS);

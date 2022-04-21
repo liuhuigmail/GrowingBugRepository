@@ -1,0 +1,19 @@
+diff --git a/src/test/java/mikera/vectorz/util/TestIntArrays.java b/src/test/java/mikera/vectorz/util/TestIntArrays.java
+index 082c18af..4d6170be 100644
+--- a/src/test/java/mikera/vectorz/util/TestIntArrays.java
++++ b/src/test/java/mikera/vectorz/util/TestIntArrays.java
+@@ -45,14 +45,4 @@ public class TestIntArrays {
+ 		
+ 		assertArrayEquals(zs,IntArrays.intersectSorted(xs, ys));
+ 	}
+-
+-    @Test public void testIndexPositionOverflow() {
+-        int[] xs=new int[46342];
+-        for (int i=0; i<xs.length; i++) {
+-            xs[i]=i;
+-        }
+-
+-        assertEquals(46340,IntArrays.indexPosition(xs,46340));
+-    }
+-    
+ }

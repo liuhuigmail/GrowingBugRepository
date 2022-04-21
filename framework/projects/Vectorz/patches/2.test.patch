@@ -1,0 +1,137 @@
+diff --git a/src/test/java/mikera/matrixx/algo/TestQR.java b/src/test/java/mikera/matrixx/algo/TestQR.java
+deleted file mode 100644
+index f89828aa..00000000
+--- a/src/test/java/mikera/matrixx/algo/TestQR.java
++++ /dev/null
+@@ -1,89 +0,0 @@
+-package mikera.matrixx.algo;
+-
+-import static org.junit.Assert.assertNull;
+-import static org.junit.Assert.assertTrue;
+-
+-import org.junit.Test;
+-
+-import mikera.matrixx.AMatrix;
+-import mikera.matrixx.Matrix;
+-import mikera.matrixx.Matrixx;
+-import mikera.matrixx.decompose.Cholesky;
+-import mikera.matrixx.decompose.ICholeskyResult;
+-import mikera.matrixx.decompose.IQRResult;
+-import mikera.matrixx.decompose.QR;
+-import mikera.matrixx.impl.IdentityMatrix;
+-import mikera.matrixx.impl.ZeroMatrix;
+-
+-public class TestQR {
+-	
+-	@Test
+-	public void testQR() {
+-		AMatrix a = Matrixx.createRandomMatrix(3, 3);
+-		
+-		IQRResult result = QR.decompose(a);
+-		validateQR(a,result);
+-	}
+-	
+-	@Test
+-	public void testZero() {
+-		AMatrix a = ZeroMatrix.create(4, 4);
+-		IQRResult result = QR.decompose(a);
+-		assertTrue(result.getQ().isIdentity());
+-		assertTrue(result.getR().isZero());
+-	}
+-	
+-	@Test
+-	public void testIdentity() {
+-		AMatrix a = IdentityMatrix.create(4);
+-		IQRResult result = QR.decompose(a);
+-		validateQR(a,result);
+-	}
+-	
+-	@Test
+-	public void testBig() {
+-		AMatrix a = Matrix.createRandom(500, 500);
+-		IQRResult result = QR.decompose(a);
+-		validateQR(a, result);
+-	}
+-	
+-	@Test
+-	public void testTall() {
+-		AMatrix a = Matrix.createRandom(5, 3);
+-		IQRResult result = QR.decompose(a);
+-		validateQR(a, result);
+-	}
+-	
+-	@Test
+-	public void testWide() {
+-		AMatrix a = Matrix.createRandom(3, 5);
+-		IQRResult result = QR.decompose(a);
+-		validateQR(a, result);
+-	}
+-	
+-	@Test
+-	public void testReallyTall() {
+-		AMatrix a = Matrix.createRandom(15, 3);
+-		IQRResult result = QR.decompose(a);
+-		validateQR(a, result);
+-	}
+-	
+-	@Test
+-	public void testReallyWide() {
+-		AMatrix a = Matrix.createRandom(3, 15);
+-		IQRResult result = QR.decompose(a);
+-		validateQR(a, result);
+-	}
+-	
+-	public void validateQR(AMatrix a, IQRResult result) {
+-		AMatrix q=result.getQ();
+-		AMatrix r=result.getR();
+-		
+-		assertTrue(q.isOrthogonal());
+-		assertTrue(r.isUpperTriangular());
+-		assertTrue(r.rowCount() == a.rowCount() && r.columnCount() == a.columnCount());
+-		
+-		assertTrue("product not valid",q.innerProduct(r).epsilonEquals(a));
+-	}
+-
+-}
+diff --git a/src/test/java/mikera/matrixx/decompose/impl/qr/TestHouseholderQR.java b/src/test/java/mikera/matrixx/decompose/impl/qr/TestHouseholderQR.java
+index 7e76cbf7..922d7476 100644
+--- a/src/test/java/mikera/matrixx/decompose/impl/qr/TestHouseholderQR.java
++++ b/src/test/java/mikera/matrixx/decompose/impl/qr/TestHouseholderQR.java
+@@ -3,7 +3,7 @@ package mikera.matrixx.decompose.impl.qr;
+ import mikera.matrixx.AMatrix;
+ import mikera.matrixx.Matrix;
+ import mikera.matrixx.decompose.IQRResult;
+-import mikera.matrixx.decompose.impl.qr.HouseholderQR;
++import mikera.matrixx.decompose.QR;
+ import mikera.matrixx.decompose.impl.qr.HouseholderQR;
+ import mikera.matrixx.impl.IdentityMatrix;
+ import mikera.matrixx.impl.ZeroMatrix;
+@@ -42,8 +42,7 @@ public class TestHouseholderQR {
+ 	@Test
+ 	public void testZeroDecompose() {
+ 		AMatrix a = ZeroMatrix.create(4, 3);
+-		HouseholderQR alg = new HouseholderQR(a.toMatrix(), false);
+-		IQRResult qr = new QRResult(alg.getQ(), alg.getR());
++		IQRResult qr = QR.decompose(a);
+ 		AMatrix q = qr.getQ();
+ 		AMatrix r = qr.getR();
+ 
+@@ -55,8 +54,7 @@ public class TestHouseholderQR {
+ 	@Test
+ 	public void testZeroDecomposeSquare() {
+ 		AMatrix a = ZeroMatrix.create(3, 3);
+-		HouseholderQR alg = new HouseholderQR(a.toMatrix(), false);
+-		IQRResult qr = new QRResult(alg.getQ(), alg.getR());
++		IQRResult qr = QR.decompose(a);
+ 		AMatrix q = qr.getQ();
+ 		AMatrix r = qr.getR();
+ 
+@@ -75,6 +73,8 @@ public class TestHouseholderQR {
+ 	public void validateQR(AMatrix a, IQRResult result) {
+ 		AMatrix q = result.getQ();
+ 		AMatrix r = result.getR();
++
++		assertTrue(q.isSameShape(a));
+ 		assertTrue(r.isUpperTriangular());
+ 		assertTrue(q.innerProduct(r).epsilonEquals(a));
+ 		assertTrue(q.hasOrthonormalColumns());

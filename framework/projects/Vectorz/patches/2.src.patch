@@ -1,0 +1,25 @@
+diff --git a/src/main/java/mikera/matrixx/decompose/QR.java b/src/main/java/mikera/matrixx/decompose/QR.java
+index af76fa54..ba98e56e 100644
+--- a/src/main/java/mikera/matrixx/decompose/QR.java
++++ b/src/main/java/mikera/matrixx/decompose/QR.java
+@@ -24,7 +24,6 @@ package mikera.matrixx.decompose;
+ import mikera.matrixx.AMatrix;
+ import mikera.matrixx.Matrix;
+ import mikera.matrixx.algo.impl.Constants;
+-import mikera.matrixx.decompose.impl.qr.HouseholderQR;
+ import mikera.matrixx.decompose.impl.qr.QRResult;
+ import mikera.vectorz.Vector;
+ 
+@@ -51,8 +50,10 @@ public class QR {
+ 	 * @return
+ 	 */
+ 	public static IQRResult decompose(AMatrix matrix) {
+-		HouseholderQR alg = new HouseholderQR(matrix.toMatrix(), false);
+-		return new QRResult(alg.getQ(), alg.getR());	
++		return decomposeInternal(Matrix.create(matrix));
++	}
++	public static IQRResult decompose(Matrix matrix) {
++		return decomposeInternal(matrix.clone());
+ 	}
+ 	
+ 	// Perform decomposition on a Matrix. 

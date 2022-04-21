@@ -1,9 +1,27 @@
-# A bug repository that keeps growing, called ***growingBugs***
+Table of Contents
+=================
 
-Notably, each bug is composed of a buggy version, a fixed version, a ***concise patch*** (bug-fixing changes only), and one or more triggering test cases.
+   * [General Introduction](#General-Introduction)
+   * [Contents of growingBugs](#Contents-of-growingBugs)
+   * [Setting up](#Setting-up-GrowingBugs)
+      * [Requirements](#Requirements)
+      * [Steps to set up GrowingBugs](#Steps-to-set-up-GrowingBugs)
+   * [Using GrowingBugs](#Using-GrowingBugs)
+      * [Typical Usage](#Typical-Usage)  
+      * [Docker Image](#Docker-Image)
+      * [Versions](#Versions)
+   * [Copyright](#Copyright)
+   * [Citation](#Citation)
+      
+# General Introduction
+This is a bug repository that keeps growing, called ***growingBugs***
+
+Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed version, a ***concise patch*** (bug-fixing changes only), and one or more triggering test cases.
+
+
 
 # Contents of growingBugs
-To date, growingBugs contains **`1507`** bugs from open-source Java projects. 
+To date, growingBugs contains **`1535`** real-world bugs from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -174,9 +192,20 @@ To date, growingBugs contains **`1507`** bugs from open-source Java projects.
 | 166     | Canvas_api            | canvas-api               |                 |      4       | 1-4               |
 | 167     | Coveralls_maven_plugin            | coveralls-maven-plugin               |                  |      8       | 1-8               |
 | 168     | Slack_java_webhook            | slack-java-webhook               |                 |      1       | 1               |
-| 169     | Zip4j            | zip4j               |                  |      34       | 1-34               |
+| 169     | Zip4j            | zip4j               |                  |      40       | 1-40               |
 | 170     | Incubator_retired_pirk            | incubator-retired-pirk               |                  |      1       | 1               |
 | 171     | Sparsebitset             | Sparsebitset                |                  |      2       | 1-2               |
+| 172     | Assertj_assertions_generator            | assertj-assertions-generator               |                  |      3       | 1-3               |
+| 173     | Config_magic            | config-magic               |                  |      1       | 1               |
+| 174     | Deft            | deft               |                  |      1       | 1               |
+| 175     | Jcodemodel            | jcodemodel               |                  |      2       | 1-2               |
+| 176     | Jdbm3            | JDBM3               |                  |      3       | 1-3               |
+| 177     | Mybatis_pagehelper            | Mybatis-PageHelper               |                  |      3       | 1-3               |
+| 178     | N5            | n5               |                  |      2       | 1-2               |
+| 179     | Stash_jenkins_postreceive_webhook            | stash-jenkins-postreceive-webhook               |                  |      1       | 1               |
+| 180     | Suffixtree            | suffixtree               |                  |      1       | 1               |
+| 181     | Template_benchmark            | template-benchmark               |                  |      1       | 1               |
+| 182     | Vectorz            | vectorz               |                  |      4       | 1-4               |
 # Setting up GrowingBugs
 
 ## Requirements
@@ -203,6 +232,8 @@ To date, growingBugs contains **`1507`** bugs from open-source Java projects.
     - `export PATH=$PATH:"path2growingbugs"/framework/bin`
 
 # Using GrowingBugs
+
+## Typical Usage
 1. Checkout a buggy source code version (If the project doesn't hava subproject, `-s` parameter can be ignored):
     - `defects4j checkout -p project_id -v version_id -w work_dir -s subproject_locator` 
     
@@ -240,15 +271,14 @@ To free users (especially beginers) of the repository from the complex configura
 
 By simply loading the image with Docker, you can make the system ready for evaluation where all configurations (e.g., Java versions, paths, and even all data within the repository) should have been well set.  
 
-## Copyright
-Notably, this bug repository is based on the well-known **Defects4J** https://github.com/rjust/defects4j. We reuse its source code as well as the bugs in **Defects4J**. The key difference is that **growingBugs** levearages **BugBuilder**[1] to exclude bug-irrelevarange changes from bug-fixing commmits automatically whereas **Defects4J** requests human experts to accomplish the same task. Consequently, **growingBugs** can keep growing automatically even ***without human intervention***.  
-
-
 
 ## Versions
 Because the bug repository keeps growing, let us known if you need a stable version for your study (e.g., evalutions for a research paper), and we will release a specific version where the bugs and patches are fixed (to faciliate the replication of your study).  
 
-## Citation
+# Copyright
+Notably, this bug repository is based on the well-known **Defects4J** https://github.com/rjust/defects4j. We reuse its source code as well as the bugs in **Defects4J**. The key difference is that **growingBugs** levearages **BugBuilder**[1] to exclude bug-irrelevarange changes from bug-fixing commmits automatically whereas **Defects4J** requests human experts to accomplish the same task. Consequently, **growingBugs** can keep growing automatically even ***without human intervention***.  
+
+# Citation
 If you are exploiting our dataset, please kindly cite the following paper:
 
 **[1] Yanjie Jiang, [Hui Liu](https://liuhuigmail.github.io/), Nan Niu, Lu Zhang, Yamin Hu. Extracting Concise Bug-Fixing Patches from Human-Written Patches in Version Control Systems. The 43rd International Conference on Software Engineering (ICSE), pp. 686-698, May, 2021 https://liuhuigmail.github.io/publishedPappers/ICSE2021.pdf**
@@ -265,3 +295,4 @@ publisher = {IEEE Computer Society},
 address = {Los Alamitos, CA, USA},
 month = {may}
 }`
+

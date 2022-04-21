@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,cf068ad25cc1980d8e8693011fc2850c281ab56b,1ce6869c2d0f8474421251cd39c22057b5a3abdd,3,https://github.com/abahgat/suffixtree/pull/3

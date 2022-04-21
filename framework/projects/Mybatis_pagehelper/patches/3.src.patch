@@ -1,0 +1,35 @@
+diff --git a/src/main/java/com/github/pagehelper/PageInterceptor.java b/src/main/java/com/github/pagehelper/PageInterceptor.java
+index 6c80684..41e5af5 100644
+--- a/src/main/java/com/github/pagehelper/PageInterceptor.java
++++ b/src/main/java/com/github/pagehelper/PageInterceptor.java
+@@ -94,7 +94,7 @@ public class PageInterceptor implements Interceptor {
+                 //判断是否需要进行 count 查询
+                 if (dialect.beforeCount(ms, parameter, rowBounds)) {
+                     //查询总数
+-                    Long count = count(executor, ms, parameter, rowBounds, null, boundSql);
++                    Long count = count(executor, ms, parameter, rowBounds, resultHandler, boundSql);
+                     //处理查询总数，返回 true 时继续分页查询，false 时直接返回
+                     if (!dialect.afterCount(count, parameter, rowBounds)) {
+                         //当查询总数为 0 时，直接返回空的结果
+@@ -138,7 +138,7 @@ public class PageInterceptor implements Interceptor {
+         //先判断是否存在手写的 count 查询
+         MappedStatement countMs = ExecutorUtil.getExistedMappedStatement(ms.getConfiguration(), countMsId);
+         if (countMs != null) {
+-            count = ExecutorUtil.executeManualCount(executor, countMs, parameter, boundSql, resultHandler);
++            count = ExecutorUtil.executeManualCount(executor, countMs, parameter, boundSql, null);
+         } else {
+             countMs = msCountMap.get(countMsId);
+             //自动创建
+diff --git a/src/main/java/com/github/pagehelper/dialect/AbstractHelperDialect.java b/src/main/java/com/github/pagehelper/dialect/AbstractHelperDialect.java
+index b3c5c38..ce757ba 100644
+--- a/src/main/java/com/github/pagehelper/dialect/AbstractHelperDialect.java
++++ b/src/main/java/com/github/pagehelper/dialect/AbstractHelperDialect.java
+@@ -92,7 +92,7 @@ public abstract class AbstractHelperDialect extends AbstractDialect implements C
+         if (page.getPageSize() < 0) {
+             return false;
+         }
+-        return page.getPageNum() > 0 && (count > ((page.getPageNum() - 1) * page.getPageSize()));
++        return count > ((page.getPageNum() - 1) * page.getPageSize());
+     }
+ 
+     @Override

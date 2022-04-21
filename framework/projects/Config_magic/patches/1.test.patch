@@ -1,0 +1,39 @@
+diff --git a/src/test/java/org/skife/config/TestTimeSpan.java b/src/test/java/org/skife/config/TestTimeSpan.java
+index 9f10db9..9370f63 100644
+--- a/src/test/java/org/skife/config/TestTimeSpan.java
++++ b/src/test/java/org/skife/config/TestTimeSpan.java
+@@ -45,7 +45,7 @@ public class TestTimeSpan
+         Assert.assertEquals(new TimeSpan(5, TimeUnit.SECONDS), ec.getValue());
+         Assert.assertEquals(TimeUnit.MILLISECONDS.convert(5, TimeUnit.SECONDS), ec.getValue().getMillis());
+     }
+-
++    
+     @Test
+     public void testMinutes()
+     {
+@@ -89,7 +89,6 @@ public class TestTimeSpan
+         Assert.assertEquals(new TimeSpan("1s"), new TimeSpan("1second"));
+         Assert.assertEquals(new TimeSpan("15m"), new TimeSpan("15minutes"));
+         Assert.assertEquals(new TimeSpan("1m"), new TimeSpan("1minute"));
+-        Assert.assertEquals(new TimeSpan("7m"), new TimeSpan("7min"));
+         Assert.assertEquals(new TimeSpan("25h"), new TimeSpan("25hours"));
+         Assert.assertEquals(new TimeSpan("1h"), new TimeSpan("1hour"));
+         Assert.assertEquals(new TimeSpan("31d"), new TimeSpan("31days"));
+@@ -112,7 +111,7 @@ public class TestTimeSpan
+         Assert.assertEquals(new TimeSpan("5m"), new TimeSpan("5 minutes"));
+         Assert.assertEquals(new TimeSpan("5d"), new TimeSpan("5 days"));
+     }
+-
++    
+     @Test(expected = IllegalArgumentException.class)
+     public void testNoUnit()
+     {
+@@ -145,7 +144,7 @@ public class TestTimeSpan
+         @Default("5seconds")
+         public abstract TimeSpan getValue();
+     }
+-
++    
+     public static abstract class ClassWithMinutes
+     {
+         @Config("value")

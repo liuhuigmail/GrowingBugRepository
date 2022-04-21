@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/jdbm/PageFile.java b/src/main/java/org/apache/jdbm/PageFile.java
+index 31d79c6..a6b0c59 100644
+--- a/src/main/java/org/apache/jdbm/PageFile.java
++++ b/src/main/java/org/apache/jdbm/PageFile.java
+@@ -302,7 +302,7 @@ final class PageFile {
+             commit();
+         }
+ 
+-        if(!transactionsDisabled && txnMgr!=null){
++        if(!transactionsDisabled){
+             txnMgr.shutdown();
+         }
+ 

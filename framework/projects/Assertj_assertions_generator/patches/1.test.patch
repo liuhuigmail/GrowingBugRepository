@@ -1,0 +1,28 @@
+diff --git a/src/test/java/org/assertj/assertions/generator/data/Movie.java b/src/test/java/org/assertj/assertions/generator/data/Movie.java
+index 9d1935e..ffb43af 100644
+--- a/src/test/java/org/assertj/assertions/generator/data/Movie.java
++++ b/src/test/java/org/assertj/assertions/generator/data/Movie.java
+@@ -8,7 +8,6 @@ public class Movie extends ArtWork {
+   private PublicCategory publicCategory;
+   public String producer;
+   public double rating;
+-  public boolean xrated;
+ 
+   public Movie(String title, Date releaseDate) {
+     super(title);
+diff --git a/src/test/java/org/assertj/assertions/generator/description/converter/ClassToClassDescriptionConverterTest.java b/src/test/java/org/assertj/assertions/generator/description/converter/ClassToClassDescriptionConverterTest.java
+index 5b14695..a49be9b 100644
+--- a/src/test/java/org/assertj/assertions/generator/description/converter/ClassToClassDescriptionConverterTest.java
++++ b/src/test/java/org/assertj/assertions/generator/description/converter/ClassToClassDescriptionConverterTest.java
+@@ -51,9 +51,9 @@ public class ClassToClassDescriptionConverterTest implements NestedClassesTest,
+     assertThat(classDescription.getClassNameWithOuterClass()).isEqualTo("Movie");
+     assertThat(classDescription.getPackageName()).isEqualTo("org.assertj.assertions.generator.data");
+     assertThat(classDescription.getGettersDescriptions()).hasSize(3);
+-    assertThat(classDescription.getFieldsDescriptions()).hasSize(4);
++    assertThat(classDescription.getFieldsDescriptions()).hasSize(3);
+     assertThat(classDescription.getDeclaredGettersDescriptions()).hasSize(2);
+-    assertThat(classDescription.getDeclaredFieldsDescriptions()).hasSize(3);
++//    assertThat(classDescription.getDeclaredFieldsDescriptions()).hasSize(1);
+     assertThat(classDescription.getSuperType()).isEqualTo(ArtWork.class);
+     assertThat(classDescription.getImports()).containsOnly(new TypeName(Date.class));
+   }

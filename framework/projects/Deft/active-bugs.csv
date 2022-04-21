@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,7907b95aff987f0bef408e0aec1caea3267986cb,fb3df4a7dfb4ae4453a896a33f06c70e72c964ad,55,https://github.com/rschildmeijer/deft/issues/55

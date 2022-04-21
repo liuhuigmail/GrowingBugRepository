@@ -1,0 +1,30 @@
+diff --git a/src/test/java/com/nerdwin15/stash/webhook/NotifierTest.java b/src/test/java/com/nerdwin15/stash/webhook/NotifierTest.java
+index a0e2c3e..697524e 100644
+--- a/src/test/java/com/nerdwin15/stash/webhook/NotifierTest.java
++++ b/src/test/java/com/nerdwin15/stash/webhook/NotifierTest.java
+@@ -396,25 +396,4 @@ public class NotifierTest {
+        captor.getValue().getURI().toString());
+   }
+ 
+-  /**
+-   * Validates that the correct path is used when the sha1 is null
+-   * @throws Exception
+-   */
+-  @Test
+-  public void shouldCallTheCorrectURLWhenSha1IsNull()
+-    throws Exception {
+-    when(settings.getBoolean(Notifier.OMIT_BRANCH_NAME, false)).thenReturn(false);
+-    notifier.notify(repo, "refs/heads/master", null);
+-
+-    ArgumentCaptor<HttpGet> captor = ArgumentCaptor.forClass(HttpGet.class);
+-
+-    verify(httpClientFactory, times(1)).getHttpClient(false, false);
+-    verify(httpClient, times(1)).execute(captor.capture());
+-    verify(connectionManager, times(1)).shutdown();
+-
+-    assertEquals("http://localhost.jenkins/git/notifyCommit?"
+-        + "url=http%3A%2F%2Fsome.stash.com%2Fscm%2Ffoo%2Fbar.git"
+-        + "&branches=refs%2Fheads%2Fmaster",
+-        captor.getValue().getURI().toString());
+-  }
+ }

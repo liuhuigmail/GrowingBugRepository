@@ -1,0 +1,11 @@
+net.kotek.jdbm.BTreeTest
+net.kotek.jdbm.ConcurrentBTreeReadTest
+net.kotek.jdbm.DBMakerTest
+net.kotek.jdbm.DefragTest
+net.kotek.jdbm.HTreeSetTest
+net.kotek.jdbm.HTreeTest
+net.kotek.jdbm.TestCaseWithTestFile
+net.kotek.jdbm.TestLargeData
+net.kotek.jdbm.TestPerformance
+net.kotek.jdbm.TestStress
+net.kotek.jdbm.UtilTT

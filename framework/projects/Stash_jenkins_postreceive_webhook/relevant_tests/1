@@ -1,0 +1,4 @@
+com.nerdwin15.stash.webhook.NotifierTest
+com.nerdwin15.stash.webhook.RepositoryChangeListenerTest
+com.nerdwin15.stash.webhook.rest.JenkinsResourceTest
+com.nerdwin15.stash.webhook.service.ConcreteSettingsServiceTest

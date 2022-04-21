@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,530dceb0a91fbb76a678389996a1a1db26d5cbc4,1e91d0eb53123d84e40cad5cf1a85bbc9cf2f128,61,https://github.com/phax/jcodemodel/issues/61
+2,ddd91831f8aa4eae92c2acc6cde90c533813b08c,9da04c8b236a340815f7f0e0f433eb720c25ff2f,62,https://github.com/phax/jcodemodel/pull/62

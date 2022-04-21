@@ -1,0 +1,7 @@
+org.assertj.assertions.generator.AssertionGeneratorTest
+org.assertj.assertions.generator.BeanWithExceptionsTest
+org.assertj.assertions.generator.data.ArtWork
+org.assertj.assertions.generator.data.Movie
+org.assertj.assertions.generator.data.nba.Player
+org.assertj.assertions.generator.data.Team
+org.assertj.assertions.generator.NestedClassesTest

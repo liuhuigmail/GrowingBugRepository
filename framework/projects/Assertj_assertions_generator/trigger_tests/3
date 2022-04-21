@@ -1,0 +1,55 @@
+--- org.assertj.assertions.generator.AssertionGeneratorTest::should_generate_assertion_for_player_class
+junit.framework.AssertionFailedError: 
+File:
+ </tmp/get-trigger.pl_982413_1650103464/v1/target/org/assertj/assertions/generator/data/PlayerAssert.java>
+and file:
+ </tmp/get-trigger.pl_982413_1650103464/v1/src/test/resources/PlayerAssert.expected.txt>
+do not have equal content:
+line:<44>, expected:<    if (actual.getAssistsPerGame() != assistsPerGame) { > but was:<    if (!actual.getAssistsPerGame().equals(assistsPerGame)) { >
+line:<88>, expected:<    if (actual.getPointsPerGame() != pointsPerGame) { > but was:<    if (!actual.getPointsPerGame().equals(pointsPerGame)) { >
+line:<157>, expected:<    if (actual.getReboundsPerGame() != reboundsPerGame) { > but was:<    if (!actual.getReboundsPerGame().equals(reboundsPerGame)) { >
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.experimental.theories.Theories$TheoryAnchor$2.evaluate(Theories.java:175)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.experimental.theories.Theories$TheoryAnchor$1$1.evaluate(Theories.java:141)
+	at org.junit.experimental.theories.Theories$TheoryAnchor.runWithCompleteAssignment(Theories.java:127)
+	at org.junit.experimental.theories.Theories$TheoryAnchor.runWithAssignment(Theories.java:111)
+	at org.junit.experimental.theories.Theories$TheoryAnchor.evaluate(Theories.java:96)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnit4TestMethodAdapter.run(JUnit4TestMethodAdapter.java:109)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1972)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute1(JUnitTask.java:824)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2277)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:392)
+	at org.apache.tools.ant.Target.performTasks(Target.java:413)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+	at org.apache.tools.ant.Main.runBuild(Main.java:811)
+	at org.apache.tools.ant.Main.startAnt(Main.java:217)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)

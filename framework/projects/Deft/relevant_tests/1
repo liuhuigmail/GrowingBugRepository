@@ -1,0 +1,3 @@
+org.deftserver.web.ApplicationTest
+org.deftserver.web.DeftSystemTest
+org.deftserver.web.RequestHandlerTest

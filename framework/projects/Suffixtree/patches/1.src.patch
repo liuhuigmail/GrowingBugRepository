@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/abahgat/suffixtree/GeneralizedSuffixTree.java b/src/main/java/com/abahgat/suffixtree/GeneralizedSuffixTree.java
+index 930524b..89031d2 100644
+--- a/src/main/java/com/abahgat/suffixtree/GeneralizedSuffixTree.java
++++ b/src/main/java/com/abahgat/suffixtree/GeneralizedSuffixTree.java
+@@ -90,7 +90,7 @@ public class GeneralizedSuffixTree {
+     public Collection<Integer> search(String word, int results) {
+         Node tmpNode = searchNode(word);
+         if (tmpNode == null) {
+-            return Collections.EMPTY_LIST;
++            return null;
+         }
+         return tmpNode.getData(results);
+     }

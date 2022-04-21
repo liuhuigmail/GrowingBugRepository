@@ -1,0 +1,24 @@
+diff --git a/src/main/java/com/helger/jcodemodel/fmt/JSerializedObject.java b/src/main/java/com/helger/jcodemodel/fmt/JSerializedObject.java
+index 820659c6..3be28097 100644
+--- a/src/main/java/com/helger/jcodemodel/fmt/JSerializedObject.java
++++ b/src/main/java/com/helger/jcodemodel/fmt/JSerializedObject.java
+@@ -84,7 +84,6 @@ public class JSerializedObject extends AbstractJResourceFile
+     })
+     {
+       oos.writeObject (m_aObj);
+-      oos.flush();
+     }
+   }
+ }
+diff --git a/src/main/java/com/helger/jcodemodel/fmt/JTextFile.java b/src/main/java/com/helger/jcodemodel/fmt/JTextFile.java
+index 304b0fdf..faa08509 100644
+--- a/src/main/java/com/helger/jcodemodel/fmt/JTextFile.java
++++ b/src/main/java/com/helger/jcodemodel/fmt/JTextFile.java
+@@ -98,7 +98,6 @@ public class JTextFile extends AbstractJResourceFile
+       })
+       {
+         w.write (m_sContents);
+-        w.flush();
+       }
+   }
+ }

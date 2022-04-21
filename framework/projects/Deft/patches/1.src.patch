@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/deftserver/web/protocol/HttpResponse.java b/src/main/java/org/deftserver/web/protocol/HttpResponse.java
+index 0371658..b91b1d2 100644
+--- a/src/main/java/org/deftserver/web/protocol/HttpResponse.java
++++ b/src/main/java/org/deftserver/web/protocol/HttpResponse.java
+@@ -36,7 +36,7 @@ public class HttpResponse {
+ 	
+ 	public HttpResponse(SocketChannel sc, boolean keepAlive) {
+ 		clientChannel = sc;
+-		headers.put("Server", "DeftServer/0.1.1-SNAPSHOT");
++		headers.put("Server", "DeftServer/0.1.0");
+ 		headers.put("Date", DateUtil.getCurrentAsString());
+ 
+ 		if (keepAlive) {
+@@ -83,7 +83,8 @@ public class HttpResponse {
+ 		long bytesWritten = 0;
+ 		if (clientChannel.isOpen()) {
+ 			if (!headersCreated) {
+-				setEtagAndContentLength();
++				setHeader("Etag", HttpUtil.getEtag(responseData.getBytes()));
++				setHeader("Content-Length", ""+responseData.getBytes(Charsets.UTF_8).length);	// TODO RS faster/better with new Integer(..)?
+ 			}
+ 			bytesWritten = flush();
+ 			if (!keepAlive) {
+@@ -93,13 +94,7 @@ public class HttpResponse {
+ 		return bytesWritten;
+ 	}
+ 	
+-	private void setEtagAndContentLength() {
+-		if (!responseData.isEmpty()) {
+-			setHeader("Etag", HttpUtil.getEtag(responseData.getBytes()));
+-		}
+-		setHeader("Content-Length", String.valueOf(responseData.getBytes(Charsets.UTF_8).length));
+-	}
+ 	
+ 	private /*<> synchronzied */ String createInitalLineAndHeaders() {
+ 		StringBuilder sb = new StringBuilder(HttpUtil.createInitialLine(statusCode));
+ 		for (Map.Entry<String, String> header : headers.entrySet()) {

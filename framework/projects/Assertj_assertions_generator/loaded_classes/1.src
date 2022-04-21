@@ -1,0 +1,13 @@
+org.assertj.assertions.generator.AssertionGenerator
+org.assertj.assertions.generator.AssertionsEntryPointGenerator
+org.assertj.assertions.generator.BaseAssertionGenerator
+org.assertj.assertions.generator.description.ClassDescription
+org.assertj.assertions.generator.description.converter.ClassDescriptionConverter
+org.assertj.assertions.generator.description.converter.ClassToClassDescriptionConverter
+org.assertj.assertions.generator.description.DataDescription
+org.assertj.assertions.generator.description.FieldDescription
+org.assertj.assertions.generator.description.GetterDescription
+org.assertj.assertions.generator.description.TypeDescription
+org.assertj.assertions.generator.description.TypeName
+org.assertj.assertions.generator.Template
+org.assertj.assertions.generator.util.ClassUtil

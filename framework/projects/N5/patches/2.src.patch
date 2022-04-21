@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/janelia/saalfeldlab/n5/N5FSWriter.java b/src/main/java/org/janelia/saalfeldlab/n5/N5FSWriter.java
+index bc0f2cf..112a9ef 100644
+--- a/src/main/java/org/janelia/saalfeldlab/n5/N5FSWriter.java
++++ b/src/main/java/org/janelia/saalfeldlab/n5/N5FSWriter.java
+@@ -223,16 +223,16 @@ public class N5FSWriter extends N5FSReader implements N5Writer {
+ 		try (final LockedFileChannel channel = LockedFileChannel.openForWriting(path)) {
+ 			final DataOutputStream dos = new DataOutputStream(Channels.newOutputStream(channel.getFileChannel()));
+ 
+-			int mode = (dataBlock.getNumElements() == DataBlock.getNumElements(dataBlock.getSize())) ? 0 : 1; 
+-			dos.writeShort(mode);
+ 			
++			if (dataBlock.getNumElements() == DataBlock.getNumElements(dataBlock.getSize()))
++				dos.writeShort(0);
++			else
++				dos.writeShort(1);
+ 			dos.writeShort(datasetAttributes.getNumDimensions());
+ 			for (final int size : dataBlock.getSize())
+ 				dos.writeInt(size);
+ 
+-			if(mode != 0)
+-				dos.writeInt(dataBlock.getNumElements());
+ 			
+ 			dos.flush();
+ 
+ 			final BlockWriter writer = datasetAttributes.getCompressionType().getWriter();

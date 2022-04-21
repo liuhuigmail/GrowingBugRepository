@@ -1,0 +1,13 @@
+diff --git a/src/test/java/com/github/pagehelper/test/basic/TestLike.java b/src/test/java/com/github/pagehelper/test/basic/TestLike.java
+index 68e09cf..d09cca0 100644
+--- a/src/test/java/com/github/pagehelper/test/basic/TestLike.java
++++ b/src/test/java/com/github/pagehelper/test/basic/TestLike.java
+@@ -79,7 +79,7 @@ public class TestLike {
+             Country country = new Country();
+             country.setCountryname("c");
+             List<Country> list = countryMapper.selectLike(country);
+-            assertEquals(174, list.get(0).getId());
++            assertEquals(30, list.get(0).getId());
+             assertEquals(39, list.size());
+             assertEquals(39, ((Page<?>) list).getTotal());
+         } finally {

@@ -1,0 +1,62 @@
+diff --git a/src/test/java/mikera/matrixx/decompose/impl/lu/TestAltLU.java b/src/test/java/mikera/matrixx/decompose/impl/lu/TestAltLU.java
+index c8f2c471..0ffe717e 100644
+--- a/src/test/java/mikera/matrixx/decompose/impl/lu/TestAltLU.java
++++ b/src/test/java/mikera/matrixx/decompose/impl/lu/TestAltLU.java
+@@ -14,43 +14,20 @@ public class TestAltLU {
+ 
+   @Test
+   public void testDecompose() {
+-//	  TEST: 1
+-	  double[][] dataA = {{5, 2, 3}, {1.5, -2, 8}, {-3, 4.7, -0.5}};
+-	  Matrix A = Matrix.create(dataA);
+-	  LUPResult ans = AltLU.decompose(A);
+-	  AMatrix L = ans.getL();
+-	  AMatrix U = ans.getU();
+-	  AMatrix P = ans.getP();
+-	  
+-	  double[][] exceptDataL = {{1, 0, 0}, {-0.6, 1, 0}, {0.3, -0.44068, 1}};
+-	  double[][] exceptDataU = {{5, 2, 3}, {0, 5.9, 1.3}, {0, 0, 7.67288}};
+-	  double[][] exceptDataP = {{1, 0, 0}, {0, 0, 1}, {0, 1, 0}};
+-	  Matrix exceptL = Matrix.create(exceptDataL);
+-	  Matrix exceptU = Matrix.create(exceptDataU);
+-	  Matrix exceptP = Matrix.create(exceptDataP);
+-	  assertArrayEquals(L.getElements(), exceptL.data, 1e-5);
+-	  assertArrayEquals(U.getElements(), exceptU.data, 1e-5);
+-	  assertArrayEquals(P.getElements(), exceptP.data, 1e-5);
+-	  assertTrue(Math.abs(-226.350 - ans.computeDeterminant()) < 1e-3);
+-	  
+-//	  TEST: 2
+-	  dataA = new double[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+-	  Matrix B = Matrix.create(dataA);
+-	  ans = AltLU.decompose(B);
+-	  L = ans.getL();
+-	  U = ans.getU();
+-	  P = ans.getP();
+-	
+-	  exceptDataL = new double[][]{{1, 0, 0}, {0.142857, 1, 0}, {0.571429, 0.5, 1}};
+-	  exceptDataU = new double[][]{{7, 8, 9}, {0, 0.857143, 1.714286}, {0, 0, 0}};
+-	  exceptDataP = new double[][]{{0, 1, 0}, {0, 0, 1}, {1, 0, 0}};
+-	  exceptL = Matrix.create(exceptDataL);
+-	  exceptU = Matrix.create(exceptDataU);
+-	  exceptP = Matrix.create(exceptDataP);
+-	  assertArrayEquals(L.getElements(), exceptL.data, 1e-5);
+-	  assertArrayEquals(U.getElements(), exceptU.data, 1e-5);
+-	  assertArrayEquals(P.getElements(), exceptP.data, 1e-5);
+-	  assertTrue(Math.abs(0 - ans.computeDeterminant()) < 1e-3);
++    double[][] dataA = {{5, 2, 3}, {1.5, -2, 8}, {-3, 4.7, -0.5}};
++    Matrix A = Matrix.create(dataA);
++    LUPResult ans = AltLU.decompose(A);
++    AMatrix L = ans.getL();
++    AMatrix U = ans.getU();
++
++    double[][] exceptDataL = {{1, 0, 0}, {-0.6, 1, 0}, {0.3, -0.44068, 1}};
++    double[][] exceptDataU = {{5, 2, 3}, {0, 5.9, 1.3}, {0, 0, 7.67288}};
++    Matrix exceptL = Matrix.create(exceptDataL);
++    Matrix exceptU = Matrix.create(exceptDataU);
++    assertArrayEquals(L.getElements(), exceptL.data, 1e-5);
++    assertArrayEquals(U.getElements(), exceptU.data, 1e-5);
++
++    assertTrue(Math.abs(-226.350 - ans.computeDeterminant()) < 1e-3);
+ 	    
+ //		AMatrix LU=L.innerProduct(U);
+ //		AMatrix PA=P.innerProduct(A);

@@ -1,0 +1,28 @@
+diff --git a/src/test/java/mikera/vectorz/TestSparseVectors.java b/src/test/java/mikera/vectorz/TestSparseVectors.java
+index 31cd4581..c4025ab8 100644
+--- a/src/test/java/mikera/vectorz/TestSparseVectors.java
++++ b/src/test/java/mikera/vectorz/TestSparseVectors.java
+@@ -5,7 +5,6 @@ import java.util.Arrays;
+ import static org.junit.Assert.*;
+ import mikera.vectorz.impl.SparseHashedVector;
+ import mikera.vectorz.impl.SparseIndexedVector;
+-import mikera.vectorz.impl.ZeroVector;
+ 
+ import org.junit.Test;
+ 
+@@ -32,14 +31,6 @@ public class TestSparseVectors {
+ 		assertEquals(1.0,v.elementSum(),0.0);
+ 		assertEquals(1,v.nonZeroCount());
+         assertTrue(Arrays.equals(new int[]{1},v.nonZeroIndices()));
+-
+-        SparseIndexedVector w=v.clone();
+-        v.add(ZeroVector.create(10));
+-        assertEquals(w, v);
+-
+-        SparseIndexedVector empty=SparseIndexedVector.createLength(3);
+-        SparseIndexedVector nonEmpty=SparseIndexedVector.create(Vector.of(1,0,2));
+-        empty.add(nonEmpty);
+-        assertEquals(Vector.of(1,0,2), empty);
++		
+ 	}
+ }

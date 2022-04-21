@@ -169,5 +169,14 @@ Slack_java_webhook	slack-java-webhook	https://github.com/ashwanthkumar/slack-jav
 Zip4j	zip4j	https://github.com/srikanth-lingala/zip4j.git	github	srikanth-lingala/zip4j	/#(\\d+)/mi	.
 Sparsebitset	SparseBitSet	https://github.com/brettwooldridge/SparseBitSet.git	github	brettwooldridge/SparseBitSet	/#(\\d+)/mi	.	
 Incubator_retired_pirk	incubator-retired-pirk	https://github.com/apache/incubator-retired-pirk.git	github	apache/incubator-retired-pirk	/#(\\d+)/mi	.	
-Coveralls_maven_plugin	coveralls-maven-plugin	https://github.com/trautonen/coveralls-maven-plugin.git	github	trautonen/coveralls-maven-plugin	/#(\\d+)/mi	.
-
+Assertj_assertions_generator	assertj-assertions-generator	https://github.com/assertj/assertj-assertions-generator.git	github	assertj/assertj-assertions-generator	/#(\\d+)/mi	.	
+Config_magic	config-magic	https://github.com/brianm/config-magic.git	github	brianm/config-magic	/#(\\d+)/mi	.	
+Deft	deft	https://github.com/rschildmeijer/deft.git	github	rschildmeijer/deft	/#(\\d+)/mi	.	
+Jcodemodel	jcodemodel	https://github.com/phax/jcodemodel.git	github	phax/jcodemodel	/#(\\d+)/mi	.	
+Jdbm3	JDBM3	https://github.com/jankotek/JDBM3.git	github	jankotek/JDBM3	/#(\\d+)/mi	.	
+Mybatis_pagehelper	Mybatis-PageHelper	https://github.com/pagehelper/Mybatis-PageHelper.git	github	pagehelper/Mybatis-PageHelper	/#(\\d+)/mi	.	
+N5	n5	https://github.com/saalfeldlab/n5.git	github	saalfeldlab/n5	/#(\\d+)/mi	.	
+Stash_jenkins_postreceive_webhook	stash-jenkins-postreceive-webhook	https://github.com/mohamicorp/stash-jenkins-postreceive-webhook.git	github	mohamicorp/stash-jenkins-postreceive-webhook	/#(\\d+)/mi	.	
+Suffixtree	suffixtree	https://github.com/abahgat/suffixtree.git	github	abahgat/suffixtree	/#(\\d+)/mi	.	
+Template_benchmark	template-benchmark	https://github.com/mbosecke/template-benchmark.git	github	mbosecke/template-benchmark	/#(\\d+)/mi	.	
+Vectorz	vectorz	https://github.com/mikera/vectorz.git	github	mikera/vectorz	/#(\\d+)/mi	.	

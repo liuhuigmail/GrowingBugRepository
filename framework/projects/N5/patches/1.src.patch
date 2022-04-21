@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/janelia/saalfeldlab/n5/N5FSReader.java b/src/main/java/org/janelia/saalfeldlab/n5/N5FSReader.java
+index ca7eff9..bee1e78 100644
+--- a/src/main/java/org/janelia/saalfeldlab/n5/N5FSReader.java
++++ b/src/main/java/org/janelia/saalfeldlab/n5/N5FSReader.java
+@@ -149,9 +149,7 @@ public class N5FSReader implements N5Reader {
+ 	public HashMap<String, JsonElement> getAttributes(final String pathName) throws IOException {
+ 
+ 		final Path path = Paths.get(basePath, pathName, jsonFile);
+-		if (exists(pathName) && !Files.exists(path))
+-			return new HashMap<>();
+ 
+ 		final LockedFileChannel lockedFileChannel = new LockedFileChannel(path);
+ 		final Type mapType = new TypeToken<HashMap<String, JsonElement>>(){}.getType();
+ 		HashMap<String, JsonElement> map = gson.fromJson(Channels.newReader(lockedFileChannel.channel, "UTF-8"), mapType);

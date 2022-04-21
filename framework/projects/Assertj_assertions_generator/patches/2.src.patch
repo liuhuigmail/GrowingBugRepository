@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/assertj/assertions/generator/description/DataDescription.java b/src/main/java/org/assertj/assertions/generator/description/DataDescription.java
+index c0f2898..ded665e 100644
+--- a/src/main/java/org/assertj/assertions/generator/description/DataDescription.java
++++ b/src/main/java/org/assertj/assertions/generator/description/DataDescription.java
+@@ -12,7 +12,7 @@
+  */
+ package org.assertj.assertions.generator.description;
+ 
+-import static org.apache.commons.lang3.StringUtils.removeStart;
++import static org.apache.commons.lang3.StringUtils.remove;
+ import static org.assertj.assertions.generator.util.ClassUtil.getNegativePredicateFor;
+ import static org.assertj.assertions.generator.util.ClassUtil.getPredicatePrefix;
+ import static org.assertj.assertions.generator.util.StringUtil.camelCaseToWords;
+@@ -188,7 +188,7 @@ public abstract class DataDescription {
+     for (String predicatePrefix : prefixesSortedByBiggerLength) {
+       if (originalMember.startsWith(predicatePrefix)) {
+         // get rid of prefix
+-        String propertyName = removeStart(originalMember, predicatePrefix);
++        String propertyName = remove(originalMember, predicatePrefix);
+         // make it human readable
+         return camelCaseToWords(propertyName);
+       }

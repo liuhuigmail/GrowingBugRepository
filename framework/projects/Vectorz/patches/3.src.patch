@@ -1,0 +1,29 @@
+diff --git a/src/main/java/mikera/vectorz/impl/SparseIndexedVector.java b/src/main/java/mikera/vectorz/impl/SparseIndexedVector.java
+index ed39a7c5..1de069ac 100644
+--- a/src/main/java/mikera/vectorz/impl/SparseIndexedVector.java
++++ b/src/main/java/mikera/vectorz/impl/SparseIndexedVector.java
+@@ -161,9 +161,6 @@ public class SparseIndexedVector extends ASparseIndexedVector {
+ 	
+ 	@Override
+ 	public void add(ASparseVector v) {
+-        if (v instanceof ZeroVector) {
+-            return;
+-        }
+ 		includeIndices(v);	
+ 		for (int i=0; i<data.length; i++) {
+ 			data[i]+=v.unsafeGet(index.get(i));
+@@ -492,13 +489,13 @@ public class SparseIndexedVector extends ASparseIndexedVector {
+ 		double[] data=this.data;
+ 		double[] ndata=new double[nl];
+ 		int si=0;
+         
+ 		for (int i=0; i<nl; i++) {
+-            if (si>=data.length) break;
+ 			int z=index.data[si];
+ 			if (z==nixs[i]) {
+ 				ndata[i]=data[si];
+ 				si++; 
++				if (si>=data.length) break;
+ 			}
+ 		}
+ 		this.data=ndata;

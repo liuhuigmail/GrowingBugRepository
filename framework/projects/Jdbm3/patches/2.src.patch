@@ -1,0 +1,12 @@
+diff --git a/src/main/java/net/kotek/jdbm/DBAbstract.java b/src/main/java/net/kotek/jdbm/DBAbstract.java
+index e97040d..b27e9bf 100644
+--- a/src/main/java/net/kotek/jdbm/DBAbstract.java
++++ b/src/main/java/net/kotek/jdbm/DBAbstract.java
+@@ -452,7 +452,6 @@ abstract class DBAbstract implements DB {
+                 throw new InternalError("unknown collection type: "+(o==null?null:o.getClass()));
+             }
+             delete(recid);
+-            collections.remove(name);
+ 
+ 
+             dir.remove(name);

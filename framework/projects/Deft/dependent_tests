@@ -1,0 +1,4 @@
+--- org.deftserver.web.DeftSystemTest::deleteTest
+--- org.deftserver.web.DeftSystemTest::staticFileRequestTest
+--- org.deftserver.web.DeftSystemTest::capturingTest
+--- org.deftserver.web.DeftSystemTest::movedPermanentlyRequest

@@ -1,0 +1,13 @@
+diff --git a/src/main/java/mikera/matrixx/decompose/impl/lu/AltLU.java b/src/main/java/mikera/matrixx/decompose/impl/lu/AltLU.java
+index 4c3378f5..a71503d8 100644
+--- a/src/main/java/mikera/matrixx/decompose/impl/lu/AltLU.java
++++ b/src/main/java/mikera/matrixx/decompose/impl/lu/AltLU.java
+@@ -110,7 +110,7 @@ public class AltLU {
+ 
+ 	private PermutationMatrix getPivotMatrix() {
+ 		int numPivots = LU.rowCount();
+-		return PermutationMatrix.create(Index.wrap(Arrays.copyOf(pivot, numPivots))).getTranspose();
++		return PermutationMatrix.create(Index.wrap(Arrays.copyOf(pivot, numPivots)));
+ 	}
+ 
+ 	protected void decomposeCommonInit(Matrix A) {

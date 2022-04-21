@@ -1,0 +1,11 @@
+com.github.pagehelper.mapper.ProviderMethod
+com.github.pagehelper.mapper.UserMapper
+com.github.pagehelper.model.Code
+com.github.pagehelper.model.User
+com.github.pagehelper.model.UserCode
+com.github.pagehelper.model.UserExample
+com.github.pagehelper.model.UserQueryModel
+com.github.pagehelper.test.basic.dynamic.Where
+com.github.pagehelper.test.reasonable.PageTest
+com.github.pagehelper.util.MybatisReasonableHelper
+com.github.pagehelper.util.TestUtil

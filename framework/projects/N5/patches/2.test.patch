@@ -1,0 +1,42 @@
+diff --git a/src/test/java/org/janelia/saalfeldlab/n5/N5Test.java b/src/test/java/org/janelia/saalfeldlab/n5/N5Test.java
+index c07733f..3911ac6 100644
+--- a/src/test/java/org/janelia/saalfeldlab/n5/N5Test.java
++++ b/src/test/java/org/janelia/saalfeldlab/n5/N5Test.java
+@@ -307,37 +307,6 @@ public class N5Test {
+ 			}
+ 		}
+ 	}
+-	
+-	@Test
+-	public void testMode1WriteReadByteBlock() {
+-
+-		int[] differentBlockSize = new int[] {5, 10, 15};
+-		
+-		for (final CompressionType compressionType : CompressionType.values()) {
+-			for (final DataType dataType : new DataType[]{
+-					DataType.UINT8,
+-					DataType.INT8}) {
+-
+-				System.out.println("Testing " + compressionType + " " + dataType + " (mode=1)");
+-				try {
+-					n5.createDataset(datasetName, dimensions, differentBlockSize, dataType, compressionType);
+-					final DatasetAttributes attributes = n5.getDatasetAttributes(datasetName);
+-					final ByteArrayDataBlock dataBlock = new ByteArrayDataBlock(differentBlockSize, new long[]{0, 0, 0}, byteBlock);
+-					n5.writeBlock(datasetName, attributes, dataBlock);
+-
+-					final DataBlock<?> loadedDataBlock = n5.readBlock(datasetName, attributes, new long[]{0, 0, 0});
+-
+-					Assert.assertArrayEquals(byteBlock, (byte[])loadedDataBlock.getData());
+-
+-					Assert.assertTrue(n5.remove(datasetName));
+-
+-				} catch (final IOException e) {
+-					e.printStackTrace();
+-					fail("Block cannot be written.");
+-				}
+-			}
+-		}
+-	}
+ 
+ 	@Test
+ 	public void testRemove() {

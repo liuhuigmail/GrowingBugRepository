@@ -1,0 +1,4 @@
+com.nerdwin15.stash.webhook.NotificationResult
+com.nerdwin15.stash.webhook.Notifier
+com.nerdwin15.stash.webhook.service.HttpClientFactory
+com.nerdwin15.stash.webhook.service.SettingsService

@@ -1,0 +1,4 @@
+org.assertj.assertions.generator.AssertionGeneratorTest
+org.assertj.assertions.generator.data.Name
+org.assertj.assertions.generator.data.Player
+org.assertj.assertions.generator.NestedClassesTest
