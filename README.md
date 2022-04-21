@@ -1,7 +1,7 @@
 Table of Contents
 =================
 
-   * [General Introduction](#A-bug-repository-that-keeps-growing-called-growingBugs)
+   * [General Introduction](#General Introduction)
    * [Contents of growingBugs](#Contents-of-growingBugs)
    * [Setting up](#Setting-up-GrowingBugs)
       * [Requirements](#Requirements)
@@ -12,9 +12,12 @@ Table of Contents
    * [Versions](#Versions)
    * [Citation](#Citation)
       
-# A bug repository that keeps growing, called ***growingBugs***
+# General Introduction
+This is a bug repository that keeps growing, called ***growingBugs***
 
-Notably, each bug is composed of a buggy version, a fixed version, a ***concise patch*** (bug-fixing changes only), and one or more triggering test cases.
+Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed version, a ***concise patch*** (bug-fixing changes only), and one or more triggering test cases.
+
+
 
 # Contents of growingBugs
 To date, growingBugs contains **`1513`** bugs from open-source Java projects. 
