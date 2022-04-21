@@ -21,7 +21,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 
 # Contents of growingBugs
-To date, growingBugs contains **`1535`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1543`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -193,7 +193,7 @@ To date, growingBugs contains **`1535`** real-world bugs from open-source Java p
 | 166     | Canvas_api            | canvas-api               |                 |      4       | 1-4               |
 | 167     | Coveralls_maven_plugin            | coveralls-maven-plugin               |                  |      8       | 1-8               |
 | 168     | Slack_java_webhook            | slack-java-webhook               |                 |      1       | 1               |
-| 169     | Zip4j            | zip4j               |                  |      40       | 1-40               |
+| 169     | Zip4j            | zip4j               |                  |      48       | 1-48               |
 | 170     | Incubator_retired_pirk            | incubator-retired-pirk               |                  |      1       | 1               |
 | 171     | Sparsebitset             | Sparsebitset                |                  |      2       | 1-2               |
 | 172     | Assertj_assertions_generator            | assertj-assertions-generator               |                  |      3       | 1-3               |
