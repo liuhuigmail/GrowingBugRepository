@@ -1,9 +1,9 @@
-# Table of Contents
+Table of Contents
 =================
 
    * [A bug repository that keeps growing, called growingBugs](#A-bug-repository-that-keeps-growing,-called-growingBugs)
    * [Contents of growingBugs](#Contents-of-growingBugs)
-   * [Setting up GrowingBugs](#>Setting-up-GrowingBugs)
+   * [Setting up GrowingBugs](#Setting-up-GrowingBugs)
       * [Requirements](#Requirements)
       * [Steps to set up GrowingBugs](#Steps-to-set-up-GrowingBugs)
    * [Using GrowingBugs](#Using-GrowingBugs)
