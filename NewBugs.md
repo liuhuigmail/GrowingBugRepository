@@ -1,6 +1,7 @@
 # Unique Bugs in growingBugs
 To date, growingBugs contains **`700`** unique bugs that are not included in Defects4J. 
 
+
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
 | 1     | Cli             | commons-cli                |                           |       2      | 41-42            |

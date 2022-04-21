@@ -23,6 +23,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 # Contents of growingBugs
 To date, growingBugs contains **`1535`** real-world bugs from open-source Java projects. 
 
+
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
 | 1     | Chart           | jfreechart                 |                           |       26       | 1-26                |
