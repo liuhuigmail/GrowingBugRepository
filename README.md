@@ -1,16 +1,16 @@
 Table of Contents
 =================
 
-   * [A bug repository that keeps growing, called growingBugs](#A-bug-repository-that-keeps-growing-called-growingBugs)
+   * [General Introduction](#A-bug-repository-that-keeps-growing-called-growingBugs)
    * [Contents of growingBugs](#Contents-of-growingBugs)
-   * [Setting up GrowingBugs](#Setting-up-GrowingBugs)
+   * [Setting up](#Setting-up-GrowingBugs)
       * [Requirements](#Requirements)
       * [Steps to set up GrowingBugs](#Steps-to-set-up-GrowingBugs)
    * [Using GrowingBugs](#Using-GrowingBugs)
-      * [Docker Image](#Docker-Image)
-      * [Copyright](#Copyright)
-      * [Versions](#Versions)
-      * [Citation](#Citation)
+   * [Docker Image](#Docker-Image)
+   * [Copyright](#Copyright)
+   * [Versions](#Versions)
+   * [Citation](#Citation)
       
 # A bug repository that keeps growing, called ***growingBugs***
 
