@@ -7,9 +7,10 @@ Table of Contents
       * [Requirements](#Requirements)
       * [Steps to set up GrowingBugs](#Steps-to-set-up-GrowingBugs)
    * [Using GrowingBugs](#Using-GrowingBugs)
-   * [Docker Image](#Docker-Image)
+      * [Typical Usage](#Typical-Usage)  
+      * [Docker Image](#Docker-Image)
+      * [Versions](#Versions)
    * [Copyright](#Copyright)
-   * [Versions](#Versions)
    * [Citation](#Citation)
       
 # General Introduction
@@ -220,6 +221,8 @@ To date, growingBugs contains **`1513`** real-world bugs from open-source Java p
     - `export PATH=$PATH:"path2growingbugs"/framework/bin`
 
 # Using GrowingBugs
+
+## Typical Usage
 1. Checkout a buggy source code version (If the project doesn't hava subproject, `-s` parameter can be ignored):
     - `defects4j checkout -p project_id -v version_id -w work_dir -s subproject_locator` 
     
@@ -257,13 +260,12 @@ To free users (especially beginers) of the repository from the complex configura
 
 By simply loading the image with Docker, you can make the system ready for evaluation where all configurations (e.g., Java versions, paths, and even all data within the repository) should have been well set.  
 
-## Copyright
-Notably, this bug repository is based on the well-known **Defects4J** https://github.com/rjust/defects4j. We reuse its source code as well as the bugs in **Defects4J**. The key difference is that **growingBugs** levearages **BugBuilder**[1] to exclude bug-irrelevarange changes from bug-fixing commmits automatically whereas **Defects4J** requests human experts to accomplish the same task. Consequently, **growingBugs** can keep growing automatically even ***without human intervention***.  
-
-
 
 ## Versions
 Because the bug repository keeps growing, let us known if you need a stable version for your study (e.g., evalutions for a research paper), and we will release a specific version where the bugs and patches are fixed (to faciliate the replication of your study).  
+
+## Copyright
+Notably, this bug repository is based on the well-known **Defects4J** https://github.com/rjust/defects4j. We reuse its source code as well as the bugs in **Defects4J**. The key difference is that **growingBugs** levearages **BugBuilder**[1] to exclude bug-irrelevarange changes from bug-fixing commmits automatically whereas **Defects4J** requests human experts to accomplish the same task. Consequently, **growingBugs** can keep growing automatically even ***without human intervention***.  
 
 ## Citation
 If you are exploiting our dataset, please kindly cite the following paper:
