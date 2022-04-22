@@ -1,0 +1,42 @@
+diff --git a/src/test/java/com/sampullara/cli/ArgsTest.java b/src/test/java/com/sampullara/cli/ArgsTest.java
+index e7a58fb..0557bf7 100644
+--- a/src/test/java/com/sampullara/cli/ArgsTest.java
++++ b/src/test/java/com/sampullara/cli/ArgsTest.java
+@@ -1,7 +1,6 @@
+ package com.sampullara.cli;
+ 
+ import junit.framework.TestCase;
+-import org.junit.Test;
+ 
+ import java.io.File;
+ import java.util.List;
+@@ -103,14 +102,6 @@ public class ArgsTest extends TestCase {
+         assertEquals("extra", extra.get(0));
+     }
+ 
+-    public void testDerivedCommand() {
+-        String[] args = { "-help", "-verbose" };
+-        TestCommand6 tc = new TestCommand6();
+-        Args.parse(tc, args);
+-        assertTrue(tc.help);
+-        assertTrue(tc.verbose);
+-    }
+-
+     public static class TestCommand {
+         @Argument(value = "input", description = "This is the input file", required = true)
+         private String inputFilename;
+@@ -275,14 +266,4 @@ public class ArgsTest extends TestCase {
+         @Argument(required = true)
+         private static String output;
+     }
+-
+-    public static abstract class TestCommand5 {
+-        @Argument
+-        public boolean help;
+-    }
+-
+-    public static class TestCommand6 extends TestCommand5 {
+-        @Argument
+-        public boolean verbose;
+-    }
+ }

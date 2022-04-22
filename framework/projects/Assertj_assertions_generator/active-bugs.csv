@@ -2,3 +2,5 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,0793b76ea9a186bf4d1d3d4ffdf7a8243d3ff449,039ae53441513941ab57b32e201d7857272f1aae,25,https://github.com/assertj/assertj-assertions-generator/issues/25
 2,c8dc7c7f2fc2d5a8c006ba3fa1913c45c76eac8b,5ea763b52d7a5186d79141ac6b00dc81d2781113,46,https://github.com/assertj/assertj-assertions-generator/issues/46
 3,7ced7f3d837971a2464701023fb65ad265c5caeb,850a460ab6f5764fb4f33636b6c6a157b194af63,unknown,unknown
+4,30e99e6f4db090605d042cab1e0fd96d5b1b6b39,b81e487df34f15d622c3bf482eddbb144fd986d5,6,https://github.com/assertj/assertj-assertions-generator/issues/6
+5,039ae53441513941ab57b32e201d7857272f1aae,fe273b62fc7a124c245f9d444a878b6d83a1d8bc,18,https://github.com/assertj/assertj-assertions-generator/issues/18

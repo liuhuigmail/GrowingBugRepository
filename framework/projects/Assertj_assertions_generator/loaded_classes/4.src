@@ -1,0 +1,7 @@
+org.assertj.assertions.generator.description.ClassDescription
+org.assertj.assertions.generator.description.converter.ClassDescriptionConverter
+org.assertj.assertions.generator.description.converter.ClassToClassDescriptionConverter
+org.assertj.assertions.generator.description.GetterDescription
+org.assertj.assertions.generator.description.TypeDescription
+org.assertj.assertions.generator.description.TypeName
+org.assertj.assertions.generator.util.ClassUtil

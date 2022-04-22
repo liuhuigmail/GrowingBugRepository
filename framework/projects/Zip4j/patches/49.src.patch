@@ -1,0 +1,47 @@
+diff --git a/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java b/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
+index 193f1bb..dbc006c 100755
+--- a/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
+@@ -80,13 +80,11 @@ public class ZipInputStream extends InputStream {
+   }
+ 
+   public LocalFileHeader getNextEntry() throws IOException {
+-    return getNextEntry(null, true);
++    return getNextEntry(null);
+   }
+ 
+-  public LocalFileHeader getNextEntry(FileHeader fileHeader, boolean readUntilEndOfCurrentEntryIfOpen)
+-      throws IOException {
+-
+-    if (localFileHeader != null && readUntilEndOfCurrentEntryIfOpen) {
++  public LocalFileHeader getNextEntry(FileHeader fileHeader) throws IOException {
++    if (localFileHeader != null) {
+       readUntilEndOfEntry();
+     }
+ 
+diff --git a/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java b/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
+index 67d1ce2..8197df1 100644
+--- a/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
++++ b/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
+@@ -140,7 +140,7 @@ public abstract class AbstractExtractFileTask<T> extends AsyncZipTask<T> {
+           "Zip4j does not support Strong Encryption, as this is patented.");
+     }
+ 
+-    LocalFileHeader localFileHeader = zipInputStream.getNextEntry(fileHeader, false);
++    LocalFileHeader localFileHeader = zipInputStream.getNextEntry(fileHeader);
+ 
+     if (localFileHeader == null) {
+       throw new ZipException("Could not read corresponding local file header for file header: "
+diff --git a/src/main/java/net/lingala/zip4j/util/UnzipUtil.java b/src/main/java/net/lingala/zip4j/util/UnzipUtil.java
+index 0238252..08b76c1 100755
+--- a/src/main/java/net/lingala/zip4j/util/UnzipUtil.java
++++ b/src/main/java/net/lingala/zip4j/util/UnzipUtil.java
+@@ -27,7 +27,7 @@ public class UnzipUtil {
+       splitInputStream.prepareExtractionForFileHeader(fileHeader);
+ 
+       ZipInputStream zipInputStream = new ZipInputStream(splitInputStream, password);
+-      if (zipInputStream.getNextEntry(fileHeader, false) == null) {
++      if (zipInputStream.getNextEntry(fileHeader) == null) {
+         throw new ZipException("Could not locate local file header for corresponding file header");
+       }
+ 

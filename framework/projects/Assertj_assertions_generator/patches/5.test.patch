@@ -1,0 +1,140 @@
+diff --git a/src/test/java/org/assertj/assertions/generator/AssertionGeneratorTest.java b/src/test/java/org/assertj/assertions/generator/AssertionGeneratorTest.java
+index 5059788..3bbc33a 100644
+--- a/src/test/java/org/assertj/assertions/generator/AssertionGeneratorTest.java
++++ b/src/test/java/org/assertj/assertions/generator/AssertionGeneratorTest.java
+@@ -3,7 +3,6 @@ package org.assertj.assertions.generator;
+ import static com.google.common.collect.Sets.newHashSet;
+ import static java.lang.reflect.Modifier.isPublic;
+ import static org.apache.commons.io.FileUtils.readFileToString;
+-import static org.apache.commons.lang3.StringUtils.replace;
+ import static org.assertj.assertions.generator.BaseAssertionGenerator.ABSTRACT_ASSERT_CLASS_PREFIX;
+ import static org.assertj.assertions.generator.BaseAssertionGenerator.ASSERT_CLASS_FILE_SUFFIX;
+ import static org.assertj.assertions.generator.util.ClassUtil.collectClasses;
+@@ -186,8 +185,8 @@ public class AssertionGeneratorTest implements NestedClassesTest, BeanWithExcept
+ 
+   private static String expectedContentFromTemplate(Class<?> clazz, String fileTemplate) throws IOException {
+     String template = readFileToString(new File("src/test/resources/" + fileTemplate));
+-    String content = replace(template, "${nestedClass}Assert", getSimpleNameWithOuterClassNotSeparatedByDots(clazz) + "Assert");
+-    content = replace(content, "${nestedClass}", getSimpleNameWithOuterClass(clazz));
++    String content = template.replaceAll("\\$\\{nestedClass\\}Assert", getSimpleNameWithOuterClassNotSeparatedByDots(clazz) + "Assert");
++    content = content.replaceAll("\\$\\{nestedClass\\}", getSimpleNameWithOuterClass(clazz));
+     return content;
+   }
+ 
+diff --git a/src/test/java/org/assertj/assertions/generator/data/Dollar$.java b/src/test/java/org/assertj/assertions/generator/data/Dollar$.java
+deleted file mode 100644
+index ebfc388..0000000
+--- a/src/test/java/org/assertj/assertions/generator/data/Dollar$.java
++++ /dev/null
+@@ -1,19 +0,0 @@
+-/**
+- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+- * the License. You may obtain a copy of the License at
+- *
+- * http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+- * specific language governing permissions and limitations under the License.
+- *
+- * Copyright 2012-2014 the original author or authors.
+- */
+-package org.assertj.assertions.generator.data;
+-
+-// test for https://github.com/joel-costigliola/assertj-assertions-generator/issues/18
+-public class Dollar$ {
+-  public String test;
+-
+-}
+\ No newline at end of file
+diff --git a/src/test/java/org/assertj/assertions/generator/util/ClassUtilTest.java b/src/test/java/org/assertj/assertions/generator/util/ClassUtilTest.java
+index 9f57b93..a9b550e 100644
+--- a/src/test/java/org/assertj/assertions/generator/util/ClassUtilTest.java
++++ b/src/test/java/org/assertj/assertions/generator/util/ClassUtilTest.java
+@@ -42,20 +42,19 @@ public class ClassUtilTest implements NestedClassesTest {
+   @Test
+   public void should_get_classes_in_package_and_subpackages() throws ClassNotFoundException {
+     Set<Class<?>> classesInPackage = collectClasses("org.assertj.assertions.generator.data");
+-    assertThat(classesInPackage).contains(Player.class, PlayerAgent.class, ArtWork.class, Name.class, Movie.class,
+-                                          Movie.PublicCategory.class, Ring.class, Race.class,
+-                                          FellowshipOfTheRing.class, TolkienCharacter.class,
+-                                          Team.class,
+-                                          Dollar$.class,
+-                                          org.assertj.assertions.generator.data.nba.Team.class,
+-                                          TreeEnum.class,
+-                                          OuterClass.InnerPerson.IP_InnerPerson.class,
+-                                          OuterClass.InnerPerson.class,
+-                                          OuterClass.class,
+-                                          StaticNestedPerson.SNP_InnerPerson.class,
+-                                          StaticNestedPerson.class,
+-                                          StaticNestedPerson.SNP_StaticNestedPerson.class,
+-                                          BeanWithOneException.class, BeanWithTwoExceptions.class);
++    assertThat(classesInPackage).containsOnly(Player.class, PlayerAgent.class, ArtWork.class, Name.class, Movie.class,
++                                              Movie.PublicCategory.class, Ring.class, Race.class,
++                                              FellowshipOfTheRing.class, TolkienCharacter.class,
++                                              Team.class,
++                                              org.assertj.assertions.generator.data.nba.Team.class,
++                                              TreeEnum.class,
++                                              OuterClass.InnerPerson.IP_InnerPerson.class,
++                                              OuterClass.InnerPerson.class,
++                                              OuterClass.class,
++                                              StaticNestedPerson.SNP_InnerPerson.class,
++                                              StaticNestedPerson.class,
++                                              StaticNestedPerson.SNP_StaticNestedPerson.class,
++                                              BeanWithOneException.class, BeanWithTwoExceptions.class);
+   }
+ 
+   @Test
+@@ -95,7 +94,7 @@ public class ClassUtilTest implements NestedClassesTest {
+   public void should_return_false_if_method_is_not_a_standard_getter() throws Exception {
+     assertThat(isStandardGetter(Player.class.getMethod("isRookie", NO_PARAMS))).isFalse();
+     assertThat(isStandardGetter(Player.class.getMethod("getVoid", NO_PARAMS))).isFalse();
+-    assertThat(isStandardGetter(Player.class.getMethod("getWithParam", new Class[] { String.class }))).isFalse();
++    assertThat(isStandardGetter(Player.class.getMethod("getWithParam", new Class[]{String.class}))).isFalse();
+   }
+ 
+   @Test
+@@ -107,7 +106,7 @@ public class ClassUtilTest implements NestedClassesTest {
+   public void should_return_false_if_method_is_not_a_boolean_getter() throws Exception {
+     assertThat(isBooleanGetter(Player.class.getMethod("getTeam", NO_PARAMS))).isFalse();
+     assertThat(isStandardGetter(Player.class.getMethod("isVoid", NO_PARAMS))).isFalse();
+-    assertThat(isStandardGetter(Player.class.getMethod("isWithParam", new Class[] { String.class }))).isFalse();
++    assertThat(isStandardGetter(Player.class.getMethod("isWithParam", new Class[]{String.class}))).isFalse();
+   }
+ 
+   @Test
+@@ -135,7 +134,7 @@ public class ClassUtilTest implements NestedClassesTest {
+   public void should_return_getters_methods_only() throws Exception {
+     List<Method> playerGetterMethods = getterMethodsOf(Player.class);
+     assertThat(playerGetterMethods).contains(Player.class.getMethod("getTeam", NO_PARAMS))
+-                                   .doesNotContain(Player.class.getMethod("isInTeam", String.class));
++      .doesNotContain(Player.class.getMethod("isInTeam", String.class));
+   }
+ 
+   @Test
+@@ -163,13 +162,13 @@ public class ClassUtilTest implements NestedClassesTest {
+     String actualName = getSimpleNameWithOuterClassNotSeparatedByDots(nestedClass.getNestedClass());
+     assertThat(actualName).isEqualTo(nestedClass.getClassNameWithOuterClassNotSeparatedBytDots());
+   }
+-
++  
+   @Test
+   public void should_return_simple_class_name() {
+     String actualName = getSimpleNameWithOuterClassNotSeparatedByDots(Player.class);
+     assertThat(actualName).isEqualTo("Player");
+   }
+-
++  
+   @Test
+   public void testGetSimpleNameWithOuterClass_notNestedClass() throws Exception {
+     assertThat(ClassUtil.getSimpleNameWithOuterClass(String.class)).isEqualTo("String");
+@@ -240,8 +239,6 @@ public class ClassUtilTest implements NestedClassesTest {
+     }
+ 
+     @SuppressWarnings("unused")
+-    public <T extends Number> T getNumber() {
+-      return null;
+-    }
++    public <T extends Number> T getNumber() {return null;}
+   }
+ }

@@ -1,0 +1,26 @@
+diff --git a/src/main/java/com/sampullara/cli/Args.java b/src/main/java/com/sampullara/cli/Args.java
+index 9989f84..15f0560 100644
+--- a/src/main/java/com/sampullara/cli/Args.java
++++ b/src/main/java/com/sampullara/cli/Args.java
+@@ -41,10 +41,8 @@ public class Args {
+         }
+ 
+         // Check fields of 'target' class and its superclasses
+-      for (Class<?> currentClazz = clazz; currentClazz != null;  currentClazz = currentClazz.getSuperclass()) {
+-            for (Field field : currentClazz.getDeclaredFields()) {
++        for (Field field : clazz.getDeclaredFields()) {
+                 processField(target, field, arguments);
+-            }
+         }
+ 
+         for (String argument : arguments) {
+@@ -181,8 +179,7 @@ public class Args {
+             clazz = target.getClass();
+         }
+         errStream.println("Usage: " + clazz.getName());
+-        for (Class<?> currentClazz = clazz; currentClazz != null;  currentClazz = currentClazz.getSuperclass()) {
+-          for (Field field : currentClazz.getDeclaredFields()) {
++          {for (Field field : clazz.getDeclaredFields()) {
+             fieldUsage(errStream, target, field);
+           }
+         }

@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,86ee326f3e7519947227be6a40d06fc43ce1da08,6bb1296cea485751ff0da629866de0bc896077cb,3,https://github.com/spullara/cli-parser/pull/3

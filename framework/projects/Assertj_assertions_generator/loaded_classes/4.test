@@ -1,0 +1,4 @@
+org.assertj.assertions.generator.BeanWithExceptionsTest
+org.assertj.assertions.generator.data.TreeEnum
+org.assertj.assertions.generator.description.converter.ClassToClassDescriptionConverterTest
+org.assertj.assertions.generator.NestedClassesTest

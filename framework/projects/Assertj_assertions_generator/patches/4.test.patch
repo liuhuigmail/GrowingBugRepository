@@ -1,0 +1,202 @@
+diff --git a/src/test/java/org/assertj/assertions/generator/AssertionGeneratorTest.java b/src/test/java/org/assertj/assertions/generator/AssertionGeneratorTest.java
+index 582e68f..21bd170 100644
+--- a/src/test/java/org/assertj/assertions/generator/AssertionGeneratorTest.java
++++ b/src/test/java/org/assertj/assertions/generator/AssertionGeneratorTest.java
+@@ -2,7 +2,6 @@ package org.assertj.assertions.generator;
+ 
+ import static com.google.common.collect.Lists.*;
+ import static com.google.common.collect.Sets.newLinkedHashSet;
+-import static java.lang.reflect.Modifier.isPublic;
+ import static org.apache.commons.io.FileUtils.readFileToString;
+ import static org.assertj.assertions.generator.BaseAssertionGenerator.ASSERT_CLASS_FILE_SUFFIX;
+ import static org.assertj.assertions.generator.util.ClassUtil.collectClasses;
+@@ -38,6 +37,7 @@ import org.assertj.assertions.generator.description.ClassDescription;
+ import org.assertj.assertions.generator.description.converter.ClassToClassDescriptionConverter;
+ import org.assertj.assertions.generator.util.ClassUtil;
+ 
++
+ @RunWith(Theories.class)
+ public class AssertionGeneratorTest implements NestedClassesTest, BeanWithExceptionsTest {
+   private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+@@ -57,7 +57,8 @@ public class AssertionGeneratorTest implements NestedClassesTest, BeanWithExcept
+   public void should_generate_assertion_for_player_class() throws Exception {
+     customAssertionGenerator.generateCustomAssertionFor(converter.convertToClassDescription(Player.class));
+     assertThat(fileGeneratedFor(Player.class)).hasContentEqualTo(
+-        new File("src/test/resources/PlayerAssert.expected" + ".txt").getAbsoluteFile());
++                                                                  new File("src/test/resources/PlayerAssert.expected" +
++                                                                           ".txt").getAbsoluteFile());
+   }
+ 
+   @Theory
+@@ -73,18 +74,18 @@ public class AssertionGeneratorTest implements NestedClassesTest, BeanWithExcept
+     String expectedContent = readFileToString(new File("src/test/resources/BeanWithOneException.expected.txt"));
+     if (!BEAN_WITH_ONE_EXCEPTION.equals(beanClass)) {
+       String importException = "import java.io.IOException;" + LINE_SEPARATOR;
+-      expectedContent = expectedContent.replace(importException, importException + "import java.sql.SQLException;"
+-          + LINE_SEPARATOR);
++      expectedContent = expectedContent.replace(importException, importException + "import java.sql.SQLException;" +
++                                                                 LINE_SEPARATOR);
+ 
+       expectedContent = expectedContent.replace(BEAN_WITH_ONE_EXCEPTION.getSimpleName(), beanClass.getSimpleName());
+       expectedContent = expectedContent.replace(" throws IOException ", " throws IOException, SQLException ");
+ 
+-      GetterWithException[] getters = { STRING_1_EXCEPTION, BOOLEAN_1_EXCEPTION, ARRAY_1_EXCEPTION,
+-          ITERABLE_1_EXCEPTION };
++      GetterWithException[] getters = {STRING_1_EXCEPTION, BOOLEAN_1_EXCEPTION, ARRAY_1_EXCEPTION,
++                                        ITERABLE_1_EXCEPTION};
+       for (GetterWithException getter : getters) {
+         String throwsClause = generateThrowsClause(IOException.class, getter.getPropertyName(), getter.isBooleanType());
+-        String replacement = throwsClause
+-            + generateThrowsClause(SQLException.class, getter.getPropertyName(), getter.isBooleanType());
++        String replacement = throwsClause + generateThrowsClause(SQLException.class, getter.getPropertyName(),
++                                                                 getter.isBooleanType());
+         expectedContent = expectedContent.replace(throwsClause, replacement);
+       }
+     }
+@@ -102,7 +103,8 @@ public class AssertionGeneratorTest implements NestedClassesTest, BeanWithExcept
+     for (Class<?> clazz : classes) {
+       assertThat(clazz.isAnonymousClass()).as("check that <" + clazz.getSimpleName() + "> is not anonymous").isFalse();
+       assertThat(clazz.isLocalClass()).as("check that " + clazz.getSimpleName() + " is not local").isFalse();
+-      assertThat(isPublic(clazz.getModifiers())).as("check that " + clazz.getSimpleName() + " is public").isTrue();
++      assertThat(Modifier.isPublic(clazz.getModifiers())).as("check that " + clazz.getSimpleName() + " is public")
++        .isTrue();
+       logger.info("Generating assertions for {}", clazz.getName());
+       final ClassDescription classDescription = converter.convertToClassDescription(clazz);
+       File customAssertionFile = customAssertionGenerator.generateCustomAssertionFor(classDescription);
+@@ -117,7 +119,8 @@ public class AssertionGeneratorTest implements NestedClassesTest, BeanWithExcept
+     for (Class<?> clazz : classes) {
+       assertThat(clazz.isAnonymousClass()).as("check that " + clazz.getSimpleName() + " is not anonymous").isFalse();
+       assertThat(clazz.isLocalClass()).as("check that " + clazz.getSimpleName() + " is not local").isFalse();
+-      assertThat(isPublic(clazz.getModifiers())).as("check that " + clazz.getSimpleName() + " is public").isTrue();
++      assertThat(Modifier.isPublic(clazz.getModifiers())).as("check that " + clazz.getSimpleName() + " is public")
++        .isTrue();
+       logger.info("Generating assertions for {}", clazz.getName());
+       final ClassDescription classDescription = converter.convertToClassDescription(clazz);
+       File customAssertionFile = customAssertionGenerator.generateCustomAssertionFor(classDescription);
+@@ -129,7 +132,7 @@ public class AssertionGeneratorTest implements NestedClassesTest, BeanWithExcept
+   public void should_generate_assertion_entry_point_class_file() throws Exception {
+     // GIVEN : classes we want to have entry point assertions for
+     List<Class<?>> classes = newArrayList(Ring.class, Race.class, ArtWork.class, Name.class, Player.class, Movie.class,
+-        TolkienCharacter.class, TreeEnum.class, Movie.PublicCategory.class);
++                                          TolkienCharacter.class, TreeEnum.class, Movie.PublicCategory.class);
+     Set<ClassDescription> classDescriptionSet = new LinkedHashSet<ClassDescription>(classes.size());
+     for (Class<?> clazz : classes) {
+       classDescriptionSet.add(converter.convertToClassDescription(clazz));
+@@ -181,7 +184,7 @@ public class AssertionGeneratorTest implements NestedClassesTest, BeanWithExcept
+ 
+   private static File fileGeneratedFor(Class<?> clazz) {
+     String dirName = TARGET_DIRECTORY + File.separatorChar
+-        + clazz.getPackage().getName().replace('.', File.separatorChar);
++                     + clazz.getPackage().getName().replace('.', File.separatorChar);
+     String generatedFileName = clazz.getSimpleName() + ASSERT_CLASS_FILE_SUFFIX;
+     return new File(dirName, generatedFileName);
+   }
+diff --git a/src/test/java/org/assertj/assertions/generator/TemplateTest.java b/src/test/java/org/assertj/assertions/generator/TemplateTest.java
+index 06ad45c..91c338e 100644
+--- a/src/test/java/org/assertj/assertions/generator/TemplateTest.java
++++ b/src/test/java/org/assertj/assertions/generator/TemplateTest.java
+@@ -2,6 +2,7 @@ package org.assertj.assertions.generator;
+ 
+ import static org.assertj.assertions.generator.BaseAssertionGenerator.DEFAULT_HAS_ASSERTION_TEMPLATE;
+ import static org.assertj.assertions.generator.BaseAssertionGenerator.TEMPLATES_DIR;
++
+ import static org.assertj.assertions.generator.Template.Type.ASSERT_CLASS;
+ import static org.assertj.assertions.generator.Template.Type.HAS;
+ import static org.assertj.core.api.Assertions.assertThat;
+@@ -10,6 +11,7 @@ import static org.assertj.core.api.Assertions.fail;
+ import java.io.File;
+ import java.net.URL;
+ 
++import org.assertj.assertions.generator.Template;
+ import org.junit.Test;
+ 
+ public class TemplateTest {
+diff --git a/src/test/java/org/assertj/assertions/generator/data/TreeEnum.java b/src/test/java/org/assertj/assertions/generator/data/TreeEnum.java
+index b6ab52c..47f626d 100644
+--- a/src/test/java/org/assertj/assertions/generator/data/TreeEnum.java
++++ b/src/test/java/org/assertj/assertions/generator/data/TreeEnum.java
+@@ -20,7 +20,6 @@ public enum TreeEnum {
+     this.parent = parent;
+   }
+ 
+-  @SuppressWarnings("UnusedDeclaration")
+   public Collection<TreeEnum> getChildren() {
+     return Collections2.filter(Lists.newArrayList(values()), new Predicate<TreeEnum>() {
+       @Override
+diff --git a/src/test/java/org/assertj/assertions/generator/description/converter/ClassToClassDescriptionConverterTest.java b/src/test/java/org/assertj/assertions/generator/description/converter/ClassToClassDescriptionConverterTest.java
+index 7c92058..abc4f7f 100644
+--- a/src/test/java/org/assertj/assertions/generator/description/converter/ClassToClassDescriptionConverterTest.java
++++ b/src/test/java/org/assertj/assertions/generator/description/converter/ClassToClassDescriptionConverterTest.java
+@@ -9,14 +9,12 @@ import org.assertj.assertions.generator.BeanWithExceptionsTest;
+ import org.assertj.assertions.generator.NestedClassesTest;
+ import org.assertj.assertions.generator.data.Name;
+ import org.assertj.assertions.generator.data.Player;
+-import org.assertj.assertions.generator.data.TreeEnum;
+ import org.assertj.assertions.generator.data.lotr.FellowshipOfTheRing;
+ import org.assertj.assertions.generator.data.lotr.Race;
+ import org.assertj.assertions.generator.data.lotr.TolkienCharacter;
+ import org.assertj.assertions.generator.description.ClassDescription;
+ import org.assertj.assertions.generator.description.GetterDescription;
+ import org.assertj.assertions.generator.description.TypeName;
+-
+ import org.junit.BeforeClass;
+ import org.junit.Test;
+ import org.junit.experimental.theories.Theories;
+@@ -53,6 +51,7 @@ public class ClassToClassDescriptionConverterTest implements NestedClassesTest,
+     assertThat(classDescription.getImports()).isEmpty();
+   }
+ 
++
+   @Theory
+   public void should_build_getter_with_exception_description(GetterWithException getter) throws Exception {
+     Class clazz = getter.getBeanClass();
+@@ -89,23 +88,12 @@ public class ClassToClassDescriptionConverterTest implements NestedClassesTest,
+     assertThat(getterDescription.isArrayPropertyType()).as("getterDescription must be an array").isTrue();
+   }
+ 
+-  @Test
+-  public void should_build_class_description_for_enum_type() throws Exception {
+-    ClassDescription classDescription = converter.convertToClassDescription(TreeEnum.class);
+-    assertThat(classDescription.getClassName()).isEqualTo("TreeEnum");
+-    // should not contain getDeclaringClassGetter as we don't want to have hasDeclaringClass assertion
+-    assertThat(classDescription.getGetters()).hasSize(1);
+-    GetterDescription getterDescription = classDescription.getGetters().iterator().next();
+-    assertThat(getterDescription.isIterablePropertyType()).as("getterDescription must be iterable").isTrue();
+-    assertThat(getterDescription.getElementTypeName()).isEqualTo("TreeEnum");
+-    assertThat(getterDescription.isArrayPropertyType()).as("getterDescription must be an array").isFalse();
+-  }
+-
+   @Test
+   public void should_build_class_description_for_iterable_of_Object_type() throws Exception {
+     // Given
+     class Type {
+       List<Player[]> players;
++
+       public List<Player[]> getPlayers() {
+         return players;
+       }
+@@ -132,18 +120,17 @@ public class ClassToClassDescriptionConverterTest implements NestedClassesTest,
+     assertThat(classDescription.getPackageName()).isEqualTo("org.assertj.assertions.generator.data.lotr");
+     assertThat(classDescription.getGetters()).hasSize(1);
+     assertThat(classDescription.getImports()).containsOnly(new TypeName(Map.class), new TypeName(List.class),
+-                                                           new TypeName(Race.class),
+-                                                           new TypeName(TolkienCharacter.class));
++        new TypeName(Race.class), new TypeName(TolkienCharacter.class));
+   }
+ 
+   @Test
+   public void should_handle_toString() {
+     ClassDescription classDescription = converter.convertToClassDescription(FellowshipOfTheRing.class);
+-    assertThat(classDescription.toString()).contains(FellowshipOfTheRing.class.getSimpleName(),
+-                                                     "java.util.Map",
+-                                                     "java.util.List",
+-                                                     "org.assertj.assertions.generator.data.lotr.Race",
+-                                                     "org.assertj.assertions.generator.data.lotr.TolkienCharacter");
++    assertThat(classDescription.toString()).contains(FellowshipOfTheRing.class.getSimpleName())
++        .contains("java.util.Map",
++            "java.util.List",
++            "org.assertj.assertions.generator.data.lotr.Race",
++            "org.assertj.assertions.generator.data.lotr.TolkienCharacter");
+   }
+ 
+ }

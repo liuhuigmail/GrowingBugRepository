@@ -1,0 +1,46 @@
+diff --git a/src/main/java/org/assertj/assertions/generator/description/converter/ClassToClassDescriptionConverter.java b/src/main/java/org/assertj/assertions/generator/description/converter/ClassToClassDescriptionConverter.java
+index f0f8b94..a8be13b 100644
+--- a/src/main/java/org/assertj/assertions/generator/description/converter/ClassToClassDescriptionConverter.java
++++ b/src/main/java/org/assertj/assertions/generator/description/converter/ClassToClassDescriptionConverter.java
+@@ -43,7 +43,6 @@ public class ClassToClassDescriptionConverter implements ClassDescriptionConvert
+     List<Method> getters = getterMethodsOf(clazz);
+     for (Method getter : getters) {
+       // ignore hasDeclaringClass if Enum
+-      if (isGetDeclaringClassEnumGetter(getter, clazz)) continue;
+       final TypeDescription typeDescription = getTypeDescription(getter);
+       final List<TypeName> exceptionsTypeNames = getExceptionTypeNames(getter);
+       getterDescriptions.add(new GetterDescription(propertyNameOf(getter), typeDescription, exceptionsTypeNames));
+@@ -51,9 +50,6 @@ public class ClassToClassDescriptionConverter implements ClassDescriptionConvert
+     return getterDescriptions;
+   }
+ 
+-  private boolean isGetDeclaringClassEnumGetter(final Method getter, final Class<?> clazz) {
+-    return clazz.isEnum() && getter.getName().equals("getDeclaringClass");
+-  }
+ 
+   private List<TypeName> getExceptionTypeNames(final Method getter) {
+     List<TypeName> exceptions = new ArrayList<TypeName>();
+@@ -129,7 +125,9 @@ public class ClassToClassDescriptionConverter implements ClassDescriptionConvert
+         // return type is not generic type, simply add it.
+         classesToImport.add(propertyType);
+       }
+-      Collections.addAll(classesToImport, getter.getExceptionTypes());
++      for (Class<?> exceptionType : getter.getExceptionTypes()) {
++        classesToImport.add(exceptionType);
++      }
+     }
+     // convert to TypeName, excluding primitive or types in java.lang that don't need to be imported.
+     return resolveTypesToImport(classesToImport);
+@@ -151,8 +149,11 @@ public class ClassToClassDescriptionConverter implements ClassDescriptionConvert
+   }
+ 
+   private boolean shouldBeImported(Class<?> type) {
++    if  (type.isPrimitive()) return false;
+     // Package can be null in case of array of primitive.
+-    return !(type.isPrimitive() || type.getPackage() == null || JAVA_LANG_PACKAGE.equals(type.getPackage().getName()));
++    if  (type.getPackage() == null) return false;
++    if  (JAVA_LANG_PACKAGE.equals(type.getPackage().getName())) return false;
++    return true;
+   }
+ 
+ }

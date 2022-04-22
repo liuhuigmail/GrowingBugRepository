@@ -1,0 +1,38 @@
+diff --git a/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java b/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
+index dcd1b06..a20beb0 100755
+--- a/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/outputstream/ZipOutputStream.java
+@@ -14,7 +14,6 @@ import net.lingala.zip4j.model.enums.CompressionMethod;
+ import net.lingala.zip4j.model.enums.EncryptionMethod;
+ import net.lingala.zip4j.util.InternalZipConstants;
+ import net.lingala.zip4j.util.RawIO;
+-import net.lingala.zip4j.util.Zip4jUtil;
+ 
+ import java.io.IOException;
+ import java.io.OutputStream;
+@@ -227,10 +226,6 @@ public class ZipOutputStream extends OutputStream {
+   }
+ 
+   private void verifyZipParameters(ZipParameters zipParameters) {
+-    if (Zip4jUtil.isStringNullOrEmpty(zipParameters.getFileNameInZip())) {
+-      throw new IllegalArgumentException("fileNameInZip is null or empty");
+-    }
+-
+     if (zipParameters.getCompressionMethod() == CompressionMethod.STORE
+         && zipParameters.getEntrySize() < 0
+         && !isZipEntryDirectory(zipParameters.getFileNameInZip())
+diff --git a/src/main/java/net/lingala/zip4j/util/Zip4jUtil.java b/src/main/java/net/lingala/zip4j/util/Zip4jUtil.java
+index 7f799eb..39a8f56 100755
+--- a/src/main/java/net/lingala/zip4j/util/Zip4jUtil.java
++++ b/src/main/java/net/lingala/zip4j/util/Zip4jUtil.java
+@@ -32,10 +32,6 @@ public class Zip4jUtil {
+   private static final long DOSTIME_BEFORE_1980 = (1 << 21) | (1 << 16);
+   private static final int MAX_RAW_READ_FULLY_RETRY_ATTEMPTS = 15;
+ 
+-  public static boolean isStringNullOrEmpty(String str) {
+-    return str == null || str.trim().length() == 0;
+-  }
+-
+   public static boolean isStringNotNullAndNotEmpty(String str) {
+     return str != null && str.trim().length() > 0;
+   }

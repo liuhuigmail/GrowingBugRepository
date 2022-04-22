@@ -1,0 +1,3 @@
+org.assertj.assertions.generator.AssertionGeneratorTest
+org.assertj.assertions.generator.AssertionsEntryPointGeneratorTest
+org.assertj.assertions.generator.TemplateTest
