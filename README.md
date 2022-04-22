@@ -21,7 +21,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 
 # Contents of growingBugs
-To date, growingBugs contains **`1543`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1550`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -193,10 +193,10 @@ To date, growingBugs contains **`1543`** real-world bugs from open-source Java p
 | 166     | Canvas_api            | canvas-api               |                 |      4       | 1-4               |
 | 167     | Coveralls_maven_plugin            | coveralls-maven-plugin               |                  |      8       | 1-8               |
 | 168     | Slack_java_webhook            | slack-java-webhook               |                 |      1       | 1               |
-| 169     | Zip4j            | zip4j               |                  |      48       | 1-48               |
+| 169     | Zip4j            | zip4j               |                  |      55       | 1-55               |
 | 170     | Incubator_retired_pirk            | incubator-retired-pirk               |                  |      1       | 1               |
 | 171     | Sparsebitset             | Sparsebitset                |                  |      2       | 1-2               |
-| 172     | Assertj_assertions_generator            | assertj-assertions-generator               |                  |      3       | 1-3               |
+| 172     | Assertj_assertions_generator            | assertj-assertions-generator               |                  |      5       | 1-5               |
 | 173     | Config_magic            | config-magic               |                  |      1       | 1               |
 | 174     | Deft            | deft               |                  |      1       | 1               |
 | 175     | Jcodemodel            | jcodemodel               |                  |      2       | 1-2               |
@@ -207,6 +207,7 @@ To date, growingBugs contains **`1543`** real-world bugs from open-source Java p
 | 180     | Suffixtree            | suffixtree               |                  |      1       | 1               |
 | 181     | Template_benchmark            | template-benchmark               |                  |      1       | 1               |
 | 182     | Vectorz            | vectorz               |                  |      4       | 1-4               |
+| 183     | Cli_parser         | Cli_parser            |                  |      1       | 1                  |                 |
 # Setting up GrowingBugs
 
 ## Requirements
