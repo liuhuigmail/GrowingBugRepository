@@ -162,10 +162,10 @@ To date, growingBugs contains **`708`** unique bugs that are not included in Def
 | 156     | Canvas_api            | canvas-api               |                 |      4       | 1-4               |
 | 157     | Coveralls_maven_plugin            | coveralls-maven-plugin               |                  |      8       | 1-8               |
 | 158     | Slack_java_webhook            | slack-java-webhook               |                 |      1       | 1               |
-| 159     | Zip4j            | zip4j               |                  |      48       | 1-48               |
+| 159     | Zip4j            | zip4j               |                  |      52       | 1-52               |
 | 160     | Sparsebitset             | Sparsebitset                |                  |      2       | 1-2               |
 | 161     | Incubator_retired_pirk            | incubator-retired-pirk               |                  |      1       | 1               |
-| 162     | Assertj_assertions_generator            | assertj-assertions-generator               |                  |      3       | 1-3               |
+| 162     | Assertj_assertions_generator            | assertj-assertions-generator               |                  |      5       | 1-5               |
 | 163     | Config_magic            | config-magic               |                  |      1       | 1               |
 | 164     | Deft            | deft               |                  |      1       | 1               |
 | 165     | Jcodemodel            | jcodemodel               |                  |      2       | 1-2               |
@@ -176,3 +176,4 @@ To date, growingBugs contains **`708`** unique bugs that are not included in Def
 | 170     | Suffixtree            | suffixtree               |                  |      1       | 1               |
 | 171     | Template_benchmark            | template-benchmark               |                  |      1       | 1               |
 | 172     | Vectorz            | vectorz               |                  |      4       | 1-4               |
+| 173     | Cli_parser         | Cli_parser            |                  |      1       | 1                  |                 |
