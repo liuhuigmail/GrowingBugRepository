@@ -1,0 +1,13 @@
+org.nuxeo.tools.gatling.report.Apdex
+org.nuxeo.tools.gatling.report.ParserFactory
+org.nuxeo.tools.gatling.report.RequestStat
+org.nuxeo.tools.gatling.report.SimulationContext
+org.nuxeo.tools.gatling.report.SimulationParser
+org.nuxeo.tools.gatling.report.SimulationParserV2
+org.nuxeo.tools.gatling.report.SimulationParserV23
+org.nuxeo.tools.gatling.report.SimulationParserV3
+org.nuxeo.tools.gatling.report.SimulationParserV32
+org.nuxeo.tools.gatling.report.SimulationParserV34
+org.nuxeo.tools.gatling.report.SimulationParserV35
+org.nuxeo.tools.gatling.report.SimulationReader
+org.nuxeo.tools.gatling.report.Utils

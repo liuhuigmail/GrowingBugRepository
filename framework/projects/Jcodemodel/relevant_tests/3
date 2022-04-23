@@ -1,0 +1,15 @@
+com.helger.jcodemodel.tests.AnnotationUseTest
+com.helger.jcodemodel.tests.AnonymousClassTest
+com.helger.jcodemodel.tests.ForEachTest
+com.helger.jcodemodel.tests.InnerClassTest
+com.helger.jcodemodel.tests.JAnnotationUseTest
+com.helger.jcodemodel.tests.JCodeModelTest
+com.helger.jcodemodel.tests.JDefinedClassInstanceInitTest
+com.helger.jcodemodel.tests.JFieldRefTest
+com.helger.jcodemodel.tests.JInvocationTest
+com.helger.jcodemodel.tests.JMethodTest
+com.helger.jcodemodel.tests.JTypeVarTest
+com.helger.jcodemodel.tests.NestedClassTest
+com.helger.jcodemodel.tests.PackageAnnotationTest
+com.helger.jcodemodel.tests.PackageJavadocTest
+com.helger.jcodemodel.tests.VarArgsTest

@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/helger/jcodemodel/JPackage.java b/src/main/java/com/helger/jcodemodel/JPackage.java
+index ad2f11dc..c2fec151 100644
+--- a/src/main/java/com/helger/jcodemodel/JPackage.java
++++ b/src/main/java/com/helger/jcodemodel/JPackage.java
+@@ -146,8 +146,6 @@ public class JPackage implements IJDeclaration, IJGenerable, IJClassContainer, I
+       return null;
+ 
+     final int idx = m_sName.lastIndexOf ('.');
+-    if (idx < 0)
+-      return null;
+     return m_aOwner._package (m_sName.substring (0, idx));
+   }
+ 

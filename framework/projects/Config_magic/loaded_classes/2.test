@@ -1,0 +1,4 @@
+org.skife.config.TestArrays
+org.skife.config.TestCollections
+org.skife.config.TestEnums
+org.skife.config.TestFile

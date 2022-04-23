@@ -1,0 +1,27 @@
+diff --git a/src/main/java/com/helger/jcodemodel/JInvocation.java b/src/main/java/com/helger/jcodemodel/JInvocation.java
+index 3b9d6f96..06758c0a 100644
+--- a/src/main/java/com/helger/jcodemodel/JInvocation.java
++++ b/src/main/java/com/helger/jcodemodel/JInvocation.java
+@@ -419,8 +419,8 @@ public class JInvocation extends AbstractJExpressionImpl implements IJStatement,
+       return false;
+     JInvocation rhs = (JInvocation) o;
+     if (!(isEqual (_object, rhs._object) &&
++        isEqual (methodName (), rhs.methodName ()) &&
+         isEqual (_isConstructor, rhs._isConstructor) &&
+-        (_isConstructor || isEqual (methodName (), rhs.methodName ())) &&
+         isEqual (_args, rhs._args) &&
+         isEqual (typeFullName (), rhs.typeFullName ())))
+     {
+@@ -445,10 +445,8 @@ public class JInvocation extends AbstractJExpressionImpl implements IJStatement,
+   {
+     HashCodeGenerator hashCodeGenerator = new HashCodeGenerator (this)
+         .append (_object)
+-        .append (_isConstructor);
+-    if (!_isConstructor)
+-      hashCodeGenerator = hashCodeGenerator.append (methodName ());
+-    hashCodeGenerator = hashCodeGenerator
++        .append (methodName ())
++        .append (_isConstructor)
+         .append (_args)
+         .append (typeFullName ());
+     if (_typeVariables != null)

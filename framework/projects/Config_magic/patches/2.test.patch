@@ -1,0 +1,519 @@
+diff --git a/src/test/java/org/skife/config/TestArrays.java b/src/test/java/org/skife/config/TestArrays.java
+deleted file mode 100644
+index 29a2d64..0000000
+--- a/src/test/java/org/skife/config/TestArrays.java
++++ /dev/null
+@@ -1,133 +0,0 @@
+-package org.skife.config;
+-
+-import java.util.Arrays;
+-import java.util.HashSet;
+-import java.util.LinkedHashSet;
+-import java.util.Properties;
+-import org.junit.After;
+-import org.junit.Assert;
+-import org.junit.Before;
+-import org.junit.Test;
+-
+-public class TestArrays
+-{
+-    private ConfigurationObjectFactory cof;
+-
+-    @Before
+-    public void setUp()
+-    {
+-        cof = new ConfigurationObjectFactory(new Properties());
+-    }
+-
+-    @After
+-    public void tearDown()
+-    {
+-        cof = null;
+-    }
+-
+-    @Test
+-    public void testClassDefault()
+-    {
+-        EmptyClass ec = cof.build(EmptyClass.class);
+-
+-        Assert.assertArrayEquals(new String[] { "one", "three", "two" }, ec.getValue());
+-    }
+-
+-    @Test
+-    public void testAbstractClassDefault()
+-    {
+-    	EmptyAbstractClass ec = cof.build(EmptyAbstractClass.class);
+-
+-        Assert.assertArrayEquals(new TestEnum[] { TestEnum.TWO, TestEnum.ONE }, ec.getValue());
+-    }
+-
+-    @Test
+-    public void testInterface()
+-    {
+-        EmptyInterface ec = cof.build(EmptyInterface.class);
+-
+-        Assert.assertArrayEquals(new float[] { 1.0f, 2.0f }, ec.getValue(), 0.0f);
+-    }
+-
+-    @Test
+-    public void testClassDefaultNull()
+-    {
+-    	EmptyClassDefaultNull ec = cof.build(EmptyClassDefaultNull.class);
+-
+-        Assert.assertNull(ec.getValue());
+-    }
+-
+-    @Test
+-    public void testAbstractClassDefaultNull()
+-    {
+-    	EmptyAbstractClassDefaultNull ec = cof.build(EmptyAbstractClassDefaultNull.class);
+-
+-    	Assert.assertNull(ec.getValue());
+-    }
+-
+-    @Test
+-    public void testInterfaceDefaultNull()
+-    {
+-        EmptyInterfaceDefaultNull ec = cof.build(EmptyInterfaceDefaultNull.class);
+-
+-        Assert.assertNull(ec.getValue());
+-    }
+-
+-    public static enum TestEnum
+-    {
+-        ONE,
+-        TWO,
+-        THREE
+-    }
+-
+-    public static class EmptyClass
+-    {
+-        @Config("value")
+-        @Default("one, three, two")
+-        public String[] getValue()
+-        {
+-            return null;
+-        }
+-    }
+-
+-    public static abstract class EmptyAbstractClass
+-    {
+-        @Config("value")
+-        @Default("TWO, ONE")
+-        public abstract TestEnum[] getValue();
+-    }
+-
+-    public static interface EmptyInterface
+-    {
+-        @Config("value")
+-        @Default("1.0, 2.0")
+-        public float[] getValue();
+-    }
+-
+-    public static class EmptyClassDefaultNull
+-    {
+-        @Config("value")
+-        @DefaultNull
+-        public int[] getValue()
+-        {
+-            return null;
+-        }
+-    }
+-
+-    public static abstract class EmptyAbstractClassDefaultNull
+-    {
+-        @Config("value")
+-        @DefaultNull
+-        public String[] getValue()
+-        {
+-            return null;
+-        }
+-    }
+-
+-    public static interface EmptyInterfaceDefaultNull
+-    {
+-        @Config("value")
+-        @DefaultNull
+-        public TestEnum[] getValue();
+-    }
+-}
+diff --git a/src/test/java/org/skife/config/TestCollections.java b/src/test/java/org/skife/config/TestCollections.java
+deleted file mode 100644
+index 97a4d6c..0000000
+--- a/src/test/java/org/skife/config/TestCollections.java
++++ /dev/null
+@@ -1,155 +0,0 @@
+-package org.skife.config;
+-
+-import java.util.Arrays;
+-import java.util.Collection;
+-import java.util.Collections;
+-import java.util.HashSet;
+-import java.util.LinkedHashSet;
+-import java.util.List;
+-import java.util.Properties;
+-import java.util.Set;
+-import org.junit.After;
+-import org.junit.Assert;
+-import org.junit.Before;
+-import org.junit.Test;
+-
+-public class TestCollections
+-{
+-    private ConfigurationObjectFactory cof;
+-
+-    @Before
+-    public void setUp()
+-    {
+-        cof = new ConfigurationObjectFactory(new Properties());
+-    }
+-
+-    @After
+-    public void tearDown()
+-    {
+-        cof = null;
+-    }
+-
+-    @Test
+-    public void testClassWithListDefault()
+-    {
+-        EmptyClassList ec = cof.build(EmptyClassList.class);
+-
+-        Assert.assertEquals(Arrays.asList("one", "three", "two"), ec.getValue());
+-    }
+-
+-    @Test
+-    public void testClassWithCollectionDefault()
+-    {
+-        EmptyClassCollection ec = cof.build(EmptyClassCollection.class);
+-
+-        Assert.assertEquals(Arrays.asList("one", "three", "two"), ec.getValue());
+-    }
+-
+-    @Test
+-    public void testAbstractClassDefault()
+-    {
+-    	EmptyAbstractClass ec = cof.build(EmptyAbstractClass.class);
+-
+-        Assert.assertEquals(new HashSet<TestEnum>(Arrays.asList(TestEnum.TWO, TestEnum.ONE)), ec.getValue());
+-    }
+-
+-    @Test
+-    public void testInterface()
+-    {
+-        EmptyInterface ec = cof.build(EmptyInterface.class);
+-
+-        Assert.assertEquals(new LinkedHashSet<String>(Arrays.asList("one", "two")), ec.getValue());
+-    }
+-
+-    @Test
+-    public void testClassDefaultNull()
+-    {
+-    	EmptyClassDefaultNull ec = cof.build(EmptyClassDefaultNull.class);
+-
+-        Assert.assertNull(ec.getValue());
+-    }
+-
+-    @Test
+-    public void testAbstractClassDefaultNull()
+-    {
+-    	EmptyAbstractClassDefaultNull ec = cof.build(EmptyAbstractClassDefaultNull.class);
+-
+-    	Assert.assertNull(ec.getValue());
+-    }
+-
+-    @Test
+-    public void testInterfaceDefaultNull()
+-    {
+-        EmptyInterfaceDefaultNull ec = cof.build(EmptyInterfaceDefaultNull.class);
+-
+-        Assert.assertNull(ec.getValue());
+-    }
+-
+-    public static enum TestEnum
+-    {
+-        ONE,
+-        TWO,
+-        THREE
+-    }
+-
+-    public static class EmptyClassList
+-    {
+-        @Config("value")
+-        @Default("one, three, two")
+-        public List<String> getValue()
+-        {
+-            return Collections.emptyList();
+-        }
+-    }
+-
+-    public static class EmptyClassCollection
+-    {
+-        @Config("value")
+-        @Default("one, three, two")
+-        public Collection<String> getValue()
+-        {
+-            return Collections.emptyList();
+-        }
+-    }
+-
+-    public static abstract class EmptyAbstractClass
+-    {
+-        @Config("value")
+-        @Default("TWO, ONE")
+-        public abstract Set<TestEnum> getValue();
+-    }
+-
+-    public static interface EmptyInterface
+-    {
+-        @Config("value")
+-        @Default("one, two")
+-        public LinkedHashSet<String> getValue();
+-    }
+-
+-    public static class EmptyClassDefaultNull
+-    {
+-        @Config("value")
+-        @DefaultNull
+-        public List<Float> getValue()
+-        {
+-            return null;
+-        }
+-    }
+-
+-    public static abstract class EmptyAbstractClassDefaultNull
+-    {
+-        @Config("value")
+-        @DefaultNull
+-        public Set<String> getValue()
+-        {
+-            return null;
+-        }
+-    }
+-
+-    public static interface EmptyInterfaceDefaultNull
+-    {
+-        @Config("value")
+-        @DefaultNull
+-        public List<TestEnum> getValue();
+-    }
+-}
+diff --git a/src/test/java/org/skife/config/TestEnums.java b/src/test/java/org/skife/config/TestEnums.java
+deleted file mode 100644
+index b1330b0..0000000
+--- a/src/test/java/org/skife/config/TestEnums.java
++++ /dev/null
+@@ -1,132 +0,0 @@
+-package org.skife.config;
+-
+-import java.util.Properties;
+-
+-import org.junit.After;
+-import org.junit.Assert;
+-import org.junit.Before;
+-import org.junit.Test;
+-
+-public class TestEnums
+-{
+-    private ConfigurationObjectFactory cof;
+-
+-    @Before
+-    public void setUp()
+-    {
+-        cof = new ConfigurationObjectFactory(new Properties());
+-    }
+-
+-    @After
+-    public void tearDown()
+-    {
+-        cof = null;
+-    }
+-
+-    @Test
+-    public void testClassDefault()
+-    {
+-        EmptyClass ec = cof.build(EmptyClass.class);
+-
+-        Assert.assertEquals(TestEnum.ONE, ec.getValue());
+-    }
+-
+-    @Test
+-    public void testAbstractClassDefault()
+-    {
+-    	EmptyAbstractClass ec = cof.build(EmptyAbstractClass.class);
+-
+-        Assert.assertEquals(TestEnum.TWO, ec.getValue());
+-    }
+-    
+-    @Test
+-    public void testInterface()
+-    {
+-        EmptyInterface ec = cof.build(EmptyInterface.class);
+-        
+-        Assert.assertEquals(TestEnum.THREE, ec.getValue());
+-    }
+-
+-    @Test
+-    public void testClassDefaultNull()
+-    {
+-    	EmptyClassDefaultNull ec = cof.build(EmptyClassDefaultNull.class);
+-
+-        Assert.assertNull(ec.getValue());
+-    }
+-
+-    @Test
+-    public void testAbstractClassDefaultNull()
+-    {
+-    	EmptyAbstractClassDefaultNull ec = cof.build(EmptyAbstractClassDefaultNull.class);
+-
+-    	Assert.assertNull(ec.getValue());
+-    }
+-
+-    @Test
+-    public void testInterfaceDefaultNull()
+-    {
+-        EmptyInterfaceDefaultNull ec = cof.build(EmptyInterfaceDefaultNull.class);
+-
+-        Assert.assertNull(ec.getValue());
+-    }
+-
+-    public static enum TestEnum
+-    {
+-        ONE,
+-        TWO,
+-        THREE
+-    }
+-
+-    public static class EmptyClass
+-    {
+-        @Config("value")
+-        @Default("ONE")
+-        public TestEnum getValue()
+-        {
+-            return TestEnum.ONE;
+-        }
+-    }
+-
+-
+-    public static abstract class EmptyAbstractClass
+-    {
+-        @Config("value")
+-        @Default("TWO")
+-        public abstract TestEnum getValue();
+-    }
+-
+-    public static class EmptyClassDefaultNull
+-    {
+-        @Config("value")
+-        @DefaultNull
+-        public TestEnum getValue()
+-        {
+-            return TestEnum.THREE;
+-        }
+-    }
+-    
+-    public static interface EmptyInterface
+-    {
+-        @Config("value")
+-        @Default("THREE")
+-        public TestEnum getValue();
+-    }
+-
+-    public static abstract class EmptyAbstractClassDefaultNull
+-    {
+-        @Config("value")
+-        @DefaultNull
+-        public TestEnum getValue()
+-        {
+-            return null;
+-        }
+-    }
+-
+-    public static interface EmptyInterfaceDefaultNull
+-    {
+-        @Config("value")
+-        @DefaultNull
+-        public TestEnum getValue();
+-    }
+-}
+diff --git a/src/test/java/org/skife/config/TestFile.java b/src/test/java/org/skife/config/TestFile.java
+deleted file mode 100644
+index a082d53..0000000
+--- a/src/test/java/org/skife/config/TestFile.java
++++ /dev/null
+@@ -1,75 +0,0 @@
+-package org.skife.config;
+-
+-import java.io.File;
+-import java.util.Properties;
+-
+-import org.junit.After;
+-import org.junit.Assert;
+-import org.junit.Before;
+-import org.junit.Test;
+-
+-public class TestFile
+-{
+-    private ConfigurationObjectFactory cof;
+-
+-    @Before
+-    public void setUp()
+-    {
+-        cof = new ConfigurationObjectFactory(new Properties() {{
+-            setProperty("file2", "..");
+-        }});
+-    }
+-
+-    @After
+-    public void tearDown()
+-    {
+-        cof = null;
+-    }
+-
+-    @Test
+-    public void testClassDefault()
+-    {
+-        EmptyClass ec = cof.build(EmptyClass.class);
+-
+-        Assert.assertEquals(new File("."), ec.getFile());
+-    }
+-
+-    @Test
+-    public void testAbstractClassDefault()
+-    {
+-    	EmptyAbstractClass ec = cof.build(EmptyAbstractClass.class);
+-
+-        Assert.assertEquals(new File(".."), ec.getFile());
+-    }
+-
+-    @Test
+-    public void testAbstractClassDefaultNull()
+-    {
+-    	EmptyAbstractClassDefaultNull ec = cof.build(EmptyAbstractClassDefaultNull.class);
+-
+-        Assert.assertNull(ec.getFile());
+-    }
+-
+-    public static class EmptyClass
+-    {
+-        @Config("file1")
+-        @Default(".")
+-        public File getFile()
+-        {
+-            return null;
+-        }
+-    }
+-
+-    public abstract static class EmptyAbstractClass
+-    {
+-        @Config("file2")
+-        public abstract File getFile();
+-    }
+-
+-    public abstract static class EmptyAbstractClassDefaultNull
+-    {
+-        @Config("file3")
+-        @DefaultNull
+-        public abstract File getFile();
+-    }
+-}

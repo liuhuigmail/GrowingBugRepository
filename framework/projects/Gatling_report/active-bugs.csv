@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,59c329f425fb576b0bd9fcadd0d752e59f47923a,060be21ee40950df32a4e676caf312d0fc0632ff,14,https://github.com/nuxeo/gatling-report/pull/14
+2,9f4d705260a0035e5efaab3deae96f841342ca04,df6eaa5df394c030b7b3222aec0311a0f3c82c81,28,https://github.com/nuxeo/gatling-report/pull/28
+3,df6eaa5df394c030b7b3222aec0311a0f3c82c81,0c3fc4a1de95067a43f148e6b95ee215054ad3c9,27,https://github.com/nuxeo/gatling-report/pull/27

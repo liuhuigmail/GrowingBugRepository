@@ -1,0 +1,159 @@
+diff --git a/src/main/java/org/skife/config/Bully.java b/src/main/java/org/skife/config/Bully.java
+index ef3e5a7..6f0f289 100644
+--- a/src/main/java/org/skife/config/Bully.java
++++ b/src/main/java/org/skife/config/Bully.java
+@@ -71,90 +71,21 @@ class Bully
+         mappings.clear();
+     }
+ 
+-    public synchronized Object coerce(Type type, String value) {
+-        if (type instanceof Class) {
+-            Class<?> clazz = (Class<?>)type;
++    public synchronized Object coerce(Class<?> clazz, String value) {
+ 
+-            if (clazz.isArray()) {
+-                return coerceArray(clazz.getComponentType(), value);
+-            }
+-            else {
+-                return coerce(clazz, value);
+-            }
+-        }
+-        else if (type instanceof ParameterizedType) {
+-            ParameterizedType parameterizedType = (ParameterizedType)type;
+-            Type rawType = parameterizedType.getRawType();
+ 
+-            if (rawType instanceof Class<?>) {
+-                Type[] args = parameterizedType.getActualTypeArguments();
+ 
+-                if (args != null && args.length == 1 && args[0] instanceof Class<?>) {
+-                    return coerceCollection((Class<?>)rawType, (Class<?>)args[0], value);
+-                }
+-            }
+-        }
+-        throw new IllegalStateException(String.format("Don't know how to handle a '%s' type for value '%s'", type, value));
+-    }
+ 
+-    private Object coerceArray(Class<?> elemType, String value) {
+-        if (value == null) {
+-            return null;
+-        }
+-        else {
+-            String[] tokens = value.split("\\s*,\\s*");
+-            Object targetArray = Array.newInstance(elemType, tokens.length);
+ 
+-            for (int idx = 0; idx < tokens.length; idx++) {
+-                Array.set(targetArray, idx, coerce(elemType, tokens[idx]));
+-            }
+-            return targetArray;
+-        }
+-    }
+ 
+-    @SuppressWarnings({ "rawtypes", "unchecked" })
+-    private Object coerceCollection(Class<?> containerType, Class<?> elemType, String value) {
+-        if (value == null) {
+-            return null;
+-        }
+-        else {
+-            String[] tokens = value.split("\\s*,\\s*");
+-            Collection result = null;
+-            if (Set.class.equals(containerType)) {
+-                result = new HashSet(tokens.length);
+-            }
+-            else if (Collection.class.equals(containerType) || List.class.equals(containerType)) {
+-                result = new ArrayList(tokens.length);
+-            }
+-            else if (Collection.class.isAssignableFrom(containerType)) {
+-                try {
+-                    final Constructor<?> ctor = containerType.getConstructor();
+ 
+-                    if (ctor != null) {
+-                        result = (Collection)ctor.newInstance();
+-                    }
+-                }
+-                catch (Exception ex) {
+-                    // handled below
+-                }
+-            }
+-            if (result == null) {
+-                throw new IllegalStateException(String.format("Don't know how to handle a '%s' container type for value '%s'", containerType, value));
+-            }
+-            for (String token : tokens) {
+-                result.add(coerce(elemType, token));
+-            }
+-            return result;
+-        }
+-    }
+ 
+-    private Object coerce(Class<?> clazz, String value) {
+         Coercer<?> coercer = getCoercerFor(coercibles, clazz);
+         if (coercer == null) {
+             coercer = getCoercerFor(DEFAULT_COERCIBLES, clazz);
+ 
+             if (coercer == null) {
+-                throw new IllegalStateException(String.format("Don't know how to handle a '%s' type for value '%s'", clazz, value));
++                throw new IllegalStateException(String.format("Don't know how to handle a '%s' type for value '%s'", clazz.getName(), value));
+             }
+         }
+         return coercer.coerce(value);
+diff --git a/src/main/java/org/skife/config/ConfigurationObjectFactory.java b/src/main/java/org/skife/config/ConfigurationObjectFactory.java
+index 6753d8e..ed2dd60 100755
+--- a/src/main/java/org/skife/config/ConfigurationObjectFactory.java
++++ b/src/main/java/org/skife/config/ConfigurationObjectFactory.java
+@@ -156,7 +156,7 @@ public class ConfigurationObjectFactory
+         	}
+         }
+ 
+-        final Object finalValue = bully.coerce(method.getGenericReturnType(), value);
++        final Object finalValue = bully.coerce(method.getReturnType(), value);
+         callbacks.add(new ConfigMagicFixedValue(finalValue, useMethod));
+     }
+ 
+@@ -207,7 +207,7 @@ public class ConfigurationObjectFactory
+                                                      method.toGenericString()));
+         }
+ 
+-        final Object bulliedDefaultValue = bully.coerce(method.getGenericReturnType(), defaultValue);
++        final Object bulliedDefaultValue = bully.coerce(method.getReturnType(), defaultValue);
+         final String[] annotationValues = annotation.value();
+ 
+         if (annotationValues == null || annotationValues.length == 0) {
+@@ -355,7 +355,7 @@ public class ConfigurationObjectFactory
+                     }
+                     String value = config.getString(property);
+                     if (value != null) {
+-                        return bully.coerce(method.getGenericReturnType(), value);
++                        return bully.coerce(method.getReturnType(), value);
+                     }
+                 }
+                 else {
+diff --git a/src/main/java/org/skife/config/DefaultCoercibles.java b/src/main/java/org/skife/config/DefaultCoercibles.java
+index 20b9f12..145c99c 100644
+--- a/src/main/java/org/skife/config/DefaultCoercibles.java
++++ b/src/main/java/org/skife/config/DefaultCoercibles.java
+@@ -130,7 +130,7 @@ final class DefaultCoercibles
+                         public Object coerce(final String value)
+                         {
+                             try {
+-                                return value == null ? null : valueOfMethod.invoke(null, value);
++                                return valueOfMethod.invoke(null, value);
+                             }
+                             catch (Exception e) {
+                                 throw convertException(e);
+@@ -172,7 +172,7 @@ final class DefaultCoercibles
+                     public Object coerce(final String value)
+                     {
+                         try {
+-                            return value == null ? null : ctor.newInstance(value);
++                            return ctor.newInstance(value);
+                         }
+                         catch (Exception e) {
+                             throw convertException(e);
+@@ -286,7 +286,7 @@ final class DefaultCoercibles
+         }
+     };
+ 
+-    public static final RuntimeException convertException(final Throwable t)
++    private static final RuntimeException convertException(final Throwable t)
+     {
+         if (t instanceof RuntimeException) {
+             return (RuntimeException) t;

@@ -1,0 +1,16 @@
+com.helger.jcodemodel.AbstractJTypeTest
+com.helger.jcodemodel.AnnotationUseFuncTest
+com.helger.jcodemodel.AnonymousClassFuncTest
+com.helger.jcodemodel.ForEachFuncTest
+com.helger.jcodemodel.InnerClassFuncTest
+com.helger.jcodemodel.JAnnotationUseTest
+com.helger.jcodemodel.JDefinedClassTest
+com.helger.jcodemodel.JFieldRefTest
+com.helger.jcodemodel.JInvocationTest
+com.helger.jcodemodel.JMethodTest
+com.helger.jcodemodel.JPackageTest
+com.helger.jcodemodel.JTypeVarTest
+com.helger.jcodemodel.JavadocFuncTest
+com.helger.jcodemodel.NestedClassFuncTest
+com.helger.jcodemodel.VarArgsFuncTest
+com.helger.jcodemodel.optimize.CSETest

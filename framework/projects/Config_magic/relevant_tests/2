@@ -1,0 +1,15 @@
+org.skife.config.TestArrays
+org.skife.config.TestBadConfig
+org.skife.config.TestCoercion
+org.skife.config.TestCollections
+org.skife.config.TestConfigurationObjectFactory
+org.skife.config.TestCustomCoercion
+org.skife.config.TestDefaultCoercibles
+org.skife.config.TestDefaultNull
+org.skife.config.TestDefaultsPresent
+org.skife.config.TestEmptyValue
+org.skife.config.TestEnums
+org.skife.config.TestFile
+org.skife.config.TestMultiConfig
+org.skife.config.TestNoFinal
+org.skife.config.TestServletFilterConfigSource

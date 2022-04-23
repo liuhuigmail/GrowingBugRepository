@@ -1,3 +1,6 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,530dceb0a91fbb76a678389996a1a1db26d5cbc4,1e91d0eb53123d84e40cad5cf1a85bbc9cf2f128,61,https://github.com/phax/jcodemodel/issues/61
 2,ddd91831f8aa4eae92c2acc6cde90c533813b08c,9da04c8b236a340815f7f0e0f433eb720c25ff2f,62,https://github.com/phax/jcodemodel/pull/62
+3,fb5dc5f4f5d70084cd84ae6039a053fd7e322331,64f07e6884559c5467bdbb6536cfb68402e6842a,9,https://github.com/phax/jcodemodel/pull/9
+4,c82778e29aa7cb2b6fafee0b63241bbeccec0935,bc32a3b11d2e09067e5d0d8b6d76b332e9763de9,20,https://github.com/phax/jcodemodel/issues/20
+5,164389bb9256d8757faec19638a37c3a1e9a04c0,e1b768556c33cca2e97e138ff2bd1391d65f8451,27,https://github.com/phax/jcodemodel/issues/27

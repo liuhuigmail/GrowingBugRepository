@@ -1,0 +1,5 @@
+com.helger.jcodemodel.optimize.CSETest
+com.helger.jcodemodel.tests.AnonymousClassTest
+com.helger.jcodemodel.tests.ForEachTest
+com.helger.jcodemodel.tests.JInvocationTest
+com.helger.jcodemodel.tests.VarArgsTest

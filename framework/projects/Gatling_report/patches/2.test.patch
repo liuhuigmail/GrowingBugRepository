@@ -1,0 +1,36 @@
+diff --git a/src/test/java/org/nuxeo/tools/gatling/report/TestParser.java b/src/test/java/org/nuxeo/tools/gatling/report/TestParser.java
+index ac81ae9..b18fc52 100644
+--- a/src/test/java/org/nuxeo/tools/gatling/report/TestParser.java
++++ b/src/test/java/org/nuxeo/tools/gatling/report/TestParser.java
+@@ -38,8 +38,6 @@ public class TestParser {
+ 
+     protected static final String SIM_GZ = "simulation-1.log.gz";
+ 
+-    protected static final String SIM_SMALL_V3_4 = "simulation-small-v3.4.log";
+-
+     @Test
+     public void parseSimpleSimulationVersion21() throws Exception {
+         SimulationContext ret = ParserFactory.getParser(getRessourceFile(SIM_SMALL_V2_1)).parse();
+@@ -97,21 +95,12 @@ public class TestParser {
+     @Test
+     public void parseSimpleSimulationVersion32() throws Exception {
+         SimulationContext ret = ParserFactory.getParser(getRessourceFile(SIM_V3_2_GZ)).parse();
+-        //System.out.println(ret);
++        // System.out.println(ret);
+         Assert.assertEquals("sim50bench", ret.getSimulationName());
+         Assert.assertEquals(16095, ret.getSimStat().getCount());
+         Assert.assertTrue(ret.toString().contains("_all"));
+     }
+ 
+-    @Test
+-    public void parseSimpleSimulationVersion34Small() throws Exception {
+-        SimulationContext ret = ParserFactory.getParser(getRessourceFile(SIM_SMALL_V3_4)).parse();
+-        //System.out.println(ret);
+-        Assert.assertEquals("testsimulationspec", ret.getSimulationName());
+-        Assert.assertEquals(31, ret.getSimStat().getCount());
+-        Assert.assertTrue(ret.toString().contains("_all"));
+-    }
+-
+     protected File getRessourceFile(String filename) throws FileNotFoundException {
+         ClassLoader classLoader = getClass().getClassLoader();
+         if (classLoader.getResource(filename) == null) {

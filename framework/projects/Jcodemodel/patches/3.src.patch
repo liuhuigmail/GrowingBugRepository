@@ -1,0 +1,99 @@
+diff --git a/src/main/java/com/helger/jcodemodel/JTypeVar.java b/src/main/java/com/helger/jcodemodel/JTypeVar.java
+index 55cb0e3c..40c85cfb 100644
+--- a/src/main/java/com/helger/jcodemodel/JTypeVar.java
++++ b/src/main/java/com/helger/jcodemodel/JTypeVar.java
+@@ -40,12 +40,12 @@
+ 
+ package com.helger.jcodemodel;
+ 
+-import javax.annotation.Nonnull;
+-import javax.annotation.Nullable;
+-import java.util.ArrayList;
++import java.util.Collections;
+ import java.util.Iterator;
+ import java.util.List;
+ 
++import javax.annotation.Nonnull;
++import javax.annotation.Nullable;
+ /**
+  * Type variable used to declare generics.
+  * 
+@@ -55,7 +55,7 @@ import java.util.List;
+ public class JTypeVar extends AbstractJClass implements IJDeclaration
+ {
+   private final String _name;
+-  private final List<AbstractJClass> _bounds = new ArrayList<AbstractJClass>();
++  private AbstractJClass _bound;
+ 
+   protected JTypeVar (@Nonnull final JCodeModel owner, @Nonnull final String name)
+   {
+@@ -97,7 +97,13 @@ public class JTypeVar extends AbstractJClass implements IJDeclaration
+     if (bound == null)
+       throw new IllegalArgumentException ("bound may not be null");
+ 
+-    _bounds.add(bound);
++if (_bound != null)
++      throw new IllegalStateException ("type variable has an existing class bound " +
++                                       _bound +
++                                       " so the new bound " +
++                                       bound +
++                                       " cannot be set");
++    _bound = bound;
+     return this;
+   }
+ 
+@@ -110,11 +116,10 @@ public class JTypeVar extends AbstractJClass implements IJDeclaration
+   @Nonnull
+   public AbstractJClass _extends ()
+   {
+-      if (_bounds.isEmpty() || _bounds.get(0).isInterface())
+-          // implicit "extends Object"
+-          return owner ().ref (Object.class);
++    if (_bound != null)
++      return _bound;
+ 
+-      return _bounds.get(0);
++    return owner ().ref (Object.class);
+   }
+ 
+   /**
+@@ -124,10 +129,9 @@ public class JTypeVar extends AbstractJClass implements IJDeclaration
+   @Nonnull
+   public Iterator <AbstractJClass> _implements ()
+   {
+-      if (_bounds.isEmpty() || _bounds.get(0).isInterface())
+-          return _bounds.iterator();
+-      else
+-          return _bounds.subList(1, _bounds.size()).iterator();
++    if (_bound != null)
++      return _bound._implements ();
++    return Collections.<AbstractJClass> emptyList ().iterator ();
+   }
+ 
+   @Override
+@@ -158,15 +162,9 @@ public class JTypeVar extends AbstractJClass implements IJDeclaration
+    */
+   public void declare (@Nonnull final JFormatter f)
+   {
+-      f.id(name());
+-      if (!_bounds.isEmpty())
+-      {
+-          f.print("extends").generable(_bounds.get(0));
+-          for (AbstractJClass clazz : _bounds.subList(1, _bounds.size()))
+-          {
+-              f.print("& ").generable(clazz);
+-          }
+-      }
++    f.id (_name);
++    if (_bound != null)
++      f.print ("extends").generable (_bound);
+   }
+ 
+   @Override
+@@ -174,4 +172,4 @@ public class JTypeVar extends AbstractJClass implements IJDeclaration
+   {
+     f.id (_name);
+   }
+-}
+\ No newline at end of file
++}

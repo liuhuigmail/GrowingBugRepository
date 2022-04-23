@@ -1,0 +1,82 @@
+diff --git a/src/main/java/org/nuxeo/tools/gatling/report/ParserFactory.java b/src/main/java/org/nuxeo/tools/gatling/report/ParserFactory.java
+index 9ecadf6..5fe6479 100644
+--- a/src/main/java/org/nuxeo/tools/gatling/report/ParserFactory.java
++++ b/src/main/java/org/nuxeo/tools/gatling/report/ParserFactory.java
+@@ -40,9 +40,6 @@ public class ParserFactory {
+             if (version.startsWith("3.4")) {
+                 return new SimulationParserV34(file, apdexT);
+             }
+-            if (version.matches("3\\.[5-9].*")) {
+-                return new SimulationParserV35(file, apdexT);
+-            }
+             if (version.startsWith("3.0")) {
+                 return new SimulationParserV3(file, apdexT);
+             }
+diff --git a/src/main/java/org/nuxeo/tools/gatling/report/SimulationParserV35.java b/src/main/java/org/nuxeo/tools/gatling/report/SimulationParserV35.java
+index b24ae73..fb47f0d 100644
+--- a/src/main/java/org/nuxeo/tools/gatling/report/SimulationParserV35.java
++++ b/src/main/java/org/nuxeo/tools/gatling/report/SimulationParserV35.java
+@@ -24,63 +24,15 @@ import java.util.Map;
+ /**q
+  * Gatling 3.5 simulation format
+  */
+-public class SimulationParserV35 extends SimulationParser {
+ 
+-    final protected Map<String, String> userScenario = new HashMap<>();
+ 
+-    public SimulationParserV35(File file, Float apdexT) {
+-        super(file, apdexT);
+-    }
+ 
+-    public SimulationParserV35(File file) {
+-        super(file);
+-    }
+ 
+-    protected String getSimulationName(List<String> line) {
+-        return line.get(2);
+-    }
+ 
+-    protected String getSimulationStart(List<String> line) {
+-        return line.get(3);
+-    }
+ 
+-    protected String getScenario(List<String> line) {
+-        String user;
+-        if (USER.equals(line.get(0))) {
+-            user = line.get(2);
+-            if (START.equals(line.get(3))) {
+-                String ret = line.get(1);
+-                userScenario.put(user, ret);
+-            }
+-        } else if (RUN.equals(line.get(0))) {
+-            return line.get(1);
+-        } else {
+-            user = line.get(1);
+-        }
+-        return userScenario.get(user);
+-    }
+ 
+-    protected String getType(List<String> line) {
+-        return line.get(0);
+-    }
+ 
+-    protected String getUserType(List<String> line) {
+-        return line.get(2);
+-    }
+ 
+-    protected String getRequestName(List<String> line) {
+-        return line.get(2);
+-    }
+ 
+-    protected Long getRequestStart(List<String> line) {
+-        return Long.parseLong(line.get(3));
+-    }
+ 
+-    protected Long getRequestEnd(List<String> line) {
+-        return Long.parseLong(line.get(4));
+-    }
+ 
+-    protected boolean getRequestSuccess(List<String> line) {
+-        return OK.equals(line.get(5));
+-    }
+-}

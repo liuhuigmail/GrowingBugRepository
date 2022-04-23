@@ -1,2 +1,3 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,2e84e68ec0eb70465a54d41c5a381f4ab452a093,eeb2fd4bc8b6b574b0a25dd1795e87a172939a96,12,https://github.com/brianm/config-magic/pull/12
+2,6699981d792b90936defeee748e9d9283b55aa78,c3d86553f93b07ff039f5bbab47d8c3c27e4151d,2,https://github.com/brianm/config-magic/pull/2

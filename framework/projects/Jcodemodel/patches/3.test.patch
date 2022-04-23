@@ -1,0 +1,81 @@
+diff --git a/src/test/java/com/helger/jcodemodel/tests/JTypeVarTest.java b/src/test/java/com/helger/jcodemodel/tests/JTypeVarTest.java
+deleted file mode 100644
+index 083def43..00000000
+--- a/src/test/java/com/helger/jcodemodel/tests/JTypeVarTest.java
++++ /dev/null
+@@ -1,26 +0,0 @@
+-package com.helger.jcodemodel.tests;
+-
+-import com.helger.jcodemodel.*;
+-import com.helger.jcodemodel.tests.util.CodeModelTestsUtils;
+-import org.junit.Test;
+-
+-import java.io.IOException;
+-import java.io.OutputStreamWriter;
+-
+-import static org.junit.Assert.assertEquals;
+-
+-public class JTypeVarTest
+-{
+-    @Test
+-    public void main () throws JClassAlreadyExistsException, IOException
+-    {
+-        final JCodeModel cm = new JCodeModel ();
+-        final JDefinedClass cls = cm._class ("Test");
+-        final JMethod m = cls.method (JMod.PUBLIC, cm.VOID, "foo");
+-        final JTypeVar tv = m.generify("T");
+-        tv.bound(cm.parseType("java.lang.Comparable<T>").boxify());
+-        tv.bound(cm.parseType("java.lang.Serializable").boxify());
+-
+-        assertEquals("T extends java.lang.Comparable<T> & java.lang.Serializable", CodeModelTestsUtils.toString(tv));
+-    }
+-}
+diff --git a/src/test/java/com/helger/jcodemodel/tests/util/CodeModelTestsUtils.java b/src/test/java/com/helger/jcodemodel/tests/util/CodeModelTestsUtils.java
+index c2116eef..16692f6c 100644
+--- a/src/test/java/com/helger/jcodemodel/tests/util/CodeModelTestsUtils.java
++++ b/src/test/java/com/helger/jcodemodel/tests/util/CodeModelTestsUtils.java
+@@ -40,14 +40,15 @@
+ 
+ package com.helger.jcodemodel.tests.util;
+ 
++import java.io.StringWriter;
++
++import javax.annotation.Nonnull;
++
+ import com.helger.jcodemodel.IJDeclaration;
+ import com.helger.jcodemodel.IJExpression;
+ import com.helger.jcodemodel.IJGenerable;
+ import com.helger.jcodemodel.JFormatter;
+ 
+-import javax.annotation.Nonnull;
+-import java.io.StringWriter;
+-
+ /**
+  * Various utilities for codemodel tests.
+  * 
+@@ -78,25 +79,6 @@ public final class CodeModelTestsUtils
+     return stringWriter.toString ();
+   }
+ 
+-  /**
+-   * Prints a declaration into a string.
+-   *
+-   * @param declaration
+-   *        declaration to print into a string.
+-   * @return Declaration formatted as a string.
+-   */
+-  @Nonnull
+-  public static String toString (@Nonnull final IJDeclaration declaration)
+-  {
+-    if (declaration == null)
+-      throw new IllegalArgumentException ("Declaration must not be null.");
+-
+-    final StringWriter stringWriter = new StringWriter ();
+-    final JFormatter formatter = new JFormatter (stringWriter);
+-    declaration.declare(formatter);
+-    return stringWriter.toString ();
+-  }
+-
+   @Nonnull
+   public static String declare (@Nonnull final IJDeclaration declaration)
+   {
