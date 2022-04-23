@@ -166,9 +166,9 @@ To date, growingBugs contains **`708`** unique bugs that are not included in Def
 | 160     | Sparsebitset             | Sparsebitset                |                  |      2       | 1-2               |
 | 161     | Incubator_retired_pirk            | incubator-retired-pirk               |                  |      1       | 1               |
 | 162     | Assertj_assertions_generator            | assertj-assertions-generator               |                  |      5       | 1-5               |
-| 163     | Config_magic            | config-magic               |                  |      1       | 1               |
+| 163     | Config_magic            | config-magic               |                  |      2      | 1-2               |
 | 164     | Deft            | deft               |                  |      1       | 1               |
-| 165     | Jcodemodel            | jcodemodel               |                  |      2       | 1-2               |
+| 165     | Jcodemodel            | jcodemodel               |                  |      5       | 1-5               |
 | 166     | Jdbm3            | JDBM3               |                  |      3       | 1-3               |
 | 167     | Mybatis_pagehelper            | Mybatis-PageHelper               |                  |      3       | 1-3               |
 | 168     | N5            | n5               |                  |      2       | 1-2               |
@@ -177,3 +177,4 @@ To date, growingBugs contains **`708`** unique bugs that are not included in Def
 | 171     | Template_benchmark            | template-benchmark               |                  |      1       | 1               |
 | 172     | Vectorz            | vectorz               |                  |      4       | 1-4               |
 | 173     | Cli_parser         | Cli_parser            |                  |      1       | 1                  |                 |
+| 174     | Gatling_report         | Gatling_report            |                  |      3       | 1-3                  |                 |
