@@ -180,3 +180,5 @@ Stash_jenkins_postreceive_webhook	stash-jenkins-postreceive-webhook	https://gith
 Suffixtree	suffixtree	https://github.com/abahgat/suffixtree.git	github	abahgat/suffixtree	/#(\\d+)/mi	.	
 Template_benchmark	template-benchmark	https://github.com/mbosecke/template-benchmark.git	github	mbosecke/template-benchmark	/#(\\d+)/mi	.	
 Vectorz	vectorz	https://github.com/mikera/vectorz.git	github	mikera/vectorz	/#(\\d+)/mi	.	
+Cli_parser	cli-parser	https://github.com/spullara/cli-parser.git	github	spullara/cli-parser	/#(\\d+)/mi	.
+Gatling_report	gatling-report	https://github.com/nuxeo/gatling-report.git	github	nuxeo/gatling-report	/#(\\d+)/mi	.
