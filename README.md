@@ -21,7 +21,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 
 # Contents of growingBugs
-To date, growingBugs contains **`1550`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1557`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -197,9 +197,9 @@ To date, growingBugs contains **`1550`** real-world bugs from open-source Java p
 | 170     | Incubator_retired_pirk            | incubator-retired-pirk               |                  |      1       | 1               |
 | 171     | Sparsebitset             | Sparsebitset                |                  |      2       | 1-2               |
 | 172     | Assertj_assertions_generator            | assertj-assertions-generator               |                  |      5       | 1-5               |
-| 173     | Config_magic            | config-magic               |                  |      1       | 1               |
+| 173     | Config_magic            | config-magic               |                  |      2       | 2               |
 | 174     | Deft            | deft               |                  |      1       | 1               |
-| 175     | Jcodemodel            | jcodemodel               |                  |      2       | 1-2               |
+| 175     | Jcodemodel            | jcodemodel               |                  |      5       | 1-5               |
 | 176     | Jdbm3            | JDBM3               |                  |      3       | 1-3               |
 | 177     | Mybatis_pagehelper            | Mybatis-PageHelper               |                  |      3       | 1-3               |
 | 178     | N5            | n5               |                  |      2       | 1-2               |
@@ -208,6 +208,7 @@ To date, growingBugs contains **`1550`** real-world bugs from open-source Java p
 | 181     | Template_benchmark            | template-benchmark               |                  |      1       | 1               |
 | 182     | Vectorz            | vectorz               |                  |      4       | 1-4               |
 | 183     | Cli_parser         | Cli_parser            |                  |      1       | 1                  |                 |
+| 184     | Gatling_report         | Gatling_report            |                  |      3       | 1-3                  |                 |
 # Setting up GrowingBugs
 
 ## Requirements
