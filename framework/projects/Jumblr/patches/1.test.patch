@@ -1,0 +1,28 @@
+diff --git a/src/test/java/com/tumblr/jumblr/types/PhotoPostTest.java b/src/test/java/com/tumblr/jumblr/types/PhotoPostTest.java
+index 6067f2a..1503278 100644
+--- a/src/test/java/com/tumblr/jumblr/types/PhotoPostTest.java
++++ b/src/test/java/com/tumblr/jumblr/types/PhotoPostTest.java
+@@ -62,9 +62,9 @@ public class PhotoPostTest extends TypeTest {
+         File file = new File("some_path");
+         post.setData(file);
+         Map detail = post.detail();
+-        assertEquals(file, detail.get("data[0]"));
++        assertEquals(file, detail.get("data"));
+         // clear
+-        this.setup();
++        post.setData(null);
+     }
+ 
+     @Test(expected=IllegalArgumentException.class)
+@@ -78,9 +78,9 @@ public class PhotoPostTest extends TypeTest {
+         String embedCode = "external";
+         post.setSource(embedCode);
+         Map detail = post.detail();
+-        assertEquals(embedCode, detail.get("source[0]"));
++        assertEquals(embedCode, detail.get("source"));
+         // clear
+-        this.setup();
++        post.setSource(null);
+     }
+ 
+     @Test

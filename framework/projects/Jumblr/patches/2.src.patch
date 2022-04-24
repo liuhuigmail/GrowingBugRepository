@@ -1,0 +1,68 @@
+diff --git a/src/main/java/com/tumblr/jumblr/request/MultipartConverter.java b/src/main/java/com/tumblr/jumblr/request/MultipartConverter.java
+index e23e3e3..9d67f87 100644
+--- a/src/main/java/com/tumblr/jumblr/request/MultipartConverter.java
++++ b/src/main/java/com/tumblr/jumblr/request/MultipartConverter.java
+@@ -80,9 +80,7 @@ public class MultipartConverter {
+                 try {
+                     dis.readFully(result);
+                 } finally {
+-                    if (dis != null) {
+                         dis.close();
+-                    }
+                 }
+ 
+                 message.append("--").append(boundary).append("\r\n");
+diff --git a/src/main/java/com/tumblr/jumblr/types/PhotoPost.java b/src/main/java/com/tumblr/jumblr/types/PhotoPost.java
+index e1e6933..64906a7 100644
+--- a/src/main/java/com/tumblr/jumblr/types/PhotoPost.java
++++ b/src/main/java/com/tumblr/jumblr/types/PhotoPost.java
+@@ -15,6 +15,8 @@ public class PhotoPost extends Post {
+     private String caption;
+     private Integer width, height;
+ 
++    private String source;
++    private File data;
+     private String link;
+     // TODO: Do not leak the photos member variable to world
+     private List<Photo> photos;
+@@ -90,7 +92,10 @@ public class PhotoPost extends Post {
+      * @throws IllegalArgumentException data is already set
+      */
+     public void setSource(String source) {
+-        setPhoto(new Photo(source));
++        if (this.data != null) {
++            throw new IllegalArgumentException("Cannot supply both data & source");
++        }
++        this.source = source;
+     }
+ 
+     /**
+@@ -99,7 +104,10 @@ public class PhotoPost extends Post {
+      * @throws IllegalArgumentException source is already set
+      */
+     public void setData(File file) {
+-        setPhoto(new Photo(file));
++        if (source != null) {
++            throw new IllegalArgumentException("Cannot supply both source & data");
++        }
++        this.data = file;
+     }
+ 
+     /**
+@@ -121,14 +129,8 @@ public class PhotoPost extends Post {
+         details.put("link", link);
+         details.put("caption", caption);
+ 
+-        if (pendingPhotos != null) {
+-            for (int i = 0; i < pendingPhotos.size(); i++) {
+-                PhotoType type = pendingPhotos.get(0).getType();
+-                if (type != null) {
+-                    details.put(type.getPrefix() + "[" + i + "]", pendingPhotos.get(i).getDetail());
+-                }
+-            }
+-        }
++        details.put("source", source);
++        details.put("data", data);
+ 
+         return details;
+     }

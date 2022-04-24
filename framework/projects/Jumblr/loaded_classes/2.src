@@ -1,0 +1,9 @@
+com.tumblr.jumblr.exceptions.JumblrException
+com.tumblr.jumblr.JumblrClient
+com.tumblr.jumblr.request.RequestBuilder
+com.tumblr.jumblr.responses.PostDeserializer
+com.tumblr.jumblr.types.Photo
+com.tumblr.jumblr.types.PhotoPost
+com.tumblr.jumblr.types.PhotoSize
+com.tumblr.jumblr.types.Post
+com.tumblr.jumblr.types.Resource

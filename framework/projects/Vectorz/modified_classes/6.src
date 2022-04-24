@@ -1,0 +1,4 @@
+mikera.arrayz.AbstractArray
+mikera.arrayz.INDArray
+mikera.arrayz.SliceArray
+mikera.matrixx.AMatrix

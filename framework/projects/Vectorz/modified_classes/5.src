@@ -1,0 +1,3 @@
+mikera.matrixx.impl.SparseColumnMatrix
+mikera.matrixx.impl.SparseRowMatrix
+mikera.vectorz.impl.SparseIndexedVector

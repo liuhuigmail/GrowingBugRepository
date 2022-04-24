@@ -3,3 +3,5 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 2,8b5d6146b4a84a9843e7db762579926a785997cf,7446c9e2c1b63732d3a2a165d642a4db8740d1e7,52,https://github.com/mikera/vectorz/pull/52
 3,81bf8d52939c9b2abaebe106fb93ec29708098f5,1637d1eb79319026734f2d57f42bb683ee52bfc7,68,https://github.com/mikera/vectorz/pull/68
 4,63ac59a21b978ed4d22307d25454bc1ccc953523,7ad8cdeb55b697ad6c7be5cd098f4dc4e5b5eaa4,75,https://github.com/mikera/vectorz/pull/75
+5,7b6265731a4a74cb133057b94dfa173db595ca60,81bf8d52939c9b2abaebe106fb93ec29708098f5,67,https://github.com/mikera/vectorz/pull/67
+6,ec1d63d5f9938ca4bba47aef5c87e7e4a40d85ac,dbfd4c3030a8854b33cdd32bb97c2dd85136e289,unknown,unknown

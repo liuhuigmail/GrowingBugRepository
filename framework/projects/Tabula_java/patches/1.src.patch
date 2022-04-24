@@ -1,0 +1,16 @@
+diff --git a/src/main/java/technology/tabula/CommandLineApp.java b/src/main/java/technology/tabula/CommandLineApp.java
+index 2efb278..7bb3505 100644
+--- a/src/main/java/technology/tabula/CommandLineApp.java
++++ b/src/main/java/technology/tabula/CommandLineApp.java
+@@ -160,11 +160,6 @@ public class CommandLineApp {
+             while (pageIterator.hasNext()) {
+                 Page page = pageIterator.next();
+ 
+-                if (tableExtractor.verticalRulingPositions != null) {
+-                    for (Float verticalRulingPosition : tableExtractor.verticalRulingPositions) {
+-                        page.addRuling(new Ruling(0, verticalRulingPosition, 0.0f, (float) page.getHeight()));
+-                    }
+-                }
+ 
+                 if (pageAreas != null) {
+                     for (Pair<Integer, Rectangle> areaPair : pageAreas) {

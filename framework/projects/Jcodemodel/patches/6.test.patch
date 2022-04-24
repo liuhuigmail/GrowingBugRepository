@@ -1,0 +1,702 @@
+diff --git a/src/test/java/com/helger/jcodemodel/AbstractJTypeTest.java b/src/test/java/com/helger/jcodemodel/AbstractJTypeTest.java
+index a1bd8d66..2530a0a7 100644
+--- a/src/test/java/com/helger/jcodemodel/AbstractJTypeTest.java
++++ b/src/test/java/com/helger/jcodemodel/AbstractJTypeTest.java
+@@ -60,13 +60,13 @@ public final class AbstractJTypeTest
+ {
+   private static final class AssignmentTypes
+   {
+-    private final AbstractJClass m_aVariable;
+-    private final AbstractJClass m_aValue;
++    private final AbstractJClass _variable;
++    private final AbstractJClass _value;
+ 
+     public AssignmentTypes (final AbstractJClass aVariable, final AbstractJClass aValue)
+     {
+-      m_aVariable = aVariable;
+-      m_aValue = aValue;
++      _variable = aVariable;
++      _value = aValue;
+     }
+   }
+ 
+@@ -194,16 +194,16 @@ public final class AbstractJTypeTest
+       }
+       for (final AssignmentTypes assignment : _refreshAssignableTypes ())
+       {
+-        if (!assignment.m_aValue.equals (assignment.m_aVariable))
++        if (!assignment._value.equals (assignment._variable))
+         {
+-          _assertIsNotAssignable (_List.narrow (assignment.m_aVariable), _List.narrow (assignment.m_aValue));
++          _assertIsNotAssignable (_List.narrow (assignment._variable), _List.narrow (assignment._value));
+         }
+-        _assertIsAssignable (_List.narrow (assignment.m_aVariable.wildcard ()), _List.narrow (assignment.m_aValue));
+-        _assertIsAssignable (_List.narrow (assignment.m_aVariable.wildcard ()),
+-                             _List.narrow (assignment.m_aValue.wildcard ()));
+-        _assertIsAssignable (_List.narrow (assignment.m_aValue.wildcardSuper ()), _List.narrow (assignment.m_aVariable));
+-        _assertIsAssignable (_List.narrow (assignment.m_aValue.wildcardSuper ()),
+-                             _List.narrow (assignment.m_aVariable.wildcardSuper ()));
++        _assertIsAssignable (_List.narrow (assignment._variable.wildcard ()), _List.narrow (assignment._value));
++        _assertIsAssignable (_List.narrow (assignment._variable.wildcard ()),
++                             _List.narrow (assignment._value.wildcard ()));
++        _assertIsAssignable (_List.narrow (assignment._value.wildcardSuper ()), _List.narrow (assignment._variable));
++        _assertIsAssignable (_List.narrow (assignment._value.wildcardSuper ()),
++                             _List.narrow (assignment._variable.wildcardSuper ()));
+       }
+     }
+   }
+diff --git a/src/test/java/com/helger/jcodemodel/AnnotationUseFuncTest.java b/src/test/java/com/helger/jcodemodel/AnnotationUseFuncTest.java
+index 0622c26c..158a6997 100644
+--- a/src/test/java/com/helger/jcodemodel/AnnotationUseFuncTest.java
++++ b/src/test/java/com/helger/jcodemodel/AnnotationUseFuncTest.java
+@@ -40,15 +40,21 @@
+  */
+ package com.helger.jcodemodel;
+ 
+-import static org.junit.Assert.assertEquals;
+-
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+ import java.lang.annotation.Target;
+ 
+ import org.junit.Test;
+ 
+-import com.helger.jcodemodel.util.CodeModelTestsHelper;
++import com.helger.jcodemodel.IJAnnotationWriter;
++import com.helger.jcodemodel.JAnnotationArrayMember;
++import com.helger.jcodemodel.JAnnotationUse;
++import com.helger.jcodemodel.JCodeModel;
++import com.helger.jcodemodel.JDefinedClass;
++import com.helger.jcodemodel.JEnumConstant;
++import com.helger.jcodemodel.JFieldVar;
++import com.helger.jcodemodel.JMod;
++import com.helger.jcodemodel.writer.SingleStreamCodeWriter;
+ 
+ /**
+  * A test program for the annotation use features Note: Not all the generated
+@@ -83,7 +89,7 @@ public final class AnnotationUseFuncTest
+    * import java.lang.annotation.RetentionPolicy;
+    * import java.lang.annotation.Target;
+    * import com.helger.jcodemodel.tests.AnnotationUseTest;
+-   *
++   * 
+    * &#064;Retention (value = Test.Iamenum.GOOD, value1 = RetentionPolicy.RUNTIME)
+    * &#064;AnnotationUseTest.XmlElement (ns = &quot;##default&quot;, value = &quot;foobar&quot;)
+    * public class Test
+@@ -93,18 +99,21 @@ public final class AnnotationUseFuncTest
+    *               names = { &quot;Bob&quot;, &quot;Rob&quot;, &quot;Ted&quot; },
+    *               namesno = { 4, 5, 6 },
+    *               values = { @Target (type = java.lang.Integer.class), @Target (type = java.lang.Float.class) },
+-   *               foo = @Target (junk = 7) )
++   *               foo = @Target (junk = 7))
+    *   private double y;
+-   *
++   * 
+    *   public void foo ()
+    *   {}
+-   *
++   * 
+    *   public enum Iamenum
+    *   {
+-   *    GOOD,
+-   *    BAD;
++   *     GOOD,
++   *     BAD;
+    *   }
+    * }
++   * 
++   *
++   *
+    * </pre>
+    */
+   @Test
+@@ -124,7 +133,7 @@ public final class AnnotationUseFuncTest
+     final JEnumConstant ec = enumcls.enumConstant ("GOOD");
+     final JEnumConstant ec1 = enumcls.enumConstant ("BAD");
+     final JEnumConstant ec2 = enumcls.enumConstant ("BAD");
+-    assertEquals (ec1, ec2);
++    ec1.equals (ec2);
+ 
+     use.param ("value", ec);
+     // adding another param as an enum
+@@ -163,6 +172,6 @@ public final class AnnotationUseFuncTest
+     final JAnnotationUse myuse = aUse.annotationParam ("foo", Target.class);
+     myuse.param ("junk", 7);
+ 
+-    CodeModelTestsHelper.parseCodeModel (cm);
++    cm.build (new SingleStreamCodeWriter (System.out));
+   }
+ }
+diff --git a/src/test/java/com/helger/jcodemodel/AnonymousClassFuncTest.java b/src/test/java/com/helger/jcodemodel/AnonymousClassFuncTest.java
+index e5e86803..1b824ceb 100644
+--- a/src/test/java/com/helger/jcodemodel/AnonymousClassFuncTest.java
++++ b/src/test/java/com/helger/jcodemodel/AnonymousClassFuncTest.java
+@@ -46,7 +46,7 @@ import java.util.Iterator;
+ 
+ import org.junit.Test;
+ 
+-import com.helger.jcodemodel.util.CodeModelTestsHelper;
++import com.helger.jcodemodel.writer.SingleStreamCodeWriter;
+ 
+ /**
+  * @author Kohsuke Kawaguchi (kohsuke.kawaguchi@sun.com)
+@@ -66,10 +66,10 @@ public final class AnonymousClassFuncTest
+     c.field (JMod.PRIVATE, cm.DOUBLE, "y");
+     m.body ().decl (cm.ref (Object.class), "x", JExpr._new (c));
+ 
++    cm.build (new SingleStreamCodeWriter (System.out));
++
+     assertEquals ("java.util.Iterator<java.lang.Double>", c.fullName ());
+     // Incorrect! Should be Test$1!
+     assertEquals ("java.util.Iterator<java.lang.Double>", c.binaryName ());
+-
+-    CodeModelTestsHelper.parseCodeModel (cm);
+   }
+ }
+diff --git a/src/test/java/com/helger/jcodemodel/ForEachFuncTest.java b/src/test/java/com/helger/jcodemodel/ForEachFuncTest.java
+index 8970bdce..3ff25cba 100644
+--- a/src/test/java/com/helger/jcodemodel/ForEachFuncTest.java
++++ b/src/test/java/com/helger/jcodemodel/ForEachFuncTest.java
+@@ -44,7 +44,7 @@ import java.util.ArrayList;
+ 
+ import org.junit.Test;
+ 
+-import com.helger.jcodemodel.util.CodeModelTestsHelper;
++import com.helger.jcodemodel.writer.SingleStreamCodeWriter;
+ 
+ /**
+  * Simple program to test the generation of the enhanced for loop in jdk 1.5
+@@ -56,6 +56,7 @@ public final class ForEachFuncTest
+   @Test
+   public void testBasic () throws Exception
+   {
++
+     final JCodeModel cm = new JCodeModel ();
+     final JDefinedClass cls = cm._class ("Test");
+ 
+@@ -77,6 +78,6 @@ public final class ForEachFuncTest
+     // JInvocation invocation =
+     foreach.body ().invoke (out1, "println").arg ($count1);
+ 
+-    CodeModelTestsHelper.parseCodeModel (cm);
++    cm.build (new SingleStreamCodeWriter (System.out));
+   }
+ }
+diff --git a/src/test/java/com/helger/jcodemodel/InnerClassFuncTest.java b/src/test/java/com/helger/jcodemodel/InnerClassFuncTest.java
+index 6bc2a509..2618f3ea 100644
+--- a/src/test/java/com/helger/jcodemodel/InnerClassFuncTest.java
++++ b/src/test/java/com/helger/jcodemodel/InnerClassFuncTest.java
+@@ -44,15 +44,15 @@ import static org.junit.Assert.assertEquals;
+ 
+ import org.junit.Test;
+ 
+-import com.helger.jcodemodel.util.CodeModelTestsHelper;
++import com.helger.jcodemodel.writer.SingleStreamCodeWriter;
+ 
+ public final class InnerClassFuncTest
+ {
+   @Test
+   public void innerClassesAreImported () throws Exception
+   {
+-    final JCodeModel cm = new JCodeModel ();
+-    final JDefinedClass aClass = cm._class ("org.test.DaTestClass");
++    final JCodeModel codeModel = new JCodeModel ();
++    final JDefinedClass aClass = codeModel._class ("org.test.DaTestClass");
+     final JDefinedClass daInner1 = aClass._class ("Inner");
+     final JDefinedClass daInnerInner = daInner1._class ("InnerInner");
+     final JDefinedClass daInner2 = aClass._class ("DaTestClassInner");
+@@ -71,12 +71,12 @@ public final class InnerClassFuncTest
+     aClass.method (JMod.PUBLIC, daInner2, "getInner2");
+     aClass.method (JMod.PUBLIC, daInner2Inner, "getInner2Inner");
+ 
+-    final JDefinedClass otherClass = cm._class ("org.test.OtherClass");
++    final JDefinedClass otherClass = codeModel._class ("org.test.OtherClass");
+     otherClass.method (JMod.PUBLIC, daInner1, "getInner");
+     otherClass.method (JMod.PUBLIC, daInnerInner, "getInnerInner");
+     otherClass.method (JMod.PUBLIC, daInner2Inner, "getInner2Inner");
+     otherClass.method (JMod.PUBLIC, aClass, "getOuter");
+ 
+-    CodeModelTestsHelper.printCodeModel (cm);
++    codeModel.build (new SingleStreamCodeWriter (System.out));
+   }
+ }
+diff --git a/src/test/java/com/helger/jcodemodel/JAnnotationUseTest.java b/src/test/java/com/helger/jcodemodel/JAnnotationUseTest.java
+index 8d8f4322..41335463 100644
+--- a/src/test/java/com/helger/jcodemodel/JAnnotationUseTest.java
++++ b/src/test/java/com/helger/jcodemodel/JAnnotationUseTest.java
+@@ -40,12 +40,14 @@
+  */
+ package com.helger.jcodemodel;
+ 
++import java.io.IOException;
+ import java.lang.annotation.Inherited;
+ 
+ import org.junit.Assert;
+ import org.junit.Test;
+ 
+ import com.helger.jcodemodel.util.CodeModelTestsHelper;
++import com.helger.jcodemodel.writer.SingleStreamCodeWriter;
+ 
+ /**
+  * Unit test for class {@link JAnnotationUse}.
+@@ -64,6 +66,7 @@ public final class JAnnotationUseTest
+ 
+     Assert.assertEquals ("@java.lang.SuppressWarnings(\"unused\")",
+                          CodeModelTestsHelper.generate (suppressWarningAnnotation));
++
+   }
+ 
+   @Test
+@@ -96,14 +99,14 @@ public final class JAnnotationUseTest
+     final JFieldVar field = cls.field (JMod.PRIVATE, cm.DOUBLE, "y");
+     field.annotate (Deprecated.class);
+ 
+-    CodeModelTestsHelper.parseCodeModel (cm);
++    cm.build (new SingleStreamCodeWriter (System.out));
+   }
+ 
+   @Test
+-  public void testPackageAnnotation () throws Exception
++  public void testPackageAnnotation () throws IOException
+   {
+     final JCodeModel cm = new JCodeModel ();
+     cm._package ("foo").annotate (Inherited.class);
+-    CodeModelTestsHelper.parseCodeModel (cm);
++    cm.build (new SingleStreamCodeWriter (System.out));
+   }
+ }
+diff --git a/src/test/java/com/helger/jcodemodel/JCodeModelTest.java b/src/test/java/com/helger/jcodemodel/JCodeModelTest.java
+index d39dca37..3e7c6eff 100644
+--- a/src/test/java/com/helger/jcodemodel/JCodeModelTest.java
++++ b/src/test/java/com/helger/jcodemodel/JCodeModelTest.java
+@@ -42,9 +42,11 @@ package com.helger.jcodemodel;
+ 
+ import static org.junit.Assert.assertNotNull;
+ 
++import java.io.IOException;
++
+ import org.junit.Test;
+ 
+-import com.helger.jcodemodel.util.CodeModelTestsHelper;
++import com.helger.jcodemodel.writer.SingleStreamCodeWriter;
+ 
+ /**
+  * @author Kohsuke Kawaguchi
+@@ -61,7 +63,7 @@ public final class JCodeModelTest
+   }
+ 
+   @Test
+-  public void testIssue28 () throws Exception
++  public void testIssue28 () throws JClassAlreadyExistsException, IOException
+   {
+     final JCodeModel cm = new JCodeModel ();
+     final JDefinedClass aEnumClass = cm._package ("com.helger.issue28")._enum ("DummyEnum");
+@@ -70,6 +72,6 @@ public final class JCodeModelTest
+       .constructor (JMod.PUBLIC)
+       .body ()
+       .add (JExpr.enumConstantRef (aEnumClass, "CONSTANT").invoke ("toString"));
+-    CodeModelTestsHelper.printCodeModel (cm);
++    cm.build (new SingleStreamCodeWriter (System.out));
+   }
+ }
+diff --git a/src/test/java/com/helger/jcodemodel/JDefinedClassTest.java b/src/test/java/com/helger/jcodemodel/JDefinedClassTest.java
+index c773aefc..30570541 100644
+--- a/src/test/java/com/helger/jcodemodel/JDefinedClassTest.java
++++ b/src/test/java/com/helger/jcodemodel/JDefinedClassTest.java
+@@ -42,10 +42,15 @@ package com.helger.jcodemodel;
+ 
+ import static org.junit.Assert.assertNotNull;
+ 
++import java.io.ByteArrayInputStream;
++import java.io.ByteArrayOutputStream;
++import java.nio.charset.Charset;
++
+ import org.junit.Test;
+ 
+-import com.helger.jcodemodel.util.CodeModelTestsHelper;
++import com.helger.jcodemodel.writer.OutputStreamCodeWriter;
+ 
++import japa.parser.JavaParser;
+ import japa.parser.ast.CompilationUnit;
+ import japa.parser.ast.body.ClassOrInterfaceDeclaration;
+ import japa.parser.ast.body.InitializerDeclaration;
+@@ -53,7 +58,7 @@ import japa.parser.ast.body.TypeDeclaration;
+ 
+ /**
+  * Test class for class {@link JDefinedClass}.
+- *
++ * 
+  * @author Philip Helger
+  */
+ public final class JDefinedClassTest
+@@ -61,31 +66,26 @@ public final class JDefinedClassTest
+   @Test
+   public void generatesInstanceInit () throws Exception
+   {
+-    /**
+-     * <pre>
+-     * package myPackage;
+-     *
+-     * class MyClass
+-     * {
+-     *   private String myField;
+-     *
+-     *   {
+-     *     this.myField = "myValue";
+-     *   }
+-     * }
+-     * </pre>
+-     */
+-
+     final JCodeModel cm = new JCodeModel ();
+     final JDefinedClass c = cm._package ("myPackage")._class (0, "MyClass");
+     final JFieldVar myField = c.field (JMod.PRIVATE, String.class, "myField");
+     c.instanceInit ().assign (JExpr._this ().ref (myField), JExpr.lit ("myValue"));
++    final ByteArrayOutputStream bos = new ByteArrayOutputStream ();
++    final Charset encoding = Charset.forName ("UTF-8");
++    // cm.build(new OutputStreamCodeWriter(System.out, encoding));
++    cm.build (new OutputStreamCodeWriter (bos, encoding));
++    bos.close ();
++
++    final ByteArrayInputStream bis = new ByteArrayInputStream (bos.toByteArray ());
++
++    final CompilationUnit compilationUnit = JavaParser.parse (bis, encoding.name ());
+ 
+-    final CompilationUnit compilationUnit = CodeModelTestsHelper.parseCodeModel (cm);
+     final TypeDeclaration typeDeclaration = compilationUnit.getTypes ().get (0);
+     final ClassOrInterfaceDeclaration classDeclaration = (ClassOrInterfaceDeclaration) typeDeclaration;
++
+     final InitializerDeclaration initializerDeclaration = (InitializerDeclaration) classDeclaration.getMembers ()
+                                                                                                    .get (1);
++
+     assertNotNull (initializerDeclaration);
+   }
+ }
+diff --git a/src/test/java/com/helger/jcodemodel/JDirectClassTest.java b/src/test/java/com/helger/jcodemodel/JDirectClassTest.java
+index 71bbf971..5573f8c2 100644
+--- a/src/test/java/com/helger/jcodemodel/JDirectClassTest.java
++++ b/src/test/java/com/helger/jcodemodel/JDirectClassTest.java
+@@ -2,9 +2,11 @@ package com.helger.jcodemodel;
+ 
+ import static org.junit.Assert.assertEquals;
+ 
++import java.io.IOException;
++
+ import org.junit.Test;
+ 
+-import com.helger.jcodemodel.util.CodeModelTestsHelper;
++import com.helger.jcodemodel.writer.SingleStreamCodeWriter;
+ 
+ /**
+  * Test class for class {@link JDirectClass}.
+@@ -14,7 +16,7 @@ import com.helger.jcodemodel.util.CodeModelTestsHelper;
+ public final class JDirectClassTest
+ {
+   @Test
+-  public void testBasic () throws Exception
++  public void testBasic () throws JClassAlreadyExistsException, IOException
+   {
+     final JCodeModel cm = new JCodeModel ();
+ 
+@@ -37,11 +39,11 @@ public final class JDirectClassTest
+     final JMethod aMethodSelected = aClassAct.method (JMod.PUBLIC, cm.BOOLEAN, "onOptionsItemSelected");
+     aMethodSelected.body ()._if (JExpr.ref ("itemId_").eq (myItem));
+ 
+-    CodeModelTestsHelper.parseCodeModel (cm);
++    cm.build (new SingleStreamCodeWriter (System.out));
+   }
+ 
+   @Test
+-  public void testGenerics () throws Exception
++  public void testGenerics ()
+   {
+     final JCodeModel cm = new JCodeModel ();
+ 
+@@ -49,9 +51,5 @@ public final class JDirectClassTest
+     assertEquals ("com.test", aDirectClass._package ().name ());
+     assertEquals ("com.test.GenericFragmentArguments<S,P>", aDirectClass.name ());
+     assertEquals ("com.test.GenericFragmentArguments<S,P>", aDirectClass.fullName ());
+-
+-    cm._class ("UsingClass").method (JMod.PUBLIC, cm.VOID, "test").body ().add (JExpr._new (aDirectClass));
+-
+-    CodeModelTestsHelper.parseCodeModel (cm);
+   }
+ }
+diff --git a/src/test/java/com/helger/jcodemodel/JFieldRefTest.java b/src/test/java/com/helger/jcodemodel/JFieldRefTest.java
+index aaf0a56c..7f307ce2 100644
+--- a/src/test/java/com/helger/jcodemodel/JFieldRefTest.java
++++ b/src/test/java/com/helger/jcodemodel/JFieldRefTest.java
+@@ -42,11 +42,11 @@ package com.helger.jcodemodel;
+ 
+ import org.junit.Test;
+ 
+-import com.helger.jcodemodel.util.CodeModelTestsHelper;
++import com.helger.jcodemodel.writer.SingleStreamCodeWriter;
+ 
+ /**
+  * Test class for class {@link JFieldRef}
+- *
++ * 
+  * @author Philip Helger
+  */
+ public final class JFieldRefTest
+@@ -65,6 +65,6 @@ public final class JFieldRefTest
+     m.body ().add (JExpr.refthis (f1).assign (6));
+     m.body ().add (JExpr.refthis (f2).assign ("Call"));
+ 
+-    CodeModelTestsHelper.parseCodeModel (cm);
++    cm.build (new SingleStreamCodeWriter (System.out));
+   }
+ }
+diff --git a/src/test/java/com/helger/jcodemodel/JInvocationTest.java b/src/test/java/com/helger/jcodemodel/JInvocationTest.java
+index 1a973c1e..699bbbc8 100644
+--- a/src/test/java/com/helger/jcodemodel/JInvocationTest.java
++++ b/src/test/java/com/helger/jcodemodel/JInvocationTest.java
+@@ -40,6 +40,7 @@
+  */
+ package com.helger.jcodemodel;
+ 
++import java.io.IOException;
+ import java.math.BigInteger;
+ import java.util.ArrayList;
+ import java.util.Comparator;
+@@ -47,7 +48,7 @@ import java.util.List;
+ 
+ import org.junit.Test;
+ 
+-import com.helger.jcodemodel.util.CodeModelTestsHelper;
++import com.helger.jcodemodel.writer.SingleStreamCodeWriter;
+ 
+ /**
+  * Test class for class {@link JInvocation}
+@@ -57,7 +58,7 @@ import com.helger.jcodemodel.util.CodeModelTestsHelper;
+ public final class JInvocationTest
+ {
+   @Test
+-  public void testWithGenerics () throws Exception
++  public void testWithGenerics () throws JClassAlreadyExistsException, IOException
+   {
+     final JCodeModel cm = new JCodeModel ();
+     final JDefinedClass cls = cm._class ("TestInvocation");
+@@ -107,6 +108,6 @@ public final class JInvocationTest
+            .arg (JExpr._this ())
+            .arg (JExpr._new (cm.ref (ArrayList.class).narrow (Long.class)));
+ 
+-    CodeModelTestsHelper.parseCodeModel (cm);
++    cm.build (new SingleStreamCodeWriter (System.out));
+   }
+ }
+diff --git a/src/test/java/com/helger/jcodemodel/JMethodTest.java b/src/test/java/com/helger/jcodemodel/JMethodTest.java
+index 8fcfc76e..d0788e80 100644
+--- a/src/test/java/com/helger/jcodemodel/JMethodTest.java
++++ b/src/test/java/com/helger/jcodemodel/JMethodTest.java
+@@ -43,8 +43,6 @@ package com.helger.jcodemodel;
+ import org.junit.Assert;
+ import org.junit.Test;
+ 
+-import com.helger.jcodemodel.util.CodeModelTestsHelper;
+-
+ /**
+  * Test class for class {@link JMethod}.
+  *
+@@ -53,17 +51,15 @@ import com.helger.jcodemodel.util.CodeModelTestsHelper;
+ public final class JMethodTest
+ {
+   @Test
+-  public void testBasic () throws Exception
++  public void testBasic () throws JClassAlreadyExistsException
+   {
+     final JCodeModel cm = new JCodeModel ();
+     final JDefinedClass cls = cm._class ("Test");
+     final JMethod m = cls.method (JMod.PUBLIC, cm.VOID, "foo");
++
+     final JVar foo = m.param (String.class, "foo");
+-    m.body ().assign (foo, JExpr.lit ("bar"));
+ 
+     Assert.assertEquals (1, m.params ().size ());
+     Assert.assertSame (foo, m.params ().get (0));
+-
+-    CodeModelTestsHelper.parseCodeModel (cm);
+   }
+ }
+diff --git a/src/test/java/com/helger/jcodemodel/JavadocFuncTest.java b/src/test/java/com/helger/jcodemodel/JavadocFuncTest.java
+index 53f2e549..e80a0b7d 100644
+--- a/src/test/java/com/helger/jcodemodel/JavadocFuncTest.java
++++ b/src/test/java/com/helger/jcodemodel/JavadocFuncTest.java
+@@ -40,9 +40,11 @@
+  */
+ package com.helger.jcodemodel;
+ 
++import java.io.IOException;
++
+ import org.junit.Test;
+ 
+-import com.helger.jcodemodel.util.CodeModelTestsHelper;
++import com.helger.jcodemodel.writer.SingleStreamCodeWriter;
+ 
+ /**
+  * @author Kohsuke Kawaguchi
+@@ -50,10 +52,10 @@ import com.helger.jcodemodel.util.CodeModelTestsHelper;
+ public final class JavadocFuncTest
+ {
+   @Test
+-  public void testOnPackage () throws Exception
++  public void testOnPackage () throws IOException
+   {
+     final JCodeModel cm = new JCodeModel ();
+     cm._package ("foo").javadoc ().add ("String");
+-    CodeModelTestsHelper.parseCodeModel (cm);
++    cm.build (new SingleStreamCodeWriter (System.out));
+   }
+ }
+diff --git a/src/test/java/com/helger/jcodemodel/NestedClassFuncTest.java b/src/test/java/com/helger/jcodemodel/NestedClassFuncTest.java
+index 78ce1515..0efa25ec 100644
+--- a/src/test/java/com/helger/jcodemodel/NestedClassFuncTest.java
++++ b/src/test/java/com/helger/jcodemodel/NestedClassFuncTest.java
+@@ -42,7 +42,7 @@ package com.helger.jcodemodel;
+ 
+ import org.junit.Test;
+ 
+-import com.helger.jcodemodel.util.CodeModelTestsHelper;
++import com.helger.jcodemodel.writer.SingleStreamCodeWriter;
+ 
+ /**
+  * @author Kohsuke Kawaguchi
+@@ -55,7 +55,7 @@ public final class NestedClassFuncTest
+     final JCodeModel cm = new JCodeModel ();
+     final JDefinedClass c = cm._package ("foo")._class (0, "Foo");
+     c._extends (cm.ref (MockInnerClass.class));
+-    CodeModelTestsHelper.parseCodeModel (cm);
++    cm.build (new SingleStreamCodeWriter (System.out));
+   }
+ 
+   public static class MockInnerClass
+diff --git a/src/test/java/com/helger/jcodemodel/VarArgsFuncTest.java b/src/test/java/com/helger/jcodemodel/VarArgsFuncTest.java
+index e73f672b..d1a25012 100644
+--- a/src/test/java/com/helger/jcodemodel/VarArgsFuncTest.java
++++ b/src/test/java/com/helger/jcodemodel/VarArgsFuncTest.java
+@@ -44,7 +44,7 @@ import static org.junit.Assert.assertNotNull;
+ 
+ import org.junit.Test;
+ 
+-import com.helger.jcodemodel.util.CodeModelTestsHelper;
++import com.helger.jcodemodel.writer.SingleStreamCodeWriter;
+ 
+ /**
+  * Simple program to test the generation of the varargs feature in jdk 1.5
+@@ -75,9 +75,7 @@ public final class VarArgsFuncTest
+     m.param (String.class, "param1");
+     m.param (Integer.class, "param2");
+     final JVar var = m.varParam (Object.class, "param3");
+-
+-    if (false)
+-      System.out.println ("First varParam " + var);
++    System.out.println ("First varParam " + var);
+ 
+     // checking for param after varParam it behaves ok
+     // JVar[] var1 = m.varParam(Float.class, "param4");
+@@ -88,10 +86,10 @@ public final class VarArgsFuncTest
+ 
+     final JForLoop forloop = m.body ()._for ();
+ 
+-    final JVar jcount = forloop.init (cm.INT, "count", JExpr.lit (0));
++    final JVar $count = forloop.init (cm.INT, "count", JExpr.lit (0));
+ 
+-    forloop.test (jcount.lt (JExpr.direct ("param3.length")));
+-    forloop.update (jcount.incr ());
++    forloop.test ($count.lt (JExpr.direct ("param3.length")));
++    forloop.update ($count.incr ());
+ 
+     final JFieldRef out = cm.ref (System.class).staticRef ("out");
+ 
+@@ -106,6 +104,6 @@ public final class VarArgsFuncTest
+     main.body ()
+         .directStatement ("new Test().foo(new String(\"Param1\"),new Integer(5),null,new String(\"Param3\"),new String(\"Param4\"));");
+ 
+-    CodeModelTestsHelper.parseCodeModel (cm);
++    cm.build (new SingleStreamCodeWriter (System.out));
+   }
+ }
+diff --git a/src/test/java/com/helger/jcodemodel/util/CodeModelTestsHelper.java b/src/test/java/com/helger/jcodemodel/util/CodeModelTestsHelper.java
+index 9a9291f3..e9bb45f6 100644
+--- a/src/test/java/com/helger/jcodemodel/util/CodeModelTestsHelper.java
++++ b/src/test/java/com/helger/jcodemodel/util/CodeModelTestsHelper.java
+@@ -40,11 +40,7 @@
+  */
+ package com.helger.jcodemodel.util;
+ 
+-import java.io.ByteArrayInputStream;
+-import java.io.ByteArrayOutputStream;
+-import java.io.IOException;
+ import java.io.StringWriter;
+-import java.nio.charset.Charset;
+ 
+ import javax.annotation.Nonnull;
+ 
+@@ -52,25 +48,15 @@ import com.helger.jcodemodel.IJDeclaration;
+ import com.helger.jcodemodel.IJExpression;
+ import com.helger.jcodemodel.IJGenerable;
+ import com.helger.jcodemodel.IJStatement;
+-import com.helger.jcodemodel.JCodeModel;
+ import com.helger.jcodemodel.JFormatter;
+-import com.helger.jcodemodel.writer.OutputStreamCodeWriter;
+-import com.helger.jcodemodel.writer.SingleStreamCodeWriter;
+-
+-import japa.parser.JavaParser;
+-import japa.parser.ParseException;
+-import japa.parser.ast.CompilationUnit;
+ 
+ /**
+  * Various utilities for codemodel tests.
+  *
+  * @author Aleksei Valikov
+- * @author Philip Helger
+  */
+ public final class CodeModelTestsHelper
+ {
+-  public static final Charset DEFAULT_ENCODING = Charset.forName ("UTF-8");
+-
+   /** Hidden constructor. */
+   private CodeModelTestsHelper ()
+   {}
+@@ -155,40 +141,4 @@ public final class CodeModelTestsHelper
+     generable.generate (formatter);
+     return aSW.toString ();
+   }
+-
+-  /**
+-   * Get the content of the code model as a byte array in
+-   * {@link #DEFAULT_ENCODING}
+-   *
+-   * @param cm
+-   *        Source code model
+-   * @return The byte array
+-   * @throws IOException
+-   *         Theoretically only
+-   */
+-  @Nonnull
+-  public static byte [] getAllBytes (@Nonnull final JCodeModel cm) throws IOException
+-  {
+-    final ByteArrayOutputStream bos = new ByteArrayOutputStream ();
+-    cm.build (new OutputStreamCodeWriter (bos, DEFAULT_ENCODING));
+-    bos.close ();
+-    return bos.toByteArray ();
+-  }
+-
+-  @Nonnull
+-  public static CompilationUnit parseCodeModel (@Nonnull final JCodeModel cm) throws IOException, ParseException
+-  {
+-    final byte [] aBytes = getAllBytes (cm);
+-    if (true)
+-      System.out.println (new String (aBytes, DEFAULT_ENCODING.name ()));
+-
+-    final ByteArrayInputStream bis = new ByteArrayInputStream (aBytes);
+-
+-    return JavaParser.parse (bis, DEFAULT_ENCODING.name ());
+-  }
+-
+-  public static void printCodeModel (@Nonnull final JCodeModel cm) throws IOException
+-  {
+-    cm.build (new SingleStreamCodeWriter (System.out));
+-  }
+ }

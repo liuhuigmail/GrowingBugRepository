@@ -2,3 +2,4 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,82b439ec707ae732361ba1775e30d8adb31fbfd8,cb04445a2506a3fd749a288374330f67f29d4578,22,https://github.com/jankotek/JDBM3/issues/22
 2,67a5d6ff2e2be12f77851894b4ad4fe25770f76d,10538e67a06f8c824c32999b6fb70d8f292e149d,73,https://github.com/jankotek/JDBM3/issues/73
 3,275f231026dc49aa8fc9556064442a6420364fb3,d247a9254a002fb8f0a29a27589b4f303094c0d8,74,https://github.com/jankotek/JDBM3/issues/74
+4,8ff1d770b95bfe74a46649312371dd67422442e0,67a5d6ff2e2be12f77851894b4ad4fe25770f76d,74,https://github.com/jankotek/JDBM3/issues/74

@@ -1,0 +1,58 @@
+diff --git a/src/main/java/net/kotek/jdbm/Serialization.java b/src/main/java/net/kotek/jdbm/Serialization.java
+index 0af823f..7322225 100644
+--- a/src/main/java/net/kotek/jdbm/Serialization.java
++++ b/src/main/java/net/kotek/jdbm/Serialization.java
+@@ -21,6 +21,7 @@ import java.math.BigDecimal;
+ import java.math.BigInteger;
+ import java.util.*;
+ 
++import net.kotek.jdbm.SerialClassInfo.ClassInfo;
+ import static net.kotek.jdbm.SerializationHeader.*;
+ 
+ /**
+@@ -385,12 +386,6 @@ public class Serialization extends SerialClassInfo implements Serializer {
+             serializeMap(HASHTABLE, out, obj, objectStack);
+         } else if (clazz == Properties.class) {
+             serializeMap(PROPERTIES, out, obj, objectStack);
+-        } else if (clazz == Locale.class){
+-            out.write(LOCALE);
+-            Locale l = (Locale) obj;
+-            out.writeUTF(l.getLanguage());
+-            out.writeUTF(l.getCountry());
+-            out.writeUTF(l.getVariant());
+         } else {
+             out.write(NORMAL);
+             writeObject(out, obj, objectStack);
+@@ -862,9 +857,6 @@ public class Serialization extends SerialClassInfo implements Serializer {
+             case ARRAY_BYTE_INT:
+                 ret = deserializeArrayByteInt(is);
+                 break;
+-            case LOCALE :
+-                ret = new Locale(is.readUTF(),is.readUTF(),is.readUTF());
+-                break;
+             case JDBMLINKEDLIST:
+                 ret = LinkedList2.deserialize(is, this);
+                 break;
+diff --git a/src/main/java/net/kotek/jdbm/SerializationHeader.java b/src/main/java/net/kotek/jdbm/SerializationHeader.java
+index e444116..d8a3a39 100644
+--- a/src/main/java/net/kotek/jdbm/SerializationHeader.java
++++ b/src/main/java/net/kotek/jdbm/SerializationHeader.java
+@@ -113,14 +113,16 @@ final class SerializationHeader {
+ 
+     final static int NOTUSED_VECTOR_255 = 120;
+     final static int VECTOR = 121;
+-    final static int IDENTITYHASHMAP = 122;
++    final static int NOTUSED_HASHTABLE_255 = 122;
+     final static int HASHTABLE = 123;
+-    final static int LOCALE = 124;
++    final static int NOTUSED_PROPERTIES_255 = 124;
+     final static int PROPERTIES = 125;
+ 
+     final static int CLASS = 126;
+     final static int DATE = 127;
+ 
++    final static int NOTUSED_IDENTITYHASHMAP = 128;
++    final static int IDENTITYHASHMAP = 129;
+ 
+     static final int JDBMLINKEDLIST = 159;
+     static final int HTREE = 160;

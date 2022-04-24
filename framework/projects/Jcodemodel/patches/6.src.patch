@@ -1,0 +1,53 @@
+diff --git a/src/main/java/com/helger/jcodemodel/JFieldVar.java b/src/main/java/com/helger/jcodemodel/JFieldVar.java
+index bf953a72..6de72228 100644
+--- a/src/main/java/com/helger/jcodemodel/JFieldVar.java
++++ b/src/main/java/com/helger/jcodemodel/JFieldVar.java
+@@ -78,7 +78,7 @@ public class JFieldVar extends JVar implements IJDocCommentable
+                        @Nullable final IJExpression init)
+   {
+     super (mods, type, name, init);
+-    m_aOwnerClass = JCValueEnforcer.notNull (aOwnerClass, "OwnerClass");
++    this.m_aOwnerClass = aOwnerClass;
+   }
+ 
+   /**
+@@ -126,11 +126,8 @@ public class JFieldVar extends JVar implements IJDocCommentable
+   @Override
+   public void generate (@Nonnull final JFormatter f)
+   {
+-    if (false)
+-    {
+       // Ensure the type is collected - see issue #30
+       f.type (m_aOwnerClass).print ('.');
+-    }
+     super.generate (f);
+   }
+ }
+diff --git a/src/main/java/com/helger/jcodemodel/JFormatter.java b/src/main/java/com/helger/jcodemodel/JFormatter.java
+index 73489a91..7910b1c9 100644
+--- a/src/main/java/com/helger/jcodemodel/JFormatter.java
++++ b/src/main/java/com/helger/jcodemodel/JFormatter.java
+@@ -392,17 +392,14 @@ public class JFormatter implements Closeable
+         break;
+       case COLLECTING:
+         // Never import direct classes
+-        if (!(aType instanceof JDirectClass))
++        final String shortName = aType.name ();
++        Usages usage = m_aCollectedReferences.get (shortName);
++        if (usage == null)
+         {
+-          final String sShortName = aType.name ();
+-          Usages aUsage = m_aCollectedReferences.get (sShortName);
+-          if (aUsage == null)
+-          {
+-            aUsage = new Usages ();
+-            m_aCollectedReferences.put (sShortName, aUsage);
+-          }
+-          aUsage.addReferencedType (aType);
++          usage = new Usages ();
++          m_aCollectedReferences.put (shortName, usage);
+         }
++        usage.addReferencedType (aType);
+         break;
+     }
+     return this;

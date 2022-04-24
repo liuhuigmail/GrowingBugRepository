@@ -1,0 +1,81 @@
+diff --git a/src/main/java/mikera/arrayz/AbstractArray.java b/src/main/java/mikera/arrayz/AbstractArray.java
+index 9b06022f..022b64fb 100644
+--- a/src/main/java/mikera/arrayz/AbstractArray.java
++++ b/src/main/java/mikera/arrayz/AbstractArray.java
+@@ -58,6 +58,18 @@ public abstract class AbstractArray<T> implements INDArray, Iterable<T> {
+ 		}
+ 	}
+ 	
++	@Override
++	public void fill(double value) {
++		if (dimensionality()==0) {
++			set(value);
++		} else {
++			int sc=sliceCount();
++			for (int i=0; i<sc; i++) {
++				INDArray s=slice(i);
++				s.fill(value);
++			}			
++		}
++	}	
+ 	public INDArray innerProduct(INDArray a) {
+ 		if (a instanceof AScalar) {
+ 			INDArray c=clone();
+diff --git a/src/main/java/mikera/arrayz/INDArray.java b/src/main/java/mikera/arrayz/INDArray.java
+index c3194b9c..9c1602d7 100644
+--- a/src/main/java/mikera/arrayz/INDArray.java
++++ b/src/main/java/mikera/arrayz/INDArray.java
+@@ -80,6 +80,7 @@ public interface INDArray extends Cloneable {
+ 	public void add(INDArray a);
+ 	public void sub(INDArray a);
+ 	
++	public void fill(double value);
+ 	public void negate();
+ 	public void reciprocal();
+ 	
+diff --git a/src/main/java/mikera/arrayz/SliceArray.java b/src/main/java/mikera/arrayz/SliceArray.java
+index 31e0ec37..8ede062c 100644
+--- a/src/main/java/mikera/arrayz/SliceArray.java
++++ b/src/main/java/mikera/arrayz/SliceArray.java
+@@ -86,14 +86,22 @@ public final class SliceArray<T extends INDArray> extends AbstractArray<T> {
+ 		}
+ 	}
+ 	
++	@Override
++	public void set(double value) {
++		for (T s:slices) {
++			s.set(value);
++		}
++	}	
++	public void fill(double value) {
++		for (T s:slices) {
++			s.fill(value);
++		}
++	}
+ 	@Override
+ 	public void set(int[] indexes, double value) {
+ 		int d=indexes.length;
+ 		if (d==0) {
+-			for (int i=0; i<slices.length; i++) {
+-				slices[i].set(indexes,value);
+-			}
+-			return;
++			set(value);
+ 		}
+ 		
+ 		T slice=slices[indexes[0]];
+diff --git a/src/main/java/mikera/matrixx/AMatrix.java b/src/main/java/mikera/matrixx/AMatrix.java
+index 56e5df36..757ab703 100644
+--- a/src/main/java/mikera/matrixx/AMatrix.java
++++ b/src/main/java/mikera/matrixx/AMatrix.java
+@@ -79,6 +79,10 @@ public abstract class AMatrix extends ALinearTransform implements IMatrix, Itera
+ 	
+ 	@Override 
+ 	public void set(double value) {
++		throw new VectorzException("0D set not supported on matrix!");
++	}
++	@Override 
++	public void fill(double value) {
+ 		asVector().fill(value);
+ 	}
+ 	

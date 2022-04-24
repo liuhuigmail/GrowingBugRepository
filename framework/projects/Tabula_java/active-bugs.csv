@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,00bee456790c16d9d972de1e5d513b58ced37a48,2ab8579ef7dd5a7f9913f243b6e0e766f25f99bd,379,https://github.com/tabulapdf/tabula-java/issues/379

@@ -1,0 +1,86 @@
+diff --git a/src/main/java/com/helger/jcodemodel/JDirectClass.java b/src/main/java/com/helger/jcodemodel/JDirectClass.java
+index b463175f..f32c489b 100644
+--- a/src/main/java/com/helger/jcodemodel/JDirectClass.java
++++ b/src/main/java/com/helger/jcodemodel/JDirectClass.java
+@@ -57,7 +57,6 @@ import javax.annotation.Nullable;
+ public class JDirectClass extends AbstractJClassContainer <JDirectClass>
+ {
+ 
+-  private final String m_sFullName;
+ 
+   @Deprecated
+   protected JDirectClass (@Nonnull final JCodeModel aOwner, @Nonnull final String sFullName)
+@@ -65,22 +64,13 @@ public class JDirectClass extends AbstractJClassContainer <JDirectClass>
+     this (aOwner, null, EClassType.CLASS, sFullName);
+   }
+ 
+-  @Nonnull
+-  private static String _getName (@Nonnull final String sFullName)
+-  {
+-    final int nLast = sFullName.lastIndexOf ('.');
+-    if (nLast < 0)
+-      return sFullName;
+-    return sFullName.substring (nLast + 1);
+-  }
+ 
+   protected JDirectClass (@Nonnull final JCodeModel aOwner,
+                           @Nullable final IJClassContainer <?> aOuter,
+                           @Nonnull final EClassType eClassType,
+                           @Nonnull final String sFullName)
+   {
+-    super (aOwner, aOuter, eClassType, _getName (sFullName));
+-    m_sFullName = sFullName;
++    super (aOwner, aOuter, eClassType, sFullName);
+   }
+ 
+   /**
+@@ -91,10 +81,10 @@ public class JDirectClass extends AbstractJClassContainer <JDirectClass>
+   public String fullName ()
+   {
+     if (getOuter () instanceof AbstractJClassContainer <?>)
+-      return ((AbstractJClassContainer <?>) getOuter ()).fullName () + '.' + m_sFullName;
++      return ((AbstractJClassContainer <?>) getOuter ()).fullName () + '.' + name ();
+ 
+     // The fully qualified name was already provided in the ctor
+-    return m_sFullName;
++    return name ();
+   }
+ 
+   @Override
+@@ -108,7 +98,7 @@ public class JDirectClass extends AbstractJClassContainer <JDirectClass>
+       return (JPackage) aOuter;
+ 
+     // No package present - use name based analysis
+-    final String sFullName = fullName ();
++    final String sFullName = name ();
+     final int i = sFullName.lastIndexOf ('.');
+     if (i >= 0)
+       return owner ()._package (sFullName.substring (0, i));
+diff --git a/src/main/java/com/helger/jcodemodel/JFormatter.java b/src/main/java/com/helger/jcodemodel/JFormatter.java
+index 82423e9e..701c96df 100644
+--- a/src/main/java/com/helger/jcodemodel/JFormatter.java
++++ b/src/main/java/com/helger/jcodemodel/JFormatter.java
+@@ -390,14 +390,17 @@ public class JFormatter implements Closeable
+         }
+         break;
+       case COLLECTING:
+-        final String sShortName = aType.name ();
+-        Usages aUsage = m_aCollectedReferences.get (sShortName);
+-        if (aUsage == null)
++        if (!(aType instanceof JDirectClass))
+         {
+-          aUsage = new Usages ();
+-          m_aCollectedReferences.put (sShortName, aUsage);
++          final String sShortName = aType.name ();
++          Usages aUsage = m_aCollectedReferences.get (sShortName);
++          if (aUsage == null)
++          {
++            aUsage = new Usages ();
++            m_aCollectedReferences.put (sShortName, aUsage);
++          }
++          aUsage.addReferencedType (aType);
+         }
+-        aUsage.addReferencedType (aType);
+         break;
+     }
+     return this;

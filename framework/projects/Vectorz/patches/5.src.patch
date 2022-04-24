@@ -1,0 +1,65 @@
+diff --git a/src/main/java/mikera/matrixx/impl/SparseColumnMatrix.java b/src/main/java/mikera/matrixx/impl/SparseColumnMatrix.java
+index ed8ff094..850bcbb2 100644
+--- a/src/main/java/mikera/matrixx/impl/SparseColumnMatrix.java
++++ b/src/main/java/mikera/matrixx/impl/SparseColumnMatrix.java
+@@ -192,7 +192,6 @@ public class SparseColumnMatrix extends ASparseRCMatrix implements ISparse, IFas
+ 		AVector v = unsafeGetVec(i);
+ 		if (v == null) {
+ 			AVector nv=SparseIndexedVector.createLength(rows);
+-            unsafeSetVec(i, nv);
+ 			return nv;
+ 		}
+ 		if (v.isFullyMutable()) return v;
+diff --git a/src/main/java/mikera/matrixx/impl/SparseRowMatrix.java b/src/main/java/mikera/matrixx/impl/SparseRowMatrix.java
+index 32c44075..eef18bba 100644
+--- a/src/main/java/mikera/matrixx/impl/SparseRowMatrix.java
++++ b/src/main/java/mikera/matrixx/impl/SparseRowMatrix.java
+@@ -200,7 +200,6 @@ public class SparseRowMatrix extends ASparseRCMatrix implements ISparse, IFastRo
+ 		AVector v = unsafeGetVec(i);
+ 		if (v == null) {
+ 			AVector nv=SparseIndexedVector.createLength(cols);
+-            unsafeSetVec(i, nv);
+ 			return nv;
+ 		}
+ 		if (v.isFullyMutable()) return v;
+diff --git a/src/main/java/mikera/vectorz/impl/SparseIndexedVector.java b/src/main/java/mikera/vectorz/impl/SparseIndexedVector.java
+index 1de069ac..794cd91e 100644
+--- a/src/main/java/mikera/vectorz/impl/SparseIndexedVector.java
++++ b/src/main/java/mikera/vectorz/impl/SparseIndexedVector.java
+@@ -378,18 +378,7 @@ public class SparseIndexedVector extends ASparseIndexedVector {
+ 		if (v instanceof ADenseArrayVector) {
+ 			set((ADenseArrayVector)v);
+ 			return;
+-		} else if (v instanceof ASparseVector) {
+-            int[] nzi = v.nonZeroIndices();
+-            index=Index.wrap(nzi);
+-            if (nzi.length!=data.length) {
+-                data=new double[nzi.length];
+-            }
+-            for (int i=0; i<index.length(); i++) {
+-                double val=v.unsafeGet(index.get(i));
+-                data[i]=val;
+-            }
+-            return;
+-        } else {
++		}
+             double[] data=this.data;
+             int nz=(int) v.nonZeroCount();
+             if (nz!=data.length) {
+@@ -399,7 +388,7 @@ public class SparseIndexedVector extends ASparseIndexedVector {
+             }
+             
+             int di=0;
+-            for (int i=0; i<nz; i++) {
++            for (int i=0; i<length; i++) {
+                 double val=v.unsafeGet(i);
+                 if (val!=0) {
+                     data[di]=val;
+@@ -408,7 +397,6 @@ public class SparseIndexedVector extends ASparseIndexedVector {
+                 }
+             }
+         }
+-	}
+ 	
+ 	@Override
+ 	public void set(ADenseArrayVector v) {

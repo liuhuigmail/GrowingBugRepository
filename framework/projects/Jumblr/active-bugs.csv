@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,47f746c0925b1aeb94dc6f2dd74029ee7252905c,f067ff717dd1ae97ff4c4bebc2f4415c33fa1df3,5,https://github.com/tumblr/jumblr/issues/5
+2,2fef8c416e54d353e9d0eca1de0c88fb49d8ec6a,69d63e5cb303460016b49d6cb57d8be9c6284d82,34,https://github.com/tumblr/jumblr/pull/34

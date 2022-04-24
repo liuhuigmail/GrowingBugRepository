@@ -1,0 +1,62 @@
+diff --git a/src/test/java/mikera/matrixx/impl/TestSparseColumnMatrix.java b/src/test/java/mikera/matrixx/impl/TestSparseColumnMatrix.java
+index 531dbb23..4483da1a 100644
+--- a/src/test/java/mikera/matrixx/impl/TestSparseColumnMatrix.java
++++ b/src/test/java/mikera/matrixx/impl/TestSparseColumnMatrix.java
+@@ -29,16 +29,6 @@ public class TestSparseColumnMatrix {
+ 		assertTrue(v==m.getColumn(1)); // identical objects
+ 		assertEquals(Vector.of(0,2,0),m.getRow(1));
+ 	}
+-
+-    @Test public void testSetColumn() {
+-        SparseColumnMatrix m=SparseColumnMatrix.create(3, 3);
+-        
+-        Vector v=Vector.of(1,2,3);
+-        
+-        m.setColumn(0, v);
+-        assertEquals(v,m.getColumn(0));
+-        assertEquals(1,m.getColumn(0).get(0),0.0);
+-    }
+ 	
+ 	@Test public void testOps() {
+ 		SparseColumnMatrix m=SparseColumnMatrix.create(Vector.of(0,1,2),AxisVector.create(2, 3));
+diff --git a/src/test/java/mikera/matrixx/impl/TestSparseRowMatrix.java b/src/test/java/mikera/matrixx/impl/TestSparseRowMatrix.java
+index 7a2dceb0..c8c93c1f 100644
+--- a/src/test/java/mikera/matrixx/impl/TestSparseRowMatrix.java
++++ b/src/test/java/mikera/matrixx/impl/TestSparseRowMatrix.java
+@@ -29,16 +29,6 @@ public class TestSparseRowMatrix {
+ 		assertTrue(v==m.getRow(1)); // identical objects
+ 		assertEquals(Vector.of(0,2,0),m.getColumn(1));
+ 	}
+-
+-    @Test public void testSetRow() {
+-        SparseRowMatrix m=SparseRowMatrix.create(3, 3);
+-
+-        Vector v=Vector.of(1,2,3);
+-
+-        m.setRow(0, v);
+-        assertEquals(v,m.getRow(0));
+-        assertEquals(1,m.getRow(0).get(0),0.0);
+-    }
+ 	
+ 	@Test public void testOps() {
+ 		SparseRowMatrix m=SparseRowMatrix.create(Vector.of(0,1,2),AxisVector.create(2, 3));
+diff --git a/src/test/java/mikera/vectorz/TestSparseVectors.java b/src/test/java/mikera/vectorz/TestSparseVectors.java
+index c4025ab8..a767fcb4 100644
+--- a/src/test/java/mikera/vectorz/TestSparseVectors.java
++++ b/src/test/java/mikera/vectorz/TestSparseVectors.java
+@@ -1,7 +1,5 @@
+ package mikera.vectorz;
+ 
+-import java.util.Arrays;
+-
+ import static org.junit.Assert.*;
+ import mikera.vectorz.impl.SparseHashedVector;
+ import mikera.vectorz.impl.SparseIndexedVector;
+@@ -30,7 +28,6 @@ public class TestSparseVectors {
+ 		v.set(1,1);
+ 		assertEquals(1.0,v.elementSum(),0.0);
+ 		assertEquals(1,v.nonZeroCount());
+-        assertTrue(Arrays.equals(new int[]{1},v.nonZeroIndices()));
+ 		
+ 	}
+ }
