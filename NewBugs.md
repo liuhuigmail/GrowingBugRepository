@@ -1,5 +1,5 @@
 # Unique Bugs in growingBugs
-To date, growingBugs contains **`715`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`723`** unique bugs that are not included in Defects4J. 
 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -168,8 +168,8 @@ To date, growingBugs contains **`715`** unique bugs that are not included in Def
 | 162     | Assertj_assertions_generator            | assertj-assertions-generator               |                  |      5       | 1-5               |
 | 163     | Config_magic            | config-magic               |                  |      2      | 1-2               |
 | 164     | Deft            | deft               |                  |      1       | 1               |
-| 165     | Jcodemodel            | jcodemodel               |                  |      5       | 1-5               |
-| 166     | Jdbm3            | JDBM3               |                  |      3       | 1-3               |
+| 165     | Jcodemodel            | jcodemodel               |                  |      7       | 1-7               |
+| 166     | Jdbm3            | JDBM3               |                  |      4       | 1-4               |
 | 167     | Mybatis_pagehelper            | Mybatis-PageHelper               |                  |      3       | 1-3               |
 | 168     | N5            | n5               |                  |      2       | 1-2               |
 | 169     | Stash_jenkins_postreceive_webhook            | stash-jenkins-postreceive-webhook               |                  |      1       | 1               |
@@ -178,3 +178,6 @@ To date, growingBugs contains **`715`** unique bugs that are not included in Def
 | 172     | Vectorz            | vectorz               |                  |      4       | 1-4               |
 | 173     | Cli_parser         | Cli_parser            |                  |      1       | 1                  |                 |
 | 174     | Gatling_report         | Gatling_report            |                  |      3       | 1-3                  |                 |
+| 175     | Jumlr         | Jumlr            |                  |      2       | 1-2                  |                 |
+| 176     | Tabula_java         | Tabula_java            |                  |      1       | 1                  |                 |
+| 177     | Vectorz         | Vectorz            |                  |      2       | 1-2                  |                 |
