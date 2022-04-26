@@ -21,7 +21,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 
 # Contents of growingBugs
-To date, growingBugs contains **`1565`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1568`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -200,8 +200,8 @@ To date, growingBugs contains **`1565`** real-world bugs from open-source Java p
 | 173     | Config_magic            | config-magic               |                  |      2       | 2               |
 | 174     | Deft            | deft               |                  |      1       | 1               |
 | 175     | Jcodemodel            | jcodemodel               |                  |      7       | 1-7               |
-| 176     | Jdbm3            | JDBM3               |                  |      4       | 1-4               |
-| 177     | Mybatis_pagehelper            | Mybatis-PageHelper               |                  |      3       | 1-3               |
+| 176     | Jdbm3            | JDBM3               |                  |      6       | 1-6               |
+| 177     | Mybatis_pagehelper            | Mybatis-PageHelper               |                  |      4       | 1-4               |
 | 178     | N5            | n5               |                  |      2       | 1-2               |
 | 179     | Stash_jenkins_postreceive_webhook            | stash-jenkins-postreceive-webhook               |                  |      1       | 1               |
 | 180     | Suffixtree            | suffixtree               |                  |      1       | 1               |
