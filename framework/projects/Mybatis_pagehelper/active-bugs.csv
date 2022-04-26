@@ -2,3 +2,4 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,3d0091331d77f458b613555ff112d5398c8854ff,2b50dac36f595d61dd9a52457de6a7c2270996e8,110,https://github.com/pagehelper/Mybatis-PageHelper/issues/110
 2,c1d2134088fc63ee7c4e2d6a2069190a6555abfc,6c64fc7bf137eee14974f35d2027ab8c2db8fb96,534,https://github.com/pagehelper/Mybatis-PageHelper/issues/534
 3,23286824152c686b80a0dd8c364d632e58eb55bc,a93195e1c0833d5014aa59d0584dbf15c40eabae,498,https://github.com/pagehelper/Mybatis-PageHelper/issues/498
+4,a93195e1c0833d5014aa59d0584dbf15c40eabae,3e5bdcc68bbd6d8b6285054d1352f06c062b54ba,506,https://github.com/pagehelper/Mybatis-PageHelper/issues/506

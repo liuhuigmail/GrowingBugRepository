@@ -1,0 +1,34 @@
+diff --git a/src/main/java/com/github/pagehelper/Page.java b/src/main/java/com/github/pagehelper/Page.java
+index 89e1686..f996014 100644
+--- a/src/main/java/com/github/pagehelper/Page.java
++++ b/src/main/java/com/github/pagehelper/Page.java
+@@ -227,7 +227,7 @@ public class Page<E> extends ArrayList<E> implements Closeable {
+     }
+ 
+     public Page<E> setPageSizeZero(Boolean pageSizeZero) {
+-        if (this.pageSizeZero == null && pageSizeZero != null) {
++        if (pageSizeZero != null) {
+             this.pageSizeZero = pageSizeZero;
+         }
+         return this;
+diff --git a/src/main/java/com/github/pagehelper/dialect/AbstractHelperDialect.java b/src/main/java/com/github/pagehelper/dialect/AbstractHelperDialect.java
+index 037b574..17ff14d 100644
+--- a/src/main/java/com/github/pagehelper/dialect/AbstractHelperDialect.java
++++ b/src/main/java/com/github/pagehelper/dialect/AbstractHelperDialect.java
+@@ -89,15 +89,10 @@ public abstract class AbstractHelperDialect extends AbstractDialect implements C
+         }
+         //pageSize < 0 的时候，不执行分页查询
+         //pageSize = 0 的时候，还需要执行后续查询，但是不会分页
+-        if (page.getPageSizeZero() != null) {
++        if (page.getPageSize() < 0) {
+             //PageSizeZero=false&&pageSize<=0
+-            if (!page.getPageSizeZero() && page.getPageSize() <= 0) {
+                 return false;
+-            }
+             //PageSizeZero=true&&pageSize<0 返回 false，只有>=0才需要执行后续的
+-            else if (page.getPageSizeZero() && page.getPageSize() < 0) {
+-                return false;
+-            }
+         }
+         return page.getPageNum() > 0 && (count > ((page.getPageNum() - 1) * page.getPageSize()));
+     }

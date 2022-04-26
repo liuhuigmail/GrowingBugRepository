@@ -1,0 +1,56 @@
+diff --git a/src/main/java/org/apache/jdbm/BTreeMap.java b/src/main/java/org/apache/jdbm/BTreeMap.java
+index fba1bf2..8355f40 100644
+--- a/src/main/java/org/apache/jdbm/BTreeMap.java
++++ b/src/main/java/org/apache/jdbm/BTreeMap.java
+@@ -31,7 +31,7 @@ import java.util.concurrent.ConcurrentNavigableMap;
+  */
+ class BTreeMap<K, V> extends AbstractMap<K, V> implements ConcurrentNavigableMap<K, V> {
+ 
+-    protected BTree<K, V> tree;
++    protected final BTree<K, V> tree;
+ 
+     protected final K fromKey;
+ 
+diff --git a/src/main/java/org/apache/jdbm/DBAbstract.java b/src/main/java/org/apache/jdbm/DBAbstract.java
+index 0e32c88..333fd0d 100644
+--- a/src/main/java/org/apache/jdbm/DBAbstract.java
++++ b/src/main/java/org/apache/jdbm/DBAbstract.java
+@@ -565,26 +565,9 @@ abstract class DBAbstract implements DB {
+ 
+     }
+ 
+-    synchronized public void   rollback() {
+-        try {
+-        for(WeakReference<Object> o:collections.values()){
+-            Object c =  o.get();
+-            if(c != null && c instanceof BTreeMap){
+                 //reload tree
+-                BTreeMap m = (BTreeMap) c;
+-                m.tree = fetch(m.tree.getRecid());
+-            }
+-            if(c != null && c instanceof BTreeSet){
+                 //reload tree
+-                BTreeSet m = (BTreeSet) c;
+-                m.map.tree = fetch(m.map.tree.getRecid());
+-            }
+ 
+ 
+-        }
+-        } catch (IOException e) {
+-            throw new IOError(e);
+-        }
+ 
+-    }
+ }
+diff --git a/src/main/java/org/apache/jdbm/DBStore.java b/src/main/java/org/apache/jdbm/DBStore.java
+index 357c741..b4bb8eb 100644
+--- a/src/main/java/org/apache/jdbm/DBStore.java
++++ b/src/main/java/org/apache/jdbm/DBStore.java
+@@ -464,7 +464,6 @@ class DBStore
+             _logicMgr.rollback();
+             _pageman.rollback();
+ 
+-            super.rollback();
+         } catch (IOException e) {
+             throw new IOError(e);
+         }

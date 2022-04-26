@@ -1,0 +1,192 @@
+diff --git a/src/main/java/net/kotek/jdbm/SerialClassInfo.java b/src/main/java/net/kotek/jdbm/SerialClassInfo.java
+index 9466a07..9bb0ce5 100644
+--- a/src/main/java/net/kotek/jdbm/SerialClassInfo.java
++++ b/src/main/java/net/kotek/jdbm/SerialClassInfo.java
+@@ -22,9 +22,6 @@ abstract class SerialClassInfo {
+             LongPacker.packInt(out, obj.size());
+             for (ClassInfo ci : obj) {
+                 out.writeUTF(ci.getName());
+-                out.writeBoolean(ci.isEnum);
+-                out.writeBoolean(ci.isExternalizable);
+-                if(ci.isExternalizable) continue; //no fields
+ 
+                 LongPacker.packInt(out, ci.fields.size());
+                 for (FieldInfo fi : ci.fields) {
+@@ -42,15 +39,13 @@ abstract class SerialClassInfo {
+ 
+             for (int i = 0; i < size; i++) {
+                 String className = in.readUTF();
+-                boolean isEnum = in.readBoolean();
+-                boolean isExternalizable = in.readBoolean();
++                int fieldsNum = LongPacker.unpackInt(in);
+ 
+-                int fieldsNum = isExternalizable? 0 : LongPacker.unpackInt(in);
+                 FieldInfo[] fields = new FieldInfo[fieldsNum];
+                 for (int j = 0; j < fieldsNum; j++) {
+                     fields[j] = new FieldInfo(in.readUTF(), in.readBoolean(), in.readUTF(), Class.forName(className));
+                 }
+-                ret.add(new ClassInfo(className, fields,isEnum,isExternalizable));
++                ret.add(new ClassInfo(className, fields));
+             }
+             return ret;
+         }
+@@ -77,14 +72,11 @@ abstract class SerialClassInfo {
+         private final Map<String, Integer> name2fieldId = new HashMap<String, Integer>();
+         private ObjectStreamField[] objectStreamFields;
+ 
+-        final boolean isEnum;
++        private int isEnum = -1;
+ 
+-        final boolean isExternalizable;
+                                   
+-		ClassInfo(final String name, final FieldInfo[] fields, final boolean isEnum, final boolean isExternalizable) {
++		ClassInfo(String name, FieldInfo[] fields) {
+             this.name = name;
+-            this.isEnum = isEnum;
+-            this.isExternalizable = isExternalizable;
+ 
+             for (FieldInfo f : fields) {
+                 this.name2fieldId.put(f.getName(), this.fields.size());
+@@ -131,7 +123,13 @@ abstract class SerialClassInfo {
+ 			this.objectStreamFields = objectStreamFields;
+ 		}
+ 
++		public int getEnum() {
++			return isEnum;
++		}
+ 
++		public void setEnum(boolean isEnum) {
++			this.isEnum = isEnum?1:0;
++		}
+     }
+ 
+     /**
+@@ -279,11 +277,11 @@ abstract class SerialClassInfo {
+             fields[i] = new FieldInfo(sf, clazz);
+         }
+ 
+-        ClassInfo i = new ClassInfo(clazz.getName(), fields,clazz.isEnum(), Externalizable.class.isAssignableFrom(clazz));
++        ClassInfo i = new ClassInfo(clazz.getName(), fields);
+         class2classId.put(clazz, registered.size());
+         classId2class.put(registered.size(), clazz);
+         registered.add(i);
+-
++        i.setEnum(clazz.isEnum());
+ 
+         if (db != null)
+             db.update(serialClassInfoRecid, (Serialization) this, db.defaultSerializationSerializer);
+@@ -404,27 +402,14 @@ abstract class SerialClassInfo {
+         LongPacker.packInt(out, classId);
+         ClassInfo classInfo = registered.get(classId);
+ 
+-        if(classInfo.isExternalizable){
+-            Externalizable o = (Externalizable) obj;
+-            DataInputOutput out2 = (DataInputOutput) out;
+-            try{
+-                out2.serializer = this;
+-                out2.objectStack = objectStack;
+-                o.writeExternal(out2);
+-            }finally {
+-                out2.serializer = null;
+-                out2.objectStack = null;
+-            }
+-            return;
+-        }
++        ObjectStreamField[] fields = getFields(obj.getClass());
+ 
+         
+-        if(classInfo.isEnum) {
++        if(classInfo.getEnum() > 0) {
+         	int ordinal = ((Enum)obj).ordinal();
+             LongPacker.packInt(out, ordinal);
+         }
+ 
+-        ObjectStreamField[] fields = getFields(obj.getClass());
+         LongPacker.packInt(out, fields.length);
+ 
+         for (ObjectStreamField f : fields) {
+@@ -457,7 +442,7 @@ abstract class SerialClassInfo {
+ 
+             Object o;
+             
+-            if(classInfo.isEnum) {
++            if(classInfo.getEnum() > 0) {
+                 int ordinal = LongPacker.unpackInt(in);
+                 o = clazz.getEnumConstants()[ordinal];
+             }
+@@ -465,28 +450,15 @@ abstract class SerialClassInfo {
+             	o = createInstance(clazz, Object.class);
+             }
+             
+-            objectStack.add(o);
+-
+-            if(classInfo.isExternalizable){
+-                Externalizable oo = (Externalizable) o;
+-                DataInputOutput in2 = (DataInputOutput) in;
+-                try{
+-                    in2.serializer = this;
+-                    in2.objectStack = objectStack;
+-                    oo.readExternal(in2);
+-                }finally {
+-                    in2.serializer = null;
+-                    in2.objectStack = null;
+-                }
++            objectStack.add(o);  
++
++            int fieldCount = LongPacker.unpackInt(in);
++            for (int i = 0; i < fieldCount; i++) {
++                int fieldId = LongPacker.unpackInt(in);
++                FieldInfo f = classInfo.getField(fieldId);
++                Object fieldValue = deserialize(in, objectStack);
++                setFieldValue(f, o, fieldValue);
+ 
+-            }else{
+-                int fieldCount = LongPacker.unpackInt(in);
+-                for (int i = 0; i < fieldCount; i++) {
+-                    int fieldId = LongPacker.unpackInt(in);
+-                    FieldInfo f = classInfo.getField(fieldId);
+-                    Object fieldValue = deserialize(in, objectStack);
+-                    setFieldValue(f, o, fieldValue);
+-                }
+             }
+             return o;
+         } catch (Exception e) {
+diff --git a/src/main/java/net/kotek/jdbm/Serialization.java b/src/main/java/net/kotek/jdbm/Serialization.java
+index 3ffab30..d8843be 100644
+--- a/src/main/java/net/kotek/jdbm/Serialization.java
++++ b/src/main/java/net/kotek/jdbm/Serialization.java
+@@ -56,7 +56,7 @@ public class Serialization extends SerialClassInfo implements Serializer {
+     public Serialization() {
+         super(null,0L,new ArrayList<ClassInfo>());
+         // Add java.lang.Object as registered class
+-        registered.add(new ClassInfo(Object.class.getName(), new FieldInfo[]{},false,false));
++        registered.add(new ClassInfo(Object.class.getName(), new FieldInfo[]{}));
+     }
+ 
+     /**
+@@ -64,9 +64,11 @@ public class Serialization extends SerialClassInfo implements Serializer {
+      */
+     public byte[] serialize(Object obj)
+             throws IOException {
+-        DataInputOutput ba = new DataInputOutput();
++        ByteArrayOutputStream ba = new ByteArrayOutputStream();
++        DataOutputStream da = new DataOutputStream(ba);
++        serialize(da, obj);
+ 
+-        serialize(ba, obj);
++        da.close();
+ 
+         return ba.toByteArray();
+     }
+@@ -591,8 +593,9 @@ public class Serialization extends SerialClassInfo implements Serializer {
+      * @throws ClassNotFoundException
+      */
+     public Object deserialize(byte[] buf) throws ClassNotFoundException, IOException {
+-        DataInputOutput bs = new DataInputOutput(buf);
+-        Object ret = deserialize(bs);
++        ByteArrayInputStream bs = new ByteArrayInputStream(buf);
++        DataInputStream das = new DataInputStream(bs);
++        Object ret = deserialize(das);
+         if (bs.available() != 0)
+             throw new InternalError("bytes left: " + bs.available());
+ 

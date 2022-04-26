@@ -3,3 +3,5 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 2,67a5d6ff2e2be12f77851894b4ad4fe25770f76d,10538e67a06f8c824c32999b6fb70d8f292e149d,73,https://github.com/jankotek/JDBM3/issues/73
 3,275f231026dc49aa8fc9556064442a6420364fb3,d247a9254a002fb8f0a29a27589b4f303094c0d8,74,https://github.com/jankotek/JDBM3/issues/74
 4,8ff1d770b95bfe74a46649312371dd67422442e0,67a5d6ff2e2be12f77851894b4ad4fe25770f76d,74,https://github.com/jankotek/JDBM3/issues/74
+5,7621c122f4fa31232d8a1b2489e2f65eed6b93ba,c4bebaf3202ca5b6796cdd08d8c7153493a143e3,64,https://github.com/jankotek/JDBM3/issues/64
+6,f7de66797bf7e38bc529a1aee005d493b7f8f8ba,6b2d997804a454828a8b9b237d876c86ae89de3c,89,https://github.com/jankotek/JDBM3/issues/89
