@@ -1,0 +1,37 @@
+diff --git a/src/main/java/com/payneteasy/tlv/BerTlvParser.java b/src/main/java/com/payneteasy/tlv/BerTlvParser.java
+index 40b5227..a6a53a9 100644
+--- a/src/main/java/com/payneteasy/tlv/BerTlvParser.java
++++ b/src/main/java/com/payneteasy/tlv/BerTlvParser.java
+@@ -81,7 +81,7 @@ public class BerTlvParser {
+         if(tag.isConstructed()) {
+ 
+             ArrayList<BerTlv> list = new ArrayList<BerTlv>();
+-            addChildren(aLevel, aBuf, aOffset + tagBytesCount + lengthBytesCount, levelPadding, lengthBytesCount, valueLength, list);
++            addChildren(aLevel, aBuf, aOffset, levelPadding, tagBytesCount, lengthBytesCount, valueLength, list);
+ 
+             int resultOffset = aOffset + tagBytesCount + lengthBytesCount + valueLength;
+             if(log.isDebugEnabled()) {
+@@ -108,19 +108,19 @@ public class BerTlvParser {
+      * @param aBuf            buffer
+      * @param aOffset         offset (first byte)
+      * @param levelPadding    level padding (for debug)
+      * @param aDataBytesCount data bytes count
+      * @param valueLength     length
+      * @param list            list to add
+      */
+-    private void addChildren(int aLevel, byte[] aBuf, int aOffset, String levelPadding, int aDataBytesCount, int valueLength, ArrayList<BerTlv> list) {
+-        int startPosition = aOffset;
++    private void addChildren(int aLevel, byte[] aBuf, int aOffset, String levelPadding, int aTagBytesCount, int aDataBytesCount, int valueLength, ArrayList<BerTlv> list) {
++        int startPosition = aOffset + aTagBytesCount + aDataBytesCount;
+         int len = valueLength;
+-        while (startPosition < aOffset + valueLength ) {
++        while (startPosition <= aOffset + valueLength) {
+             ParseResult result = parseWithResult(aLevel+1, aBuf, startPosition, len);
+             list.add(result.tlv);
+ 
+             startPosition = result.offset;
+-            len           = (aOffset + valueLength) - startPosition;
++            len           = valueLength - startPosition;
+ 
+             if(log.isDebugEnabled()) {
+                 log.debug("{}level {}: adding {} with offset {}, startPosition={}, aDataBytesCount={}, valueLength={}"

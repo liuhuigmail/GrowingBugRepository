@@ -1,0 +1,39 @@
+diff --git a/src/test/java/com/github/nhuray/dropwizard/spring/SpringBundleTest.java b/src/test/java/com/github/nhuray/dropwizard/spring/SpringBundleTest.java
+index 8abe44b..1fc686b 100644
+--- a/src/test/java/com/github/nhuray/dropwizard/spring/SpringBundleTest.java
++++ b/src/test/java/com/github/nhuray/dropwizard/spring/SpringBundleTest.java
+@@ -17,7 +17,6 @@ import org.mockito.MockitoAnnotations;
+ import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+ 
+ import static org.hamcrest.core.Is.is;
+-import static org.hamcrest.core.IsInstanceOf.instanceOf;
+ import static org.junit.Assert.assertNotNull;
+ import static org.junit.Assert.assertThat;
+ import static org.mockito.Mockito.verify;
+@@ -32,11 +31,9 @@ public class SpringBundleTest {
+ 
+     private SpringBundle bundle;
+ 
+-    private AnnotationConfigApplicationContext context;
+-
+     @Before
+     public void setup() {
+-        context = new AnnotationConfigApplicationContext();
++        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+         context.scan("hello");
+         bundle = new SpringBundle(context, true, true);
+ 
+@@ -123,13 +120,4 @@ public class SpringBundleTest {
+         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("test"); // active context
+         bundle = new SpringBundle(context, false, true);
+     }
+-
+-    @Test
+-    public void registerEnvironment() throws Exception {
+-        // When
+-        bundle.run(configuration, environment);
+-
+-        // Then
+-        assertThat(context.getBean("dw-environment"), instanceOf(Environment.class));
+-    }
+ }

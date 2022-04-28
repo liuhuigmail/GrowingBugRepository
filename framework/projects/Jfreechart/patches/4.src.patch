@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/jfree/chart/plot/SpiderWebPlot.java b/src/main/java/org/jfree/chart/plot/SpiderWebPlot.java
+index dce1384e..2ce74b6c 100644
+--- a/src/main/java/org/jfree/chart/plot/SpiderWebPlot.java
++++ b/src/main/java/org/jfree/chart/plot/SpiderWebPlot.java
+@@ -444,10 +444,6 @@ public class SpiderWebPlot extends Plot implements Cloneable, Serializable {
+      * @see #getHeadPercent()
+      */
+     public void setHeadPercent(double percent) {
+-        if (percent < 0.0) {
+-            throw new IllegalArgumentException(
+-                    "Percentage outside valid range.");
+-        }
+         this.headPercent = percent;
+         fireChangeEvent();
+     }
+diff --git a/src/main/java/org/jfree/data/time/Week.java b/src/main/java/org/jfree/data/time/Week.java
+index 83c97bad..7504115f 100644
+--- a/src/main/java/org/jfree/data/time/Week.java
++++ b/src/main/java/org/jfree/data/time/Week.java
+@@ -129,7 +129,7 @@ public class Week extends RegularTimePeriod implements Serializable {
+      * @param year  the year (1900 to 9999).
+      */
+     public Week(int week, int year) {
+-        if ((week < FIRST_WEEK_IN_YEAR) || (week > LAST_WEEK_IN_YEAR)) {
++        if ((week < FIRST_WEEK_IN_YEAR) && (week > LAST_WEEK_IN_YEAR)) {
+             throw new IllegalArgumentException(
+                     "The 'week' argument must be in the range 1 - 53.");
+         }
+@@ -145,7 +145,7 @@ public class Week extends RegularTimePeriod implements Serializable {
+      * @param year  the year (1900 to 9999).
+      */
+     public Week(int week, Year year) {
+-        if ((week < FIRST_WEEK_IN_YEAR) || (week > LAST_WEEK_IN_YEAR)) {
++        if ((week < FIRST_WEEK_IN_YEAR) && (week > LAST_WEEK_IN_YEAR)) {
+             throw new IllegalArgumentException(
+                     "The 'week' argument must be in the range 1 - 53.");
+         }

@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/semux/core/PendingManager.java b/src/main/java/org/semux/core/PendingManager.java
+index 189a7b21..c7580cec 100644
+--- a/src/main/java/org/semux/core/PendingManager.java
++++ b/src/main/java/org/semux/core/PendingManager.java
+@@ -53,7 +53,8 @@ public class PendingManager implements Runnable, BlockchainListener {
+         }
+     };
+ 
+-    private static final int CACHE_SIZE = 128 * 1024;
++    private static final int CACHE_SIZE = 64 * 1024;
++    private static final int MAX_NONCE_JUMP = 1024;
+ 
+     private Blockchain chain;
+     private ChannelManager channelMgr;
+@@ -105,7 +106,7 @@ public class PendingManager implements Runnable, BlockchainListener {
+              * queues from hitting the NET_MAX_QUEUE_SIZE, especially when the network load
+              * is heavy.
+              */
+-            long rate = Config.NET_MAX_QUEUE_RATE * 3 / 2;
++            long rate = Config.NET_MAX_QUEUE_RATE * 2;
+             this.validateFuture = exec.scheduleAtFixedRate(this, 0, rate, TimeUnit.MILLISECONDS);
+ 
+             this.chain.addListener(this);
+@@ -324,7 +325,7 @@ public class PendingManager implements Runnable, BlockchainListener {
+         }
+ 
+         // add to cache
+-        if (tx != null && tx.getNonce() > nonce) {
++        if (tx != null && tx.getNonce() > nonce && tx.getNonce() < nonce + MAX_NONCE_JUMP) {
+             cache.put(createKey(tx), tx);
+         }
+ 

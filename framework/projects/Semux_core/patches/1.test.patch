@@ -1,0 +1,81 @@
+diff --git a/src/test/java/org/semux/api/APIHandlerTest.java b/src/test/java/org/semux/api/APIHandlerTest.java
+index 90fed078..4ddb639a 100644
+--- a/src/test/java/org/semux/api/APIHandlerTest.java
++++ b/src/test/java/org/semux/api/APIHandlerTest.java
+@@ -333,9 +333,7 @@ public class APIHandlerTest {
+         Wallet.getInstance().unlock("12345678");
+ 
+         EdDSA key = new EdDSA();
+-        long nonce = api.chain.getAccountState().getAccount(key.toAddress()).getNonce() + 1;
+-        String uri = "/transfer?from=0&to=" + key.toAddressString() + "&value=1000000000&fee=5000000&data=test&nonce="
+-                + nonce;
++        String uri = "/transfer?from=0&to=" + key.toAddressString() + "&value=1000000000&fee=5000000&data=test";
+         JSONObject response = request(uri);
+         assertTrue(response.getBoolean("success"));
+         assertNotNull(response.getString("result"));
+@@ -353,9 +351,8 @@ public class APIHandlerTest {
+         Wallet.getInstance().unlock("12345678");
+ 
+         EdDSA key = Wallet.getInstance().getAccounts().get(0);
+-        long nonce = api.chain.getAccountState().getAccount(key.toAddress()).getNonce() + 1;
+         String uri = "/delegate?from=0&to=" + key.toAddressString() + "&value=" + Config.MIN_DELEGATE_FEE
+-                + "&fee=5000000&data=test&nonce=" + nonce;
++                + "&fee=5000000&data=test";
+         JSONObject response = request(uri);
+         assertTrue(response.getBoolean("success"));
+         assertNotNull(response.getString("result"));
+@@ -373,9 +370,7 @@ public class APIHandlerTest {
+         Wallet.getInstance().unlock("12345678");
+ 
+         EdDSA key = new EdDSA();
+-        long nonce = api.chain.getAccountState().getAccount(key.toAddress()).getNonce() + 1;
+-        String uri = "/vote?from=0&to=" + key.toAddressString() + "&value=1000000000&fee=5000000&data=test&nonce="
+-                + nonce;
++        String uri = "/vote?from=0&to=" + key.toAddressString() + "&value=1000000000&fee=5000000&data=test";
+         JSONObject response = request(uri);
+         assertTrue(response.getBoolean("success"));
+         assertNotNull(response.getString("result"));
+@@ -393,9 +388,7 @@ public class APIHandlerTest {
+         Wallet.getInstance().unlock("12345678");
+ 
+         EdDSA key = new EdDSA();
+-        long nonce = api.chain.getAccountState().getAccount(key.toAddress()).getNonce() + 1;
+-        String uri = "/unvote?from=0&to=" + key.toAddressString() + "&value=1000000000&fee=5000000&data=test&nonce="
+-                + nonce;
++        String uri = "/unvote?from=0&to=" + key.toAddressString() + "&value=1000000000&fee=5000000&data=test";
+         JSONObject response = request(uri);
+         assertTrue(response.getBoolean("success"));
+         assertNotNull(response.getString("result"));
+diff --git a/src/test/java/org/semux/bench/SemuxPerformance.java b/src/test/java/org/semux/bench/SemuxPerformance.java
+index c16debc1..8989d627 100644
+--- a/src/test/java/org/semux/bench/SemuxPerformance.java
++++ b/src/test/java/org/semux/bench/SemuxPerformance.java
+@@ -20,20 +20,7 @@ public class SemuxPerformance {
+ 
+     private static Wallet wallet = Wallet.getInstance();
+ 
+-    public static long getNonce(EdDSA key) throws IOException {
+-        String cmd = "get_nonce";
+-
+-        JSONObject response = ApiUtil.request(cmd, "address", key.toAddress());
+-        if (response.getBoolean("success")) {
+-            return response.getLong("result");
+-        } else {
+-            throw new IOException(response.toString());
+-        }
+-    }
+-
+     public static void testTransfer(EdDSA key, int n) throws IOException {
+-        long startNonce = getNonce(key) + 1;
+-
+         String cmd = "transfer";
+ 
+         for (int i = 0; i < n; i++) {
+@@ -42,7 +29,6 @@ public class SemuxPerformance {
+             params.put("to", Bytes.random(20));
+             params.put("value", 1 * Unit.MILLI_SEM);
+             params.put("fee", Config.MIN_TRANSACTION_FEE);
+-            params.put("nonce", startNonce + i);
+             params.put("data", Bytes.EMPY_BYTES);
+ 
+             JSONObject response = ApiUtil.request(cmd, params);

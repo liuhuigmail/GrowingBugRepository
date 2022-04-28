@@ -187,3 +187,8 @@ Tabula_java	tabula-java	https://github.com/tabulapdf/tabula-java.git	github	tabu
 Ber_tlv	ber-tlv	https://github.com/evsinev/ber-tlv.git	github	evsinev/ber-tlv	/#(\\d+)/mi	.
 Jfreechart	jfreechart	https://github.com/jfree/jfreechart.git	github	jfree/jfreechart	/#(\\d+)/mi	.
 Commons_suncalc	commons-suncalc	https://github.com/shred/commons-suncalc.git	github	shred/commons-suncalc	/#(\\d+)/mi	.
+Dropwizard_spring	dropwizard-spring	https://github.com/nhuray/dropwizard-spring.git	github	nhuray/dropwizard-spring	/#(\\d+)/mi	.
+Semux_core	semux-core	https://github.com/semuxproject/semux-core.git	github	semuxproject/semux-core	/#(\\d+)/mi	.
+Solarpositioning	solarpositioning	https://github.com/KlausBrunner/solarpositioning.git	github	KlausBrunner/solarpositioning	/#(\\d+)/mi	.
+Sparkey_java	sparkey-java	https://github.com/spotify/sparkey-java.git	github	spotify/sparkey-java	/#(\\d+)/mi	.
+Suffixtree	suffixtree	https://github.com/abahgat/suffixtree.git	github	abahgat/suffixtree	/#(\\d+)/mi	.

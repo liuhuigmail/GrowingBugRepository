@@ -1,0 +1,3 @@
+com.github.nhuray.dropwizard.spring.config.ConfigurationPlaceholderConfigurer
+com.github.nhuray.dropwizard.spring.config.JsonPropertiesPersister
+com.github.nhuray.dropwizard.spring.SpringBundle

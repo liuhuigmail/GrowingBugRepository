@@ -1,0 +1,7 @@
+com.spotify.sparkey.BytesWrittenTest
+com.spotify.sparkey.IndexHashTest
+com.spotify.sparkey.SparkeyTest
+com.spotify.sparkey.extra.ReloadableSparkeyReaderTest
+com.spotify.sparkey.extra.ThreadLocalSparkeyReaderTest
+com.spotify.sparkey.system.BaseSystemTest
+com.spotify.sparkey.system.CorrectnessTest

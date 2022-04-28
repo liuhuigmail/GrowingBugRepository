@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/semux/api/APIHandler.java b/src/main/java/org/semux/api/APIHandler.java
+index 6f39889f..a5158daa 100644
+--- a/src/main/java/org/semux/api/APIHandler.java
++++ b/src/main/java/org/semux/api/APIHandler.java
+@@ -278,7 +278,6 @@ public class APIHandler {
+         String pTo = params.get("to");
+         String pValue = params.get("value");
+         String pFee = params.get("fee");
+-        String pNonce = params.get("nonce");
+         String pData = params.get("data");
+ 
+         // [1] check if wallet is unlocked
+@@ -323,7 +322,7 @@ public class APIHandler {
+             long fee = Long.parseLong(pFee);
+ 
+             // nonce, timestamp and data
+-            long nonce = Long.parseLong(pNonce);
++            long nonce = pendingMgr.getAccountNonce(from.toAddress()) + 1;
+             long timestamp = System.currentTimeMillis();
+             byte[] data = (pData == null) ? Bytes.EMPY_BYTES : Hex.parse(pData);
+ 

@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,354a31797daa0343a9dd7b2847533423e4e0dea5,bafc489004e038d698a81eb80211e27b0df564b0,1,https://github.com/nhuray/dropwizard-spring/pull/1

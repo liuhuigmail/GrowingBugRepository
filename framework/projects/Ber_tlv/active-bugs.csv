@@ -1,3 +1,5 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,1c8d392cd20c29adead72078bbac8b63ffc9e88f,5f6bdef7604cd9e787da1d9ebd55d1d660ad98e3,13,https://github.com/evsinev/ber-tlv/issues/13
 2,1c8d392cd20c29adead72078bbac8b63ffc9e88f,e3f58a4b9c3d36ff2c50b22bab6996b5bbf8f161,14,https://github.com/evsinev/ber-tlv/pull/14
+3,b55186821a43758ddff4ebd88c0ccc7b5124b7d6,f19dd6bc41a0b12c10cf56028ba4b9db5c9e1971,1,https://github.com/evsinev/ber-tlv/issues/1
+4,4cb2adcfb181b3140e621af74a24f1b80e72fcfc,1d887ab7bb49e617205b3ab5e509f44f96162342,10,https://github.com/evsinev/ber-tlv/issues/10

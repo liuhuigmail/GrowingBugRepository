@@ -1,0 +1,30 @@
+diff --git a/src/main/java/com/github/nhuray/dropwizard/spring/SpringBundle.java b/src/main/java/com/github/nhuray/dropwizard/spring/SpringBundle.java
+index 3557ab2..080ea95 100644
+--- a/src/main/java/com/github/nhuray/dropwizard/spring/SpringBundle.java
++++ b/src/main/java/com/github/nhuray/dropwizard/spring/SpringBundle.java
+@@ -84,9 +84,8 @@ public class SpringBundle<T extends Configuration> implements ConfiguredBundle<T
+         // Register a placeholder to resolve Dropwizard Configuration as properties.
+         if (placeholderConfigurer != null) registerPlaceholder(configuration, context);
+ 
+         // Register the Dropwizard environment
+-        registerEnvironment(environment, context);
+ 
+         // Refresh context if is not active
+         if (!context.isActive()) context.refresh();
+ 
+@@ -266,15 +263,10 @@ public class SpringBundle<T extends Configuration> implements ConfiguredBundle<T
+     }
+ 
+ 
+     /**
+      * Register Dropwizard Configuration as a Bean Spring.
+      *
+      * @param environment Dropwizard {@link Environment}
+      * @param context     Spring application context
+      */
+-    private void registerEnvironment(Environment environment, ConfigurableApplicationContext context) {
+-        ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
+-        beanFactory.registerSingleton("dw-environment", environment);
+-        LOG.info("Registering Dropwizard Environment under name : dw-environment");
+-    }
+ }

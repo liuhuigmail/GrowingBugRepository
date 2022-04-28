@@ -1,0 +1,52 @@
+diff --git a/src/test/java/org/semux/core/PendingManagerTest.java b/src/test/java/org/semux/core/PendingManagerTest.java
+index 45446d66..6010c6d1 100644
+--- a/src/test/java/org/semux/core/PendingManagerTest.java
++++ b/src/test/java/org/semux/core/PendingManagerTest.java
+@@ -21,7 +21,6 @@ import org.semux.core.state.AccountState;
+ import org.semux.crypto.EdDSA;
+ import org.semux.db.MemoryDB;
+ import org.semux.net.ChannelManager;
+-import org.semux.utils.ArrayUtil;
+ import org.semux.utils.Bytes;
+ 
+ public class PendingManagerTest {
+@@ -35,7 +34,7 @@ public class PendingManagerTest {
+     private static TransactionType type = TransactionType.TRANSFER;
+     private static byte[] from = new EdDSA().toAddress();
+     private static byte[] to = new EdDSA().toAddress();
+-    private static long value = 1 * Unit.MILLI_SEM;
++    private static long value = 100 * Unit.MILLI_SEM;
+     private static long fee = Config.MIN_TRANSACTION_FEE;
+ 
+     private static EdDSA key = new EdDSA();
+@@ -46,7 +45,7 @@ public class PendingManagerTest {
+         channelMgr = new ChannelManager();
+ 
+         accountState = chain.getAccountState();
+-        accountState.getAccount(from).setBalance(10000 * Unit.SEM);
++        accountState.getAccount(from).setBalance(2 * Unit.SEM);
+     }
+ 
+     @Before
+@@ -101,21 +100,6 @@ public class PendingManagerTest {
+         assertEquals(3, pendingMgr.getTransactions().size());
+     }
+ 
+-    @Test
+-    public void testHighVolumeTransaction() throws InterruptedException {
+-        long now = System.currentTimeMillis();
+-        long nonce = accountState.getAccount(from).getNonce();
+-
+-        int[] perm = ArrayUtil.permutation(5000);
+-        for (int p : perm) {
+-            Transaction tx = new Transaction(type, from, to, value, fee, nonce + p, now, Bytes.EMPY_BYTES).sign(key);
+-            pendingMgr.addTransaction(tx);
+-        }
+-
+-        Thread.sleep(8000);
+-        assertEquals(perm.length, pendingMgr.getTransactions().size());
+-    }
+-
+     @Test
+     public void testNewBlock() throws InterruptedException {
+         long now = System.currentTimeMillis();

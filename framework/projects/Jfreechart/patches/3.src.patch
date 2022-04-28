@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/jfree/data/DefaultKeyedValues2D.java b/src/main/java/org/jfree/data/DefaultKeyedValues2D.java
+index 9a2ac3d5..6ac7d509 100644
+--- a/src/main/java/org/jfree/data/DefaultKeyedValues2D.java
++++ b/src/main/java/org/jfree/data/DefaultKeyedValues2D.java
+@@ -165,7 +187,12 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
+     public int getRowIndex(Comparable key) {
+         Args.nullNotPermitted(key, "key");
+         if (this.sortRowKeys) {
+-            return Collections.binarySearch(this.rowKeys, key);
++            int index = Collections.binarySearch(this.rowKeys, key);
++            if (index < 0) {
++                return -1;
++            } else {
++                return index;
++            }
+         }
+         else {
+             return this.rowKeys.indexOf(key);
+
+ 

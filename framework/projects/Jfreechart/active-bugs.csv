@@ -1,3 +1,5 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,1e844059728b58800230dde274852c4418c4ad25,d98a34cce103a3a03080084711cf227dc8657e42,76,https://github.com/jfree/jfreechart/pull/76
 2,e9686b8b93476437cc8c5892189ca9df17e6f9d9,6597144e4cc722e70daa6843b396a50999f6f622,141,https://github.com/jfree/jfreechart/issues/141
+3,6597144e4cc722e70daa6843b396a50999f6f622,8bc4967c3ff266dba48e34274d90824f88fca34a,78,https://github.com/jfree/jfreechart/pull/78
+4,952e96e8a3297c9bdd96d059aaf6212a3e6a0cfa,97d995549452b1e966c9391b07e9532f080ad41c,137,https://github.com/jfree/jfreechart/pull/137

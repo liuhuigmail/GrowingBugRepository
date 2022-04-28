@@ -1,0 +1,7 @@
+com.github.nhuray.dropwizard.spring.SpringBundleTest
+hello.config.HelloAppConfiguration
+hello.config.HelloConfiguration
+hello.health.HelloHealthCheck
+hello.resources.HelloResource
+hello.service.HelloService
+hello.tasks.HelloTask

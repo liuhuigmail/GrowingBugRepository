@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/shredzone/commons/suncalc/SunTimes.java b/src/main/java/org/shredzone/commons/suncalc/SunTimes.java
+index 7fd2c33..395853a 100644
+--- a/src/main/java/org/shredzone/commons/suncalc/SunTimes.java
++++ b/src/main/java/org/shredzone/commons/suncalc/SunTimes.java
+@@ -273,8 +273,6 @@ public class SunTimes {
+             boolean alwaysUp = false;
+             boolean alwaysDown = false;
+             double ye;
+-            double noonYe = 0.0;
+-            double nadirYe = 0.0;
+ 
+             int hour = 0;
+             int maxHours = fullCycle ? 365 * 24 : 24;
+@@ -325,15 +323,9 @@ public class SunTimes {
+                         double xeHour = qi.getXe() + hour;
+                         if (xeHour >= 0.0 && xeHour < 24.0) {
+                             if (qi.isMaximum()) {
+-                                if (noon == null || ye > noonYe) {
+                                     noon = xeHour;
+-                                    noonYe = ye;
+-                                }
+                             } else {
+-                                if (nadir == null || ye < nadirYe) {
+                                     nadir = xeHour;
+-                                    nadirYe = ye;
+-                                }
+                             }
+                         }
+                     }

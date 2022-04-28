@@ -1,0 +1,8 @@
+org.semux.api.APIHandlerTest
+org.semux.consensus.SemuxBFTTest
+org.semux.core.PendingManagerTest
+org.semux.net.NodeManagerTest
+org.semux.net.PeerClientTest
+org.semux.net.PeerServerTest
+org.semux.net.SemuxP2pHandlerTest
+org.semux.net.msg.MessageQueueTest

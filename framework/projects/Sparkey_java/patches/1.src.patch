@@ -1,0 +1,23 @@
+diff --git a/src/main/java/com/spotify/sparkey/Sparkey.java b/src/main/java/com/spotify/sparkey/Sparkey.java
+index 0c345b4..b8389ee 100644
+--- a/src/main/java/com/spotify/sparkey/Sparkey.java
++++ b/src/main/java/com/spotify/sparkey/Sparkey.java
+@@ -129,17 +129,11 @@ public final class Sparkey {
+   }
+ 
+   private static File setEnding(File file, String ending) {
+     String fileName = file.getName();
+     if (fileName.endsWith(ending)) {
+       return file;
+     }
+-    if (fileName.endsWith(".spi") || fileName.endsWith(".spl")) {
+-      return new File(file.getParentFile(), changeEnding(fileName, ending));
+-    }
+-    if (fileName.endsWith(".")) {
+-      return new File(file.getParentFile(), fileName.substring(0, fileName.length() - 1) + ending);
+-    }
+-    return new File(file.getParentFile(), fileName + ending);
++    return new File(file.getParentFile(), changeEnding(file.getName(), ending));
+   }
+ 
+   private static String changeEnding(String s, String ending) {
