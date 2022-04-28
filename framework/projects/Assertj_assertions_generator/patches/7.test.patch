@@ -1,0 +1,16 @@
+diff --git a/src/test/java/org/fest/assertions/generator/util/ClassUtilTest.java b/src/test/java/org/fest/assertions/generator/util/ClassUtilTest.java
+index 108a45a..a7d98cb 100644
+--- a/src/test/java/org/fest/assertions/generator/util/ClassUtilTest.java
++++ b/src/test/java/org/fest/assertions/generator/util/ClassUtilTest.java
+@@ -96,11 +96,4 @@ public class ClassUtilTest {
+         Player.class.getMethod("isInTeam", String.class));
+   }
+ 
+-  @Test
+-  public void should_also_return_inherited_getters_methods() throws Exception {
+-    List<Method> playerGetterMethods = getterMethodsOf(Movie.class);
+-    assertThat(playerGetterMethods).containsOnly(Movie.class.getMethod("getReleaseDate", NO_PARAMS),
+-        ArtWork.class.getMethod("getTitle", NO_PARAMS));
+-  }
+-
+ }

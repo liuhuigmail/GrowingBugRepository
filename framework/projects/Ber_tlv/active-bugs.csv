@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,1c8d392cd20c29adead72078bbac8b63ffc9e88f,5f6bdef7604cd9e787da1d9ebd55d1d660ad98e3,13,https://github.com/evsinev/ber-tlv/issues/13
+2,1c8d392cd20c29adead72078bbac8b63ffc9e88f,e3f58a4b9c3d36ff2c50b22bab6996b5bbf8f161,14,https://github.com/evsinev/ber-tlv/pull/14

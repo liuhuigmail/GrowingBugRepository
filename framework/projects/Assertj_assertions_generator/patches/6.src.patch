@@ -1,0 +1,77 @@
+diff --git a/src/main/java/org/fest/assertions/generator/description/converter/ClassToClassDescriptionConverter.java b/src/main/java/org/fest/assertions/generator/description/converter/ClassToClassDescriptionConverter.java
+index 4a2a4ee..68c402e 100644
+--- a/src/main/java/org/fest/assertions/generator/description/converter/ClassToClassDescriptionConverter.java
++++ b/src/main/java/org/fest/assertions/generator/description/converter/ClassToClassDescriptionConverter.java
+@@ -12,11 +12,7 @@
+  */
+ package org.fest.assertions.generator.description.converter;
+ 
+-import static org.fest.assertions.generator.description.TypeName.JAVA_LANG_PACKAGE;
+-import static org.fest.assertions.generator.util.ClassUtil.getClassesRelatedTo;
+-import static org.fest.assertions.generator.util.ClassUtil.getterMethodsOf;
+-import static org.fest.assertions.generator.util.ClassUtil.isIterable;
+-import static org.fest.assertions.generator.util.ClassUtil.propertyNameOf;
++import static org.fest.assertions.generator.util.ClassUtil.*;
+ 
+ import java.lang.reflect.Method;
+ import java.lang.reflect.ParameterizedType;
+@@ -75,10 +71,7 @@ public class ClassToClassDescriptionConverter implements ClassDescriptionConvert
+         ParameterizedType parameterizedType = (ParameterizedType) getter.getGenericReturnType();
+         Class<?> actualParameterClass = (Class<?>) parameterizedType.getActualTypeArguments()[0];
+         classesToImport.add(actualParameterClass);
+-      } else if (getter.getGenericReturnType() instanceof ParameterizedType) {
+         // return type is generic type, add it and all its parameters type.
+-        ParameterizedType parameterizedType = (ParameterizedType) getter.getGenericReturnType();
+-        classesToImport.addAll(getClassesRelatedTo(parameterizedType));
+       } else {
+         // return type is not generic type, simply add it.
+         classesToImport.add(propertyType);
+@@ -87,9 +80,7 @@ public class ClassToClassDescriptionConverter implements ClassDescriptionConvert
+     // convert to TypeName, excluding primitive or types in java.lang that don't need to be imported.
+     Set<TypeName> typeToImports = new TreeSet<TypeName>();
+     for (Class<?> propertyType : classesToImport) {
+-      if (!propertyType.isPrimitive() && !JAVA_LANG_PACKAGE.equals(propertyType.getPackage().getName())) {
+         typeToImports.add(new TypeName(propertyType));
+-      }
+     }
+     return typeToImports;
+   }
+diff --git a/src/main/java/org/fest/assertions/generator/util/ClassUtil.java b/src/main/java/org/fest/assertions/generator/util/ClassUtil.java
+index 0d0ef86..eccbda9 100644
+--- a/src/main/java/org/fest/assertions/generator/util/ClassUtil.java
++++ b/src/main/java/org/fest/assertions/generator/util/ClassUtil.java
+@@ -214,34 +214,12 @@ public class ClassUtil {
+       }
+     }
+     return getters;
+-  }
+ 
+-  public static Set<Class<?>> getClassesRelatedTo(Type type) {
+-    Set<Class<?>> classes = new HashSet<Class<?>>();
+ 
+     // non generic type : just add current type.
+-    if (type instanceof Class) {
+-      classes.add((Class<?>) type);
+-      return classes;
+-    }
+ 
+     // generic type : add current type and its parameter types
+-    if (type instanceof ParameterizedType) {
+-      ParameterizedType parameterizedType = (ParameterizedType) type;
+-      for (Type actualTypeArgument : parameterizedType.getActualTypeArguments()) {
+-        if (actualTypeArgument instanceof ParameterizedType) {
+-          classes.addAll(getClassesRelatedTo(actualTypeArgument));
+-        } else if (actualTypeArgument instanceof Class) {
+-          classes.add((Class<?>) actualTypeArgument);
+-        }
+         // I'm almost sure we should not arrive here !
+-      }
+-      Type rawType = parameterizedType.getRawType();
+-      if (rawType instanceof Class) {
+-        classes.add((Class<?>) rawType);
+-      }
+-    }
+-    return classes;
+   }
+ 
+ }

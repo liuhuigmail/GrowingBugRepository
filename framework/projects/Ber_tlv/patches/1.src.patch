@@ -1,0 +1,38 @@
+diff --git a/src/main/java/com/payneteasy/tlv/BerTlvBuilder.java b/src/main/java/com/payneteasy/tlv/BerTlvBuilder.java
+index e052c21..3d74463 100644
+--- a/src/main/java/com/payneteasy/tlv/BerTlvBuilder.java
++++ b/src/main/java/com/payneteasy/tlv/BerTlvBuilder.java
+@@ -44,13 +44,13 @@ public class BerTlvBuilder {
+ 
+     public static BerTlvBuilder from(BerTlv aTlv, int bufferSize) {
+         if(aTlv.isConstructed()) {
+-            BerTlvBuilder builder = template(aTlv.getTag(), bufferSize);
++            BerTlvBuilder builder = template(aTlv.getTag());
+             for (BerTlv tlv : aTlv.theList) {
+                 builder.addBerTlv(tlv);
+             }
+             return builder;
+         } else {
+-            return new BerTlvBuilder(null, new byte[bufferSize], 0, bufferSize).addBerTlv(aTlv);
++            return new BerTlvBuilder().addBerTlv(aTlv);
+         }
+     }
+ 
+@@ -59,7 +59,7 @@ public class BerTlvBuilder {
+     }
+ 
+     public static BerTlvBuilder template(BerTag aTemplate, int bufferSize) {
+-        return new BerTlvBuilder(aTemplate, new byte[bufferSize], 0, bufferSize);
++        return new BerTlvBuilder(aTemplate);
+     }
+ 
+     public BerTlvBuilder addEmpty(BerTag aObject) {
+@@ -199,7 +199,7 @@ public class BerTlvBuilder {
+ 
+     public BerTlvBuilder addBerTlv(BerTlv aTlv) {
+         if(aTlv.isConstructed()) {
+-            return add(from(aTlv, theBuffer.length));
++            return add(from(aTlv));
+         } else {
+             return addBytes(aTlv.getTag(), aTlv.getBytesValue());
+         }

@@ -1,0 +1,6 @@
+org.fest.assertions.generator.data.lotr.FellowshipOfTheRing
+org.fest.assertions.generator.data.lotr.Race
+org.fest.assertions.generator.data.lotr.TolkienCharacter
+org.fest.assertions.generator.data.Name
+org.fest.assertions.generator.data.Player
+org.fest.assertions.generator.description.converter.ClassToClassDescriptionConverterTest

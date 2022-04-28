@@ -1,0 +1,3 @@
+org.fest.assertions.generator.data.ArtWork
+org.fest.assertions.generator.data.Movie
+org.fest.assertions.generator.util.ClassUtilTest

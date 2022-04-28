@@ -1,0 +1,146 @@
+diff --git a/src/test/java/org/shredzone/commons/suncalc/Locations.java b/src/test/java/org/shredzone/commons/suncalc/Locations.java
+index 90b6de5..02b73c9 100644
+--- a/src/test/java/org/shredzone/commons/suncalc/Locations.java
++++ b/src/test/java/org/shredzone/commons/suncalc/Locations.java
+@@ -66,10 +66,4 @@ public final class Locations {
+     public static final double[] SYDNEY = new double[] { -33.744272, 151.231291 };
+     public static final TimeZone SYDNEY_TZ = TimeZone.getTimeZone("Australia/Sydney");
+ 
+-    /**
+-     * Santa Monica, CA. To test a fix for issue #18.
+-     */
+-    public static final double[] SANTA_MONICA = new double[] { 34.0, -118.5 };
+-    public static final TimeZone SANTA_MONICA_TZ = TimeZone.getTimeZone("PDT");
+-
+ }
+diff --git a/src/test/java/org/shredzone/commons/suncalc/MoonTimesTest.java b/src/test/java/org/shredzone/commons/suncalc/MoonTimesTest.java
+index 373aa3a..0ad713f 100644
+--- a/src/test/java/org/shredzone/commons/suncalc/MoonTimesTest.java
++++ b/src/test/java/org/shredzone/commons/suncalc/MoonTimesTest.java
+@@ -40,7 +40,7 @@ public class MoonTimesTest {
+         MoonTimes mt = MoonTimes.compute().on(2017, 7, 12).utc().at(COLOGNE)
+                         .truncatedTo(Unit.SECONDS).execute();
+         assertThat(mt.getRise()).as("rise").isEqualTo("2017-07-12T21:25:58Z");
+-        assertThat(mt.getSet()).as("set").isEqualTo("2017-07-12T06:53:27Z");
++        assertThat(mt.getSet()).as("set").isEqualTo("2017-07-12T06:53:19Z");
+         assertThat(mt.isAlwaysUp()).as("alwaysup").isFalse();
+         assertThat(mt.isAlwaysDown()).as("alwaysdown").isFalse();
+     }
+@@ -74,7 +74,7 @@ public class MoonTimesTest {
+         MoonTimes mt5 = MoonTimes.compute().on(2017, 7, 18).utc().at(ALERT).fullCycle()
+                         .truncatedTo(Unit.SECONDS).execute();
+         assertThat(mt5.getRise()).as("rise").isEqualTo("2017-07-27T11:59:07Z");
+-        assertThat(mt5.getSet()).as("set").isEqualTo("2017-07-27T04:07:24Z");
++        assertThat(mt5.getSet()).as("set").isEqualTo("2017-07-27T04:07:14Z");
+         assertThat(mt5.isAlwaysUp()).as("alwaysup").isTrue();
+         assertThat(mt5.isAlwaysDown()).as("alwaysdown").isFalse();
+     }
+@@ -83,12 +83,12 @@ public class MoonTimesTest {
+     public void testWellington() {
+         MoonTimes mt1 = MoonTimes.compute().on(2017, 7, 12).utc().at(WELLINGTON)
+                         .truncatedTo(Unit.SECONDS).execute();
+-        assertThat(mt1.getRise()).as("rise").isEqualTo("2017-07-12T08:05:55Z");
++        assertThat(mt1.getRise()).as("rise").isEqualTo("2017-07-12T08:05:50Z");
+         assertThat(mt1.getSet()).as("set").isEqualTo("2017-07-12T21:57:35Z");
+ 
+         MoonTimes mt2 = MoonTimes.compute().on(2017, 7, 12).timezone("NZ").at(WELLINGTON)
+                         .truncatedTo(Unit.SECONDS).execute();
+-        assertThat(mt2.getRise()).as("rise").isEqualTo("2017-07-12T20:05:55+12:00");
++        assertThat(mt2.getRise()).as("rise").isEqualTo("2017-07-12T20:05:50+12:00");
+         assertThat(mt2.getSet()).as("set").isEqualTo("2017-07-12T09:22:59+12:00");
+     }
+ 
+@@ -96,8 +96,8 @@ public class MoonTimesTest {
+     public void testPuertoWilliams() {
+         MoonTimes mt = MoonTimes.compute().on(2017, 7, 13).utc().at(PUERTO_WILLIAMS)
+                         .truncatedTo(Unit.SECONDS).execute();
+-        assertThat(mt.getRise()).as("rise").isEqualTo("2017-07-13T00:31:33Z");
+-        assertThat(mt.getSet()).as("set").isEqualTo("2017-07-13T14:48:33Z");
++        assertThat(mt.getRise()).as("rise").isEqualTo("2017-07-13T00:31:12Z");
++        assertThat(mt.getSet()).as("set").isEqualTo("2017-07-13T14:48:21Z");
+     }
+ 
+     @Test
+@@ -105,7 +105,7 @@ public class MoonTimesTest {
+         MoonTimes mt = MoonTimes.compute().on(2017, 7, 13).utc().at(SINGAPORE)
+                         .truncatedTo(Unit.SECONDS).execute();
+         assertThat(mt.getRise()).as("rise").isEqualTo("2017-07-13T14:35:11Z");
+-        assertThat(mt.getSet()).as("set").isEqualTo("2017-07-13T02:08:55Z");
++        assertThat(mt.getSet()).as("set").isEqualTo("2017-07-13T02:08:54Z");
+     }
+ 
+     @Test
+diff --git a/src/test/java/org/shredzone/commons/suncalc/SunTimesTest.java b/src/test/java/org/shredzone/commons/suncalc/SunTimesTest.java
+index 19caa3c..1741575 100644
+--- a/src/test/java/org/shredzone/commons/suncalc/SunTimesTest.java
++++ b/src/test/java/org/shredzone/commons/suncalc/SunTimesTest.java
+@@ -67,7 +67,7 @@ public class SunTimesTest {
+             assertThat(times.getRise()).as("%s-rise", angle.name()).isEqualTo(riseTimes.get(angle));
+             assertThat(times.getSet()).as("%s-set", angle.name()).isEqualTo(setTimes.get(angle));
+             assertThat(times.getNoon()).as("noon").isEqualTo("2017-08-10T11:37:38Z");
+-            assertThat(times.getNadir()).as("nadir").isEqualTo("2017-08-10T23:37:51Z");
++            assertThat(times.getNadir()).as("nadir").isEqualTo("2017-08-10T23:37:59Z");
+             assertThat(times.isAlwaysDown()).as("always-down").isFalse();
+             assertThat(times.isAlwaysUp()).as("always-up").isFalse();
+         }
+@@ -78,7 +78,7 @@ public class SunTimesTest {
+         assertThat(times.getRise()).as("rise").isEqualTo("2017-08-10T03:48:59Z");
+         assertThat(times.getSet()).as("set").isEqualTo("2017-08-10T19:25:16Z");
+         assertThat(times.getNoon()).as("noon").isEqualTo("2017-08-10T11:37:38Z");
+-        assertThat(times.getNadir()).as("nadir").isEqualTo("2017-08-10T23:37:51Z");
++        assertThat(times.getNadir()).as("nadir").isEqualTo("2017-08-10T23:37:59Z");
+         assertThat(times.isAlwaysDown()).as("always-down").isFalse();
+         assertThat(times.isAlwaysUp()).as("always-up").isFalse();
+     }
+@@ -145,51 +145,6 @@ public class SunTimesTest {
+         assertTimes(t1, "2019-07-02T21:00:35Z", "2019-07-03T06:58:02Z", "2019-07-03T01:59:18Z");
+     }
+ 
+-    @Test
+-    public void testJustBeforeJustAfter() {
+-        // Thanks to @isomeme for providing the test cases for issue #18.
+-
+-        long shortDuration = 2 * 60 * 1000L;
+-        long longDuration = 30 * 60 * 1000L;
+-        SunTimes.Parameters param = SunTimes.compute().at(SANTA_MONICA).timezone(SANTA_MONICA_TZ)
+-                .on(2020, 5, 3).truncatedTo(Unit.SECONDS);
+-        Date noon = param.execute().getNoon();
+-        Date noonNextDay = param.plusDays(1).execute().getNoon();
+-        long acceptableError = 65 * 1000L;
+-
+-        Date wellBeforeNoon = SunTimes.compute().at(SANTA_MONICA).timezone(SANTA_MONICA_TZ)
+-                .on(new Date(noon.getTime() - longDuration))
+-                .truncatedTo(Unit.SECONDS).execute().getNoon();
+-        assertThat(Math.abs(wellBeforeNoon.getTime() - noon.getTime()))
+-                .as("wellBeforeNoon").isLessThan(acceptableError);
+-
+-        Date justBeforeNoon = SunTimes.compute().at(SANTA_MONICA).timezone(SANTA_MONICA_TZ)
+-                .on(new Date(noon.getTime() - shortDuration))
+-                .truncatedTo(Unit.SECONDS).execute().getNoon();
+-        assertThat(Math.abs(justBeforeNoon.getTime() - noon.getTime()))
+-                .as("justBeforeNoon").isLessThan(acceptableError);
+-
+-        Date justAfterNoon = SunTimes.compute().at(SANTA_MONICA).timezone(SANTA_MONICA_TZ)
+-                .on(new Date(noon.getTime() + shortDuration))
+-                .truncatedTo(Unit.SECONDS).execute().getNoon();
+-        assertThat(Math.abs(justAfterNoon.getTime() - noonNextDay.getTime()))
+-                .as("justAfterNoon").isLessThan(acceptableError);
+-
+-        Date wellAfterNoon = SunTimes.compute().at(SANTA_MONICA).timezone(SANTA_MONICA_TZ)
+-                .on(new Date(noon.getTime() + longDuration))
+-                .truncatedTo(Unit.SECONDS).execute().getNoon();
+-        assertThat(Math.abs(wellAfterNoon.getTime() - noonNextDay.getTime()))
+-                .as("wellAfterNoon").isLessThan(acceptableError);
+-
+-        Date nadirWellAfterNoon = SunTimes.compute().on(wellAfterNoon).timezone(SANTA_MONICA_TZ)
+-                .at(SANTA_MONICA).execute().getNadir();
+-        Date nadirJustBeforeNadir = SunTimes.compute()
+-                .on(new Date(nadirWellAfterNoon.getTime() - shortDuration))
+-                .at(SANTA_MONICA).timezone(SANTA_MONICA_TZ).execute().getNadir();
+-        assertThat(Math.abs(nadirWellAfterNoon.getTime() - nadirJustBeforeNadir.getTime()))
+-                .as("nadir").isLessThan(acceptableError);
+-    }
+-
+     @Test
+     public void testSequence() {
+         long acceptableError = 62 * 1000L;

@@ -1,0 +1,43 @@
+diff --git a/src/main/java/org/jfree/data/general/DatasetUtils.java b/src/main/java/org/jfree/data/general/DatasetUtils.java
+index 3c3a2f80..57c2ea82 100644
+--- a/src/main/java/org/jfree/data/general/DatasetUtils.java
++++ b/src/main/java/org/jfree/data/general/DatasetUtils.java
+@@ -1237,8 +1237,6 @@ public final class DatasetUtils {
+         double maximum = Double.NEGATIVE_INFINITY;
+         int seriesCount = dataset.getSeriesCount();
+ 
+-        if (includeInterval && dataset instanceof IntervalXYZDataset) {
+-            IntervalXYZDataset intervalDataset = (IntervalXYZDataset) dataset;
+             for (int series = 0; series < seriesCount; series++) {
+                 int itemCount = dataset.getItemCount(series);
+                 for (int item = 0; item < itemCount; item++) {
+@@ -1247,29 +1245,7 @@ public final class DatasetUtils {
+                     if (!Double.isNaN(value)) {
+                         minimum = Math.min(minimum, value);
+                         maximum = Math.max(maximum, value);
+-                    }
+                     
+-                    Number start = intervalDataset.getStartZValue(series, item);
+-                    if (start != null && !Double.isNaN(start.doubleValue())) {
+-                        minimum = Math.min(minimum, start.doubleValue());
+-                        maximum = Math.max(maximum, start.doubleValue());                        
+-                    }
+-                    Number end = intervalDataset.getEndZValue(series, item);
+-                    if (end != null && !Double.isNaN(end.doubleValue())) {
+-                        minimum = Math.min(minimum, end.doubleValue());
+-                        maximum = Math.max(maximum, end.doubleValue());                        
+-                    }
+-                }
+-            }            
+-        } else {
+-            for (int series = 0; series < seriesCount; series++) {
+-                int itemCount = dataset.getItemCount(series);
+-                for (int item = 0; item < itemCount; item++) {
+-                    double value = dataset.getZValue(series, item);
+-                    if (!Double.isNaN(value)) {
+-                        minimum = Math.min(minimum, value);
+-                        maximum = Math.max(maximum, value);
+-                    }
+                 }
+             }
+         }

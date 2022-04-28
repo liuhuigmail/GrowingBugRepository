@@ -1,0 +1,52 @@
+diff --git a/src/test/java/com/payneteasy/tlv/BerTlvBuilderTest.java b/src/test/java/com/payneteasy/tlv/BerTlvBuilderTest.java
+index d5fc406..a10544e 100644
+--- a/src/test/java/com/payneteasy/tlv/BerTlvBuilderTest.java
++++ b/src/test/java/com/payneteasy/tlv/BerTlvBuilderTest.java
+@@ -3,7 +3,6 @@ package com.payneteasy.tlv;
+ import org.junit.Assert;
+ import org.junit.Test;
+ 
+-import java.util.ArrayList;
+ import java.util.Arrays;
+ import java.util.List;
+ 
+@@ -185,39 +184,6 @@ public class BerTlvBuilderTest {
+         Assert.assertEquals(1, berTlvs.getList().size());
+     }
+ 
+-    @Test
+-    public void test_large_value_with_error() {
+-        try {
+-            BerTlvBuilder builder = new BerTlvBuilder();
+-            BerTlv berTlv = new BerTlv(new BerTag(0x82), new byte[6 * 1024]);
+-            builder.addBerTlv(berTlv);
+-            Assert.fail("Should throw ArrayIndexOutOfBoundsException because default buffer size is 5KB");
+-        } catch (ArrayIndexOutOfBoundsException e) {
+-            Assert.assertNull(e.getMessage());
+-        }
+-    }
+-
+-    @Test
+-    public void test_large_value() {
+-        final int     sixKilobytes = 6 * 1024;
+-        final int     tagLength    = 1;
+-        final int     valueLength  = 3;
+-        final int     sequenceHeaderSize = 4;
+-        final int     bufferSize   = sequenceHeaderSize + sixKilobytes + tagLength + valueLength;
+-
+-        BerTlv sequenceContent = new BerTlv(new BerTag(0x82), new byte[sixKilobytes]);
+-        ArrayList<BerTlv> berTlvs = new ArrayList<BerTlv>();
+-        berTlvs.add(sequenceContent);
+-        BerTlv sequence = new BerTlv(new BerTag(0x30),
+-                                     berTlvs);
+-
+-        BerTlvBuilder builder = new BerTlvBuilder(null, new byte[bufferSize], 0, bufferSize);
+-        builder.addBerTlv(sequence);
+-
+-        byte[] bytes = builder.buildArray();
+-        Assert.assertEquals(bufferSize, bytes.length);
+-    }
+-
+     @Test
+     public void test_empty() {
+         BerTlv tlv = new BerTlv(new BerTag(0x01), new byte[]{});

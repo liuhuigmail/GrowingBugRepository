@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/fest/assertions/generator/util/ClassUtil.java b/src/main/java/org/fest/assertions/generator/util/ClassUtil.java
+index 75f9b21..fce5207 100644
+--- a/src/main/java/org/fest/assertions/generator/util/ClassUtil.java
++++ b/src/main/java/org/fest/assertions/generator/util/ClassUtil.java
+@@ -184,19 +184,16 @@ public class ClassUtil {
+   }
+ 
+   public static List<Method> getterMethodsOf(Class<?> clazz) {
+-    Method[] methods = clazz.getMethods();
++    Method[] declaredMethods = clazz.getDeclaredMethods();
+     List<Method> getters = new ArrayList<Method>();
+-    for (int i = 0; i < methods.length; i++) {
+-      Method method = methods[i];
+-      if (isNotDefinedInObjectClass(method) && (isStandardGetter(method) || isBooleanGetter(method))) {
++    for (int i = 0; i < declaredMethods.length; i++) {
++      Method method = declaredMethods[i];
++      if (isStandardGetter(method) || isBooleanGetter(method)) {
+         getters.add(method);
+       }
+     }
+     return getters;
+-  }
+ 
+-  private static boolean isNotDefinedInObjectClass(Method method) {
+-    return !method.getDeclaringClass().equals(Object.class);
+   }
+ 
+   public static Set<Class<?>> getClassesRelatedTo(Type type) {

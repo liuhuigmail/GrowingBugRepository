@@ -1,0 +1,198 @@
+diff --git a/src/test/java/org/fest/assertions/generator/data/lotr/Race.java b/src/test/java/org/fest/assertions/generator/data/Race.java
+similarity index 97%
+rename from src/test/java/org/fest/assertions/generator/data/lotr/Race.java
+rename to src/test/java/org/fest/assertions/generator/data/Race.java
+index 790d334..4d0455c 100644
+--- a/src/test/java/org/fest/assertions/generator/data/lotr/Race.java
++++ b/src/test/java/org/fest/assertions/generator/data/Race.java
+@@ -12,7 +12,7 @@
+  * 
+  * Copyright @2010 the original author or authors.
+  */
+-package org.fest.assertions.generator.data.lotr;
++package org.fest.assertions.generator.data;
+ 
+ /**
+  * Race in Tolkien's Lord of the Rings.
+diff --git a/src/test/java/org/fest/assertions/generator/data/lotr/Ring.java b/src/test/java/org/fest/assertions/generator/data/Ring.java
+similarity index 94%
+rename from src/test/java/org/fest/assertions/generator/data/lotr/Ring.java
+rename to src/test/java/org/fest/assertions/generator/data/Ring.java
+index 384edf2..9c5a750 100644
+--- a/src/test/java/org/fest/assertions/generator/data/lotr/Ring.java
++++ b/src/test/java/org/fest/assertions/generator/data/Ring.java
+@@ -12,7 +12,7 @@
+  * 
+  * Copyright @2010 the original author or authors.
+  */
+-package org.fest.assertions.generator.data.lotr;
++package org.fest.assertions.generator.data;
+ 
+ /**
+  * Rings of Power in Tolkien's Lord of the Rings.
+diff --git a/src/test/java/org/fest/assertions/generator/data/lotr/TolkienCharacter.java b/src/test/java/org/fest/assertions/generator/data/TolkienCharacter.java
+similarity index 94%
+rename from src/test/java/org/fest/assertions/generator/data/lotr/TolkienCharacter.java
+rename to src/test/java/org/fest/assertions/generator/data/TolkienCharacter.java
+index 4ea7fd2..a122d9a 100644
+--- a/src/test/java/org/fest/assertions/generator/data/lotr/TolkienCharacter.java
++++ b/src/test/java/org/fest/assertions/generator/data/TolkienCharacter.java
+@@ -12,7 +12,7 @@
+  * 
+  * Copyright @2010 the original author or authors.
+  */
+-package org.fest.assertions.generator.data.lotr;
++package org.fest.assertions.generator.data;
+ 
+ /**
+  * 
+diff --git a/src/test/java/org/fest/assertions/generator/data/lotr/FellowshipOfTheRing.java b/src/test/java/org/fest/assertions/generator/data/lotr/FellowshipOfTheRing.java
+deleted file mode 100644
+index 57c02be..0000000
+--- a/src/test/java/org/fest/assertions/generator/data/lotr/FellowshipOfTheRing.java
++++ /dev/null
+@@ -1,62 +0,0 @@
+-package org.fest.assertions.generator.data.lotr;
+-
+-import static org.fest.assertions.generator.data.lotr.Race.dwarf;
+-import static org.fest.assertions.generator.data.lotr.Race.elf;
+-import static org.fest.assertions.generator.data.lotr.Race.hobbit;
+-import static org.fest.assertions.generator.data.lotr.Race.maia;
+-import static org.fest.assertions.generator.data.lotr.Race.man;
+-
+-import java.util.ArrayList;
+-import java.util.HashMap;
+-import java.util.List;
+-import java.util.Map;
+-
+-public class FellowshipOfTheRing {
+-
+-  protected final TolkienCharacter frodo = new TolkienCharacter("Frodo", 33, hobbit);
+-  protected final TolkienCharacter sam = new TolkienCharacter("Sam", 38, hobbit);
+-  protected final TolkienCharacter merry = new TolkienCharacter("Merry", 36, hobbit);
+-  protected final TolkienCharacter pippin = new TolkienCharacter("Pippin", 28, hobbit);
+-  protected final TolkienCharacter gandalf = new TolkienCharacter("Gandalf", 2020, maia);
+-  protected final TolkienCharacter gimli = new TolkienCharacter("Gimli", 139, dwarf);
+-  protected final TolkienCharacter legolas = new TolkienCharacter("Legolas", 1000, elf);
+-  protected final TolkienCharacter aragorn = new TolkienCharacter("Aragorn", 87, man);
+-  protected final TolkienCharacter boromir = new TolkienCharacter("Boromir", 87, man);
+-  protected final TolkienCharacter sauron = new TolkienCharacter("Sauron", 50000, maia);
+-  protected final TolkienCharacter galadriel = new TolkienCharacter("Legolas", 3000, elf);
+-  protected final TolkienCharacter elrond = new TolkienCharacter("Legolas", 3000, elf);
+-  protected final List<TolkienCharacter> fellowshipOfTheRing = new ArrayList<TolkienCharacter>();
+-
+-  public FellowshipOfTheRing() {
+-    super();
+-    fellowshipOfTheRing.add(frodo);
+-    fellowshipOfTheRing.add(sam);
+-    fellowshipOfTheRing.add(merry);
+-    fellowshipOfTheRing.add(pippin);
+-    fellowshipOfTheRing.add(gandalf);
+-    fellowshipOfTheRing.add(legolas);
+-    fellowshipOfTheRing.add(gimli);
+-    fellowshipOfTheRing.add(aragorn);
+-    fellowshipOfTheRing.add(boromir);
+-  }
+-  
+-  public Map<Race, List<TolkienCharacter>> getFellowsByRace() {
+-    Map<Race, List<TolkienCharacter>> fellowsByRace = new HashMap<Race, List<TolkienCharacter>>();
+-    fellowsByRace.put(man, tolkienCharacterList(aragorn, boromir));
+-    fellowsByRace.put(hobbit, tolkienCharacterList(frodo, sam, pippin, merry));
+-    fellowsByRace.put(dwarf, tolkienCharacterList(gimli));
+-    fellowsByRace.put(elf, tolkienCharacterList(legolas));
+-    fellowsByRace.put(maia, tolkienCharacterList(gandalf));
+-    return fellowsByRace;
+-
+-  }
+-
+-  private static List<TolkienCharacter> tolkienCharacterList(TolkienCharacter... characters) {
+-    List<TolkienCharacter> list = new ArrayList<TolkienCharacter>(characters.length);
+-    for (TolkienCharacter tolkienCharacter : characters) {
+-      list.add(tolkienCharacter);
+-    }
+-    return list;
+-
+-  }
+-}
+diff --git a/src/test/java/org/fest/assertions/generator/description/converter/ClassToClassDescriptionConverterTest.java b/src/test/java/org/fest/assertions/generator/description/converter/ClassToClassDescriptionConverterTest.java
+deleted file mode 100644
+index de713be..0000000
+--- a/src/test/java/org/fest/assertions/generator/description/converter/ClassToClassDescriptionConverterTest.java
++++ /dev/null
+@@ -1,47 +0,0 @@
+-package org.fest.assertions.generator.description.converter;
+-
+-import static org.fest.assertions.api.Assertions.assertThat;
+-
+-import java.util.List;
+-import java.util.Map;
+-
+-import org.junit.BeforeClass;
+-import org.junit.Test;
+-
+-import org.fest.assertions.generator.data.Name;
+-import org.fest.assertions.generator.data.Player;
+-import org.fest.assertions.generator.data.lotr.FellowshipOfTheRing;
+-import org.fest.assertions.generator.data.lotr.Race;
+-import org.fest.assertions.generator.data.lotr.TolkienCharacter;
+-import org.fest.assertions.generator.description.ClassDescription;
+-import org.fest.assertions.generator.description.TypeName;
+-
+-public class ClassToClassDescriptionConverterTest {
+-
+-  private static ClassToClassDescriptionConverter converter;
+-
+-  @BeforeClass
+-  public static void beforeAllTests() {
+-    converter = new ClassToClassDescriptionConverter();
+-  }
+-
+-  @Test
+-  public void should_build_player_class_description() throws Exception {
+-    ClassDescription classDescription = converter.convertToClassDescription(Player.class);
+-    assertThat(classDescription.getClassName()).isEqualTo("Player");
+-    assertThat(classDescription.getPackageName()).isEqualTo("org.fest.assertions.generator.data");
+-    assertThat(classDescription.getGetters()).hasSize(8);
+-    assertThat(classDescription.getImports()).containsOnly(new TypeName(Player.class), new TypeName(Name.class));
+-  }
+-
+-  @Test
+-  public void should_build_fellowshipOfTheRing_class_description() throws Exception {
+-    ClassDescription classDescription = converter.convertToClassDescription(FellowshipOfTheRing.class);
+-    assertThat(classDescription.getClassName()).isEqualTo("FellowshipOfTheRing");
+-    assertThat(classDescription.getPackageName()).isEqualTo("org.fest.assertions.generator.data.lotr");
+-    assertThat(classDescription.getGetters()).hasSize(1);
+-    assertThat(classDescription.getImports()).containsOnly(new TypeName(Map.class), new TypeName(List.class),
+-        new TypeName(Race.class), new TypeName(TolkienCharacter.class));
+-  }
+-
+-}
+diff --git a/src/test/java/org/fest/assertions/generator/util/ClassUtilTest.java b/src/test/java/org/fest/assertions/generator/util/ClassUtilTest.java
+index deb1bb2..bf9c12e 100644
+--- a/src/test/java/org/fest/assertions/generator/util/ClassUtilTest.java
++++ b/src/test/java/org/fest/assertions/generator/util/ClassUtilTest.java
+@@ -1,12 +1,7 @@
+ package org.fest.assertions.generator.util;
+ 
+ import static org.fest.assertions.api.Assertions.assertThat;
+-import static org.fest.assertions.generator.util.ClassUtil.getClassesInPackage;
+-import static org.fest.assertions.generator.util.ClassUtil.getterMethodsOf;
+-import static org.fest.assertions.generator.util.ClassUtil.isBooleanGetter;
+-import static org.fest.assertions.generator.util.ClassUtil.isIterable;
+-import static org.fest.assertions.generator.util.ClassUtil.isStandardGetter;
+-import static org.fest.assertions.generator.util.ClassUtil.propertyNameOf;
++import static org.fest.assertions.generator.util.ClassUtil.*;
+ 
+ import java.lang.reflect.Method;
+ import java.util.Collection;
+@@ -18,8 +13,8 @@ import org.fest.assertions.generator.data.ArtWork;
+ import org.fest.assertions.generator.data.Movie;
+ import org.fest.assertions.generator.data.Name;
+ import org.fest.assertions.generator.data.Player;
+-import org.fest.assertions.generator.data.lotr.Race;
+-import org.fest.assertions.generator.data.lotr.Ring;
++import org.fest.assertions.generator.data.Race;
++import org.fest.assertions.generator.data.Ring;
+ 
+ public class ClassUtilTest {
+ 

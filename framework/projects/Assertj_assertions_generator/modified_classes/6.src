@@ -1,0 +1,2 @@
+org.fest.assertions.generator.description.converter.ClassToClassDescriptionConverter
+org.fest.assertions.generator.util.ClassUtil

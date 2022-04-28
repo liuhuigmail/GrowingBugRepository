@@ -1,0 +1,3 @@
+org.fest.assertions.generator.AssertionGeneratorTest
+org.fest.assertions.generator.description.converter.ClassToClassDescriptionConverterTest
+org.fest.assertions.generator.util.ClassUtilTest

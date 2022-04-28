@@ -184,3 +184,6 @@ Cli_parser	cli-parser	https://github.com/spullara/cli-parser.git	github	spullara
 Gatling_report	gatling-report	https://github.com/nuxeo/gatling-report.git	github	nuxeo/gatling-report	/#(\\d+)/mi	.
 Jumblr	jumblr	https://github.com/tumblr/jumblr.git	github	tumblr/jumblr	/#(\\d+)/mi	.
 Tabula_java	tabula-java	https://github.com/tabulapdf/tabula-java.git	github	tabulapdf/tabula-java	/#(\\d+)/mi	.
+Ber_tlv	ber-tlv	https://github.com/evsinev/ber-tlv.git	github	evsinev/ber-tlv	/#(\\d+)/mi	.
+Jfreechart	jfreechart	https://github.com/jfree/jfreechart.git	github	jfree/jfreechart	/#(\\d+)/mi	.
+Commons_suncalc	commons-suncalc	https://github.com/shred/commons-suncalc.git	github	shred/commons-suncalc	/#(\\d+)/mi	.

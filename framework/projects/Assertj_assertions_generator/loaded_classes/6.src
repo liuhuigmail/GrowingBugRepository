@@ -1,0 +1,7 @@
+org.fest.assertions.generator.description.ClassDescription
+org.fest.assertions.generator.description.converter.ClassDescriptionConverter
+org.fest.assertions.generator.description.converter.ClassToClassDescriptionConverter
+org.fest.assertions.generator.description.GetterDescription
+org.fest.assertions.generator.description.TypeDescription
+org.fest.assertions.generator.description.TypeName
+org.fest.assertions.generator.util.ClassUtil

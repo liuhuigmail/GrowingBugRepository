@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,5b4dc008376aa9a122a8b13bafb16205b9ec2d90,f8fe605d81c53e9737162aead79c3c920e5bd97c,18,https://github.com/shred/commons-suncalc/issues/18
