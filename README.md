@@ -21,7 +21,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 
 # Contents of growingBugs
-To date, growingBugs contains **`1568`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1575`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -196,7 +196,7 @@ To date, growingBugs contains **`1568`** real-world bugs from open-source Java p
 | 169     | Zip4j            | zip4j               |                  |      55       | 1-55               |
 | 170     | Incubator_retired_pirk            | incubator-retired-pirk               |                  |      1       | 1               |
 | 171     | Sparsebitset             | Sparsebitset                |                  |      2       | 1-2               |
-| 172     | Assertj_assertions_generator            | assertj-assertions-generator               |                  |      5       | 1-5               |
+| 172     | Assertj_assertions_generator            | assertj-assertions-generator               |                  |      7       | 1-7               |
 | 173     | Config_magic            | config-magic               |                  |      2       | 2               |
 | 174     | Deft            | deft               |                  |      1       | 1               |
 | 175     | Jcodemodel            | jcodemodel               |                  |      7       | 1-7               |
@@ -210,6 +210,9 @@ To date, growingBugs contains **`1568`** real-world bugs from open-source Java p
 | 183     | Cli_parser         | Cli_parser            |                  |      1       | 1                  |                 |
 | 184     | Gatling_report         | Gatling_report            |                  |      3       | 1-3                  |                 |
 | 185     | Tabula_java         | Tabula_java            |                  |      1       | 1                  |                 |
+| 186     | Ber_tlv         | Ber_tlv            |                  |      2       | 1-2                  |                 |
+| 187     | Commons_suncalc         | Commons_suncalc            |                  |      1       | 1                  |                 |
+| 188     | Jfreechart         | Jfreechart            |                  |      2       | 1-2                  |                 |
 # Setting up GrowingBugs
 
 ## Requirements
