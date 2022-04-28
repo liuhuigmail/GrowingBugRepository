@@ -1,5 +1,5 @@
 # Unique Bugs in growingBugs
-To date, growingBugs contains **`733`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`744`** unique bugs that are not included in Defects4J. 
 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -181,6 +181,10 @@ To date, growingBugs contains **`733`** unique bugs that are not included in Def
 | 175     | Jumlr         | Jumlr            |                  |      2       | 1-2                  |                 |
 | 176     | Tabula_java         | Tabula_java            |                  |      1       | 1                  |                 |
 | 177     | Vectorz         | Vectorz            |                  |      2       | 1-2                  |                 |
-| 178     | Ber_tlv         | Ber_tlv            |                  |      2       | 1-2                  |                 |
-| 179     | Commons_suncalc         | Commons_suncalc            |                  |      1       | 1                  |                 |
-| 180     | Jfreechart         | Jfreechart            |                  |      2       | 1-2                  |                 |
+| 178     | Ber_tlv         | Ber_tlv            |                  |      4       | 1-4                  |                 |
+| 179     | Commons_suncalc         | Commons_suncalc            |                  |      2       | 1-2                  |                 |
+| 180     | Jfreechart         | Jfreechart            |                  |      4       | 1-4                  |                 |
+| 181     | Dropwizard_spring         | dropwizard-spring            |                  |      1       | 1                  |                 |
+| 182     | Semux_core         | semux-core            |                  |      2       | 1-2                  |                 |
+| 183     | Solarpositioning         | solarpositioning            |                  |      2       | 1-2                  |                 |
+| 184     | Sparkey_java         | sparkey-java            |                  |      1       | 1                  |                 |
