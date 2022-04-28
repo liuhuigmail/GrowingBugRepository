@@ -1,5 +1,5 @@
 # Unique Bugs in growingBugs
-To date, growingBugs contains **`723`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`726`** unique bugs that are not included in Defects4J. 
 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -169,8 +169,8 @@ To date, growingBugs contains **`723`** unique bugs that are not included in Def
 | 163     | Config_magic            | config-magic               |                  |      2      | 1-2               |
 | 164     | Deft            | deft               |                  |      1       | 1               |
 | 165     | Jcodemodel            | jcodemodel               |                  |      7       | 1-7               |
-| 166     | Jdbm3            | JDBM3               |                  |      4       | 1-4               |
-| 167     | Mybatis_pagehelper            | Mybatis-PageHelper               |                  |      3       | 1-3               |
+| 166     | Jdbm3            | JDBM3               |                  |      6       | 1-6               |
+| 167     | Mybatis_pagehelper            | Mybatis-PageHelper               |                  |      4       | 1-4               |
 | 168     | N5            | n5               |                  |      2       | 1-2               |
 | 169     | Stash_jenkins_postreceive_webhook            | stash-jenkins-postreceive-webhook               |                  |      1       | 1               |
 | 170     | Suffixtree            | suffixtree               |                  |      1       | 1               |
