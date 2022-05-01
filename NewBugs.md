@@ -187,5 +187,5 @@ To date, growingBugs contains **`750`** unique bugs that are not included in Def
 | 181     | Dropwizard_spring         | dropwizard-spring            |                  |      1       | 1                  |                 |
 | 182     | Semux_core         | semux-core            |                  |      3       | 1-3                  |                 |
 | 183     | Solarpositioning         | solarpositioning            |                  |      3       | 1-3                  |                 |
-| 184     | Sparkey_java         | sparkey-java            |                  |      2       | 1-2                  |                 |
+| 184     | Sparkey_java         | sparkey-java            |                  |      3       | 1-3                  |                 |
 | 185     | Shazamcrest         | Shazamcrest            |                  |      2       | 1-2                  |                 |
