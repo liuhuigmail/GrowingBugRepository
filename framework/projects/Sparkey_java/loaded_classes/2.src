@@ -1,0 +1,6 @@
+com.spotify.sparkey.BlockOutput
+com.spotify.sparkey.BlockPositionedInputStream
+com.spotify.sparkey.SnappyOutputStream
+com.spotify.sparkey.SnappyReader
+com.spotify.sparkey.SnappyWriter
+com.spotify.sparkey.Util

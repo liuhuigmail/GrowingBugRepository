@@ -192,3 +192,4 @@ Semux_core	semux-core	https://github.com/semuxproject/semux-core.git	github	semu
 Solarpositioning	solarpositioning	https://github.com/KlausBrunner/solarpositioning.git	github	KlausBrunner/solarpositioning	/#(\\d+)/mi	.
 Sparkey_java	sparkey-java	https://github.com/spotify/sparkey-java.git	github	spotify/sparkey-java	/#(\\d+)/mi	.
 Suffixtree	suffixtree	https://github.com/abahgat/suffixtree.git	github	abahgat/suffixtree	/#(\\d+)/mi	.
+Shazamcrest	shazamcrest	https://github.com/shazam/shazamcrest.git	github	shazam/shazamcrest	/#(\\d+)/mi	.

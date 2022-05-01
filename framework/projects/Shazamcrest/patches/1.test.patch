@@ -1,0 +1,384 @@
+diff --git a/src/test/java/com/shazam/shazamcrest/MatcherAssertFailureDiagnosticTest.java b/src/test/java/com/shazam/shazamcrest/MatcherAssertFailureDiagnosticTest.java
+index d1061b0..4c86cab 100644
+--- a/src/test/java/com/shazam/shazamcrest/MatcherAssertFailureDiagnosticTest.java
++++ b/src/test/java/com/shazam/shazamcrest/MatcherAssertFailureDiagnosticTest.java
+@@ -9,6 +9,8 @@
+  */
+ package com.shazam.shazamcrest;
+ 
++import static com.google.common.collect.Sets.newHashSet;
++import static com.shazam.shazamcrest.FieldsIgnorer.SET_MARKER;
+ import static com.shazam.shazamcrest.MatcherAssert.assertThat;
+ import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
+ import static com.shazam.shazamcrest.matchers.ComparisonFailureMatchers.actual;
+@@ -20,6 +22,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
+ import static org.hamcrest.CoreMatchers.is;
+ import static org.hamcrest.CoreMatchers.notNullValue;
+ import static org.hamcrest.Matchers.startsWith;
++import static org.hamcrest.core.IsNot.not;
+ import static org.hamcrest.core.StringContains.containsString;
+ import static org.junit.Assert.fail;
+ 
+@@ -89,6 +92,19 @@ public class MatcherAssertFailureDiagnosticTest {
+ 		}
+ 	}
+ 	
++	@Test
++	public void doesNotIncludeSetMarkerInDiagnostics() {
++		Bean expected = bean().set(newHashSet(bean().integer(1).build())).build();
++		Bean actual = bean().set(newHashSet(bean().integer(2).build())).build();
++		
++		try {
++			assertThat(actual, sameBeanAs(expected));
++			fail("Exceptionexpected");
++		} catch (ComparisonFailure e) {
++			checkThat(e, expected(not(containsString(SET_MARKER))), actual(not(containsString(SET_MARKER))));
++		}
++	}
++	
+ 	private Matcher<String> notANullValue() {
+ 		return notNullValue(String.class);
+ 	}
+diff --git a/src/test/java/com/shazam/shazamcrest/MatcherAssertIgnoringFieldTest.java b/src/test/java/com/shazam/shazamcrest/MatcherAssertIgnoringFieldTest.java
+index 7222895..af1eafe 100644
+--- a/src/test/java/com/shazam/shazamcrest/MatcherAssertIgnoringFieldTest.java
++++ b/src/test/java/com/shazam/shazamcrest/MatcherAssertIgnoringFieldTest.java
+@@ -10,20 +10,24 @@
+ package com.shazam.shazamcrest;
+ 
+ import static com.google.common.collect.Maps.newHashMap;
++import static com.google.common.collect.Sets.newHashSet;
+ import static com.shazam.shazamcrest.MatcherAssert.assertThat;
+ import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
+ import static com.shazam.shazamcrest.model.Bean.Builder.bean;
++import static com.shazam.shazamcrest.model.BeanWithPrimitives.Builder.beanWithPrimitives;
+ import static com.shazam.shazamcrest.model.ChildBean.Builder.child;
+ import static com.shazam.shazamcrest.model.ParentBean.Builder.parent;
+ import static com.shazam.shazamcrest.util.AssertionHelper.assertThat;
+ import static com.shazam.shazamcrest.util.AssertionHelper.sameBeanAs;
+ 
+ import java.util.Map;
++import java.util.Set;
+ 
+ import org.junit.ComparisonFailure;
+ import org.junit.Test;
+ 
+ import com.shazam.shazamcrest.model.Bean;
++import com.shazam.shazamcrest.model.BeanWithPrimitives;
+ import com.shazam.shazamcrest.model.ChildBean;
+ import com.shazam.shazamcrest.model.ParentBean;
+ 
+@@ -49,11 +53,11 @@ public class MatcherAssertIgnoringFieldTest {
+ 	}
+ 	
+ 	@Test
+-	public void ignoresFields() {
+-		ChildBean.Builder expected = child().childString("banana").childInteger(1);
+-		ChildBean.Builder actual = child().childString("apple").childInteger(2);
++	public void ignoresPrimitiveFields() {
++		BeanWithPrimitives.Builder expected = beanWithPrimitives().beanByte((byte)1).beanInt(1).beanChar('a').beanShort((short)2).beanLong(3).beanFloat(4).beanDouble(5).beanBoolean(true);
++		BeanWithPrimitives.Builder actual = beanWithPrimitives().beanByte((byte)2).beanInt(2).beanChar('b').beanShort((short)3).beanLong(4).beanFloat(5).beanDouble(6).beanBoolean(false);
+ 		
+-		assertThat(actual, sameBeanAs(expected).ignoring("childString").ignoring("childInteger"));
++		assertThat(actual, sameBeanAs(expected).ignoring("beanInt").ignoring("beanByte").ignoring("beanChar").ignoring("beanShort").ignoring("beanLong").ignoring("beanFloat").ignoring("beanDouble").ignoring("beanBoolean"));
+ 	}
+ 	
+ 	@Test
+@@ -135,7 +139,87 @@ public class MatcherAssertIgnoringFieldTest {
+ 	}
+ 	
+ 	@Test
+-	public void ignoresFieldsInMap() {
++	public void ignoresFieldsInSet() {
++		Bean expected1 = bean().integer(1).string("value").build();
++		Bean expected2 = bean().string("value").hashSet(newHashSet(bean().build())).build();
++		Bean expected = bean().set(newHashSet(expected1, expected2)).build();
++		
++		Bean actual1 = bean().string("value").build();
++		Bean actual2 = bean().string("value").hashSet(newHashSet(bean().build())).build();
++		Bean actual = bean().set(newHashSet(actual1, actual2)).build();
++		
++		assertThat(actual, sameBeanAs(expected).ignoring("set.integer"));
++	}
++	
++	@Test
++	public void ignoresSet() {
++		Bean expected1 = bean().integer(1).string("value").build();
++		Bean expected2 = bean().string("value").hashSet(newHashSet(bean().build())).build();
++		Bean expected = bean().set(newHashSet(expected1, expected2)).integer(1).build();
++		
++		Bean actual1 = bean().string("value").build();
++		Bean actual2 = bean().string("value").hashSet(newHashSet(bean().build())).build();
++		Bean actual = bean().set(newHashSet(actual1, actual2)).integer(1).build();
++		
++		assertThat(actual, sameBeanAs(expected).ignoring("set"));
++	}
++	
++	@Test
++	public void ignoresFieldsInSetWhenSetIsAtTopLevel() {
++		Bean expected1 = bean().integer(1).string("value").build();
++		Bean expected2 = bean().string("value").hashSet(newHashSet(bean().build())).build();
++		Set<Bean> expected = newHashSet(expected1, expected2);
++		
++		Bean actual1 = bean().string("value").build();
++		Bean actual2 = bean().string("value").hashSet(newHashSet(bean().build())).build();
++		Set<Bean> actual = newHashSet(actual1, actual2);
++		
++		assertThat(actual, sameBeanAs(expected).ignoring("integer"));
++	}
++	
++	@Test
++	public void ignoresFieldsInArray() {
++		Bean expected1 = bean().integer(1).string("value").build();
++		Bean expected2 = bean().string("value").hashSet(newHashSet(bean().build())).build();
++		Bean expected = bean().array(expected1, expected2).build();
++		
++		Bean actual1 = bean().string("value").build();
++		Bean actual2 = bean().string("value").hashSet(newHashSet(bean().build())).build();
++		Bean actual = bean().array(actual1, actual2).build();
++		
++		assertThat(actual, sameBeanAs(expected).ignoring("array.integer"));
++	}
++	
++	@Test
++	public void ignoresFieldsInSetInsideMap() {
++		Map<Object, Object> expectedMap = newHashMap();
++		expectedMap.put("key", newHashSet(bean().string("value").integer(1)));
++		expectedMap.put("key2", newHashSet(bean().string("value")));
++		MapContainer expected = new MapContainer(expectedMap);
++
++		Map<Object, Object> actualMap = newHashMap();
++		actualMap.put("key", newHashSet(bean().string("value").integer(2)));
++		actualMap.put("key2", newHashSet(bean().string("value")));
++		MapContainer actual = new MapContainer(actualMap);
++		
++		assertThat(actual, sameBeanAs(expected).ignoring("map.key.integer"));
++	}
++	
++	@Test
++	public void ignoresFieldsInArrayWhenArrayIsAtTopLevel() {
++		Bean expected1 = bean().integer(1).string("value").build();
++		Bean expected2 = bean().string("value").hashSet(newHashSet(bean().build())).build();
++		Bean[] expected = {expected1, expected2};
++		
++		Bean actual1 = bean().string("value").build();
++		Bean actual2 = bean().string("value").hashSet(newHashSet(bean().build())).build();
++		Bean[] actual = {actual1, actual2};
++		
++		assertThat(actual, sameBeanAs(expected).ignoring("integer"));
++	}
++	
++	@Test
++	public void ignoresFieldsInMapWhereKeyIsString() {
+ 		Map<Object, Object> expectedMap = newHashMap();
+ 		expectedMap.put("key", bean().integer(1).string("value").build());
+ 		expectedMap.put("key2", bean().integer(1).string("value").build());
+@@ -150,16 +234,29 @@ public class MatcherAssertIgnoringFieldTest {
+ 	}
+ 	
+ 	@Test
+-	public void ignoresFieldsInMapWhereKeyIsString() {
++	public void ignoresElementsInMap() {
+ 		Map<Object, Object> expectedMap = newHashMap();
+ 		expectedMap.put("key", bean().integer(1).string("value").build());
+ 		MapContainer expected = new MapContainer(expectedMap);
+-		
++
+ 		Map<Object, Object> actualMap = newHashMap();
+ 		actualMap.put("key", bean().integer(1).string("unexpected value").build());
+ 		MapContainer actual = new MapContainer(actualMap);
+ 		
+-		assertThat(actual, sameBeanAs(expected).ignoring("map.key.string"));
++		assertThat(actual, sameBeanAs(expected).ignoring("map.key"));
++	}
++	
++	@Test
++	public void ignoresElementsInMapWhenMapIsAtTopLevel() {
++		Map<Object, Object> expected = newHashMap();
++		expected.put("key", bean().integer(1).string("value").build());
++		expected.put("key2", bean().integer(1).string("value").build());
++		
++		Map<Object, Object> actual = newHashMap();
++		actual.put("key", bean().integer(1).string("unexpected value").build());
++		actual.put("key2", bean().integer(1).string("value").build());
++		
++		assertThat(actual, sameBeanAs(expected).ignoring("key"));
+ 	}
+ 	
+ 	@Test
+@@ -188,32 +285,6 @@ public class MatcherAssertIgnoringFieldTest {
+ 		assertThat(actual, sameBeanAs(expected).ignoring("map.ONE.string"));
+ 	}
+ 	
+-	@Test(expected = IllegalArgumentException.class)
+-	public void throwsIllegalArgumentExceptionWhenLastPathSegmentDoesNotExistInMap() {
+-		Map<Object, Object> expectedMap = newHashMap();
+-		expectedMap.put(bean().string("key").build(), bean().string("value").build());
+-		MapContainer expected = new MapContainer(expectedMap);
+-
+-		Map<Object, Object> actualMap = newHashMap();
+-		actualMap.put(bean().string("key").build(), bean().string("unexpected value").build());
+-		MapContainer actual = new MapContainer(actualMap);
+-		
+-		assertThat(actual, sameBeanAs(expected).ignoring("map.key"));
+-	}
+-	
+-	@Test(expected = IllegalArgumentException.class)
+-	public void throwsIllegalArgumentExceptionWhenPathDoesNotExistInMap() {
+-		Map<Object, Object> expectedMap = newHashMap();
+-		expectedMap.put(bean().string("key").build(), bean().string("value").build());
+-		MapContainer expected = new MapContainer(expectedMap);
+-		
+-		Map<Object, Object> actualMap = newHashMap();
+-		actualMap.put(bean().string("key").build(), bean().string("unexpected value").build());
+-		MapContainer actual = new MapContainer(actualMap);
+-		
+-		assertThat(actual, sameBeanAs(expected).ignoring("map.key.subpath"));
+-	}
+-	
+ 	private enum TestEnum {
+ 		ONE
+ 	}
+diff --git a/src/test/java/com/shazam/shazamcrest/model/Bean.java b/src/test/java/com/shazam/shazamcrest/model/Bean.java
+index a1d0716..f8e5992 100644
+--- a/src/test/java/com/shazam/shazamcrest/model/Bean.java
++++ b/src/test/java/com/shazam/shazamcrest/model/Bean.java
+@@ -27,6 +27,7 @@ public class Bean {
+ 	private Map<Bean, Bean> map;
+ 	private HashSet<Bean> hashSet;
+ 	private HashMap<Bean, Bean> hashMap;
++	private Bean[] array;
+ 	
+ 	private Bean(Builder builder) {
+ 		string = builder.string;
+@@ -35,6 +36,7 @@ public class Bean {
+ 		map = builder.map;
+ 		hashSet = builder.hashSet;
+ 		hashMap = builder.hashMap;
++		array = builder.array;
+ 	}
+ 	
+ 	public String getField1() {
+@@ -48,6 +50,7 @@ public class Bean {
+ 		private Map<Bean, Bean> map;
+ 		private HashSet<Bean> hashSet;
+ 		private HashMap<Bean, Bean> hashMap;
++		private Bean[] array;
+ 
+ 		public static Builder bean() {
+ 			return new Builder();
+@@ -83,6 +86,11 @@ public class Bean {
+ 			return this;
+ 		}
+ 		
++		public Builder array(Bean... array) {
++			this.array = array;
++			return this;
++		}
++		
+ 		public Bean build() {
+ 			return new Bean(this);
+ 		}
+diff --git a/src/test/java/com/shazam/shazamcrest/model/BeanWithPrimitives.java b/src/test/java/com/shazam/shazamcrest/model/BeanWithPrimitives.java
+new file mode 100644
+index 0000000..1ccaa75
+--- /dev/null
++++ b/src/test/java/com/shazam/shazamcrest/model/BeanWithPrimitives.java
+@@ -0,0 +1,97 @@
++/*
++ * Copyright 2013 Shazam Entertainment Limited
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
++ *
++ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
++ */
++package com.shazam.shazamcrest.model;
++
++import com.shazam.shazamcrest.model.BeanWithPrimitives.Builder;
++
++/**
++ * Bean with all java primitives, used for tests
++ */
++@SuppressWarnings("unused")
++public class BeanWithPrimitives {
++	private int beanInteger;
++	private byte beanByte;
++	private char beanChar;
++	private short beanShort;
++	private int beanLong;
++	private float beanFloat;
++	private double beanDouble;
++	private boolean beanBoolean;
++	
++	private BeanWithPrimitives(Builder builder) {
++		beanInteger = builder.beanInt;
++		beanByte = builder.beanByte;
++		beanChar = builder.beanChar;
++		beanShort = builder.beanShort;
++		beanLong = builder.beanLong;
++		beanFloat = builder.beanFloat;
++		beanDouble = builder.beanDouble;
++		beanBoolean = builder.beanBoolean;
++	}
++
++	public static class Builder {
++		private int beanInt;
++		private byte beanByte;
++		private char beanChar;
++		private short beanShort;
++		private int beanLong;
++		private float beanFloat;
++		private double beanDouble;
++		private boolean beanBoolean;
++
++		public static Builder beanWithPrimitives() {
++			return new Builder();
++		}
++		
++		public Builder beanInt(int beanInt) {
++			this.beanInt = beanInt;
++			return this;
++		}
++		
++		public Builder beanByte(byte beanByte) {
++			this.beanByte = beanByte;
++			return this;
++		}
++		
++		public Builder beanChar(char beanChar) {
++			this.beanChar = beanChar;
++			return this;
++		}
++		
++		public Builder beanShort(short beanShort) {
++			this.beanShort = beanShort;
++			return this;
++		}
++		
++		public Builder beanLong(int beanLong) {
++			this.beanLong = beanLong;
++			return this;
++		}
++		
++		public Builder beanFloat(float beanFloat) {
++			this.beanFloat = beanFloat;
++			return this;
++		}
++		
++		public Builder beanDouble(double beanDouble) {
++			this.beanDouble = beanDouble;
++			return this;
++		}
++		
++		public Builder beanBoolean(boolean beanBoolean) {
++			this.beanBoolean = beanBoolean;
++			return this;
++		}
++		
++		public BeanWithPrimitives build() {
++			return new BeanWithPrimitives(this);
++		}
++	}
++}

@@ -1,0 +1,243 @@
+diff --git a/src/main/java/com/shazam/shazamcrest/FieldsIgnorer.java b/src/main/java/com/shazam/shazamcrest/FieldsIgnorer.java
+index 4d502c0..0338e11 100644
+--- a/src/main/java/com/shazam/shazamcrest/FieldsIgnorer.java
++++ b/src/main/java/com/shazam/shazamcrest/FieldsIgnorer.java
+@@ -9,23 +9,41 @@
+  */
+ package com.shazam.shazamcrest;
+ 
++import static com.google.common.collect.Lists.newArrayList;
++import static com.google.common.collect.Sets.newTreeSet;
+ import static java.lang.Math.max;
+ import static java.util.Arrays.asList;
+ 
+ import java.util.Collection;
++import java.util.Comparator;
+ import java.util.HashSet;
+ import java.util.Iterator;
+ import java.util.List;
+ import java.util.Set;
++import java.util.TreeSet;
+ import java.util.regex.Pattern;
+ 
++import com.google.gson.Gson;
++import com.google.gson.JsonArray;
+ import com.google.gson.JsonElement;
++import com.google.gson.JsonParser;
+ 
+ /**
+  * Responsible for traversing the Json tree and ignore the specified set of field paths.
+  */
+ public class FieldsIgnorer {
+-	public static JsonElement findPaths(JsonElement jsonElement, Set<String> pathsToFind) {
++	public static final String SET_MARKER = "THIS_FIELD_IS_A_SET____";
++	public static JsonElement findPaths(Gson gson, Object object, Set<String> pathsToFind) {
++		JsonParser jsonParser = new JsonParser();
++		JsonElement jsonElement = jsonParser.parse(gson.toJson(object));
++		
++		JsonElement filteredJson = findPaths(jsonElement, pathsToFind);
++		if (object != null && Set.class.isAssignableFrom(object.getClass())) {
++			return sortSet(filteredJson);
++		}
++		return filteredJson;
++	}
++	private static JsonElement findPaths(JsonElement jsonElement, Set<String> pathsToFind) {
+ 		if (pathsToFind.isEmpty()) {
+ 			return jsonElement;
+ 		}
+@@ -48,36 +66,55 @@ public class FieldsIgnorer {
+ 
+ 	private static void findPath(JsonElement jsonElement, String pathToFind, final List<String> pathSegments) {
+ 		String field = headOf(pathSegments);
+-		if (pathSegments.size() == 1) {
+-			ignorePath(jsonElement, pathToFind);
+-		} else {
+-			if (!jsonElement.isJsonObject()) {
+-				throw new IllegalArgumentException();
+-			}
+-			JsonElement child = jsonElement.getAsJsonObject().get(field);
+-			List<String> tail = pathSegments.subList(1, pathSegments.size());
+-			
+-			if (child == null) {
+-				return;
+-			}
+-			
+-			if (child.isJsonArray()) {
+-				Iterator<JsonElement> iterator = child.getAsJsonArray().iterator();
+-				while (iterator.hasNext()) {
+-					findPath((JsonElement) iterator.next(), pathToFind, tail);
++		if (jsonElement.isJsonArray()) {
++			Iterator<JsonElement> iterator = jsonElement.getAsJsonArray().iterator();
++			while (iterator.hasNext()) {
++				JsonElement arrayElement = (JsonElement) iterator.next();
++				if (arrayElement.isJsonNull()) {
++					continue;
+ 				}
++				findPath(arrayElement, pathToFind, pathSegments);
++			}
++		} else {
++			if (pathSegments.size() == 1) {
++				ignorePath(jsonElement, pathToFind);
+ 			} else {
++				JsonElement child = jsonElement.getAsJsonObject().get(field);
++				if (child == null) {
++					child = jsonElement.getAsJsonObject().get(SET_MARKER + field);
++					if (child == null) {
++						return;
++					}
++					child = sortSet(child);
++					jsonElement.getAsJsonObject().add(SET_MARKER + field, child);
++				}		
++				List<String> tail = pathSegments.subList(1, pathSegments.size());
+ 				findPath(child, pathToFind, tail);
+ 			}
+ 		}
+ 	}
+ 
++	private static JsonElement sortSet(JsonElement jsonElement) {
++		TreeSet<JsonElement> orderedSet = newTreeSet(new Comparator<JsonElement>() {
++			@Override
++			public int compare(JsonElement o1, JsonElement o2) {
++				return o1.toString().compareTo(o2.toString());
++			}
++		});
++		orderedSet.addAll(newArrayList(jsonElement.getAsJsonArray().iterator()));
++		JsonArray jsonArray = new JsonArray();
++		for (JsonElement element : orderedSet) {
++			jsonArray.add(element);
++		}
++		return jsonArray;
++	}
+ 	private static void ignorePath(JsonElement jsonElement, String pathToIgnore) {
+ 		if (!jsonElement.isJsonNull()) {
+ 			if (!jsonElement.isJsonObject()) {
+ 				throw new IllegalArgumentException();
+ 			}
+ 			jsonElement.getAsJsonObject().remove(getLastSegmentOf(pathToIgnore));
++			jsonElement.getAsJsonObject().remove(SET_MARKER + getLastSegmentOf(pathToIgnore));
+ 		}
+ 	}
+ 	
+diff --git a/src/main/java/com/shazam/shazamcrest/matcher/DiagnosingCustomisableMatcher.java b/src/main/java/com/shazam/shazamcrest/matcher/DiagnosingCustomisableMatcher.java
+index 45f12a7..e9f5d54 100644
+--- a/src/main/java/com/shazam/shazamcrest/matcher/DiagnosingCustomisableMatcher.java
++++ b/src/main/java/com/shazam/shazamcrest/matcher/DiagnosingCustomisableMatcher.java
+@@ -10,6 +10,7 @@
+ package com.shazam.shazamcrest.matcher;
+ 
+ import static com.shazam.shazamcrest.BeanFinder.findBeanAt;
++import static com.shazam.shazamcrest.FieldsIgnorer.SET_MARKER;
+ import static com.shazam.shazamcrest.FieldsIgnorer.findPaths;
+ import static com.shazam.shazamcrest.matcher.GsonProvider.gson;
+ 
+@@ -52,7 +53,7 @@ class DiagnosingCustomisableMatcher<T> extends DiagnosingMatcher<T> implements C
+ 	@Override
+ 	public void describeTo(Description description) {
+ 		Gson gson = gson(typesToIgnore, circularReferenceTypes);
+-		description.appendText(filterJson(gson, gson.toJson(expected)));
++		description.appendText(filterJson(gson, expected));
+ 		for (String fieldPath : customMatchers.keySet()) {
+ 			description.appendText("\nand ")
+ 				.appendText(fieldPath).appendText(" ")
+@@ -68,12 +69,15 @@ class DiagnosingCustomisableMatcher<T> extends DiagnosingMatcher<T> implements C
+ 			return false;
+ 		}
+ 		
+-		String expectedJson = filterJson(gson, gson.toJson(expected));
+-		String actualJson = filterJson(gson, gson.toJson(actual));
++		String expectedJson = removeSetMarker(filterJson(gson, expected));
++		String actualJson = removeSetMarker(filterJson(gson, actual));
+ 
+ 		return assertEquals(expectedJson, actualJson, mismatchDescription, gson);
+ 	}
+ 
++	private String removeSetMarker(String json) {
++		return json.replaceAll(SET_MARKER, "");
++	}
+ 	private boolean areCustomMatchersMatching(Object actual, Description mismatchDescription, Gson gson) {
+ 		Map<Object, Matcher<?>> customMatching = new HashMap<Object, Matcher<?>>();
+ 		for (Entry<String, Matcher<?>> entry : customMatchers.entrySet()) {
+@@ -157,12 +161,12 @@ class DiagnosingCustomisableMatcher<T> extends DiagnosingMatcher<T> implements C
+ 		}
+ 	}
+ 
+-	private String filterJson(Gson gson, String unfilteredJson) {
++	private String filterJson(Gson gson, Object object) {
+ 		Set<String> set = new HashSet<String>();
+ 		set.addAll(pathsToIgnore);
+ 		set.addAll(customMatchers.keySet());
+-		JsonElement filteredJson = findPaths(jsonParser.parse(unfilteredJson), set);
++		JsonElement filteredJson = findPaths(gson, object, set);
+ 
+ 		return gson.toJson(filteredJson);
+ 	}
+-}
+\ No newline at end of file
++}
+diff --git a/src/main/java/com/shazam/shazamcrest/matcher/GsonProvider.java b/src/main/java/com/shazam/shazamcrest/matcher/GsonProvider.java
+index cc17a8a..3e8d43f 100644
+--- a/src/main/java/com/shazam/shazamcrest/matcher/GsonProvider.java
++++ b/src/main/java/com/shazam/shazamcrest/matcher/GsonProvider.java
+@@ -10,8 +10,10 @@
+ package com.shazam.shazamcrest.matcher;
+ 
+ import static com.google.common.collect.Sets.newTreeSet;
++import static com.shazam.shazamcrest.FieldsIgnorer.SET_MARKER;
+ import static org.apache.commons.lang3.ClassUtils.isPrimitiveOrWrapper;
+ 
++import java.lang.reflect.Field;
+ import java.lang.reflect.Type;
+ import java.util.Comparator;
+ import java.util.List;
+@@ -24,6 +26,7 @@ import com.google.common.collect.ImmutableList;
+ import com.google.common.collect.Ordering;
+ import com.google.gson.ExclusionStrategy;
+ import com.google.gson.FieldAttributes;
++import com.google.gson.FieldNamingStrategy;
+ import com.google.gson.Gson;
+ import com.google.gson.GsonBuilder;
+ import com.google.gson.JsonArray;
+@@ -57,6 +60,7 @@ class GsonProvider {
+         registerSetSerialisation(gsonBuilder);
+         
+         registerMapSerialisation(gsonBuilder);
++        markSetFields(gsonBuilder);
+         
+         if (!typesToIgnore.isEmpty()) {
+         	return registerTypesToIgnore(typesToIgnore, gsonBuilder).create();
+@@ -65,6 +69,17 @@ class GsonProvider {
+         return gsonBuilder.create();
+     }
+ 
++	private static void markSetFields(final GsonBuilder gsonBuilder) {
++		gsonBuilder.setFieldNamingStrategy(new FieldNamingStrategy() {
++			@Override
++			public String translateName(Field f) {
++				if (Set.class.isAssignableFrom(f.getType())) {
++					return SET_MARKER + f.getName();
++				}
++				return f.getName();
++			}
++		});
++	}
+ 	private static GsonBuilder registerTypesToIgnore(final List<Class<?>> typesToIgnore, final GsonBuilder gsonBuilder) {
+ 		return gsonBuilder.setExclusionStrategies(new ExclusionStrategy() {
+ 		    @Override
+@@ -142,7 +157,7 @@ class GsonProvider {
+ 	private static JsonArray arrayOfObjectsOrderedByTheirJsonRepresentation(Gson gson, ArrayListMultimap<String, Object> objects, Map map) {
+ 		ImmutableList<String> sortedMapKeySet = Ordering.natural().immutableSortedCopy(objects.keySet());
+ 		JsonArray array = new JsonArray();
+-		if (allKeysArePrimitive(sortedMapKeySet, objects)) {
++		if (allKeysArePrimitiveOrStringOrEnum(sortedMapKeySet, objects)) {
+ 			for (String jsonRepresentation : sortedMapKeySet) {
+ 				List<Object> objectsInTheSet = objects.get(jsonRepresentation);
+ 				for (Object objectInTheSet : objectsInTheSet) {
+@@ -166,7 +181,7 @@ class GsonProvider {
+ 		return array;
+ 	}
+ 	  
+-    private static boolean allKeysArePrimitive(ImmutableList<String> sortedMapKeySet, ArrayListMultimap<String, Object> objects) {
++    private static boolean allKeysArePrimitiveOrStringOrEnum(ImmutableList<String> sortedMapKeySet, ArrayListMultimap<String, Object> objects) {
+     	for (String jsonRepresentation : sortedMapKeySet) {
+ 			List<Object> mapKeys = objects.get(jsonRepresentation);
+ 			for (Object object : mapKeys) {

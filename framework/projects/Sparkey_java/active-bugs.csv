@@ -1,2 +1,4 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,1d2f6ad658fd3072cdbae10016fddcb7ae316b34,41cf4378b9cf8c54bd11d3e1dc9e21d45f1616ec,22,https://github.com/spotify/sparkey-java/pull/22
+2,3b6a7f844f000974f049e4924790310f3994980b,84956b3cfcff71d96c3d44bf236a2f9db130ec3b,30,https://github.com/spotify/sparkey-java/pull/30
+3,177e9b175bed2114369bcd97a8b125970d4c0d41,ea93134b20e92e640b7edd9104e51b75a22b718b,13,https://github.com/spotify/sparkey-java/pull/13

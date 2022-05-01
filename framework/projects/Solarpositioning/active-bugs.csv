@@ -1,3 +1,4 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,44d273dc23cb643444a4b1396e1aaca70654248c,f0574eb42e92e9834ffbcf34713825f8ef4bec24,10,https://github.com/KlausBrunner/solarpositioning/issues/10
 2,44d273dc23cb643444a4b1396e1aaca70654248c,08300ab3ddc2958b287b864f1e3e19e8278480a5,15,https://github.com/KlausBrunner/solarpositioning/pull/15
+3,219b31adbdb4abdf88c0124c199c4e7d3d0690c6,8a48c72395ba3f421318b79827fba3f2d1aa8a24,4,https://github.com/KlausBrunner/solarpositioning/issues/4

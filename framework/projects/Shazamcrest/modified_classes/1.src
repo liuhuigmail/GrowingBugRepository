@@ -1,0 +1,3 @@
+com.shazam.shazamcrest.FieldsIgnorer
+com.shazam.shazamcrest.matcher.DiagnosingCustomisableMatcher
+com.shazam.shazamcrest.matcher.GsonProvider

@@ -1,0 +1,9 @@
+com.shazam.shazamcrest.ComparisonDescription
+com.shazam.shazamcrest.CyclicReferenceDetector
+com.shazam.shazamcrest.FieldsIgnorer
+com.shazam.shazamcrest.matcher.CustomisableMatcher
+com.shazam.shazamcrest.matcher.DiagnosingCustomisableMatcher
+com.shazam.shazamcrest.matcher.GsonProvider
+com.shazam.shazamcrest.matcher.Matchers
+com.shazam.shazamcrest.MatcherAssert
+com.shazam.shazamcrest.ResultComparison

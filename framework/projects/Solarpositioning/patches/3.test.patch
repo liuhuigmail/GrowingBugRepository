@@ -1,0 +1,23 @@
+diff --git a/src/test/java/net/e175/klaus/solarpositioning/SPATest.java b/src/test/java/net/e175/klaus/solarpositioning/SPATest.java
+index b947762..f4bb612 100644
+--- a/src/test/java/net/e175/klaus/solarpositioning/SPATest.java
++++ b/src/test/java/net/e175/klaus/solarpositioning/SPATest.java
+@@ -112,18 +112,4 @@ public class SPATest {
+ 		assertNull(res[2]);
+ 	}
+ 
+-	@Test
+-	public void testNZSunriseTransitSet() {
+-		GregorianCalendar time = new GregorianCalendar(new SimpleTimeZone(12 * 60 * 60 * 1000, "NZST"));
+-		time.set(2015, Calendar.JUNE, 17, 12, 30, 30);
+-
+-		GregorianCalendar[] res = SPA.calculateSunriseTransitSet(time, -36.8406, 174.74, 0);
+-
+-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+-		df.setTimeZone(time.getTimeZone());
+-
+-		assertEquals("2015-06-17T07:32:45", df.format(res[0].getTime()));
+-		assertEquals("2015-06-17T17:11:04", df.format(res[2].getTime()));
+-	}
+-	
+ }

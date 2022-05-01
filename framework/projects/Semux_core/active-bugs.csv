@@ -1,3 +1,4 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,1ea7122e4dc40bbcd615c1d78e85b507de9059aa,8d9b010e18d1be9a200b84befef25466d99514d5,3,https://github.com/semuxproject/semux-core/pull/3
 2,ae546488c0fb1471cd4680af1bef4aa13d33aaa6,5fe41ebef2aa7922d89f41846d5e31a3f7137963,74,https://github.com/semuxproject/semux-core/issues/74
+3,20c7e6a181805e7114bd3e8383784b0728df5adb,63e1a45f977e82dd75b7039421d15c301b10ad7f,3,https://github.com/semuxproject/semux-core/pull/3

@@ -1,0 +1,84 @@
+diff --git a/src/main/java/com/spotify/sparkey/SnappyOutputStream.java b/src/main/java/com/spotify/sparkey/SnappyOutputStream.java
+index c7459b4..c6f8b1d 100644
+--- a/src/main/java/com/spotify/sparkey/SnappyOutputStream.java
++++ b/src/main/java/com/spotify/sparkey/SnappyOutputStream.java
+@@ -74,24 +74,16 @@ final class SnappyOutputStream extends OutputStream {
+ 
+   @Override
+   public void write(byte[] b, int off, int len) throws IOException {
+-    while (len > 0) {
+-      int written = writeImpl(b, off, len);
+-      off += written;
+-      len -= written;
+-    }
+-  }
+ 
+-  private int writeImpl(byte[] b, int off, int len) throws IOException {
+     int remaining = remaining();
+     if (len < remaining) {
+       System.arraycopy(b, off, uncompressedBuffer, pending, len);
+       pending += len;
+-      return len;
+     } else {
+       System.arraycopy(b, off, uncompressedBuffer, pending, remaining);
+       pending = maxBlockSize;
+       flush();
+-      return remaining;
++      write(b, off + remaining, len - remaining);
+     }
+   }
+ 
+diff --git a/src/main/java/com/spotify/sparkey/SnappyReader.java b/src/main/java/com/spotify/sparkey/SnappyReader.java
+index 2f70ed2..f42a97d 100644
+--- a/src/main/java/com/spotify/sparkey/SnappyReader.java
++++ b/src/main/java/com/spotify/sparkey/SnappyReader.java
+@@ -67,16 +67,7 @@ final class SnappyReader extends BlockPositionedInputStream {
+ 
+   @Override
+   public int read(byte[] b, int off, int len) throws IOException {
+-    int remain = len;
+-    while (remain > 0) {
+-      int didRead = readImpl(b, off, remain);
+-      off += didRead;
+-      remain -= didRead;
+-    }
+-    return len;
+-  }
+ 
+-  private int readImpl(byte[] b, int off, int len) throws IOException {
+     int available = available();
+     if (len <= available) {
+       System.arraycopy(uncompressedBuf, bufPos, b, off, len);
+@@ -86,20 +77,14 @@ final class SnappyReader extends BlockPositionedInputStream {
+       System.arraycopy(uncompressedBuf, bufPos, b, off, available);
+       bufPos = blockSize;
+       fetchBlock();
+-      return available;
++      read(b, off + available, len - available);
++      return len;
+     }
+   }
+ 
+   @Override
+   public long skip(long n) throws IOException {
+-    long remain = n;
+-    while (remain > 0) {
+-      remain -= skipImpl(remain);
+-    }
+-    return n;
+-  }
+ 
+-  private long skipImpl(long n) throws IOException {
+     int available = available();
+     if (n <= available) {
+       bufPos += n;
+@@ -107,7 +92,8 @@ final class SnappyReader extends BlockPositionedInputStream {
+     } else {
+       bufPos = blockSize;
+       fetchBlock();
+-      return available;
++      skip(n - available);
++      return n;
+     }
+   }
+ 

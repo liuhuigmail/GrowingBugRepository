@@ -1,0 +1,28 @@
+diff --git a/src/main/java/com/shazam/shazamcrest/matcher/GsonProvider.java b/src/main/java/com/shazam/shazamcrest/matcher/GsonProvider.java
+index f241975..63b288a 100644
+--- a/src/main/java/com/shazam/shazamcrest/matcher/GsonProvider.java
++++ b/src/main/java/com/shazam/shazamcrest/matcher/GsonProvider.java
+@@ -70,7 +70,6 @@ class GsonProvider {
+ 
+         registerSetSerialisation(gsonBuilder);
+         registerMapSerialisation(gsonBuilder);
+-        registerDateSerialisation(gsonBuilder);
+ 
+         markSetAndMapFields(gsonBuilder);
+         
+@@ -134,15 +133,7 @@ class GsonProvider {
+ 
+         		Set<Object> orderedSet = orderSetByElementsJsonRepresentation(set, gson);
+         		return arrayOfObjectsOrderedByTheirJsonRepresentation(gson, orderedSet);
+-        	}
+-        });
+-	}
+ 
+-	private static void registerDateSerialisation(final GsonBuilder gsonBuilder) {
+-		gsonBuilder.registerTypeHierarchyAdapter(Date.class, new JsonSerializer<Date>() {
+-        	@Override
+-        	public JsonElement serialize(Date date, Type type, JsonSerializationContext context) {
+-        		return new JsonPrimitive(DATE_FORMAT.format(date));
+         	}
+         });
+ 	}

@@ -1,0 +1,13 @@
+diff --git a/src/test/java/org/semux/gui/SwingUtilTest.java b/src/test/java/org/semux/gui/SwingUtilTest.java
+index 8cd65928..2bce8f18 100644
+--- a/src/test/java/org/semux/gui/SwingUtilTest.java
++++ b/src/test/java/org/semux/gui/SwingUtilTest.java
+@@ -36,7 +36,7 @@ public class SwingUtilTest {
+     @Test
+     public void testFromatAndEncodeValue() throws ParseException {
+         long x = 1_234_123_000_000L;
+-        assertEquals("1,234.12 SEM", SwingUtil.formatValue(x));
++        assertEquals("1,234.123 SEM", SwingUtil.formatValue(x));
+         assertEquals(x, SwingUtil.parseValue("1,234.123 SEM"));
+     }
+ 

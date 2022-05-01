@@ -1,0 +1,12 @@
+com.shazam.shazamcrest.MatcherAssertCircularReferenceTest
+com.shazam.shazamcrest.MatcherAssertCustomMatchingDiagnosticTest
+com.shazam.shazamcrest.MatcherAssertCustomMatchingTest
+com.shazam.shazamcrest.MatcherAssertFailureDiagnosticTest
+com.shazam.shazamcrest.MatcherAssertFailureTest
+com.shazam.shazamcrest.MatcherAssertIgnoringFieldDiagnosticTest
+com.shazam.shazamcrest.MatcherAssertIgnoringFieldTest
+com.shazam.shazamcrest.MatcherAssertIgnoringTypeTest
+com.shazam.shazamcrest.MatcherAssertIsEqualTest
+com.shazam.shazamcrest.MatcherAssertMapsTest
+com.shazam.shazamcrest.MatcherAssertSetsTest
+com.shazam.shazamcrest.MatcherAssertTest

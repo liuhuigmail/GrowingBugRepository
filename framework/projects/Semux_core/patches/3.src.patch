@@ -1,0 +1,84 @@
+diff --git a/src/main/java/org/semux/gui/SwingUtil.java b/src/main/java/org/semux/gui/SwingUtil.java
+index 51919170..3164bd67 100644
+--- a/src/main/java/org/semux/gui/SwingUtil.java
++++ b/src/main/java/org/semux/gui/SwingUtil.java
+@@ -254,7 +254,7 @@ public class SwingUtil {
+      * @return
+      */
+     public static String formatValue(long nano, boolean withUnit) {
+-        return formatNumber(nano / (double) Unit.SEM, 2) + (withUnit ? " SEM" : "");
++        return formatNumber(nano / (double) Unit.SEM, 3) + (withUnit ? " SEM" : "");
+     }
+ 
+     /**
+diff --git a/src/main/java/org/semux/gui/WelcomeFrame.java b/src/main/java/org/semux/gui/WelcomeFrame.java
+index 0888aa33..52d2de3e 100644
+--- a/src/main/java/org/semux/gui/WelcomeFrame.java
++++ b/src/main/java/org/semux/gui/WelcomeFrame.java
+@@ -180,10 +180,10 @@ public class WelcomeFrame extends JFrame implements ActionListener {
+             chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+             chooser.setFileFilter(new FileNameExtensionFilter(MessagesUtil.get("WalletBinaryFormat"), "data"));
+             int ret = chooser.showOpenDialog(this);
++            repeatField.setVisible(false);
++            lblRepeat.setVisible(false);
+             if (ret == JFileChooser.APPROVE_OPTION) {
+                 backupFile = chooser.getSelectedFile();
+-                repeatField.setVisible(false);
+-                lblRepeat.setVisible(false);
+             } else {
+                 btnCreate.setSelected(true);
+             }
+diff --git a/src/main/java/org/semux/gui/panel/SendPanel.java b/src/main/java/org/semux/gui/panel/SendPanel.java
+index 540a17eb..d4ea145e 100644
+--- a/src/main/java/org/semux/gui/panel/SendPanel.java
++++ b/src/main/java/org/semux/gui/panel/SendPanel.java
+@@ -75,7 +75,6 @@ public class SendPanel extends JPanel implements ActionListener {
+ 
+         JLabel lblFee = new JLabel(MessagesUtil.get("Fee") + ":");
+         lblFee.setHorizontalAlignment(SwingConstants.RIGHT);
+-        lblFee.setToolTipText(MessagesUtil.get("FeeTip", SwingUtil.formatValue(Config.MIN_TRANSACTION_FEE_SOFT)));
+ 
+         fee = SwingUtil.textFieldWithPopup();
+         fee.setColumns(10);
+@@ -84,7 +83,6 @@ public class SendPanel extends JPanel implements ActionListener {
+ 
+         JLabel lblMemo = new JLabel(MessagesUtil.get("Memo") + ":");
+         lblMemo.setHorizontalAlignment(SwingConstants.RIGHT);
+-        lblMemo.setToolTipText(MessagesUtil.get("MemoTip"));
+ 
+         memo = SwingUtil.textFieldWithPopup();
+         memo.setColumns(10);
+@@ -232,8 +230,6 @@ public class SendPanel extends JPanel implements ActionListener {
+                             MessagesUtil.get("InsufficientFunds", SwingUtil.formatValue(value + fee)));
+                 } else if (to.length != 20) {
+                     JOptionPane.showMessageDialog(this, MessagesUtil.get("InvalidReceivingAddress"));
+-                } else if (Bytes.of(memo).length > 128) {
+-                    JOptionPane.showMessageDialog(this, MessagesUtil.get("InvalidMemo", 128));
+                 } else {
+                     int ret = JOptionPane.showConfirmDialog(this,
+                             MessagesUtil.get("TransferInfo", SwingUtil.formatValue(value), Hex.PREF + Hex.encode(to)),
+@@ -285,8 +281,8 @@ public class SendPanel extends JPanel implements ActionListener {
+         List<String> accounts = new ArrayList<>();
+         List<Account> list = model.getAccounts();
+         for (int i = 0; i < list.size(); i++) {
+-            accounts.add(Hex.PREF + list.get(i).getKey().toAddressString() + ", " + MessagesUtil.get("AccountNumShort")
+-                    + i + ", " + SwingUtil.formatValue(list.get(i).getBalance()));
++            accounts.add(Hex.PREF + list.get(i).getKey().toAddressString() + ", #" + i + ", "
++                    + SwingUtil.formatValue(list.get(i).getBalance()));
+         }
+ 
+         /*
+diff --git a/src/main/java/org/semux/gui/panel/TransactionsPanel.java b/src/main/java/org/semux/gui/panel/TransactionsPanel.java
+index 7b59bc13..9088eb98 100644
+--- a/src/main/java/org/semux/gui/panel/TransactionsPanel.java
++++ b/src/main/java/org/semux/gui/panel/TransactionsPanel.java
+@@ -151,7 +151,8 @@ public class TransactionsPanel extends JPanel implements ActionListener {
+                             : Hex.PREF + from;
+                 }
+                 String to = Hex.encode(tx.getTo());
+-                to = accounts.containsKey(to) ? MessagesUtil.get("AccountNum") + accounts.get(to) : Hex.PREF + to;
++                to = accounts.containsKey(to) ? MessagesUtil.get("AccountNum") + " #" + accounts.get(to)
++                        : Hex.PREF + to;
+                 return from + " => " + to;
+             case 2:
+                 return SwingUtil.formatValue(tx.getValue());

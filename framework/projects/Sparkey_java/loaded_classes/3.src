@@ -1,0 +1,5 @@
+com.spotify.sparkey.ByteBufferCleaner
+com.spotify.sparkey.CorruptedIndexException
+com.spotify.sparkey.RandomAccessData
+com.spotify.sparkey.ReadOnlyMemMap
+com.spotify.sparkey.SparkeyReaderClosedException

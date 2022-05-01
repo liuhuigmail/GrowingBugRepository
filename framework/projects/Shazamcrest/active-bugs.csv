@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,0a75b2df440e7f419fb13f0ffecca25bd4a7e64a,752d94d7402d1976e2c4db86272179253e2c5933,unknown,unknown
+2,12a399110ef124ddc54b9c2e398be6fd85933c66,684117fa023291c0f140780c2b34a877414bcbe9,22,https://github.com/shazam/shazamcrest/pull/22

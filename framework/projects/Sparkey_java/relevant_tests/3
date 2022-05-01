@@ -1,0 +1,4 @@
+com.spotify.sparkey.ReadOnlyMemMapTest
+com.spotify.sparkey.extra.ReloadableSparkeyReaderTest
+com.spotify.sparkey.extra.ThreadLocalSparkeyReaderTest
+com.spotify.sparkey.system.CorrectnessTest
