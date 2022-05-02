@@ -1,0 +1,67 @@
+diff --git a/src/test/java/smartrics/rest/fitnesse/fixture/SlimFormatterTest.java b/src/test/java/smartrics/rest/fitnesse/fixture/SlimFormatterTest.java
+index 80215ac..6e3e0fa 100644
+--- a/src/test/java/smartrics/rest/fitnesse/fixture/SlimFormatterTest.java
++++ b/src/test/java/smartrics/rest/fitnesse/fixture/SlimFormatterTest.java
+@@ -42,7 +42,7 @@ public class SlimFormatterTest {
+         StringTypeAdapter actual = new StringTypeAdapter();
+         actual.set("2");
+         formatter.check(c, actual);
+-        assertThat(c.body(), is(equalTo("report:<div>2</div>")));
++        assertThat(c.body(), is(equalTo("report:2")));
+     }
+ 
+     @Test
+@@ -63,7 +63,7 @@ public class SlimFormatterTest {
+         StringTypeAdapter actual = new StringTypeAdapter();
+         actual.set("abc123");
+         formatter.check(c, actual);
+-        assertThat(c.body(), is(equalTo("pass:<div>abc123</div>")));
++        assertThat(c.body(), is(equalTo("pass:abc123")));
+     }
+ 
+     @Test
+@@ -87,7 +87,7 @@ public class SlimFormatterTest {
+ 
+         assertThat(
+                 c.body(),
+-                is(equalTo("pass:<div>something&nbsp;matching&nbsp;logically&nbsp;abc123<br/><i><span class='fit_label'>expected</span></i><hr/><br/>abc123<br/><i><span class='fit_label'>actual</span></i></div>")));
++                is(equalTo("pass:something&nbsp;matching&nbsp;logically&nbsp;abc123<br/><i><span class='fit_label'>expected</span></i><hr/><br/>abc123<br/><i><span class='fit_label'>actual</span></i>")));
+     }
+ 
+     @Test
+@@ -98,7 +98,7 @@ public class SlimFormatterTest {
+         StringTypeAdapter actual = new StringTypeAdapter();
+         actual.set("def345");
+         formatter.check(c, actual);
+-        assertThat(c.body(), is(equalTo("fail:<div>abc123</div>")));
++        assertThat(c.body(), is(equalTo("fail:abc123")));
+     }
+ 
+     @Test
+@@ -110,7 +110,7 @@ public class SlimFormatterTest {
+         actual.set("def345");
+         formatter.check(c, actual);
+ 
+-        assertThat(c.body(), is(equalTo("fail:<div>abc123<br/><i><span class='fit_label'>expected</span></i><hr/><br/>def345<br/><i><span class='fit_label'>actual</span></i></div>")));
++        assertThat(c.body(), is(equalTo("fail:abc123<br/><i><span class='fit_label'>expected</span></i><hr/><br/>def345<br/><i><span class='fit_label'>actual</span></i>")));
+     }
+ 
+     @Test
+@@ -121,7 +121,7 @@ public class SlimFormatterTest {
+         TextBodyTypeAdapter actual = new TextBodyTypeAdapter();
+         actual.set("<xml />");
+         formatter.check(c, actual);
+-        assertThat(c.body(), is(equalTo("pass:<div>" + Tools.toHtml("<xml />") + "</div>")));
++        assertThat(c.body(), is(equalTo(Tools.toHtml("pass:<xml />"))));
+     }
+ 
+     @Test
+@@ -129,7 +129,7 @@ public class SlimFormatterTest {
+         SlimFormatter formatter = new SlimFormatter();
+         SlimCell c = new SlimCell("abc123");
+         formatter.asLink(c, "http://localhost", "text");
+-        assertThat(c.body(), is(equalTo("report:<div><a href='http://localhost'>text</a></div>")));
++        assertThat(c.body(), is(equalTo("report:<a href='http://localhost'>text</a>")));
+     }
+ 
+     @Test

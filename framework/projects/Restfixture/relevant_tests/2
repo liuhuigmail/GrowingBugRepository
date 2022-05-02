@@ -1,0 +1,4 @@
+smartrics.rest.fitnesse.fixture.PartsFactoryTest
+smartrics.rest.fitnesse.fixture.RestFixtureFitTest
+smartrics.rest.fitnesse.fixture.RestFixtureSlimFitTest
+smartrics.rest.fitnesse.fixture.RestFixtureTest

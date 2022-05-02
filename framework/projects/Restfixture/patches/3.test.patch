@@ -1,0 +1,47 @@
+diff --git a/src/test/java/smartrics/rest/fitnesse/fixture/RestFixtureTest.java b/src/test/java/smartrics/rest/fitnesse/fixture/RestFixtureTest.java
+index 7db8e03..0a16385 100644
+--- a/src/test/java/smartrics/rest/fitnesse/fixture/RestFixtureTest.java
++++ b/src/test/java/smartrics/rest/fitnesse/fixture/RestFixtureTest.java
+@@ -122,19 +122,7 @@ public class RestFixtureTest {
+         verify(row.getCell(1)).body("name is one");
+         verify(mockCellFormatter).right(isA(CellWrapper.class), isA(StringTypeAdapter.class));
+     }
+-
+-    @SuppressWarnings("unchecked")
+-    @Test
+-    public void setBodyShouldNotRenderEncodedSymbols() {
+-        Fixture.setSymbol("name", "one");
+-        RowWrapper<?> row = helper.createTestRow("setBody", "this %name% is encoded %7B%22myvar%22%7D");
+-        when(mockCellFormatter.fromRaw("this %name% is encoded %7B%22myvar%22%7D")).thenReturn("this %name% is encoded " +
+-          "%7B%22myvar%22%7D");
+-        fixture.processRow(row);
+-        verify(row.getCell(1)).body("this one is encoded %7B%22myvar%22%7D");
+-        verify(mockCellFormatter).right(isA(CellWrapper.class), isA(StringTypeAdapter.class));
+-    }
+-
++    
+     @Test
+     public void mustSetConfigNameToDefaultWhenNotSpecifiedAsSecondOptionalParameter_SLIM() {
+         fixture = new RestFixture(BASE_URL, "configName");
+diff --git a/src/test/java/smartrics/rest/fitnesse/fixture/support/VariablesTest.java b/src/test/java/smartrics/rest/fitnesse/fixture/support/VariablesTest.java
+index 309ef40..df04c0c 100644
+--- a/src/test/java/smartrics/rest/fitnesse/fixture/support/VariablesTest.java
++++ b/src/test/java/smartrics/rest/fitnesse/fixture/support/VariablesTest.java
+@@ -53,17 +53,6 @@ public class VariablesTest {
+         assertEquals("the current value of ID is 100.", newText);
+     }
+ 
+-    @Test
+-    public void variablesAreSubstitutedWithCurrentValueWhenHexLabelsAreIdentifiedWithinPercentSymbol(){
+-        Variables v1 = new FitVariables();
+-        v1.put("AHexPrefix", "100");
+-        v1.put("aNonHexPrefix", "200");
+-        String hexText = v1.substitute("the current value of AHexPrefix is %AHexPrefix%.");
+-        assertEquals("the current value of AHexPrefix is %AHexPrefix%.", hexText);
+-        String nonHexText = v1.substitute("the current value of aNonHexPrefix is %aNonHexPrefix%.");
+-        assertEquals("the current value of aNonHexPrefix is 200.", nonHexText);
+-    }
+-
+     @Test
+     public void substitutingSymbolsContainingRegexSpecialCharsShouldWorkAsExpected_issue118(){
+         Variables v1 = new FitVariables();

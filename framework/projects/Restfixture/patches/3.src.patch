@@ -1,0 +1,15 @@
+diff --git a/src/main/java/smartrics/rest/fitnesse/fixture/support/Variables.java b/src/main/java/smartrics/rest/fitnesse/fixture/support/Variables.java
+index f249ac7..198dbd8 100644
+--- a/src/main/java/smartrics/rest/fitnesse/fixture/support/Variables.java
++++ b/src/main/java/smartrics/rest/fitnesse/fixture/support/Variables.java
+@@ -39,9 +39,8 @@ public abstract class Variables {
+ 	 */
+ 	public static Pattern SPECIAL_REGEX_CHARS = Pattern.compile("[{}()\\[\\].+*?^$\\\\|]");
+ 	// exclude 0-9, A-F from the first variable name as those are confused with URL encodings.
+-	public static final Pattern VARIABLES_PATTERN = Pattern.compile("\\%([a-zG-Z_][a-zA-Z0-9_]*)\\%");
+ 	// original regex pattern, allowing all initial characters.
+-	//	public static final Pattern VARIABLES_PATTERN = Pattern.compile("\\%([a-zA-Z0-9_]+)\\%");
++	public static final Pattern VARIABLES_PATTERN = Pattern.compile("\\%([a-zA-Z0-9_]+)\\%");
+ 	private static final String FIT_NULL_VALUE = fitSymbolForNull();
+ 	private String nullValue = "null";
+ 

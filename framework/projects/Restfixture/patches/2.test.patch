@@ -1,0 +1,33 @@
+diff --git a/src/test/java/smartrics/rest/fitnesse/fixture/RestFixtureTest.java b/src/test/java/smartrics/rest/fitnesse/fixture/RestFixtureTest.java
+index 4333eb9..1e6603d 100644
+--- a/src/test/java/smartrics/rest/fitnesse/fixture/RestFixtureTest.java
++++ b/src/test/java/smartrics/rest/fitnesse/fixture/RestFixtureTest.java
+@@ -192,7 +192,7 @@ public class RestFixtureTest {
+         fixture.processRow(row);
+         assertEquals("1234", fixture.getHeaders().get("header1"));
+     }
+-
++    
+     @Test
+     public void mustExpandSymbolWhenSettingHeaders() {
+         Fixture.setSymbol("hval", "one");
+@@ -780,19 +780,6 @@ public class RestFixtureTest {
+         verifyNoMoreInteractions(row.getCell(4));
+     }
+ 
+-    @Test
+-    public void mustSplitQueryOnFirstQuestionMark() {
+-        String q = "a=http://another.com?zzz=1?zzz=2";
+-        when(mockLastRequest.getQuery()).thenReturn(q);
+-        when(mockRestClient.getBaseUrl()).thenReturn(BASE_URL);
+-        lastResponse.setRawBody("<body>1234</body>".getBytes());
+-
+-        RowWrapper<?> row = helper.createTestRow("GET", "/uri?" + q, "", "", "");
+-        fixture.processRow(row);
+-
+-        verify(mockLastRequest).setQuery(q);
+-    }
+-
+     @Test
+     @SuppressWarnings("unchecked")
+     public void mustSetValueOnSymbolMapAsXmlStringIfSourceIsBodyAsXml() throws Exception {

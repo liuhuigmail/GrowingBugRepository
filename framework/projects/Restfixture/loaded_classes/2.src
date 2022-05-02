@@ -1,0 +1,16 @@
+smartrics.rest.fitnesse.fixture.PartsFactory
+smartrics.rest.fitnesse.fixture.RestFixture
+smartrics.rest.fitnesse.fixture.support.BodyTypeAdapter
+smartrics.rest.fitnesse.fixture.support.CellFormatter
+smartrics.rest.fitnesse.fixture.support.CellWrapper
+smartrics.rest.fitnesse.fixture.support.Config
+smartrics.rest.fitnesse.fixture.support.ContentType
+smartrics.rest.fitnesse.fixture.support.HeadersTypeAdapter
+smartrics.rest.fitnesse.fixture.support.JavascriptException
+smartrics.rest.fitnesse.fixture.support.RestDataTypeAdapter
+smartrics.rest.fitnesse.fixture.support.RowWrapper
+smartrics.rest.fitnesse.fixture.support.StatusCodeTypeAdapter
+smartrics.rest.fitnesse.fixture.support.StringTypeAdapter
+smartrics.rest.fitnesse.fixture.support.Tools
+smartrics.rest.fitnesse.fixture.support.Url
+smartrics.rest.fitnesse.fixture.support.Variables

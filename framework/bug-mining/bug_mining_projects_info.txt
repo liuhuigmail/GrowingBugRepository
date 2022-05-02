@@ -193,3 +193,4 @@ Solarpositioning	solarpositioning	https://github.com/KlausBrunner/solarpositioni
 Sparkey_java	sparkey-java	https://github.com/spotify/sparkey-java.git	github	spotify/sparkey-java	/#(\\d+)/mi	.
 Suffixtree	suffixtree	https://github.com/abahgat/suffixtree.git	github	abahgat/suffixtree	/#(\\d+)/mi	.
 Shazamcrest	shazamcrest	https://github.com/shazam/shazamcrest.git	github	shazam/shazamcrest	/#(\\d+)/mi	.
+Restfixture	RestFixture	https://github.com/smartrics/RestFixture.git	github	smartrics/RestFixture	/#(\\d+)/mi	.

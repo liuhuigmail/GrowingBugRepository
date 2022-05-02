@@ -1,0 +1,14 @@
+smartrics.rest.fitnesse.fixture.FitFormatterTest
+smartrics.rest.fitnesse.fixture.RestFixtureConfigTest
+smartrics.rest.fitnesse.fixture.RestFixtureFitTest
+smartrics.rest.fitnesse.fixture.RestFixtureSlimFitTest
+smartrics.rest.fitnesse.fixture.RestFixtureTest
+smartrics.rest.fitnesse.fixture.SlimFormatterTest
+smartrics.rest.fitnesse.fixture.support.ContentTypeTest
+smartrics.rest.fitnesse.fixture.support.HeadersTypeAdapterTest
+smartrics.rest.fitnesse.fixture.support.JSONBodyTypeAdapterTest
+smartrics.rest.fitnesse.fixture.support.JavascriptWrapperTest
+smartrics.rest.fitnesse.fixture.support.LetBodyHandlerTest
+smartrics.rest.fitnesse.fixture.support.StatusCodeTypeAdapterTest
+smartrics.rest.fitnesse.fixture.support.ToolsTest
+smartrics.rest.fitnesse.fixture.support.XPathBodyTypeAdapterTest

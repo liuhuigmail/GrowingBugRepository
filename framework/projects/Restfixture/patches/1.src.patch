@@ -1,0 +1,31 @@
+diff --git a/src/main/java/smartrics/rest/fitnesse/fixture/SlimFormatter.java b/src/main/java/smartrics/rest/fitnesse/fixture/SlimFormatter.java
+index be27024..0e4d093 100644
+--- a/src/main/java/smartrics/rest/fitnesse/fixture/SlimFormatter.java
++++ b/src/main/java/smartrics/rest/fitnesse/fixture/SlimFormatter.java
+@@ -94,22 +94,22 @@ public class SlimFormatter implements CellFormatter<String> {
+     public void wrong(CellWrapper<String> expected, RestDataTypeAdapter ta) {
+         String expectedContent = expected.body();
+         expected.body(Tools.makeContentForWrongCell(expectedContent, ta, this, minLenForToggle));
+-        expected.body("fail:" + Tools.wrapInDiv(expected.body()));
++        expected.body("fail:" + expected.body());
+     }
+ 
+     @Override
+     public void right(CellWrapper<String> expected, RestDataTypeAdapter typeAdapter) {
+-        expected.body("pass:" + Tools.wrapInDiv(Tools.makeContentForRightCell(expected.body(), typeAdapter, this, minLenForToggle)));
++        expected.body("pass:" + Tools.makeContentForRightCell(expected.body(), typeAdapter, this, minLenForToggle));
+     }
+ 
+     @Override
+     public String gray(String string) {
+-        return "report:" + Tools.wrapInDiv(Tools.toHtml(string));
++        return "report:" + Tools.toHtml(string);
+     }
+ 
+     @Override
+     public void asLink(CellWrapper<String> cell, String link, String text) {
+-        cell.body("report:" + Tools.wrapInDiv(Tools.toHtmlLink(link, text)));
++        cell.body("report:" + Tools.toHtmlLink(link, text));
+     }
+ 
+     @Override

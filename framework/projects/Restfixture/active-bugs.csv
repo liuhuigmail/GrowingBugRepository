@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,4b02670554a09ce4f6e81c32b6663118ad30272c,923dc80d9301653bb9f932d237a7b16b5133f3c6,69,https://github.com/smartrics/RestFixture/pull/69
+2,3535a99f549dc089edf53da87294bc62000ca6a6,701a22c3d801fde39adc75ff1ba2bc62a229a6df,112,https://github.com/smartrics/RestFixture/issues/112
+3,7d2d090a1a2f6ce405fbf9645849800bc7522d85,98a8730e5099a4961274e3093e68acc3e2f5a7de,145,https://github.com/smartrics/RestFixture/pull/145
+4,ae98ac3aab948a95c7151bea0e66cc261aed5294,b21cbacc82451809013068126469329b21d04ef7,166,https://github.com/smartrics/RestFixture/issues/166

@@ -1,0 +1,9 @@
+smartrics.rest.fitnesse.fixture.SlimCell
+smartrics.rest.fitnesse.fixture.SlimFormatter
+smartrics.rest.fitnesse.fixture.support.BodyTypeAdapter
+smartrics.rest.fitnesse.fixture.support.CellFormatter
+smartrics.rest.fitnesse.fixture.support.CellWrapper
+smartrics.rest.fitnesse.fixture.support.RestDataTypeAdapter
+smartrics.rest.fitnesse.fixture.support.StringTypeAdapter
+smartrics.rest.fitnesse.fixture.support.TextBodyTypeAdapter
+smartrics.rest.fitnesse.fixture.support.Tools

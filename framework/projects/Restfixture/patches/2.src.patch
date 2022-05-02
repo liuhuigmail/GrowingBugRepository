@@ -1,0 +1,13 @@
+diff --git a/src/main/java/smartrics/rest/fitnesse/fixture/RestFixture.java b/src/main/java/smartrics/rest/fitnesse/fixture/RestFixture.java
+index 5516482..fa0fc24 100644
+--- a/src/main/java/smartrics/rest/fitnesse/fixture/RestFixture.java
++++ b/src/main/java/smartrics/rest/fitnesse/fixture/RestFixture.java
+@@ -921,7 +921,7 @@ public class RestFixture {
+ 		}
+ 		getLastRequest().setMultipartFileParameterName(
+ 				multipartFileParameterName);
+-		String[] uri = resUrl.split("\\?", 2);
++		String[] uri = resUrl.split("\\?");
+ 		String[] thisRequestUrlParts = buildThisRequestUrl(uri[0]);
+ 		getLastRequest().setResource(thisRequestUrlParts[1]);
+ 		if (uri.length == 2) {

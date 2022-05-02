@@ -1,0 +1,7 @@
+smartrics.rest.fitnesse.fixture.RestFixtureFitTest
+smartrics.rest.fitnesse.fixture.RestFixtureSlimFitTest
+smartrics.rest.fitnesse.fixture.RestFixtureTest
+smartrics.rest.fitnesse.fixture.support.JavascriptWrapperTest
+smartrics.rest.fitnesse.fixture.support.LetBodyHandlerTest
+smartrics.rest.fitnesse.fixture.support.LetBodyJsHandlerTest
+smartrics.rest.fitnesse.fixture.support.VariablesTest
