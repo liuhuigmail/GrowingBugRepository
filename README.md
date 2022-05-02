@@ -21,7 +21,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 
 # Contents of growingBugs
-To date, growingBugs contains **`1586`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1592`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -213,9 +213,10 @@ To date, growingBugs contains **`1586`** real-world bugs from open-source Java p
 | 186     | Ber_tlv         | Ber_tlv            |                  |      4       | 1-4                  |                 |
 | 187     | Commons_suncalc         | Commons_suncalc            |                  |      2       | 1-2                  |                 |
 | 188     | Dropwizard_spring         | dropwizard-spring            |                  |      1       | 1                  |                 |
-| 189     | Semux_core         | semux-core            |                  |      2       | 1-2                  |                 |
-| 190     | Solarpositioning         | solarpositioning            |                  |      2       | 1-2                  |                 |
-| 191     | Sparkey_java         | sparkey-java            |                  |      1       | 1                  |                 |
+| 189     | Semux_core         | semux-core            |                  |      3       | 1-3                  |                 |
+| 190     | Solarpositioning         | solarpositioning            |                  |      3       | 1-3                  |                 |
+| 191     | Sparkey_java         | sparkey-java            |                  |      3       | 1-3                  |                 |
+| 192     | Shazamcrest         | Shazamcrest            |                  |      2       | 1-2                  |                 |
 # Setting up GrowingBugs
 
 ## Requirements
