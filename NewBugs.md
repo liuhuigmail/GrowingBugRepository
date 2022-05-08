@@ -1,5 +1,5 @@
 # Unique Bugs in growingBugs
-To date, growingBugs contains **`754`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`758`** unique bugs that are not included in Defects4J. 
 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -190,3 +190,6 @@ To date, growingBugs contains **`754`** unique bugs that are not included in Def
 | 184     | Sparkey_java         | sparkey-java            |                  |      3       | 1-3                  |                 |
 | 185     | Shazamcrest         | Shazamcrest            |                  |      2       | 1-2                  |                 |
 | 186     | Restfixture         | Restfixture            |                  |      4       | 1-4                  |                 |
+| 187     | Chronicle_network         | Chronicle_network            |                  |      2       | 1-2                  |                 |
+| 188     | Farm         | Farm            |                  |      1       | 1                  |                 |
+| 189     | Gocd_slack_build_notifier         | Gocd_slack_build_notifier            |                  |      1       | 1                  |                 |
