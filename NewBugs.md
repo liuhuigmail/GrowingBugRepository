@@ -1,5 +1,5 @@
 # Unique Bugs in growingBugs
-To date, growingBugs contains **`750`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`754`** unique bugs that are not included in Defects4J. 
 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -36,7 +36,7 @@ To date, growingBugs contains **`750`** unique bugs that are not included in Def
 | 30     | MDeploy         | maven-deploy-plugin       |                          |        1       | 1               |
 | 31     | Jackrabbit_filevault<br/>_vault_validation | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
 | 32     | Jackrabbit_oak_core | oak-core              |       oak-core           |        5       | 1-5               |
-| 33     | Doxia_module_apt    | doxia-module-apt      |   doxia-modules/doxia-module-apt       |       2       | 1-2               |
+| 33     | Doxia_module_apt    | doxia-module-apt      |   doxia-moduleRestfixtures/doxia-module-apt       |       2       | 1-2               |
 | 34     | Xmlgraphics            | xmlgraphics-commons |       |       2     | 1-2              |
 | 35     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
 | 36     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
@@ -189,3 +189,4 @@ To date, growingBugs contains **`750`** unique bugs that are not included in Def
 | 183     | Solarpositioning         | solarpositioning            |                  |      3       | 1-3                  |                 |
 | 184     | Sparkey_java         | sparkey-java            |                  |      3       | 1-3                  |                 |
 | 185     | Shazamcrest         | Shazamcrest            |                  |      2       | 1-2                  |                 |
+| 186     | Restfixture         | Restfixture            |                  |      4       | 1-4                  |                 |
