@@ -1,0 +1,25 @@
+diff --git a/src/main/java/com/zerocracy/tk/TkGhook.java b/src/main/java/com/zerocracy/tk/TkGhook.java
+index df3182b91..32aa0b184 100644
+--- a/src/main/java/com/zerocracy/tk/TkGhook.java
++++ b/src/main/java/com/zerocracy/tk/TkGhook.java
+@@ -27,8 +27,7 @@ import javax.json.stream.JsonParsingException;
+ import org.takes.Request;
+ import org.takes.Response;
+ import org.takes.Take;
+-import org.takes.rq.form.RqFormBase;
+-import org.takes.rq.form.RqFormSmart;
++import org.takes.rq.RqPrint;
+ import org.takes.rs.RsText;
+ import org.takes.rs.RsWithStatus;
+ 
+@@ -57,9 +56,7 @@ final class TkGhook implements Take {
+ 
+     @Override
+     public Response act(final Request req) throws IOException {
+-        final String body = new RqFormSmart(
+-            new RqFormBase(req)
+-        ).single("payload");
++        final String body = new RqPrint(req).printBody();
+         try {
+             this.events.add(
+                 Json.createReader(

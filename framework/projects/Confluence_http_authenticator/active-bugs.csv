@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,42cafd4ef09b6b89ed836080daf0a5f82e5ba867,297439a52cf6aa143691d62ad9129cf8554f73d4,39,https://github.com/chauth/confluence_http_authenticator/pull/39

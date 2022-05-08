@@ -1,0 +1,14 @@
+diff --git a/src/main/java/shibauth/confluence/authentication/shibboleth/StringUtil.java b/src/main/java/shibauth/confluence/authentication/shibboleth/StringUtil.java
+index c6037fe..706beb4 100644
+--- a/src/main/java/shibauth/confluence/authentication/shibboleth/StringUtil.java
++++ b/src/main/java/shibauth/confluence/authentication/shibboleth/StringUtil.java
+@@ -75,8 +75,8 @@ public class StringUtil {
+         }
+ 
+         List results = new ArrayList();
+         // include empty last one, cft. http://docs.oracle.com/javase/6/docs/api/java/lang/String.html#split%28java.lang.String,%20int%29
+-        String[] terms = s.split(SEPARATOR,-1);
++        String[] terms = s.split(SEPARATOR);
+ 
+         for (int i = 0; i < terms.length; i++) {
+             //this has empty string if nothing is found

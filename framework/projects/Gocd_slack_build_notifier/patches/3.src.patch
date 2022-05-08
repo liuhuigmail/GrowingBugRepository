@@ -1,0 +1,14 @@
+diff --git a/src/main/java/in/ashwanthkumar/gocd/slack/ruleset/RulesReader.java b/src/main/java/in/ashwanthkumar/gocd/slack/ruleset/RulesReader.java
+index b896521..f7b5fdb 100644
+--- a/src/main/java/in/ashwanthkumar/gocd/slack/ruleset/RulesReader.java
++++ b/src/main/java/in/ashwanthkumar/gocd/slack/ruleset/RulesReader.java
+@@ -22,8 +22,7 @@ public class RulesReader {
+     }
+ 
+     protected Rules load(Config config) {
+-        Config envThenSystem = ConfigFactory.systemEnvironment().withFallback(ConfigFactory.systemProperties());
+-        Config configWithFallback = config.withFallback(ConfigFactory.load(getClass().getClassLoader())).resolveWith(envThenSystem);
++        Config configWithFallback = config.withFallback(ConfigFactory.load(getClass().getClassLoader()));
+         return Rules.fromConfig(configWithFallback.getConfig("gocd.slack"));
+     }
+ 

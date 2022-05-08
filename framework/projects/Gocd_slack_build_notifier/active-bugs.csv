@@ -1,2 +1,4 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,2da2f30f18f45c479254eaa251c3bc6b1fca9df0,79570a78645f5416e1dece087d7576da737177e8,34,https://github.com/ashwanthkumar/gocd-slack-build-notifier/pull/34
+2,f5ef35e521635809aa8d64ebc49e1b51a3b043e7,41aa9bef8e7dce1ee98f23ebc964889486a3c328,38,https://github.com/ashwanthkumar/gocd-slack-build-notifier/pull/38
+3,e9805a16e309a21d16ec3cce66754a99b551a3ac,00a26b663da32f68d8f486128dc23a15240e3e7d,46,https://github.com/ashwanthkumar/gocd-slack-build-notifier/issues/46

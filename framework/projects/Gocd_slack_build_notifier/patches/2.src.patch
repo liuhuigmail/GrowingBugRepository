@@ -1,0 +1,42 @@
+diff --git a/src/main/java/in/ashwanthkumar/gocd/slack/ruleset/PipelineRule.java b/src/main/java/in/ashwanthkumar/gocd/slack/ruleset/PipelineRule.java
+index 5b3601e..3365307 100644
+--- a/src/main/java/in/ashwanthkumar/gocd/slack/ruleset/PipelineRule.java
++++ b/src/main/java/in/ashwanthkumar/gocd/slack/ruleset/PipelineRule.java
+@@ -160,7 +160,7 @@ public class PipelineRule {
+         if (pipelineRule.getStatus().isEmpty()) {
+             ruleToReturn.setStatus(defaultRule.getStatus());
+         } else {
+-            ruleToReturn.getStatus().addAll(pipelineRule.getStatus());
++            ruleToReturn.getStatus().addAll(defaultRule.getStatus());
+         }
+ 
+         return ruleToReturn;
+diff --git a/src/main/java/in/ashwanthkumar/gocd/slack/ruleset/Rules.java b/src/main/java/in/ashwanthkumar/gocd/slack/ruleset/Rules.java
+index 517e81e..13453c0 100644
+--- a/src/main/java/in/ashwanthkumar/gocd/slack/ruleset/Rules.java
++++ b/src/main/java/in/ashwanthkumar/gocd/slack/ruleset/Rules.java
+@@ -1,6 +1,5 @@
+ package in.ashwanthkumar.gocd.slack.ruleset;
+ 
+-import com.thoughtworks.go.plugin.api.logging.Logger;
+ import com.typesafe.config.Config;
+ import in.ashwanthkumar.gocd.slack.PipelineListener;
+ import in.ashwanthkumar.utils.collections.Lists;
+@@ -14,9 +13,8 @@ import java.util.List;
+ import static in.ashwanthkumar.gocd.slack.ruleset.PipelineRule.merge;
+ 
+ public class Rules {
+ 
+-    private static Logger LOGGER = Logger.getLoggerFor(Rules.class);
+ 
+     private boolean enabled;
+     private String webHookUrl;
+     private String slackChannel;
+@@ -172,7 +168,6 @@ public class Rules {
+         try {
+             rules.pipelineListener = Class.forName(config.getString("listener")).asSubclass(PipelineListener.class).getConstructor(Rules.class).newInstance(rules);
+         } catch (Exception e) {
+-            LOGGER.error("Exception while initializing pipeline listener", e);
+             throw new RuntimeException(e);
+         }
+ 

@@ -1,0 +1,6 @@
+in.ashwanthkumar.gocd.slack.GoNotificationMessageTest
+in.ashwanthkumar.gocd.slack.GoNotificationMessageTest_FixStageResult
+in.ashwanthkumar.gocd.slack.GoNotificationPluginTest
+in.ashwanthkumar.gocd.slack.ruleset.PipelineRuleTest
+in.ashwanthkumar.gocd.slack.ruleset.RulesReaderTest
+in.ashwanthkumar.gocd.slack.ruleset.RulesTest

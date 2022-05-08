@@ -1,0 +1,28 @@
+diff --git a/src/test/java/com/zerocracy/tk/TkGhookTest.java b/src/test/java/com/zerocracy/tk/TkGhookTest.java
+index 2b22b4e25..b3b64bbbd 100644
+--- a/src/test/java/com/zerocracy/tk/TkGhookTest.java
++++ b/src/test/java/com/zerocracy/tk/TkGhookTest.java
+@@ -17,8 +17,6 @@
+ package com.zerocracy.tk;
+ 
+ import java.net.HttpURLConnection;
+-import java.net.URLEncoder;
+-import java.nio.charset.StandardCharsets;
+ import java.util.LinkedList;
+ import java.util.Queue;
+ import javax.json.JsonObject;
+@@ -50,13 +48,7 @@ public final class TkGhookTest {
+             take.act(
+                 new RqWithBody(
+                     new RqFake("POST", "/"),
+-                    String.format(
+-                        "payload=%s",
+-                        URLEncoder.encode(
+-                            "{\"foo\": \"bar\"}",
+-                            StandardCharsets.UTF_8.displayName()
+-                        )
+-                    )
++                    "{\"foo\": \"bar\"}"
+                 )
+             ),
+             new HmRsStatus(HttpURLConnection.HTTP_OK)

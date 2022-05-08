@@ -1,0 +1,12 @@
+diff --git a/src/main/java/com/zerocracy/qa/Question.java b/src/main/java/com/zerocracy/qa/Question.java
+index 058ae813d..cba9a4af3 100644
+--- a/src/main/java/com/zerocracy/qa/Question.java
++++ b/src/main/java/com/zerocracy/qa/Question.java
+@@ -72,7 +72,6 @@ public final class Question {
+             final Matcher mtr = opt.matcher(this.text);
+             if (mtr.matches()) {
+                 found = mtr;
+-                break;
+             }
+         }
+         if (found == null) {

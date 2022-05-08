@@ -1,0 +1,12 @@
+diff --git a/src/main/java/com/google/code/tempusfugit/temporal/Duration.java b/src/main/java/com/google/code/tempusfugit/temporal/Duration.java
+index 0413afa..d027eca 100644
+--- a/src/main/java/com/google/code/tempusfugit/temporal/Duration.java
++++ b/src/main/java/com/google/code/tempusfugit/temporal/Duration.java
+@@ -114,6 +114,6 @@ public class Duration implements Comparable<Duration> {
+     }
+ 
+     public int compareTo(Duration other) {
+-        return ((Long)inMillis()).compareTo(other.inMillis());
++        return this.value.compareTo(other.value);
+     }
+ }

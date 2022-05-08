@@ -1,0 +1,17 @@
+diff --git a/src/main/java/com/zerocracy/crews/Question.java b/src/main/java/com/zerocracy/crews/Question.java
+index e28d1b64c..765cd6f2c 100644
+--- a/src/main/java/com/zerocracy/crews/Question.java
++++ b/src/main/java/com/zerocracy/crews/Question.java
+@@ -50,10 +50,9 @@ public final class Question {
+         final Matcher matcher = Pattern.compile(
+             String.format(
+                 "%s\\s*(?:=|is)\\s*`([^`]+)`", name
+-            ),
+-            Pattern.CASE_INSENSITIVE | Pattern.MULTILINE
++            )
+         ).matcher(this.text);
+-        if (!matcher.find()) {
++        if (!matcher.matches()) {
+             throw new IllegalArgumentException(
+                 String.format(
+                     "Argument \"%s\" not found in \"%s\"", name, this.text

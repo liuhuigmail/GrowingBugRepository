@@ -1,0 +1,109 @@
+diff --git a/src/test/java/in/ashwanthkumar/gocd/slack/GoNotificationPluginTest.java b/src/test/java/in/ashwanthkumar/gocd/slack/GoNotificationPluginTest.java
+index 3523d21..1b89928 100644
+--- a/src/test/java/in/ashwanthkumar/gocd/slack/GoNotificationPluginTest.java
++++ b/src/test/java/in/ashwanthkumar/gocd/slack/GoNotificationPluginTest.java
+@@ -7,9 +7,7 @@ import in.ashwanthkumar.gocd.slack.util.TestUtils;
+ import org.junit.Test;
+ 
+ import static in.ashwanthkumar.gocd.slack.GoNotificationPlugin.*;
+-import static org.hamcrest.CoreMatchers.containsString;
+-import static org.hamcrest.CoreMatchers.equalTo;
+-import static org.hamcrest.CoreMatchers.is;
++import static org.hamcrest.CoreMatchers.*;
+ import static org.hamcrest.core.IsNull.notNullValue;
+ import static org.junit.Assert.assertThat;
+ import static org.mockito.Mockito.mock;
+@@ -81,7 +79,7 @@ public class GoNotificationPluginTest {
+     }
+ 
+     public static GoNotificationPlugin createGoNotificationPlugin() {
+-        String folder = TestUtils.getResourceDirectory("configs/go_notify.conf");
++        String folder = TestUtils.getResourceDirectory("go_notify.conf");
+ 
+         String oldUserHome = System.getProperty(USER_HOME);
+         System.setProperty(USER_HOME, folder);
+diff --git a/src/test/java/in/ashwanthkumar/gocd/slack/ruleset/RulesReaderTest.java b/src/test/java/in/ashwanthkumar/gocd/slack/ruleset/RulesReaderTest.java
+index 75b19e1..e5084d0 100644
+--- a/src/test/java/in/ashwanthkumar/gocd/slack/ruleset/RulesReaderTest.java
++++ b/src/test/java/in/ashwanthkumar/gocd/slack/ruleset/RulesReaderTest.java
+@@ -3,14 +3,15 @@ package in.ashwanthkumar.gocd.slack.ruleset;
+ import in.ashwanthkumar.utils.collections.Sets;
+ import org.junit.Test;
+ 
+-import static org.hamcrest.CoreMatchers.*;
++import static org.hamcrest.CoreMatchers.hasItem;
++import static org.hamcrest.CoreMatchers.is;
+ import static org.junit.Assert.assertThat;
+ 
+ public class RulesReaderTest {
+ 
+     @Test
+     public void shouldReadTestConfig() {
+-        Rules rules = RulesReader.read("configs/test-config-1.conf");
++        Rules rules = RulesReader.read("test-config-1.conf");
+         assertThat(rules.isEnabled(), is(true));
+         assertThat(rules.getSlackChannel(), is("#gocd"));
+         assertThat(rules.getGoServerHost(), is("http://localhost:8080/"));
+@@ -30,61 +31,6 @@ public class RulesReaderTest {
+                 .setChannel("#gocd-build")
+                 .setStatus(Sets.of(PipelineStatus.FAILED));
+         assertThat(rules.getPipelineRules(), hasItem(pipelineRule2));
+-
+-        assertThat(rules.getPipelineListener(), notNullValue());
+-    }
+-
+-    @Test
+-    public void shouldReadMinimalConfig() {
+-        Rules rules = RulesReader.read("configs/test-config-minimal.conf");
+-
+-        assertThat(rules.isEnabled(), is(true));
+-
+-        assertThat(rules.getGoLogin(), is("someuser"));
+-        assertThat(rules.getGoPassword(), is("somepassword"));
+-        assertThat(rules.getGoServerHost(), is("http://localhost:8153/"));
+-        assertThat(rules.getWebHookUrl(), is("https://hooks.slack.com/services/"));
+-
+-        assertThat(rules.getSlackChannel(), is("#build"));
+-        assertThat(rules.getSlackDisplayName(), is("gocd-slack-bot"));
+-        assertThat(rules.getSlackUserIcon(), is("http://example.com/slack-bot.png"));
+-
+-        // Default rules
+-        assertThat(rules.getPipelineRules().size(), is(1));
+-
+-        PipelineRule pipelineRule = new PipelineRule()
+-                .setNameRegex(".*")
+-                .setStageRegex(".*")
+-                .setChannel("#build")
+-                .setStatus(Sets.of(PipelineStatus.CANCELLED, PipelineStatus.BROKEN, PipelineStatus.FAILED, PipelineStatus.FIXED));
+-        assertThat(rules.getPipelineRules(), hasItem(pipelineRule));
+-
+-        assertThat(rules.getPipelineListener(), notNullValue());
+     }
+ 
+-    @Test
+-    public void shouldReadMinimalConfigWithPipeline() {
+-        Rules rules = RulesReader.read("configs/test-config-minimal-with-pipeline.conf");
+-        assertThat(rules.isEnabled(), is(true));
+-        assertThat(rules.getSlackChannel(), nullValue());
+-        assertThat(rules.getGoServerHost(), is("https://go-instance:8153/"));
+-        assertThat(rules.getWebHookUrl(), is("https://hooks.slack.com/services/"));
+-        assertThat(rules.getPipelineRules().size(), is(1));
+-
+-        PipelineRule pipelineRule = new PipelineRule()
+-                .setNameRegex(".*")
+-                .setStageRegex(".*")
+-                .setChannel("#foo")
+-                .setStatus(Sets.of(PipelineStatus.FAILED));
+-        assertThat(rules.getPipelineRules(), hasItem(pipelineRule));
+-
+-        assertThat(rules.getPipelineListener(), notNullValue());
+-    }
+-
+-    @Test(expected = RuntimeException.class)
+-    public void shouldThrowExceptionIfConfigInvalid() {
+-        RulesReader.read("test-config-invalid.conf");
+-    }
+-
+-
+ }
+\ No newline at end of file

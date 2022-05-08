@@ -1,3 +1,5 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,dffc931824d6575157efbc30c261f7107dd2b6fb,bc48f8901e494562ca3d2174fa5be97bdffb0922,124,https://github.com/OpenHFT/Chronicle-Network/issues/124
 2,0419f2c23571ff71532b02d5b6bdb1be297af3af,742a04e69bb96c0a4975a2be05c13cead2aa5259,unknown,unknown
+3,717aefaa0f0d1c173c4e07cf41b1f31c8672aae4,85bb96d2eb5ab44b7297249f3c086351579fc571,114,https://github.com/OpenHFT/Chronicle-Network/issues/114
+4,717aefaa0f0d1c173c4e07cf41b1f31c8672aae4,b0a5f8ace53d270c6449116136f8e7cabbebcfce,118,https://github.com/OpenHFT/Chronicle-Network/pull/118
