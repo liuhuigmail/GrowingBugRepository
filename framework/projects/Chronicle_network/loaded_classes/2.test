@@ -1,0 +1,2 @@
+net.openhft.performance.tests.network.ConnectionEventHandlerTest
+net.openhft.performance.tests.network.LegacyHanderFactory

@@ -1,0 +1,28 @@
+diff --git a/src/test/java/com/zerocracy/crews/QuestionTest.java b/src/test/java/com/zerocracy/crews/QuestionTest.java
+index b6d5018b4..49faa728d 100644
+--- a/src/test/java/com/zerocracy/crews/QuestionTest.java
++++ b/src/test/java/com/zerocracy/crews/QuestionTest.java
+@@ -47,23 +47,4 @@ public final class QuestionTest {
+         );
+     }
+ 
+-    /**
+-     * Takes argument by position.
+-     * @throws Exception If some problem inside
+-     */
+-    @Test
+-    public void fetchesArgumentByPosition() throws Exception {
+-        final Question question = new Question(
+-            "<@U3Q183883> rate $30 now please"
+-        );
+-        MatcherAssert.assertThat(
+-            question.pos(0),
+-            Matchers.equalTo("rate")
+-        );
+-        MatcherAssert.assertThat(
+-            question.pos(1),
+-            Matchers.equalTo("$30")
+-        );
+-    }
+-
+ }

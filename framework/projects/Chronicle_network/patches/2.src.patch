@@ -1,0 +1,486 @@
+diff --git a/src/main/java/net/openhft/chronicle/network/TcpEventHandler.java b/src/main/java/net/openhft/chronicle/network/TcpEventHandler.java
+index a5b4a5a25e..80ba5c5c06 100755
+--- a/src/main/java/net/openhft/chronicle/network/TcpEventHandler.java
++++ b/src/main/java/net/openhft/chronicle/network/TcpEventHandler.java
+@@ -370,7 +370,8 @@ public class TcpEventHandler implements EventHandler, Closeable, TcpEventHandler
+                 closeSC();
+ 
+             } catch (IOException e) {
+-                handleIOE(e, tcpHandler.hasClientClosed(), nc.heartbeatListener());
++                if (!closed)
++                    handleIOE(e, tcpHandler.hasClientClosed(), nc.heartbeatListener());
+             }
+             return busy;
+         }
+diff --git a/src/main/java/net/openhft/chronicle/network/WireTcpHandler.java b/src/main/java/net/openhft/chronicle/network/WireTcpHandler.java
+index 28acfcd64d..89103e6281 100755
+--- a/src/main/java/net/openhft/chronicle/network/WireTcpHandler.java
++++ b/src/main/java/net/openhft/chronicle/network/WireTcpHandler.java
+@@ -115,7 +115,9 @@ public abstract class WireTcpHandler<T extends NetworkContext> implements TcpHan
+      * process all messages in this batch, provided there is plenty of output space.
+      */
+     private void onRead0() {
++        assert inWire.startUse();
+ 
++        try {
+         while (!inWire.bytes().isEmpty()) {
+             long start = inWire.bytes().readPosition();
+             try (DocumentContext dc = inWire.readingDocument()) {
+@@ -130,7 +132,10 @@ public abstract class WireTcpHandler<T extends NetworkContext> implements TcpHan
+                 } catch (Exception e) {
+                     LOG.error("inWire=" + inWire.getClass(), e);
+                 }
++                }
+             }
++        } finally {
++            assert inWire.endUse();
+         }
+     }
+ 
+@@ -155,12 +160,20 @@ public abstract class WireTcpHandler<T extends NetworkContext> implements TcpHan
+             recreateWire = false;
+         }
+ 
++        assert inWire.startUse();
+         if (inWire.bytes() != in) {
+             inWire = wireType.apply(in);
+             recreateWire = false;
+         }
++        assert inWire.endUse();
+ 
+-        if ((outWire == null || outWire.bytes() != out)) {
++        boolean replace = outWire == null;
++        if (!replace) {
++            assert outWire.startUse();
++            replace = outWire.bytes() != out;
++            assert outWire.endUse();
++        }
++        if (replace) {
+             outWire = wireType.apply(out);
+             recreateWire = false;
+         }
+diff --git a/src/main/java/net/openhft/chronicle/network/WireTypeSniffingTcpHandler.java b/src/main/java/net/openhft/chronicle/network/WireTypeSniffingTcpHandler.java
+index 50bf41ef6f..d568b34404 100644
+--- a/src/main/java/net/openhft/chronicle/network/WireTypeSniffingTcpHandler.java
++++ b/src/main/java/net/openhft/chronicle/network/WireTypeSniffingTcpHandler.java
+@@ -69,7 +69,13 @@ public class WireTypeSniffingTcpHandler<T extends NetworkContext> implements Tcp
+             return;
+ 
+         final byte b = in.readByte(4);
+-        final WireType wireType = (b & 0x80) == 0 ? TEXT : BINARY;
++        final WireType wireType;
++        if (b < 0)
++            wireType = BINARY;
++        else if (b > ' ')
++            wireType = TEXT;
++        else
++            throw new IllegalStateException("Unable to identify the wire type from " + Integer.toHexString(b & 0xFF));
+ 
+         // the type of the header
+         nc.wireType(wireType);
+diff --git a/src/main/java/net/openhft/chronicle/network/connection/TcpChannelHub.java b/src/main/java/net/openhft/chronicle/network/connection/TcpChannelHub.java
+index df145f9015..766cde8919 100755
+--- a/src/main/java/net/openhft/chronicle/network/connection/TcpChannelHub.java
++++ b/src/main/java/net/openhft/chronicle/network/connection/TcpChannelHub.java
+@@ -103,8 +103,6 @@ public class TcpChannelHub implements Closeable {
+     private final TcpSocketConsumer tcpSocketConsumer;
+     @NotNull
+     private final EventLoop eventLoop;
+-    @NotNull
+-    private final Function<Bytes, Wire> wire;
+     private final Wire handShakingWire;
+     private final ClientConnectionMonitor clientConnectionMonitor;
+     @NotNull
+@@ -138,19 +136,18 @@ public class TcpChannelHub implements Closeable {
+         this.inWire = wireType.apply(elasticByteBuffer());
+         this.name = name.trim();
+         this.timeoutMs = Integer.getInteger("tcp.client.timeout", 10_000);
+-        this.wire = wireType;
++        this.wireType = wireType;
+ 
+         // we are always going to send the header as text wire, the server will
+         // respond in the wire define by the wireType field, all subsequent types must be in wireType
+         this.handShakingWire = WireType.TEXT.apply(Bytes.elasticByteBuffer());
+ 
+         this.sessionProvider = sessionProvider;
+-        this.tcpSocketConsumer = new TcpSocketConsumer(wireType);
+         this.shouldSendCloseMessage = shouldSendCloseMessage;
+         this.clientConnectionMonitor = clientConnectionMonitor;
+-        this.wireType = wireType;
+         hubs.add(this);
+         eventLoop.addHandler(new PauserMonitor(pauser, "async-read", 30));
++        this.tcpSocketConsumer = new TcpSocketConsumer();
+     }
+ 
+     public static void assertAllHubsClosed() {
+@@ -231,8 +228,10 @@ public class TcpChannelHub implements Closeable {
+     }
+ 
+     private void clear(@NotNull final Wire wire) {
++        assert wire.startUse();
+         wire.clear();
+         ((ByteBuffer) wire.bytes().underlyingObject()).clear();
++        assert wire.endUse();
+     }
+ 
+     @Nullable
+@@ -341,17 +340,9 @@ public class TcpChannelHub implements Closeable {
+                 wireOut.writeEventName(EventId.sessionMode).text(sessionDetails.sessionMode().toString());
+                 wireOut.writeEventName(EventId.securityToken).text(sessionDetails.securityToken());
+                 wireOut.writeEventName(EventId.clientId).text(sessionDetails.clientId().toString());
+-                WireType wt = wireType;
++                wireOut.writeEventName(EventId.wireType).text(wireType.toString());
+ 
+-                if (wt != null)
+ 
+-                    try {
+-                        wireOut.writeEventName(EventId.wireType).text(wt.toString());
+-                    } catch (NullPointerException e) {
+-                        final String charSequence = wt.toString();
+-                        final ValueOut valueOut = wireOut.writeEventName(EventId.wireType);
+-                        valueOut.text(charSequence);
+-                    }
+             });
+ 
+             writeSocket1(handShakingWire, socketChannel);
+@@ -525,6 +516,7 @@ public class TcpChannelHub implements Closeable {
+ 
+         try {
+ 
++            assert wire.startUse();
+             SocketChannel clientChannel = this.clientChannel;
+ 
+             // wait for the channel to be non null
+@@ -533,7 +525,9 @@ public class TcpChannelHub implements Closeable {
+                     return;
+                 }
+                 final byte[] bytes = wire.bytes().toByteArray();
++                assert wire.endUse();
+                 condition.await(10, TimeUnit.SECONDS);
++                assert wire.startUse();
+                 wire.bytes().clear().write(bytes);
+             }
+ 
+@@ -559,6 +553,8 @@ public class TcpChannelHub implements Closeable {
+             closeSocket();
+             Jvm.pause(500);
+             throw new ConnectionDroppedException(e);
++        } finally {
++            assert wire.endUse();
+         }
+     }
+ 
+@@ -609,93 +605,97 @@ public class TcpChannelHub implements Closeable {
+         assert outBytesLock.isHeldByCurrentThread();
+ 
+         long start = Time.currentTimeMillis();
++        assert outWire.startUse();
++        try {
++            final Bytes<?> bytes = outWire.bytes();
++            final ByteBuffer outBuffer = (ByteBuffer) bytes.underlyingObject();
++            outBuffer.limit((int) bytes.writePosition());
++            outBuffer.position(0);
+ 
+-        final Bytes<?> bytes = outWire.bytes();
+-        final ByteBuffer outBuffer = (ByteBuffer) bytes.underlyingObject();
+-        outBuffer.limit((int) bytes.writePosition());
+-        outBuffer.position(0);
++            assert outBytesLock().isHeldByCurrentThread();
+ 
+         // this check ensure that a put does not occur while currently re-subscribing
+-        assert outBytesLock().isHeldByCurrentThread();
+-
+-        boolean isOutBufferFull = false;
+-        logToStandardOutMessageSent(outWire, outBuffer);
+-        updateLargestChunkSoFarSize(outBuffer);
++            boolean isOutBufferFull = false;
++            logToStandardOutMessageSent(outWire, outBuffer);
++            updateLargestChunkSoFarSize(outBuffer);
+ 
+-        try {
+-
+-            int prevRemaining = outBuffer.remaining();
+-            while (outBuffer.remaining() > 0) {
++            try {
+ 
+-                // if the socket was changed, we need to resend using this one instead
+-                // unless the client channel still has not be set, then we will use this one
+-                // this can happen during the handshaking phase of a new connection
++                int prevRemaining = outBuffer.remaining();
++                while (outBuffer.remaining() > 0) {
+ 
+-                if (clientChannel != this.clientChannel)
+-                    throw new ConnectionDroppedException("Connection has Changed");
++                    // if the socket was changed, we need to resend using this one instead
++                    // unless the client channel still has not be set, then we will use this one
++                    // this can happen during the handshaking phase of a new connection
+ 
+-                int len = clientChannel.write(outBuffer);
+-                if (len == -1)
+-                    throw new IORuntimeException("Disconnection to server=" +
+-                            socketAddressSupplier + ", name=" + name);
++                    if (clientChannel != this.clientChannel)
++                        throw new ConnectionDroppedException("Connection has Changed");
+ 
+-                if (LOG.isDebugEnabled())
+-                    LOG.debug("W:" + len + ",socket=" + socketAddressSupplier.get());
+-
+-                // reset the timer if we wrote something.
+-                if (prevRemaining != outBuffer.remaining()) {
+-                    start = Time.currentTimeMillis();
+-                    isOutBufferFull = false;
+-                    //  if (Jvm.isDebug() && outBuffer.remaining() == 0)
+-                    //    System.out.println("W: " + (prevRemaining - outBuffer
+-                    //          .remaining()));
+-                    prevRemaining = outBuffer.remaining();
+-                    final TcpSocketConsumer tcpSocketConsumer = this.tcpSocketConsumer;
+-
+-                    if (tcpSocketConsumer != null)
+-                        this.tcpSocketConsumer.lastTimeMessageReceivedOrSent = start;
+-                } else {
+-                    if (!isOutBufferFull && Jvm.isDebug() && LOG.isDebugEnabled())
+-                        LOG.debug("----> TCP write buffer is FULL! " + outBuffer.remaining() + " bytes" +
+-                                " remaining.");
+-                    isOutBufferFull = true;
++                    int len = clientChannel.write(outBuffer);
++                    if (len == -1)
++                        throw new IORuntimeException("Disconnection to server=" +
++                                socketAddressSupplier + ", name=" + name);
+ 
+-                    long writeTime = Time.currentTimeMillis() - start;
++                    if (LOG.isDebugEnabled())
++                        LOG.debug("W:" + len + ",socket=" + socketAddressSupplier.get());
++
++                    // reset the timer if we wrote something.
++                    if (prevRemaining != outBuffer.remaining()) {
++                        start = Time.currentTimeMillis();
++                        isOutBufferFull = false;
++                        //  if (Jvm.isDebug() && outBuffer.remaining() == 0)
++                        //    System.out.println("W: " + (prevRemaining - outBuffer
++                        //          .remaining()));
++                        prevRemaining = outBuffer.remaining();
++                        final TcpSocketConsumer tcpSocketConsumer = this.tcpSocketConsumer;
++
++                        if (tcpSocketConsumer != null)
++                            this.tcpSocketConsumer.lastTimeMessageReceivedOrSent = start;
++                    } else {
++                        if (!isOutBufferFull && Jvm.isDebug() && LOG.isDebugEnabled())
++                            LOG.debug("----> TCP write buffer is FULL! " + outBuffer.remaining() + " bytes" +
++                                    " remaining.");
++                        isOutBufferFull = true;
++
++                        long writeTime = Time.currentTimeMillis() - start;
++
++                        // the reason that this is so large is that results from a bootstrap can
++                        // take a very long time to send all the data from the server to the client
++                        // we don't want this to fail as it will cause a disconnection !
++                        if (writeTime > TimeUnit.MINUTES.toMillis(15)) {
++
++                            for (Map.Entry<Thread, StackTraceElement[]> entry : Thread.getAllStackTraces().entrySet()) {
++                                Thread thread = entry.getKey();
++                                if (thread.getThreadGroup().getName().equals("system"))
++                                    continue;
++                                StringBuilder sb = new StringBuilder();
++                                sb.append(thread).append(" ").append(thread.getState());
++                                Jvm.trimStackTrace(sb, entry.getValue());
++                                sb.append("\n");
++                                LOG.error("\n========= THREAD DUMP =========\n", sb);
++                            }
+ 
+-                    // the reason that this is so large is that results from a bootstrap can
+-                    // take a very long time to send all the data from the server to the client
+-                    // we don't want this to fail as it will cause a disconnection !
+-                    if (writeTime > TimeUnit.MINUTES.toMillis(15)) {
++                            closeSocket();
+ 
+-                        for (Map.Entry<Thread, StackTraceElement[]> entry : Thread.getAllStackTraces().entrySet()) {
+-                            Thread thread = entry.getKey();
+-                            if (thread.getThreadGroup().getName().equals("system"))
+-                                continue;
+-                            StringBuilder sb = new StringBuilder();
+-                            sb.append(thread).append(" ").append(thread.getState());
+-                            Jvm.trimStackTrace(sb, entry.getValue());
+-                            sb.append("\n");
+-                            LOG.error("\n========= THREAD DUMP =========\n", sb);
++                            throw new IORuntimeException("Took " + writeTime + " ms " +
++                                    "to perform a write, remaining= " + outBuffer.remaining());
+                         }
+ 
+-                        closeSocket();
+-
+-                        throw new IORuntimeException("Took " + writeTime + " ms " +
+-                                "to perform a write, remaining= " + outBuffer.remaining());
++                        // its important to yield, if the read buffer gets full
++                        // we wont be able to write, lets give some time to the read thread !
++                        Thread.yield();
+                     }
+-
+-                    // its important to yield, if the read buffer gets full
+-                    // we wont be able to write, lets give some time to the read thread !
+-                    Thread.yield();
+                 }
++            } catch (IOException e) {
++                closeSocket();
++                throw e;
+             }
+-        } catch (IOException e) {
+-            closeSocket();
+-            throw e;
+-        }
+ 
+-        outBuffer.clear();
+-        bytes.clear();
++            outBuffer.clear();
++            bytes.clear();
++        } finally {
++            assert outWire.endUse();
++        }
+ 
+     }
+ 
+@@ -928,11 +928,13 @@ public class TcpChannelHub implements Closeable {
+         private final Map<Long, Object> omap = new ConcurrentHashMap<>();
+         long lastheartbeatSentTime = 0;
+         volatile long start = Long.MAX_VALUE;
+-        private Function<Bytes, Wire> wireFunction;
+         private long tid;
+         @NotNull
+-        private ThreadLocal<Wire> syncInWireThreadLocal = withInitial(() -> wire.apply(
+-                elasticByteBuffer()));
++        private ThreadLocal<Wire> syncInWireThreadLocal = withInitial(() -> {
++            Wire wire = wireType.apply(elasticByteBuffer());
++            assert wire.startUse();
++            return wire;
++        });
+         private Bytes serverHeartBeatHandler = Bytes.elasticByteBuffer();
+         private volatile long lastTimeMessageReceivedOrSent = Time.currentTimeMillis();
+         private volatile boolean isShutdown;
+@@ -945,9 +947,7 @@ public class TcpChannelHub implements Closeable {
+         /**
+          * @param wireFunction converts bytes into wire, ie TextWire or BinaryWire
+          */
+-        private TcpSocketConsumer(
+-                @NotNull final Function<Bytes, Wire> wireFunction) {
+-            this.wireFunction = wireFunction;
++        TcpSocketConsumer() {
+             if (LOG.isDebugEnabled())
+                 LOG.debug("constructor remoteAddress=" + socketAddressSupplier);
+ 
+@@ -1175,8 +1175,9 @@ public class TcpChannelHub implements Closeable {
+ 
+         private void running() {
+             try {
+-                final Wire inWire = wireFunction.apply(elasticByteBuffer());
++                final Wire inWire = wireType.apply(elasticByteBuffer());
+                 assert inWire != null;
++                assert inWire.startUse();
+ 
+                 while (!isShuttingdown()) {
+ 
+@@ -1418,7 +1419,7 @@ public class TcpChannelHub implements Closeable {
+             bytes.readLimit(byteBuffer.position());
+ 
+             final StringBuilder eventName = Wires.acquireStringBuilder();
+-            final Wire inWire = wire.apply(bytes);
++            final Wire inWire = TcpChannelHub.this.wireType.apply(bytes);
+             if (YamlLogging.showHeartBeats())
+                 logToStandardOutMessageReceived(inWire);
+             inWire.readDocument(null, d -> {
+@@ -1537,33 +1538,37 @@ public class TcpChannelHub implements Closeable {
+          * sends a heartbeat from the client to the server and logs the round trip time
+          */
+         private void sendHeartbeat() {
++            assert outWire.startUse();
++            try {
++                if (outWire.bytes().writePosition() > 100)
++                    return;
+ 
+-            if (outWire.bytes().writePosition() > 100)
+-                return;
+-
+-            long l = System.nanoTime();
++                long l = System.nanoTime();
+ 
+-            // this denotes that the next message is a system message as it has a null csp
++                // this denotes that the next message is a system message as it has a null csp
+ 
+-            subscribe(new AbstractAsyncTemporarySubscription(TcpChannelHub.this, null, name) {
+-                @Override
+-                public void onSubscribe(@NotNull WireOut wireOut) {
+-                    if (Jvm.isDebug())
+-                        LOG.info("sending heartbeat");
+-                    wireOut.writeEventName(EventId.heartbeat).int64(Time
+-                            .currentTimeMillis());
+-                }
++                subscribe(new AbstractAsyncTemporarySubscription(TcpChannelHub.this, null, name) {
++                    @Override
++                    public void onSubscribe(@NotNull WireOut wireOut) {
++                        if (Jvm.isDebug())
++                            LOG.info("sending heartbeat");
++                        wireOut.writeEventName(EventId.heartbeat).int64(Time
++                                .currentTimeMillis());
++                    }
+ 
+-                @Override
+-                public void onConsumer(@NotNull WireIn inWire) {
+-                    long roundTipTimeMicros = NANOSECONDS.toMicros(System.nanoTime() - l);
+-                    if (LOG.isDebugEnabled())
+-                        LOG.debug("heartbeat round trip time=" + roundTipTimeMicros + "" +
+-                                " server=" + socketAddressSupplier);
++                    @Override
++                    public void onConsumer(@NotNull WireIn inWire) {
++                        long roundTipTimeMicros = NANOSECONDS.toMicros(System.nanoTime() - l);
++                        if (LOG.isDebugEnabled())
++                            LOG.debug("heartbeat round trip time=" + roundTipTimeMicros + "" +
++                                    " server=" + socketAddressSupplier);
+ 
+-                    inWire.clear();
+-                }
+-            }, true);
++                        inWire.clear();
++                    }
++                }, true);
++            } finally {
++                assert outWire.endUse();
++            }
+         }
+ 
+         /**
+diff --git a/src/main/java/net/openhft/chronicle/network/connection/VanillaWireOutPublisher.java b/src/main/java/net/openhft/chronicle/network/connection/VanillaWireOutPublisher.java
+index 4d9f609613..826e44f3f7 100755
+--- a/src/main/java/net/openhft/chronicle/network/connection/VanillaWireOutPublisher.java
++++ b/src/main/java/net/openhft/chronicle/network/connection/VanillaWireOutPublisher.java
+@@ -89,12 +89,17 @@ public class VanillaWireOutPublisher implements WireOutPublisher {
+         synchronized (lock()) {
+             wrapperWire.writeDocument(false, d -> {
+ 
++                assert wire.startUse();
++                try {
+                 final long start = wire.bytes().writePosition();
+                 event.writeMarshallable(wire);
+                 if (YamlLogging.showServerWrites())
+                     LOG.info("Server is about to send:" + Wires.fromSizePrefixedBlobs(wire.bytes(),
+                             start, wire
+                                     .bytes().writePosition() - start));
++                } finally {
++                    assert wire.endUse();
++                }
+ 
+             });
+         }
+@@ -118,7 +123,14 @@ public class VanillaWireOutPublisher implements WireOutPublisher {
+     }
+ 
+     public boolean canTakeMoreData() {
+-        return wrapperWire.bytes().writePosition() < TcpChannelHub.BUFFER_SIZE;
++        synchronized (lock()) {
++            assert wrapperWire.startUse();
++            try {
++                return wrapperWire.bytes().writePosition() < TcpChannelHub.BUFFER_SIZE / 2; // don't attempt to fill the buffer completely.
++            } finally {
++                assert wrapperWire.endUse();
++            }
++        }
+     }
+ 
+ 

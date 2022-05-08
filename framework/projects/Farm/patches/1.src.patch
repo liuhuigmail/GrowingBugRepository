@@ -1,0 +1,86 @@
+diff --git a/src/main/java/com/zerocracy/crews/Question.java b/src/main/java/com/zerocracy/crews/Question.java
+index 7ecb97a05..1cccf3887 100644
+--- a/src/main/java/com/zerocracy/crews/Question.java
++++ b/src/main/java/com/zerocracy/crews/Question.java
+@@ -48,17 +48,7 @@ public final class Question {
+      * @throws SoftException If fails
+      */
+     public String pos(final int num) throws SoftException {
+-        final Matcher matcher = Pattern.compile(
+-            "<@U[A-Z0-9]+>(?: +(.+))"
+-        ).matcher(this.text);
+-        if (!matcher.matches()) {
+-            throw new SoftException(
+-                String.format(
+-                    "Can't understand \"%s\"", this.text
+-                )
+-            );
+-        }
+-        final String[] parts = matcher.group(1).split("\\s+");
++        final String[] parts = this.text.split("\\s+");
+         if (parts.length < num) {
+             throw new SoftException(
+                 String.format(
+diff --git a/src/main/java/com/zerocracy/farm/TkApp.java b/src/main/java/com/zerocracy/farm/TkApp.java
+index 0efbc1686..7f8bc0ff1 100644
+--- a/src/main/java/com/zerocracy/farm/TkApp.java
++++ b/src/main/java/com/zerocracy/farm/TkApp.java
+@@ -100,7 +100,7 @@ final class TkApp extends TkWrap {
+                         farm.find("@id='PMO'").iterator().next()
+                     );
+                     bots.bootstrap();
+-                    final String team = bots.register(
++                    bots.register(
+                         new JdkRequest("https://slack.com/api/oauth.access")
+                             .uri()
+                             .queryParam("client_id", sid)
+@@ -121,10 +121,7 @@ final class TkApp extends TkWrap {
+                     return new RsWithStatus(
+                         new RsWithHeader(
+                             "Location",
+-                            String.format(
+-                                "https://%s.slack.com/messages/@0crat/details/",
+-                                team
+-                            )
++                            "http://www.zerocracy.com"
+                         ),
+                         HttpURLConnection.HTTP_SEE_OTHER
+                     );
+diff --git a/src/main/java/com/zerocracy/pmo/Bots.java b/src/main/java/com/zerocracy/pmo/Bots.java
+index f42156040..297e29c23 100644
+--- a/src/main/java/com/zerocracy/pmo/Bots.java
++++ b/src/main/java/com/zerocracy/pmo/Bots.java
+@@ -68,7 +68,7 @@ public final class Bots {
+      * @return Team name
+      * @throws IOException If fails
+      */
+-    public String register(final JsonObject json)
++    public void register(final JsonObject json)
+         throws IOException {
+         final JsonObject bot = json.getJsonObject("bot");
+         if (bot == null) {
+@@ -80,7 +80,6 @@ public final class Bots {
+             );
+         }
+         final String bid = bot.getString("bot_user_id");
+-        final String team = json.getString("team_name");
+         try (final Item item = this.item()) {
+             new Xocument(item.path()).modify(
+                 new Directives()
+@@ -101,7 +100,7 @@ public final class Bots {
+                     .addIf("access_token")
+                     .set(json.getString("access_token")).up()
+                     .addIf("team_name")
+-                    .set(team).up()
++                    .set(json.getString("team_name")).up()
+                     .addIf("team_id")
+                     .set(json.getString("team_id")).up()
+                     .addIf("bot_access_token")
+@@ -114,7 +113,6 @@ public final class Bots {
+                     )
+             );
+         }
+-        return team;
+     }
+ 
+     /**

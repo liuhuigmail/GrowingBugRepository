@@ -1,0 +1,142 @@
+diff --git a/src/main/java/net/openhft/chronicle/network/HeaderTcpHandler.java b/src/main/java/net/openhft/chronicle/network/HeaderTcpHandler.java
+index 0979f2aa27..404922f6ce 100644
+--- a/src/main/java/net/openhft/chronicle/network/HeaderTcpHandler.java
++++ b/src/main/java/net/openhft/chronicle/network/HeaderTcpHandler.java
+@@ -108,4 +108,4 @@ public class HeaderTcpHandler<T extends NetworkContext<T>> extends SimpleCloseab
+         sd.readMarshallable(inWire);
+         return sd;
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/src/main/java/net/openhft/chronicle/network/cluster/handlers/HeartbeatHandler.java b/src/main/java/net/openhft/chronicle/network/cluster/handlers/HeartbeatHandler.java
+index 698cb9381e..da65187955 100644
+--- a/src/main/java/net/openhft/chronicle/network/cluster/handlers/HeartbeatHandler.java
++++ b/src/main/java/net/openhft/chronicle/network/cluster/handlers/HeartbeatHandler.java
+@@ -20,6 +20,7 @@ package net.openhft.chronicle.network.cluster.handlers;
+ import net.openhft.chronicle.core.Jvm;
+ import net.openhft.chronicle.core.annotation.UsedViaReflection;
+ import net.openhft.chronicle.core.io.Closeable;
++import net.openhft.chronicle.core.threads.EventHandler;
+ import net.openhft.chronicle.core.threads.InvalidEventHandlerException;
+ import net.openhft.chronicle.core.threads.Timer;
+ import net.openhft.chronicle.core.threads.VanillaEventHandler;
+@@ -54,37 +55,33 @@ public final class HeartbeatHandler<T extends ClusteredNetworkContext<T>> extend
+ 
+     @UsedViaReflection
+     public HeartbeatHandler(@NotNull WireIn w) {
+-        this(w.read("heartbeatTimeoutMs").int64(),
+-                w.read("heartbeatIntervalMs").int64());
++        heartbeatTimeoutMs = w.read("heartbeatTimeoutMs").int64();
++        heartbeatIntervalMs = w.read("heartbeatIntervalMs").int64();
++        assert heartbeatTimeoutMs >= 1000 :
++                "heartbeatTimeoutMs=" + heartbeatTimeoutMs + ", this is too small";
++        assert heartbeatIntervalMs >= 500 :
++                "heartbeatIntervalMs=" + heartbeatIntervalMs + ", this is too small";
+         onMessageReceived();
+     }
+ 
+     private HeartbeatHandler(long heartbeatTimeoutMs, long heartbeatIntervalMs) {
+         this.heartbeatTimeoutMs = heartbeatTimeoutMs;
+         this.heartbeatIntervalMs = heartbeatIntervalMs;
+-        validateHeartbeatParameters(this.heartbeatTimeoutMs, this.heartbeatIntervalMs);
+-    }
++        assert heartbeatTimeoutMs > heartbeatIntervalMs :
++                "heartbeatIntervalMs=" + heartbeatIntervalMs + ", " +
++                        "heartbeatTimeoutMs=" + heartbeatTimeoutMs;
+ 
+-    private static void validateHeartbeatParameters(long heartbeatTimeoutMs, long heartbeatIntervalMs) {
+-        if (heartbeatTimeoutMs <= heartbeatIntervalMs) {
+-            throw new IllegalArgumentException("Heartbeat timeout must be greater than heartbeat interval, " +
+-                    "please fix this in your configuration, (heartbeatIntervalMs=" + heartbeatIntervalMs + ", " +
+-                    "heartbeatTimeoutMs=" + heartbeatTimeoutMs + ")");
+-        }
++        assert heartbeatTimeoutMs >= 1000 :
++                "heartbeatTimeoutMs=" + heartbeatTimeoutMs + ", this is too small";
+ 
+-        if (heartbeatTimeoutMs < MINIMUM_HEARTBEAT_TIMEOUT_MS) {
+-            throw new IllegalArgumentException("heartbeatTimeoutMs=" + heartbeatTimeoutMs + ", this is too small (minimum=" + MINIMUM_HEARTBEAT_TIMEOUT_MS + ")");
+-        }
++        assert heartbeatIntervalMs >= 500 :
++                "heartbeatIntervalMs=" + heartbeatIntervalMs + ", this is too small";
+ 
+-        if (heartbeatIntervalMs < MINIMUM_HEARTBEAT_INTERVAL_MS) {
+-            throw new IllegalArgumentException("heartbeatIntervalMs=" + heartbeatIntervalMs + ", this is too small (minimum=" + MINIMUM_HEARTBEAT_INTERVAL_MS + ")");
+-        }
+     }
+ 
+     public static WriteMarshallable heartbeatHandler(final long heartbeatTimeoutMs,
+                                                      final long heartbeatIntervalMs,
+                                                      final long cid) {
+-        validateHeartbeatParameters(heartbeatTimeoutMs, heartbeatIntervalMs);
+         return new WriteHeartbeatHandler(cid, heartbeatTimeoutMs, heartbeatIntervalMs);
+     }
+ 
+@@ -286,4 +283,4 @@ public final class HeartbeatHandler<T extends ClusteredNetworkContext<T>> extend
+             return "HeartbeatMessage{" + cid() + "}";
+         }
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/src/main/java/net/openhft/chronicle/network/cluster/handlers/UberHandler.java b/src/main/java/net/openhft/chronicle/network/cluster/handlers/UberHandler.java
+index 7a7125dd57..b44296f501 100644
+--- a/src/main/java/net/openhft/chronicle/network/cluster/handlers/UberHandler.java
++++ b/src/main/java/net/openhft/chronicle/network/cluster/handlers/UberHandler.java
+@@ -66,7 +66,9 @@ public final class UberHandler<T extends ClusteredNetworkContext<T>> extends Csp
+         this.localIdentifier = localIdentifier;
+         this.remoteIdentifier = remoteIdentifier;
+ 
+-        checkRemoteAndLocalIdentifiersAreNotEqual();
++        assert remoteIdentifier != localIdentifier :
++                "remoteIdentifier=" + remoteIdentifier + ", " +
++                        "localIdentifier=" + localIdentifier;
+         wireType(wireType);
+     }
+ 
+@@ -111,7 +113,10 @@ public final class UberHandler<T extends ClusteredNetworkContext<T>> extends Csp
+         nc.wireType(wireType());
+         isAcceptor(nc.isAcceptor());
+ 
+-        validateIdentifiers();
++        assert checkIdentifierEqualsHostId();
++        assert remoteIdentifier != localIdentifier :
++                "remoteIdentifier=" + remoteIdentifier + ", " +
++                        "localIdentifier=" + localIdentifier;
+ 
+         @NotNull final WireOutPublisher publisher = nc.wireOutPublisher();
+         publisher(publisher);
+@@ -129,23 +134,13 @@ public final class UberHandler<T extends ClusteredNetworkContext<T>> extends Csp
+         }
+     }
+ 
+-    private void validateIdentifiers() {
+-        checkIdentifierEqualsHostId();
+-        checkRemoteAndLocalIdentifiersAreNotEqual();
+-    }
++    private boolean checkIdentifierEqualsHostId() {
+ 
+-    private void checkRemoteAndLocalIdentifiersAreNotEqual() {
+-        if (remoteIdentifier == localIdentifier) {
+-            throw new IllegalArgumentException("remoteIdentifier=" + remoteIdentifier + ", " +
+-                    "localIdentifier=" + localIdentifier);
+-        }
+-    }
+ 
+-    private void checkIdentifierEqualsHostId() {
+         byte localHostIdentifier = nc().getLocalHostIdentifier();
+         if (localIdentifier != localHostIdentifier && localHostIdentifier != 0)
+-            throw new IllegalArgumentException("Received a handler for host ID: "
+-                    + localIdentifier + ", my host ID is: " + localHostIdentifier + " this is probably a configuration error");
++            throw new AssertionError("localId: " + localIdentifier + " != nc().localId: " + localHostIdentifier);
++        return true;
+     }
+ 
+     private void notifyConnectionListeners() {
+@@ -290,4 +285,4 @@ public final class UberHandler<T extends ClusteredNetworkContext<T>> extends Csp
+                 ", isClosing=" + isClosing +
+                 '}';
+     }
+-}
+\ No newline at end of file
++}

@@ -1,0 +1,32 @@
+diff --git a/src/main/java/in/ashwanthkumar/gocd/slack/GoNotificationPlugin.java b/src/main/java/in/ashwanthkumar/gocd/slack/GoNotificationPlugin.java
+index 32b5e8d..d55436b 100644
+--- a/src/main/java/in/ashwanthkumar/gocd/slack/GoNotificationPlugin.java
++++ b/src/main/java/in/ashwanthkumar/gocd/slack/GoNotificationPlugin.java
+@@ -53,16 +53,10 @@ public class GoNotificationPlugin implements GoPlugin {
+ 
+     public GoPluginApiResponse handle(GoPluginApiRequest goPluginApiRequest) {
+         String requestName = goPluginApiRequest.requestName();
+-        if (requestName.equals(REQUEST_NOTIFICATIONS_INTERESTED_IN)) {
++        if (goPluginApiRequest.requestName().equals(REQUEST_NOTIFICATIONS_INTERESTED_IN)) {
+             return handleNotificationsInterestedIn();
+-        } else if (requestName.equals(REQUEST_STAGE_STATUS)) {
++        } else if (goPluginApiRequest.requestName().equals(REQUEST_STAGE_STATUS)) {
+             return handleStageNotification(goPluginApiRequest);
+-        } else if (requestName.equals(REQUEST_GET_VIEW)) {
+-            return handleRequestGetView();
+-        } else if (requestName.equals(REQUEST_VALIDATE_CONFIGURATION)) {
+-            return handleValidateConfig(goPluginApiRequest.requestBody());
+-        } else if (requestName.equals(REQUEST_GET_CONFIGURATION)) {
+-            return handleRequestGetConfiguration();
+         }
+         return null;
+     }
+@@ -143,7 +137,7 @@ public class GoNotificationPlugin implements GoPlugin {
+     }
+ 
+     private GoPluginApiResponse renderJSON(final int responseCode, Object response) {
+-        final String json = response == null ? null : new GsonBuilder().disableHtmlEscaping().create().toJson(response);
++        final String json = response == null ? null : new GsonBuilder().create().toJson(response);
+         return new GoPluginApiResponse() {
+             @Override
+             public int responseCode() {
