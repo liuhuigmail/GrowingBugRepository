@@ -177,10 +177,10 @@ To date, growingBugs contains **`771`** unique bugs that are not included in Def
 | 171     | Template_benchmark            | template-benchmark               |                  |      1       | 1               |
 | 172     | Vectorz            | vectorz               |                  |      4       | 1-4               |
 | 173     | Cli_parser         | cli-parser            |                  |      1       | 1                  |                 |
-| 174     | Gatling_report         | Gatling_report            |                  |      3       | 1-3                  |                 |
+| 174     | Gatling_report         | gatling-report            |                  |      3       | 1-3                  |                 |
 | 175     | Jumlr         | Jumlr            |                  |      2       | 1-2                  |                 |
 | 176     | Tabula_java         | tabula-java            |                  |      1       | 1                  |                 |
-| 177     | Vectorz         | Vectorz            |                  |      2       | 1-2                  |                 |
+| 177     | Vectorz         | vectorz            |                  |      2       | 1-2                  |                 |
 | 178     | Ber_tlv         | ber-tlv            |                  |      4       | 1-4                  |                 |
 | 179     | Commons_suncalc         | commons-suncalc            |                  |      2       | 1-2                  |                 |
 | 180     | Jfreechart         | jfreechart            |                  |      4       | 1-4                  |                 |
