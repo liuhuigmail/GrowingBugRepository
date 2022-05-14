@@ -21,7 +21,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 
 # Contents of growingBugs
-To date, growingBugs contains **`1609`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1613`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -223,6 +223,7 @@ To date, growingBugs contains **`1609`** real-world bugs from open-source Java p
 | 196     | Gocd_slack_build_notifier         | Gocd_slack_build_notifier            |                  |      3       | 1-3                  |                 |
 | 197     | Confluence_http_authenticator         | confluence_http_authenticator            |                  |      1       | 1                  |                 |
 | 198     | Tempus_fugit         | tempus-fugit            |                  |      1       | 1                  |                 |
+| 199     | Disklrucache         | DiskLruCache           |                  |      4       | 1-4                  |                 |
 # Setting up GrowingBugs
 
 ## Requirements
