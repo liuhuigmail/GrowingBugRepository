@@ -190,6 +190,7 @@ To date, growingBugs contains **`1613`** real-world bugs from open-source Java p
 | 162     | Javapoet            | javapoet               |                   |      17       | 1-17               |
 | 164     | RTree            | rtree               |                   |      12       | 1-12               |
 | 165     | Spoon            | spoon               |                   |      17       | 1-17               |
+| 166     | Canvas_api            | canvas-api               |                 |      4       | 1-4               |
 | 167     | Coveralls_maven_plugin            | coveralls-maven-plugin               |                  |      8       | 1-8               |
 | 168     | Slack_java_webhook            | slack-java-webhook               |                 |      1       | 1               |
 | 169     | Zip4j            | zip4j               |                  |      55       | 1-55               |
