@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,793815a073a66a61a9c9817bee780c948c030c8e,ebe0f06d0e1002051b65d0c749d2256dbf30f499,2,https://github.com/JakeWharton/DiskLruCache/issues/2
+2,e031fd1f06b1d8cd089e7d51c2f02f1d6c3736b1,f1cb7168dd323ba024d99427583432a0829b4784,22,https://github.com/JakeWharton/DiskLruCache/pull/22
+3,747e27fe8d35145c0edced0a6f4eda240a75c774,204d41abb60f981a3f8521b7b5cb41deb43281bc,24,https://github.com/JakeWharton/DiskLruCache/pull/24
+4,c2965c04a03d016c58323c41223d8e2808adf732,7a1ecbd38d2ad0873fb843e911d60235b7434acb,74,https://github.com/JakeWharton/DiskLruCache/pull/74

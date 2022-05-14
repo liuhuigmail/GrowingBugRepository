@@ -197,3 +197,4 @@ Restfixture	RestFixture	https://github.com/smartrics/RestFixture.git	github	smar
 Farm	farm	https://github.com/zerocracy/farm.git	github	zerocracy/farm	/#(\\d+)/mi	.
 Chronicle_network	Chronicle-Network	https://github.com/OpenHFT/Chronicle-Network.git	github	OpenHFT/Chronicle-Network	/#(\\d+)/mi	.
 Gocd_slack_build_notifier	gocd-slack-build-notifier	https://github.com/ashwanthkumar/gocd-slack-build-notifier.git	github	ashwanthkumar/gocd-slack-build-notifier	/#(\\d+)/mi	.
+Disklrucache	DiskLruCache	https://github.com/JakeWharton/DiskLruCache.git	github	JakeWharton/DiskLruCache	/#(\\d+)/mi	.

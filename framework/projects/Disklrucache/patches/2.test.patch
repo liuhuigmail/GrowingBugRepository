@@ -1,0 +1,13 @@
+diff --git a/src/test/java/com/jakewharton/DiskLruCacheTest.java b/src/test/java/com/jakewharton/DiskLruCacheTest.java
+index 4857ee5..dc3666e 100644
+--- a/src/test/java/com/jakewharton/DiskLruCacheTest.java
++++ b/src/test/java/com/jakewharton/DiskLruCacheTest.java
+@@ -736,7 +736,7 @@ public final class DiskLruCacheTest extends TestCase {
+     public void testAggressiveClearingHandlesWrite() throws Exception {
+         FileUtils.deleteDirectory(cacheDir);
+         set("a", "a", "a");
+-        assertValue("a", "a", "a");
++        assertNull(cache.get("a"));
+     }
+ 
+     /** @see <a href="https://github.com/JakeWharton/DiskLruCache/issues/2">Issue #2</a> */
