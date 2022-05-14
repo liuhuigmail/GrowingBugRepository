@@ -217,7 +217,7 @@ To date, growingBugs contains **`1613`** real-world bugs from open-source Java p
 | 190     | Solarpositioning         | solarpositioning            |                  |      3       | 1-3                  |                 |
 | 191     | Sparkey_java         | sparkey-java            |                  |      3       | 1-3                  |                 |
 | 192     | Shazamcrest         | shazamcrest            |                  |      2       | 1-2                  |                 |
-| 193     | Restfixture         | Restfixture            |                  |      4       | 1-4                  |                 |
+| 193     | Restfixture         | RestFixture            |                  |      4       | 1-4                  |                 |
 | 194     | Chronicle_network         | Chronicle-Network            |                  |      4       | 1-4                  |                 |
 | 195     | Farm         | farm            |                  |      4       | 1-4                  |                 |
 | 196     | Gocd_slack_build_notifier         | gocd-slack-build-notifier            |                  |      3       | 1-3                  |                 |
