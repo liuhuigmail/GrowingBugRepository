@@ -163,7 +163,7 @@ To date, growingBugs contains **`771`** unique bugs that are not included in Def
 | 157     | Coveralls_maven_plugin            | coveralls-maven-plugin               |                  |      8       | 1-8               |
 | 158     | Slack_java_webhook            | slack-java-webhook               |                 |      1       | 1               |
 | 159     | Zip4j            | zip4j               |                  |      52       | 1-52               |
-| 160     | Sparsebitset             | Sparsebitset                |                  |      2       | 1-2               |
+| 160     | Sparsebitset             | SparseBitSet                |                  |      2       | 1-2               |
 | 161     | Incubator_retired_pirk            | incubator-retired-pirk               |                  |      1       | 1               |
 | 162     | Assertj_assertions_generator            | assertj-assertions-generator               |                  |      7       | 1-7               |
 | 163     | Config_magic            | config-magic               |                  |      2      | 1-2               |
@@ -176,23 +176,23 @@ To date, growingBugs contains **`771`** unique bugs that are not included in Def
 | 170     | Suffixtree            | suffixtree               |                  |      1       | 1               |
 | 171     | Template_benchmark            | template-benchmark               |                  |      1       | 1               |
 | 172     | Vectorz            | vectorz               |                  |      4       | 1-4               |
-| 173     | Cli_parser         | Cli_parser            |                  |      1       | 1                  |                 |
+| 173     | Cli_parser         | cli-parser            |                  |      1       | 1                  |                 |
 | 174     | Gatling_report         | Gatling_report            |                  |      3       | 1-3                  |                 |
 | 175     | Jumlr         | Jumlr            |                  |      2       | 1-2                  |                 |
-| 176     | Tabula_java         | Tabula_java            |                  |      1       | 1                  |                 |
+| 176     | Tabula_java         | tabula-java            |                  |      1       | 1                  |                 |
 | 177     | Vectorz         | Vectorz            |                  |      2       | 1-2                  |                 |
-| 178     | Ber_tlv         | Ber_tlv            |                  |      4       | 1-4                  |                 |
-| 179     | Commons_suncalc         | Commons_suncalc            |                  |      2       | 1-2                  |                 |
-| 180     | Jfreechart         | Jfreechart            |                  |      4       | 1-4                  |                 |
+| 178     | Ber_tlv         | ber-tlv            |                  |      4       | 1-4                  |                 |
+| 179     | Commons_suncalc         | commons-suncalc            |                  |      2       | 1-2                  |                 |
+| 180     | Jfreechart         | jfreechart            |                  |      4       | 1-4                  |                 |
 | 181     | Dropwizard_spring         | dropwizard-spring            |                  |      1       | 1                  |                 |
 | 182     | Semux_core         | semux-core            |                  |      3       | 1-3                  |                 |
 | 183     | Solarpositioning         | solarpositioning            |                  |      3       | 1-3                  |                 |
 | 184     | Sparkey_java         | sparkey-java            |                  |      3       | 1-3                  |                 |
-| 185     | Shazamcrest         | Shazamcrest            |                  |      2       | 1-2                  |                 |
-| 186     | Restfixture         | Restfixture            |                  |      4       | 1-4                  |                 |
-| 187     | Chronicle_network         | Chronicle_network            |                  |      4       | 1-4                  |                 |
-| 188     | Farm         | Farm            |                  |      4       | 1-4                  |                 |
-| 189     | Gocd_slack_build_notifier         | Gocd_slack_build_notifier            |                  |      3       | 1-3                  |                 |
+| 185     | Shazamcrest         | shazamcrest            |                  |      2       | 1-2                  |                 |
+| 186     | Restfixture         | RestFixture            |                  |      4       | 1-4                  |                 |
+| 187     | Chronicle_network         | Chronicle-Network            |                  |      4       | 1-4                  |                 |
+| 188     | Farm         | farm            |                  |      4       | 1-4                  |                 |
+| 189     | Gocd_slack_build_notifier         | gocd-slack-build-notifier            |                  |      3       | 1-3                  |                 |
 | 190     | Confluence_http_authenticator         | confluence_http_authenticator            |                  |      1       | 1                  |                 |
 | 191     | Tempus_fugit         | tempus-fugit            |                  |      1       | 1                  |                 |
 | 192     | Disklrucache         | DiskLruCache           |                  |      4       | 1-4                  |                 |
