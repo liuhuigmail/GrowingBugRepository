@@ -21,7 +21,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 
 # Contents of growingBugs
-To date, growingBugs contains **`1609`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1613`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -195,7 +195,7 @@ To date, growingBugs contains **`1609`** real-world bugs from open-source Java p
 | 168     | Slack_java_webhook            | slack-java-webhook               |                 |      1       | 1               |
 | 169     | Zip4j            | zip4j               |                  |      55       | 1-55               |
 | 170     | Incubator_retired_pirk            | incubator-retired-pirk               |                  |      1       | 1               |
-| 171     | Sparsebitset             | Sparsebitset                |                  |      2       | 1-2               |
+| 171     | Sparsebitset             | SparseBitSet                |                  |      2       | 1-2               |
 | 172     | Assertj_assertions_generator            | assertj-assertions-generator               |                  |      7       | 1-7               |
 | 173     | Config_magic            | config-magic               |                  |      2       | 2               |
 | 174     | Deft            | deft               |                  |      1       | 1               |
@@ -207,22 +207,23 @@ To date, growingBugs contains **`1609`** real-world bugs from open-source Java p
 | 180     | Suffixtree            | suffixtree               |                  |      1       | 1               |
 | 181     | Template_benchmark            | template-benchmark               |                  |      1       | 1               |
 | 182     | Vectorz            | vectorz               |                  |      6       | 1-6               |
-| 183     | Cli_parser         | Cli_parser            |                  |      1       | 1                  |                 |
-| 184     | Gatling_report         | Gatling_report            |                  |      3       | 1-3                  |                 |
-| 185     | Tabula_java         | Tabula_java            |                  |      1       | 1                  |                 |
-| 186     | Ber_tlv         | Ber_tlv            |                  |      4       | 1-4                  |                 |
-| 187     | Commons_suncalc         | Commons_suncalc            |                  |      2       | 1-2                  |                 |
+| 183     | Cli_parser         | cli-parser            |                  |      1       | 1                  |                 |
+| 184     | Gatling_report         | gatling-report            |                  |      3       | 1-3                  |                 |
+| 185     | Tabula_java         | tabula-java            |                  |      1       | 1                  |                 |
+| 186     | Ber_tlv         | ber-tlv            |                  |      4       | 1-4                  |                 |
+| 187     | Commons_suncalc         | commons-suncalc            |                  |      2       | 1-2                  |                 |
 | 188     | Dropwizard_spring         | dropwizard-spring            |                  |      1       | 1                  |                 |
 | 189     | Semux_core         | semux-core            |                  |      3       | 1-3                  |                 |
 | 190     | Solarpositioning         | solarpositioning            |                  |      3       | 1-3                  |                 |
 | 191     | Sparkey_java         | sparkey-java            |                  |      3       | 1-3                  |                 |
-| 192     | Shazamcrest         | Shazamcrest            |                  |      2       | 1-2                  |                 |
-| 193     | Restfixture         | Restfixture            |                  |      4       | 1-4                  |                 |
-| 194     | Chronicle_network         | Chronicle_network            |                  |      4       | 1-4                  |                 |
-| 195     | Farm         | Farm            |                  |      4       | 1-4                  |                 |
-| 196     | Gocd_slack_build_notifier         | Gocd_slack_build_notifier            |                  |      3       | 1-3                  |                 |
+| 192     | Shazamcrest         | shazamcrest            |                  |      2       | 1-2                  |                 |
+| 193     | Restfixture         | RestFixture            |                  |      4       | 1-4                  |                 |
+| 194     | Chronicle_network         | Chronicle-Network            |                  |      4       | 1-4                  |                 |
+| 195     | Farm         | farm            |                  |      4       | 1-4                  |                 |
+| 196     | Gocd_slack_build_notifier         | gocd-slack-build-notifier            |                  |      3       | 1-3                  |                 |
 | 197     | Confluence_http_authenticator         | confluence_http_authenticator            |                  |      1       | 1                  |                 |
 | 198     | Tempus_fugit         | tempus-fugit            |                  |      1       | 1                  |                 |
+| 199     | Disklrucache         | DiskLruCache           |                  |      4       | 1-4                  |                 |
 # Setting up GrowingBugs
 
 ## Requirements
