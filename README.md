@@ -21,7 +21,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 
 # Contents of growingBugs
-To date, growingBugs contains **`1613`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1616`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -224,6 +224,9 @@ To date, growingBugs contains **`1613`** real-world bugs from open-source Java p
 | 197     | Confluence_http_authenticator         | confluence_http_authenticator            |                  |      1       | 1                  |                 |
 | 198     | Tempus_fugit         | tempus-fugit            |                  |      1       | 1                  |                 |
 | 199     | Disklrucache         | DiskLruCache           |                  |      4       | 1-4                  |                 |
+| 200     | Kafka_graphite         | kafka-graphite           |                  |      1       | 1                  |                 |
+| 201     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
+| 202     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 # Setting up GrowingBugs
 
 ## Requirements
