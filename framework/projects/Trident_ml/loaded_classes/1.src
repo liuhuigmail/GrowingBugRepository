@@ -1,0 +1,4 @@
+com.github.pmerienne.trident.ml.classification.ClassifyQuery
+com.github.pmerienne.trident.ml.core.Instance
+com.github.pmerienne.trident.ml.regression.RegressionQuery
+com.github.pmerienne.trident.ml.util.KeysUtil

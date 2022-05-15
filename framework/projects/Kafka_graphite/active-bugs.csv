@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,1c1903fa5a55271d262d5ba73a7cb9418ce6effa,568c331512ba2e52f6aafe97aaf7346f2ba28860,6,https://github.com/damienclaveau/kafka-graphite/issues/6

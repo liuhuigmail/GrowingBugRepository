@@ -1,0 +1,4 @@
+bad.robot.excel.matchers.CellNumberMatcher
+bad.robot.excel.PoiToExcelCoercions
+bad.robot.excel.workbook.PoiWorkbookReader
+bad.robot.excel.workbook.Readable

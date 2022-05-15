@@ -1,0 +1,37 @@
+diff --git a/src/test/java/com/criteo/kafka/FilterMetricPredicateTest.java b/src/test/java/com/criteo/kafka/FilterMetricPredicateTest.java
+index 39596a7..daf11d4 100644
+--- a/src/test/java/com/criteo/kafka/FilterMetricPredicateTest.java
++++ b/src/test/java/com/criteo/kafka/FilterMetricPredicateTest.java
+@@ -60,16 +60,16 @@ public class FilterMetricPredicateTest {
+     public void alwaysExcludeAppVersion_NoRegEx() {
+         MetricPredicate predicate = new FilterMetricPredicate();
+ 
+-        assertFalse(predicate.matches(new MetricName("kafka.common", "AppInfo", "Version", null, "mBeanName"), metricMock));
+-        assertTrue(predicate.matches(new MetricName("kafka.common", "AppInfo", "SomethingElse", null, "mBeanName"), metricMock));
++        assertFalse(predicate.matches(new MetricName("kafka.common", "AppInfo", "Version", "scope", "mBeanName"), metricMock));
++        assertTrue(predicate.matches(new MetricName("kafka.common", "AppInfo", "SomethingElse", "scope", "mBeanName"), metricMock));
+     }
+ 
+     @Test
+     public void alwaysExcludeAppVersion_WithRegEx() {
+         MetricPredicate predicate = new FilterMetricPredicate("group.type.foobar.*");
+ 
+-        assertFalse(predicate.matches(new MetricName("kafka.common", "AppInfo", "Version", null, "mBeanName"), metricMock));
+-        assertTrue(predicate.matches(new MetricName("kafka.common", "AppInfo", "SomethingElse", null, "mBeanName"), metricMock));
++        assertFalse(predicate.matches(new MetricName("kafka.common", "AppInfo", "Version", "scope", "mBeanName"), metricMock));
++        assertTrue(predicate.matches(new MetricName("kafka.common", "AppInfo", "SomethingElse", "scope", "mBeanName"), metricMock));
+      }
+ 
+     @Test
+@@ -122,9 +122,10 @@ public class FilterMetricPredicateTest {
+         assertEquals(Metrics.defaultRegistry().allMetrics().get(metricName), gauge);
+     }
+ 
++
+     @Test
+     public void matches() {
+-        MetricPredicate predicate = new FilterMetricPredicate("group.type.scope.foobar.*");
++        MetricPredicate predicate = new FilterMetricPredicate("group.type.foobar.*");
+ 
+         assertFalse(predicate.matches(buildMetricName("foobar.count"), metricMock));
+         assertFalse(predicate.matches(buildMetricName("foobar.rate"), metricMock));

@@ -1,0 +1,39 @@
+diff --git a/src/main/java/com/github/pmerienne/trident/ml/classification/ClassifyQuery.java b/src/main/java/com/github/pmerienne/trident/ml/classification/ClassifyQuery.java
+index 7510175..2ff3d3c 100644
+--- a/src/main/java/com/github/pmerienne/trident/ml/classification/ClassifyQuery.java
++++ b/src/main/java/com/github/pmerienne/trident/ml/classification/ClassifyQuery.java
+@@ -18,6 +18,8 @@ package com.github.pmerienne.trident.ml.classification;
+ import java.util.ArrayList;
+ import java.util.List;
+ 
++import com.github.pmerienne.trident.ml.core.Instance;
++import com.github.pmerienne.trident.ml.util.KeysUtil;
+ import storm.trident.operation.TridentCollector;
+ import storm.trident.state.BaseQueryFunction;
+ import storm.trident.state.map.MapState;
+@@ -58,10 +60,6 @@ public class ClassifyQuery<L> extends BaseQueryFunction<MapState<Classifier<L>>,
+ 				label = classifier.classify(instance.features);
+ 				labels.add(label);
+ 			}
+-		} else {
+-			for (int i = 0; i < tuples.size(); i++) {
+-				labels.add(null);
+-			}
+ 		}
+ 
+ 		return labels;
+diff --git a/src/main/java/com/github/pmerienne/trident/ml/regression/RegressionQuery.java b/src/main/java/com/github/pmerienne/trident/ml/regression/RegressionQuery.java
+index 03077d3..a41b411 100644
+--- a/src/main/java/com/github/pmerienne/trident/ml/regression/RegressionQuery.java
++++ b/src/main/java/com/github/pmerienne/trident/ml/regression/RegressionQuery.java
+@@ -61,10 +61,6 @@ public class RegressionQuery extends BaseQueryFunction<MapState<Regressor>, Doub
+ 					labels.add(label);
+ 				}
+ 			}
+-		} else {
+-			for (int i = 0; i < tuples.size(); i++) {
+-				labels.add(null);
+-			}
+ 		}
+ 
+ 		return labels;

@@ -1,0 +1,31 @@
+diff --git a/src/main/java/bad/robot/excel/matchers/CellNumberMatcher.java b/src/main/java/bad/robot/excel/matchers/CellNumberMatcher.java
+index 99f672b..33cbb30 100644
+--- a/src/main/java/bad/robot/excel/matchers/CellNumberMatcher.java
++++ b/src/main/java/bad/robot/excel/matchers/CellNumberMatcher.java
+@@ -39,7 +39,7 @@ public class CellNumberMatcher extends TypeSafeDiagnosingMatcher<Row> {
+ 
+     @Override
+     protected boolean matchesSafely(Row actual, Description mismatch) {
+-        if (numberOfCellsIn(expected) != numberOfCellsIn(actual)) {
++        if (expected.getLastCellNum() != actual.getLastCellNum()) {
+             mismatch.appendText("got ")
+                     .appendValue(numberOfCellsIn(actual))
+                     .appendText(" cell(s) on row ")
+@@ -50,17 +50,6 @@ public class CellNumberMatcher extends TypeSafeDiagnosingMatcher<Row> {
+                     .appendValue(expected.getSheet().getSheetName());
+             return false;
+         }
+-        if (numberOfPhysicalCellsIn(expected) != numberOfPhysicalCellsIn(actual)) {
+-            mismatch.appendText("got ")
+-                    .appendValue(numberOfPhysicalCellsIn(actual))
+-                    .appendText(" cell(s) containing value on row ")
+-                    .appendValue(asExcelRow(expected))
+-                    .appendText(" expected ")
+-                    .appendValue(numberOfPhysicalCellsIn(expected))
+-                    .appendText(" sheet ")
+-                    .appendValue(expected.getSheet().getSheetName());
+-            return false;
+-        }
+ 
+         return true;
+     }

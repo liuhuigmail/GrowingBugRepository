@@ -1,0 +1,22 @@
+diff --git a/src/main/java/com/criteo/kafka/FilterMetricPredicate.java b/src/main/java/com/criteo/kafka/FilterMetricPredicate.java
+index 076e56b..8fe0eda 100644
+--- a/src/main/java/com/criteo/kafka/FilterMetricPredicate.java
++++ b/src/main/java/com/criteo/kafka/FilterMetricPredicate.java
+@@ -99,16 +99,7 @@ class FilterMetricPredicate implements MetricPredicate {
+     // same as in GraphiteReporter
+     // the scope is needed to support for example the metrics like: kafka.server.BrokerTopicMetrics.topic.TOPICNAME.BytesOutPerSec
+     private String sanitizeName(MetricName name) {
+-        final StringBuilder sb = new StringBuilder()
+-                .append(name.getGroup())
+-                .append('.')
+-                .append(name.getType())
+-                .append('.');
+-        if (name.hasScope()) {
+-            sb.append(name.getScope())
+-                    .append('.');
+-        }
+-        return sb.append(name.getName()).toString();
++        return String.format("%s.%s.%s", name.getGroup(), name.getType(), name.getName());
+     }
+ 
+ }

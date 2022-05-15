@@ -1,0 +1,2 @@
+com.criteo.kafka.FilterMetricPredicateTest
+com.criteo.kafka.KafkaGraphiteMetricsReporterTest

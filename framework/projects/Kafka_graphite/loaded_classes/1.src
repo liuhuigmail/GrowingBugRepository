@@ -1,0 +1,3 @@
+com.criteo.kafka.FilterMetricPredicate
+com.criteo.kafka.InvalidGaugeException
+com.criteo.kafka.ValidatingMetricProcessor

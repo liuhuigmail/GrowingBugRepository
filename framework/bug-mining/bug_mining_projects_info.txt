@@ -198,3 +198,6 @@ Farm	farm	https://github.com/zerocracy/farm.git	github	zerocracy/farm	/#(\\d+)/m
 Chronicle_network	Chronicle-Network	https://github.com/OpenHFT/Chronicle-Network.git	github	OpenHFT/Chronicle-Network	/#(\\d+)/mi	.
 Gocd_slack_build_notifier	gocd-slack-build-notifier	https://github.com/ashwanthkumar/gocd-slack-build-notifier.git	github	ashwanthkumar/gocd-slack-build-notifier	/#(\\d+)/mi	.
 Disklrucache	DiskLruCache	https://github.com/JakeWharton/DiskLruCache.git	github	JakeWharton/DiskLruCache	/#(\\d+)/mi	.
+Kafka_graphite	kafka-graphite	https://github.com/damienclaveau/kafka-graphite.git	github	damienclaveau/kafka-graphite	/#(\\d+)/mi	.
+Simple_excel	simple-excel	https://github.com/tobyweston/simple-excel.git	github	tobyweston/simple-excel	/#(\\d+)/mi	.
+Trident_ml	trident-ml	https://github.com/pmerienne/trident-ml.git	github	pmerienne/trident-ml	/#(\\d+)/mi	.
