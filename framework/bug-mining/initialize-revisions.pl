@@ -139,8 +139,7 @@ sub _init_version {
     
     system("mkdir -p $ANALYZER_OUTPUT/$bid");
     if (-e "$work_dir/pom.xml") {
-        #here are two patterns : one is just deleting -SNAPSHOT , the other is changing the version and deleting -SNAPSHOT
-    	 #system("sed -i \"s/<xmlsec\.version>2\.2\.0-SNAPSHOT<\/xmlsec\.version>/<xmlsec\.version>2\.2\.3-SNAPSHOT<\/xmlsec\.version>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
+        #here are two patterns : one is just deleting -SNAPSHOT , the other is changing the version and deleting -SNAPSHOT 
     	#sed -i \"s/-SNAPSHOT//g\"  `grep SNAPSHOT -rl $temp_work_dir`"
     	#system("sed -i \"s/\<bundle\.version\>2\.0-SNAPSHOT\<\\/bundle\.version\>/\<bundle\.version\>2\.0\<\\/bundle\.version\>/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
     	
@@ -151,7 +150,11 @@ sub _init_version {
     	
     	#system("cat $work_dir/pom.xml");
     	rename("$work_dir/build.xml", "$work_dir/build_init".'.bak');
-    	
+        
+    	my $cmd0 = "python3 ./MavenDependencyRepair/main.py -p ".
+        $work_dir."pom.xml ";
+        Utils::exec_cmd($cmd0, "Check and fix dependency ".$rev_id);
+
         # Run maven-ant plugin and overwrite the original build.xml whenever a maven build file exists
         my $cmd = " cd $work_dir" .
                   " && mvn ant:ant -Doverwrite=true 2>&1 -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2,TLSv1.3 " .
@@ -163,8 +166,9 @@ sub _init_version {
         my $try1=Utils::exec_cmd($cmd, "Convert Maven to Ant build file: " . $rev_id) ;
         # my $try1=system($cmd) ;
         if(!$try1){
+	    	#system("sed -i \"s/2\.1-SNAPSHOT/2\.1\.0/g\"  `grep SNAPSHOT -rl $temp_work_dir`");
         	system("sed -i \"s/-SNAPSHOT//g\"  `grep SNAPSHOT -rl $temp_work_dir`");
-        	Utils::exec_cmd($cmd, "Convert Maven to Ant build file again : " . $rev_id) or next;
+        	my $try2=Utils::exec_cmd($cmd, "Convert Maven to Ant build file again : " . $rev_id) or next;
         } 
         
         if (-e "$GEN_BUILDFILE_DIR/$rev_id/build.xml"){

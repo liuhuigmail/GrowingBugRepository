@@ -200,4 +200,5 @@ Gocd_slack_build_notifier	gocd-slack-build-notifier	https://github.com/ashwanthk
 Disklrucache	DiskLruCache	https://github.com/JakeWharton/DiskLruCache.git	github	JakeWharton/DiskLruCache	/#(\\d+)/mi	.
 Kafka_graphite	kafka-graphite	https://github.com/damienclaveau/kafka-graphite.git	github	damienclaveau/kafka-graphite	/#(\\d+)/mi	.
 Simple_excel	simple-excel	https://github.com/tobyweston/simple-excel.git	github	tobyweston/simple-excel	/#(\\d+)/mi	.
-Trident_ml	trident-ml	https://github.com/pmerienne/trident-ml.git	github	pmerienne/trident-ml	/#(\\d+)/mi	.
+Trident_ml	trident-ml	https://github.com/pmerienne/trident-ml.git	github	pmerienne/trident-ml	/#(\\d+)/mi	.	
+Tascalate_concurrent	tascalate-concurrent	https://github.com/vsilaev/tascalate-concurrent.git	github	vsilaev/tascalate-concurrent	/#(\\d+)/mi	.	

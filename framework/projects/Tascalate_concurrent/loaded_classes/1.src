@@ -1,0 +1,7 @@
+net.tascalate.concurrent.AbstractCompletableTask
+net.tascalate.concurrent.CallbackRegistry
+net.tascalate.concurrent.CompletableSubTask
+net.tascalate.concurrent.CompletableTask
+net.tascalate.concurrent.Promise
+net.tascalate.concurrent.PromiseAdapter
+net.tascalate.concurrent.SharedFunctions

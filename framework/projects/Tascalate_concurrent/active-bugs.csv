@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,06347d0ef49aafc9820a55e6706fc3c878120907,d8f2a55407485d20b85423cc841eef0bef8eaa1f,9,https://github.com/vsilaev/tascalate-concurrent/issues/9
+2,b90028e018fdee3c598ed18bcf4c8af765451a34,104d53b09611b0f99b3120ae307c604f8b480c6d,8,https://github.com/vsilaev/tascalate-concurrent/pull/8
