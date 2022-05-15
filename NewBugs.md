@@ -1,5 +1,5 @@
 # Unique Bugs in growingBugs
-To date, growingBugs contains **`771`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`774`** unique bugs that are not included in Defects4J. 
 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -196,3 +196,6 @@ To date, growingBugs contains **`771`** unique bugs that are not included in Def
 | 190     | Confluence_http_authenticator         | confluence_http_authenticator            |                  |      1       | 1                  |                 |
 | 191     | Tempus_fugit         | tempus-fugit            |                  |      1       | 1                  |                 |
 | 192     | Disklrucache         | DiskLruCache           |                  |      4       | 1-4                  |                 |
+| 193     | Kafka_graphite         | kafka-graphite           |                  |      1       | 1                  |                 |
+| 194     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
+| 195     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
