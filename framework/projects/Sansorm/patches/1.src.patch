@@ -1,0 +1,32 @@
+diff --git a/src/main/java/com/zaxxer/sansorm/internal/Introspected.java b/src/main/java/com/zaxxer/sansorm/internal/Introspected.java
+index e13c5cc..b197429 100644
+--- a/src/main/java/com/zaxxer/sansorm/internal/Introspected.java
++++ b/src/main/java/com/zaxxer/sansorm/internal/Introspected.java
+@@ -78,10 +78,7 @@ public class Introspected
+ 
+       Table tableAnnotation = clazz.getAnnotation(Table.class);
+       if (tableAnnotation != null) {
+-         String tableName = tableAnnotation.name();
+-         this.tableName = (tableName == null || tableName.isEmpty())
+-            ? clazz.getSimpleName() // as per documentation, empty name in Table "defaults to the entity name"
+-            : tableName;
++         tableName = tableAnnotation.name();
+       }
+ 
+       try {
+@@ -484,13 +481,10 @@ public class Introspected
+ 
+       Column columnAnnotation = field.getAnnotation(Column.class);
+       if (columnAnnotation != null) {
+-         String columnName = columnAnnotation.name();
+-         fcInfo.columnName = (columnName == null || columnName.isEmpty())
+-            ? field.getName() // as per documentation, empty name in Column "defaults to the property or field name"
+-            : columnName.toLowerCase();
+ 
++         fcInfo.columnName = columnAnnotation.name().toLowerCase();
+          String columnTableName = columnAnnotation.table();
+-         if (columnTableName != null && !columnTableName.isEmpty()) {
++         if (columnTableName != null && columnTableName.length() > 0) {
+             fcInfo.columnTableName = columnTableName.toLowerCase();
+          }
+ 

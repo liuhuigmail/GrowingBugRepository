@@ -1,0 +1,15 @@
+uk.co.jemos.podam.test.unit.ConstructionFailureTest
+uk.co.jemos.podam.test.unit.FactoryInstantiableTest
+uk.co.jemos.podam.test.unit.InnerClassTest
+uk.co.jemos.podam.test.unit.PackagePrivatePojoTest
+uk.co.jemos.podam.test.unit.Pdm42UnitTest
+uk.co.jemos.podam.test.unit.PodamMockerUnitTest
+uk.co.jemos.podam.test.unit.RandomDataProviderStrategyInitialisationUnitTest
+uk.co.jemos.podam.test.unit.TypedClassTest
+uk.co.jemos.podam.test.unit.WalkThroughExampleUnitTest
+uk.co.jemos.podam.test.unit.integration.PodamFactoryInjectionIntegrationTest
+uk.co.jemos.podam.test.unit.pdm3.Pdm3PojoUnitTest
+uk.co.jemos.podam.test.unit.pdm4.Pdm4PojoUnitTest
+uk.co.jemos.podam.test.unit.pdm43.Pdm43UnitTest
+uk.co.jemos.podam.test.unit.pdm45.Pdm45UnitTest
+uk.co.jemos.podam.test.unit.pdm5.InvisibleConstructorAndNoSettersTest

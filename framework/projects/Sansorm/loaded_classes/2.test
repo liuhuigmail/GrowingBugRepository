@@ -1,0 +1,7 @@
+com.zaxxer.sansorm.internal.IntrospectedTest
+org.sansorm.BaseClass
+org.sansorm.QueryTest
+org.sansorm.QueryTest2
+org.sansorm.TargetClass1
+org.sansorm.TargetClass2
+org.sansorm.TestConverter

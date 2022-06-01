@@ -1,0 +1,256 @@
+diff --git a/src/test/java/com/zaxxer/sansorm/internal/IntrospectedTest.java b/src/test/java/com/zaxxer/sansorm/internal/IntrospectedTest.java
+index 620f093..42d87d0 100644
+--- a/src/test/java/com/zaxxer/sansorm/internal/IntrospectedTest.java
++++ b/src/test/java/com/zaxxer/sansorm/internal/IntrospectedTest.java
+@@ -2,14 +2,13 @@ package com.zaxxer.sansorm.internal;
+ 
+ import org.junit.Test;
+ import org.sansorm.TargetClass1;
+-
+-import javax.persistence.*;
+-
+ import static org.junit.Assert.assertArrayEquals;
+ import static org.junit.Assert.assertEquals;
+ import static org.junit.Assert.assertNotNull;
+ import static org.junit.Assert.assertTrue;
+ 
++import javax.persistence.*;
++
+ public class IntrospectedTest
+ {
+    @Test
+@@ -19,7 +18,7 @@ public class IntrospectedTest
+       assertNotNull(inspected);
+       assertTrue(inspected.hasGeneratedId());
+       assertArrayEquals(new String[]{"id"}, inspected.getIdColumnNames());
+-      assertArrayEquals(new String[]{"id", "string", "string_from_number", "timestamp"}, inspected.getColumnNames());
++      assertArrayEquals(new String[]{"timestamp", "string_from_number", "id", "string"}, inspected.getColumnNames());
+    }
+ 
+    @Test
+@@ -80,6 +79,6 @@ public class IntrospectedTest
+       assertEquals("string", inspected.getColumnNameForProperty("string"));
+       assertTrue(inspected.hasGeneratedId());
+       assertArrayEquals(new String[]{"id"}, inspected.getIdColumnNames());
+-      assertArrayEquals(new String[]{"id", "string"}, inspected.getColumnNames());
++      assertArrayEquals(new String[]{"string", "id"}, inspected.getColumnNames());
+    }
+ }
+diff --git a/src/test/java/org/sansorm/QueryTest.java b/src/test/java/org/sansorm/QueryTest.java
+index 50f951d..55142df 100644
+--- a/src/test/java/org/sansorm/QueryTest.java
++++ b/src/test/java/org/sansorm/QueryTest.java
+@@ -3,13 +3,17 @@ package org.sansorm;
+ import bitronix.tm.BitronixTransactionManager;
+ import bitronix.tm.TransactionManagerServices;
+ import bitronix.tm.resource.common.XAResourceProducer;
++import com.zaxxer.sansorm.OrmElf;
++import com.zaxxer.sansorm.SqlClosure;
++import com.zaxxer.sansorm.SqlClosureElf;
++import com.zaxxer.sansorm.TransactionElf;
+ import org.junit.AfterClass;
+ import org.junit.BeforeClass;
+ import org.junit.Test;
+ 
++import javax.sql.DataSource;
+ import java.io.File;
+ import java.io.FileOutputStream;
+-import java.io.IOException;
+ import java.io.OutputStream;
+ import java.sql.PreparedStatement;
+ import java.sql.Timestamp;
+@@ -17,19 +21,14 @@ import java.util.Date;
+ import java.util.Map;
+ import java.util.Properties;
+ 
+-import javax.sql.DataSource;
+-
+ import static org.junit.Assert.assertEquals;
+ import static org.junit.Assert.assertNull;
+ 
+-import com.zaxxer.sansorm.OrmElf;
+-import com.zaxxer.sansorm.SqlClosure;
+-import com.zaxxer.sansorm.SqlClosureElf;
+-import com.zaxxer.sansorm.TransactionElf;
+-
+ public class QueryTest
+ {
+-   static DataSource prepareTestDatasource() throws IOException {
++   @BeforeClass
++   public static void setup() throws Throwable
++   {
+       System.setProperty("org.slf4j.simpleLogger.log.bitronix.tm", "WARN");
+ 
+       // We don't actually need the transaction manager to journal, this is just for testing
+@@ -57,20 +56,15 @@ public class QueryTest
+       TransactionElf.setUserTransaction(tm);
+ 
+       Map<String, XAResourceProducer> resources = TransactionManagerServices.getResourceLoader().getResources();
+-      return (DataSource)resources.values().iterator().next();
+-   }
++      Object ds = resources.values().iterator().next();
++      SqlClosure.setDefaultDataSource((DataSource) ds);
+ 
+-   @BeforeClass
+-   public static void setup() throws Throwable
+-   {
+-      DataSource ds = prepareTestDatasource();
+-      SqlClosure.setDefaultDataSource(ds);
+       SqlClosureElf.executeUpdate("CREATE TABLE target_class1 ("
+-         + "id INTEGER NOT NULL IDENTITY PRIMARY KEY, "
+-         + "timestamp TIMESTAMP, "
+-         + "string VARCHAR(128), "
+-         + "string_from_number NUMERIC "
+-         + ")");
++                                  + "id INTEGER NOT NULL IDENTITY PRIMARY KEY, "
++                                  + "timestamp TIMESTAMP, "
++                                  + "string VARCHAR(128), "
++                                  + "string_from_number NUMERIC "
++                                  + ")");
+    }
+ 
+    @AfterClass
+diff --git a/src/test/java/org/sansorm/QueryTest2.java b/src/test/java/org/sansorm/QueryTest2.java
+deleted file mode 100644
+index 96681bc..0000000
+--- a/src/test/java/org/sansorm/QueryTest2.java
++++ /dev/null
+@@ -1,103 +0,0 @@
+-package org.sansorm;
+-
+-import bitronix.tm.TransactionManagerServices;
+-import org.junit.AfterClass;
+-import org.junit.BeforeClass;
+-import org.junit.Test;
+-
+-import java.util.Date;
+-import java.util.List;
+-
+-import javax.sql.DataSource;
+-
+-import static org.junit.Assert.assertEquals;
+-import static org.sansorm.QueryTest.prepareTestDatasource;
+-
+-import com.zaxxer.sansorm.SqlClosure;
+-import com.zaxxer.sansorm.SqlClosureElf;
+-
+-
+-public class QueryTest2
+-{
+-   @BeforeClass
+-   public static void setup() throws Throwable
+-   {
+-      DataSource ds = prepareTestDatasource();
+-      SqlClosure.setDefaultDataSource(ds);
+-      SqlClosureElf.executeUpdate(
+-         "CREATE TABLE TargetClass2 ("
+-            + " id INTEGER NOT NULL IDENTITY PRIMARY KEY,"
+-            + " string VARCHAR(128),"
+-            + " someDate TIMESTAMP," // H2 is case-insensitive to column case, ResultSet::getMetaData will return it as SOMEDATE
+-            + " )");
+-   }
+-
+-   @AfterClass
+-   public static void tearDown()
+-   {
+-      TransactionManagerServices.getTransactionManager().shutdown();
+-   }
+-
+-   @Test
+-   public void testObjectFromClause()
+-   {
+-      // given
+-      int timestamp = 42;
+-      String string = "Hi";
+-      TargetClass2 original = new TargetClass2(new Date(timestamp), string);
+-      SqlClosureElf.insertObject(original);
+-
+-      // when
+-      TargetClass2 target = SqlClosureElf.objectFromClause(TargetClass2.class, "someDate = ?", timestamp);
+-      TargetClass2 targetAgain = SqlClosureElf.getObjectById(TargetClass2.class, target.getId());
+-
+-      // then
+-      assertEquals(target.getId(), targetAgain.getId());
+-      assertEquals(string, target.getString());
+-      assertEquals(timestamp, target.getSomeDate().getTime());
+-      assertEquals(string, targetAgain.getString());
+-      assertEquals(timestamp, targetAgain.getSomeDate().getTime());
+-   }
+-
+-   @Test
+-   public void testListFromClause()
+-   {
+-      // given
+-      int timestamp = 43;
+-      String string = "Ho";
+-      TargetClass2 original = new TargetClass2(new Date(timestamp), string);
+-      SqlClosureElf.insertObject(original);
+-
+-      // when
+-      List<TargetClass2> target = SqlClosureElf.listFromClause(TargetClass2.class, "string = ?", string);
+-
+-      // then
+-      assertEquals(string, target.get(0).getString());
+-      assertEquals(timestamp, target.get(0).getSomeDate().getTime());
+-   }
+-
+-   @Test
+-   public void testNumberFromSql()
+-   {
+-      Number initialCount = SqlClosureElf.numberFromSql("SELECT count(id) FROM TargetClass2");
+-      SqlClosureElf.insertObject(new TargetClass2(null, ""));
+-
+-      Number newCount = SqlClosureElf.numberFromSql("SELECT count(id) FROM TargetClass2");
+-      assertEquals(initialCount.intValue() + 1, newCount.intValue());
+-
+-      int countCount = SqlClosureElf.countObjectsFromClause(TargetClass2.class, null);
+-      assertEquals(newCount.intValue(), countCount);
+-   }
+-
+-   @Test
+-   public void testDate()
+-   {
+-      Date date = new Date();
+-
+-      TargetClass2 target = SqlClosureElf.insertObject(new TargetClass2(date, "Date"));
+-      target = SqlClosureElf.getObjectById(TargetClass2.class, target.getId());
+-
+-      assertEquals("Date", target.getString());
+-      assertEquals(date, target.getSomeDate());
+-   }
+-}
+diff --git a/src/test/java/org/sansorm/TargetClass2.java b/src/test/java/org/sansorm/TargetClass2.java
+deleted file mode 100644
+index 9f6063d..0000000
+--- a/src/test/java/org/sansorm/TargetClass2.java
++++ /dev/null
+@@ -1,29 +0,0 @@
+-package org.sansorm;
+-
+-import java.util.Date;
+-
+-import javax.persistence.*;
+-
+-@Entity // Entity annotation
+-@Table // no explicit table name
+-public class TargetClass2 extends BaseClass
+-{
+-   @Column // no explicit column name
+-   @Temporal(TemporalType.TIMESTAMP)
+-   private Date someDate; // camelCase
+-
+-   public TargetClass2()
+-   {
+-   }
+-
+-   public TargetClass2(Date someDate, String string)
+-   {
+-      this.someDate = someDate;
+-      this.string = string;
+-   }
+-
+-   public Date getSomeDate()
+-   {
+-      return someDate;
+-   }
+-}
