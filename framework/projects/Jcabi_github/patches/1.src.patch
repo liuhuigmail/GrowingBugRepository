@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkIssue.java b/src/main/java/com/jcabi/github/mock/MkIssue.java
+index 1cd14955..daaa3a28 100644
+--- a/src/main/java/com/jcabi/github/mock/MkIssue.java
++++ b/src/main/java/com/jcabi/github/mock/MkIssue.java
+@@ -175,7 +175,7 @@ final class MkIssue implements Issue {
+             .add("labels", array)
+             .add(
+                 "user",
+-                Json.createObjectBuilder().add("login", this.self).build()
++                Json.createObjectBuilder().add("login", "test").build()
+             )
+             .add(
+                 "pull_request",

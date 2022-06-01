@@ -1,0 +1,19 @@
+diff --git a/src/test/java/com/jcabi/github/RtOrganizationTest.java b/src/test/java/com/jcabi/github/RtOrganizationTest.java
+index 2344fee2..8a404b03 100644
+--- a/src/test/java/com/jcabi/github/RtOrganizationTest.java
++++ b/src/test/java/com/jcabi/github/RtOrganizationTest.java
+@@ -145,12 +145,12 @@ public final class RtOrganizationTest {
+         final RtOrganization org = new RtOrganization(
+             new ApacheRequest(container.home()),
+             this.user(),
+-            13
++            1
+         );
+         try {
+             MatcherAssert.assertThat(
+                 org.toString(),
+-                Matchers.endsWith("/orgs/13")
++                Matchers.endsWith("/user/orgs")
+             );
+         } finally {
+             container.stop();

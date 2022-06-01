@@ -1,0 +1,12 @@
+com.jcabi.github.Gist
+com.jcabi.github.Gists
+com.jcabi.github.Github
+com.jcabi.github.JsonReadable
+com.jcabi.github.Limits
+com.jcabi.github.mock.MkGist
+com.jcabi.github.mock.MkGists
+com.jcabi.github.mock.MkGithub
+com.jcabi.github.mock.MkIterable
+com.jcabi.github.mock.MkStorage
+com.jcabi.github.Repos
+com.jcabi.github.Users

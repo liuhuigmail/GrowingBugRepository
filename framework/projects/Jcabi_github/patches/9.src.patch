@@ -1,0 +1,24 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkPulls.java b/src/main/java/com/jcabi/github/mock/MkPulls.java
+index dd0157b8..c6b4936b 100644
+--- a/src/main/java/com/jcabi/github/mock/MkPulls.java
++++ b/src/main/java/com/jcabi/github/mock/MkPulls.java
+@@ -32,7 +32,6 @@ package com.jcabi.github.mock;
+ import com.jcabi.aspects.Immutable;
+ import com.jcabi.aspects.Loggable;
+ import com.jcabi.github.Coordinates;
+-import com.jcabi.github.Issue;
+ import com.jcabi.github.Pull;
+ import com.jcabi.github.Pulls;
+ import com.jcabi.github.Repo;
+@@ -108,8 +107,9 @@ final class MkPulls implements Pulls {
+         this.storage.lock();
+         final int number;
+         try {
+-            final Issue issue = this.repo().issues().create(title, "some body");
+-            number = issue.number();
++            number = 1 + this.storage.xml().xpath(
++                String.format("%s/pull/number", this.xpath())
++            ).size();
+             this.storage.apply(
+                 new Directives().xpath(this.xpath()).add("pull")
+                     .add("number").set(Integer.toString(number)).up()

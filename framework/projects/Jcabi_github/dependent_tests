@@ -1,0 +1,6 @@
+--- com.jcabi.github.RtGithubITCase::fetchesEmojis
+--- com.jcabi.github.RtGithubITCase::fetchesUsers
+--- com.jcabi.github.RtUserTest::hasOrganizationsUrl
+--- com.jcabi.github.RtGithubITCase::connectsAnonymously
+--- com.jcabi.github.RtGithubITCase::fetchesMeta
+--- com.jcabi.github.DefaultGithubITCase::fetchesEmojis

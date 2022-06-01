@@ -1,0 +1,54 @@
+diff --git a/src/test/java/com/jcabi/github/mock/MkGistsTest.java b/src/test/java/com/jcabi/github/mock/MkGistsTest.java
+index a097e7e7..26480ce4 100644
+--- a/src/test/java/com/jcabi/github/mock/MkGistsTest.java
++++ b/src/test/java/com/jcabi/github/mock/MkGistsTest.java
+@@ -30,7 +30,6 @@
+ package com.jcabi.github.mock;
+ 
+ import com.jcabi.github.Gist;
+-import com.jcabi.github.Gists;
+ import java.io.IOException;
+ import java.util.Collections;
+ import org.hamcrest.MatcherAssert;
+@@ -41,7 +40,6 @@ import org.junit.Test;
+  * Test case for {@link MkGists}.
+  * @author Yegor Bugayenko (yegor@tpc2.com)
+  * @version $Id$
+- * @checkstyle MultipleStringLiterals (500 lines)
+  */
+ public final class MkGistsTest {
+ 
+@@ -62,33 +60,6 @@ public final class MkGistsTest {
+         );
+     }
+ 
+-    /**
+-     * MkGists can work several gists.
+-     * Test to check issue #128
+-     * @throws Exception If some problem inside
+-     */
+-    @Test
+-    public void worksWithSeveralGists() throws Exception {
+-        final Gists gists = new MkGithub().gists();
+-        final Gist gist = gists.create(
+-            Collections.singletonList("test-file-name.txt")
+-        );
+-        final Gist othergist = gists.create(
+-            Collections.singletonList("test-file-name2.txt")
+-        );
+-        final String file = "t.txt";
+-        gist.write(file, "hello, everybody!");
+-        othergist.write(file, "bye, everybody!");
+-        MatcherAssert.assertThat(
+-            gist.read(file),
+-            Matchers.startsWith("hello, ")
+-        );
+-        MatcherAssert.assertThat(
+-            othergist.read(file),
+-            Matchers.startsWith("bye, ")
+-        );
+-    }
+-
+     /**
+      * Test starring and star-checking of a gist.
+      * @throws Exception If some problem inside

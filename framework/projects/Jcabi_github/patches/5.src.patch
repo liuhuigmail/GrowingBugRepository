@@ -1,0 +1,22 @@
+diff --git a/src/main/java/com/jcabi/github/RtGist.java b/src/main/java/com/jcabi/github/RtGist.java
+index f3edabf0..1d22ed16 100644
+--- a/src/main/java/com/jcabi/github/RtGist.java
++++ b/src/main/java/com/jcabi/github/RtGist.java
+@@ -87,7 +87,7 @@ final class RtGist implements Gist {
+ 
+     @Override
+     public String toString() {
+-        return this.request.uri().get().toString();
++        return this.entry.uri().get().toString();
+     }
+ 
+     @Override
+@@ -164,7 +164,7 @@ final class RtGist implements Gist {
+ 
+     @Override
+     public JsonObject json() throws IOException {
+-        return new RtJson(this.request).fetch();
++        return new RtJson(this.entry).fetch();
+     }
+ 
+ }

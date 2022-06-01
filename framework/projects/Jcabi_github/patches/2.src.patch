@@ -1,0 +1,36 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkGist.java b/src/main/java/com/jcabi/github/mock/MkGist.java
+index ac901a7d..976f616d 100644
+--- a/src/main/java/com/jcabi/github/mock/MkGist.java
++++ b/src/main/java/com/jcabi/github/mock/MkGist.java
+@@ -90,14 +90,13 @@ final class MkGist implements Gist {
+ 
+     @Override
+     public String read(final String file) throws IOException {
+-        final List<String> contents = this.storage.xml().xpath(
++        return this.storage.xml().xpath(
+             String.format(
+                 "%s/files/file[filename='%s']/raw_content/text()",
+                 this.xpath(), file
+             )
+-        );
+ 
+-        return contents.size() == 0 ? "" : contents.get(0);
++        ).get(0);
+     }
+ 
+     @Override
+diff --git a/src/main/java/com/jcabi/github/mock/MkGists.java b/src/main/java/com/jcabi/github/mock/MkGists.java
+index 79120f86..70bffedb 100644
+--- a/src/main/java/com/jcabi/github/mock/MkGists.java
++++ b/src/main/java/com/jcabi/github/mock/MkGists.java
+@@ -97,9 +97,7 @@ final class MkGists implements Gists {
+                 .add("id").set(number).up()
+                 .add("files");
+             for (final String file : files) {
+-                dirs.add("file")
+-                    .add("filename").set(file).up()
+-                    .add("raw_content").up().up();
++                dirs.add("file").add("filename").set(file).up().up();
+             }
+             this.storage.apply(dirs);
+         } finally {

@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkGists.java b/src/main/java/com/jcabi/github/mock/MkGists.java
+index c61d00e9..79120f86 100644
+--- a/src/main/java/com/jcabi/github/mock/MkGists.java
++++ b/src/main/java/com/jcabi/github/mock/MkGists.java
+@@ -89,7 +89,7 @@ final class MkGists implements Gists {
+         try {
+             number = Integer.toString(
+                 1 + this.storage.xml().xpath(
+-                    String.format("%s/gist/id/text()", this.xpath())
++                    String.format("%s/gist/id", this.xpath())
+                 ).size()
+             );
+             final Directives dirs = new Directives().xpath(this.xpath())

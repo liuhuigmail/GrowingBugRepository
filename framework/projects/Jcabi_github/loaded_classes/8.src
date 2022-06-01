@@ -1,0 +1,8 @@
+com.jcabi.github.Github
+com.jcabi.github.JsonPatchable
+com.jcabi.github.JsonReadable
+com.jcabi.github.Organization
+com.jcabi.github.Organizations
+com.jcabi.github.PublicKeys
+com.jcabi.github.RtOrganization
+com.jcabi.github.User

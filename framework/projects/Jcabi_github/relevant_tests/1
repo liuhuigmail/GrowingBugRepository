@@ -1,0 +1,7 @@
+com.jcabi.github.mock.MkCommentTest
+com.jcabi.github.mock.MkCommentsTest
+com.jcabi.github.mock.MkGithubTest
+com.jcabi.github.mock.MkIssueLabelsTest
+com.jcabi.github.mock.MkIssueTest
+com.jcabi.github.mock.MkIssuesTest
+com.jcabi.github.mock.MkLabelsTest
