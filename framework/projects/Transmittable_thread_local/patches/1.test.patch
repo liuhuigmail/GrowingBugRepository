@@ -1,0 +1,112 @@
+diff --git a/src/test/java/com/alibaba/mtc/MtContextCallableTest.java b/src/test/java/com/alibaba/mtc/MtContextCallableTest.java
+index aa2c0fd..da69d64 100644
+--- a/src/test/java/com/alibaba/mtc/MtContextCallableTest.java
++++ b/src/test/java/com/alibaba/mtc/MtContextCallableTest.java
+@@ -1,6 +1,10 @@
+ package com.alibaba.mtc;
+ 
++import org.junit.AfterClass;
++import org.junit.Test;
++
+ import java.util.Arrays;
++import java.util.Collection;
+ import java.util.List;
+ import java.util.Map;
+ import java.util.concurrent.Callable;
+@@ -11,9 +15,6 @@ import java.util.concurrent.ExecutorService;
+ import java.util.concurrent.Executors;
+ import java.util.concurrent.Future;
+ 
+-import org.junit.AfterClass;
+-import org.junit.Test;
+-
+ import static org.hamcrest.CoreMatchers.containsString;
+ import static org.hamcrest.CoreMatchers.instanceOf;
+ import static org.junit.Assert.assertEquals;
+@@ -191,12 +192,7 @@ public class MtContextCallableTest {
+     @Test
+     public void test_get_idempotent() throws Exception {
+         MtContextCallable<String> call = MtContextCallable.get(new Call("1", null));
+-        try {
+-            MtContextCallable.get(call);
+-            fail();
+-        } catch (IllegalStateException e) {
+-            assertThat(e.getMessage(), containsString("Already MtContextCallable"));
+-        }
++        assertSame(call, MtContextCallable.get(call));
+     }
+ 
+     @Test
+@@ -208,15 +204,13 @@ public class MtContextCallableTest {
+     public void test_gets() throws Exception {
+         Call call1 = new Call("1", null);
+         Call call2 = new Call("1", null);
+-        Callable<String> call3 = new Call("1", null);
++        Callable<String> call3 = MtContextCallable.get(call1);
+ 
+-        List<MtContextCallable<String>> callList = MtContextCallable.gets(
+-                Arrays.<Callable<String>>asList(call1, call2, null, call3));
++        List<MtContextCallable<String>> callList = MtContextCallable.gets(Arrays.<Callable<String>>asList(call1, call2, null, call3));
+ 
+-        assertEquals(4, callList.size());
+         assertThat(callList.get(0), instanceOf(MtContextCallable.class));
+         assertThat(callList.get(1), instanceOf(MtContextCallable.class));
+         assertNull(callList.get(2));
+-        assertThat(callList.get(3), instanceOf(MtContextCallable.class));
++        assertSame(call3, callList.get(3));
+     }
+ }
+diff --git a/src/test/java/com/alibaba/mtc/MtContextRunnableTest.java b/src/test/java/com/alibaba/mtc/MtContextRunnableTest.java
+index 8d02e9c..8b444ba 100644
+--- a/src/test/java/com/alibaba/mtc/MtContextRunnableTest.java
++++ b/src/test/java/com/alibaba/mtc/MtContextRunnableTest.java
+@@ -1,5 +1,8 @@
+ package com.alibaba.mtc;
+ 
++import org.junit.AfterClass;
++import org.junit.Test;
++
+ import java.util.Arrays;
+ import java.util.List;
+ import java.util.Map;
+@@ -10,9 +13,6 @@ import java.util.concurrent.ExecutorService;
+ import java.util.concurrent.Executors;
+ import java.util.concurrent.Future;
+ 
+-import org.junit.AfterClass;
+-import org.junit.Test;
+-
+ import static org.hamcrest.CoreMatchers.containsString;
+ import static org.hamcrest.CoreMatchers.instanceOf;
+ import static org.junit.Assert.assertEquals;
+@@ -261,12 +261,7 @@ public class MtContextRunnableTest {
+     @Test
+     public void test_idempotent() throws Exception {
+         MtContextRunnable task = MtContextRunnable.get(new Task("1", null));
+-        try {
+-            MtContextRunnable.get(task);
+-            fail();
+-        } catch (IllegalStateException e) {
+-            assertThat(e.getMessage(), containsString("Already MtContextRunnable"));
+-        }
++        assertSame(task, MtContextRunnable.get(task));
+     }
+ 
+     @Test
+@@ -278,14 +273,13 @@ public class MtContextRunnableTest {
+     public void test_gets() throws Exception {
+         Task task1 = new Task("1", null);
+         Task task2 = new Task("1", null);
+-        Runnable task3 = new Task("1", null);
++        Runnable task3 = MtContextRunnable.get(task1);
+ 
+         List<MtContextRunnable> taskList = MtContextRunnable.gets(Arrays.asList(task1, task2, null, task3));
+ 
+-        assertEquals(4, taskList.size());
+         assertThat(taskList.get(0), instanceOf(MtContextRunnable.class));
+         assertThat(taskList.get(1), instanceOf(MtContextRunnable.class));
+         assertNull(taskList.get(2));
+-        assertThat(taskList.get(3), instanceOf(MtContextRunnable.class));
++        assertSame(task3, taskList.get(3));
+     }
+ }

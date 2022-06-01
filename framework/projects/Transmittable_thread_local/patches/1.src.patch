@@ -1,0 +1,67 @@
+diff --git a/src/main/java/com/alibaba/mtc/MtContextCallable.java b/src/main/java/com/alibaba/mtc/MtContextCallable.java
+index 66e68f1..556b0be 100644
+--- a/src/main/java/com/alibaba/mtc/MtContextCallable.java
++++ b/src/main/java/com/alibaba/mtc/MtContextCallable.java
+@@ -84,7 +84,7 @@ public final class MtContextCallable<V> implements Callable<V> {
+         }
+ 
+         if (callable instanceof MtContextCallable) { // avoid redundant decoration, and ensure idempotency
+-            throw new IllegalStateException("Already MtContextCallable!");
++            return (MtContextCallable<T>) callable;
+         }
+         return new MtContextCallable<T>(callable, releaseMtContextAfterCall);
+     }
+diff --git a/src/main/java/com/alibaba/mtc/MtContextRunnable.java b/src/main/java/com/alibaba/mtc/MtContextRunnable.java
+index 590b5fa..26b0616 100644
+--- a/src/main/java/com/alibaba/mtc/MtContextRunnable.java
++++ b/src/main/java/com/alibaba/mtc/MtContextRunnable.java
+@@ -80,7 +80,7 @@ public final class MtContextRunnable implements Runnable {
+         }
+ 
+         if (runnable instanceof MtContextRunnable) { // avoid redundant decoration, and ensure idempotency
+-            throw new IllegalStateException("Already MtContextRunnable!");
++            return (MtContextRunnable) runnable;
+         }
+         return new MtContextRunnable(runnable, releaseMtContextAfterRun);
+     }
+diff --git a/src/main/java/com/alibaba/mtc/MtContextTimerTask.java b/src/main/java/com/alibaba/mtc/MtContextTimerTask.java
+index c5bd91d..eea9026 100644
+--- a/src/main/java/com/alibaba/mtc/MtContextTimerTask.java
++++ b/src/main/java/com/alibaba/mtc/MtContextTimerTask.java
+@@ -67,7 +67,7 @@ public final class MtContextTimerTask extends TimerTask {
+         }
+ 
+         if (timerTask instanceof MtContextTimerTask) { // avoid redundant decoration, and ensure idempotency
+-            throw new IllegalStateException("Already MtContextTimerTask!");
++            return (MtContextTimerTask) timerTask;
+         }
+         return new MtContextTimerTask(timerTask);
+     }
+diff --git a/src/main/java/com/alibaba/mtc/threadpool/agent/MtContextTransformer.java b/src/main/java/com/alibaba/mtc/threadpool/agent/MtContextTransformer.java
+index 5b6b3a4..14e557e 100644
+--- a/src/main/java/com/alibaba/mtc/threadpool/agent/MtContextTransformer.java
++++ b/src/main/java/com/alibaba/mtc/threadpool/agent/MtContextTransformer.java
+@@ -52,7 +52,7 @@ public class MtContextTransformer implements ClassFileTransformer {
+                 CtClass clazz = getCtClass(classFileBuffer, loader);
+ 
+                 for (CtMethod method : clazz.getDeclaredMethods()) {
+-                    updateMethod(clazz, method);
++                    updateMethod(method);
+                 }
+                 return clazz.toBytecode();
+             } else if (TIMER_TASK_CLASS_FILE.equals(classFile)) {
+@@ -98,13 +98,10 @@ public class MtContextTransformer implements ClassFileTransformer {
+         updateMethodNames.add("scheduleWithFixedDelay");
+     }
+ 
+-    static void updateMethod(CtClass clazz, CtMethod method) throws NotFoundException, CannotCompileException {
++    static void updateMethod(CtMethod method) throws NotFoundException, CannotCompileException {
+         if (!updateMethodNames.contains(method.getName())) {
+             return;
+         }
+-        if (method.getDeclaringClass() != clazz) {
+-            return;
+-        }
+         final int modifiers = method.getModifiers();
+         if (!Modifier.isPublic(modifiers) || Modifier.isStatic(modifiers)) {
+             return;

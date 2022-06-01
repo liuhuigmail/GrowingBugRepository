@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,8dbbbeb00ff9dce7fde0e08842d907c40d200a67,369eb23fd0b9bf28361526ba4df2ffdbf811e2ff,36,https://github.com/alibaba/transmittable-thread-local/issues/36
