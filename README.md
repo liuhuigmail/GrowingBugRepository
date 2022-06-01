@@ -21,7 +21,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 
 # Contents of growingBugs
-To date, growingBugs contains **`1618`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1633`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -228,6 +228,11 @@ To date, growingBugs contains **`1618`** real-world bugs from open-source Java p
 | 201     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 202     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 203     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
+| 204     | Jcabi_github         | jcabi-github           |                  |      10       | 1-10                  |
+| 205     | Podam         | podam           |                  |      1       | 1                  |
+| 206     | Sansorm         | SansOrm           |                  |      2       | 1-2                  |
+| 207     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
+| 208     | Transmittable_thread_local         | transmittable-thread-local           |                  |      1       | 1                  |
 # Setting up GrowingBugs
 
 ## Requirements

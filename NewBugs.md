@@ -1,5 +1,5 @@
 # Unique Bugs in growingBugs
-To date, growingBugs contains **`776`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`791`** unique bugs that are not included in Defects4J. 
 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -200,3 +200,8 @@ To date, growingBugs contains **`776`** unique bugs that are not included in Def
 | 194     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 195     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 196     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
+| 197     | Jcabi_github         | jcabi-github           |                  |      10       | 1-10                  |
+| 198     | Podam         | podam           |                  |      1       | 1                  |
+| 199     | Sansorm         | SansOrm           |                  |      2       | 1-2                  |
+| 200     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
+| 201     | Transmittable_thread_local         | transmittable-thread-local           |                  |      1       | 1                  |
