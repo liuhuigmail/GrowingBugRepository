@@ -1,0 +1,20 @@
+diff --git a/src/main/java/com/nova41/bukkitdev/slr/command/CommandManager.java b/src/main/java/com/nova41/bukkitdev/slr/command/CommandManager.java
+index c706057..5994395 100644
+--- a/src/main/java/com/nova41/bukkitdev/slr/command/CommandManager.java
++++ b/src/main/java/com/nova41/bukkitdev/slr/command/CommandManager.java
+@@ -33,15 +33,10 @@ public class CommandManager implements CommandExecutor {
+ 
+     @Override
+     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+-        if (args.length == 0 && registeredCommands.containsKey("")) {
+-            registeredCommands.get("").accept(sender, args);
+-            return true;
+-        }
+ 
+         String fullExecution = String.join(" ", args).toLowerCase();
+         Optional<Map.Entry<String, BiConsumer<CommandSender, String[]>>> matchedCommand =
+                 registeredCommands.entrySet().stream()
+-                        .filter(entry -> !entry.getKey().equals(""))
+                         .filter(entry -> fullExecution.startsWith(entry.getKey()))
+                         .findAny();
+         if (matchedCommand.isPresent()) {
