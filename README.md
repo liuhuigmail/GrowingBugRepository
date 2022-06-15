@@ -308,9 +308,9 @@ Notably, this bug repository is based on the well-known **Defects4J** https://gi
 # Citation
 If you are exploiting our dataset, please kindly cite the following paper:
 
-**[1] Yanjie Jiang, [Hui Liu*](https://liuhuigmail.github.io/), Nan Niu, Lu Zhang, Yamin Hu. Extracting Concise Bug-Fixing Patches from Human-Written Patches in Version Control Systems. The 43rd International Conference on Software Engineering (ICSE), pp. 686-698, May, 2021 https://liuhuigmail.github.io/publishedPappers/ICSE2021.pdf**
+**[1] Yanjie Jiang, [Hui Liu*](https://liuhuigmail.github.io/), Nan Niu, Lu Zhang, Yamin Hu. [Extracting Concise Bug-Fixing Patches from Human-Written Patches in Version Control Systems](https://ieeexplore.ieee.org/abstract/document/9401985). The 43rd International Conference on Software Engineering (ICSE), pp. 686-698, May, 2021**
 
-**[2]Yanjie Jiang, [Hui Liu*](https://liuhuigmail.github.io/),, Xiaoqing Luo, Zhihao Zhu, Xiaye Chi, Nan Niu, Yuxia Zhang, Yamin Hu, Pan Bian, and Lu Zhang. " [BugBuilder: An Automated Approach to Building Bug Repository](https://ieeexplore.ieee.org/document/9782533)," in IEEE Transactions on Software Engineering, Online 2022, doi: 10.1109/TSE.2022.3177713
+**[2]Yanjie Jiang, [Hui Liu*](https://liuhuigmail.github.io/),, Xiaoqing Luo, Zhihao Zhu, Xiaye Chi, Nan Niu, Yuxia Zhang, Yamin Hu, Pan Bian, and Lu Zhang. " [BugBuilder: An Automated Approach to Building Bug Repository](https://ieeexplore.ieee.org/document/9782533)," in IEEE Transactions on Software Engineering, Online 2022, doi: 10.1109/TSE.2022.3177713**
 
 `@INPROCEEDINGS {GrowingBugsICSE21,
 author = {Yanjie Jiang and Hui Liu and Nan Niu and Lu Zhang and Yamin Hu},
