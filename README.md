@@ -310,19 +310,32 @@ If you are exploiting our dataset, please kindly cite the following paper:
 
 **[1] Yanjie Jiang, [Hui Liu*](https://liuhuigmail.github.io/), Nan Niu, Lu Zhang, Yamin Hu. [Extracting Concise Bug-Fixing Patches from Human-Written Patches in Version Control Systems](https://ieeexplore.ieee.org/abstract/document/9401985). The 43rd International Conference on Software Engineering (ICSE), pp. 686-698, May, 2021**
 
-**[2]Yanjie Jiang, [Hui Liu*](https://liuhuigmail.github.io/),, Xiaoqing Luo, Zhihao Zhu, Xiaye Chi, Nan Niu, Yuxia Zhang, Yamin Hu, Pan Bian, and Lu Zhang. " [BugBuilder: An Automated Approach to Building Bug Repository](https://ieeexplore.ieee.org/document/9782533)," in IEEE Transactions on Software Engineering, Online 2022, doi: 10.1109/TSE.2022.3177713**
+**[2]Yanjie Jiang, [Hui Liu*](https://liuhuigmail.github.io/), Xiaoqing Luo, Zhihao Zhu, Xiaye Chi, Nan Niu, Yuxia Zhang, Yamin Hu, Pan Bian, and Lu Zhang. " [BugBuilder: An Automated Approach to Building Bug Repository](https://ieeexplore.ieee.org/document/9782533)," in IEEE Transactions on Software Engineering, Online 2022, doi: 10.1109/TSE.2022.3177713**
+
+**[3]Yanjie Jiang, [Hui Liu*](https://liuhuigmail.github.io/),Yuxia Zhang, Weixing Ji, Hao Zhong, and Lu Zhang. "Do Bugs Lead to Unnaturalness of Source Code?" in 21st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE 2022), to appear**
 
 `@INPROCEEDINGS {GrowingBugsICSE21,
+
 author = {Yanjie Jiang and Hui Liu and Nan Niu and Lu Zhang and Yamin Hu},
+
 booktitle = {IEEE/ACM 43rd International Conference on Software Engineering (ICSE 2021)},
+
 title = {Extracting Concise Bug-Fixing Patches from Human-Written Patches in Version Control Systems},
+
 year = {2021},
+
 pages = {686-698},
+
 doi = {10.1109/ICSE43902.2021.00069},
+
 url = {https://doi.ieeecomputersociety.org/10.1109/ICSE43902.2021.00069},
+
 publisher = {IEEE Computer Society},
+
 address = {Los Alamitos, CA, USA},
+
 month = {may}
+
 }`
 
 `@ARTICLE{GrowingBugsTSE2022,  
