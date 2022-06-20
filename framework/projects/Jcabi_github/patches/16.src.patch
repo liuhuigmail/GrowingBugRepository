@@ -1,0 +1,17 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkRepo.java b/src/main/java/com/jcabi/github/mock/MkRepo.java
+index b4b650e3..e12c6f96 100644
+--- a/src/main/java/com/jcabi/github/mock/MkRepo.java
++++ b/src/main/java/com/jcabi/github/mock/MkRepo.java
+@@ -115,11 +115,7 @@ final class MkRepo implements Repo {
+ 
+     @Override
+     public Milestones milestones() {
+-        try {
+-            return new MkMilestones(this.storage, this.self, this.coords);
+-        } catch (final IOException ex) {
+-            throw new IllegalStateException(ex);
+-        }
++    	return null;
+     }
+ 
+     @Override

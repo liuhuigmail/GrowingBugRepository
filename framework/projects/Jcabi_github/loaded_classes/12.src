@@ -1,0 +1,14 @@
+com.jcabi.github.Assignees
+com.jcabi.github.Coordinates
+com.jcabi.github.Github
+com.jcabi.github.Issues
+com.jcabi.github.JsonPatchable
+com.jcabi.github.JsonReadable
+com.jcabi.github.Labels
+com.jcabi.github.Milestones
+com.jcabi.github.Pulls
+com.jcabi.github.Repo
+com.jcabi.github.RtAssignees
+com.jcabi.github.RtPagination
+com.jcabi.github.RtUser
+com.jcabi.github.User

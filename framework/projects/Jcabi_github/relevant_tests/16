@@ -1,0 +1,13 @@
+com.jcabi.github.RtCommentTest
+com.jcabi.github.mock.MkCommentTest
+com.jcabi.github.mock.MkCommentsTest
+com.jcabi.github.mock.MkDeployKeysTest
+com.jcabi.github.mock.MkGithubTest
+com.jcabi.github.mock.MkHooksTest
+com.jcabi.github.mock.MkIssueLabelsTest
+com.jcabi.github.mock.MkIssueTest
+com.jcabi.github.mock.MkIssuesTest
+com.jcabi.github.mock.MkLabelsTest
+com.jcabi.github.mock.MkReleasesTest
+com.jcabi.github.mock.MkRepoTest
+com.jcabi.github.mock.MkReposTest

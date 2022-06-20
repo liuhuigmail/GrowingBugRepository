@@ -1,0 +1,385 @@
+diff --git a/src/main/java/com/jcabi/github/GhGist.java b/src/main/java/com/jcabi/github/GhGist.java
+index 2ea69aa5..3b6046a1 100644
+--- a/src/main/java/com/jcabi/github/GhGist.java
++++ b/src/main/java/com/jcabi/github/GhGist.java
+@@ -1,132 +1,132 @@
+-/**
+- * Copyright (c) 2012-2013, JCabi.com
+- * All rights reserved.
+- *
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions
+- * are met: 1) Redistributions of source code must retain the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer. 2) Redistributions in binary form must reproduce the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer in the documentation and/or other materials provided
+- * with the distribution. 3) Neither the name of the jcabi.com nor
+- * the names of its contributors may be used to endorse or promote
+- * products derived from this software without specific prior written
+- * permission.
+- *
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+- * OF THE POSSIBILITY OF SUCH DAMAGE.
+- */
+-package com.jcabi.github;
+-
+-import com.jcabi.aspects.Immutable;
+-import com.jcabi.aspects.Loggable;
+-import com.rexsl.test.Request;
+-import com.rexsl.test.Response;
+-import com.rexsl.test.response.JsonResponse;
+-import com.rexsl.test.response.RestResponse;
+-import java.io.IOException;
+-import java.net.HttpURLConnection;
+-import java.net.URI;
+-import javax.json.Json;
+-import javax.json.JsonObject;
+-import javax.json.JsonObjectBuilder;
+-import javax.json.JsonStructure;
+-import javax.validation.constraints.NotNull;
+-import lombok.EqualsAndHashCode;
+-
+-/**
+- * Github gist.
+- *
+- * @author Yegor Bugayenko (yegor@tpc2.com)
+- * @version $Id$
+- * @since 0.1
+- * @checkstyle MultipleStringLiterals (500 lines)
+- */
+-@Immutable
+-@Loggable(Loggable.DEBUG)
+-@EqualsAndHashCode(of = { "ghub", "entry" })
+-final class GhGist implements Gist {
+-
+-    /**
+-     * Github.
+-     */
+-    private final transient Github ghub;
+-
+-    /**
+-     * RESTful entry.
+-     */
+-    private final transient Request entry;
+-
+-    /**
+-     * Public ctor.
+-     * @param github Github
+-     * @param req Request
+-     * @param name Name of gist
+-     */
+-    GhGist(final Github github, final Request req, final String name) {
+-        this.ghub = github;
+-        this.entry = req.uri().path("/gists").path(name).back();
+-    }
+-
+-    @Override
+-    public String toString() {
+-        return this.entry.uri().get().toString();
+-    }
+-
+-    @Override
+-    public Github github() {
+-        return this.ghub;
+-    }
+-
+-    @Override
+-    public String read(@NotNull(message = "file name can't be NULL")
+-        final String file) throws IOException {
+-        final Response response = this.entry.fetch();
+-        final String url = response
+-            .as(RestResponse.class)
+-            .assertStatus(HttpURLConnection.HTTP_OK)
+-            .as(JsonResponse.class)
+-            .json().readObject().getJsonObject("files")
+-            .getJsonObject(file).getString("raw_url");
+-        return response
+-            .as(RestResponse.class)
+-            .jump(URI.create(url))
+-            .fetch()
+-            .as(RestResponse.class)
+-            .assertStatus(HttpURLConnection.HTTP_OK)
+-            .body();
+-    }
+-
+-    @Override
+-    public void write(
+-        @NotNull(message = "file name can't be NULL") final String file,
+-        @NotNull(message = "file content can't be NULL") final String content)
+-        throws IOException {
+-        final JsonObjectBuilder builder = Json.createObjectBuilder()
+-            .add("content", content);
+-        final JsonStructure json = Json.createObjectBuilder()
+-            .add("files", Json.createObjectBuilder().add(file, builder))
+-            .build();
+-        this.entry.method(Request.PATCH)
+-            .body().set(json).back().fetch()
+-            .as(RestResponse.class)
+-            .assertStatus(HttpURLConnection.HTTP_OK);
+-    }
+-
+-    @Override
+-    public JsonObject json() throws IOException {
+-        return new GhJson(this.entry).fetch();
+-    }
+-
+-}
++/**
++ * Copyright (c) 2012-2013, JCabi.com
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met: 1) Redistributions of source code must retain the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer. 2) Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution. 3) Neither the name of the jcabi.com nor
++ * the names of its contributors may be used to endorse or promote
++ * products derived from this software without specific prior written
++ * permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
++ * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
++ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
++ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
++ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
++ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
++ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
++ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
++ * OF THE POSSIBILITY OF SUCH DAMAGE.
++ */
++package com.jcabi.github;
++
++import com.jcabi.aspects.Immutable;
++import com.jcabi.aspects.Loggable;
++import com.rexsl.test.Request;
++import com.rexsl.test.Response;
++import com.rexsl.test.response.JsonResponse;
++import com.rexsl.test.response.RestResponse;
++import java.io.IOException;
++import java.net.HttpURLConnection;
++import java.net.URI;
++import javax.json.Json;
++import javax.json.JsonObject;
++import javax.json.JsonObjectBuilder;
++import javax.json.JsonStructure;
++import javax.validation.constraints.NotNull;
++import lombok.EqualsAndHashCode;
++
++/**
++ * Github gist.
++ *
++ * @author Yegor Bugayenko (yegor@tpc2.com)
++ * @version $Id$
++ * @since 0.1
++ * @checkstyle MultipleStringLiterals (500 lines)
++ */
++@Immutable
++@Loggable(Loggable.DEBUG)
++@EqualsAndHashCode(of = { "ghub", "entry" })
++final class GhGist implements Gist {
++
++    /**
++     * Github.
++     */
++    private final transient Github ghub;
++
++    /**
++     * RESTful entry.
++     */
++    private final transient Request entry;
++
++    /**
++     * Public ctor.
++     * @param github Github
++     * @param req Request
++     * @param name Name of gist
++     */
++    GhGist(final Github github, final Request req, final String name) {
++        this.ghub = github;
++        this.entry = req.uri().path("/gists").path(name).back();
++    }
++
++    @Override
++    public String toString() {
++        return this.entry.uri().get().toString();
++    }
++
++    @Override
++    public Github github() {
++        return this.ghub;
++    }
++
++    @Override
++    public String read(@NotNull(message = "file name can't be NULL")
++        final String file) throws IOException {
++        final Response response = this.entry.fetch();
++        final String url = response
++            .as(RestResponse.class)
++            .assertStatus(HttpURLConnection.HTTP_OK)
++            .as(JsonResponse.class)
++            .json().readObject().getJsonObject("files")
++            .getJsonObject(file).getString("raw_url");
++        return response
++            .as(RestResponse.class)
++            .jump(URI.create(url))
++            .fetch()
++            .as(RestResponse.class)
++            .assertStatus(HttpURLConnection.HTTP_OK)
++            .body();
++    }
++
++    @Override
++    public void write(
++        @NotNull(message = "file name can't be NULL") final String file,
++        @NotNull(message = "file content can't be NULL") final String content)
++        throws IOException {
++        final JsonObjectBuilder builder = Json.createObjectBuilder()
++            .add("content", content);
++        final JsonStructure json = Json.createObjectBuilder()
++            .add("files", Json.createObjectBuilder().add(file, builder))
++            .build();
++        this.entry.method(Request.PATCH)
++            .body().set(json).back().fetch()
++            .as(RestResponse.class)
++            .assertStatus(HttpURLConnection.HTTP_OK);
++    }
++
++    @Override
++    public JsonObject json() throws IOException {
++        return new GhJson(this.entry).fetch();
++    }
++
++}
+diff --git a/src/main/java/com/jcabi/github/GhGists.java b/src/main/java/com/jcabi/github/GhGists.java
+index e40c0033..f40eebdc 100644
+--- a/src/main/java/com/jcabi/github/GhGists.java
++++ b/src/main/java/com/jcabi/github/GhGists.java
+@@ -35,11 +35,11 @@ import com.rexsl.test.Request;
+ import com.rexsl.test.response.JsonResponse;
+ import com.rexsl.test.response.RestResponse;
+ import java.io.IOException;
++import java.io.StringWriter;
+ import java.net.HttpURLConnection;
+ import javax.json.Json;
+ import javax.json.JsonObject;
+-import javax.json.JsonObjectBuilder;
+-import javax.json.JsonStructure;
++import javax.json.stream.JsonGenerator;
+ import javax.validation.constraints.NotNull;
+ import lombok.EqualsAndHashCode;
+ 
+@@ -101,17 +101,19 @@ final class GhGists implements Gists {
+     @Override
+     public Gist create(@NotNull(message = "list of files can't be NULL")
+         final Iterable<String> files) throws IOException {
+-        JsonObjectBuilder builder = Json.createObjectBuilder();
++        final StringWriter post = new StringWriter();
++        final JsonGenerator json = Json.createGenerator(post)
++            .writeStartObject()
++            .writeStartObject("files");
+         for (final String file : files) {
+-            builder = builder
+-                .add(file, Json.createObjectBuilder().add("content", ""));
++            json.writeStartObject(file)
++                .write("content", "")
++                .writeEnd();
+         }
+-        final JsonStructure json = Json.createObjectBuilder()
+-            .add("files", builder)
+-            .build();
++        json.writeEnd().writeEnd().close();
+         return this.get(
+             this.request.method(Request.POST)
+-                .body().set(json).back()
++                .body().set(post.toString()).back()
+                 .fetch().as(RestResponse.class)
+                 .assertStatus(HttpURLConnection.HTTP_CREATED)
+                 .as(JsonResponse.class)
+diff --git a/src/main/java/com/jcabi/github/GhIssueLabels.java b/src/main/java/com/jcabi/github/GhIssueLabels.java
+index 003a2061..a93dc560 100644
+--- a/src/main/java/com/jcabi/github/GhIssueLabels.java
++++ b/src/main/java/com/jcabi/github/GhIssueLabels.java
+@@ -35,11 +35,12 @@ import com.rexsl.test.Request;
+ import com.rexsl.test.response.JsonResponse;
+ import com.rexsl.test.response.RestResponse;
+ import java.io.IOException;
++import java.io.StringWriter;
+ import java.net.HttpURLConnection;
+ import javax.json.Json;
+ import javax.json.JsonArrayBuilder;
+ import javax.json.JsonObject;
+-import javax.json.JsonStructure;
++import javax.json.stream.JsonGenerator;
+ import javax.validation.constraints.NotNull;
+ import lombok.EqualsAndHashCode;
+ 
+@@ -102,13 +103,15 @@ final class GhIssueLabels implements IssueLabels {
+     @Override
+     public void add(@NotNull(message = "iterable of labels can't be NULL")
+         final Iterable<String> labels) throws IOException {
+-        JsonArrayBuilder builder = Json.createArrayBuilder();
++        final StringWriter post = new StringWriter();
++        final JsonGenerator json = Json.createGenerator(post)
++            .writeStartArray();
+         for (final String label : labels) {
+-            builder = builder.add(label);
++            json.write(label);
+         }
+-        final JsonStructure json = builder.build();
++        json.writeEnd().close();
+         this.request.method(Request.POST)
+-            .body().set(json).back()
++            .body().set(post.toString()).back()
+             .fetch()
+             .as(RestResponse.class)
+             .assertStatus(HttpURLConnection.HTTP_OK)
+@@ -119,13 +122,15 @@ final class GhIssueLabels implements IssueLabels {
+     @Override
+     public void replace(@NotNull(message = "iterable of labels can't be NULL")
+         final Iterable<String> labels) throws IOException {
+-        JsonArrayBuilder builder = Json.createArrayBuilder();
++        final StringWriter post = new StringWriter();
++        final JsonGenerator json = Json.createGenerator(post)
++            .writeStartArray();
+         for (final String label : labels) {
+-            builder = builder.add(label);
++            json.write(label);
+         }
+-        final JsonStructure json = builder.build();
++        json.writeEnd().close();
+         this.request.method(Request.PUT)
+-            .body().set(json).back()
++            .body().set(post.toString()).back()
+             .fetch()
+             .as(RestResponse.class)
+             .assertStatus(HttpURLConnection.HTTP_OK)
+diff --git a/src/main/java/com/jcabi/github/mock/MkIssue.java b/src/main/java/com/jcabi/github/mock/MkIssue.java
+index 1cd14955..daaa3a28 100644
+--- a/src/main/java/com/jcabi/github/mock/MkIssue.java
++++ b/src/main/java/com/jcabi/github/mock/MkIssue.java
+@@ -175,7 +175,7 @@ final class MkIssue implements Issue {
+             .add("labels", array)
+             .add(
+                 "user",
+-                Json.createObjectBuilder().add("login", this.self).build()
++                Json.createObjectBuilder().add("login", "test").build()
+             )
+             .add(
+                 "pull_request",

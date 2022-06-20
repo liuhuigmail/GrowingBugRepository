@@ -1,0 +1,1013 @@
+diff --git a/src/test/java/com/jcabi/github/GhGistTest.java b/src/test/java/com/jcabi/github/GhGistTest.java
+deleted file mode 100644
+index 438f8279..00000000
+--- a/src/test/java/com/jcabi/github/GhGistTest.java
++++ /dev/null
+@@ -1,108 +0,0 @@
+-/**
+- * Copyright (c) 2012-2013, JCabi.com
+- * All rights reserved.
+- *
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions
+- * are met: 1) Redistributions of source code must retain the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer. 2) Redistributions in binary form must reproduce the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer in the documentation and/or other materials provided
+- * with the distribution. 3) Neither the name of the jcabi.com nor
+- * the names of its contributors may be used to endorse or promote
+- * products derived from this software without specific prior written
+- * permission.
+- *
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+- * OF THE POSSIBILITY OF SUCH DAMAGE.
+- */
+-package com.jcabi.github;
+-
+-import com.jcabi.github.mock.MkGithub;
+-import com.rexsl.test.mock.MkAnswer;
+-import com.rexsl.test.mock.MkContainer;
+-import com.rexsl.test.mock.MkGrizzlyContainer;
+-import com.rexsl.test.request.ApacheRequest;
+-import java.net.HttpURLConnection;
+-import org.hamcrest.MatcherAssert;
+-import org.hamcrest.Matchers;
+-import org.junit.Test;
+-
+-/**
+- * Test case for {@link GhGist}.
+- *
+- * @author Carlos Miranda (miranda.cma@gmail.com)
+- * @version $Id$
+- */
+-public final class GhGistTest {
+-
+-    /**
+-     * GhGist should be able to do reads.
+-     *
+-     * @throws Exception if there is a problem.
+-     * @checkstyle MultipleStringLiteralsCheck (20 lines)
+-     */
+-    @Test
+-    public void readsFileWithContents() throws Exception {
+-        final MkContainer container = new MkGrizzlyContainer().next(
+-            new MkAnswer.Simple(
+-                HttpURLConnection.HTTP_OK,
+-                "{\"files\":{\"hello\":{\"raw_url\":\"world\"}}}"
+-            )
+-        ).next(new MkAnswer.Simple(HttpURLConnection.HTTP_OK, "success!"))
+-            .start();
+-        final GhGist gist = new GhGist(
+-            new MkGithub(),
+-            new ApacheRequest(container.home()),
+-            "test"
+-        );
+-        try {
+-            MatcherAssert.assertThat(
+-                gist.read("hello"),
+-                Matchers.equalTo("success!")
+-            );
+-        } finally {
+-            container.stop();
+-        }
+-    }
+-
+-    /**
+-     * GhGist should be able to do writes.
+-     *
+-     * @throws Exception if there is a problem.
+-     */
+-    @Test
+-    public void writesFileContents() throws Exception {
+-        final MkContainer container = new MkGrizzlyContainer().next(
+-            new MkAnswer.Simple(HttpURLConnection.HTTP_OK, "testFileWrite")
+-        ).start();
+-        final GhGist gist = new GhGist(
+-            new MkGithub(),
+-            new ApacheRequest(container.home()),
+-            "testWrite"
+-        );
+-        gist.write("testFile", "testContent");
+-        try {
+-            MatcherAssert.assertThat(
+-                container.take().body(),
+-                Matchers.containsString(
+-                    "\"testFile\":{\"content\":\"testContent\"}"
+-                )
+-            );
+-        } finally {
+-            container.stop();
+-        }
+-    }
+-
+-}
+diff --git a/src/test/java/com/jcabi/github/GhIssueTest.java b/src/test/java/com/jcabi/github/GhIssueTest.java
+deleted file mode 100644
+index f2f579b3..00000000
+--- a/src/test/java/com/jcabi/github/GhIssueTest.java
++++ /dev/null
+@@ -1,105 +0,0 @@
+-/**
+- * Copyright (c) 2012-2013, JCabi.com
+- * All rights reserved.
+- *
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions
+- * are met: 1) Redistributions of source code must retain the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer. 2) Redistributions in binary form must reproduce the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer in the documentation and/or other materials provided
+- * with the distribution. 3) Neither the name of the jcabi.com nor
+- * the names of its contributors may be used to endorse or promote
+- * products derived from this software without specific prior written
+- * permission.
+- *
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+- * OF THE POSSIBILITY OF SUCH DAMAGE.
+- */
+-package com.jcabi.github;
+-
+-import com.rexsl.test.request.FakeRequest;
+-import org.hamcrest.MatcherAssert;
+-import org.hamcrest.Matchers;
+-import org.junit.Test;
+-import org.mockito.Mockito;
+-
+-/**
+- * Test case for {@link GhIssue}.
+- *
+- * @author Carlos Miranda (miranda.cma@gmail.com)
+- * @version $Id$
+- * @todo #42 I assumed that the JSON methods json() and fetch() are not
+- *  covered by this test suite, since they are covered by GhJson tests.
+- *  GhIssue just creates a GhJson using its own request object. I'm
+- *  not entirely sure whether we should test it again here or not.
+- */
+-public final class GhIssueTest {
+-
+-    /**
+-     * GhIssue should be able to fetch its comments.
+-     *
+-     * @throws Exception if a problem occurs.
+-     */
+-    @Test
+-    public void fetchesComments() throws Exception {
+-        final GhIssue issue = new GhIssue(new FakeRequest(), repo(), 1);
+-        MatcherAssert.assertThat(
+-            issue.comments(),
+-            Matchers.notNullValue()
+-        );
+-    }
+-
+-    /**
+-     * GhIssue should be able to fetch its labels.
+-     *
+-     * @throws Exception if a problem occurs.
+-     */
+-    @Test
+-    public void fetchesLabels() throws Exception {
+-        final GhIssue issue = new GhIssue(new FakeRequest(), repo(), 1);
+-        MatcherAssert.assertThat(
+-            issue.labels(),
+-            Matchers.notNullValue()
+-        );
+-    }
+-
+-    /**
+-     * GhIssue should be able to fetch its events.
+-     *
+-     * @throws Exception if a problem occurs.
+-     */
+-    @Test
+-    public void fetchesEvents() throws Exception {
+-        final GhIssue issue = new GhIssue(new FakeRequest(), repo(), 1);
+-        MatcherAssert.assertThat(
+-            issue.events(),
+-            Matchers.notNullValue()
+-        );
+-    }
+-
+-    /**
+-     * Mock repo for GhIssue creation.
+-     * @return The mock repo.
+-     */
+-    private Repo repo() {
+-        final Repo repo = Mockito.mock(Repo.class);
+-        final Coordinates coords = Mockito.mock(Coordinates.class);
+-        Mockito.doReturn(coords).when(repo).coordinates();
+-        Mockito.doReturn("user").when(coords).user();
+-        Mockito.doReturn("repo").when(coords).repo();
+-        return repo;
+-    }
+-
+-}
+diff --git a/src/test/java/com/jcabi/github/GhJsonTest.java b/src/test/java/com/jcabi/github/GhJsonTest.java
+deleted file mode 100644
+index e0ec9755..00000000
+--- a/src/test/java/com/jcabi/github/GhJsonTest.java
++++ /dev/null
+@@ -1,89 +0,0 @@
+-/**
+- * Copyright (c) 2012-2013, JCabi.com
+- * All rights reserved.
+- *
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions
+- * are met: 1) Redistributions of source code must retain the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer. 2) Redistributions in binary form must reproduce the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer in the documentation and/or other materials provided
+- * with the distribution. 3) Neither the name of the jcabi.com nor
+- * the names of its contributors may be used to endorse or promote
+- * products derived from this software without specific prior written
+- * permission.
+- *
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+- * OF THE POSSIBILITY OF SUCH DAMAGE.
+- */
+-package com.jcabi.github;
+-
+-import com.rexsl.test.mock.MkAnswer;
+-import com.rexsl.test.mock.MkContainer;
+-import com.rexsl.test.mock.MkGrizzlyContainer;
+-import com.rexsl.test.request.ApacheRequest;
+-import java.net.HttpURLConnection;
+-import javax.json.Json;
+-import org.hamcrest.MatcherAssert;
+-import org.hamcrest.Matchers;
+-import org.junit.Test;
+-
+-/**
+- * Test case for {@link GhJson}.
+- *
+- * @author Giang Le (giang@vn-smartsolutions.com)
+- * @version $Id$
+- */
+-public final class GhJsonTest {
+-    /**
+-     * GhJson can fetch HTTP request.
+-     *
+-     * @throws Exception if there is any problem
+-     */
+-    @Test
+-    public void sendHttpRequest() throws Exception {
+-        final MkContainer container = new MkGrizzlyContainer().next(
+-            new MkAnswer.Simple(HttpURLConnection.HTTP_OK, "{\"body\":\"hi\"}")
+-        ).start();
+-        final GhJson json = new GhJson(new ApacheRequest(container.home()));
+-        MatcherAssert.assertThat(
+-            json.fetch().getString("body"),
+-            Matchers.equalTo("hi")
+-        );
+-        container.stop();
+-    }
+-
+-    /**
+-     * GhJson can execute PATCH request.
+-     *
+-     * @throws Exception if there is any problem
+-     */
+-    @Test
+-    public void executePatchRequest() throws Exception {
+-        final MkContainer container = new MkGrizzlyContainer().next(
+-            new MkAnswer.Simple(HttpURLConnection.HTTP_OK, "{\"body\":\"hj\"}")
+-        ).start();
+-        final GhJson json = new GhJson(new ApacheRequest(container.home()));
+-        json.patch(
+-            Json.createObjectBuilder()
+-                .add("content", "hi you!")
+-                .build()
+-        );
+-        MatcherAssert.assertThat(
+-            container.take().method(),
+-            Matchers.equalTo("PATCH")
+-        );
+-        container.stop();
+-    }
+-}
+diff --git a/src/test/java/com/jcabi/github/GhLabelTest.java b/src/test/java/com/jcabi/github/GhLabelTest.java
+deleted file mode 100644
+index e8c22e67..00000000
+--- a/src/test/java/com/jcabi/github/GhLabelTest.java
++++ /dev/null
+@@ -1,111 +0,0 @@
+-/**
+- * Copyright (c) 2012-2013, JCabi.com
+- * All rights reserved.
+- *
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions
+- * are met: 1) Redistributions of source code must retain the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer. 2) Redistributions in binary form must reproduce the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer in the documentation and/or other materials provided
+- * with the distribution. 3) Neither the name of the jcabi.com nor
+- * the names of its contributors may be used to endorse or promote
+- * products derived from this software without specific prior written
+- * permission.
+- *
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+- * OF THE POSSIBILITY OF SUCH DAMAGE.
+- */
+-package com.jcabi.github;
+-
+-import com.rexsl.test.Request;
+-import com.rexsl.test.mock.MkAnswer;
+-import com.rexsl.test.mock.MkContainer;
+-import com.rexsl.test.mock.MkGrizzlyContainer;
+-import com.rexsl.test.request.ApacheRequest;
+-import java.net.HttpURLConnection;
+-import javax.json.Json;
+-import org.hamcrest.MatcherAssert;
+-import org.hamcrest.Matchers;
+-import org.junit.Test;
+-import org.mockito.Mockito;
+-
+-/**
+- * Test case for {@link GhLabel}.
+- *
+- * @author Giang Le (giang@vn-smartsolutions.com)
+- * @version $Id$
+- */
+-public final class GhLabelTest {
+-    /**
+-     * GhLabel can  can fetch HTTP request and describe response as a JSON.
+-     *
+-     * @throws Exception if there is any problem
+-     */
+-    @Test
+-    public void sendHttpRequestAndWriteResponseAsJson() throws Exception {
+-        final MkContainer container = new MkGrizzlyContainer().next(
+-            new MkAnswer.Simple(HttpURLConnection.HTTP_OK, "{\"msg\": \"hi\"}")
+-        ).start();
+-        final GhLabel label = new GhLabel(
+-            new ApacheRequest(container.home()),
+-            GhLabelTest.repo(),
+-            "bug"
+-        );
+-        MatcherAssert.assertThat(
+-            label.json().getString("msg"),
+-            Matchers.equalTo("hi")
+-        );
+-        container.stop();
+-    }
+-
+-    /**
+-     * GhLabel can execute PATCH request.
+-     *
+-     * @throws Exception if there is any problem
+-     */
+-    @Test
+-    public void executePatchRequest() throws Exception {
+-        final MkContainer container = new MkGrizzlyContainer().next(
+-            new MkAnswer.Simple(HttpURLConnection.HTTP_OK, "{\"msg\":\"hi\"}")
+-        ).start();
+-        final GhLabel label = new GhLabel(
+-            new ApacheRequest(container.home()),
+-            GhLabelTest.repo(),
+-            "enhance"
+-        );
+-        label.patch(
+-            Json.createObjectBuilder()
+-                .add("content", "hi you!")
+-                .build()
+-        );
+-        MatcherAssert.assertThat(
+-            container.take().method(),
+-            Matchers.equalTo(Request.PATCH)
+-        );
+-        container.stop();
+-    }
+-
+-    /**
+-     * Create and return repo to test.
+-     * @return Repo
+-     * @throws Exception If some problem inside
+-     */
+-    private static Repo repo() throws Exception {
+-        final Repo repo = Mockito.mock(Repo.class);
+-        Mockito.doReturn(new Coordinates.Simple("mark", "test"))
+-            .when(repo).coordinates();
+-        return repo;
+-    }
+-}
+diff --git a/src/test/java/com/jcabi/github/GhLimitTest.java b/src/test/java/com/jcabi/github/GhLimitTest.java
+deleted file mode 100644
+index f65cafd2..00000000
+--- a/src/test/java/com/jcabi/github/GhLimitTest.java
++++ /dev/null
+@@ -1,97 +0,0 @@
+-/**
+- * Copyright (c) 2012-2013, JCabi.com
+- * All rights reserved.
+- *
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions
+- * are met: 1) Redistributions of source code must retain the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer. 2) Redistributions in binary form must reproduce the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer in the documentation and/or other materials provided
+- * with the distribution. 3) Neither the name of the jcabi.com nor
+- * the names of its contributors may be used to endorse or promote
+- * products derived from this software without specific prior written
+- * permission.
+- *
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+- * OF THE POSSIBILITY OF SUCH DAMAGE.
+- */
+-package com.jcabi.github;
+-
+-import com.rexsl.test.request.FakeRequest;
+-import org.hamcrest.MatcherAssert;
+-import org.hamcrest.Matchers;
+-import org.junit.Test;
+-import org.mockito.Mockito;
+-
+-/**
+- * Test case for {@link GhLimit}.
+- *
+- * @author Giang Le (giang@vn-smartsolutions.com)
+- * @version $Id$
+- */
+-public final class GhLimitTest {
+-
+-    /**
+-     * GhLimit can describe as a JSON object.
+-     *
+-     * @throws Exception if there is any problem
+-     */
+-    @Test
+-    public void describeAsJson() throws Exception {
+-        final GhLimit limit = new GhLimit(
+-            Mockito.mock(Github.class),
+-            new FakeRequest().withBody(body()),
+-            "core"
+-        );
+-        MatcherAssert.assertThat(
+-            limit.json().toString(),
+-            Matchers.equalTo(
+-                "{\"limit\":5000,\"remaining\":4999,\"reset\":1372700873}"
+-            )
+-        );
+-    }
+-
+-    /**
+-     * GhLimit can throw exception when resource is absent.
+-     *
+-     * @throws Exception if some problem inside
+-     */
+-    @Test(expected = IllegalStateException.class)
+-    public void throwsWhenResourceIsAbsent() throws Exception {
+-        final GhLimit limit = new GhLimit(
+-            Mockito.mock(Github.class),
+-            new FakeRequest().withBody(body()),
+-            "absent"
+-        );
+-        MatcherAssert.assertThat(
+-            limit.json().toString(),
+-            Matchers.equalTo("{}")
+-        );
+-    }
+-
+-    /**
+-     * Example response from rate API.
+-     * @return Body string.
+-     */
+-    private String body() {
+-        final StringBuilder builder = new StringBuilder();
+-        builder.append("{\"resources\":{\"core\":{\"limit\":5000,");
+-        builder.append("\"remaining\":4999,\"reset\":1372700873},");
+-        builder.append("\"search\":{\"limit\":20,\"remaining\":18,");
+-        builder.append("\"reset\":1372697452}},\"rate\":{\"limit\":5000,");
+-        builder.append("\"remaining\":4999,\"reset\":1372700873}}");
+-        return builder.toString();
+-    }
+-}
+diff --git a/src/test/java/com/jcabi/github/GhPaginationTest.java b/src/test/java/com/jcabi/github/GhPaginationTest.java
+deleted file mode 100644
+index d1032133..00000000
+--- a/src/test/java/com/jcabi/github/GhPaginationTest.java
++++ /dev/null
+@@ -1,127 +0,0 @@
+-/**
+- * Copyright (c) 2012-2013, JCabi.com
+- * All rights reserved.
+- *
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions
+- * are met: 1) Redistributions of source code must retain the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer. 2) Redistributions in binary form must reproduce the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer in the documentation and/or other materials provided
+- * with the distribution. 3) Neither the name of the jcabi.com nor
+- * the names of its contributors may be used to endorse or promote
+- * products derived from this software without specific prior written
+- * permission.
+- *
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+- * OF THE POSSIBILITY OF SUCH DAMAGE.
+- */
+-package com.jcabi.github;
+-
+-import com.rexsl.test.Request;
+-import com.rexsl.test.mock.MkAnswer;
+-import com.rexsl.test.mock.MkContainer;
+-import com.rexsl.test.mock.MkGrizzlyContainer;
+-import com.rexsl.test.request.ApacheRequest;
+-import java.net.HttpURLConnection;
+-import java.util.Iterator;
+-import java.util.NoSuchElementException;
+-import javax.json.Json;
+-import javax.json.JsonObject;
+-import org.hamcrest.MatcherAssert;
+-import org.hamcrest.Matchers;
+-import org.junit.Test;
+-
+-/**
+- * Test case for {@link GhPagination}.
+- *
+- * @author Giang Le (giang@vn-smartsolutions.com)
+- * @version $Id$
+- */
+-public final class GhPaginationTest {
+-    /**
+-     * GhPagination can jump to next page of results.
+-     *
+-     * @throws Exception if there is any problem
+-     */
+-    @Test
+-    public void jumpNextPage() throws Exception {
+-        final MkContainer container = new MkGrizzlyContainer().next(
+-            GhPaginationTest.simple("Hi Jeff")
+-                .withHeader("Link", "</s?page=3&per_page=100>; rel=\"next\"")
+-        ).next(GhPaginationTest.simple("Hi Mark")).start();
+-        final Request request = new ApacheRequest(container.home());
+-        final GhPagination<JsonObject> page = new GhPagination<JsonObject>(
+-            request, new GhPagination.Mapping<JsonObject>() {
+-                @Override
+-                public JsonObject map(final JsonObject object) {
+-                    return object;
+-                }
+-            }
+-        );
+-        final Iterator<JsonObject> iterator = page.iterator();
+-        MatcherAssert.assertThat(
+-            iterator.next().toString(),
+-            Matchers.containsString("Jeff")
+-        );
+-        MatcherAssert.assertThat(
+-            iterator.next().toString(),
+-            Matchers.containsString("Mark")
+-        );
+-        container.stop();
+-    }
+-
+-    /**
+-     * GhPagination can throw if there is no more elements in pagination.
+-     *
+-     * @throws Exception if there is any problem
+-     */
+-    @Test(expected = NoSuchElementException.class)
+-    public void throwsIfNoMoreElement() throws Exception {
+-        final MkContainer container = new MkGrizzlyContainer()
+-            .next(simple("Hi there")).start();
+-        try {
+-            final Request request = new ApacheRequest(container.home());
+-            final GhPagination<JsonObject> page = new GhPagination<JsonObject>(
+-                request, new GhPagination.Mapping<JsonObject>() {
+-                    @Override
+-                    public JsonObject map(final JsonObject object) {
+-                        return object;
+-                    }
+-                }
+-            );
+-            final Iterator<JsonObject> iterator = page.iterator();
+-            iterator.next();
+-            MatcherAssert.assertThat(
+-                iterator.next(),
+-                Matchers.notNullValue()
+-            );
+-        } finally {
+-            container.stop();
+-        }
+-    }
+-
+-    /**
+-     * Create and return MkAnswer.Simple to test.
+-     * @param msg Message to build MkAnswer.Simple
+-     * @return MkAnswer.Simple
+-     * @throws Exception If some problem inside
+-     */
+-    private static  MkAnswer.Simple simple(final String msg) throws Exception {
+-        final String message = Json.createArrayBuilder()
+-            .add(Json.createObjectBuilder().add("msg", msg))
+-            .build().toString();
+-        return new MkAnswer.Simple(HttpURLConnection.HTTP_OK, message);
+-    }
+-}
+diff --git a/src/test/java/com/jcabi/github/GhPullTest.java b/src/test/java/com/jcabi/github/GhPullTest.java
+deleted file mode 100644
+index 04735de8..00000000
+--- a/src/test/java/com/jcabi/github/GhPullTest.java
++++ /dev/null
+@@ -1,153 +0,0 @@
+-/**
+- * Copyright (c) 2012-2013, JCabi.com
+- * All rights reserved.
+- *
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions
+- * are met: 1) Redistributions of source code must retain the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer. 2) Redistributions in binary form must reproduce the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer in the documentation and/or other materials provided
+- * with the distribution. 3) Neither the name of the jcabi.com nor
+- * the names of its contributors may be used to endorse or promote
+- * products derived from this software without specific prior written
+- * permission.
+- *
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+- * OF THE POSSIBILITY OF SUCH DAMAGE.
+- */
+-package com.jcabi.github;
+-
+-import com.rexsl.test.Request;
+-import com.rexsl.test.mock.MkAnswer;
+-import com.rexsl.test.mock.MkContainer;
+-import com.rexsl.test.mock.MkGrizzlyContainer;
+-import com.rexsl.test.mock.MkQuery;
+-import com.rexsl.test.request.ApacheRequest;
+-import java.net.HttpURLConnection;
+-import org.hamcrest.MatcherAssert;
+-import org.hamcrest.Matchers;
+-import org.junit.Test;
+-import org.mockito.Mockito;
+-
+-/**
+- * Test case for {@link GhPull}.
+- *
+- * @author Carlos Miranda (miranda.cma@gmail.com)
+- * @version $Id$
+- */
+-public final class GhPullTest {
+-
+-    /**
+-     * GhPull should be able to retrieve commits.
+-     *
+-     * @throws Exception when a problem occurs.
+-     */
+-    @Test
+-    public void fetchesCommits() throws Exception {
+-        final MkContainer container = new MkGrizzlyContainer().next(
+-            new MkAnswer.Simple(
+-                HttpURLConnection.HTTP_OK,
+-                "[{\"commits\":\"test\"}]"
+-            )
+-        ).start();
+-        final GhPull pull = new GhPull(
+-            new ApacheRequest(container.home()),
+-            this.repo(),
+-            1
+-        );
+-        try {
+-            MatcherAssert.assertThat(
+-                pull.commits(),
+-                Matchers.notNullValue()
+-            );
+-        } finally {
+-            container.stop();
+-        }
+-    }
+-
+-    /**
+-     * GhPull should be able to retrieve files.
+-     *
+-     * @throws Exception when a problem occurs.
+-     */
+-    @Test
+-    public void fetchesFiles() throws Exception {
+-        final MkContainer container = new MkGrizzlyContainer().next(
+-            new MkAnswer.Simple(
+-                HttpURLConnection.HTTP_OK,
+-                "[{\"file1\":\"testFile\"}]"
+-            )
+-        ).start();
+-        final GhPull pull = new GhPull(
+-            new ApacheRequest(container.home()),
+-            this.repo(),
+-            2
+-        );
+-        try {
+-            MatcherAssert.assertThat(
+-                pull.files().iterator().next().getString("file1"),
+-                Matchers.equalTo("testFile")
+-            );
+-        } finally {
+-            container.stop();
+-        }
+-    }
+-
+-    /**
+-     * GhPull should be able to perform a merge.
+-     *
+-     * @throws Exception when a problem occurs.
+-     */
+-    @Test
+-    public void executeMerge() throws Exception {
+-        final MkContainer container = new MkGrizzlyContainer().next(
+-            new MkAnswer.Simple(HttpURLConnection.HTTP_OK, "testMerge")
+-        ).start();
+-        final GhPull pull = new GhPull(
+-            new ApacheRequest(container.home()),
+-            this.repo(),
+-            3
+-        );
+-        pull.merge("Test commit.");
+-        try {
+-            final MkQuery query = container.take();
+-            MatcherAssert.assertThat(
+-                query.method(),
+-                Matchers.equalTo(Request.PUT)
+-            );
+-            MatcherAssert.assertThat(
+-                query.body(),
+-                Matchers.equalTo("{\"commit_message\":\"Test commit.\"}")
+-            );
+-        } finally {
+-            container.stop();
+-        }
+-    }
+-
+-    /**
+-     * Mock repository for testing purposes.
+-     * @return Repo the mock repository.
+-     */
+-    private Repo repo() {
+-        final Repo repo = Mockito.mock(Repo.class);
+-        final Coordinates coords = Mockito.mock(Coordinates.class);
+-        Mockito.doReturn(coords).when(repo).coordinates();
+-        Mockito.doReturn("/user").when(coords).user();
+-        Mockito.doReturn("/repo").when(coords).repo();
+-        return repo;
+-    }
+-
+-}
+-
+diff --git a/src/test/java/com/jcabi/github/GhUsersTest.java b/src/test/java/com/jcabi/github/GhUsersTest.java
+deleted file mode 100644
+index 21f36fe8..00000000
+--- a/src/test/java/com/jcabi/github/GhUsersTest.java
++++ /dev/null
+@@ -1,139 +0,0 @@
+-/**
+- * Copyright (c) 2012-2013, JCabi.com
+- * All rights reserved.
+- *
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions
+- * are met: 1) Redistributions of source code must retain the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer. 2) Redistributions in binary form must reproduce the above
+- * copyright notice, this list of conditions and the following
+- * disclaimer in the documentation and/or other materials provided
+- * with the distribution. 3) Neither the name of the jcabi.com nor
+- * the names of its contributors may be used to endorse or promote
+- * products derived from this software without specific prior written
+- * permission.
+- *
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+- * OF THE POSSIBILITY OF SUCH DAMAGE.
+- */
+-package com.jcabi.github;
+-
+-import com.rexsl.test.mock.MkAnswer;
+-import com.rexsl.test.mock.MkContainer;
+-import com.rexsl.test.mock.MkGrizzlyContainer;
+-import com.rexsl.test.request.ApacheRequest;
+-import java.net.HttpURLConnection;
+-import javax.json.Json;
+-import javax.json.JsonObject;
+-import org.hamcrest.MatcherAssert;
+-import org.hamcrest.Matchers;
+-import org.junit.Test;
+-import org.mockito.Mockito;
+-
+-/**
+- * Test case for {@link GhUsers}.
+- *
+- * @author Giang Le (giang@vn-smartsolutions.com)
+- * @version $Id$
+- */
+-public final class GhUsersTest {
+-    /**
+-     * GhUsers can iterate users.
+-     * @throws Exception if there is any error
+-     */
+-    @Test
+-    public void iterateUsers() throws Exception {
+-        final String login = "octocat";
+-        final MkContainer container = new MkGrizzlyContainer().next(
+-            new MkAnswer.Simple(
+-                HttpURLConnection.HTTP_OK,
+-                Json.createArrayBuilder()
+-                    .add(json(login))
+-                    .add(json("dummy"))
+-                    .build().toString()
+-            )
+-        ).start();
+-        final GhUsers users = new GhUsers(
+-            Mockito.mock(Github.class),
+-            new ApacheRequest(container.home())
+-        );
+-        MatcherAssert.assertThat(
+-            users.iterate(login),
+-            Matchers.<User>iterableWithSize(2)
+-        );
+-        container.stop();
+-    }
+-
+-    /**
+-     * GhUsers can get a single user.
+-     *
+-     * @throws Exception  if there is any error
+-     */
+-    @Test
+-    public void getSingleUser() throws Exception {
+-        final String login = "mark";
+-        final MkContainer container = new MkGrizzlyContainer().next(
+-            new MkAnswer.Simple(
+-                HttpURLConnection.HTTP_OK,
+-                json(login).toString()
+-            )
+-        ).start();
+-        final GhUsers users = new GhUsers(
+-            Mockito.mock(Github.class),
+-            new ApacheRequest(container.home())
+-        );
+-        MatcherAssert.assertThat(
+-            users.get(login).login(),
+-            Matchers.equalTo(login)
+-        );
+-        container.stop();
+-    }
+-
+-    /**
+-     * GhUsers can get a current  user.
+-     *
+-     * @throws Exception  if there is any error
+-     */
+-    @Test
+-    public void getCurrentUser() throws Exception {
+-        final String login = "kendy";
+-        final MkContainer container = new MkGrizzlyContainer().next(
+-            new MkAnswer.Simple(
+-                HttpURLConnection.HTTP_OK,
+-                json(login).toString()
+-            )
+-        ).start();
+-        final GhUsers users = new GhUsers(
+-            Mockito.mock(Github.class),
+-            new ApacheRequest(container.home())
+-        );
+-        MatcherAssert.assertThat(
+-            users.self().login(),
+-            Matchers.equalTo(login)
+-        );
+-        container.stop();
+-    }
+-
+-    /**
+-     * Create and return JsonObject to test.
+-     * @param login Username to login
+-     * @return JsonObject
+-     * @throws Exception If some problem inside
+-     */
+-    private static JsonObject json(final String login) throws Exception {
+-        return Json.createObjectBuilder()
+-            .add("login", login)
+-            .build();
+-    }
+-}
+diff --git a/src/test/java/com/jcabi/github/mock/MkIssuesTest.java b/src/test/java/com/jcabi/github/mock/MkIssuesTest.java
+index 98d1d7f7..c1ebf93c 100644
+--- a/src/test/java/com/jcabi/github/mock/MkIssuesTest.java
++++ b/src/test/java/com/jcabi/github/mock/MkIssuesTest.java
+@@ -45,7 +45,7 @@ import org.junit.Test;
+ public final class MkIssuesTest {
+ 
+     /**
+-     * MkIssues can list issues.
++     * MkIssue can list issues.
+      * @throws Exception If some problem inside
+      */
+     @Test
+@@ -58,22 +58,6 @@ public final class MkIssuesTest {
+         );
+     }
+ 
+-    /**
+-     * MkIssues can create a new issue with correct author.
+-     * @throws Exception If some problem inside
+-     */
+-    @Test
+-    public void createsNewIssueWithCorrectAuthor() throws Exception {
+-        final Repo repo = this.repo();
+-        final Issue.Smart issue = new Issue.Smart(
+-            repo.issues().create("hello", "the body")
+-        );
+-        MatcherAssert.assertThat(
+-            issue.author().login(),
+-            Matchers.equalTo(repo.github().users().self().login())
+-        );
+-    }
+-
+     /**
+      * Create an repo to work with.
+      * @return Repo
