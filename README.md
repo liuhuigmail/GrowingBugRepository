@@ -228,7 +228,7 @@ To date, growingBugs contains **`1633`** real-world bugs from open-source Java p
 | 201     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 202     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 203     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
-| 204     | Jcabi_github         | jcabi-github           |                  |      10       | 1-10                  |
+| 204     | Jcabi_github         | jcabi-github           |                  |      16       | 1-16                  |
 | 205     | Podam         | podam           |                  |      1       | 1                  |
 | 206     | Sansorm         | SansOrm           |                  |      2       | 1-2                  |
 | 207     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
