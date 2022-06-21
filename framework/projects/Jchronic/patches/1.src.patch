@@ -1,0 +1,49 @@
+diff --git a/src/main/java/com/mdimension/jchronic/tags/ScalarYear.java b/src/main/java/com/mdimension/jchronic/tags/ScalarYear.java
+index 0191db0..178eb77 100644
+--- a/src/main/java/com/mdimension/jchronic/tags/ScalarYear.java
++++ b/src/main/java/com/mdimension/jchronic/tags/ScalarYear.java
+@@ -22,8 +22,6 @@ public class ScalarYear extends Scalar {
+       int scalarValue = Integer.parseInt(token.getWord());
+       if (!(postToken != null && Scalar.TIMES.contains(postToken.getWord()))) {
+         Pointer.PointerType context = options.getContext();
+-        switch (context) {
+-          case NONE:
+             // If the context indicates no bias,
+             // treat anything up to 37 as 20xx, anything from 69-99 as 19xx,
+             // anything from 100-137 as 20xx, and leave 38-68 alone (treating
+@@ -34,35 +32,14 @@ public class ScalarYear extends Scalar {
+             }
+             else if (scalarValue <= 137 && scalarValue >= 69) {
+               scalarValue += 1900;
+-            }
+-            break;
+ 
+-          case PAST:
+             // If the context indicates a bias to past dates,
+             // treat anything from 20-99 as 19xx, and otherwise
+             // match the NONE behavior.
+-            if (scalarValue <= 19) {
+-              scalarValue += 2000;
+-            }
+-            else if (scalarValue <= 99) {
+-              scalarValue += 1900;
+-            }
+-            else if (scalarValue <= 137) {
+-              scalarValue += 1900;
+-            }
+-            break;
+ 
+-          case FUTURE:
+             // If the context indicates a bias to future dates,
+             // treat anything up to 68 as 20xx, and otherwise
+             // match the NONE behavior.
+-            if (scalarValue <= 68) {
+-              scalarValue += 2000;
+-            }
+-            else if (scalarValue <= 137) {
+-              scalarValue += 1900;
+-            }
+-            break;
+         }
+         return new ScalarYear(Integer.valueOf(scalarValue));
+       }

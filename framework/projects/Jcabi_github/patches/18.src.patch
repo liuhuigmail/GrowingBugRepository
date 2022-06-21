@@ -1,0 +1,55 @@
+diff --git a/src/main/java/com/jcabi/github/RtReleases.java b/src/main/java/com/jcabi/github/RtReleases.java
+index 564a9bda..e90db011 100644
+--- a/src/main/java/com/jcabi/github/RtReleases.java
++++ b/src/main/java/com/jcabi/github/RtReleases.java
+@@ -32,7 +32,7 @@ package com.jcabi.github;
+ import com.jcabi.aspects.Immutable;
+ import com.jcabi.aspects.Loggable;
+ import com.rexsl.test.Request;
+-import javax.json.JsonObject;
++import java.util.Collections;
+ import lombok.EqualsAndHashCode;
+ 
+ /**
+@@ -55,7 +55,6 @@ public final class RtReleases implements Releases {
+     /**
+      * RESTful API releases request.
+      */
+-    private final transient Request request;
+ 
+     /**
+      * Repository.
+@@ -70,12 +69,6 @@ public final class RtReleases implements Releases {
+     public RtReleases(final Request req, final Repo repo) {
+         this.entry = req;
+         this.owner = repo;
+-        this.request = this.entry.uri()
+-            .path("/repos")
+-            .path(repo.coordinates().user())
+-            .path(repo.coordinates().repo())
+-            .path("/releases")
+-            .back();
+     }
+ 
+     @Override
+@@ -85,19 +78,7 @@ public final class RtReleases implements Releases {
+ 
+     @Override
+     public Iterable<Release> iterate() {
+-        return new RtPagination<Release>(
+-            this.request,
+-            new RtPagination.Mapping<Release>() {
+-                @Override
+-                public Release map(final JsonObject object) {
+-                    return new RtRelease(
+-                        RtReleases.this.entry,
+-                        RtReleases.this.owner.coordinates(),
+-                        object.getInt("id")
+-                    );
+-                }
+-            }
+-        );
++        return Collections.emptyList();
+     }
+ 
+     @Override

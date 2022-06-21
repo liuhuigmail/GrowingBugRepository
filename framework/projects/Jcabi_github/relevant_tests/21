@@ -1,0 +1,3 @@
+com.jcabi.github.RtReleasesTest
+com.jcabi.github.RtRepoTest
+com.jcabi.github.mock.MkReleasesTest

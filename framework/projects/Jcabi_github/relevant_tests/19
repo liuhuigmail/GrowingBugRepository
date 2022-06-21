@@ -1,0 +1,3 @@
+com.jcabi.github.LimitTest
+com.jcabi.github.RtLimitTest
+com.jcabi.github.mock.MkLimitsTest

@@ -1,0 +1,4 @@
+com.mdimension.jchronic.ChronicTestSuite
+com.mdimension.jchronic.HandlerTestCase
+com.mdimension.jchronic.ParserTest
+com.mdimension.jchronic.TokenTestCase

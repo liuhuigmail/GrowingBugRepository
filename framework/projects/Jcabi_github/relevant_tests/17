@@ -1,0 +1,10 @@
+com.jcabi.github.IssueLabelsTest
+com.jcabi.github.IssueTest
+com.jcabi.github.LabelTest
+com.jcabi.github.RtLabelTest
+com.jcabi.github.RtLabelsTest
+com.jcabi.github.RtRepoTest
+com.jcabi.github.mock.MkIssueLabelsTest
+com.jcabi.github.mock.MkIssueTest
+com.jcabi.github.mock.MkIssuesTest
+com.jcabi.github.mock.MkLabelsTest

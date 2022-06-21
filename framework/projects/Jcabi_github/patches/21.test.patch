@@ -1,0 +1,127 @@
+diff --git a/src/test/java/com/jcabi/github/RtReleasesITCase.java b/src/test/java/com/jcabi/github/RtReleasesITCase.java
+index 4ff62d38..275b8356 100644
+--- a/src/test/java/com/jcabi/github/RtReleasesITCase.java
++++ b/src/test/java/com/jcabi/github/RtReleasesITCase.java
+@@ -29,9 +29,6 @@
+  */
+ package com.jcabi.github;
+ 
+-import org.hamcrest.MatcherAssert;
+-import org.hamcrest.Matchers;
+-import org.junit.Assume;
+ import org.junit.Ignore;
+ import org.junit.Test;
+ 
+@@ -40,22 +37,20 @@ import org.junit.Test;
+  * @author Paul Polishchuk (ppol@ua.fm)
+  * @version $Id$
+  * @since 0.8
+- * @todo #123 RtReleases should be able to get a single release, create, edit
+- *  and remove release. When done, remove this puzzle and Ignore annotation from
+- *  the methods.
++ * @todo #123 RtReleases should be able to fetch a list of releases from a real
++ *  Github repository, a single release, create, edit and remove release.
++ *  When done, remove this puzzle and Ignore annotation from the method.
+  */
+ public final class RtReleasesITCase {
+ 
+     /**
+      * RtReleases can iterate releases.
++     * @throws Exception If some problem inside
+      */
+     @Test
+-    public void canFetchAllReleases() {
+-        final Releases releases = RtReleasesITCase.releases();
+-        MatcherAssert.assertThat(
+-            releases.iterate(),
+-            Matchers.not(Matchers.emptyIterableOf(Release.class))
+-        );
++    @Ignore
++    public void canFetchAllReleases() throws Exception {
++        // to be implemented
+     }
+ 
+     /**
+@@ -71,17 +66,4 @@ public final class RtReleasesITCase {
+         // to be implemented
+     }
+ 
+-    /**
+-     * Create and return RtReleases object to test.
+-     * @return Releases
+-     */
+-    private static Releases releases() {
+-        final String key = System.getProperty("failsafe.github.key");
+-        Assume.assumeThat(key, Matchers.notNullValue());
+-        final Github github = new RtGithub(key);
+-        return github.repos().get(
+-            new Coordinates.Simple(System.getProperty("failsafe.github.repo"))
+-        ).releases();
+-    }
+-
+ }
+diff --git a/src/test/java/com/jcabi/github/RtReleasesTest.java b/src/test/java/com/jcabi/github/RtReleasesTest.java
+index 89f58d4b..9b1cbc1d 100644
+--- a/src/test/java/com/jcabi/github/RtReleasesTest.java
++++ b/src/test/java/com/jcabi/github/RtReleasesTest.java
+@@ -72,26 +72,16 @@ public final class RtReleasesTest {
+ 
+     /**
+      * RtReleases can fetch non empty list of releases.
++     *
++     * @todo #123 RtReleases should iterate multiple releases. Let's implement
++     *  a test here and a method of RtReleases. The method should iterate
++     *  multiple releases. See how it's done in other classes with GhPagination.
++     *  When done, remove this puzzle and Ignore annotation from the method.
+      */
+     @Test
++    @Ignore
+     public void canFetchNonEmptyListOfReleases() {
+-        final int number = 1;
+-        final Releases releases = new RtReleases(
+-            new FakeRequest().withBody(
+-                Json.createArrayBuilder().add(
+-                    Json.createObjectBuilder()
+-                        .add("id", number)
+-                        .add("tag_name", "v1.0.0")
+-                        .add("name", "v1.0.0")
+-                        .add("body", "Release")
+-                ).build().toString()
+-            ),
+-            RtReleasesTest.repo()
+-        );
+-        MatcherAssert.assertThat(
+-            releases.iterate().iterator().next().number(),
+-            Matchers.equalTo(number)
+-        );
++        // to be implemented
+     }
+ 
+     /**
+diff --git a/src/test/java/com/jcabi/github/mock/MkReleasesTest.java b/src/test/java/com/jcabi/github/mock/MkReleasesTest.java
+index 82f5ce74..d285f445 100644
+--- a/src/test/java/com/jcabi/github/mock/MkReleasesTest.java
++++ b/src/test/java/com/jcabi/github/mock/MkReleasesTest.java
+@@ -57,22 +57,6 @@ public final class MkReleasesTest {
+         );
+     }
+ 
+-    /**
+-     * MkReleases can fetch non-empty list of releases.
+-     * @throws Exception If some problem inside
+-     */
+-    @Test
+-    public void canFetchNonEmptyListOfReleases() throws Exception {
+-        final Releases releases = MkReleasesTest.repo().releases();
+-        final String tag = "v1.0";
+-        releases.create(tag);
+-        MatcherAssert.assertThat(
+-            // @checkstyle MultipleStringLiterals (1 line)
+-            releases.iterate().iterator().next().json().getString("tag_name"),
+-            Matchers.equalTo(tag)
+-        );
+-    }
+-
+     /**
+      * MkReleases can fetch a single release.
+      * @throws Exception If some problem inside
