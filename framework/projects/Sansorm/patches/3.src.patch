@@ -1,0 +1,42 @@
+diff --git a/src/main/java/com/zaxxer/sansorm/internal/Introspected.java b/src/main/java/com/zaxxer/sansorm/internal/Introspected.java
+index 1430709..440401d 100644
+--- a/src/main/java/com/zaxxer/sansorm/internal/Introspected.java
++++ b/src/main/java/com/zaxxer/sansorm/internal/Introspected.java
+@@ -112,15 +112,6 @@ public class Introspected
+                fcInfo.setEnumConstants(enumAnnotation.value());
+             }
+ 
+-            Convert convertAnnotation = field.getAnnotation(Convert.class);
+-            if (convertAnnotation != null) {
+-               Class converterClass = convertAnnotation.converter();
+-               if (!AttributeConverter.class.isAssignableFrom(converterClass)) {
+-                  throw new RuntimeException(
+-                          "Convert annotation only supports converters implementing AttributeConverter");
+-               }
+-               fcInfo.setConverter((AttributeConverter)converterClass.newInstance());
+-            }
+          }
+ 
+          readColumnInfo(idFcInfos);
+@@ -147,9 +138,7 @@ public class Introspected
+       try {
+          Object value = fcInfo.field.get(target);
+          // Fix-up column value for enums, integer as boolean, etc.
+-         if (fcInfo.getConverter() != null) {
+-            value = fcInfo.getConverter().convertToDatabaseColumn(value);
+-         } else if (fcInfo.enumConstants != null) {
++         if (fcInfo.enumConstants != null) {
+             value = (fcInfo.enumType == EnumType.ORDINAL ? ((Enum<?>) value).ordinal() : ((Enum<?>) value).name());
+          }
+ 
+@@ -177,9 +166,7 @@ public class Introspected
+          Class<?> columnType = value.getClass();
+          Object columnValue = value;
+ 
+-         if (fcInfo.getConverter() != null) {
+-            columnValue = fcInfo.getConverter().convertToEntityAttribute(columnValue);
+-         } else if (fieldType != columnType) {
++         if (fieldType != columnType) {
+             // Fix-up column value for enums, integer as boolean, etc.
+             if (fieldType == boolean.class && columnType == Integer.class) {
+                columnValue = (((Integer) columnValue) != 0);

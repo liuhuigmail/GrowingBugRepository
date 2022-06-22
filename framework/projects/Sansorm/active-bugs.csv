@@ -1,3 +1,8 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,16d9aa4b8fb20b9426a3c89355345739db8691f1,671b9a5bd84694bbe02a2e7b722b7b34de2cd418,12,https://github.com/brettwooldridge/SansOrm/pull/12
 2,23f3f0ba061920e5e37d963fde97cad9fcc48509,1e7049ced55f01b3f9c17a962162d5018a756bfb,15,https://github.com/brettwooldridge/SansOrm/pull/15
+3,9ffe04fc1c96b399f085e0e4698c877acc9acac3,d8492ff5c2ed8834177f8a7dc9205b220d59df9a,6,https://github.com/brettwooldridge/SansOrm/pull/6
+4,c7634fbb99a75d16a1c4642b65c8f35de80e9a8d,2f3f46f76c6d5bf1f9a2f6789adf97882a35fd89,16,https://github.com/brettwooldridge/SansOrm/pull/16
+5,4e91ac77aa5ddc4cb703eb1bded28018ec4f5097,d4f1a6673b2686d005e079cbf731ec3710886d8f,20,https://github.com/brettwooldridge/SansOrm/pull/20
+6,42f37637fc5302b4964c2aec175be3ede197cf15,1d203160e79817c2d05c375cdf44c13a00b12076,22,https://github.com/brettwooldridge/SansOrm/issues/22
+7,cc5b6f98fdba83805e1c19173eeb57d3974a9286,efa96af07ff523db0728f1d017ab23f6fc5b82c5,24,https://github.com/brettwooldridge/SansOrm/pull/24

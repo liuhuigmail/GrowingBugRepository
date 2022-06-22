@@ -1,0 +1,2746 @@
+diff --git a/src/test/java/com/zaxxer/sansorm/internal/CaseSensitiveDatabasesClass.java b/src/test/java/com/zaxxer/sansorm/internal/CaseSensitiveDatabasesClass.java
+deleted file mode 100644
+index a8a3428..0000000
+--- a/src/test/java/com/zaxxer/sansorm/internal/CaseSensitiveDatabasesClass.java
++++ /dev/null
+@@ -1,43 +0,0 @@
+-package com.zaxxer.sansorm.internal;
+-
+-import javax.persistence.Column;
+-import javax.persistence.Id;
+-import javax.persistence.Table;
+-
+-/**
+- * @author Holger Thurow (thurow.h@gmail.com)
+- * @since 24.03.18
+- */
+-@Table(name = "TEST_CLASS")
+-public class CaseSensitiveDatabasesClass {
+-   @Id
+-   private String id;
+-   @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-   private String delimitedFieldName;
+-   @Column(name = "DEFAULT_CASE")
+-   private String defaultCase;
+-
+-   public String getId() {
+-      return id;
+-   }
+-
+-   public void setId(String id) {
+-      this.id = id;
+-   }
+-
+-   public String getDelimitedFieldName() {
+-      return delimitedFieldName;
+-   }
+-
+-   public void setDelimitedFieldName(String value) {
+-      this.delimitedFieldName = value;
+-   }
+-
+-   public String getDefaultCase() {
+-      return defaultCase;
+-   }
+-
+-   public void setDefaultCase(String value) {
+-      this.defaultCase = value;
+-   }
+-}
+diff --git a/src/test/java/com/zaxxer/sansorm/internal/CaseSensitiveDatabasesTest.java b/src/test/java/com/zaxxer/sansorm/internal/CaseSensitiveDatabasesTest.java
+deleted file mode 100644
+index 4d2ac53..0000000
+--- a/src/test/java/com/zaxxer/sansorm/internal/CaseSensitiveDatabasesTest.java
++++ /dev/null
+@@ -1,708 +0,0 @@
+-package com.zaxxer.sansorm.internal;
+-
+-import com.zaxxer.sansorm.OrmElf;
+-import com.zaxxer.sansorm.SansOrm;
+-import com.zaxxer.sansorm.SqlClosureElf;
+-import org.junit.*;
+-import org.junit.rules.ExpectedException;
+-import org.sansorm.TestUtils;
+-import org.sansorm.testutils.*;
+-
+-import javax.persistence.*;
+-import java.sql.*;
+-
+-import static org.junit.Assert.*;
+-
+-/**
+- * See Issue #22: <a href="https://github.com/brettwooldridge/SansOrm/issues/22">Problem with upper case column names</a>
+- *
+- * @author Holger Thurow (thurow.h@gmail.com)
+- * @since 24.03.18
+- */
+-public class CaseSensitiveDatabasesTest {
+-
+-   @After
+-   public void tearDown()
+-   {
+-      SansOrm.deinitialize();
+-   }
+-
+-   @Rule
+-   public ExpectedException thrown = ExpectedException.none();
+-
+-   @Test
+-   public void columnsNameElementNotInQuotes() {
+-      class TestClass {
+-         @Column(name = "COLUMN_NAME")
+-         String columnName;
+-      }
+-      Introspected introspected = new Introspected(TestClass.class);
+-      String colName = introspected.getColumnNameForProperty("columnName");
+-      assertEquals("column_name", colName);
+-   }
+-
+-   @Test
+-   public void columnsNameElementInQuotes() {
+-      class TestClass {
+-         @Column(name = "\"COLUMN_NAME\"")
+-         String columnName;
+-      }
+-      Introspected introspected = new Introspected(TestClass.class);
+-      String colName = introspected.getColumnNameForProperty("columnName");
+-      assertEquals("\"COLUMN_NAME\"", colName);
+-   }
+-
+-   @Test
+-   public void joinColumnsNameElementNotInQuotes() {
+-      class TestClass {
+-         @JoinColumn(name = "JOIN_COLUMN_NAME")
+-         TestClass joinColumnName;
+-      }
+-      Introspected introspected = new Introspected(TestClass.class);
+-      String colName = introspected.getColumnNameForProperty("joinColumnName");
+-      assertEquals("join_column_name", colName);
+-   }
+-
+-   @Test
+-   public void joinColumnsNameElementInQuotes() {
+-      class TestClass {
+-         @JoinColumn(name = "\"JOIN_COLUMN_NAME\"")
+-         TestClass joinColumnName;
+-      }
+-      Introspected introspected = new Introspected(TestClass.class);
+-      String colName = introspected.getColumnNameForProperty("joinColumnName");
+-      assertEquals("\"JOIN_COLUMN_NAME\"", colName);
+-   }
+-
+-   @Test
+-   public void tablesNameElementNotInQuotes() {
+-      @Table(name = "TableName")
+-      class TestClass { }
+-      Introspected introspected = new Introspected(TestClass.class);
+-      String tableName = introspected.getTableName();
+-      assertEquals("TableName", tableName);
+-   }
+-
+-   @Test
+-   public void columnsTableNameElementNotInQuotes() {
+-      class TestClass {
+-         @Column(table = "TABLE_NAME")
+-         String columnName;
+-      }
+-      Introspected introspected = new Introspected(TestClass.class);
+-      String[] columnTableNames = introspected.getColumnTableNames();
+-      assertEquals("table_name", columnTableNames[0]);
+-   }
+-
+-   @Test
+-   public void columnsTableNameElementInQuotes() {
+-      class TestClass {
+-         @Column(table = "\"TABLE_NAME\"")
+-         String columnName;
+-      }
+-      Introspected introspected = new Introspected(TestClass.class);
+-      String[] columnTableNames = introspected.getColumnTableNames();
+-      assertEquals("\"TABLE_NAME\"", columnTableNames[0]);
+-   }
+-
+-   @Test
+-   public void getColumnsCsv() {
+-      class TestClass {
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-         String delimitedFieldName;
+-         @Column(name = "DEFAULT_CASE")
+-         String defaultCase;
+-      }
+-      String cols = OrmReader.getColumnsCsv(TestClass.class);
+-      assertEquals("default_case,\"DELIMITED_FIELD_NAME\"", cols);
+-   }
+-
+-   @Test
+-   public void getColumnsCsvExclude() {
+-      String cols = OrmBase.getColumnsCsvExclude(CaseSensitiveDatabasesClass.class, "DELIMITED_FIELD_NAME");
+-      assertEquals("default_case,id", cols);
+-      cols = OrmBase.getColumnsCsvExclude(CaseSensitiveDatabasesClass.class, "default_case");
+-      assertEquals("\"DELIMITED_FIELD_NAME\",id", cols);
+-   }
+-
+-   @Test
+-   public void getColumnsCsvExcludeWithTableName() {
+-      class TestClass {
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"", table = "DEFAULT_TABLE_NAME")
+-         String delimitedFieldName;
+-         @Column(name = "DEFAULT_CASE", table = "\"DELIMITED_TABLE_NAME\"")
+-         String defaultCase;
+-         @Column
+-         String excluded;
+-      }
+-      String cols = OrmBase.getColumnsCsvExclude(TestClass.class, "excluded");
+-      assertEquals("\"DELIMITED_TABLE_NAME\".default_case,default_table_name.\"DELIMITED_FIELD_NAME\"", cols);
+-   }
+-
+-   @Test
+-   public void getColumnNameForProperty() {
+-      class TestClass {
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-         String delimitedFieldName;
+-         @Column(name = "DEFAULT_CASE")
+-         String defaultCase;
+-      }
+-      Introspected introspected = Introspector.getIntrospected(TestClass.class);
+-      assertEquals("\"DELIMITED_FIELD_NAME\"", introspected.getColumnNameForProperty("delimitedFieldName"));
+-      assertEquals("default_case", introspected.getColumnNameForProperty("defaultCase"));
+-   }
+-
+-   @Test
+-   public void isInsertableColumn() {
+-      String delimitedFieldValue = "delimited field value";
+-      String defaultCaseValue = "default case value";
+-      @Table(name = "TEST_CLASS")
+-      class TestClass {
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-         String delimitedFieldName = delimitedFieldValue;
+-         @Column(name = "DEFAULT_CASE")
+-         String defaultCase = defaultCaseValue;
+-      }
+-      Introspected introspected = new Introspected(TestClass.class);
+-      assertTrue(introspected.isInsertableColumn("default_case"));
+-      assertTrue(introspected.isInsertableColumn("DELIMITED_FIELD_NAME"));
+-   }
+-
+-   @Test
+-   public void getInsertableColumns() {
+-      @Table(name = "TEST_CLASS")
+-      class TestClass {
+-         @Id
+-         String id;
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-         String delimitedFieldName;
+-         @Column(name = "DEFAULT_CASE")
+-         String defaultCase;
+-      }
+-      Introspected introspected = Introspector.getIntrospected(TestClass.class);
+-      String[] cols = introspected.getInsertableColumns();
+-      assertArrayEquals(new String[]{"default_case", "\"DELIMITED_FIELD_NAME\""}, cols);
+-   }
+-
+-   @Test
+-   public void getInsertableColumns2() {
+-      @Table(name = "TEST_CLASS")
+-      class TestClass {
+-         @Id @Column
+-         String id;
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-         String delimitedFieldName;
+-         @Column(name = "DEFAULT_CASE")
+-         String defaultCase;
+-      }
+-      Introspected introspected = Introspector.getIntrospected(TestClass.class);
+-      String[] cols = introspected.getInsertableColumns();
+-      assertArrayEquals(new String[]{"default_case", "\"DELIMITED_FIELD_NAME\"", "id"}, cols);
+-   }
+-
+-   @Test
+-   public void getInsertableColumnsGeneratedId() {
+-      @Table(name = "TEST_CLASS")
+-      class TestClass {
+-         @Id @GeneratedValue @Column
+-         String id;
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-         String delimitedFieldName;
+-         @Column(name = "DEFAULT_CASE")
+-         String defaultCase;
+-      }
+-      Introspected introspected = Introspector.getIntrospected(TestClass.class);
+-      String[] cols = introspected.getInsertableColumns();
+-      assertArrayEquals(new String[]{"default_case", "\"DELIMITED_FIELD_NAME\""}, cols);
+-   }
+-
+-   /**
+-    * CLARIFY Behaves different from {@link OrmBase#getColumnsCsvExclude(Class, String...)} in that it does not qualify field names with table names. See {@link #getColumnsCsvExcludeWithTableName()}.
+-     */
+-   @Test
+-   public void getInsertableColumnsWithTableName() {
+-      @Table(name = "TEST_CLASS")
+-      class TestClass {
+-         @Id
+-         String id;
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"", table = "DEFAULT_TABLE_NAME")
+-         String delimitedFieldName;
+-         @Column(name = "DEFAULT_CASE", table="\"DELIMITED_TABLE_NAME\"")
+-         String defaultCase;
+-      }
+-      Introspected introspected = Introspector.getIntrospected(TestClass.class);
+-      String[] cols = introspected.getInsertableColumns();
+-      assertArrayEquals(new String[]{"default_case", "\"DELIMITED_FIELD_NAME\""}, cols);
+-   }
+-
+-   @Test
+-   public void getUpdatableColumns() {
+-      @Table(name = "TEST_CLASS")
+-      class TestClass {
+-         @Id @Column
+-         String id;
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-         String delimitedFieldName;
+-         @Column(name = "DEFAULT_CASE")
+-         String defaultCase;
+-      }
+-      Introspected introspected = Introspector.getIntrospected(TestClass.class);
+-      String[] cols = introspected.getUpdatableColumns();
+-      assertArrayEquals(new String[]{"default_case", "\"DELIMITED_FIELD_NAME\"", "id"}, cols);
+-   }
+-
+-   @Test
+-   public void getUpdatableColumnsGenratedId() {
+-      @Table(name = "TEST_CLASS")
+-      class TestClass {
+-         @Id @GeneratedValue @Column
+-         String id;
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-         String delimitedFieldName;
+-         @Column(name = "DEFAULT_CASE")
+-         String defaultCase;
+-      }
+-      Introspected introspected = Introspector.getIntrospected(TestClass.class);
+-      String[] cols = introspected.getUpdatableColumns();
+-      assertArrayEquals(new String[]{"default_case", "\"DELIMITED_FIELD_NAME\""}, cols);
+-   }
+-
+-   @Test
+-   public void isUpdatableColumn() {
+-      String delimitedFieldValue = "delimited field value";
+-      String defaultCaseValue = "default case value";
+-      @Table(name = "TEST_CLASS")
+-      class TestClass {
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-         String delimitedFieldName = delimitedFieldValue;
+-         @Column(name = "DEFAULT_CASE")
+-         String defaultCase = defaultCaseValue;
+-      }
+-      Introspected introspected = new Introspected(TestClass.class);
+-      assertTrue(introspected.isUpdatableColumn("default_case"));
+-      assertTrue(introspected.isUpdatableColumn("DELIMITED_FIELD_NAME"));
+-   }
+-
+-   // CLARIFY Inconsistent behaviour? This behaviour is not restricted to @Id fields. Same behaviour with @Column only annotated fields.
+-   @Test
+-   public void getIdColumnNames() {
+-      class TestClass {
+-         @Id
+-         @Column(name = "\"ID\"")
+-         String id;
+-         @Id
+-         String Id2;
+-         @Id @Column
+-         String Id3;
+-         @Id @Column(name = "Id4")
+-         String Id4;
+-         @Id @Column(name = "")
+-         String Id5;
+-      }
+-      Introspected introspected = new Introspected(TestClass.class);
+-      String[] idColumnNames = introspected.getIdColumnNames();
+-      assertTrue(idColumnNames.length == 5);
+-      assertEquals("\"ID\"", idColumnNames[0]);
+-      assertEquals("id2", idColumnNames[1]);
+-      assertEquals("Id3", idColumnNames[2]);
+-      assertEquals("id4", idColumnNames[3]);
+-      assertEquals("Id5", idColumnNames[4]);
+-   }
+-
+-   @Test
+-   public void insertObject() throws SQLException {
+-      String delimitedFieldValue = "delimited field value";
+-      String defaultCaseValue = "default case value";
+-      @Table(name = "TEST_CLASS")
+-      class TestClass {
+-         @Id
+-         String id;
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-         String delimitedFieldName = delimitedFieldValue;
+-         @Column(name = "DEFAULT_CASE")
+-         String defaultCase = defaultCaseValue;
+-      }
+-      final String[] fetchedSql = new String[1];
+-      DummyConnection con = new DummyConnection() {
+-         @Override
+-         public PreparedStatement prepareStatement(String sql) {
+-            fetchedSql[0] = sql;
+-            return new DummyStatement() {
+-               @Override
+-               public ParameterMetaData getParameterMetaData() {
+-                  return new DummyParameterMetaData() {
+-                     @Override
+-                     public int getParameterCount() {
+-                        return CaseSensitiveDatabasesTest.this.getParameterCount(fetchedSql[0]);
+-                     }
+-                     @Override
+-                     public int getParameterType(int param) {
+-                        return Types.VARCHAR;
+-                     }
+-                  };
+-               }
+-            };
+-         }
+-      };
+-      TestClass obj = OrmWriter.insertObject(con, new TestClass());
+-      assertEquals("INSERT INTO TEST_CLASS(default_case,\"DELIMITED_FIELD_NAME\") VALUES (?,?)", fetchedSql[0]);
+-      assertEquals(defaultCaseValue, obj.defaultCase);
+-      assertEquals(delimitedFieldValue, obj.delimitedFieldName);
+-   }
+-
+-   @Test
+-   public void objectById() throws SQLException {
+-      String delimitedFieldValue = "delimited field value";
+-      String defaultCaseValue = "default_case value";
+-      String idValue = "id value";
+-      final String[] fetchedSql = new String[1];
+-      DummyConnection con = new DummyConnection() {
+-         @Override
+-         public PreparedStatement prepareStatement(String sql) {
+-            fetchedSql[0] = sql;
+-            return new DummyStatement() {
+-               @Override
+-               public ParameterMetaData getParameterMetaData() {
+-                  return new DummyParameterMetaData() {
+-                     @Override
+-                     public int getParameterCount() {
+-                        return CaseSensitiveDatabasesTest.this.getParameterCount(fetchedSql[0]);
+-                     }
+-                     @Override
+-                     public int getParameterType(int param) {
+-                        return Types.VARCHAR;
+-                     }
+-                  };
+-               }
+-               @Override
+-               public ResultSet executeQuery() {
+-                  return new DummyResultSet() {
+-                     @Override
+-                     public boolean next() {
+-                        return true;
+-                     }
+-
+-                     @Override
+-                     public ResultSetMetaData getMetaData() {
+-                        return new DummyResultSetMetaData() {
+-                           @Override
+-                           public int getColumnCount() {
+-                              return 3;
+-                           }
+-
+-                           @Override
+-                           public String getColumnName(int column) {
+-                              return   column == 1 ? "DELIMITED_FIELD_NAME" :
+-                                       column == 2 ? "default_case" :
+-                                       column == 3 ? "id"
+-                                                   : null;
+-                           }
+-                        };
+-                     }
+-
+-                     @Override
+-                     public Object getObject(int columnIndex) {
+-                        return   columnIndex == 1 ? delimitedFieldValue :
+-                                 columnIndex == 2 ? defaultCaseValue :
+-                                 columnIndex == 3 ? idValue
+-                                                  : null;
+-                     }
+-                  };
+-               }
+-            };
+-         }
+-      };
+-      CaseSensitiveDatabasesClass obj = OrmReader.objectById(con, CaseSensitiveDatabasesClass.class, "xyz");
+-      assertEquals("SELECT TEST_CLASS.default_case,TEST_CLASS.\"DELIMITED_FIELD_NAME\",TEST_CLASS.id FROM TEST_CLASS TEST_CLASS WHERE  id=?", fetchedSql[0]);
+-      assertEquals(idValue, obj.getId());
+-      assertEquals(defaultCaseValue, obj.getDefaultCase());
+-      assertEquals(delimitedFieldValue, obj.getDelimitedFieldName());
+-   }
+-
+-   @Test
+-   public void updateObject() throws SQLException {
+-      String upperCaseValue = "delimited field value";
+-      String defaultCaseValue = "default case value";
+-      @Table(name = "TEST_CLASS")
+-      class TestClass {
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-         String delimitedFieldName = upperCaseValue;
+-         @Column(name = "DEFAULT_CASE")
+-         String defaultCase = defaultCaseValue;
+-      }
+-      final String[] fetchedSql = new String[1];
+-      DummyConnection con = new DummyConnection() {
+-         @Override
+-         public PreparedStatement prepareStatement(String sql) {
+-            fetchedSql[0] = sql;
+-            return new DummyStatement() {
+-               @Override
+-               public ParameterMetaData getParameterMetaData() {
+-                  return new DummyParameterMetaData() {
+-                     @Override
+-                     public int getParameterCount() {
+-                        return CaseSensitiveDatabasesTest.this.getParameterCount(fetchedSql[0]);
+-                     }
+-                     @Override
+-                     public int getParameterType(int param) {
+-                        return Types.VARCHAR;
+-                     }
+-                  };
+-               }
+-            };
+-         }
+-      };
+-      TestClass obj = OrmWriter.updateObject(con, new TestClass());
+-      assertEquals("UPDATE TEST_CLASS SET default_case=?,\"DELIMITED_FIELD_NAME\"=?", fetchedSql[0]);
+-      assertEquals(defaultCaseValue, obj.defaultCase);
+-      assertEquals(upperCaseValue, obj.delimitedFieldName);
+-   }
+-
+-   @Test
+-   public void deleteObject() throws SQLException {
+-      String upperCaseValue = "delimited field value";
+-      String defaultCaseValue = "default case value";
+-      @Table(name = "TEST_CLASS")
+-      class TestClass {
+-         @Id
+-         String id = "xyz";
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-         String delimitedFieldName = upperCaseValue;
+-         @Column(name = "DEFAULT_CASE")
+-         String defaultCase = defaultCaseValue;
+-      }
+-      final String[] fetchedSql = new String[1];
+-      final String[] fetchedId = new String[1];
+-      DummyConnection con = new DummyConnection() {
+-         @Override
+-         public PreparedStatement prepareStatement(String sql) {
+-            fetchedSql[0] = sql;
+-            return new DummyStatement() {
+-               @Override
+-               public ParameterMetaData getParameterMetaData() {
+-                  return new DummyParameterMetaData() {
+-                     @Override
+-                     public int getParameterCount() {
+-                        return CaseSensitiveDatabasesTest.this.getParameterCount(fetchedSql[0]);
+-                     }
+-                     @Override
+-                     public int getParameterType(int param) {
+-                        return Types.VARCHAR;
+-                     }
+-                  };
+-               }
+-               @Override
+-               public int executeUpdate() {
+-                  return 1;
+-               }
+-               @Override
+-               public void setObject(int parameterIndex, Object x, int targetSqlType) throws SQLException {
+-                  fetchedId[0] = (String) x;
+-               }
+-
+-            };
+-         }
+-      };
+-      assertEquals(1, OrmWriter.deleteObject(con, new TestClass()));
+-      assertEquals("DELETE FROM TEST_CLASS WHERE id=?", fetchedSql[0]);
+-      assertEquals("xyz", fetchedId[0]);
+-   }
+-
+-   @Test
+-   public void deleteObjectById() throws SQLException {
+-      String upperCaseValue = "delimited field value";
+-      String defaultCaseValue = "default case value";
+-      @Table(name = "TEST_CLASS")
+-      class TestClass {
+-         @Id
+-         String id = "xyz";
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-         String delimitedFieldName = upperCaseValue;
+-         @Column(name = "DEFAULT_CASE")
+-         String defaultCase = defaultCaseValue;
+-      }
+-      final String[] fetchedSql = new String[1];
+-      final String[] fetchedId = new String[1];
+-      DummyConnection con = new DummyConnection() {
+-         @Override
+-         public PreparedStatement prepareStatement(String sql) {
+-            fetchedSql[0] = sql;
+-            return new DummyStatement() {
+-               @Override
+-               public ParameterMetaData getParameterMetaData() {
+-                  return new DummyParameterMetaData() {
+-                     @Override
+-                     public int getParameterCount() {
+-                        return CaseSensitiveDatabasesTest.this.getParameterCount(fetchedSql[0]);
+-                     }
+-                     @Override
+-                     public int getParameterType(int param) {
+-                        return Types.VARCHAR;
+-                     }
+-                  };
+-               }
+-               @Override
+-               public int executeUpdate() {
+-                  return 1;
+-               }
+-
+-               @Override
+-               public void setObject(int parameterIndex, Object x, int targetSqlType) throws SQLException {
+-                  fetchedId[0] = (String) x;
+-               }
+-            };
+-         }
+-      };
+-      assertEquals(1, OrmWriter.deleteObjectById(con, TestClass.class, "xyz"));
+-      assertEquals("DELETE FROM TEST_CLASS WHERE id=?", fetchedSql[0]);
+-      assertEquals("xyz", fetchedId[0]);
+-   }
+-
+-   @Test
+-   public void statementToObject() throws SQLException {
+-      String delimitedFieldValue = "delimited field value";
+-      String defaultCaseValue = "default case value";
+-      String idValue = "id value";
+-
+-      final String[] fetchedSql = new String[1];
+-
+-      DummyConnection con = new DummyConnection() {
+-         @Override
+-         public PreparedStatement prepareStatement(String sql) {
+-            fetchedSql[0] = sql;
+-            return new DummyStatement() {
+-               @Override
+-               public ParameterMetaData getParameterMetaData() {
+-                  return new DummyParameterMetaData() {
+-                     @Override
+-                     public int getParameterCount() {
+-                        return CaseSensitiveDatabasesTest.this.getParameterCount(fetchedSql[0]);
+-                     }
+-                     @Override
+-                     public int getParameterType(int param) {
+-                        return Types.VARCHAR;
+-                     }
+-                  };
+-               }
+-               @Override
+-               public ResultSet executeQuery() {
+-                  return new DummyResultSet() {
+-                     @Override
+-                     public boolean next() {
+-                        return true;
+-                     }
+-
+-                     @Override
+-                     public ResultSetMetaData getMetaData() {
+-                        return new DummyResultSetMetaData() {
+-                           @Override
+-                           public int getColumnCount() {
+-                              return 3;
+-                           }
+-
+-                           @Override
+-                           public String getColumnName(int column) {
+-                              return   column == 1 ? "DELIMITED_FIELD_NAME" :
+-                                       column == 2 ? "default_case" :
+-                                       column == 3 ? "id"
+-                                                   : null;
+-                           }
+-                        };
+-                     }
+-
+-                     @Override
+-                     public Object getObject(int columnIndex) {
+-                        return   columnIndex == 1 ? delimitedFieldValue :
+-                                 columnIndex == 2 ? defaultCaseValue :
+-                                 columnIndex == 3 ? idValue
+-                                                  : null;
+-                     }
+-                  };
+-               }
+-            };
+-         }
+-      };
+-      PreparedStatement pstmnt = con.prepareStatement("select * from TEST_CLASS where id = ?");
+-      CaseSensitiveDatabasesClass obj = OrmElf.statementToObject(pstmnt, CaseSensitiveDatabasesClass.class, "xyz");
+-      assertEquals(delimitedFieldValue, obj.getDelimitedFieldName());
+-      assertEquals(defaultCaseValue, obj.getDefaultCase());
+-      assertEquals(idValue, obj.getId());
+-   }
+-
+-   @Test
+-   public void deleteObjectNoIdProvided() throws SQLException {
+-      String delimitedFieldValue = "delimited field value";
+-      String defaultCaseValue = "default case value";
+-      @Table(name = "TEST_CLASS")
+-      class TestClass {
+-         @Column(name = "\"DELIMITED_FIELD_NAME\"")
+-         String delimitedFieldName = delimitedFieldValue;
+-         @Column(name = "DEFAULT_CASE")
+-         String defaultCase = defaultCaseValue;
+-      }
+-      final String[] fetchedSql = new String[1];
+-      DummyConnection con = new DummyConnection() {
+-         @Override
+-         public PreparedStatement prepareStatement(String sql) {
+-            fetchedSql[0] = sql;
+-            return new DummyStatement() {
+-               @Override
+-               public ParameterMetaData getParameterMetaData() {
+-                  return new DummyParameterMetaData() {
+-                     @Override
+-                     public int getParameterCount() {
+-                        return CaseSensitiveDatabasesTest.this.getParameterCount(fetchedSql[0]);
+-                     }
+-                     @Override
+-                     public int getParameterType(int param) {
+-                        return Types.VARCHAR;
+-                     }
+-                  };
+-               }
+-            };
+-         }
+-      };
+-      thrown.expectMessage("No id columns provided");
+-      OrmWriter.deleteObject(con, new TestClass());
+-   }
+-
+-   @Table(name = "\"test_class\"")
+-   public static class InsertObjectH2 {
+-      @Id @GeneratedValue
+-      int id;
+-      @Column(name = "\"delimited_field_name\"")
+-      String delimitedFieldName = "delimited field value";
+-      @Column(name = "default_case")
+-      String defaultCase = "default case value";
+-   }
+-
+-   @Test
+-   public void insertObjectH2() {
+-
+-      SansOrm.initializeTxNone(TestUtils.makeH2DataSource());
+-      SqlClosureElf.executeUpdate("CREATE TABLE \"test_class\" ("
+-         + "id INTEGER NOT NULL IDENTITY PRIMARY KEY, "
+-         + "\"delimited_field_name\" VARCHAR(128), "
+-         + "DEFAULT_CASE VARCHAR(128) "
+-         + ")");
+-
+-      String delimitedFieldValue = "delimited field value";
+-      String defaultCaseValue = "default case value";
+-      InsertObjectH2 obj = SqlClosureElf.insertObject(new InsertObjectH2());
+-      assertEquals(1, obj.id);
+-      obj = SqlClosureElf.getObjectById(InsertObjectH2.class, obj.id);
+-      assertNotNull(obj);
+-   }
+-
+-   // ######### Utility methods ######################################################
+-
+-   private int getParameterCount(String s) {
+-      int count = 0;
+-      for (Byte b : s.getBytes()) {
+-         if ((int)b == '?') {
+-            count++;
+-         }
+-      }
+-      return count;
+-   }
+-}
+diff --git a/src/test/java/org/sansorm/testutils/DummyConnection.java b/src/test/java/org/sansorm/testutils/DummyConnection.java
+deleted file mode 100644
+index a65cffb..0000000
+--- a/src/test/java/org/sansorm/testutils/DummyConnection.java
++++ /dev/null
+@@ -1,284 +0,0 @@
+-package org.sansorm.testutils;
+-
+-import org.h2.jdbc.JdbcPreparedStatement;
+-
+-import java.sql.*;
+-import java.util.Map;
+-import java.util.Properties;
+-import java.util.concurrent.Executor;
+-
+-/**
+- * @author Holger Thurow (thurow.h@gmail.com)
+- * @since 24.03.18
+- */
+-public class DummyConnection implements Connection {
+-   @Override
+-   public Statement createStatement() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public PreparedStatement prepareStatement(String sql) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public CallableStatement prepareCall(String sql) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public String nativeSQL(String sql) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void setAutoCommit(boolean autoCommit) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public boolean getAutoCommit() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public void commit() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void rollback() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void close() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public boolean isClosed() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public DatabaseMetaData getMetaData() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void setReadOnly(boolean readOnly) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public boolean isReadOnly() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public void setCatalog(String catalog) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public String getCatalog() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void setTransactionIsolation(int level) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public int getTransactionIsolation() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public SQLWarning getWarnings() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void clearWarnings() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public Statement createStatement(int resultSetType, int resultSetConcurrency) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Map<String, Class<?>> getTypeMap() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void setTypeMap(Map<String, Class<?>> map) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setHoldability(int holdability) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public int getHoldability() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public Savepoint setSavepoint() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Savepoint setSavepoint(String name) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void rollback(Savepoint savepoint) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void releaseSavepoint(Savepoint savepoint) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public Statement createStatement(int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public PreparedStatement prepareStatement(String sql, int autoGeneratedKeys) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public PreparedStatement prepareStatement(String sql, int[] columnIndexes) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public PreparedStatement prepareStatement(String sql, String[] columnNames) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Clob createClob() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Blob createBlob() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public NClob createNClob() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public SQLXML createSQLXML() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public boolean isValid(int timeout) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public void setClientInfo(String name, String value) throws SQLClientInfoException {
+-
+-   }
+-
+-   @Override
+-   public void setClientInfo(Properties properties) throws SQLClientInfoException {
+-
+-   }
+-
+-   @Override
+-   public String getClientInfo(String name) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Properties getClientInfo() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Array createArrayOf(String typeName, Object[] elements) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Struct createStruct(String typeName, Object[] attributes) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void setSchema(String schema) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public String getSchema() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void abort(Executor executor) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public int getNetworkTimeout() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public <T> T unwrap(Class<T> iface) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public boolean isWrapperFor(Class<?> iface) throws SQLException {
+-      return false;
+-   }
+-}
+diff --git a/src/test/java/org/sansorm/testutils/DummyParameterMetaData.java b/src/test/java/org/sansorm/testutils/DummyParameterMetaData.java
+deleted file mode 100644
+index c80b021..0000000
+--- a/src/test/java/org/sansorm/testutils/DummyParameterMetaData.java
++++ /dev/null
+@@ -1,65 +0,0 @@
+-package org.sansorm.testutils;
+-
+-import java.sql.ParameterMetaData;
+-import java.sql.SQLException;
+-
+-/**
+- * @author Holger Thurow (thurow.h@gmail.com)
+- * @since 24.03.18
+- */
+-public class DummyParameterMetaData implements ParameterMetaData {
+-   @Override
+-   public int getParameterCount() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public int isNullable(int param) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public boolean isSigned(int param) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public int getPrecision(int param) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public int getScale(int param) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public int getParameterType(int param) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public String getParameterTypeName(int param) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public String getParameterClassName(int param) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public int getParameterMode(int param) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public <T> T unwrap(Class<T> iface) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public boolean isWrapperFor(Class<?> iface) throws SQLException {
+-      return false;
+-   }
+-}
+diff --git a/src/test/java/org/sansorm/testutils/DummyResultSet.java b/src/test/java/org/sansorm/testutils/DummyResultSet.java
+deleted file mode 100644
+index d8e2780..0000000
+--- a/src/test/java/org/sansorm/testutils/DummyResultSet.java
++++ /dev/null
+@@ -1,970 +0,0 @@
+-package org.sansorm.testutils;
+-
+-import java.io.InputStream;
+-import java.io.Reader;
+-import java.math.BigDecimal;
+-import java.net.URL;
+-import java.sql.*;
+-import java.util.Calendar;
+-import java.util.Map;
+-
+-/**
+- * @author Holger Thurow (thurow.h@gmail.com)
+- * @since 24.03.18
+- */
+-public class DummyResultSet implements ResultSet {
+-   @Override
+-   public boolean next() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public void close() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public boolean wasNull() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public String getString(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public boolean getBoolean(int columnIndex) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public byte getByte(int columnIndex) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public short getShort(int columnIndex) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public int getInt(int columnIndex) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public long getLong(int columnIndex) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public float getFloat(int columnIndex) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public double getDouble(int columnIndex) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public BigDecimal getBigDecimal(int columnIndex, int scale) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public byte[] getBytes(int columnIndex) throws SQLException {
+-      return new byte[0];
+-   }
+-
+-   @Override
+-   public Date getDate(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Time getTime(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Timestamp getTimestamp(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public InputStream getAsciiStream(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public InputStream getUnicodeStream(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public InputStream getBinaryStream(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public String getString(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public boolean getBoolean(String columnLabel) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public byte getByte(String columnLabel) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public short getShort(String columnLabel) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public int getInt(String columnLabel) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public long getLong(String columnLabel) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public float getFloat(String columnLabel) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public double getDouble(String columnLabel) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public BigDecimal getBigDecimal(String columnLabel, int scale) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public byte[] getBytes(String columnLabel) throws SQLException {
+-      return new byte[0];
+-   }
+-
+-   @Override
+-   public Date getDate(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Time getTime(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Timestamp getTimestamp(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public InputStream getAsciiStream(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public InputStream getUnicodeStream(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public InputStream getBinaryStream(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public SQLWarning getWarnings() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void clearWarnings() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public String getCursorName() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public ResultSetMetaData getMetaData() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Object getObject(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Object getObject(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public int findColumn(String columnLabel) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public Reader getCharacterStream(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Reader getCharacterStream(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public BigDecimal getBigDecimal(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public BigDecimal getBigDecimal(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public boolean isBeforeFirst() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean isAfterLast() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean isFirst() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean isLast() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public void beforeFirst() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void afterLast() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public boolean first() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean last() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public int getRow() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public boolean absolute(int row) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean relative(int rows) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean previous() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public void setFetchDirection(int direction) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public int getFetchDirection() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public void setFetchSize(int rows) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public int getFetchSize() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public int getType() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public int getConcurrency() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public boolean rowUpdated() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean rowInserted() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean rowDeleted() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public void updateNull(int columnIndex) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBoolean(int columnIndex, boolean x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateByte(int columnIndex, byte x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateShort(int columnIndex, short x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateInt(int columnIndex, int x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateLong(int columnIndex, long x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateFloat(int columnIndex, float x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateDouble(int columnIndex, double x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBigDecimal(int columnIndex, BigDecimal x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateString(int columnIndex, String x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBytes(int columnIndex, byte[] x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateDate(int columnIndex, Date x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateTime(int columnIndex, Time x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateTimestamp(int columnIndex, Timestamp x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateAsciiStream(int columnIndex, InputStream x, int length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBinaryStream(int columnIndex, InputStream x, int length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateCharacterStream(int columnIndex, Reader x, int length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateObject(int columnIndex, Object x, int scaleOrLength) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateObject(int columnIndex, Object x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateNull(String columnLabel) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBoolean(String columnLabel, boolean x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateByte(String columnLabel, byte x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateShort(String columnLabel, short x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateInt(String columnLabel, int x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateLong(String columnLabel, long x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateFloat(String columnLabel, float x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateDouble(String columnLabel, double x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBigDecimal(String columnLabel, BigDecimal x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateString(String columnLabel, String x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBytes(String columnLabel, byte[] x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateDate(String columnLabel, Date x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateTime(String columnLabel, Time x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateTimestamp(String columnLabel, Timestamp x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateAsciiStream(String columnLabel, InputStream x, int length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBinaryStream(String columnLabel, InputStream x, int length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateCharacterStream(String columnLabel, Reader reader, int length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateObject(String columnLabel, Object x, int scaleOrLength) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateObject(String columnLabel, Object x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void insertRow() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateRow() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void deleteRow() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void refreshRow() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void cancelRowUpdates() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void moveToInsertRow() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void moveToCurrentRow() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public Statement getStatement() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Object getObject(int columnIndex, Map<String, Class<?>> map) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Ref getRef(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Blob getBlob(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Clob getClob(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Array getArray(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Object getObject(String columnLabel, Map<String, Class<?>> map) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Ref getRef(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Blob getBlob(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Clob getClob(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Array getArray(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Date getDate(int columnIndex, Calendar cal) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Date getDate(String columnLabel, Calendar cal) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Time getTime(int columnIndex, Calendar cal) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Time getTime(String columnLabel, Calendar cal) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Timestamp getTimestamp(int columnIndex, Calendar cal) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Timestamp getTimestamp(String columnLabel, Calendar cal) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public URL getURL(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public URL getURL(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void updateRef(int columnIndex, Ref x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateRef(String columnLabel, Ref x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBlob(int columnIndex, Blob x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBlob(String columnLabel, Blob x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateClob(int columnIndex, Clob x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateClob(String columnLabel, Clob x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateArray(int columnIndex, Array x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateArray(String columnLabel, Array x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public RowId getRowId(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public RowId getRowId(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void updateRowId(int columnIndex, RowId x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateRowId(String columnLabel, RowId x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public int getHoldability() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public boolean isClosed() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public void updateNString(int columnIndex, String nString) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateNString(String columnLabel, String nString) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateNClob(int columnIndex, NClob nClob) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateNClob(String columnLabel, NClob nClob) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public NClob getNClob(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public NClob getNClob(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public SQLXML getSQLXML(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public SQLXML getSQLXML(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void updateSQLXML(int columnIndex, SQLXML xmlObject) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateSQLXML(String columnLabel, SQLXML xmlObject) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public String getNString(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public String getNString(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Reader getNCharacterStream(int columnIndex) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public Reader getNCharacterStream(String columnLabel) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void updateNCharacterStream(int columnIndex, Reader x, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateNCharacterStream(String columnLabel, Reader reader, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateAsciiStream(int columnIndex, InputStream x, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBinaryStream(int columnIndex, InputStream x, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateCharacterStream(int columnIndex, Reader x, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateAsciiStream(String columnLabel, InputStream x, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBinaryStream(String columnLabel, InputStream x, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateCharacterStream(String columnLabel, Reader reader, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBlob(int columnIndex, InputStream inputStream, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBlob(String columnLabel, InputStream inputStream, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateClob(int columnIndex, Reader reader, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateClob(String columnLabel, Reader reader, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateNClob(int columnIndex, Reader reader, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateNClob(String columnLabel, Reader reader, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateNCharacterStream(int columnIndex, Reader x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateNCharacterStream(String columnLabel, Reader reader) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateAsciiStream(int columnIndex, InputStream x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBinaryStream(int columnIndex, InputStream x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateCharacterStream(int columnIndex, Reader x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateAsciiStream(String columnLabel, InputStream x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBinaryStream(String columnLabel, InputStream x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateCharacterStream(String columnLabel, Reader reader) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBlob(int columnIndex, InputStream inputStream) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateBlob(String columnLabel, InputStream inputStream) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateClob(int columnIndex, Reader reader) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateClob(String columnLabel, Reader reader) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateNClob(int columnIndex, Reader reader) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void updateNClob(String columnLabel, Reader reader) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public <T> T getObject(int columnIndex, Class<T> type) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public <T> T getObject(String columnLabel, Class<T> type) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public <T> T unwrap(Class<T> iface) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public boolean isWrapperFor(Class<?> iface) throws SQLException {
+-      return false;
+-   }
+-}
+diff --git a/src/test/java/org/sansorm/testutils/DummyResultSetMetaData.java b/src/test/java/org/sansorm/testutils/DummyResultSetMetaData.java
+deleted file mode 100644
+index 1c15500..0000000
+--- a/src/test/java/org/sansorm/testutils/DummyResultSetMetaData.java
++++ /dev/null
+@@ -1,125 +0,0 @@
+-package org.sansorm.testutils;
+-
+-import java.sql.ResultSetMetaData;
+-import java.sql.SQLException;
+-
+-/**
+- * @author Holger Thurow (thurow.h@gmail.com)
+- * @since 24.03.18
+- */
+-public class DummyResultSetMetaData implements ResultSetMetaData {
+-   @Override
+-   public int getColumnCount() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public boolean isAutoIncrement(int column) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean isCaseSensitive(int column) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean isSearchable(int column) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean isCurrency(int column) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public int isNullable(int column) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public boolean isSigned(int column) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public int getColumnDisplaySize(int column) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public String getColumnLabel(int column) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public String getColumnName(int column) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public String getSchemaName(int column) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public int getPrecision(int column) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public int getScale(int column) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public String getTableName(int column) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public String getCatalogName(int column) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public int getColumnType(int column) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public String getColumnTypeName(int column) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public boolean isReadOnly(int column) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean isWritable(int column) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean isDefinitelyWritable(int column) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public String getColumnClassName(int column) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public <T> T unwrap(Class<T> iface) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public boolean isWrapperFor(Class<?> iface) throws SQLException {
+-      return false;
+-   }
+-}
+diff --git a/src/test/java/org/sansorm/testutils/DummyStatement.java b/src/test/java/org/sansorm/testutils/DummyStatement.java
+deleted file mode 100644
+index 1d0375c..0000000
+--- a/src/test/java/org/sansorm/testutils/DummyStatement.java
++++ /dev/null
+@@ -1,509 +0,0 @@
+-package org.sansorm.testutils;
+-
+-import java.io.InputStream;
+-import java.io.Reader;
+-import java.math.BigDecimal;
+-import java.net.URL;
+-import java.sql.*;
+-import java.util.Calendar;
+-
+-/**
+- * @author Holger Thurow (thurow.h@gmail.com)
+- * @since 24.03.18
+- */
+-public class DummyStatement implements PreparedStatement {
+-   @Override
+-   public ResultSet executeQuery() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public int executeUpdate() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public void setNull(int parameterIndex, int sqlType) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setBoolean(int parameterIndex, boolean x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setByte(int parameterIndex, byte x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setShort(int parameterIndex, short x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setInt(int parameterIndex, int x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setLong(int parameterIndex, long x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setFloat(int parameterIndex, float x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setDouble(int parameterIndex, double x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setBigDecimal(int parameterIndex, BigDecimal x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setString(int parameterIndex, String x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setBytes(int parameterIndex, byte[] x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setDate(int parameterIndex, Date x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setTime(int parameterIndex, Time x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setTimestamp(int parameterIndex, Timestamp x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setAsciiStream(int parameterIndex, InputStream x, int length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setUnicodeStream(int parameterIndex, InputStream x, int length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setBinaryStream(int parameterIndex, InputStream x, int length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void clearParameters() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setObject(int parameterIndex, Object x, int targetSqlType) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setObject(int parameterIndex, Object x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public boolean execute() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public void addBatch() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setCharacterStream(int parameterIndex, Reader reader, int length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setRef(int parameterIndex, Ref x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setBlob(int parameterIndex, Blob x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setClob(int parameterIndex, Clob x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setArray(int parameterIndex, Array x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public ResultSetMetaData getMetaData() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void setDate(int parameterIndex, Date x, Calendar cal) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setTime(int parameterIndex, Time x, Calendar cal) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setTimestamp(int parameterIndex, Timestamp x, Calendar cal) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setNull(int parameterIndex, int sqlType, String typeName) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setURL(int parameterIndex, URL x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public ParameterMetaData getParameterMetaData() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void setRowId(int parameterIndex, RowId x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setNString(int parameterIndex, String value) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setNCharacterStream(int parameterIndex, Reader value, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setNClob(int parameterIndex, NClob value) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setClob(int parameterIndex, Reader reader, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setBlob(int parameterIndex, InputStream inputStream, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setNClob(int parameterIndex, Reader reader, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setSQLXML(int parameterIndex, SQLXML xmlObject) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setObject(int parameterIndex, Object x, int targetSqlType, int scaleOrLength) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setAsciiStream(int parameterIndex, InputStream x, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setBinaryStream(int parameterIndex, InputStream x, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setCharacterStream(int parameterIndex, Reader reader, long length) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setAsciiStream(int parameterIndex, InputStream x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setBinaryStream(int parameterIndex, InputStream x) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setCharacterStream(int parameterIndex, Reader reader) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setNCharacterStream(int parameterIndex, Reader value) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setClob(int parameterIndex, Reader reader) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setBlob(int parameterIndex, InputStream inputStream) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setNClob(int parameterIndex, Reader reader) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public ResultSet executeQuery(String sql) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public int executeUpdate(String sql) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public void close() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public int getMaxFieldSize() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public void setMaxFieldSize(int max) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public int getMaxRows() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public void setMaxRows(int max) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setEscapeProcessing(boolean enable) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public int getQueryTimeout() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public void setQueryTimeout(int seconds) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void cancel() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public SQLWarning getWarnings() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public void clearWarnings() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void setCursorName(String name) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public boolean execute(String sql) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public ResultSet getResultSet() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public int getUpdateCount() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public boolean getMoreResults() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public void setFetchDirection(int direction) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public int getFetchDirection() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public void setFetchSize(int rows) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public int getFetchSize() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public int getResultSetConcurrency() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public int getResultSetType() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public void addBatch(String sql) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public void clearBatch() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public int[] executeBatch() throws SQLException {
+-      return new int[0];
+-   }
+-
+-   @Override
+-   public Connection getConnection() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public boolean getMoreResults(int current) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public ResultSet getGeneratedKeys() throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public int executeUpdate(String sql, int autoGeneratedKeys) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public int executeUpdate(String sql, int[] columnIndexes) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public int executeUpdate(String sql, String[] columnNames) throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public boolean execute(String sql, int autoGeneratedKeys) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean execute(String sql, int[] columnIndexes) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public boolean execute(String sql, String[] columnNames) throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public int getResultSetHoldability() throws SQLException {
+-      return 0;
+-   }
+-
+-   @Override
+-   public boolean isClosed() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public void setPoolable(boolean poolable) throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public boolean isPoolable() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public void closeOnCompletion() throws SQLException {
+-
+-   }
+-
+-   @Override
+-   public boolean isCloseOnCompletion() throws SQLException {
+-      return false;
+-   }
+-
+-   @Override
+-   public <T> T unwrap(Class<T> iface) throws SQLException {
+-      return null;
+-   }
+-
+-   @Override
+-   public boolean isWrapperFor(Class<?> iface) throws SQLException {
+-      return false;
+-   }
+-}

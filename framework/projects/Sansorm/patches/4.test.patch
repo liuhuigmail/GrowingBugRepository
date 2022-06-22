@@ -1,0 +1,429 @@
+diff --git a/src/test/java/org/sansorm/BaseClass.java b/src/test/java/org/sansorm/BaseClass.java
+index 1f9e92e..9faab3b 100644
+--- a/src/test/java/org/sansorm/BaseClass.java
++++ b/src/test/java/org/sansorm/BaseClass.java
+@@ -22,8 +22,4 @@ public class BaseClass
+    {
+       return string;
+    }
+-
+-   public void setString(String string) {
+-      this.string = string;
+-   }
+ }
+diff --git a/src/test/java/org/sansorm/DateConverter.java b/src/test/java/org/sansorm/DateConverter.java
+deleted file mode 100644
+index a77cdca..0000000
+--- a/src/test/java/org/sansorm/DateConverter.java
++++ /dev/null
+@@ -1,18 +0,0 @@
+-package org.sansorm;
+-
+-import java.time.Instant;
+-import java.util.Date;
+-
+-import javax.persistence.*;
+-
+-public class DateConverter implements AttributeConverter<Date, Number> {
+-   @Override
+-   public Number convertToDatabaseColumn(Date value) {
+-      return value == null ? null : value.getTime();
+-   }
+-
+-   @Override
+-   public Date convertToEntityAttribute(Number value) {
+-      return Date.from(Instant.ofEpochMilli(value.longValue()));
+-   }
+-}
+diff --git a/src/test/java/org/sansorm/QueryTest.java b/src/test/java/org/sansorm/QueryTest.java
+index f114e55..50f951d 100644
+--- a/src/test/java/org/sansorm/QueryTest.java
++++ b/src/test/java/org/sansorm/QueryTest.java
+@@ -14,30 +14,18 @@ import java.io.OutputStream;
+ import java.sql.PreparedStatement;
+ import java.sql.Timestamp;
+ import java.util.Date;
+-import java.util.List;
+ import java.util.Map;
+ import java.util.Properties;
+-import java.util.Set;
+-import java.util.UUID;
+-import java.util.stream.Collectors;
+-import java.util.stream.IntStream;
+ 
+ import javax.sql.DataSource;
+ 
+-import static org.junit.Assert.assertArrayEquals;
+ import static org.junit.Assert.assertEquals;
+-import static org.junit.Assert.assertFalse;
+-import static org.junit.Assert.assertNotEquals;
+ import static org.junit.Assert.assertNull;
+-import static org.junit.Assert.assertSame;
+-import static org.junit.Assert.assertTrue;
+ 
+ import com.zaxxer.sansorm.OrmElf;
+ import com.zaxxer.sansorm.SqlClosure;
+ import com.zaxxer.sansorm.SqlClosureElf;
+ import com.zaxxer.sansorm.TransactionElf;
+-import com.zaxxer.sansorm.internal.Introspected;
+-import com.zaxxer.sansorm.internal.Introspector;
+ 
+ public class QueryTest
+ {
+@@ -92,29 +80,14 @@ public class QueryTest
+    }
+ 
+    @Test
+-   public void shouldPerformCRUD()
++   public void testObjectFromClause()
+    {
+-      Introspected is = Introspector.getIntrospected(TargetClass1.class);
+-      assertTrue("test is meaningful only if class has generated id", is.hasGeneratedId());
+-      assertArrayEquals(new String[]{"id"}, is.getIdColumnNames());
+-
+       TargetClass1 original = new TargetClass1(new Date(0), "Hi");
+-      assertEquals(0, original.getId());
+-
+-      TargetClass1 inserted = SqlClosureElf.insertObject(original);
+-      assertSame("insertOject() only set generated id", original, inserted);
+-      int idAfterInsert = inserted.getId();
+-      assertNotEquals(0, idAfterInsert);
+-
+-      TargetClass1 selected = SqlClosureElf.objectFromClause(TargetClass1.class, "string = ?", "Hi");
+-      assertEquals(idAfterInsert, selected.getId());
+-      assertEquals("Hi", selected.getString());
+-      assertEquals(0, selected.getTimestamp().getTime());
+-
+-      selected.setString("Hi edited");
+-      TargetClass1 updated = SqlClosureElf.updateObject(selected);
+-      assertSame("updateObject() only set generated id if it was missing", original, inserted);
+-      assertEquals(idAfterInsert, updated.getId());
++      SqlClosureElf.insertObject(original);
++
++      TargetClass1 target = SqlClosureElf.objectFromClause(TargetClass1.class, "string = ?", "Hi");
++      assertEquals("Hi", target.getString());
++      assertEquals(0, target.getTimestamp().getTime());
+    }
+ 
+    @Test
+@@ -170,8 +143,8 @@ public class QueryTest
+    {
+       TargetClass1 target = SqlClosureElf.insertObject(new TargetClass1(null, null, "1234"));
+       final int targetId = target.getId();
+-      target = SqlClosure.sqlExecute(c -> {
+-         PreparedStatement pstmt = c.prepareStatement(
++      target = SqlClosure.sqlExecute((connection) -> {
++         PreparedStatement pstmt = connection.prepareStatement(
+                  "SELECT t.id, t.timestamp, t.string, (t.string_from_number + 1) as string_from_number FROM target_class1 t where id = ?");
+          return OrmElf.statementToObject(pstmt, TargetClass1.class, targetId);
+       });
+@@ -186,49 +159,4 @@ public class QueryTest
+       assertNull(target.getStringFromNumber());
+    }
+ 
+-
+-   @Test
+-   public void testInsertListNotBatched2() {
+-      // given
+-      int count = 5;
+-      Set<TargetClass1> toInsert = IntStream.range(0, count).boxed()
+-         .map(i -> new TargetClass1(new Date(i), String.valueOf(i)))
+-         .collect(Collectors.toSet());
+-
+-      // when
+-      SqlClosure.sqlExecute(c -> {
+-         OrmElf.insertListNotBatched(c, toInsert);
+-         return null;
+-      });
+-
+-      // then
+-      Set<Integer> generatedIds = toInsert.stream().map(BaseClass::getId).collect(Collectors.toSet());
+-      assertFalse("Generated ids should be filled for passed objects", generatedIds.contains(0));
+-      assertEquals("Generated ids should be unique", count, generatedIds.size());
+-   }
+-
+-   @Test
+-   public void testInsertListBatched() {
+-      // given
+-      int count = 5;
+-      String u = UUID.randomUUID().toString();
+-      Set<TargetClass1> toInsert = IntStream.range(0, count).boxed()
+-         .map(i -> new TargetClass1(new Date(i), u + String.valueOf(i)))
+-         .collect(Collectors.toSet());
+-
+-      // when
+-      SqlClosure.sqlExecute(c -> {
+-         OrmElf.insertListBatched(c, toInsert);
+-         return null;
+-      });
+-
+-      // then
+-      List<TargetClass1> inserted = SqlClosureElf.listFromClause(
+-         TargetClass1.class,
+-         "string in " + OrmElf.getInClausePlaceholdersForCount(count),
+-         IntStream.range(0, count).boxed().map(i -> u + String.valueOf(i)).collect(Collectors.toList()).toArray(new Object[]{}));
+-      Set<Integer> generatedIds = inserted.stream().map(BaseClass::getId).collect(Collectors.toSet());
+-      assertFalse("Generated ids should be filled for passed objects", generatedIds.contains(0));
+-      assertEquals("Generated ids should be unique", count, generatedIds.size());
+-   }
+ }
+diff --git a/src/test/java/org/sansorm/sqlite/QueryTestSQLite.java b/src/test/java/org/sansorm/sqlite/QueryTestSQLite.java
+deleted file mode 100644
+index eec7944..0000000
+--- a/src/test/java/org/sansorm/sqlite/QueryTestSQLite.java
++++ /dev/null
+@@ -1,196 +0,0 @@
+-package org.sansorm.sqlite;
+-
+-import org.junit.AfterClass;
+-import org.junit.BeforeClass;
+-import org.junit.Test;
+-import org.sqlite.SQLiteConfig;
+-import org.sqlite.SQLiteDataSource;
+-
+-import java.io.File;
+-import java.io.IOException;
+-import java.util.Date;
+-import java.util.List;
+-import java.util.Set;
+-import java.util.UUID;
+-import java.util.stream.Collectors;
+-import java.util.stream.IntStream;
+-
+-import javax.transaction.HeuristicMixedException;
+-import javax.transaction.HeuristicRollbackException;
+-import javax.transaction.NotSupportedException;
+-import javax.transaction.RollbackException;
+-import javax.transaction.Status;
+-import javax.transaction.SystemException;
+-import javax.transaction.UserTransaction;
+-
+-import static org.junit.Assert.assertArrayEquals;
+-import static org.junit.Assert.assertEquals;
+-import static org.junit.Assert.assertFalse;
+-import static org.junit.Assert.assertNotNull;
+-import static org.junit.Assert.assertNull;
+-import static org.junit.Assert.assertSame;
+-import static org.junit.Assert.assertTrue;
+-
+-import com.zaxxer.hikari.HikariConfig;
+-import com.zaxxer.hikari.HikariDataSource;
+-import com.zaxxer.sansorm.OrmElf;
+-import com.zaxxer.sansorm.SqlClosure;
+-import com.zaxxer.sansorm.SqlClosureElf;
+-import com.zaxxer.sansorm.TransactionElf;
+-import com.zaxxer.sansorm.internal.Introspected;
+-import com.zaxxer.sansorm.internal.Introspector;
+-
+-public class QueryTestSQLite {
+-   static HikariDataSource prepareSQLiteDatasource(File db) throws IOException {
+-      final SQLiteConfig sconfig = new SQLiteConfig();
+-      sconfig.setJournalMode(SQLiteConfig.JournalMode.MEMORY);
+-      SQLiteDataSource sds = new SQLiteDataSource(sconfig);
+-      sds.setUrl(db == null
+-         ? "jdbc:sqlite::memory:"
+-         : "jdbc:sqlite:" + db.getAbsolutePath()
+-      );
+-
+-      HikariConfig hconfig = new HikariConfig();
+-      hconfig.setAutoCommit(false);
+-      hconfig.setDataSource(sds);
+-      hconfig.setMaximumPoolSize(1);
+-      HikariDataSource hds = new HikariDataSource(hconfig);
+-
+-      SqlClosure.setDefaultDataSource(hds);
+-      SqlClosureElf.executeUpdate("CREATE TABLE IF NOT EXISTS TargetClassSQL ("
+-         + "id integer PRIMARY KEY AUTOINCREMENT,"
+-         + "string text NOT NULL,"
+-         + "timestamp INTEGER"
+-         + ')');
+-      return hds;
+-   }
+-
+-   @BeforeClass
+-   public static void setup() throws Throwable
+-   {
+-      TransactionElf.setUserTransaction(new UserTransaction() {
+-         @Override public int getStatus() throws SystemException { return Status.STATUS_NO_TRANSACTION;} // autocommit is disabled
+-         @Override public void begin() throws NotSupportedException, SystemException {}
+-         @Override public void commit() throws RollbackException, HeuristicMixedException, HeuristicRollbackException, SecurityException, IllegalStateException, SystemException {}
+-         @Override public void rollback() throws IllegalStateException, SecurityException, SystemException {}
+-         @Override public void setRollbackOnly() throws IllegalStateException, SystemException {}
+-         @Override public void setTransactionTimeout(int i) throws SystemException {}
+-      });
+-   }
+-
+-   @AfterClass
+-   public static void tearDown()
+-   {
+-      SqlClosure.setDefaultDataSource(null);
+-      TransactionElf.setUserTransaction(null);
+-   }
+-
+-   @Test
+-   public void shouldPerformCRUD() throws IOException {
+-      Introspected is = Introspector.getIntrospected(TargetClassSQL.class);
+-      assertTrue("test is meaningful only if class has generated id", is.hasGeneratedId());
+-      assertArrayEquals(new String[]{"id"}, is.getIdColumnNames());
+-
+-      try (HikariDataSource ignored = prepareSQLiteDatasource(null)) {
+-         TargetClassSQL original = new TargetClassSQL("Hi", new Date(0));
+-         assertNull(original.getId());
+-         TargetClassSQL inserted = SqlClosureElf.insertObject(original);
+-         assertSame("insertObject() sets generated id", original, inserted);
+-         Integer idAfterInsert = inserted.getId();
+-         assertNotNull(idAfterInsert);
+-
+-         TargetClassSQL selected = SqlClosureElf.objectFromClause(TargetClassSQL.class, "string = ?", "Hi");
+-         assertEquals(idAfterInsert, selected.getId());
+-         assertEquals("Hi", selected.getString());
+-         assertEquals(0, selected.getTimestamp().getTime());
+-
+-         selected.setString("Hi edited");
+-         TargetClassSQL updated = SqlClosureElf.updateObject(selected);
+-         assertSame("updateObject() only set generated id if it was missing", selected, updated);
+-         assertEquals(idAfterInsert, updated.getId());
+-      }
+-   }
+-
+-   @Test
+-   public void shouldPerformCRUDAfterReconnect() throws IOException {
+-      Introspected is = Introspector.getIntrospected(TargetClassSQL.class);
+-      assertTrue("test is meaningful only if class has generated id", is.hasGeneratedId());
+-      assertArrayEquals(new String[]{"id"}, is.getIdColumnNames());
+-
+-      File path = File.createTempFile("sansorm", ".db");
+-      path.deleteOnExit();
+-
+-      Integer idAfterInsert;
+-      try (HikariDataSource ignored = prepareSQLiteDatasource(path)) {
+-         TargetClassSQL original = new TargetClassSQL("Hi", new Date(0));
+-         assertNull(original.getId());
+-         TargetClassSQL inserted = SqlClosureElf.insertObject(original);
+-         assertSame("insertObject() sets generated id", original, inserted);
+-         idAfterInsert = inserted.getId();
+-         assertNotNull(idAfterInsert);
+-      }
+-
+-      // reopen database, it is important for this test
+-      // then select previously inserted object and try to edit it
+-      try (HikariDataSource ignored = prepareSQLiteDatasource(path)) {
+-         TargetClassSQL selected = SqlClosureElf.objectFromClause(TargetClassSQL.class, "string = ?", "Hi");
+-         assertEquals(idAfterInsert, selected.getId());
+-         assertEquals("Hi", selected.getString());
+-         assertEquals(0, selected.getTimestamp().getTime());
+-
+-         selected.setString("Hi edited");
+-         TargetClassSQL updated = SqlClosureElf.updateObject(selected);
+-         assertSame("updateObject() only set generated id if it was missing", selected, updated);
+-         assertEquals(idAfterInsert, updated.getId());
+-      }
+-   }
+-
+-   @Test
+-   public void testInsertListNotBatched2() throws IOException {
+-      // given
+-      int count = 5;
+-      Set<TargetClassSQL> toInsert = IntStream.range(0, count).boxed()
+-         .map(i -> new TargetClassSQL(String.valueOf(i), new Date(i)))
+-         .collect(Collectors.toSet());
+-
+-      // when
+-      try (HikariDataSource ignored = prepareSQLiteDatasource(null)) {
+-         SqlClosure.sqlExecute(c -> {
+-            OrmElf.insertListNotBatched(c, toInsert);
+-            return null;
+-         });
+-      }
+-
+-      // then
+-      Set<Integer> generatedIds = toInsert.stream().map(TargetClassSQL::getId).collect(Collectors.toSet());
+-      assertFalse("Generated ids should be filled for passed objects", generatedIds.contains(0));
+-      assertEquals("Generated ids should be unique", count, generatedIds.size());
+-   }
+-
+-   @Test
+-   public void testInsertListBatched() throws IOException {
+-      // given
+-      int count = 5;
+-      String u = UUID.randomUUID().toString();
+-      Set<TargetClassSQL> toInsert = IntStream.range(0, count).boxed()
+-         .map(i -> new TargetClassSQL(u + String.valueOf(i), new Date(i)))
+-         .collect(Collectors.toSet());
+-
+-      // when
+-      try (HikariDataSource ignored = prepareSQLiteDatasource(null)) {
+-         SqlClosure.sqlExecute(c -> {
+-            OrmElf.insertListBatched(c, toInsert);
+-            return null;
+-         });
+-         List<TargetClassSQL> inserted = SqlClosureElf.listFromClause(
+-            TargetClassSQL.class,
+-            "string in " + OrmElf.getInClausePlaceholdersForCount(count),
+-            IntStream.range(0, count).boxed().map(i -> u + String.valueOf(i)).collect(Collectors.toList()).toArray(new Object[]{}));
+-
+-         // then
+-         Set<Integer> generatedIds = inserted.stream().map(TargetClassSQL::getId).collect(Collectors.toSet());
+-         assertFalse("Generated ids should be filled for passed objects", generatedIds.contains(0));
+-         assertEquals("Generated ids should be unique", count, generatedIds.size());
+-      }
+-   }
+-}
+diff --git a/src/test/java/org/sansorm/sqlite/TargetClassSQL.java b/src/test/java/org/sansorm/sqlite/TargetClassSQL.java
+deleted file mode 100644
+index d734df6..0000000
+--- a/src/test/java/org/sansorm/sqlite/TargetClassSQL.java
++++ /dev/null
+@@ -1,52 +0,0 @@
+-package org.sansorm.sqlite;
+-
+-import org.sansorm.DateConverter;
+-
+-import java.util.Date;
+-
+-import javax.persistence.*;
+-
+-@Table
+-public class TargetClassSQL
+-{
+-   @Id
+-   @GeneratedValue
+-   @Column
+-   private Integer id;
+-
+-   @Column
+-   private String string;
+-
+-   @Column
+-   @Convert(converter = DateConverter.class)
+-   private Date timestamp;
+-
+-   public TargetClassSQL()
+-   {
+-   }
+-
+-   public TargetClassSQL(String string, Date timestamp) {
+-      this.string = string;
+-      this.timestamp = timestamp;
+-   }
+-
+-   public Integer getId() {
+-      return id;
+-   }
+-
+-   public String getString() {
+-      return string;
+-   }
+-
+-   public void setString(String string) {
+-      this.string = string;
+-   }
+-
+-   public Date getTimestamp() {
+-      return timestamp;
+-   }
+-
+-   public void setTimestamp(Date timestamp) {
+-      this.timestamp = timestamp;
+-   }
+-}

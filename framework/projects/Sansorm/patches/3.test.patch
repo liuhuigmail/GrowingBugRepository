@@ -1,0 +1,172 @@
+diff --git a/src/test/java/org/sansorm/QueryTest.java b/src/test/java/org/sansorm/QueryTest.java
+index c0fbb41..21a39c7 100644
+--- a/src/test/java/org/sansorm/QueryTest.java
++++ b/src/test/java/org/sansorm/QueryTest.java
+@@ -1,9 +1,18 @@
+ package org.sansorm;
+ 
++import java.io.File;
++import java.io.FileOutputStream;
++import java.io.OutputStream;
++import java.sql.Timestamp;
++import java.util.Date;
++import java.util.Map;
++import java.util.Properties;
++
++import javax.sql.DataSource;
++
+ import bitronix.tm.BitronixTransactionManager;
+ import bitronix.tm.TransactionManagerServices;
+ import bitronix.tm.resource.common.XAResourceProducer;
+-import com.zaxxer.sansorm.OrmElf;
+ import com.zaxxer.sansorm.SqlClosure;
+ import com.zaxxer.sansorm.SqlClosureElf;
+ import com.zaxxer.sansorm.TransactionElf;
+@@ -11,19 +20,7 @@ import org.junit.AfterClass;
+ import org.junit.BeforeClass;
+ import org.junit.Test;
+ 
+-import javax.sql.DataSource;
+-import java.io.File;
+-import java.io.FileOutputStream;
+-import java.io.OutputStream;
+-import java.lang.annotation.Target;
+-import java.sql.PreparedStatement;
+-import java.sql.Timestamp;
+-import java.util.Date;
+-import java.util.Map;
+-import java.util.Properties;
+-
+ import static org.junit.Assert.assertEquals;
+-import static org.junit.Assert.assertNull;
+ 
+ public class QueryTest
+ {
+@@ -63,8 +60,7 @@ public class QueryTest
+       SqlClosureElf.executeUpdate("CREATE TABLE target_class1 ("
+                                   + "id INTEGER NOT NULL IDENTITY PRIMARY KEY, "
+                                   + "timestamp TIMESTAMP, "
+-                                  + "string VARCHAR(128), "
+-                                  + "string_from_number NUMERIC "
++                                  + "string VARCHAR(128) "
+                                   + ")");
+    }
+ 
+@@ -124,34 +120,4 @@ public class QueryTest
+       assertEquals(target.getTimestamp(), tstamp);
+       assertEquals(200, target.getTimestamp().getNanos());
+    }
+-
+-   @Test
+-   public void testConverterSave()
+-   {
+-      TargetClass1 target = SqlClosureElf.insertObject(new TargetClass1(null, null, "1234"));
+-      Number number = SqlClosureElf.numberFromSql("SELECT string_from_number + 1 FROM target_class1 where id = ?", target.getId());
+-      assertEquals(1235, number.intValue());
+-   }
+-
+-   @Test
+-   public void testConverterLoad() throws Exception
+-   {
+-      TargetClass1 target = SqlClosureElf.insertObject(new TargetClass1(null, null, "1234"));
+-      final int targetId = target.getId();
+-      target = SqlClosure.execute((connection) -> {
+-         PreparedStatement pstmt = connection.prepareStatement(
+-                 "SELECT t.id, t.timestamp, t.string, (t.string_from_number + 1) as string_from_number FROM target_class1 t where id = ?");
+-         return OrmElf.statementToObject(pstmt, TargetClass1.class, targetId);
+-      });
+-      assertEquals("1235", target.getStringFromNumber());
+-   }
+-
+-   @Test
+-   public void testConversionFail()
+-   {
+-      TargetClass1 target = SqlClosureElf.insertObject(new TargetClass1(null, null, "foobar"));
+-      target = SqlClosureElf.getObjectById(TargetClass1.class, target.getId());
+-      assertNull(target.getStringFromNumber());
+-   }
+-
+ }
+diff --git a/src/test/java/org/sansorm/TargetClass1.java b/src/test/java/org/sansorm/TargetClass1.java
+index ae1d968..917b86f 100644
+--- a/src/test/java/org/sansorm/TargetClass1.java
++++ b/src/test/java/org/sansorm/TargetClass1.java
+@@ -1,9 +1,13 @@
+ package org.sansorm;
+ 
+ import java.util.Date;
+-import java.util.Map;
+ 
+-import javax.persistence.*;
++import javax.persistence.Column;
++import javax.persistence.GeneratedValue;
++import javax.persistence.Id;
++import javax.persistence.Table;
++import javax.persistence.Temporal;
++import javax.persistence.TemporalType;
+ 
+ @Table(name = "target_class1")
+ public class TargetClass1
+@@ -20,25 +24,15 @@ public class TargetClass1
+    @Column(name = "string")
+    private String string;
+ 
+-   @Column(name = "string_from_number")
+-   @Convert(converter = TestConverter.class)
+-   private String stringFromNumber;
+-
+    public TargetClass1()
+    {
+ 
+    }
+ 
+    public TargetClass1(Date timestamp, String string)
+-   {
+-      this(timestamp, string, null);
+-   }
+-
+-   public TargetClass1(Date timestamp, String string, String stringFromNumber)
+    {
+       this.timestamp = timestamp;
+       this.string = string;
+-      this.stringFromNumber = stringFromNumber;
+    }
+ 
+    public int getId()
+@@ -55,9 +49,4 @@ public class TargetClass1
+    {
+       return string;
+    }
+-
+-   public String getStringFromNumber() {
+-      return stringFromNumber;
+-   }
+-
+ }
+diff --git a/src/test/java/org/sansorm/TestConverter.java b/src/test/java/org/sansorm/TestConverter.java
+deleted file mode 100644
+index e4924da..0000000
+--- a/src/test/java/org/sansorm/TestConverter.java
++++ /dev/null
+@@ -1,21 +0,0 @@
+-package org.sansorm;
+-
+-import javax.persistence.AttributeConverter;
+-
+-public class TestConverter implements AttributeConverter<String, Number> {
+-
+-    @Override
+-    public Number convertToDatabaseColumn(String value) {
+-        try {
+-            return Integer.parseInt(value, 10);
+-        } catch (NumberFormatException e) {
+-            return null;
+-        }
+-    }
+-
+-    @Override
+-    public String convertToEntityAttribute(Number value) {
+-        return value == null ? null : value.toString();
+-
+-    }
+-}

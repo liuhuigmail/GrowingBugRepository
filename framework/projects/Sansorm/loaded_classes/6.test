@@ -1,0 +1,8 @@
+com.zaxxer.sansorm.internal.CaseSensitiveDatabasesClass
+com.zaxxer.sansorm.internal.CaseSensitiveDatabasesTest
+org.sansorm.TestUtils
+org.sansorm.testutils.DummyConnection
+org.sansorm.testutils.DummyParameterMetaData
+org.sansorm.testutils.DummyResultSet
+org.sansorm.testutils.DummyResultSetMetaData
+org.sansorm.testutils.DummyStatement

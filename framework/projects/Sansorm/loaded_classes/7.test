@@ -1,0 +1,2 @@
+com.zaxxer.sansorm.internal.CaseSensitiveDatabasesTest
+org.sansorm.testutils.DummyConnection

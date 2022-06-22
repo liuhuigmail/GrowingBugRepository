@@ -1,0 +1,114 @@
+diff --git a/src/main/java/com/zaxxer/sansorm/internal/Introspected.java b/src/main/java/com/zaxxer/sansorm/internal/Introspected.java
+index bfc93b4..02b9e77 100644
+--- a/src/main/java/com/zaxxer/sansorm/internal/Introspected.java
++++ b/src/main/java/com/zaxxer/sansorm/internal/Introspected.java
+@@ -148,7 +148,7 @@ public final class Introspected
+     */
+    public Object get(Object target, String columnName)
+    {
+-      FieldColumnInfo fcInfo = delimitedColumnToField.get(columnName);
++      FieldColumnInfo fcInfo = columnToField.get(columnName);
+       if (fcInfo == null) {
+          throw new RuntimeException("Cannot find field mapped to column " + columnName + " on type " + target.getClass().getCanonicalName());
+       }
+@@ -320,9 +320,10 @@ public final class Introspected
+          columns.addAll(Arrays.asList(columnsSansIds));
+       }
+       else {
+-         getDelimitedInsertableColumns(columns);
++         columns.addAll(Arrays.asList(columnNames));
+       }
+ 
++      columns.removeIf(s -> !isInsertableColumn(s));
+       insertableColumns = columns.toArray(new String[0]);
+       return insertableColumns;
+    }
+@@ -351,9 +352,10 @@ public final class Introspected
+          columns.addAll(Arrays.asList(columnsSansIds));
+       }
+       else {
+-         getDelimitedUpdatableColumns(columns);
++         columns.addAll(Arrays.asList(columnNames));
+       }
+ 
++      columns.removeIf(s -> !isUpdatableColumn(s));
+       updatableColumns = columns.toArray(new String[0]);
+       return updatableColumns;
+    }
+@@ -456,10 +458,10 @@ public final class Introspected
+       i = 0;
+       j = 0;
+       for (Entry<String, FieldColumnInfo> entry : columnToField.entrySet()) {
+-         columnNames[i] = entry.getValue().columnName;
++         columnNames[i] = entry.getKey();
+          columnTableNames[i] = entry.getValue().columnTableName;
+          if (!idFcInfos.contains(entry.getValue())) {
+-            columnsSansIds[j] = entry.getValue().columnName;
++            columnsSansIds[j] = entry.getKey();
+             ++j;
+          }
+          ++i;
+@@ -491,11 +493,11 @@ public final class Introspected
+          String columnName = columnAnnotation.name();
+          fcInfo.columnName = columnName.isEmpty()
+             ? field.getName() // as per documentation, empty name in Column "defaults to the property or field name"
+-            : toColumnName(columnName);
++            : columnName.toLowerCase();
+ 
+          String columnTableName = columnAnnotation.table();
+          if (!columnTableName.isEmpty()) {
+-            fcInfo.columnTableName = toColumnName(columnTableName);
++            fcInfo.columnTableName = columnTableName.toLowerCase();
+          }
+ 
+          fcInfo.insertable = columnAnnotation.insertable();
+@@ -507,7 +509,7 @@ public final class Introspected
+          if (joinColumnAnnotation != null) {
+             // Is the JoinColumn a self-join?
+             if (field.getType() == clazz) {
+-               fcInfo.columnName = toColumnName(joinColumnAnnotation.name());
++               fcInfo.columnName = joinColumnAnnotation.name().toLowerCase();
+                selfJoinFCInfo = fcInfo;
+             }
+             else {
+@@ -522,9 +524,7 @@ public final class Introspected
+ 
+       Transient transientAnnotation = field.getAnnotation(Transient.class);
+       if (transientAnnotation == null) {
+-         String keyName = !(fcInfo.columnName.startsWith("\"") && fcInfo.columnName.endsWith("\"")) ? fcInfo.columnName : fcInfo.columnName.substring(1, fcInfo.columnName.length() - 1);
+-         columnToField.put(keyName, fcInfo);
+-         delimitedColumnToField.put(fcInfo.columnName, fcInfo);
++         columnToField.put(fcInfo.columnName, fcInfo);
+       }
+    }
+ 
+diff --git a/src/main/java/com/zaxxer/sansorm/internal/OrmBase.java b/src/main/java/com/zaxxer/sansorm/internal/OrmBase.java
+index bb811a5..9d6cc49 100644
+--- a/src/main/java/com/zaxxer/sansorm/internal/OrmBase.java
++++ b/src/main/java/com/zaxxer/sansorm/internal/OrmBase.java
+@@ -105,10 +105,7 @@ class OrmBase
+       String[] columnTableNames = introspected.getColumnTableNames();
+       for (int i = 0; i < delimitedColumnNames.length; i++) {
+          String delimitedColumn = delimitedColumnNames[i];
+-         boolean isDelimited = delimitedColumn.startsWith("\"") && delimitedColumn.endsWith("\"");
+-         String column = !isDelimited  ? delimitedColumn
+-                                       : delimitedColumn.substring(1, delimitedColumn.length() - 1);
+-         if (excludes.contains(column)) {
++         if (excludes.contains(delimitedColumn)) {
+             continue;
+          }
+ 
+diff --git a/src/main/java/com/zaxxer/sansorm/internal/OrmWriter.java b/src/main/java/com/zaxxer/sansorm/internal/OrmWriter.java
+index f79fef6..af00d6f 100644
+--- a/src/main/java/com/zaxxer/sansorm/internal/OrmWriter.java
++++ b/src/main/java/com/zaxxer/sansorm/internal/OrmWriter.java
+@@ -166,9 +166,6 @@ public class OrmWriter extends OrmBase
+       sql.append("DELETE FROM ").append(introspected.getTableName()).append(" WHERE ");
+ 
+       String[] idColumnNames = introspected.getIdColumnNames();
+-      if (idColumnNames.length == 0) {
+-         throw new RuntimeException("No id columns provided in: " + clazz.getName());
+-      }
+       for (String idColumn : idColumnNames) {
+          sql.append(idColumn).append("=? AND ");
+       }

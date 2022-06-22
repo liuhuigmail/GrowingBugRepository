@@ -1,0 +1,178 @@
+diff --git a/src/main/java/com/zaxxer/sansorm/internal/OrmWriter.java b/src/main/java/com/zaxxer/sansorm/internal/OrmWriter.java
+index b4073d4..ee69d7e 100644
+--- a/src/main/java/com/zaxxer/sansorm/internal/OrmWriter.java
++++ b/src/main/java/com/zaxxer/sansorm/internal/OrmWriter.java
+@@ -73,7 +73,7 @@ public class OrmWriter extends OrmBase
+ 
+       String[] columnNames = introspected.getInsertableColumns();
+ 
+-      try (PreparedStatement stmt = createStatementForInsert(connection, introspected, columnNames)) {
++      PreparedStatement stmt = createStatementForInsert(connection, introspected, columnNames);
+          int[] parameterTypes = getParameterTypes(stmt);
+          for (T item : iterable) {
+             int parameterIndex = 1;
+@@ -89,9 +89,10 @@ public class OrmWriter extends OrmBase
+                ++parameterIndex;
+             }
+             stmt.addBatch();
+-         }
+-         stmt.executeBatch();
++         stmt.clearParameters();
+       }
++      stmt.executeBatch();
++      stmt.close();
+    }
+ 
+    public static <T> void insertListNotBatched(Connection connection, Iterable<T> iterable) throws SQLException
+@@ -108,7 +109,7 @@ public class OrmWriter extends OrmBase
+       String[] columnNames = introspected.getInsertableColumns();
+ 
+       // Insert
+-      try (PreparedStatement stmt = createStatementForInsert(connection, introspected, columnNames)) {
++      PreparedStatement stmt = createStatementForInsert(connection, introspected, columnNames);
+          int[] parameterTypes = getParameterTypes(stmt);
+          for (T item : iterable) {
+             int parameterIndex = 1;
+@@ -125,18 +126,25 @@ public class OrmWriter extends OrmBase
+             }
+ 
+             stmt.executeUpdate();
+-            fillGeneratedId(item, introspected, stmt, false);
+-            stmt.clearParameters();
++         ResultSet generatedKeys = stmt.getGeneratedKeys();
++         if (generatedKeys != null) {
++            final String idColumn = idColumnNames[0];
++            while (generatedKeys.next()) {
++               introspected.set(item, idColumn, generatedKeys.getObject(1));
++            }
++            generatedKeys.close();
+          }
++         stmt.clearParameters();
+       }
++      stmt.close();
+ 
+       // If there is a self-referencing column, update it with the generated IDs
+       if (hasSelfJoinColumn) {
+          final String selfJoinColumn = introspected.getSelfJoinColumn();
+          final String idColumn = idColumnNames[0];
+-         StringBuilder sql = new StringBuilder("UPDATE ").append(introspected.getTableName()).append(" SET ");
++         StringBuffer sql = new StringBuffer("UPDATE ").append(introspected.getTableName()).append(" SET ");
+          sql.append(selfJoinColumn).append("=? WHERE ").append(idColumn).append("=?");
+-         try (PreparedStatement stmt = connection.prepareStatement(sql.toString())) {
++         stmt = connection.prepareStatement(sql.toString());
+             for (T item : iterable) {
+                Object referencedItem = introspected.get(item, selfJoinColumn);
+                if (referencedItem != null) {
+@@ -147,7 +155,6 @@ public class OrmWriter extends OrmBase
+                }
+             }
+             stmt.executeBatch();
+-         }
+       }
+    }
+ 
+@@ -157,9 +164,8 @@ public class OrmWriter extends OrmBase
+       Introspected introspected = Introspector.getIntrospected(clazz);
+       String[] columnNames = introspected.getInsertableColumns();
+ 
+-      try (PreparedStatement stmt = createStatementForInsert(connection, introspected, columnNames)) {
+-         setParamsExecute(target, introspected, columnNames, stmt, false);
+-      }
++      PreparedStatement stmt = createStatementForInsert(connection, introspected, columnNames);
++      setParamsExecuteClose(target, introspected, columnNames, stmt);
+       return target;
+    }
+ 
+@@ -169,9 +175,8 @@ public class OrmWriter extends OrmBase
+       Introspected introspected = Introspector.getIntrospected(clazz);
+       String[] columnNames = introspected.getUpdatableColumns();
+ 
+-      try (PreparedStatement stmt = createStatementForUpdate(connection, introspected, columnNames)) {
+-         setParamsExecute(target, introspected, columnNames, stmt, true);
+-      }
++      PreparedStatement stmt = createStatementForUpdate(connection, introspected, columnNames);
++      setParamsExecuteClose(target, introspected, columnNames, stmt);
+       return target;
+    }
+ 
+@@ -200,9 +205,17 @@ public class OrmWriter extends OrmBase
+ 
+    public static int executeUpdate(Connection connection, String sql, Object... args) throws SQLException
+    {
+-      try (PreparedStatement stmt = connection.prepareStatement(sql)) {
++      PreparedStatement stmt = null;
++      try {
++         stmt = connection.prepareStatement(sql);
+          populateStatementParameters(stmt, args);
+-         return stmt.executeUpdate();
++         int rc = stmt.executeUpdate();
++         return rc;
++      }
++      finally {
++         if (stmt != null) {
++            stmt.close();
++         }
+       }
+    }
+ 
+@@ -210,7 +223,7 @@ public class OrmWriter extends OrmBase
+    //                      P R I V A T E   M E T H O D S
+    // -----------------------------------------------------------------------
+ 
+-   private static PreparedStatement createStatementForInsert(Connection connection, Introspected introspected, String[] columns) throws SQLException
++   private static <T> PreparedStatement createStatementForInsert(Connection connection, Introspected introspected, String[] columns) throws SQLException
+    {
+       String sql = createStatementCache.get(introspected);
+       if (sql == null) {
+@@ -236,7 +249,7 @@ public class OrmWriter extends OrmBase
+       }
+    }
+ 
+-   private static PreparedStatement createStatementForUpdate(Connection connection, Introspected introspected, String[] columnNames) throws SQLException
++   private static <T> PreparedStatement createStatementForUpdate(Connection connection, Introspected introspected, String[] columnNames) throws SQLException
+    {
+       String sql = updateStatementCache.get(introspected);
+       if (sql == null) {
+@@ -263,7 +276,7 @@ public class OrmWriter extends OrmBase
+    }
+ 
+    /** You should close stmt by yourself */
+-   private static <T> void setParamsExecute(T target, Introspected introspected, String[] columnNames, PreparedStatement stmt, boolean checkExistingId) throws SQLException
++   private static <T> void setParamsExecuteClose(T target, Introspected introspected, String[] columnNames, PreparedStatement stmt) throws SQLException
+    {
+       int[] parameterTypes = getParameterTypes(stmt);
+ 
+@@ -289,27 +302,18 @@ public class OrmWriter extends OrmBase
+       }
+ 
+       stmt.executeUpdate();
+-      fillGeneratedId(target, introspected, stmt, checkExistingId);
+-   }
+ 
+    /** Sets auto-generated ID if not set yet */
+-   private static <T> void fillGeneratedId(T target, Introspected introspected, PreparedStatement stmt, boolean checkExistingId) throws SQLException {
+-      if (!introspected.hasGeneratedId()) {
+-         return;
+-      }
+-      final String idColumn = introspected.getIdColumnNames()[0];
+-      if (checkExistingId) {
+-         final Object idExisting = introspected.get(target, idColumn);
+-         if (idExisting != null && (!(idExisting instanceof Integer) || (Integer) idExisting > 0)) {
++      if (introspected.hasGeneratedId()) {
++         final String idColumn = introspected.getIdColumnNames()[0];
++         ResultSet generatedKeys = stmt.getGeneratedKeys();
++         if (generatedKeys != null && generatedKeys.next()) {
+             // a bit tied to implementation but let's assume that integer id <= 0 means that it was not generated yet
+-            return;
+-         }
+-      }
+-      try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+-         if (generatedKeys.next()) {
+             introspected.set(target, idColumn, generatedKeys.getObject(1));
++            generatedKeys.close();
+          }
+       }
++      stmt.close();
+    }
+ 
+    private static int[] getParameterTypes(PreparedStatement stmt) throws SQLException

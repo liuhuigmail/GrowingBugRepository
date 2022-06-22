@@ -1,0 +1,22 @@
+diff --git a/src/main/java/com/zaxxer/sansorm/SqlClosure.java b/src/main/java/com/zaxxer/sansorm/SqlClosure.java
+index 28c52d0..b651b8c 100644
+--- a/src/main/java/com/zaxxer/sansorm/SqlClosure.java
++++ b/src/main/java/com/zaxxer/sansorm/SqlClosure.java
+@@ -193,12 +193,12 @@ public class SqlClosure<T>
+       Connection connection = null;
+       try {
+          connection = ConnectionProxy.wrapConnection(dataSource.getConnection());
+-         if (txOwner && hasTxManager) {
+-            connection.setAutoCommit(false);
++         if (args != null) {
++            return execute(connection, args);
++         }
++         else {
++            return execute(connection);
+          }
+-         return (args == null)
+-            ? execute(connection)
+-            : execute(connection, args);
+       }
+       catch (SQLException e) {
+          if (e.getNextException() != null) {

@@ -1,0 +1,11 @@
+com.zaxxer.sansorm.internal.ConnectionProxy
+com.zaxxer.sansorm.internal.Introspected
+com.zaxxer.sansorm.internal.Introspector
+com.zaxxer.sansorm.internal.OrmBase
+com.zaxxer.sansorm.internal.OrmReader
+com.zaxxer.sansorm.internal.OrmWriter
+com.zaxxer.sansorm.OrmElf
+com.zaxxer.sansorm.SqlClosure
+com.zaxxer.sansorm.SqlClosureElf
+com.zaxxer.sansorm.SqlFunction
+com.zaxxer.sansorm.TransactionElf

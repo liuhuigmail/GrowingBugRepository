@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,2d96b82a67feeabdcb930ae68b6148f1f2a04dc8,cf7e677116214f804e86455b53756d1f16b0904a,38,https://github.com/Juniper/netconf-java/pull/38

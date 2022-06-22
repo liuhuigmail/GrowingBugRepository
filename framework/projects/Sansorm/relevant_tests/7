@@ -1,0 +1,6 @@
+com.zaxxer.sansorm.internal.CaseSensitiveDatabasesTest
+com.zaxxer.sansorm.internal.IntrospectedTest
+com.zaxxer.sansorm.internal.IntrospectorTest
+org.sansorm.QueryTest
+org.sansorm.QueryTest2
+org.sansorm.sqlite.QueryTestSQLite

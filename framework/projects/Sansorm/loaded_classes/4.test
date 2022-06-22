@@ -1,0 +1,3 @@
+org.sansorm.DateConverter
+org.sansorm.sqlite.QueryTestSQLite
+org.sansorm.sqlite.TargetClassSQL
