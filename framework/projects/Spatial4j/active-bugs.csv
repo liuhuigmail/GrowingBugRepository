@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,6a4382895a5cf181fb49738791859a3ae166d0bc,63b318368ce7eca0e090af64cd49d134c8619c29,175,https://github.com/locationtech/spatial4j/issues/175

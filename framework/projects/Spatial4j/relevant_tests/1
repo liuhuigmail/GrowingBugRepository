@@ -1,0 +1,3 @@
+org.locationtech.spatial4j.io.jackson.JacksonGeoJSONReaderTest
+org.locationtech.spatial4j.io.jackson.JacksonGeoJSONWriterTest
+org.locationtech.spatial4j.io.jackson.SimpleJacksonTest

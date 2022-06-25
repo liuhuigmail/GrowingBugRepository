@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/locationtech/spatial4j/io/jackson/ShapeDeserializer.java b/src/main/java/org/locationtech/spatial4j/io/jackson/ShapeDeserializer.java
+index 3555eb5b..7092d573 100644
+--- a/src/main/java/org/locationtech/spatial4j/io/jackson/ShapeDeserializer.java
++++ b/src/main/java/org/locationtech/spatial4j/io/jackson/ShapeDeserializer.java
+@@ -220,7 +220,7 @@ public class ShapeDeserializer extends JsonDeserializer<Shape>
+       return read( jp, ctx.getShapeFactory() );
+     }
+     if (t.isScalarValue()) {
+-      String txt = jp.getValueAsString();
++      String txt = t.asString();
+       if(txt!=null && txt.length()>0) {
+         try {
+           return ctx.getFormats().read(txt);

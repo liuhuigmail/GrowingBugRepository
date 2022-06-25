@@ -1,0 +1,5 @@
+com.jcabi.github.JsonPatchable
+com.jcabi.github.JsonReadable
+com.jcabi.github.PublicKey
+com.jcabi.github.SmartJson
+com.jcabi.github.User

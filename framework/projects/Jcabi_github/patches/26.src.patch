@@ -1,0 +1,22 @@
+diff --git a/src/main/java/com/jcabi/github/PublicKey.java b/src/main/java/com/jcabi/github/PublicKey.java
+index fe40b12e..6b26b174 100644
+--- a/src/main/java/com/jcabi/github/PublicKey.java
++++ b/src/main/java/com/jcabi/github/PublicKey.java
+@@ -105,7 +111,7 @@ public interface PublicKey extends JsonReadable, JsonPatchable {
+          * @throws IOException If there is any I/O problem
+          */
+         public String key() throws IOException {
+-            return new SmartJson(this).text("key");
++            return new SmartJson(this).text("title");
+         }
+ 
+         /**
+@@ -115,7 +121,7 @@ public interface PublicKey extends JsonReadable, JsonPatchable {
+          */
+         public void key(final String value) throws IOException {
+             this.key.patch(
+-                Json.createObjectBuilder().add("key", value).build()
++                Json.createObjectBuilder().add("title", value).build()
+             );
+         }
+ 

@@ -1,0 +1,4 @@
+com.jcabi.github.PublicKeyTest
+com.jcabi.github.RtPublicKeyTest
+com.jcabi.github.RtPublicKeysTest
+com.jcabi.github.mock.MkPublicKeysTest

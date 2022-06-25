@@ -1,0 +1,3 @@
+org.locationtech.spatial4j.io.jackson.ObjectWithGeometry
+org.locationtech.spatial4j.io.jackson.SimpleJacksonTest
+org.locationtech.spatial4j.shape.RandomizedShapeTest

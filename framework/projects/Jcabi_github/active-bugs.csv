@@ -20,3 +20,12 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 19,2c59f26c46d7feea31ed43a23ba024e40af6d42d,e91a3b4f806982ec48c7578a99fc1bd99cec033d,143,https://github.com/jcabi/jcabi-github/issues/143
 20,04e5c4e94fadd1e7b309b28cdcec0107754a846f,00f9898d6f6e4d0e2b190e4a5ec235eb38d72fa6,181,https://github.com/jcabi/jcabi-github/issues/181
 21,bbbe892e586f477e299af4ebb7b94b2e0bf0da3e,d2349a2727043560c2de3b11c855325d009f725e,209,https://github.com/jcabi/jcabi-github/pull/209
+22,75e159fb003092619cd2c6ff4eb5d56d32420fba,f8f107528f63e9fbfbaf45e6b6e3c16e4903818d,201,https://github.com/jcabi/jcabi-github/pull/201
+23,ed6194323841933f1cc92de941c434f6ceb17b05,e23047e0c3e57e1f121c82732524846b1301f1ea,197,https://github.com/jcabi/jcabi-github/issues/197
+24,1ad60d06e6cf6402838e3c5b005cc9179c73135b,405a3c632494e8e6800c1e2d28e87b6a51b1c504,241,https://github.com/jcabi/jcabi-github/pull/241
+25,b2f4c30fceeb54a4a192b44899d07d44efdc7f2c,2e058bf53b8ec4a3132861e9ef672104ac30c1c2,299,https://github.com/jcabi/jcabi-github/issues/299
+26,27a70229c35ec7a68d363eeb153445e691c75a75,786bb605231fac67de8065dd5fb940b218eeb341,303,https://github.com/jcabi/jcabi-github/issues/303
+27,343d5873383a965128321fb5089e0de8932a8981,5cac3fbafc5705c7a184b76e9e1e83154afb570b,302,https://github.com/jcabi/jcabi-github/pull/302
+28,ae0b600c45d293c8a46ce82731c1625e62a3da97,901f828adc821dbed85069efd34997f7834fcce1,309,https://github.com/jcabi/jcabi-github/issues/309
+29,b18dfa2b4ef06847b02020b85e71884d941c929e,c98f15971cd3cfee07d699b775dc24b0ba918aba,331,https://github.com/jcabi/jcabi-github/issues/331
+30,55a82df7602d60882829f43d0fe23bb16e9f6ffd,97360a3c186594124760c18e2e67aafb0e8db31f,320,https://github.com/jcabi/jcabi-github/issues/320

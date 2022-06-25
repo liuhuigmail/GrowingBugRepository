@@ -1,0 +1,27 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkIssue.java b/src/main/java/com/jcabi/github/mock/MkIssue.java
+index f7faaf13..9f4f25f4 100644
+--- a/src/main/java/com/jcabi/github/mock/MkIssue.java
++++ b/src/main/java/com/jcabi/github/mock/MkIssue.java
+@@ -173,6 +173,10 @@ final class MkIssue implements Issue {
+         }
+         return json
+             .add("labels", array)
++            .add(
++                "user",
++                Json.createObjectBuilder().add("login", this.self).build()
++            )
+             .add(
+                 "pull_request",
+                 Json.createObjectBuilder().addNull("html_url").build()
+diff --git a/src/main/java/com/jcabi/github/mock/MkIssues.java b/src/main/java/com/jcabi/github/mock/MkIssues.java
+index c7f86da8..35d3a357 100644
+--- a/src/main/java/com/jcabi/github/mock/MkIssues.java
++++ b/src/main/java/com/jcabi/github/mock/MkIssues.java
+@@ -123,7 +123,6 @@ final class MkIssues implements Issues {
+                     .add("updated_at").set(new Github.Time().toString()).up()
+                     .add("url").set("http://localhost/1").up()
+                     .add("html_url").set("http://localhost/2").up()
+-                    .add("user").add("login").set(this.self).up().up()
+             );
+         } finally {
+             this.storage.unlock();
