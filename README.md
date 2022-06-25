@@ -232,9 +232,10 @@ To date, growingBugs contains **`1651`** real-world bugs from open-source Java p
 | 205     | Podam         | podam           |                  |      1       | 1                  |
 | 206     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
 | 207     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
-| 208     | Transmittable_thread_local         | transmittable-thread-local           |                  |      1       | 1                  |
+| 208     | Transmittable_thread_local         | transmittable-thread-local           |                  |      4       | 1-4                  |
 | 209     | Jchronic         | jchronic           |                  |      1       | 1                  |
 | 210     | Netconf_java         | netconf-java           |                  |      1       | 1                  |
+| 211     | Xades4j         | xades4j           |                  |      4       | 1-4                  |
 # Setting up GrowingBugs
 
 ## Requirements
