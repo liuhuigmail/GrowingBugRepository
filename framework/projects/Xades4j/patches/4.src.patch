@@ -1,0 +1,177 @@
+diff --git a/src/main/java/xades4j/production/SignerBES.java b/src/main/java/xades4j/production/SignerBES.java
+index ed899f6..cea3b82 100644
+--- a/src/main/java/xades4j/production/SignerBES.java
++++ b/src/main/java/xades4j/production/SignerBES.java
+@@ -81,6 +81,7 @@ class SignerBES implements XadesSigner
+     private final SignedPropertiesMarshaller signedPropsMarshaller;
+     private final UnsignedPropertiesMarshaller unsignedPropsMarshaller;
+     private final AlgorithmsParametersMarshallingProvider algorithmsParametersMarshaller;
++    private final X500NameStyleProvider x500NameStyleProvider;
+     /**/
+     private final KeyInfoBuilder keyInfoBuilder;
+     private final QualifyingPropertiesProcessor qualifPropsProcessor;
+@@ -114,6 +115,7 @@ class SignerBES implements XadesSigner
+         this.signedPropsMarshaller = signedPropsMarshaller;
+         this.unsignedPropsMarshaller = unsignedPropsMarshaller;
+         this.algorithmsParametersMarshaller = algorithmsParametersMarshaller;
++        this.x500NameStyleProvider = x500NameStyleProvider;
+         this.dataObjectDescsProcessor = dataObjectDescsProcessor;
+         this.keyInfoBuilder = new KeyInfoBuilder(basicSignatureOptions, algorithmsProvider, algorithmsParametersMarshaller, x500NameStyleProvider);
+         this.qualifPropsProcessor = new QualifyingPropertiesProcessor(signaturePropsProvider, dataObjPropsProvider);
+diff --git a/src/main/java/xades4j/verification/SignatureUtils.java b/src/main/java/xades4j/verification/SignatureUtils.java
+index cd27e1f..59100e8 100644
+--- a/src/main/java/xades4j/verification/SignatureUtils.java
++++ b/src/main/java/xades4j/verification/SignatureUtils.java
+@@ -16,12 +16,17 @@
+  */
+ package xades4j.verification;
+ 
++import java.security.cert.X509CertSelector;
++import java.security.cert.X509Certificate;
+ import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.Collections;
+ import java.util.List;
+ 
+ import org.apache.xml.security.exceptions.XMLSecurityException;
++import org.apache.xml.security.keys.KeyInfo;
++import org.apache.xml.security.keys.content.X509Data;
++import org.apache.xml.security.keys.content.x509.XMLX509IssuerSerial;
+ import org.apache.xml.security.signature.Reference;
+ import org.apache.xml.security.signature.SignedInfo;
+ import org.apache.xml.security.signature.XMLSignature;
+@@ -33,6 +38,8 @@ import org.w3c.dom.Node;
+ import xades4j.XAdES4jXMLSigException;
+ import xades4j.algorithms.GenericAlgorithm;
+ import xades4j.properties.QualifyingProperty;
++import xades4j.providers.CertificateValidationException;
++import xades4j.providers.X500NameStyleProvider;
+ import xades4j.utils.DOMHelper;
+ 
+ /**
+@@ -47,6 +54,76 @@ class SignatureUtils
+     }
+     /**/
+ 
++    static class KeyInfoRes
++    {
++
++        List<X509Certificate> keyInfoCerts;
++        X509CertSelector certSelector;
++        XMLX509IssuerSerial issuerSerial;
++        KeyInfoRes(
++                List<X509Certificate> keyInfoCerts,
++                X509CertSelector certSelector,
++                XMLX509IssuerSerial issuerSerial)
++        {
++            this.keyInfoCerts = keyInfoCerts;
++            this.certSelector = certSelector;
++            this.issuerSerial = issuerSerial;
++        }
++    }
++    static KeyInfoRes processKeyInfo(
++            KeyInfo keyInfo, X500NameStyleProvider x500NameStyleProvider) throws CertificateValidationException
++    {
++        if (null == keyInfo || !keyInfo.containsX509Data())
++        {
++            throw new InvalidKeyInfoDataException("No X509Data to identify the leaf certificate");
++        }
++        List<X509Certificate> keyInfoCerts = new ArrayList<X509Certificate>(1);
++        XMLX509IssuerSerial issuerSerial = null;
++        X509CertSelector certSelector = new X509CertSelector();
++        boolean hasSelectionCriteria = false;
++        try
++        {
++            for (int i = 0; i < keyInfo.lengthX509Data(); ++i)
++            {
++                X509Data x509Data = keyInfo.itemX509Data(i);
++                if(!hasSelectionCriteria)
++                {
++                    if (x509Data.containsIssuerSerial())
++                    {
++                        issuerSerial = x509Data.itemIssuerSerial(0);
++                        certSelector.setIssuer(x500NameStyleProvider.fromString(issuerSerial.getIssuerName()));
++                        certSelector.setSerialNumber(issuerSerial.getSerialNumber());
++                        hasSelectionCriteria = true;
++                    }
++                    else if (x509Data.containsSubjectName())
++                    {
++                        certSelector.setSubject(x500NameStyleProvider.fromString(x509Data.itemSubjectName(0).getSubjectName()));
++                        hasSelectionCriteria = true;
++                    }
++                }
++                if (x509Data.containsCertificate())
++                {
++                    for (int j = 0; j < x509Data.lengthCertificate(); ++j)
++                    {
++                        keyInfoCerts.add(x509Data.itemCertificate(j).getX509Certificate());
++                    }
++                }
++            }
++            if(!hasSelectionCriteria)
++            {
++                if(keyInfoCerts.isEmpty())
++                {
++                    throw new InvalidKeyInfoDataException("No criteria to select the leaf certificate");
++                }
++                certSelector.setCertificate(keyInfoCerts.get(0));
++            }
++        }
++        catch (XMLSecurityException ex)
++        {
++            throw new InvalidKeyInfoDataException("Cannot process X509Data", ex);
++        }
++        return new KeyInfoRes(keyInfoCerts, certSelector, issuerSerial);
++    }
+     static class ReferencesRes
+     {
+ 
+diff --git a/src/main/java/xades4j/verification/XadesVerifierImpl.java b/src/main/java/xades4j/verification/XadesVerifierImpl.java
+index 0005022..1286154 100644
+--- a/src/main/java/xades4j/verification/XadesVerifierImpl.java
++++ b/src/main/java/xades4j/verification/XadesVerifierImpl.java
+@@ -51,8 +51,8 @@ import xades4j.providers.X500NameStyleProvider;
+ import xades4j.utils.CollectionUtils;
+ import xades4j.utils.ObjectUtils;
+ import xades4j.utils.PropertiesUtils;
+-import xades4j.verification.KeyInfoProcessor.KeyInfoRes;
+ import xades4j.verification.RawSignatureVerifier.RawSignatureVerifierContext;
++import xades4j.verification.SignatureUtils.KeyInfoRes;
+ import xades4j.verification.SignatureUtils.ReferencesRes;
+ import xades4j.xml.unmarshalling.QualifyingPropertiesUnmarshaller;
+ import xades4j.xml.unmarshalling.UnmarshalException;
+@@ -183,9 +183,8 @@ class XadesVerifierImpl implements XadesVerifier
+ 
+         /* Certification path */
+ 
++        KeyInfoRes keyInfoRes = SignatureUtils.processKeyInfo(signature.getKeyInfo(), this.x500NameStyleProvider);
+         Date validationDate = getValidationDate(qualifPropsData, signature, verificationOptions);
+-        CertRef signingCertRefAttempt = tryGetSigningCertificateRef(qualifPropsData);
+-        KeyInfoRes keyInfoRes = KeyInfoProcessor.process(signature.getKeyInfo(), signingCertRefAttempt, this.x500NameStyleProvider);
+         ValidationData certValidationRes = this.certificateValidator.validate(
+                 keyInfoRes.certSelector,
+                 validationDate,
+@@ -235,23 +234,11 @@ class XadesVerifierImpl implements XadesVerifier
+     
+     /*************************************************************************************/
+ 
+-    private CertRef tryGetSigningCertificateRef(Collection<PropertyDataObject> qualifPropsData){
+         // If the SigningCertificate property contains a single reference, it likely represents the signer's certificate.
+         // In that case, it can be used as a fallback to identify the signing certificate when processing KeyInfo.
+         // This is a temporary solution.
+         // - Properties should probably be verified in two stages (before and after cert path creation).
+-        List<SigningCertificateData> certData = CollectionUtils.filterByType(qualifPropsData, SigningCertificateData.class);
+-        if (certData.size() == 1)
+-        {
+-            Collection<CertRef> certRefs = certData.get(0).getCertRefs();
+-            if (certRefs.size() == 1)
+-            {
+-                return certRefs.iterator().next();
+-            }
+-        }
+ 
+-        return null;
+-    }
+ 
+     private Date getValidationDate(
+             Collection<PropertyDataObject> qualifPropsData,

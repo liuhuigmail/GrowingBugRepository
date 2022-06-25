@@ -1,0 +1,41 @@
+diff --git a/src/main/java/com/alibaba/mtc/MtContextThreadLocal.java b/src/main/java/com/alibaba/mtc/MtContextThreadLocal.java
+index 14a1921..8cbe562 100644
+--- a/src/main/java/com/alibaba/mtc/MtContextThreadLocal.java
++++ b/src/main/java/com/alibaba/mtc/MtContextThreadLocal.java
+@@ -89,33 +89,18 @@ public class MtContextThreadLocal<T> extends InheritableThreadLocal<T> {
+ 
+     static Map<MtContextThreadLocal<?>, Object> backupAndSet(Map<MtContextThreadLocal<?>, Object> copied) {
+         Map<MtContextThreadLocal<?>, Object> backup = new HashMap<MtContextThreadLocal<?>, Object>();
+-        for (Iterator<? extends Map.Entry<MtContextThreadLocal<?>, ?>> iterator = holder.get().entrySet().iterator();
+-             iterator.hasNext(); ) {
+-            Map.Entry<MtContextThreadLocal<?>, ?> next = iterator.next();
+-            MtContextThreadLocal<?> threadLocal = next.getKey();
++        for (Map.Entry<MtContextThreadLocal<?>, Object> entry : copied.entrySet()) {
++            MtContextThreadLocal<Object> threadLocal = (MtContextThreadLocal<Object>) entry.getKey();
+             // backup 
+             backup.put(threadLocal, threadLocal.get());
+             // clean extra MtContext in destination thread
+-            if (!copied.containsKey(threadLocal)) {
+-                iterator.remove();
+-                threadLocal.remove();
+-            }
++            threadLocal.set(entry.getValue());
+         }
+-        setMtContexts(copied);
+         return backup;
+     }
+ 
+     static void restore(Map<MtContextThreadLocal<?>, Object> backup) {
+-        for (Iterator<? extends Map.Entry<MtContextThreadLocal<?>, ?>> iterator = holder.get().entrySet().iterator();
+-             iterator.hasNext(); ) {
+-            Map.Entry<MtContextThreadLocal<?>, ?> next = iterator.next();
+-            MtContextThreadLocal<?> threadLocal = next.getKey();
+             // clean extra MtContext
+-            if (!backup.containsKey(threadLocal)) {
+-                iterator.remove();
+-                threadLocal.remove();
+-            }
+-        }
+         setMtContexts(backup);
+     }
+ 

@@ -1,0 +1,8 @@
+xades4j.production.KeyInfoBuilderTest
+xades4j.production.OtherSignerTests
+xades4j.production.SignerBESTest
+xades4j.production.SignerEPESTest
+xades4j.production.SignerSpecificTest
+xades4j.production.SignerTTest
+xades4j.production.XadesBesSigningProfileTest
+xades4j.production.XadesSignatureFormatExtenderImplTest

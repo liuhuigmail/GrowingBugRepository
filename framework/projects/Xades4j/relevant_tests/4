@@ -1,0 +1,12 @@
+xades4j.production.OtherSignerTests
+xades4j.production.SignerBESTest
+xades4j.production.SignerCTest
+xades4j.production.SignerEPESTest
+xades4j.production.SignerSpecificTest
+xades4j.production.SignerTTest
+xades4j.production.XadesBesSigningProfileTest
+xades4j.production.XadesSignatureFormatExtenderImplTest
+xades4j.verification.OtherVerifierTests
+xades4j.verification.XadesVerificationProfileTest
+xades4j.verification.XadesVerifierErrorsTest
+xades4j.verification.XadesVerifierImplTest

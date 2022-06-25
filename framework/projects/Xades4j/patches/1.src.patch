@@ -1,0 +1,37 @@
+diff --git a/src/main/java/xades4j/xml/unmarshalling/FromXmlSignaturePolicyConverter.java b/src/main/java/xades4j/xml/unmarshalling/FromXmlSignaturePolicyConverter.java
+index 148da3d..4e190c1 100644
+--- a/src/main/java/xades4j/xml/unmarshalling/FromXmlSignaturePolicyConverter.java
++++ b/src/main/java/xades4j/xml/unmarshalling/FromXmlSignaturePolicyConverter.java
+@@ -18,9 +18,12 @@ package xades4j.xml.unmarshalling;
+ 
+ import java.util.List;
+ import javax.xml.bind.JAXBElement;
++import org.w3c.dom.Element;
++import xades4j.properties.ObjectIdentifier;
+ import xades4j.properties.QualifyingProperty;
+ import xades4j.properties.SignaturePolicyBase;
+ import xades4j.properties.data.SignaturePolicyData;
++import xades4j.utils.CollectionUtils;
+ import xades4j.xml.bind.xades.XmlAnyType;
+ import xades4j.xml.bind.xades.XmlSigPolicyQualifiersListType;
+ import xades4j.xml.bind.xades.XmlSignaturePolicyIdType;
+@@ -58,16 +61,12 @@ class FromXmlSignaturePolicyConverter implements SignedSigPropFromXmlConv
+                 FromXmlUtils.getObjectIdentifier(xmlPolicyId.getSigPolicyId()),
+                 xmlPolicyId.getSigPolicyHash().getDigestMethod().getAlgorithm(),
+                 xmlPolicyId.getSigPolicyHash().getDigestValue(),
+-                getLocationUrl(xmlPolicyId)));
++                getLocationUrl(xmlPolicyId.getSigPolicyQualifiers())));
+     }
+ 
+-    private static String getLocationUrl(XmlSignaturePolicyIdType xmlPolicyId) throws PropertyUnmarshalException
++    private static String getLocationUrl(XmlSigPolicyQualifiersListType sigPolicyQualifiers) throws PropertyUnmarshalException
+     {
+-        XmlSigPolicyQualifiersListType sigPolicyQualifiers = xmlPolicyId.getSigPolicyQualifiers();
+-        if(null == sigPolicyQualifiers)
+-        {
+-            return null;
+-        }
++        String locationUrl = null;
+         
+         List<XmlAnyType> xmlQualifiers = sigPolicyQualifiers.getSigPolicyQualifier();
+         for (XmlAnyType xmlQualifier : xmlQualifiers)

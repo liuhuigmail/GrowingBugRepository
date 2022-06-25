@@ -1,0 +1,4 @@
+xades4j.verification.OtherVerifierTests
+xades4j.verification.XadesVerificationProfileTest
+xades4j.verification.XadesVerifierErrorsTest
+xades4j.verification.XadesVerifierImplTest

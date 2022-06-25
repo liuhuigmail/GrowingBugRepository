@@ -1,0 +1,62 @@
+diff --git a/src/main/java/com/alibaba/mtc/MtContextThreadLocal.java b/src/main/java/com/alibaba/mtc/MtContextThreadLocal.java
+index 86eb839..d065c81 100644
+--- a/src/main/java/com/alibaba/mtc/MtContextThreadLocal.java
++++ b/src/main/java/com/alibaba/mtc/MtContextThreadLocal.java
+@@ -136,21 +136,15 @@ public class MtContextThreadLocal<T> extends InheritableThreadLocal<T> {
+         }
+ 
+         // set new context
+-        for (Map.Entry<MtContextThreadLocal<?>, Object> entry : copied.entrySet()) {
+-            @SuppressWarnings("unchecked")
+-            MtContextThreadLocal<Object> threadLocal = (MtContextThreadLocal<Object>) entry.getKey();
+-            threadLocal.set(entry.getValue());
+-        }
+ 
+         // call beforeExecute callback
+-        doExecuteCallback(true);
++        setMtContexts(copied, true);
+ 
+         return backup;
+     }
+ 
+     static void restore(Map<MtContextThreadLocal<?>, Object> backup) {
+         // call afterExecute callback
+-        doExecuteCallback(false);
+ 
+         for (Iterator<? extends Map.Entry<MtContextThreadLocal<?>, ?>> iterator = holder.get().entrySet().iterator();
+              iterator.hasNext(); ) {
+@@ -163,15 +157,32 @@ public class MtContextThreadLocal<T> extends InheritableThreadLocal<T> {
+                 threadLocal.superRemove();
+             }
+         }
++        setMtContexts(backup, false);
++    }
+ 
++    static void setMtContexts(Map<MtContextThreadLocal<?>, Object> set, boolean isStore) {
+         // restore context
+-        for (Map.Entry<MtContextThreadLocal<?>, Object> entry : backup.entrySet()) {
++        for (Map.Entry<MtContextThreadLocal<?>, Object> entry : set.entrySet()) {
+             @SuppressWarnings("unchecked")
+             MtContextThreadLocal<Object> threadLocal = (MtContextThreadLocal<Object>) entry.getKey();
++
++            if (!isStore) {
++                try {
++                    threadLocal.afterExecute();
++                } catch (Throwable t) {
++                    t.printStackTrace();
++                }
++            }
+             threadLocal.set(entry.getValue());
++            if (isStore) {
++                try {
++                    threadLocal.beforeExecute();
++                } catch (Throwable t) {
++                t.printStackTrace();
++                }
++            }
+         }
+     }
+-
+     private static void doExecuteCallback(boolean isBefore) {
+         for (Map.Entry<MtContextThreadLocal<?>, ?> entry : holder.get().entrySet()) {
+             MtContextThreadLocal<?> threadLocal = entry.getKey();

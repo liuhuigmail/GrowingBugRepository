@@ -1,0 +1,19 @@
+diff --git a/src/test/java/xades4j/verification/XadesVerifierImplTest.java b/src/test/java/xades4j/verification/XadesVerifierImplTest.java
+index 8fa6d2b..1bef7e6 100644
+--- a/src/test/java/xades4j/verification/XadesVerifierImplTest.java
++++ b/src/test/java/xades4j/verification/XadesVerifierImplTest.java
+@@ -64,14 +64,6 @@ public class XadesVerifierImplTest extends VerifierTestBase
+         assertEquals(XAdESForm.BES, f);
+     }
+ 
+-    @Test
+-    public void testVerifyBESWithoutKeyInfo() throws Exception
+-    {
+-        System.out.println("verifyBES");
+-        XAdESForm f = verifySignature("document.signed.bes.no-ki.xml");
+-        assertEquals(XAdESForm.BES, f);
+-    }
+-
+     /**
+      * Try to verify a test xades BES (no timestamp) in year 2041, expect we
+      * can't build the certificate path because certificates are expired.

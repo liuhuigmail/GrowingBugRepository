@@ -1,0 +1,5 @@
+xades4j.production.SignerSpecificTest
+xades4j.production.SignerTestBase
+xades4j.providers.impl.DirectPasswordProvider
+xades4j.providers.impl.FirstCertificateSelector
+xades4j.utils.SignatureServicesTestBase

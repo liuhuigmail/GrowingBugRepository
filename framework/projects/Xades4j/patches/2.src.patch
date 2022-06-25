@@ -1,0 +1,24 @@
+diff --git a/src/main/java/xades4j/production/KeyInfoBuilder.java b/src/main/java/xades4j/production/KeyInfoBuilder.java
+index 897b033..efd6769 100644
+--- a/src/main/java/xades4j/production/KeyInfoBuilder.java
++++ b/src/main/java/xades4j/production/KeyInfoBuilder.java
+@@ -83,7 +83,7 @@ class KeyInfoBuilder
+             {
+                 X509Data x509Data = new X509Data(xmlSig.getDocument());
+                 x509Data.addCertificate(signingCertificate);
+-                x509Data.addSubjectName(RfcUtils.toRfc4514(signingCertificate.getSubjectX500Principal()));
++                x509Data.addSubjectName(signingCertificate);
+                 x509Data.addIssuerSerial(RfcUtils.toRfc4514(signingCertificate.getIssuerX500Principal()), signingCertificate.getSerialNumber());
+                 xmlSig.getKeyInfo().add(x509Data);
+ 
+diff --git a/src/main/java/xades4j/utils/RfcUtils.java b/src/main/java/xades4j/utils/RfcUtils.java
+index fb546ef..ce267dd 100644
+--- a/src/main/java/xades4j/utils/RfcUtils.java
++++ b/src/main/java/xades4j/utils/RfcUtils.java
+@@ -13,4 +13,4 @@ public class RfcUtils {
+     public static String toRfc4514(X500Principal x500Principal) {
+         return RFC4519Style.INSTANCE.toString(X500Name.getInstance(x500Principal.getEncoded()));
+     }
+-}
+\ No newline at end of file
++}

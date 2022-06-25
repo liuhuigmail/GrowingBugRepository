@@ -110,6 +110,8 @@ sub _post_checkout {
         open(OUT, '>'."$work_dir/maven-build.xml") or die $!;
         while(<IN>) {
             $_ =~ s/compile-tests/compile\.tests/g;
+            $_ =~ s/source="1\.."/source="1\.8"/g;
+            $_ =~ s/target="1\.."/target="1\.8"/g;
             #$_ =~ s/classesdir/classes\.dir/g;
             #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
             #$_ =~ s/src\//$SUBPROJ\/src\//g;
@@ -183,6 +185,8 @@ sub initialize_revision {
     }
     elsif (-e "$work_dir/src/java" and -e "$work_dir/src/tests"){
         $result = {src=>"src/java", test=>"src/tests"} unless defined $result;
+    }elsif (-e "$work_dir/src" and -e "$work_dir/test"){
+        $result = {src=>"src", test=>"test"} unless defined $result;
     }
     else {
         if (-e "$work_dir"){

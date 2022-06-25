@@ -1,0 +1,3 @@
+xades4j.utils.SignatureServicesTestBase
+xades4j.verification.VerifierTestBase
+xades4j.verification.XadesVerifierImplTest

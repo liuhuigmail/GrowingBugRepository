@@ -1,0 +1,17 @@
+diff --git a/src/main/java/xades4j/verification/CounterSignatureVerifier.java b/src/main/java/xades4j/verification/CounterSignatureVerifier.java
+index 220b2bf..b3dc640 100644
+--- a/src/main/java/xades4j/verification/CounterSignatureVerifier.java
++++ b/src/main/java/xades4j/verification/CounterSignatureVerifier.java
+@@ -78,12 +78,8 @@ class CounterSignatureVerifier implements QualifyingPropertyVerifier<GenericDOMD
+                     // The signature references the SignatureValue element.
+                     return new CounterSignatureProperty(res);
+                 }
+-                else if (r.getContentsBeforeTransformation().getSubNode() == targetSigValueElem && CanonicalizerUtils.allTransformsAreC14N(r))
+-                {
+                     // The signature references the SignatureValue element with
+                     // C14N transforms only.
+-                    return new CounterSignatureProperty(res);
+-                }
+             }
+             throw new CounterSignatureSigValueRefException();
+         } catch (XMLSecurityException e)

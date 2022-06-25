@@ -1,2 +1,5 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,8dbbbeb00ff9dce7fde0e08842d907c40d200a67,369eb23fd0b9bf28361526ba4df2ffdbf811e2ff,36,https://github.com/alibaba/transmittable-thread-local/issues/36
+2,8845c164bbbe54bba9d85698e379f4b025d04e5a,acc0b3c0be6f2cdafdc7611b7b2ab977a10aeb2a,38,https://github.com/alibaba/transmittable-thread-local/issues/38
+3,28b7a8858bd057ce8cf51602fd13e1c24f36c9f5,e5d5b73a949b4f3af3cbee3cd05fed17fc2f8f4f,54,https://github.com/alibaba/transmittable-thread-local/issues/54
+4,acc0b3c0be6f2cdafdc7611b7b2ab977a10aeb2a,8845c164bbbe54bba9d85698e379f4b025d04e5a,unknown,unknown

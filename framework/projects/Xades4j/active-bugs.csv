@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,a6ba0f08195b3d2f79575a404af111189ecf38e7,02f0dde7d4ba81fc0224cdb2488c4e817855d165,135,https://github.com/luisgoncalves/xades4j/issues/135
+2,8707a45454fff25a136c6d39202210aa811fe656,195d2c273a880ce71d753e4785427f1e7e5e7ca1,152,https://github.com/luisgoncalves/xades4j/pull/152
+3,764cdc7c1742c2edd5bdf443f811d24801133765,e46aed92178e1775ad16ffb2677947f605c32c67,74,https://github.com/luisgoncalves/xades4j/issues/74
+4,7ba2a1879e75b5310019a320e7f0605d515bb382,9fcc76beaf33e75f447b248fc744fd6304d13357,199,https://github.com/luisgoncalves/xades4j/pull/199
