@@ -1,0 +1,70 @@
+diff --git a/src/test/java/com/jcabi/github/mock/MkPullTest.java b/src/test/java/com/jcabi/github/mock/MkPullTest.java
+index 5966fced..1c34c7d7 100644
+--- a/src/test/java/com/jcabi/github/mock/MkPullTest.java
++++ b/src/test/java/com/jcabi/github/mock/MkPullTest.java
+@@ -30,10 +30,6 @@
+ package com.jcabi.github.mock;
+ 
+ import com.jcabi.github.Coordinates;
+-import com.jcabi.github.Issue;
+-import com.jcabi.github.Pull;
+-import com.jcabi.github.Repo;
+-import javax.json.Json;
+ import org.hamcrest.MatcherAssert;
+ import org.hamcrest.Matchers;
+ import org.junit.Test;
+@@ -46,7 +42,6 @@ import org.mockito.Mockito;
+  * @version $Id$
+  * @todo #56 This class only tests the compareTo method so far. Test for the
+  *  other operations should also be implemented.
+- * @checkstyle MultipleStringLiterals (500 lines)
+  */
+ public final class MkPullTest {
+ 
+@@ -79,46 +74,4 @@ public final class MkPullTest {
+         );
+     }
+ 
+-    /**
+-     * MkPull can get comments number if no comments.
+-     *
+-     * @throws Exception when a problem occurs.
+-     */
+-    @Test
+-    public void canGetCommentsNumberIfZero() throws Exception {
+-        final Pull pull = MkPullTest.repo().pulls().create("", "", "");
+-        MatcherAssert.assertThat(
+-            pull.json().getInt("comments"),
+-            Matchers.is(0)
+-        );
+-    }
+-
+-    /**
+-     * MkPull can get comments number if some comments exist.
+-     *
+-     * @throws Exception when a problem occurs.
+-     */
+-    @Test
+-    public void canGetCommentsNumberIfNonZero() throws Exception {
+-        final Repo repo =  MkPullTest.repo();
+-        final Pull pull = repo.pulls().create("", "", "");
+-        final Issue issue = repo.issues().get(pull.number());
+-        issue.comments().post("how are you?");
+-        issue.comments().post("how are you2?");
+-        MatcherAssert.assertThat(
+-            pull.json().getInt("comments"),
+-            Matchers.is(2)
+-        );
+-    }
+-
+-    /**
+-     * Create an repo to work with.
+-     * @return Repo
+-     * @throws Exception If some problem inside
+-     */
+-    private static Repo repo() throws Exception {
+-        return new MkGithub().repos().create(
+-            Json.createObjectBuilder().add("name", "test").build()
+-        );
+-    }
+ }

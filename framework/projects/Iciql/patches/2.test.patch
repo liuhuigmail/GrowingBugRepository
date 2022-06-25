@@ -1,0 +1,33 @@
+diff --git a/src/test/java/com/iciql/test/ModelsTest.java b/src/test/java/com/iciql/test/ModelsTest.java
+index 4230f4e..a5474df 100644
+--- a/src/test/java/com/iciql/test/ModelsTest.java
++++ b/src/test/java/com/iciql/test/ModelsTest.java
+@@ -173,6 +173,6 @@ public class ModelsTest {
+ 				.orderByDesc(SupportedTypes.SAMPLE.id)
+ 				.selectDistinct(SupportedTypes.SAMPLE.id);
+ 		assertEquals(10, ids.size());
+-		assertEquals("[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]", ids.toString());
++		assertEquals("[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]", ids.toString());
+ 	}
+ }
+diff --git a/src/test/java/com/iciql/test/PrimitivesTest.java b/src/test/java/com/iciql/test/PrimitivesTest.java
+index 6250649..938fd32 100644
+--- a/src/test/java/com/iciql/test/PrimitivesTest.java
++++ b/src/test/java/com/iciql/test/PrimitivesTest.java
+@@ -106,13 +106,14 @@ public class PrimitivesTest {
+ 
+ 		// insert random models in reverse order
+ 		List<PrimitivesModel> models = PrimitivesModel.getList();
++		PrimitivesModel model = models.get(0);
+ 		Collections.reverse(models);
+ 		// insert them in reverse order
+ 		db.insertAll(models);
+ 
+ 		PrimitivesModel p = new PrimitivesModel();
+-		List<Long> list = db.from(p).orderByDesc(p.myLong).select(p.myLong);
++		List<Long> list = db.from(p)/*.orderByDesc(p.myLong)*/.select(p.myLong);
+ 		assertEquals(models.size(), list.size());
+-		assertEquals("[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]", list.toString());
++		assertEquals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]", list.toString());
+ 	}
+ }

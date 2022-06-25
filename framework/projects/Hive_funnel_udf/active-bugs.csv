@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,98ccfe420a83ea45057e656a4df928856ae08514,e80dcbf97fb384fa297722bd2f7467e979a0cf1a,4,https://github.com/yahoo/hive-funnel-udf/pull/4

@@ -1,0 +1,2 @@
+com.yahoo.hive.udf.funnel.Funnel
+com.yahoo.hive.udf.funnel.FunnelAggregateBuffer

@@ -1,0 +1,35 @@
+diff --git a/src/test/java/com/iciql/test/ModelsTest.java b/src/test/java/com/iciql/test/ModelsTest.java
+index ff27bf5..683e494 100644
+--- a/src/test/java/com/iciql/test/ModelsTest.java
++++ b/src/test/java/com/iciql/test/ModelsTest.java
+@@ -147,17 +147,4 @@ public class ModelsTest {
+ 			assertEquals(0, models.get(0).length());
+ 		}
+ 	}
+-
+-	@Test
+-	public void testDiscreteUpdateStringTrimming() {
+-		List<SupportedTypes> original = SupportedTypes.createList();
+-		db.insertAll(original);
+-		SupportedTypes s1 = db.from(SupportedTypes.SAMPLE).where(SupportedTypes.SAMPLE.id).is(1).selectFirst();
+-		db.from(SupportedTypes.SAMPLE)
+-				.set(SupportedTypes.SAMPLE.myString)
+-				.to(s1.myString + s1.myString + s1.myString + s1.myString)
+-				.update();
+-		SupportedTypes s2 = db.from(SupportedTypes.SAMPLE).where(SupportedTypes.SAMPLE.id).is(1).selectFirst();
+-		assertEquals(40, s2.myString.length());
+-	}
+ }
+diff --git a/src/test/java/com/iciql/test/models/SupportedTypes.java b/src/test/java/com/iciql/test/models/SupportedTypes.java
+index 3b0e694..0383d7f 100644
+--- a/src/test/java/com/iciql/test/models/SupportedTypes.java
++++ b/src/test/java/com/iciql/test/models/SupportedTypes.java
+@@ -89,7 +89,7 @@ public class SupportedTypes implements Serializable {
+ 	@IQColumn(length = 10, scale = 5)
+ 	private BigDecimal myBigDecimal;
+ 
+-	@IQColumn(length = 40, trim = true)
++	@IQColumn(length = 40)
+ 	public String myString;
+ 
+ 	@IQColumn

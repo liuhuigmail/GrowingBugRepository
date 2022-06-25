@@ -1,0 +1,33 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkPull.java b/src/main/java/com/jcabi/github/mock/MkPull.java
+index 28c42760..9b474269 100644
+--- a/src/main/java/com/jcabi/github/mock/MkPull.java
++++ b/src/main/java/com/jcabi/github/mock/MkPull.java
+@@ -130,18 +130,9 @@ final class MkPull implements Pull {
+ 
+     @Override
+     public JsonObject json() throws IOException {
+-        final JsonObject obj = new JsonNode(
++        return new JsonNode(
+             this.storage.xml().nodes(this.xpath()).get(0)
+         ).json();
+-        final JsonObjectBuilder json = Json.createObjectBuilder();
+-        for (final Map.Entry<String, JsonValue> val : obj.entrySet()) {
+-            json.add(val.getKey(), val.getValue());
+-        }
+-        return json
+-            .add(
+-                "comments",
+-                this.storage.xml().nodes(this.comment()).size()
+-        ).build();
+     }
+ 
+     /**
+@@ -150,7 +141,7 @@ final class MkPull implements Pull {
+      */
+     private String xpath() {
+         return String.format(
+-            "/github/repos/repo[@coords='%s']/pulls/pull[number='%d']",
++            "/github/repos/repo[@coords='%s']/issues/issue[number='%d']",
+             this.coords, this.num
+         );
+     }

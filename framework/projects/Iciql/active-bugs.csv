@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,c4c87e4ce044d84d5f2c4e7fa8709e5d699edf8f,13b08bb1e5a955650289c1c2d548883bfeac0de9,15,https://github.com/gitblit/iciql/issues/15
+2,27979f07905dbf95b478a48babc99643d71bfdec,2523ad5454716a9e08f0d3220a92760aa50773e2,21,https://github.com/gitblit/iciql/issues/21

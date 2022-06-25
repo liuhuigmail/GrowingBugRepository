@@ -1,0 +1,42 @@
+diff --git a/src/main/java/com/iciql/Query.java b/src/main/java/com/iciql/Query.java
+index 7a8a1ff..69a1573 100644
+--- a/src/main/java/com/iciql/Query.java
++++ b/src/main/java/com/iciql/Query.java
+@@ -736,37 +736,12 @@ public class Query<T> {
+ 		return this;
+ 	}
+ 
+-	public Query<T> orderByDesc(byte field) {
+-		return orderByDescPrimitive(field);
+-	}
+ 
+-	public Query<T> orderByDesc(short field) {
+-		return orderByDescPrimitive(field);
+-	}
+ 
+-	public Query<T> orderByDesc(int field) {
+-		return orderByDescPrimitive(field);
+-	}
+ 
+-	public Query<T> orderByDesc(long field) {
+-		return orderByDescPrimitive(field);
+-	}
+ 
+-	public Query<T> orderByDesc(float field) {
+-		return orderByDescPrimitive(field);
+-	}
+ 
+-	public Query<T> orderByDesc(double field) {
+-		return orderByDescPrimitive(field);
+-	}
+ 
+-	Query<T> orderByDescPrimitive(Object field) {
+-		Object alias = getPrimitiveAliasByValue(field);
+-		if (alias == null) {
+-			return orderByDesc(field);
+-		}
+-		return orderByDesc(alias);
+-	}
+ 
+ 	public Query<T> orderByDesc(Object expr) {
+ 		OrderExpression<T> e = new OrderExpression<T>(this, expr, true, false, false);

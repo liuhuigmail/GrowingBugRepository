@@ -1,0 +1,23 @@
+diff --git a/src/main/java/com/iciql/Query.java b/src/main/java/com/iciql/Query.java
+index 1dbbc4e..08ac33c 100644
+--- a/src/main/java/com/iciql/Query.java
++++ b/src/main/java/com/iciql/Query.java
+@@ -854,17 +854,8 @@ public class Query<T> {
+ 			stat.addParameter(y);
+ 		} else if (col != null) {
+ 			// object
+-			TableDefinition.FieldDefinition field = col.getFieldDefinition();
+-			Class<? extends DataTypeAdapter<?>> typeAdapter = field.typeAdapter;
+-			if (value != null && value instanceof String) {
+-				if (field.trim && field.length > 0) {
+ 					// clip strings (issue-15)
+-					String s = (String) value;
+-					if (s.length() > field.length) {
+-						value = s.substring(0, field.length);
+-					}
+-				}
+-			}
++			Class<? extends DataTypeAdapter<?>> typeAdapter = col.getFieldDefinition().typeAdapter;
+ 			Object parameter = db.getDialect().serialize(value, typeAdapter);
+ 			stat.addParameter(parameter);
+ 		} else {
