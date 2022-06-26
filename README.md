@@ -21,7 +21,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 
 # Contents of growingBugs
-To date, growingBugs contains **`1675`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1682`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -228,7 +228,7 @@ To date, growingBugs contains **`1675`** real-world bugs from open-source Java p
 | 201     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 202     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 203     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
-| 204     | Jcabi_github         | jcabi-github           |                  |      34       | 1-34                  |
+| 204     | Jcabi_github         | jcabi-github           |                  |      38       | 1-38                  |
 | 205     | Podam         | podam           |                  |      1       | 1                  |
 | 206     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
 | 207     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
@@ -236,7 +236,7 @@ To date, growingBugs contains **`1675`** real-world bugs from open-source Java p
 | 209     | Jchronic         | jchronic           |                  |      1       | 1                  |
 | 210     | Netconf_java         | netconf-java           |                  |      1       | 1                  |
 | 211     | Xades4j         | xades4j           |                  |      4       | 1-4                  |
-| 212     | Spatial4j         | spatial4j           |                  |      1       | 1                  |
+| 212     | Spatial4j         | spatial4j           |                  |      4       | 1-4                  |
 | 213     | Hive_funnel_udf         | hive-funnel-udf           |                  |      1       | 1                  |
 | 214     | Iciql         | iciql           |                  |      2       | 1-2                  |
 # Setting up GrowingBugs
