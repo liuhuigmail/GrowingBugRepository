@@ -1,0 +1,2 @@
+org.locationtech.spatial4j.shape.jts.JtsGeometry
+org.locationtech.spatial4j.shape.jts.JtsShapeFactory

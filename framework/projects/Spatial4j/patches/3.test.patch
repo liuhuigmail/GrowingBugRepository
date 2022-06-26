@@ -1,0 +1,97 @@
+diff --git a/src/test/java/org/locationtech/spatial4j/io/GeneralPolyshapeTest.java b/src/test/java/org/locationtech/spatial4j/io/GeneralPolyshapeTest.java
+index c8d652b6..cc74f53d 100644
+--- a/src/test/java/org/locationtech/spatial4j/io/GeneralPolyshapeTest.java
++++ b/src/test/java/org/locationtech/spatial4j/io/GeneralPolyshapeTest.java
+@@ -19,7 +19,6 @@ package org.locationtech.spatial4j.io;
+ 
+ import org.junit.Assert;
+ import org.junit.Before;
+-import org.junit.Ignore;
+ 
+ public class GeneralPolyshapeTest extends GeneralReadWriteShapeTest {
+ 
+@@ -62,9 +61,4 @@ public class GeneralPolyshapeTest extends GeneralReadWriteShapeTest {
+     return false; // the polyline values will be off by a small fraction -- everything is rounded to: Math.round(value * 1e5)
+   }
+ 
+-  @Override
+-  @Ignore
+-  public void testEmptyGeometryCollection() throws Exception {
+-    assumeTrue(false); // not supported
+-  }
+ }
+\ No newline at end of file
+diff --git a/src/test/java/org/locationtech/spatial4j/io/GeneralReadWriteShapeTest.java b/src/test/java/org/locationtech/spatial4j/io/GeneralReadWriteShapeTest.java
+index 78cdef52..434933f2 100644
+--- a/src/test/java/org/locationtech/spatial4j/io/GeneralReadWriteShapeTest.java
++++ b/src/test/java/org/locationtech/spatial4j/io/GeneralReadWriteShapeTest.java
+@@ -27,7 +27,6 @@ import org.junit.Test;
+ import org.locationtech.spatial4j.util.GeomBuilder;
+ 
+ import java.util.Arrays;
+-import java.util.Collections;
+ 
+ public abstract class GeneralReadWriteShapeTest extends BaseRoundTripTest<JtsSpatialContext> {
+ 
+@@ -71,17 +70,7 @@ public abstract class GeneralReadWriteShapeTest extends BaseRoundTripTest<JtsSpa
+       Assert.assertEquals(shape, out);
+     }
+   }
+-
+-  @Test
+-  public void testEmptyPoint() throws Exception {
+-    assertRoundTrip(ctx.getShapeFactory().pointXY(Double.NaN, Double.NaN));
+-  }
+-
+-  @Test
+-  public void testEmptyGeometryCollection() throws Exception {
+-    assertRoundTrip(ctx.getShapeFactory().multiShape(Collections.<Shape>emptyList()));
+-  }
+-
++  
+   @Test
+   public void testWriteThenReadPoint() throws Exception {
+     assertRoundTrip(point());
+diff --git a/src/test/java/org/locationtech/spatial4j/io/WKTWriterTest.java b/src/test/java/org/locationtech/spatial4j/io/WKTWriterTest.java
+deleted file mode 100644
+index a0c45d66..00000000
+--- a/src/test/java/org/locationtech/spatial4j/io/WKTWriterTest.java
++++ /dev/null
+@@ -1,37 +0,0 @@
+-package org.locationtech.spatial4j.io;
+-
+-import static org.junit.Assert.assertEquals;
+-import java.util.ArrayList;
+-import org.junit.Test;
+-import org.locationtech.spatial4j.context.SpatialContext;
+-import org.locationtech.spatial4j.shape.Point;
+-import org.locationtech.spatial4j.shape.ShapeCollection;
+-
+-public class WKTWriterTest {
+-
+-  private SpatialContext ctx;
+-
+-  protected WKTWriterTest(SpatialContext ctx) {
+-    this.ctx = ctx;
+-  }
+-
+-  public WKTWriterTest() {
+-    this(SpatialContext.GEO);
+-  }
+-
+-  @Test
+-  public void testToStringOnEmptyPoint() throws Exception {
+-    ShapeWriter writer = ctx.getFormats().getWktWriter();
+-    Point emptyPoint = ctx.makePoint(Double.NaN, Double.NaN);
+-
+-    assertEquals("POINT EMPTY", writer.toString(emptyPoint));
+-  }
+-
+-  @Test
+-  public void testToStringOnEmptyShapeCollection() throws Exception {
+-    ShapeWriter writer = ctx.getFormats().getWktWriter();
+-    ShapeCollection<Point> emptyCollection = ctx.makeCollection(new ArrayList<Point>());
+-
+-    assertEquals("GEOMETRYCOLLECTION EMPTY", writer.toString(emptyCollection));
+-  }
+-}

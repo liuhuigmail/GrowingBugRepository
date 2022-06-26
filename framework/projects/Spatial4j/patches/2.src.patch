@@ -1,0 +1,64 @@
+diff --git a/src/main/java/org/locationtech/spatial4j/shape/jts/JtsGeometry.java b/src/main/java/org/locationtech/spatial4j/shape/jts/JtsGeometry.java
+index 71b120d7..77df3d17 100755
+--- a/src/main/java/org/locationtech/spatial4j/shape/jts/JtsGeometry.java
++++ b/src/main/java/org/locationtech/spatial4j/shape/jts/JtsGeometry.java
+@@ -58,7 +58,7 @@ public class JtsGeometry extends BaseShape<JtsSpatialContext> {
+     } else if (ctx.isGeo()) {
+       //Unwraps the geometry across the dateline so it exceeds the standard geo bounds (-180 to +180).
+       if (dateline180Check)
+-        geom = unwrapDateline(geom);//returns same or new geom
++        unwrapDateline(geom);//potentially modifies geom
+       //If given multiple overlapping polygons, fix it by union
+       if (allowMultiOverlap)
+         geom = unionGeometryCollection(geom);//returns same or new geom
+@@ -423,33 +423,18 @@ public class JtsGeometry extends BaseShape<JtsSpatialContext> {
+    *
+    * @return The same geometry or a new one if it was unwrapped
+    */
+-  private static Geometry unwrapDateline(Geometry geom) {
++  private static int unwrapDateline(Geometry geom) {
+     if (geom.getEnvelopeInternal().getWidth() < 180)
+-      return geom;//can't possibly cross the dateline
++      return 0;//can't possibly cross the dateline
+ 
+     // if a multi-geom:
+-    if (geom instanceof GeometryCollection) {
+-      if (geom instanceof MultiPoint) {
+-        return geom; // always safe since no point crosses the dateline (on it is okay)
+-      }
+-      GeometryCollection gc = (GeometryCollection) geom;
+-      List<Geometry> list = new ArrayList<>(gc.getNumGeometries());
+-      boolean didUnwrap = false;
+-      for (int n = 0; n < gc.getNumGeometries(); n++) {
+-        Geometry geometryN = gc.getGeometryN(n);
+-        Geometry geometryUnwrapped = unwrapDateline(geometryN);
+-        list.add(geometryUnwrapped);
+-        didUnwrap |= (geometryUnwrapped != geometryN);
+-      }
+-      return !didUnwrap ? geom : geom.getFactory().buildGeometry(list);
+-    }
+ 
+     // a geom (not multi).
+ 
+     Geometry newGeom = geom.copy();
+ 
+     final int[] crossings = {0};//an array so that an inner class can modify it.
+-    newGeom.apply(new GeometryFilter() {
++    geom.apply(new GeometryFilter() {
+       @Override
+       public void filter(Geometry geom) {
+         int cross;
+@@ -471,11 +456,9 @@ public class JtsGeometry extends BaseShape<JtsSpatialContext> {
+     });//geom.apply()
+ 
+     if (crossings[0] > 0) {
+-      newGeom.geometryChanged();
+-      return newGeom;
+-    } else {
+-      return geom; // original
++      geom.geometryChanged();//applies to call component Geometries
+     }
++    return crossings[0];
+   }
+ 
+   /** See {@link #unwrapDateline(Geometry)}. */

@@ -1,0 +1,10 @@
+org.locationtech.spatial4j.io.BaseRoundTripTest
+org.locationtech.spatial4j.io.GeneralGeoJSONTest
+org.locationtech.spatial4j.io.GeneralReadWriteShapeTest
+org.locationtech.spatial4j.io.GeneralWktTest
+org.locationtech.spatial4j.io.jackson.JacksonGeoJSONReaderTest
+org.locationtech.spatial4j.io.jackson.JacksonGeoJSONWriterTest
+org.locationtech.spatial4j.io.jackson.JacksonShapeReader
+org.locationtech.spatial4j.io.jackson.JacksonShapeWriter
+org.locationtech.spatial4j.io.WKTWriterTest
+org.locationtech.spatial4j.util.GeomBuilder

@@ -1,0 +1,31 @@
+diff --git a/src/test/java/com/jcabi/github/mock/MkForksTest.java b/src/test/java/com/jcabi/github/mock/MkForksTest.java
+index 92175b71..a1361c06 100644
+--- a/src/test/java/com/jcabi/github/mock/MkForksTest.java
++++ b/src/test/java/com/jcabi/github/mock/MkForksTest.java
+@@ -30,7 +30,6 @@
+ package com.jcabi.github.mock;
+ 
+ import com.jcabi.github.Coordinates;
+-import com.jcabi.github.Fork;
+ import com.jcabi.github.Repo;
+ import com.jcabi.github.RtForks;
+ import javax.json.Json;
+@@ -90,18 +89,4 @@ public final class MkForksTest {
+             Json.createObjectBuilder().add("name", "test").build()
+         );
+     }
+-
+-    /**
+-     * MkForks can list forks.
+-     * @throws Exception If some problem inside
+-     */
+-    @Test
+-    public void iteratesForks() throws Exception {
+-        final Repo repo = this.repo();
+-        repo.forks().create("Organization");
+-        MatcherAssert.assertThat(
+-            repo.forks().iterate("Order"),
+-            Matchers.<Fork>iterableWithSize(1)
+-        );
+-    }
+ }

@@ -1,0 +1,121 @@
+diff --git a/src/main/java/org/locationtech/spatial4j/io/GeoJSONReader.java b/src/main/java/org/locationtech/spatial4j/io/GeoJSONReader.java
+index 21cc78d3..fab6012d 100644
+--- a/src/main/java/org/locationtech/spatial4j/io/GeoJSONReader.java
++++ b/src/main/java/org/locationtech/spatial4j/io/GeoJSONReader.java
+@@ -262,6 +262,10 @@ public class GeoJSONReader implements ShapeReader {
+               }
+               sub = parser.nextEvent();
+             }
++            if (shapes.isEmpty()) {
++              throw new ParseException("Shape Collection with no geometries!",
++                  (int) parser.getPosition());
++            }
+             return ctx.makeCollection(shapes);
+           }
+           else {
+diff --git a/src/main/java/org/locationtech/spatial4j/io/GeoJSONWriter.java b/src/main/java/org/locationtech/spatial4j/io/GeoJSONWriter.java
+index 223ee9d7..c00aec70 100644
+--- a/src/main/java/org/locationtech/spatial4j/io/GeoJSONWriter.java
++++ b/src/main/java/org/locationtech/spatial4j/io/GeoJSONWriter.java
+@@ -39,9 +39,6 @@ public class GeoJSONWriter implements ShapeWriter {
+   protected void write(Writer output, NumberFormat nf, double... coords) throws IOException {
+     output.write('[');
+     for (int i = 0; i < coords.length; i++) {
+-      if (Double.isNaN(coords[i])) {
+-        break; // empty point or no more coordinates
+-      }
+       if (i > 0) {
+         output.append(',');
+       }
+diff --git a/src/main/java/org/locationtech/spatial4j/io/WKTWriter.java b/src/main/java/org/locationtech/spatial4j/io/WKTWriter.java
+index fc32e598..b3d4e83f 100644
+--- a/src/main/java/org/locationtech/spatial4j/io/WKTWriter.java
++++ b/src/main/java/org/locationtech/spatial4j/io/WKTWriter.java
+@@ -8,6 +8,14 @@
+ 
+ package org.locationtech.spatial4j.io;
+ 
++import org.locationtech.spatial4j.shape.Circle;
++import org.locationtech.spatial4j.shape.Point;
++import org.locationtech.spatial4j.shape.Rectangle;
++import org.locationtech.spatial4j.shape.Shape;
++import org.locationtech.spatial4j.shape.ShapeCollection;
++import org.locationtech.spatial4j.shape.impl.BufferedLine;
++import org.locationtech.spatial4j.shape.impl.BufferedLineString;
++
+ import java.io.IOException;
+ import java.io.Writer;
+ import java.math.RoundingMode;
+@@ -37,13 +45,9 @@ public class WKTWriter implements ShapeWriter {
+   public String toString(Shape shape) {
+     NumberFormat nf = getNumberFormat();
+     if (shape instanceof Point) {
+-      Point point = (Point)shape;
+-      if (point.isEmpty()) {
+-        return "POINT EMPTY";
+-      }
+ 
+       StringBuilder buffer = new StringBuilder();
+-      return append(buffer.append("POINT ("), point, nf).append(")").toString();
++      return append(buffer.append("POINT ("),(Point)shape,nf).append(")").toString();
+     }
+     if (shape instanceof Rectangle) {
+       NumberFormat nfMIN = nf;
+@@ -103,17 +107,12 @@ public class WKTWriter implements ShapeWriter {
+       return str.toString();
+     }
+     if(shape instanceof ShapeCollection) {
+-      @SuppressWarnings("unchecked")
+-      ShapeCollection<? extends Shape> collection = (ShapeCollection<? extends Shape>) shape;
+ 
+-      if (collection.isEmpty()) {
+-        return "GEOMETRYCOLLECTION EMPTY";
+-      }
+ 
+       StringBuilder buffer = new StringBuilder();
+       buffer.append("GEOMETRYCOLLECTION (");
+       boolean first = true;
+-      for (Shape sub : collection.getShapes()) {
++      for(Shape sub : ((ShapeCollection<? extends Shape>)shape).getShapes()) {
+         if(!first) {
+           buffer.append(",");
+         }
+@@ -130,4 +129,4 @@ public class WKTWriter implements ShapeWriter {
+   public void write(Writer output, Shape shape) throws IOException {
+     output.append( toString(shape) );
+   }
+-}
+\ No newline at end of file
++}
+diff --git a/src/main/java/org/locationtech/spatial4j/io/jackson/ShapeAsGeoJSONSerializer.java b/src/main/java/org/locationtech/spatial4j/io/jackson/ShapeAsGeoJSONSerializer.java
+index 5bef269e..56863995 100644
+--- a/src/main/java/org/locationtech/spatial4j/io/jackson/ShapeAsGeoJSONSerializer.java
++++ b/src/main/java/org/locationtech/spatial4j/io/jackson/ShapeAsGeoJSONSerializer.java
+@@ -37,11 +37,8 @@ public class ShapeAsGeoJSONSerializer extends JsonSerializer<Shape>
+ 
+   protected void write(JsonGenerator gen, double... coords) throws IOException {
+     gen.writeStartArray();
+-    for (double coord : coords) {
+-      if (Double.isNaN(coord)) {
+-        break; // empty
+-      }
+-      gen.writeNumber(coord);
++    for (int i = 0; i < coords.length; i++) {
++      gen.writeNumber(coords[i]);
+     }
+     gen.writeEndArray();
+   }
+diff --git a/src/main/java/org/locationtech/spatial4j/io/jackson/ShapeDeserializer.java b/src/main/java/org/locationtech/spatial4j/io/jackson/ShapeDeserializer.java
+index 7092d573..42790af7 100644
+--- a/src/main/java/org/locationtech/spatial4j/io/jackson/ShapeDeserializer.java
++++ b/src/main/java/org/locationtech/spatial4j/io/jackson/ShapeDeserializer.java
+@@ -38,9 +38,6 @@ public class ShapeDeserializer extends JsonDeserializer<Shape>
+   }
+   
+   public Point readPoint(ArrayNode arr, ShapeFactory factory) {
+-    if(arr.size()==0) {
+-      return factory.pointXY(Double.NaN, Double.NaN);
+-    }
+     double x = arr.get(0).asDouble();
+     double y = arr.get(1).asDouble();
+     if(arr.size()==3) {

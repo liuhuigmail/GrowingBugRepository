@@ -1,0 +1,47 @@
+diff --git a/src/main/java/org/locationtech/spatial4j/shape/jts/JtsGeometry.java b/src/main/java/org/locationtech/spatial4j/shape/jts/JtsGeometry.java
+index 4c1e6019..fa50c438 100755
+--- a/src/main/java/org/locationtech/spatial4j/shape/jts/JtsGeometry.java
++++ b/src/main/java/org/locationtech/spatial4j/shape/jts/JtsGeometry.java
+@@ -575,8 +575,7 @@ public class JtsGeometry extends BaseShape<JtsSpatialContext> {
+ 
+     List<Geometry> geomList = new ArrayList<Geometry>();
+     //page 0 is the standard -180 to 180 range
+-    int startPage = (int) Math.floor((geomEnv.getMinX() + 180) / 360);
+-    for (int page = startPage; true; page++) {
++    for (int page = 0; true; page++) {
+       double minX = -180 + page * 360;
+       if (geomEnv.getMaxX() <= minX)
+         break;
+@@ -585,10 +584,7 @@ public class JtsGeometry extends BaseShape<JtsSpatialContext> {
+       Geometry pageGeom = rect.intersection(geom);//JTS is doing some hard work
+       assert pageGeom.isValid() : "pageGeom";
+ 
+-      if (page != 0) {
+-        pageGeom = pageGeom.copy(); // because shiftGeomByX modifies the underlying coordinates shared by geom.
+         shiftGeomByX(pageGeom, page * -360);
+-      }
+       geomList.add(pageGeom);
+     }
+     return UnaryUnionOp.union(geomList);
+diff --git a/src/main/java/org/locationtech/spatial4j/shape/jts/JtsShapeFactory.java b/src/main/java/org/locationtech/spatial4j/shape/jts/JtsShapeFactory.java
+index 25ac80eb..c4cd1755 100755
+--- a/src/main/java/org/locationtech/spatial4j/shape/jts/JtsShapeFactory.java
++++ b/src/main/java/org/locationtech/spatial4j/shape/jts/JtsShapeFactory.java
+@@ -157,15 +157,15 @@ public class JtsShapeFactory extends ShapeFactoryImpl {
+       //  http://docs.codehaus.org/display/GEOTDOC/01+How+to+Create+a+Geometry#01HowtoCreateaGeometry-CreatingaCircle
+       //TODO This should ideally have a geodetic version
+       Circle circle = (Circle)shape;
++      if (circle.getBoundingBox().getCrossesDateLine())
++        throw new IllegalArgumentException("Doesn't support dateline cross yet: "+circle);//TODO
+       GeometricShapeFactory gsf = new GeometricShapeFactory(geometryFactory);
+       gsf.setWidth(circle.getBoundingBox().getWidth());
+       gsf.setHeight(circle.getBoundingBox().getHeight());
+       gsf.setNumPoints(4*25);//multiple of 4 is best
+       gsf.setCentre(new Coordinate(circle.getCenter().getX(), circle.getCenter().getY()));
+       Geometry geom = gsf.createCircle();
+-      if (circle.getBoundingBox().getCrossesDateLine())
+         // wrap the geometry in a JtsGeometry to handle date line wrapping
+-        geom = new JtsGeometry(geom, (JtsSpatialContext) getSpatialContext(),false, false).getGeom();
+       return geom;
+     }
+     //TODO add BufferedLineString

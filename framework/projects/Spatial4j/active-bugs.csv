@@ -1,2 +1,5 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,6a4382895a5cf181fb49738791859a3ae166d0bc,63b318368ce7eca0e090af64cd49d134c8619c29,175,https://github.com/locationtech/spatial4j/issues/175
+2,84d8294e15eda14ea9826c5ee56a574c15b0b19a,7cea4115fd105c7d31aacbfad31d4f88106960b3,150,https://github.com/locationtech/spatial4j/issues/150
+3,5d8bac2836a90f8daf246d621f26b92c89d36546,6a4382895a5cf181fb49738791859a3ae166d0bc,183,https://github.com/locationtech/spatial4j/pull/183
+4,2435128d4ea0e576c6bc3b62ad637095b22a8449,ee3972390dd1990fb661f2f2946fc2a08c5cb630,194,https://github.com/locationtech/spatial4j/pull/194

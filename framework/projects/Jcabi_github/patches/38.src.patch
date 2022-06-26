@@ -1,0 +1,81 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkFork.java b/src/main/java/com/jcabi/github/mock/MkFork.java
+index f6ed6f60..f8a2b66b 100644
+--- a/src/main/java/com/jcabi/github/mock/MkFork.java
++++ b/src/main/java/com/jcabi/github/mock/MkFork.java
+@@ -43,7 +43,7 @@ import javax.json.JsonObject;
+ public class MkFork implements Fork {
+     @Override
+     public final JsonObject json() throws IOException {
+-        throw new UnsupportedOperationException("MkFork#json()");
++        return null;
+     }
+ 
+ }
+diff --git a/src/main/java/com/jcabi/github/mock/MkForks.java b/src/main/java/com/jcabi/github/mock/MkForks.java
+index 02839752..6c3f625b 100644
+--- a/src/main/java/com/jcabi/github/mock/MkForks.java
++++ b/src/main/java/com/jcabi/github/mock/MkForks.java
+@@ -77,14 +77,6 @@ final class MkForks implements Forks {
+         this.storage = stg;
+         this.self = login;
+         this.coords = rep;
+-        this.storage.apply(
+-            new Directives().xpath(
+-                String.format(
+-                    "/github/repos/repo[@coords='%s']",
+-                    this.coords
+-                )
+-            ).addIf("forks")
+-        );
+     }
+     @Override
+     public Repo repo() {
+@@ -95,7 +87,7 @@ final class MkForks implements Forks {
+      * @param forkid Fork id
+      * @return Mocked Fork
+      */
+-    public Fork get(final int forkid) {
++    public Fork get(final String org) {
+         return new MkFork();
+     }
+     @Override
+@@ -106,34 +98,23 @@ final class MkForks implements Forks {
+             new MkIterable.Mapping<Fork>() {
+                 @Override
+                 public Fork map(final XML xml) {
+-                    return MkForks.this.get(
+-                        Integer.parseInt(xml.xpath("id/text()").get(0))
+-                    );
++                    return MkForks.this.get("Test");
+                 }
+             }
+         );
+     }
+     @Override
+     public Fork create(final String org) throws IOException {
+-        this.storage.lock();
+-        final int number;
+-        try {
+-            number = 1 + this.storage.xml().xpath(
+-                String.format("%s/fork/id", this.xpath())
+-            ).size();
+             this.storage.apply(
+                 new Directives().xpath(this.xpath()).add("fork")
+-                    .add("id").set(Integer.toString(number)).up()
+                     .attr("organization", org)
+             );
+-        } finally {
+-            this.storage.unlock();
+-        }
++        final Fork fork = this.get(org);
+         Logger.info(
+-            this, "fork %s created inside %s by %s",
+-            this.coords, org, this.self
++            this, "fork %s created by %s",
++            this.coords, this.self
+         );
+-        return this.get(number);
++        return fork;
+     }
+ 
+     /**
