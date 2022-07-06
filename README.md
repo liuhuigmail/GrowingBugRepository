@@ -21,7 +21,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 
 # Contents of growingBugs
-To date, growingBugs contains **`1682`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1689`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -228,7 +228,7 @@ To date, growingBugs contains **`1682`** real-world bugs from open-source Java p
 | 201     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 202     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 203     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
-| 204     | Jcabi_github         | jcabi-github           |                  |      38       | 1-38                  |
+| 204     | Jcabi_github         | jcabi-github           |                  |      42       | 1-42                  |
 | 205     | Podam         | podam           |                  |      1       | 1                  |
 | 206     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
 | 207     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
@@ -239,6 +239,8 @@ To date, growingBugs contains **`1682`** real-world bugs from open-source Java p
 | 212     | Spatial4j         | spatial4j           |                  |      4       | 1-4                  |
 | 213     | Hive_funnel_udf         | hive-funnel-udf           |                  |      1       | 1                  |
 | 214     | Iciql         | iciql           |                  |      2       | 1-2                  |
+| 215     | Metrics_opentsdb         | metrics-opentsdb           |                  |      2       | 1-2                  |
+| 216     | Hierarchical_clustering_java         | hierarchical-clustering-java           |                  |      1       | 1                  |
 # Setting up GrowingBugs
 
 ## Requirements
