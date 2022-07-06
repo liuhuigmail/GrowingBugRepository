@@ -1087,7 +1087,6 @@ sub _can_reuse_work_dir {
 sub _get_classes {
     my ($self, $path) = @_;
     my @list = `cd $path && find . -name "*.java"`;
-
     my $classes = {};
     foreach (@list) {
         chomp; s/\.\/(.+)\.java/$1/; s/\//\./g;
