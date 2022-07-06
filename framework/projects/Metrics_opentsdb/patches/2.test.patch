@@ -1,0 +1,13 @@
+diff --git a/src/test/java/com/github/sps/metrics/OpenTsdbReporterTest.java b/src/test/java/com/github/sps/metrics/OpenTsdbReporterTest.java
+index f3bbc6c..387da98 100644
+--- a/src/test/java/com/github/sps/metrics/OpenTsdbReporterTest.java
++++ b/src/test/java/com/github/sps/metrics/OpenTsdbReporterTest.java
+@@ -84,7 +84,7 @@ public class OpenTsdbReporterTest {
+         final Set<OpenTsdbMetric> metrics = captor.getValue();
+         assertEquals(1, metrics.size());
+         OpenTsdbMetric metric = metrics.iterator().next();
+-        assertEquals("prefix.gauge.value", metric.getMetric());
++        assertEquals("prefix.gauge", metric.getMetric());
+         assertEquals(1L, metric.getValue());
+         assertEquals((Long) timestamp, metric.getTimestamp());
+     }

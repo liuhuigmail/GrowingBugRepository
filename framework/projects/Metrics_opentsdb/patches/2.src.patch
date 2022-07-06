@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/github/sps/metrics/OpenTsdbReporter.java b/src/main/java/com/github/sps/metrics/OpenTsdbReporter.java
+index 273b7d5..a1ec11a 100644
+--- a/src/main/java/com/github/sps/metrics/OpenTsdbReporter.java
++++ b/src/main/java/com/github/sps/metrics/OpenTsdbReporter.java
+@@ -302,7 +302,7 @@ public class OpenTsdbReporter extends ScheduledReporter {
+ 
+ 
+     private OpenTsdbMetric buildGauge(String name, Gauge gauge, long timestamp) {
+-        return OpenTsdbMetric.named(prefix(name, "value"))
++        return OpenTsdbMetric.named(prefix(name))
+                 .withValue(gauge.getValue())
+                 .withTimestamp(timestamp)
+                 .withTags(tags)
