@@ -1,0 +1,36 @@
+diff --git a/src/test/java/com/amihaiemil/docker/UnexpectedResponseExceptionTestCase.java b/src/test/java/com/amihaiemil/docker/UnexpectedResponseExceptionTestCase.java
+index fc0e8c1..8fcfad2 100644
+--- a/src/test/java/com/amihaiemil/docker/UnexpectedResponseExceptionTestCase.java
++++ b/src/test/java/com/amihaiemil/docker/UnexpectedResponseExceptionTestCase.java
+@@ -92,29 +92,12 @@ public final class UnexpectedResponseExceptionTestCase {
+                 "/uri", HttpStatus.SC_NOT_FOUND,
+                 HttpStatus.SC_OK, Json.createObjectBuilder().build()
+             ).getMessage(),
+-            Matchers.startsWith(
+-                // @checkstyle LineLength (1 line)
+-                "Expected status 200 but got 404 when calling /uri. Response body was"
++            Matchers.equalTo(
++                "Expected status 200 but got 404 when calling /uri"
+             )
+         );
+     }
+ 
+-    /**
+-     * UnexpectedResponseException appends the payload to the message.
+-     */
+-    @Test
+-    public void returnsMessageWithPayload() {
+-        final JsonObject payload = Json.createObjectBuilder()
+-            .add("message", "Some error")
+-            .build();
+-        MatcherAssert.assertThat(
+-            new UnexpectedResponseException(
+-                "/uri", HttpStatus.SC_OK, HttpStatus.SC_OK, payload
+-            ).getMessage(),
+-            Matchers.endsWith(payload.toString())
+-        );
+-    }
+-
+     /**
+      * UnexpectedResponseException returns the payload.
+      */

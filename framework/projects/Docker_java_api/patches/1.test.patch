@@ -1,0 +1,574 @@
+diff --git a/src/test/java/com/amihaiemil/docker/RtContainersTestCase.java b/src/test/java/com/amihaiemil/docker/RtContainersTestCase.java
+index 9029867..6cd4eea 100644
+--- a/src/test/java/com/amihaiemil/docker/RtContainersTestCase.java
++++ b/src/test/java/com/amihaiemil/docker/RtContainersTestCase.java
+@@ -25,175 +25,14 @@
+  */
+ package com.amihaiemil.docker;
+ 
+-import com.amihaiemil.docker.mock.AssertRequest;
+-import com.amihaiemil.docker.mock.Condition;
+-import com.amihaiemil.docker.mock.PayloadOf;
+-import com.amihaiemil.docker.mock.Response;
+-import java.io.IOException;
+-import java.net.URI;
+-import org.apache.http.HttpStatus;
+-import org.hamcrest.MatcherAssert;
+-import org.hamcrest.Matchers;
+-import org.junit.Ignore;
+-import org.junit.Test;
+-
+ /**
+  * Unit tests for RtContainers.
+  * @author Mihai Andronache (amihaiemil@gmail.com)
+- * @see <a href="https://docs.docker.com/engine/api/v1.30/#operation/ContainerCreate">Docker ContainerCreate API</a>
+  * @version $Id$
+  * @since 0.0.1
+- * @checkstyle MethodName (500 lines)
+- * @todo #47:30min Implement tests on the rest of the methods of RtContainers.
+- *  Currently only testing the create(String name) method.
+- * @todo #47:30min Impediment: once #45 is done, unignore the following tests
+- *  and refactor accordingly if needed: ioErrorIfResponseIs400,
+- *  ioErrorIfResponseIs404, ioErrorIfResponseIs406, ioErrorIfResponseIs409,
+- *  ioErrorIfResponseIs500.
++ * @todo #26:30min Write unit tests for all the methods of RtContainers.
++ *  AssertRequest should be passed in the ctor, with the right expected
++ *  response and predicates.
+  */
+ public final class RtContainersTestCase {
+-    /**
+-     * The request should be welformed.
+-     * 
+-     * @throws Exception unexpected
+-     */
+-    @Test
+-    public void welformedRequestForCreateContainerFromImage() throws Exception {
+-        new RtContainers(
+-            new AssertRequest(
+-                new Response(
+-                    HttpStatus.SC_CREATED, "{ \"Id\": \"df2419f4\" }"
+-                ),
+-                new Condition(
+-                    "The 'Content-Type' header must be set.",
+-                    req -> req.getHeaders("Content-Type").length > 0
+-                ),
+-                new Condition(
+-                    "Content-Type must be 'application/json'.",
+-                    // @checkstyle LineLength (1 line)
+-                    req -> "application/json".equals(req.getHeaders("Content-Type")[0].getValue())
+-                ),
+-                new Condition(
+-                    "Resource path must be /containers/create",
+-                    // @checkstyle LineLength (1 line)
+-                    req -> req.getRequestLine().getUri().endsWith("/containers/create")
+-                ),
+-                new Condition(
+-                    "The 'Image' attribute must be set in the payload.",
+-                    // @checkstyle LineLength (1 line)
+-                    req -> "some_image".equals(new PayloadOf(req).getString("Image"))
+-                )
+-            ), URI.create("http://localhost/test")
+-        ).create("some_image");
+-    }
+-
+-    /**
+-     * Returns a container if the service call is successful.
+-     * 
+-     * @throws Exception unexpected
+-     */
+-    @Test
+-    public void returnsContainerIfCallIsSuccessful() throws Exception {
+-        MatcherAssert.assertThat(
+-            new RtContainers(
+-                new AssertRequest(
+-                    new Response(
+-                        HttpStatus.SC_CREATED,
+-                        "{ \"Id\": \"df2419f4\" }"
+-                    )
+-                ), URI.create("http://localhost/test")
+-            ).create("some_image"),
+-            Matchers.notNullValue()
+-        );
+-    }
+-
+-    /**
+-     * Must fail if docker responds with error code 400.
+-     * 
+-     * @throws IOException due to code 400
+-     */
+-    @Ignore
+-    @Test(expected = IOException.class)
+-    public void ioErrorIfResponseIs400() throws IOException {
+-        new RtContainers(
+-            new AssertRequest(
+-                new Response(
+-                    HttpStatus.SC_BAD_REQUEST,
+-                    ""
+-                )
+-            ), URI.create("http://localhost/test")
+-        ).create("some_image");
+-    }
+-
+-    /**
+-     * Must fail if docker responds with error code 404.
+-     * 
+-     * @throws IOException due to code 404
+-     */
+-    @Ignore
+-    @Test(expected = IOException.class)
+-    public void ioErrorIfResponseIs404() throws IOException {
+-        new RtContainers(
+-            new AssertRequest(
+-                new Response(
+-                    HttpStatus.SC_NOT_FOUND,
+-                    ""
+-                )
+-            ), URI.create("http://localhost/test")
+-        ).create("some_image");
+-    }
+-
+-    /**
+-     * Must fail if docker responds with error code 406.
+-     * 
+-     * @throws IOException due to code 406
+-     */
+-    @Ignore
+-    @Test(expected = IOException.class)
+-    public void ioErrorIfResponseIs406() throws IOException {
+-        new RtContainers(
+-            new AssertRequest(
+-                new Response(
+-                    HttpStatus.SC_NOT_ACCEPTABLE,
+-                    ""
+-                )
+-            ), URI.create("http://localhost/test")
+-        ).create("some_image");
+-    }
+-
+-    /**
+-     * Must fail if docker responds with error code 409.
+-     * 
+-     * @throws IOException due to code 409
+-     */
+-    @Ignore
+-    @Test(expected = IOException.class)
+-    public void ioErrorIfResponseIs409() throws IOException {
+-        new RtContainers(
+-            new AssertRequest(
+-                new Response(
+-                    HttpStatus.SC_CONFLICT,
+-                    ""
+-                )
+-            ), URI.create("http://localhost/test")
+-        ).create("some_image");
+-    }
+-
+-    /**
+-     * Must fail if docker responds with error code 500.
+-     * 
+-     * @throws IOException due to code 500
+-     */
+-    @Ignore
+-    @Test(expected = IOException.class)
+-    public void ioErrorIfResponseIs500() throws IOException {
+-        new RtContainers(
+-            new AssertRequest(
+-                new Response(
+-                    HttpStatus.SC_INTERNAL_SERVER_ERROR,
+-                    ""
+-                )
+-            ), URI.create("http://localhost/test")
+-        ).create("some_image");
+-    }
+ }
+diff --git a/src/test/java/com/amihaiemil/docker/mock/PayloadOf.java b/src/test/java/com/amihaiemil/docker/mock/PayloadOf.java
+deleted file mode 100644
+index 5a2b254..0000000
+--- a/src/test/java/com/amihaiemil/docker/mock/PayloadOf.java
++++ /dev/null
+@@ -1,169 +0,0 @@
+-package com.amihaiemil.docker.mock;
+-
+-import java.io.IOException;
+-import java.util.Collection;
+-import java.util.Map;
+-import java.util.Set;
+-import javax.json.Json;
+-import javax.json.JsonArray;
+-import javax.json.JsonNumber;
+-import javax.json.JsonObject;
+-import javax.json.JsonString;
+-import javax.json.JsonValue;
+-import org.apache.http.HttpEntityEnclosingRequest;
+-import org.apache.http.HttpRequest;
+-
+-/**
+- * Encapsulates the JSON payload of an HttpRequest as a JSON object.
+- *
+- * @author George Aristy (george.aristy@gmail.com)
+- * @version $Id$
+- * @since 0.0.1
+- */
+-public final class PayloadOf implements JsonObject {
+-    /**
+-     * The request's payload.
+-     */
+-    private final JsonObject json;
+-
+-    /**
+-     * Ctor.
+-     * 
+-     * @param request The http request
+-     * @throws IllegalStateException if the request's payload cannot be read
+-     */
+-    public PayloadOf(final HttpRequest request) {
+-        try {
+-            if (request instanceof HttpEntityEnclosingRequest) {
+-                this.json = Json.createReader(
+-                    ((HttpEntityEnclosingRequest) request).getEntity()
+-                        .getContent()
+-                ).readObject();
+-            } else {
+-                this.json = Json.createObjectBuilder().build();
+-            }
+-        } catch (final IOException ex) {
+-            throw new IllegalStateException("Cannot read request payload", ex);
+-        }
+-    }
+-
+-    @Override
+-    public JsonArray getJsonArray(final String name) {
+-        return this.json.getJsonArray(name);
+-    }
+-
+-    @Override
+-    public JsonObject getJsonObject(final String name) {
+-        return this.json.getJsonObject(name);
+-    }
+-
+-    @Override
+-    public JsonNumber getJsonNumber(final String name) {
+-        return this.json.getJsonNumber(name);
+-    }
+-
+-    @Override
+-    public JsonString getJsonString(final String name) {
+-        return this.json.getJsonString(name);
+-    }
+-
+-    @Override
+-    public String getString(final String name) {
+-        return this.json.getString(name);
+-    }
+-
+-    @Override
+-    public String getString(final String name, final String defaultValue) {
+-        return this.json.getString(name, defaultValue);
+-    }
+-
+-    @Override
+-    public int getInt(final String name) {
+-        return this.json.getInt(name);
+-    }
+-
+-    @Override
+-    public int getInt(final String name, final int defaultValue) {
+-        return this.json.getInt(name, defaultValue);
+-    }
+-
+-    @Override
+-    public boolean getBoolean(final String name) {
+-        return this.json.getBoolean(name);
+-    }
+-
+-    @Override
+-    public boolean getBoolean(final String name, final boolean defaultValue) {
+-        return this.json.getBoolean(name, defaultValue);
+-    }
+-
+-    @Override
+-    public boolean isNull(final String name) {
+-        return this.json.isNull(name);
+-    }
+-
+-    @Override
+-    public ValueType getValueType() {
+-        return this.json.getValueType();
+-    }
+-
+-    @Override
+-    public int size() {
+-        return this.json.size();
+-    }
+-
+-    @Override
+-    public boolean isEmpty() {
+-        return this.json.isEmpty();
+-    }
+-
+-    @Override
+-    public boolean containsKey(final Object key) {
+-        return this.json.containsKey(key);
+-    }
+-
+-    @Override
+-    public boolean containsValue(final Object value) {
+-        return this.json.containsValue(value);
+-    }
+-
+-    @Override
+-    public JsonValue get(final Object key) {
+-        return this.json.get(key);
+-    }
+-
+-    @Override
+-    public JsonValue put(final String key, final JsonValue value) {
+-        return this.json.put(key, value);
+-    }
+-
+-    @Override
+-    public JsonValue remove(final Object key) {
+-        return this.json.remove(key);
+-    }
+-
+-    @Override
+-    public void putAll(final Map<? extends String, ? extends JsonValue> map) {
+-        this.json.putAll(map);
+-    }
+-
+-    @Override
+-    public void clear() {
+-        this.json.clear();
+-    }
+-
+-    @Override
+-    public Set<String> keySet() {
+-        return this.json.keySet();
+-    }
+-
+-    @Override
+-    public Collection<JsonValue> values() {
+-        return this.json.values();
+-    }
+-
+-    @Override
+-    public Set<Entry<String, JsonValue>> entrySet() {
+-        return this.json.entrySet();
+-    }
+-}
+diff --git a/src/test/java/com/amihaiemil/docker/mock/Response.java b/src/test/java/com/amihaiemil/docker/mock/Response.java
+deleted file mode 100644
+index 78a6cde..0000000
+--- a/src/test/java/com/amihaiemil/docker/mock/Response.java
++++ /dev/null
+@@ -1,210 +0,0 @@
+-/**
+- * Copyright (c) 2018, Mihai Emil Andronache
+- * All rights reserved.
+- * Redistribution and use in source and binary forms, with or without
+- * modification, are permitted provided that the following conditions are met:
+- * 1)Redistributions of source code must retain the above copyright notice,
+- * this list of conditions and the following disclaimer.
+- * 2)Redistributions in binary form must reproduce the above copyright notice,
+- * this list of conditions and the following disclaimer in the documentation
+- * and/or other materials provided with the distribution.
+- * 3)Neither the name of docker-java-api nor the names of its
+- * contributors may be used to endorse or promote products derived from
+- * this software without specific prior written permission.
+- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+- * POSSIBILITY OF SUCH DAMAGE.
+- */
+-package com.amihaiemil.docker.mock;
+-
+-import java.util.Locale;
+-import org.apache.http.Header;
+-import org.apache.http.HeaderIterator;
+-import org.apache.http.HttpEntity;
+-import org.apache.http.HttpResponse;
+-import org.apache.http.HttpStatus;
+-import org.apache.http.ProtocolVersion;
+-import org.apache.http.StatusLine;
+-import org.apache.http.entity.ContentType;
+-import org.apache.http.entity.StringEntity;
+-import org.apache.http.message.BasicStatusLine;
+-import org.apache.http.params.HttpParams;
+-
+-/**
+- * An {@link HttpResponse} suitable for tests. Can be configured with 
+- * predetermined {@link HttpStatus http status code} and JSON payload.
+- *
+- * @author George Aristy (george.aristy@gmail.com)
+- * @version $Id$
+- * @since 0.0.1
+- */
+-public final class Response implements HttpResponse {
+-    /**
+-     * This response's status line.
+-     */
+-    private final StatusLine statusLine;
+-    /**
+-     * This response's payload.
+-     */
+-    private final HttpEntity payload;
+-
+-    /**
+-     * Ctor.
+-     *
+-     * @param status The {@link HttpStatus http status code}
+-     * @param jsonPayload The json payload
+-     */
+-    public Response(final int status, final String jsonPayload) {
+-        this.statusLine = new BasicStatusLine(
+-            new ProtocolVersion("HTTP", 1, 1), status, ""
+-        );
+-        this.payload = new StringEntity(
+-            jsonPayload, ContentType.APPLICATION_JSON
+-        );
+-    }
+-
+-    @Override
+-    public StatusLine getStatusLine() {
+-        return this.statusLine;
+-    }
+-
+-    @Override
+-    public void setStatusLine(final StatusLine statusline) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public void setStatusLine(final ProtocolVersion ver, final int code) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public void setStatusLine(final ProtocolVersion ver, final int code,
+-        final String reason) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public void setStatusCode(final int code) throws IllegalStateException {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public void setReasonPhrase(final String reason)
+-        throws IllegalStateException {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public HttpEntity getEntity() {
+-        return this.payload;
+-    }
+-
+-    @Override
+-    public void setEntity(final HttpEntity entity) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public Locale getLocale() {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public void setLocale(final Locale loc) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public ProtocolVersion getProtocolVersion() {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public boolean containsHeader(final String name) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public Header[] getHeaders(final String name) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public Header getFirstHeader(final String name) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public Header getLastHeader(final String name) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public Header[] getAllHeaders() {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public void addHeader(final Header header) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public void addHeader(final String name, final String value) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public void setHeader(final Header header) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public void setHeader(final String name, final String value) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public void setHeaders(final Header[] headers) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public void removeHeader(final Header header) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public void removeHeaders(final String name) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public HeaderIterator headerIterator() {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public HeaderIterator headerIterator(final String name) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public HttpParams getParams() {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-
+-    @Override
+-    public void setParams(final HttpParams params) {
+-        throw new UnsupportedOperationException("Not supported yet.");
+-    }
+-}

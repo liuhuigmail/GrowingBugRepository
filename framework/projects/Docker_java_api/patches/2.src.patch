@@ -1,0 +1,33 @@
+diff --git a/src/main/java/com/amihaiemil/docker/RtContainers.java b/src/main/java/com/amihaiemil/docker/RtContainers.java
+index 1c39070..378b5be 100644
+--- a/src/main/java/com/amihaiemil/docker/RtContainers.java
++++ b/src/main/java/com/amihaiemil/docker/RtContainers.java
+@@ -95,16 +95,11 @@ final class RtContainers implements Containers {
+     public Container create(
+         final String name, final JsonObject container
+     ) throws IOException {
+-        final URI uri;
++        final String uri;
+         if(!name.isEmpty()) {
+-            uri = new UncheckedUriBuilder(
+-                this.baseUri.toString().concat("/create")
+-            ).addParameter("name", name)
+-                .build();
++            uri = this.baseUri.toString() + "/create?name=" + name;
+         } else {
+-            uri = new UncheckedUriBuilder(
+-                this.baseUri.toString().concat("/create")
+-            ).build();
++            uri = this.baseUri.toString() + "/create";
+         }
+         final HttpPost post = new HttpPost(uri);
+         post.setEntity(new StringEntity(container.toString()));
+@@ -124,7 +119,7 @@ final class RtContainers implements Containers {
+             );
+         }
+         throw new UnexpectedResponseException(
+-            uri.toString(), status, HttpStatus.SC_CREATED
++            uri, status, HttpStatus.SC_CREATED
+         );
+     }
+ 

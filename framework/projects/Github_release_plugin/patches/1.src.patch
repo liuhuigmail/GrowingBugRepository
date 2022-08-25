@@ -1,0 +1,16 @@
+diff --git a/src/main/java/de/jutzig/github/release/plugin/UploadMojo.java b/src/main/java/de/jutzig/github/release/plugin/UploadMojo.java
+index e81f124..fe88fb9 100644
+--- a/src/main/java/de/jutzig/github/release/plugin/UploadMojo.java
++++ b/src/main/java/de/jutzig/github/release/plugin/UploadMojo.java
+@@ -288,9 +288,8 @@ public class UploadMojo extends AbstractMojo implements Contextualizable{
+ 	private static final Pattern REPOSITORY_PATTERN = Pattern.compile(
+ 			"^(scm:git[:|])?" +								//Maven prefix for git SCM
+ 			"(https?://github\\.com/|git@github\\.com:)" +	//GitHub prefix for HTTP/HTTPS/SSH/Subversion scheme
+-			"([^/]+/[^/\\.]+)" +							//Repository ID
+-			"(\\.git)?" +									//Optional suffix ".git"
+-			"(/.*)?$"										//Optional child project path
++			"([^/]+/[^/]*?)" +								//Repository ID
++			"(\\.git)?$"									//Optional suffix ".git"
+ 	, Pattern.CASE_INSENSITIVE);
+ 
+ 	public static String computeRepositoryId(String id) {

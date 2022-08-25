@@ -1,0 +1,2 @@
+com.amihaiemil.docker.LocalDockerTestCase
+com.amihaiemil.docker.RtContainersTestCase

@@ -1,0 +1,4 @@
+com.alibaba.spring.beans.factory.annotation.AnnotationBeanDefinitionRegistryPostProcessorTest
+com.alibaba.spring.beans.factory.annotation.AnnotationInjectedBeanPostProcessorTest
+com.alibaba.spring.util.AnnotatedBeanDefinitionRegistryUtilsTest
+com.alibaba.spring.util.BeanUtilsTest

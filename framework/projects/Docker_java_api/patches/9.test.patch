@@ -1,0 +1,55 @@
+diff --git a/src/test/java/com/amihaiemil/docker/LocalDockerTestCase.java b/src/test/java/com/amihaiemil/docker/LocalDockerTestCase.java
+index 3663814..afec1ee 100644
+--- a/src/test/java/com/amihaiemil/docker/LocalDockerTestCase.java
++++ b/src/test/java/com/amihaiemil/docker/LocalDockerTestCase.java
+@@ -170,16 +170,13 @@ public final class LocalDockerTestCase {
+     }
+ 
+     /**
+-     * LocalUnixDocker can return Execs.
++     * LocalUnixDocker throws UnsupportedOperationException for Exec.
+      */
+-    @Test
+-    public void returnsExecs() {
+-        MatcherAssert.assertThat(
+-            new LocalDocker(
+-                new File("/var/run/docker.sock")
+-            ).execs(),
+-            Matchers.notNullValue()
+-        );
++    @Test(expected = UnsupportedOperationException.class)
++    public void unsupportedOperationExec() {
++        new LocalDocker(
++            new File("/var/run/docker.sock")
++        ).execs();
+     }
+ 
+     /**
+diff --git a/src/test/java/com/amihaiemil/docker/UnixDockerTestCase.java b/src/test/java/com/amihaiemil/docker/UnixDockerTestCase.java
+index db64e11..8cf677c 100644
+--- a/src/test/java/com/amihaiemil/docker/UnixDockerTestCase.java
++++ b/src/test/java/com/amihaiemil/docker/UnixDockerTestCase.java
+@@ -170,16 +170,14 @@ public final class UnixDockerTestCase {
+     }
+ 
+     /**
+-     * UnixDocker can return Execs.
++     * UnixDocker throws UnsupportedOperationException for Exec.
+      */
+-    @Test
+-    public void returnsExecs() {
+-        MatcherAssert.assertThat(
+-            new UnixDocker(
+-                new File("/var/run/docker.sock")
+-            ).execs(),
+-            Matchers.notNullValue()
+-        );
++    @Test(expected = UnsupportedOperationException.class)
++    public void unsupportedOperationExec() {
++        new UnixDocker(
++            new File(
++                    "/var/run/docker.sock")
++        ).execs();
+     }
+ 
+     /**

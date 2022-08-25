@@ -1,0 +1,3 @@
+com.alibaba.spring.beans.factory.annotation.EnableConfigurationBeanBindingTestForMultipleBinding
+com.alibaba.spring.core.convert.support.ConversionServiceResolverTest
+com.alibaba.spring.util.BeanUtilsTest

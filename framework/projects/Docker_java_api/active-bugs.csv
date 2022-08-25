@@ -1,0 +1,11 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,81773b8ddc3361d3e6beea513c9a6bd4c9352c20,dac1ab277e9287450440a42c33ef2869f4699a1f,47,https://github.com/amihaiemil/docker-java-api/issues/47
+2,d83c676f6db9ddb639ae7594b7b62f45624e74ff,3e5e4c9a81781d90f7a6283c8d24c7854a8cea77,109,https://github.com/amihaiemil/docker-java-api/issues/109
+3,e72083bfec1c93bc53ae2d30720a305f0ef96693,9f4e4ee56d8c5ae03db599168edd4a53c1ceae8b,108,https://github.com/amihaiemil/docker-java-api/issues/108
+4,3089f5016397866a0f3bdb4b8c188a56245457aa,4f5301c9cceb3e80ca47d4f5a8ffad59d409ba72,234,https://github.com/amihaiemil/docker-java-api/pull/234
+5,7dfd10635b4d7ba2a1929172c852706eefcaaa0e,767160231d0cf9810f33a39fe69f1b667fa65be1,236,https://github.com/amihaiemil/docker-java-api/issues/236
+6,eb6a2e2b2d939c3bb99af48bb9cc5529f1ead9c6,9197cdbd6fe0aadef1df08e62965867584d6e334,245,https://github.com/amihaiemil/docker-java-api/pull/245
+7,7ffa2921f6d0ee8740dbc1498744a25ff5adadb4,4b1b7608b798306e78bfeff11a21bf73eb075897,279,https://github.com/amihaiemil/docker-java-api/pull/279
+8,4b1b7608b798306e78bfeff11a21bf73eb075897,1968fbabdcd774600be253b1ecd0b173daba56e8,280,https://github.com/amihaiemil/docker-java-api/pull/280
+9,d97e08ac2cb1a7130a0eacb3221e6a4bee811bc3,564cd5fe5fa04b7b59d00dfd1b8d10cd487ed78e,168,https://github.com/amihaiemil/docker-java-api/issues/168
+10,d98b3862218582cb579f369feacdcc393b6a902d,ea1edc15490dc417cf8db2510c54ef85f02b7933,unknown,unknown

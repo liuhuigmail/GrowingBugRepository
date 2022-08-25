@@ -1,0 +1,3 @@
+com.alibaba.spring.util.BeanUtilsTest
+com.alibaba.spring.util.User
+com.alibaba.spring.util.UserFactoryBean

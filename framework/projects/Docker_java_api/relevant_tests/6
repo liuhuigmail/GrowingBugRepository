@@ -1,0 +1,3 @@
+com.amihaiemil.docker.ListedNetworksTestCase
+com.amihaiemil.docker.RtNetworkTestCase
+com.amihaiemil.docker.RtNetworksTestCase

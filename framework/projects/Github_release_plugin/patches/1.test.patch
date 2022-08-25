@@ -1,0 +1,15 @@
+diff --git a/src/test/java/de/jutzig/github/release/plugin/UploadMojoTest.java b/src/test/java/de/jutzig/github/release/plugin/UploadMojoTest.java
+index a1fdc39..6bb6df3 100644
+--- a/src/test/java/de/jutzig/github/release/plugin/UploadMojoTest.java
++++ b/src/test/java/de/jutzig/github/release/plugin/UploadMojoTest.java
+@@ -33,10 +33,6 @@ public class UploadMojoTest {
+ 		computeRepositoryIdData.put("scm:git:https://github.com/jutzig/github-release-plugin", "jutzig/github-release-plugin");
+ 		computeRepositoryIdData.put("scm:git|https://github.com/jutzig/github-release-plugin", "jutzig/github-release-plugin");
+ 		computeRepositoryIdData.put("https://github.com/jutzig/github-release-plugin", "jutzig/github-release-plugin");
+-
+-		computeRepositoryIdData.put("scm:git:http://github.com/jutzig/github-release-plugin.git/child", "jutzig/github-release-plugin");
+-		computeRepositoryIdData.put("scm:git|http://github.com/jutzig/github-release-plugin.git/child", "jutzig/github-release-plugin");
+-		computeRepositoryIdData.put("http://github.com/jutzig/github-release-plugin.git/child", "jutzig/github-release-plugin");
+ 	}
+ 
+ 	@Test

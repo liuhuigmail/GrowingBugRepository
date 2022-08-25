@@ -1,0 +1,232 @@
+diff --git a/src/main/java/com/amihaiemil/docker/JsonResource.java b/src/main/java/com/amihaiemil/docker/JsonResource.java
+index 8f182d8..38dafc8 100644
+--- a/src/main/java/com/amihaiemil/docker/JsonResource.java
++++ b/src/main/java/com/amihaiemil/docker/JsonResource.java
+@@ -28,7 +28,6 @@ package com.amihaiemil.docker;
+ import java.util.Collection;
+ import java.util.Map;
+ import java.util.Set;
+-import java.util.function.Supplier;
+ import javax.json.JsonArray;
+ import javax.json.JsonNumber;
+ import javax.json.JsonObject;
+@@ -54,14 +53,6 @@ abstract class JsonResource implements JsonObject {
+      * The JsonObject resource in question.
+      */
+     private final JsonObject resource;
+-
+-    /**
+-     * Ctor.
+-     * @param resource Supply the JsonObject.
+-     */
+-    JsonResource(final Supplier<JsonObject> resource) {
+-        this(resource.get());
+-    }
+     
+     /**
+      * Ctor.
+diff --git a/src/main/java/com/amihaiemil/docker/PayloadOf.java b/src/main/java/com/amihaiemil/docker/PayloadOf.java
+index 6a8eab5..876fb65 100644
+--- a/src/main/java/com/amihaiemil/docker/PayloadOf.java
++++ b/src/main/java/com/amihaiemil/docker/PayloadOf.java
+@@ -26,8 +26,16 @@
+ package com.amihaiemil.docker;
+ 
+ import java.io.IOException;
++import java.util.Collection;
++import java.util.Map;
++import java.util.Set;
++import java.util.function.Supplier;
+ import javax.json.Json;
++import javax.json.JsonArray;
++import javax.json.JsonNumber;
+ import javax.json.JsonObject;
++import javax.json.JsonString;
++import javax.json.JsonValue;
+ import org.apache.http.HttpEntityEnclosingRequest;
+ import org.apache.http.HttpRequest;
+ import org.apache.http.HttpResponse;
+@@ -40,7 +48,12 @@ import org.apache.http.HttpResponse;
+  * @since 0.0.1
+  * @todo #108:30min Add tests for PayloadOf.
+  */
+-final class PayloadOf extends JsonResource {
++final class PayloadOf implements JsonObject {
++    /**
++     * The request's payload.
++     */
++    private final JsonObject json;
++
+     /**
+      * Ctor.
+      * 
+@@ -48,7 +61,7 @@ final class PayloadOf extends JsonResource {
+      * @throws IllegalStateException if the request's payload cannot be read
+      */
+     PayloadOf(final HttpRequest request) {
+-        super(() -> {
++        this(() -> {
+             try {
+                 final JsonObject body;
+                 if (request instanceof HttpEntityEnclosingRequest) {
+@@ -74,7 +87,7 @@ final class PayloadOf extends JsonResource {
+      * @throws IllegalStateException if the response's payload cannot be read
+      */
+     PayloadOf(final HttpResponse response) {
+-        super(() -> {
++        this(() -> {
+             try {
+                 return Json.createReader(
+                     response.getEntity().getContent()
+@@ -86,4 +99,133 @@ final class PayloadOf extends JsonResource {
+             }
+         });
+     }
++
++    /**
++     * Ctor.
++     * @param json The json.
++     * @throws IllegalStateException if the payload cannot be read
++     */
++    private PayloadOf(final Supplier<JsonObject> json) {
++        this.json = json.get();
++    }
++
++    @Override
++    public JsonArray getJsonArray(final String name) {
++        return this.json.getJsonArray(name);
++    }
++
++    @Override
++    public JsonObject getJsonObject(final String name) {
++        return this.json.getJsonObject(name);
++    }
++
++    @Override
++    public JsonNumber getJsonNumber(final String name) {
++        return this.json.getJsonNumber(name);
++    }
++
++    @Override
++    public JsonString getJsonString(final String name) {
++        return this.json.getJsonString(name);
++    }
++
++    @Override
++    public String getString(final String name) {
++        return this.json.getString(name);
++    }
++
++    @Override
++    public String getString(final String name, final String defaultValue) {
++        return this.json.getString(name, defaultValue);
++    }
++
++    @Override
++    public int getInt(final String name) {
++        return this.json.getInt(name);
++    }
++
++    @Override
++    public int getInt(final String name, final int defaultValue) {
++        return this.json.getInt(name, defaultValue);
++    }
++
++    @Override
++    public boolean getBoolean(final String name) {
++        return this.json.getBoolean(name);
++    }
++
++    @Override
++    public boolean getBoolean(final String name, final boolean defaultValue) {
++        return this.json.getBoolean(name, defaultValue);
++    }
++
++    @Override
++    public boolean isNull(final String name) {
++        return this.json.isNull(name);
++    }
++
++    @Override
++    public ValueType getValueType() {
++        return this.json.getValueType();
++    }
++
++    @Override
++    public int size() {
++        return this.json.size();
++    }
++
++    @Override
++    public boolean isEmpty() {
++        return this.json.isEmpty();
++    }
++
++    @Override
++    public boolean containsKey(final Object key) {
++        return this.json.containsKey(key);
++    }
++
++    @Override
++    public boolean containsValue(final Object value) {
++        return this.json.containsValue(value);
++    }
++
++    @Override
++    public JsonValue get(final Object key) {
++        return this.json.get(key);
++    }
++
++    @Override
++    public JsonValue put(final String key, final JsonValue value) {
++        return this.json.put(key, value);
++    }
++
++    @Override
++    public JsonValue remove(final Object key) {
++        return this.json.remove(key);
++    }
++
++    @Override
++    public void putAll(final Map<? extends String, ? extends JsonValue> map) {
++        this.json.putAll(map);
++    }
++
++    @Override
++    public void clear() {
++        this.json.clear();
++    }
++
++    @Override
++    public Set<String> keySet() {
++        return this.json.keySet();
++    }
++
++    @Override
++    public Collection<JsonValue> values() {
++        return this.json.values();
++    }
++
++    @Override
++    public Set<Entry<String, JsonValue>> entrySet() {
++        return this.json.entrySet();
++    }
+ }
+diff --git a/src/main/java/com/amihaiemil/docker/UnexpectedResponseException.java b/src/main/java/com/amihaiemil/docker/UnexpectedResponseException.java
+index 6cd8ed6..bc977d1 100644
+--- a/src/main/java/com/amihaiemil/docker/UnexpectedResponseException.java
++++ b/src/main/java/com/amihaiemil/docker/UnexpectedResponseException.java
+@@ -69,11 +69,8 @@ public final class UnexpectedResponseException extends RuntimeException {
+         final String endpoint, final int actualStatus,
+         final int expectedStatus, final JsonObject body
+     ) {
+-        super(String.format(
+-            // @checkstyle LineLength (1 line)
+-            "Expected status %s but got %s when calling %s. Response body was %s",
+-            expectedStatus, actualStatus, endpoint, body.toString()
+-        ));
++        // @checkstyle LineLength (1 line)
++        super("Expected status " + expectedStatus + " but got " + actualStatus + " when calling " + endpoint);
+         this.endpoint = endpoint;
+         this.actualStatus = actualStatus;
+         this.expectedStatus = expectedStatus;

@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,8f03ab5495e86c531aeb0c5589798a250664465e,3be13f786758f57e9aa8a6ba154aa0b0c287f490,41,https://github.com/jutzig/github-release-plugin/issues/41
+2,8293177f3f8591785bf72e75cd78cfe38c84b8e4,e68bccd8f307a6abd453e6de7be20c006516a3f4,44,https://github.com/jutzig/github-release-plugin/pull/44

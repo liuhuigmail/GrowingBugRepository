@@ -1,0 +1,14 @@
+com.amihaiemil.docker.ListedImagesTestCase
+com.amihaiemil.docker.ListedVolumesTestCase
+com.amihaiemil.docker.LocalDockerTestCase
+com.amihaiemil.docker.RemoteDockerTestCase
+com.amihaiemil.docker.RtContainerITCase
+com.amihaiemil.docker.RtContainerTestCase
+com.amihaiemil.docker.RtContainersTestCase
+com.amihaiemil.docker.RtImageITCase
+com.amihaiemil.docker.RtImageTestCase
+com.amihaiemil.docker.RtImagesITCase
+com.amihaiemil.docker.RtImagesTestCase
+com.amihaiemil.docker.RtLogsTestCase
+com.amihaiemil.docker.RtVolumeTestCase
+com.amihaiemil.docker.RtVolumesTestCase

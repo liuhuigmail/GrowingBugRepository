@@ -1,0 +1,22 @@
+diff --git a/src/test/java/com/alibaba/spring/util/AnnotatedBeanDefinitionRegistryUtilsTest.java b/src/test/java/com/alibaba/spring/util/AnnotatedBeanDefinitionRegistryUtilsTest.java
+index f541a8d..b800a8b 100644
+--- a/src/test/java/com/alibaba/spring/util/AnnotatedBeanDefinitionRegistryUtilsTest.java
++++ b/src/test/java/com/alibaba/spring/util/AnnotatedBeanDefinitionRegistryUtilsTest.java
+@@ -21,16 +21,13 @@ public class AnnotatedBeanDefinitionRegistryUtilsTest {
+     @Before
+     public void init() {
+         registry = new DefaultListableBeanFactory();
+-        registry.setAllowBeanDefinitionOverriding(false);
+         AnnotationConfigUtils.registerAnnotationConfigProcessors(registry);
+     }
+ 
+     @Test
+     public void testRegisterBeans() {
+ 
+-        for(int i=0;i<100;i++) {
+-            AnnotatedBeanDefinitionRegistryUtils.registerBeans(registry, this.getClass());
+-        }
++        AnnotatedBeanDefinitionRegistryUtils.registerBeans(registry, this.getClass());
+ 
+         String[] beanNames = registry.getBeanNamesForType(this.getClass());
+ 

@@ -1,0 +1,72 @@
+diff --git a/src/main/java/com/amihaiemil/docker/ListedVolumes.java b/src/main/java/com/amihaiemil/docker/ListedVolumes.java
+index 4c8578c..582be63 100644
+--- a/src/main/java/com/amihaiemil/docker/ListedVolumes.java
++++ b/src/main/java/com/amihaiemil/docker/ListedVolumes.java
+@@ -25,10 +25,14 @@
+  */
+ package com.amihaiemil.docker;
+ 
++import java.io.IOException;
+ import java.net.URI;
+ import java.util.Collections;
+ import java.util.Iterator;
+ import java.util.Map;
++import java.util.stream.Collectors;
++import javax.json.JsonObject;
++import org.apache.http.HttpStatus;
+ import org.apache.http.client.HttpClient;
+ import org.apache.http.client.methods.HttpGet;
+ 
+@@ -74,22 +78,36 @@ final class ListedVolumes extends RtVolumes {
+         final FilteredUriBuilder uri = new FilteredUriBuilder(
+             new UncheckedUriBuilder(super.baseUri().toString()), this.filters
+         );
+-        return new ResourcesIterator<>(
+-            super.client(),
+-            new HttpGet(
+-                uri.build()
+-            ),
+-            volume -> new RtVolume(
+-                volume,
+-                super.client(),
+-                URI.create(
+-                    String.format("%s/%s",
+-                        super.baseUri().toString(),
+-                        volume.getString("Name")
++        final HttpGet get = new HttpGet(uri.build());
++        try {
++            final JsonObject obj = super.client().execute(
++                get,
++                new ReadJsonObject(
++                    new MatchStatus(get.getURI(), HttpStatus.SC_OK)
++                )
++            );
++            return obj.getJsonArray("Volumes").stream()
++                .map(json -> (JsonObject) json)
++                .map(
++                    volume -> (Volume) new RtVolume(
++                        volume,
++                        super.client(),
++                        URI.create(
++                            String.format("%s/%s",
++                                super.baseUri().toString(),
++                                volume.getString("Name")
++                            )
++                        ),
++                        super.docker()
+                     )
+-                ),
+-                super.docker()
+-            )
+-        );
++                ).collect(Collectors.toList())
++                .iterator();
++        } catch (final IOException err) {
++            throw new RuntimeException(
++                String.format("Error executing GET on %s", super.baseUri())
++            );
++        } finally {
++            get.releaseConnection();
++        }
+     }
+ }

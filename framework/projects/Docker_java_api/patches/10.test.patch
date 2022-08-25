@@ -1,0 +1,62 @@
+diff --git a/src/test/java/com/amihaiemil/docker/ListedVolumesTestCase.java b/src/test/java/com/amihaiemil/docker/ListedVolumesTestCase.java
+index 18df097..feefce0 100644
+--- a/src/test/java/com/amihaiemil/docker/ListedVolumesTestCase.java
++++ b/src/test/java/com/amihaiemil/docker/ListedVolumesTestCase.java
+@@ -59,7 +59,7 @@ public final class ListedVolumesTestCase {
+             new AssertRequest(
+                 new Response(
+                     HttpStatus.SC_OK,
+-                    "[{\"Name\": \"abc1\"}, {\"Name\":\"cde2\"}]"
++                    "{\"Volumes\":[{\"Name\": \"abc1\"}, {\"Name\":\"cde2\"}]}"
+                 ),
+                 new Condition(
+                     "iterate() must send a GET request",
+@@ -105,7 +105,7 @@ public final class ListedVolumesTestCase {
+                 new Response(
+                     HttpStatus.SC_OK,
+                     //@checkstyle LineLength (1 line)
+-                    "[{\"Name\": \"abc1\"}, {\"Name\": \"def2\"}, {\"Name\": \"ghi3\"}, {\"Name\":\"jkl4\"}]"
++                    "{\"Volumes\":[{\"Name\": \"abc1\"}, {\"Name\": \"def2\"}, {\"Name\": \"ghi3\"}, {\"Name\":\"jkl4\"}]}"
+                 ),
+                 new Condition(
+                     "iterate() must send a GET request",
+diff --git a/src/test/java/com/amihaiemil/docker/LocalDockerITCase.java b/src/test/java/com/amihaiemil/docker/LocalDockerITCase.java
+index 9b5ee27..b06eb8b 100644
+--- a/src/test/java/com/amihaiemil/docker/LocalDockerITCase.java
++++ b/src/test/java/com/amihaiemil/docker/LocalDockerITCase.java
+@@ -25,25 +25,18 @@
+  */
+ package com.amihaiemil.docker;
+ 
++import java.io.File;
++import java.nio.file.Paths;
+ import org.hamcrest.MatcherAssert;
+ import org.hamcrest.Matchers;
+ import org.hamcrest.collection.IsIterableWithSize;
+-import org.junit.Ignore;
+ import org.junit.Test;
+ import org.mockito.internal.matchers.GreaterOrEqual;
+ 
+-import java.io.File;
+-import java.nio.file.Paths;
+-
+ /**
+  * Integration tests for LocalDocker.
+  * @author Mihai Andronache (amihaiemil@gmail.com)
+  * @version $Id$
+- * @todo #241:30min Fix Volumes object return problem. Volumes is returning an
+- *  JsonObject instead of JsonArray. Its return must be according its
+- *  documentation:
+- *  https://docs.docker.com/engine/api/v1.30/#operation/VolumeList and what is
+- *  defined in #241.
+  * @since 0.0.1
+  */
+ public final class LocalDockerITCase {
+@@ -65,7 +58,6 @@ public final class LocalDockerITCase {
+      * @throws Exception If something goes wrong.
+      */
+     @Test
+-    @Ignore
+     public void listVolumes() throws Exception {
+         final Docker docker = new LocalDocker(
+             Paths.get("/var/run/docker.sock").toFile()

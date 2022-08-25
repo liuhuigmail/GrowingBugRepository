@@ -1,0 +1,28 @@
+diff --git a/src/test/java/com/amihaiemil/docker/RtContainersTestCase.java b/src/test/java/com/amihaiemil/docker/RtContainersTestCase.java
+index a273569..1778eb9 100644
+--- a/src/test/java/com/amihaiemil/docker/RtContainersTestCase.java
++++ b/src/test/java/com/amihaiemil/docker/RtContainersTestCase.java
+@@ -273,23 +273,4 @@ public final class RtContainersTestCase {
+             ), URI.create("http://localhost/test")
+         ).create("image_name", json);
+     }
+-
+-    /**
+-     * Bug #109: RtContainers.create() must encode URL parameters.
+-     * @throws Exception If something goes wrong.
+-     */
+-    @Test
+-    public void createEscapesNameParameter() throws Exception {
+-        new RtContainers(
+-            new AssertRequest(
+-                new Response(HttpStatus.SC_CREATED, "{ \"Id\": \"df2419f4\" }"),
+-                new Condition(
+-                    "RtContainers.create() must encode URL parameter",
+-                    req -> req.getRequestLine()
+-                        .getUri().endsWith("name=Adrian+Toomes")
+-                )
+-            ),
+-            URI.create("http://localhost/docker")
+-        ).create("Adrian Toomes", "some/image");
+-    }
+ }

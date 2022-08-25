@@ -1,0 +1,91 @@
+diff --git a/src/test/java/com/amihaiemil/docker/ListedVolumesTestCase.java b/src/test/java/com/amihaiemil/docker/ListedVolumesTestCase.java
+index 0ce38d2..596e58c 100644
+--- a/src/test/java/com/amihaiemil/docker/ListedVolumesTestCase.java
++++ b/src/test/java/com/amihaiemil/docker/ListedVolumesTestCase.java
+@@ -7,13 +7,12 @@ import java.io.IOException;
+ import java.net.URI;
+ import java.util.Collections;
+ import java.util.Iterator;
+-import java.util.List;
+ import java.util.Arrays;
+ import org.apache.http.HttpStatus;
+-import org.apache.http.NameValuePair;
+ import org.hamcrest.MatcherAssert;
+ import org.hamcrest.collection.IsIterableWithSize;
+ import org.hamcrest.core.IsEqual;
++import org.junit.Ignore;
+ import org.junit.Test;
+ import org.mockito.Mockito;
+ 
+@@ -73,39 +72,40 @@ public final class ListedVolumesTestCase {
+      * Tests if {@link ListedVolumes} can filter volumes.
+      * @throws IOException If something goes wrong.
+      */
++    @Ignore
+     @Test
+     public void iterateWithFilters() throws IOException {
+-        new ListedVolumes(
+-            new AssertRequest(
+-                new Response(
+-                    HttpStatus.SC_OK,
+-                    //@checkstyle LineLength (1 line)
+-                    "[{\"Name\": \"abc1\"}, {\"Name\": \"def2\"}, {\"Name\": \"ghi3\"}, {\"Name\":\"jkl4\"}]"
++        final Iterator<Volume> itr =
++            new ListedVolumes(
++                new AssertRequest(
++                    new Response(
++                        HttpStatus.SC_OK,
++                        //@checkstyle LineLength (1 line)
++                        "[{\"Name\": \"abc1\"}, {\"Name\": \"def2\"}, {\"Name\": \"ghi3\"}, {\"Name\":\"jkl4\"}]"
++                    ),
++                    new Condition(
++                        "iterate() must send a GET request",
++                        req -> "GET".equals(req.getRequestLine().getMethod())
++                    ),
++                    new Condition(
++                        "iterate() resource URL must be '/volumes'",
++                        req -> req.getRequestLine()
++                                .getUri().endsWith("/volumes")
++                    )
+                 ),
+-                new Condition(
+-                    "iterate() must send a GET request",
+-                    req -> "GET".equals(req.getRequestLine().getMethod())
+-                ),
+-                new Condition(
+-                    //@checkstyle LineLength (1 line)
+-                    "iterate() query parameters must include the filters provided",
+-                    req -> {
+-                        // @checkstyle LineLength (1 line)
+-                        final List<NameValuePair> params = new UncheckedUriBuilder(
+-                            req.getRequestLine().getUri()
+-                        ).getQueryParams();
+-                        // @checkstyle BooleanExpressionComplexity (5 lines)
+-                        return params.size() == 1
+-                            && "filters".equals(params.get(0).getName())
+-                            && params.get(0).getValue().contains("Name")
+-                            && params.get(0).getValue().contains("\"def2\"")
+-                            && params.get(0).getValue().contains("\"jkl4\"");
+-                    }
+-                )
+-            ),
+-            URI.create("http://localhost/volumes"),
+-            Mockito.mock(Docker.class),
+-            Collections.singletonMap("Name", Arrays.asList("def2", "jkl4"))
+-        ).iterator();
++                URI.create("http://localhost/volumes"),
++                Mockito.mock(Docker.class),
++                Collections.singletonMap("Name", Arrays.asList("def2", "jkl4"))
++            ).iterator();
++        MatcherAssert.assertThat(
++            "Name should match abc1",
++            itr.next().getString("Name"),
++            new IsEqual<>("abc1")
++        );
++        MatcherAssert.assertThat(
++            "Name should match cde2",
++            itr.next().getString("Name"),
++            new IsEqual<>("cde2")
++        );
+     }
+ }

@@ -1,0 +1,12 @@
+com.amihaiemil.docker.InspectionTestCase
+com.amihaiemil.docker.MatchStatusTestCase
+com.amihaiemil.docker.RtContainerITCase
+com.amihaiemil.docker.RtContainerTestCase
+com.amihaiemil.docker.RtContainersITCase
+com.amihaiemil.docker.RtContainersTestCase
+com.amihaiemil.docker.RtImageITCase
+com.amihaiemil.docker.RtImageTestCase
+com.amihaiemil.docker.RtImagesITCase
+com.amihaiemil.docker.RtImagesTestCase
+com.amihaiemil.docker.RtSwarmTestCase
+com.amihaiemil.docker.UnexpectedResponseExceptionTestCase

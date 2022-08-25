@@ -1,0 +1,119 @@
+diff --git a/src/main/java/com/amihaiemil/docker/RtNetwork.java b/src/main/java/com/amihaiemil/docker/RtNetwork.java
+index 3eeffd7..d920b0a 100644
+--- a/src/main/java/com/amihaiemil/docker/RtNetwork.java
++++ b/src/main/java/com/amihaiemil/docker/RtNetwork.java
+@@ -27,14 +27,8 @@ package com.amihaiemil.docker;
+ 
+ import java.io.IOException;
+ import java.net.URI;
+-import javax.json.Json;
+ import javax.json.JsonObject;
+-
+-import org.apache.http.HttpStatus;
+ import org.apache.http.client.HttpClient;
+-import org.apache.http.client.methods.HttpDelete;
+-import org.apache.http.client.methods.HttpPost;
+-import org.apache.http.entity.StringEntity;
+ 
+ /**
+  * Runtime {@link Network}.
+@@ -81,76 +75,47 @@ final class RtNetwork extends JsonResource implements Network {
+     @Override
+     public JsonObject inspect()
+         throws IOException, UnexpectedResponseException {
+-        return new Inspection(this.client, this.baseUri.toString());
++        throw new UnsupportedOperationException(
++            String.join(" ",
++                "Network.inspect() is not yet implemented.",
++                "If you can contribute please",
++                "do it here: https://www.github.com/amihaiemil/docker-java-api"
++            )
++        );
+     }
+ 
+     @Override
+     public void remove() throws IOException, UnexpectedResponseException {
+-        final UncheckedUriBuilder uri = new UncheckedUriBuilder(
+-            this.baseUri.toString()
+-        );
+-        final HttpDelete delete = new HttpDelete(
+-            uri.build()
++        throw new UnsupportedOperationException(
++            String.join(" ",
++                "Network.remove() is not yet implemented.",
++                "If you can contribute please",
++                "do it here: https://www.github.com/amihaiemil/docker-java-api"
++            )
+         );
+-        try {
+-            this.client.execute(
+-                delete,
+-                new MatchStatus(delete.getURI(), HttpStatus.SC_NO_CONTENT)
+-            );
+-        } finally {
+-            delete.releaseConnection();
+-        }
+     }
+ 
+     @Override
+     public void connect(final String containerId)
+         throws IOException, UnexpectedResponseException {
+-        final UncheckedUriBuilder uri = new UncheckedUriBuilder(
+-            this.baseUri.toString() + "/connect"
+-        );
+-        final HttpPost post = new HttpPost(
+-            uri.build()
+-        );
+-        post.setEntity(
+-            new StringEntity(
+-                Json.createObjectBuilder().add("Container", containerId)
+-                .build().toString()
++        throw new UnsupportedOperationException(
++            String.join(" ",
++                "Network.connect() is not yet implemented.",
++                "If you can contribute please",
++                "do it here: https://www.github.com/amihaiemil/docker-java-api"
+             )
+         );
+-        try {
+-            this.client.execute(
+-                post,
+-                new MatchStatus(post.getURI(), HttpStatus.SC_OK)
+-            );
+-        } finally {
+-            post.releaseConnection();
+-        }
+     }
+ 
+     @Override
+     public void disconnect(final String containerId)
+         throws IOException, UnexpectedResponseException {
+-        final UncheckedUriBuilder uri = new UncheckedUriBuilder(
+-            this.baseUri.toString() + "/disconnect"
+-        );
+-        final HttpPost post = new HttpPost(
+-            uri.build()
+-        );
+-        post.setEntity(
+-            new StringEntity(
+-                Json.createObjectBuilder()
+-                .add("Container", containerId)
+-                .add("Force", "true")
+-                .build().toString()
++        throw new UnsupportedOperationException(
++            String.join(" ",
++                "Network.disconnect() is not yet implemented.",
++                "If you can contribute please",
++                "do it here: https://www.github.com/amihaiemil/docker-java-api"
+             )
+         );
+-        try {
+-            this.client.execute(
+-                post,
+-                new MatchStatus(post.getURI(), HttpStatus.SC_OK)
+-            );
+-        } finally {
+-            post.releaseConnection();
+-        }
+     }
+ }

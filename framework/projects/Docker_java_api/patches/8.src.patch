@@ -1,0 +1,93 @@
+diff --git a/src/main/java/com/amihaiemil/docker/Plugin.java b/src/main/java/com/amihaiemil/docker/Plugin.java
+index 151f085..7adddfd 100644
+--- a/src/main/java/com/amihaiemil/docker/Plugin.java
++++ b/src/main/java/com/amihaiemil/docker/Plugin.java
+@@ -34,10 +34,9 @@ import javax.json.JsonObject;
+  * A docker plugin.
+  * @author Boris Kuzmic (boris.kuzmic@gmail.com)
+  * @see <a href="https://docs.docker.com/engine/api/v1.35/#tag/Plugin">Docker Plugin API</a>
+- * @todo #266:30min Implement Plugin#configure method. The tests are already
+- *  coded, so after the implementation just remove the ignore annotation from
+- *  these tests. More information about Configure API method can be found at:
+- *  https://docs.docker.com/engine/api/v1.35/#operation/PluginSet
++ * @todo #266:30min Continue implementing rest of the Plugin methods besides
++ *  enable and disable. More information about API methods can be found at:
++ *  https://docs.docker.com/engine/api/v1.35/#tag/Plugin
+  * @since 0.0.7
+  */
+ public interface Plugin extends JsonObject {
+diff --git a/src/main/java/com/amihaiemil/docker/RtPlugin.java b/src/main/java/com/amihaiemil/docker/RtPlugin.java
+index 78f8313..5ba9aa4 100644
+--- a/src/main/java/com/amihaiemil/docker/RtPlugin.java
++++ b/src/main/java/com/amihaiemil/docker/RtPlugin.java
+@@ -33,8 +33,6 @@ import javax.json.JsonObject;
+ import org.apache.http.HttpStatus;
+ import org.apache.http.client.HttpClient;
+ import org.apache.http.client.methods.HttpPost;
+-import org.apache.http.entity.ContentType;
+-import org.apache.http.entity.StringEntity;
+ 
+ /**
+  * Runtime {@link Plugin}.
+@@ -124,47 +122,24 @@ final class RtPlugin extends JsonResource implements Plugin {
+     @Override
+     public void upgrade(final String remote, final JsonArray properties)
+         throws IOException, UnexpectedResponseException {
+-        final HttpPost upgrade =
+-            new HttpPost(
+-                new UncheckedUriBuilder(this.uri.toString().concat("/upgrade"))
+-                    .addParameter("remote", remote)
+-                    .build()
+-            );
+-        try {
+-            upgrade.setEntity(
+-                new StringEntity(
+-                    properties.toString(), ContentType.APPLICATION_JSON
+-                )
+-            );
+-            this.client.execute(
+-                upgrade,
+-                new MatchStatus(
+-                    upgrade.getURI(),
+-                    HttpStatus.SC_NO_CONTENT
+-                )
+-            );
+-        } finally {
+-            upgrade.releaseConnection();
+-        }
++        throw new UnsupportedOperationException(
++            String.join(" ",
++                "RtPlugin.upgrade() is not yet implemented.",
++                "If you can contribute please",
++                "do it here: https://www.github.com/amihaiemil/docker-java-api"
++            )
++        );
+     }
+ 
+     @Override
+     public void push() throws IOException, UnexpectedResponseException {
+-        final HttpPost push =
+-            new HttpPost(
+-                String.format("%s/%s", this.uri.toString(), "push")
+-            );
+-        try {
+-            this.client.execute(
+-                push,
+-                new MatchStatus(
+-                    push.getURI(),
+-                    HttpStatus.SC_OK
+-                )
+-            );
+-        } finally {
+-            push.releaseConnection();
+-        }
++        throw new UnsupportedOperationException(
++            String.join(" ",
++                "RtPlugin.push() is not yet implemented.",
++                "If you can contribute please",
++                "do it here: https://www.github.com/amihaiemil/docker-java-api"
++            )
++        );
+     }
+ 
+     @Override

@@ -1,0 +1,123 @@
+diff --git a/src/main/java/com/amihaiemil/docker/ListedImages.java b/src/main/java/com/amihaiemil/docker/ListedImages.java
+index 0b83e19..1ce4e7e 100644
+--- a/src/main/java/com/amihaiemil/docker/ListedImages.java
++++ b/src/main/java/com/amihaiemil/docker/ListedImages.java
+@@ -28,6 +28,9 @@ package com.amihaiemil.docker;
+ import org.apache.http.client.HttpClient;
+ import org.apache.http.client.methods.HttpGet;
+ 
++import javax.json.Json;
++import javax.json.JsonArrayBuilder;
++import javax.json.JsonObjectBuilder;
+ import java.net.URI;
+ import java.util.Collections;
+ import java.util.HashMap;
+@@ -77,8 +80,18 @@ final class ListedImages extends RtImages {
+     public Iterator<Image> iterator() {
+         final UncheckedUriBuilder uri = new UncheckedUriBuilder(
+             super.baseUri().toString().concat("/json")
+-        ).addFilters(this.filters);
+-        
++        );
++        if (!this.filters.isEmpty()) {
++            final JsonObjectBuilder json = Json.createObjectBuilder();
++            this.filters.forEach(
++                (name, values) -> {
++                    final JsonArrayBuilder array = Json.createArrayBuilder();
++                    values.forEach(array::add);
++                    json.add(name, array);
++                }
++            );
++            uri.addParameter("filters", json.build().toString());
++        }
+         return new ResourcesIterator<>(
+             super.client(),
+             new HttpGet(uri.build()),
+diff --git a/src/main/java/com/amihaiemil/docker/ListedVolumes.java b/src/main/java/com/amihaiemil/docker/ListedVolumes.java
+index b567a7e..0e19c3c 100644
+--- a/src/main/java/com/amihaiemil/docker/ListedVolumes.java
++++ b/src/main/java/com/amihaiemil/docker/ListedVolumes.java
+@@ -37,6 +37,9 @@ import org.apache.http.client.methods.HttpGet;
+  * @author Marco Teixeira (marcoo.teixeira@gmail.com)
+  * @version $Id$
+  * @since 0.0.6
++ * @todo #207:30min Finish implementation here, add a Map to this class, that
++ *  would hold the actual filters and apply them when making the call in the
++ *  iterator() method. Then uncomment filtering test in ListedVolumesTestCase.
+  */
+ final class ListedVolumes extends RtVolumes {
+ 
+@@ -71,14 +74,12 @@ final class ListedVolumes extends RtVolumes {
+ 
+     @Override
+     public Iterator<Volume> iterator() {
+-        final UncheckedUriBuilder uri = new UncheckedUriBuilder(
+-                super.baseUri().toString()
+-        ).addFilters(this.filters);
+-        
+         return new ResourcesIterator<>(
+             super.client(),
+             new HttpGet(
+-                uri.build()
++                String.format("%s/%s",
++                    super.baseUri().toString(),
++                    "volumes")
+             ),
+             volume -> new RtVolume(
+                 volume,
+diff --git a/src/main/java/com/amihaiemil/docker/UncheckedUriBuilder.java b/src/main/java/com/amihaiemil/docker/UncheckedUriBuilder.java
+index b35d826..9058d3f 100644
+--- a/src/main/java/com/amihaiemil/docker/UncheckedUriBuilder.java
++++ b/src/main/java/com/amihaiemil/docker/UncheckedUriBuilder.java
+@@ -27,12 +27,6 @@ package com.amihaiemil.docker;
+ 
+ import java.net.URI;
+ import java.net.URISyntaxException;
+-import java.util.Map;
+-
+-import javax.json.Json;
+-import javax.json.JsonArrayBuilder;
+-import javax.json.JsonObjectBuilder;
+-
+ import org.apache.http.client.utils.URIBuilder;
+ 
+ /**
+@@ -64,38 +58,6 @@ final class UncheckedUriBuilder extends URIBuilder {
+         return this;
+     }
+ 
+-    /**
+-     * Adds a JSON encoded `filters` parameter.
+-     * 
+-     * @param filters Value of the filters.
+-     * @return A {@link UncheckedUriBuilder} instance.
+-     * 
+-     * @todo #227:30min we should take out this functionality in a URIBuilder 
+-     *  decorator. It should be used like this:
+-     *  <pre>
+-     *      final URIBuilder buidler = new Filtered(
+-     *           new UncheckedUriBuilder(...), filters
+-     *      );
+-     *  </pre>
+-     */
+-    public UncheckedUriBuilder addFilters(
+-        final Map<String, Iterable<String>> filters
+-    ) {
+-        if (filters != null && !filters.isEmpty()) {
+-            final JsonObjectBuilder json = Json.createObjectBuilder();
+-            filters.forEach(
+-                (name, values) -> {
+-                    final JsonArrayBuilder array = Json.createArrayBuilder();
+-                    values.forEach(array::add);
+-                    json.add(name, array);
+-                }
+-            );
+-            this.addParameter("filters", json.build().toString());
+-        }
+-        
+-        return this;
+-    }
+-    
+     @Override
+     public URI build() {
+         try {
