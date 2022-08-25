@@ -1,0 +1,29 @@
+diff --git a/src/test/java/com/github/sps/metrics/OpenTsdbReporterTest.java b/src/test/java/com/github/sps/metrics/OpenTsdbReporterTest.java
+index 387da98..a72e3b6 100644
+--- a/src/test/java/com/github/sps/metrics/OpenTsdbReporterTest.java
++++ b/src/test/java/com/github/sps/metrics/OpenTsdbReporterTest.java
+@@ -249,24 +249,6 @@ public class OpenTsdbReporterTest {
+         assertEquals((Double) meterMap.get("prefix.meter.m15"), 4.0, 0.0001);
+     }
+ 
+-    /**
+-     * This tests that empty metrics sets will not be sent to the OpenTSDB server which
+-     * (at the time of authoring this test) fails to parse the JSON even though it is perfectly valid.
+-     * it is a particular problem with dropwizard's jvm.threads.deadlocks metric which contains an empty Set<String>
+-     * under normal operating conditions (i.e.: no deadlocks)
+-     */
+-    @Test
+-    public void testEmptyGaugeSet() {
+-        final Gauge gauge = mock(Gauge.class);
+-        when(gauge.getValue()).thenReturn(new HashSet<String>());
+-        reporter.report(this.map("gauge", gauge), this.<Counter>map(), this.<Histogram>map(), this.<Meter>map(), this.<Timer>map());
+-
+-        verify(opentsdb).send(captor.capture());
+-
+-        final Set<OpenTsdbMetric> metrics = captor.getValue();
+-        assertEquals(0, metrics.size());
+-    }
+-
+     private <T> SortedMap<String, T> map() {
+         return new TreeMap<String, T>();
+     }

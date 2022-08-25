@@ -1,0 +1,21 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkRepos.java b/src/main/java/com/jcabi/github/mock/MkRepos.java
+index 7a69255e..67e9a7d0 100644
+--- a/src/main/java/com/jcabi/github/mock/MkRepos.java
++++ b/src/main/java/com/jcabi/github/mock/MkRepos.java
+@@ -123,15 +123,7 @@ final class MkRepos implements Repos {
+     public void remove(
+         @NotNull(message = "coordinates can't be NULL")
+         final Coordinates coords) {
+-        try {
+-            this.storage.apply(
+-                new Directives().xpath(
+-                    String.format("%s/repo[@coords='%s']", this.xpath(), coords)
+-                ).remove()
+-            );
+-        } catch (final IOException ex) {
+-            throw new IllegalStateException(ex);
+-        }
++        throw new UnsupportedOperationException("MkRepos#remove");
+     }
+ 
+     /**

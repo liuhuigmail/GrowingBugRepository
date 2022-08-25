@@ -1,0 +1,32 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkPublicKeys.java b/src/main/java/com/jcabi/github/mock/MkPublicKeys.java
+index e2c991b8..74eb678a 100644
+--- a/src/main/java/com/jcabi/github/mock/MkPublicKeys.java
++++ b/src/main/java/com/jcabi/github/mock/MkPublicKeys.java
+@@ -34,7 +34,6 @@ import com.jcabi.aspects.Loggable;
+ import com.jcabi.github.PublicKey;
+ import com.jcabi.github.PublicKeys;
+ import com.jcabi.github.User;
+-import com.jcabi.xml.XML;
+ import java.io.IOException;
+ import lombok.EqualsAndHashCode;
+ import lombok.ToString;
+@@ -89,18 +88,7 @@ final class MkPublicKeys implements PublicKeys {
+ 
+     @Override
+     public Iterable<PublicKey> iterate() {
+-        return new MkIterable<PublicKey>(
+-            this.storage,
+-            String.format("%s/key", this.xpath()),
+-            new MkIterable.Mapping<PublicKey>() {
+-                @Override
+-                public PublicKey map(final XML xml) {
+-                    return MkPublicKeys.this.get(
+-                        Integer.parseInt(xml.xpath("id/text()").get(0))
+-                    );
+-                }
+-            }
+-        );
++        throw new UnsupportedOperationException("Iterate not yet implemented.");
+     }
+ 
+     @Override

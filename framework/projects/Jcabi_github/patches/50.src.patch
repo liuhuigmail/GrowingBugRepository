@@ -1,0 +1,80 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkHooks.java b/src/main/java/com/jcabi/github/mock/MkHooks.java
+index 6fa870ad..9cfaadf7 100644
+--- a/src/main/java/com/jcabi/github/mock/MkHooks.java
++++ b/src/main/java/com/jcabi/github/mock/MkHooks.java
+@@ -37,6 +37,7 @@ import com.jcabi.github.Hooks;
+ import com.jcabi.github.Repo;
+ import com.jcabi.xml.XML;
+ import java.io.IOException;
++import java.util.Collections;
+ import java.util.Map;
+ import lombok.EqualsAndHashCode;
+ import lombok.ToString;
+@@ -98,18 +99,7 @@ public final class MkHooks implements Hooks {
+ 
+     @Override
+     public Iterable<Hook> iterate() {
+-        return new MkIterable<Hook>(
+-            this.storage,
+-            String.format("%s/hook", this.xpath()),
+-            new MkIterable.Mapping<Hook>() {
+-                @Override
+-                public Hook map(final XML xml) {
+-                    return MkHooks.this.get(
+-                        Integer.parseInt(xml.xpath("id/text()").get(0))
+-                    );
+-                }
+-            }
+-        );
++        return Collections.emptyList();
+     }
+ 
+     @Override
+@@ -118,29 +108,8 @@ public final class MkHooks implements Hooks {
+     }
+ 
+     @Override
+-    public Hook create(final String name, final Map<String, String> config)
+-        throws IOException {
+-        this.storage.lock();
+-        final int number;
+-        try {
+-            number = 1 + this.storage.xml().xpath(
+-                String.format("%s/hook/id/text()", this.xpath())
+-            ).size();
+-            final Directives dirs = new Directives().xpath(this.xpath())
+-                .add("hook")
+-                .add("id").set(String.valueOf(number)).up()
+-                .add("name").set(name).up()
+-                .add("active").set("true").up()
+-                .add("events").up()
+-                .add("config");
+-            for (final Map.Entry<String, String> entr : config.entrySet()) {
+-                dirs.add(entr.getKey()).set(entr.getValue()).up();
+-            }
+-            this.storage.apply(dirs);
+-        } finally {
+-            this.storage.unlock();
+-        }
+-        return this.get(number);
++    public Hook create(final String name, final Map<String, String> config) {
++        throw new UnsupportedOperationException("Create not yet implemented.");
+     }
+ 
+     @Override
+@@ -148,15 +117,4 @@ public final class MkHooks implements Hooks {
+         throw new UnsupportedOperationException("Remove not yet implemented.");
+     }
+ 
+-    /**
+-     * XPath of this element in XML tree.
+-     * @return XPath
+-     */
+-    private String xpath() {
+-        return String.format(
+-            "/github/repos/repo[@coords='%s']/hooks",
+-            this.coords
+-        );
+-    }
+-
+ }

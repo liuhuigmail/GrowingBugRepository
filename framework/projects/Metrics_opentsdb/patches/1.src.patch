@@ -1,0 +1,14 @@
+diff --git a/src/main/java/com/github/sps/metrics/OpenTsdbReporter.java b/src/main/java/com/github/sps/metrics/OpenTsdbReporter.java
+index a1ec11a..481da39 100644
+--- a/src/main/java/com/github/sps/metrics/OpenTsdbReporter.java
++++ b/src/main/java/com/github/sps/metrics/OpenTsdbReporter.java
+@@ -211,9 +211,6 @@ public class OpenTsdbReporter extends ScheduledReporter {
+         final Set<OpenTsdbMetric> metrics = new HashSet<OpenTsdbMetric>();
+ 
+         for (Map.Entry<String, Gauge> g : gauges.entrySet()) {
+-            if(g.getValue().getValue() instanceof Collection && ((Collection)g.getValue().getValue()).isEmpty()) {
+-                continue;
+-            }
+             metrics.add(buildGauge(g.getKey(), g.getValue(), timestamp));
+         }
+ 

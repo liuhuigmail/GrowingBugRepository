@@ -1,0 +1,26 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkIssues.java b/src/main/java/com/jcabi/github/mock/MkIssues.java
+index 818b86b0..c7f86da8 100644
+--- a/src/main/java/com/jcabi/github/mock/MkIssues.java
++++ b/src/main/java/com/jcabi/github/mock/MkIssues.java
+@@ -111,7 +111,7 @@ final class MkIssues implements Issues {
+         final int number;
+         try {
+             number = 1 + this.storage.xml().xpath(
+-                String.format("%s/issue/number/text()", this.xpath())
++                String.format("%s/issue/number", this.xpath())
+             ).size();
+             this.storage.apply(
+                 new Directives().xpath(this.xpath()).add("issue")
+diff --git a/src/main/java/com/jcabi/github/mock/MkReleases.java b/src/main/java/com/jcabi/github/mock/MkReleases.java
+index 90f43f15..2776de1b 100644
+--- a/src/main/java/com/jcabi/github/mock/MkReleases.java
++++ b/src/main/java/com/jcabi/github/mock/MkReleases.java
+@@ -125,7 +125,7 @@ public final class MkReleases implements Releases {
+         final int number;
+         try {
+             number = 1 + this.storage.xml().xpath(
+-                String.format("%s/release/id/text()", this.xpath())
++                String.format("%s/release/id", this.xpath())
+             ).size();
+             this.storage.apply(
+                 new Directives().xpath(this.xpath()).add("release")

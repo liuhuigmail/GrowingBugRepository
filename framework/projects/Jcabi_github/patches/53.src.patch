@@ -1,0 +1,77 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkDeployKey.java b/src/main/java/com/jcabi/github/mock/MkDeployKey.java
+index 053e3a0c..fa36c8d7 100644
+--- a/src/main/java/com/jcabi/github/mock/MkDeployKey.java
++++ b/src/main/java/com/jcabi/github/mock/MkDeployKey.java
+@@ -102,8 +102,9 @@ public final class MkDeployKey implements DeployKey {
+      */
+     private String xpath() {
+         return String.format(
+-            "/github/repos/repo[@coords='%s']/deploykeys/deploykey[id='%d']",
+-            this.owner.coordinates(),
++            "/repos/%s/%s/deployKeys/deployKey[id=%d]",
++            this.owner.coordinates().user(),
++            this.owner.coordinates().repo(),
+             this.key
+         );
+     }
+diff --git a/src/main/java/com/jcabi/github/mock/MkDeployKeys.java b/src/main/java/com/jcabi/github/mock/MkDeployKeys.java
+index 5c4e6995..d90c716c 100644
+--- a/src/main/java/com/jcabi/github/mock/MkDeployKeys.java
++++ b/src/main/java/com/jcabi/github/mock/MkDeployKeys.java
+@@ -77,15 +77,10 @@ public final class MkDeployKeys implements DeployKeys {
+      * @throws IOException If there is any I/O problem
+      */
+     MkDeployKeys(final MkStorage stg, final String login,
+-        final Coordinates rep) throws IOException {
++        final Coordinates rep) {
+         this.storage = stg;
+         this.self = login;
+         this.coords = rep;
+-        this.storage.apply(
+-            new Directives().xpath(
+-                String.format("/github/repos/repo[@coords='%s']", this.coords)
+-            ).addIf("deploykeys")
+-        );
+     }
+ 
+     @Override
+@@ -110,11 +105,11 @@ public final class MkDeployKeys implements DeployKeys {
+         final int number;
+         try {
+             number = 1 + this.storage.xml().xpath(
+-                String.format("%s/deploykey/id/text()", this.xpath())
++                String.format("%s/deployKey/id/text()", this.xpath())
+             ).size();
+             this.storage.apply(
+                 new Directives().xpath(this.xpath())
+-                    .add("deploykey")
++                    .add("deployKey")
+                     .add("id").set(String.valueOf(number)).up()
+                     .add("title").set(title).up()
+                     .add("key").set(key)
+@@ -131,8 +126,7 @@ public final class MkDeployKeys implements DeployKeys {
+      */
+     private String xpath() {
+         return String.format(
+-            "/github/repos/repo[@coords='%s']/deploykeys",
+-            this.coords
++            "/repos/%s/%s/deployKeys", this.coords.user(), this.coords.repo()
+         );
+     }
+ 
+diff --git a/src/main/java/com/jcabi/github/mock/MkRepo.java b/src/main/java/com/jcabi/github/mock/MkRepo.java
+index 5b8e8bf5..63e6d726 100644
+--- a/src/main/java/com/jcabi/github/mock/MkRepo.java
++++ b/src/main/java/com/jcabi/github/mock/MkRepo.java
+@@ -189,11 +189,7 @@ final class MkRepo implements Repo {
+ 
+     @Override
+     public DeployKeys keys() {
+-        try {
+             return new MkDeployKeys(this.storage, this.self, this.coords);
+-        } catch (final IOException ex) {
+-            throw new IllegalStateException(ex);
+-        }
+     }
+ 
+     @Override
