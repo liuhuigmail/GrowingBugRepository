@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,9922050a7434167ed417531da407853438bfd8f1,2a32d28ab30fc39629eb625a41eaf23f590ea30d,7,https://github.com/lbehnke/hierarchical-clustering-java/issues/7

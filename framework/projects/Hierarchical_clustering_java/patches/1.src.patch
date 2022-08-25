@@ -1,0 +1,24 @@
+diff --git a/src/main/java/com/apporiented/algorithm/clustering/DefaultClusteringAlgorithm.java b/src/main/java/com/apporiented/algorithm/clustering/DefaultClusteringAlgorithm.java
+index 3e4d77c..7771c1b 100644
+--- a/src/main/java/com/apporiented/algorithm/clustering/DefaultClusteringAlgorithm.java
++++ b/src/main/java/com/apporiented/algorithm/clustering/DefaultClusteringAlgorithm.java
+@@ -17,8 +17,6 @@
+ package com.apporiented.algorithm.clustering;
+ 
+ import java.util.ArrayList;
+-import java.util.Arrays;
+-import java.util.HashSet;
+ import java.util.List;
+ 
+ public class DefaultClusteringAlgorithm implements ClusteringAlgorithm {
+@@ -38,10 +36,6 @@ public class DefaultClusteringAlgorithm implements ClusteringAlgorithm {
+ 		if (linkageStrategy == null) {
+ 			throw new IllegalArgumentException("Undefined linkage strategy");
+ 		}
+-		int uniqueCount=new HashSet<String>(Arrays.asList(clusterNames)).size();
+-		if (uniqueCount != clusterNames.length) {
+-			throw new IllegalArgumentException("Duplicate names");
+-		}
+ 		/* Setup model */
+ 		List<Cluster> clusters = createClusters(clusterNames);
+         DistanceMap linkages = createLinkages(distances, clusters);
