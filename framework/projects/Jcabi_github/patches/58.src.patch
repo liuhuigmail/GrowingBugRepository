@@ -1,0 +1,33 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkCommitsComparison.java b/src/main/java/com/jcabi/github/mock/MkCommitsComparison.java
+index a82b3739..0896f7f6 100644
+--- a/src/main/java/com/jcabi/github/mock/MkCommitsComparison.java
++++ b/src/main/java/com/jcabi/github/mock/MkCommitsComparison.java
+@@ -84,27 +84,9 @@ final class MkCommitsComparison implements CommitsComparison {
+ 
+     @Override
+     public JsonObject json() throws IOException {
+-        return Json.createObjectBuilder()
++        throw new UnsupportedOperationException();
+             // @checkstyle MultipleStringLiterals (3 lines)
+-            .add("status", "test-status")
+-            .add("ahead_by", 1)
+-            .add("behind_by", 2)
+-            .add(
+-                "author",
+-                Json.createObjectBuilder()
+                 // @checkstyle MultipleStringLiterals (3 lines)
+-                    .add("login", "test")
+-                    .build()
+-            )
+-            .add(
+-                "files",
+-                Json.createObjectBuilder()
+-                    .add("sha", "bbcd538c8e72b8c175046e27cc8f907076331401")
+-                    .add("filename", "test-file")
+                     // @checkstyle MultipleStringLiterals (1 lines)
+-                    .add("status", "test")
+-                    .build()
+-            )
+-            .build();
+     }
+ }

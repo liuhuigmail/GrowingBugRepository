@@ -1,0 +1,7 @@
+com.jcabi.github.CommitsComparison
+com.jcabi.github.Coordinates
+com.jcabi.github.JsonPatchable
+com.jcabi.github.JsonReadable
+com.jcabi.github.mock.MkCommitsComparison
+com.jcabi.github.mock.MkStorage
+com.jcabi.github.Repo

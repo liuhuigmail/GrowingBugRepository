@@ -1,0 +1,698 @@
+diff --git a/src/test/java/com/jcabi/github/RtContentsITCase.java b/src/test/java/com/jcabi/github/RtContentsITCase.java
+index 35ad12d4..551f864f 100644
+--- a/src/test/java/com/jcabi/github/RtContentsITCase.java
++++ b/src/test/java/com/jcabi/github/RtContentsITCase.java
+@@ -49,7 +49,6 @@ import org.junit.Test;
+  *  from a real Github repository, fetch files, create, update and remove
+  *  files.
+  *  When done, remove this puzzle and Ignore annotation from the method.
+- * @checkstyle MultipleStringLiterals (300 lines)
+  */
+ public final class RtContentsITCase {
+ 
+@@ -69,27 +68,17 @@ public final class RtContentsITCase {
+      */
+     @Test
+     public void canCreateFileContent() throws Exception {
+-        final Repos repos = github().repos();
+-        final Repo repo = repos.create(
+-            Json.createObjectBuilder().add(
+-                "name", RandomStringUtils.randomAlphanumeric(Tv.TEN)
+-            ).build()
++        final String path = RandomStringUtils.randomAlphabetic(Tv.TEN);
++        MatcherAssert.assertThat(
++            RtContentsITCase.repo().contents().create(
++                jsonObject(
++                    path, new String(
++                        Base64.encodeBase64("some content".getBytes())
++                    ), "theMessage"
++                )
++            ).path(),
++            Matchers.equalTo(path)
+         );
+-        try {
+-            final String path = RandomStringUtils.randomAlphabetic(Tv.TEN);
+-            MatcherAssert.assertThat(
+-                repos.get(repo.coordinates()).contents().create(
+-                    this.jsonObject(
+-                        path, new String(
+-                            Base64.encodeBase64("some content".getBytes())
+-                        ), "theMessage"
+-                    )
+-                ).path(),
+-                Matchers.equalTo(path)
+-            );
+-        } finally {
+-            repos.remove(repo.coordinates());
+-        }
+     }
+ 
+     /**
+@@ -98,35 +87,27 @@ public final class RtContentsITCase {
+      */
+     @Test
+     public void getContent() throws Exception {
+-        final Repos repos = github().repos();
+-        final Repo repo = repos.create(
+-            Json.createObjectBuilder().add(
+-                "name", RandomStringUtils.randomAlphanumeric(Tv.TEN)
+-            ).build()
++        final String path = String.valueOf(System.currentTimeMillis());
++        final String message = String.format("testMessage");
++        final String cont = new String(
++            Base64.encodeBase64(
++                String.format("content%d", System.currentTimeMillis())
++                    .getBytes()
++            )
++        );
++        RtContentsITCase.repo().contents().create(
++            jsonObject(path, cont, message)
++        );
++        final Content content = RtContentsITCase.repo().contents()
++            .get(path, "master");
++        MatcherAssert.assertThat(
++            content.path(),
++            Matchers.equalTo(path)
++        );
++        MatcherAssert.assertThat(
++            new Content.Smart(content).content(),
++            Matchers.equalTo(String.format("%s\n", cont))
+         );
+-        try {
+-            final String path = RandomStringUtils.randomAlphanumeric(Tv.TEN);
+-            final String message = String.format("testMessage");
+-            final String cont = new String(
+-                Base64.encodeBase64(
+-                    String.format("content%d", System.currentTimeMillis())
+-                        .getBytes()
+-                )
+-            );
+-            final Contents contents = repos.get(repo.coordinates()).contents();
+-            contents.create(this.jsonObject(path, cont, message));
+-            final Content content = contents.get(path, "master");
+-            MatcherAssert.assertThat(
+-                content.path(),
+-                Matchers.equalTo(path)
+-            );
+-            MatcherAssert.assertThat(
+-                new Content.Smart(content).content(),
+-                Matchers.equalTo(String.format("%s\n", cont))
+-            );
+-        } finally {
+-            repos.remove(repo.coordinates());
+-        }
+     }
+ 
+     /**
+@@ -148,13 +129,22 @@ public final class RtContentsITCase {
+ 
+     /**
+      * Create and return repo to test.
+-     *
+      * @return Repo
+      * @throws Exception If some problem inside
+      */
+-    private static Github github() throws Exception {
++    private static Repo repo() throws Exception {
+         final String key = System.getProperty("failsafe.github.key");
+         Assume.assumeThat(key, Matchers.notNullValue());
+-        return new RtGithub(key);
++        return new RtGithub(key).repos().get(RtContentsITCase.coordinates());
++    }
++
++    /**
++     * Create and return repo coordinates to test on.
++     * @return Coordinates
++     */
++    private static Coordinates coordinates() {
++        return new Coordinates.Simple(
++            System.getProperty("failsafe.github.repo")
++        );
+     }
+ }
+diff --git a/src/test/java/com/jcabi/github/RtPublicKeysITCase.java b/src/test/java/com/jcabi/github/RtPublicKeysITCase.java
+index 484edf13..ce2c1ceb 100644
+--- a/src/test/java/com/jcabi/github/RtPublicKeysITCase.java
++++ b/src/test/java/com/jcabi/github/RtPublicKeysITCase.java
+@@ -40,6 +40,8 @@ import org.junit.Test;
+  *
+  * @author Carlos Miranda (miranda.cma@gmail.com)
+  * @version $Id$
++ * @todo #301 Implement an integration test for RtPublicKeys that creates
++ *  a real public key for a user.
+  * @todo #551 RtPublicKeysITCase is disabled since it doesn't work
+  *  with real Github account. Let's fix it and remove all
+  *  Ignore annotations from all its methods.
+@@ -99,7 +101,7 @@ public class RtPublicKeysITCase {
+     @Ignore
+     public final void removesKey() throws Exception {
+         final PublicKeys keys = this.keys();
+-        final PublicKey key = keys.create("", "");
++        final PublicKey key = keys.create("rsa", "rsa sh");
+         MatcherAssert.assertThat(
+             keys.iterate() ,
+             Matchers.hasItem(key)
+@@ -111,34 +113,4 @@ public class RtPublicKeysITCase {
+         );
+     }
+ 
+-    /**
+-     * RtPublicKeys should be able to create a key.
+-     *
+-     * @throws Exception If a problem occurs.
+-     */
+-    @Test
+-    public final void createsKey() throws Exception {
+-        final PublicKeys keys = this.keys();
+-        // @checkstyle LineLength (1 line)
+-        final PublicKey key = keys.create("rsa", "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDS+TF7+bae4UKj6nec1oipiP9Ysc6mBPszB80z13tMZBlsPCOiLVAMO2ER/wpnKHd/VylmYr5c6wc3kSj88846VHUhQDN7fLd/km06KTdW4+9db7HBfvr0063eDdi1lg8jlnccegeeqKsG39+iVQban7ugcPyJtjQE9k7JjYBT+SOgupWkYPVO+5Z3xF6VJL8gUTIMgoovgTabFx60t5h5UPtNaGbdcSlHhLOlWn8I7tHvwbYdhZVqlCC450rieXo8PpjndG3crcuHPZPDVSSXyqRpguIxVEVjXd3B/0vrhXJQJC4u0ukOOytLNL6Gzz3oK7SIB0mqWJ4Mo0Wp+zeX jac.wshmstr@gmail.com");
+-        try {
+-            MatcherAssert.assertThat(
+-                keys.iterate(),
+-                Matchers.hasItem(key)
+-            );
+-            MatcherAssert.assertThat(
+-                key.user(),
+-                Matchers.equalTo(
+-                    keys.user()
+-                )
+-            );
+-        } finally {
+-            keys.remove(key.number());
+-        }
+-        MatcherAssert.assertThat(
+-            keys.iterate(),
+-            Matchers.not(Matchers.hasItem(key))
+-        );
+-    }
+-
+ }
+diff --git a/src/test/java/com/jcabi/github/RtPullCommentsTest.java b/src/test/java/com/jcabi/github/RtPullCommentsTest.java
+index 1b97f0d5..a7d3ede3 100644
+--- a/src/test/java/com/jcabi/github/RtPullCommentsTest.java
++++ b/src/test/java/com/jcabi/github/RtPullCommentsTest.java
+@@ -94,17 +94,14 @@ public final class RtPullCommentsTest {
+                     .build().toString()
+             )
+         ).start();
+-        try {
+-            final RtPullComments comments = new RtPullComments(
+-                new JdkRequest(container.home()), pull
+-            );
+-            MatcherAssert.assertThat(
+-                comments.iterate(Collections.<String, String>emptyMap()),
+-                Matchers.<PullComment>iterableWithSize(2)
+-            );
+-        } finally {
+-            container.stop();
+-        }
++        final RtPullComments comments = new RtPullComments(
++            new JdkRequest(container.home()), pull
++        );
++        MatcherAssert.assertThat(
++            comments.iterate(Collections.<String, String>emptyMap()),
++            Matchers.<PullComment>iterableWithSize(2)
++        );
++        container.stop();
+     }
+ 
+     /**
+@@ -126,31 +123,15 @@ public final class RtPullCommentsTest {
+      * RtPullComments can fetch pull comments for a pull request.
+      *
+      * @throws Exception If something goes wrong.
++     * @todo #416 RtPullComments should be able to fetch all comments of a pull
++     *  request. Implement {@link RtPullComments#iterate(int, java.util.Map)}
++     *  and don't forget to include a test here. When done, remove this puzzle
++     *  and the Ignore annotation of this test method.
+      */
+     @Test
++    @Ignore
+     public void iteratesPullRequestComments() throws Exception {
+-        final Pull pull = Mockito.mock(Pull.class);
+-        Mockito.doReturn(repo()).when(pull).repo();
+-        final MkContainer container = new MkGrizzlyContainer().next(
+-            new MkAnswer.Simple(
+-                HttpURLConnection.HTTP_OK,
+-                Json.createArrayBuilder()
+-                    .add(comment("comment 3"))
+-                    .add(comment("comment 4"))
+-                    .build().toString()
+-            )
+-        ).start();
+-        try {
+-            final RtPullComments comments = new RtPullComments(
+-                new JdkRequest(container.home()), pull
+-            );
+-            MatcherAssert.assertThat(
+-                comments.iterate(1, Collections.<String, String>emptyMap()),
+-                Matchers.<PullComment>iterableWithSize(2)
+-            );
+-        } finally {
+-            container.stop();
+-        }
++        // To be implemented.
+     }
+ 
+     /**
+diff --git a/src/test/java/com/jcabi/github/RtReleasesITCase.java b/src/test/java/com/jcabi/github/RtReleasesITCase.java
+index df183fce..ba7595ea 100644
+--- a/src/test/java/com/jcabi/github/RtReleasesITCase.java
++++ b/src/test/java/com/jcabi/github/RtReleasesITCase.java
+@@ -30,13 +30,11 @@
+ package com.jcabi.github;
+ 
+ import com.jcabi.aspects.Tv;
+-import java.io.IOException;
+-import javax.json.Json;
+-import org.apache.commons.codec.binary.Base64;
+ import org.apache.commons.lang3.RandomStringUtils;
+ import org.hamcrest.MatcherAssert;
+ import org.hamcrest.Matchers;
+ import org.junit.Assume;
++import org.junit.Ignore;
+ import org.junit.Test;
+ 
+ /**
+@@ -44,6 +42,9 @@ import org.junit.Test;
+  * @author Paul Polishchuk (ppol@ua.fm)
+  * @version $Id$
+  * @since 0.8
++ * @todo #551 RtReleasesITCase is disabled since it doesn't work
++ *  with real Github account. Let's fix it and remove all
++ *  Ignore annotations from all its test methods.
+  */
+ public final class RtReleasesITCase {
+ 
+@@ -52,23 +53,20 @@ public final class RtReleasesITCase {
+      * @throws Exception if something goes wrong
+      */
+     @Test
++    @Ignore
+     public void canFetchAllReleases() throws Exception {
+-        final Repo repo = RtReleasesITCase.repo();
++        final Releases releases = RtReleasesITCase.releases();
++        final Release release = releases.create(
++            RandomStringUtils.randomAlphabetic(Tv.TEN)
++        );
++        final int number = release.number();
+         try {
+-            final Releases releases = repo.releases();
+-            final Release release = releases.create(
+-                RandomStringUtils.randomAlphabetic(Tv.TEN)
++            MatcherAssert.assertThat(
++                releases.iterate(),
++                Matchers.not(Matchers.emptyIterableOf(Release.class))
+             );
+-            try {
+-                MatcherAssert.assertThat(
+-                    releases.iterate(),
+-                    Matchers.not(Matchers.emptyIterableOf(Release.class))
+-                );
+-            } finally {
+-                releases.remove(release.number());
+-            }
+         } finally {
+-            RtReleasesITCase.remove(repo);
++            releases.remove(number);
+         }
+     }
+ 
+@@ -77,24 +75,20 @@ public final class RtReleasesITCase {
+      * @throws Exception if any error inside
+      */
+     @Test
++    @Ignore
+     public void canFetchRelease() throws Exception {
+-        final Repo repo = RtReleasesITCase.repo();
+-        try {
+-            final Releases releases = repo.releases();
+-            final String tag = "v1.0";
+-            final Release release = releases.create(tag);
+-            MatcherAssert.assertThat(
+-                releases.get(release.number()).number(),
+-                Matchers.equalTo(release.number())
+-            );
+-            MatcherAssert.assertThat(
+-                new Release.Smart(releases.get(release.number())).tag(),
+-                Matchers.equalTo(tag)
+-            );
+-            releases.remove(release.number());
+-        } finally {
+-            RtReleasesITCase.remove(repo);
+-        }
++        final Releases releases = RtReleasesITCase.releases();
++        final String tag = "v1.0";
++        final Release release = releases.create(tag);
++        MatcherAssert.assertThat(
++            releases.get(release.number()).number(),
++            Matchers.equalTo(release.number())
++        );
++        MatcherAssert.assertThat(
++            releases.get(release.number()).json().getString("tag_name"),
++            Matchers.equalTo(tag)
++        );
++        releases.remove(release.number());
+     }
+ 
+     /**
+@@ -102,27 +96,24 @@ public final class RtReleasesITCase {
+      * @throws Exception if any error inside
+      */
+     @Test
++    @Ignore
+     public void canCreateRelease() throws Exception {
+-        final Repo repo = RtReleasesITCase.repo();
++        final Releases releases = RtReleasesITCase.releases();
++        final String tag = "0.1";
++        final Release created = releases.create(tag);
++        final int number = created.number();
+         try {
+-            final Releases releases = repo.releases();
+-            final Release created = releases.create("0.1");
+-            final int number = created.number();
+-            try {
+-                final Release obtained = releases.get(number);
+-                MatcherAssert.assertThat(
+-                    created,
+-                    Matchers.is(obtained)
+-                );
+-                MatcherAssert.assertThat(
+-                    new Release.Smart(created).tag(),
+-                    Matchers.equalTo(new Release.Smart(obtained).tag())
+-                );
+-            } finally {
+-                releases.remove(number);
+-            }
++            final Release obtained = releases.get(number);
++            MatcherAssert.assertThat(
++                created,
++                Matchers.is(obtained)
++            );
++            MatcherAssert.assertThat(
++                new Release.Smart(created).tag(),
++                Matchers.equalTo(new Release.Smart(obtained).tag())
++            );
+         } finally {
+-            RtReleasesITCase.remove(repo);
++            releases.remove(number);
+         }
+     }
+ 
+@@ -131,25 +122,21 @@ public final class RtReleasesITCase {
+      * @throws Exception if any problem inside
+      */
+     @Test
++    @Ignore
+     public void canRemoveRelease() throws Exception {
+-        final Repo repo = RtReleasesITCase.repo();
+-        try {
+-            final Releases releases = repo.releases();
+-            final Release release = releases.create(
+-                RandomStringUtils.randomAlphabetic(Tv.TEN)
+-            );
+-            MatcherAssert.assertThat(
+-                releases.iterate(),
+-                Matchers.hasItem(release)
+-            );
+-            releases.remove(release.number());
+-            MatcherAssert.assertThat(
+-                releases.iterate(),
+-                Matchers.not(Matchers.hasItem(release))
+-            );
+-        } finally {
+-            RtReleasesITCase.remove(repo);
+-        }
++        final Releases releases = RtReleasesITCase.releases();
++        final Release release = releases.create(
++            RandomStringUtils.randomAlphabetic(Tv.TEN)
++        );
++        MatcherAssert.assertThat(
++            releases.iterate(),
++            Matchers.hasItem(release)
++        );
++        releases.remove(release.number());
++        MatcherAssert.assertThat(
++            releases.iterate(),
++            Matchers.not(Matchers.hasItem(release))
++        );
+     }
+ 
+     /**
+@@ -157,23 +144,19 @@ public final class RtReleasesITCase {
+      * @throws Exception if any problem inside.
+      */
+     @Test
++    @Ignore
+     public void canEditTag() throws Exception {
+-        final Repo repo = RtReleasesITCase.repo();
+-        try {
+-            final Releases releases = repo.releases();
+-            final Release release = releases.create(
+-                RandomStringUtils.randomAlphabetic(Tv.TEN)
+-            );
+-            final String tag = RandomStringUtils.randomAlphabetic(Tv.FIFTEEN);
+-            new Release.Smart(release).tag(tag);
+-            MatcherAssert.assertThat(
+-                new Release.Smart(releases.get(release.number())).tag(),
+-                Matchers.equalTo(tag)
+-            );
+-            releases.remove(release.number());
+-        } finally {
+-            RtReleasesITCase.remove(repo);
+-        }
++        final Releases releases = RtReleasesITCase.releases();
++        final Release release = releases.create(
++            RandomStringUtils.randomAlphabetic(Tv.TEN)
++        );
++        final String tag = RandomStringUtils.randomAlphabetic(Tv.FIFTEEN);
++        new Release.Smart(release).tag(tag);
++        MatcherAssert.assertThat(
++            new Release.Smart(releases.get(release.number())).tag(),
++            Matchers.equalTo(tag)
++        );
++        releases.remove(release.number());
+     }
+ 
+     /**
+@@ -181,64 +164,31 @@ public final class RtReleasesITCase {
+      * @throws Exception if any problem inside.
+      */
+     @Test
++    @Ignore
+     public void canEditBody() throws Exception {
+-        final Repo repo = RtReleasesITCase.repo();
+-        try {
+-            final Releases releases = repo.releases();
+-            final Release release = releases.create(
+-                RandomStringUtils.randomAlphabetic(Tv.TEN)
+-            );
+-            final String body = "Description of the release";
+-            new Release.Smart(release).body(body);
+-            MatcherAssert.assertThat(
+-                new Release.Smart(releases.get(release.number())).body(),
+-                Matchers.equalTo(body)
+-            );
+-            releases.remove(release.number());
+-        } finally {
+-            RtReleasesITCase.remove(repo);
+-        }
+-    }
+-
+-    /**
+-     * Create and return not empty RtRepo object to test.
+-     * @return Repo
+-     * @throws IOException if any problem inside.
+-     */
+-    private static Repo repo() throws IOException {
+-        final Repo repo = RtReleasesITCase.repos().create(
+-            Json.createObjectBuilder().add(
+-                "name", String.format("repo_%d", System.currentTimeMillis())
+-            ).build()
++        final Releases releases = RtReleasesITCase.releases();
++        final Release release = releases.create(
++            RandomStringUtils.randomAlphabetic(Tv.TEN)
+         );
+-        repo.contents().create(Json.createObjectBuilder()
+-            .add("path", RandomStringUtils.randomAlphabetic(Tv.TEN))
+-            .add("message", "theMessage")
+-            .add(
+-                "content", new String(
+-                    Base64.encodeBase64("some content".getBytes())
+-                )
+-            ).build()
++        final String body = "Description of the release";
++        new Release.Smart(release).body(body);
++        MatcherAssert.assertThat(
++            new Release.Smart(releases.get(release.number())).body(),
++            Matchers.equalTo(body)
+         );
+-        return repo;
++        releases.remove(release.number());
+     }
+ 
+     /**
+-     * Get RtRepos of test repository.
+-     * @return Repos
++     * Create and return RtReleases object to test.
++     * @return Releases
+      */
+-    private static Repos repos() {
++    private static Releases releases() {
+         final String key = System.getProperty("failsafe.github.key");
+         Assume.assumeThat(key, Matchers.notNullValue());
+-        return new RtGithub(key).repos();
++        return new RtGithub(key).repos().get(
++            new Coordinates.Simple(System.getProperty("failsafe.github.repo"))
++        ).releases();
+     }
+ 
+-    /**
+-     * Remove specified repo.
+-     * @param repo Repo
+-     * @throws IOException if any problem inside.
+-     */
+-    private static void remove(final Repo repo) throws IOException {
+-        RtReleasesITCase.repos().remove(repo.coordinates());
+-    }
+ }
+diff --git a/src/test/java/com/jcabi/github/RtRepoCommitsTest.java b/src/test/java/com/jcabi/github/RtRepoCommitsTest.java
+index cb112204..e98190cb 100644
+--- a/src/test/java/com/jcabi/github/RtRepoCommitsTest.java
++++ b/src/test/java/com/jcabi/github/RtRepoCommitsTest.java
+@@ -148,21 +148,6 @@ public final class RtRepoCommitsTest {
+         );
+     }
+ 
+-    /**
+-     * RtRepoCommits can read correctly URL.
+-     * @throws Exception if any problem inside
+-     */
+-    @Test
+-    public void readCorrectURL() throws Exception {
+-        MatcherAssert.assertThat(
+-            new RtRepoCommits(new FakeRequest(), repo())
+-                .compare("base", "head").toString(),
+-            Matchers.endsWith(
+-                "/see-FakeRequest-class/repos/user/repo/compare/base...head"
+-            )
+-        );
+-    }
+-
+     /**
+      * Create repository for tests.
+      * @return Repository
+diff --git a/src/test/java/com/jcabi/github/RtSearchTest.java b/src/test/java/com/jcabi/github/RtSearchTest.java
+index c942d661..1d374d78 100644
+--- a/src/test/java/com/jcabi/github/RtSearchTest.java
++++ b/src/test/java/com/jcabi/github/RtSearchTest.java
+@@ -29,9 +29,7 @@
+  */
+ package com.jcabi.github;
+ 
+-import com.jcabi.http.Response;
+ import com.jcabi.http.request.FakeRequest;
+-import com.jcabi.http.response.JsonResponse;
+ import javax.json.Json;
+ import org.hamcrest.MatcherAssert;
+ import org.hamcrest.Matchers;
+@@ -128,19 +126,4 @@ public final class RtSearchTest {
+         );
+     }
+ 
+-    /**
+-     * RtSearch can read non-unicode.
+-     * @throws Exception if any problem inside
+-     */
+-    @Test
+-    public void readNonUnicode() throws Exception {
+-        final Response resp = new FakeRequest()
+-            .withBody("{\"help\": \"\u001Fblah\u0001cwhoa\u0000!\"}").fetch();
+-        final JsonResponse response = new JsonResponse(resp);
+-        MatcherAssert.assertThat(
+-            response.json().readObject().getString("help"),
+-            Matchers.is("\u001Fblah\u0001cwhoa\u0000!")
+-        );
+-    }
+-
+ }
+diff --git a/src/test/java/com/jcabi/github/mock/MkCommitsComparisonTest.java b/src/test/java/com/jcabi/github/mock/MkCommitsComparisonTest.java
+index fbb70e1c..7d7d1819 100644
+--- a/src/test/java/com/jcabi/github/mock/MkCommitsComparisonTest.java
++++ b/src/test/java/com/jcabi/github/mock/MkCommitsComparisonTest.java
+@@ -56,27 +56,4 @@ public final class MkCommitsComparisonTest {
+             ).repo(), Matchers.notNullValue()
+         );
+     }
+-    /**
+-     * MkCommitsComparison can get a JSON.
+-     * @throws Exception if some problem inside
+-     */
+-    @Test
+-    public void canGetJson() throws Exception {
+-        MatcherAssert.assertThat(
+-            new MkCommitsComparison(
+-                new MkStorage.InFile(), "test1", new Coordinates.Simple(
+-                    "test_user1", "test_repo1"
+-                )
+-            ).json().getString("status"),
+-            Matchers.notNullValue()
+-        );
+-        MatcherAssert.assertThat(
+-            new MkCommitsComparison(
+-                new MkStorage.InFile(), "test2", new Coordinates.Simple(
+-                    "test_user2", "test_repo2"
+-                )
+-            ).json().getInt("ahead_by"),
+-            Matchers.notNullValue()
+-        );
+-    }
+ }
+diff --git a/src/test/java/com/jcabi/github/mock/MkReleaseAssetTest.java b/src/test/java/com/jcabi/github/mock/MkReleaseAssetTest.java
+index 623f6789..effebdb2 100644
+--- a/src/test/java/com/jcabi/github/mock/MkReleaseAssetTest.java
++++ b/src/test/java/com/jcabi/github/mock/MkReleaseAssetTest.java
+@@ -45,7 +45,6 @@ import org.junit.Test;
+  * @since 0.8
+  * @checkstyle MultipleStringLiteralsCheck (200 lines)
+  */
+-@SuppressWarnings("PMD.AvoidDuplicateLiterals")
+ public final class MkReleaseAssetTest {
+ 
+     /**
+@@ -98,35 +97,6 @@ public final class MkReleaseAssetTest {
+         );
+     }
+ 
+-    /**
+-     * MkReleaseAsset can be removed several times.
+-     *
+-     * @throws Exception If a problem occurs.
+-     */
+-    @Test
+-    public void removesSeveralAssets() throws Exception {
+-        final ReleaseAssets assets = release().assets();
+-        // @checkstyle MagicNumberCheck (1 line)
+-        final int limit = 3;
+-        final ReleaseAsset[] bodies = new ReleaseAsset[limit];
+-        for (int idx = 0; idx < limit; ++idx) {
+-            bodies[idx] = assets.upload(
+-                "testRemove".getBytes(), "text/plain", "remove.txt"
+-            );
+-        }
+-        MatcherAssert.assertThat(
+-            assets.iterate(),
+-            Matchers.<ReleaseAsset>iterableWithSize(limit)
+-        );
+-        for (int idx = 0; idx < limit; ++idx) {
+-            bodies[idx].remove();
+-        }
+-        MatcherAssert.assertThat(
+-            assets.iterate(),
+-            Matchers.emptyIterable()
+-        );
+-    }
+-
+     /**
+      * MkReleaseAsset can be represented in JSON format.
+      *

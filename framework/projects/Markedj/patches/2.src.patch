@@ -1,0 +1,13 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Grammer.java b/src/main/java/io/github/gitbucket/markedj/Grammer.java
+index 75a0166..2385da0 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Grammer.java
++++ b/src/main/java/io/github/gitbucket/markedj/Grammer.java
+@@ -49,7 +49,7 @@ public class Grammer {
+ 
+         BLOCK_GFM_RULES.putAll(BLOCK_RULES);
+         BLOCK_GFM_RULES.put("fences", new FindFirstRule(BLOCK_GFM_FENCES));
+-        BLOCK_GFM_RULES.put("paragraph", new FindFirstRule(BLOCK_PARAGRAPH.replace("(?!", "(?!" + removeLineStart(BLOCK_GFM_FENCES).replace("\\1", "\\2") + "|" + removeLineStart(BLOCK_LIST).replace("\\1", "\\3") + "|")));
++        BLOCK_GFM_RULES.put("paragraph", new FindFirstRule(BLOCK_PARAGRAPH.replace("(?!", "(?!" + BLOCK_GFM_FENCES.replace("\\1", "\\2") + "|" + BLOCK_LIST.replace("\\1", "\\3") + "|")));
+         BLOCK_GFM_RULES.put("heading", new FindFirstRule("^ *(#{1,6}) +([^\\n]+?) *#* *(?:\\n+|$)"));
+ // TODO
+ //  block.gfm.paragraph = replace(block.paragraph)

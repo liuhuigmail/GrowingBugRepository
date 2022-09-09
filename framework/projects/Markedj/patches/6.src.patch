@@ -1,0 +1,29 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Grammer.java b/src/main/java/io/github/gitbucket/markedj/Grammer.java
+index f7f2312..6a19ca0 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Grammer.java
++++ b/src/main/java/io/github/gitbucket/markedj/Grammer.java
+@@ -25,7 +25,7 @@ public class Grammer {
+     public static String BLOCK_LIST        = "^( *)(" + BULLET + ") [\\s\\S]+?(?:\\n{2,}(?! )(?!\\1" + BULLET + " )\\n*|\\s*$)";
+     public static String BLOCK_DEF         = "^ *\\[([^\\]]+)\\]: *<?([^\\s>]+)>?(?: +[\"(]([^\\n]+)[\")])? *(?:\\n+|$)";
+     public static String BLOCK_PARAGRAPH   = "^((?:[^\\n]+\\n?(?!" + removeLineStart(BLOCK_HR) + "|" + removeLineStart(BLOCK_HEADING) + "|" + removeLineStart(BLOCK_LHEADING) + "|" + removeLineStart(BLOCK_BLOCKQUOTE) + "|<" + TAG + "|" + removeLineStart(BLOCK_DEF) + "))+)\\n*";
+-    public static String BLOCK_GFM_FENCES  = "^ *(`{3,}|~{3,})([ \\S]+)?\\n([\\s\\S]*?)\\s*\\1 *(?:\\n+|$)";
++    public static String BLOCK_GFM_FENCES  = "^ *(`{3,}|~{3,})[ \\.]*(\\S+)? *\\n([\\s\\S]*?)\\s*\\1 *(?:\\n+|$)";
+ 
+     public static Map<String, Rule> BLOCK_RULES = new HashMap<>();
+     public static Map<String, Rule> BLOCK_GFM_RULES = new HashMap<>();
+diff --git a/src/main/java/io/github/gitbucket/markedj/Lexer.java b/src/main/java/io/github/gitbucket/markedj/Lexer.java
+index aabb864..8f1136d 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Lexer.java
++++ b/src/main/java/io/github/gitbucket/markedj/Lexer.java
+@@ -67,11 +67,8 @@ public class Lexer {
+                 if(!cap.isEmpty()){
+                     src = src.substring(cap.get(0).length());
+                     String lang = cap.get(2);
+-                    if(lang != null){
+                         // Ignore extra information in Pandoc, R Markdown or PHP Markdown Extra.
+                         // https://github.com/gitbucket/markedj/issues/20
+-                        lang = lang.replaceFirst("\\{.*}", "");
+-                    }
+                     context.pushToken(new CodeToken(cap.get(3), trim(lang), false));
+                     continue;
+                 }

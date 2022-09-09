@@ -1,0 +1,108 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Marked.java b/src/main/java/io/github/gitbucket/markedj/Marked.java
+index ebb27dd..c3e5cbf 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Marked.java
++++ b/src/main/java/io/github/gitbucket/markedj/Marked.java
+@@ -20,13 +20,8 @@ public class Marked {
+         Parser parser = new Parser(options, renderer);
+         String html = parser.parse(result.getTokens(), result.getLinks());
+ 
+-        Whitelist whitelist = options.getWhitelist();
+ 
+-        if(whitelist != null) {
+-            return Jsoup.clean(html, whitelist);
+-        } else {
+             return html;
+-        }
+     }
+ 
+ }
+diff --git a/src/main/java/io/github/gitbucket/markedj/Options.java b/src/main/java/io/github/gitbucket/markedj/Options.java
+index 77ff9ad..2cafaee 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Options.java
++++ b/src/main/java/io/github/gitbucket/markedj/Options.java
+@@ -10,13 +10,7 @@ public class Options {
+     private boolean sanitize = false;
+     private String langPrefix = "lang-";
+     private String headerPrefix = "";
+-    private Whitelist whitelist = Whitelist.relaxed();
+-    {
+-        whitelist.addAttributes(":all", "id", "class", "style");
+-        whitelist.addTags("input");
+-        whitelist.addAttributes("input", "type", "checked", "name", "value", "disabled");
+-        whitelist.addProtocols("a", "href", "#");
+-    }
++    private boolean xhtml = false;
+ 
+     public void setGfm(boolean gfm) {
+         this.gfm = gfm;
+@@ -42,8 +36,8 @@ public class Options {
+         this.headerPrefix = headerPrefix;
+     }
+ 
+-    public void setWhitelist(Whitelist whitelist){
+-        this.whitelist = whitelist;
++    public void setXhtml(boolean xhtml) {
++        this.xhtml = xhtml;
+     }
+ 
+     public boolean isGfm() {
+@@ -70,8 +64,8 @@ public class Options {
+         return headerPrefix;
+     }
+ 
+-    public Whitelist getWhitelist(){
+-        return whitelist;
++    public boolean isXhtml() {
++        return xhtml;
+     }
+ 
+ }
+diff --git a/src/main/java/io/github/gitbucket/markedj/Renderer.java b/src/main/java/io/github/gitbucket/markedj/Renderer.java
+index 74186f7..e298527 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Renderer.java
++++ b/src/main/java/io/github/gitbucket/markedj/Renderer.java
+@@ -48,7 +48,11 @@ public class Renderer {
+     }
+ 
+     public String hr() {
++        if (options.isXhtml()){
++            return "<hr/>\n";
++        } else {
+         return "<hr>\n";
++        }
+     }
+ 
+     public String list(String body, boolean ordered){
+@@ -106,7 +110,11 @@ public class Renderer {
+     }
+ 
+     public String br(){
++        if(options.isXhtml()){
++            return "<br/>";
++        } else {
+         return "<br>";
++        }
+     }
+ 
+     public String del(String text){
+@@ -114,6 +122,8 @@ public class Renderer {
+     }
+ 
+     public String link(String href, String title, String text){
++        if(options.isSanitize()){
++        }
+         String titleAttr = "";
+         if(title != null){
+             titleAttr = " title=\"" + title + "\"";
+@@ -128,7 +138,11 @@ public class Renderer {
+             titleAttr = " title=\"" + title + "\"";
+         }
+ 
++        if(options.isXhtml()){
++            return "<img src=\"" + href + "\" alt=\"" + text + "\"" + titleAttr + "/>";
++        } else {
+         return "<img src=\"" + href + "\" alt=\"" + text + "\"" + titleAttr + ">";
++        }
+     }
+ 
+     public String nolink(String text){

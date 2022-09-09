@@ -1,0 +1,3 @@
+com.jcabi.github.RtPullCommentsTest
+com.jcabi.github.mock.MkCommitsComparisonTest
+com.jcabi.github.mock.MkRepoCommitsTest

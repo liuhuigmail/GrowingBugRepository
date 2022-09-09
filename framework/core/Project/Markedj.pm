@@ -24,15 +24,15 @@
 
 =head1 NAME
 
-Project::Jcabi_github.pm -- L<Project> submodule for jcabi-github.
+Project::Markedj.pm -- L<Project> submodule for markedj.
 
 =head1 DESCRIPTION
 
 This module provides all project-specific configurations and subroutines for the
-jcabi-github project.
+markedj project.
 
 =cut
-package Project::Jcabi_github;
+package Project::Markedj;
 
 use strict;
 use warnings;
@@ -41,13 +41,13 @@ use Constants;
 use Vcs::Git;
 
 our @ISA = qw(Project);
-my $PID  = "Jcabi_github";
+my $PID  = "Markedj";
 
 sub new {
     @_ == 1 or die $ARG_ERROR;
     my ($class) = @_;
 
-    my $name = "jcabi-github";
+    my $name = "markedj";
     my $vcs  = Vcs::Git->new($PID,
                              "$REPO_DIR/$name.git",
                              "$PROJECTS_DIR/$PID/$BUGS_CSV_ACTIVE",
@@ -110,6 +110,8 @@ sub _post_checkout {
         open(OUT, '>'."$work_dir/maven-build.xml") or die $!;
         while(<IN>) {
             $_ =~ s/compile-tests/compile\.tests/g;
+            $_ =~ s/source="1\.."/source="1\.8"/g;
+            $_ =~ s/target="1\.."/target="1\.8"/g;
             #$_ =~ s/classesdir/classes\.dir/g;
             #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
             #$_ =~ s/src\//$SUBPROJ\/src\//g;
@@ -147,10 +149,6 @@ sub _post_checkout {
         #print OUT $converted_file;
         #close(OUT);
     }
-    my $exclude_test22="$work_dir/src/test/java/com/jcabi/github/ImmutabilityTest.java";
-    if (-e $exclude_test22){
-        Utils::exec_cmd("rm $exclude_test22", "Copy generated Ant build file") or die;
-    }
 
 }
 
@@ -187,6 +185,8 @@ sub initialize_revision {
     }
     elsif (-e "$work_dir/src/java" and -e "$work_dir/src/tests"){
         $result = {src=>"src/java", test=>"src/tests"} unless defined $result;
+    }elsif (-e "$work_dir/src" and -e "$work_dir/test"){
+        $result = {src=>"src", test=>"test"} unless defined $result;
     }
     else {
         if (-e "$work_dir"){

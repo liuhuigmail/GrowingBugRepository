@@ -1,0 +1,19 @@
+diff --git a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+index 84222b4..a0d393f 100644
+--- a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
++++ b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+@@ -144,14 +144,6 @@ public class MarkedTest {
+                 "</code></pre>", result);
+     }
+ 
+-    @Test
+-    public void testFencedCodeBlock() throws Exception {
+-        String md = "``` {#id .class1 attribute1=value1}\ntest\n```";
+-        String result = Marked.marked(md, new Options());
+-        String expect = "<pre><code>test\n</code></pre>";
+-        assertEquals(expect, result);
+-    }
+-
+     @Test
+     public void testEmptyItemOfList() throws Exception {
+         String result = Marked.marked(loadResourceAsString("empty_item_of_list.md"), new Options());

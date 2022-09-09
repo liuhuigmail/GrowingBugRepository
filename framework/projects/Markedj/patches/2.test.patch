@@ -1,0 +1,26 @@
+diff --git a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+index 1cff0c8..499f11b 100644
+--- a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
++++ b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+@@ -122,21 +122,6 @@ public class MarkedTest {
+         assertEquals(loadResourceAsString("empty_item_of_list.html"), result);
+     }
+ 
+-    @Test
+-    public void testParagraphSeparation() throws Exception {
+-        String result = Marked.marked(
+-                "Message A\n" +
+-                "- List A\n" +
+-                "- List B", new Options());
+-
+-        assertEquals(
+-                "<p>Message A</p>\n" +
+-                "<ul>\n" +
+-                "<li>List A</li>\n" +
+-                "<li>List B</li>\n" +
+-                "</ul>\n", result);
+-    }
+-
+     private String loadResourceAsString(String path) throws IOException {
+         InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
+         try {

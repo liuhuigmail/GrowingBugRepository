@@ -1,0 +1,16 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Parser.java b/src/main/java/io/github/gitbucket/markedj/Parser.java
+index 8bda7c4..bda3ae1 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Parser.java
++++ b/src/main/java/io/github/gitbucket/markedj/Parser.java
+@@ -19,11 +19,7 @@ public class Parser {
+     public String parse(Stack<Token> src, Map<String, Lexer.Link> links){
+         Map<String, Rule> rules;
+         if(options.isGfm()){
+-            if(options.isBreaks()){
+-                rules = Grammer.INLINE_BREAKS_RULES;
+-            } else {
+                 rules = Grammer.INLINE_GFM_RULES;
+-            }
+         } else {
+             rules = Grammer.INLINE_RULES;
+         }

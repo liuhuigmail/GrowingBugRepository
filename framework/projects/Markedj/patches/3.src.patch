@@ -1,0 +1,63 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Lexer.java b/src/main/java/io/github/gitbucket/markedj/Lexer.java
+index 48d1130..58d5f5a 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Lexer.java
++++ b/src/main/java/io/github/gitbucket/markedj/Lexer.java
+@@ -115,9 +115,6 @@ public class Lexer {
+                     List<List<String>> rowList = new ArrayList<>();
+                     for (String row : rows) {
+                         String[] columns = row.split(" *\\| *");
+-                        if(maxColumns < columns.length){
+-                            maxColumns = columns.length;
+-                        }
+                         rowList.add(array2list(columns));
+                     }
+ 
+@@ -291,17 +288,9 @@ public class Lexer {
+                     List<List<String>> rowList = new ArrayList<>();
+                     for (String row : rows) {
+                         String[] columns = row.replaceAll("^ *\\| *| *\\| *$", "").split(" *\\| *");
+-                        if(maxColumns < columns.length){
+-                            maxColumns = columns.length;
+-                        }
+                         rowList.add(array2list(columns));
+                     }
+ 
+-                    fillList(headerList, maxColumns, "");
+-                    fillList(alignList, maxColumns, null);
+-                    for(List<String> row: rowList){
+-                        fillList(row, maxColumns, "");
+-                    }
+ 
+                     context.pushToken(new TableToken(headerList, alignList, rowList));
+                     continue;
+diff --git a/src/main/java/io/github/gitbucket/markedj/Parser.java b/src/main/java/io/github/gitbucket/markedj/Parser.java
+index 8bda7c4..b8f193b 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Parser.java
++++ b/src/main/java/io/github/gitbucket/markedj/Parser.java
+@@ -73,16 +73,24 @@ public class Parser {
+                 StringBuilder outBody   = new StringBuilder();
+ 
+                 for(int i = 0; i < t.getHeader().size(); i++){
++                    String align = null;
++                    if(t.getAlign().size() > i){
++                        align = t.getAlign().get(i);
++                    }
+                     outCell.append(renderer.tablecell(
+-                            context.getInlineLexer().output(t.getHeader().get(i)), new Renderer.TableCellFlags(true, t.getAlign().get(i))));
++                            context.getInlineLexer().output(t.getHeader().get(i)), new Renderer.TableCellFlags(true, align)));
+                 }
+                 outHeader.append(renderer.tablerow(outCell.toString()));
+ 
+                 for(int i = 0; i < t.getCells().size(); i++){
+                     outCell.setLength(0);
+                     for(int j = 0; j < t.getCells().get(i).size(); j++){
++                        String align = null;
++                        if(t.getAlign().size() > j){
++                            align = t.getAlign().get(j);
++                        }
+                         outCell.append(renderer.tablecell(
+-                                context.getInlineLexer().output(t.getCells().get(i).get(j)), new Renderer.TableCellFlags(false, t.getAlign().get(j))));
++                                context.getInlineLexer().output(t.getCells().get(i).get(j)), new Renderer.TableCellFlags(false, align)));
+                     }
+                     outBody.append(renderer.tablerow(outCell.toString()));
+                 }

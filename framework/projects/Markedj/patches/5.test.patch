@@ -1,0 +1,162 @@
+diff --git a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+index e8e1fb5..aee57e6 100644
+--- a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
++++ b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+@@ -49,31 +49,32 @@ public class MarkedTest {
+     @Test
+     public void testAutolink() throws Exception {
+         String result = Marked.marked("<takezoe@gmail.com>", new Options());
+-        assertEquals("<p><a href=\"mailto:takezoe@gmail.com\">takezoe@gmail.com</a></p>", result);
++        assertEquals("<p><a href=\"mailto:takezoe@gmail.com\">takezoe@gmail.com</a></p>\n", result);
+     }
+ 
+     @Test
+     public void testReflink() throws Exception {
+       String result = Marked.marked("[FOO], [bar][Foo], [Bar]\n\n[Foo]: http://example.com");
+-      assertEquals("<p><a href=\"http://example.com\">FOO</a>, <a href=\"http://example.com\">bar</a>, [Bar]</p>", result);
++      assertEquals("<p><a href=\"http://example.com\">FOO</a>, <a href=\"http://example.com\">bar</a>, [Bar]</p>\n", result);
+     }
+ 
+     @Test
+     public void testEm() throws Exception {
+         {
+             String result = Marked.marked("_aa__a__aa_", new Options());
+-            assertEquals("<p><em>aa<strong>a</strong>aa</em></p>", result);
++            assertEquals("<p><em>aa<strong>a</strong>aa</em></p>\n", result);
+         }
+         {
+             String result = Marked.marked("*aa*o*aa*", new Options());
+-            assertEquals("<p><em>aa</em>o<em>aa</em></p>", result);
++            assertEquals("<p><em>aa</em>o<em>aa</em></p>\n", result);
+         }
+         {
+             String result = Marked.marked("_aa__aa_", new Options());
+-            assertEquals("<p><em>aa__aa</em></p>", result);
++            assertEquals("<p><em>aa__aa</em></p>\n", result);
+         }
+     }
+ 
++
+     @Test
+     public void testStackoverFlow() throws Exception {
+         Marked.marked(loadResourceAsString("stackoverflow.txt"), new Options());
+@@ -100,7 +101,7 @@ public class MarkedTest {
+             //options.setGfm(true);     // default is true
+             String result = Marked.marked(md, options);
+ 
+-            assertEquals("<p>first line second line</p>", result);
++            assertEquals("<p>first line\nsecond line</p>\n", result);
+         }
+         {
+             String md = "first line\nsecond line";
+@@ -109,7 +110,7 @@ public class MarkedTest {
+             //options.setGfm(true); // default is true
+             String result = Marked.marked(md, options);
+ 
+-            assertEquals("<p>first line<br>second line</p>", result);
++            assertEquals("<p>first line<br>second line</p>\n", result);
+         }
+     }
+ 
+@@ -129,7 +130,7 @@ public class MarkedTest {
+         assertEquals(
+                 "<pre><code>public class HelloWorld {\n" +
+                 "}\n" +
+-                "</code></pre>", result);
++                "</code></pre>\n", result);
+     }
+ 
+     @Test
+@@ -146,11 +147,11 @@ public class MarkedTest {
+                 "- List B", new Options());
+ 
+         assertEquals(
+-                "<p>Message A</p> \n" +
+-                "<ul> \n" +
+-                " <li>List A</li> \n" +
+-                " <li>List B</li> \n" +
+-                "</ul>", result);
++                "<p>Message A</p>\n" +
++                "<ul>\n" +
++                "<li>List A</li>\n" +
++                "<li>List B</li>\n" +
++                "</ul>\n", result);
+     }
+ 
+     @Test
+@@ -169,54 +170,27 @@ public class MarkedTest {
+ 
+ 
+         assertEquals(
+-                "<table> \n" +
+-                        " <thead> \n" +
+-                        "  <tr> \n" +
+-                        "   <th>ID</th> \n" +
+-                        "   <th>name</th> \n" +
+-                        "   <th>note</th> \n" +
+-                        "  </tr> \n" +
+-                        " </thead> \n" +
+-                        " <tbody> \n" +
+-                        "  <tr> \n" +
+-                        "   <td>1</td> \n" +
+-                        "   <td>foo</td> \n" +
+-                        "   <td>This is foo</td> \n" +
+-                        "  </tr> \n" +
+-                        "  <tr> \n" +
+-                        "   <td>2</td> \n" +
+-                        "   <td>bar</td> \n" +
+-                        "   <td></td> \n" +
+-                        "  </tr> \n" +
+-                        " </tbody> \n" +
+-                        "</table>", result);
+-    }
+-
+-    @Test
+-    public void testSanitize() throws Exception {
+-        {
+-            Options options = new Options();
+-            options.setSanitize(true);
+-            String result = Marked.marked("<b>bold</b><script>alert('test!');</script>", options);
+-            assertEquals("<p>&lt;b&gt;bold&lt;/b&gt;&lt;script&gt;alert('test!');&lt;/script&gt;</p>", result);
+-        }
+-        {
+-            Options options = new Options();
+-            options.setSanitize(false);
+-            String result = Marked.marked("<b>bold</b><script>alert('test!');</script>", options);
+-            assertEquals("<p><b>bold</b></p>", result);
+-        }
+-        {
+-            Options options = new Options();
+-            options.setSanitize(false);
+-            String result = Marked.marked("- <b>test", options);
+-            // It's not clean but tag is closed at least.
+-            assertEquals("<ul> \n" +
+-                    " <li><b>test</b></li>\n" +
+-                    " <b> </b>\n" +
+-                    "</ul>\n" +
+-                    "<b> </b>", result);
+-        }
++                "<table>\n" +
++                        "<thead>\n" +
++                        "<tr>\n" +
++                        "<th>ID</th>\n" +
++                        "<th>name</th>\n" +
++                        "<th>note</th>\n" +
++                        "</tr>\n" +
++                        "</thead>\n" +
++                        "<tbody>\n" +
++                        "<tr>\n" +
++                        "<td>1</td>\n" +
++                        "<td>foo</td>\n" +
++                        "<td>This is foo</td>\n" +
++                        "</tr>\n" +
++                        "<tr>\n" +
++                        "<td>2</td>\n" +
++                        "<td>bar</td>\n" +
++                        "<td></td>\n" +
++                        "</tr>\n" +
++                        "</tbody>\n" +
++                        "</table>\n", result);
+     }
+ 
+     private String loadResourceAsString(String path) throws IOException {

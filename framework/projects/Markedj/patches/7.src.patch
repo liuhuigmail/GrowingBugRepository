@@ -1,0 +1,18 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Renderer.java b/src/main/java/io/github/gitbucket/markedj/Renderer.java
+index 878a130..b95f317 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Renderer.java
++++ b/src/main/java/io/github/gitbucket/markedj/Renderer.java
+@@ -67,11 +67,11 @@ public class Renderer {
+     }
+ 
+     public String listitem(String text){
+-        return "<li>" + text + "</li>";
++        return "<li>" + text + "</li>\n";
+     }
+ 
+     public String paragraph(String text){
+-        return "<p>" + text + "</p>";
++        return "<p>" + text + "</p>\n";
+     }
+ 
+     public String table(String header, String body){

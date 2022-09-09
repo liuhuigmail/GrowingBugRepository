@@ -1,0 +1,9 @@
+net.sf.jmimemagic.detectors.TextFileDetector
+net.sf.jmimemagic.MagicDetector
+net.sf.jmimemagic.MagicException
+net.sf.jmimemagic.MagicMatch
+net.sf.jmimemagic.MagicMatcher
+net.sf.jmimemagic.MagicMatchNotFoundException
+net.sf.jmimemagic.MagicParseException
+net.sf.jmimemagic.MagicParser
+net.sf.jmimemagic.UnsupportedTypeException

@@ -1,0 +1,48 @@
+diff --git a/src/main/java/com/jcabi/github/RtPullComments.java b/src/main/java/com/jcabi/github/RtPullComments.java
+index 08cbb458..bf6b02c7 100644
+--- a/src/main/java/com/jcabi/github/RtPullComments.java
++++ b/src/main/java/com/jcabi/github/RtPullComments.java
+@@ -92,8 +92,15 @@ public final class RtPullComments implements PullComments {
+      */
+     RtPullComments(final Request req, final Pull pull) {
+         this.entry = req;
++        final Coordinates coords = pull.repo().coordinates();
++        this.request = this.entry.uri()
++            .path("/repos")
++            .path(coords.user())
++            .path(coords.repo())
++            .path("/pulls")
++            .path("/comments")
++            .back();
+         this.owner = pull;
+-        this.request = constructRequest(null);
+     }
+ 
+     /**
+@@ -153,21 +160,12 @@ public final class RtPullComments implements PullComments {
+     }
+ 
+     @Override
+-    public Iterable<PullComment> iterate(final int number,
+-        final Map<String, String> params) {
+-        final Request newreq = this.constructRequest(number);
+-        return new RtPagination<PullComment>(
+-            newreq.uri().queryParams(params).back(),
+-            new RtPagination.Mapping<PullComment, JsonObject>() {
+-                @Override
+-                public PullComment map(final JsonObject value) {
+-                    return RtPullComments.this.get(
++    public Iterable<PullComment> iterate(
++        final int number,
++        final Map<String, String> params
++    ) {
++        throw new UnsupportedOperationException("Iterate not yet implemented.");
+                         // @checkstyle MultipleStringLiterals (1 line)
+-                        value.getInt("id")
+-                    );
+-                }
+-            }
+-        );
+     }
+ 
+     // @checkstyle ParameterNumberCheck (7 lines)

@@ -1,0 +1,882 @@
+--- io.github.gitbucket.markedj.MarkedTest::testAutolink
+junit.framework.AssertionFailedError: expected:<...oe@gmail.com</a></p>[]> but was:<...oe@gmail.com</a></p>[
+]>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at io.github.gitbucket.markedj.MarkedTest.testAutolink(MarkedTest.java:48)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1972)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute1(JUnitTask.java:824)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2277)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:392)
+	at org.apache.tools.ant.Target.performTasks(Target.java:413)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+	at org.apache.tools.ant.Main.runBuild(Main.java:811)
+	at org.apache.tools.ant.Main.startAnt(Main.java:217)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
+--- io.github.gitbucket.markedj.MarkedTest::testMarked2
+junit.framework.AssertionFailedError: expected:<...owered by Scala.</p>[<h2 id="features">Features</h2>
+<p>The current version of GitBucket provides a basic features below:</p><ul>
+<li>Public / Private Git repository (http and ssh access)</li><li>Repository viewer and online file editing</li><li>Repository search (Code and Issues)</li><li>Wiki</li><li>Issues</li><li>Fork / Pull request</li><li>Email notification</li><li>Activity timeline</li><li>Simple user and group management with LDAP integration</li><li>Gravatar support</li><li>Plug-in system</li></ul>
+<p>Following features are not implemented, but we will make them in the future release!</p><ul>
+<li>Network graph</li><li>Statistics</li><li>Watch / Star</li></ul>
+<p>If you want to try the development version of GitBucket, see the documentation for developers at <a href="https://github.com/takezoe/gitbucket/wiki">Wiki</a>.</p><h2 id="installation">Installation</h2>
+<ol>
+<li>Download latest <strong>gitbucket.war</strong> from <a href="https://github.com/takezoe/gitbucket/releases">the release page</a>.</li><li>Deploy it to the Servlet 3.0 container such as Tomcat 7.x, Jetty 8.x, GlassFish 3.x or higher.</li><li>Access <strong><a href="http://[hostname]:[port]/gitbucket/">http://[hostname]:[port]/gitbucket/</a></strong> using your web browser.</li></ol>
+<p>If you are using Gitbucket behind a webserver please make sure you have increased the <strong>client_max_body_size</strong> (on nginx)</p><p>The default administrator account is <strong>root</strong> and password is <strong>root</strong>.</p><p>or you can start GitBucket by <code>java -jar gitbucket.war</code> without servlet container. In this case, GitBucket URL is <strong><a href="http://[hostname]:8080/">http://[hostname]:8080/</a></strong>. You can specify following options.</p><ul>
+<li>--port=[NUMBER]</li><li>--prefix=[CONTEXTPATH]</li><li>--host=[HOSTNAME]</li><li>--gitbucket.home=[DATA_DIR]</li></ul>
+<p>To upgrade GitBucket, only replace gitbucket.war. All GitBucket data is stored in HOME/.gitbucket. So if you want to back up GitBucket data, copy this directory to the other disk.</p><p>For Installation on Windows Server with IIS see <a href="https://github.com/takezoe/gitbucket/wiki/Installation-on-IIS-and-Helicontech-Zoo">this wiki page</a></p><h3 id="mac-os-x">Mac OS X</h3>
+<h4 id="installing-via-homebrew">Installing Via Homebrew</h4>
+<pre><code>$ brew install gitbucket
+==&gt; Downloading https://github.com/takezoe/gitbucket/releases/download/1.10/gitbucket.war
+######################################################################## 100.0%
+==&gt; Caveats
+Note: When using launchctl the port will be 8080.
+
+To have launchd start gitbucket at login:
+    ln -sfv /usr/local/opt/gitbucket/*.plist ~/Library/LaunchAgents
+Then to load gitbucket now:
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.gitbucket.plist
+Or, if you don&#39;t want/need launchctl, you can just run:
+    java -jar /usr/local/opt/gitbucket/libexec/gitbucket.war
+==&gt; Summary
+/usr/local/Cellar/gitbucket/1.10: 3 files, 42M, built in 11 seconds
+</code></pre>
+<h4 id="manual-installation">Manual Installation</h4>
+<p>On OS X, copy the <a href="https://raw.github.com/takezoe/gitbucket/master/contrib/macosx/gitbucket.plist">gitbucket.plist</a> file to <code>~/Library/LaunchAgents/</code></p><p>Run the following commands in <code>Terminal</code> to</p><ul>
+<li>start gitbucket: <code>launchctl load ~/Library/LaunchAgents/gitbucket.plist</code></li><li>stop gitbucket: <code>launchctl unload ~/Library/LaunchAgents/gitbucket.plist</code></li></ul>
+<h2 id="plug-ins">Plug-ins</h2>
+<p>GitBucket has the plug-in system to extend GitBucket from outside of GitBucket. Some plug-ins are available now:</p><ul>
+<li><a href="https://github.com/takezoe/gitbucket-gist-plugin">gitbucket-gist-plugin</a></li><li><a href="https://github.com/McFoggy/gitbucket-announce-plugin">gitbucket-announce-plugin</a></li><li><a href="https://github.com/McFoggy/gitbucket-h2-backup-plugin">gitbucket-h2-backup-plugin</a></li><li><a href="https://github.com/yoshiyoshifujii/gitbucket-desktopnotify-plugin">gitbucket-desktopnotify-plugin</a></li></ul>
+<p>You can find community plugins other than them at <a href="http://gitbucket-plugins.github.io/">gitbucket community plugins</a>.</p><h2 id="release-notes">Release Notes</h2>
+<h3 id="3-6-30-aug-2015">3.6 - 30 Aug 2015</h3>
+<ul>
+<li>User interface Improvements: Especially, commit list, issues and pull request have been updated largely.</li><li>Installed plugins list has been available at the system administration console.</li><li>Pages and repository list in the sidebar have been limited and more pages and repositories link is available.</li><li>More reference link notation in Markdown has been supported.</li></ul>
+<h3 id="3-5-1-aug-2015">3.5 - 1 Aug 2015</h3>
+<ul>
+<li>Octicons has been applied</li><li>Global header has been enhanced. Now it&#39;s further similar to GitHub.</li><li>Default compare / pull request target has been changed to the parent repository</li><li>A lot of updates for <a href="https://github.com/takezoe/gitbucket-gist-plugin">gitbucket-gist-plugin</a></li></ul>
+<h3 id="3-4-27-jun-2015">3.4 - 27 Jun 2015</h3>
+<ul>
+<li>Declarative style plug-in definition</li><li>New extension point to add markup render</li><li>go-import support</li></ul>
+<h3 id="3-3-31-may-2015">3.3 - 31 May 2015</h3>
+<ul>
+<li>Rich graphical diff for images</li><li>File finder is available in the repository viewer</li><li>Blame is displayed at the source viewer</li><li>Remain user data and repositories even if user is disabled</li><li>Mobile view improvement</li></ul>
+<h3 id="3-2-3-may-2015">3.2 - 3 May 2015</h3>
+<ul>
+<li>Directory history button</li><li>Compare / pull request button</li><li>Limit of activity log</li></ul>
+<h3 id="3-1-1-4-apr-2015">3.1.1 - 4 Apr 2015</h3>
+<ul>
+<li>Rolled back H2 version to avoid version compatibility issue</li><li>Plug-ins became possible to access ServletContext</li></ul>
+<h3 id="3-1-28-mar-2015">3.1 - 28 Mar 2015</h3>
+<ul>
+<li>Web APIs for Jenkins github pull-request builder</li><li>Improved diff view</li><li>Bump Scalatra to 2.3.1, sbt to 0.13.8</li></ul>
+<h3 id="3-0-3-mar-2015">3.0 - 3 Mar 2015</h3>
+<ul>
+<li>New plug-in system is available</li><li>Connection pooling by c3p0</li><li>New branch UI</li><li>Compare between specified commit ids</li></ul>
+<h3 id="2-8-1-feb-2015">2.8 - 1 Feb 2015</h3>
+<ul>
+<li>New logo and icons</li><li>New system setting options to control visibility</li><li>Comment on side-by-side diff</li><li>Information message on sign-in page</li><li>Fork repository by group account</li></ul>
+<h3 id="2-7-29-dec-2014">2.7 - 29 Dec 2014</h3>
+<ul>
+<li>Comment for commit and diff</li><li>Fix security issue in markdown rendering</li><li>Some bug fix and improvements</li></ul>
+<h3 id="2-6-24-nov-2014">2.6 - 24 Nov 2014</h3>
+<ul>
+<li>Search box at issues and pull requests</li><li>Information from administrator</li><li>Pull request UI has been updated</li><li>Move to TravisCI from Buildhive</li><li>Some bug fix and improvements</li></ul>
+<h3 id="2-5-4-nov-2014">2.5 - 4 Nov 2014</h3>
+<ul>
+<li>New Dashboard</li><li>Change datetime format</li><li>Create branch from Web UI</li><li>Task list in Markdown</li><li>Some bug fix and improvements</li></ul>
+<h3 id="2-4-1-6-oct-2014">2.4.1 - 6 Oct 2014</h3>
+<ul>
+<li>Bug fix</li></ul>
+<h3 id="2-4-6-oct-2014">2.4 - 6 Oct 2014</h3>
+<ul>
+<li>New UI is applied to Issues and Pull requests</li><li>Side-by-side diff is available</li><li>Fix relative path problem in Markdown links and images</li><li>Plugin System is disabled in default</li><li>Some bug fix and improvements</li></ul>
+<h3 id="2-3-1-sep-2014">2.3 - 1 Sep 2014</h3>
+<ul>
+<li>Scala based plugin system</li><li>Embedded Jetty war extraction directory moved to <code>GITBUCKET_HOME/tmp</code></li><li>Some bug fix and improvements</li></ul>
+<h3 id="2-2-1-5-aug-2014">2.2.1 - 5 Aug 2014</h3>
+<ul>
+<li>Bug fix</li></ul>
+<h3 id="2-2-4-aug-2014">2.2 - 4 Aug 2014</h3>
+<ul>
+<li>Plug-in system is available</li><li>Move to Scala 2.11, Scalatra 2.3 and Slick 2.1</li><li>tar.gz export for repository contents</li><li>LDAP authentication improvement (mail address became optional)</li><li>Show news feed of a private repository to members</li><li>Some bug fix and improvements</li></ul>
+<h3 id="2-1-6-jul-2014">2.1 - 6 Jul 2014</h3>
+<ul>
+<li>Upgrade to Slick 2.0 from 1.9</li><li>Base part of the plug-in system is merged</li><li>Many bug fix and improvements</li></ul>
+<h3 id="2-0-31-may-2014">2.0 - 31 May 2014</h3>
+<ul>
+<li>Modern Github UI</li><li>Preview in AceEditor</li><li>Select lines by clicking line number in blob view</li></ul>
+<h3 id="1-13-29-apr-2014">1.13 - 29 Apr 2014</h3>
+<ul>
+<li>Direct file editing in the repository viewer using AceEditor</li><li>File attachment for issues</li><li>Atom feed of user activity</li><li>Fix some bugs</li></ul>
+<h3 id="1-12-29-mar-2014">1.12 - 29 Mar 2014</h3>
+<ul>
+<li>SSH repository access is available</li><li>Allow users can create and management their groups</li><li>Git submodule support</li><li>Close issues via commit messages</li><li>Show repository description below the name on repository page</li><li>Fix presentation of the source viewer</li><li>Upgrade to sbt 0.13</li><li>Fix some bugs</li></ul>
+<h3 id="1-11-1-06-mar-2014">1.11.1 - 06 Mar 2014</h3>
+<ul>
+<li>Bug fix</li></ul>
+<h3 id="1-11-01-mar-2014">1.11 - 01 Mar 2014</h3>
+<ul>
+<li>Base URL for redirection, notification and repository URL box is configurable</li><li>Remove <code>--https</code> option because it&#39;s possible to substitute in the base url</li><li>Headline anchor is available for Markdown contents such as Wiki page</li><li>Improve H2 connectivity</li><li>Label is available for pull requests not only issues</li><li>Delete branch button is added</li><li>Repository icons are updated</li><li>Select lines of source code by URL hash like <code>#L10</code> or <code>#L10-L15</code> in repository viewer</li><li>Display reference to issue from others in comment list</li><li>Fix some bugs</li></ul>
+<h3 id="1-10-01-feb-2014">1.10 - 01 Feb 2014</h3>
+<ul>
+<li>Rename repository</li><li>Transfer repository owner</li><li>Change default data directory to <code>HOME/.gitbucket</code> from <code>HOME/gitbucket</code> to avoid problem like #243, but if data directory already exist at HOME/gitbucket, it continues being used.</li><li>Add LDAP display name attribute</li><li>Response performance improvement</li><li>Fix some bugs</li></ul>
+<h3 id="1-9-28-dec-2013">1.9 - 28 Dec 2013</h3>
+<ul>
+<li>Display GITBUCKET_HOME on the system settings page</li><li>Fix some bugs</li></ul>
+<h3 id="1-8-30-nov-2013">1.8 - 30 Nov 2013</h3>
+<ul>
+<li>Add user and group deletion</li><li>Improve pull request performance</li><li>Pull request synchronization (when source repository is updated after pull request, it&#39;s applied to the pull request)</li><li>LDAP StartTLS support</li><li>Enable hard wrapping in Markdown</li><li>Add new some options to specify the data directory. See details in <a href="https://github.com/takezoe/gitbucket/wiki/DirectoryStructure">Wiki</a>.</li><li>Fix some bugs</li></ul>
+<h3 id="1-7-26-oct-2013">1.7 - 26 Oct 2013</h3>
+<ul>
+<li>Support working on Java6 in embedded Jetty mode</li><li>Add <code>--host</code> option to bind specified host name in embedded Jetty mode</li><li>Add <code>--https=true</code> option to force https scheme when using embedded Jetty mode at the back of https proxy</li><li>Add full name as user property</li><li>Change link color for absent Wiki pages</li><li>Add ZIP download button to the repository viewer tab</li><li>Improve ZIP exporting performance</li><li>Expand issue and comment textarea for long text automatically</li><li>Add conflict detection in Wiki</li><li>Add reverting wiki page from history</li><li>Match committer to user name by email address</li><li>Mail notification sender is customizable</li><li>Add link to changeset in refs comment for issues</li><li>Fix some bugs</li></ul>
+<h3 id="1-6-1-oct-2013">1.6 - 1 Oct 2013</h3>
+<ul>
+<li>Web hook</li><li>Performance improvement for pull request</li><li>Executable war file</li><li>Specify suitable Content-Type for downloaded files in the repository viewer</li><li>Fix some bugs</li></ul>
+<h3 id="1-5-4-sep-2013">1.5 - 4 Sep 2013</h3>
+<ul>
+<li>Fork and pull request</li><li>LDAP authentication</li><li>Mail notification</li><li>Add an option to turn off the gravatar support</li><li>Add the branch tab in the repository viewer</li><li>Encoding auto detection for the file content in the repository viewer</li><li>Add favicon, header logo and icons for the timeline</li><li>Specify data directory via environment variable GITBUCKET_HOME</li><li>Fix some bugs</li></ul>
+<h3 id="1-4-31-jul-2013">1.4 - 31 Jul 2013</h3>
+<ul>
+<li>Group management</li><li>Repository search for code and issues</li><li>Display user related issues on the dashboard</li><li>Display participants avatar of issues on the issue page</li><li>Performance improvement for repository viewer</li><li>Alert by milestone due date</li><li>H2 database administration console</li><li>Fix some bugs</li></ul>
+<h3 id="1-3-18-jul-2013">1.3 - 18 Jul 2013</h3>
+<ul>
+<li>Batch updating for issues</li><li>Display assigned user on issue list</li><li>User icon and Gravatar support</li><li>Convert @xxxx to link to the account page</li><li>Add copy to clipboard button for git clone URL</li><li>Allow multi-byte characters as wiki page name</li><li>Allow to create the empty repository</li><li>Fix some bugs</li></ul>
+<h3 id="1-2-09-jul-2013">1.2 - 09 Jul 2013</h3>
+<ul>
+<li>Add activity timeline</li><li>Bugfix for Git 1.8.1.5 or later</li><li>Allow multi-byte characters as label</li><li>Fix some bugs</li></ul>
+<h3 id="1-1-05-jul-2013">1.1 - 05 Jul 2013</h3>
+<ul>
+<li>Fix some bugs</li><li>Upgrade to JGit 3.0</li></ul>
+<h3 id="1-0-04-jul-2013">1.0 - 04 Jul 2013</h3>
+<ul>
+<li>This is a first public release</li></ul>
+<h2 id="sponsors">Sponsors</h2>
+<p><a href="https://www.jetbrains.com/idea/"><img src="https://www.jetbrains.com/idea/docs/logo_intellij_idea.png" alt="IntelliJ IDEA"></a></p>]> but was:<...owered by Scala.</p>[
+<h2 id="features">Features</h2>
+<p>The current version of GitBucket provides a basic features below:</p>
+<ul>
+<li>Public / Private Git repository (http and ssh access)</li>
+<li>Repository viewer and online file editing</li>
+<li>Repository search (Code and Issues)</li>
+<li>Wiki</li>
+<li>Issues</li>
+<li>Fork / Pull request</li>
+<li>Email notification</li>
+<li>Activity timeline</li>
+<li>Simple user and group management with LDAP integration</li>
+<li>Gravatar support</li>
+<li>Plug-in system</li>
+</ul>
+<p>Following features are not implemented, but we will make them in the future release!</p>
+<ul>
+<li>Network graph</li>
+<li>Statistics</li>
+<li>Watch / Star</li>
+</ul>
+<p>If you want to try the development version of GitBucket, see the documentation for developers at <a href="https://github.com/takezoe/gitbucket/wiki">Wiki</a>.</p>
+<h2 id="installation">Installation</h2>
+<ol>
+<li>Download latest <strong>gitbucket.war</strong> from <a href="https://github.com/takezoe/gitbucket/releases">the release page</a>.</li>
+<li>Deploy it to the Servlet 3.0 container such as Tomcat 7.x, Jetty 8.x, GlassFish 3.x or higher.</li>
+<li>Access <strong><a href="http://[hostname]:[port]/gitbucket/">http://[hostname]:[port]/gitbucket/</a></strong> using your web browser.</li>
+</ol>
+<p>If you are using Gitbucket behind a webserver please make sure you have increased the <strong>client_max_body_size</strong> (on nginx)</p>
+<p>The default administrator account is <strong>root</strong> and password is <strong>root</strong>.</p>
+<p>or you can start GitBucket by <code>java -jar gitbucket.war</code> without servlet container. In this case, GitBucket URL is <strong><a href="http://[hostname]:8080/">http://[hostname]:8080/</a></strong>. You can specify following options.</p>
+<ul>
+<li>--port=[NUMBER]</li>
+<li>--prefix=[CONTEXTPATH]</li>
+<li>--host=[HOSTNAME]</li>
+<li>--gitbucket.home=[DATA_DIR]</li>
+</ul>
+<p>To upgrade GitBucket, only replace gitbucket.war. All GitBucket data is stored in HOME/.gitbucket. So if you want to back up GitBucket data, copy this directory to the other disk.</p>
+<p>For Installation on Windows Server with IIS see <a href="https://github.com/takezoe/gitbucket/wiki/Installation-on-IIS-and-Helicontech-Zoo">this wiki page</a></p>
+<h3 id="mac-os-x">Mac OS X</h3>
+<h4 id="installing-via-homebrew">Installing Via Homebrew</h4>
+<pre><code>$ brew install gitbucket
+==&gt; Downloading https://github.com/takezoe/gitbucket/releases/download/1.10/gitbucket.war
+######################################################################## 100.0%
+==&gt; Caveats
+Note: When using launchctl the port will be 8080.
+
+To have launchd start gitbucket at login:
+    ln -sfv /usr/local/opt/gitbucket/*.plist ~/Library/LaunchAgents
+Then to load gitbucket now:
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.gitbucket.plist
+Or, if you don&#39;t want/need launchctl, you can just run:
+    java -jar /usr/local/opt/gitbucket/libexec/gitbucket.war
+==&gt; Summary
+/usr/local/Cellar/gitbucket/1.10: 3 files, 42M, built in 11 seconds
+</code></pre>
+<h4 id="manual-installation">Manual Installation</h4>
+<p>On OS X, copy the <a href="https://raw.github.com/takezoe/gitbucket/master/contrib/macosx/gitbucket.plist">gitbucket.plist</a> file to <code>~/Library/LaunchAgents/</code></p>
+<p>Run the following commands in <code>Terminal</code> to</p>
+<ul>
+<li>start gitbucket: <code>launchctl load ~/Library/LaunchAgents/gitbucket.plist</code></li>
+<li>stop gitbucket: <code>launchctl unload ~/Library/LaunchAgents/gitbucket.plist</code></li>
+</ul>
+<h2 id="plug-ins">Plug-ins</h2>
+<p>GitBucket has the plug-in system to extend GitBucket from outside of GitBucket. Some plug-ins are available now:</p>
+<ul>
+<li><a href="https://github.com/takezoe/gitbucket-gist-plugin">gitbucket-gist-plugin</a></li>
+<li><a href="https://github.com/McFoggy/gitbucket-announce-plugin">gitbucket-announce-plugin</a></li>
+<li><a href="https://github.com/McFoggy/gitbucket-h2-backup-plugin">gitbucket-h2-backup-plugin</a></li>
+<li><a href="https://github.com/yoshiyoshifujii/gitbucket-desktopnotify-plugin">gitbucket-desktopnotify-plugin</a></li>
+</ul>
+<p>You can find community plugins other than them at <a href="http://gitbucket-plugins.github.io/">gitbucket community plugins</a>.</p>
+<h2 id="release-notes">Release Notes</h2>
+<h3 id="3-6-30-aug-2015">3.6 - 30 Aug 2015</h3>
+<ul>
+<li>User interface Improvements: Especially, commit list, issues and pull request have been updated largely.</li>
+<li>Installed plugins list has been available at the system administration console.</li>
+<li>Pages and repository list in the sidebar have been limited and more pages and repositories link is available.</li>
+<li>More reference link notation in Markdown has been supported.</li>
+</ul>
+<h3 id="3-5-1-aug-2015">3.5 - 1 Aug 2015</h3>
+<ul>
+<li>Octicons has been applied</li>
+<li>Global header has been enhanced. Now it&#39;s further similar to GitHub.</li>
+<li>Default compare / pull request target has been changed to the parent repository</li>
+<li>A lot of updates for <a href="https://github.com/takezoe/gitbucket-gist-plugin">gitbucket-gist-plugin</a></li>
+</ul>
+<h3 id="3-4-27-jun-2015">3.4 - 27 Jun 2015</h3>
+<ul>
+<li>Declarative style plug-in definition</li>
+<li>New extension point to add markup render</li>
+<li>go-import support</li>
+</ul>
+<h3 id="3-3-31-may-2015">3.3 - 31 May 2015</h3>
+<ul>
+<li>Rich graphical diff for images</li>
+<li>File finder is available in the repository viewer</li>
+<li>Blame is displayed at the source viewer</li>
+<li>Remain user data and repositories even if user is disabled</li>
+<li>Mobile view improvement</li>
+</ul>
+<h3 id="3-2-3-may-2015">3.2 - 3 May 2015</h3>
+<ul>
+<li>Directory history button</li>
+<li>Compare / pull request button</li>
+<li>Limit of activity log</li>
+</ul>
+<h3 id="3-1-1-4-apr-2015">3.1.1 - 4 Apr 2015</h3>
+<ul>
+<li>Rolled back H2 version to avoid version compatibility issue</li>
+<li>Plug-ins became possible to access ServletContext</li>
+</ul>
+<h3 id="3-1-28-mar-2015">3.1 - 28 Mar 2015</h3>
+<ul>
+<li>Web APIs for Jenkins github pull-request builder</li>
+<li>Improved diff view</li>
+<li>Bump Scalatra to 2.3.1, sbt to 0.13.8</li>
+</ul>
+<h3 id="3-0-3-mar-2015">3.0 - 3 Mar 2015</h3>
+<ul>
+<li>New plug-in system is available</li>
+<li>Connection pooling by c3p0</li>
+<li>New branch UI</li>
+<li>Compare between specified commit ids</li>
+</ul>
+<h3 id="2-8-1-feb-2015">2.8 - 1 Feb 2015</h3>
+<ul>
+<li>New logo and icons</li>
+<li>New system setting options to control visibility</li>
+<li>Comment on side-by-side diff</li>
+<li>Information message on sign-in page</li>
+<li>Fork repository by group account</li>
+</ul>
+<h3 id="2-7-29-dec-2014">2.7 - 29 Dec 2014</h3>
+<ul>
+<li>Comment for commit and diff</li>
+<li>Fix security issue in markdown rendering</li>
+<li>Some bug fix and improvements</li>
+</ul>
+<h3 id="2-6-24-nov-2014">2.6 - 24 Nov 2014</h3>
+<ul>
+<li>Search box at issues and pull requests</li>
+<li>Information from administrator</li>
+<li>Pull request UI has been updated</li>
+<li>Move to TravisCI from Buildhive</li>
+<li>Some bug fix and improvements</li>
+</ul>
+<h3 id="2-5-4-nov-2014">2.5 - 4 Nov 2014</h3>
+<ul>
+<li>New Dashboard</li>
+<li>Change datetime format</li>
+<li>Create branch from Web UI</li>
+<li>Task list in Markdown</li>
+<li>Some bug fix and improvements</li>
+</ul>
+<h3 id="2-4-1-6-oct-2014">2.4.1 - 6 Oct 2014</h3>
+<ul>
+<li>Bug fix</li>
+</ul>
+<h3 id="2-4-6-oct-2014">2.4 - 6 Oct 2014</h3>
+<ul>
+<li>New UI is applied to Issues and Pull requests</li>
+<li>Side-by-side diff is available</li>
+<li>Fix relative path problem in Markdown links and images</li>
+<li>Plugin System is disabled in default</li>
+<li>Some bug fix and improvements</li>
+</ul>
+<h3 id="2-3-1-sep-2014">2.3 - 1 Sep 2014</h3>
+<ul>
+<li>Scala based plugin system</li>
+<li>Embedded Jetty war extraction directory moved to <code>GITBUCKET_HOME/tmp</code></li>
+<li>Some bug fix and improvements</li>
+</ul>
+<h3 id="2-2-1-5-aug-2014">2.2.1 - 5 Aug 2014</h3>
+<ul>
+<li>Bug fix</li>
+</ul>
+<h3 id="2-2-4-aug-2014">2.2 - 4 Aug 2014</h3>
+<ul>
+<li>Plug-in system is available</li>
+<li>Move to Scala 2.11, Scalatra 2.3 and Slick 2.1</li>
+<li>tar.gz export for repository contents</li>
+<li>LDAP authentication improvement (mail address became optional)</li>
+<li>Show news feed of a private repository to members</li>
+<li>Some bug fix and improvements</li>
+</ul>
+<h3 id="2-1-6-jul-2014">2.1 - 6 Jul 2014</h3>
+<ul>
+<li>Upgrade to Slick 2.0 from 1.9</li>
+<li>Base part of the plug-in system is merged</li>
+<li>Many bug fix and improvements</li>
+</ul>
+<h3 id="2-0-31-may-2014">2.0 - 31 May 2014</h3>
+<ul>
+<li>Modern Github UI</li>
+<li>Preview in AceEditor</li>
+<li>Select lines by clicking line number in blob view</li>
+</ul>
+<h3 id="1-13-29-apr-2014">1.13 - 29 Apr 2014</h3>
+<ul>
+<li>Direct file editing in the repository viewer using AceEditor</li>
+<li>File attachment for issues</li>
+<li>Atom feed of user activity</li>
+<li>Fix some bugs</li>
+</ul>
+<h3 id="1-12-29-mar-2014">1.12 - 29 Mar 2014</h3>
+<ul>
+<li>SSH repository access is available</li>
+<li>Allow users can create and management their groups</li>
+<li>Git submodule support</li>
+<li>Close issues via commit messages</li>
+<li>Show repository description below the name on repository page</li>
+<li>Fix presentation of the source viewer</li>
+<li>Upgrade to sbt 0.13</li>
+<li>Fix some bugs</li>
+</ul>
+<h3 id="1-11-1-06-mar-2014">1.11.1 - 06 Mar 2014</h3>
+<ul>
+<li>Bug fix</li>
+</ul>
+<h3 id="1-11-01-mar-2014">1.11 - 01 Mar 2014</h3>
+<ul>
+<li>Base URL for redirection, notification and repository URL box is configurable</li>
+<li>Remove <code>--https</code> option because it&#39;s possible to substitute in the base url</li>
+<li>Headline anchor is available for Markdown contents such as Wiki page</li>
+<li>Improve H2 connectivity</li>
+<li>Label is available for pull requests not only issues</li>
+<li>Delete branch button is added</li>
+<li>Repository icons are updated</li>
+<li>Select lines of source code by URL hash like <code>#L10</code> or <code>#L10-L15</code> in repository viewer</li>
+<li>Display reference to issue from others in comment list</li>
+<li>Fix some bugs</li>
+</ul>
+<h3 id="1-10-01-feb-2014">1.10 - 01 Feb 2014</h3>
+<ul>
+<li>Rename repository</li>
+<li>Transfer repository owner</li>
+<li>Change default data directory to <code>HOME/.gitbucket</code> from <code>HOME/gitbucket</code> to avoid problem like #243, but if data directory already exist at HOME/gitbucket, it continues being used.</li>
+<li>Add LDAP display name attribute</li>
+<li>Response performance improvement</li>
+<li>Fix some bugs</li>
+</ul>
+<h3 id="1-9-28-dec-2013">1.9 - 28 Dec 2013</h3>
+<ul>
+<li>Display GITBUCKET_HOME on the system settings page</li>
+<li>Fix some bugs</li>
+</ul>
+<h3 id="1-8-30-nov-2013">1.8 - 30 Nov 2013</h3>
+<ul>
+<li>Add user and group deletion</li>
+<li>Improve pull request performance</li>
+<li>Pull request synchronization (when source repository is updated after pull request, it&#39;s applied to the pull request)</li>
+<li>LDAP StartTLS support</li>
+<li>Enable hard wrapping in Markdown</li>
+<li>Add new some options to specify the data directory. See details in <a href="https://github.com/takezoe/gitbucket/wiki/DirectoryStructure">Wiki</a>.</li>
+<li>Fix some bugs</li>
+</ul>
+<h3 id="1-7-26-oct-2013">1.7 - 26 Oct 2013</h3>
+<ul>
+<li>Support working on Java6 in embedded Jetty mode</li>
+<li>Add <code>--host</code> option to bind specified host name in embedded Jetty mode</li>
+<li>Add <code>--https=true</code> option to force https scheme when using embedded Jetty mode at the back of https proxy</li>
+<li>Add full name as user property</li>
+<li>Change link color for absent Wiki pages</li>
+<li>Add ZIP download button to the repository viewer tab</li>
+<li>Improve ZIP exporting performance</li>
+<li>Expand issue and comment textarea for long text automatically</li>
+<li>Add conflict detection in Wiki</li>
+<li>Add reverting wiki page from history</li>
+<li>Match committer to user name by email address</li>
+<li>Mail notification sender is customizable</li>
+<li>Add link to changeset in refs comment for issues</li>
+<li>Fix some bugs</li>
+</ul>
+<h3 id="1-6-1-oct-2013">1.6 - 1 Oct 2013</h3>
+<ul>
+<li>Web hook</li>
+<li>Performance improvement for pull request</li>
+<li>Executable war file</li>
+<li>Specify suitable Content-Type for downloaded files in the repository viewer</li>
+<li>Fix some bugs</li>
+</ul>
+<h3 id="1-5-4-sep-2013">1.5 - 4 Sep 2013</h3>
+<ul>
+<li>Fork and pull request</li>
+<li>LDAP authentication</li>
+<li>Mail notification</li>
+<li>Add an option to turn off the gravatar support</li>
+<li>Add the branch tab in the repository viewer</li>
+<li>Encoding auto detection for the file content in the repository viewer</li>
+<li>Add favicon, header logo and icons for the timeline</li>
+<li>Specify data directory via environment variable GITBUCKET_HOME</li>
+<li>Fix some bugs</li>
+</ul>
+<h3 id="1-4-31-jul-2013">1.4 - 31 Jul 2013</h3>
+<ul>
+<li>Group management</li>
+<li>Repository search for code and issues</li>
+<li>Display user related issues on the dashboard</li>
+<li>Display participants avatar of issues on the issue page</li>
+<li>Performance improvement for repository viewer</li>
+<li>Alert by milestone due date</li>
+<li>H2 database administration console</li>
+<li>Fix some bugs</li>
+</ul>
+<h3 id="1-3-18-jul-2013">1.3 - 18 Jul 2013</h3>
+<ul>
+<li>Batch updating for issues</li>
+<li>Display assigned user on issue list</li>
+<li>User icon and Gravatar support</li>
+<li>Convert @xxxx to link to the account page</li>
+<li>Add copy to clipboard button for git clone URL</li>
+<li>Allow multi-byte characters as wiki page name</li>
+<li>Allow to create the empty repository</li>
+<li>Fix some bugs</li>
+</ul>
+<h3 id="1-2-09-jul-2013">1.2 - 09 Jul 2013</h3>
+<ul>
+<li>Add activity timeline</li>
+<li>Bugfix for Git 1.8.1.5 or later</li>
+<li>Allow multi-byte characters as label</li>
+<li>Fix some bugs</li>
+</ul>
+<h3 id="1-1-05-jul-2013">1.1 - 05 Jul 2013</h3>
+<ul>
+<li>Fix some bugs</li>
+<li>Upgrade to JGit 3.0</li>
+</ul>
+<h3 id="1-0-04-jul-2013">1.0 - 04 Jul 2013</h3>
+<ul>
+<li>This is a first public release</li>
+</ul>
+<h2 id="sponsors">Sponsors</h2>
+<p><a href="https://www.jetbrains.com/idea/"><img src="https://www.jetbrains.com/idea/docs/logo_intellij_idea.png" alt="IntelliJ IDEA"></a></p>
+]>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at io.github.gitbucket.markedj.MarkedTest.testMarked2(MarkedTest.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1972)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute1(JUnitTask.java:824)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2277)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:392)
+	at org.apache.tools.ant.Target.performTasks(Target.java:413)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+	at org.apache.tools.ant.Main.runBuild(Main.java:811)
+	at org.apache.tools.ant.Main.startAnt(Main.java:217)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
+--- io.github.gitbucket.markedj.MarkedTest::testMarked3
+junit.framework.AssertionFailedError: expected:<...to repository]]</li>[<li>[[LDAP Authentication Settings]]</li><li>[[Installation on IIS and Helicontech Zoo]]</li><li>[[Reverse proxy with Nginx]]</li><li>[[Reverse proxy with Apache]]</li><li>[[Setup Jenkins GitHub pull request builder plugin]]</li><li>[[Connect to H2 database]]</li><li>[[How to Close/Reference issues &amp; pull request]]</li><li>[[Backup]]</li><li>[[API/WebHook]]</li></ul>
+<p>If you are interested in GitBucket development, you can find documents for GitBucket development at: <a href="https://github.com/takezoe/gitbucket/blob/master/doc/readme.md">https://github.com/takezoe/gitbucket/blob/master/doc/readme.md</a></p>]> but was:<...to repository]]</li>[
+<li>[[LDAP Authentication Settings]]</li>
+<li>[[Installation on IIS and Helicontech Zoo]]</li>
+<li>[[Reverse proxy with Nginx]]</li>
+<li>[[Reverse proxy with Apache]]</li>
+<li>[[Setup Jenkins GitHub pull request builder plugin]]</li>
+<li>[[Connect to H2 database]]</li>
+<li>[[How to Close/Reference issues &amp; pull request]]</li>
+<li>[[Backup]]</li>
+<li>[[API/WebHook]]</li>
+</ul>
+<p>If you are interested in GitBucket development, you can find documents for GitBucket development at: <a href="https://github.com/takezoe/gitbucket/blob/master/doc/readme.md">https://github.com/takezoe/gitbucket/blob/master/doc/readme.md</a></p>
+]>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at io.github.gitbucket.markedj.MarkedTest.testMarked3(MarkedTest.java:39)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1972)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute1(JUnitTask.java:824)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2277)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:392)
+	at org.apache.tools.ant.Target.performTasks(Target.java:413)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+	at org.apache.tools.ant.Main.runBuild(Main.java:811)
+	at org.apache.tools.ant.Main.startAnt(Main.java:217)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
+--- io.github.gitbucket.markedj.MarkedTest::testMarked
+junit.framework.AssertionFailedError: expected:<...troubleshoot it.</p>[<h2 id="configuration">Configuration</h2>
+<ol>
+<li>Login as Admin</li><li>Go to <strong>Administration</strong> and click <strong>System Settings</strong></li><li>Check <strong>LDAP</strong> and enter the LDAP configuration:</li></ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Description</th>
+<th style="text-align: left">Example Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">LDAP Host</td>
+<td style="text-align: left">LDAP host name</td>
+<td style="text-align: left">192.168.32.1</td>
+</tr>
+<tr>
+<td style="text-align: left">LDAP Port</td>
+<td style="text-align: left">LDAP port</td>
+<td style="text-align: left">389 (default 389)</td>
+</tr>
+<tr>
+<td style="text-align: left">Bind DN</td>
+<td style="text-align: left">Username that has read access to the LDAP</td>
+<td style="text-align: left">uid=binduser,cn=bindclients,dc=example,dc=com</td>
+</tr>
+<tr>
+<td style="text-align: left">Bind Password</td>
+<td style="text-align: left">Password for Bind DN account</td>
+<td style="text-align: left">password</td>
+</tr>
+<tr>
+<td style="text-align: left">Base DN</td>
+<td style="text-align: left">Top level DN of your LDAP directory tree (used for user search)</td>
+<td style="text-align: left">dc=example,dc=com</td>
+</tr>
+<tr>
+<td style="text-align: left">User name attribute</td>
+<td style="text-align: left">Name of the LDAP attribute. This is used as the GitBucket username</td>
+<td style="text-align: left">uid</td>
+</tr>
+<tr>
+<td style="text-align: left">Mail address attribute</td>
+<td style="text-align: left">Email address of LDAP attribute</td>
+<td style="text-align: left">mail</td>
+</tr>
+<tr>
+<td style="text-align: left">Enable TLS</td>
+<td style="text-align: left">Whether to use encrypted connection</td>
+<td style="text-align: left">checked</td>
+</tr>
+<tr>
+<td style="text-align: left">Keystore</td>
+<td style="text-align: left">Path to the Java keystore</td>
+<td style="text-align: left">/etc/pki/java/cacerts</td>
+</tr>
+</tbody>
+</table>
+<h3 id="keystore">Keystore</h3>
+<p>Default system keystore is in:</p><pre><code>${JAVA_HOME}/lib/security/jssecacerts
+</code></pre>
+<p>or in:</p><pre><code>${JAVA_HOME}/lib/security/cacerts
+</code></pre>
+<p>Custom keystore can be set either in <code>/etc/sysconfig/gitbucket</code> by
+specifying the following option:</p><pre><code>GITBUCKET_JVM_OPTS=&quot;-Djavax.net.ssl.trustStore=/path/to/your/keystore&quot;
+</code></pre>
+<p>or in Gitbucket&#39;s <strong>System Settings</strong> as described above.</p><p>You can use the following command to add your CA certificate to the
+keystore:</p><pre><code>$ keytool -import \
+-file /path/to/your/cacert.pem \
+-alias &lt;your_cert_alias&gt; \
+-keystore /path/to/your/keystore
+</code></pre>
+<p>Older versions of Java don&#39;t know how to import certificate if it
+contains anything else than the certificate itself. Then it&#39;s necessary
+to strip everything else out like this:</p><pre><code>$ cat /path/to/your/cacert.pem | sed -ne &#39;/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p&#39; &gt; /tmp/cacert.pem
+$ keytool -import -trustcacerts -alias &lt;your_cert_alias&gt; -file /tmp/cacert.pem -keystore /path/to/your/keystore
+</code></pre>
+<p>You can list all keys from the keystore like this:</p><pre><code>$ keytool -list -keystore /path/to/your/keystore
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>LDAP debugging was enabled in the version 1.7. So if something goes
+wrong, you should see the error in the log file:</p><pre><code>15:43:56.529 [qtp1820788751-15] INFO  service.AccountService - LDAP Authentication Failed: System LDAP authentication failed.
+15:43:37.386 [qtp1820788751-15] INFO  service.AccountService - LDAP Authentication Failed: User does not exist
+15:49:34.565 [qtp1820788751-18] INFO  service.AccountService - LDAP Authentication Failed: User LDAP Authentication Failed.
+15:41:09.370 [qtp1820788751-16] INFO  service.AccountService - LDAP Authentication Failed: Can&#39;t find mail address.
+</code></pre>
+<p>The following is the explanation for the above error messages:</p><ul>
+<li><strong>System LDAP authentication failed</strong><ul>
+<li>Failed to access LDAP server by using <em>Bind DN</em> and <em>Bind Password</em></li><li>Wrong <em>LDAP Host</em>, <em>LDAP Port</em>, <em>Bind DN</em> or <em>Bind Password</em></li></ul>
+</li><li><strong>User does not exists</strong><ul>
+<li>LDAP searched the user account from <em>Base DN</em> but did not find it</li></ul>
+</li><li><strong>User LDAP Authentication Failed</strong><ul>
+<li>Found user but failed to login (maybe wrong <em>Bind Password</em>)</li></ul>
+</li><li><strong>Can&#39;t find mail address</strong><ul>
+<li>Found user and user authentication succeed but did not find email address (wrong <em>Mail address attribute</em>)</li></ul>
+</li>]</ul>
+> but was:<...troubleshoot it.</p>[
+<h2 id="configuration">Configuration</h2>
+<ol>
+<li>Login as Admin</li>
+<li>Go to <strong>Administration</strong> and click <strong>System Settings</strong></li>
+<li>Check <strong>LDAP</strong> and enter the LDAP configuration:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Description</th>
+<th style="text-align: left">Example Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">LDAP Host</td>
+<td style="text-align: left">LDAP host name</td>
+<td style="text-align: left">192.168.32.1</td>
+</tr>
+<tr>
+<td style="text-align: left">LDAP Port</td>
+<td style="text-align: left">LDAP port</td>
+<td style="text-align: left">389 (default 389)</td>
+</tr>
+<tr>
+<td style="text-align: left">Bind DN</td>
+<td style="text-align: left">Username that has read access to the LDAP</td>
+<td style="text-align: left">uid=binduser,cn=bindclients,dc=example,dc=com</td>
+</tr>
+<tr>
+<td style="text-align: left">Bind Password</td>
+<td style="text-align: left">Password for Bind DN account</td>
+<td style="text-align: left">password</td>
+</tr>
+<tr>
+<td style="text-align: left">Base DN</td>
+<td style="text-align: left">Top level DN of your LDAP directory tree (used for user search)</td>
+<td style="text-align: left">dc=example,dc=com</td>
+</tr>
+<tr>
+<td style="text-align: left">User name attribute</td>
+<td style="text-align: left">Name of the LDAP attribute. This is used as the GitBucket username</td>
+<td style="text-align: left">uid</td>
+</tr>
+<tr>
+<td style="text-align: left">Mail address attribute</td>
+<td style="text-align: left">Email address of LDAP attribute</td>
+<td style="text-align: left">mail</td>
+</tr>
+<tr>
+<td style="text-align: left">Enable TLS</td>
+<td style="text-align: left">Whether to use encrypted connection</td>
+<td style="text-align: left">checked</td>
+</tr>
+<tr>
+<td style="text-align: left">Keystore</td>
+<td style="text-align: left">Path to the Java keystore</td>
+<td style="text-align: left">/etc/pki/java/cacerts</td>
+</tr>
+</tbody>
+</table>
+<h3 id="keystore">Keystore</h3>
+<p>Default system keystore is in:</p>
+<pre><code>${JAVA_HOME}/lib/security/jssecacerts
+</code></pre>
+<p>or in:</p>
+<pre><code>${JAVA_HOME}/lib/security/cacerts
+</code></pre>
+<p>Custom keystore can be set either in <code>/etc/sysconfig/gitbucket</code> by
+specifying the following option:</p>
+<pre><code>GITBUCKET_JVM_OPTS=&quot;-Djavax.net.ssl.trustStore=/path/to/your/keystore&quot;
+</code></pre>
+<p>or in Gitbucket&#39;s <strong>System Settings</strong> as described above.</p>
+<p>You can use the following command to add your CA certificate to the
+keystore:</p>
+<pre><code>$ keytool -import \
+-file /path/to/your/cacert.pem \
+-alias &lt;your_cert_alias&gt; \
+-keystore /path/to/your/keystore
+</code></pre>
+<p>Older versions of Java don&#39;t know how to import certificate if it
+contains anything else than the certificate itself. Then it&#39;s necessary
+to strip everything else out like this:</p>
+<pre><code>$ cat /path/to/your/cacert.pem | sed -ne &#39;/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p&#39; &gt; /tmp/cacert.pem
+$ keytool -import -trustcacerts -alias &lt;your_cert_alias&gt; -file /tmp/cacert.pem -keystore /path/to/your/keystore
+</code></pre>
+<p>You can list all keys from the keystore like this:</p>
+<pre><code>$ keytool -list -keystore /path/to/your/keystore
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>LDAP debugging was enabled in the version 1.7. So if something goes
+wrong, you should see the error in the log file:</p>
+<pre><code>15:43:56.529 [qtp1820788751-15] INFO  service.AccountService - LDAP Authentication Failed: System LDAP authentication failed.
+15:43:37.386 [qtp1820788751-15] INFO  service.AccountService - LDAP Authentication Failed: User does not exist
+15:49:34.565 [qtp1820788751-18] INFO  service.AccountService - LDAP Authentication Failed: User LDAP Authentication Failed.
+15:41:09.370 [qtp1820788751-16] INFO  service.AccountService - LDAP Authentication Failed: Can&#39;t find mail address.
+</code></pre>
+<p>The following is the explanation for the above error messages:</p>
+<ul>
+<li><strong>System LDAP authentication failed</strong><ul>
+<li>Failed to access LDAP server by using <em>Bind DN</em> and <em>Bind Password</em></li>
+<li>Wrong <em>LDAP Host</em>, <em>LDAP Port</em>, <em>Bind DN</em> or <em>Bind Password</em></li>
+</ul>
+</li>
+<li><strong>User does not exists</strong><ul>
+<li>LDAP searched the user account from <em>Base DN</em> but did not find it</li>
+</ul>
+</li>
+<li><strong>User LDAP Authentication Failed</strong><ul>
+<li>Found user but failed to login (maybe wrong <em>Bind Password</em>)</li>
+</ul>
+</li>
+<li><strong>Can&#39;t find mail address</strong><ul>
+<li>Found user and user authentication succeed but did not find email address (wrong <em>Mail address attribute</em>)</li>
+</ul>
+</li>
+]</ul>
+>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at io.github.gitbucket.markedj.MarkedTest.testMarked(MarkedTest.java:23)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1972)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute1(JUnitTask.java:824)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2277)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:392)
+	at org.apache.tools.ant.Target.performTasks(Target.java:413)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+	at org.apache.tools.ant.Main.runBuild(Main.java:811)
+	at org.apache.tools.ant.Main.startAnt(Main.java:217)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)

@@ -1,0 +1,13 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Marked.java b/src/main/java/io/github/gitbucket/markedj/Marked.java
+index 4e167c9..87dc926 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Marked.java
++++ b/src/main/java/io/github/gitbucket/markedj/Marked.java
+@@ -31,7 +31,7 @@ public class Marked {
+         whitelist.addAttributes("h5", "id");
+         whitelist.addAttributes("h6", "id");
+ 
+-        return Jsoup.clean(html, whitelist);
++        return html;
+     }
+ 
+ }

@@ -1,0 +1,48 @@
+diff --git a/src/main/java/net/sf/jmimemagic/MagicMatch.java b/src/main/java/net/sf/jmimemagic/MagicMatch.java
+index 47bbaba..d32b8e3 100644
+--- a/src/main/java/net/sf/jmimemagic/MagicMatch.java
++++ b/src/main/java/net/sf/jmimemagic/MagicMatch.java
+@@ -400,11 +400,9 @@ public class MagicMatch implements Cloneable
+         clone.setOffset(offset);
+ 
+         // these properties should only be String types, so we shouldn't have to clone them
+-        if(properties!= null) {
+ 	        HashMap m = new HashMap();
+ 	        m.putAll(properties);
+ 	        clone.setProperties(m);
+-        }
+ 
+         Iterator i = subMatches.iterator();
+         ArrayList a = new ArrayList();
+diff --git a/src/main/java/net/sf/jmimemagic/MagicMatcher.java b/src/main/java/net/sf/jmimemagic/MagicMatcher.java
+index 370b1cc..5221438 100644
+--- a/src/main/java/net/sf/jmimemagic/MagicMatcher.java
++++ b/src/main/java/net/sf/jmimemagic/MagicMatcher.java
+@@ -239,12 +239,8 @@ public class MagicMatcher implements Cloneable
+ 
+             if (testInternal(buf)) {
+                 // set the top level match to this one
+-                try {
+-                    match = getMatch() != null ? (MagicMatch) getMatch()
+-                            .clone() : null;
+-                } catch (CloneNotSupportedException e) {
++                    match = getMatch();
+                     // noop
+-                }
+ 
+                 log.debug("test(File): testing matched '" + description + "'");
+ 
+@@ -348,12 +344,8 @@ public class MagicMatcher implements Cloneable
+ 
+             if (testInternal(buf)) {
+                 // set the top level match to this one
+-                try {
+-                    match = getMatch() != null ? (MagicMatch) getMatch()
+-                            .clone() : null;
+-                } catch (CloneNotSupportedException e) {
++                    match = getMatch();
+                     // noop
+-                }
+ 
+                 log.debug("test(byte[]): testing matched '" + description + "'");
+ 

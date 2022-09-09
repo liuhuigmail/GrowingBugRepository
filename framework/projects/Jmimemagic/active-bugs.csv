@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,7c0d1b1e7db2e49c40c7fb09ad53467b78d58929,646d8248188646b2bb8fa4d5bc031e1460f8624e,15,https://github.com/arimus/jmimemagic/pull/15
