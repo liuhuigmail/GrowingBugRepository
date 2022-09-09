@@ -21,7 +21,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 
 # Contents of growingBugs
-To date, growingBugs contains **`1715`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1727`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -142,7 +142,7 @@ To date, growingBugs contains **`1715`** real-world bugs from open-source Java p
 | 114     | Sling_validation            | sling-org-apache-sling-validation-core |       |       1     | 1              |
 | 115     | Switchyard_config            | switchyard-config |  config       |       1     | 1              |
 | 116     | Switchyard_validate            | switchyard-validate |  validate       |       1     | 1              |
-| 117     | Vysper_nbxml            | vysper-nbxml |  nbxml       |       2     | 1-2              |
+| 117     | Vysper_nbxml            | vysper-nbxml |  nbxml       |       2     | 1-Markedj2              |
 | 118     | Wildfly_naming_client            | wildfly-naming-client |     |       2     | 1-2              |
 | 119     | Dosgi_common            | dosgi-common | common    |       2     | 1-2              |
 | 120     | Fluo_api            | fluo-api | modules/api     |       4     | 1-4              |
@@ -228,7 +228,7 @@ To date, growingBugs contains **`1715`** real-world bugs from open-source Java p
 | 201     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 202     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 203     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
-| 204     | Jcabi_github         | jcabi-github           |                  |      54       | 1-42,44-55                  |
+| 204     | Jcabi_github         | jcabi-github           |                  |      58       | 1-42,44-59                  |
 | 205     | Podam         | podam           |                  |      1       | 1                  |
 | 206     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
 | 207     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
@@ -244,6 +244,8 @@ To date, growingBugs contains **`1715`** real-world bugs from open-source Java p
 | 217     | Docker_java_api         | docker-java-api           |                  |      10       | 1-10                  |
 | 218     | Github_release_plugin         | github-release-plugin           |                  |      2       | 1-2                  |
 | 219     | Spring_context_support         | spring-context-support           |                  |      2       | 2                  |
+| 220     | Jmimemagic         | jmimemagic           |                  |      1       | 1                  |
+| 221     | Markedj         | markedj           |                  |      7       | 1-7                  |
 # Setting up GrowingBugs
 
 ## Requirements
