@@ -1,5 +1,5 @@
 # Unique Bugs in growingBugs
-To date, growingBugs contains **`866`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`878`** unique bugs that are not included in Defects4J. 
 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -201,7 +201,7 @@ To date, growingBugs contains **`866`** unique bugs that are not included in Def
 | 194     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 195     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 196     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
-| 197     | Jcabi_github         | jcabi-github           |                  |      54       | 1-42,44-55                  |
+| 197     | Jcabi_github         | jcabi-github           |                  |      58       | 1-42,44-59                  |
 | 198     | Podam         | podam           |                  |      1       | 1                  |
 | 199     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
 | 200     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
@@ -220,3 +220,5 @@ To date, growingBugs contains **`866`** unique bugs that are not included in Def
 | 210     | Docker_java_api         | docker-java-api           |                  |      10       | 1-10                  |
 | 211     | Github_release_plugin         | github-release-plugin           |                  |      2       | 1-2                  |
 | 212     | Spring_context_support         | spring-context-support           |                  |      2       | 2                  |
+| 213     | Jmimemagic         | jmimemagic           |                  |      1       | 1                  |
+| 214     | Markedj         | markedj           |                  |      7       | 1-7                  |
