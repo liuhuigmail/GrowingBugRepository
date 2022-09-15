@@ -1,5 +1,5 @@
 # Unique Bugs in growingBugs
-To date, growingBugs contains **`878`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`888`** unique bugs that are not included in Defects4J. 
 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
@@ -221,4 +221,4 @@ To date, growingBugs contains **`878`** unique bugs that are not included in Def
 | 211     | Github_release_plugin         | github-release-plugin           |                  |      2       | 1-2                  |
 | 212     | Spring_context_support         | spring-context-support           |                  |      2       | 2                  |
 | 213     | Jmimemagic         | jmimemagic           |                  |      1       | 1                  |
-| 214     | Markedj         | markedj           |                  |      7       | 1-7                  |
+| 214     | Markedj         | markedj           |                  |      17       | 1-17                  |

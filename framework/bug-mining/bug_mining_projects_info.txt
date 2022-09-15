@@ -204,3 +204,4 @@ Trident_ml	trident-ml	https://github.com/pmerienne/trident-ml.git	github	pmerien
 Tascalate_concurrent	tascalate-concurrent	https://github.com/vsilaev/tascalate-concurrent.git	github	vsilaev/tascalate-concurrent	/#(\\d+)/mi	.	
 Jcabi_github	jcabi-github	https://github.com/jcabi/jcabi-github.git	github	jcabi/jcabi-github	/#(\\d+)/mi	.
 Spatial4j	spatial4j	https://github.com/locationtech/spatial4j.git	github	locationtech/spatial4j	/#(\\d+)/mi	.		
+Markedj	markedj	https://github.com/gitbucket/markedj.git	github	gitbucket/markedj	/#(\\d+)/mi	.	
