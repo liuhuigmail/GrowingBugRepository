@@ -6,3 +6,13 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 5,6c0969afb4de4409327de367ae8bc7f4e7b632a5,6e6fe8d19ca826834c72e517f32c7e9e21587d5c,18,https://github.com/gitbucket/markedj/pull/18
 6,0a8c1f57302b4e0b16f19ebcc5ac493794b24b1c,c11813db2c87629e0b05eef34ee7f245766877a5,20,https://github.com/gitbucket/markedj/issues/20
 7,d6a51457cb5d616075da8ca02d27ec6ddc0b30e1,fc1018d5b7736eff9b345c53b391daec2ad2ec6b,unknown,unknown
+8,904f6242378df165f70c73bc838977b386580954,d25e152460272696636d5372d8dc1db6b148329b,2,https://github.com/gitbucket/markedj/issues/2
+9,0a9ce5f03b31ba3142b133ec6b374704e99055bf,839d2bfdbda7aa369a0f7033fa9b03b85612c637,3,https://github.com/gitbucket/markedj/issues/3
+10,9902aa78a26149b9d841557bea6e2325593ec1c3,f7f0b14e7a526ee83ccd29a04d8e80a172d4457e,6,https://github.com/gitbucket/markedj/issues/6
+11,043083914592670b9937555949f413bd421ee623,b3332a2440be71d9ffa3f8caddd98ae601982a77,7,https://github.com/gitbucket/markedj/pull/7
+12,edbb8ea68d39afc30f8966347d29894e13d1b9c9,ef71a10ce9ec1e19f3ea9352423f848bc466bd35,9,https://github.com/gitbucket/markedj/pull/9
+13,ef71a10ce9ec1e19f3ea9352423f848bc466bd35,a11c691c57e3abb0c6d63de2491773b361ac58c5,10,https://github.com/gitbucket/markedj/pull/10
+14,e739d7c335e32e5d3b15baf11307e93fcd3231b8,96f74fa03e7e18c52908517114734885a6ff6208,15,https://github.com/gitbucket/markedj/issues/15
+15,aa3b804e842a5b2a5e0fae7d914cfe7a4d6c95ae,7dbd252f1ab5d31a600c981f638705e86886b7ad,14,https://github.com/gitbucket/markedj/issues/14
+16,7dbd252f1ab5d31a600c981f638705e86886b7ad,e706c4846ea458903d8d403938d4897e4b293c9e,14,https://github.com/gitbucket/markedj/issues/14
+17,446df963efc9d8e4d2d67b4dd393a14f1c39766a,f6bf339e3f691ca6ef17199335b8ce8088d4e416,19,https://github.com/gitbucket/markedj/issues/19

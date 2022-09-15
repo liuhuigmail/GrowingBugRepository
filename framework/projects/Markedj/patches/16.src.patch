@@ -1,0 +1,14 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Renderer.java b/src/main/java/io/github/gitbucket/markedj/Renderer.java
+index 2543379..85a8d93 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Renderer.java
++++ b/src/main/java/io/github/gitbucket/markedj/Renderer.java
+@@ -89,6 +89,9 @@ public class Renderer {
+             cellType = "td";
+         }
+ 
++        if(content.length() == 0){
++            content = "&nbsp;";
++        }
+         String align = flags.getAlign();
+         if(align != null){
+             return "<" + cellType + " style=\"text-align: " + align + "\">" + content + "</" + cellType + ">\n";

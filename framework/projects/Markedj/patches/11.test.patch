@@ -1,0 +1,17 @@
+diff --git a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+index ace1d4f..0b610b9 100644
+--- a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
++++ b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+@@ -105,12 +105,6 @@ public class MarkedTest {
+         }
+     }
+ 
+-    @Test
+-    public void testEmptyItemOfList() throws Exception {
+-        String result = Marked.marked(loadResourceAsString("empty_item_of_list.md"), new Options());
+-        assertEquals(loadResourceAsString("empty_item_of_list.html"), result);
+-    }
+-
+     private String loadResourceAsString(String path) throws IOException {
+         InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
+         try {

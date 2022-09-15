@@ -1,0 +1,13 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Lexer.java b/src/main/java/io/github/gitbucket/markedj/Lexer.java
+index b72d9c5..cc91d3f 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Lexer.java
++++ b/src/main/java/io/github/gitbucket/markedj/Lexer.java
+@@ -203,7 +203,7 @@ public class Lexer {
+                             // for discount behavior.
+                             boolean loose = next || item.matches("\\n\\n(?!\\s*$)");
+                             if(i != cap.size() - 1){
+-                                next = !item.isEmpty() && item.charAt(item.length() - 1) == '\n';
++                                next = item.charAt(item.length() - 1) == '\n';
+                                 if(!loose) {
+                                     loose = next;
+                                 }

@@ -1,0 +1,17 @@
+diff --git a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+index 7c8e603..33e5e6b 100644
+--- a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
++++ b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+@@ -143,12 +143,6 @@ public class MarkedTest {
+                 "</ul>\n", result);
+     }
+ 
+-    @Test
+-    public void testNestedContentOfList() throws Exception {
+-        String result = Marked.marked(loadResourceAsString("nested_content_of_list.md"), new Options());
+-        assertEquals(loadResourceAsString("nested_content_of_list.html"), result);
+-    }
+-
+     private String loadResourceAsString(String path) throws IOException {
+         InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
+         try {

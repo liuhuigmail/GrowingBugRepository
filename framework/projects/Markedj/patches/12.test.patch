@@ -1,0 +1,24 @@
+diff --git a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+index 33e5e6b..1cff0c8 100644
+--- a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
++++ b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+@@ -45,12 +45,6 @@ public class MarkedTest {
+         assertEquals("<p><a href=\"mailto:takezoe@gmail.com\">takezoe@gmail.com</a></p>\n", result);
+     }
+ 
+-    @Test
+-    public void testReflink() throws Exception {
+-      String result = Marked.marked("[FOO], [bar][Foo], [Bar]\n\n[Foo]: http://example.com");
+-      assertEquals("<p><a href=\"http://example.com\">FOO</a>, <a href=\"http://example.com\">bar</a>, [Bar]</p>\n", result);
+-    }
+-
+     @Test
+     public void testEm() throws Exception {
+         {
+@@ -157,4 +151,4 @@ public class MarkedTest {
+             in.close();
+         }
+     }
+-}
++}
+\ No newline at end of file

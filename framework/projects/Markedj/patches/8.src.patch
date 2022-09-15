@@ -1,0 +1,13 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Grammer.java b/src/main/java/io/github/gitbucket/markedj/Grammer.java
+index 3d55796..6e75b64 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Grammer.java
++++ b/src/main/java/io/github/gitbucket/markedj/Grammer.java
+@@ -81,7 +81,7 @@ public class Grammer {
+         INLINE_RULES.put("reflink", new FindFirstRule(("^!?\\[(" + INSIDE + ")\\]\\s*\\[([^\\]]*)\\]")));
+         INLINE_RULES.put("nolink", new FindFirstRule("^!?\\[((?:\\[[^\\]]*\\]|[^\\[\\]])*)\\]"));
+         INLINE_RULES.put("strong", new FindFirstRule("^__([\\s\\S]+?)__(?!_)|^\\*\\*([\\s\\S]+?)\\*\\*(?!\\*)"));
+-        INLINE_RULES.put("em", new FindFirstRule("^\\b_((?:[^_]|__)++)_\\b|^\\*((?:\\*\\*|[\\s\\S])+?)\\*(?!\\*)"));
++        INLINE_RULES.put("em", new FindFirstRule("^\\b_((?:[^_]|__)+?)_\\b|^\\*((?:\\*\\*|[\\s\\S])+?)\\*(?!\\*)"));
+         INLINE_RULES.put("code", new FindFirstRule("^(`+)\\s*([\\s\\S]*?[^`])\\s*\\1(?!`)"));
+         INLINE_RULES.put("br", new FindFirstRule("^ {2,}\\n(?!\\s*$)"));
+         INLINE_RULES.put("del", new NoopRule());

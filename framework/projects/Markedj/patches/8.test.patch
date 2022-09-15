@@ -1,0 +1,36 @@
+diff --git a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+index 4b25de7..7349f58 100644
+--- a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
++++ b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+@@ -48,31 +48,6 @@ public class MarkedTest {
+         assertEquals("<p><a href=\"mailto:takezoe@gmail.com\">takezoe@gmail.com</a></p>\n", result);
+     }
+ 
+-    @Test
+-    public void testEm() throws Exception {
+-        {
+-            String md = Marked.marked("_aa__a__aa_", new Options());
+-            String result = Marked.marked(md, new Options());
+-            assertEquals("<p><em>aa<strong>a</strong>aa</em></p>\n", result);
+-        }
+-        {
+-            String md = Marked.marked("*aa*o*aa*", new Options());
+-            String result = Marked.marked(md, new Options());
+-            assertEquals("<p><em>aa</em>o<em>aa</em></p>\n", result);
+-        }
+-        {
+-            String md = Marked.marked("_aa__aa_", new Options());
+-            String result = Marked.marked(md, new Options());
+-            assertEquals("<p><em>aa__aa</em></p>\n", result);
+-        }
+-    }
+-
+-
+-    @Test
+-    public void testStackoverFlow() throws Exception {
+-        // Make sure StackOverflowError does not occur by em regular expression
+-        Marked.marked(loadResourceAsString("fail.txt"), new Options());
+-    }
+ 
+     private String loadResourceAsString(String path) throws IOException {
+         InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);

@@ -1,0 +1,18 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Parser.java b/src/main/java/io/github/gitbucket/markedj/Parser.java
+index 9b64f63..8bda7c4 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Parser.java
++++ b/src/main/java/io/github/gitbucket/markedj/Parser.java
+@@ -81,12 +81,8 @@ public class Parser {
+                 for(int i = 0; i < t.getCells().size(); i++){
+                     outCell.setLength(0);
+                     for(int j = 0; j < t.getCells().get(i).size(); j++){
+-                        String align = null;
+-                        if(t.getAlign().size() > j){
+-                            align = t.getAlign().get(j);
+-                        }
+                         outCell.append(renderer.tablecell(
+-                                context.getInlineLexer().output(t.getCells().get(i).get(j)), new Renderer.TableCellFlags(false, align)));
++                                context.getInlineLexer().output(t.getCells().get(i).get(j)), new Renderer.TableCellFlags(false, t.getAlign().get(j))));
+                     }
+                     outBody.append(renderer.tablerow(outCell.toString()));
+                 }

@@ -1,0 +1,23 @@
+diff --git a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+index a0d393f..e8e1fb5 100644
+--- a/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
++++ b/src/test/java/io/github/gitbucket/markedj/MarkedTest.java
+@@ -58,18 +58,6 @@ public class MarkedTest {
+       assertEquals("<p><a href=\"http://example.com\">FOO</a>, <a href=\"http://example.com\">bar</a>, [Bar]</p>", result);
+     }
+ 
+-    @Test
+-    public void testIns() throws Exception {
+-        String result = Marked.marked("~~123~~");
+-        assertEquals("<p><del>123</del></p>", result);
+-    }
+-
+-    @Test
+-    public void testStrong() throws Exception {
+-        String result = Marked.marked("**123**");
+-        assertEquals("<p><strong>123</strong></p>", result);
+-    }
+-
+     @Test
+     public void testEm() throws Exception {
+         {

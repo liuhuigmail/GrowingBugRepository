@@ -1,0 +1,13 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Options.java b/src/main/java/io/github/gitbucket/markedj/Options.java
+index 79d1312..2b11b3c 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Options.java
++++ b/src/main/java/io/github/gitbucket/markedj/Options.java
+@@ -16,7 +16,7 @@ public class Options {
+                                 "colgroup", "dd", "div", "dl", "dt", "em", "h1", "h2", "h3", "h4", "h5", "h6",
+                                 "i", "img", "li", "ol", "p", "pre", "q", "small", "span", "strike", "strong",
+                                 "sub", "sup", "table", "tbody", "td", "tfoot", "th", "thead", "tr", "u",
+-                                "ul", "input", "del")
++                                "ul", "input")
+                 .addAttributes("a", "href", "title")
+                 .addAttributes("blockquote", "cite")
+                 .addAttributes("col", "span", "width")

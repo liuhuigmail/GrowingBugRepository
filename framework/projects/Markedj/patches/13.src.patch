@@ -1,0 +1,14 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Grammer.java b/src/main/java/io/github/gitbucket/markedj/Grammer.java
+index 37c8807..75a0166 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Grammer.java
++++ b/src/main/java/io/github/gitbucket/markedj/Grammer.java
+@@ -21,8 +21,8 @@ public class Grammer {
+     public static String BLOCK_HEADING     = "^ *(#{1,6}) *([^\\n]+?) *#* *(?:\\n+|$)";
+     public static String BLOCK_LHEADING    = "^([^\\n]+)\\n *(=|-){2,} *(?:\\n+|$)";
+     public static String BLOCK_BLOCKQUOTE  = "^( *>[^\\n]+(\\n(?!" + removeLineStart(DEF) + ")[^\\n]+)*\\n*)+";
+     //public static String BLOCK_LIST        = "^( *)(" + BULLET + ") [\\s\\S]+?(?:" + HR + "|\\n+(?=" + removeLineStart(DEF) + ")|\\n{2,}(?! )(?!\\1" + BULLET + " )\\n*|\\s*$)";
+-    public static String BLOCK_LIST        = "^( *)(" + BULLET + ") [\\s\\S]+?(?:\\n{2,}(?! )(?!\\1" + BULLET + " )\\n*|\\s*$)";
++    public static String BLOCK_LIST        = "^( *)(" + BULLET + ") [\\s\\S]+?(?:" + HR + "|\\n+(?=" + removeLineStart(DEF) + ")|\\n{2,}(?! )(?!\\1" + BULLET + " )\\n*|\\s*$)";
+     public static String BLOCK_DEF         = "^ *\\[([^\\]]+)\\]: *<?([^\\s>]+)>?(?: +[\"(]([^\\n]+)[\")])? *(?:\\n+|$)";
+     public static String BLOCK_PARAGRAPH   = "^((?:[^\\n]+\\n?(?!" + removeLineStart(BLOCK_HR) + "|" + removeLineStart(BLOCK_HEADING) + "|" + removeLineStart(BLOCK_LHEADING) + "|" + removeLineStart(BLOCK_BLOCKQUOTE) + "|<" + TAG + "|" + removeLineStart(BLOCK_DEF) + "))+)\\n*";
+     public static String BLOCK_GFM_FENCES  = "^ *(`{3,}|~{3,})[ \\.]*(\\S+)? *\\n([\\s\\S]*?)\\s*\\1 *(?:\\n+|$)";

@@ -1,0 +1,13 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Lexer.java b/src/main/java/io/github/gitbucket/markedj/Lexer.java
+index ba6c3bd..48d1130 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Lexer.java
++++ b/src/main/java/io/github/gitbucket/markedj/Lexer.java
+@@ -162,7 +162,7 @@ public class Lexer {
+                 if(!cap.isEmpty()){
+                     src = src.substring(cap.get(0).length());
+                     context.pushToken(new BlockquoteStartToken());
+-                    token(cap.get(0).replaceAll("(?m)^ *> ?", ""), top, true, context);
++                    token(cap.get(0).replaceAll("(?m) *> ?", ""), top, true, context);
+                     context.pushToken(new BlockquoteEndToken());
+                     continue;
+                 }
