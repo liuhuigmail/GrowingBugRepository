@@ -1,0 +1,297 @@
+diff --git a/src/test/java/com/pablissimo/sonar/TsLintSensorTest.java b/src/test/java/com/pablissimo/sonar/TsLintSensorTest.java
+index d94c4dd..da0cf30 100644
+--- a/src/test/java/com/pablissimo/sonar/TsLintSensorTest.java
++++ b/src/test/java/com/pablissimo/sonar/TsLintSensorTest.java
+@@ -28,7 +28,7 @@ import org.sonar.api.rule.RuleKey;
+ 
+ public class TsLintSensorTest {
+     Settings settings;
+-
++    
+     DefaultInputFile file;
+     DefaultInputFile typeDefFile;
+ 
+@@ -37,19 +37,19 @@ public class TsLintSensorTest {
+     TsLintSensor sensor;
+ 
+     SensorContextTester context;
+-
++    
+     PathResolver resolver;
+     HashMap<String, String> fakePathResolutions;
+-
++        
+     ArgumentCaptor<TsLintExecutorConfig> configCaptor;
+-
++    
+     @Before
+     public void setUp() throws Exception {
+         this.fakePathResolutions = new HashMap<String, String>();
+         this.fakePathResolutions.put(TypeScriptPlugin.SETTING_TS_LINT_PATH, "/path/to/tslint");
+         this.fakePathResolutions.put(TypeScriptPlugin.SETTING_TS_LINT_CONFIG_PATH, "/path/to/tslint.json");
+         this.fakePathResolutions.put(TypeScriptPlugin.SETTING_TS_LINT_RULES_DIR, "/path/to/rules");
+-
++        
+         this.settings = mock(Settings.class);
+         when(this.settings.getInt(TypeScriptPlugin.SETTING_TS_LINT_TIMEOUT)).thenReturn(45000);
+         when(this.settings.getBoolean(TypeScriptPlugin.SETTING_TS_LINT_ENABLED)).thenReturn(true);
+@@ -64,32 +64,32 @@ public class TsLintSensorTest {
+                         .setLines(1)
+                         .setLastValidOffset(999)
+                         .setOriginalLineOffsets(new int[] { 5 });
+-
++        
+         this.typeDefFile = new DefaultInputFile("", "path/to/file.d.ts")
+                         .setLanguage(TypeScriptLanguage.LANGUAGE_KEY)
+                         .setLines(1)
+                         .setLastValidOffset(999)
+                         .setOriginalLineOffsets(new int[] { 5 });
+-
++                
+         this.context = SensorContextTester.create(new File(""));
+         this.context.fileSystem().add(this.file);
+         this.context.fileSystem().add(this.typeDefFile);
+-
++        
+         ActiveRulesBuilder rulesBuilder = new ActiveRulesBuilder();
+         rulesBuilder.create(RuleKey.of(TsRulesDefinition.REPOSITORY_NAME, "rule name")).activate();
+-
++        
+         this.context.setActiveRules(rulesBuilder.build());
+-
++        
+         // Pretend all paths are absolute
+         Answer<String> lookUpFakePath = new Answer<String>() {
+             @Override
+             public String answer(InvocationOnMock invocation) throws Throwable {
+                 return fakePathResolutions.get(invocation.<String>getArgument(1));
+-            }
++            }   
+         };
+-
++        
+         doAnswer(lookUpFakePath).when(this.resolver).getPath(any(SensorContext.class), any(String.class), (String) any());
+-
++        
+         this.configCaptor = ArgumentCaptor.forClass(TsLintExecutorConfig.class);
+     }
+ 
+@@ -97,20 +97,20 @@ public class TsLintSensorTest {
+     public void describe_setsName() {
+         DefaultSensorDescriptor desc = new DefaultSensorDescriptor();
+         this.sensor.describe(desc);
+-
++        
+         assertNotNull(desc.name());
+     }
+-
++    
+     @Test
+     public void describe_setsLanguage() {
+         DefaultSensorDescriptor desc = new DefaultSensorDescriptor();
+         this.sensor.describe(desc);
+-
++        
+         assertEquals(TypeScriptLanguage.LANGUAGE_KEY, desc.languages().iterator().next());
+     }
+-
++    
+     @Test
+-    public void execute_addsIssues() {
++    public void execute_addsIssues() {        
+         TsLintIssue issue = new TsLintIssue();
+         issue.setFailure("failure");
+         issue.setRuleName("rule name");
+@@ -126,14 +126,14 @@ public class TsLintSensorTest {
+ 
+         Map<String, List<TsLintIssue>> issues = new HashMap<String, List<TsLintIssue>>();
+         issues.put(issue.getName(), issueList);
+-
++        
+         when(this.parser.parse(any(List.class))).thenReturn(issues);
+         this.sensor.execute(this.context);
+-
++        
+         assertEquals(1, this.context.allIssues().size());
+         assertEquals("rule name", this.context.allIssues().iterator().next().ruleKey().rule());
+     }
+-
++    
+     @Test
+     public void execute_addsIssues_evenIfReportedAgainstRelativePaths() {
+         TsLintIssue issue = new TsLintIssue();
+@@ -151,38 +151,38 @@ public class TsLintSensorTest {
+ 
+         Map<String, List<TsLintIssue>> issues = new HashMap<String, List<TsLintIssue>>();
+         issues.put(issue.getName(), issueList);
+-
++        
+         when(this.parser.parse(any(List.class))).thenReturn(issues);
+         this.sensor.execute(this.context);
+-
++        
+         assertEquals(1, this.context.allIssues().size());
+         assertEquals("rule name", this.context.allIssues().iterator().next().ruleKey().rule());
+     }
+-
++    
+     @Test
+     public void execute_doesNotThrow_ifParserReturnsNoResult() {
+         when(this.parser.parse(any(List.class))).thenReturn(null);
+-
++        
+         this.sensor.execute(this.context);
+     }
+-
++    
+     @Test
+     public void execute_doesNotThrow_ifFileIssuesNull() {
+         Map<String, List<TsLintIssue>> issues = new HashMap<String, List<TsLintIssue>>();
+         issues.put(this.file.absolutePath().replace("\\",  "/"), null);
+         when(this.parser.parse(any(List.class))).thenReturn(issues);
+-
++        
+         this.sensor.execute(this.context);
+     }
+-
++    
+     @Test
+     public void execute_doesNotThrow_ifFileIssuesEmpty() {
+         Map<String, List<TsLintIssue>> issues = new HashMap<String, List<TsLintIssue>>();
+         issues.put(this.file.absolutePath().replace("\\",  "/"), new ArrayList<TsLintIssue>());
+         when(this.parser.parse(any(List.class))).thenReturn(issues);
+-
++        
+         this.sensor.execute(this.context);
+-    }
++    }    
+ 
+     @Test
+     public void execute_addsToUnknownRuleBucket_whenRuleNameNotRecognised() {
+@@ -201,14 +201,14 @@ public class TsLintSensorTest {
+ 
+         Map<String, List<TsLintIssue>> issues = new HashMap<String, List<TsLintIssue>>();
+         issues.put(issue.getName(), issueList);
+-
++        
+         when(this.parser.parse(any(List.class))).thenReturn(issues);
+         this.sensor.execute(this.context);
+-
++        
+         assertEquals(1, this.context.allIssues().size());
+         assertEquals(TsRulesDefinition.TSLINT_UNKNOWN_RULE.key, this.context.allIssues().iterator().next().ruleKey().rule());
+     }
+-
++    
+     @Test
+     public void execute_doesNotThrow_ifTsLintReportsAgainstFileNotInAnalysisSet() {
+         TsLintIssue issue = new TsLintIssue();
+@@ -226,13 +226,13 @@ public class TsLintSensorTest {
+ 
+         Map<String, List<TsLintIssue>> issues = new HashMap<String, List<TsLintIssue>>();
+         issues.put(issue.getName(), issueList);
+-
++        
+         when(this.parser.parse(any(List.class))).thenReturn(issues);
+-        this.sensor.execute(this.context);
++        this.sensor.execute(this.context);        
+     }
+-
++    
+     @Test
+-    public void execute_ignoresTypeDefinitionFilesIfConfigured() {
++    public void execute_ignoresTypeDefinitionFilesIfConfigured() {       
+         TsLintIssue issue = new TsLintIssue();
+         issue.setFailure("failure");
+         issue.setRuleName("rule name");
+@@ -248,10 +248,10 @@ public class TsLintSensorTest {
+ 
+         Map<String, List<TsLintIssue>> issues = new HashMap<String, List<TsLintIssue>>();
+         issues.put(issue.getName(), issueList);
+-
++        
+         when(this.parser.parse(any(List.class))).thenReturn(issues);
+         when(this.settings.getBoolean(TypeScriptPlugin.SETTING_EXCLUDE_TYPE_DEFINITION_FILES)).thenReturn(true);
+-        this.sensor.execute(this.context);
++        this.sensor.execute(this.context); 
+ 
+         assertEquals(0, this.context.allIssues().size());
+     }
+@@ -261,31 +261,31 @@ public class TsLintSensorTest {
+         this.fakePathResolutions.remove(TypeScriptPlugin.SETTING_TS_LINT_PATH);
+ 
+         this.sensor.execute(this.context);
+-
++        
+         verify(this.executor, times(0)).execute(any(TsLintExecutorConfig.class), any(List.class));
+-
++        
+         assertEquals(0, this.context.allIssues().size());
+     }
+ 
+     @Test
+     public void analyse_doesNothingWhenDisabled() throws IOException {
+         when(this.settings.getBoolean(TypeScriptPlugin.SETTING_TS_LINT_ENABLED)).thenReturn(Boolean.FALSE);
+-
++    
+         this.sensor.execute(this.context);
+-
++        
+         verify(this.executor, times(0)).execute(any(TsLintExecutorConfig.class), any(List.class));
+-
++        
+         assertEquals(0, this.context.allIssues().size());
+     }
+-
++    
+     @Test
+     public void execute_doesNothingWhenNoConfigPathset() throws IOException {
+         this.fakePathResolutions.remove(TypeScriptPlugin.SETTING_TS_LINT_CONFIG_PATH);
+-
++        
+         this.sensor.execute(this.context);
+-
++        
+         verify(this.executor, times(0)).execute(any(TsLintExecutorConfig.class), any(List.class));
+-
++        
+         assertEquals(0, this.context.allIssues().size());
+     }
+ 
+@@ -300,9 +300,9 @@ public class TsLintSensorTest {
+     @Test
+     public void execute_callsExecutorWithAtLeast5000msTimeout() throws IOException {
+         when(this.settings.getInt(TypeScriptPlugin.SETTING_TS_LINT_TIMEOUT)).thenReturn(-500);
+-
++        
+         this.sensor.execute(this.context);
+-
++        
+         verify(this.executor, times(1)).execute(this.configCaptor.capture(), any(List.class));
+         assertEquals((Integer) 5000, this.configCaptor.getValue().getTimeoutMs());
+     }
+@@ -310,23 +310,10 @@ public class TsLintSensorTest {
+     @Test
+     public void execute_callsExecutorWithConfiguredPaths() {
+         this.sensor.execute(this.context);
+-
++        
+         verify(this.executor, times(1)).execute(this.configCaptor.capture(), any(List.class));
+         assertEquals("/path/to/tslint", this.configCaptor.getValue().getPathToTsLint());
+         assertEquals("/path/to/tslint.json", this.configCaptor.getValue().getConfigFile());
+         assertEquals("/path/to/rules", this.configCaptor.getValue().getRulesDir());
+     }
+-
+-    @Test
+-    public void execute_callsExecutorWithTslintOutput() throws IOException {
+-        this.fakePathResolutions.remove(TypeScriptPlugin.SETTING_TS_LINT_CONFIG_PATH);
+-        this.fakePathResolutions.put(TypeScriptPlugin.SETTING_TS_LINT_OUTPUT_PATH, "/path/to/output");
+-
+-        this.sensor.execute(this.context);
+-
+-        verify(this.executor, times(1)).execute(any(TsLintExecutorConfig.class), any(List.class));
+-
+-        assertEquals(0, this.context.allIssues().size());
+-    }
+-
+ }

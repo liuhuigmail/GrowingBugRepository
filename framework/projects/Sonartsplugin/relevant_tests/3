@@ -1,0 +1,3 @@
+com.pablissimo.sonar.TsLintExecutorImplTest
+com.pablissimo.sonar.TsLintSensorTest
+com.pablissimo.sonar.TypeScriptPluginTest

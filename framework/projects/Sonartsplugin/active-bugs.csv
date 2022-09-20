@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,31bc8898c62934ce389746eb85db4509bdd4bad7,922ccf0ce7597ce419fe208e67078b4ed7a0d047,102,https://github.com/Pablissimo/SonarTsPlugin/pull/102
+2,21d9b0475245399448d185e17904ba7021dc0a48,106f19aa80e07eadd00058408025097f9cf2a049,114,https://github.com/Pablissimo/SonarTsPlugin/issues/114
+3,b34e86afa7ff0337e8ab8e847b18fd754a9e326e,34df3ccb699e3fa73a552e08d4f1dff76ad05d24,unknown,unknown
+4,31c4601ab57d55c04c4ae1b716a765638c11f82c,ea2b2c48b3a3599771597f460d3b3b23bc3b02d5,unknown,unknown

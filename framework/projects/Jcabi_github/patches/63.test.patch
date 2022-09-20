@@ -1,0 +1,46 @@
+diff --git a/src/test/java/com/jcabi/github/mock/MkOrganizationsTest.java b/src/test/java/com/jcabi/github/mock/MkOrganizationsTest.java
+index a153d193..dbd6ae71 100644
+--- a/src/test/java/com/jcabi/github/mock/MkOrganizationsTest.java
++++ b/src/test/java/com/jcabi/github/mock/MkOrganizationsTest.java
+@@ -30,7 +30,6 @@
+ package com.jcabi.github.mock;
+ 
+ import com.jcabi.github.Github;
+-import com.jcabi.github.Organization;
+ import java.util.Date;
+ import java.util.concurrent.TimeUnit;
+ import org.hamcrest.MatcherAssert;
+@@ -43,7 +42,7 @@ import org.junit.Test;
+  * @version $Id$
+  * @see <a href="http://developer.github.com/v3/orgs/">Organizations API</a>
+  * @since 0.7
+- * @checkstyle MultipleStringLiteralsCheck (500 lines)
++ * @checkstyle MultipleStringLiteralsCheck (100 lines)
+  */
+ public final class MkOrganizationsTest {
+ 
+@@ -64,24 +63,6 @@ public final class MkOrganizationsTest {
+         );
+     }
+ 
+-    /**
+-     * MkOrganizations can list user organizations.
+-     * @throws Exception If some problem inside
+-     */
+-    @Test
+-    public void iteratesUserOrganizations() throws Exception {
+-        final String login = "orgTestIterate";
+-        final MkOrganizations orgs = new MkOrganizations(
+-            new MkStorage.InFile(),
+-            login
+-        );
+-        final Organization org = orgs.get(login);
+-        MatcherAssert.assertThat(
+-            orgs.iterate(org.login()),
+-            Matchers.not(Matchers.emptyIterable())
+-        );
+-    }
+-
+     /**
+      * MkOrganizations can get specific organization.
+      * @throws Exception If some problem inside

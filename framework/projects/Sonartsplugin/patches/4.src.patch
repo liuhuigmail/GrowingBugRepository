@@ -1,0 +1,64 @@
+diff --git a/src/main/java/com/pablissimo/sonar/TsLintSensor.java b/src/main/java/com/pablissimo/sonar/TsLintSensor.java
+index 96c2e3b..99f13da 100644
+--- a/src/main/java/com/pablissimo/sonar/TsLintSensor.java
++++ b/src/main/java/com/pablissimo/sonar/TsLintSensor.java
+@@ -22,6 +22,7 @@ import java.util.*;
+ 
+ public class TsLintSensor implements Sensor {
+     public static final String CONFIG_FILENAME = "tslint.json";
++    public static final String TSLINT_FALLBACK_PATH = "node_modules/tslint/bin/tslint";
+ 
+     private static final Logger LOG = LoggerFactory.getLogger(TsLintExecutorImpl.class);
+ 
+@@ -46,15 +47,36 @@ public class TsLintSensor implements Sensor {
+     private boolean hasFilesToAnalyze() {
+         return fileSystem.files(this.filePredicates.hasLanguage(TypeScriptLanguage.LANGUAGE_KEY)).iterator().hasNext();
+     }
++    protected String getTsLintPath() {
++        String toReturn = settings.getString(TypeScriptPlugin.SETTING_TS_LINT_PATH);
++        if (toReturn == null || toReturn.isEmpty()) {
++            LOG.debug("Path to TsLint not specified, falling back to node_modules");
++            toReturn = TSLINT_FALLBACK_PATH;
++        }
++        else {
++            LOG.debug("Found TsLint path to be '" + toReturn + "'");
++        }
++        File candidateFile = new java.io.File(toReturn);
++        if (!candidateFile.isAbsolute()) {
++            candidateFile = new java.io.File(this.fileSystem.baseDir().getAbsolutePath(), toReturn);
++        }
++        if (!doesFileExist(candidateFile)) {
++            LOG.warn("Could not find tslint at path '" + toReturn + "' - skipping tslint analysis");
++            toReturn = null;
++        }
++        return toReturn;
++    }
++    protected boolean doesFileExist(File f) {
++        return f.exists();
++    }
+ 
+     public void analyse(Project project, SensorContext context) {
+-        String pathToTsLint = settings.getString(TypeScriptPlugin.SETTING_TS_LINT_PATH);
++        String pathToTsLint = getTsLintPath();
+         String pathToTsLintConfig = settings.getString(TypeScriptPlugin.SETTING_TS_LINT_CONFIG_PATH);
+         String rulesDir = settings.getString(TypeScriptPlugin.SETTING_TS_LINT_RULES_DIR);
+         Integer tsLintTimeoutMs = Math.max(5000, settings.getInt(TypeScriptPlugin.SETTING_TS_LINT_TIMEOUT));
+ 
+         if (pathToTsLint == null) {
+-            LOG.warn("Path to tslint (" + TypeScriptPlugin.SETTING_TS_LINT_PATH + ") is not defined. Skipping tslint analysis.");
+             return;
+         }
+         else if (pathToTsLintConfig == null) {
+diff --git a/src/main/java/com/pablissimo/sonar/TypeScriptPlugin.java b/src/main/java/com/pablissimo/sonar/TypeScriptPlugin.java
+index f614bed..d58cf8b 100644
+--- a/src/main/java/com/pablissimo/sonar/TypeScriptPlugin.java
++++ b/src/main/java/com/pablissimo/sonar/TypeScriptPlugin.java
+@@ -11,7 +11,7 @@ import org.sonar.api.*;
+         defaultValue = "",
+         name = "Path to TSLint",
+         description = "Path to installed Node TSLint",
+-        project = false,
++        project = true,
+         global = true
+     ),
+     @Property(

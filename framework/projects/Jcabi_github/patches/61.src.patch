@@ -1,0 +1,25 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkContents.java b/src/main/java/com/jcabi/github/mock/MkContents.java
+index 251ef616..1e3bb2bf 100644
+--- a/src/main/java/com/jcabi/github/mock/MkContents.java
++++ b/src/main/java/com/jcabi/github/mock/MkContents.java
+@@ -157,19 +157,7 @@ public final class MkContents implements Contents {
+         @NotNull(message = "content should not be NULL")
+         final JsonObject content
+     ) throws IOException {
+-        this.storage.lock();
+-        final String path = content.getString("path");
+-        try {
+-            this.storage.apply(
+-                new Directives()
+-                    .xpath(this.xpath())
+-                    .xpath(String.format("content[path='%s']", path))
+-                    .remove()
+-            );
+-            return this.commit(content);
+-        } finally {
+-            this.storage.unlock();
+-        }
++        throw new UnsupportedOperationException("Remove not yet implemented.");
+     }
+ 
+     /**

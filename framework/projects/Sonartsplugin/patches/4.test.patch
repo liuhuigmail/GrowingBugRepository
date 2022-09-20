@@ -1,0 +1,65 @@
+diff --git a/src/test/java/com/pablissimo/sonar/TsLintSensorTest.java b/src/test/java/com/pablissimo/sonar/TsLintSensorTest.java
+index 84eeedf..ac7fc64 100644
+--- a/src/test/java/com/pablissimo/sonar/TsLintSensorTest.java
++++ b/src/test/java/com/pablissimo/sonar/TsLintSensorTest.java
+@@ -131,9 +131,9 @@ public class TsLintSensorTest {
+                 this.file
+         }));
+ 
+-        this.fileSystem = mock(FileSystem.class);
+         this.predicate = mock(FilePredicate.class);
+         when(fileSystem.files(this.predicate)).thenReturn(this.files);
++        when(fileSystem.baseDir()).thenReturn(new File("/path/to/base/of/project/"));
+ 
+         this.filePredicates = mock(FilePredicates.class);
+         when(this.fileSystem.predicates()).thenReturn(this.filePredicates);
+@@ -147,6 +147,7 @@ public class TsLintSensorTest {
+         doReturn(this.sonarFile).when(this.sensor).getFileFromIOFile(eq(this.file), any(Project.class));
+         doReturn(this.executor).when(this.sensor).getTsLintExecutor();
+         doReturn(this.parser).when(this.sensor).getTsLintParser();
++        doReturn(true).when(this.sensor).doesFileExist(any(File.class));
+     }
+ 
+     @After
+@@ -254,4 +255,28 @@ public class TsLintSensorTest {
+         TsRulesDefinition rulesDef = sensor.getTsRulesDefinition();
+         assertNotNull(rulesDef);
+     }
++    
++    @Test
++    public void analyse_usesServerConfiguredTsLintPath_whenSet() {
++        when(this.settings.getString(TypeScriptPlugin.SETTING_TS_LINT_PATH)).thenReturn("/path/to/tslint");
++        this.sensor.analyse(mock(Project.class), mock(SensorContext.class));
++        
++        verify(this.executor).execute(eq("/path/to/tslint"), any(String.class), any(String.class), any(List.class), any(Integer.class));
++    }
++    
++    @Test
++    public void analyse_fallsBackToDefaultTsLintPath_whenNoServerConfiguration() {
++        when(this.settings.getString(TypeScriptPlugin.SETTING_TS_LINT_PATH)).thenReturn(null);
++        this.sensor.analyse(mock(Project.class), mock(SensorContext.class));
++        
++        verify(this.executor).execute(eq(TsLintSensor.TSLINT_FALLBACK_PATH), any(String.class), any(String.class), any(List.class), any(Integer.class));
++    }
++    
++    @Test
++    public void analyse_fallsBackToDefaultTsLintPath_whenServerConfigurationNonNullButEmpty() {
++        when(this.settings.getString(TypeScriptPlugin.SETTING_TS_LINT_PATH)).thenReturn("");
++        this.sensor.analyse(mock(Project.class), mock(SensorContext.class));
++        
++        verify(this.executor).execute(eq(TsLintSensor.TSLINT_FALLBACK_PATH), any(String.class), any(String.class), any(List.class), any(Integer.class));
++    }
+ }
+diff --git a/src/test/java/com/pablissimo/sonar/TypeScriptPluginTest.java b/src/test/java/com/pablissimo/sonar/TypeScriptPluginTest.java
+index 91a9437..fa27c7b 100644
+--- a/src/test/java/com/pablissimo/sonar/TypeScriptPluginTest.java
++++ b/src/test/java/com/pablissimo/sonar/TypeScriptPluginTest.java
+@@ -79,7 +79,7 @@ public class TypeScriptPluginTest {
+ 
+         assertEquals(PropertyType.STRING, property.type());
+         assertEquals("", property.defaultValue());
+-        assertEquals(false, property.project());
++        assertEquals(true, property.project());
+         assertEquals(true, property.global());
+     }
+ 

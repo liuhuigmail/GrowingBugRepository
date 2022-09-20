@@ -1,0 +1,41 @@
+diff --git a/src/test/java/com/pablissimo/sonar/TsLintExecutorImplTest.java b/src/test/java/com/pablissimo/sonar/TsLintExecutorImplTest.java
+index c097508..fd439fc 100644
+--- a/src/test/java/com/pablissimo/sonar/TsLintExecutorImplTest.java
++++ b/src/test/java/com/pablissimo/sonar/TsLintExecutorImplTest.java
+@@ -49,7 +49,7 @@ public class TsLintExecutorImplTest {
+         Command theCommand = capturedCommands.get(0);
+         long theTimeout = capturedTimeouts.get(0);
+         
+-        assertEquals("node path/to/tslint --format json --rules-dir path/to/rules --config path/to/config path/to/file path/to/another", theCommand.toCommandLine());
++        assertEquals("node \"path/to/tslint\" --format json --rules-dir \"path/to/rules\" --config \"path/to/config\" \"path/to/file\" \"path/to/another\"", theCommand.toCommandLine());
+         // Expect one timeout period per file processed
+         assertEquals(2 * 40000, theTimeout);        
+     }
+@@ -105,7 +105,7 @@ public class TsLintExecutorImplTest {
+         String firstBatch = "first batch";
+         while (currentLength + 12 < TsLintExecutorImpl.MAX_COMMAND_LENGTH - standardCmdLength) {
+             filenames.add(firstBatch);
+-            currentLength += firstBatch.length() + 1;
++            currentLength += firstBatch.length() + 3; // 1 for the space, 2 for the quotes
+         }
+         filenames.add("second batch");
+         
+diff --git a/src/test/java/com/pablissimo/sonar/TsLintSensorTest.java b/src/test/java/com/pablissimo/sonar/TsLintSensorTest.java
+index ac7fc64..220ede9 100644
+--- a/src/test/java/com/pablissimo/sonar/TsLintSensorTest.java
++++ b/src/test/java/com/pablissimo/sonar/TsLintSensorTest.java
+@@ -148,6 +148,14 @@ public class TsLintSensorTest {
+         doReturn(this.executor).when(this.sensor).getTsLintExecutor();
+         doReturn(this.parser).when(this.sensor).getTsLintParser();
+         doReturn(true).when(this.sensor).doesFileExist(any(File.class));
++        
++        // For now, pretend all paths are absolute
++        when(this.sensor.getAbsolutePath(any(String.class))).thenAnswer(new Answer<String>() {
++           @Override
++           public String answer(InvocationOnMock invocation) throws Throwable {
++               return (String) invocation.getArguments()[0];
++           }
++        });
+     }
+ 
+     @After

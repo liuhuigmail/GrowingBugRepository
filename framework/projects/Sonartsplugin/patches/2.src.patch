@@ -1,0 +1,24 @@
+diff --git a/src/main/java/com/pablissimo/sonar/TsLintSensor.java b/src/main/java/com/pablissimo/sonar/TsLintSensor.java
+index 7861a1a..e924af3 100644
+--- a/src/main/java/com/pablissimo/sonar/TsLintSensor.java
++++ b/src/main/java/com/pablissimo/sonar/TsLintSensor.java
+@@ -47,16 +47,13 @@ public class TsLintSensor implements Sensor {
+ 
+         TsLintExecutorConfig config = TsLintExecutorConfig.fromSettings(this.settings, ctx, this.resolver);
+ 
+-        if (!config.useExistingTsLintOutput()) {
+             if (config.getPathToTsLint() == null) {
+                 LOG.warn("Path to tslint not defined or not found. Skipping tslint analysis.");
+                 return;
+-            } else {
+-                if (config.getConfigFile() == null && config.getPathToTsConfig() == null) {
+-                    LOG.warn("Path to tslint.json and tsconfig.json configuration files either not defined or not found - at least one is required. Skipping tslint analysis.");
+-                    return;
+-                }
+             }
++        else if (config.getConfigFile() == null && config.getPathToTsConfig() == null) {
++            LOG.warn("Path to tslint.json and tsconfig.json configuration files either not defined or not found - at least one is required. Skipping tslint analysis.");
++            return;
+         }
+ 
+         boolean skipTypeDefFiles = settings.getBoolean(TypeScriptPlugin.SETTING_EXCLUDE_TYPE_DEFINITION_FILES);

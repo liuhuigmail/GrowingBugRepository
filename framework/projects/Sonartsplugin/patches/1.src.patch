@@ -1,0 +1,30 @@
+diff --git a/src/main/java/com/pablissimo/sonar/TsLintSensor.java b/src/main/java/com/pablissimo/sonar/TsLintSensor.java
+index 65eaeea..0beb91b 100644
+--- a/src/main/java/com/pablissimo/sonar/TsLintSensor.java
++++ b/src/main/java/com/pablissimo/sonar/TsLintSensor.java
+@@ -100,11 +100,12 @@ public class TsLintSensor implements Sensor {
+                 matchingFile = relativeFileMap.get(filePath);
+             }
+             
+-            if (matchingFile == null) {
++            if (!absoluteFileMap.containsKey(filePath)) {
+                 LOG.warn("TsLint reported issues against a file that wasn't sent to it - will be ignored: " + filePath);
+                 continue;
+             }
+ 
++            InputFile file = absoluteFileMap.get(filePath);
+             for (TsLintIssue issue : batchIssues) {
+                 // Make sure the rule we're violating is one we recognise - if not, we'll
+                 // fall back to the generic 'tslint-issue' rule
+@@ -121,9 +122,9 @@ public class TsLintSensor implements Sensor {
+                 NewIssueLocation newIssueLocation =
+                         newIssue
+                         .newLocation()
+-                        .on(matchingFile)
++                        .on(file)
+                         .message(issue.getFailure())
+-                        .at(matchingFile.selectLine(issue.getStartPosition().getLine() + 1));
++                        .at(file.selectLine(issue.getStartPosition().getLine() + 1));
+ 
+                 newIssue.at(newIssueLocation);
+                 newIssue.save();

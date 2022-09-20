@@ -1,0 +1,64 @@
+diff --git a/src/main/java/com/jcabi/github/RtPullComments.java b/src/main/java/com/jcabi/github/RtPullComments.java
+index b727b980..62ef54d0 100644
+--- a/src/main/java/com/jcabi/github/RtPullComments.java
++++ b/src/main/java/com/jcabi/github/RtPullComments.java
+@@ -122,25 +122,7 @@ public final class RtPullComments implements PullComments {
+         @NotNull(message = "number can't be NULL") final int number,
+         @NotNull(message = "params can't be NULL")
+         final Map<String, String> params) {
+-        final Request newreq = this.entry.uri()
+-            .path("/repos")
+-            .path(this.owner.repo().coordinates().user())
+-            .path(this.owner.repo().coordinates().repo())
+-            .path("/pulls")
+-            .path(String.valueOf(number))
+-            .path("/comments")
+-            .back();
+-        return new RtPagination<PullComment>(
+-            newreq.uri().queryParams(params).back(),
+-            new RtPagination.Mapping<PullComment, JsonObject>() {
+-                @Override
+-                public PullComment map(final JsonObject value) {
+-                    return RtPullComments.this.get(
+-                        value.getInt("id")
+-                    );
+-                }
+-            }
+-        );
++        throw new UnsupportedOperationException("Iterate not yet implemented.");
+     }
+ 
+     // @checkstyle ParameterNumberCheck (7 lines)
+diff --git a/src/main/java/com/jcabi/github/mock/MkCommitsComparison.java b/src/main/java/com/jcabi/github/mock/MkCommitsComparison.java
+index a82b3739..cb5749e4 100644
+--- a/src/main/java/com/jcabi/github/mock/MkCommitsComparison.java
++++ b/src/main/java/com/jcabi/github/mock/MkCommitsComparison.java
+@@ -84,27 +84,9 @@ final class MkCommitsComparison implements CommitsComparison {
+ 
+     @Override
+     public JsonObject json() throws IOException {
+-        return Json.createObjectBuilder()
+             // @checkstyle MultipleStringLiterals (3 lines)
+-            .add("status", "test-status")
+-            .add("ahead_by", 1)
+-            .add("behind_by", 2)
+-            .add(
+-                "author",
+-                Json.createObjectBuilder()
+                 // @checkstyle MultipleStringLiterals (3 lines)
+-                    .add("login", "test")
+-                    .build()
+-            )
+-            .add(
+-                "files",
+-                Json.createObjectBuilder()
+-                    .add("sha", "bbcd538c8e72b8c175046e27cc8f907076331401")
+-                    .add("filename", "test-file")
+                     // @checkstyle MultipleStringLiterals (1 lines)
+-                    .add("status", "test")
+-                    .build()
+-            )
+-            .build();
++        throw new UnsupportedOperationException();
+     }
+ }
