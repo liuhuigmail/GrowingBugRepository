@@ -1,0 +1,12 @@
+diff --git a/src/main/java/org/springframework/build/aws/maven/AuthenticationInfoAWSCredentials.java b/src/main/java/org/springframework/build/aws/maven/AuthenticationInfoAWSCredentials.java
+index 7e76e70..c73b4ff 100644
+--- a/src/main/java/org/springframework/build/aws/maven/AuthenticationInfoAWSCredentials.java
++++ b/src/main/java/org/springframework/build/aws/maven/AuthenticationInfoAWSCredentials.java
+@@ -34,6 +34,6 @@ final class AuthenticationInfoAWSCredentials implements AWSCredentials {
+ 
+     @Override
+     public String getAWSSecretKey() {
+-        return this.authenticationInfo.getPassword();
++        return this.authenticationInfo.getPassphrase();
+     }
+ }

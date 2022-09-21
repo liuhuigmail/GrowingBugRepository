@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,7b06826d9d88baab502010d7bcfd8a9365505278,7a9b3d627bea2e226ea22e9665f86fa3272720c9,14,https://github.com/spring-attic/aws-maven/issues/14

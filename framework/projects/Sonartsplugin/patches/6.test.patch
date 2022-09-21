@@ -1,0 +1,19 @@
+diff --git a/src/test/java/com/pablissimo/sonar/TsLintParserTest.java b/src/test/java/com/pablissimo/sonar/TsLintParserTest.java
+index 625eb54..ae1ca53 100644
+--- a/src/test/java/com/pablissimo/sonar/TsLintParserTest.java
++++ b/src/test/java/com/pablissimo/sonar/TsLintParserTest.java
+@@ -67,14 +67,4 @@ public class TsLintParserTest {
+         assertEquals(1, issues.size());
+         assertEquals(2, issues.get("Tools.ts").size());
+     }
+-    
+-    @Test
+-    public void parseAGoodProjectWithNoIssues() {
+-        List<String> toParse = new ArrayList<String>();
+-        toParse.add("");
+-                
+-        Map<String, List<TsLintIssue>> issues = new TsLintParserImpl().parse(toParse);
+-        
+-        assertEquals(0, issues.size());        
+-    }
+ }

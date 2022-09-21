@@ -3,3 +3,9 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 2,21d9b0475245399448d185e17904ba7021dc0a48,106f19aa80e07eadd00058408025097f9cf2a049,114,https://github.com/Pablissimo/SonarTsPlugin/issues/114
 3,b34e86afa7ff0337e8ab8e847b18fd754a9e326e,34df3ccb699e3fa73a552e08d4f1dff76ad05d24,unknown,unknown
 4,31c4601ab57d55c04c4ae1b716a765638c11f82c,ea2b2c48b3a3599771597f460d3b3b23bc3b02d5,unknown,unknown
+5,12c5c39198e7aef2297c014b08db33ffe6113a65,45edf463dbf2be18b6ae792e9b6447a495dd91c9,15,https://github.com/Pablissimo/SonarTsPlugin/pull/15
+6,35918a9bd3289dee11e2402f753402ed67a9eb9b,0daa50c8012c6faaea3af93b86fa52292e53add5,74,https://github.com/Pablissimo/SonarTsPlugin/issues/74
+7,0daa50c8012c6faaea3af93b86fa52292e53add5,7722e7a1940a2ca9182fc3cc5195aeff75e5d106,48,https://github.com/Pablissimo/SonarTsPlugin/issues/48
+8,99b61e839f340f8094376f089cb13e0815092880,6a86fcb79d07ddc933e8adabd1d16a58298c8835,100,https://github.com/Pablissimo/SonarTsPlugin/pull/100
+9,99b61e839f340f8094376f089cb13e0815092880,cc5572ea740c7d5deb6c1ac6c02567e48f5d9f41,100,https://github.com/Pablissimo/SonarTsPlugin/pull/100
+10,0b43b748bd2261af0488a5aa5bfafc7190d5ca31,62d7405dc9eb819baf9d45e414d589527ec458de,171,https://github.com/Pablissimo/SonarTsPlugin/pull/171

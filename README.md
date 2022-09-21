@@ -21,7 +21,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 
 # Contents of growingBugs
-To date, growingBugs contains **`1737`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1755`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -246,6 +246,10 @@ To date, growingBugs contains **`1737`** real-world bugs from open-source Java p
 | 219     | Spring_context_support         | spring-context-support           |                  |      2       | 2                  |
 | 220     | Jmimemagic         | jmimemagic           |                  |      1       | 1                  |
 | 221     | Markedj         | markedj           |                  |      17       | 1-17                  |
+| 222     | Sonartsplugin         | SonarTsPlugin           |                  |      10       | 1-10                  |
+| 223     | Aws_maven         | aws-maven           |                  |      1       | 1                  |
+| 224     | Snomed_owl_toolkit         | snomed-owl-toolkit           |                  |      2       | 1-2                  |
+| 225     | Weak_lock_free         | weak-lock-free           |                  |      1       | 1                  |
 # Setting up GrowingBugs
 
 ## Requirements

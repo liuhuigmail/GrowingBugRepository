@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,be14c11c1f318f6a0a0dd154be9bf05349f0d334,e4195ac9faa33f121091a3c1b494d16fd411aac1,1,https://github.com/raphw/weak-lock-free/pull/1

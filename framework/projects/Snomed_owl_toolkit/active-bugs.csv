@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,2714b1b61b24cb8b43eca2e6e05e82e0bd567f0e,ae89fe8ebe0edc6de85f7718b9bb74160c9fdacf,61,https://github.com/IHTSDO/snomed-owl-toolkit/issues/61
+2,2714b1b61b24cb8b43eca2e6e05e82e0bd567f0e,5dea831ef2eab5c6f3778b9abbf20938460a5a3e,62,https://github.com/IHTSDO/snomed-owl-toolkit/pull/62

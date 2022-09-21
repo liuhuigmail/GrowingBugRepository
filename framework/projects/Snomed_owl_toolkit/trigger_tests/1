@@ -1,0 +1,1073 @@
+--- org.snomed.otf.owltoolkit.conversion.RF2ToOWLServiceTest::convertExtensionRF2ArchivesToOWL
+junit.framework.AssertionFailedError: expected:<...
+
+Declaration(Class([:113331007))
+Declaration(Class(:116680003))
+Declaration(Class(:12481008))
+Declaration(Class(:129287005))
+Declaration(Class(:138875005))
+Declaration(Class(:18736003))
+Declaration(Class(:25342003))
+Declaration(Class(:281615006))
+Declaration(Class(:362969004))
+Declaration(Class(:404684003))
+Declaration(Class(:410662002))
+Declaration(Class(:723594008))
+Declaration(Class(:723596005))
+Declaration(Class(:76145000))
+Declaration(Class(:762705008))
+Declaration(Class(:762706009))
+Declaration(Class(:84301002))
+Declaration(Class(:900000000000441003))
+Declaration(Class(:900101001))
+Declaration(ObjectProperty(:260686004))
+Declaration(ObjectProperty(:363698007))
+Declaration(ObjectProperty(:405813007))
+Declaration(ObjectProperty(:609096000))
+Declaration(ObjectProperty(:762705008))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://snomed.info/id/363698007> (Finding site (attribute))
+
+AnnotationAssertion(rdfs:label :363698007 "Finding site (attribute)"@en)
+SubObjectPropertyOf(:363698007 :762705008)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://snomed.info/id/113331007> (Structure of endocrine system (body structure))
+
+AnnotationAssertion(rdfs:label :113331007 "Structure of endocrine system (body structure)"@en)
+SubClassOf(:113331007 :138875005)
+
+# Class: <http://snomed.info/id/116680003> (Is a (attribute))
+
+AnnotationAssertion(rdfs:label :116680003 "Is a (attribute)"@en)
+SubClassOf(:116680003 :900000000000441003)
+
+# Class: <http://snomed.info/id/138875005> (SNOMED CT Concept (SNOMED RT+CTV3))
+
+AnnotationAssertion(rdfs:label :138875005 "SNOMED CT Concept (SNOMED RT+CTV3)"@en)
+
+# Class: <http://snomed.info/id/18736003> (Middle ear exploration through ear canal incision (procedure))
+
+AnnotationAssertion(rdfs:label :18736003 "Middle ear exploration through ear canal incision (procedure)"@en)
+SubClassOf(:18736003 ObjectIntersectionOf(:12481008 :76145000 ObjectSomeValuesFrom(:609096000 ObjectIntersectionOf(ObjectSomeValuesFrom(:260686004 :129287005) ObjectSomeValuesFrom(:405813007 :84301002))) ObjectSomeValuesFrom(:609096000 ObjectIntersectionOf(ObjectSomeValuesFrom(:260686004 :281615006) ObjectSomeValuesFrom(:405813007 :25342003)))))
+
+# Class: <http://snomed.info/id/362969004> (Disorder of endocrine system (disorder))
+
+AnnotationAssertion(rdfs:label :362969004 "Disorder of endocrine system (disorder)"@en)
+EquivalentClasses(:362969004 ObjectIntersectionOf(:404684003 ObjectSomeValuesFrom(:609096000 ObjectSomeValuesFrom(:363698007 :113331007))))
+
+# Class: <http://snomed.info/id/404684003> (Clinical finding (finding))
+
+AnnotationAssertion(rdfs:label :404684003 "Clinical finding (finding)"@en)
+SubClassOf(:404684003 :138875005)
+
+# Class: <http://snomed.info/id/410662002> (Concept model attribute (attribute))
+
+AnnotationAssertion(rdfs:label :410662002 "Concept model attribute (attribute)"@en)
+SubClassOf(:410662002 :900000000000441003)
+
+# Class: <http://snomed.info/id/723594008> (All precoordinated SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label :723594008 "All precoordinated SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(:723594008 :900000000000441003)
+
+# Class: <http://snomed.info/id/723596005> (All SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label :723596005 "All SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(:723596005 :723594008)
+
+# Class: <http://snomed.info/id/762705008> (<http://snomed.info/id/762705008>)
+
+SubClassOf(:762705008 :410662002)
+
+# Class: <http://snomed.info/id/762706009> (<http://snomed.info/id/762706009>)
+
+SubClassOf(:762706009 :410662002)
+
+# Class: <http://snomed.info/id/900000000000441003> (SNOMED CT Model Component (metadata))
+
+AnnotationAssertion(rdfs:label :900000000000441003 "SNOMED CT Model Component (metadata)"@en)
+SubClassOf(:900000000000441003 :138875005)
+
+# Class: <http://snomed.info/id/900101001> (<http://snomed.info/id/900101001>)
+
+SubClassOf(:900101001 :900000000000441003])
+
+
+)> but was:<...
+
+Declaration(Class([<http://snomed.info/id/113331007>))
+Declaration(Class(<http://snomed.info/id/116680003>))
+Declaration(Class(<http://snomed.info/id/12481008>))
+Declaration(Class(<http://snomed.info/id/129287005>))
+Declaration(Class(<http://snomed.info/id/138875005>))
+Declaration(Class(<http://snomed.info/id/18736003>))
+Declaration(Class(<http://snomed.info/id/25342003>))
+Declaration(Class(<http://snomed.info/id/281615006>))
+Declaration(Class(<http://snomed.info/id/362969004>))
+Declaration(Class(<http://snomed.info/id/404684003>))
+Declaration(Class(<http://snomed.info/id/410662002>))
+Declaration(Class(<http://snomed.info/id/723594008>))
+Declaration(Class(<http://snomed.info/id/723596005>))
+Declaration(Class(<http://snomed.info/id/76145000>))
+Declaration(Class(<http://snomed.info/id/762705008>))
+Declaration(Class(<http://snomed.info/id/762706009>))
+Declaration(Class(<http://snomed.info/id/84301002>))
+Declaration(Class(<http://snomed.info/id/900000000000441003>))
+Declaration(Class(<http://snomed.info/id/900101001>))
+Declaration(ObjectProperty(<http://snomed.info/id/260686004>))
+Declaration(ObjectProperty(<http://snomed.info/id/363698007>))
+Declaration(ObjectProperty(<http://snomed.info/id/405813007>))
+Declaration(ObjectProperty(<http://snomed.info/id/609096000>))
+Declaration(ObjectProperty(<http://snomed.info/id/762705008>))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://snomed.info/id/363698007> (Finding site (attribute))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/363698007> "Finding site (attribute)"@en)
+SubObjectPropertyOf(<http://snomed.info/id/363698007> <http://snomed.info/id/762705008>)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://snomed.info/id/113331007> (Structure of endocrine system (body structure))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/113331007> "Structure of endocrine system (body structure)"@en)
+SubClassOf(<http://snomed.info/id/113331007> <http://snomed.info/id/138875005>)
+
+# Class: <http://snomed.info/id/116680003> (Is a (attribute))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/116680003> "Is a (attribute)"@en)
+SubClassOf(<http://snomed.info/id/116680003> <http://snomed.info/id/900000000000441003>)
+
+# Class: <http://snomed.info/id/138875005> (SNOMED CT Concept (SNOMED RT+CTV3))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/138875005> "SNOMED CT Concept (SNOMED RT+CTV3)"@en)
+
+# Class: <http://snomed.info/id/18736003> (Middle ear exploration through ear canal incision (procedure))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/18736003> "Middle ear exploration through ear canal incision (procedure)"@en)
+SubClassOf(<http://snomed.info/id/18736003> ObjectIntersectionOf(<http://snomed.info/id/12481008> <http://snomed.info/id/76145000> ObjectSomeValuesFrom(<http://snomed.info/id/609096000> ObjectIntersectionOf(ObjectSomeValuesFrom(<http://snomed.info/id/260686004> <http://snomed.info/id/129287005>) ObjectSomeValuesFrom(<http://snomed.info/id/405813007> <http://snomed.info/id/84301002>))) ObjectSomeValuesFrom(<http://snomed.info/id/609096000> ObjectIntersectionOf(ObjectSomeValuesFrom(<http://snomed.info/id/260686004> <http://snomed.info/id/281615006>) ObjectSomeValuesFrom(<http://snomed.info/id/405813007> <http://snomed.info/id/25342003>)))))
+
+# Class: <http://snomed.info/id/362969004> (Disorder of endocrine system (disorder))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/362969004> "Disorder of endocrine system (disorder)"@en)
+EquivalentClasses(<http://snomed.info/id/362969004> ObjectIntersectionOf(<http://snomed.info/id/404684003> ObjectSomeValuesFrom(<http://snomed.info/id/609096000> ObjectSomeValuesFrom(<http://snomed.info/id/363698007> <http://snomed.info/id/113331007>))))
+
+# Class: <http://snomed.info/id/404684003> (Clinical finding (finding))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/404684003> "Clinical finding (finding)"@en)
+SubClassOf(<http://snomed.info/id/404684003> <http://snomed.info/id/138875005>)
+
+# Class: <http://snomed.info/id/410662002> (Concept model attribute (attribute))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/410662002> "Concept model attribute (attribute)"@en)
+SubClassOf(<http://snomed.info/id/410662002> <http://snomed.info/id/900000000000441003>)
+
+# Class: <http://snomed.info/id/723594008> (All precoordinated SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/723594008> "All precoordinated SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(<http://snomed.info/id/723594008> <http://snomed.info/id/900000000000441003>)
+
+# Class: <http://snomed.info/id/723596005> (All SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/723596005> "All SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(<http://snomed.info/id/723596005> <http://snomed.info/id/723594008>)
+
+# Class: <http://snomed.info/id/762705008> (<http://snomed.info/id/762705008>)
+
+SubClassOf(<http://snomed.info/id/762705008> <http://snomed.info/id/410662002>)
+
+# Class: <http://snomed.info/id/762706009> (<http://snomed.info/id/762706009>)
+
+SubClassOf(<http://snomed.info/id/762706009> <http://snomed.info/id/410662002>)
+
+# Class: <http://snomed.info/id/900000000000441003> (SNOMED CT Model Component (metadata))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/900000000000441003> "SNOMED CT Model Component (metadata)"@en)
+SubClassOf(<http://snomed.info/id/900000000000441003> <http://snomed.info/id/138875005>)
+
+# Class: <http://snomed.info/id/900101001> (<http://snomed.info/id/900101001>)
+
+SubClassOf(<http://snomed.info/id/900101001> <http://snomed.info/id/900000000000441003>])
+
+
+)>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at org.snomed.otf.owltoolkit.conversion.RF2ToOWLServiceTest.convertExtensionRF2ArchivesToOWL(RF2ToOWLServiceTest.java:388)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnit4TestMethodAdapter.run(JUnit4TestMethodAdapter.java:109)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1972)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute1(JUnitTask.java:824)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2277)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:392)
+	at org.apache.tools.ant.Target.performTasks(Target.java:413)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+	at org.apache.tools.ant.Main.runBuild(Main.java:811)
+	at org.apache.tools.ant.Main.startAnt(Main.java:217)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
+--- org.snomed.otf.owltoolkit.conversion.RF2ToOWLServiceTest::convertRF2ArchiveToOWLWithSKOSAnnotations
+junit.framework.AssertionFailedError: expected:<...
+
+Declaration(Class([:113331007))
+Declaration(Class(:116680003))
+Declaration(Class(:138875005))
+Declaration(Class(:362969004))
+Declaration(Class(:404684003))
+Declaration(Class(:410662002))
+Declaration(Class(:723594008))
+Declaration(Class(:723596005))
+Declaration(Class(:762705008))
+Declaration(Class(:762706009))
+Declaration(Class(:900000000000441003))
+Declaration(ObjectProperty(:363698007))
+Declaration(ObjectProperty(:609096000))
+Declaration(ObjectProperty(:762705008))
+Declaration(AnnotationProperty(skos:altLabel))
+Declaration(AnnotationProperty(skos:definition))
+Declaration(AnnotationProperty(skos:prefLabel))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://snomed.info/id/363698007> (Finding site (attribute))
+
+AnnotationAssertion(rdfs:label :363698007 "Finding site (attribute)"@en)
+SubObjectPropertyOf(:363698007 :762705008)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://snomed.info/id/113331007> (Structure of endocrine system (body structure))
+
+AnnotationAssertion(rdfs:label :113331007 "Structure of endocrine system (body structure)"@en)
+AnnotationAssertion(skos:altLabel :113331007 "Endocrine system"@en)
+AnnotationAssertion(skos:definition :113331007 "Endocrine system structure"@en)
+AnnotationAssertion(skos:prefLabel :113331007 "Structure of endocrine system"@en-us)
+SubClassOf(:113331007 :138875005)
+
+# Class: <http://snomed.info/id/116680003> (Is a (attribute))
+
+AnnotationAssertion(rdfs:label :116680003 "Is a (attribute)"@en)
+SubClassOf(:116680003 :900000000000441003)
+
+# Class: <http://snomed.info/id/138875005> (SNOMED CT Concept (SNOMED RT+CTV3))
+
+AnnotationAssertion(rdfs:label :138875005 "SNOMED CT Concept (SNOMED RT+CTV3)"@en)
+
+# Class: <http://snomed.info/id/362969004> (Disorder of endocrine system (disorder))
+
+AnnotationAssertion(rdfs:label :362969004 "Disorder of endocrine system (disorder)"@en)
+EquivalentClasses(:362969004 ObjectIntersectionOf(:404684003 ObjectSomeValuesFrom(:609096000 ObjectSomeValuesFrom(:363698007 :113331007))))
+
+# Class: <http://snomed.info/id/404684003> (Clinical finding (finding))
+
+AnnotationAssertion(rdfs:label :404684003 "Clinical finding (finding)"@en)
+SubClassOf(:404684003 :138875005)
+
+# Class: <http://snomed.info/id/410662002> (Concept model attribute (attribute))
+
+AnnotationAssertion(rdfs:label :410662002 "Concept model attribute (attribute)"@en)
+SubClassOf(:410662002 :900000000000441003)
+
+# Class: <http://snomed.info/id/723594008> (All precoordinated SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label :723594008 "All precoordinated SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(:723594008 :900000000000441003)
+
+# Class: <http://snomed.info/id/723596005> (All SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label :723596005 "All SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(:723596005 :723594008)
+
+# Class: <http://snomed.info/id/762705008> (<http://snomed.info/id/762705008>)
+
+SubClassOf(:762705008 :410662002)
+
+# Class: <http://snomed.info/id/762706009> (<http://snomed.info/id/762706009>)
+
+SubClassOf(:762706009 :410662002)
+
+# Class: <http://snomed.info/id/900000000000441003> (SNOMED CT Model Component (metadata))
+
+AnnotationAssertion(rdfs:label :900000000000441003 "SNOMED CT Model Component (metadata)"@en)
+SubClassOf(:900000000000441003 :138875005])
+
+
+)> but was:<...
+
+Declaration(Class([<http://snomed.info/id/113331007>))
+Declaration(Class(<http://snomed.info/id/116680003>))
+Declaration(Class(<http://snomed.info/id/138875005>))
+Declaration(Class(<http://snomed.info/id/362969004>))
+Declaration(Class(<http://snomed.info/id/404684003>))
+Declaration(Class(<http://snomed.info/id/410662002>))
+Declaration(Class(<http://snomed.info/id/723594008>))
+Declaration(Class(<http://snomed.info/id/723596005>))
+Declaration(Class(<http://snomed.info/id/762705008>))
+Declaration(Class(<http://snomed.info/id/762706009>))
+Declaration(Class(<http://snomed.info/id/900000000000441003>))
+Declaration(ObjectProperty(<http://snomed.info/id/363698007>))
+Declaration(ObjectProperty(<http://snomed.info/id/609096000>))
+Declaration(ObjectProperty(<http://snomed.info/id/762705008>))
+Declaration(AnnotationProperty(skos:altLabel))
+Declaration(AnnotationProperty(skos:definition))
+Declaration(AnnotationProperty(skos:prefLabel))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://snomed.info/id/363698007> (Finding site (attribute))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/363698007> "Finding site (attribute)"@en)
+SubObjectPropertyOf(<http://snomed.info/id/363698007> <http://snomed.info/id/762705008>)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://snomed.info/id/113331007> (Structure of endocrine system (body structure))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/113331007> "Structure of endocrine system (body structure)"@en)
+AnnotationAssertion(skos:altLabel <http://snomed.info/id/113331007> "Endocrine system"@en)
+AnnotationAssertion(skos:definition <http://snomed.info/id/113331007> "Endocrine system structure"@en)
+AnnotationAssertion(skos:prefLabel <http://snomed.info/id/113331007> "Structure of endocrine system"@en-us)
+SubClassOf(<http://snomed.info/id/113331007> <http://snomed.info/id/138875005>)
+
+# Class: <http://snomed.info/id/116680003> (Is a (attribute))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/116680003> "Is a (attribute)"@en)
+SubClassOf(<http://snomed.info/id/116680003> <http://snomed.info/id/900000000000441003>)
+
+# Class: <http://snomed.info/id/138875005> (SNOMED CT Concept (SNOMED RT+CTV3))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/138875005> "SNOMED CT Concept (SNOMED RT+CTV3)"@en)
+
+# Class: <http://snomed.info/id/362969004> (Disorder of endocrine system (disorder))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/362969004> "Disorder of endocrine system (disorder)"@en)
+EquivalentClasses(<http://snomed.info/id/362969004> ObjectIntersectionOf(<http://snomed.info/id/404684003> ObjectSomeValuesFrom(<http://snomed.info/id/609096000> ObjectSomeValuesFrom(<http://snomed.info/id/363698007> <http://snomed.info/id/113331007>))))
+
+# Class: <http://snomed.info/id/404684003> (Clinical finding (finding))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/404684003> "Clinical finding (finding)"@en)
+SubClassOf(<http://snomed.info/id/404684003> <http://snomed.info/id/138875005>)
+
+# Class: <http://snomed.info/id/410662002> (Concept model attribute (attribute))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/410662002> "Concept model attribute (attribute)"@en)
+SubClassOf(<http://snomed.info/id/410662002> <http://snomed.info/id/900000000000441003>)
+
+# Class: <http://snomed.info/id/723594008> (All precoordinated SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/723594008> "All precoordinated SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(<http://snomed.info/id/723594008> <http://snomed.info/id/900000000000441003>)
+
+# Class: <http://snomed.info/id/723596005> (All SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/723596005> "All SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(<http://snomed.info/id/723596005> <http://snomed.info/id/723594008>)
+
+# Class: <http://snomed.info/id/762705008> (<http://snomed.info/id/762705008>)
+
+SubClassOf(<http://snomed.info/id/762705008> <http://snomed.info/id/410662002>)
+
+# Class: <http://snomed.info/id/762706009> (<http://snomed.info/id/762706009>)
+
+SubClassOf(<http://snomed.info/id/762706009> <http://snomed.info/id/410662002>)
+
+# Class: <http://snomed.info/id/900000000000441003> (SNOMED CT Model Component (metadata))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/900000000000441003> "SNOMED CT Model Component (metadata)"@en)
+SubClassOf(<http://snomed.info/id/900000000000441003> <http://snomed.info/id/138875005>])
+
+
+)>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at org.snomed.otf.owltoolkit.conversion.RF2ToOWLServiceTest.convertRF2ArchiveToOWLWithSKOSAnnotations(RF2ToOWLServiceTest.java:140)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnit4TestMethodAdapter.run(JUnit4TestMethodAdapter.java:109)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1972)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute1(JUnitTask.java:824)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2277)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:392)
+	at org.apache.tools.ant.Target.performTasks(Target.java:413)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+	at org.apache.tools.ant.Main.runBuild(Main.java:811)
+	at org.apache.tools.ant.Main.startAnt(Main.java:217)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
+--- org.snomed.otf.owltoolkit.conversion.RF2ToOWLServiceTest::convertRF2ArchiveToOWLIncludingFictitiousDataAttribute
+junit.framework.AssertionFailedError: expected:<...
+
+Declaration(Class([:113331007))
+Declaration(Class(:116680003))
+Declaration(Class(:138875005))
+Declaration(Class(:362969004))
+Declaration(Class(:404684003))
+Declaration(Class(:410662002))
+Declaration(Class(:723594008))
+Declaration(Class(:723596005))
+Declaration(Class(:762705008))
+Declaration(Class(:762706009))
+Declaration(Class(:900000000000441003))
+Declaration(ObjectProperty(:363698007))
+Declaration(ObjectProperty(:609096000))
+Declaration(ObjectProperty(:762705008))
+Declaration(DataProperty(:762706009))
+Declaration(DataProperty(:99001001))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://snomed.info/id/363698007> (Finding site (attribute))
+
+AnnotationAssertion(rdfs:label :363698007 "Finding site (attribute)"@en)
+SubObjectPropertyOf(:363698007 :762705008)
+
+
+############################
+#   Data Properties
+############################
+
+# Data Property: <http://snomed.info/id/99001001> (<http://snomed.info/id/99001001>)
+
+SubDataPropertyOf(:99001001 :762706009)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://snomed.info/id/113331007> (Structure of endocrine system (body structure))
+
+AnnotationAssertion(rdfs:label :113331007 "Structure of endocrine system (body structure)"@en)
+SubClassOf(:113331007 :138875005)
+
+# Class: <http://snomed.info/id/116680003> (Is a (attribute))
+
+AnnotationAssertion(rdfs:label :116680003 "Is a (attribute)"@en)
+SubClassOf(:116680003 :900000000000441003)
+
+# Class: <http://snomed.info/id/138875005> (SNOMED CT Concept (SNOMED RT+CTV3))
+
+AnnotationAssertion(rdfs:label :138875005 "SNOMED CT Concept (SNOMED RT+CTV3)"@en)
+
+# Class: <http://snomed.info/id/362969004> (Disorder of endocrine system (disorder))
+
+AnnotationAssertion(rdfs:label :362969004 "Disorder of endocrine system (disorder)"@en)
+EquivalentClasses(:362969004 ObjectIntersectionOf(:404684003 ObjectSomeValuesFrom(:609096000 ObjectSomeValuesFrom(:363698007 :113331007))))
+
+# Class: <http://snomed.info/id/404684003> (Clinical finding (finding))
+
+AnnotationAssertion(rdfs:label :404684003 "Clinical finding (finding)"@en)
+SubClassOf(:404684003 :138875005)
+
+# Class: <http://snomed.info/id/410662002> (Concept model attribute (attribute))
+
+AnnotationAssertion(rdfs:label :410662002 "Concept model attribute (attribute)"@en)
+SubClassOf(:410662002 :900000000000441003)
+
+# Class: <http://snomed.info/id/723594008> (All precoordinated SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label :723594008 "All precoordinated SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(:723594008 :900000000000441003)
+
+# Class: <http://snomed.info/id/723596005> (All SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label :723596005 "All SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(:723596005 :723594008)
+
+# Class: <http://snomed.info/id/762705008> (<http://snomed.info/id/762705008>)
+
+SubClassOf(:762705008 :410662002)
+
+# Class: <http://snomed.info/id/762706009> (<http://snomed.info/id/762706009>)
+
+SubClassOf(:762706009 :410662002)
+
+# Class: <http://snomed.info/id/900000000000441003> (SNOMED CT Model Component (metadata))
+
+AnnotationAssertion(rdfs:label :900000000000441003 "SNOMED CT Model Component (metadata)"@en)
+SubClassOf(:900000000000441003 :138875005])
+
+
+)> but was:<...
+
+Declaration(Class([<http://snomed.info/id/113331007>))
+Declaration(Class(<http://snomed.info/id/116680003>))
+Declaration(Class(<http://snomed.info/id/138875005>))
+Declaration(Class(<http://snomed.info/id/362969004>))
+Declaration(Class(<http://snomed.info/id/404684003>))
+Declaration(Class(<http://snomed.info/id/410662002>))
+Declaration(Class(<http://snomed.info/id/723594008>))
+Declaration(Class(<http://snomed.info/id/723596005>))
+Declaration(Class(<http://snomed.info/id/762705008>))
+Declaration(Class(<http://snomed.info/id/762706009>))
+Declaration(Class(<http://snomed.info/id/900000000000441003>))
+Declaration(ObjectProperty(<http://snomed.info/id/363698007>))
+Declaration(ObjectProperty(<http://snomed.info/id/609096000>))
+Declaration(ObjectProperty(<http://snomed.info/id/762705008>))
+Declaration(DataProperty(<http://snomed.info/id/762706009>))
+Declaration(DataProperty(<http://snomed.info/id/99001001>))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://snomed.info/id/363698007> (Finding site (attribute))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/363698007> "Finding site (attribute)"@en)
+SubObjectPropertyOf(<http://snomed.info/id/363698007> <http://snomed.info/id/762705008>)
+
+
+############################
+#   Data Properties
+############################
+
+# Data Property: <http://snomed.info/id/99001001> (<http://snomed.info/id/99001001>)
+
+SubDataPropertyOf(<http://snomed.info/id/99001001> <http://snomed.info/id/762706009>)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://snomed.info/id/113331007> (Structure of endocrine system (body structure))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/113331007> "Structure of endocrine system (body structure)"@en)
+SubClassOf(<http://snomed.info/id/113331007> <http://snomed.info/id/138875005>)
+
+# Class: <http://snomed.info/id/116680003> (Is a (attribute))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/116680003> "Is a (attribute)"@en)
+SubClassOf(<http://snomed.info/id/116680003> <http://snomed.info/id/900000000000441003>)
+
+# Class: <http://snomed.info/id/138875005> (SNOMED CT Concept (SNOMED RT+CTV3))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/138875005> "SNOMED CT Concept (SNOMED RT+CTV3)"@en)
+
+# Class: <http://snomed.info/id/362969004> (Disorder of endocrine system (disorder))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/362969004> "Disorder of endocrine system (disorder)"@en)
+EquivalentClasses(<http://snomed.info/id/362969004> ObjectIntersectionOf(<http://snomed.info/id/404684003> ObjectSomeValuesFrom(<http://snomed.info/id/609096000> ObjectSomeValuesFrom(<http://snomed.info/id/363698007> <http://snomed.info/id/113331007>))))
+
+# Class: <http://snomed.info/id/404684003> (Clinical finding (finding))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/404684003> "Clinical finding (finding)"@en)
+SubClassOf(<http://snomed.info/id/404684003> <http://snomed.info/id/138875005>)
+
+# Class: <http://snomed.info/id/410662002> (Concept model attribute (attribute))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/410662002> "Concept model attribute (attribute)"@en)
+SubClassOf(<http://snomed.info/id/410662002> <http://snomed.info/id/900000000000441003>)
+
+# Class: <http://snomed.info/id/723594008> (All precoordinated SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/723594008> "All precoordinated SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(<http://snomed.info/id/723594008> <http://snomed.info/id/900000000000441003>)
+
+# Class: <http://snomed.info/id/723596005> (All SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/723596005> "All SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(<http://snomed.info/id/723596005> <http://snomed.info/id/723594008>)
+
+# Class: <http://snomed.info/id/762705008> (<http://snomed.info/id/762705008>)
+
+SubClassOf(<http://snomed.info/id/762705008> <http://snomed.info/id/410662002>)
+
+# Class: <http://snomed.info/id/762706009> (<http://snomed.info/id/762706009>)
+
+SubClassOf(<http://snomed.info/id/762706009> <http://snomed.info/id/410662002>)
+
+# Class: <http://snomed.info/id/900000000000441003> (SNOMED CT Model Component (metadata))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/900000000000441003> "SNOMED CT Model Component (metadata)"@en)
+SubClassOf(<http://snomed.info/id/900000000000441003> <http://snomed.info/id/138875005>])
+
+
+)>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at org.snomed.otf.owltoolkit.conversion.RF2ToOWLServiceTest.convertRF2ArchiveToOWLIncludingFictitiousDataAttribute(RF2ToOWLServiceTest.java:264)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnit4TestMethodAdapter.run(JUnit4TestMethodAdapter.java:109)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1972)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute1(JUnitTask.java:824)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2277)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:392)
+	at org.apache.tools.ant.Target.performTasks(Target.java:413)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+	at org.apache.tools.ant.Main.runBuild(Main.java:811)
+	at org.apache.tools.ant.Main.startAnt(Main.java:217)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
+--- org.snomed.otf.owltoolkit.conversion.RF2ToOWLServiceTest::convertRF2ArchiveToOWL
+junit.framework.AssertionFailedError: expected:<...
+
+Declaration(Class([:113331007))
+Declaration(Class(:116680003))
+Declaration(Class(:138875005))
+Declaration(Class(:362969004))
+Declaration(Class(:404684003))
+Declaration(Class(:410662002))
+Declaration(Class(:723594008))
+Declaration(Class(:723596005))
+Declaration(Class(:762705008))
+Declaration(Class(:762706009))
+Declaration(Class(:900000000000441003))
+Declaration(ObjectProperty(:363698007))
+Declaration(ObjectProperty(:609096000))
+Declaration(ObjectProperty(:762705008))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://snomed.info/id/363698007> (Finding site (attribute))
+
+AnnotationAssertion(rdfs:label :363698007 "Finding site (attribute)"@en)
+SubObjectPropertyOf(:363698007 :762705008)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://snomed.info/id/113331007> (Structure of endocrine system (body structure))
+
+AnnotationAssertion(rdfs:label :113331007 "Structure of endocrine system (body structure)"@en)
+SubClassOf(:113331007 :138875005)
+
+# Class: <http://snomed.info/id/116680003> (Is a (attribute))
+
+AnnotationAssertion(rdfs:label :116680003 "Is a (attribute)"@en)
+SubClassOf(:116680003 :900000000000441003)
+
+# Class: <http://snomed.info/id/138875005> (SNOMED CT Concept (SNOMED RT+CTV3))
+
+AnnotationAssertion(rdfs:label :138875005 "SNOMED CT Concept (SNOMED RT+CTV3)"@en)
+
+# Class: <http://snomed.info/id/362969004> (Disorder of endocrine system (disorder))
+
+AnnotationAssertion(rdfs:label :362969004 "Disorder of endocrine system (disorder)"@en)
+EquivalentClasses(:362969004 ObjectIntersectionOf(:404684003 ObjectSomeValuesFrom(:609096000 ObjectSomeValuesFrom(:363698007 :113331007))))
+
+# Class: <http://snomed.info/id/404684003> (Clinical finding (finding))
+
+AnnotationAssertion(rdfs:label :404684003 "Clinical finding (finding)"@en)
+SubClassOf(:404684003 :138875005)
+
+# Class: <http://snomed.info/id/410662002> (Concept model attribute (attribute))
+
+AnnotationAssertion(rdfs:label :410662002 "Concept model attribute (attribute)"@en)
+SubClassOf(:410662002 :900000000000441003)
+
+# Class: <http://snomed.info/id/723594008> (All precoordinated SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label :723594008 "All precoordinated SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(:723594008 :900000000000441003)
+
+# Class: <http://snomed.info/id/723596005> (All SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label :723596005 "All SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(:723596005 :723594008)
+
+# Class: <http://snomed.info/id/762705008> (<http://snomed.info/id/762705008>)
+
+SubClassOf(:762705008 :410662002)
+
+# Class: <http://snomed.info/id/762706009> (<http://snomed.info/id/762706009>)
+
+SubClassOf(:762706009 :410662002)
+
+# Class: <http://snomed.info/id/900000000000441003> (SNOMED CT Model Component (metadata))
+
+AnnotationAssertion(rdfs:label :900000000000441003 "SNOMED CT Model Component (metadata)"@en)
+SubClassOf(:900000000000441003 :138875005])
+
+
+)> but was:<...
+
+Declaration(Class([<http://snomed.info/id/113331007>))
+Declaration(Class(<http://snomed.info/id/116680003>))
+Declaration(Class(<http://snomed.info/id/138875005>))
+Declaration(Class(<http://snomed.info/id/362969004>))
+Declaration(Class(<http://snomed.info/id/404684003>))
+Declaration(Class(<http://snomed.info/id/410662002>))
+Declaration(Class(<http://snomed.info/id/723594008>))
+Declaration(Class(<http://snomed.info/id/723596005>))
+Declaration(Class(<http://snomed.info/id/762705008>))
+Declaration(Class(<http://snomed.info/id/762706009>))
+Declaration(Class(<http://snomed.info/id/900000000000441003>))
+Declaration(ObjectProperty(<http://snomed.info/id/363698007>))
+Declaration(ObjectProperty(<http://snomed.info/id/609096000>))
+Declaration(ObjectProperty(<http://snomed.info/id/762705008>))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://snomed.info/id/363698007> (Finding site (attribute))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/363698007> "Finding site (attribute)"@en)
+SubObjectPropertyOf(<http://snomed.info/id/363698007> <http://snomed.info/id/762705008>)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://snomed.info/id/113331007> (Structure of endocrine system (body structure))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/113331007> "Structure of endocrine system (body structure)"@en)
+SubClassOf(<http://snomed.info/id/113331007> <http://snomed.info/id/138875005>)
+
+# Class: <http://snomed.info/id/116680003> (Is a (attribute))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/116680003> "Is a (attribute)"@en)
+SubClassOf(<http://snomed.info/id/116680003> <http://snomed.info/id/900000000000441003>)
+
+# Class: <http://snomed.info/id/138875005> (SNOMED CT Concept (SNOMED RT+CTV3))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/138875005> "SNOMED CT Concept (SNOMED RT+CTV3)"@en)
+
+# Class: <http://snomed.info/id/362969004> (Disorder of endocrine system (disorder))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/362969004> "Disorder of endocrine system (disorder)"@en)
+EquivalentClasses(<http://snomed.info/id/362969004> ObjectIntersectionOf(<http://snomed.info/id/404684003> ObjectSomeValuesFrom(<http://snomed.info/id/609096000> ObjectSomeValuesFrom(<http://snomed.info/id/363698007> <http://snomed.info/id/113331007>))))
+
+# Class: <http://snomed.info/id/404684003> (Clinical finding (finding))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/404684003> "Clinical finding (finding)"@en)
+SubClassOf(<http://snomed.info/id/404684003> <http://snomed.info/id/138875005>)
+
+# Class: <http://snomed.info/id/410662002> (Concept model attribute (attribute))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/410662002> "Concept model attribute (attribute)"@en)
+SubClassOf(<http://snomed.info/id/410662002> <http://snomed.info/id/900000000000441003>)
+
+# Class: <http://snomed.info/id/723594008> (All precoordinated SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/723594008> "All precoordinated SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(<http://snomed.info/id/723594008> <http://snomed.info/id/900000000000441003>)
+
+# Class: <http://snomed.info/id/723596005> (All SNOMED CT content (foundation metadata concept))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/723596005> "All SNOMED CT content (foundation metadata concept)"@en)
+SubClassOf(<http://snomed.info/id/723596005> <http://snomed.info/id/723594008>)
+
+# Class: <http://snomed.info/id/762705008> (<http://snomed.info/id/762705008>)
+
+SubClassOf(<http://snomed.info/id/762705008> <http://snomed.info/id/410662002>)
+
+# Class: <http://snomed.info/id/762706009> (<http://snomed.info/id/762706009>)
+
+SubClassOf(<http://snomed.info/id/762706009> <http://snomed.info/id/410662002>)
+
+# Class: <http://snomed.info/id/900000000000441003> (SNOMED CT Model Component (metadata))
+
+AnnotationAssertion(rdfs:label <http://snomed.info/id/900000000000441003> "SNOMED CT Model Component (metadata)"@en)
+SubClassOf(<http://snomed.info/id/900000000000441003> <http://snomed.info/id/138875005>])
+
+
+)>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at org.snomed.otf.owltoolkit.conversion.RF2ToOWLServiceTest.convertRF2ArchiveToOWL(RF2ToOWLServiceTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnit4TestMethodAdapter.run(JUnit4TestMethodAdapter.java:109)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1972)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute1(JUnitTask.java:824)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2277)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:392)
+	at org.apache.tools.ant.Target.performTasks(Target.java:413)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+	at org.apache.tools.ant.Main.runBuild(Main.java:811)
+	at org.apache.tools.ant.Main.startAnt(Main.java:217)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
+--- org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetServiceTest::convertExtensionStatedRelationshipsToOwlAxiomRefset
+junit.framework.AssertionFailedError: Output should not contain the snomed axiom prefix
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertFalse(Assert.java:64)
+	at org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetServiceTest.convertExtensionStatedRelationshipsToOwlAxiomRefset(StatedRelationshipToOwlRefsetServiceTest.java:146)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnit4TestMethodAdapter.run(JUnit4TestMethodAdapter.java:109)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1972)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute1(JUnitTask.java:824)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2277)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:392)
+	at org.apache.tools.ant.Target.performTasks(Target.java:413)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+	at org.apache.tools.ant.Main.runBuild(Main.java:811)
+	at org.apache.tools.ant.Main.startAnt(Main.java:217)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
+--- org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetServiceTest::convertAndReconcileStatedRelationshipsToOwlRefset
+junit.framework.AssertionFailedError: Output should not contain the snomed axiom prefix
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertFalse(Assert.java:64)
+	at org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetServiceTest.convertAndReconcileStatedRelationshipsToOwlRefset(StatedRelationshipToOwlRefsetServiceTest.java:111)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnit4TestMethodAdapter.run(JUnit4TestMethodAdapter.java:109)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1972)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute1(JUnitTask.java:824)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2277)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:392)
+	at org.apache.tools.ant.Target.performTasks(Target.java:413)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+	at org.apache.tools.ant.Main.runBuild(Main.java:811)
+	at org.apache.tools.ant.Main.startAnt(Main.java:217)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
+--- org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetServiceTest::convertStatedRelationshipsToOwlRefset
+junit.framework.AssertionFailedError: Output should not contain the snomed axiom prefix
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertFalse(Assert.java:64)
+	at org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetServiceTest.convertStatedRelationshipsToOwlRefset(StatedRelationshipToOwlRefsetServiceTest.java:59)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnit4TestMethodAdapter.run(JUnit4TestMethodAdapter.java:109)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1972)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute1(JUnitTask.java:824)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2277)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:392)
+	at org.apache.tools.ant.Target.performTasks(Target.java:413)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+	at org.apache.tools.ant.Main.runBuild(Main.java:811)
+	at org.apache.tools.ant.Main.startAnt(Main.java:217)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)

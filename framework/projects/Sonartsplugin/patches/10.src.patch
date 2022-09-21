@@ -1,0 +1,17 @@
+diff --git a/src/main/java/com/pablissimo/sonar/TsCoverageSensorImpl.java b/src/main/java/com/pablissimo/sonar/TsCoverageSensorImpl.java
+index 7762032..9d0b978 100644
+--- a/src/main/java/com/pablissimo/sonar/TsCoverageSensorImpl.java
++++ b/src/main/java/com/pablissimo/sonar/TsCoverageSensorImpl.java
+@@ -39,12 +39,10 @@ public class TsCoverageSensorImpl implements TsCoverageSensor {
+      */
+     private static List<String> parseReportsProperty(String propertyValue) {
+         List<String> reportPaths = new ArrayList<>();
+ 
+-        if (StringUtils.isNotBlank(propertyValue)) {
+             for (String path : propertyValue.split(",")) {
+                 if (!path.trim().isEmpty()) {
+                     reportPaths.add(path.trim());
+-                }
+             }
+         }
+ 

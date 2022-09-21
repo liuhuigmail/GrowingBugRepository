@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/snomed/otf/owltoolkit/ontology/render/SnomedPrefixManager.java b/src/main/java/org/snomed/otf/owltoolkit/ontology/render/SnomedPrefixManager.java
+index 0d6c176..9b13777 100644
+--- a/src/main/java/org/snomed/otf/owltoolkit/ontology/render/SnomedPrefixManager.java
++++ b/src/main/java/org/snomed/otf/owltoolkit/ontology/render/SnomedPrefixManager.java
+@@ -18,9 +18,5 @@ public class SnomedPrefixManager extends DefaultPrefixManager {
+ 		}
+ 		return null;
+ 	}
+ 
+-	@Override
+-	public String getPrefixIRIIgnoreQName(IRI iri) {
+-		return getPrefixIRI(iri);
+-	}
+ }

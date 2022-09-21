@@ -1,0 +1,14 @@
+org.snomed.otf.owltoolkit.conversion.ConversionIntegrationTest
+org.snomed.otf.owltoolkit.conversion.GroupZeroConversionIntegrationTest
+org.snomed.otf.owltoolkit.conversion.RF2ToOWLServiceTest
+org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetServiceTest
+org.snomed.otf.owltoolkit.ontology.OntologyServiceTest
+org.snomed.otf.owltoolkit.service.classification.AdditionalAxiomClassificationIntegrationTest
+org.snomed.otf.owltoolkit.service.classification.AxiomModificationClassificationIntegrationTest
+org.snomed.otf.owltoolkit.service.classification.ConcreteDomainsClassificationIntegrationTest
+org.snomed.otf.owltoolkit.service.classification.EquivalenceClassificationIntegrationTest
+org.snomed.otf.owltoolkit.service.classification.GCIClassificationIntegrationTest
+org.snomed.otf.owltoolkit.service.classification.PropertyChainClassificationIntegrationTest
+org.snomed.otf.owltoolkit.service.classification.SimpleClassificationIntegrationTest
+org.snomed.otf.owltoolkit.service.classification.SimpleExtensionClassificationIntegrationTest
+org.snomed.otf.owltoolkit.service.classification.TransitiveReflexiveClassificationIntegrationTest

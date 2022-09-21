@@ -1,0 +1,3 @@
+com.pablissimo.sonar.LCOVParser
+com.pablissimo.sonar.LCOVParserImpl
+com.pablissimo.sonar.LOCSensor

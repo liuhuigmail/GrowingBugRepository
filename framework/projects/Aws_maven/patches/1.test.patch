@@ -1,0 +1,100 @@
+diff --git a/src/test/java/org/springframework/build/aws/maven/AbstractWagonTest.java b/src/test/java/org/springframework/build/aws/maven/AbstraktWagonTest.java
+similarity index 99%
+rename from src/test/java/org/springframework/build/aws/maven/AbstractWagonTest.java
+rename to src/test/java/org/springframework/build/aws/maven/AbstraktWagonTest.java
+index acd93f2..7bda0b7 100644
+--- a/src/test/java/org/springframework/build/aws/maven/AbstractWagonTest.java
++++ b/src/test/java/org/springframework/build/aws/maven/AbstraktWagonTest.java
+@@ -43,7 +43,7 @@ import static org.mockito.Matchers.eq;
+ import static org.mockito.Matchers.isNull;
+ import static org.mockito.Mockito.*;
+ 
+-public final class AbstractWagonTest {
++public final class AbstraktWagonTest {
+ 
+     private final SessionListenerSupport sessionListenerSupport = mock(SessionListenerSupport.class);
+ 
+diff --git a/src/test/java/org/springframework/build/aws/maven/AuthenticationInfoAwsCredentialsTest.java b/src/test/java/org/springframework/build/aws/maven/AuthenticationInfoAwsCredentialsTest.java
+index 645164b..7fff5cd 100644
+--- a/src/test/java/org/springframework/build/aws/maven/AuthenticationInfoAwsCredentialsTest.java
++++ b/src/test/java/org/springframework/build/aws/maven/AuthenticationInfoAwsCredentialsTest.java
+@@ -38,7 +38,7 @@ public final class AuthenticationInfoAwsCredentialsTest {
+ 
+     @Test
+     public void getAWSSecretKey() {
+-        when(this.authenticationInfo.getPassword()).thenReturn("foo");
++        when(this.authenticationInfo.getPassphrase()).thenReturn("foo");
+         assertEquals("foo", this.awsCredentials.getAWSSecretKey());
+     }
+ 
+diff --git a/src/test/java/org/springframework/build/aws/maven/SimpleStorageServiceWagonIntegrationTest.java b/src/test/java/org/springframework/build/aws/maven/SimpleStorageServiceWagonIntegrationTest.java
+index 3359f7e..fec5a91 100644
+--- a/src/test/java/org/springframework/build/aws/maven/SimpleStorageServiceWagonIntegrationTest.java
++++ b/src/test/java/org/springframework/build/aws/maven/SimpleStorageServiceWagonIntegrationTest.java
+@@ -30,7 +30,6 @@ import org.mockito.ArgumentCaptor;
+ import java.io.File;
+ import java.io.FileInputStream;
+ import java.io.FileNotFoundException;
+-import java.util.ArrayList;
+ import java.util.Arrays;
+ import java.util.Date;
+ import java.util.List;
+@@ -63,7 +62,6 @@ public final class SimpleStorageServiceWagonIntegrationTest {
+     private final SimpleStorageServiceWagon wagon =
+             new SimpleStorageServiceWagon(this.amazonS3, BUCKET_NAME, BASE_DIRECTORY);
+ 
+-
+     @Test
+     public void regionConnections() throws WagonException {
+         SimpleStorageServiceWagon remoteConnectingWagon = new SimpleStorageServiceWagon();
+@@ -72,7 +70,19 @@ public final class SimpleStorageServiceWagonIntegrationTest {
+         authenticationInfo.setUserName(System.getProperty("access.key"));
+         authenticationInfo.setPassword(System.getProperty("secret.key"));
+ 
+-        for (String bucket : getBuckets()) {
++        String[] buckets = new String[]{ //
++                "test.aws-maven.ireland", //
++                "test.aws-maven.eu", //
++                "test.aws-maven.northern-california", //
++                "test.aws-maven.oregon", //
++                "test.aws-maven.sao-paulo", //
++                "test.aws-maven.singapore", //
++                "test.aws-maven.sydney", //
++                "test.aws-maven.tokyo", //
++                "test.aws-maven.us" //
++        };
++
++        for (String bucket : buckets) {
+             Repository repository = new Repository("test", String.format("s3://%s/", bucket));
+             remoteConnectingWagon.connectToRepository(repository, authenticationInfo, null);
+             assertNotNull(remoteConnectingWagon.getFileList(""));
+@@ -80,29 +90,6 @@ public final class SimpleStorageServiceWagonIntegrationTest {
+         }
+     }
+ 
+-    private List<String> getBuckets() {
+-        List<String> buckets = new ArrayList<String>();
+-
+-        String value = System.getProperty("buckets");
+-        if (value != null) {
+-            for (String bucket : value.split(",")) {
+-                buckets.add(bucket.trim());
+-            }
+-        } else {
+-            buckets.add("test.aws-maven.ireland");
+-            buckets.add("test.aws-maven.eu");
+-            buckets.add("test.aws-maven.northern-california");
+-            buckets.add("test.aws-maven.oregon");
+-            buckets.add("test.aws-maven.sao-paulo");
+-            buckets.add("test.aws-maven.singapore");
+-            buckets.add("test.aws-maven.sydney");
+-            buckets.add("test.aws-maven.tokyo");
+-            buckets.add("test.aws-maven.us");
+-        }
+-
+-        return buckets;
+-    }
+-
+     @Test
+     public void doesRemoteResourceExistExists() {
+         when(this.amazonS3.getObjectMetadata(SimpleStorageServiceWagonIntegrationTest.BUCKET_NAME,
