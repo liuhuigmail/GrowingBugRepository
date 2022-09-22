@@ -1,0 +1,16 @@
+diff --git a/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java b/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java
+index 90461f2..8a4f789 100755
+--- a/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java
++++ b/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java
+@@ -221,11 +221,6 @@ public class CoordinateTransformTest extends BaseCoordinateTransformTest {
+         checkTransformFromGeo("EPSG:29100", -53.0, 5.0, 5110899.06, 10552971.67, 4000);
+     }
+ 
+-    @Test
+-    public void testRadius() {
+-        checkTransformToWGS84("+title=long/lat:WGS84 +proj=eqc +R=57295779.5130823209", 1000000.0, 1000000.0, 1.0, 1.0, 0.01);
+-    }
+-
+     @Ignore("TODO: Should these expect UnknownAuthoriyCode exceptions?") @Test
+     public void XtestUndefined() {
+         //runInverseTransform("EPSG:27492",    25260.493584, -9579.245052,    -7.84, 39.58);

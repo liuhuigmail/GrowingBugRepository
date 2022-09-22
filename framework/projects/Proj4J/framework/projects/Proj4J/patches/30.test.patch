@@ -1,0 +1,30 @@
+diff --git a/src/test/java/org/locationtech/proj4j/FeatureTest.java b/src/test/java/org/locationtech/proj4j/FeatureTest.java
+index 42f9b85..e5b73c7 100755
+--- a/src/test/java/org/locationtech/proj4j/FeatureTest.java
++++ b/src/test/java/org/locationtech/proj4j/FeatureTest.java
+@@ -44,10 +44,10 @@ public class FeatureTest extends BaseCoordinateTransformTest {
+         checkTransformFromGeo("EPSG:27563", 3.005, 43.89, 653704.865208, 176887.660037);
+     }
+ 
+-    @Test
+-    public void testGamma() {
++//    @Test
++    public void NOTSUPPORTED_testGamma() {
+         // from Proj4.JS
+-    	checkTransformFromWGS84("EPSG:2057", -53.0, 5.0, -1.160832226E7, 1.828261223E7, 0.1);
++        checkTransformFromGeo("EPSG:2057", -53.0, 5.0, -1.160832226E7, 1.828261223E7, 0.1);
+     }
+ 
+     @Test
+diff --git a/src/test/java/org/locationtech/proj4j/Proj4JSTest.java b/src/test/java/org/locationtech/proj4j/Proj4JSTest.java
+index a00a401..366427d 100755
+--- a/src/test/java/org/locationtech/proj4j/Proj4JSTest.java
++++ b/src/test/java/org/locationtech/proj4j/Proj4JSTest.java
+@@ -44,7 +44,6 @@ public class Proj4JSTest extends BaseCoordinateTransformTest {
+         checkTransformFromGeo("EPSG:3573", 9.84375, 61.875, 2923052.02009, 1054885.46559, 0.1);
+         checkTransformToGeo("EPSG:27200",2464770.343667, 6056137.861919,172.465,-40.7,0.1);
+         checkTransformFromGeo("EPSG:27200",172.465,-40.7, 2464780.81,6056330.22,0.1);
+-        checkTransformFromGeo("EPSG:3375", 101.70979078430528, 3.06268465621428, 412597.532715, 338944.957259, 0.1);
+     }
+ 
+ //    @Test

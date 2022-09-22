@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,723b0f47dff43ec42095ba612fa6cce898590dff,ce520c1ee4946102aba4e622ee2857d711b09fff,unknown,unknown
+2,dcc17e88ed2993e493cb0dfc1e048d8660de4cfd,5e8c46db80d7c05203406ef4cf64def4143ea187,unknown,unknown
+3,f714816fff9701d885d83d7fb2b82a857f1ea1fb,5bfde692c31ac5c0cce5e224a47490074f65a2b2,unknown,unknown
+4,49be3a309f7ffc48ca81d466e4f1ae32d61705d8,b78724d9c73966f1462098091516aaec703d07c9,unknown,unknown

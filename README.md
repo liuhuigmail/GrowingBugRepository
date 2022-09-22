@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1755`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1758`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -251,6 +251,7 @@ To date, growingBugs contains **`1755`** real-world bugs from open-source Java p
 | 223     | Aws_maven         | aws-maven           |                  |      1       | 1                  |
 | 224     | Snomed_owl_toolkit         | snomed-owl-toolkit           |                  |      2       | 1-2                  |
 | 225     | Weak_lock_free         | weak-lock-free           |                  |      1       | 1                  |
+| 226     | Proj4J         | proj4j           |                  |      3       | 1-3                  |
 # Setting up GrowingBugs
 
 ## Requirements

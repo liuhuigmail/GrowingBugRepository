@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/locationtech/proj4j/proj/Projection.java b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+index 5e820fd..35c6f42 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/Projection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+@@ -765,7 +765,7 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+     }
+ 
+     public Unit getUnits() {
+-        return this.unit != null ? this.unit : Units.METRES;
++        return this.unit;
+     }
+     
+     /**

@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/locationtech/proj4j/io/Proj4FileReader.java b/src/main/java/org/locationtech/proj4j/io/Proj4FileReader.java
+index c50f723..b3fd9b0 100755
+--- a/src/main/java/org/locationtech/proj4j/io/Proj4FileReader.java
++++ b/src/main/java/org/locationtech/proj4j/io/Proj4FileReader.java
+@@ -35,8 +35,8 @@ public class Proj4FileReader {
+         // TODO: use simpler parser than StreamTokenizer for speed and flexibility
+         // TODO: parse CSes line-at-a-time (this allows preserving CS param string for later access)
+ 
+-        String filename = "proj4/nad/" + authorityCode.toLowerCase();
+-        InputStream inStr = Proj4FileReader.class.getClassLoader().getResourceAsStream(filename);
++        String filename = "/proj4/nad/" + authorityCode.toLowerCase();
++        InputStream inStr = Proj4FileReader.class.getResourceAsStream(filename);
+         if (inStr == null) {
+             throw new IllegalStateException("Unable to access CRS file: " + filename);
+         }

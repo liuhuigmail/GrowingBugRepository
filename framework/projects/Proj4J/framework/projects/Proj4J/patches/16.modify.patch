@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/locationtech/proj4j/Registry.java b/src/main/java/org/locationtech/proj4j/Registry.java
+index c612db4..b07b5ff 100755
+--- a/src/main/java/org/locationtech/proj4j/Registry.java
++++ b/src/main/java/org/locationtech/proj4j/Registry.java
+@@ -15,9 +15,7 @@
+  */
+ package org.locationtech.proj4j;
+ 
+-import java.util.ArrayList;
+ import java.util.HashMap;
+-import java.util.List;
+ import java.util.Map;
+ 
+ import org.locationtech.proj4j.datum.Datum;
+@@ -137,27 +135,12 @@ public class Registry {
+             } catch (IllegalAccessException e) {
+                 e.printStackTrace();
+             } catch (InstantiationException e) {
+-                System.err.println("Cannot instantiate projection " + name + " [" + cls.getName() + "]");
+                 e.printStackTrace();
+             }
+         }
+         return null;
+     }
+ 
+-    public List<Projection> getProjections() {
+-        List<Projection> projections = new ArrayList<>();
+-
+-        for (String name : projRegistry.keySet()) {
+-            Projection projection = getProjection(name);
+-
+-            if (projection != null) {
+-                projections.add(projection);
+-            }
+-        }
+-
+-        return projections;
+-    }
+-
+     private synchronized void initialize() {
+         // guard against race condition
+         if (projRegistry != null)

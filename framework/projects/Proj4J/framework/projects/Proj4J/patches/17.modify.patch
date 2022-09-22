@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/locationtech/proj4j/util/CRSCache.java b/src/main/java/org/locationtech/proj4j/util/CRSCache.java
+index 4f0bcef..57eecd5 100755
+--- a/src/main/java/org/locationtech/proj4j/util/CRSCache.java
++++ b/src/main/java/org/locationtech/proj4j/util/CRSCache.java
+@@ -23,17 +23,19 @@ import java.util.concurrent.ConcurrentHashMap;
+ public class CRSCache {
+     private static CRSFactory crsFactory = new CRSFactory();
+ 
+-    private ConcurrentHashMap<String, CoordinateReferenceSystem> crsCache;
+-    private ConcurrentHashMap<String, String> epsgCache;
++    private ConcurrentHashMap<String, CoordinateReferenceSystem> crsCache = new ConcurrentHashMap<>();
++    private ConcurrentHashMap<String, String> epsgCache = new ConcurrentHashMap<>();
+ 
+-    public CRSCache() {
++    public CRSCache CRSCache() {
+         crsCache = new ConcurrentHashMap<>();
+         epsgCache = new ConcurrentHashMap<>();
++        return this;
+     }
+ 
+-    public CRSCache(ConcurrentHashMap<String, CoordinateReferenceSystem> crsCache, ConcurrentHashMap<String, String> epsgCache) {
++    public CRSCache CRSCache(ConcurrentHashMap<String, CoordinateReferenceSystem> crsCache, ConcurrentHashMap<String, String> epsgCache) {
+         this.crsCache = crsCache;
+         this.epsgCache = epsgCache;
++        return this;
+     }
+ 
+     public CoordinateReferenceSystem createFromName(String name)

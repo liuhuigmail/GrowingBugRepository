@@ -1,0 +1,320 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index fc4098c..177ee1e 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -6,9 +6,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
+ 
+ ## [Unreleased]
+ 
+-### Fixed
+-- Problem with omerc projection e.g. EPSG: 3375 [#21](https://github.com/locationtech/proj4j/issues/21)
+-
+ ## [1.1.2] - 2021-04-12
+ 
+ ### Fixed
+diff --git a/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java b/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
+index 6c84c86..b5f5451 100755
+--- a/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
++++ b/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
+@@ -67,7 +67,7 @@ public class Proj4Keyword {
+     public static final String nadgrids = "nadgrids";
+     public static final String no_defs = "no_defs";
+     public static final String wktext = "wktext";
+-    public static final String no_uoff = "no_uoff";
++    public static final String no_uoff = "no_uoff"; // TODO: Implement no_uoff parameter
+ 
+ 
+     private static Set<String> supportedParams = null;
+@@ -111,12 +111,12 @@ public class Proj4Keyword {
+             supportedParams.add(axis);
+ 
+             supportedParams.add(gamma);       // Just for Oblique Mercator projection
+-            supportedParams.add(no_uoff);     // Just for Oblique Mercator projection
+             supportedParams.add(zone);        // Just for Transverse Mercator projection
+ 
+             supportedParams.add(title);       // no-op
+             supportedParams.add(no_defs);     // no-op
+             supportedParams.add(wktext);      // no-op
++            supportedParams.add(no_uoff);     // no-op
+         }
+         return supportedParams;
+     }
+diff --git a/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java b/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
+index 494eb9e..ef37b01 100755
+--- a/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
++++ b/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
+@@ -122,11 +122,9 @@ public class Proj4Parser {
+             s = (String) params.get(Proj4Keyword.k);
+         if (s != null)
+             projection.setScaleFactor(Double.parseDouble(s));
+-        if (params.containsKey(Proj4Keyword.no_uoff))
+-            projection.setNoUoff(true);
+         s = (String) params.get(Proj4Keyword.gamma);
+         if (s != null)
+-            projection.setGammaDegrees(Double.parseDouble(s));
++            projection.setGamma(Double.parseDouble(s) * ProjectionMath.DTR);
+ 
+         s = (String) params.get(Proj4Keyword.units);
+         if (s != null) {
+diff --git a/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java b/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
+index 28e97c7..c8b2c1e 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
+@@ -34,7 +34,7 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 	private final static double TOL	= 1.0e-7;
+ 
+ 	private double lamc, lam1, phi1, lam2, phi2, Gamma, al, bl, el, singam, cosgam, sinrot, cosrot, u_0;
+-	private boolean ellips, rot, no_uoff;
++	private boolean ellips, rot;
+ 
+ 	public ObliqueMercatorProjection() {
+ 		ellipsoid = Ellipsoid.WGS84;
+@@ -64,7 +64,7 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 
+ 	public void initialize() {
+ 		super.initialize();
+-		double con, com, cosphi0, d, f, h, l, sinphi0, p, j, gamma0;
++		double con, com, cosphi0, d, f, h, l, sinphi0, p, j;
+ 
+ 		//FIXME-setup rot, alpha, longc,lon/lat1/2
+ 		rot = true;
+@@ -72,8 +72,6 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 
+     // true if alpha provided
+     int azi = Double.isNaN(alpha) ? 0 : 1;
+-    // true if gamma provided
+-    int gzi = Double.isNaN(Gamma) ? 0 : 1;
+ 		if (azi != 0) { // alpha specified
+ 			if (Math.abs(alpha) <= TOL ||
+ 				Math.abs(Math.abs(projectionLatitude) - ProjectionMath.HALFPI) <= TOL ||
+@@ -118,18 +116,10 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 			al = scaleFactor;
+ 			el = d = f = 1.;
+ 		}
+-		if (azi != 0 || gzi != 0) {
+-			if (azi != 0) {
+-				gamma0 = Math.asin(Math.sin(alpha) / d);
+-				if(gzi == 0) {
+-					Gamma = alpha;
+-				}
+-			}else {
+-				gamma0 = Gamma;
+-				alpha = Math.asin(d * Math.sin(gamma0));
+-			}
++		if (azi != 0) {
++			Gamma = Math.asin(Math.sin(alpha) / d);
+ 			projectionLongitude = lamc - Math.asin((.5 * (f - 1. / f)) *
+-					   Math.tan(gamma0)) / bl;
++			   Math.tan(Gamma)) / bl;
+ 		} else {
+ 			if (!spherical) {
+ 				h = Math.pow(ProjectionMath.tsfn(phi1, Math.sin(phi1), e), bl);
+@@ -148,17 +138,18 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 				lam2 += ProjectionMath.TWOPI;
+ 			projectionLongitude = ProjectionMath.normalizeLongitude(.5 * (lam1 + lam2) - Math.atan(
+ 			   j * Math.tan(.5 * bl * (lam1 - lam2)) / p) / bl);
+-			gamma0 = Math.atan(2. * Math.sin(bl * ProjectionMath.normalizeLongitude(lam1 - projectionLongitude)) /
++			Gamma = Math.atan(2. * Math.sin(bl * ProjectionMath.normalizeLongitude(lam1 - projectionLongitude)) /
+ 			   (f - 1. / f));
+-			Gamma = Math.asin(d * Math.sin(gamma0));
+-			alpha = Gamma;
++			alpha = Math.asin(d * Math.sin(Gamma));
+ 		}
+-		singam = Math.sin(gamma0);
+-		cosgam = Math.cos(gamma0);
+-		sinrot = Math.sin(Gamma);
+-		cosrot = Math.cos(Gamma);
+-		
+-		u_0 = no_uoff ? 0. :
++		singam = Math.sin(Gamma);
++		cosgam = Math.cos(Gamma);
++//		f = MapMath.param(params, "brot_conv").i ? Gamma : alpha;
++		f = alpha;//FIXME
++		sinrot = Math.sin(f);
++		cosrot = Math.cos(f);
++//		u_0 = MapMath.param(params, "bno_uoff").i ? 0. :
++		u_0 = false ? 0. ://FIXME
+ 			Math.abs(al * Math.atan(Math.sqrt(d * d - 1.) / cosrot) / bl);
+ 		if (projectionLatitude < 0.)
+ 			u_0 = - u_0;
+@@ -167,10 +158,6 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+     @Override public void setGamma(double gamma) {
+         this.Gamma = gamma;
+     }
+-    
+-    @Override public void setNoUoff(boolean no_uoff) {
+-    	this.no_uoff = no_uoff;
+-    }
+ 
+ 	public ProjCoordinate project(double lam, double phi, ProjCoordinate xy) {
+ 		double con, q, s, ul, us, vl, vs;
+diff --git a/src/main/java/org/locationtech/proj4j/proj/Projection.java b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+index 281a630..e4fac9e 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/Projection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+@@ -639,13 +639,6 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+         return projectionLatitude2*RTD;
+     }
+ 
+-    /**
+-     * Sets the alpha value.
+-     */
+-    public void setAlpha( double alpha ) {
+-        this.alpha = alpha;
+-    }
+-    
+     /**
+      * Sets the alpha value.
+      */
+@@ -662,19 +655,12 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+     {
+         return alpha;
+     }
+-    
+-    /**
+-     * Sets the lonc value.
+-     */
+-    public void setLonC( double lonc ) {
+-        this.lonc = lonc;
+-    }
+-    
++
+     /**
+      * Sets the lonc value.
+      */
+     public void setLonCDegrees( double lonc ) {
+-    	this.lonc = DTR * lonc;
++        this.lonc = DTR * lonc;
+     }
+ 
+     /**
+@@ -833,14 +819,6 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+     public void setGamma(double gamma) {
+         // no-op, overridden for Oblique Mercator
+     }
+-    
+-    public void setGammaDegrees(double gamma) {
+-    	setGamma(DTR * gamma);
+-    }
+-
+-    public void setNoUoff(boolean no_uoff) {
+-        // no-op, overridden for Oblique Mercator
+-    }
+ 
+     /** Is this "projection" longlat? Overridden in LongLatProjection. */
+     public Boolean isGeographic() {
+diff --git a/src/test/java/org/locationtech/proj4j/FeatureTest.java b/src/test/java/org/locationtech/proj4j/FeatureTest.java
+index 42f9b85..e5b73c7 100755
+--- a/src/test/java/org/locationtech/proj4j/FeatureTest.java
++++ b/src/test/java/org/locationtech/proj4j/FeatureTest.java
+@@ -44,10 +44,10 @@ public class FeatureTest extends BaseCoordinateTransformTest {
+         checkTransformFromGeo("EPSG:27563", 3.005, 43.89, 653704.865208, 176887.660037);
+     }
+ 
+-    @Test
+-    public void testGamma() {
++//    @Test
++    public void NOTSUPPORTED_testGamma() {
+         // from Proj4.JS
+-    	checkTransformFromWGS84("EPSG:2057", -53.0, 5.0, -1.160832226E7, 1.828261223E7, 0.1);
++        checkTransformFromGeo("EPSG:2057", -53.0, 5.0, -1.160832226E7, 1.828261223E7, 0.1);
+     }
+ 
+     @Test
+diff --git a/src/test/java/org/locationtech/proj4j/Proj4JSTest.java b/src/test/java/org/locationtech/proj4j/Proj4JSTest.java
+index a00a401..366427d 100755
+--- a/src/test/java/org/locationtech/proj4j/Proj4JSTest.java
++++ b/src/test/java/org/locationtech/proj4j/Proj4JSTest.java
+@@ -44,7 +44,6 @@ public class Proj4JSTest extends BaseCoordinateTransformTest {
+         checkTransformFromGeo("EPSG:3573", 9.84375, 61.875, 2923052.02009, 1054885.46559, 0.1);
+         checkTransformToGeo("EPSG:27200",2464770.343667, 6056137.861919,172.465,-40.7,0.1);
+         checkTransformFromGeo("EPSG:27200",172.465,-40.7, 2464780.81,6056330.22,0.1);
+-        checkTransformFromGeo("EPSG:3375", 101.70979078430528, 3.06268465621428, 412597.532715, 338944.957259, 0.1);
+     }
+ 
+ //    @Test
+diff --git a/src/test/resources/proj4-epsg.csv b/src/test/resources/proj4-epsg.csv
+index 30fbc07..3f80efe 100644
+--- a/src/test/resources/proj4-epsg.csv
++++ b/src/test/resources/proj4-epsg.csv
+@@ -1183,8 +1183,8 @@
+ "4326 -> 3075","passing","EPSG","4326","EPSG","3075","1.0","-1.0","0.0","1.1180772997795E7","-5141094.694271","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3076","passing","EPSG","4326","EPSG","3076","1.0","-1.0","0.0","1.1324154703457E7","-5061023.391585","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3077","passing","EPSG","4326","EPSG","3077","1.0","-1.0","0.0","1.1480217073422E7","-5055926.342392","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 3078","passing","EPSG","4326","EPSG","3078","1.0","-1.0","0.0","1.2974290765671E7","-4688338.053865","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 3079","passing","EPSG","4326","EPSG","3079","1.0","-1.0","0.0","1.2974290765671E7","-4688338.053865","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 3078","failing","EPSG","4326","EPSG","3078","1.0","-1.0","0.0","1.2974290765671E7","-4688338.053865","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 3079","failing","EPSG","4326","EPSG","3079","1.0","-1.0","0.0","1.2974290765671E7","-4688338.053865","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3080","passing","EPSG","4326","EPSG","3080","1.0","-1.0","0.0","4.0028525540754E7","8920533.352447","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3081","passing","EPSG","4326","EPSG","3081","1.0","-1.0","0.0","1.2286290519846E7","2804360.15363","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3082","passing","EPSG","4326","EPSG","3082","1.0","-1.0","0.0","1.2786551384996E7","8286577.51252","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+@@ -1261,8 +1261,8 @@
+ "4326 -> 3164","passing","EPSG","4326","EPSG","3164","1.0","-1.0","0.0","-1303860.153633","-9880939.389128","55.565469","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3165","passing","EPSG","4326","EPSG","3165","1.0","-1.0","0.0","-1.5985157532619E7","-7331125.104347","-229.578895","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3166","passing","EPSG","4326","EPSG","3166","1.0","-1.0","0.0","-1.5985147880199E7","-7331144.611264","-229.578895","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 3167","passing","EPSG","4326","EPSG","3167","1.0","-1.0","0.0","-642160.301291","302265.342111","0.0","1.000000","1.000000","1.000000","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 3168","passing","EPSG","4326","EPSG","3168","1.0","-1.0","0.0","-1.2153511853949E7","6080598.134509","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 3167","failing","EPSG","4326","EPSG","3167","1.0","-1.0","0.0","-642160.301291","302265.342111","0.0","1.000000","1.000000","1.000000","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 3168","failing","EPSG","4326","EPSG","3168","1.0","-1.0","0.0","-1.2153511853949E7","6080598.134509","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3169","passing","EPSG","4326","EPSG","3169","1.0","-1.0","0.0","-2010550.966654","-9876655.612744","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3170","passing","EPSG","4326","EPSG","3170","1.0","-1.0","0.0","-1303877.831952","-9880914.514046","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3171","passing","EPSG","4326","EPSG","3171","1.0","-1.0","0.0","-618308.573583","-9883683.216619","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+@@ -1464,7 +1464,7 @@
+ "4326 -> 3372","passing","EPSG","4326","EPSG","3372","1.0","-1.0","0.0","-618308.573583","-1.9883683216619E7","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3373","passing","EPSG","4326","EPSG","3373","1.0","-1.0","0.0","54603.316023","-1.9885128053335E7","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3374","passing","EPSG","4326","EPSG","3374","1.0","-1.0","0.0","1618352.752826","-112247.940062","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 3375","passing","EPSG","4326","EPSG","3375","1.0","-1.0","0.0","-1.2155003144452E7","6081703.416902","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 3375","failing","EPSG","4326","EPSG","3375","1.0","-1.0","0.0","-1.2155003144452E7","6081703.416902","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3376","failing","EPSG","4326","EPSG","3376","1.0","-1.0","0.0","-1.2409058238151E7","-4357833.596094","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3377","passing","EPSG","4326","EPSG","3377","1.0","-1.0","0.0","-1.1415841233162E7","-752918.108915","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3378","passing","EPSG","4326","EPSG","3378","1.0","-1.0","0.0","-1.1235544208125E7","-809647.032818","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+@@ -1636,7 +1636,7 @@
+ "4326 -> 3588","passing","EPSG","4326","EPSG","3588","1.0","-1.0","0.0","5.3954791524009E7","2049141.787235","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3589","passing","EPSG","4326","EPSG","3589","1.0","-1.0","0.0","1.8684908550751E7","972490.851095","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3590","passing","EPSG","4326","EPSG","3590","1.0","-1.0","0.0","6.1302193407869E7","3190586.781807","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 3591","passing","EPSG","4326","EPSG","3591","1.0","-1.0","0.0","1.2974290765671E7","-4688338.053865","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 3591","failing","EPSG","4326","EPSG","3591","1.0","-1.0","0.0","1.2974290765671E7","-4688338.053865","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3592","passing","EPSG","4326","EPSG","3592","1.0","-1.0","0.0","1.4360933498753E7","580677.813753","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3593","passing","EPSG","4326","EPSG","3593","1.0","-1.0","0.0","4.7115923552287E7","1905110.937509","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 3594","passing","EPSG","4326","EPSG","3594","1.0","-1.0","0.0","1.192601192142E7","2053668.621498","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+@@ -2424,7 +2424,7 @@
+ "4326 -> 6494","passing","EPSG","4326","EPSG","6494","1.0","-1.0","0.0","5.3954791524009E7","2049141.787235","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 6495","passing","EPSG","4326","EPSG","6495","1.0","-1.0","0.0","1.8684908550751E7","972490.851095","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 6496","passing","EPSG","4326","EPSG","6496","1.0","-1.0","0.0","6.1302193407869E7","3190586.781807","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 6497","passing","EPSG","4326","EPSG","6497","1.0","-1.0","0.0","1.2974290765671E7","-4688338.053865","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 6497","failing","EPSG","4326","EPSG","6497","1.0","-1.0","0.0","1.2974290765671E7","-4688338.053865","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 6498","passing","EPSG","4326","EPSG","6498","1.0","-1.0","0.0","1.4360933498753E7","580677.813753","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 6499","passing","EPSG","4326","EPSG","6499","1.0","-1.0","0.0","4.7115923552287E7","1905110.937509","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 6500","passing","EPSG","4326","EPSG","6500","1.0","-1.0","0.0","1.192601192142E7","2053668.621498","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+@@ -2558,14 +2558,14 @@
+ "4326 -> 6805","passing","EPSG","4326","EPSG","6805","1.0","-1.0","0.0","3.9713204498397E7","1.8458817965191E7","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 6806","passing","EPSG","4326","EPSG","6806","1.0","-1.0","0.0","1.2104584731097E7","5626247.715775","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 6807","passing","EPSG","4326","EPSG","6807","1.0","-1.0","0.0","3.9713204498397E7","1.8458817965191E7","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 6808","passing","EPSG","4326","EPSG","6808","1.0","-1.0","0.0","1.5089837570334E7","-591979.228253","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 6809","passing","EPSG","4326","EPSG","6809","1.0","-1.0","0.0","4.9507341110027E7","-1942189.069032","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 6810","passing","EPSG","4326","EPSG","6810","1.0","-1.0","0.0","1.5089837570334E7","-591979.228253","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 6811","passing","EPSG","4326","EPSG","6811","1.0","-1.0","0.0","4.9507341110027E7","-1942189.069032","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 6840","passing","EPSG","4326","EPSG","6840","1.0","-1.0","0.0","8057915.180899","1.4436048649718E7","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 6841","passing","EPSG","4326","EPSG","6841","1.0","-1.0","0.0","2.6436729596128E7","4.7362364336305E7","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 6842","passing","EPSG","4326","EPSG","6842","1.0","-1.0","0.0","8057915.180899","1.4436048649718E7","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 6843","passing","EPSG","4326","EPSG","6843","1.0","-1.0","0.0","2.6436729596128E7","4.7362364336305E7","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 6808","failing","EPSG","4326","EPSG","6808","1.0","-1.0","0.0","1.5089837570334E7","-591979.228253","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 6809","failing","EPSG","4326","EPSG","6809","1.0","-1.0","0.0","4.9507341110027E7","-1942189.069032","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 6810","failing","EPSG","4326","EPSG","6810","1.0","-1.0","0.0","1.5089837570334E7","-591979.228253","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 6811","failing","EPSG","4326","EPSG","6811","1.0","-1.0","0.0","4.9507341110027E7","-1942189.069032","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 6840","failing","EPSG","4326","EPSG","6840","1.0","-1.0","0.0","8057915.180899","1.4436048649718E7","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 6841","failing","EPSG","4326","EPSG","6841","1.0","-1.0","0.0","2.6436729596128E7","4.7362364336305E7","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 6842","failing","EPSG","4326","EPSG","6842","1.0","-1.0","0.0","8057915.180899","1.4436048649718E7","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 6843","failing","EPSG","4326","EPSG","6843","1.0","-1.0","0.0","2.6436729596128E7","4.7362364336305E7","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 6852","passing","EPSG","4326","EPSG","6852","1.0","-1.0","0.0","1.2078442774816E7","5965601.024444","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 6853","passing","EPSG","4326","EPSG","6853","1.0","-1.0","0.0","3.9627436925249E7","1.9572181838775E7","0.0","0.030480","0.030480","0.030480","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 6854","passing","EPSG","4326","EPSG","6854","1.0","-1.0","0.0","1.2078442774816E7","5965601.024444","0.0","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+@@ -3041,7 +3041,7 @@
+ "4326 -> 24383","passing","EPSG","4326","EPSG","24383","1.0","-1.0","0.0","-6141582.473322","748487.490771","534.572378","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 24500","passing","EPSG","4326","EPSG","24500","1.0","-1.0","0.0","-1.1417724462289E7","-644920.538459","829.172201","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 24548","passing","EPSG","4326","EPSG","24548","1.0","-1.0","0.0","-1.3011873095093E7","-1.9510192263077E7","829.172201","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+-"4326 -> 24571","passing","EPSG","4326","EPSG","24571","1.0","-1.0","0.0","-604169.570049","302330.27581","41.217933","1.000000","1.000000","1.000000","","","","Auto-generated from proj.4 epsg database"
++"4326 -> 24571","failing","EPSG","4326","EPSG","24571","1.0","-1.0","0.0","-604169.570049","302330.27581","41.217933","1.000000","1.000000","1.000000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 24600","passing","EPSG","4326","EPSG","24600","1.0","-1.0","0.0","-4082784.085485","-1578333.002223","195.259612","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 24718","passing","EPSG","4326","EPSG","24718","1.0","-1.0","0.0","1.401972193039E7","-482549.796983","14.279511","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"
+ "4326 -> 24719","passing","EPSG","4326","EPSG","24719","1.0","-1.0","0.0","1.1626114804985E7","-330534.678731","14.279511","0.100000","0.100000","0.100000","","","","Auto-generated from proj.4 epsg database"

@@ -1,0 +1,674 @@
+commit def8d6f3a1408676969eb7ce20c1f1eafa1ce010
+Author: lossyrob <rdemanuele@gmail.com>
+Date:   Tue Oct 10 21:42:22 2017 -0400
+
+    New initial commit
+
+commit ee42bad2666fbd83b874aacbaa6ae6fdd5874eeb
+Author: Will Cohen <wcohen@supernormal.io>
+Date:   Wed Feb 14 15:53:47 2018 -0500
+
+    Fix location of proj4 resource files
+    
+    Signed-off-by: Will Cohen <wcohen@supernormal.io>
+
+commit 897778ce734dc2e62b431388a981a3ba40422005
+Author: Will Cohen <wcohen@supernormal.io>
+Date:   Wed Feb 14 17:39:34 2018 -0500
+
+    Change tolerance for Amersfoort_RD_New test, same as geotrellis
+    
+    Signed-off-by: Will Cohen <wcohen@supernormal.io>
+
+commit ab77b9e7867d4f7883dc4d16419e184baeb65c71
+Merge: def8d6f ee42bad
+Author: Martin Davis <mtnclimb@gmail.com>
+Date:   Wed Feb 14 15:32:59 2018 -0800
+
+    Merge pull request #2 from willcohen/fix-epsg-path
+    
+    Fix location of proj4 resource files
+
+commit 8841a68f88340fef95641fde765deb9893f5404c
+Merge: ab77b9e 897778c
+Author: Martin Davis <mtnclimb@gmail.com>
+Date:   Wed Feb 14 15:33:06 2018 -0800
+
+    Merge pull request #3 from willcohen/failtest-amersfoort-rdnew
+    
+    Change tolerance for Amersfoort_RD_New test, same as geotrellis
+
+commit 1dc572799ba5d9b66cbf718c5e8957a597ec947b
+Author: Tore Halset <halset@pvv.ntnu.no>
+Date:   Fri Mar 9 13:28:10 2018 +0100
+
+    Added support for etmerc. Ported from proj.4
+    
+    Signed-off-by: Tore Halset <halset@pvv.ntnu.no>
+
+commit 815b6877ee2473d1f424d1406c7244887314d36a
+Author: Tore Halset <halset@pvv.ntnu.no>
+Date:   Fri Mar 9 15:10:40 2018 +0100
+
+    remove unused variables and fixed serialization warning
+    
+    Signed-off-by: Tore Halset <halset@pvv.ntnu.no>
+
+commit 41b0cc7ca6a92c50978d529a53e698d650598ab8
+Author: Will Cohen <wcohen@supernormal.io>
+Date:   Tue Mar 13 10:42:05 2018 -0400
+
+    Update epsg db to v9.2, add ref to proj4 license, fix EPSG:28992 test
+    
+    Signed-off-by: Will Cohen <wcohen@supernormal.io>
+
+commit aa7f3b002104db17f53894a105e973e8e10ab47d
+Merge: 8841a68 815b687
+Author: Rob Emanuele <rdemanuele@gmail.com>
+Date:   Wed Mar 14 10:48:45 2018 -0400
+
+    Merge pull request #6 from halset/etmerc-try2
+    
+    Extended Transverse Mercator
+
+commit b78724d9c73966f1462098091516aaec703d07c9
+Merge: aa7f3b0 41b0cc7
+Author: Rob Emanuele <rdemanuele@gmail.com>
+Date:   Wed Mar 14 16:19:38 2018 -0400
+
+    Merge pull request #7 from willcohen/epsg-database-update
+    
+    Update epsg db to v9.2, add ref to proj4 license, fix EPSG:28992 test
+
+commit 49be3a309f7ffc48ca81d466e4f1ae32d61705d8
+Author: Grigory Pomadchin <gr.pomadchin@gmail.com>
+Date:   Mon Mar 19 13:48:18 2018 +0300
+
+    Fix CEA projection behaviour
+
+commit 4a511d1c905b3dd257648db028ec522aa440e44c
+Merge: b78724d 49be3a3
+Author: Rob Emanuele <rdemanuele@gmail.com>
+Date:   Mon Mar 19 08:32:45 2018 -0400
+
+    Merge pull request #10 from pomadchin/fix/cea-projection
+    
+    Fix CEA projection
+
+commit 4417896891dc0069ef133f860cb7c21b6fc09235
+Author: lossyrob <rdemanuele@gmail.com>
+Date:   Mon Mar 19 08:40:21 2018 -0400
+
+    Removed NOTES.txt
+
+commit ae6e1f3c09ec1604ac5c11ed2e5cacb10b2be944
+Merge: 4a511d1 4417896
+Author: Rob Emanuele <rdemanuele@gmail.com>
+Date:   Mon Mar 19 17:58:38 2018 +0100
+
+    Merge pull request #11 from lossyrob/rde/remove-notes.txt
+    
+    Removed NOTES.txt from EPSG database
+
+commit 5bfde692c31ac5c0cce5e224a47490074f65a2b2
+Author: Tore Halset <halset@pvv.ntnu.no>
+Date:   Wed Dec 5 21:57:00 2018 +0100
+
+    a fix to etmerc gatg increesing accuracy of etmerc (#14)
+    
+    Signed-off-by: Tore Halset <halset@pvv.ntnu.no>
+
+commit f714816fff9701d885d83d7fb2b82a857f1ea1fb
+Author: rfecher <rfecher@gmail.com>
+Date:   Wed Dec 5 15:58:56 2018 -0500
+
+    fixed bugs uncovered by SCA (#16)
+
+commit afd072193999f9ac80f4d6d6dda2a6a264a2c589
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Thu Dec 6 12:03:52 2018 -0500
+
+    LocationTech Publish (#17)
+    
+    * configure for distribution through LocationTech
+    
+    * Enable JavaDoc builds
+
+commit c28943815ccd1a21ebd2722f99133df63bbc4a02
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Fri Dec 7 15:59:46 2018 -0500
+
+    Fix Resource Loading and Spelling (#18)
+    
+    * Fix resource path for proj4j nad resources
+    
+    * fix epsg file white space
+
+commit 7981f1d2d8bafc4626009b3c41991617bd3b7d72
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Sun Dec 9 15:11:19 2018 -0500
+
+    ignore .vscode
+
+commit b62638ddef217b719e574c4008429b5e5e0ef95e
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Sun Dec 9 15:14:40 2018 -0500
+
+    sonatype release
+
+commit c93f38a3c9ff42b8b219fad591632762a828a92b
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Sun Dec 9 16:19:31 2018 -0500
+
+    [maven-release-plugin] prepare release v0.2.0
+
+commit c59e9a66eb7910b5c310da269a8e9ea09b86ff48
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Sun Dec 9 16:19:32 2018 -0500
+
+    [maven-release-plugin] prepare for next development iteration
+
+commit f900cffbb29adaff2b9d6a7420be59c1d8e61aad
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Thu Dec 13 13:35:09 2018 -0500
+
+    Version 1.0.0-SNAPSHOT
+    
+    Acknolwadge dr-jts as a contributor/author in the pom file
+
+commit 93f62c2361efaed9d99cb51ab619b914dbef69b8
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Thu Dec 13 13:45:22 2018 -0500
+
+    Move sonatype plugin to maven central profile
+
+commit 773620421fcfc3cc1ddfaa63d1ecf7b5400bb91d
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Thu Dec 13 13:54:36 2018 -0500
+
+    [maven-release-plugin] prepare release v1.0.0
+
+commit a830954292052fd3beec5966e8ccb0f0506b0047
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Thu Dec 13 13:54:36 2018 -0500
+
+    [maven-release-plugin] prepare for next development iteration
+
+commit 3cf5063ccde36fcaa4f5424003ba791afa540389
+Author: Yaqiang Wang <yaqiang.wang@gmail.com>
+Date:   Thu Mar 28 05:18:06 2019 +0800
+
+    Add GeostationarySatelliteProjection (#22)
+    
+    * Add GeoStationarySatelliteProjection
+    
+    Add heightOfObit variable for GeoStationarySatelliteProjection
+    
+    Add h keyword
+    
+    add "h" support of key word
+    
+    Signed-off-by: wyq <yaqiang.wang@gmail.com>
+
+commit ddf06447ea2a0714b45e543780499c3dc8f0fb81
+Author: Grigory <gr.pomadchin@gmail.com>
+Date:   Thu Apr 18 17:37:43 2019 -0400
+
+    Added GeostationarySatelliteProjection into registry (#27)
+    
+    Signed-off-by: Grigory Pomadchin <gr.pomadchin@gmail.com>
+
+commit 94789587857371c20e9bff61f6090e00381783c6
+Author: Brian Osborn <bosborn@users.noreply.github.com>
+Date:   Fri Apr 19 10:29:42 2019 -0600
+
+    return the default unit when not set (#28)
+    
+    Signed-off-by: Brian Osborn <bosborn@gmail.com>
+
+commit 91522e76117c216b850a48788f3464c6a4643463
+Author: Sebastian Baumhekel <sebastian.baumhekel@gmail.com>
+Date:   Mon May 13 14:48:57 2019 +0200
+
+    Make BasicCoordinateTransform thread-safe to increase performance in
+    multi-threaded environments by reusing the same instance.
+    
+    Signed-off-by: Sebastian Baumhekel <sebastian.baumhekel@gmail.com>
+
+commit 963b5e9f635198e5a21fd17264c66eecbe68c5da
+Merge: 9478958 91522e7
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Tue Jun 25 12:34:47 2019 -0400
+
+    Merge pull request #29 from sebasbaumh/threadsafeTransform
+    
+    Make BasicCoordinateTransform thread-safe
+
+commit b7166069bdf658aae92fa621d02d0ee2a28d4735
+Author: Grigory <gr.pomadchin@gmail.com>
+Date:   Wed Jul 31 10:04:48 2019 -0400
+
+    Improve CRS Caching, add CoordinateReferenceSystem.equals overload (#33)
+    
+    * Improve CRS Caching, add CoordinateReferenceSystem.equals overload
+    
+    Signed-off-by: Grigory Pomadchin <gr.pomadchin@gmail.com>
+
+commit bcc1317efda25125d74fb10951d7b18131c288c0
+Author: noberasco <michele.noberasco@tiscali.it>
+Date:   Wed Jul 31 19:30:29 2019 +0200
+
+    Make projection list accessible (#31)
+    
+    * Added method to retrieve projections list
+    
+    Signed-off-by: Michele Noberasco <michele.noberasco@tiscali.it>
+
+commit f46930dbf60e2c244fb1d83be9228ef397050c81
+Author: Grigory Pomadchin <gr.pomadchin@gmail.com>
+Date:   Fri Aug 9 14:41:05 2019 -0400
+
+    Make CoordinateTransform and ProjCoordinate Serializable
+    
+    Signed-off-by: Grigory Pomadchin <gr.pomadchin@gmail.com>
+
+commit 48cb2d60ba46092d3b5b9078b0858e1ecc74c7d6
+Author: Grigory Pomadchin <gr.pomadchin@gmail.com>
+Date:   Sun Aug 11 02:13:28 2019 -0400
+
+    Fix CRSCache constructors signatures
+    
+    Signed-off-by: Grigory Pomadchin <gr.pomadchin@gmail.com>
+
+commit 00ad188835d6349e49f4f7b58ac3c1c453ce880c
+Merge: bcc1317 48cb2d6
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Mon Aug 12 09:56:59 2019 -0400
+
+    Merge pull request #36 from pomadchin/fix/crscache-constructors
+    
+    Fix CRSCache constructors signatures
+
+commit 8c07072f0b5749ee218b19aab4fa333011839fd8
+Merge: 00ad188 f46930d
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Mon Aug 12 09:57:32 2019 -0400
+
+    Merge pull request #34 from pomadchin/fix/transform-ser
+    
+    Make CoordinateTransform and ProjCoordinate Serializable
+
+commit 464ae9d8940d7c5c7f09194d2050cfee208db499
+Author: neutlamberink <gijs.vd.neut-lamberink@rigd-loxia.nl>
+Date:   Thu Aug 22 17:56:22 2019 +0200
+
+    OSGi compatibility
+    
+    Signed-off-by: neutlamberink <gijs.vd.neut-lamberink@rigd-loxia.nl>
+
+commit 572521a08dc0988694be8e6bcdfe245115200697
+Merge: 8c07072 464ae9d
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Thu Aug 22 16:50:56 2019 -0400
+
+    Merge pull request #44 from Neutius/osgi-compatibility
+    
+    OSGi compatibility
+
+commit 6d5403ed0c01b94b62538f27d548c2b3b4291133
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Thu Aug 22 17:36:55 2019 -0400
+
+    Add CHANGELOG
+
+commit 8ab4b31262ec871db6fce2444b86b836ffb5e2d1
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Fri Aug 23 09:49:46 2019 -0400
+
+    Version 1.1.0
+
+commit d81a0065009d78b83603048b6450804bd5f61f87
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Sat Aug 24 03:34:44 2019 -0400
+
+    Add logical Projection equality
+    
+    Without this CoordinateReferenceSystem is very fragile, sensative to name and formatting and order of projection parameters array.
+
+commit 731f54b13ed0509e42045883c754b17d61b1b4ae
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Sat Aug 24 03:34:53 2019 -0400
+
+    Version 1.1.0-SNAPSHOT
+
+commit 16c9d3da5e75723825a5e3bc33dbfabfd15e9d91
+Merge: 6d5403e 731f54b
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Sat Aug 24 03:57:23 2019 -0400
+
+    Merge pull request #45 from locationtech/feature/projection-equality
+    
+    Add Projection Equality
+
+commit 54c09e3fe94b32457bcf57aae3a86e2be39b8d2b
+Author: Wambertus <sfcgijs@gmail.com>
+Date:   Sun Aug 25 14:06:51 2019 +0200
+
+    As per paulushub on https://github.com/locationtech/proj4j/pull/41/commits/f8a9eaa86d0b9714f14044f7ab6856063b37eeb9:
+    
+    1. Removing @test: This class is not directly involved in the test process, the addition of the attribute produces several initialization errors.
+    2. Removing unused fields p, p2 and the junit package.
+    
+    Final test results:
+    Before Updates: Runs: 72/72 (2 skipped)            Errors: 28             Failures: 1
+    After Updates: Runs: 44/44 (2 skipped)               Errors: 0               Failures: 1
+    
+    Signed-off-by: Wambertus <sfcgijs@gmail.com>
+
+commit 73d0095ef33b304766b1d269070b9c7c15dcf988
+Merge: 16c9d3d 54c09e3
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Mon Aug 26 11:21:02 2019 -0400
+
+    Merge pull request #47 from Neutius/develop
+    
+    Minor fixes for CoordinateTransformTester, as per #41 and #42
+
+commit c872e292d9271ec55db43105d612a3a9be9e5b0d
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Mon Aug 26 12:07:42 2019 -0400
+
+    Override Projection hashCode method
+
+commit 41350b366f6c4d927dc97122ad415e3fe781331e
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Mon Aug 26 12:51:19 2019 -0400
+
+    Override CoordinateReferenceSystem hashCode
+    
+    This is why we're bothering with Projection equality after all
+
+commit 0c6669f1d4282286185ee4633e7f1122fb9dbc58
+Merge: 73d0095 41350b3
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Mon Aug 26 13:06:23 2019 -0400
+
+    Merge pull request #50 from locationtech/feature/projection-hashCode
+    
+    Override Projection hashCode method
+
+commit bb3add906e5c793dce2483d15e6cc11ea1ac4759
+Author: neutlamberink <gijs.vd.neut-lamberink@rigd-loxia.nl>
+Date:   Tue Sep 3 14:08:33 2019 +0200
+
+    Removed hashCode() override from Datum class - it does not override equals(), and should not override hashCode(). The isEqual() method could be renamed or rewritten to override equals, but is currently does not.
+    
+    Added hashCode() override to Unit class and Pair class.
+    Added override annotations to Ellipsoid class for clarity.
+    
+    Signed-off-by: neutlamberink <gijs.vd.neut-lamberink@rigd-loxia.nl>
+
+commit b51bdb50091098aaf6a04256b5f9461cdb0cb72a
+Merge: 0c6669f bb3add9
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Tue Sep 24 13:24:43 2019 -0400
+
+    Merge pull request #52 from rigd-loxia/develop
+    
+    Minor hashCode/equals override improvements
+
+commit e9a0300582a2dee154952bb4ef045b1e97ac349f
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Wed Sep 25 09:57:55 2019 -0400
+
+    [maven-release-plugin] prepare release proj4j-1.1.0
+
+commit 5ba8168a5e0346b79e5f7d2fd2bc25a68fba0670
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Wed Sep 25 09:57:55 2019 -0400
+
+    [maven-release-plugin] prepare for next development iteration
+
+commit 96a1fab3e82ec949575b39c1d465e65bd7f4e1f8
+Author: Stefan de Konink <stefan@konink.de>
+Date:   Sat Dec 14 23:31:41 2019 +0100
+
+    Implement setRadius (#55)
+    
+    A projection may have a radius. This commit implements setRadius used in for example Equidistant Cylindrical where:
+    +R=<value> Radius of the sphere given in meters. As per documentation this function is applied on the end, so it takes precedence over +ellps.
+    
+    Signed-off-by: Stefan de Konink <stefan@konink.de>
+
+commit a0e5c7243ab9d8d62c42a43838a406717e5a3797
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Thu Feb 27 10:09:03 2020 -0500
+
+    Publish to repo.eclipse.org
+
+commit 992c6254c029b46f9dd76598ea3e579c14a350df
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Sun Mar 8 18:41:01 2020 -0400
+
+    Update Changelog [skip ci]
+
+commit 40c349bced74135c1e33b49cf3a4fa40b4ccfb88
+Author: Eugene Cheipesh <echeipesh@gmail.com>
+Date:   Sun Mar 8 20:14:50 2020 -0400
+
+    Use jgitver to set project version from git tags
+    
+    Removing maven release plugin because releases can now be performed by pushing git tag to CI
+
+commit 7100c004e93b3655d2f65ac2dd53a14420d1f4d8
+Author: scaddenp <p.scadden@gns.cri.nz>
+Date:   Wed Jul 29 10:47:45 2020 +1200
+
+    Fix NZ Map projection and add a test for it. (#64)
+    
+    * Update Proj4JSTest.java
+    
+    Add tests for NZ Map Grid (27200)
+    
+    * Update ProjectionMath.java
+    
+    Fix to zpoly1d translating pointer math into java
+    
+    * Update NewZealandMapGridProjection.java
+    
+    Scale constants to match original C and fix various errors from translating from C to java
+    
+    Signed-off-by: Phil Scadden <p.scadden@gns.cri.nz>
+
+commit d827af1f5f89d2ed4db75877ecb3e268954b5148
+Author: Grigory Pomadchin <gr.pomadchin@gmail.com>
+Date:   Tue Jul 28 19:02:03 2020 -0400
+
+    Upd CHANGELOG.md
+
+commit 8740500a278f23ec8481d777e04c6e73e18922a3
+Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+Date:   Thu Nov 19 09:10:26 2020 -0500
+
+    Bump junit from 4.12 to 4.13.1 (#67)
+    
+    Bumps [junit](https://github.com/junit-team/junit4) from 4.12 to 4.13.1.
+    - [Release notes](https://github.com/junit-team/junit4/releases)
+    - [Changelog](https://github.com/junit-team/junit4/blob/main/doc/ReleaseNotes4.12.md)
+    - [Commits](https://github.com/junit-team/junit4/compare/r4.12...r4.13.1)
+    
+    Signed-off-by: dependabot[bot] <support@github.com>
+    
+    Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+
+commit 15254ece81f98c717b35d3bb8b8b22ec205810a9
+Author: Tuan Nguyen <tuannn.bk@gmail.com>
+Date:   Wed Apr 7 02:30:35 2021 +0200
+
+    support geocent (#60)
+    
+    * support geocent
+    
+    * Add inverse project radians
+    
+    Signed-off-by: novpla <tuannn.bk@gmail.com>
+
+commit c7d08b7edecbad038837a49993aa0a0d11515e62
+Author: Yaqiang Wang <yaqiang.wang@gmail.com>
+Date:   Wed Apr 7 08:41:29 2021 +0800
+
+    set projection result coordinate to NaN when the point is located at the back side of the earth. (#63)
+    
+    Signed-off-by: wyq <yaqiang.wang@gmail.com>
+
+commit 440f3e889b74bc4e5b458611a5f100886a3f0d87
+Author: Grigory <gr.pomadchin@gmail.com>
+Date:   Mon Apr 12 15:12:11 2021 -0400
+
+    Fix UTM, LCC, Krovak and Stere projections (#71)
+    
+    * Fix UTM projection (it should be backed by etmerc); fix tests, resurrect proj4-epsg tests and update them up to date
+    
+    * Fix LCC projection
+    
+    * Fix the default Krovak projection behavior
+    
+    * Fix stere projection, adjust the epsg code return for the webmercator proj string
+    
+    * Upd tests to reflect projections changes
+
+commit f5a026edb57f79b88d6d3887b35f6417c4990c75
+Author: Grigory Pomadchin <gr.pomadchin@gmail.com>
+Date:   Mon Apr 12 15:26:04 2021 -0400
+
+    Rotate the changelog
+
+commit 21c21b12756e9978c71a6ff899047c739c4faa96
+Author: Brian Osborn <bosborn@users.noreply.github.com>
+Date:   Thu Jun 17 14:49:50 2021 -0600
+
+    Oblique Mercator Projection Improvements (#72)
+    
+    * no_uoff, gamma, and oblique mercator projection updates and support
+    
+    * test fix for newly passing epsg codes
+    
+    * minor documentation change
+    
+    * Upd CHANGELOG.md
+    
+    Co-authored-by: Grigory Pomadchin <gr.pomadchin@gmail.com>
+
+commit 7b3468a665c276daadb15643573874c3d7d6a2cf
+Author: Grigory Pomadchin <gr.pomadchin@gmail.com>
+Date:   Thu Jun 17 16:51:46 2021 -0400
+
+    Upd CHANGELOG.md
+
+commit ab38cd20c71930edd81ca4a5f8ba8243b3ab69d6
+Author: Sebastian <sebastian@topobyte.de>
+Date:   Tue Aug 31 13:36:31 2021 +0200
+
+    Extend README, add basic user guide (#73)
+    
+    Signed-off-by: Sebastian Kürten <sebastian@topobyte.de>
+
+commit 8ee7870c024f0698e29cf4907ab7283dad379919
+Author: Grigory Pomadchin <gr.pomadchin@gmail.com>
+Date:   Tue Aug 31 07:57:09 2021 -0400
+
+    Update jgitver plugin
+
+commit 2aec0d0d20fa476f4e75aa57636a91917595c5ec
+Author: Grigory Pomadchin <gr.pomadchin@gmail.com>
+Date:   Tue Aug 31 08:25:17 2021 -0400
+
+    Add the fallback version into the pom.xml
+
+commit 5af1582846002ec9b30ce37cbf9804c965299540
+Author: Grigory Pomadchin <gr.pomadchin@gmail.com>
+Date:   Tue Aug 31 12:02:45 2021 -0400
+
+    Add GitHub Actions
+
+commit 03d31234b1e18ceabfe9eb53c4449838f4d9bcb9
+Author: Brian Osborn <bosborn@users.noreply.github.com>
+Date:   Sat Oct 9 06:52:02 2021 -0600
+
+    OSGB36 datum and +nadgrids=@null support (#74)
+    
+    * OSGB36 transform adjustment and variable name fix
+    
+    * OSGB36 datum transform
+    
+    * +nadgrids=@null support
+    
+    * nadgrids null test
+    
+    * EPSG:27700 tests
+
+commit 45fa5a1eeea3459e8a7049c73c3189c426e1c6eb
+Author: Brian Osborn <bosborn@users.noreply.github.com>
+Date:   Wed Nov 3 08:51:42 2021 -0600
+
+    GeocentricConverter equality check after WGS param overrides (#77)
+    
+    * GeocentricConverter equality check after WGS param overrides
+    
+    * comments, geocentric converter comparisons
+    
+    * newly fixed tests
+    
+    * removed no longer failing test
+
+commit 5e8c46db80d7c05203406ef4cf64def4143ea187
+Author: Grigory Pomadchin <gr.pomadchin@gmail.com>
+Date:   Wed Nov 3 11:56:27 2021 -0400
+
+    CHANGELOG rotate and version bump
+
+commit dcc17e88ed2993e493cb0dfc1e048d8660de4cfd
+Author: Grigory <gr.pomadchin@gmail.com>
+Date:   Fri Mar 25 18:53:22 2022 -0400
+
+    Fix Grid equals (#78)
+    
+    * Grid equals
+    
+    * Upd the CHANGELOG
+
+commit abd3dde5ac58bb425c71bde05aad71d6eb33fed5
+Author: Grigory Pomadchin <gr.pomadchin@gmail.com>
+Date:   Fri Mar 25 18:54:48 2022 -0400
+
+    CHANGELOG rotate
+
+commit bb6116c4ee85ad606c379f2291416b734b34c43e
+Author: Grigory Pomadchin <gr.pomadchin@gmail.com>
+Date:   Fri Mar 25 19:01:20 2022 -0400
+
+    Rotate pom version for Jenkins
+
+commit ce520c1ee4946102aba4e622ee2857d711b09fff
+Author: Grigory <gr.pomadchin@gmail.com>
+Date:   Fri Mar 25 19:18:39 2022 -0400
+
+    Update README.md
+
+commit 723b0f47dff43ec42095ba612fa6cce898590dff
+Author: rhuitl <robert@huitl.de>
+Date:   Sun Apr 3 19:49:59 2022 +0200
+
+    Fix inverse datum shifting when coordinate is not exactly on a grid point (#79)
+
+commit 2e16d64ca39cb1e4fa6aa2e462500cffcb4beea1
+Author: Grigory <gr.pomadchin@gmail.com>
+Date:   Fri Apr 29 16:04:53 2022 -0400
+
+    Update README.md
+
+commit c07134601f0942cf4f660841f75595a0f16b45f3
+Author: Grigory <gr.pomadchin@gmail.com>
+Date:   Fri Apr 29 16:05:31 2022 -0400
+
+    Update README.md

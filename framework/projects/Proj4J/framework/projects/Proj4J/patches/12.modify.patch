@@ -1,0 +1,12 @@
+diff --git a/src/main/java/org/locationtech/proj4j/Registry.java b/src/main/java/org/locationtech/proj4j/Registry.java
+index b07b5ff..ab98da2 100755
+--- a/src/main/java/org/locationtech/proj4j/Registry.java
++++ b/src/main/java/org/locationtech/proj4j/Registry.java
+@@ -177,7 +177,6 @@ public class Registry {
+         register("fouc", FoucautProjection.class, "Foucaut");
+         register("fouc_s", FoucautSinusoidalProjection.class, "Foucaut Sinusoidal");
+         register("gall", GallProjection.class, "Gall (Gall Stereographic)");
+-        register("geos", GeostationarySatelliteProjection.class, "Geostationary Satellite");
+ //    register( "gins8", Projection.class, "Ginsburg VIII (TsNIIGAiK)" );
+ //    register( "gn_sinu", Projection.class, "General Sinusoidal Series" );
+         register("gnom", GnomonicAzimuthalProjection.class, "Gnomonic");

@@ -1,0 +1,43 @@
+diff --git a/src/main/java/org/locationtech/proj4j/CoordinateTransform.java b/src/main/java/org/locationtech/proj4j/CoordinateTransform.java
+index 65e8ada..2a0bd14 100755
+--- a/src/main/java/org/locationtech/proj4j/CoordinateTransform.java
++++ b/src/main/java/org/locationtech/proj4j/CoordinateTransform.java
+@@ -15,8 +15,6 @@
+  */
+ package org.locationtech.proj4j;
+ 
+-import java.io.Serializable;
+-
+ /**
+  * An interface for the operation of transforming
+  * a {@link ProjCoordinate} from one {@link CoordinateReferenceSystem}
+@@ -25,7 +23,7 @@ import java.io.Serializable;
+  * @author Martin Davis
+  * @see CoordinateTransformFactory
+  */
+-public interface CoordinateTransform extends Serializable {
++public interface CoordinateTransform {
+ 
+     CoordinateReferenceSystem getSourceCRS();
+ 
+diff --git a/src/main/java/org/locationtech/proj4j/ProjCoordinate.java b/src/main/java/org/locationtech/proj4j/ProjCoordinate.java
+index d32aedb..82273c3 100755
+--- a/src/main/java/org/locationtech/proj4j/ProjCoordinate.java
++++ b/src/main/java/org/locationtech/proj4j/ProjCoordinate.java
+@@ -15,7 +15,6 @@
+  */
+ package org.locationtech.proj4j;
+ 
+-import java.io.Serializable;
+ import java.text.DecimalFormat;
+ 
+ 
+@@ -30,7 +29,7 @@ import java.text.DecimalFormat;
+  * values which are to be transformed
+  * by a {@link CoordinateTransform}.
+  */
+-public class ProjCoordinate implements Serializable {
++public class ProjCoordinate {
+ 
+     public static String DECIMAL_FORMAT_PATTERN = "0.0###############";
+     public static DecimalFormat DECIMAL_FORMAT = new DecimalFormat(DECIMAL_FORMAT_PATTERN);

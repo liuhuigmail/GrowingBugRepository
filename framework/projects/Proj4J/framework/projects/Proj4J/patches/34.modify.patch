@@ -1,0 +1,41 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 92abfa3..9258a70 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -6,8 +6,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
+ 
+ ## [Unreleased]
+ 
+-- Fix Grid equals [#78](https://github.com/locationtech/proj4j/pull/78)
+-
+ ## [1.1.4] - 2021-11-03
+ 
+ ### Fixed
+diff --git a/src/main/java/org/locationtech/proj4j/datum/Grid.java b/src/main/java/org/locationtech/proj4j/datum/Grid.java
+index 6c63360..f1abb9b 100755
+--- a/src/main/java/org/locationtech/proj4j/datum/Grid.java
++++ b/src/main/java/org/locationtech/proj4j/datum/Grid.java
+@@ -388,17 +388,17 @@ public final class Grid implements Serializable {
+         if (that instanceof Grid) {
+             Grid g = (Grid) that;
+             if (gridName == null && g.gridName != null) return false;
+-            if (gridName != null && !gridName.equals(g.gridName)) return false;
++            if (!gridName.equals(g.gridName)) return false;
+             if (fileName == null && g.fileName != null) return false;
+-            if (fileName != null && !fileName.equals(g.fileName)) return false;
++            if (!fileName.equals(g.fileName)) return false;
+             if (format == null && g.format != null) return false;
+-            if (format != null && !format.equals(g.format)) return false;
++            if (!format.equals(g.format)) return false;
+             if (table == null && g.table != null) return false;
+-            if (table != null && !table.equals(g.table)) return false;
++            if (!table.equals(g.table)) return false;
+             if (next == null && g.next != null) return false;
+-            if (next != null && !next.equals(g.next)) return false;
++            if (!next.equals(g.next)) return false;
+             if (child == null && g.child != null) return false;
+-            if (child != null && !child.equals(g.child)) return false;
++            if (!child.equals(g.child)) return false;
+             return true;
+         } else {
+             return false;

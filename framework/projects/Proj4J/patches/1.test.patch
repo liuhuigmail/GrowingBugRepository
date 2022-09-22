@@ -1,0 +1,31 @@
+diff --git a/src/test/java/org/locationtech/proj4j/Proj4VariousTest.java b/src/test/java/org/locationtech/proj4j/Proj4VariousTest.java
+index 5a0428a..2d2ee3e 100755
+--- a/src/test/java/org/locationtech/proj4j/Proj4VariousTest.java
++++ b/src/test/java/org/locationtech/proj4j/Proj4VariousTest.java
+@@ -117,18 +117,16 @@ public class Proj4VariousTest extends BaseCoordinateTransformTest {
+     @Test
+     public void testExtendedTransverseMercator() {
+         //checkTransform("+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("10000 20000"), "+proj=latlong +datum=WGS84", p("0dN 0.000"), 1e-3);
+-        checkTransform("+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("500000 2000000"), "+proj=latlong +datum=WGS84", p("15d22'16.108\"W 17d52'53.478\"N 0.000"), 1e-6);
+-        checkTransform("+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("1000000 2000000"), "+proj=latlong +datum=WGS84", p("10d40'55.532\"W 17d42'48.526\"N 0.000"), 1e-6);
+-        checkTransform("+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("2000000 2000000"), "+proj=latlong +datum=WGS84", p("1d32'21.33\"W 17d3'47.233\"N 0.000"), 1e-6);
+-        checkTransform("+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("4000000 2000000"), "+proj=latlong +datum=WGS84", p("15d4'42.357\"E 14d48'56.372\"N 0.000"), 1e-6);
+-        checkTransform("+proj=etmerc +k=0.9996 +lon_0=15 +datum=WGS84 +x_0=500000 +y_0=0", p("1096230.08 7876510.42"), "+proj=latlong +datum=WGS84", p("30.9967055 70.2838512 0.000"), 1e-6);
++        checkTransform("+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("500000 2000000"), "+proj=latlong +datum=WGS84", p("15d22'16.108\"W 17d52'53.478\"N 0.000"), 1e-3);
++        checkTransform("+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("1000000 2000000"), "+proj=latlong +datum=WGS84", p("10d40'55.532\"W 17d42'48.526\"N 0.000"), 1e-3);
++        checkTransform("+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("2000000 2000000"), "+proj=latlong +datum=WGS84", p("1d32'21.33\"W 17d3'47.233\"N 0.000"), 1e-3);
++        checkTransform("+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("4000000 2000000"), "+proj=latlong +datum=WGS84", p("15d4'42.357\"E 14d48'56.372\"N 0.000"), 1e-3);
+         
+         //checkTransform("+proj=latlong +datum=WGS84", p("0dN 0.000"), "+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("10000 20000"), 50);
+-        checkTransform("+proj=latlong +datum=WGS84", p("15d22'16.108\"W 17d52'53.478\"N 0.000"), "+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("500000 2000000"), 0.1);
+-        checkTransform("+proj=latlong +datum=WGS84", p("10d40'55.532\"W 17d42'48.526\"N 0.000"), "+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("1000000 2000000"), 0.1);
+-        checkTransform("+proj=latlong +datum=WGS84", p("1d32'21.33\"W 17d3'47.233\"N 0.000"), "+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("2000000 2000000"), 0.1);
+-        checkTransform("+proj=latlong +datum=WGS84", p("15d4'42.357\"E 14d48'56.372\"N 0.000"), "+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("4000000 2000000"), 0.1);
+-        checkTransform("+proj=latlong +datum=WGS84", p("30.9967055 70.2838512 0.000"), "+proj=etmerc +k=0.9996 +lon_0=15 +datum=WGS84 +x_0=500000 +y_0=0", p("1096230.08 7876510.42"), 0.1);
++        checkTransform("+proj=latlong +datum=WGS84", p("15d22'16.108\"W 17d52'53.478\"N 0.000"), "+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("500000 2000000"), 50);
++        checkTransform("+proj=latlong +datum=WGS84", p("10d40'55.532\"W 17d42'48.526\"N 0.000"), "+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("1000000 2000000"), 50);
++        checkTransform("+proj=latlong +datum=WGS84", p("1d32'21.33\"W 17d3'47.233\"N 0.000"), "+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("2000000 2000000"), 50);
++        checkTransform("+proj=latlong +datum=WGS84", p("15d4'42.357\"E 14d48'56.372\"N 0.000"), "+proj=etmerc +k=0.998 +lon_0=-20 +datum=WGS84 +x_0=10000 +y_0=20000", p("4000000 2000000"), 50);
+     }
+ 
+ 

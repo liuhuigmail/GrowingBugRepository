@@ -1,0 +1,13 @@
+diff --git a/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java b/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java
+index 607bb60..3bc347c 100755
+--- a/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java
++++ b/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java
+@@ -65,7 +65,7 @@ public class CoordinateTransformTest extends BaseCoordinateTransformTest {
+      */
+     @Test
+     public void testAmersfoort_RD_New() {
+-        checkTransformFromWGS84("EPSG:28992", 5.387638889, 52.156160556, 155029.79409195564, 463109.95436430885, 2.0e-4);
++        checkTransformFromWGS84("EPSG:28992", 5.387638889, 52.156160556, 155029.79409195564, 463109.95436430885);
+     }
+ 
+     @Test

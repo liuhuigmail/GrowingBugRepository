@@ -1,0 +1,1205 @@
+diff --git a/src/main/java/org/locationtech/proj4j/Registry.java b/src/main/java/org/locationtech/proj4j/Registry.java
+index ee19775..51c0573 100755
+--- a/src/main/java/org/locationtech/proj4j/Registry.java
++++ b/src/main/java/org/locationtech/proj4j/Registry.java
+@@ -37,18 +37,19 @@ public class Registry {
+         initialize();
+     }
+ 
+-    public final static Datum[] datums = {
+-            Datum.WGS84,
+-            Datum.GGRS87,
+-            Datum.NAD27,
+-            Datum.NAD83,
+-            Datum.POTSDAM,
+-            Datum.CARTHAGE,
+-            Datum.HERMANNSKOGEL,
+-            Datum.IRE65,
+-            Datum.NZGD49,
+-            Datum.OSEB36
+-    };
++    public final static Datum[] datums =
++            {
++                    Datum.WGS84,
++                    Datum.GGRS87,
++                    Datum.NAD27,
++                    Datum.NAD83,
++                    Datum.POTSDAM,
++                    Datum.CARTHAGE,
++                    Datum.HERMANNSKOGEL,
++                    Datum.IRE65,
++                    Datum.NZGD49,
++                    Datum.OSEB36
++            };
+ 
+     public Datum getDatum(String code) {
+         for (int i = 0; i < datums.length; i++) {
+@@ -59,52 +60,54 @@ public class Registry {
+         return null;
+     }
+ 
+-    public final static Ellipsoid[] ellipsoids = {
+-            Ellipsoid.SPHERE,
+-            new Ellipsoid("MERIT", 6378137.0, 0.0, 298.257, "MERIT 1983"),
+-            new Ellipsoid("SGS85", 6378136.0, 0.0, 298.257, "Soviet Geodetic System 85"),
+-            Ellipsoid.GRS80,
+-            new Ellipsoid("IAU76", 6378140.0, 0.0, 298.257, "IAU 1976"),
+-            Ellipsoid.AIRY,
+-            Ellipsoid.MOD_AIRY,
+-            new Ellipsoid("APL4.9", 6378137.0, 0.0, 298.25, "Appl. Physics. 1965"),
+-            new Ellipsoid("NWL9D", 6378145.0, 298.25, 0.0, "Naval Weapons Lab., 1965"),
+-            new Ellipsoid("andrae", 6377104.43, 300.0, 0.0, "Andrae 1876 (Den., Iclnd.)"),
+-            new Ellipsoid("aust_SA", 6378160.0, 0.0, 298.25, "Australian Natl & S. Amer. 1969"),
+-            new Ellipsoid("GRS67", 6378160.0, 0.0, 298.2471674270, "GRS 67 (IUGG 1967)"),
+-            Ellipsoid.BESSEL,
+-            new Ellipsoid("bess_nam", 6377483.865, 0.0, 299.1528128, "Bessel 1841 (Namibia)"),
+-            Ellipsoid.CLARKE_1866,
+-            Ellipsoid.CLARKE_1880,
+-            new Ellipsoid("CPM", 6375738.7, 0.0, 334.29, "Comm. des Poids et Mesures 1799"),
+-            new Ellipsoid("delmbr", 6376428.0, 0.0, 311.5, "Delambre 1810 (Belgium)"),
+-            new Ellipsoid("engelis", 6378136.05, 0.0, 298.2566, "Engelis 1985"),
+-            Ellipsoid.EVEREST,
+-            new Ellipsoid("evrst48", 6377304.063, 0.0, 300.8017, "Everest 1948"),
+-            new Ellipsoid("evrst56", 6377301.243, 0.0, 300.8017, "Everest 1956"),
+-            new Ellipsoid("evrst69", 6377295.664, 0.0, 300.8017, "Everest 1969"),
+-            new Ellipsoid("evrstSS", 6377298.556, 0.0, 300.8017, "Everest (Sabah & Sarawak)"),
+-            new Ellipsoid("fschr60", 6378166.0, 0.0, 298.3, "Fischer (Mercury Datum) 1960"),
+-            new Ellipsoid("fschr60m", 6378155.0, 0.0, 298.3, "Modified Fischer 1960"),
+-            new Ellipsoid("fschr68", 6378150.0, 0.0, 298.3, "Fischer 1968"),
+-            new Ellipsoid("helmert", 6378200.0, 0.0, 298.3, "Helmert 1906"),
+-            new Ellipsoid("hough", 6378270.0, 0.0, 297.0, "Hough"),
+-            Ellipsoid.INTERNATIONAL,
+-            Ellipsoid.INTERNATIONAL_1967,
+-            Ellipsoid.KRASSOVSKY,
+-            new Ellipsoid("kaula", 6378163.0, 0.0, 298.24, "Kaula 1961"),
+-            new Ellipsoid("lerch", 6378139.0, 0.0, 298.257, "Lerch 1979"),
+-            new Ellipsoid("mprts", 6397300.0, 0.0, 191.0, "Maupertius 1738"),
+-            new Ellipsoid("plessis", 6376523.0, 6355863.0, 0.0, "Plessis 1817 France)"),
+-            new Ellipsoid("SEasia", 6378155.0, 6356773.3205, 0.0, "Southeast Asia"),
+-            new Ellipsoid("walbeck", 6376896.0, 6355834.8467, 0.0, "Walbeck"),
+-            Ellipsoid.WGS60,
+-            Ellipsoid.WGS66,
+-            Ellipsoid.WGS72,
+-            Ellipsoid.WGS84,
+-            new Ellipsoid("NAD27", 6378249.145, 0.0, 293.4663, "NAD27: Clarke 1880 mod."),
+-            new Ellipsoid("NAD83", 6378137.0, 0.0, 298.257222101, "NAD83: GRS 1980 (IUGG, 1980)"),
+-    };
++    public final static Ellipsoid[] ellipsoids =
++            {
++                    Ellipsoid.SPHERE,
++                    new Ellipsoid("MERIT", 6378137.0, 0.0, 298.257, "MERIT 1983"),
++                    new Ellipsoid("SGS85", 6378136.0, 0.0, 298.257, "Soviet Geodetic System 85"),
++                    Ellipsoid.GRS80,
++                    new Ellipsoid("IAU76", 6378140.0, 0.0, 298.257, "IAU 1976"),
++                    Ellipsoid.AIRY,
++                    Ellipsoid.MOD_AIRY,
++                    new Ellipsoid("APL4.9", 6378137.0, 0.0, 298.25, "Appl. Physics. 1965"),
++                    new Ellipsoid("NWL9D", 6378145.0, 298.25, 0.0, "Naval Weapons Lab., 1965"),
++                    new Ellipsoid("andrae", 6377104.43, 300.0, 0.0, "Andrae 1876 (Den., Iclnd.)"),
++                    new Ellipsoid("aust_SA", 6378160.0, 0.0, 298.25, "Australian Natl & S. Amer. 1969"),
++                    new Ellipsoid("GRS67", 6378160.0, 0.0, 298.2471674270, "GRS 67 (IUGG 1967)"),
++                    Ellipsoid.BESSEL,
++                    new Ellipsoid("bess_nam", 6377483.865, 0.0, 299.1528128, "Bessel 1841 (Namibia)"),
++                    Ellipsoid.CLARKE_1866,
++                    Ellipsoid.CLARKE_1880,
++                    new Ellipsoid("CPM", 6375738.7, 0.0, 334.29, "Comm. des Poids et Mesures 1799"),
++                    new Ellipsoid("delmbr", 6376428.0, 0.0, 311.5, "Delambre 1810 (Belgium)"),
++                    new Ellipsoid("engelis", 6378136.05, 0.0, 298.2566, "Engelis 1985"),
++                    Ellipsoid.EVEREST,
++                    new Ellipsoid("evrst48", 6377304.063, 0.0, 300.8017, "Everest 1948"),
++                    new Ellipsoid("evrst56", 6377301.243, 0.0, 300.8017, "Everest 1956"),
++                    new Ellipsoid("evrst69", 6377295.664, 0.0, 300.8017, "Everest 1969"),
++                    new Ellipsoid("evrstSS", 6377298.556, 0.0, 300.8017, "Everest (Sabah & Sarawak)"),
++                    new Ellipsoid("fschr60", 6378166.0, 0.0, 298.3, "Fischer (Mercury Datum) 1960"),
++                    new Ellipsoid("fschr60m", 6378155.0, 0.0, 298.3, "Modified Fischer 1960"),
++                    new Ellipsoid("fschr68", 6378150.0, 0.0, 298.3, "Fischer 1968"),
++                    new Ellipsoid("helmert", 6378200.0, 0.0, 298.3, "Helmert 1906"),
++                    new Ellipsoid("hough", 6378270.0, 0.0, 297.0, "Hough"),
++                    Ellipsoid.INTERNATIONAL,
++                    Ellipsoid.INTERNATIONAL_1967,
++                    Ellipsoid.KRASSOVSKY,
++                    new Ellipsoid("kaula", 6378163.0, 0.0, 298.24, "Kaula 1961"),
++                    new Ellipsoid("lerch", 6378139.0, 0.0, 298.257, "Lerch 1979"),
++                    new Ellipsoid("mprts", 6397300.0, 0.0, 191.0, "Maupertius 1738"),
++                    new Ellipsoid("plessis", 6376523.0, 6355863.0, 0.0, "Plessis 1817 France)"),
++                    new Ellipsoid("SEasia", 6378155.0, 6356773.3205, 0.0, "Southeast Asia"),
++                    new Ellipsoid("walbeck", 6376896.0, 6355834.8467, 0.0, "Walbeck"),
++                    Ellipsoid.WGS60,
++                    Ellipsoid.WGS66,
++                    Ellipsoid.WGS72,
++                    Ellipsoid.WGS84,
++                    new Ellipsoid("NAD27", 6378249.145, 0.0, 293.4663, "NAD27: Clarke 1880 mod."),
++                    new Ellipsoid("NAD83", 6378137.0, 0.0, 298.257222101, "NAD83: GRS 1980 (IUGG, 1980)"),
++            };
++
+ 
+     public Ellipsoid getEllipsoid(String name) {
+         for (int i = 0; i < ellipsoids.length; i++) {
+@@ -122,8 +125,8 @@ public class Registry {
+     }
+ 
+     public Projection getProjection(String name) {
+-        // if ( projRegistry == null )
+-        // initialize();
++//    if ( projRegistry == null )
++//      initialize();
+         Class cls = (Class) projRegistry.get(name);
+         if (cls != null) {
+             try {
+@@ -174,13 +177,13 @@ public class Registry {
+         register("cass", CassiniProjection.class, "Cassini");
+         register("cc", CentralCylindricalProjection.class, "Central Cylindrical");
+         register("cea", CylindricalEqualAreaProjection.class, "Equal Area Cylindrical");
+-        // register( "chamb", Projection.class, "Chamberlin Trimetric" );
++//    register( "chamb", Projection.class, "Chamberlin Trimetric" );
+         register("collg", CollignonProjection.class, "Collignon");
+         register("crast", CrasterProjection.class, "Craster Parabolic (Putnins P4)");
+         register("denoy", DenoyerProjection.class, "Denoyer Semi-Elliptical");
+         register("eck1", Eckert1Projection.class, "Eckert I");
+         register("eck2", Eckert2Projection.class, "Eckert II");
+-        // register( "eck3", Eckert3Projection.class, "Eckert III" );
++//    register( "eck3", Eckert3Projection.class, "Eckert III" );
+         register("eck4", Eckert4Projection.class, "Eckert IV");
+         register("eck5", Eckert5Projection.class, "Eckert V");
+         register("eck6", Eckert6Projection.class, "Eckert VI");
+@@ -193,19 +196,19 @@ public class Registry {
+         register("gall", GallProjection.class, "Gall (Gall Stereographic)");
+         register("geocent", GeocentProjection.class, "Geocentric");
+         register("geos", GeostationarySatelliteProjection.class, "Geostationary Satellite");
+-        // register( "gins8", Projection.class, "Ginsburg VIII (TsNIIGAiK)" );
+-        // register( "gn_sinu", Projection.class, "General Sinusoidal Series" );
++//    register( "gins8", Projection.class, "Ginsburg VIII (TsNIIGAiK)" );
++//    register( "gn_sinu", Projection.class, "General Sinusoidal Series" );
+         register("gnom", GnomonicAzimuthalProjection.class, "Gnomonic");
+         register("goode", GoodeProjection.class, "Goode Homolosine");
+-        // register( "gs48", Projection.class, "Mod. Stererographics of 48 U.S." );
+-        // register( "gs50", Projection.class, "Mod. Stererographics of 50 U.S." );
++//    register( "gs48", Projection.class, "Mod. Stererographics of 48 U.S." );
++//    register( "gs50", Projection.class, "Mod. Stererographics of 50 U.S." );
+         register("hammer", HammerProjection.class, "Hammer & Eckert-Greifendorff");
+         register("hatano", HatanoProjection.class, "Hatano Asymmetrical Equal Area");
+-        // register( "imw_p", Projection.class, "Internation Map of the World Polyconic" );
++//    register( "imw_p", Projection.class, "Internation Map of the World Polyconic" );
+         register("kav5", KavraiskyVProjection.class, "Kavraisky V");
+-        // register( "kav7", Projection.class, "Kavraisky VII" );
++//    register( "kav7", Projection.class, "Kavraisky VII" );
+         register("krovak", KrovakProjection.class, "Krovak");
+-        // register( "labrd", Projection.class, "Laborde" );
++//    register( "labrd", Projection.class, "Laborde" );
+         register("laea", LambertAzimuthalEqualAreaProjection.class, "Lambert Azimuthal Equal Area");
+         register("lagrng", LagrangeProjection.class, "Lagrange");
+         register("larr", LarriveeProjection.class, "Larrivee");
+@@ -216,44 +219,44 @@ public class Registry {
+         register("lonlat", LongLatProjection.class, "Lat/Long (Geodetic)");
+         register("lcc", LambertConformalConicProjection.class, "Lambert Conformal Conic");
+         register("leac", LambertEqualAreaConicProjection.class, "Lambert Equal Area Conic");
+-        // register( "lee_os", Projection.class, "Lee Oblated Stereographic" );
++//    register( "lee_os", Projection.class, "Lee Oblated Stereographic" );
+         register("loxim", LoximuthalProjection.class, "Loximuthal");
+         register("lsat", LandsatProjection.class, "Space oblique for LANDSAT");
+-        // register( "mbt_s", Projection.class, "McBryde-Thomas Flat-Polar Sine" );
++//    register( "mbt_s", Projection.class, "McBryde-Thomas Flat-Polar Sine" );
+         register("mbt_fps", McBrydeThomasFlatPolarSine2Projection.class, "McBryde-Thomas Flat-Pole Sine (No. 2)");
+         register("mbtfpp", McBrydeThomasFlatPolarParabolicProjection.class, "McBride-Thomas Flat-Polar Parabolic");
+         register("mbtfpq", McBrydeThomasFlatPolarQuarticProjection.class, "McBryde-Thomas Flat-Polar Quartic");
+-        // register( "mbtfps", Projection.class, "McBryde-Thomas Flat-Polar Sinusoidal" );
++//    register( "mbtfps", Projection.class, "McBryde-Thomas Flat-Polar Sinusoidal" );
+         register("merc", MercatorProjection.class, "Mercator");
+-        // register( "mil_os", Projection.class, "Miller Oblated Stereographic" );
++//    register( "mil_os", Projection.class, "Miller Oblated Stereographic" );
+         register("mill", MillerProjection.class, "Miller Cylindrical");
+-        // register( "mpoly", Projection.class, "Modified Polyconic" );
++//    register( "mpoly", Projection.class, "Modified Polyconic" );
+         register("moll", MolleweideProjection.class, "Mollweide");
+         register("murd1", Murdoch1Projection.class, "Murdoch I");
+         register("murd2", Murdoch2Projection.class, "Murdoch II");
+         register("murd3", Murdoch3Projection.class, "Murdoch III");
+         register("nell", NellProjection.class, "Nell");
+-        // register( "nell_h", Projection.class, "Nell-Hammer" );
++//    register( "nell_h", Projection.class, "Nell-Hammer" );
+         register("nicol", NicolosiProjection.class, "Nicolosi Globular");
+         register("nsper", PerspectiveProjection.class, "Near-sided perspective");
+         register("nzmg", NewZealandMapGridProjection.class, "New Zealand Map Grid");
+-        // register( "ob_tran", Projection.class, "General Oblique Transformation" );
+-        // register( "ocea", Projection.class, "Oblique Cylindrical Equal Area" );
+-        // register( "oea", Projection.class, "Oblated Equal Area" );
++//    register( "ob_tran", Projection.class, "General Oblique Transformation" );
++//    register( "ocea", Projection.class, "Oblique Cylindrical Equal Area" );
++//    register( "oea", Projection.class, "Oblated Equal Area" );
+         register("omerc", ObliqueMercatorProjection.class, "Oblique Mercator");
+-        // register( "ortel", Projection.class, "Ortelius Oval" );
++//    register( "ortel", Projection.class, "Ortelius Oval" );
+         register("ortho", OrthographicAzimuthalProjection.class, "Orthographic");
+         register("pconic", PerspectiveConicProjection.class, "Perspective Conic");
+         register("poly", PolyconicProjection.class, "Polyconic (American)");
+-        // register( "putp1", Projection.class, "Putnins P1" );
++//    register( "putp1", Projection.class, "Putnins P1" );
+         register("putp2", PutninsP2Projection.class, "Putnins P2");
+-        // register( "putp3", Projection.class, "Putnins P3" );
+-        // register( "putp3p", Projection.class, "Putnins P3'" );
++//    register( "putp3", Projection.class, "Putnins P3" );
++//    register( "putp3p", Projection.class, "Putnins P3'" );
+         register("putp4p", PutninsP4Projection.class, "Putnins P4'");
+         register("putp5", PutninsP5Projection.class, "Putnins P5");
+         register("putp5p", PutninsP5PProjection.class, "Putnins P5'");
+-        // register( "putp6", Projection.class, "Putnins P6" );
+-        // register( "putp6p", Projection.class, "Putnins P6'" );
++//    register( "putp6", Projection.class, "Putnins P6" );
++//    register( "putp6p", Projection.class, "Putnins P6'" );
+         register("qua_aut", QuarticAuthalicProjection.class, "Quartic Authalic");
+         register("robin", RobinsonProjection.class, "Robinson");
+         register("rpoly", RectangularPolyconicProjection.class, "Rectangular Polyconic");
+@@ -263,30 +266,32 @@ public class Registry {
+         register("sterea", ObliqueStereographicAlternativeProjection.class, "Oblique Stereographic Alternative");
+         register("tcc", TranverseCentralCylindricalProjection.class, "Transverse Central Cylindrical");
+         register("tcea", TransverseCylindricalEqualArea.class, "Transverse Cylindrical Equal Area");
+-        // register( "tissot", TissotProjection.class, "Tissot Conic" );
++//    register( "tissot", TissotProjection.class, "Tissot Conic" );
+         register("tmerc", TransverseMercatorProjection.class, "Transverse Mercator");
+         register("etmerc", ExtendedTransverseMercatorProjection.class, "Extended Transverse Mercator");
+-        // register( "tpeqd", Projection.class, "Two Point Equidistant" );
+-        // register( "tpers", Projection.class, "Tilted perspective" );
+-        // register( "ups", Projection.class, "Universal Polar Stereographic" );
+-        // register( "urm5", Projection.class, "Urmaev V" );
++//    register( "tpeqd", Projection.class, "Two Point Equidistant" );
++//    register( "tpers", Projection.class, "Tilted perspective" );
++//    register( "ups", Projection.class, "Universal Polar Stereographic" );
++//    register( "urm5", Projection.class, "Urmaev V" );
+         register("urmfps", UrmaevFlatPolarSinusoidalProjection.class, "Urmaev Flat-Polar Sinusoidal");
+-        register("utm", ExtendedTransverseMercatorProjection.class, "Universal Transverse Mercator (UTM)");
++        register("utm", TransverseMercatorProjection.class, "Universal Transverse Mercator (UTM)");
+         register("vandg", VanDerGrintenProjection.class, "van der Grinten (I)");
+-        // register( "vandg2", Projection.class, "van der Grinten II" );
+-        // register( "vandg3", Projection.class, "van der Grinten III" );
+-        // register( "vandg4", Projection.class, "van der Grinten IV" );
++//    register( "vandg2", Projection.class, "van der Grinten II" );
++//    register( "vandg3", Projection.class, "van der Grinten III" );
++//    register( "vandg4", Projection.class, "van der Grinten IV" );
+         register("vitk1", VitkovskyProjection.class, "Vitkovsky I");
+         register("wag1", Wagner1Projection.class, "Wagner I (Kavraisky VI)");
+         register("wag2", Wagner2Projection.class, "Wagner II");
+         register("wag3", Wagner3Projection.class, "Wagner III");
+         register("wag4", Wagner4Projection.class, "Wagner IV");
+         register("wag5", Wagner5Projection.class, "Wagner V");
+-        // register( "wag6", Projection.class, "Wagner VI" );
++//    register( "wag6", Projection.class, "Wagner VI" );
+         register("wag7", Wagner7Projection.class, "Wagner VII");
+         register("weren", WerenskioldProjection.class, "Werenskiold I");
+-        // register( "wink1", Projection.class, "Winkel I" );
+-        // register( "wink2", Projection.class, "Winkel II" );
++//    register( "wink1", Projection.class, "Winkel I" );
++//    register( "wink2", Projection.class, "Winkel II" );
+         register("wintri", WinkelTripelProjection.class, "Winkel Tripel");
+     }
++
++
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java b/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
+index 3f92ee7..2099857 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
+@@ -4,6 +4,7 @@ import org.locationtech.proj4j.ProjCoordinate;
+ import org.locationtech.proj4j.datum.Ellipsoid;
+ 
+ /**
++ *
+  * @see <a href="https://github.com/OSGeo/proj.4/issues/316">Proj.4 issue 316</a>
+  * @see <a href="https://github.com/OSGeo/proj.4/blob/master/src/proj_etmerc.c">proj_etmerc.c</a>
+  */
+@@ -11,12 +12,12 @@ public class ExtendedTransverseMercatorProjection extends CylindricalProjection
+ 
+     private static final long serialVersionUID = 1L;
+ 
+-    double Qn;    /* Merid. quad., scaled to the projection */
+-    double Zb;    /* Radius vector in polar coord. systems  */
+-    double[] cgb = new double[6]; /* Constants for Gauss -> Geo lat */
+-    double[] cbg = new double[6]; /* Constants for Geo lat -> Gauss */
+-    double[] utg = new double[6]; /* Constants for transv. merc. -> geo */
+-    double[] gtu = new double[6]; /* Constants for geo -> transv. merc. */
++    double    Qn;    /* Merid. quad., scaled to the projection */
++    double    Zb;    /* Radius vector in polar coord. systems  */
++    double[]    cgb = new double[6]; /* Constants for Gauss -> Geo lat */
++    double[]    cbg = new double[6]; /* Constants for Geo lat -> Gauss */
++    double[]    utg = new double[6]; /* Constants for transv. merc. -> geo */
++    double[]    gtu = new double[6]; /* Constants for geo -> transv. merc. */
+ 
+     /**
+      * Indicates whether a Southern Hemisphere UTM zone
+@@ -66,67 +67,67 @@ public class ExtendedTransverseMercatorProjection extends CylindricalProjection
+ 
+     static double asinhy(double x) {              /* Compute asinh(x) accurately */
+         double y = Math.abs(x);         /* Enforce odd parity */
+-        y = log1py(y * (1 + y / (Math.hypot(1.0, y) + 1)));
++        y = log1py(y * (1 + y/(Math.hypot(1.0, y) + 1)));
+         return x < 0 ? -y : y;
+     }
+ 
+     static double gatg(double[] p1, int len_p1, double B) {
+         double h = 0, h1, h2 = 0;
+ 
+-        double cos_2B = 2 * Math.cos(2 * B);
++        double cos_2B = 2*Math.cos(2*B);
+ 
+         int p1i;
+         for (p1i = len_p1, h1 = p1[--p1i]; p1i > 0; h2 = h1, h1 = h) {
+-            h = -h2 + cos_2B * h1 + p1[--p1i];
++            h = -h2 + cos_2B*h1 + p1[--p1i];
+         }
+ 
+-        return (B + h * Math.sin(2 * B));
++        return (B + h*Math.sin(2*B));
+     }
+ 
+     static double clenS(double[] a, int size, double arg_r, double arg_i, double[] R, double[] I) {
+-        double hr, hr1, hr2, hi, hi1, hi2;
++        double      hr, hr1, hr2, hi, hi1, hi2;
+ 
+         /* arguments */
+         int ai = size;
+-        double sin_arg_r = Math.sin(arg_r);
+-        double cos_arg_r = Math.cos(arg_r);
++        double sin_arg_r  = Math.sin(arg_r);
++        double cos_arg_r  = Math.cos(arg_r);
+         double sinh_arg_i = Math.sinh(arg_i);
+         double cosh_arg_i = Math.cosh(arg_i);
+-        double r = 2 * cos_arg_r * cosh_arg_i;
+-        double i = -2 * sin_arg_r * sinh_arg_i;
++        double r          =  2*cos_arg_r*cosh_arg_i;
++        double i          = -2*sin_arg_r*sinh_arg_i;
+ 
+         /* summation loop */
+-        for (hi1 = hr1 = hi = 0, hr = a[--ai]; ai > 0; ) {
++        for (hi1 = hr1 = hi = 0, hr = a[--ai]; ai > 0;) {
+             hr2 = hr1;
+             hi2 = hi1;
+             hr1 = hr;
+             hi1 = hi;
+-            hr = -hr2 + r * hr1 - i * hi1 + a[--ai];
+-            hi = -hi2 + i * hr1 + r * hi1;
++            hr  = -hr2 + r*hr1 - i*hi1 + a[--ai];
++            hi  = -hi2 + i*hr1 + r*hi1;
+         }
+ 
+-        r = sin_arg_r * cosh_arg_i;
+-        i = cos_arg_r * sinh_arg_i;
+-        R[0] = r * hr - i * hi;
+-        I[0] = r * hi + i * hr;
++        r   = sin_arg_r*cosh_arg_i;
++        i   = cos_arg_r*sinh_arg_i;
++        R[0]  = r*hr - i*hi;
++        I[0]  = r*hi + i*hr;
+         return R[0];
+     }
+ 
+     /* Real Clenshaw summation */
+     static double clens(double[] a, int size, double arg_r) {
+-        double hr, hr1, hr2;
++        double      hr, hr1, hr2;
+ 
+         int ai = size;
+-        double cos_arg_r = Math.cos(arg_r);
+-        double r = 2 * cos_arg_r;
++        double cos_arg_r  = Math.cos(arg_r);
++        double r          =  2*cos_arg_r;
+ 
+         /* summation loop */
+-        for (hr1 = 0, hr = a[--ai]; ai > 0; ) {
++        for (hr1 = 0, hr = a[--ai]; ai > 0;) {
+             hr2 = hr1;
+             hr1 = hr;
+-            hr = -hr2 + r * hr1 + a[--ai];
++            hr  = -hr2 + r*hr1 + a[--ai];
+         }
+-        return Math.sin(arg_r) * hr;
++        return Math.sin (arg_r)*hr;
+     }
+ 
+     public ProjCoordinate project(double lplam, double lpphi, ProjCoordinate xy) {
+@@ -136,23 +137,23 @@ public class ExtendedTransverseMercatorProjection extends CylindricalProjection
+         double Cn = lpphi, Ce = lplam;
+ 
+         /* ell. LAT, LNG -> Gaussian LAT, LNG */
+-        Cn = gatg(cbg, PROJ_ETMERC_ORDER, Cn);
++        Cn  = gatg (cbg, PROJ_ETMERC_ORDER, Cn);
+         /* Gaussian LAT, LNG -> compl. sph. LAT */
+-        sin_Cn = Math.sin(Cn);
+-        cos_Cn = Math.cos(Cn);
+-        sin_Ce = Math.sin(Ce);
+-        cos_Ce = Math.cos(Ce);
++        sin_Cn = Math.sin (Cn);
++        cos_Cn = Math.cos (Cn);
++        sin_Ce = Math.sin (Ce);
++        cos_Ce = Math.cos (Ce);
+ 
+-        Cn = Math.atan2(sin_Cn, cos_Ce * cos_Cn);
+-        Ce = Math.atan2(sin_Ce * cos_Cn, Math.hypot(sin_Cn, cos_Cn * cos_Ce));
++        Cn     = Math.atan2 (sin_Cn, cos_Ce*cos_Cn);
++        Ce     = Math.atan2 (sin_Ce*cos_Cn,  Math.hypot (sin_Cn, cos_Cn*cos_Ce));
+ 
+         /* compl. sph. N, E -> ell. norm. N, E */
+-        Ce = asinhy(Math.tan(Ce));     /* Replaces: Ce  = log(tan(FORTPI + Ce*0.5)); */
+-        Cn += clenS(gtu, PROJ_ETMERC_ORDER, 2 * Cn, 2 * Ce, dCn, dCe);
++        Ce  = asinhy ( Math.tan (Ce) );     /* Replaces: Ce  = log(tan(FORTPI + Ce*0.5)); */
++        Cn += clenS (gtu, PROJ_ETMERC_ORDER, 2*Cn, 2*Ce, dCn, dCe);
+         Ce += dCe[0];
+-        if (Math.abs(Ce) <= 2.623395162778) {
+-            xy.y = Qn * Cn + Zb;  /* Northing */
+-            xy.x = Qn * Ce;          /* Easting  */
++        if (Math.abs (Ce) <= 2.623395162778) {
++            xy.y  = Qn * Cn + Zb;  /* Northing */
++            xy.x  = Qn * Ce;          /* Easting  */
+         } else
+             xy.x = xy.y = HUGE_VAL;
+         return xy;
+@@ -165,23 +166,23 @@ public class ExtendedTransverseMercatorProjection extends CylindricalProjection
+         double Cn = y, Ce = x;
+ 
+         /* normalize N, E */
+-        Cn = (Cn - Zb) / Qn;
+-        Ce = Ce / Qn;
++        Cn = (Cn - Zb)/Qn;
++        Ce = Ce/Qn;
+ 
+         if (Math.abs(Ce) <= 2.623395162778) { /* 150 degrees */
+             /* norm. N, E -> compl. sph. LAT, LNG */
+-            Cn += clenS(utg, PROJ_ETMERC_ORDER, 2 * Cn, 2 * Ce, dCn, dCe);
++            Cn += clenS(utg, PROJ_ETMERC_ORDER, 2*Cn, 2*Ce, dCn, dCe);
+             Ce += dCe[0];
+-            Ce = Math.atan(Math.sinh(Ce)); /* Replaces: Ce = 2*(atan(exp(Ce)) - FORTPI); */
++            Ce = Math.atan (Math.sinh (Ce)); /* Replaces: Ce = 2*(atan(exp(Ce)) - FORTPI); */
+             /* compl. sph. LAT -> Gaussian LAT, LNG */
+-            sin_Cn = Math.sin(Cn);
+-            cos_Cn = Math.cos(Cn);
+-            sin_Ce = Math.sin(Ce);
+-            cos_Ce = Math.cos(Ce);
+-            Ce = Math.atan2(sin_Ce, cos_Ce * cos_Cn);
+-            Cn = Math.atan2(sin_Cn * cos_Ce, Math.hypot(sin_Ce, cos_Ce * cos_Cn));
++            sin_Cn = Math.sin (Cn);
++            cos_Cn = Math.cos (Cn);
++            sin_Ce = Math.sin (Ce);
++            cos_Ce = Math.cos (Ce);
++            Ce     = Math.atan2 (sin_Ce, cos_Ce*cos_Cn);
++            Cn     = Math.atan2 (sin_Cn*cos_Ce,  Math.hypot (sin_Ce, cos_Ce*cos_Cn));
+             /* Gaussian LAT, LNG -> ell. LAT, LNG */
+-            out.y = gatg(cgb, PROJ_ETMERC_ORDER, Cn);
++            out.y = gatg (cgb,  PROJ_ETMERC_ORDER, Cn);
+             out.x = Ce;
+         }
+ 
+@@ -209,79 +210,79 @@ public class ExtendedTransverseMercatorProjection extends CylindricalProjection
+         }
+ 
+         /* flattening */
+-        f = es / (1 + Math.sqrt(1 - es)); /* Replaces: f = 1 - sqrt(1-P->es); */
++        f = es / (1 + Math.sqrt (1 -  es)); /* Replaces: f = 1 - sqrt(1-P->es); */
+ 
+         /* third flattening */
+-        np = n = f / (2 - f);
++        np = n = f/(2 - f);
+ 
+         /* COEF. OF TRIG SERIES GEO <-> GAUSS */
+         /* cgb := Gaussian -> Geodetic, KW p190 - 191 (61) - (62) */
+         /* cbg := Geodetic -> Gaussian, KW p186 - 187 (51) - (52) */
+         /* PROJ_ETMERC_ORDER = 6th degree : Engsager and Poder: ICC2007 */
+ 
+-        cgb[0] = n * (2 + n * (-2 / 3.0 + n * (-2 + n * (116 / 45.0 + n * (26 / 45.0 +
+-                n * (-2854 / 675.0))))));
+-        cbg[0] = n * (-2 + n * (2 / 3.0 + n * (4 / 3.0 + n * (-82 / 45.0 + n * (32 / 45.0 +
+-                n * (4642 / 4725.0))))));
+-        np *= n;
+-        cgb[1] = np * (7 / 3.0 + n * (-8 / 5.0 + n * (-227 / 45.0 + n * (2704 / 315.0 +
+-                n * (2323 / 945.0)))));
+-        cbg[1] = np * (5 / 3.0 + n * (-16 / 15.0 + n * (-13 / 9.0 + n * (904 / 315.0 +
+-                n * (-1522 / 945.0)))));
+-        np *= n;
++        cgb[0] = n*( 2 + n*(-2/3.0  + n*(-2      + n*(116/45.0 + n*(26/45.0 +
++                    n*(-2854/675.0 ))))));
++        cbg[0] = n*(-2 + n*( 2/3.0  + n*( 4/3.0  + n*(-82/45.0 + n*(32/45.0 +
++                    n*( 4642/4725.0))))));
++        np     *= n;
++        cgb[1] = np*(7/3.0 + n*( -8/5.0  + n*(-227/45.0 + n*(2704/315.0 +
++                    n*( 2323/945.0)))));
++        cbg[1] = np*(5/3.0 + n*(-16/15.0 + n*( -13/9.0  + n*( 904/315.0 +
++                    n*(-1522/945.0)))));
++        np     *= n;
+         /* n^5 coeff corrected from 1262/105 . -1262/105 */
+-        cgb[2] = np * (56 / 15.0 + n * (-136 / 35.0 + n * (-1262 / 105.0 +
+-                n * (73814 / 2835.0))));
+-        cbg[2] = np * (-26 / 15.0 + n * (34 / 21.0 + n * (8 / 5.0 +
+-                n * (-12686 / 2835.0))));
+-        np *= n;
++        cgb[2] = np*( 56/15.0  + n*(-136/35.0 + n*(-1262/105.0 +
++                    n*( 73814/2835.0))));
++        cbg[2] = np*(-26/15.0  + n*(  34/21.0 + n*(    8/5.0   +
++                    n*(-12686/2835.0))));
++        np     *= n;
+         /* n^5 coeff corrected from 322/35 -> 332/35 */
+-        cgb[3] = np * (4279 / 630.0 + n * (-332 / 35.0 + n * (-399572 / 14175.0)));
+-        cbg[3] = np * (1237 / 630.0 + n * (-12 / 5.0 + n * (-24832 / 14175.0)));
+-        np *= n;
+-        cgb[4] = np * (4174 / 315.0 + n * (-144838 / 6237.0));
+-        cbg[4] = np * (-734 / 315.0 + n * (109598 / 31185.0));
+-        np *= n;
+-        cgb[5] = np * (601676 / 22275.0);
+-        cbg[5] = np * (444337 / 155925.0);
++        cgb[3] = np*(4279/630.0 + n*(-332/35.0 + n*(-399572/14175.0)));
++        cbg[3] = np*(1237/630.0 + n*( -12/5.0  + n*( -24832/14175.0)));
++        np     *= n;
++        cgb[4] = np*(4174/315.0 + n*(-144838/6237.0 ));
++        cbg[4] = np*(-734/315.0 + n*( 109598/31185.0));
++        np     *= n;
++        cgb[5] = np*(601676/22275.0 );
++        cbg[5] = np*(444337/155925.0);
+ 
+         /* Constants of the projections */
+         /* Transverse Mercator (UTM, ITM, etc) */
+-        np = n * n;
++        np = n*n;
+         /* Norm. mer. quad, K&W p.50 (96), p.19 (38b), p.5 (2) */
+-        Qn = scaleFactor / (1 + n) * (1 + np * (1 / 4.0 + np * (1 / 64.0 + np / 256.0)));
++        Qn = scaleFactor/(1 + n) * (1 + np*(1/4.0 + np*(1/64.0 + np/256.0)));
+         /* coef of trig series */
+         /* utg := ell. N, E -> sph. N, E,  KW p194 (65) */
+         /* gtu := sph. N, E -> ell. N, E,  KW p196 (69) */
+-        utg[0] = n * (-0.5 + n * (2 / 3.0 + n * (-37 / 96.0 + n * (1 / 360.0 +
+-                n * (81 / 512.0 + n * (-96199 / 604800.0))))));
+-        gtu[0] = n * (0.5 + n * (-2 / 3.0 + n * (5 / 16.0 + n * (41 / 180.0 +
+-                n * (-127 / 288.0 + n * (7891 / 37800.0))))));
+-        utg[1] = np * (-1 / 48.0 + n * (-1 / 15.0 + n * (437 / 1440.0 + n * (-46 / 105.0 +
+-                n * (1118711 / 3870720.0)))));
+-        gtu[1] = np * (13 / 48.0 + n * (-3 / 5.0 + n * (557 / 1440.0 + n * (281 / 630.0 +
+-                n * (-1983433 / 1935360.0)))));
+-        np *= n;
+-        utg[2] = np * (-17 / 480.0 + n * (37 / 840.0 + n * (209 / 4480.0 +
+-                n * (-5569 / 90720.0))));
+-        gtu[2] = np * (61 / 240.0 + n * (-103 / 140.0 + n * (15061 / 26880.0 +
+-                n * (167603 / 181440.0))));
+-        np *= n;
+-        utg[3] = np * (-4397 / 161280.0 + n * (11 / 504.0 + n * (830251 / 7257600.0)));
+-        gtu[3] = np * (49561 / 161280.0 + n * (-179 / 168.0 + n * (6601661 / 7257600.0)));
+-        np *= n;
+-        utg[4] = np * (-4583 / 161280.0 + n * (108847 / 3991680.0));
+-        gtu[4] = np * (34729 / 80640.0 + n * (-3418889 / 1995840.0));
+-        np *= n;
+-        utg[5] = np * (-20648693 / 638668800.0);
+-        gtu[5] = np * (212378941 / 319334400.0);
++        utg[0] = n*(-0.5  + n*( 2/3.0 + n*(-37/96.0 + n*( 1/360.0 +
++                    n*(  81/512.0 + n*(-96199/604800.0))))));
++        gtu[0] = n*( 0.5  + n*(-2/3.0 + n*(  5/16.0 + n*(41/180.0 +
++                    n*(-127/288.0 + n*(  7891/37800.0 ))))));
++        utg[1] = np*(-1/48.0 + n*(-1/15.0 + n*(437/1440.0 + n*(-46/105.0 +
++                    n*( 1118711/3870720.0)))));
++        gtu[1] = np*(13/48.0 + n*(-3/5.0  + n*(557/1440.0 + n*(281/630.0 +
++                    n*(-1983433/1935360.0)))));
++        np      *= n;
++        utg[2] = np*(-17/480.0 + n*(  37/840.0 + n*(  209/4480.0  +
++                    n*( -5569/90720.0 ))));
++        gtu[2] = np*( 61/240.0 + n*(-103/140.0 + n*(15061/26880.0 +
++                    n*(167603/181440.0))));
++        np      *= n;
++        utg[3] = np*(-4397/161280.0 + n*(  11/504.0 + n*( 830251/7257600.0)));
++        gtu[3] = np*(49561/161280.0 + n*(-179/168.0 + n*(6601661/7257600.0)));
++        np     *= n;
++        utg[4] = np*(-4583/161280.0 + n*(  108847/3991680.0));
++        gtu[4] = np*(34729/80640.0  + n*(-3418889/1995840.0));
++        np     *= n;
++        utg[5] = np*(-20648693/638668800.0);
++        gtu[5] = np*(212378941/319334400.0);
+ 
+         /* Gaussian latitude value of the origin latitude */
+-        Z = gatg(cbg, PROJ_ETMERC_ORDER, projectionLatitude);
++        Z = gatg (cbg, PROJ_ETMERC_ORDER, projectionLatitude);
+ 
+         /* Origin northing minus true northing at the origin latitude */
+         /* i.e. true northing = N - P->Zb                         */
+-        Zb = -Qn * (Z + clens(gtu, PROJ_ETMERC_ORDER, 2 * Z));
++        Zb  = - Qn*(Z + clens(gtu, PROJ_ETMERC_ORDER, 2*Z));
+     }
+ 
+     public boolean hasInverse() {
+diff --git a/src/main/java/org/locationtech/proj4j/proj/KrovakProjection.java b/src/main/java/org/locationtech/proj4j/proj/KrovakProjection.java
+index 939ea32..75a670e 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/KrovakProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/KrovakProjection.java
+@@ -31,9 +31,6 @@ import org.locationtech.proj4j.util.ProjectionMath;
+  */
+ public class KrovakProjection extends Projection {
+ 
+-    // TODO: should be set on parsing https://github.com/OSGeo/PROJ/blob/e3d7e18f988230973ced5163fa2581b6671c8755/src/projections/krovak.cpp#L219
+-    boolean czech = false;
+-
+ 	public KrovakProjection() {
+ 		minLatitude = Math.toRadians(-60);
+ 		maxLatitude = Math.toRadians(60);
+@@ -96,10 +93,12 @@ public class KrovakProjection extends Projection {
+         out.y = ro * cos(eps) / a;
+         out.x = ro * sin(eps) / a;
+ 
+-        if(!czech) {
+-            out.y *= -1.0;
+-            out.x *= -1.0;
+-        }
++        // TODO: Is the 'czech' parameter used?
++        // if( !pj_param(P->ctx, P->params, "tczech").i )
++        // {
++        //     out.y *= -1.0;
++        //     out.x *= -1.0;
++        // }
+ 
+         return out;
+     }
+@@ -145,14 +144,15 @@ public class KrovakProjection extends Projection {
+ 
+         /* Transformation */
+         /* revert y, x*/
+-        xy0 = dst.x;
+-        dst.x = dst.y;
+-        dst.y = xy0;
+-
+-        if(!czech) {
+-          dst.x *= -1.0;
+-          dst.y *= -1.0;
+-        }
++        xy0=dst.x;
++        dst.x=dst.y;
++        dst.y=xy0;
++
++        // if( !pj_param(P->ctx, P->params, "tczech").i )
++        // {
++        //     xy.x *= -1.0;
++        //     xy.y *= -1.0;
++        // }
+ 
+         ro = sqrt(dst.x * dst.x + dst.y * dst.y);
+         eps = atan2(dst.y, dst.x);
+diff --git a/src/main/java/org/locationtech/proj4j/proj/LambertConformalConicProjection.java b/src/main/java/org/locationtech/proj4j/proj/LambertConformalConicProjection.java
+index 807d0d6..fdfa5dd 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/LambertConformalConicProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/LambertConformalConicProjection.java
+@@ -30,14 +30,12 @@ public class LambertConformalConicProjection extends ConicProjection {
+ 	public LambertConformalConicProjection() {
+ 		minLatitude = Math.toRadians(0);
+ 		maxLatitude = Math.toRadians(80.0);
+-		// an incorrect init, LCC is sensitive to input parameters
+-		// init should happen only after the LCC projection parsing
+-		// projectionLatitude = ProjectionMath.QUARTERPI;
++		projectionLatitude = ProjectionMath.QUARTERPI;
+ 		projectionLatitude1 = 0;
+ 		projectionLatitude2 = 0;
+-		// initialize();
++		initialize();
+ 	}
+-
++	
+ 	/**
+ 	* Set up a projection suitable for State Place Coordinates.
+ 	*/
+@@ -52,13 +50,13 @@ public class LambertConformalConicProjection extends ConicProjection {
+ 		projectionLatitude2 = lat_2;
+ 		initialize();
+ 	}
+-
++	
+ 	public ProjCoordinate project(double x, double y, ProjCoordinate out) {
+ 		double rho;
+ 		if (Math.abs(Math.abs(y) - ProjectionMath.HALFPI) < 1e-10)
+ 			rho = 0.0;
+ 		else {
+-			rho = c * (spherical ?
++			rho = c * (spherical ? 
+ 			    Math.pow(Math.tan(ProjectionMath.QUARTERPI + .5 * y), -n) :
+ 			      Math.pow(ProjectionMath.tsfn(y, Math.sin(y), e), n));
+     }
+@@ -94,19 +92,8 @@ public class LambertConformalConicProjection extends ConicProjection {
+ 		double cosphi, sinphi;
+ 		boolean secant;
+ 
+-		// Old code:
+-		// if ( projectionLatitude1 == 0 )
+-			// projectionLatitude1 = projectionLatitude2 = projectionLatitude;
+-
+-		// https://github.com/OSGeo/PROJ/blob/e3d7e18f988230973ced5163fa2581b6671c8755/src/projections/lcc.cpp#L89-L96
+-		// if there is no lat2 set it to lat1
+-		if (projectionLatitude2 == 0) {
+-			projectionLatitude2 = projectionLatitude1;
+-			// if there is no lat0, set it to lat1
+-			if(projectionLatitude == 0)
+-				projectionLatitude = projectionLatitude1;
+-		}
+-
++		if ( projectionLatitude1 == 0 )
++			projectionLatitude1 = projectionLatitude2 = projectionLatitude;
+ 
+ 		if (Math.abs(projectionLatitude1 + projectionLatitude2) < 1e-10)
+ 			throw new ProjectionException();
+@@ -137,7 +124,7 @@ public class LambertConformalConicProjection extends ConicProjection {
+ 				c * Math.pow(Math.tan(ProjectionMath.QUARTERPI + .5 * projectionLatitude), -n);
+ 		}
+ 	}
+-
++	
+ 	/**
+ 	 * Returns true if this projection is conformal
+ 	 */
+diff --git a/src/main/java/org/locationtech/proj4j/proj/StereographicAzimuthalProjection.java b/src/main/java/org/locationtech/proj4j/proj/StereographicAzimuthalProjection.java
+index ea32e27..2837a5d 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/StereographicAzimuthalProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/StereographicAzimuthalProjection.java
+@@ -149,8 +149,7 @@ public class StereographicAzimuthalProjection extends AzimuthalProjection {
+ 				xy.x = A * cosX;
+ 				break;
+ 			case EQUATOR:
+-				// https://github.com/OSGeo/PROJ/blob/8.0.0/src/projections/stere.cpp#L77
+-				A = akm1 / (1. + cosX * coslam);
++				A = 2. * akm1 / (1. + cosX * coslam);
+ 				xy.y = A * sinX;
+ 				xy.x = A * cosX;
+ 				break;
+diff --git a/src/main/java/org/locationtech/proj4j/proj/TransverseMercatorProjection.java b/src/main/java/org/locationtech/proj4j/proj/TransverseMercatorProjection.java
+index eccce4d..44a3d0b 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/TransverseMercatorProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/TransverseMercatorProjection.java
+@@ -24,197 +24,197 @@ import org.locationtech.proj4j.datum.Ellipsoid;
+ import org.locationtech.proj4j.util.ProjectionMath;
+ 
+ /**
+- * Transverse Mercator Projection algorithm is taken from the USGS PROJ package.
+- */
++* Transverse Mercator Projection algorithm is taken from the USGS PROJ package.
++*/
+ public class TransverseMercatorProjection extends CylindricalProjection {
+ 
+-    private final static double FC1 = 1.0;
+-    private final static double FC2 = 0.5;
+-    private final static double FC3 = 0.16666666666666666666;
+-    private final static double FC4 = 0.08333333333333333333;
+-    private final static double FC5 = 0.05;
+-    private final static double FC6 = 0.03333333333333333333;
+-    private final static double FC7 = 0.02380952380952380952;
+-    private final static double FC8 = 0.01785714285714285714;
+-
+-    /**
+-     * Indicates whether a Southern Hemisphere UTM zone
+-     */
+-    protected boolean isSouth = false;
+-    private int utmZone = -1;
+-    private double esp;
+-    private double ml0;
+-    private double[] en;
+-
+-    public TransverseMercatorProjection() {
+-        ellipsoid = Ellipsoid.GRS80;
+-        projectionLatitude = Math.toRadians(0);
+-        projectionLongitude = Math.toRadians(0);
+-        minLongitude = Math.toRadians(-90);
+-        maxLongitude = Math.toRadians(90);
+-        initialize();
+-    }
+-
+-    /**
+-     * Set up a projection suitable for State Plane Coordinates.
+-     */
+-    public TransverseMercatorProjection(Ellipsoid ellipsoid, double lon_0, double lat_0, double k, double x_0, double y_0) {
+-        setEllipsoid(ellipsoid);
+-        projectionLongitude = lon_0;
+-        projectionLatitude = lat_0;
+-        scaleFactor = k;
+-        falseEasting = x_0;
+-        falseNorthing = y_0;
+-        initialize();
+-    }
+-
+-    @Override
+-    public void setSouthernHemisphere(boolean isSouth) {
+-        this.isSouth = isSouth;
+-    }
+-
+-    @Override
+-    public boolean getSouthernHemisphere() {
+-        return isSouth;
+-    }
+-
+-    public Object clone() {
+-        TransverseMercatorProjection p = (TransverseMercatorProjection) super.clone();
+-        if (en != null)
+-            p.en = (double[]) en.clone();
+-        return p;
+-    }
+-
+-    public boolean isRectilinear() {
+-        return false;
+-    }
+-
+-    public void initialize() {
+-        super.initialize();
+-        if (spherical) {
+-            esp = scaleFactor;
+-            ml0 = .5 * esp;
+-        } else {
+-            en = ProjectionMath.enfn(es);
+-            ml0 = ProjectionMath.mlfn(projectionLatitude, Math.sin(projectionLatitude), Math.cos(projectionLatitude), en);
+-            esp = es / (1. - es);
+-        }
+-    }
+-
+-    public static int getRowFromNearestParallel(double latitude) {
+-        int degrees = (int) ProjectionMath.radToDeg(ProjectionMath.normalizeLatitude(latitude));
+-        if (degrees < -80 || degrees > 84)
+-            return 0;
+-        if (degrees > 80)
+-            return 24;
+-        return (degrees + 80) / 8 + 3;
+-    }
+-
+-    public static int getZoneFromNearestMeridian(double longitude) {
+-        int zone = (int) Math.floor((ProjectionMath.normalizeLongitude(longitude) + Math.PI) * 30.0 / Math.PI) + 1;
+-        if (zone < 1)
+-            zone = 1;
+-        else if (zone > 60)
+-            zone = 60;
+-        return zone;
+-    }
+-
+-    public void setUTMZone(int zone) {
+-        utmZone = zone;
+-        zone--;
+-        projectionLongitude = (zone + .5) * Math.PI / 30. - Math.PI;
+-        projectionLatitude = 0.0;
+-        scaleFactor = 0.9996;
+-        falseEasting = 500000;
+-        falseNorthing = isSouth ? 10000000.0 : 0.0;
+-        initialize();
+-    }
+-
+-    public ProjCoordinate project(double lplam, double lpphi, ProjCoordinate xy) {
+-        if (spherical) {
+-            double cosphi = Math.cos(lpphi);
+-            double b = cosphi * Math.sin(lplam);
+-
+-            xy.x = ml0 * scaleFactor * Math.log((1. + b) / (1. - b));
+-            double ty = cosphi * Math.cos(lplam) / Math.sqrt(1. - b * b);
+-            ty = ProjectionMath.acos(ty);
+-            if (lpphi < 0.0)
+-                ty = -ty;
+-            xy.y = esp * (ty - projectionLatitude);
+-        } else {
+-            double al, als, n, t;
+-            double sinphi = Math.sin(lpphi);
+-            double cosphi = Math.cos(lpphi);
+-            t = Math.abs(cosphi) > 1e-10 ? sinphi / cosphi : 0.0;
+-            t *= t;
+-            al = cosphi * lplam;
+-            als = al * al;
+-            al /= Math.sqrt(1. - es * sinphi * sinphi);
+-            n = esp * cosphi * cosphi;
+-            xy.x = scaleFactor * al * (FC1 +
+-                    FC3 * als * (1. - t + n +
+-                            FC5 * als * (5. + t * (t - 18.) + n * (14. - 58. * t)
+-                                    + FC7 * als * (61. + t * (t * (179. - t) - 479.))
+-                            )));
+-            xy.y = scaleFactor * (ProjectionMath.mlfn(lpphi, sinphi, cosphi, en) - ml0 +
+-                    sinphi * al * lplam * FC2 * (1. +
+-                            FC4 * als * (5. - t + n * (9. + 4. * n) +
+-                                    FC6 * als * (61. + t * (t - 58.) + n * (270. - 330 * t)
+-                                            + FC8 * als * (1385. + t * (t * (543. - t) - 3111.))
+-                                    ))));
+-        }
+-        return xy;
+-    }
+-
+-    public ProjCoordinate projectInverse(double x, double y, ProjCoordinate out) {
+-        if (spherical) {
+-            double h = Math.exp(x / scaleFactor);
+-            double g = .5 * (h - 1. / h);
+-            h = Math.cos(projectionLatitude + y / scaleFactor);
+-            out.y = ProjectionMath.asin(Math.sqrt((1. - h * h) / (1. + g * g)));
+-            if (y < 0)
+-                out.y = -out.y;
+-            out.x = Math.atan2(g, h);
+-        } else {
+-            double n, con, cosphi, d, ds, sinphi, t;
+-
+-            out.y = ProjectionMath.inv_mlfn(ml0 + y / scaleFactor, es, en);
+-            if (Math.abs(y) >= ProjectionMath.HALFPI) {
+-                out.y = y < 0. ? -ProjectionMath.HALFPI : ProjectionMath.HALFPI;
+-                out.x = 0.;
+-            } else {
+-                sinphi = Math.sin(out.y);
+-                cosphi = Math.cos(out.y);
+-                t = Math.abs(cosphi) > 1e-10 ? sinphi / cosphi : 0.;
+-                n = esp * cosphi * cosphi;
+-                d = x * Math.sqrt(con = 1. - es * sinphi * sinphi) / scaleFactor;
+-                con *= t;
+-                t *= t;
+-                ds = d * d;
+-                out.y -= (con * ds / (1. - es)) * FC2 * (1. -
+-                        ds * FC4 * (5. + t * (3. - 9. * n) + n * (1. - 4 * n) -
+-                                ds * FC6 * (61. + t * (90. - 252. * n +
+-                                        45. * t) + 46. * n
+-                                        - ds * FC8 * (1385. + t * (3633. + t * (4095. + 1574. * t)))
+-                                )));
+-                out.x = d * (FC1 -
+-                        ds * FC3 * (1. + 2. * t + n -
+-                                ds * FC5 * (5. + t * (28. + 24. * t + 8. * n) + 6. * n
+-                                        - ds * FC7 * (61. + t * (662. + t * (1320. + 720. * t)))
+-                                ))) / cosphi;
+-            }
+-        }
+-        return out;
+-    }
+-
+-    public boolean hasInverse() {
+-        return true;
+-    }
+-
+-    public String toString() {
+-        if (utmZone >= 0)
+-            return "Universal Tranverse Mercator";
+-        return "Transverse Mercator";
+-    }
++	private final static double FC1 = 1.0;
++	private final static double FC2 = 0.5;
++	private final static double FC3 = 0.16666666666666666666;
++	private final static double FC4 = 0.08333333333333333333;
++	private final static double FC5 = 0.05;
++	private final static double FC6 = 0.03333333333333333333;
++	private final static double FC7 = 0.02380952380952380952;
++	private final static double FC8 = 0.01785714285714285714;
++
++	/**
++	 * Indicates whether a Southern Hemisphere UTM zone
++	 */
++	protected boolean isSouth = false;
++  private int utmZone = -1;
++	private double esp;
++	private double ml0;
++	private double[] en;
++
++	public TransverseMercatorProjection() {
++		ellipsoid = Ellipsoid.GRS80;
++		projectionLatitude = Math.toRadians(0);
++		projectionLongitude = Math.toRadians(0);
++		minLongitude = Math.toRadians(-90);
++		maxLongitude = Math.toRadians(90);
++		initialize();
++	}
++
++	/**
++	* Set up a projection suitable for State Plane Coordinates.
++	*/
++	public TransverseMercatorProjection(Ellipsoid ellipsoid, double lon_0, double lat_0, double k, double x_0, double y_0) {
++		setEllipsoid(ellipsoid);
++		projectionLongitude = lon_0;
++		projectionLatitude = lat_0;
++		scaleFactor = k;
++		falseEasting = x_0;
++		falseNorthing = y_0;
++		initialize();
++	}
++
++	@Override
++	public void setSouthernHemisphere(boolean isSouth) {
++		this.isSouth = isSouth;
++	}
++
++	@Override
++	public boolean getSouthernHemisphere() {
++		return isSouth;
++	}
++
++	public Object clone() {
++		TransverseMercatorProjection p = (TransverseMercatorProjection)super.clone();
++		if (en != null)
++			p.en = (double[])en.clone();
++		return p;
++	}
++
++	public boolean isRectilinear() {
++		return false;
++	}
++
++	public void initialize() {
++		super.initialize();
++		if (spherical) {
++			esp = scaleFactor;
++			ml0 = .5 * esp;
++		} else {
++			en = ProjectionMath.enfn(es);
++			ml0 = ProjectionMath.mlfn(projectionLatitude, Math.sin(projectionLatitude), Math.cos(projectionLatitude), en);
++			esp = es / (1. - es);
++		}
++	}
++
++	public static int getRowFromNearestParallel(double latitude) {
++		int degrees = (int)ProjectionMath.radToDeg(ProjectionMath.normalizeLatitude(latitude));
++		if (degrees < -80 || degrees > 84)
++			return 0;
++		if (degrees > 80)
++			return 24;
++		return (degrees + 80) / 8 + 3;
++	}
++
++	public static int getZoneFromNearestMeridian(double longitude) {
++		int zone = (int)Math.floor((ProjectionMath.normalizeLongitude(longitude) + Math.PI) * 30.0 / Math.PI) + 1;
++		if (zone < 1)
++			zone = 1;
++		else if (zone > 60)
++			zone = 60;
++		return zone;
++	}
++
++	public void setUTMZone(int zone) {
++    utmZone = zone;
++		zone--;
++		projectionLongitude = (zone + .5) * Math.PI / 30. -Math.PI;
++		projectionLatitude = 0.0;
++		scaleFactor = 0.9996;
++    falseEasting = 500000;
++    falseNorthing = isSouth ? 10000000.0 : 0.0;
++		initialize();
++	}
++
++	public ProjCoordinate project(double lplam, double lpphi, ProjCoordinate xy) {
++		if (spherical) {
++			double cosphi = Math.cos(lpphi);
++			double b = cosphi * Math.sin(lplam);
++
++			xy.x = ml0 * scaleFactor * Math.log((1. + b) / (1. - b));
++			double ty = cosphi * Math.cos(lplam) / Math.sqrt(1. - b * b);
++			ty = ProjectionMath.acos(ty);
++			if (lpphi < 0.0)
++				ty = -ty;
++			xy.y = esp * (ty - projectionLatitude);
++		} else {
++			double al, als, n, t;
++			double sinphi = Math.sin(lpphi);
++			double cosphi = Math.cos(lpphi);
++			t = Math.abs(cosphi) > 1e-10 ? sinphi/cosphi : 0.0;
++			t *= t;
++			al = cosphi * lplam;
++			als = al * al;
++			al /= Math.sqrt(1. - es * sinphi * sinphi);
++			n = esp * cosphi * cosphi;
++			xy.x = scaleFactor * al * (FC1 +
++				FC3 * als * (1. - t + n +
++				FC5 * als * (5. + t * (t - 18.) + n * (14. - 58. * t)
++				+ FC7 * als * (61. + t * ( t * (179. - t) - 479. ) )
++			)));
++			xy.y = scaleFactor * (ProjectionMath.mlfn(lpphi, sinphi, cosphi, en) - ml0 +
++				sinphi * al * lplam * FC2 * ( 1. +
++				FC4 * als * (5. - t + n * (9. + 4. * n) +
++				FC6 * als * (61. + t * (t - 58.) + n * (270. - 330 * t)
++				+ FC8 * als * (1385. + t * ( t * (543. - t) - 3111.) )
++			))));
++		}
++		return xy;
++	}
++
++	public ProjCoordinate projectInverse(double x, double y, ProjCoordinate out) {
++		if (spherical) {
++			double h = Math.exp(x / scaleFactor);
++			double g = .5 * (h - 1. / h);
++			h = Math.cos(projectionLatitude + y / scaleFactor);
++			out.y = ProjectionMath.asin(Math.sqrt((1. - h*h) / (1. + g*g)));
++			if (y < 0)
++				out.y = -out.y;
++			out.x = Math.atan2(g, h);
++		} else {
++			double n, con, cosphi, d, ds, sinphi, t;
++
++			out.y = ProjectionMath.inv_mlfn(ml0 + y/scaleFactor, es, en);
++			if (Math.abs(y) >= ProjectionMath.HALFPI) {
++				out.y = y < 0. ? -ProjectionMath.HALFPI : ProjectionMath.HALFPI;
++				out.x = 0.;
++			} else {
++				sinphi = Math.sin(out.y);
++				cosphi = Math.cos(out.y);
++				t = Math.abs(cosphi) > 1e-10 ? sinphi/cosphi : 0.;
++				n = esp * cosphi * cosphi;
++				d = x * Math.sqrt(con = 1. - es * sinphi * sinphi) / scaleFactor;
++				con *= t;
++				t *= t;
++				ds = d * d;
++				out.y -= (con * ds / (1.-es)) * FC2 * (1. -
++					ds * FC4 * (5. + t * (3. - 9. *  n) + n * (1. - 4 * n) -
++					ds * FC6 * (61. + t * (90. - 252. * n +
++						45. * t) + 46. * n
++					- ds * FC8 * (1385. + t * (3633. + t * (4095. + 1574. * t)) )
++				)));
++				out.x = d*(FC1 -
++					ds*FC3*( 1. + 2.*t + n -
++					ds*FC5*(5. + t*(28. + 24.*t + 8.*n) + 6.*n
++					- ds * FC7 * (61. + t * (662. + t * (1320. + 720. * t)) )
++				))) / cosphi;
++			}
++		}
++		return out;
++	}
++
++	public boolean hasInverse() {
++		return true;
++	}
++
++	public String toString() {
++    if (utmZone >= 0)
++      return "Universal Tranverse Mercator";
++		return "Transverse Mercator";
++	}
+ 
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/TranverseCentralCylindricalProjection.java b/src/main/java/org/locationtech/proj4j/proj/TranverseCentralCylindricalProjection.java
+index 69e3f4f..51fc70d 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/TranverseCentralCylindricalProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/TranverseCentralCylindricalProjection.java
+@@ -25,28 +25,28 @@ import org.locationtech.proj4j.util.ProjectionMath;
+ 
+ public class TranverseCentralCylindricalProjection extends CylindricalProjection {
+ 
+-    public TranverseCentralCylindricalProjection() {
+-        minLongitude = ProjectionMath.degToRad(-60);
+-        maxLongitude = ProjectionMath.degToRad(60);
+-    }
+-
+-    public ProjCoordinate project(double lplam, double lpphi, ProjCoordinate out) {
+-        double b, bt;
+-
+-        b = Math.cos(lpphi) * Math.sin(lplam);
+-        if ((bt = 1. - b * b) < EPS10)
+-            throw new ProjectionException("F");
+-        out.x = b / Math.sqrt(bt);
+-        out.y = Math.atan2(Math.tan(lpphi), Math.cos(lplam));
+-        return out;
+-    }
+-
+-    public boolean isRectilinear() {
+-        return false;
+-    }
+-
+-    public String toString() {
+-        return "Transverse Central Cylindrical";
+-    }
++	public TranverseCentralCylindricalProjection() {
++		minLongitude = ProjectionMath.degToRad(-60);
++		maxLongitude = ProjectionMath.degToRad(60);
++	}
++	
++	public ProjCoordinate project(double lplam, double lpphi, ProjCoordinate out) {
++		double b, bt;
++
++		b = Math.cos(lpphi) * Math.sin(lplam);
++		if ((bt = 1. - b * b) < EPS10)
++			throw new ProjectionException("F");
++		out.x = b / Math.sqrt(bt);
++		out.y = Math.atan2(Math.tan(lpphi), Math.cos(lplam));
++		return out;
++	}
++
++	public boolean isRectilinear() {
++		return false;
++	}
++
++	public String toString() {
++		return "Transverse Central Cylindrical";
++	}
+ 
+ }

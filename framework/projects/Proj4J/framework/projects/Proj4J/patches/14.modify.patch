@@ -1,0 +1,138 @@
+diff --git a/src/main/java/org/locationtech/proj4j/BasicCoordinateTransform.java b/src/main/java/org/locationtech/proj4j/BasicCoordinateTransform.java
+index 8e0b443..45ed5d2 100755
+--- a/src/main/java/org/locationtech/proj4j/BasicCoordinateTransform.java
++++ b/src/main/java/org/locationtech/proj4j/BasicCoordinateTransform.java
+@@ -15,6 +15,8 @@
+  */
+ package org.locationtech.proj4j;
+ 
++import java.util.Arrays;
++
+ import org.locationtech.proj4j.datum.*;
+ 
+ /**
+@@ -39,6 +41,9 @@ import org.locationtech.proj4j.datum.*;
+  * <pre>
+  * [ SrcProjCRS {InverseProjection} ] SrcGeoCRS [ {Datum Conversion} ] TgtGeoCRS [ {Projection} TgtProjCRS ]
+  * </pre>
++ * <tt>BasicCoordinateTransform</tt> objects are stateful,
++ * and thus are not thread-safe.
++ * However, they may be reused any number of times within a single thread.
+  * <p>
+  * Information about the transformation procedure is pre-computed
+  * and cached in this object for efficient computation.
+@@ -48,14 +53,17 @@ import org.locationtech.proj4j.datum.*;
+  */
+ public class BasicCoordinateTransform implements CoordinateTransform {
+ 
+-    private final CoordinateReferenceSystem srcCRS;
+-    private final CoordinateReferenceSystem tgtCRS;
++    private CoordinateReferenceSystem srcCRS;
++    private CoordinateReferenceSystem tgtCRS;
++
++    // temporary variable for intermediate results
++    private ProjCoordinate geoCoord = new ProjCoordinate(0, 0);
+ 
+     // precomputed information
+-    private final boolean doInverseProjection;
+-    private final boolean doForwardProjection;
+-    private final boolean doDatumTransform;
+-    private final boolean transformViaGeocentric;
++    private boolean doInverseProjection = true;
++    private boolean doForwardProjection = true;
++    private boolean doDatumTransform = false;
++    private boolean transformViaGeocentric = false;
+     private GeocentricConverter srcGeoConv;
+     private GeocentricConverter tgtGeoConv;
+ 
+@@ -74,16 +82,19 @@ public class BasicCoordinateTransform implements CoordinateTransform {
+         // compute strategy for transformation at initialization time, to make transformation more efficient
+         // this may include precomputing sets of parameters
+ 
+-        doInverseProjection = (srcCRS != CoordinateReferenceSystem.CS_GEO);
+-        doForwardProjection = (tgtCRS != CoordinateReferenceSystem.CS_GEO);
++        doInverseProjection = (srcCRS != null && srcCRS != CoordinateReferenceSystem.CS_GEO);
++        doForwardProjection = (tgtCRS != null && tgtCRS != CoordinateReferenceSystem.CS_GEO);
+         doDatumTransform = doInverseProjection && doForwardProjection
+                 && srcCRS.getDatum() != tgtCRS.getDatum();
+ 
+         if (doDatumTransform) {
+ 
+             boolean isEllipsoidEqual = srcCRS.getDatum().getEllipsoid().isEqual(tgtCRS.getDatum().getEllipsoid());
+-            transformViaGeocentric = ! isEllipsoidEqual || srcCRS.getDatum().hasTransformToWGS84()
+-                    || tgtCRS.getDatum().hasTransformToWGS84();
++            if (!isEllipsoidEqual)
++                transformViaGeocentric = true;
++            if (srcCRS.getDatum().hasTransformToWGS84()
++                    || tgtCRS.getDatum().hasTransformToWGS84())
++                transformViaGeocentric = true;
+ 
+             if (transformViaGeocentric) {
+                 srcGeoConv = new GeocentricConverter(srcCRS.getDatum().getEllipsoid());
+@@ -98,18 +109,14 @@ public class BasicCoordinateTransform implements CoordinateTransform {
+                 }
+             }
+ 
+-        } else {
+-        	transformViaGeocentric=false;
+         }
+     }
+ 
+-    @Override
+-	public CoordinateReferenceSystem getSourceCRS() {
++    public CoordinateReferenceSystem getSourceCRS() {
+         return srcCRS;
+     }
+ 
+-    @Override
+-	public CoordinateReferenceSystem getTargetCRS() {
++    public CoordinateReferenceSystem getTargetCRS() {
+         return tgtCRS;
+     }
+ 
+@@ -124,32 +131,35 @@ public class BasicCoordinateTransform implements CoordinateTransform {
+      * @throws Proj4jException if a computation error is encountered
+      */
+     // transform corresponds to the pj_transform function in proj.4
+-    @Override
+-	public ProjCoordinate transform(ProjCoordinate src, ProjCoordinate tgt)
++    public ProjCoordinate transform(ProjCoordinate src, ProjCoordinate tgt)
+             throws Proj4jException {
+-    	tgt.setValue(src);
+-        srcCRS.getProjection().getAxisOrder().toENU(tgt);
++        geoCoord.setValue(src);
++        srcCRS.getProjection().getAxisOrder().toENU(geoCoord);
+ 
+         // NOTE: this method may be called many times, so needs to be as efficient as possible
+         if (doInverseProjection) {
+             // inverse project to geographic
+-            srcCRS.getProjection().inverseProjectRadians(tgt, tgt);
++            ProjCoordinate coord = new ProjCoordinate();
++            coord.setValue(geoCoord);
++            srcCRS.getProjection().inverseProjectRadians(coord, geoCoord);
+         }
+ 
+-        srcCRS.getProjection().getPrimeMeridian().toGreenwich(tgt);
++        srcCRS.getProjection().getPrimeMeridian().toGreenwich(geoCoord);
+ 
+         // fixes bug where computed Z value sticks around
+-        tgt.clearZ();
++        geoCoord.clearZ();
+ 
+         if (doDatumTransform) {
+-            datumTransform(tgt);
++            datumTransform(geoCoord);
+         }
+ 
+-        tgtCRS.getProjection().getPrimeMeridian().fromGreenwich(tgt);
++        tgtCRS.getProjection().getPrimeMeridian().fromGreenwich(geoCoord);
+ 
+         if (doForwardProjection) {
+             // project from geographic to planar
+-            tgtCRS.getProjection().projectRadians(tgt, tgt);
++            tgtCRS.getProjection().projectRadians(geoCoord, tgt);
++        } else {
++            tgt.setValue(geoCoord);
+         }
+ 
+         tgtCRS.getProjection().getAxisOrder().fromENU(tgt);

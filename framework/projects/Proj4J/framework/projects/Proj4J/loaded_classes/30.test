@@ -1,0 +1,7 @@
+org.locationtech.proj4j.BaseCoordinateTransformTest
+org.locationtech.proj4j.CoordinateTransformTester
+org.locationtech.proj4j.io.CSVRecordParser
+org.locationtech.proj4j.io.MetaCRSTestCase
+org.locationtech.proj4j.io.MetaCRSTestFileReader
+org.locationtech.proj4j.MetaCRSTest
+org.locationtech.proj4j.Proj4JSTest

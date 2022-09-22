@@ -1,0 +1,271 @@
+diff --git a/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java b/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
+index 876b70e..5149d3d 100755
+--- a/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
++++ b/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
+@@ -53,7 +53,6 @@ public class Proj4Keyword {
+     public static final String R_lat_a = "R_lat_a";
+     public static final String R_lat_g = "R_lat_g";
+     public static final String rf = "rf";
+-    public static final String h = "h";
+ 
+     public static final String south = "south";
+     public static final String to_meter = "to_meter";
+@@ -84,7 +83,6 @@ public class Proj4Keyword {
+             supportedParams.add(b);
+             supportedParams.add(datum);
+             supportedParams.add(ellps);
+-            supportedParams.add(h);
+ 
+             supportedParams.add(R_A);
+ 
+diff --git a/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java b/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
+index 4d7a7e5..7d71987 100755
+--- a/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
++++ b/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
+@@ -139,11 +139,6 @@ public class Proj4Parser {
+         s = (String) params.get(Proj4Keyword.to_meter);
+         if (s != null)
+             projection.setFromMetres(1.0 / Double.parseDouble(s));
+-        
+-        s = (String) params.get(Proj4Keyword.h);
+-        if (s != null) {
+-            projection.setHeightOfOrbit(Double.parseDouble(s));
+-        }
+ 
+         if (params.containsKey(Proj4Keyword.south))
+             projection.setSouthernHemisphere(true);
+diff --git a/src/main/java/org/locationtech/proj4j/proj/GeostationarySatelliteProjection.java b/src/main/java/org/locationtech/proj4j/proj/GeostationarySatelliteProjection.java
+deleted file mode 100644
+index f4d6dac..0000000
+--- a/src/main/java/org/locationtech/proj4j/proj/GeostationarySatelliteProjection.java
++++ /dev/null
+@@ -1,190 +0,0 @@
+-/*
+- * To change this template, choose Tools | Templates
+- * and open the template in the editor.
+- */
+-package org.locationtech.proj4j.proj;
+-
+-import org.locationtech.proj4j.ProjCoordinate;
+-import org.locationtech.proj4j.ProjectionException;
+-import org.locationtech.proj4j.util.ProjectionMath;
+-
+-/**
+- *
+- * @author yaqiang
+- */
+-public class GeostationarySatelliteProjection extends Projection {
+-
+-    private double _radiusP;
+-    private double _radiusP2;
+-    private double _radiusPInv2;
+-    private double _radiusG;
+-    private double _radiusG1;
+-    private double _c;    
+-
+-    /**
+-     * Constructor
+-     */
+-    public GeostationarySatelliteProjection() {
+-        name = "Geostationary";
+-        initialize();
+-    }
+-
+-    @Override
+-    public void initialize() {
+-        super.initialize();
+-        _radiusG = 1 + (_radiusG1 = heightOfOrbit / a);
+-        _c = _radiusG * _radiusG - 1.0;
+-        if (!this.spherical) {
+-            _radiusP = Math.sqrt(one_es);
+-            _radiusP2 = one_es;
+-            _radiusPInv2 = rone_es;
+-        } else {
+-            _radiusP = _radiusP2 = _radiusPInv2 = 1.0;
+-        }
+-    }
+-
+-    @Override
+-    public ProjCoordinate project(double lplam, double lpphi, ProjCoordinate out) {
+-        if (spherical) {
+-            project_s(lplam, lpphi, out);
+-        } else {
+-            project_e(lplam, lpphi, out);
+-        }
+-        return out;
+-    }
+-
+-    public void project_s(double lplam, double lpphi, ProjCoordinate out) {
+-        /* Calculation of the three components of the vector from satellite to
+-         ** position on earth surface (lon,lat).*/
+-        double tmp = Math.cos(lpphi);
+-        double vx = Math.cos(lplam) * tmp;
+-        double vy = Math.sin(lplam) * tmp;
+-        double vz = Math.sin(lpphi);
+-
+-        /* Check visibility.*/
+-        if (((_radiusG - vx) * vx - vy * vy - vz * vz) < 0) {
+-            out.x = Double.NaN;
+-            out.y = Double.NaN;
+-            //throw new ProjectionException(20);
+-            return;
+-        }
+-
+-        /* Calculation based on view angles from satellite.*/
+-        tmp = _radiusG - vx;
+-        out.x = _radiusG1 * Math.atan(vy / tmp);
+-        out.y = _radiusG1 * Math.atan(vz / ProjectionMath.hypot(vy, tmp));
+-    }
+-
+-    public void project_e(double lplam, double lpphi, ProjCoordinate out) {
+-        /* Calculation of geocentric latitude. */
+-        lpphi = Math.atan(_radiusP2 * Math.tan(lpphi));
+-
+-        /* Calculation of the three components of the vector from satellite to
+-         ** position on earth surface (lon,lat).*/
+-        double r = (_radiusP) / ProjectionMath.hypot(_radiusP * Math.cos(lpphi), Math.sin(lpphi));
+-        double vx = r * Math.cos(lplam) * Math.cos(lpphi);
+-        double vy = r * Math.sin(lplam) * Math.cos(lpphi);
+-        double vz = r * Math.sin(lpphi);
+-
+-        /* Check visibility. */
+-        if (((_radiusG - vx) * vx - vy * vy - vz * vz * _radiusPInv2) < 0) {
+-            out.x = Double.NaN;
+-            out.y = Double.NaN;
+-            //throw new ProjectionException(20);
+-            return;
+-        }
+-
+-        /* Calculation based on view angles from satellite. */
+-        double tmp = _radiusG - vx;
+-        out.x = _radiusG1 * Math.atan(vy / tmp);
+-        out.y = _radiusG1 * Math.atan(vz / ProjectionMath.hypot(vy, tmp));
+-    }
+-
+-    @Override
+-    public ProjCoordinate projectInverse(double xyx, double xyy, ProjCoordinate out) {
+-        if (spherical) {
+-            projectInverse_s(xyx, xyy, out);
+-        } else {
+-            projectInverse_e(xyx, xyy, out);
+-        }
+-        return out;
+-    }
+-
+-    public void projectInverse_s(double xyx, double xyy, ProjCoordinate out) {
+-        double det;
+-
+-        /* Setting three components of vector from satellite to position.*/
+-        double vx = -1.0;
+-        double vy = Math.tan(xyx / (_radiusG - 1.0));
+-        double vz = Math.tan(xyy / (_radiusG - 1.0)) * Math.sqrt(1.0 + vy * vy);
+-
+-        /* Calculation of terms in cubic equation and determinant.*/
+-        double a = vy * vy + vz * vz + vx * vx;
+-        double b = 2 * _radiusG * vx;
+-        if ((det = (b * b) - 4 * a * _c) < 0) {
+-            throw new ProjectionException();
+-        }
+-
+-        /* Calculation of three components of vector from satellite to position.*/
+-        double k = (-b - Math.sqrt(det)) / (2 * a);
+-        vx = _radiusG + k * vx;
+-        vy *= k;
+-        vz *= k;
+-
+-        /* Calculation of longitude and latitude.*/
+-        double lplam = Math.atan2(vy, vx);
+-        double lpphi = Math.atan(vz * Math.cos(lplam) / vx);
+-
+-        out.x = lplam;
+-        out.y = lpphi;
+-    }
+-
+-    public void projectInverse_e(double xyx, double xyy, ProjCoordinate out) {
+-        double det;
+-
+-        /* Setting three components of vector from satellite to position.*/
+-        double vx = -1.0;
+-        double vy = Math.tan(xyx / _radiusG1);
+-        double vz = Math.tan(xyy / _radiusG1) * ProjectionMath.hypot(1.0, vy);
+-
+-        /* Calculation of terms in cubic equation and determinant.*/
+-        double a = vz / _radiusP;
+-        a = vy * vy + a * a + vx * vx;
+-        double b = 2 * _radiusG * vx;
+-        if ((det = (b * b) - 4 * a * _c) < 0) {
+-            throw new ProjectionException();
+-        }
+-
+-        /* Calculation of three components of vector from satellite to position.*/
+-        double k = (-b - Math.sqrt(det)) / (2 * a);
+-        vx = _radiusG + k * vx;
+-        vy *= k;
+-        vz *= k;
+-
+-        /* Calculation of longitude and latitude.*/
+-        double lplam = Math.atan2(vy, vx);
+-        double lpphi = Math.atan(vz * Math.cos(lplam) / vx);
+-        lpphi = Math.atan(_radiusPInv2 * Math.tan(lpphi));
+-
+-        out.x = lplam;
+-        out.y = lpphi;
+-    }
+-
+-    /**
+-     * Returns true if this projection is equal area
+-     */
+-    @Override
+-    public boolean isEqualArea() {
+-        return false;
+-    }
+-
+-    @Override
+-    public boolean hasInverse() {
+-        return true;
+-    }
+-
+-    @Override
+-    public String toString() {
+-        return "Geostationary Satellite";
+-    }
+-}
+diff --git a/src/main/java/org/locationtech/proj4j/proj/Projection.java b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+index 35c6f42..76555cc 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/Projection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+@@ -191,11 +191,6 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+      * northing, vertical (up)
+      */
+     private AxisOrder axes = AxisOrder.ENU;
+-    
+-    /**
+-     * Height of orbit - Geostationary satellite projection
+-     */
+-    protected double heightOfOrbit = 35785831.0;
+ 
+     // Some useful constants
+     protected final static double EPS10 = 1e-10;
+@@ -767,22 +762,6 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+     public Unit getUnits() {
+         return this.unit;
+     }
+-    
+-    /**
+-     * Get height of orbit - Geostationary satellite projection
+-     * @return Height of orbit
+-     */
+-    public double getHeightOfOrbit(){
+-        return this.heightOfOrbit;
+-    }
+-    
+-    /**
+-     * Set height of orbit - Geostationary satellite projection
+-     * @param h Height of orbit
+-     */
+-    public void setHeightOfOrbit(double h){
+-        this.heightOfOrbit = h;
+-    }
+ 
+     /**
+      * Initialize the projection. This should be called after setting parameters and before using the projection.

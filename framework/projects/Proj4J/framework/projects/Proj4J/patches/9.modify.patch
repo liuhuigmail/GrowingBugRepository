@@ -1,0 +1,94 @@
+diff --git a/pom.xml b/pom.xml
+index e1e0032..893d89b 100755
+--- a/pom.xml
++++ b/pom.xml
+@@ -2,24 +2,13 @@
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+     <modelVersion>4.0.0</modelVersion>
+ 
+-    <groupId>org.locationtech.proj4j</groupId>
++    <groupId>org.osgeo</groupId>
+     <artifactId>proj4j</artifactId>
+-    <version>0.2.0-SNAPSHOT</version>
++    <version>0.1.0</version>
+     <packaging>jar</packaging>
+-    <name>Proj4J</name>
+-    <url>https://github.com/locationtech/proj4j</url>
+-	<description>Java port of the Proj.4 library for coordinate reprojection</description>
+-    <licenses>
+-        <license>
+-            <name>Apache License, Version 2.0</name>
+-            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+-        </license>
+-    </licenses>
+-	<scm>
+-		<url>https://github.com/locationtech/proj4j.git</url>
+-		<connection>scm:git:https://github.com/locationtech/proj4j.git</connection>
+-		<tag>HEAD</tag>
+-	</scm>
++
++    <name>proj4j</name>
++    <url>http://trac.osgeo.org/proj4j/</url>
+ 
+     <properties>
+         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+@@ -47,22 +36,6 @@
+                     <encoding>UTF-8</encoding>
+                 </configuration>
+             </plugin>
+-            <plugin>
+-                <inherited>true</inherited>
+-                <artifactId>maven-javadoc-plugin</artifactId>
+-                <executions>
+-                    <execution>
+-                        <id>attach-javadocs</id>
+-                        <goals>
+-                            <goal>jar</goal>
+-                        </goals>
+-                        <configuration>
+-                            <failOnError>true</failOnError>
+-                            <failOnWarnings>false</failOnWarnings>
+-                        </configuration>
+-                    </execution>
+-                </executions>
+-            </plugin>
+             <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-surefire-plugin</artifactId>
+@@ -70,19 +43,4 @@
+             </plugin>
+         </plugins>
+     </build>
+-
+-
+-    <distributionManagement>
+-        <repository>
+-            <id>repo.locationtech.org</id>
+-            <name>Proj4J Repository - Releases</name>
+-            <url>https://repo.locationtech.org/content/repositories/proj4j-releases/</url>
+-        </repository>
+-        <snapshotRepository>
+-            <id>repo.locationtech.org</id>
+-            <name>Proj4J Repository - Snapshots</name>
+-            <url>https://repo.locationtech.org/content/repositories/proj4j-snapshots/</url>
+-        </snapshotRepository>
+-    </distributionManagement>
+-
+ </project>
+diff --git a/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java b/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
+index bc17b2f..e682b64 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
+@@ -4,9 +4,9 @@ import org.locationtech.proj4j.ProjCoordinate;
+ import org.locationtech.proj4j.datum.Ellipsoid;
+ 
+ /**
+- *
+- * @see <a href="https://github.com/OSGeo/proj.4/issues/316">Proj.4 issue 316</a>
+- * @see <a href="https://github.com/OSGeo/proj.4/blob/master/src/proj_etmerc.c">proj_etmerc.c</a>
++ * 
++ * @see https://github.com/OSGeo/proj.4/issues/316
++ * @see https://github.com/OSGeo/proj.4/blob/master/src/proj_etmerc.c
+  */
+ public class ExtendedTransverseMercatorProjection extends CylindricalProjection {
+     

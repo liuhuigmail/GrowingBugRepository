@@ -1,0 +1,1276 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 625b442..7157e8a 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -6,20 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
+ 
+ ## [Unreleased]
+ 
+-## [1.1.0] - 2019-09-05
+-
+ ### Added
+-- Added `GeostationarySatelliteProjection`/`geos` projection
+-- Registry.getProjections exposes all available projects
+-- OSGi compatibility
++- Added `GeostationarySatelliteProjection`/`geos` projection by [@Yaqiang](https://github.com/Yaqiang)
++- Registry.getProjections exposes all available projects by [@noberasco](https://github.com/noberasco)
++- OSGi compatibility by [@Neutius](https://github.com/Neutius)
+ 
+ ### Changed
+-- Parse `geos` (Geostationary Satellite Projection) proj4 strings
+-- Projection units reported as meters by default
+-- BasicCoordinateTransform now thread-safe
+-- Improve CRS Caching performance
+-- CoordinateReferenceSystem.equals considered logical equality
+-- Projection.equals considered logical equality
++- Parse `geos` (Geostationary Satellite Projection) proj4 strings by [@pomadchin](https://github.com/pomadchin)
++- Projection units reported as meters by default by [@bosborn](https://github.com/bosborn)
++- BasicCoordinateTransform now thread-safe by [@sebasbaumh](https://github.com/sebasbaumh)
++- Improve CRS Caching performance by [@pomadchin](https://github.com/pomadchin)
++- CoordinateReferenceSystem.equals considered logical equality by [@pomadchin](https://github.com/pomadchin)
+ 
+ ## [1.0.0] - 2019-12-12
+ 
+diff --git a/pom.xml b/pom.xml
+index 76c23ba..457f5a2 100755
+--- a/pom.xml
++++ b/pom.xml
+@@ -3,7 +3,7 @@
+ 
+     <groupId>org.locationtech.proj4j</groupId>
+     <artifactId>proj4j</artifactId>
+-    <version>1.1.0-SNAPSHOT</version>
++    <version>1.0.1-SNAPSHOT</version>
+     <packaging>bundle</packaging>
+     <name>Proj4J</name>
+     <url>https://github.com/locationtech/proj4j</url>
+@@ -120,7 +120,7 @@
+ 					</instructions>
+ 					<niceManifest>true</niceManifest>
+ 				</configuration>
+-			</plugin>
++			</plugin>			
+ 
+             <!-- Maven Central Publish -->
+             <plugin>
+diff --git a/src/main/java/org/locationtech/proj4j/CoordinateReferenceSystem.java b/src/main/java/org/locationtech/proj4j/CoordinateReferenceSystem.java
+index ab78ab2..cc0b993 100755
+--- a/src/main/java/org/locationtech/proj4j/CoordinateReferenceSystem.java
++++ b/src/main/java/org/locationtech/proj4j/CoordinateReferenceSystem.java
+@@ -129,8 +129,7 @@ public class CoordinateReferenceSystem implements java.io.Serializable {
+         }
+         if (that instanceof CoordinateReferenceSystem) {
+             CoordinateReferenceSystem cr = (CoordinateReferenceSystem) that;
+-            // Projection equality contains Ellipsoid and Unit equality
+-            return datum.isEqual(cr.getDatum()) && proj.equals(cr.proj);
++            return name.equals(cr.name) && datum.isEqual(cr.getDatum()) && Arrays.equals(params, cr.params);
+         }
+         return false;
+     }
+diff --git a/src/main/java/org/locationtech/proj4j/datum/AxisOrder.java b/src/main/java/org/locationtech/proj4j/datum/AxisOrder.java
+index 8c6da20..9cf8862 100644
+--- a/src/main/java/org/locationtech/proj4j/datum/AxisOrder.java
++++ b/src/main/java/org/locationtech/proj4j/datum/AxisOrder.java
+@@ -86,7 +86,7 @@ public final class AxisOrder implements Serializable {
+         public abstract void toENU(double x, ProjCoordinate c);
+     }
+ 
+-    public final static AxisOrder ENU =
++    public final static AxisOrder ENU = 
+         new AxisOrder(Axis.Easting, Axis.Northing, Axis.Up);
+ 
+     private final Axis x, y, z;
+diff --git a/src/main/java/org/locationtech/proj4j/proj/AiryProjection.java b/src/main/java/org/locationtech/proj4j/proj/AiryProjection.java
+index a8dd2f3..f93b439 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/AiryProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/AiryProjection.java
+@@ -45,7 +45,7 @@ public class AiryProjection extends Projection {
+ 		maxLongitude = Math.toRadians(90);
+ 		initialize();
+ 	}
+-
++	
+ 	public ProjCoordinate project(double lplam, double lpphi, ProjCoordinate out) {
+ 		double sinlam, coslam, cosphi, sinphi, t, s, Krho, cosz;
+ 
+diff --git a/src/main/java/org/locationtech/proj4j/proj/AitoffProjection.java b/src/main/java/org/locationtech/proj4j/proj/AitoffProjection.java
+index e3326d1..b79a4cc 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/AitoffProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/AitoffProjection.java
+@@ -23,7 +23,7 @@ import org.locationtech.proj4j.ProjCoordinate;
+ 
+ 
+ public class AitoffProjection extends PseudoCylindricalProjection {
+-
++	
+ 	protected final static int AITOFF = 0;
+ 	protected final static int WINKEL = 1;
+ 
+@@ -65,7 +65,7 @@ public class AitoffProjection extends PseudoCylindricalProjection {
+ 				cosphi1 = 0.636619772367581343;
+ 		}
+ 	}
+-
++	
+ 	public boolean hasInverse() {
+ 		return false;
+ 	}
+@@ -74,15 +74,5 @@ public class AitoffProjection extends PseudoCylindricalProjection {
+ 		return winkel ? "Winkel Tripel" : "Aitoff";
+ 	}
+ 
+-	@Override
+-	public boolean equals(Object that) {
+-			if (this == that) {
+-					return true;
+-			}
+-			if (that instanceof AitoffProjection) {
+-					AitoffProjection p = (AitoffProjection) that;
+-					return (winkel == p.winkel && super.equals(that));
+-			}
+-			return false;
+-	}
+ }
++
+diff --git a/src/main/java/org/locationtech/proj4j/proj/AzimuthalProjection.java b/src/main/java/org/locationtech/proj4j/proj/AzimuthalProjection.java
+index b2c64b2..99ccb78 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/AzimuthalProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/AzimuthalProjection.java
+@@ -27,11 +27,11 @@ public abstract class AzimuthalProjection extends Projection {
+ 	public final static int SOUTH_POLE = 2;
+ 	public final static int EQUATOR = 3;
+ 	public final static int OBLIQUE = 4;
+-
++	
+ 	protected int mode;
+ 	protected double sinphi0, cosphi0;
+ 	private double mapRadius = 90.0;
+-
++	
+ 	public AzimuthalProjection() {
+ 		this( Math.toRadians(45.0), Math.toRadians(45.0) );
+ 	}
+@@ -41,7 +41,7 @@ public abstract class AzimuthalProjection extends Projection {
+ 		this.projectionLongitude = projectionLongitude;
+ 		initialize();
+ 	}
+-
++	
+ 	public void initialize() {
+ 		super.initialize();
+ 		if (Math.abs(Math.abs(projectionLatitude) - ProjectionMath.HALFPI) < EPS10)
+@@ -69,20 +69,5 @@ public abstract class AzimuthalProjection extends Projection {
+ 		return mapRadius;
+ 	}
+ 
+-	@Override
+-	public boolean equals(Object that) {
+-			if (this == that) {
+-					return true;
+-			}
+-			if (that instanceof AzimuthalProjection) {
+-					AzimuthalProjection p = (AzimuthalProjection) that;
+-					return (
+-						mode == p.mode &&
+-						sinphi0 == p.sinphi0 &&
+-						cosphi0 == p.cosphi0 &&
+-						mapRadius == p.mapRadius &&
+-						super.equals(that));
+-			}
+-			return false;
+-	}
+ }
++
+diff --git a/src/main/java/org/locationtech/proj4j/proj/BipolarProjection.java b/src/main/java/org/locationtech/proj4j/proj/BipolarProjection.java
+index fb8eff8..eb92360 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/BipolarProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/BipolarProjection.java
+@@ -54,7 +54,7 @@ public class BipolarProjection extends Projection {
+ 		minLongitude = Math.toRadians(-90);
+ 		maxLongitude = Math.toRadians(90);
+ 	}
+-
++	
+ 	public ProjCoordinate project(double lplam, double lpphi, ProjCoordinate out) {
+ 		double cphi, sphi, tphi, t, al, Az, z, Av, cdlam, sdlam, r;
+ 		boolean tag;
+@@ -112,8 +112,8 @@ public class BipolarProjection extends Projection {
+ 		out.y += (tag ? -r : r) * Math.cos(t);
+ 		if (noskew) {
+ 			t = out.x;
+-			out.x = -out.x * cAzc - out.y * sAzc;
+-			out.y = -out.y * cAzc + t * sAzc;
++			out.x = -out.x * cAzc - out.y * sAzc; 
++			out.y = -out.y * cAzc + t * sAzc; 
+ 		}
+ 		return out;
+ 	}
+@@ -125,8 +125,8 @@ public class BipolarProjection extends Projection {
+ 
+ 		if (noskew) {
+ 			t = xyx;
+-			out.x = -xyx * cAzc + xyy * sAzc;
+-			out.y = -xyy * cAzc - t * sAzc;
++			out.x = -xyx * cAzc + xyy * sAzc; 
++			out.y = -xyy * cAzc - t * sAzc; 
+ 		}
+ 		if (neg = (xyx < 0.)) {
+ 			out.y = rhoc - xyy;
+diff --git a/src/main/java/org/locationtech/proj4j/proj/CentralCylindricalProjection.java b/src/main/java/org/locationtech/proj4j/proj/CentralCylindricalProjection.java
+index 7bcff04..01e5982 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/CentralCylindricalProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/CentralCylindricalProjection.java
+@@ -25,13 +25,15 @@ import org.locationtech.proj4j.util.ProjectionMath;
+ 
+ public class CentralCylindricalProjection extends CylindricalProjection {
+ 
++	private double ap;
++
+ 	private final static double EPS10 = 1.e-10;
+ 
+ 	public CentralCylindricalProjection() {
+ 		minLatitude = Math.toRadians(-80);
+ 		maxLatitude = Math.toRadians(80);
+ 	}
+-
++	
+ 	public ProjCoordinate project(double lplam, double lpphi, ProjCoordinate out) {
+ 		if (Math.abs(Math.abs(lpphi) - ProjectionMath.HALFPI) <= EPS10) throw new ProjectionException("F");
+ 		out.x = lplam;
+diff --git a/src/main/java/org/locationtech/proj4j/proj/CylindricalEqualAreaProjection.java b/src/main/java/org/locationtech/proj4j/proj/CylindricalEqualAreaProjection.java
+index 76b8a96..5108c63 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/CylindricalEqualAreaProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/CylindricalEqualAreaProjection.java
+@@ -31,14 +31,14 @@ public class CylindricalEqualAreaProjection extends Projection {
+ 	public CylindricalEqualAreaProjection() {
+ 		this(0.0, 0.0, 0.0);
+ 	}
+-
++	
+ 	public CylindricalEqualAreaProjection(double projectionLatitude, double projectionLongitude, double trueScaleLatitude) {
+ 		this.projectionLatitude = projectionLatitude;
+ 		this.projectionLongitude = projectionLongitude;
+ 		this.trueScaleLatitude = trueScaleLatitude;
+ 		initialize();
+ 	}
+-
++	
+ 	public void initialize() {
+ 		super.initialize();
+ 		double t = trueScaleLatitude;
+@@ -51,7 +51,7 @@ public class CylindricalEqualAreaProjection extends Projection {
+ 			qp = ProjectionMath.qsfn(1., e, one_es);
+ 		}
+ 	}
+-
++	
+ 	public ProjCoordinate project(double lam, double phi, ProjCoordinate xy) {
+ 		if (spherical) {
+ 			xy.x = scaleFactor * lam;
+@@ -90,3 +90,4 @@ public class CylindricalEqualAreaProjection extends Projection {
+ 	}
+ 
+ }
++
+diff --git a/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java b/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
+index 2099857..bc17b2f 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
+@@ -9,23 +9,19 @@ import org.locationtech.proj4j.datum.Ellipsoid;
+  * @see <a href="https://github.com/OSGeo/proj.4/blob/master/src/proj_etmerc.c">proj_etmerc.c</a>
+  */
+ public class ExtendedTransverseMercatorProjection extends CylindricalProjection {
+-
++    
+     private static final long serialVersionUID = 1L;
+-
+-    double    Qn;    /* Merid. quad., scaled to the projection */
+-    double    Zb;    /* Radius vector in polar coord. systems  */
+-    double[]    cgb = new double[6]; /* Constants for Gauss -> Geo lat */
+-    double[]    cbg = new double[6]; /* Constants for Geo lat -> Gauss */
+-    double[]    utg = new double[6]; /* Constants for transv. merc. -> geo */
++    
++    double    Qn;    /* Merid. quad., scaled to the projection */ 
++    double    Zb;    /* Radius vector in polar coord. systems  */ 
++    double[]    cgb = new double[6]; /* Constants for Gauss -> Geo lat */ 
++    double[]    cbg = new double[6]; /* Constants for Geo lat -> Gauss */ 
++    double[]    utg = new double[6]; /* Constants for transv. merc. -> geo */ 
+     double[]    gtu = new double[6]; /* Constants for geo -> transv. merc. */
+ 
+-    /**
+-     * Indicates whether a Southern Hemisphere UTM zone
+-     */
+-    protected boolean isSouth = false;
+     private static final int PROJ_ETMERC_ORDER = 6;
+     private static final double HUGE_VAL = Double.POSITIVE_INFINITY;
+-
++    
+     public ExtendedTransverseMercatorProjection() {
+         ellipsoid = Ellipsoid.GRS80;
+         projectionLatitude = Math.toRadians(0);
+@@ -34,7 +30,7 @@ public class ExtendedTransverseMercatorProjection extends CylindricalProjection
+         maxLongitude = Math.toRadians(90);
+         initialize();
+     }
+-
++    
+     public ExtendedTransverseMercatorProjection(Ellipsoid ellipsoid, double lon_0, double lat_0, double k, double x_0, double y_0) {
+         setEllipsoid(ellipsoid);
+         projectionLongitude = lon_0;
+@@ -44,17 +40,7 @@ public class ExtendedTransverseMercatorProjection extends CylindricalProjection
+         falseNorthing = y_0;
+         initialize();
+     }
+-
+-    @Override
+-    public void setSouthernHemisphere(boolean isSouth) {
+-        this.isSouth = isSouth;
+-    }
+-
+-    @Override
+-    public boolean getSouthernHemisphere() {
+-        return isSouth;
+-    }
+-
++    
+     static double log1py(double x) {              /* Compute log(1+x) accurately */
+         double y = 1 + x;
+         double z = y - 1;
+@@ -64,26 +50,26 @@ public class ExtendedTransverseMercatorProjection extends CylindricalProjection
+          * (log(y)/z) introduces little additional error. */
+         return z == 0 ? x : x * Math.log(y) / z;
+     }
+-
++    
+     static double asinhy(double x) {              /* Compute asinh(x) accurately */
+         double y = Math.abs(x);         /* Enforce odd parity */
+         y = log1py(y * (1 + y/(Math.hypot(1.0, y) + 1)));
+         return x < 0 ? -y : y;
+     }
+-
++ 
+     static double gatg(double[] p1, int len_p1, double B) {
+         double h = 0, h1, h2 = 0;
+ 
+         double cos_2B = 2*Math.cos(2*B);
+-
++     
+         int p1i;
+         for (p1i = len_p1, h1 = p1[--p1i]; p1i > 0; h2 = h1, h1 = h) {
+             h = -h2 + cos_2B*h1 + p1[--p1i];
+         }
+-
++        
+         return (B + h*Math.sin(2*B));
+     }
+-
++    
+     static double clenS(double[] a, int size, double arg_r, double arg_i, double[] R, double[] I) {
+         double      hr, hr1, hr2, hi, hi1, hi2;
+ 
+@@ -129,7 +115,7 @@ public class ExtendedTransverseMercatorProjection extends CylindricalProjection
+         }
+         return Math.sin (arg_r)*hr;
+     }
+-
++    
+     public ProjCoordinate project(double lplam, double lpphi, ProjCoordinate xy) {
+         double sin_Cn, cos_Cn, cos_Ce, sin_Ce;
+         double[] dCn = new double[1];
+@@ -185,10 +171,10 @@ public class ExtendedTransverseMercatorProjection extends CylindricalProjection
+             out.y = gatg (cgb,  PROJ_ETMERC_ORDER, Cn);
+             out.x = Ce;
+         }
+-
++        
+         return out;
+     }
+-
++    
+     public void setUTMZone(int zone) {
+         zone--;
+         projectionLongitude = (zone + .5) * Math.PI / 30. - Math.PI;
+@@ -198,10 +184,10 @@ public class ExtendedTransverseMercatorProjection extends CylindricalProjection
+         falseNorthing = isSouth ? 10000000.0 : 0.0;
+         initialize();
+     }
+-
++    
+     public void initialize() {
+         super.initialize();
+-
++        
+         double f, n, np, Z;
+ 
+         if (es <= 0) {
+@@ -284,15 +270,15 @@ public class ExtendedTransverseMercatorProjection extends CylindricalProjection
+         /* i.e. true northing = N - P->Zb                         */
+         Zb  = - Qn*(Z + clens(gtu, PROJ_ETMERC_ORDER, 2*Z));
+     }
+-
++    
+     public boolean hasInverse() {
+         return true;
+     }
+-
++    
+     public boolean isRectilinear() {
+         return false;
+     }
+-
++    
+     public Object clone() {
+         ExtendedTransverseMercatorProjection p = (ExtendedTransverseMercatorProjection) super.clone();
+         if (cgb != null) {
+diff --git a/src/main/java/org/locationtech/proj4j/proj/GeostationarySatelliteProjection.java b/src/main/java/org/locationtech/proj4j/proj/GeostationarySatelliteProjection.java
+index 8d8d1ce..f4d6dac 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/GeostationarySatelliteProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/GeostationarySatelliteProjection.java
+@@ -14,17 +14,12 @@ import org.locationtech.proj4j.util.ProjectionMath;
+  */
+ public class GeostationarySatelliteProjection extends Projection {
+ 
+-    /**
+-     * Height of orbit - Geostationary satellite projection
+-     */
+-    protected double heightOfOrbit = 35785831.0;
+-
+     private double _radiusP;
+     private double _radiusP2;
+     private double _radiusPInv2;
+     private double _radiusG;
+     private double _radiusG1;
+-    private double _c;
++    private double _c;    
+ 
+     /**
+      * Constructor
+@@ -48,17 +43,6 @@ public class GeostationarySatelliteProjection extends Projection {
+         }
+     }
+ 
+-
+-    @Override
+-    public double getHeightOfOrbit(){
+-        return this.heightOfOrbit;
+-    }
+-
+-    @Override
+-    public void setHeightOfOrbit(double h){
+-        this.heightOfOrbit = h;
+-    }
+-
+     @Override
+     public ProjCoordinate project(double lplam, double lpphi, ProjCoordinate out) {
+         if (spherical) {
+@@ -203,16 +187,4 @@ public class GeostationarySatelliteProjection extends Projection {
+     public String toString() {
+         return "Geostationary Satellite";
+     }
+-
+-    @Override
+-	public boolean equals(Object that) {
+-        if (this == that) {
+-            return true;
+-        }
+-        if (that instanceof GeostationarySatelliteProjection) {
+-            GeostationarySatelliteProjection p = (GeostationarySatelliteProjection) that;
+-            return (this.heightOfOrbit == p.heightOfOrbit) && super.equals(that);
+-        }
+-        return false;
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/HammerProjection.java b/src/main/java/org/locationtech/proj4j/proj/HammerProjection.java
+index baa2444..b7e3c09 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/HammerProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/HammerProjection.java
+@@ -30,7 +30,7 @@ public class HammerProjection extends PseudoCylindricalProjection {
+ 
+ 	public HammerProjection() {
+ 	}
+-
++	
+ 	public ProjCoordinate project(double lplam, double lpphi, ProjCoordinate xy) {
+ 		double cosphi, d;
+ 
+@@ -66,35 +66,21 @@ public class HammerProjection extends PseudoCylindricalProjection {
+ 	public void setW( double w ) {
+ 		this.w = w;
+ 	}
+-
++	
+ 	public double getW() {
+ 		return w;
+ 	}
+-
++	
+ 	public void setM( double m ) {
+ 		this.m = m;
+ 	}
+-
++	
+ 	public double getM() {
+ 		return m;
+ 	}
+-
++	
+ 	public String toString() {
+ 		return "Hammer & Eckert-Greifendorff";
+ 	}
+ 
+-	@Override
+-	public boolean equals(Object that) {
+-			if (this == that) {
+-					return true;
+-			}
+-			if (that instanceof HammerProjection) {
+-					HammerProjection p = (HammerProjection) that;
+-					return (
+-						m == p.m &&
+-						w == p.w &&
+-						super.equals(that));
+-			}
+-			return false;
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/LagrangeProjection.java b/src/main/java/org/locationtech/proj4j/proj/LagrangeProjection.java
+index ce91be1..fc64dd2 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/LagrangeProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/LagrangeProjection.java
+@@ -53,7 +53,7 @@ public class LagrangeProjection extends Projection {
+ 	public void setW( double w ) {
+ 		this.rw = w;
+ 	}
+-
++	
+ 	public double getW() {
+ 		return rw;
+ 	}
+@@ -75,7 +75,7 @@ public class LagrangeProjection extends Projection {
+ 	public boolean isConformal() {
+ 		return true;
+ 	}
+-
++	
+ 	public boolean hasInverse() {
+ 		return false;
+ 	}
+@@ -84,15 +84,4 @@ public class LagrangeProjection extends Projection {
+ 		return "Lagrange";
+ 	}
+ 
+-	@Override
+-	public boolean equals(Object that) {
+-			if (this == that) {
+-					return true;
+-			}
+-			if (that instanceof LagrangeProjection) {
+-					LagrangeProjection p = (LagrangeProjection) that;
+-					return (rw == p.rw) && super.equals(that);
+-			}
+-			return false;
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/MolleweideProjection.java b/src/main/java/org/locationtech/proj4j/proj/MolleweideProjection.java
+index a1cd92c..9e9eaf2 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/MolleweideProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/MolleweideProjection.java
+@@ -36,7 +36,7 @@ public class MolleweideProjection extends PseudoCylindricalProjection {
+ 	public MolleweideProjection() {
+ 		this(Math.PI/2);
+ 	}
+-
++	
+ 	public MolleweideProjection(int type) {
+ 		this.type = type;
+ 		switch (type) {
+@@ -54,11 +54,11 @@ public class MolleweideProjection extends PseudoCylindricalProjection {
+ 			break;
+ 		}
+ 	}
+-
++	
+ 	public MolleweideProjection(double p) {
+ 		init(p);
+ 	}
+-
++	
+ 	public void init(double p) {
+ 		double r, sp, p2 = p + p;
+ 
+@@ -96,7 +96,7 @@ public class MolleweideProjection extends PseudoCylindricalProjection {
+ 
+ 	public ProjCoordinate projectInverse(double x, double y, ProjCoordinate lp) {
+ 		double lat, lon;
+-
++		
+ 		lat = Math.asin(y / cy);
+ 		lon = x / (cx * Math.cos(lat));
+ 		lat += lat;
+@@ -105,7 +105,7 @@ public class MolleweideProjection extends PseudoCylindricalProjection {
+ 		lp.y = lat;
+ 		return lp;
+ 	}
+-
++	
+ 	public boolean hasInverse() {
+ 		return true;
+ 	}
+@@ -113,7 +113,7 @@ public class MolleweideProjection extends PseudoCylindricalProjection {
+ 	public boolean isEqualArea() {
+ 	    return true;
+ 	}
+-
++	 
+ 	public String toString() {
+ 		switch (type) {
+ 		case WAGNER4:
+@@ -123,21 +123,4 @@ public class MolleweideProjection extends PseudoCylindricalProjection {
+ 		}
+ 		return "Molleweide";
+ 	}
+-
+-	@Override
+-	public boolean equals(Object that) {
+-			if (this == that) {
+-					return true;
+-			}
+-			if (that instanceof MolleweideProjection) {
+-					MolleweideProjection p = (MolleweideProjection) that;
+-					return (
+-						type == p.type &&
+-						cx == p.cx &&
+-						cy == p.cy &&
+-						cp == p.cp &&
+-						super.equals(that));
+-			}
+-			return false;
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java b/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
+index ae94fa3..aab85c5 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
+@@ -45,7 +45,7 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 		alpha = Math.toRadians(-45);//FIXME
+ 		initialize();
+ 	}
+-
++	
+ 	/**
+ 	* Set up a projection suitable for State Plane Coordinates.
+ 	*/
+@@ -59,7 +59,7 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 		falseNorthing = y_0;
+ 		initialize();
+ 	}
+-
++	
+ 	public void initialize() {
+ 		super.initialize();
+ 		double con, com, cosphi0, d, f, h, l, sinphi0, p, j;
+@@ -67,7 +67,7 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 		//FIXME-setup rot, alpha, longc,lon/lat1/2
+ 		rot = true;
+     lamc = lonc;
+-
++    
+     // true if alpha provided
+     int azi = Double.isNaN(alpha) ? 0 : 1;
+ 		if (azi != 0) { // alpha specified
+@@ -228,19 +228,4 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 		return "Oblique Mercator";
+ 	}
+ 
+-	@Override
+-	public boolean equals(Object that) {
+-			if (this == that) {
+-					return true;
+-			}
+-			if (that instanceof ObliqueMercatorProjection) {
+-					ObliqueMercatorProjection p = (ObliqueMercatorProjection) that;
+-					return (
+-						Gamma == p.Gamma &&
+-						alpha == p.alpha &&
+-						lonc == p.lonc &&
+-						super.equals(that));
+-			}
+-			return false;
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/Projection.java b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+index 22bbbb9..5e820fd 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/Projection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+@@ -16,8 +16,6 @@
+ 
+ package org.locationtech.proj4j.proj;
+ 
+-import java.util.NoSuchElementException;
+-
+ import org.locationtech.proj4j.*;
+ import org.locationtech.proj4j.datum.AxisOrder;
+ import org.locationtech.proj4j.datum.Ellipsoid;
+@@ -104,6 +102,10 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+      */
+     protected double falseNorthing = 0;
+ 
++    /**
++     * Indicates whether a Southern Hemisphere UTM zone
++     */
++    protected boolean isSouth = false;
+     /**
+      * The latitude of true scale. Only used by specific projections.
+      */
+@@ -189,6 +191,11 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+      * northing, vertical (up)
+      */
+     private AxisOrder axes = AxisOrder.ENU;
++    
++    /**
++     * Height of orbit - Geostationary satellite projection
++     */
++    protected double heightOfOrbit = 35785831.0;
+ 
+     // Some useful constants
+     protected final static double EPS10 = 1e-10;
+@@ -694,13 +701,12 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+         return falseEasting;
+     }
+ 
+-    public void setSouthernHemisphere(boolean isSouth) {
+-        throw new NoSuchElementException();
++    public void setSouthernHemisphere(boolean isSouth)
++    {
++        this.isSouth = isSouth;
+     }
+ 
+-    public boolean getSouthernHemisphere() {
+-        throw new NoSuchElementException();
+-    }
++    public boolean getSouthernHemisphere() { return isSouth; }
+ 
+     /**
+      * Set the projection scale factor. This is set to 1 by default.
+@@ -761,21 +767,21 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+     public Unit getUnits() {
+         return this.unit != null ? this.unit : Units.METRES;
+     }
+-
++    
+     /**
+      * Get height of orbit - Geostationary satellite projection
+      * @return Height of orbit
+      */
+     public double getHeightOfOrbit(){
+-        throw new NoSuchElementException();
++        return this.heightOfOrbit;
+     }
+-
++    
+     /**
+      * Set height of orbit - Geostationary satellite projection
+      * @param h Height of orbit
+      */
+     public void setHeightOfOrbit(double h){
+-        throw new NoSuchElementException();
++        this.heightOfOrbit = h;
+     }
+ 
+     /**
+@@ -819,36 +825,4 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+     public Boolean isGeographic() {
+         return false;
+     }
+-
+-    @Override
+-    public boolean equals(Object that) {
+-        if (this == that) {
+-            return true;
+-        }
+-        if (that instanceof Projection) {
+-            Projection p = (Projection) that;
+-            // Using Double.compare when values can be NaN and should still be equal
+-            return (
+-                // class represents implementation of project method
+-                this.getClass().equals(that.getClass()) &&
+-                ellipsoid.isEqual(p.ellipsoid) &&
+-                falseNorthing == p.falseNorthing &&
+-                falseEasting == p.falseEasting &&
+-                scaleFactor == p.scaleFactor &&
+-                fromMetres == p.fromMetres &&
+-                trueScaleLatitude == p.trueScaleLatitude &&
+-                projectionLatitude == p.projectionLatitude &&
+-                projectionLongitude == p.projectionLongitude &&
+-                projectionLatitude1 == p.projectionLatitude1 &&
+-                projectionLatitude2 == p.projectionLatitude2 &&
+-                minLatitude == p.minLatitude &&
+-                maxLatitude == p.maxLatitude &&
+-                minLongitude == p.minLongitude &&
+-                maxLongitude == p.maxLongitude &&
+-                axes.equals(p.axes) &&
+-                unit.equals(p.unit) &&
+-                primeMeridian.equals(p.primeMeridian));
+-        }
+-        return false;
+-    }
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/SimpleConicProjection.java b/src/main/java/org/locationtech/proj4j/proj/SimpleConicProjection.java
+index 0b0d4dc..4a8dbe7 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/SimpleConicProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/SimpleConicProjection.java
+@@ -44,13 +44,13 @@ public class SimpleConicProjection extends ConicProjection {
+ 	public SimpleConicProjection() {
+ 		this( EULER );
+ 	}
+-
++	
+ 	public SimpleConicProjection(int type) {
+ 		this.type = type;
+ 		minLatitude = Math.toRadians(0);
+ 		maxLatitude = Math.toRadians(80);
+ 	}
+-
++	
+ 	public String toString() {
+ 		return "Simple Conic";
+ 	}
+@@ -157,7 +157,7 @@ public class SimpleConicProjection extends ConicProjection {
+ 		case EULER:
+ 			n = Math.sin(sig) * Math.sin(del) / del;
+ 			del *= 0.5;
+-			rho_c = del / (Math.tan(del) * Math.tan(sig)) + sig;
++			rho_c = del / (Math.tan(del) * Math.tan(sig)) + sig;	
+ 			rho_0 = rho_c - projectionLatitude;
+ 			break;
+ 		case PCONIC:
+@@ -176,16 +176,4 @@ maxLatitude = Math.toRadians(60);//FIXME
+ 			break;
+ 		}
+ 	}
+-
+-	@Override
+-	public boolean equals(Object that) {
+-			if (this == that) {
+-					return true;
+-			}
+-			if (that instanceof SimpleConicProjection) {
+-					SimpleConicProjection p = (SimpleConicProjection) that;
+-					return (this.type == p.type) && super.equals(that);
+-			}
+-			return false;
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/SineTangentSeriesProjection.java b/src/main/java/org/locationtech/proj4j/proj/SineTangentSeriesProjection.java
+index 7294854..ef9b672 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/SineTangentSeriesProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/SineTangentSeriesProjection.java
+@@ -36,7 +36,7 @@ class SineTangentSeriesProjection extends ConicProjection {
+ 		tan_mode = mode;
+ 		initialize();
+ 	}
+-
++	
+ 	public ProjCoordinate project(double lplam, double lpphi, ProjCoordinate xy) {
+ 		double c;
+ 
+@@ -56,7 +56,7 @@ class SineTangentSeriesProjection extends ConicProjection {
+ 
+ 	public ProjCoordinate projectInverse(double xyx, double xyy, ProjCoordinate lp) {
+ 		double c;
+-
++		
+ 		xyy /= C_y;
+ 		c = Math.cos(lp.y = tan_mode ? Math.atan(xyy) : ProjectionMath.asin(xyy));
+ 		lp.y /= C_p;
+@@ -72,20 +72,4 @@ class SineTangentSeriesProjection extends ConicProjection {
+ 		return true;
+ 	}
+ 
+-	@Override
+-	public boolean equals(Object that) {
+-			if (this == that) {
+-					return true;
+-			}
+-			if (that instanceof SineTangentSeriesProjection) {
+-					SineTangentSeriesProjection p = (SineTangentSeriesProjection) that;
+-					return (
+-						C_x == p.C_x &&
+-						C_y == p.C_y &&
+-						C_p == p.C_p &&
+-						tan_mode == p.tan_mode &&
+-						super.equals(that));
+-			}
+-			return false;
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/StereographicAzimuthalProjection.java b/src/main/java/org/locationtech/proj4j/proj/StereographicAzimuthalProjection.java
+index 2837a5d..78e01d3 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/StereographicAzimuthalProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/StereographicAzimuthalProjection.java
+@@ -25,9 +25,9 @@ import org.locationtech.proj4j.util.ProjectionMath;
+ public class StereographicAzimuthalProjection extends AzimuthalProjection {
+ 
+ 	private final static double TOL = 1.e-8;
+-
++	
+ 	private double akm1;
+-
++	
+ 	public StereographicAzimuthalProjection() {
+ 		this(Math.toRadians(90.0), Math.toRadians(0.0));
+ 	}
+@@ -36,7 +36,7 @@ public class StereographicAzimuthalProjection extends AzimuthalProjection {
+ 		super(projectionLatitude, projectionLongitude);
+ 		initialize();
+ 	}
+-
++	
+ 	public void setupUPS(int pole) {
+ 		projectionLatitude = (pole == SOUTH_POLE) ? -ProjectionMath.HALFPI: ProjectionMath.HALFPI;
+ 		projectionLongitude = 0.0;
+@@ -46,7 +46,7 @@ public class StereographicAzimuthalProjection extends AzimuthalProjection {
+ 		trueScaleLatitude = ProjectionMath.HALFPI;
+ 		initialize();
+ 	}
+-
++	
+ 	public void initialize() {
+ 		double t;
+ 
+@@ -245,14 +245,14 @@ public class StereographicAzimuthalProjection extends AzimuthalProjection {
+ 		}
+ 		return lp;
+ 	}
+-
++	
+ 	/**
+ 	 * Returns true if this projection is conformal
+ 	 */
+ 	public boolean isConformal() {
+ 		return true;
+ 	}
+-
++	
+ 	public boolean hasInverse() {
+ 		return true;
+ 	}
+@@ -266,4 +266,6 @@ public class StereographicAzimuthalProjection extends AzimuthalProjection {
+ 	public String toString() {
+ 		return "Stereographic Azimuthal";
+ 	}
+-}
+\ No newline at end of file
++
++}
++
+diff --git a/src/main/java/org/locationtech/proj4j/proj/TransverseMercatorProjection.java b/src/main/java/org/locationtech/proj4j/proj/TransverseMercatorProjection.java
+index 44a3d0b..fdb56d4 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/TransverseMercatorProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/TransverseMercatorProjection.java
+@@ -27,7 +27,7 @@ import org.locationtech.proj4j.util.ProjectionMath;
+ * Transverse Mercator Projection algorithm is taken from the USGS PROJ package.
+ */
+ public class TransverseMercatorProjection extends CylindricalProjection {
+-
++	
+ 	private final static double FC1 = 1.0;
+ 	private final static double FC2 = 0.5;
+ 	private final static double FC3 = 0.16666666666666666666;
+@@ -37,10 +37,6 @@ public class TransverseMercatorProjection extends CylindricalProjection {
+ 	private final static double FC7 = 0.02380952380952380952;
+ 	private final static double FC8 = 0.01785714285714285714;
+ 
+-	/**
+-	 * Indicates whether a Southern Hemisphere UTM zone
+-	 */
+-	protected boolean isSouth = false;
+   private int utmZone = -1;
+ 	private double esp;
+ 	private double ml0;
+@@ -54,7 +50,7 @@ public class TransverseMercatorProjection extends CylindricalProjection {
+ 		maxLongitude = Math.toRadians(90);
+ 		initialize();
+ 	}
+-
++	
+ 	/**
+ 	* Set up a projection suitable for State Plane Coordinates.
+ 	*/
+@@ -67,24 +63,14 @@ public class TransverseMercatorProjection extends CylindricalProjection {
+ 		falseNorthing = y_0;
+ 		initialize();
+ 	}
+-
+-	@Override
+-	public void setSouthernHemisphere(boolean isSouth) {
+-		this.isSouth = isSouth;
+-	}
+-
+-	@Override
+-	public boolean getSouthernHemisphere() {
+-		return isSouth;
+-	}
+-
++	
+ 	public Object clone() {
+ 		TransverseMercatorProjection p = (TransverseMercatorProjection)super.clone();
+ 		if (en != null)
+ 			p.en = (double[])en.clone();
+ 		return p;
+ 	}
+-
++	
+ 	public boolean isRectilinear() {
+ 		return false;
+ 	}
+@@ -109,7 +95,7 @@ public class TransverseMercatorProjection extends CylindricalProjection {
+ 			return 24;
+ 		return (degrees + 80) / 8 + 3;
+ 	}
+-
++	
+ 	public static int getZoneFromNearestMeridian(double longitude) {
+ 		int zone = (int)Math.floor((ProjectionMath.normalizeLongitude(longitude) + Math.PI) * 30.0 / Math.PI) + 1;
+ 		if (zone < 1)
+@@ -118,7 +104,7 @@ public class TransverseMercatorProjection extends CylindricalProjection {
+ 			zone = 60;
+ 		return zone;
+ 	}
+-
++	
+ 	public void setUTMZone(int zone) {
+     utmZone = zone;
+ 		zone--;
+diff --git a/src/main/java/org/locationtech/proj4j/proj/UrmaevFlatPolarSinusoidalProjection.java b/src/main/java/org/locationtech/proj4j/proj/UrmaevFlatPolarSinusoidalProjection.java
+index 5dede37..9e2047e 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/UrmaevFlatPolarSinusoidalProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/UrmaevFlatPolarSinusoidalProjection.java
+@@ -33,7 +33,7 @@ public class UrmaevFlatPolarSinusoidalProjection extends Projection {
+ 
+ 	public UrmaevFlatPolarSinusoidalProjection() {
+ 	}
+-
++	
+ 	public ProjCoordinate project(double lplam, double lpphi, ProjCoordinate out) {
+ 		out.y = ProjectionMath.asin(n * Math.sin(lpphi));
+ 		out.x = C_x * lplam * Math.cos(lpphi);
+@@ -63,24 +63,13 @@ public class UrmaevFlatPolarSinusoidalProjection extends Projection {
+ 	public void setN( double n ) {
+ 		this.n = n;
+ 	}
+-
++	
+ 	public double getN() {
+ 		return n;
+ 	}
+-
++	
+ 	public String toString() {
+ 		return "Urmaev Flat-Polar Sinusoidal";
+ 	}
+ 
+-	@Override
+-	public boolean equals(Object that) {
+-			if (this == that) {
+-					return true;
+-			}
+-			if (that instanceof UrmaevFlatPolarSinusoidalProjection) {
+-					UrmaevFlatPolarSinusoidalProjection p = (UrmaevFlatPolarSinusoidalProjection) that;
+-					return (n == p.n) && super.equals(that);
+-			}
+-			return false;
+-	}
+ }
+diff --git a/src/test/java/org/locationtech/proj4j/proj/ProjectionEqualityTest.java b/src/test/java/org/locationtech/proj4j/proj/ProjectionEqualityTest.java
+deleted file mode 100644
+index 9860373..0000000
+--- a/src/test/java/org/locationtech/proj4j/proj/ProjectionEqualityTest.java
++++ /dev/null
+@@ -1,43 +0,0 @@
+-/*******************************************************************************
+- * Copyright 2019 Azavea
+- *
+- * Licensed under the Apache License, Version 2.0 (the "License");
+- * you may not use this file except in compliance with the License.
+- * You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+- *******************************************************************************/
+-package org.locationtech.proj4j.proj;
+-
+-import org.locationtech.proj4j.CRSFactory;
+-import org.locationtech.proj4j.CoordinateReferenceSystem;
+-
+-import static org.junit.Assert.assertEquals;
+-import static org.junit.Assert.assertNotEquals;
+-
+-import org.junit.Test;
+-
+-/**
+- * Tests that Projection equality is semantically correct
+- */
+-public class ProjectionEqualityTest
+-{
+-	private static CRSFactory csFactory = new CRSFactory();
+-
+-	@Test
+-	public void utmEquality() {
+-
+-    CoordinateReferenceSystem cs1 = csFactory.createFromName("EPSG:26710");
+-    CoordinateReferenceSystem cs2 = csFactory.createFromParameters(null, "+proj=utm +zone=10 +datum=NAD27 +units=m +no_defs");
+-    assertEquals(cs1, cs2);
+-
+-    CoordinateReferenceSystem cs3 = csFactory.createFromName("EPSG:26711");
+-    assertNotEquals(cs1, cs3);
+-  }
+-}
+diff --git a/src/test/java/org/locationtech/proj4j/proj/ProjectionGridRoundTripper.java b/src/test/java/org/locationtech/proj4j/proj/ProjectionGridRoundTripper.java
+index 773799c..faaa96b 100644
+--- a/src/test/java/org/locationtech/proj4j/proj/ProjectionGridRoundTripper.java
++++ b/src/test/java/org/locationtech/proj4j/proj/ProjectionGridRoundTripper.java
+@@ -23,7 +23,7 @@ import org.locationtech.proj4j.ProjCoordinate;
+ import org.locationtech.proj4j.proj.Projection;
+ import org.locationtech.proj4j.util.ProjectionUtil;
+ 
+-public class ProjectionGridRoundTripper
++public class ProjectionGridRoundTripper 
+ {
+ 	private static final CoordinateTransformFactory ctFactory = new CoordinateTransformFactory();
+   CRSFactory csFactory = new CRSFactory();
+@@ -38,36 +38,38 @@ public class ProjectionGridRoundTripper
+ 	private boolean debug = false;
+ 	private int transformCount = 0;
+ 	private double[] gridExtent;
+-
++	
+ 	public ProjectionGridRoundTripper(CoordinateReferenceSystem cs)
+ 	{
+ 		this.cs = cs;
+-    transInverse = ctFactory.createTransform(cs, WGS84);
+-    transForward = ctFactory.createTransform(WGS84, cs);
++    transInverse = ctFactory.createTransform(cs, WGS84); 
++    transForward = ctFactory.createTransform(WGS84, cs); 
+ 	}
+-
++	
+ 	public void setLevelDebug(boolean debug)
+ 	{
+ 		this.debug = debug;
+ 	}
+-
++	
+ 	public int getTransformCount()
+ 	{
+ 		return transformCount;
+ 	}
+-
++	
+ 	public double[] getExtent()
+ 	{
+ 		return gridExtent;
+ 	}
+ 	public boolean runGrid(double tolerance)
+ 	{
++		boolean isWithinTolerance = true;
++		
+ 		gridExtent = gridExtent(cs.getProjection());
+ 		double minx = gridExtent[0];
+ 		double miny = gridExtent[1];
+ 		double maxx = gridExtent[2];
+ 		double maxy = gridExtent[3];
+-
++		
+     ProjCoordinate p = new ProjCoordinate();
+ 		double dx = (maxx - minx) / gridSize;
+ 		double dy = (maxy - miny) / gridSize;
+@@ -80,7 +82,7 @@ public class ProjectionGridRoundTripper
+ 				 p.y = iy == gridSize ?
+ 						 	maxy
+ 					 		: miny + iy * dy;
+-
++					 		
+ 				 boolean isWithinTol = roundTrip(p, tolerance);
+ 				 if (! isWithinTol)
+ 					 return false;
+@@ -88,50 +90,50 @@ public class ProjectionGridRoundTripper
+ 		}
+ 		return true;
+ 	}
+-
++	
+   ProjCoordinate p2 = new ProjCoordinate();
+   ProjCoordinate p3 = new ProjCoordinate();
+ 
+ 	private boolean roundTrip(ProjCoordinate p, double tolerance)
+ 	{
+ 		transformCount++;
+-
++		
+     transForward.transform(p, p2);
+     transInverse.transform(p2, p3);
+-
+-		if (debug)
++		
++		if (debug) 
+ 			System.out.println(ProjectionUtil.toString(p) + " -> " + ProjectionUtil.toString(p2) + " ->  " + ProjectionUtil.toString(p3));
+-
++		
+ 		double dx = Math.abs(p3.x - p.x);
+ 		double dy = Math.abs(p3.y - p.y);
+-
++		
+     boolean isInTol = dx <= tolerance && dy <= tolerance;
+-
+-    if (! isInTol)
++    
++    if (! isInTol) 
+       System.out.println("FAIL: " + ProjectionUtil.toString(p) + " -> " + ProjectionUtil.toString(p2) + " ->  " + ProjectionUtil.toString(p3));
+ 
+-
++    
+ 		return isInTol;
+ 	}
+-
++	
+ 	public static double[] gridExtent(Projection proj)
+ 	{
+ 		// scan all lat/lon params to try and determine a reasonable extent
+-
++		
+ 		double lon = proj.getProjectionLongitudeDegrees();
+-
++		
+ 		double[] latExtent = new double[] {Double.MAX_VALUE, Double.MIN_VALUE };
+ 		updateLat(proj.getProjectionLatitudeDegrees(), latExtent);
+ 		updateLat(proj.getProjectionLatitude1Degrees(), latExtent);
+ 		updateLat(proj.getProjectionLatitude2Degrees(), latExtent);
+-
++			
+ 		double centrex = lon;
+ 		double centrey = 0.0;
+ 		double gridWidth = 10;
+-
++		
+ 		if (latExtent[0] < Double.MAX_VALUE && latExtent[1] > Double.MIN_VALUE) {
+ 			// got a good candidate
+-
++			
+ 			double dlat = latExtent[1] - latExtent[0];
+ 			if (dlat > 0) gridWidth = 2 * dlat;
+ 		  centrey = (latExtent[1] + latExtent[0]) /2;
+@@ -143,7 +145,7 @@ public class ProjectionGridRoundTripper
+ 		extent[3] = centrey + gridWidth/2;
+ 		return extent;
+ 	}
+-
++	
+ 	private static void updateLat(double lat, double[] latExtent)
+ 	{
+ 		// 0.0 indicates not set (for most projections?)

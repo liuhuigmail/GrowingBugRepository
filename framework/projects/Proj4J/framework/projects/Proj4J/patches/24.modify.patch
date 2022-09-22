@@ -1,0 +1,59 @@
+diff --git a/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java b/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
+index b5f5451..876b70e 100755
+--- a/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
++++ b/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
+@@ -86,7 +86,6 @@ public class Proj4Keyword {
+             supportedParams.add(ellps);
+             supportedParams.add(h);
+ 
+-            supportedParams.add(R);
+             supportedParams.add(R_A);
+ 
+             supportedParams.add(k);
+diff --git a/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java b/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
+index ef37b01..4d7a7e5 100755
+--- a/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
++++ b/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
+@@ -156,11 +156,6 @@ public class Proj4Parser {
+         if (s != null)
+             projection.setAxisOrder(s);
+ 
+-        /* Radius of the sphere given in meters. If used in conjuction with +ellps +R takes precedence. */
+-        s = (String) params.get(Proj4Keyword.R);
+-        if (s != null)
+-            projection.setRadius(Double.parseDouble(s));
+-
+         //TODO: implement some of these parameters ?
+ 
+         // this must be done last, since behaviour depends on other params being set (eg +south)
+diff --git a/src/main/java/org/locationtech/proj4j/proj/Projection.java b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+index e4fac9e..212a2d5 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/Projection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+@@ -747,10 +747,6 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+         return ellipsoid;
+     }
+ 
+-    public void setRadius(double radius) {
+-        a = radius;
+-    }
+-
+     /**
+      * Returns the ESPG code for this projection, or 0 if unknown.
+      */
+diff --git a/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java b/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java
+index 90461f2..8a4f789 100755
+--- a/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java
++++ b/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java
+@@ -221,11 +221,6 @@ public class CoordinateTransformTest extends BaseCoordinateTransformTest {
+         checkTransformFromGeo("EPSG:29100", -53.0, 5.0, 5110899.06, 10552971.67, 4000);
+     }
+ 
+-    @Test
+-    public void testRadius() {
+-        checkTransformToWGS84("+title=long/lat:WGS84 +proj=eqc +R=57295779.5130823209", 1000000.0, 1000000.0, 1.0, 1.0, 0.01);
+-    }
+-
+     @Ignore("TODO: Should these expect UnknownAuthoriyCode exceptions?") @Test
+     public void XtestUndefined() {
+         //runInverseTransform("EPSG:27492",    25260.493584, -9579.245052,    -7.84, 39.58);

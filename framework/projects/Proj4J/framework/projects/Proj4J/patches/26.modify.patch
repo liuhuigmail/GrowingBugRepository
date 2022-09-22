@@ -1,0 +1,15 @@
+diff --git a/pom.xml b/pom.xml
+old mode 100644
+new mode 100755
+index 54070cb..20ad03b
+--- a/pom.xml
++++ b/pom.xml
+@@ -51,7 +51,7 @@
+         <dependency>
+             <groupId>junit</groupId>
+             <artifactId>junit</artifactId>
+-            <version>4.13.1</version>
++            <version>4.12</version>
+             <scope>test</scope>
+         </dependency>
+     </dependencies>

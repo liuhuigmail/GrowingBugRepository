@@ -1,0 +1,379 @@
+diff --git a/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java b/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java
+index c3f4151..90461f2 100755
+--- a/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java
++++ b/src/test/java/org/locationtech/proj4j/CoordinateTransformTest.java
+@@ -180,7 +180,6 @@ public class CoordinateTransformTest extends BaseCoordinateTransformTest {
+ 
+     @Test
+     public void testEPSG_4326() {
+-        // this test is asjusted to match proj4s behavior
+         checkTransformAndInverse(
+                 "EPSG:4326", -126.54, 54.15,
+                 "EPSG:3005", 964813.103719, 1016486.305862,
+@@ -188,11 +187,11 @@ public class CoordinateTransformTest extends BaseCoordinateTransformTest {
+ 
+         checkTransformAndInverse(
+                 "EPSG:32633", 249032.839239894, 7183612.30572229,
+-                "EPSG:4326", 9.735465995870696, 64.68347938261206,
++                "EPSG:4326", 9.735465995810884, 64.68347938257097,
+                 0.000001, 0.3 * APPROX_METRE_IN_DEGREES);
+ 
+         checkTransformAndInverse(
+-                "EPSG:32636", 500000, 4649776.224819178,
++                "EPSG:32636", 500000, 4649776.22482,
+                 "EPSG:4326", 33, 42,
+                 0.000001, 20 * APPROX_METRE_IN_DEGREES);
+     }
+diff --git a/src/test/java/org/locationtech/proj4j/ExampleTest.java b/src/test/java/org/locationtech/proj4j/ExampleTest.java
+index 834946c..3c318c2 100755
+--- a/src/test/java/org/locationtech/proj4j/ExampleTest.java
++++ b/src/test/java/org/locationtech/proj4j/ExampleTest.java
+@@ -15,10 +15,12 @@
+  *******************************************************************************/
+ package org.locationtech.proj4j;
+ 
+-import org.junit.Assert;
+ import org.junit.Test;
+-
+-import java.io.IOException;
++import org.locationtech.proj4j.CRSFactory;
++import org.locationtech.proj4j.CoordinateReferenceSystem;
++import org.locationtech.proj4j.CoordinateTransform;
++import org.locationtech.proj4j.CoordinateTransformFactory;
++import org.locationtech.proj4j.ProjCoordinate;
+ 
+ import static org.junit.Assert.assertTrue;
+ 
+@@ -39,16 +41,16 @@ public class ExampleTest {
+         CoordinateTransformFactory ctFactory = new CoordinateTransformFactory();
+         CRSFactory csFactory = new CRSFactory();
+         /*
+-         * Create {@link CoordinateReferenceSystem} & CoordinateTransformation.
+-         * Normally this would be carried out once and reused for all transformations
+-         */
++        * Create {@link CoordinateReferenceSystem} & CoordinateTransformation.
++        * Normally this would be carried out once and reused for all transformations
++        */
+         CoordinateReferenceSystem crs = csFactory.createFromName(csName);
+ 
+         final String WGS84_PARAM = "+title=long/lat:WGS84 +proj=longlat +ellps=WGS84 +datum=WGS84 +units=degrees";
+         CoordinateReferenceSystem WGS84 = csFactory.createFromParameters("WGS84", WGS84_PARAM);
+ 
+         CoordinateTransform trans = ctFactory.createTransform(WGS84, crs);
+-
++    
+         /*
+          * Create input and output points.
+          * These can be constructed once per thread and reused.
+@@ -57,7 +59,7 @@ public class ExampleTest {
+         ProjCoordinate p2 = new ProjCoordinate();
+         p.x = lon;
+         p.y = lat;
+-
++    
+         /*
+          * Transform point
+          */
+@@ -80,7 +82,7 @@ public class ExampleTest {
+         CoordinateReferenceSystem crs2 = csFactory.createFromName(csName2);
+ 
+         CoordinateTransform trans = ctFactory.createTransform(crs1, crs2);
+-
++    
+         /*
+          * Create input and output points.
+          * These can be constructed once per thread and reused.
+@@ -89,7 +91,7 @@ public class ExampleTest {
+         ProjCoordinate p2 = new ProjCoordinate();
+         p1.x = 500000;
+         p1.y = 4649776.22482;
+-
++    
+         /*
+          * Transform point
+          */
+@@ -98,136 +100,6 @@ public class ExampleTest {
+         assertTrue(isInTolerance(p2, 33, 42, 0.000001));
+     }
+ 
+-    @Test
+-    public void lccToUtmBidirectionalTransform() {
+-
+-        String sourceProjection = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
+-        String targetProjection = "+proj=utm +zone=13 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
+-
+-        CoordinateTransformFactory ctFactory = new CoordinateTransformFactory();
+-        CRSFactory csFactory = new CRSFactory();
+-        /*
+-         * Create {@link CoordinateReferenceSystem} & CoordinateTransformation.
+-         * Normally this would be carried out once and reused for all transformations
+-         */
+-        CoordinateReferenceSystem sourceCRS = csFactory.createFromParameters(null, sourceProjection);
+-        CoordinateReferenceSystem targetCRS = csFactory.createFromParameters(null, targetProjection);
+-
+-        CoordinateTransform trans = ctFactory.createTransform(sourceCRS, targetCRS);
+-        CoordinateTransform inverse = ctFactory.createTransform(targetCRS, sourceCRS);
+-
+-        /*
+-         * Create input and output points.
+-         * These can be constructed once per thread and reused.
+-         */
+-        ProjCoordinate p1 = new ProjCoordinate();
+-        ProjCoordinate p2 = new ProjCoordinate();
+-
+-        p1.x = -2328478.0;
+-        p1.y = -732244.0;
+-        p2.x = 2641142.0;
+-        p2.y = 3898488.0;
+-
+-        ProjCoordinate p1t = new ProjCoordinate();
+-        ProjCoordinate p2t = new ProjCoordinate();
+-
+-        ProjCoordinate p1i = new ProjCoordinate();
+-        ProjCoordinate p2i = new ProjCoordinate();
+-
+-        /*
+-         * Transform point
+-         */
+-        trans.transform(p1, p1t);
+-        trans.transform(p2, p2t);
+-
+-        inverse.transform(p1t, p1i);
+-        inverse.transform(p2t, p2i);
+-
+-        // TransverseMercator: -898112.8947364385 4366397.986532097
+-        // proj4js, ExtendedTransverseMercator: -898112.6757444271, 4366397.955450379
+-        assertTrue(isInTolerance(p1t, -898112.6757444271, 4366397.955450379, 0.000001));
+-        // TransverseMercator: 3168615.043479321 10060133.986247078
+-        // proj4js, ExtendedTransverseMercator: 3196914.503779556, 10104027.377988787
+-        assertTrue(isInTolerance(p2t, 3196914.503779556, 10104027.377988787, 0.000001));
+-
+-        // TransverseMercator: -2328476.414958664 -732244.6234315771
+-        // proj4js, ExtendedTransverseMercator: -2328478.000000011, -732244.0000000233
+-        assertTrue(isInTolerance(p1i, p1.x, p1.y, 0.000001));
+-        // TransverseMercator: 0 4654175.264342441
+-        // proj4js, ExtendedTransverseMercator: 2641142.000000019, 3898487.999999993
+-        assertTrue(isInTolerance(p2i, p2.x, p2.y, 0.000001));
+-    }
+-
+-    @Test
+-    public void latLonToLccBidirectionalTransform() {
+-        String sourceProjection = "+proj=longlat +datum=WGS84 +no_defs";
+-        String targetProjection = "+proj=lcc +lat_1=10.16666666666667 +lat_0=10.16666666666667 +lon_0=-71.60561777777777 +k_0=1 +x_0=0 +y_0=-52684.972 +ellps=intl +units=m +no_defs";
+-
+-        CoordinateTransformFactory ctFactory = new CoordinateTransformFactory();
+-        CRSFactory csFactory = new CRSFactory();
+-        /*
+-         * Create {@link CoordinateReferenceSystem} & CoordinateTransformation.
+-         * Normally this would be carried out once and reused for all transformations
+-         */
+-        CoordinateReferenceSystem sourceCRS = csFactory.createFromParameters(null, sourceProjection);
+-        CoordinateReferenceSystem targetCRS = csFactory.createFromParameters(null, targetProjection);
+-
+-        CoordinateTransform trans = ctFactory.createTransform(sourceCRS, targetCRS);
+-        CoordinateTransform inverse = ctFactory.createTransform(targetCRS, sourceCRS);
+-
+-        /*
+-         * Create input and output points.
+-         * These can be constructed once per thread and reused.
+-         */
+-        ProjCoordinate p = new ProjCoordinate();
+-
+-        p.x = 1;
+-        p.y = -1;
+-
+-        ProjCoordinate pt = new ProjCoordinate();
+-
+-        ProjCoordinate pi = new ProjCoordinate();
+-
+-        /*
+-         * Transform point
+-         */
+-        trans.transform(p, pt);
+-        inverse.transform(pt, pi);
+-
+-        assertTrue(isInTolerance(pt, 8166119.317682125, -378218.6293696874, 0.000001));
+-        assertTrue(isInTolerance(pi, p.x, p.y, 0.000001));
+-    }
+-
+-    @Test
+-    public void latLonToStereBidirectionalTransform() {
+-        CRSFactory csFactory = new CRSFactory();
+-        CoordinateReferenceSystem STERE0 = csFactory.createFromParameters("STERE", "+proj=stere +lat_0=0.0 +lon_0=0.0 +k=1 +x_0=0 +y_0=0 +ellps=WGS84 +units=m +no_defs");
+-        CoordinateReferenceSystem STERE1 = csFactory.createFromParameters("STERE", "+proj=stere +lat_0=0.000001 +lon_0=0.0 +k=1 +x_0=0 +y_0=0 +ellps=WGS84 +units=m +no_defs");
+-        CoordinateReferenceSystem WGS84 = csFactory.createFromParameters("WGS84", "+proj=latlong +datum=WGS84 +ellps=WGS84 +no_defs");
+-        CoordinateTransform transformer0 = new CoordinateTransformFactory().createTransform(WGS84, STERE0);
+-        CoordinateTransform transformer1 = new CoordinateTransformFactory().createTransform(WGS84, STERE1);
+-
+-        ProjCoordinate pc = new ProjCoordinate(1, 1);
+-        ProjCoordinate result0 = new ProjCoordinate();
+-        ProjCoordinate result1 = new ProjCoordinate();
+-
+-        transformer0.transform(pc, result0);
+-        transformer1.transform(pc, result1);
+-
+-        assertTrue(isInTolerance(result0, 111313.95106842462, 110585.61615828621, 0.000001));
+-        assertTrue(isInTolerance(result1, 111313.95105169504, 110585.50558411982, 0.000001));
+-    }
+-
+-    @Test
+-    public void epsgWebMercatorLegacyTest() {
+-        CRSFactory csFactory = new CRSFactory();
+-        try {
+-            String code = csFactory.readEpsgFromParameters("+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs");
+-            Assert.assertEquals(Integer.parseInt(code), 3857);
+-        } catch (IOException e) {
+-            e.printStackTrace();
+-        }
+-    }
+ 
+     private boolean isInTolerance(ProjCoordinate p, double x, double y, double tolerance) {
+         /*
+diff --git a/src/test/java/org/locationtech/proj4j/MetaCRSTest.java b/src/test/java/org/locationtech/proj4j/MetaCRSTest.java
+index c322174..7abd0ff 100755
+--- a/src/test/java/org/locationtech/proj4j/MetaCRSTest.java
++++ b/src/test/java/org/locationtech/proj4j/MetaCRSTest.java
+@@ -20,76 +20,60 @@ import java.io.IOException;
+ import java.net.URISyntaxException;
+ import java.util.List;
+ 
+-import org.junit.Assert;
+ import org.junit.Test;
++import org.locationtech.proj4j.CRSFactory;
++import org.locationtech.proj4j.Proj4jException;
+ import org.locationtech.proj4j.io.MetaCRSTestCase;
+ import org.locationtech.proj4j.io.MetaCRSTestFileReader;
+ 
+ /**
+  * Runs MetaCRS test files.
+- *
++ * 
+  * @author mbdavis
++ * 
+  */
+ public class MetaCRSTest {
+ 
+-    private static CRSFactory csFactory = new CRSFactory();
+-
+-    @Test
+-    public void xtestMetaCRSExample() throws IOException {
+-        File file = getFile("TestData.csv");
+-        MetaCRSTestFileReader reader = new MetaCRSTestFileReader(file);
+-        List<MetaCRSTestCase> tests = reader.readTests();
+-        for (MetaCRSTestCase test : tests) {
+-            Assert.assertTrue(runTest(test));
+-        }
+-    }
+-
+-    @Test
+-    public void testPROJ4_SPCS() throws IOException {
+-        File file = getFile("PROJ4_SPCS_EPSG_nad83.csv");
+-        MetaCRSTestFileReader reader = new MetaCRSTestFileReader(file);
+-        List<MetaCRSTestCase> tests = reader.readTests();
+-        for (MetaCRSTestCase test : tests) {
+-            Assert.assertTrue(runTest(test));
+-        }
+-    }
++	private static CRSFactory csFactory = new CRSFactory();
+ 
+-    @Test
+-    public void testPROJ4_Empirical() throws IOException {
+-        File file = getFile("proj4-epsg.csv");
+-        MetaCRSTestFileReader reader = new MetaCRSTestFileReader(file);
+-        List<MetaCRSTestCase> tests = reader.readTests();
+-        for (MetaCRSTestCase test : tests) {
+-            boolean testResult = runTest(test);
+-            String testMethod = test.getTestMethod();
++	@Test
++	public void xtestMetaCRSExample() throws IOException {
++        //todo: tidy rel paths
++		File file = getFile("../../../TestData.csv");
++		MetaCRSTestFileReader reader = new MetaCRSTestFileReader(file);
++		List<MetaCRSTestCase> tests = reader.readTests();
++		for (MetaCRSTestCase test : tests) {
++			runTest(test);
++		}
++	}
+ 
+-            if (testMethod.equals(MetaCRSTestCase.PASSING)) {
+-                Assert.assertTrue(testResult);
+-            } else {
+-                Assert.assertFalse(testResult);
+-            }
+-        }
+-    }
++	@Test
++	public void testPROJ4_SPCS() throws IOException {
++		File file = getFile("../../../PROJ4_SPCS_EPSG_nad83.csv");
++		MetaCRSTestFileReader reader = new MetaCRSTestFileReader(file);
++		List<MetaCRSTestCase> tests = reader.readTests();
++		for (MetaCRSTestCase test : tests) {
++			runTest(test);
++		}
++	}
+ 
+-    File getFile(String name) {
+-        try {
+-            return new File(this.getClass().getResource("../../../" + name).toURI());
+-        } catch (URISyntaxException e) {
+-            // TODO Auto-generated catch block
+-            e.printStackTrace();
+-        }
+-        return null;
+-    }
++	File getFile(String name) {
++		try {
++			return new File(this.getClass().getResource(name).toURI());
++		} catch (URISyntaxException e) {
++			// TODO Auto-generated catch block
++			e.printStackTrace();
++		}
++		return null;
++	}
+ 
+-    boolean runTest(MetaCRSTestCase crsTest) {
+-        boolean returnCode = false;
+-        try {
+-            returnCode = crsTest.execute(csFactory);
+-            crsTest.print(System.out);
+-        } catch (Proj4jException ex) {
+-            System.out.println(ex);
+-        }
++	void runTest(MetaCRSTestCase crsTest) {
++		try {
++			crsTest.execute(csFactory);
++			crsTest.print(System.out);
++		} catch (Proj4jException ex) {
++			System.out.println(ex);
++		}
++	}
+ 
+-        return returnCode;
+-    }
+ }
+diff --git a/src/test/java/org/locationtech/proj4j/io/MetaCRSTestCase.java b/src/test/java/org/locationtech/proj4j/io/MetaCRSTestCase.java
+index 872c223..54044cb 100755
+--- a/src/test/java/org/locationtech/proj4j/io/MetaCRSTestCase.java
++++ b/src/test/java/org/locationtech/proj4j/io/MetaCRSTestCase.java
+@@ -23,10 +23,6 @@ import org.locationtech.proj4j.util.ProjectionUtil;
+ 
+ public class MetaCRSTestCase {
+ 
+-    public static String FAILING = "failing";
+-    public static String PASSING = "passing";
+-    public static String ERROR = "error";
+-
+     private static final CoordinateTransformFactory ctFactory = new CoordinateTransformFactory();
+ 
+     private boolean verbose = true;
+@@ -144,10 +140,6 @@ public class MetaCRSTestCase {
+         this.crsCache = crsCache;
+     }
+ 
+-    public String getTestMethod() {
+-        return this.testMethod;
+-    }
+-
+     public boolean execute(CRSFactory csFactory) {
+         boolean isOK = false;
+         srcCS = createCS(csFactory, srcCrsAuth, srcCrs);

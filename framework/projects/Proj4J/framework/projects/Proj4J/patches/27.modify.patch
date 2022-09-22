@@ -1,0 +1,39 @@
+diff --git a/src/main/java/org/locationtech/proj4j/Registry.java b/src/main/java/org/locationtech/proj4j/Registry.java
+index 51c0573..c612db4 100755
+--- a/src/main/java/org/locationtech/proj4j/Registry.java
++++ b/src/main/java/org/locationtech/proj4j/Registry.java
+@@ -194,7 +194,6 @@ public class Registry {
+         register("fouc", FoucautProjection.class, "Foucaut");
+         register("fouc_s", FoucautSinusoidalProjection.class, "Foucaut Sinusoidal");
+         register("gall", GallProjection.class, "Gall (Gall Stereographic)");
+-        register("geocent", GeocentProjection.class, "Geocentric");
+         register("geos", GeostationarySatelliteProjection.class, "Geostationary Satellite");
+ //    register( "gins8", Projection.class, "Ginsburg VIII (TsNIIGAiK)" );
+ //    register( "gn_sinu", Projection.class, "General Sinusoidal Series" );
+diff --git a/src/main/java/org/locationtech/proj4j/proj/GeocentProjection.java b/src/main/java/org/locationtech/proj4j/proj/GeocentProjection.java
+deleted file mode 100644
+index 07a99fd..0000000
+--- a/src/main/java/org/locationtech/proj4j/proj/GeocentProjection.java
++++ /dev/null
+@@ -1,21 +0,0 @@
+-package org.locationtech.proj4j.proj;
+-
+-import org.locationtech.proj4j.ProjCoordinate;
+-import org.locationtech.proj4j.datum.GeocentricConverter;
+-
+-public class GeocentProjection extends Projection {
+-
+-  @Override
+-  public ProjCoordinate projectRadians(ProjCoordinate src, ProjCoordinate dst) {
+-    GeocentricConverter geocentricConverter = new GeocentricConverter(this.ellipsoid);
+-    geocentricConverter.convertGeodeticToGeocentric(dst);
+-    return dst;
+-  }
+-  
+-  @Override
+-  public ProjCoordinate inverseProjectRadians(ProjCoordinate src, ProjCoordinate dst) {
+-    GeocentricConverter geocentricConverter = new GeocentricConverter(this.ellipsoid);
+-    geocentricConverter.convertGeocentricToGeodetic(dst);
+-    return dst;
+-  }
+-}

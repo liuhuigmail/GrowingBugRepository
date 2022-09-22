@@ -1,0 +1,148 @@
+diff --git a/src/main/java/org/locationtech/proj4j/BasicCoordinateTransform.java b/src/main/java/org/locationtech/proj4j/BasicCoordinateTransform.java
+index 0d5eccd..8e0b443 100755
+--- a/src/main/java/org/locationtech/proj4j/BasicCoordinateTransform.java
++++ b/src/main/java/org/locationtech/proj4j/BasicCoordinateTransform.java
+@@ -79,45 +79,28 @@ public class BasicCoordinateTransform implements CoordinateTransform {
+         doDatumTransform = doInverseProjection && doForwardProjection
+                 && srcCRS.getDatum() != tgtCRS.getDatum();
+ 
+-        boolean geocentric = false;
+-
+         if (doDatumTransform) {
+ 
+             boolean isEllipsoidEqual = srcCRS.getDatum().getEllipsoid().isEqual(tgtCRS.getDatum().getEllipsoid());
+-            geocentric = ! isEllipsoidEqual || srcCRS.getDatum().hasTransformToWGS84()
++            transformViaGeocentric = ! isEllipsoidEqual || srcCRS.getDatum().hasTransformToWGS84()
+                     || tgtCRS.getDatum().hasTransformToWGS84();
+ 
+-            if (geocentric) {
++            if (transformViaGeocentric) {
+                 srcGeoConv = new GeocentricConverter(srcCRS.getDatum().getEllipsoid());
+                 tgtGeoConv = new GeocentricConverter(tgtCRS.getDatum().getEllipsoid());
+ 
+-                int srcTransformType = srcCRS.getDatum().getTransformType();
+-                int tgtTransformType = tgtCRS.getDatum().getTransformType();
+-
+-                if (srcTransformType == Datum.TYPE_GRIDSHIFT || tgtTransformType == Datum.TYPE_GRIDSHIFT) {
+-
+-	                if (srcTransformType == Datum.TYPE_GRIDSHIFT) {
+-	                    srcGeoConv.overrideWithWGS84Params();
+-	                }
+-
+-	                if (tgtTransformType == Datum.TYPE_GRIDSHIFT) {
+-	                    tgtGeoConv.overrideWithWGS84Params();
+-	                }
+-
+-	                // After WGS84 params override, check if geocentric transform is still required
+-	                // https://github.com/OSGeo/PROJ/blob/5.2.0/src/pj_transform.c#L892
+-	                if(srcGeoConv.isEqual(tgtGeoConv)) {
+-	                    geocentric = false;
+-	                    srcGeoConv = null;
+-	                    tgtGeoConv = null;
+-	                }
++                if (srcCRS.getDatum().getTransformType() == Datum.TYPE_GRIDSHIFT) {
++                    srcGeoConv.overrideWithWGS84Params();
++                }
+ 
++                if (tgtCRS.getDatum().getTransformType() == Datum.TYPE_GRIDSHIFT) {
++                    tgtGeoConv.overrideWithWGS84Params();
+                 }
+             }
+ 
++        } else {
++        	transformViaGeocentric=false;
+         }
+-
+-        transformViaGeocentric = geocentric;
+     }
+ 
+     @Override
+@@ -189,10 +172,6 @@ public class BasicCoordinateTransform implements CoordinateTransform {
+                 || tgtCRS.getDatum().getTransformType() == Datum.TYPE_UNKNOWN)
+             return;
+ 
+-        /* -------------------------------------------------------------------- */
+-        /*	If this datum requires grid shifts, then apply it to geodetic    */
+-        /*      coordinates.                                                    */
+-        /* -------------------------------------------------------------------- */
+         if (srcCRS.getDatum().getTransformType() == Datum.TYPE_GRIDSHIFT) {
+             srcCRS.getDatum().shift(pt);
+         }
+@@ -223,9 +202,7 @@ public class BasicCoordinateTransform implements CoordinateTransform {
+             tgtGeoConv.convertGeocentricToGeodetic(pt);
+         }
+ 
+-        /* -------------------------------------------------------------------- */
+-        /*      Apply grid shift to destination if required.                    */
+-        /* -------------------------------------------------------------------- */
++
+         if (tgtCRS.getDatum().getTransformType() == Datum.TYPE_GRIDSHIFT) {
+             tgtCRS.getDatum().inverseShift(pt);
+         }
+diff --git a/src/main/java/org/locationtech/proj4j/datum/GeocentricConverter.java b/src/main/java/org/locationtech/proj4j/datum/GeocentricConverter.java
+index cdafcc5..0a4168f 100755
+--- a/src/main/java/org/locationtech/proj4j/datum/GeocentricConverter.java
++++ b/src/main/java/org/locationtech/proj4j/datum/GeocentricConverter.java
+@@ -60,16 +60,15 @@ public class GeocentricConverter implements java.io.Serializable {
+     double ep2;
+ 
+     public GeocentricConverter(Ellipsoid ellipsoid) {
+-        // Preserve the ellipsoid value precisions
+-        this(ellipsoid.getA(), ellipsoid.getB(), ellipsoid.getEccentricitySquared());
++        this(ellipsoid.getA(), ellipsoid.getB());
+     }
+ 
+-    public GeocentricConverter(double a, double b, double e2) {
++    public GeocentricConverter(double a, double b) {
+         this.a = a;
+         this.b = b;
+         a2 = a * a;
+         b2 = b * b;
+-        this.e2 = e2;
++        e2 = (a2 - b2) / a2;
+         ep2 = (a2 - b2) / b2;
+     }
+ 
+@@ -78,12 +77,6 @@ public class GeocentricConverter implements java.io.Serializable {
+         this.e2 = Ellipsoid.WGS84.getEccentricitySquared();
+     }
+ 
+-    public boolean isEqual(GeocentricConverter gc) {
+-        // Check if geocentricly equal
+-        // https://github.com/OSGeo/PROJ/blob/5.2.0/src/pj_transform.c#L892
+-        return this.a == gc.a && this.e2 == gc.e2;
+-    }
+-
+     /**
+      * Converts geodetic coordinates
+      * (latitude, longitude, and height) to geocentric coordinates (X, Y, Z),
+diff --git a/src/main/java/org/locationtech/proj4j/datum/Grid.java b/src/main/java/org/locationtech/proj4j/datum/Grid.java
+index f1abb9b..71a5aa5 100755
+--- a/src/main/java/org/locationtech/proj4j/datum/Grid.java
++++ b/src/main/java/org/locationtech/proj4j/datum/Grid.java
+@@ -91,9 +91,6 @@ public final class Grid implements Serializable {
+ 
+         for (Grid grid : grids) {
+             ConversionTable table = grid.table;
+-            // don't shift if the grid is invalid
+-            // https://github.com/OSGeo/PROJ/blob/5.2.0/src/pj_gridlist.c#L88
+-            if(table == null) continue;
+             double epsilon = (Math.abs(table.del.phi) + Math.abs(table.del.lam)) / 10000d;
+             // Skip tables that don't match our point at all
+             if (table.ll.phi - epsilon > input.phi
+@@ -317,6 +314,7 @@ public final class Grid implements Serializable {
+             for (String gridName : grids.split(",")) {
+                 boolean optional = gridName.startsWith("@");
+                 if (optional) gridName = gridName.substring(1);
++                if (gridName.equals("null")) return null;
+                 try {
+                     mergeGridFile(gridName, gridlist);
+                 } catch (IOException e) {
+@@ -333,7 +331,6 @@ public final class Grid implements Serializable {
+         grid.gridName = gridName;
+         grid.format = "missing";
+         grid.gridOffset = 0;
+-        if (gridName.equals("null")) return grid;
+         try(DataInputStream gridDefinition = resolveGridDefinition(gridName)) {
+             if (gridDefinition == null) {
+                 throw new IOException("Unknown grid: " + gridName);

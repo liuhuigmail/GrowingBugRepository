@@ -1,0 +1,9 @@
+org.locationtech.proj4j.CoordinateTransformTest
+org.locationtech.proj4j.ExampleTest
+org.locationtech.proj4j.FeatureTest
+org.locationtech.proj4j.MetaCRSTest
+org.locationtech.proj4j.Proj4JSTest
+org.locationtech.proj4j.Proj4VariousTest
+org.locationtech.proj4j.RepeatedTransformTest
+org.locationtech.proj4j.proj.ProjectionEqualityTest
+org.locationtech.proj4j.proj.ProjectionGridTest

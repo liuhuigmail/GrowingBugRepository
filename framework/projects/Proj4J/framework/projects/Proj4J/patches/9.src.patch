@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java b/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
+index bc17b2f..e682b64 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
+@@ -4,9 +4,9 @@ import org.locationtech.proj4j.ProjCoordinate;
+ import org.locationtech.proj4j.datum.Ellipsoid;
+ 
+ /**
+- *
+- * @see <a href="https://github.com/OSGeo/proj.4/issues/316">Proj.4 issue 316</a>
+- * @see <a href="https://github.com/OSGeo/proj.4/blob/master/src/proj_etmerc.c">proj_etmerc.c</a>
++ * 
++ * @see https://github.com/OSGeo/proj.4/issues/316
++ * @see https://github.com/OSGeo/proj.4/blob/master/src/proj_etmerc.c
+  */
+ public class ExtendedTransverseMercatorProjection extends CylindricalProjection {
+     

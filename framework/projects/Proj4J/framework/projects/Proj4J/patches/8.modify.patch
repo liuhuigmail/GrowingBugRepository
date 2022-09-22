@@ -1,0 +1,70 @@
+diff --git a/src/main/java/org/locationtech/proj4j/datum/Grid.java b/src/main/java/org/locationtech/proj4j/datum/Grid.java
+index b340b92..c6464ac 100755
+--- a/src/main/java/org/locationtech/proj4j/datum/Grid.java
++++ b/src/main/java/org/locationtech/proj4j/datum/Grid.java
+@@ -330,29 +330,28 @@ public final class Grid implements Serializable {
+         grid.gridName = gridName;
+         grid.format = "missing";
+         grid.gridOffset = 0;
+-        try(DataInputStream gridDefinition = resolveGridDefinition(gridName)) {
+-            if (gridDefinition == null) {
+-                throw new IOException("Unknown grid: " + gridName);
+-            }
+-            byte[] header = new byte[160];
+-            gridDefinition.mark(header.length);
+-            gridDefinition.readFully(header);
++        DataInputStream gridDefinition = resolveGridDefinition(gridName);
++        if (gridDefinition == null) {
++            throw new IOException("Unknown grid: " + gridName);
++        }
++        byte[] header = new byte[160];
++        gridDefinition.mark(header.length);
++        gridDefinition.readFully(header);
++        gridDefinition.reset();
++        if (CTABLEV2.testHeader(header)) {
++            grid.format = "ctable2";
++            gridDefinition.mark(1024);
++            grid.table = CTABLEV2.init(gridDefinition);
+             gridDefinition.reset();
+-            if (CTABLEV2.testHeader(header)) {
+-                grid.format = "ctable2";
+-                gridDefinition.mark(1024);
+-                grid.table = CTABLEV2.init(gridDefinition);
+-                gridDefinition.reset();
+-                CTABLEV2.load(gridDefinition, grid);
+-            }
+-            if (NTV1.testHeader(header)) {
+-                grid.format = "ntv1";
+-                gridDefinition.mark(1024);
+-                grid.table = NTV1.init(gridDefinition);
+-                gridDefinition.reset();
+-                NTV1.load(gridDefinition, grid);
+-            }
+-		}
++            CTABLEV2.load(gridDefinition, grid);
++        }
++        if (NTV1.testHeader(header)) {
++            grid.format = "ntv1";
++            gridDefinition.mark(1024);
++            grid.table = NTV1.init(gridDefinition);
++            gridDefinition.reset();
++            NTV1.load(gridDefinition, grid);
++        }
+         return grid;
+     }
+ 
+diff --git a/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java b/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
+index 7d71987..b96c403 100755
+--- a/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
++++ b/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
+@@ -72,9 +72,7 @@ public class Proj4Parser {
+             if (projection == null)
+                 throw new InvalidValueException("Unknown projection: " + s);
+         }
+-		else {
+-			throw new InvalidValueException("Keyword '" + Proj4Keyword.proj + "' is a required parameter");
+-        }
++
+         projection.setEllipsoid(ellipsoid);
+ 
+         //TODO: better error handling for things like bad number syntax.

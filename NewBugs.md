@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`906`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`909`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -226,3 +226,4 @@ To date, growingBugs contains **`906`** unique bugs that are not included in Def
 | 216     | Aws_maven         | aws-maven           |                  |      1       | 1                  |
 | 217     | Snomed_owl_toolkit         | snomed-owl-toolkit           |                  |      2       | 1-2                  |
 | 218     | Weak_lock_free         | weak-lock-free           |                  |      1       | 1                  |
+| 219     | Proj4J         | proj4j           |                  |      3       | 1-3                  |

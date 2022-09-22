@@ -1,0 +1,4 @@
+org.locationtech.proj4j.BaseCoordinateTransformTest
+org.locationtech.proj4j.CoordinateTransformTest
+org.locationtech.proj4j.CoordinateTransformTester
+org.locationtech.proj4j.TransformFailures

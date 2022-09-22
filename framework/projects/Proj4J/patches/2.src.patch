@@ -1,0 +1,43 @@
+diff --git a/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java b/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
+index b5f5451..876b70e 100755
+--- a/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
++++ b/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
+@@ -86,7 +86,6 @@ public class Proj4Keyword {
+             supportedParams.add(ellps);
+             supportedParams.add(h);
+ 
+-            supportedParams.add(R);
+             supportedParams.add(R_A);
+ 
+             supportedParams.add(k);
+diff --git a/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java b/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
+index ef37b01..4d7a7e5 100755
+--- a/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
++++ b/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
+@@ -156,11 +156,8 @@ public class Proj4Parser {
+         if (s != null)
+             projection.setAxisOrder(s);
+ 
+         /* Radius of the sphere given in meters. If used in conjuction with +ellps +R takes precedence. */
+-        s = (String) params.get(Proj4Keyword.R);
+-        if (s != null)
+-            projection.setRadius(Double.parseDouble(s));
+ 
+         //TODO: implement some of these parameters ?
+ 
+         // this must be done last, since behaviour depends on other params being set (eg +south)
+diff --git a/src/main/java/org/locationtech/proj4j/proj/Projection.java b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+index e4fac9e..212a2d5 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/Projection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+@@ -747,10 +747,7 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+         return ellipsoid;
+     }
+ 
+-    public void setRadius(double radius) {
+-        a = radius;
+-    }
+ 
+     /**
+      * Returns the ESPG code for this projection, or 0 if unknown.
+      */

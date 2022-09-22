@@ -1,0 +1,133 @@
+diff --git a/README.md b/README.md
+index 5a9850a..2f88f35 100644
+--- a/README.md
++++ b/README.md
+@@ -3,78 +3,6 @@
+ Proj4J is a Java library for converting coordinates between different geospatial coordinate reference systems.
+ It is designed to be compatible with `proj.4` parameters and derives some of its implementation from the `proj.4` sources.
+ 
+-Proj4J is a project in the [LocationTech](http://www.locationtech.org) working group of the Eclipse Foundation.
+-
+-![LocationTech](locationtech_mark.png) 
+-
+-## User Guide
+-
+-Proj4J artifacts are available on maven central.
+-
+-### Using Proj4J with Maven
+-
+-To include Proj4J in a Maven project, add a dependency block like the following:
+-
+-```xml
+-<properties>
+-    <proj4j.version>1.1.3</proj4j.version>
+-</properties>
+-<dependency>
+-    <groupId>org.locationtech.proj4j</groupId>
+-    <artifactId>proj4j</artifactId>
+-    <version>${proj4j.version}</version>
+-</dependency>
+-```
+-
+-### Using Proj4J with Gradle
+-
+-To include Proj4J in a Gradle project, add a dependency block like the following:
+-
+-```
+-dependencies {
+-    implementation 'org.locationtech.proj4j:proj4j:1.1.3'
+-}
+-```
+-
+-### Basic Usage
+-
+-The following examples give a quick intro on how to use Proj4J in common
+-use cases.
+-
+-#### Transforming coordinates from WGS84 to UTM
+-
+-##### Obtaining CRSs by name
+-
+-```Java
+-CRSFactory crsFactory = new CRSFactory();
+-CoordinateReferenceSystem WGS84 = crsFactory.createFromName("epsg:4326");
+-CoordinateReferenceSystem UTM = crsFactory.createFromName("epsg:25833");
+-```
+-
+-##### Obtaining CRSs using parameters
+-
+-```Java
+-CRSFactory crsFactory = new CRSFactory();
+-CoordinateReferenceSystem WGS84 = crsFactory.createFromParameters("WGS84",
+-    "+proj=longlat +datum=WGS84 +no_defs");
+-CoordinateReferenceSystem UTM = crsFactory.createFromParameters("UTM",
+-    "+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
+-```
+-
+-##### Transforming coordinates
+-
+-```Java
+-CoordinateTransformFactory ctFactory = new CoordinateTransformFactory();
+-CoordinateTransform wgsToUtm = ctFactory.createTransform(WGS84, UTM);
+-// `result` is an output parameter to `transform()`
+-ProjCoordinate result = new ProjCoordinate();
+-wgsToUtm.transform(new ProjCoordinate(lon, lat), result);
+-```
+-
+ ## Building, Testing and installing locally
+ 
+ `mvn clean install`
+-
+-## Contributing
+-
+-If you are interested in contributing to Proj4J please read the [**Contributing Guide**](CONTRIBUTING.md).
+diff --git a/locationtech_mark.png b/locationtech_mark.png
+deleted file mode 100644
+index 57c4f9ba1bb86f26f2e3d5ed436ce2bffeb6b63f..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 7190
+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
+TfG5Bc;0f>qcmh0u|0D1(<?&<L
+

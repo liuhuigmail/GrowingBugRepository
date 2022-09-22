@@ -1,0 +1,47 @@
+diff --git a/pom.xml b/pom.xml
+index 457f5a2..eede2a8 100755
+--- a/pom.xml
++++ b/pom.xml
+@@ -4,7 +4,7 @@
+     <groupId>org.locationtech.proj4j</groupId>
+     <artifactId>proj4j</artifactId>
+     <version>1.0.1-SNAPSHOT</version>
+-    <packaging>bundle</packaging>
++    <packaging>jar</packaging>
+     <name>Proj4J</name>
+     <url>https://github.com/locationtech/proj4j</url>
+ 	<description>Java port of the Proj.4 library for coordinate reprojection</description>
+@@ -42,9 +42,6 @@
+ 
+     <properties>
+         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+-        <bundle-symbolicname>org.locationtech.proj4j</bundle-symbolicname>
+-        <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
+-		<osgi-version-qualifier>${maven.build.timestamp}</osgi-version-qualifier>
+     </properties>
+ 
+     <dependencies>
+@@ -104,23 +101,6 @@
+                 <artifactId>maven-surefire-plugin</artifactId>
+                 <version>2.19.1</version>
+             </plugin>
+-			<plugin>
+-				<groupId>org.apache.felix</groupId>
+-				<artifactId>maven-bundle-plugin</artifactId>
+-				<version>4.2.0</version>
+-				<extensions>true</extensions>
+-				<configuration>
+-					<!-- see http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html -->
+-					<instructions>
+-						<!-- no 'uses' osgi directive -->
+-						<_nouses>true</_nouses>
+-						<_snapshot>${osgi-version-qualifier}</_snapshot>
+-						<Bundle-SymbolicName>${bundle-symbolicname}</Bundle-SymbolicName>
+-						<Import-Package></Import-Package>
+-					</instructions>
+-					<niceManifest>true</niceManifest>
+-				</configuration>
+-			</plugin>			
+ 
+             <!-- Maven Central Publish -->
+             <plugin>

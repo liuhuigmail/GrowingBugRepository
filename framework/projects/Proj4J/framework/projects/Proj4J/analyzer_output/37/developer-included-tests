@@ -1,0 +1,11 @@
+org/locationtech/proj4j/BaseCoordinateTransformTest.java
+org/locationtech/proj4j/CoordinateTransformTest.java
+org/locationtech/proj4j/ExampleTest.java
+org/locationtech/proj4j/FeatureTest.java
+org/locationtech/proj4j/MetaCRSTest.java
+org/locationtech/proj4j/Proj4JSTest.java
+org/locationtech/proj4j/Proj4VariousTest.java
+org/locationtech/proj4j/RepeatedTransformTest.java
+org/locationtech/proj4j/io/MetaCRSTestCase.java
+org/locationtech/proj4j/proj/ProjectionEqualityTest.java
+org/locationtech/proj4j/proj/ProjectionGridTest.java

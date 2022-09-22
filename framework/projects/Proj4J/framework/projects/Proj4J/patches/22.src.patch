@@ -1,0 +1,317 @@
+diff --git a/src/main/java/org/locationtech/proj4j/CoordinateReferenceSystem.java b/src/main/java/org/locationtech/proj4j/CoordinateReferenceSystem.java
+index bb6ef36..ab78ab2 100755
+--- a/src/main/java/org/locationtech/proj4j/CoordinateReferenceSystem.java
++++ b/src/main/java/org/locationtech/proj4j/CoordinateReferenceSystem.java
+@@ -23,7 +23,6 @@ import org.locationtech.proj4j.units.Unit;
+ import org.locationtech.proj4j.units.Units;
+ 
+ import java.util.Arrays;
+-import java.util.Objects;
+ 
+ /**
+  * Represents a projected or geodetic geospatial coordinate system,
+@@ -135,9 +134,4 @@ public class CoordinateReferenceSystem implements java.io.Serializable {
+         }
+         return false;
+     }
+-
+-    @Override
+-	public int hashCode() {
+-			return Objects.hash(datum, proj);
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/datum/Datum.java b/src/main/java/org/locationtech/proj4j/datum/Datum.java
+index 055e435..83892af 100755
+--- a/src/main/java/org/locationtech/proj4j/datum/Datum.java
++++ b/src/main/java/org/locationtech/proj4j/datum/Datum.java
+@@ -23,7 +23,6 @@ import static org.locationtech.proj4j.util.ProjectionMath.isIdentity;
+ import java.io.IOException;
+ import java.util.ArrayList;
+ import java.util.List;
+-import java.util.Objects;
+ 
+ import org.locationtech.proj4j.ProjCoordinate;
+ 
+@@ -265,9 +264,4 @@ public class Datum implements java.io.Serializable {
+     public void inverseShift(ProjCoordinate xy) {
+         Grid.shift(grids, true, xy);
+     }
+-
+-    @Override
+-	public int hashCode() {
+-			return Objects.hash(ellipsoid, grids, getTransformType());
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/AitoffProjection.java b/src/main/java/org/locationtech/proj4j/proj/AitoffProjection.java
+index 1df7218..e3326d1 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/AitoffProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/AitoffProjection.java
+@@ -19,8 +19,6 @@
+  */
+ package org.locationtech.proj4j.proj;
+ 
+-import java.util.Objects;
+-
+ import org.locationtech.proj4j.ProjCoordinate;
+ 
+ 
+@@ -87,9 +85,4 @@ public class AitoffProjection extends PseudoCylindricalProjection {
+ 			}
+ 			return false;
+ 	}
+-
+-	@Override
+-	public int hashCode() {
+-			return Objects.hash(winkel, super.hashCode());
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/AzimuthalProjection.java b/src/main/java/org/locationtech/proj4j/proj/AzimuthalProjection.java
+index 8d4afd9..b2c64b2 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/AzimuthalProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/AzimuthalProjection.java
+@@ -16,8 +16,6 @@
+ 
+ package org.locationtech.proj4j.proj;
+ 
+-import java.util.Objects;
+-
+ import org.locationtech.proj4j.util.ProjectionMath;
+ 
+ /**
+@@ -87,9 +85,4 @@ public abstract class AzimuthalProjection extends Projection {
+ 			}
+ 			return false;
+ 	}
+-
+-	@Override
+-	public int hashCode() {
+-			return Objects.hash(mode, sinphi0, cosphi0, mapRadius, super.hashCode());
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/GeostationarySatelliteProjection.java b/src/main/java/org/locationtech/proj4j/proj/GeostationarySatelliteProjection.java
+index d92f6b0..8d8d1ce 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/GeostationarySatelliteProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/GeostationarySatelliteProjection.java
+@@ -4,8 +4,6 @@
+  */
+ package org.locationtech.proj4j.proj;
+ 
+-import java.util.Objects;
+-
+ import org.locationtech.proj4j.ProjCoordinate;
+ import org.locationtech.proj4j.ProjectionException;
+ import org.locationtech.proj4j.util.ProjectionMath;
+@@ -216,10 +214,5 @@ public class GeostationarySatelliteProjection extends Projection {
+             return (this.heightOfOrbit == p.heightOfOrbit) && super.equals(that);
+         }
+         return false;
+-    }
+-
+-    @Override
+-	public int hashCode() {
+-			return Objects.hash(heightOfOrbit, super.hashCode());
+ 	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/HammerProjection.java b/src/main/java/org/locationtech/proj4j/proj/HammerProjection.java
+index 061fecc..baa2444 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/HammerProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/HammerProjection.java
+@@ -19,8 +19,6 @@
+  */
+ package org.locationtech.proj4j.proj;
+ 
+-import java.util.Objects;
+-
+ import org.locationtech.proj4j.ProjCoordinate;
+ import org.locationtech.proj4j.ProjectionException;
+ 
+@@ -99,9 +97,4 @@ public class HammerProjection extends PseudoCylindricalProjection {
+ 			}
+ 			return false;
+ 	}
+-
+-	@Override
+-	public int hashCode() {
+-			return Objects.hash(m, w, super.hashCode());
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/LagrangeProjection.java b/src/main/java/org/locationtech/proj4j/proj/LagrangeProjection.java
+index f067871..ce91be1 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/LagrangeProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/LagrangeProjection.java
+@@ -19,8 +19,6 @@
+  */
+ package org.locationtech.proj4j.proj;
+ 
+-import java.util.Objects;
+-
+ import org.locationtech.proj4j.ProjCoordinate;
+ import org.locationtech.proj4j.ProjectionException;
+ import org.locationtech.proj4j.util.ProjectionMath;
+@@ -97,9 +95,4 @@ public class LagrangeProjection extends Projection {
+ 			}
+ 			return false;
+ 	}
+-
+-	@Override
+-	public int hashCode() {
+-			return Objects.hash(rw, super.hashCode());
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/MolleweideProjection.java b/src/main/java/org/locationtech/proj4j/proj/MolleweideProjection.java
+index f025924..a1cd92c 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/MolleweideProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/MolleweideProjection.java
+@@ -19,8 +19,6 @@
+  */
+ package org.locationtech.proj4j.proj;
+ 
+-import java.util.Objects;
+-
+ import org.locationtech.proj4j.ProjCoordinate;
+ 
+ public class MolleweideProjection extends PseudoCylindricalProjection {
+@@ -142,9 +140,4 @@ public class MolleweideProjection extends PseudoCylindricalProjection {
+ 			}
+ 			return false;
+ 	}
+-
+-	@Override
+-	public int hashCode() {
+-			return Objects.hash(type, cx, cy, cp, super.hashCode());
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java b/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
+index c8b2c1e..ae94fa3 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
+@@ -19,8 +19,6 @@
+  */
+ package org.locationtech.proj4j.proj;
+ 
+-import java.util.Objects;
+-
+ import org.locationtech.proj4j.ProjCoordinate;
+ import org.locationtech.proj4j.ProjectionException;
+ import org.locationtech.proj4j.datum.Ellipsoid;
+@@ -245,9 +243,4 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 			}
+ 			return false;
+ 	}
+-
+-	@Override
+-	public int hashCode() {
+-			return Objects.hash(Gamma, alpha, lonc, super.hashCode());
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/Projection.java b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+index 212a2d5..22bbbb9 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/Projection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+@@ -17,7 +17,6 @@
+ package org.locationtech.proj4j.proj;
+ 
+ import java.util.NoSuchElementException;
+-import java.util.Objects;
+ 
+ import org.locationtech.proj4j.*;
+ import org.locationtech.proj4j.datum.AxisOrder;
+@@ -821,12 +820,6 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+         return false;
+     }
+ 
+-    /**
+-     * Represents quality between possible outputs of {@link #project(ProjCoordinate, ProjCoordinate) }.
+-     * Subclasses of Projection should capture additional state that is used in the project method and delgate to base.
+-     *
+-     * Note: The name of the projection is not part of equality.
+-     */
+     @Override
+     public boolean equals(Object that) {
+         if (this == that) {
+@@ -858,16 +851,4 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+         }
+         return false;
+     }
+-
+-    /**
+-     * Hash of those fields considered in Projection equalituy.
+-     * Subclasses that override equality should override hashCode.
+-     */
+-    @Override
+-    public int hashCode() {
+-        return Objects.hash(this.getClass(),
+-            ellipsoid, falseNorthing, falseEasting, scaleFactor, fromMetres, trueScaleLatitude,
+-            projectionLatitude, projectionLongitude, projectionLatitude1, projectionLatitude2,
+-            minLatitude, maxLatitude, minLongitude, maxLongitude, axes, unit, primeMeridian);
+-    }
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/SimpleConicProjection.java b/src/main/java/org/locationtech/proj4j/proj/SimpleConicProjection.java
+index dafa4bc..0b0d4dc 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/SimpleConicProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/SimpleConicProjection.java
+@@ -19,8 +19,6 @@
+  */
+ package org.locationtech.proj4j.proj;
+ 
+-import java.util.Objects;
+-
+ import org.locationtech.proj4j.ProjCoordinate;
+ import org.locationtech.proj4j.ProjectionException;
+ import org.locationtech.proj4j.util.ProjectionMath;
+@@ -190,9 +188,4 @@ maxLatitude = Math.toRadians(60);//FIXME
+ 			}
+ 			return false;
+ 	}
+-
+-	@Override
+-	public int hashCode() {
+-			return Objects.hash(type, super.hashCode());
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/SineTangentSeriesProjection.java b/src/main/java/org/locationtech/proj4j/proj/SineTangentSeriesProjection.java
+index a830161..7294854 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/SineTangentSeriesProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/SineTangentSeriesProjection.java
+@@ -19,8 +19,6 @@
+  */
+ package org.locationtech.proj4j.proj;
+ 
+-import java.util.Objects;
+-
+ import org.locationtech.proj4j.ProjCoordinate;
+ import org.locationtech.proj4j.util.ProjectionMath;
+ 
+@@ -90,9 +88,4 @@ class SineTangentSeriesProjection extends ConicProjection {
+ 			}
+ 			return false;
+ 	}
+-
+-	@Override
+-	public int hashCode() {
+-			return Objects.hash(C_x, C_y, C_p, tan_mode, super.hashCode());
+-	}
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/proj/UrmaevFlatPolarSinusoidalProjection.java b/src/main/java/org/locationtech/proj4j/proj/UrmaevFlatPolarSinusoidalProjection.java
+index db43ba5..5dede37 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/UrmaevFlatPolarSinusoidalProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/UrmaevFlatPolarSinusoidalProjection.java
+@@ -19,8 +19,6 @@
+  */
+ package org.locationtech.proj4j.proj;
+ 
+-import java.util.Objects;
+-
+ import org.locationtech.proj4j.ProjCoordinate;
+ import org.locationtech.proj4j.ProjectionException;
+ import org.locationtech.proj4j.util.ProjectionMath;
+@@ -85,9 +83,4 @@ public class UrmaevFlatPolarSinusoidalProjection extends Projection {
+ 			}
+ 			return false;
+ 	}
+-
+-	@Override
+-	public int hashCode() {
+-			return Objects.hash(n, super.hashCode());
+-	}
+ }

@@ -1,0 +1,44 @@
+diff --git a/src/main/java/org/locationtech/proj4j/proj/OrthographicAzimuthalProjection.java b/src/main/java/org/locationtech/proj4j/proj/OrthographicAzimuthalProjection.java
+index 8e9a450..db5ef39 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/OrthographicAzimuthalProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/OrthographicAzimuthalProjection.java
+@@ -41,31 +41,23 @@ public class OrthographicAzimuthalProjection extends AzimuthalProjection {
+ 		// it's better not to as they tend to crop up a lot up due to rounding errors.
+ 		switch (mode) {
+ 		case EQUATOR:
+-			if (cosphi * coslam < - EPS10) {
++//			if (cosphi * coslam < - EPS10)
+ //				throw new ProjectionException();
+-				xy.x = Double.NaN;
+-				xy.y = Double.NaN;
+-			} else
+-				xy.y = Math.sin(phi);
++			xy.y = Math.sin(phi);
+ 			break;
+ 		case OBLIQUE:
+ 			sinphi = Math.sin(phi);
+-			if (sinphi0 * (sinphi) + cosphi0 * cosphi * coslam < - EPS10) {
+-				//throw new ProjectionException();
+-				xy.x = Double.NaN;
+-				xy.y = Double.NaN;
+-			} else
+-				xy.y = cosphi0 * sinphi - sinphi0 * cosphi * coslam;
++//			if (sinphi0 * (sinphi) + cosphi0 * cosphi * coslam < - EPS10)
++//				;
++//			   throw new ProjectionException();
++			xy.y = cosphi0 * sinphi - sinphi0 * cosphi * coslam;
+ 			break;
+ 		case NORTH_POLE:
+ 			coslam = - coslam;
+ 		case SOUTH_POLE:
+-			if (Math.abs(phi - projectionLatitude) - EPS10 > Math.PI / 2) {
++//			if (Math.abs(phi - projectionLatitude) - EPS10 > MapMath.HALFPI)
+ //				throw new ProjectionException();
+-				xy.x = Double.NaN;
+-				xy.y = Double.NaN;
+-			} else
+-				xy.y = cosphi * coslam;
++			xy.y = cosphi * coslam;
+ 			break;
+ 		}
+ 		xy.x = cosphi * Math.sin(lam);

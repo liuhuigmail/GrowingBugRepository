@@ -1,0 +1,418 @@
+diff --git a/pom.xml b/pom.xml
+index eede2a8..ccf9cb5 100755
+--- a/pom.xml
++++ b/pom.xml
+@@ -60,8 +60,8 @@
+                 <artifactId>maven-compiler-plugin</artifactId>
+                 <version>3.6.0</version>
+                 <configuration>
+-                    <source>1.8</source>
+-                    <target>1.8</target>
++                    <source>1.7</source>
++                    <target>1.7</target>
+                     <debug>true</debug>
+                     <encoding>UTF-8</encoding>
+                 </configuration>
+diff --git a/src/main/java/org/locationtech/proj4j/CRSFactory.java b/src/main/java/org/locationtech/proj4j/CRSFactory.java
+index 88b138a..5b9cc02 100755
+--- a/src/main/java/org/locationtech/proj4j/CRSFactory.java
++++ b/src/main/java/org/locationtech/proj4j/CRSFactory.java
+@@ -18,8 +18,6 @@ package org.locationtech.proj4j;
+ import org.locationtech.proj4j.io.Proj4FileReader;
+ import org.locationtech.proj4j.parser.Proj4Parser;
+ 
+-import java.io.IOException;
+-
+ /**
+  * A factory which can create {@link CoordinateReferenceSystem}s
+  * from a variety of ways
+@@ -41,6 +39,7 @@ public class CRSFactory {
+ 
+     // TODO: add method to allow reading from arbitrary PROJ4 CS file
+ 
++
+     /**
+      * Gets the {@link Registry} used by this factory.
+      *
+@@ -127,39 +126,9 @@ public class CRSFactory {
+         return parser.parse(name, params);
+     }
+ 
+-    /**
+-     * Finds a EPSG Code
+-     * from a PROJ.4 projection parameter string.
+-     * <p>
+-     * An example of a valid PROJ.4 projection parameter string is:
+-     * <pre>
+-     * +proj=aea +lat_1=50 +lat_2=58.5 +lat_0=45 +lon_0=-126 +x_0=1000000 +y_0=0 +ellps=GRS80 +units=m
+-     * </pre>
+-     *
+-     * @param paramStr a PROJ.4 projection parameter string
+-     * @return the specified {@link CoordinateReferenceSystem}
+-     * @throws IOException if there was an issue in reading EPSG file
+-     */
+-    public String readEpsgFromParameters(String paramStr) throws IOException {
+-        return readEpsgFromParameters(splitParameters(paramStr));
+-    }
+-
+-    /**
+-     * Finds a EPSG Code
+-     * defined by an array of PROJ.4 projection parameters.
+-     * PROJ.4 parameters are generally of the form
+-     * "<tt>+name=value</tt>".
+-     *
+-     * @param params an array of PROJ.4 projection parameters
+-     * @return s String EPSG code
+-     * @throws IOException if there was an issue in reading EPSG file
+-     */
+-    public String readEpsgFromParameters(String[] params) throws IOException {
+-        return csReader.readEpsgCodeFromFile(params);
+-    }
+-
+     private static String[] splitParameters(String paramStr) {
+         String[] params = paramStr.split("\\s+");
+         return params;
+     }
++
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/CoordinateReferenceSystem.java b/src/main/java/org/locationtech/proj4j/CoordinateReferenceSystem.java
+index cc0b993..8242bfe 100755
+--- a/src/main/java/org/locationtech/proj4j/CoordinateReferenceSystem.java
++++ b/src/main/java/org/locationtech/proj4j/CoordinateReferenceSystem.java
+@@ -22,8 +22,6 @@ import org.locationtech.proj4j.proj.Projection;
+ import org.locationtech.proj4j.units.Unit;
+ import org.locationtech.proj4j.units.Units;
+ 
+-import java.util.Arrays;
+-
+ /**
+  * Represents a projected or geodetic geospatial coordinate system,
+  * to which coordinates may be referenced.
+@@ -121,16 +119,4 @@ public class CoordinateReferenceSystem implements java.io.Serializable {
+     public String toString() {
+         return name;
+     }
+-
+-    @Override
+-    public boolean equals(Object that) {
+-        if (this == that) {
+-            return true;
+-        }
+-        if (that instanceof CoordinateReferenceSystem) {
+-            CoordinateReferenceSystem cr = (CoordinateReferenceSystem) that;
+-            return name.equals(cr.name) && datum.isEqual(cr.getDatum()) && Arrays.equals(params, cr.params);
+-        }
+-        return false;
+-    }
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/io/Proj4FileReader.java b/src/main/java/org/locationtech/proj4j/io/Proj4FileReader.java
+index 3f0d63a..c50f723 100755
+--- a/src/main/java/org/locationtech/proj4j/io/Proj4FileReader.java
++++ b/src/main/java/org/locationtech/proj4j/io/Proj4FileReader.java
+@@ -15,15 +15,12 @@
+  */
+ package org.locationtech.proj4j.io;
+ 
+-import org.locationtech.proj4j.util.Pair;
+-
+ import java.io.BufferedReader;
+ import java.io.IOException;
+ import java.io.InputStream;
+ import java.io.InputStreamReader;
+ import java.io.StreamTokenizer;
+ import java.util.ArrayList;
+-import java.util.Arrays;
+ import java.util.List;
+ 
+ public class Proj4FileReader {
+@@ -74,14 +71,49 @@ public class Proj4FileReader {
+         return t;
+     }
+ 
+-    private String[] readFile(BufferedReader reader, String name) throws IOException {
++    private String[] readFile(BufferedReader reader, String name)
++            throws IOException {
+         StreamTokenizer t = createTokenizer(reader);
+ 
+         t.nextToken();
+         while (t.ttype == '<') {
+-            Pair<String, List> pair = parseTokenizer(t);
+-            String crsName = pair.fst();
+-            List v = pair.snd();
++            t.nextToken();
++            if (t.ttype != StreamTokenizer.TT_WORD)
++                throw new IOException(t.lineno() + ": Word expected after '<'");
++            String crsName = t.sval;
++            t.nextToken();
++            if (t.ttype != '>')
++                throw new IOException(t.lineno() + ": '>' expected");
++            t.nextToken();
++            List v = new ArrayList();
++
++            while (t.ttype != '<') {
++                if (t.ttype == '+')
++                    t.nextToken();
++                if (t.ttype != StreamTokenizer.TT_WORD)
++                    throw new IOException(t.lineno() + ": Word expected after '+'");
++                String key = t.sval;
++                t.nextToken();
++
++
++                // parse =arg, if any
++                if (t.ttype == '=') {
++                    t.nextToken();
++                    //Removed check to allow for proj4 hack +nadgrids=@null
++                    //if ( t.ttype != StreamTokenizer.TT_WORD )
++                    //  throw new IOException( t.lineno()+": Value expected after '='" );
++                    String value = t.sval;
++                    t.nextToken();
++                    addParam(v, key, value);
++                } else {
++                    // add param with no value
++                    addParam(v, key, null);
++                }
++            }
++            t.nextToken();
++            if (t.ttype != '>')
++                throw new IOException(t.lineno() + ": '<>' expected");
++            t.nextToken();
+ 
+             // found requested CRS?
+             if (crsName.equals(name)) {
+@@ -124,68 +156,4 @@ public class Proj4FileReader {
+         return null;
+     }
+ 
+-    public String readEpsgCodeFromFile(String[] params) throws IOException {
+-        InputStream inStr = Proj4FileReader.class.getClassLoader().getResourceAsStream("proj4/nad/epsg");
+-
+-        if (inStr == null) {
+-            throw new IllegalStateException("Unable to access CRS file: EPSG");
+-        }
+-        BufferedReader reader = new BufferedReader(new InputStreamReader(inStr));
+-
+-        StreamTokenizer t = createTokenizer(reader);
+-
+-        t.nextToken();
+-        while (t.ttype == '<') {
+-            Pair<String, List> pair = parseTokenizer(t);
+-            String crsName = pair.fst();
+-            List v = pair.snd();
+-
+-            String[] paramsParsed = (String[]) v.toArray(new String[0]);
+-
+-            if(Arrays.equals(params, paramsParsed)) return crsName;
+-        }
+-        return null;
+-    }
+-
+-    private static Pair<String, List> parseTokenizer(StreamTokenizer t) throws IOException {
+-        t.nextToken();
+-        if (t.ttype != StreamTokenizer.TT_WORD)
+-            throw new IOException(t.lineno() + ": Word expected after '<'");
+-        String crsName = t.sval;
+-        t.nextToken();
+-        if (t.ttype != '>')
+-            throw new IOException(t.lineno() + ": '>' expected");
+-        t.nextToken();
+-        List v = new ArrayList();
+-
+-        while (t.ttype != '<') {
+-            if (t.ttype == '+')
+-                t.nextToken();
+-            if (t.ttype != StreamTokenizer.TT_WORD)
+-                throw new IOException(t.lineno() + ": Word expected after '+'");
+-            String key = t.sval;
+-            t.nextToken();
+-
+-
+-            // parse =arg, if any
+-            if (t.ttype == '=') {
+-                t.nextToken();
+-                //Removed check to allow for proj4 hack +nadgrids=@null
+-                //if ( t.ttype != StreamTokenizer.TT_WORD )
+-                //  throw new IOException( t.lineno()+": Value expected after '='" );
+-                String value = t.sval;
+-                t.nextToken();
+-                addParam(v, key, value);
+-            } else {
+-                // add param with no value
+-                addParam(v, key, null);
+-            }
+-        }
+-        t.nextToken();
+-        if (t.ttype != '>')
+-            throw new IOException(t.lineno() + ": '<>' expected");
+-        t.nextToken();
+-
+-        return Pair.create(crsName, v);
+-    }
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/util/CRSCache.java b/src/main/java/org/locationtech/proj4j/util/CRSCache.java
+index 57eecd5..84c5482 100755
+--- a/src/main/java/org/locationtech/proj4j/util/CRSCache.java
++++ b/src/main/java/org/locationtech/proj4j/util/CRSCache.java
+@@ -15,64 +15,31 @@
+  */
+ package org.locationtech.proj4j.util;
+ 
+-import org.locationtech.proj4j.*;
++import java.util.HashMap;
++import java.util.Map;
+ 
+-import java.io.IOException;
+-import java.util.concurrent.ConcurrentHashMap;
++import org.locationtech.proj4j.*;
+ 
+ public class CRSCache {
+-    private static CRSFactory crsFactory = new CRSFactory();
+ 
+-    private ConcurrentHashMap<String, CoordinateReferenceSystem> crsCache = new ConcurrentHashMap<>();
+-    private ConcurrentHashMap<String, String> epsgCache = new ConcurrentHashMap<>();
++    private static Map<String, CoordinateReferenceSystem> projCache = new HashMap<String, CoordinateReferenceSystem>();
+ 
+-    public CRSCache CRSCache() {
+-        crsCache = new ConcurrentHashMap<>();
+-        epsgCache = new ConcurrentHashMap<>();
+-        return this;
+-    }
++    private static CRSFactory crsFactory = new CRSFactory();
++
++// TODO: provide limit on number of items in cache (LRU)
+ 
+-    public CRSCache CRSCache(ConcurrentHashMap<String, CoordinateReferenceSystem> crsCache, ConcurrentHashMap<String, String> epsgCache) {
+-        this.crsCache = crsCache;
+-        this.epsgCache = epsgCache;
+-        return this;
++    public CRSCache() {
++        super();
+     }
+ 
+     public CoordinateReferenceSystem createFromName(String name)
+             throws UnsupportedParameterException, InvalidValueException, UnknownAuthorityCodeException {
+-        CoordinateReferenceSystem res = crsCache.get(name);
+-        if(res != null) return res;
+-        return crsCache.computeIfAbsent(name, k -> crsFactory.createFromName(name));
++        CoordinateReferenceSystem proj = (CoordinateReferenceSystem) projCache.get(name);
++        if (proj == null) {
++            proj = crsFactory.createFromName(name);
++            projCache.put(name, proj);
++        }
++        return proj;
+     }
+ 
+-    public CoordinateReferenceSystem createFromParameters(String name, String paramStr)
+-            throws UnsupportedParameterException, InvalidValueException {
+-        String nonNullName = name == null ? "" : name;
+-        String key = nonNullName + paramStr;
+-        CoordinateReferenceSystem res = crsCache.get(key);
+-        if(res != null) return res;
+-        return crsCache.computeIfAbsent(key, k -> crsFactory.createFromParameters(name, paramStr));
+-    }
+-
+-    public CoordinateReferenceSystem createFromParameters(String name, String[] params)
+-            throws UnsupportedParameterException, InvalidValueException {
+-        String nonNullName = name == null ? "" : name;
+-        String key = nonNullName + String.join(" ", params);
+-        CoordinateReferenceSystem res = crsCache.get(key);
+-        if(res != null) return res;
+-        return crsCache.computeIfAbsent(key, k -> crsFactory.createFromParameters(name, params));
+-    }
+-
+-    public String readEpsgFromParameters(String paramStr) {
+-        String res = epsgCache.get(paramStr);
+-        if(res != null) return res;
+-        return epsgCache.computeIfAbsent(paramStr, k -> { try { return crsFactory.readEpsgFromParameters(paramStr); } catch (IOException e) {  return null; } });
+-    }
+-
+-    public String readEpsgFromParameters(String[] params) {
+-        String paramStr = String.join(" ", params);
+-        String res = epsgCache.get(paramStr);
+-        if(res != null) return res;
+-        return epsgCache.computeIfAbsent(paramStr, k -> { try { return crsFactory.readEpsgFromParameters(params); } catch (IOException e) {  return null; } });
+-    }
+ }
+diff --git a/src/main/java/org/locationtech/proj4j/util/Pair.java b/src/main/java/org/locationtech/proj4j/util/Pair.java
+deleted file mode 100644
+index 3e86447..0000000
+--- a/src/main/java/org/locationtech/proj4j/util/Pair.java
++++ /dev/null
+@@ -1,78 +0,0 @@
+-/*******************************************************************************
+- * Copyright 2009, 2017 Martin Davis
+- *
+- * Licensed under the Apache License, Version 2.0 (the "License");
+- * you may not use this file except in compliance with the License.
+- * You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+- */
+-package org.locationtech.proj4j.util;
+-
+-public class Pair<A, B> {
+-
+-    private A first;
+-    private B second;
+-
+-    public Pair() {
+-        super();
+-    }
+-
+-    public Pair(A first, B second) {
+-        this.first = first;
+-        this.second = second;
+-    }
+-
+-    public A fst() {
+-        return first;
+-    }
+-
+-    public void setFirst(A first) {
+-        this.first = first;
+-    }
+-
+-    public B snd() {
+-        return second;
+-    }
+-
+-    public void setSecond(B second) {
+-        this.second = second;
+-    }
+-
+-    @Override
+-    public String toString() {
+-        return "<" + first + "," + second + ">";
+-    }
+-
+-    @Override
+-    public boolean equals(Object obj) {
+-        if (this == obj)
+-            return true;
+-        if (obj == null)
+-            return false;
+-        if (getClass() != obj.getClass())
+-            return false;
+-        final Pair<?, ?> other = (Pair<?, ?>) obj;
+-        if (first == null) {
+-            if (other.first != null)
+-                return false;
+-        } else if (!first.equals(other.first))
+-            return false;
+-        if (second == null) {
+-            if (other.second != null)
+-                return false;
+-        } else if (!second.equals(other.second))
+-            return false;
+-        return true;
+-    }
+-
+-    public static <A, B> Pair<A, B> create(A first, B second) {
+-        return new Pair<A, B>(first, second);
+-    }
+-}

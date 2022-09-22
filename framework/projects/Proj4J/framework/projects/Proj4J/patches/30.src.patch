@@ -1,0 +1,191 @@
+diff --git a/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java b/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
+index 6c84c86..b5f5451 100755
+--- a/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
++++ b/src/main/java/org/locationtech/proj4j/parser/Proj4Keyword.java
+@@ -67,7 +67,7 @@ public class Proj4Keyword {
+     public static final String nadgrids = "nadgrids";
+     public static final String no_defs = "no_defs";
+     public static final String wktext = "wktext";
+-    public static final String no_uoff = "no_uoff";
++    public static final String no_uoff = "no_uoff"; // TODO: Implement no_uoff parameter
+ 
+ 
+     private static Set<String> supportedParams = null;
+@@ -111,12 +111,12 @@ public class Proj4Keyword {
+             supportedParams.add(axis);
+ 
+             supportedParams.add(gamma);       // Just for Oblique Mercator projection
+-            supportedParams.add(no_uoff);     // Just for Oblique Mercator projection
+             supportedParams.add(zone);        // Just for Transverse Mercator projection
+ 
+             supportedParams.add(title);       // no-op
+             supportedParams.add(no_defs);     // no-op
+             supportedParams.add(wktext);      // no-op
++            supportedParams.add(no_uoff);     // no-op
+         }
+         return supportedParams;
+     }
+diff --git a/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java b/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
+index 494eb9e..ef37b01 100755
+--- a/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
++++ b/src/main/java/org/locationtech/proj4j/parser/Proj4Parser.java
+@@ -122,11 +122,9 @@ public class Proj4Parser {
+             s = (String) params.get(Proj4Keyword.k);
+         if (s != null)
+             projection.setScaleFactor(Double.parseDouble(s));
+-        if (params.containsKey(Proj4Keyword.no_uoff))
+-            projection.setNoUoff(true);
+         s = (String) params.get(Proj4Keyword.gamma);
+         if (s != null)
+-            projection.setGammaDegrees(Double.parseDouble(s));
++            projection.setGamma(Double.parseDouble(s) * ProjectionMath.DTR);
+ 
+         s = (String) params.get(Proj4Keyword.units);
+         if (s != null) {
+diff --git a/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java b/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
+index 28e97c7..c8b2c1e 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
+@@ -34,7 +34,7 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 	private final static double TOL	= 1.0e-7;
+ 
+ 	private double lamc, lam1, phi1, lam2, phi2, Gamma, al, bl, el, singam, cosgam, sinrot, cosrot, u_0;
+-	private boolean ellips, rot, no_uoff;
++	private boolean ellips, rot;
+ 
+ 	public ObliqueMercatorProjection() {
+ 		ellipsoid = Ellipsoid.WGS84;
+@@ -64,7 +64,7 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 
+ 	public void initialize() {
+ 		super.initialize();
+-		double con, com, cosphi0, d, f, h, l, sinphi0, p, j, gamma0;
++		double con, com, cosphi0, d, f, h, l, sinphi0, p, j;
+ 
+ 		//FIXME-setup rot, alpha, longc,lon/lat1/2
+ 		rot = true;
+@@ -72,8 +72,6 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 
+     // true if alpha provided
+     int azi = Double.isNaN(alpha) ? 0 : 1;
+-    // true if gamma provided
+-    int gzi = Double.isNaN(Gamma) ? 0 : 1;
+ 		if (azi != 0) { // alpha specified
+ 			if (Math.abs(alpha) <= TOL ||
+ 				Math.abs(Math.abs(projectionLatitude) - ProjectionMath.HALFPI) <= TOL ||
+@@ -118,18 +116,10 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 			al = scaleFactor;
+ 			el = d = f = 1.;
+ 		}
+-		if (azi != 0 || gzi != 0) {
+-			if (azi != 0) {
+-				gamma0 = Math.asin(Math.sin(alpha) / d);
+-				if(gzi == 0) {
+-					Gamma = alpha;
+-				}
+-			}else {
+-				gamma0 = Gamma;
+-				alpha = Math.asin(d * Math.sin(gamma0));
+-			}
++		if (azi != 0) {
++			Gamma = Math.asin(Math.sin(alpha) / d);
+ 			projectionLongitude = lamc - Math.asin((.5 * (f - 1. / f)) *
+-					   Math.tan(gamma0)) / bl;
++			   Math.tan(Gamma)) / bl;
+ 		} else {
+ 			if (!spherical) {
+ 				h = Math.pow(ProjectionMath.tsfn(phi1, Math.sin(phi1), e), bl);
+@@ -148,17 +138,18 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 				lam2 += ProjectionMath.TWOPI;
+ 			projectionLongitude = ProjectionMath.normalizeLongitude(.5 * (lam1 + lam2) - Math.atan(
+ 			   j * Math.tan(.5 * bl * (lam1 - lam2)) / p) / bl);
+-			gamma0 = Math.atan(2. * Math.sin(bl * ProjectionMath.normalizeLongitude(lam1 - projectionLongitude)) /
++			Gamma = Math.atan(2. * Math.sin(bl * ProjectionMath.normalizeLongitude(lam1 - projectionLongitude)) /
+ 			   (f - 1. / f));
+-			Gamma = Math.asin(d * Math.sin(gamma0));
+-			alpha = Gamma;
++			alpha = Math.asin(d * Math.sin(Gamma));
+ 		}
+-		singam = Math.sin(gamma0);
+-		cosgam = Math.cos(gamma0);
+-		sinrot = Math.sin(Gamma);
+-		cosrot = Math.cos(Gamma);
+-		
+-		u_0 = no_uoff ? 0. :
++		singam = Math.sin(Gamma);
++		cosgam = Math.cos(Gamma);
++//		f = MapMath.param(params, "brot_conv").i ? Gamma : alpha;
++		f = alpha;//FIXME
++		sinrot = Math.sin(f);
++		cosrot = Math.cos(f);
++//		u_0 = MapMath.param(params, "bno_uoff").i ? 0. :
++		u_0 = false ? 0. ://FIXME
+ 			Math.abs(al * Math.atan(Math.sqrt(d * d - 1.) / cosrot) / bl);
+ 		if (projectionLatitude < 0.)
+ 			u_0 = - u_0;
+@@ -167,10 +158,6 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+     @Override public void setGamma(double gamma) {
+         this.Gamma = gamma;
+     }
+-    
+-    @Override public void setNoUoff(boolean no_uoff) {
+-    	this.no_uoff = no_uoff;
+-    }
+ 
+ 	public ProjCoordinate project(double lam, double phi, ProjCoordinate xy) {
+ 		double con, q, s, ul, us, vl, vs;
+diff --git a/src/main/java/org/locationtech/proj4j/proj/Projection.java b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+index 281a630..e4fac9e 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/Projection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/Projection.java
+@@ -639,13 +639,6 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+         return projectionLatitude2*RTD;
+     }
+ 
+-    /**
+-     * Sets the alpha value.
+-     */
+-    public void setAlpha( double alpha ) {
+-        this.alpha = alpha;
+-    }
+-    
+     /**
+      * Sets the alpha value.
+      */
+@@ -662,19 +655,12 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+     {
+         return alpha;
+     }
+-    
+-    /**
+-     * Sets the lonc value.
+-     */
+-    public void setLonC( double lonc ) {
+-        this.lonc = lonc;
+-    }
+-    
++
+     /**
+      * Sets the lonc value.
+      */
+     public void setLonCDegrees( double lonc ) {
+-    	this.lonc = DTR * lonc;
++        this.lonc = DTR * lonc;
+     }
+ 
+     /**
+@@ -833,14 +819,6 @@ public abstract class Projection implements Cloneable, java.io.Serializable {
+     public void setGamma(double gamma) {
+         // no-op, overridden for Oblique Mercator
+     }
+-    
+-    public void setGammaDegrees(double gamma) {
+-    	setGamma(DTR * gamma);
+-    }
+-
+-    public void setNoUoff(boolean no_uoff) {
+-        // no-op, overridden for Oblique Mercator
+-    }
+ 
+     /** Is this "projection" longlat? Overridden in LongLatProjection. */
+     public Boolean isGeographic() {
