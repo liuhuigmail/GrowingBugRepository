@@ -1,0 +1,63 @@
+diff --git a/src/main/java/org/locationtech/proj4j/Registry.java b/src/main/java/org/locationtech/proj4j/Registry.java
+index ee19775..7028723 100755
+--- a/src/main/java/org/locationtech/proj4j/Registry.java
++++ b/src/main/java/org/locationtech/proj4j/Registry.java
+@@ -271,7 +271,7 @@ public class Registry {
+         // register( "ups", Projection.class, "Universal Polar Stereographic" );
+         // register( "urm5", Projection.class, "Urmaev V" );
+         register("urmfps", UrmaevFlatPolarSinusoidalProjection.class, "Urmaev Flat-Polar Sinusoidal");
+-        register("utm", ExtendedTransverseMercatorProjection.class, "Universal Transverse Mercator (UTM)");
++        register("utm", TransverseMercatorProjection.class, "Universal Transverse Mercator (UTM)");
+         register("vandg", VanDerGrintenProjection.class, "van der Grinten (I)");
+         // register( "vandg2", Projection.class, "van der Grinten II" );
+         // register( "vandg3", Projection.class, "van der Grinten III" );
+diff --git a/src/main/java/org/locationtech/proj4j/proj/LambertConformalConicProjection.java b/src/main/java/org/locationtech/proj4j/proj/LambertConformalConicProjection.java
+index 807d0d6..ac540ca 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/LambertConformalConicProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/LambertConformalConicProjection.java
+@@ -33,9 +33,10 @@ public class LambertConformalConicProjection extends ConicProjection {
+ 		// an incorrect init, LCC is sensitive to input parameters
+ 		// init should happen only after the LCC projection parsing
+ 		// projectionLatitude = ProjectionMath.QUARTERPI;
++		projectionLatitude = ProjectionMath.QUARTERPI;
+ 		projectionLatitude1 = 0;
+ 		projectionLatitude2 = 0;
+-		// initialize();
++		initialize();
+ 	}
+ 
+ 	/**
+@@ -100,11 +101,9 @@ public class LambertConformalConicProjection extends ConicProjection {
+ 
+ 		// https://github.com/OSGeo/PROJ/blob/e3d7e18f988230973ced5163fa2581b6671c8755/src/projections/lcc.cpp#L89-L96
+ 		// if there is no lat2 set it to lat1
+-		if (projectionLatitude2 == 0) {
+-			projectionLatitude2 = projectionLatitude1;
++		if ( projectionLatitude1 == 0) {
++			projectionLatitude1 = projectionLatitude2 = projectionLatitude;
+ 			// if there is no lat0, set it to lat1
+-			if(projectionLatitude == 0)
+-				projectionLatitude = projectionLatitude1;
+ 		}
+ 
+ 
+diff --git a/src/main/java/org/locationtech/proj4j/proj/StereographicAzimuthalProjection.java b/src/main/java/org/locationtech/proj4j/proj/StereographicAzimuthalProjection.java
+index ea32e27..bcdc6c2 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/StereographicAzimuthalProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/StereographicAzimuthalProjection.java
+@@ -150,7 +150,7 @@ public class StereographicAzimuthalProjection extends AzimuthalProjection {
+ 				break;
+ 			case EQUATOR:
+ 				// https://github.com/OSGeo/PROJ/blob/8.0.0/src/projections/stere.cpp#L77
+-				A = akm1 / (1. + cosX * coslam);
++				A = 2. * akm1 / (1. + cosX * coslam);
+ 				xy.y = A * sinX;
+ 				xy.x = A * cosX;
+ 				break;
+@@ -267,4 +267,4 @@ public class StereographicAzimuthalProjection extends AzimuthalProjection {
+ 	public String toString() {
+ 		return "Stereographic Azimuthal";
+ 	}
+-}
+\ No newline at end of file
++}

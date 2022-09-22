@@ -1,0 +1,12 @@
+diff --git a/src/main/java/org/locationtech/proj4j/Registry.java b/src/main/java/org/locationtech/proj4j/Registry.java
+index 72ca361..2083013 100755
+--- a/src/main/java/org/locationtech/proj4j/Registry.java
++++ b/src/main/java/org/locationtech/proj4j/Registry.java
+@@ -247,7 +247,6 @@ public class Registry {
+         register("tcea", TransverseCylindricalEqualArea.class, "Transverse Cylindrical Equal Area");
+ //    register( "tissot", TissotProjection.class, "Tissot Conic" );
+         register("tmerc", TransverseMercatorProjection.class, "Transverse Mercator");
+-        register("etmerc", ExtendedTransverseMercatorProjection.class, "Extended Transverse Mercator");
+ //    register( "tpeqd", Projection.class, "Two Point Equidistant" );
+ //    register( "tpers", Projection.class, "Tilted perspective" );
+ //    register( "ups", Projection.class, "Universal Polar Stereographic" );

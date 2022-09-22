@@ -1,0 +1,52 @@
+diff --git a/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java b/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
+index 28e97c7..95441b5 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/ObliqueMercatorProjection.java
+@@ -118,18 +118,10 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 			al = scaleFactor;
+ 			el = d = f = 1.;
+ 		}
+-		if (azi != 0 || gzi != 0) {
+-			if (azi != 0) {
+-				gamma0 = Math.asin(Math.sin(alpha) / d);
+-				if(gzi == 0) {
+-					Gamma = alpha;
+-				}
+-			}else {
+-				gamma0 = Gamma;
+-				alpha = Math.asin(d * Math.sin(gamma0));
+-			}
++		if (azi != 0) {
++			Gamma = Math.asin(Math.sin(alpha) / d);
+ 			projectionLongitude = lamc - Math.asin((.5 * (f - 1. / f)) *
+-					   Math.tan(gamma0)) / bl;
++			   Math.tan(Gamma)) / bl;
+ 		} else {
+ 			if (!spherical) {
+ 				h = Math.pow(ProjectionMath.tsfn(phi1, Math.sin(phi1), e), bl);
+@@ -148,17 +140,16 @@ public class ObliqueMercatorProjection extends CylindricalProjection {
+ 				lam2 += ProjectionMath.TWOPI;
+ 			projectionLongitude = ProjectionMath.normalizeLongitude(.5 * (lam1 + lam2) - Math.atan(
+ 			   j * Math.tan(.5 * bl * (lam1 - lam2)) / p) / bl);
+-			gamma0 = Math.atan(2. * Math.sin(bl * ProjectionMath.normalizeLongitude(lam1 - projectionLongitude)) /
++			Gamma = Math.atan(2. * Math.sin(bl * ProjectionMath.normalizeLongitude(lam1 - projectionLongitude)) /
+ 			   (f - 1. / f));
+-			Gamma = Math.asin(d * Math.sin(gamma0));
+-			alpha = Gamma;
++			alpha = Math.asin(d * Math.sin(Gamma));
+ 		}
+-		singam = Math.sin(gamma0);
+-		cosgam = Math.cos(gamma0);
+-		sinrot = Math.sin(Gamma);
+-		cosrot = Math.cos(Gamma);
+-		
+-		u_0 = no_uoff ? 0. :
++		singam = Math.sin(Gamma);
++		cosgam = Math.cos(Gamma);
++		f = alpha;
++		sinrot = Math.sin(f);
++		cosrot = Math.cos(f);
++		u_0 = false ? 0. :
+ 			Math.abs(al * Math.atan(Math.sqrt(d * d - 1.) / cosrot) / bl);
+ 		if (projectionLatitude < 0.)
+ 			u_0 = - u_0;

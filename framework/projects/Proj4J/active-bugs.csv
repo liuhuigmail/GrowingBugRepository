@@ -2,3 +2,9 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,ae6e1f3c09ec1604ac5c11ed2e5cacb10b2be944,5bfde692c31ac5c0cce5e224a47490074f65a2b2,14,https://github.com/locationtech/proj4j/pull/14
 2,5ba8168a5e0346b79e5f7d2fd2bc25a68fba0670,96a1fab3e82ec949575b39c1d465e65bd7f4e1f8,55,https://github.com/locationtech/proj4j/pull/55
 3,40c349bced74135c1e33b49cf3a4fa40b4ccfb88,7100c004e93b3655d2f65ac2dd53a14420d1f4d8,64,https://github.com/locationtech/proj4j/pull/64
+4,8841a68f88340fef95641fde765deb9893f5404c,aa7f3b002104db17f53894a105e973e8e10ab47d,6,https://github.com/locationtech/proj4j/pull/6
+5,6d5403ed0c01b94b62538f27d548c2b3b4291133,16c9d3da5e75723825a5e3bc33dbfabfd15e9d91,45,https://github.com/locationtech/proj4j/pull/45
+6,c7d08b7edecbad038837a49993aa0a0d11515e62,440f3e889b74bc4e5b458611a5f100886a3f0d87,71,https://github.com/locationtech/proj4j/pull/71
+7,f5a026edb57f79b88d6d3887b35f6417c4990c75,21c21b12756e9978c71a6ff899047c739c4faa96,72,https://github.com/locationtech/proj4j/pull/72
+8,5af1582846002ec9b30ce37cbf9804c965299540,03d31234b1e18ceabfe9eb53c4449838f4d9bcb9,74,https://github.com/locationtech/proj4j/pull/74
+9,03d31234b1e18ceabfe9eb53c4449838f4d9bcb9,45fa5a1eeea3459e8a7049c73c3189c426e1c6eb,77,https://github.com/locationtech/proj4j/pull/77

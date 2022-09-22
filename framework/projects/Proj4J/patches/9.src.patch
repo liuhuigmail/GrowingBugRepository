@@ -1,0 +1,89 @@
+diff --git a/src/main/java/org/locationtech/proj4j/BasicCoordinateTransform.java b/src/main/java/org/locationtech/proj4j/BasicCoordinateTransform.java
+index 0d5eccd..82b4156 100755
+--- a/src/main/java/org/locationtech/proj4j/BasicCoordinateTransform.java
++++ b/src/main/java/org/locationtech/proj4j/BasicCoordinateTransform.java
+@@ -84,40 +84,31 @@ public class BasicCoordinateTransform implements CoordinateTransform {
+         if (doDatumTransform) {
+ 
+             boolean isEllipsoidEqual = srcCRS.getDatum().getEllipsoid().isEqual(tgtCRS.getDatum().getEllipsoid());
+-            geocentric = ! isEllipsoidEqual || srcCRS.getDatum().hasTransformToWGS84()
++            transformViaGeocentric = ! isEllipsoidEqual || srcCRS.getDatum().hasTransformToWGS84()
+                     || tgtCRS.getDatum().hasTransformToWGS84();
+ 
+-            if (geocentric) {
++            if (transformViaGeocentric) {
+                 srcGeoConv = new GeocentricConverter(srcCRS.getDatum().getEllipsoid());
+                 tgtGeoConv = new GeocentricConverter(tgtCRS.getDatum().getEllipsoid());
+ 
+-                int srcTransformType = srcCRS.getDatum().getTransformType();
+-                int tgtTransformType = tgtCRS.getDatum().getTransformType();
+ 
+-                if (srcTransformType == Datum.TYPE_GRIDSHIFT || tgtTransformType == Datum.TYPE_GRIDSHIFT) {
+ 
+-	                if (srcTransformType == Datum.TYPE_GRIDSHIFT) {
+-	                    srcGeoConv.overrideWithWGS84Params();
+-	                }
+ 
+-	                if (tgtTransformType == Datum.TYPE_GRIDSHIFT) {
+-	                    tgtGeoConv.overrideWithWGS84Params();
+-	                }
++                if (srcCRS.getDatum().getTransformType() == Datum.TYPE_GRIDSHIFT) {
++                    srcGeoConv.overrideWithWGS84Params();
++                }
+ 
+ 	                // After WGS84 params override, check if geocentric transform is still required
+ 	                // https://github.com/OSGeo/PROJ/blob/5.2.0/src/pj_transform.c#L892
+-	                if(srcGeoConv.isEqual(tgtGeoConv)) {
+-	                    geocentric = false;
+-	                    srcGeoConv = null;
+-	                    tgtGeoConv = null;
+-	                }
+-
++                if (tgtCRS.getDatum().getTransformType() == Datum.TYPE_GRIDSHIFT) {
++                    tgtGeoConv.overrideWithWGS84Params();
+                 }
+             }
+ 
++        } else {
++        	transformViaGeocentric=false;
+         }
+ 
+-        transformViaGeocentric = geocentric;
+     }
+ 
+     @Override
+diff --git a/src/main/java/org/locationtech/proj4j/datum/GeocentricConverter.java b/src/main/java/org/locationtech/proj4j/datum/GeocentricConverter.java
+index cdafcc5..549b764 100755
+--- a/src/main/java/org/locationtech/proj4j/datum/GeocentricConverter.java
++++ b/src/main/java/org/locationtech/proj4j/datum/GeocentricConverter.java
+@@ -61,15 +61,15 @@ public class GeocentricConverter implements java.io.Serializable {
+ 
+     public GeocentricConverter(Ellipsoid ellipsoid) {
+         // Preserve the ellipsoid value precisions
+-        this(ellipsoid.getA(), ellipsoid.getB(), ellipsoid.getEccentricitySquared());
++        this(ellipsoid.getA(), ellipsoid.getB());
+     }
+ 
+-    public GeocentricConverter(double a, double b, double e2) {
++    public GeocentricConverter(double a, double b) {
+         this.a = a;
+         this.b = b;
+         a2 = a * a;
+         b2 = b * b;
+-        this.e2 = e2;
++        e2 = (a2 - b2) / a2;
+         ep2 = (a2 - b2) / b2;
+     }
+ 
+diff --git a/src/main/java/org/locationtech/proj4j/datum/Grid.java b/src/main/java/org/locationtech/proj4j/datum/Grid.java
+index f1abb9b..325860e 100755
+--- a/src/main/java/org/locationtech/proj4j/datum/Grid.java
++++ b/src/main/java/org/locationtech/proj4j/datum/Grid.java
+@@ -317,6 +317,7 @@ public final class Grid implements Serializable {
+             for (String gridName : grids.split(",")) {
+                 boolean optional = gridName.startsWith("@");
+                 if (optional) gridName = gridName.substring(1);
++                if (gridName.equals("null")) return null;
+                 try {
+                     mergeGridFile(gridName, gridlist);
+                 } catch (IOException e) {
