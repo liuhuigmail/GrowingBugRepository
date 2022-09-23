@@ -1,6 +1,5 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,498d134dd0bdf10697b5e44365b56519d8eccf76,09837736725b4405babcc428ac43816cf77f630b,POOL-116,https://issues.apache.org/jira/browse/POOL-116
-2,5b9e00f8671193108ee6374c3713e241ebc47db3,0486f34de43d9772defdfe6bedfefb0552c36991,POOL-116,https://issues.apache.org/jira/browse/POOL-116
 5,9a67df7d74e7db90db0ce714d81b69a4894959ec,d08ab23f5d00fb30019827fe5a60e377be408df0,POOL-180,https://issues.apache.org/jira/browse/POOL-180
 6,d289e4fd31f8d37feda794053d3d1bf58f919052,f229ea44e43ac32390a851775a8fba7c192664a4,POOL-189,https://issues.apache.org/jira/browse/POOL-189
 7,c2ef042a057215aafb73f3e8270780aa135e0d3e,90ea8acafa1d8de4af46f2e9e4d7725d22873974,POOL-231,https://issues.apache.org/jira/browse/POOL-231
