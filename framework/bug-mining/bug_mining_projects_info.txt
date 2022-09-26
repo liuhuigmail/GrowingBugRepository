@@ -132,7 +132,6 @@ Rdf4j_rio_turtle	rdf4j-rio-turtle	https://github.com/eclipse/rdf4j.git	github	ec
 Sentry_ccommon	sentry-core-common	https://github.com/apache/sentry.git	jira	SENTRY	/(SENTRY-\\d+)/mi	sentry-core/sentry-core-common	
 Sling_apiregions	sling-apiregions	https://github.com/apache/sling-org-apache-sling-feature-extension-apiregions.git	jira	SLING	/(SLING-\\d+)/mi	.	
 Sling_cpconverter	sling-cpconverter	https://github.com/apache/sling-org-apache-sling-feature-cpconverter.git	jira	SLING	/(SLING-\\d+)/mi	.	
-Sling_feature	sling-feature	https://github.com/apache/sling-org-apache-sling-feature-extension-apiregions.git	jira	SLING	/(SLING-\\d+)/mi	.	
 Tiles_api	tiles-api	https://github.com/apache/tiles.git	jira	TILES	/(TILES-\\d+)/mi	tiles-api	
 Tiles_core	tiles-core	https://github.com/apache/tiles.git	jira	TILES	/(TILES-\\d+)/mi	tiles-core	
 Twill_dcore	twill-discovery-core	https://github.com/apache/twill.git	jira	TWILL	/(TWILL-\\d+)/mi	twill-discovery-core	
