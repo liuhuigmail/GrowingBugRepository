@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1745`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1747`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -143,7 +143,7 @@ To date, growingBugs contains **`1745`** real-world bugs from open-source Java p
 | 114     | Sling_validation            | sling-org-apache-sling-validation-core |       |       1     | 1              |
 | 115     | Switchyard_config            | switchyard-config |  config       |       1     | 1              |
 | 116     | Switchyard_validate            | switchyard-validate |  validate       |       1     | 1              |
-| 117     | Vysper_nbxml            | vysper-nbxml |  nbxml       |       2     | 1-Markedj2              |
+| 117     | Vysper_nbxml            | vysper-nbxml |  nbxml       |       2     | 1-2              |
 | 118     | Wildfly_naming_client            | wildfly-naming-client |     |       2     | 1-2              |
 | 119     | Dosgi_common            | dosgi-common | common    |       2     | 1-2              |
 | 120     | Fluo_api            | fluo-api | modules/api     |       2     | 1,3              |
@@ -251,6 +251,7 @@ To date, growingBugs contains **`1745`** real-world bugs from open-source Java p
 | 222     | Snomed_owl_toolkit         | snomed-owl-toolkit           |                  |      2       | 1-2                  |
 | 223     | Weak_lock_free         | weak-lock-free           |                  |      1       | 1                  |
 | 224     | Proj4J         | proj4j           |                  |      9       | 1-9                  |
+| 225     | Markedj         | markedj           |                  |      2       | 1-2                  |
 # Setting up GrowingBugs
 
 ## Requirements
