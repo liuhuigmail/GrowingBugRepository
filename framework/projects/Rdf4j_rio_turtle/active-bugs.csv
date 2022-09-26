@@ -7,4 +7,3 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 8,7d68d6ad0f10d5ead60606c515b76f41f8b30ff7,bb42955c0564492de043a75ad50cfe4c022faa2b,2531,https://github.com/eclipse/rdf4j/pull/2531
 9,08944557b0971c6735b6fe41278304adfb1139e7,c0f31a46b152803182b3aa4688abe65a3236aeca,2901,https://github.com/eclipse/rdf4j/pull/2901
 10,2549f873716cf07eb4e8ce597046a8cf3314b55c,8c9220cbba15a2fc992901e06b64ab2e8664df6f,2934,https://github.com/eclipse/rdf4j/pull/2934
-11,14ea85ae0ebf66144413ba208f757e1e681213d2,9a5121439448813ab17fa2c78a7cebdd141f46f0,2939,https://github.com/eclipse/rdf4j/pull/2939
