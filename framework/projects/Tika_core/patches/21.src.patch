@@ -1,0 +1,21 @@
+diff --git a/tika-core/src/main/java/org/apache/tika/language/LanguageIdentifier.java b/tika-core/src/main/java/org/apache/tika/language/LanguageIdentifier.java
+index 381fe9b0e..20e64b12c 100644
+--- a/tika-core/src/main/java/org/apache/tika/language/LanguageIdentifier.java
++++ b/tika-core/src/main/java/org/apache/tika/language/LanguageIdentifier.java
+@@ -98,7 +98,7 @@ public class LanguageIdentifier {
+         String lang = (String) (alllanguages.nextElement());
+ 
+         InputStream is = this.getClass().getClassLoader().getResourceAsStream(
+-                "org/apache/tika/language/" + lang + "." + NGramProfile.FILE_EXTENSION);
++                "org/apache/nutch/analysis/lang/" + lang + "." + NGramProfile.FILE_EXTENSION);
+ 
+         if (is != null) {
+           NGramProfile profile = new NGramProfile(lang, minLength, maxLength);
+@@ -137,7 +137,6 @@ public class LanguageIdentifier {
+       // Create the suspect profile
+       suspect = new NGramProfile("suspect", minLength, maxLength);
+     } catch (Exception e) {
+-        e.printStackTrace();
+       // if (LOG.isFatalEnabled()) { LOG.fatal(e.toString()); }
+     }
+   }

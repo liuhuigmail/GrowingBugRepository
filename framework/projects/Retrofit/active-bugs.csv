@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,bc304b3093193e79c9c2094b2caecde852888f1e,48de58dff4655c62f6d4f3988c97ce7f6a1c9b99,115,https://github.com/square/retrofit/pull/115

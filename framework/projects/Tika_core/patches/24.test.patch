@@ -1,0 +1,21 @@
+diff --git a/tika-core/src/test/java/org/apache/tika/detect/NameDetectorTest.java b/tika-core/src/test/java/org/apache/tika/detect/NameDetectorTest.java
+index 23fbb1589..24d4d4274 100644
+--- a/tika-core/src/test/java/org/apache/tika/detect/NameDetectorTest.java
++++ b/tika-core/src/test/java/org/apache/tika/detect/NameDetectorTest.java
+@@ -65,16 +65,6 @@ public class NameDetectorTest {
+         assertDetect(MediaType.OCTET_STREAM, "ReadMe");     // case sensitive
+         assertDetect(MediaType.OCTET_STREAM, "README.NOW");
+ 
+-        // TIKA-1928 # in the filename
+-        assertDetect(MediaType.TEXT_PLAIN, "text.txt");
+-        assertDetect(MediaType.TEXT_PLAIN, "text#.txt");   // # before extension
+-        assertDetect(MediaType.TEXT_PLAIN, "text#123.txt");// # before extension
+-        assertDetect(MediaType.TEXT_PLAIN, "text.txt#pdf");// # after extension
+-
+-        // Check # as URL fragment too
+-        assertDetect(MediaType.TEXT_PLAIN, "http://foo/test.txt?1=2#pdf");
+-        assertDetect(MediaType.TEXT_PLAIN, "http://foo/test.txt#pdf");
+-
+         // tough one
+         assertDetect(
+                 MediaType.TEXT_PLAIN,

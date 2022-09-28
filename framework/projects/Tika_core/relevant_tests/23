@@ -1,0 +1,6 @@
+org.apache.tika.TikaDetectionTest
+org.apache.tika.io.TaggedInputStreamTest
+org.apache.tika.io.TikaInputStreamTest
+org.apache.tika.mime.MimeTypesReaderTest
+org.apache.tika.parser.CompositeParserTest
+org.apache.tika.sax.SecureContentHandlerTest

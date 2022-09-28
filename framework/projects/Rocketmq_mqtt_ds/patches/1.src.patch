@@ -1,0 +1,16 @@
+diff --git a/mqtt-ds/src/main/java/org/apache/rocketmq/mqtt/ds/store/LmqQueueStoreManager.java b/mqtt-ds/src/main/java/org/apache/rocketmq/mqtt/ds/store/LmqQueueStoreManager.java
+index ce83dae..1d7624a 100644
+--- a/mqtt-ds/src/main/java/org/apache/rocketmq/mqtt/ds/store/LmqQueueStoreManager.java
++++ b/mqtt-ds/src/main/java/org/apache/rocketmq/mqtt/ds/store/LmqQueueStoreManager.java
+@@ -128,9 +128,9 @@ public class LmqQueueStoreManager implements LmqQueueStore {
+         message.setOffset(parseLmqOffset(queue, mqMessage));
+         if (StringUtils.isNotBlank(mqMessage.getUserProperty(Constants.PROPERTY_ORIGIN_MQTT_TOPIC))) {
+             message.setOriginTopic(mqMessage.getUserProperty(Constants.PROPERTY_ORIGIN_MQTT_TOPIC));
+-        } else if (StringUtils.isNotBlank(mqMessage.getUserProperty(MessageConst.PROPERTY_INNER_MULTI_DISPATCH))) {
++        } else if (StringUtils.isNotBlank(message.getUserProperty(MessageConst.PROPERTY_INNER_MULTI_DISPATCH))) {
+             // maybe from rmq
+-            String s = mqMessage.getUserProperty(MessageConst.PROPERTY_INNER_MULTI_DISPATCH);
++            String s = message.getUserProperty(MessageConst.PROPERTY_INNER_MULTI_DISPATCH);
+             String[] lmqSet = s.split(MixAll.MULTI_DISPATCH_QUEUE_SPLITTER);
+             for (String lmq : lmqSet) {
+                 if (TopicUtils.isWildCard(lmq)) {

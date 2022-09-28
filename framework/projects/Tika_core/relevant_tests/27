@@ -1,0 +1,15 @@
+org.apache.tika.TikaDetectionTest
+org.apache.tika.config.TikaConfigSerializerTest
+org.apache.tika.config.TikaConfigTest
+org.apache.tika.detect.FileCommandDetectorTest
+org.apache.tika.fork.ForkParserTest
+org.apache.tika.fork.ForkParserTikaBinTest
+org.apache.tika.metadata.filter.TestMetadataFilter
+org.apache.tika.mime.MimeTypesReaderTest
+org.apache.tika.mime.ProbabilisticMimeDetectionTestWithTika
+org.apache.tika.parser.CompositeParserTest
+org.apache.tika.parser.InitializableParserTest
+org.apache.tika.parser.ParameterizedParserTest
+org.apache.tika.sax.BodyContentHandlerTest
+org.apache.tika.utils.ConcurrentUtilsTest
+org.apache.tika.utils.ServiceLoaderUtilsTest

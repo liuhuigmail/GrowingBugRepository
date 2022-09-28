@@ -1,0 +1,2 @@
+org.apache.tika.language.LanguageIdentifier
+org.apache.tika.language.NGramProfile

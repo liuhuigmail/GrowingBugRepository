@@ -1,0 +1,47 @@
+diff --git a/tika-core/src/test/java/org/apache/tika/mime/MimeTypesReaderTest.java b/tika-core/src/test/java/org/apache/tika/mime/MimeTypesReaderTest.java
+index a5115380c..b94b0954a 100644
+--- a/tika-core/src/test/java/org/apache/tika/mime/MimeTypesReaderTest.java
++++ b/tika-core/src/test/java/org/apache/tika/mime/MimeTypesReaderTest.java
+@@ -25,10 +25,8 @@ import static org.junit.Assert.fail;
+ import java.io.ByteArrayInputStream;
+ import java.lang.reflect.Field;
+ import java.util.ArrayList;
+-import java.util.ConcurrentModificationException;
+ import java.util.List;
+ import java.util.Set;
+-import java.util.concurrent.Executors;
+ 
+ import org.apache.tika.config.TikaConfig;
+ import org.apache.tika.metadata.Metadata;
+@@ -51,8 +49,6 @@ import org.junit.Test;
+  */
+ public class MimeTypesReaderTest {
+ 
+-    static boolean stop = false;
+-
+     private MimeTypes mimeTypes;
+     private List<Magic> magics;
+ 
+@@ -284,22 +280,4 @@ public class MimeTypesReaderTest {
+         assertEquals(name, mimeType.toString());
+         assertEquals(".ditamap", mimeType.getExtension());
+     }
+-
+-    @Test
+-    public void testMultiThreaded() throws Exception {
+-        MimeTypes mimeTypes = MimeTypes.getDefaultMimeTypes();
+-        Executors.newSingleThreadExecutor().execute(()-> {
+-            try {
+-                for (int i = 0; i < 500 && !stop; i++) {
+-                    mimeTypes.forName("abc"+i+"/abc");
+-                }
+-            } catch (MimeTypeException e ) {
+-                e.printStackTrace();
+-            }}
+-        );
+-
+-        for (int i = 0; i < 500 & !stop; i++) {
+-            mimeTypes.getMediaTypeRegistry().getAliases(MediaType.APPLICATION_ZIP);
+-        }
+-    }
+ }

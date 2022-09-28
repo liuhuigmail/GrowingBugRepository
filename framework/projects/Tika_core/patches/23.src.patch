@@ -1,0 +1,56 @@
+diff --git a/tika-core/src/main/java/org/apache/tika/io/TaggedInputStream.java b/tika-core/src/main/java/org/apache/tika/io/TaggedInputStream.java
+index a5810a3fd..f63e6118e 100644
+--- a/tika-core/src/main/java/org/apache/tika/io/TaggedInputStream.java
++++ b/tika-core/src/main/java/org/apache/tika/io/TaggedInputStream.java
+@@ -18,8 +18,6 @@ package org.apache.tika.io;
+ 
+  import java.io.IOException;
+ import java.io.InputStream;
+-import java.io.Serializable;
+-import java.util.UUID;
+ 
+ /**
+  * An input stream decorator that tags potential exceptions so that the
+@@ -60,11 +58,10 @@ import java.util.UUID;
+  */
+ public class TaggedInputStream extends ProxyInputStream {
+ 
+     /**
+      * The unique (serializable) tag of this stream.
+      */
+-    private final Serializable tag = UUID.randomUUID();
+ 
+     /**
+      * Creates a tagging decorator for the given input stream.
+      *
+@@ -97,7 +90,7 @@ public class TaggedInputStream extends ProxyInputStream {
+     public boolean isCauseOf(IOException exception) {
+         if (exception instanceof TaggedIOException) {
+             TaggedIOException tagged = (TaggedIOException) exception;
+-            return tag.equals(tagged.getTag());
++            return this == tagged.getTag();
+         } else {
+             return false;
+         }
+@@ -116,7 +109,7 @@ public class TaggedInputStream extends ProxyInputStream {
+     public void throwIfCauseOf(Exception exception) throws IOException {
+         if (exception instanceof TaggedIOException) {
+             TaggedIOException tagged = (TaggedIOException) exception;
+-            if (tag.equals(tagged.getTag())) {
++            if (this == tagged.getTag()) {
+                 throw tagged.getCause();
+             }
+         }
+@@ -130,10 +123,10 @@ public class TaggedInputStream extends ProxyInputStream {
+      */
+     @Override
+     protected void handleIOException(IOException e) throws IOException {
+-        throw new TaggedIOException(e, tag);
++        throw new TaggedIOException(e, this);
+     }
+ 
+     public String toString() {
+-        return "Tika Tagged InputStream wrapping " + in;
++        return "Tika Tagged InputStream wrapping " + in.toString(); 
+     }
+ }

@@ -1,0 +1,14 @@
+diff --git a/retrofit/src/main/java/retrofit/http/HttpMethodType.java b/retrofit/src/main/java/retrofit/http/HttpMethodType.java
+index fc981b49..d1a58e97 100644
+--- a/retrofit/src/main/java/retrofit/http/HttpMethodType.java
++++ b/retrofit/src/main/java/retrofit/http/HttpMethodType.java
+@@ -84,9 +84,6 @@ enum HttpMethodType {
+   private static URI getParameterizedUri(HttpRequestBuilder builder) throws URISyntaxException {
+     List<NameValuePair> queryParams = builder.getParamList(false);
+     String queryString = URLEncodedUtils.format(queryParams, HTTP.UTF_8);
+-    if (queryString != null && queryString.length() == 0) {
+-      queryString = null;
+-    }
+     return URIUtils.createURI(builder.getScheme(), builder.getHost(), -1, builder.getRelativePath(), queryString, null);
+   }
+ 

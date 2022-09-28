@@ -1,0 +1,13 @@
+diff --git a/tika-core/src/main/java/org/apache/tika/sax/SafeContentHandler.java b/tika-core/src/main/java/org/apache/tika/sax/SafeContentHandler.java
+index 4a6110010..98aed974a 100644
+--- a/tika-core/src/main/java/org/apache/tika/sax/SafeContentHandler.java
++++ b/tika-core/src/main/java/org/apache/tika/sax/SafeContentHandler.java
+@@ -43,7 +43,7 @@ public class SafeContentHandler extends ContentHandlerDecorator {
+     /**
+      * Replacement for invalid characters.
+      */
+-    private static final char[] REPLACEMENT = new char[] { '\ufffd' };
++    private static final char[] REPLACEMENT = new char[] { ' ' };
+ 
+     /**
+      * Internal interface that allows both character and

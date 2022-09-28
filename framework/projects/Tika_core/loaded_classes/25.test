@@ -1,0 +1,2 @@
+org.apache.tika.mime.MimeTypesReaderTest
+org.apache.tika.parser.mock.MockParser

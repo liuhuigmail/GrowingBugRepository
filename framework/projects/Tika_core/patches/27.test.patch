@@ -1,0 +1,18 @@
+diff --git a/tika-core/src/test/java/org/apache/tika/utils/ServiceLoaderUtilsTest.java b/tika-core/src/test/java/org/apache/tika/utils/ServiceLoaderUtilsTest.java
+index 871775b9d..5cd3c8d01 100644
+--- a/tika-core/src/test/java/org/apache/tika/utils/ServiceLoaderUtilsTest.java
++++ b/tika-core/src/test/java/org/apache/tika/utils/ServiceLoaderUtilsTest.java
+@@ -42,10 +42,10 @@ public class ServiceLoaderUtilsTest {
+         //and then reverse alphabetical order
+         Detector[] detectors = new Detector[]{
+                 new MyCustomDetector(),
+-                new EmptyDetector(),
+-                new FileCommandDetector(),
++                new ZeroSizeFileDetector(),
+                 new OverrideDetector(),
+-                new ZeroSizeFileDetector()
++                new FileCommandDetector(),
++                new EmptyDetector(),
+         };
+         List<Detector> expected = Arrays.asList(detectors);
+         List<Detector> shuffled = new ArrayList<>();

@@ -1,0 +1,3 @@
+org.apache.tika.sax.BodyContentHandlerTest
+org.apache.tika.sax.SafeContentHandlerTest
+org.apache.tika.sax.XHTMLContentHandlerTest

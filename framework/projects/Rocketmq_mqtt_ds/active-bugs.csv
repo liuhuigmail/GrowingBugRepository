@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,ac90d5c4918e92d5e096ba9d2e06489b49d7ceca,8e27eb2601ac9cde3e06a0f8d49fd78f199cefa6,97,https://github.com/apache/rocketmq-mqtt/issues/97

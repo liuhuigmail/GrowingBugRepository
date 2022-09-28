@@ -1,0 +1,2 @@
+org.apache.tika.mime.MediaTypeRegistry
+tika-core.org.apache.tika.mime.MimeTypes

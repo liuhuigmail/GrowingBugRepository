@@ -1,0 +1,4 @@
+org.apache.tika.io.IOExceptionWithCause
+org.apache.tika.io.ProxyInputStream
+org.apache.tika.io.TaggedInputStream
+org.apache.tika.io.TaggedIOException

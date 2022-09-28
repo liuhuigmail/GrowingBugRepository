@@ -5,3 +5,10 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 11,eb6207836f8eb7a3353aa6088785d22fd3cd4f64,1f16bf8e5ef4848d9d2e91e1566c1cfb5617f311,TIKA-866,https://issues.apache.org/jira/browse/TIKA-866
 17,aca3dfa1f086d2f6cbd6ebfdccfa9333ab1fbcf1,2697354c7e50b9b06c44441accd09f3cff594c6e,TIKA-995,https://issues.apache.org/jira/browse/TIKA-995
 20,63351d11c1778d66826693eb7a97114ab7342e78,f43de5a24b56cdd6a3c5abc3e5a38e2410089d69,TIKA-1782,https://issues.apache.org/jira/browse/TIKA-1782
+21,29af90d132752b20e252f2aa275129e343082771,62697affaf3fb93c5f667f76fe54deb78003ef4e,TIKA-209,https://issues.apache.org/jira/browse/TIKA-209
+22,04d1fb7cc895e054941280e991ef129cde11ab8b,4c5599b6694a31e8ce84a1a0d88100827d98490e,TIKA-698,https://issues.apache.org/jira/browse/TIKA-698
+23,57a99d012bc43d04ded8e7d88e056680542b405f,edb6775bf356eaaf656730589cc3340a15b602ea,TIKA-828,https://issues.apache.org/jira/browse/TIKA-828
+24,bc0b1f7f7e0b854a119779fc3f806e0d9490c08a,b2821d921ac4cfd3be468e8bea9123f5cb627cbf,TIKA-1928,https://issues.apache.org/jira/browse/TIKA-1928
+25,d59353ea2ebeb4f0ea81a49bdd79810402f43416,7bd88f6eb2eb6035dd20f54364f8eeac7e2df0fd,TIKA-2677,https://issues.apache.org/jira/browse/TIKA-2677
+26,63e6f31f3893707310b843b8f331a9e8dd494f12,0f5c16e57f85cc98ced6b52e52b1e84d53b66ae6,TIKA-2955,https://issues.apache.org/jira/browse/TIKA-2955
+27,476ed94e935b2dcc1aff977d95a95726a3f1ba7d,1798e80d12b57cc7706ff89dc8bb2c740ef09064,TIKA-3262,https://issues.apache.org/jira/browse/TIKA-3262

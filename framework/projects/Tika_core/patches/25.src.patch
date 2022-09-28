@@ -1,0 +1,53 @@
+diff --git a/tika-core/src/main/java/org/apache/tika/mime/MediaTypeRegistry.java b/tika-core/src/main/java/org/apache/tika/mime/MediaTypeRegistry.java
+index 65938bea0..813eda0dd 100644
+--- a/tika-core/src/main/java/org/apache/tika/mime/MediaTypeRegistry.java
++++ b/tika-core/src/main/java/org/apache/tika/mime/MediaTypeRegistry.java
+@@ -21,7 +21,6 @@ import java.util.HashMap;
+ import java.util.Map;
+ import java.util.SortedSet;
+ import java.util.TreeSet;
+-import java.util.concurrent.ConcurrentHashMap;
+ 
+ /**
+  * Registry of known Internet media types.
+@@ -47,7 +46,7 @@ public class MediaTypeRegistry implements Serializable {
+      * as a mapping from the alias to the corresponding canonical type.
+      */
+     private final Map<MediaType, MediaType> registry =
+-        new ConcurrentHashMap<>();
++        new HashMap<MediaType, MediaType>();
+ 
+     /**
+      * Known type inheritance relationships. The mapping is from a media type
+@@ -75,7 +74,7 @@ public class MediaTypeRegistry implements Serializable {
+      * @return known aliases
+      */
+     public SortedSet<MediaType> getAliases(MediaType type) {
+-        SortedSet<MediaType> aliases = new TreeSet<>();
++        SortedSet<MediaType> aliases = new TreeSet<MediaType>();
+         for (Map.Entry<MediaType, MediaType> entry : registry.entrySet()) {
+             if (entry.getValue().equals(type) && !entry.getKey().equals(type)) {
+                 aliases.add(entry.getKey());
+diff --git a/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java b/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
+index 0009ac9a3..4acfe0155 100644
+--- a/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
++++ b/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
+@@ -30,7 +30,6 @@ import java.util.HashMap;
+ import java.util.List;
+ import java.util.Locale;
+ import java.util.Map;
+-import java.util.concurrent.ConcurrentHashMap;
+ 
+ import javax.xml.namespace.QName;
+ 
+@@ -104,7 +103,8 @@ public final class MimeTypes implements Detector, Serializable {
+     private final MediaTypeRegistry registry = new MediaTypeRegistry();
+ 
+     /** All the registered MimeTypes indexed on their canonical names */
+-    private final Map<MediaType, MimeType> types = new HashMap<>();
++    private final Map<MediaType, MimeType> types =
++        new HashMap<MediaType, MimeType>();
+ 
+     /** The patterns matcher */
+     private Patterns patterns = new Patterns(registry);
+
