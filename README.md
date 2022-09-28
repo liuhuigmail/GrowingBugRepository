@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1756`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1755`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -156,7 +156,7 @@ To date, growingBugs contains **`1756`** real-world bugs from open-source Java p
 | 127     | Rdf4j_rio_jsonld            | rdf4j-rio-jsonld | core/rio/jsonld  |       2     | 1-2              |
 | 128     | Rdf4j_rio_rdfjson            | rdf4j-rio-rdfjson | core/rio/rdfjson |       2     | 1-2              |
 | 129     | Rdf4j_rio_rdfxml            | rdf4j-rio-rdfxml | core/rio/rdfxml    |       1     | 1              |
-| 130     | Rdf4j_rio_turtle            | rdf4j-rio-turtle | core/rio/turtle    |       11    | 1-11              |
+| 130     | Rdf4j_rio_turtle            | rdf4j-rio-turtle | core/rio/turtle    |       10    | 1-10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              |
 | 131     | Sentry_ccommon            | sentry-core-common |  sentry-core/sentry-core-common   |       2     | 1-2              |
 | 132     | Sling_apiregions            | sling-apiregions |     |       3     | 1-3              |
 | 133     | Sling_cpconverter            | sling-cpconverter |     |       3     | 1-3              |
