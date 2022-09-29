@@ -1,0 +1,10 @@
+org.apache.tika.sax.xpath.ChildMatcher
+org.apache.tika.sax.xpath.CompositeMatcher
+org.apache.tika.sax.xpath.ElementMatcher
+org.apache.tika.sax.xpath.Matcher
+org.apache.tika.sax.xpath.NamedAttributeMatcher
+org.apache.tika.sax.xpath.NamedElementMatcher
+org.apache.tika.sax.xpath.NodeMatcher
+org.apache.tika.sax.xpath.SubtreeMatcher
+org.apache.tika.sax.xpath.TextMatcher
+org.apache.tika.sax.xpath.XPathParser

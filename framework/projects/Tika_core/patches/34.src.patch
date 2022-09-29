@@ -1,0 +1,32 @@
+diff --git a/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java b/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
+index b92302808..88057ed64 100644
+--- a/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
++++ b/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
+@@ -334,23 +334,11 @@ public class TikaConfig {
+         List<Parser> parsers = new ArrayList<Parser>();
+         
+         // Should be only zero or one <parsers> tag
+-        NodeList nodes = element.getElementsByTagName("parsers");
+-        if (nodes.getLength() > 1) {
+-            throw new TikaException("Properties may not contain multiple Parsers entries");
+-        }
+-        else if (nodes.getLength() == 1) {
++        NodeList nodes = element.getElementsByTagName("parser");
+             // Find only the direct child parser objects
+-            Node parsersE = nodes.item(0);
+-            nodes = parsersE.getChildNodes();
+-            for (int i = 0; i < nodes.getLength(); i++) {
+-                Node node = nodes.item(i);
+-                if (node instanceof Element) {
+-                    Element nodeE = (Element)node;
+-                    if ("parser".equals(nodeE.getTagName())) {
+-                        parsers.add(parserFromParserDomElement(nodeE, mimeTypes, loader));
+-                    }
+-                }
+-            }
++        for (int i = 0; i < nodes.getLength(); i++) {
++            Element node = (Element) nodes.item(i);
++            parsers.add(parserFromParserDomElement(node, mimeTypes, loader));
+         }
+         
+         if (parsers.isEmpty()) {

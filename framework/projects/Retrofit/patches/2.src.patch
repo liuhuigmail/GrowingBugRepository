@@ -1,0 +1,38 @@
+diff --git a/retrofit/src/main/java/retrofit/http/RestAdapter.java b/retrofit/src/main/java/retrofit/http/RestAdapter.java
+index 4e3fc724..3ec08149 100644
+--- a/retrofit/src/main/java/retrofit/http/RestAdapter.java
++++ b/retrofit/src/main/java/retrofit/http/RestAdapter.java
+@@ -101,25 +101,18 @@ public class RestAdapter {
+   @SuppressWarnings("unchecked")
+   public <T> T create(Class<T> type) {
+     return (T) Proxy.newProxyInstance(type.getClassLoader(), new Class<?>[] { type },
+-        new RestHandler(type));
++        new RestHandler());
+   }
+ 
+   private class RestHandler implements InvocationHandler {
+-    private final Class<?> declaringType;
+     private final Map<Method, MethodDetails> methodDetailsCache =
+         new LinkedHashMap<Method, MethodDetails>();
+ 
+-    RestHandler(Class<?> declaringType) {
+-      this.declaringType = declaringType;
+-    }
+ 
+     @SuppressWarnings("unchecked")
+     @Override public Object invoke(Object proxy, Method method, final Object[] args)
+         throws InvocationTargetException, IllegalAccessException {
+       // If the method is not a direct member of the interface then defer to normal invocation.
+-      if (method.getDeclaringClass() != declaringType) {
+-        return method.invoke(this, args);
+-      }
+ 
+       // Load or create the details cache for the current method.
+       final MethodDetails methodDetails;
+@@ -551,4 +544,4 @@ public class RestAdapter {
+       }
+     }
+   }
+-}
+\ No newline at end of file
++}

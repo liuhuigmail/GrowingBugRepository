@@ -1,0 +1,2 @@
+org.apache.tika.config.TikaConfigTest
+org.apache.tika.ResourceLoggingClassLoader

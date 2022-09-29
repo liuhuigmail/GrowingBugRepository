@@ -1,0 +1,4 @@
+org.apache.tika.detect.MagicDetectorTest
+org.apache.tika.detect.NameDetectorTest
+org.apache.tika.detect.TextDetectorTest
+org.apache.tika.detect.TypeDetectorTest

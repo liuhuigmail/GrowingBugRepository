@@ -1,0 +1,10 @@
+org.apache.tika.detect.Detector
+org.apache.tika.detect.TypeDetector
+org.apache.tika.metadata.CreativeCommons
+org.apache.tika.metadata.DublinCore
+org.apache.tika.metadata.HttpHeaders
+org.apache.tika.metadata.Metadata
+org.apache.tika.metadata.MSOffice
+org.apache.tika.metadata.TikaMetadataKeys
+org.apache.tika.metadata.TikaMimeKeys
+org.apache.tika.mime.MediaType

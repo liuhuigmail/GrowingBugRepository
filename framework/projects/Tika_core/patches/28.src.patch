@@ -1,0 +1,37 @@
+diff --git a/tika-core/src/main/java/org/apache/tika/mime/MediaType.java b/tika-core/src/main/java/org/apache/tika/mime/MediaType.java
+index c95731db3..ba7a270e9 100644
+--- a/tika-core/src/main/java/org/apache/tika/mime/MediaType.java
++++ b/tika-core/src/main/java/org/apache/tika/mime/MediaType.java
+@@ -57,28 +57,14 @@ public final class MediaType {
+      */
+     public static MediaType parse(String string) {
+         int colon = string.indexOf(';');
+-        if (colon != -1 && colon != string.length()-1) {
+-            String primarySubString = string.substring(0, colon);
+-            String parameters = string
+-                    .substring(colon + 1, string.length());
+-
+-            MediaType type = parseNoParams(primarySubString);
+-            String[] paramBases = parameters.split(";");
+-            for (int i = 0; i < paramBases.length; i++) {
+-                String[] paramToks = paramBases[i].split("=");
+-                String paramName = paramToks[0].trim();
+-                String paramValue = paramToks[1].trim();
+-                type.parameters.put(paramName, paramValue);
+-            }
++        if (colon != -1) {
++            string = string.substring(0, colon);
++        }
++
+ 
+-            return type;
+ 
+-        } else
+-            return parseNoParams(string);
+ 
+-    }
+ 
+-    private static MediaType parseNoParams(String string) {
+         int slash = string.indexOf('/');
+         if (slash != -1) {
+             String type = string.substring(0, slash).trim();

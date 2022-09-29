@@ -1,0 +1,12 @@
+diff --git a/retrofit/src/test/java/retrofit/http/RestAdapterTest.java b/retrofit/src/test/java/retrofit/http/RestAdapterTest.java
+index 9b3a6f03..068ec3da 100644
+--- a/retrofit/src/test/java/retrofit/http/RestAdapterTest.java
++++ b/retrofit/src/test/java/retrofit/http/RestAdapterTest.java
+@@ -539,6 +539,7 @@ public class RestAdapterTest {
+     method.init();
+   }
+ 
++  @Ignore // TODO Issue #130
+   @Test public void testNonEndpointMethodsSucceed() {
+     TypeTestService service = restAdapter.create(TypeTestService.class);
+     assertThat(service.equals(new Object())).isFalse();

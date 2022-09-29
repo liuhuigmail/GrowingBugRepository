@@ -1,0 +1,26 @@
+diff --git a/tika-core/src/main/java/org/apache/tika/sax/SafeContentHandler.java b/tika-core/src/main/java/org/apache/tika/sax/SafeContentHandler.java
+index 98aed974a..82988cbac 100644
+--- a/tika-core/src/main/java/org/apache/tika/sax/SafeContentHandler.java
++++ b/tika-core/src/main/java/org/apache/tika/sax/SafeContentHandler.java
+@@ -115,7 +115,7 @@ public class SafeContentHandler extends ContentHandlerDecorator {
+             int c = Character.codePointAt(ch, i, end);
+             int j = i + Character.charCount(c);
+ 
+-            if (isInvalid(c)) {
++            if (isInvalid(ch[i])) {
+                 // Output any preceding valid characters
+                 if (i > start) {
+                     output.write(ch, start, i - start);
+@@ -186,7 +186,11 @@ public class SafeContentHandler extends ContentHandlerDecorator {
+      * @deprecated Use {@link #isInvalid(int)} instead
+      */
+     protected boolean isInvalid(char ch) {
+-        return isInvalid((int) ch);
++        if (ch < 0x20) {
++            return ch != 0x09 && ch != 0x0A && ch != 0x0D;
++        } else {
++            return ch >= 0xFFFE;
++        }
+     }
+ 
+     /**

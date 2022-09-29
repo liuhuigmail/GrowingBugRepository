@@ -1,2 +1,4 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,bc304b3093193e79c9c2094b2caecde852888f1e,48de58dff4655c62f6d4f3988c97ce7f6a1c9b99,115,https://github.com/square/retrofit/pull/115
+2,89fd13bbe7af39573cce9e6d3cfd61d3f5bb7b2d,f54d6ad8be61ffe53b578b54c52bf09aa86ad158,132,https://github.com/square/retrofit/pull/132
+3,a7755edc83d3907204093840a7c15d954120c926,d0b3d5bb8b377a6bf682b28e23622db3da7e4785,158,https://github.com/square/retrofit/pull/158

@@ -12,3 +12,15 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 25,d59353ea2ebeb4f0ea81a49bdd79810402f43416,7bd88f6eb2eb6035dd20f54364f8eeac7e2df0fd,TIKA-2677,https://issues.apache.org/jira/browse/TIKA-2677
 26,63e6f31f3893707310b843b8f331a9e8dd494f12,0f5c16e57f85cc98ced6b52e52b1e84d53b66ae6,TIKA-2955,https://issues.apache.org/jira/browse/TIKA-2955
 27,476ed94e935b2dcc1aff977d95a95726a3f1ba7d,1798e80d12b57cc7706ff89dc8bb2c740ef09064,TIKA-3262,https://issues.apache.org/jira/browse/TIKA-3262
+28,15c83430df273aae65170d25ed95f4df62858de2,acf76a64d81eb9c901d92fe718c0f0ffb4d14ced,TIKA-121,https://issues.apache.org/jira/browse/TIKA-121
+29,ed7a1d1bda0d981359261c20e8617a73d7dc482b,98eb0b0ec46c8a826a8a76a52636d8cc617d3201,TIKA-483,https://issues.apache.org/jira/browse/TIKA-483
+30,9d5cf328f700e655a38cdf547fc86a273b854b78,9c9763a5ac67683553f155a33338bdf98e1a6937,TIKA-698,https://issues.apache.org/jira/browse/TIKA-698
+31,066f587584998f82e738496cd2906de8ffecb9b4,c7d7f66f8c9e389d8654a6a57f0e14040f2e9d51,TIKA-1145,https://issues.apache.org/jira/browse/TIKA-1145
+32,a852c4f55cc320087d4cfa300fca5ffb9c759918,22fc879bf987c2ab1fa24d68c10a97cb4797614e,TIKA-1146,https://issues.apache.org/jira/browse/TIKA-1146
+33,42cebedc5a415b5f9fe32de184ee6dc9e6fab9b9,e2293d302bc5f447563c5c6c93907b55bba6e91b,TIKA-1459,https://issues.apache.org/jira/browse/TIKA-1459
+34,5132638ec133b3176d8a49fa3458a32bf71ac738,b93a7d267f8d1899354c5e2b8c1c56651e50d99c,TIKA-1653,https://issues.apache.org/jira/browse/TIKA-1653
+35,444dadd5eb090f6e2998507e444b2014905cb90f,761273f9e69c4a7595e50ccd6a2d9304c398d0b1,TIKA-1669,https://issues.apache.org/jira/browse/TIKA-1669
+36,489ab93c70227da902774badcca54ebb8eeae533,fe841bc8760027eae3f9d0105238780815451346,TIKA-1835,https://issues.apache.org/jira/browse/TIKA-1835
+37,8eac1c551fe45d9191a1c5f011f9fdaad1d6c1d3,1c5e96cf617b231ce8d902fc86eca84edb9cafe7,TIKA-1937,https://issues.apache.org/jira/browse/TIKA-1937
+38,cadbc405519e5adbada1ddb6d2d4beff1f953072,6a398bd3f6245543091fd7c0e9e4facb34a26882,TIKA-1191,https://issues.apache.org/jira/browse/TIKA-1191
+39,cadbc405519e5adbada1ddb6d2d4beff1f953072,7f6072ca26dccf1d791c426d4c32068535ddae8a,TIKA-1191,https://issues.apache.org/jira/browse/TIKA-1191

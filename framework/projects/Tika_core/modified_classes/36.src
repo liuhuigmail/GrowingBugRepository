@@ -1,0 +1,2 @@
+org.apache.tika.sax.LinkBuilder
+tika-core.org.apache.tika.sax.LinkContentHandler

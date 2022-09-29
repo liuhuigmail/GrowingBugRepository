@@ -1,0 +1,42 @@
+diff --git a/tika-core/src/main/java/org/apache/tika/sax/BasicContentHandlerFactory.java b/tika-core/src/main/java/org/apache/tika/sax/BasicContentHandlerFactory.java
+index db41a0eaa..2c59c5137 100644
+--- a/tika-core/src/main/java/org/apache/tika/sax/BasicContentHandlerFactory.java
++++ b/tika-core/src/main/java/org/apache/tika/sax/BasicContentHandlerFactory.java
+@@ -15,6 +15,8 @@ package org.apache.tika.sax;
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
+  */
++import org.xml.sax.ContentHandler;
++import org.xml.sax.helpers.DefaultHandler;
+ 
+ import java.io.OutputStream;
+ import java.io.OutputStreamWriter;
+@@ -55,13 +57,12 @@ public class BasicContentHandlerFactory implements ContentHandlerFactory {
+     @Override
+     public ContentHandler getNewContentHandler() {
+ 
+-        if (type == HANDLER_TYPE.BODY) {
+-            return new BodyContentHandler(writeLimit);
+-        } else if (type == HANDLER_TYPE.IGNORE) {
+-            return new DefaultHandler();
+-        }
+         if (writeLimit > -1) {
+             switch(type) {
++                case BODY:
++                    return new BodyContentHandler(writeLimit);
++                case IGNORE:
++                    return new DefaultHandler();
+                 case TEXT:
+                     return new WriteOutContentHandler(new ToTextContentHandler(), writeLimit);
+                 case HTML:
+@@ -73,6 +74,10 @@ public class BasicContentHandlerFactory implements ContentHandlerFactory {
+             }
+         } else {
+             switch (type) {
++                case BODY:
++                    return new BodyContentHandler();
++                case IGNORE:
++                    return new DefaultHandler();
+                 case TEXT:
+                     return new ToTextContentHandler();
+                 case HTML:

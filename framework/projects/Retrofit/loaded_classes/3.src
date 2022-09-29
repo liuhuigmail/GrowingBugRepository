@@ -1,0 +1,11 @@
+retrofit.http.Callback
+retrofit.http.client.Request
+retrofit.http.ConversionException
+retrofit.http.Converter
+retrofit.http.GsonConverter
+retrofit.http.mime.TypedOutput
+retrofit.http.Parameter
+retrofit.http.QueryParam
+retrofit.http.RequestBuilder
+retrofit.http.RestMethod
+retrofit.http.RestMethodInfo

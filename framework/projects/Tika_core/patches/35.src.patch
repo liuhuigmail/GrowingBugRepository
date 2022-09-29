@@ -1,0 +1,46 @@
+diff --git a/tika-core/src/main/java/org/apache/tika/sax/xpath/NodeMatcher.java b/tika-core/src/main/java/org/apache/tika/sax/xpath/NodeMatcher.java
+index 59cec6507..b55c605db 100644
+--- a/tika-core/src/main/java/org/apache/tika/sax/xpath/NodeMatcher.java
++++ b/tika-core/src/main/java/org/apache/tika/sax/xpath/NodeMatcher.java
+@@ -29,6 +29,10 @@ public class NodeMatcher extends Matcher {
+         return true;
+     }
+ 
++    @Override
++    public boolean matchesAttribute(String namespace, String name) {
++        return true;
++    }
+     @Override
+     public boolean matchesText() {
+         return true;
+diff --git a/tika-core/src/main/java/org/apache/tika/sax/xpath/XPathParser.java b/tika-core/src/main/java/org/apache/tika/sax/xpath/XPathParser.java
+index 5e83dcf24..3c50470fe 100644
+--- a/tika-core/src/main/java/org/apache/tika/sax/xpath/XPathParser.java
++++ b/tika-core/src/main/java/org/apache/tika/sax/xpath/XPathParser.java
+@@ -65,16 +65,12 @@ public class XPathParser {
+ 		if (xpath.equals("/text()")) {
+ 			return TextMatcher.INSTANCE;
+ 		} else if (xpath.equals("/node()")) {
+-			return new CompositeMatcher(TextMatcher.INSTANCE, new ChildMatcher(
+-					ElementMatcher.INSTANCE));
++			return NodeMatcher.INSTANCE;
+ 		} else if (xpath.equals("/descendant::node()")
+ 				|| xpath.equals("/descendant:node()")) { // for compatibility
+ 			return new CompositeMatcher(TextMatcher.INSTANCE, new ChildMatcher(
+ 					new SubtreeMatcher(NodeMatcher.INSTANCE)));
+-		} else if (xpath.equals("/descendant-or-self::node()")) {
+ 			// equiv. to "//node()"
+-			return new SubtreeMatcher(new CompositeMatcher(
+-					TextMatcher.INSTANCE, ElementMatcher.INSTANCE));
+ 		} else if (xpath.equals("/@*")) {
+ 			return AttributeMatcher.INSTANCE;
+ 		} else if (xpath.length() == 0) {
+@@ -98,8 +94,6 @@ public class XPathParser {
+ 			return Matcher.FAIL;
+ 		} else if (xpath.startsWith("//")) {
+ 			return new SubtreeMatcher(parse(xpath.substring(1)));
+-		} else if (xpath.startsWith("/descendant-or-self::node()/")) {
+-			return new SubtreeMatcher(parse(xpath.substring(27)));
+ 		} else if (xpath.startsWith("/")) {
+ 			int slash = xpath.indexOf('/', 1);
+ 			if (slash == -1) {

@@ -1,0 +1,2 @@
+org.apache.tika.fork.ForkParserTest
+org.apache.tika.fork.ForkTestParser

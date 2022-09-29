@@ -1,0 +1,104 @@
+diff --git a/tika-core/src/test/java/org/apache/tika/sax/xpath/XPathParserTest.java b/tika-core/src/test/java/org/apache/tika/sax/xpath/XPathParserTest.java
+index 329ccd797..c87f673fe 100644
+--- a/tika-core/src/test/java/org/apache/tika/sax/xpath/XPathParserTest.java
++++ b/tika-core/src/test/java/org/apache/tika/sax/xpath/XPathParserTest.java
+@@ -78,99 +78,6 @@ public class XPathParserTest {
+         assertEquals(Matcher.FAIL, matcher.descend(NS, "name"));
+     }
+ 
+-    @Test
+-    public void testNode() {
+-
+-        // node() = child::node() selects all the children of the context node. Note that no attribute nodes are returned,
+-        // because attributes are not children.
+-
+-        Matcher matcher = parser.parse("/node()");
+-        assertTrue(matcher.matchesText());
+-        assertFalse(matcher.matchesElement());
+-        assertFalse(matcher.matchesAttribute(null, "name"));
+-        assertFalse(matcher.matchesAttribute(NS, "name"));
+-        assertFalse(matcher.matchesAttribute(NS, "eman"));
+-        
+-        matcher = matcher.descend(NS, "name");
+-        assertFalse(matcher.matchesText());
+-        assertTrue(matcher.matchesElement());
+-        assertFalse(matcher.matchesAttribute(null, "name"));
+-        assertFalse(matcher.matchesAttribute(NS, "name"));
+-        assertFalse(matcher.matchesAttribute(NS, "eman"));
+-      
+-        assertEquals(Matcher.FAIL, matcher.descend(NS, "name"));
+-    }
+-
+-    @Test
+-    public void testDescendantNode() {
+-
+-        // child::node() selects all the children of the context node. Note that no attribute nodes are returned,
+-        // because attributes are not children.
+-
+-        Matcher matcher = parser.parse("/descendant::node()");
+-        assertTrue(matcher.matchesText());
+-        assertFalse(matcher.matchesElement());
+-        assertFalse(matcher.matchesAttribute(null, "name"));
+-      
+-        matcher = matcher.descend(NS, "name");
+-        assertTrue(matcher.matchesText());
+-        assertTrue(matcher.matchesElement());
+-        assertFalse(matcher.matchesAttribute(null, "name"));
+-     
+-        matcher = matcher.descend(NS, "name");
+-        assertTrue(matcher.matchesText());
+-        assertTrue(matcher.matchesElement());
+-        assertFalse(matcher.matchesAttribute(null, "name"));
+-    }
+-
+-    @Test
+-    public void testDescendantOrSelfNode() {
+-
+-        Matcher matcher = parser.parse("/descendant-or-self::node()");
+-        assertTrue(matcher.matchesText());
+-        assertTrue(matcher.matchesElement());
+-        assertFalse(matcher.matchesAttribute(NS, "name"));
+-       
+-        matcher = matcher.descend(NS, "name");
+-        assertTrue(matcher.matchesText());
+-        assertTrue(matcher.matchesElement());
+-        assertFalse(matcher.matchesAttribute(NS, "name"));
+-    
+-        matcher = matcher.descend(NS, "name");
+-        assertTrue(matcher.matchesText());
+-        assertTrue(matcher.matchesElement());
+-        assertFalse(matcher.matchesAttribute(NS, "name"));
+-
+-    }
+-
+-    @Test
+-    public void testDescendantOrSelfElement() {
+-
+-        Matcher matcher = parser.parse("/descendant-or-self::node()/*");
+-        // Matcher matcher = parser.parse("//*");
+-        assertFalse(matcher.matchesText());
+-        assertFalse(matcher.matchesElement());
+-        assertFalse(matcher.matchesAttribute(null, "name"));
+-        assertFalse(matcher.matchesAttribute(NS, "name"));
+-        assertFalse(matcher.matchesAttribute(NS, "eman"));
+-       
+-        matcher = matcher.descend(NS, "name");
+-        assertFalse(matcher.matchesText());
+-        assertTrue(matcher.matchesElement());
+-        assertFalse(matcher.matchesAttribute(null, "name"));
+-        assertFalse(matcher.matchesAttribute(NS, "name"));
+-        assertFalse(matcher.matchesAttribute(NS, "eman"));
+-          
+-        matcher = matcher.descend(NS, "name");
+-        assertFalse(matcher.matchesText());
+-        assertTrue(matcher.matchesElement());
+-        assertFalse(matcher.matchesAttribute(null, "name"));
+-        assertFalse(matcher.matchesAttribute(NS, "name"));
+-        assertFalse(matcher.matchesAttribute(NS, "eman"));
+-
+-    }
+-
+-    
+     @Test
+     public void testAnyElement() {
+         Matcher matcher = parser.parse("/*");

@@ -1,0 +1,40 @@
+diff --git a/tika-core/src/main/java/org/apache/tika/sax/LinkBuilder.java b/tika-core/src/main/java/org/apache/tika/sax/LinkBuilder.java
+index 9c873433f..bb94bfa5b 100644
+--- a/tika-core/src/main/java/org/apache/tika/sax/LinkBuilder.java
++++ b/tika-core/src/main/java/org/apache/tika/sax/LinkBuilder.java
+@@ -73,4 +73,4 @@ class LinkBuilder {
+         
+         return new Link(type, uri, title, anchor, rel);
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/tika-core/src/main/java/org/apache/tika/sax/LinkContentHandler.java b/tika-core/src/main/java/org/apache/tika/sax/LinkContentHandler.java
+index 7eecc4cb8..2ad377067 100644
+--- a/tika-core/src/main/java/org/apache/tika/sax/LinkContentHandler.java
++++ b/tika-core/src/main/java/org/apache/tika/sax/LinkContentHandler.java
+@@ -85,15 +85,6 @@ public class LinkContentHandler extends DefaultHandler {
+                 builder.setTitle(attributes.getValue("", "title"));
+                 builder.setRel(attributes.getValue("", "rel"));
+                 builderStack.addFirst(builder);
+-            } else if ("link".equals(local)) {
+-                LinkBuilder builder = new LinkBuilder("link");
+-                builder.setURI(attributes.getValue("", "href"));
+-                builder.setRel(attributes.getValue("", "rel"));
+-                builderStack.addFirst(builder);
+-            } else if ("iframe".equals(local)) {
+-                LinkBuilder builder = new LinkBuilder("iframe");
+-                builder.setURI(attributes.getValue("", "src"));
+-                builderStack.addFirst(builder);
+             } else if ("img".equals(local)) {
+                 LinkBuilder builder = new LinkBuilder("img");
+                 builder.setURI(attributes.getValue("", "src"));
+@@ -125,7 +116,7 @@ public class LinkContentHandler extends DefaultHandler {
+     @Override
+     public void endElement(String uri, String local, String name) {
+         if (XHTML.equals(uri)) {
+-            if ("a".equals(local) || "img".equals(local) || "link".equals(local) || "iframe".equals(local)) {
++            if ("a".equals(local) || "img".equals(local)) {
+                 links.add(builderStack.removeFirst().getLink(collapseWhitespaceInAnchor));
+             }
+         }

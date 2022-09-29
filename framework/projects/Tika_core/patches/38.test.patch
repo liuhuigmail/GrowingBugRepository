@@ -1,0 +1,68 @@
+diff --git a/tika-core/src/test/java/org/apache/tika/fork/ForkParserTest.java b/tika-core/src/test/java/org/apache/tika/fork/ForkParserTest.java
+index 01e08d9d5..5883c75d0 100644
+--- a/tika-core/src/test/java/org/apache/tika/fork/ForkParserTest.java
++++ b/tika-core/src/test/java/org/apache/tika/fork/ForkParserTest.java
+@@ -218,21 +218,4 @@ public class ForkParserTest {
+         }
+     }
+ 
+-    @Test
+-    public void testPackageCanBeAccessed() throws Exception {
+-        ForkParser parser = new ForkParser(
+-                ForkParserTest.class.getClassLoader(),
+-                new ForkTestParser.ForkTestParserAccessingPackage());
+-        try {
+-            Metadata metadata = new Metadata();
+-            ContentHandler output = new BodyContentHandler();
+-            InputStream stream = new ByteArrayInputStream(new byte[0]);
+-            ParseContext context = new ParseContext();
+-            parser.parse(stream, output, metadata, context);
+-            assertEquals("Hello, World!", output.toString().trim());
+-            assertEquals("text/plain", metadata.get(Metadata.CONTENT_TYPE));
+-        } finally {
+-            parser.close();
+-        }
+-    }
+ }
+diff --git a/tika-core/src/test/java/org/apache/tika/fork/ForkTestParser.java b/tika-core/src/test/java/org/apache/tika/fork/ForkTestParser.java
+index 7e9c0bf2f..0948cdd64 100644
+--- a/tika-core/src/test/java/org/apache/tika/fork/ForkTestParser.java
++++ b/tika-core/src/test/java/org/apache/tika/fork/ForkTestParser.java
+@@ -22,13 +22,11 @@ import java.util.Collections;
+ import java.util.Set;
+ 
+ import org.apache.tika.exception.TikaException;
+-import org.apache.tika.fork.unusedpackage.ClassInUnusedPackage;
+ import org.apache.tika.metadata.Metadata;
+ import org.apache.tika.mime.MediaType;
+ import org.apache.tika.parser.AbstractParser;
+ import org.apache.tika.parser.ParseContext;
+ import org.apache.tika.sax.XHTMLContentHandler;
+-import org.junit.Assert;
+ import org.xml.sax.ContentHandler;
+ import org.xml.sax.SAXException;
+ 
+@@ -56,12 +54,4 @@ class ForkTestParser extends AbstractParser {
+         xhtml.endDocument();
+     }
+ 
+-    static class ForkTestParserAccessingPackage extends ForkTestParser {
+-        @Override
+-        public void parse(InputStream stream, ContentHandler handler, Metadata metadata,
+-                ParseContext context) throws IOException, SAXException, TikaException {
+-            Assert.assertNotNull(ClassInUnusedPackage.class.getPackage());
+-            super.parse(stream, handler, metadata, context);
+-        }
+-    }
+ }
+\ No newline at end of file
+diff --git a/tika-core/src/test/java/org/apache/tika/fork/unusedpackage/ClassInUnusedPackage.java b/tika-core/src/test/java/org/apache/tika/fork/unusedpackage/ClassInUnusedPackage.java
+deleted file mode 100644
+index d82f08ac6..000000000
+--- a/tika-core/src/test/java/org/apache/tika/fork/unusedpackage/ClassInUnusedPackage.java
++++ /dev/null
+@@ -1,4 +0,0 @@
+-package org.apache.tika.fork.unusedpackage;
+-
+-public class ClassInUnusedPackage {
+-}

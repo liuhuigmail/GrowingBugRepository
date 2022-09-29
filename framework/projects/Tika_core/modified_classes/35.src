@@ -1,0 +1,2 @@
+org.apache.tika.sax.xpath.NodeMatcher
+tika-core.org.apache.tika.sax.xpath.XPathParser

@@ -1,0 +1,35 @@
+diff --git a/retrofit/src/main/java/retrofit/http/RequestBuilder.java b/retrofit/src/main/java/retrofit/http/RequestBuilder.java
+index d73adcdd..7cbbe787 100644
+--- a/retrofit/src/main/java/retrofit/http/RequestBuilder.java
++++ b/retrofit/src/main/java/retrofit/http/RequestBuilder.java
+@@ -88,7 +88,12 @@ final class RequestBuilder {
+         }
+       }
+       if (found != null) {
+-        String value = getUrlEncodedValue(found);
++        String value;
++        try {
++          value = URLEncoder.encode(String.valueOf(found.getValue()), UTF_8);
++        } catch (UnsupportedEncodingException e) {
++          throw new AssertionError(e);
++        }
+         replacedPath = replacedPath.replace("{" + found.getName() + "}", value);
+         paramList.remove(found);
+       } else {
+@@ -122,8 +127,7 @@ final class RequestBuilder {
+       for (int i = 0, count = paramList.size(); i < count; i++) {
+         url.append((i == 0) ? '?' : '&');
+         Parameter nonPathParam = paramList.get(i);
+-        String value = getUrlEncodedValue(nonPathParam);
+-        url.append(nonPathParam.getName()).append("=").append(value);
++        url.append(nonPathParam.getName()).append("=").append(nonPathParam.getValue());
+       }
+     } else if (!paramList.isEmpty()) {
+       if (methodInfo.isMultipart) {
+@@ -161,4 +165,4 @@ final class RequestBuilder {
+       throw new AssertionError(e);
+     }
+   }
+-}
+\ No newline at end of file
++}

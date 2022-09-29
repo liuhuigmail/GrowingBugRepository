@@ -1,0 +1,129 @@
+diff --git a/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java b/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
+index c1dca4271..cb3d01007 100644
+--- a/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
++++ b/tika-core/src/main/java/org/apache/tika/config/TikaConfig.java
+@@ -56,8 +56,8 @@ import org.xml.sax.SAXException;
+  */
+ public class TikaConfig {
+ 
+-    private static MimeTypes getDefaultMimeTypes(ClassLoader loader) {
+-        return MimeTypes.getDefaultMimeTypes(loader);
++    private static MimeTypes getDefaultMimeTypes() {
++        return MimeTypes.getDefaultMimeTypes();
+     }
+ 
+     private static Detector getDefaultDetector(
+@@ -135,7 +135,7 @@ public class TikaConfig {
+     public TikaConfig(ClassLoader loader)
+             throws MimeTypeException, IOException {
+         ServiceLoader serviceLoader = new ServiceLoader(loader);
+-        this.mimeTypes = getDefaultMimeTypes(loader);
++        this.mimeTypes = getDefaultMimeTypes();
+         this.detector = getDefaultDetector(mimeTypes, serviceLoader);
+         this.parser = getDefaultParser(mimeTypes, serviceLoader);
+     }
+@@ -166,7 +166,7 @@ public class TikaConfig {
+         }
+ 
+         if (config == null) {
+-            this.mimeTypes = getDefaultMimeTypes(ServiceLoader.getContextClassLoader());
++            this.mimeTypes = getDefaultMimeTypes();
+             this.parser = getDefaultParser(mimeTypes, loader);
+             this.detector = getDefaultDetector(mimeTypes, loader);
+         } else {
+@@ -301,7 +301,7 @@ public class TikaConfig {
+         if (mtr != null && mtr.hasAttribute("resource")) {
+             return MimeTypesFactory.create(mtr.getAttribute("resource"));
+         } else {
+-            return getDefaultMimeTypes(null);
++            return getDefaultMimeTypes();
+         }
+     }
+ 
+diff --git a/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java b/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
+index 79842f9f0..326bf361b 100644
+--- a/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
++++ b/tika-core/src/main/java/org/apache/tika/mime/MimeTypes.java
+@@ -486,8 +486,6 @@ public final class MimeTypes implements Detector, Serializable {
+     }
+ 
+     private static MimeTypes DEFAULT_TYPES = null;
+-    private static Map<ClassLoader,MimeTypes> CLASSLOADER_SPECIFIC_DEFAULT_TYPES =
+-            new HashMap<ClassLoader, MimeTypes>();
+ 
+     /**
+      * Get the default MimeTypes. This includes all the build in
+@@ -496,8 +494,6 @@ public final class MimeTypes implements Detector, Serializable {
+      * @return MimeTypes default type registry
+      */
+     public static synchronized MimeTypes getDefaultMimeTypes() {
+-        return getDefaultMimeTypes(null);
+-    }
+     /**
+      * Get the default MimeTypes. This includes all the built-in
+      * media types, and any custom override ones present.
+@@ -505,16 +501,11 @@ public final class MimeTypes implements Detector, Serializable {
+      * @param ClassLoader to use, if not the default
+      * @return MimeTypes default type registry
+      */
+-    public static synchronized MimeTypes getDefaultMimeTypes(ClassLoader classLoader) {
+-        MimeTypes types = DEFAULT_TYPES;
+-        if (classLoader != null) {
+-            types = CLASSLOADER_SPECIFIC_DEFAULT_TYPES.get(classLoader);
+-        }
++        if (DEFAULT_TYPES == null) {
+             
+-        if (types == null) {
+             try {
+-                types = MimeTypesFactory.create(
+-                      "tika-mimetypes.xml", "custom-mimetypes.xml", classLoader);
++                DEFAULT_TYPES = MimeTypesFactory.create(
++                      "tika-mimetypes.xml", "custom-mimetypes.xml");
+             } catch (MimeTypeException e) {
+                 throw new RuntimeException(
+                         "Unable to parse the default media type registry", e);
+@@ -523,12 +514,7 @@ public final class MimeTypes implements Detector, Serializable {
+                         "Unable to read the default media type registry", e);
+             }
+             
+-            if (classLoader == null) {
+-                DEFAULT_TYPES = types;
+-            } else {
+-                CLASSLOADER_SPECIFIC_DEFAULT_TYPES.put(classLoader, types);
+-            }
+         }
+-        return types;
++        return DEFAULT_TYPES;
+     }
+ }
+diff --git a/tika-core/src/main/java/org/apache/tika/mime/MimeTypesFactory.java b/tika-core/src/main/java/org/apache/tika/mime/MimeTypesFactory.java
+index ac434fd3d..d3ed8e376 100644
+--- a/tika-core/src/main/java/org/apache/tika/mime/MimeTypesFactory.java
++++ b/tika-core/src/main/java/org/apache/tika/mime/MimeTypesFactory.java
+@@ -131,8 +131,6 @@ public class MimeTypesFactory {
+      */
+     public static MimeTypes create(String coreFilePath, String extensionFilePath)
+             throws IOException, MimeTypeException {
+-        return create(coreFilePath, extensionFilePath, null);
+-    }
+     /**
+      * Creates and returns a MimeTypes instance. The core mimetypes
+      *  will be loaded from the specified file path, and any custom
+@@ -146,16 +144,12 @@ public class MimeTypesFactory {
+      * @throws IOException if the file can not be accessed
+      * @throws MimeTypeException if the type configuration is invalid
+      */
+-    public static MimeTypes create(String coreFilePath, String extensionFilePath,
+-            ClassLoader classLoader) throws IOException, MimeTypeException {
+         // If no specific classloader was requested, use our own class's one
+-        if (classLoader == null) {
+-            classLoader = MimeTypesReader.class.getClassLoader();
+-        }
+         
+         // This allows us to replicate class.getResource() when using
+         //  the classloader directly
+         String classPrefix = MimeTypesReader.class.getPackage().getName().replace('.', '/') + "/";
++        ClassLoader classLoader = MimeTypesReader.class.getClassLoader();
+        
+         // Get the core URL, and all the extensions URLs
+         URL coreURL = classLoader.getResource(classPrefix+coreFilePath);

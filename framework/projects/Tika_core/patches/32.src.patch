@@ -1,0 +1,40 @@
+diff --git a/tika-core/src/main/java/org/apache/tika/detect/MagicDetector.java b/tika-core/src/main/java/org/apache/tika/detect/MagicDetector.java
+index d59715d1f..c1c284738 100644
+--- a/tika-core/src/main/java/org/apache/tika/detect/MagicDetector.java
++++ b/tika-core/src/main/java/org/apache/tika/detect/MagicDetector.java
+@@ -94,8 +94,6 @@ public class MagicDetector implements Detector {
+                 || type.equals("unicodeLE")
+                 || type.equals("unicodeBE")) {
+             decoded = decodeString(value, type);
+-        } else if (type.equals("stringignorecase")) {
+-            decoded = decodeString(value.toLowerCase(), type);
+         } else if (type.equals("byte")) {
+             decoded = tmpVal.getBytes();
+         } else if (type.equals("host16") || type.equals("little16")) {
+@@ -388,12 +386,8 @@ public class MagicDetector implements Detector {
+             }
+ 
+             if (this.isRegex) {
+-                int flags = 0;
+-                if (this.isStringIgnoreCase) {
+-                    flags = Pattern.CASE_INSENSITIVE;
+-                }
+                 
+-                Pattern p = Pattern.compile(new String(this.pattern), flags);
++                Pattern p = Pattern.compile(new String(this.pattern));
+ 
+                 ByteBuffer bb = ByteBuffer.wrap(buffer);
+                 CharBuffer result = ISO_8859_1.decode(bb);
+@@ -417,11 +411,7 @@ public class MagicDetector implements Detector {
+                     boolean match = true;
+                     int masked;
+                     for (int j = 0; match && j < length; j++) {
+-                        masked = (buffer[i + j] & mask[j]);
+-                        if (this.isStringIgnoreCase) {
+-                            masked = Character.toLowerCase(masked);
+-                        }
+-                        match = (masked == pattern[j]);
++                        match = (buffer[i + j] & mask[j]) == pattern[j];
+                     }
+                     if (match) {
+                         return type;

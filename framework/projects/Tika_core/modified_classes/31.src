@@ -1,0 +1,3 @@
+org.apache.tika.config.TikaConfig
+tika-core.org.apache.tika.mime.MimeTypes
+tika-core.org.apache.tika.mime.MimeTypesFactory

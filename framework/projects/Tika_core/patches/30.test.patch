@@ -1,0 +1,14 @@
+diff --git a/tika-core/src/test/java/org/apache/tika/sax/SafeContentHandlerTest.java b/tika-core/src/test/java/org/apache/tika/sax/SafeContentHandlerTest.java
+index 2ce375907..2b913adb0 100644
+--- a/tika-core/src/test/java/org/apache/tika/sax/SafeContentHandlerTest.java
++++ b/tika-core/src/test/java/org/apache/tika/sax/SafeContentHandlerTest.java
+@@ -65,9 +65,4 @@ public class SafeContentHandlerTest extends TestCase {
+         assertEquals("ab a c bc", output.toString());
+     }
+ 
+-    public void testInvalidSurrogates() throws SAXException {
+-        safe.ignorableWhitespace("\udb00\ubfff".toCharArray(), 0, 2);
+-        assertEquals(" \ubfff", output.toString());
+-    }
+-
+ }

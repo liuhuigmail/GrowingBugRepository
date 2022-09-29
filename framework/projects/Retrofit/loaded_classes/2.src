@@ -1,0 +1,10 @@
+retrofit.http.Callback
+retrofit.http.ConversionException
+retrofit.http.Converter
+retrofit.http.GsonConverter
+retrofit.http.Headers
+retrofit.http.RestAdapter
+retrofit.http.RetrofitError
+retrofit.http.Server
+retrofit.io.MimeType
+retrofit.io.TypedBytes
