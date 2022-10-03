@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1755`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1769`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -60,7 +60,7 @@ To date, growingBugs contains **`1755`** real-world bugs from open-source Java p
 | 31     | Geometry_core   | commons-geometry-core           |    commons-geometry-core |        2       | 1,3               |
 | 32     | MGpg            | maven-gpg-plugin           ||        1       | 1               |
 | 33     | Text            | commons-text               ||        4       | 1-2,4-5               |
-| 34     | Tika_core            | tika-core               |  tika-core |        13       | 4,6,9,11,</br>17,20-27               |
+| 34     | Tika_core            | tika-core               |  tika-core |        25       | 4,6,9,11,</br>17,20-39               |
 | 35     | Tika_app            | tika-app               |   tika-app     |        2       | 1,3               |
 | 36     | Shiro_core            | shiro-core               |      core      |        9       | 37,40,46,52,98,</br>144,176,181,202               |
 | 37     | Jena_core            | jena-core               |    jena-core   |        1       | 2               |
@@ -253,7 +253,7 @@ To date, growingBugs contains **`1755`** real-world bugs from open-source Java p
 | 224     | Proj4J         | proj4j           |                  |      9       | 1-9                  |
 | 225     | Markedj         | markedj           |                  |      2       | 1-2                  |
 | 226     | Rocketmq_mqtt_ds         | rocketmq-mqtt-ds           |       mqtt-ds           |      1       | 1                  |
-| 227     | Retrofit         | retrofit           |       retrofit           |      1       | 1                  |
+| 227     | Retrofit         | retrofit           |       retrofit           |      3       | 1-3                  |
 # Setting up GrowingBugs
 
 ## Requirements
