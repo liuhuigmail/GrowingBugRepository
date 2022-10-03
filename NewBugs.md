@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`924`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`938`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -28,7 +28,7 @@ To date, growingBugs contains **`924`** unique bugs that are not included in Def
 | 22     | Geometry_core   | commons-geometry-core     |    commons-geometry-core |        2       | 1,3               |
 | 23     | MGpg            | maven-gpg-plugin          |                          |        1       | 1               |
 | 24     | Text            | commons-text              |                          |        4       | 1-2,4-5               |
-| 25     | Tika_core       | tika-core                 |  tika-core               |        13       | 4,6,9,11,</br>17,20-27               |
+| 25     | Tika_core       | tika-core                 |  tika-core               |        25       | 4,6,9,11,</br>17,20-39               |
 | 26     | Tika_app        | tika-app                  |   tika-app               |        2       | 1,3               |
 | 27     | Shiro_core      | shiro-core                |      core                |        9       | 37,40,46,52,98,</br>144,176,181,202               |
 | 28     | Jena_core       | jena-core                 |    jena-core             |        1       | 2               |
@@ -228,4 +228,4 @@ To date, growingBugs contains **`924`** unique bugs that are not included in Def
 | 218     | Weak_lock_free         | weak-lock-free           |                  |      1       | 1                  |
 | 219     | Proj4J         | proj4j           |                  |      9       | 1-9                  |
 | 220     | Rocketmq_mqtt_ds         | rocketmq-mqtt-ds           |       mqtt-ds           |      1       | 1                  |
-| 221     | Retrofit         | retrofit           |       retrofit           |      1       | 1                  |
+| 221     | Retrofit         | retrofit           |       retrofit           |      3       | 1-3                  |
