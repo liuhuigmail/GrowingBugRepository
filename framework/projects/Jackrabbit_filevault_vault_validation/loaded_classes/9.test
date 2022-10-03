@@ -1,0 +1,3 @@
+org.apache.jackrabbit.vault.validation.AnyValidationMessageMatcher
+org.apache.jackrabbit.vault.validation.spi.impl.PackageTypeValidatorTest
+org.apache.jackrabbit.vault.validation.ValidationExecutorTest

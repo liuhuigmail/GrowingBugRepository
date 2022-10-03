@@ -1,0 +1,1139 @@
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/infly/TestInFlyCache.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestInFlyCache.java
+similarity index 98%
+rename from mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/infly/TestInFlyCache.java
+rename to mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestInFlyCache.java
+index 9fc7803..e341caa 100644
+--- a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/infly/TestInFlyCache.java
++++ b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestInFlyCache.java
+@@ -17,7 +17,7 @@
+  *
+  */
+ 
+-package org.apache.rocketmq.mqtt.cs.test.session.infly;
++package org.apache.rocketmq.mqtt.cs.test;
+ 
+ import org.apache.commons.lang3.reflect.FieldUtils;
+ import org.apache.rocketmq.mqtt.common.model.Message;
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/match/TestMatchAction.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestMatchAction.java
+similarity index 50%
+rename from mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/match/TestMatchAction.java
+rename to mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestMatchAction.java
+index cc15ec9..0369b70 100644
+--- a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/match/TestMatchAction.java
++++ b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestMatchAction.java
+@@ -17,7 +17,7 @@
+  *
+  */
+ 
+-package org.apache.rocketmq.mqtt.cs.test.session.match;
++package org.apache.rocketmq.mqtt.cs.test;
+ 
+ import org.apache.commons.lang3.reflect.FieldUtils;
+ import org.apache.commons.lang3.tuple.Pair;
+@@ -26,82 +26,44 @@ import org.apache.rocketmq.mqtt.cs.session.Session;
+ import org.apache.rocketmq.mqtt.cs.session.loop.SessionLoop;
+ import org.apache.rocketmq.mqtt.cs.session.match.MatchAction;
+ import org.junit.Assert;
+-import org.junit.Before;
+ import org.junit.Test;
+ import org.junit.runner.RunWith;
+ import org.mockito.Mock;
+ import org.mockito.junit.MockitoJUnitRunner;
+ 
+-import java.util.Collections;
++import java.util.Arrays;
+ import java.util.HashSet;
+ import java.util.Set;
+ 
+ import static org.mockito.ArgumentMatchers.any;
++import static org.mockito.Mockito.mock;
+ import static org.mockito.Mockito.when;
+ 
+ @RunWith(MockitoJUnitRunner.class)
+ public class TestMatchAction {
+ 
+-    private MatchAction matchAction;
+-    private Subscription subscription;
+-    private Set<Subscription> subscriptionSet;
+-    private Set<Pair<Session, Subscription>> set;
+-
+-    final String channelId = "testMatchAction";
+-    final String testTopic = "test";
+-    final String p2pTopic = "/p2p/test";
+-    final String retryTopic = "/retry/test";
+-    final String p2pSecondTopic = "test/p2p/test";
+-
+-    @Mock
+-    private Session session;
+-
+     @Mock
+     private SessionLoop sessionLoop;
+ 
+-    @Before
+-    public void setUp() throws Exception {
+-        matchAction = new MatchAction();
++    @Test
++    public void test() throws IllegalAccessException {
++        MatchAction matchAction = new MatchAction();
+         FieldUtils.writeDeclaredField(matchAction, "sessionLoop", sessionLoop, true);
+ 
+-        subscription = new Subscription(testTopic);
+-        subscriptionSet = new HashSet<>(Collections.singletonList(subscription));
+-    }
+-
+-    @Test
+-    public void testNormalTopic() {
+-        when(session.getChannelId()).thenReturn(channelId);
++        Session session = mock(Session.class);
++        when(session.getChannelId()).thenReturn("test");
+         when(sessionLoop.getSession(any())).thenReturn(session);
+-        when(session.subscriptionSnapshot()).thenReturn(subscriptionSet);
++        Subscription subscription = new Subscription("test");
++        Set<Subscription> subscriptions = new HashSet<>(Arrays.asList(subscription));
++        when(session.subscriptionSnapshot()).thenReturn(subscriptions);
+ 
+-        matchAction.addSubscription(session, subscriptionSet);
+-        set = matchAction.matchClients(testTopic, "");
++        matchAction.addSubscription(session, subscriptions);
++        Set<Pair<Session, Subscription>> set =  matchAction.matchClients("test","");
+         Assert.assertFalse(set.isEmpty());
+ 
+-        matchAction.removeSubscription(session, subscriptionSet);
+-        set = matchAction.matchClients(testTopic, "");
++        matchAction.removeSubscription(session,subscriptions);
++        set =  matchAction.matchClients("test","");
+         Assert.assertTrue(set.isEmpty());
+     }
+ 
+-    @Test
+-    public void testRetryTopic() {
+-        when(sessionLoop.getSessionList(any())).thenReturn(Collections.singletonList(session));
+-        set = matchAction.matchClients(retryTopic,"");
+-        Assert.assertFalse(set.isEmpty());
+-    }
+-
+-    @Test
+-    public void testP2pTopic() {
+-        when(sessionLoop.getSessionList(any())).thenReturn(Collections.singletonList(session));
+-        set = matchAction.matchClients(p2pTopic, "");
+-        Assert.assertFalse(set.isEmpty());
+-    }
+-
+-    @Test
+-    public void testP2pSecondTopic() {
+-        when(sessionLoop.getSessionList(any())).thenReturn(Collections.singletonList(session));
+-        set = matchAction.matchClients(p2pSecondTopic, "");
+-        Assert.assertFalse(set.isEmpty());
+-    }
+-
+ }
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/notify/TestMessageNotifyAction.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestMessageNotifyAction.java
+similarity index 98%
+rename from mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/notify/TestMessageNotifyAction.java
+rename to mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestMessageNotifyAction.java
+index 002a47b..36d251a 100644
+--- a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/notify/TestMessageNotifyAction.java
++++ b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestMessageNotifyAction.java
+@@ -17,7 +17,7 @@
+  *
+  */
+ 
+-package org.apache.rocketmq.mqtt.cs.test.session.notify;
++package org.apache.rocketmq.mqtt.cs.test;
+ 
+ import org.apache.commons.lang3.reflect.FieldUtils;
+ import org.apache.rocketmq.mqtt.common.model.MessageEvent;
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/infly/TestMqttMsgId.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestMqttMsgId.java
+similarity index 96%
+rename from mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/infly/TestMqttMsgId.java
+rename to mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestMqttMsgId.java
+index 34b1576..97ed83f 100644
+--- a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/infly/TestMqttMsgId.java
++++ b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestMqttMsgId.java
+@@ -17,7 +17,7 @@
+  *
+  */
+ 
+-package org.apache.rocketmq.mqtt.cs.test.session.infly;
++package org.apache.rocketmq.mqtt.cs.test;
+ 
+ import org.apache.rocketmq.mqtt.cs.session.infly.MqttMsgId;
+ import org.junit.Assert;
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestPushAction.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestPushAction.java
+new file mode 100644
+index 0000000..633f3f2
+--- /dev/null
++++ b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestPushAction.java
+@@ -0,0 +1,102 @@
++/*
++ *
++ *  * Licensed to the Apache Software Foundation (ASF) under one or more
++ *  * contributor license agreements.  See the NOTICE file distributed with
++ *  * this work for additional information regarding copyright ownership.
++ *  * The ASF licenses this file to You under the Apache License, Version 2.0
++ *  * (the "License"); you may not use this file except in compliance with
++ *  * the License.  You may obtain a copy of the License at
++ *  *
++ *  *     http://www.apache.org/licenses/LICENSE-2.0
++ *  *
++ *  * Unless required by applicable law or agreed to in writing, software
++ *  * distributed under the License is distributed on an "AS IS" BASIS,
++ *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ *  * See the License for the specific language governing permissions and
++ *  * limitations under the License.
++ *
++ */
++
++package org.apache.rocketmq.mqtt.cs.test;
++
++import org.apache.commons.lang3.reflect.FieldUtils;
++import org.apache.rocketmq.mqtt.common.model.Message;
++import org.apache.rocketmq.mqtt.common.model.Queue;
++import org.apache.rocketmq.mqtt.common.model.Subscription;
++import org.apache.rocketmq.mqtt.cs.config.ConnectConf;
++import org.apache.rocketmq.mqtt.cs.session.Session;
++import org.apache.rocketmq.mqtt.cs.session.infly.InFlyCache;
++import org.apache.rocketmq.mqtt.cs.session.infly.MqttMsgId;
++import org.apache.rocketmq.mqtt.cs.session.infly.PushAction;
++import org.apache.rocketmq.mqtt.cs.session.infly.RetryDriver;
++import org.junit.Before;
++import org.junit.Test;
++import org.junit.runner.RunWith;
++import org.mockito.Mock;
++import org.mockito.junit.MockitoJUnitRunner;
++
++import java.util.ArrayList;
++import java.util.List;
++
++import static org.mockito.ArgumentMatchers.any;
++import static org.mockito.ArgumentMatchers.anyInt;
++import static org.mockito.Mockito.atLeastOnce;
++import static org.mockito.Mockito.doNothing;
++import static org.mockito.Mockito.mock;
++import static org.mockito.Mockito.spy;
++import static org.mockito.Mockito.verify;
++import static org.mockito.Mockito.when;
++
++@RunWith(MockitoJUnitRunner.class)
++public class TestPushAction {
++
++    @Mock
++    private MqttMsgId mqttMsgId;
++
++    @Mock
++    private RetryDriver retryDriver;
++
++    @Mock
++    private InFlyCache inFlyCache;
++
++    @Mock
++    private ConnectConf connectConf;
++
++    private PushAction pushAction = new PushAction();
++
++    @Before
++    public void before() throws IllegalAccessException {
++        FieldUtils.writeDeclaredField(pushAction, "mqttMsgId", mqttMsgId, true);
++        FieldUtils.writeDeclaredField(pushAction, "retryDriver", retryDriver, true);
++        FieldUtils.writeDeclaredField(pushAction, "inFlyCache", inFlyCache, true);
++        FieldUtils.writeDeclaredField(pushAction, "connectConf", connectConf, true);
++    }
++
++    @Test
++    public void testMessageArrive() {
++        Session session = mock(Session.class);
++        Subscription subscription = mock(Subscription.class);
++        Queue queue = mock(Queue.class);
++        List<Message> messages = new ArrayList<>();
++        messages.add(mock(Message.class));
++        when(session.pendMessageList(any(), any())).thenReturn(messages);
++        when(connectConf.isOrder()).thenReturn(false);
++        PushAction spyPushAction = spy(pushAction);
++        doNothing().when(spyPushAction).push(any(), any(), any(), any());
++        spyPushAction.messageArrive(session, subscription, queue);
++        verify(spyPushAction, atLeastOnce()).push(any(), any(), any(), any());
++    }
++
++    @Test
++    public void testPush() {
++        Session session = mock(Session.class);
++        when(session.getChannelId()).thenReturn("test");
++        when(session.getClientId()).thenReturn("test");
++        PushAction spyPushAction = spy(pushAction);
++        doNothing().when(spyPushAction).write(any(), any(), anyInt(), anyInt(), any());
++        when(inFlyCache.getPendingDownCache()).thenReturn(new InFlyCache().getPendingDownCache());
++        spyPushAction.push(mock(Message.class), mock(Subscription.class), session, mock(Queue.class));
++        verify(spyPushAction, atLeastOnce()).write(any(), any(), anyInt(), anyInt(), any());
++    }
++
++}
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/loop/TestQueueCache.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestQueueCache.java
+similarity index 98%
+rename from mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/loop/TestQueueCache.java
+rename to mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestQueueCache.java
+index 845192c..d0d736f 100644
+--- a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/loop/TestQueueCache.java
++++ b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestQueueCache.java
+@@ -17,7 +17,7 @@
+  *
+  */
+ 
+-package org.apache.rocketmq.mqtt.cs.test.session.loop;
++package org.apache.rocketmq.mqtt.cs.test;
+ 
+ import org.apache.commons.lang3.reflect.FieldUtils;
+ import org.apache.commons.lang3.tuple.Pair;
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestRetryDriver.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestRetryDriver.java
+new file mode 100644
+index 0000000..b2e9cd4
+--- /dev/null
++++ b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestRetryDriver.java
+@@ -0,0 +1,95 @@
++/*
++ *
++ *  * Licensed to the Apache Software Foundation (ASF) under one or more
++ *  * contributor license agreements.  See the NOTICE file distributed with
++ *  * this work for additional information regarding copyright ownership.
++ *  * The ASF licenses this file to You under the Apache License, Version 2.0
++ *  * (the "License"); you may not use this file except in compliance with
++ *  * the License.  You may obtain a copy of the License at
++ *  *
++ *  *     http://www.apache.org/licenses/LICENSE-2.0
++ *  *
++ *  * Unless required by applicable law or agreed to in writing, software
++ *  * distributed under the License is distributed on an "AS IS" BASIS,
++ *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ *  * See the License for the specific language governing permissions and
++ *  * limitations under the License.
++ *
++ */
++
++package org.apache.rocketmq.mqtt.cs.test;
++
++import org.apache.commons.lang3.reflect.FieldUtils;
++import org.apache.commons.lang3.reflect.MethodUtils;
++import org.apache.rocketmq.mqtt.common.facade.LmqQueueStore;
++import org.apache.rocketmq.mqtt.common.model.Message;
++import org.apache.rocketmq.mqtt.common.model.Subscription;
++import org.apache.rocketmq.mqtt.cs.config.ConnectConf;
++import org.apache.rocketmq.mqtt.cs.session.Session;
++import org.apache.rocketmq.mqtt.cs.session.infly.PushAction;
++import org.apache.rocketmq.mqtt.cs.session.infly.RetryDriver;
++import org.apache.rocketmq.mqtt.cs.session.loop.SessionLoop;
++import org.junit.Before;
++import org.junit.Test;
++import org.junit.runner.RunWith;
++import org.mockito.Mock;
++import org.mockito.junit.MockitoJUnitRunner;
++
++import java.lang.reflect.InvocationTargetException;
++import java.util.concurrent.CompletableFuture;
++
++import static org.mockito.ArgumentMatchers.any;
++import static org.mockito.ArgumentMatchers.eq;
++import static org.mockito.Mockito.atLeastOnce;
++import static org.mockito.Mockito.mock;
++import static org.mockito.Mockito.verify;
++import static org.mockito.Mockito.when;
++
++@RunWith(MockitoJUnitRunner.class)
++public class TestRetryDriver {
++
++    @Mock
++    private SessionLoop sessionLoop;
++
++    @Mock
++    private PushAction pushAction;
++
++    @Mock
++    private ConnectConf connectConf;
++
++    @Mock
++    private LmqQueueStore lmqQueueStore;
++
++    private RetryDriver retryDriver = new RetryDriver();
++
++    @Before
++    public void before() throws IllegalAccessException {
++        FieldUtils.writeDeclaredField(retryDriver, "sessionLoop", sessionLoop, true);
++        FieldUtils.writeDeclaredField(retryDriver, "pushAction", pushAction, true);
++        FieldUtils.writeDeclaredField(retryDriver, "connectConf", connectConf, true);
++        FieldUtils.writeDeclaredField(retryDriver, "lmqQueueStore", lmqQueueStore, true);
++
++        when(connectConf.getRetryIntervalSeconds()).thenReturn(1);
++        when(connectConf.getMaxRetryTime()).thenReturn(1);
++        retryDriver.init();
++    }
++
++    @Test
++    public void test() throws InvocationTargetException, NoSuchMethodException, IllegalAccessException, InterruptedException {
++        Session session = mock(Session.class);
++        when(session.getChannelId()).thenReturn("test");
++        when(session.isDestroyed()).thenReturn(false);
++        when(sessionLoop.getSession(any())).thenReturn(session);
++        when(lmqQueueStore.putMessage(any(), any())).thenReturn(mock(CompletableFuture.class));
++        Message message = mock(Message.class);
++        when(message.copy()).thenReturn(mock(Message.class));
++        retryDriver.mountPublish(1,message , 1, "test", mock(Subscription.class));
++        Thread.sleep(3000);
++        MethodUtils.invokeMethod(retryDriver, true, "doRetryCache");
++        verify(pushAction, atLeastOnce()).write(any(), any(), eq(1), eq(1), any());
++        Thread.sleep(3000);
++        MethodUtils.invokeMethod(retryDriver, true, "doRetryCache");
++        verify(lmqQueueStore, atLeastOnce()).putMessage(any(), any());
++    }
++
++}
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestSession.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestSession.java
+new file mode 100644
+index 0000000..563940e
+--- /dev/null
++++ b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestSession.java
+@@ -0,0 +1,75 @@
++/*
++ *
++ *  * Licensed to the Apache Software Foundation (ASF) under one or more
++ *  * contributor license agreements.  See the NOTICE file distributed with
++ *  * this work for additional information regarding copyright ownership.
++ *  * The ASF licenses this file to You under the Apache License, Version 2.0
++ *  * (the "License"); you may not use this file except in compliance with
++ *  * the License.  You may obtain a copy of the License at
++ *  *
++ *  *     http://www.apache.org/licenses/LICENSE-2.0
++ *  *
++ *  * Unless required by applicable law or agreed to in writing, software
++ *  * distributed under the License is distributed on an "AS IS" BASIS,
++ *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ *  * See the License for the specific language governing permissions and
++ *  * limitations under the License.
++ *
++ */
++
++package org.apache.rocketmq.mqtt.cs.test;
++
++import org.apache.rocketmq.mqtt.common.model.Message;
++import org.apache.rocketmq.mqtt.common.model.Queue;
++import org.apache.rocketmq.mqtt.common.model.QueueOffset;
++import org.apache.rocketmq.mqtt.common.model.Subscription;
++import org.apache.rocketmq.mqtt.cs.session.Session;
++import org.junit.Assert;
++import org.junit.Test;
++import org.junit.runner.RunWith;
++import org.mockito.junit.MockitoJUnitRunner;
++
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.HashMap;
++import java.util.HashSet;
++import java.util.List;
++import java.util.Map;
++import java.util.Set;
++
++@RunWith(MockitoJUnitRunner.class)
++public class TestSession {
++
++    @Test
++    public void test() {
++        Session session = new Session();
++
++        Set<Subscription> subscriptions = new HashSet<>();
++        Subscription subscription = new Subscription("test");
++        subscriptions.add(subscription);
++        session.addSubscription(subscriptions);
++        Set<Subscription> subscriptionSnapshot = session.subscriptionSnapshot();
++        Assert.assertTrue(subscriptionSnapshot.iterator().next().equals(subscription));
++
++        Queue queue = new Queue(0, "test", "test");
++        QueueOffset queueOffset = new QueueOffset();
++        Map<Queue, QueueOffset> offsetMap = new HashMap<>();
++        offsetMap.put(queue, queueOffset);
++        session.addOffset(subscription.toQueueName(), offsetMap);
++        Assert.assertTrue(queueOffset.equals(session.getQueueOffset(subscription, queue)));
++
++        session.freshQueue(subscription, new HashSet<>(Arrays.asList(queue)));
++        List<Message> messages = new ArrayList<>();
++        Message message = new Message();
++        message.setOffset(1);
++        messages.add(message);
++        session.addSendingMessages(subscription, queue, messages);
++        Assert.assertFalse(session.sendingMessageIsEmpty(subscription, queue));
++        Assert.assertTrue(message.equals(session.nextSendMessageByOrder(subscription,queue)));
++        Assert.assertTrue(message.equals(session.pendMessageList(subscription,queue).iterator().next()));
++
++        session.ack(subscription,queue,1);
++        Assert.assertTrue(session.sendingMessageIsEmpty(subscription, queue));
++    }
++
++}
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/loop/TestSessionLoopImpl.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestSessionLoopImpl.java
+similarity index 99%
+rename from mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/loop/TestSessionLoopImpl.java
+rename to mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestSessionLoopImpl.java
+index 79a0d15..32bdd7e 100644
+--- a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/loop/TestSessionLoopImpl.java
++++ b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestSessionLoopImpl.java
+@@ -17,7 +17,7 @@
+  *
+  */
+ 
+-package org.apache.rocketmq.mqtt.cs.test.session.loop;
++package org.apache.rocketmq.mqtt.cs.test;
+ 
+ import io.netty.channel.socket.nio.NioSocketChannel;
+ import org.apache.commons.lang3.reflect.FieldUtils;
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/TestQueueFresh.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/TestQueueFresh.java
+deleted file mode 100644
+index 126a343..0000000
+--- a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/TestQueueFresh.java
++++ /dev/null
+@@ -1,117 +0,0 @@
+-/*
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+- */
+-
+-package org.apache.rocketmq.mqtt.cs.test.session;
+-
+-import org.apache.commons.lang3.reflect.FieldUtils;
+-import org.apache.rocketmq.mqtt.common.facade.LmqQueueStore;
+-import org.apache.rocketmq.mqtt.common.model.Queue;
+-import org.apache.rocketmq.mqtt.common.model.Subscription;
+-import org.apache.rocketmq.mqtt.cs.session.QueueFresh;
+-import org.apache.rocketmq.mqtt.cs.session.Session;
+-import org.junit.Assert;
+-import org.junit.Before;
+-import org.junit.Test;
+-import org.junit.runner.RunWith;
+-import org.mockito.Mock;
+-import org.mockito.junit.MockitoJUnitRunner;
+-
+-import java.util.Collections;
+-import java.util.Set;
+-
+-import static org.mockito.ArgumentMatchers.any;
+-import static org.mockito.ArgumentMatchers.anySet;
+-import static org.mockito.ArgumentMatchers.eq;
+-import static org.mockito.Mockito.doReturn;
+-import static org.mockito.Mockito.verify;
+-import static org.mockito.Mockito.verifyNoMoreInteractions;
+-import static org.mockito.Mockito.when;
+-
+-@RunWith(MockitoJUnitRunner.class)
+-public class TestQueueFresh {
+-
+-    private QueueFresh queueFresh;
+-    private Subscription subscription;
+-    final String firstTopic = "testQueueFresh";
+-    final String p2pFilter = "/p2p/test";
+-    final String retryFilter = "/retry/test";
+-    final String brokerName = "localhost";
+-    final Set<String> brokers = Collections.singleton(brokerName);
+-
+-    @Mock
+-    private LmqQueueStore lmqQueueStore;
+-
+-    @Mock
+-    private Session session;
+-
+-    @Before
+-    public void setUp() throws IllegalAccessException {
+-        queueFresh = new QueueFresh();
+-        FieldUtils.writeDeclaredField(queueFresh, "lmqQueueStore", lmqQueueStore, true);
+-        subscription = new Subscription();
+-    }
+-
+-    @Test
+-    public void testP2pQueue() {
+-        subscription.setTopicFilter(p2pFilter);
+-        doReturn(null).when(lmqQueueStore).getClientP2pTopic();
+-        doReturn(null).when(lmqQueueStore).getClientRetryTopic();
+-        when(lmqQueueStore.getReadableBrokers(any())).thenReturn(brokers);
+-
+-        Set<Queue> queues = queueFresh.freshQueue(session, subscription);
+-
+-        verify(lmqQueueStore).getClientP2pTopic();
+-        verify(lmqQueueStore).getClientRetryTopic();
+-        verify(lmqQueueStore).getReadableBrokers(any());
+-        verify(session).freshQueue(eq(subscription), anySet());
+-        verifyNoMoreInteractions(session, lmqQueueStore);
+-
+-        Assert.assertEquals(p2pFilter, queues.iterator().next().getQueueName());
+-        Assert.assertEquals(brokerName, queues.iterator().next().getBrokerName());
+-    }
+-
+-    @Test
+-    public void testRetryQueue() {
+-        subscription.setTopicFilter(retryFilter);
+-        doReturn(null).when(lmqQueueStore).getClientRetryTopic();
+-        when(lmqQueueStore.getReadableBrokers(any())).thenReturn(brokers);
+-
+-        Set<Queue> queues = queueFresh.freshQueue(session, subscription);
+-
+-        verify(lmqQueueStore).getClientRetryTopic();
+-        verify(lmqQueueStore).getReadableBrokers(any());
+-        verify(session).freshQueue(eq(subscription), anySet());
+-        verifyNoMoreInteractions(session, lmqQueueStore);
+-
+-        Assert.assertEquals(retryFilter, queues.iterator().next().getQueueName());
+-        Assert.assertEquals(brokerName, queues.iterator().next().getBrokerName());
+-    }
+-
+-    @Test
+-    public void testOther() {
+-        subscription.setTopicFilter(firstTopic);
+-        doReturn(null).when(lmqQueueStore).getReadableBrokers(firstTopic);
+-
+-        Set<Queue> queues = queueFresh.freshQueue(session, subscription);
+-
+-        verify(lmqQueueStore).getReadableBrokers(eq(firstTopic));
+-        verifyNoMoreInteractions(session, lmqQueueStore);
+-
+-        Assert.assertTrue(queues.isEmpty());
+-    }
+-
+-}
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/TestSession.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/TestSession.java
+deleted file mode 100644
+index df121b9..0000000
+--- a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/TestSession.java
++++ /dev/null
+@@ -1,109 +0,0 @@
+-/*
+- *
+- *  * Licensed to the Apache Software Foundation (ASF) under one or more
+- *  * contributor license agreements.  See the NOTICE file distributed with
+- *  * this work for additional information regarding copyright ownership.
+- *  * The ASF licenses this file to You under the Apache License, Version 2.0
+- *  * (the "License"); you may not use this file except in compliance with
+- *  * the License.  You may obtain a copy of the License at
+- *  *
+- *  *     http://www.apache.org/licenses/LICENSE-2.0
+- *  *
+- *  * Unless required by applicable law or agreed to in writing, software
+- *  * distributed under the License is distributed on an "AS IS" BASIS,
+- *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- *  * See the License for the specific language governing permissions and
+- *  * limitations under the License.
+- *
+- */
+-
+-package org.apache.rocketmq.mqtt.cs.test.session;
+-
+-import org.apache.rocketmq.mqtt.common.model.Message;
+-import org.apache.rocketmq.mqtt.common.model.Queue;
+-import org.apache.rocketmq.mqtt.common.model.QueueOffset;
+-import org.apache.rocketmq.mqtt.common.model.Subscription;
+-import org.apache.rocketmq.mqtt.cs.session.Session;
+-import org.junit.Assert;
+-import org.junit.Test;
+-import org.junit.runner.RunWith;
+-import org.mockito.junit.MockitoJUnitRunner;
+-
+-import java.util.ArrayList;
+-import java.util.Arrays;
+-import java.util.HashMap;
+-import java.util.HashSet;
+-import java.util.List;
+-import java.util.Map;
+-import java.util.Set;
+-
+-@RunWith(MockitoJUnitRunner.class)
+-public class TestSession {
+-    final String topicFilter = "testSession";
+-    final String queueName = topicFilter;
+-    final String brokerName = "localhost";
+-    final int firstMsgOffset = 1;
+-    final int secondMsgOffset = 2;
+-
+-    @Test
+-    public void test() {
+-        Session session = new Session();
+-
+-        Set<Subscription> subscriptions = new HashSet<>();
+-        Subscription subscription = new Subscription(topicFilter);
+-        subscriptions.add(subscription);
+-        session.addSubscription(subscriptions);
+-        Set<Subscription> subscriptionSnapshot = session.subscriptionSnapshot();
+-        Assert.assertEquals(subscription, subscriptionSnapshot.iterator().next());
+-
+-        Queue queue = new Queue(0, queueName, brokerName);
+-        QueueOffset queueOffset = new QueueOffset();
+-        Map<Queue, QueueOffset> offsetMap = new HashMap<>();
+-        offsetMap.put(queue, queueOffset);
+-        Map<String, Map<Queue, QueueOffset>> offsetMapParam = new HashMap<>();
+-        offsetMapParam.put(queueName, offsetMap);
+-
+-        session.addOffset(offsetMapParam);
+-        Assert.assertEquals(queueOffset, session.getQueueOffset(subscription, queue));
+-        Assert.assertEquals(offsetMap, session.getQueueOffset(subscription));
+-        Map<Subscription, Map<Queue, QueueOffset>> offsetSnapshot = session.offsetMapSnapshot();
+-        Assert.assertEquals(1, offsetSnapshot.size());
+-        Assert.assertEquals(subscription, offsetSnapshot.keySet().iterator().next());
+-        Assert.assertEquals(offsetMap, offsetSnapshot.values().iterator().next());
+-
+-        session.freshQueue(subscription, new HashSet<>(Arrays.asList(queue)));
+-        List<Message> messages = new ArrayList<>();
+-        Message message = new Message();
+-        message.setOffset(firstMsgOffset);
+-        messages.add(message);
+-        session.addSendingMessages(subscription, queue, messages);
+-        Assert.assertFalse(session.sendingMessageIsEmpty(subscription, queue));
+-        Assert.assertEquals(message, session.nextSendMessageByOrder(subscription, queue));
+-        Assert.assertEquals(message, session.pendMessageList(subscription, queue).iterator().next());
+-
+-        Message secondMessage = new Message();
+-        secondMessage.setOffset(secondMsgOffset);
+-        session.addSendingMessages(subscription, queue, Arrays.asList(secondMessage));
+-        Assert.assertEquals(2, session.pendMessageList(subscription, queue).size());
+-
+-        // when ack larger offset, the Msg will not be removed
+-        session.ack(subscription, queue, secondMsgOffset);
+-        Assert.assertEquals(Long.MAX_VALUE, session.getQueueOffset(subscription, queue).getOffset());
+-        Assert.assertEquals(1, session.pendMessageList(subscription, queue).size());
+-        Assert.assertFalse(session.getPersistOffsetFlag());
+-
+-        // test rollNext
+-        Message nextMsg = session.rollNext(subscription, queue, firstMsgOffset);
+-        Assert.assertTrue(session.getPersistOffsetFlag());
+-        Assert.assertEquals(secondMsgOffset, session.getQueueOffset(subscription, queue).getOffset());
+-        Assert.assertEquals(secondMessage, nextMsg);
+-
+-        // when ack next-offset, the last time acked Msg will be removed
+-        session.ack(subscription, queue, secondMsgOffset + 1);
+-        Assert.assertTrue(session.sendingMessageIsEmpty(subscription, queue));
+-
+-        session.removeSubscription(subscription);
+-        Assert.assertEquals(0, session.subscriptionSnapshot().size());
+-        session.destroy();
+-    }
+-}
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/infly/TestPushAction.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/infly/TestPushAction.java
+deleted file mode 100644
+index ee82d9a..0000000
+--- a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/infly/TestPushAction.java
++++ /dev/null
+@@ -1,237 +0,0 @@
+-/*
+- *
+- *  * Licensed to the Apache Software Foundation (ASF) under one or more
+- *  * contributor license agreements.  See the NOTICE file distributed with
+- *  * this work for additional information regarding copyright ownership.
+- *  * The ASF licenses this file to You under the Apache License, Version 2.0
+- *  * (the "License"); you may not use this file except in compliance with
+- *  * the License.  You may obtain a copy of the License at
+- *  *
+- *  *     http://www.apache.org/licenses/LICENSE-2.0
+- *  *
+- *  * Unless required by applicable law or agreed to in writing, software
+- *  * distributed under the License is distributed on an "AS IS" BASIS,
+- *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- *  * See the License for the specific language governing permissions and
+- *  * limitations under the License.
+- *
+- */
+-
+-package org.apache.rocketmq.mqtt.cs.test.session.infly;
+-
+-import io.netty.channel.ChannelFuture;
+-import io.netty.channel.socket.nio.NioSocketChannel;
+-import org.apache.commons.lang3.reflect.FieldUtils;
+-import org.apache.rocketmq.mqtt.common.model.Message;
+-import org.apache.rocketmq.mqtt.common.model.Queue;
+-import org.apache.rocketmq.mqtt.common.model.Subscription;
+-import org.apache.rocketmq.mqtt.cs.config.ConnectConf;
+-import org.apache.rocketmq.mqtt.cs.session.Session;
+-import org.apache.rocketmq.mqtt.cs.session.infly.InFlyCache;
+-import org.apache.rocketmq.mqtt.cs.session.infly.MqttMsgId;
+-import org.apache.rocketmq.mqtt.cs.session.infly.PushAction;
+-import org.apache.rocketmq.mqtt.cs.session.infly.RetryDriver;
+-import org.junit.Before;
+-import org.junit.Test;
+-import org.junit.runner.RunWith;
+-import org.mockito.Mock;
+-import org.mockito.Spy;
+-import org.mockito.junit.MockitoJUnitRunner;
+-
+-import java.nio.charset.StandardCharsets;
+-import java.util.ArrayList;
+-import java.util.Arrays;
+-import java.util.List;
+-
+-import static org.mockito.ArgumentMatchers.any;
+-import static org.mockito.ArgumentMatchers.anyInt;
+-import static org.mockito.ArgumentMatchers.anyString;
+-import static org.mockito.ArgumentMatchers.eq;
+-import static org.mockito.Mockito.doNothing;
+-import static org.mockito.Mockito.doReturn;
+-import static org.mockito.Mockito.spy;
+-import static org.mockito.Mockito.times;
+-import static org.mockito.Mockito.verify;
+-import static org.mockito.Mockito.verifyNoMoreInteractions;
+-import static org.mockito.Mockito.when;
+-
+-@RunWith(MockitoJUnitRunner.class)
+-public class TestPushAction {
+-    @Mock
+-    private MqttMsgId mqttMsgId;
+-
+-    @Mock
+-    private RetryDriver retryDriver;
+-
+-    @Mock
+-    private InFlyCache inFlyCache;
+-
+-    @Mock
+-    private ConnectConf connectConf;
+-
+-    @Mock
+-    private Session session;
+-
+-    @Mock
+-    private Queue queue;
+-
+-    @Mock
+-    private Message message;
+-
+-    @Spy
+-    private NioSocketChannel channel;
+-
+-    @Spy
+-    private ChannelFuture channelFuture;
+-
+-    private PushAction pushAction;
+-    private Subscription subscription;
+-
+-    final String p2pTopic = "/p2p/test";
+-    final String channelId = "testPushAction";
+-    final int qos = 1;
+-    final int mqttId = 666;
+-    final long offset = 3;
+-
+-    @Before
+-    public void before() throws IllegalAccessException {
+-        subscription = new Subscription(p2pTopic, qos);
+-        pushAction = new PushAction();
+-        FieldUtils.writeDeclaredField(pushAction, "mqttMsgId", mqttMsgId, true);
+-        FieldUtils.writeDeclaredField(pushAction, "retryDriver", retryDriver, true);
+-        FieldUtils.writeDeclaredField(pushAction, "inFlyCache", inFlyCache, true);
+-        FieldUtils.writeDeclaredField(pushAction, "connectConf", connectConf, true);
+-
+-        when(session.getChannel()).thenReturn(channel);
+-        when(session.getChannelId()).thenReturn(channelId);
+-        when(session.getClientId()).thenReturn(channelId);
+-        when(message.getOffset()).thenReturn(offset);
+-    }
+-
+-    @Test
+-    public void testMessageArriveNotOrder() {
+-        List<Message> messages = new ArrayList<>(Arrays.asList(message));
+-        when(session.pendMessageList(any(), any())).thenReturn(messages);
+-        when(connectConf.isOrder()).thenReturn(false);
+-        PushAction spyPushAction = spy(pushAction);
+-        doNothing().when(spyPushAction).push(any(), any(), any(), any());
+-
+-        spyPushAction.messageArrive(session, subscription, queue);
+-        verify(connectConf).isOrder();
+-        verify(session).pendMessageList(any(), any());
+-        verify(spyPushAction, times(messages.size())).push(any(), any(), any(), any());
+-        verifyNoMoreInteractions(session, connectConf);
+-    }
+-
+-    @Test
+-    public void testMessageArriveByOrder() {
+-        when(connectConf.isOrder()).thenReturn(true);
+-        when(retryDriver.needRetryBefore(any(), any(), any())).thenReturn(false);
+-        when(session.nextSendMessageByOrder(any(), any())).thenReturn(message);
+-        PushAction spyPushAction = spy(pushAction);
+-        doNothing().when(spyPushAction).push(any(), any(), any(), any());
+-
+-        spyPushAction.messageArrive(session, subscription, queue);
+-        verify(connectConf).isOrder();
+-        verify(retryDriver).needRetryBefore(any(), any(), any());
+-        verify(session).nextSendMessageByOrder(any(), any());
+-        verify(spyPushAction).push(any(), any(), any(), any());
+-        verifyNoMoreInteractions(session, connectConf);
+-    }
+-
+-    @Test
+-    public void testPushWhenNotClean() {
+-        when(session.isClean()).thenReturn(false);
+-        PushAction spyPushAction = spy(pushAction);
+-        doNothing().when(spyPushAction).write(any(), any(), anyInt(), anyInt(), any());
+-        when(inFlyCache.getPendingDownCache()).thenReturn(new InFlyCache().getPendingDownCache());
+-
+-        spyPushAction.push(message, subscription, session, queue);
+-        verify(spyPushAction).write(any(), any(), anyInt(), anyInt(), any());
+-    }
+-
+-    @Test
+-    public void testPushWhenIsClean() {
+-        when(session.isClean()).thenReturn(true);
+-        long msgStoreTime = 1000;
+-        long sessionStartTime = 2000;
+-        when(message.getStoreTimestamp()).thenReturn(msgStoreTime);
+-        when(session.getStartTime()).thenReturn(sessionStartTime);
+-
+-        PushAction spyPushAction = spy(pushAction);
+-        doNothing().when(spyPushAction).rollNext(any(), anyInt());
+-        when(inFlyCache.getPendingDownCache()).thenReturn(new InFlyCache().getPendingDownCache());
+-
+-        spyPushAction.push(message, subscription, session, queue);
+-        verify(spyPushAction).rollNext(any(), anyInt());
+-        verify(spyPushAction, times(0)).write(any(), any(), anyInt(), anyInt(), any());
+-    }
+-
+-    @Test
+-    public void testPushWhenQosZero() {
+-        subscription.setQos(0);
+-        when(session.isClean()).thenReturn(false);
+-        PushAction spyPushAction = spy(pushAction);
+-        doNothing().when(spyPushAction).write(any(), any(), anyInt(), anyInt(), any());
+-        doNothing().when(spyPushAction).rollNextByAck(any(), anyInt());
+-        when(inFlyCache.getPendingDownCache()).thenReturn(new InFlyCache().getPendingDownCache());
+-
+-        spyPushAction.push(message, subscription, session, queue);
+-        verify(spyPushAction).write(any(), any(), anyInt(), anyInt(), any());
+-        verify(spyPushAction).rollNextByAck(any(), anyInt());
+-    }
+-
+-    @Test
+-    public void testWrite() {
+-        doReturn(channelFuture).when(channel).writeAndFlush(any());
+-        when(message.getOriginTopic()).thenReturn(p2pTopic);
+-        when(message.getPayload()).thenReturn("test".getBytes(StandardCharsets.UTF_8));
+-
+-        pushAction.write(session, message, mqttId, qos, subscription);
+-        verify(channel).writeAndFlush(any());
+-        verify(channelFuture).addListener(any());
+-    }
+-
+-    @Test
+-    public void testRollNextByAck() {
+-        doNothing().when(mqttMsgId).releaseId(anyInt(), anyString());
+-        InFlyCache.PendingDownCache cache = new InFlyCache().getPendingDownCache();
+-        cache.put(channelId, mqttId, subscription, queue, message);
+-        when(inFlyCache.getPendingDownCache()).thenReturn(cache);
+-        when(connectConf.isOrder()).thenReturn(true);
+-        when(session.rollNext(subscription, queue, offset)).thenReturn(message);
+-
+-        PushAction spyPushAction = spy(pushAction);
+-        doNothing().when(spyPushAction).push(any(), any(), any(), any());
+-
+-        spyPushAction.rollNextByAck(session, mqttId);
+-        verify(spyPushAction).rollNextByAck(any(), anyInt());
+-        verify(spyPushAction).rollNext(any(), anyInt());
+-        verify(spyPushAction)._rollNext(any(), any());
+-        verify(spyPushAction).push(any(), any(), any(), any());
+-        verify(mqttMsgId, times(2)).releaseId(anyInt(), anyString());
+-        verify(inFlyCache, times(2)).getPendingDownCache();
+-        verifyNoMoreInteractions(spyPushAction, mqttMsgId, inFlyCache);
+-    }
+-
+-    @Test
+-    public void testRollNexNoWaitRetry() {
+-        when(inFlyCache.getPendingDownCache()).thenReturn(new InFlyCache().getPendingDownCache());
+-        PushAction spyPushAction = spy(pushAction);
+-        spyPushAction.rollNextNoWaitRetry(session, 666);
+-        verify(spyPushAction).rollNextNoWaitRetry(any(), anyInt());
+-        verifyNoMoreInteractions(spyPushAction);
+-    }
+-
+-    @Test
+-    public void testRollNextIsNotOrder() {
+-        InFlyCache.PendingDown pendingDown = new InFlyCache().getPendingDownCache().put(
+-            channelId, mqttId, subscription, queue, message);
+-        when(connectConf.isOrder()).thenReturn(false);
+-
+-        pushAction._rollNext(session, pendingDown);
+-        verify(session).ack(eq(subscription), eq(queue), eq(offset));
+-        verifyNoMoreInteractions(session);
+-    }
+-
+-}
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/infly/TestRetryDriver.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/infly/TestRetryDriver.java
+deleted file mode 100644
+index b9523bb..0000000
+--- a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/session/infly/TestRetryDriver.java
++++ /dev/null
+@@ -1,169 +0,0 @@
+-/*
+- *
+- *  * Licensed to the Apache Software Foundation (ASF) under one or more
+- *  * contributor license agreements.  See the NOTICE file distributed with
+- *  * this work for additional information regarding copyright ownership.
+- *  * The ASF licenses this file to You under the Apache License, Version 2.0
+- *  * (the "License"); you may not use this file except in compliance with
+- *  * the License.  You may obtain a copy of the License at
+- *  *
+- *  *     http://www.apache.org/licenses/LICENSE-2.0
+- *  *
+- *  * Unless required by applicable law or agreed to in writing, software
+- *  * distributed under the License is distributed on an "AS IS" BASIS,
+- *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- *  * See the License for the specific language governing permissions and
+- *  * limitations under the License.
+- *
+- */
+-
+-package org.apache.rocketmq.mqtt.cs.test.session.infly;
+-
+-import org.apache.commons.lang3.reflect.FieldUtils;
+-import org.apache.rocketmq.mqtt.common.facade.LmqQueueStore;
+-import org.apache.rocketmq.mqtt.common.model.Message;
+-import org.apache.rocketmq.mqtt.common.model.Queue;
+-import org.apache.rocketmq.mqtt.common.model.StoreResult;
+-import org.apache.rocketmq.mqtt.common.model.Subscription;
+-import org.apache.rocketmq.mqtt.cs.config.ConnectConf;
+-import org.apache.rocketmq.mqtt.cs.session.QueueFresh;
+-import org.apache.rocketmq.mqtt.cs.session.Session;
+-import org.apache.rocketmq.mqtt.cs.session.infly.InFlyCache;
+-import org.apache.rocketmq.mqtt.cs.session.infly.PushAction;
+-import org.apache.rocketmq.mqtt.cs.session.infly.RetryDriver;
+-import org.apache.rocketmq.mqtt.cs.session.loop.SessionLoop;
+-import org.junit.Assert;
+-import org.junit.Before;
+-import org.junit.Test;
+-import org.junit.runner.RunWith;
+-import org.mockito.Mock;
+-import org.mockito.junit.MockitoJUnitRunner;
+-
+-import java.util.Collections;
+-import java.util.concurrent.CompletableFuture;
+-
+-import static org.mockito.ArgumentMatchers.any;
+-import static org.mockito.ArgumentMatchers.eq;
+-import static org.mockito.Mockito.atLeastOnce;
+-import static org.mockito.Mockito.verify;
+-import static org.mockito.Mockito.when;
+-
+-@RunWith(MockitoJUnitRunner.class)
+-public class TestRetryDriver {
+-
+-    @Mock
+-    private SessionLoop sessionLoop;
+-
+-    @Mock
+-    private PushAction pushAction;
+-
+-    @Mock
+-    private ConnectConf connectConf;
+-
+-    @Mock
+-    private LmqQueueStore lmqQueueStore;
+-
+-    @Mock
+-    private Session session;
+-
+-    @Mock
+-    private Message message;
+-
+-    @Mock
+-    private InFlyCache inFlyCache;
+-
+-    @Mock
+-    private Queue queue;
+-
+-    @Mock
+-    private QueueFresh queueFresh;
+-
+-    private RetryDriver retryDriver = new RetryDriver();
+-    private String channelId = "testRetryDriver";
+-    private String topicFilter = "/test/retryDriver";
+-    private Subscription subscription = new Subscription(topicFilter);
+-    private int messageId = 1;
+-    private int pubRelMsgId = 2;
+-    private int scheduleDelaySecs = 1;
+-    private long messageRetryInterval = 200;
+-    private int retryIntervalSecs = scheduleDelaySecs;
+-    private int maxRetryTime = 1;
+-    private CompletableFuture<StoreResult> completableFuture = new CompletableFuture<>();
+-
+-    @Before
+-    public void before() throws IllegalAccessException {
+-        FieldUtils.writeDeclaredField(retryDriver, "sessionLoop", sessionLoop, true);
+-        FieldUtils.writeDeclaredField(retryDriver, "pushAction", pushAction, true);
+-        FieldUtils.writeDeclaredField(retryDriver, "connectConf", connectConf, true);
+-        FieldUtils.writeDeclaredField(retryDriver, "lmqQueueStore", lmqQueueStore, true);
+-        FieldUtils.writeDeclaredField(retryDriver, "scheduleDelaySecs", scheduleDelaySecs, true);
+-        FieldUtils.writeDeclaredField(retryDriver, "inFlyCache", inFlyCache, true);
+-        FieldUtils.writeDeclaredField(retryDriver, "queueFresh", queueFresh, true);
+-        FieldUtils.writeDeclaredField(retryDriver, "messageRetryInterval", messageRetryInterval, true);
+-
+-        when(connectConf.getRetryIntervalSeconds()).thenReturn(retryIntervalSecs);
+-        when(connectConf.getMaxRetryTime()).thenReturn(maxRetryTime);
+-        retryDriver.init();
+-
+-        when(session.getChannelId()).thenReturn(channelId);
+-        when(session.isDestroyed()).thenReturn(false);
+-        when(sessionLoop.getSession(any())).thenReturn(session);
+-        when(sessionLoop.getSessionList(any())).thenReturn(Collections.singletonList(session));
+-        when(message.copy()).thenReturn(message);
+-
+-        StoreResult storeResult = new StoreResult();
+-        storeResult.setQueue(queue);
+-        storeResult.setMsgId(String.valueOf(messageId));
+-        completableFuture.complete(storeResult);
+-        when(lmqQueueStore.putMessage(any(), any())).thenReturn(completableFuture);
+-    }
+-
+-    @Test
+-    public void testPublish() throws Exception {
+-        when(connectConf.getSizeOfNotRollWhenAckSlow()).thenReturn(10);
+-        InFlyCache.PendingDownCache cache = new InFlyCache().getPendingDownCache();
+-        cache.put(channelId, messageId, subscription, queue, message);
+-        when(inFlyCache.getPendingDownCache()).thenReturn(cache);
+-
+-        retryDriver.mountPublish(messageId, message, 1, channelId, subscription);
+-        Assert.assertTrue(retryDriver.needRetryBefore(subscription, queue, session));
+-
+-        // sleep 1200 to trigger 'doRetryCache' and executing only once
+-        // meanwhile set 'messageRetryInterval = 200' to skip continue judgment
+-        Thread.sleep(1200);
+-
+-        verify(pushAction, atLeastOnce()).write(any(), any(), eq(messageId), eq(1), any());
+-        Assert.assertNotNull(retryDriver.unMountPublish(messageId, channelId));
+-    }
+-
+-    @Test
+-    public void testPubRel() throws InterruptedException {
+-        retryDriver.mountPubRel(pubRelMsgId, channelId);
+-
+-        // sleep 1200 to trigger 'doRetryCache' and executing only once
+-        // meanwhile set 'messageRetryInterval = 200' to skip continue judgment
+-        Thread.sleep(1200);
+-
+-        verify(sessionLoop).getSession(eq(channelId));
+-        Assert.assertNotNull(retryDriver.unMountPubRel(pubRelMsgId, channelId));
+-    }
+-
+-    @Test
+-    public void testUnloadSession() throws InterruptedException {
+-        when(connectConf.getSizeOfNotRollWhenAckSlow()).thenReturn(10);
+-        when(queueFresh.freshQueue(any(), any())).thenReturn(Collections.singleton(queue));
+-
+-        retryDriver.mountPublish(messageId, message, 1, channelId, subscription);
+-        retryDriver.unloadSession(session);
+-
+-        // wait to execute the scheduled runnable of 'saveRetryQueue'
+-        Thread.sleep(1500);
+-
+-        verify(lmqQueueStore).putMessage(any(), any());
+-        verify(pushAction).rollNext(eq(session), eq(messageId));
+-        verify(sessionLoop).getSessionList(any());
+-        verify(sessionLoop).notifyPullMessage(any(), any(), any());
+-        Assert.assertNull(retryDriver.unMountPublish(messageId, channelId));
+-    }
+-
+-}

@@ -1,0 +1,14 @@
+org.apache.jackrabbit.vault.validation.spi.DocumentViewXmlValidator
+org.apache.jackrabbit.vault.validation.spi.FilterValidator
+org.apache.jackrabbit.vault.validation.spi.impl.PackageTypeValidator
+org.apache.jackrabbit.vault.validation.spi.impl.PackageTypeValidatorFactory
+org.apache.jackrabbit.vault.validation.spi.MetaInfPathValidator
+org.apache.jackrabbit.vault.validation.spi.NodeContext
+org.apache.jackrabbit.vault.validation.spi.NodePathValidator
+org.apache.jackrabbit.vault.validation.spi.PropertiesValidator
+org.apache.jackrabbit.vault.validation.spi.util.NodeContextImpl
+org.apache.jackrabbit.vault.validation.spi.ValidationContext
+org.apache.jackrabbit.vault.validation.spi.ValidationMessage
+org.apache.jackrabbit.vault.validation.spi.ValidationMessageSeverity
+org.apache.jackrabbit.vault.validation.spi.Validator
+org.apache.jackrabbit.vault.validation.spi.ValidatorFactory

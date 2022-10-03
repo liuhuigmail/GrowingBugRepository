@@ -1,0 +1,16 @@
+diff --git a/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/JcrNodeTypeMetaDataImpl.java b/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/JcrNodeTypeMetaDataImpl.java
+index 80b9aef3..b493d5c2 100644
+--- a/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/JcrNodeTypeMetaDataImpl.java
++++ b/vault-validation/src/main/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/JcrNodeTypeMetaDataImpl.java
+@@ -521,11 +521,8 @@ public class JcrNodeTypeMetaDataImpl implements JcrNodeTypeMetaData {
+                     + values.length + " values were passed!");
+         }
+ 
+-        if (values.length == 0) {
+             // unable to proceed when no value is present
+-            return;
+-        }
+ 
+         Name qName;
+         try {
+             qName = namePathResolver.getQName(name);

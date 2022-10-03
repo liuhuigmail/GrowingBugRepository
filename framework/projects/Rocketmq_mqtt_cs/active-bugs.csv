@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,18709f8b4cbf7a81cfc64d4539671280a6f2cb31,f5a8efa3b802ec8f47e54b73570d5ee4baf4eda2,22,https://github.com/apache/rocketmq-mqtt/issues/22
+2,8ab5d785377142316af6bdb2bd4f23392e098afe,e9fe2ea893c77cdecd4079f586ce1a72d4d7ccc2,22,https://github.com/apache/rocketmq-mqtt/issues/22
+3,4f3f12787aa0abbc42d92e0afbea5ed61839c5c0,0c20a2e970b1b6d1c8b7af9f379c3d7d15c59d3c,90,https://github.com/apache/rocketmq-mqtt/pull/90

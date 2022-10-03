@@ -1,0 +1,12 @@
+diff --git a/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java b/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java
+index f5843db7..44b0cc2e 100644
+--- a/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java
++++ b/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java
+@@ -292,6 +292,7 @@ public class NodeTypeValidatorTest {
+         Assert.assertThat(validator.done(), AnyValidationMessageMatcher.noValidationInCollection());
+     }
+ 
++    @Ignore("JCRVLT-485")
+     @Test
+     public void testMandatoryVersioningProperties() throws IOException, RepositoryException, ParseException {
+         validator = createValidator(filter, NameConstants.NT_UNSTRUCTURED, "tccl:test-nodetypes.cnd");

@@ -1,0 +1,21 @@
+diff --git a/mqtt-cs/src/main/java/org/apache/rocketmq/mqtt/cs/config/ConnectConfListener.java b/mqtt-cs/src/main/java/org/apache/rocketmq/mqtt/cs/config/ConnectConfListener.java
+index 1ed2577..940d703 100644
+--- a/mqtt-cs/src/main/java/org/apache/rocketmq/mqtt/cs/config/ConnectConfListener.java
++++ b/mqtt-cs/src/main/java/org/apache/rocketmq/mqtt/cs/config/ConnectConfListener.java
+@@ -44,7 +44,6 @@ public class ConnectConfListener {
+     private File confFile;
+     private ScheduledThreadPoolExecutor scheduler;
+     private AtomicLong gmt = new AtomicLong();
+-    private long refreshSecs = 3;
+ 
+     @PostConstruct
+     public void start() {
+@@ -66,7 +65,7 @@ public class ConnectConfListener {
+             } catch (Exception e) {
+                 logger.error("", e);
+             }
+-        }, refreshSecs, refreshSecs, TimeUnit.SECONDS);
++        }, 3, 3, TimeUnit.SECONDS);
+     }
+ 
+ }

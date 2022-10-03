@@ -1,0 +1,23 @@
+diff --git a/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java b/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java
+index a42ec091..f5843db7 100644
+--- a/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java
++++ b/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java
+@@ -293,17 +293,13 @@ public class NodeTypeValidatorTest {
+     }
+ 
+     @Test
+-    public void testVersioningProperties() throws IOException, RepositoryException, ParseException {
++    public void testMandatoryVersioningProperties() throws IOException, RepositoryException, ParseException {
+         validator = createValidator(filter, NameConstants.NT_UNSTRUCTURED, "tccl:test-nodetypes.cnd");
+         NodeContext nodeContext = new NodeContextImpl("/apps/test/node4", Paths.get("node4"), Paths.get(""));
+ 
+         Map<String, DocViewProperty> props = new HashMap<>();
+         props.put(NameConstants.JCR_PRIMARYTYPE.toString(), new DocViewProperty(NameConstants.JCR_PRIMARYTYPE.toString(),
+                 new String[] { "WorkflowModel" }, false, PropertyType.STRING));
+-        props.put(NameConstants.JCR_UUID.toString(), new DocViewProperty(NameConstants.JCR_UUID.toString(),
+-                new String[] { "41699399-95fd-444d-ab8c-b9f8e614607e" }, false, PropertyType.STRING));
+-        props.put(NameConstants.JCR_ISCHECKEDOUT.toString(), new DocViewProperty(NameConstants.JCR_ISCHECKEDOUT.toString(),
+-                new String[] { "true" }, false, PropertyType.BOOLEAN));
+         DocViewNode node = new DocViewNode("jcr:root", "jcr:root", null, props, new String[] { NameConstants.MIX_VERSIONABLE.toString() }, "WorkflowModel");
+         Assert.assertThat(validator.validate(node, nodeContext, false),
+                 AnyValidationMessageMatcher.noValidationInCollection());

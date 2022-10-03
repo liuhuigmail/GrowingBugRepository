@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1769`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1779`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -252,8 +252,10 @@ To date, growingBugs contains **`1769`** real-world bugs from open-source Java p
 | 223     | Weak_lock_free         | weak-lock-free           |                  |      1       | 1                  |
 | 224     | Proj4J         | proj4j           |                  |      9       | 1-9                  |
 | 225     | Markedj         | markedj           |                  |      2       | 1-2                  |
-| 226     | Rocketmq_mqtt_ds         | rocketmq-mqtt-ds           |       mqtt-ds           |      1       | 1                  |
+| 226     | Rocketmq_mqtt_ds         | rocketmq-mqtt-ds           |       mqtt-ds           |      4       | 1-4                  |
 | 227     | Retrofit         | retrofit           |       retrofit           |      3       | 1-3                  |
+| 228     | Burst         | burst           |       burst           |      2       | 1-2                  |
+| 229     | Jackrabbit_filevault_vault_validation        | jackrabbit-filevault-vault-validation          |       vault-validation           |      5       | 1-5                  |
 # Setting up GrowingBugs
 
 ## Requirements

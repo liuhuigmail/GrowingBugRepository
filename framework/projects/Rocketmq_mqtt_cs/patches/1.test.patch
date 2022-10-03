@@ -1,0 +1,233 @@
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestDefaultChannelManager.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestDefaultChannelManager.java
+new file mode 100644
+index 0000000..06dfd51
+--- /dev/null
++++ b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/TestDefaultChannelManager.java
+@@ -0,0 +1,60 @@
++/*
++ *
++ *  * Licensed to the Apache Software Foundation (ASF) under one or more
++ *  * contributor license agreements.  See the NOTICE file distributed with
++ *  * this work for additional information regarding copyright ownership.
++ *  * The ASF licenses this file to You under the Apache License, Version 2.0
++ *  * (the "License"); you may not use this file except in compliance with
++ *  * the License.  You may obtain a copy of the License at
++ *  *
++ *  *     http://www.apache.org/licenses/LICENSE-2.0
++ *  *
++ *  * Unless required by applicable law or agreed to in writing, software
++ *  * distributed under the License is distributed on an "AS IS" BASIS,
++ *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ *  * See the License for the specific language governing permissions and
++ *  * limitations under the License.
++ *
++ */
++
++package org.apache.rocketmq.mqtt.cs.test;
++
++import io.netty.channel.socket.nio.NioSocketChannel;
++import io.netty.util.Timeout;
++import org.apache.commons.lang3.reflect.FieldUtils;
++import org.apache.commons.lang3.reflect.MethodUtils;
++import org.apache.rocketmq.mqtt.cs.channel.ChannelInfo;
++import org.apache.rocketmq.mqtt.cs.channel.DefaultChannelManager;
++import org.apache.rocketmq.mqtt.cs.config.ConnectConf;
++import org.apache.rocketmq.mqtt.cs.session.infly.RetryDriver;
++import org.apache.rocketmq.mqtt.cs.session.loop.SessionLoop;
++import org.junit.Assert;
++import org.junit.Test;
++import org.junit.runner.RunWith;
++import org.mockito.junit.MockitoJUnitRunner;
++
++import java.lang.reflect.InvocationTargetException;
++
++import static org.mockito.Mockito.*;
++
++public class TestDefaultChannelManager {
++
++    @Test
++    public void test() throws IllegalAccessException, InterruptedException, InvocationTargetException, NoSuchMethodException {
++        DefaultChannelManager defaultChannelManager = new DefaultChannelManager();
++        SessionLoop sessionLoop = mock(SessionLoop.class);
++        FieldUtils.writeDeclaredField(defaultChannelManager, "sessionLoop", sessionLoop, true);
++        FieldUtils.writeDeclaredField(defaultChannelManager, "connectConf", mock(ConnectConf.class), true);
++        FieldUtils.writeDeclaredField(defaultChannelManager, "retryDriver", mock(RetryDriver.class), true);
++        FieldUtils.writeStaticField(DefaultChannelManager.class, "minBlankChannelSeconds", 1, true);
++        defaultChannelManager.init();
++        NioSocketChannel channel = spy(new NioSocketChannel());
++        when(channel.isActive()).thenReturn(false);
++        ChannelInfo.setClientId(channel, "test");
++        ChannelInfo.setKeepLive(channel, 0);
++        defaultChannelManager.addChannel(channel);
++        MethodUtils.invokeMethod(defaultChannelManager, true, "doPing", mock(Timeout.class), channel);
++        verify(sessionLoop).unloadSession(anyString(), anyString());
++    }
++
++}
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/config/TestConnectConfListener.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/config/TestConnectConfListener.java
+deleted file mode 100644
+index e212e2f..0000000
+--- a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/config/TestConnectConfListener.java
++++ /dev/null
+@@ -1,82 +0,0 @@
+-/*
+- *
+- *  * Licensed to the Apache Software Foundation (ASF) under one or more
+- *  * contributor license agreements.  See the NOTICE file distributed with
+- *  * this work for additional information regarding copyright ownership.
+- *  * The ASF licenses this file to You under the Apache License, Version 2.0
+- *  * (the "License"); you may not use this file except in compliance with
+- *  * the License.  You may obtain a copy of the License at
+- *  *
+- *  *     http://www.apache.org/licenses/LICENSE-2.0
+- *  *
+- *  * Unless required by applicable law or agreed to in writing, software
+- *  * distributed under the License is distributed on an "AS IS" BASIS,
+- *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- *  * See the License for the specific language governing permissions and
+- *  * limitations under the License.
+- *
+- */
+-
+-package org.apache.rocketmq.mqtt.cs.test.config;
+-
+-import org.apache.commons.lang3.reflect.FieldUtils;
+-import org.apache.rocketmq.mqtt.cs.config.ConnectConf;
+-import org.apache.rocketmq.mqtt.cs.config.ConnectConfListener;
+-import org.junit.After;
+-import org.junit.Before;
+-import org.junit.Test;
+-import org.junit.runner.RunWith;
+-import org.mockito.Mock;
+-import org.mockito.junit.MockitoJUnitRunner;
+-
+-import java.io.File;
+-
+-import static org.mockito.Mockito.atLeast;
+-import static org.mockito.Mockito.times;
+-import static org.mockito.Mockito.verify;
+-import static org.mockito.Mockito.verifyNoMoreInteractions;
+-import static org.mockito.Mockito.when;
+-
+-@RunWith(MockitoJUnitRunner.class)
+-public class TestConnectConfListener {
+-
+-    private ConnectConfListener confListener;
+-    private final long confRefreshSecs = 1;
+-    private final long originalModify = 1000L;
+-
+-    @Mock
+-    private ConnectConf connectConf;
+-
+-    @Mock
+-    private File confFile;
+-
+-    @Before
+-    public void Before() throws IllegalAccessException {
+-        confListener = new ConnectConfListener();
+-        FieldUtils.writeDeclaredField(confListener, "connectConf", connectConf, true);
+-        FieldUtils.writeDeclaredField(confListener, "confFile", confFile, true);
+-        FieldUtils.writeDeclaredField(confListener, "refreshSecs", confRefreshSecs, true);
+-    }
+-
+-    @After
+-    public void After() {}
+-
+-    @Test
+-    public void testStart() {
+-        when(connectConf.getConfFile()).thenReturn(confFile);
+-        when(confFile.lastModified()).thenReturn(originalModify);
+-
+-        confListener.start();
+-        verify(confFile, times(1)).lastModified();
+-        verifyNoMoreInteractions(confFile);
+-
+-        // wait the next conf refresh check and make conf modified
+-        when(confFile.lastModified()).thenReturn(2 * originalModify);
+-        try {
+-            Thread.sleep(2000 + confRefreshSecs);
+-        } catch (InterruptedException ignored) {}
+-
+-        verify(confFile, atLeast(2)).lastModified();
+-        verify(confFile, atLeast(1)).getAbsoluteFile();
+-    }
+-}
+diff --git a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/hook/TestUpstreamHookManagerImpl.java b/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/hook/TestUpstreamHookManagerImpl.java
+deleted file mode 100644
+index d1db550..0000000
+--- a/mqtt-cs/src/test/java/org/apache/rocketmq/mqtt/cs/test/hook/TestUpstreamHookManagerImpl.java
++++ /dev/null
+@@ -1,73 +0,0 @@
+-/*
+- *
+- *  * Licensed to the Apache Software Foundation (ASF) under one or more
+- *  * contributor license agreements.  See the NOTICE file distributed with
+- *  * this work for additional information regarding copyright ownership.
+- *  * The ASF licenses this file to You under the Apache License, Version 2.0
+- *  * (the "License"); you may not use this file except in compliance with
+- *  * the License.  You may obtain a copy of the License at
+- *  *
+- *  *     http://www.apache.org/licenses/LICENSE-2.0
+- *  *
+- *  * Unless required by applicable law or agreed to in writing, software
+- *  * distributed under the License is distributed on an "AS IS" BASIS,
+- *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- *  * See the License for the specific language governing permissions and
+- *  * limitations under the License.
+- *
+- */
+-
+-package org.apache.rocketmq.mqtt.cs.test.hook;
+-
+-import io.netty.handler.codec.mqtt.MqttMessage;
+-import org.apache.commons.lang3.reflect.FieldUtils;
+-import org.apache.rocketmq.mqtt.common.hook.UpstreamHook;
+-import org.apache.rocketmq.mqtt.common.hook.UpstreamHookManager;
+-import org.apache.rocketmq.mqtt.common.model.MqttMessageUpContext;
+-import org.apache.rocketmq.mqtt.cs.hook.UpstreamHookManagerImpl;
+-import org.junit.After;
+-import org.junit.Before;
+-import org.junit.Test;
+-import org.junit.runner.RunWith;
+-import org.mockito.Mock;
+-import org.mockito.junit.MockitoJUnitRunner;
+-
+-import java.util.concurrent.atomic.AtomicBoolean;
+-
+-import static org.mockito.ArgumentMatchers.any;
+-import static org.mockito.Mockito.mock;
+-import static org.mockito.Mockito.times;
+-import static org.mockito.Mockito.verify;
+-
+-@RunWith(MockitoJUnitRunner.class)
+-public class TestUpstreamHookManagerImpl {
+-
+-    private UpstreamHookManager upstreamHookManager;
+-
+-    @Mock
+-    private UpstreamHook upstreamHook;
+-
+-    @Before
+-    public void Before() {
+-        upstreamHookManager = new UpstreamHookManagerImpl();
+-    }
+-
+-    @After
+-    public void After() {}
+-
+-    @Test(expected = IllegalArgumentException.class )
+-    public void testAddHookIllegalArgException() throws IllegalAccessException {
+-        FieldUtils.writeDeclaredField(upstreamHookManager, "isAssembled", new AtomicBoolean(true), true);
+-        upstreamHookManager.addHook(0, upstreamHook);
+-    }
+-
+-    @Test
+-    public void testDoUpstreamHook() {
+-        upstreamHookManager.addHook(0, upstreamHook);
+-        upstreamHookManager.doUpstreamHook(mock(MqttMessageUpContext.class), mock(MqttMessage.class));
+-
+-        verify(upstreamHook, times(1)).getNextHook();
+-        verify(upstreamHook, times(1)).setNextHook(any());
+-        verify(upstreamHook, times(1)).doHook(any(), any());
+-    }
+-}

@@ -1,0 +1,48 @@
+diff --git a/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java b/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java
+index 1cea74ae..a42ec091 100644
+--- a/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java
++++ b/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java
+@@ -34,7 +34,6 @@ import org.apache.jackrabbit.JcrConstants;
+ import org.apache.jackrabbit.commons.cnd.ParseException;
+ import org.apache.jackrabbit.spi.Name;
+ import org.apache.jackrabbit.spi.commons.name.NameConstants;
+-import org.apache.jackrabbit.spi.commons.name.NameFactoryImpl;
+ import org.apache.jackrabbit.vault.fs.api.WorkspaceFilter;
+ import org.apache.jackrabbit.vault.fs.config.ConfigurationException;
+ import org.apache.jackrabbit.vault.fs.config.DefaultWorkspaceFilter;
+@@ -57,9 +56,6 @@ public class NodeTypeValidatorTest {
+     private NodeTypeValidator validator;
+     private DefaultWorkspaceFilter filter;
+ 
+-    static final Name REP_AUTHORIZABLE_ID = NameFactoryImpl.getInstance().create(Name.NS_REP_URI, "authorizableId");
+-    static final Name REP_PRINCIPAL_NAME = NameFactoryImpl.getInstance().create(Name.NS_REP_URI, "principalName");
+-    
+     @Before
+     public void setUp() throws IOException, ConfigurationException, RepositoryException, ParseException {
+         filter = new DefaultWorkspaceFilter();
+@@ -314,25 +310,4 @@ public class NodeTypeValidatorTest {
+         Assert.assertThat(validator.done(), AnyValidationMessageMatcher.noValidationInCollection());
+     }
+ 
+-    @Test
+-    public void testAuthorizableNodes() {
+-        // the folder is detected first
+-        NodeContext nodeContext = new NodeContextImpl("/home/users/system/systemuser", Paths.get("node4"), Paths.get(""));
+-        Assert.assertThat(validator.validateJcrPath(nodeContext, true, false),
+-                AnyValidationMessageMatcher.noValidationInCollection());
+-        Map<String, DocViewProperty> props = new HashMap<>();
+-        props.put(NameConstants.JCR_PRIMARYTYPE.toString(), new DocViewProperty(NameConstants.JCR_PRIMARYTYPE.toString(),
+-                new String[] { "rep:SystemUser" }, false, PropertyType.STRING));
+-        props.put(NameConstants.JCR_UUID.toString(), new DocViewProperty(NameConstants.JCR_UUID.toString(),
+-                new String[] { "41699399-95fd-444d-ab8c-b9f8e614607e" }, false, PropertyType.STRING));
+-        props.put(REP_AUTHORIZABLE_ID.toString(), new DocViewProperty(REP_AUTHORIZABLE_ID.toString(),
+-                new String[] { "systemuser" }, false, PropertyType.STRING));
+-        props.put(REP_PRINCIPAL_NAME.toString(), new DocViewProperty(REP_PRINCIPAL_NAME.toString(),
+-                new String[] { "systemuser" }, false, PropertyType.STRING));
+-        // then the actual doctype with the user
+-        DocViewNode node = new DocViewNode("jcr:root", "jcr:root", null, props, new String[] { }, "rep:SystemUser");
+-        Assert.assertThat(validator.validate(node, nodeContext, true),
+-                AnyValidationMessageMatcher.noValidationInCollection());
+-        Assert.assertThat(validator.done(), AnyValidationMessageMatcher.noValidationInCollection());
+-    }
+ }

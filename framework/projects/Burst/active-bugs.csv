@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,87689e850cb2c52af16117309959c7d24ecdc660,26475455976c2a4ba51d1c32ea9b8dacf5735d56,9,https://github.com/square/burst/pull/9
+2,08629234e54b58a5477fe85f3cb7ddc115e343db,53b7015817134764f9883247a4e67776a0479737,12,https://github.com/square/burst/pull/12

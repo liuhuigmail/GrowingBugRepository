@@ -227,5 +227,7 @@ To date, growingBugs contains **`938`** unique bugs that are not included in Def
 | 217     | Snomed_owl_toolkit         | snomed-owl-toolkit           |                  |      2       | 1-2                  |
 | 218     | Weak_lock_free         | weak-lock-free           |                  |      1       | 1                  |
 | 219     | Proj4J         | proj4j           |                  |      9       | 1-9                  |
-| 220     | Rocketmq_mqtt_ds         | rocketmq-mqtt-ds           |       mqtt-ds           |      1       | 1                  |
+| 220     | Rocketmq_mqtt_ds         | rocketmq-mqtt-ds           |       mqtt-ds           |      4       | 1-4                  |
 | 221     | Retrofit         | retrofit           |       retrofit           |      3       | 1-3                  |
+| 222     | Burst         | burst           |       burst           |      2       | 1-2                  |
+| 223     | Jackrabbit_filevault_vault_validation        | jackrabbit-filevault-vault-validation          |       vault-validation           |      5       | 1-5                  |
