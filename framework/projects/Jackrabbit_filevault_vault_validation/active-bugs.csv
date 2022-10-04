@@ -8,3 +8,5 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 7,b60ce9a9ec94832f07b5bfa02e0679ce74b5a0b4,3dd6e923bfed0fb3937710e88c5637e2bc279972,JCRVLT-489,https://issues.apache.org/jira/browse/JCRVLT-489
 8,51bde3fda90cb3c37e33de2419629bdec3151384,9583fd08baf7c3b83797d4348d3ebd15ea156490,JCRVLT-497,https://issues.apache.org/jira/browse/JCRVLT-497
 9,6c1d6a27f2b6685865b93fb244d67c4dd9491ab4,9d6e3e101250d543ac9b8e3a2035a0a58907c668,unknown,unknown
+10,d759ef289e6f46c652288af8ddc6d5cb42da3281,3f51305f906a9574644228a2ac29be9a152fa41e,JCRVLT-539,https://issues.apache.org/jira/browse/JCRVLT-539
+11,2df498954d708addb027d0d1395a2af2f76b5642,58041b7c2c6fd521cf17bd800341ef63c9f0589f,unknown,unknown

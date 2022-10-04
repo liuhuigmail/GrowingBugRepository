@@ -1,0 +1,26 @@
+diff --git a/src/test/java/com/jcabi/github/mock/MkOrganizationsTest.java b/src/test/java/com/jcabi/github/mock/MkOrganizationsTest.java
+index 0dce3188..a153d193 100644
+--- a/src/test/java/com/jcabi/github/mock/MkOrganizationsTest.java
++++ b/src/test/java/com/jcabi/github/mock/MkOrganizationsTest.java
+@@ -88,19 +88,14 @@ public final class MkOrganizationsTest {
+      */
+     @Test
+     public void getSingleOrganization() throws Exception {
+-        final String login = "orgTestGet";
+         final MkOrganizations orgs = new MkOrganizations(
+             new MkStorage.InFile(),
+-            login
++            "orgTestGet"
+         );
+         MatcherAssert.assertThat(
+-            orgs.get(login),
++            orgs.get("orgTestGet"),
+             Matchers.notNullValue()
+         );
+-        MatcherAssert.assertThat(
+-            orgs.get(login).json().getString("login"),
+-            Matchers.equalTo(login)
+-        );
+     }
+ 
+     /**

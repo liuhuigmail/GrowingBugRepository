@@ -1,0 +1,9 @@
+com.jcabi.github.Github
+com.jcabi.github.JsonPatchable
+com.jcabi.github.JsonReadable
+com.jcabi.github.mock.MkIterable
+com.jcabi.github.mock.MkOrganizations
+com.jcabi.github.mock.MkStorage
+com.jcabi.github.Organization
+com.jcabi.github.Organizations
+com.jcabi.github.User

@@ -1,0 +1,17 @@
+diff --git a/burst/src/test/java/com/squareup/burst/BurstableConstructorTest.java b/burst/src/test/java/com/squareup/burst/BurstableConstructorTest.java
+index ecaca34..5d39945 100644
+--- a/burst/src/test/java/com/squareup/burst/BurstableConstructorTest.java
++++ b/burst/src/test/java/com/squareup/burst/BurstableConstructorTest.java
+@@ -41,10 +41,8 @@ public class BurstableConstructorTest {
+     public DefaultAndOne(First first) {}
+   }
+   @Test public void defaultAndParameterizedConstructor() {
+-    thrown.expect(IllegalStateException.class);
+-    thrown.expectMessage("too many parameterized constructors");
+-
+-    BurstableConstructor.findSingle(DefaultAndOne.class);
++    TestConstructor ctor = BurstableConstructor.findSingle(DefaultAndOne.class);
++    assertThat(ctor.getVariationTypes()).containsExactly(First.class);
+   }
+ 
+   public static class NonPublicConstructor {

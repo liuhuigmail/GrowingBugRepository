@@ -1,0 +1,9 @@
+org.apache.jackrabbit.vault.validation.spi.DocumentViewXmlValidator
+org.apache.jackrabbit.vault.validation.spi.impl.nodetype.DocViewPropertyValueFactory
+org.apache.jackrabbit.vault.validation.spi.impl.nodetype.NodeTypeManagerProvider
+org.apache.jackrabbit.vault.validation.spi.impl.nodetype.NodeTypeValidator
+org.apache.jackrabbit.vault.validation.spi.NodeContext
+org.apache.jackrabbit.vault.validation.spi.util.NodeContextImpl
+org.apache.jackrabbit.vault.validation.spi.ValidationMessage
+org.apache.jackrabbit.vault.validation.spi.ValidationMessageSeverity
+org.apache.jackrabbit.vault.validation.spi.Validator

@@ -1,0 +1,74 @@
+diff --git a/jnagmp/src/main/java/com/squareup/jnagmp/Gmp.java b/jnagmp/src/main/java/com/squareup/jnagmp/Gmp.java
+index 00b2424..0bb1c41 100644
+--- a/jnagmp/src/main/java/com/squareup/jnagmp/Gmp.java
++++ b/jnagmp/src/main/java/com/squareup/jnagmp/Gmp.java
+@@ -112,6 +112,12 @@ public final class Gmp {
+     if (modulus.signum() <= 0) {
+       throw new ArithmeticException("modulus must be positive");
+     }
++    if (base.signum() < 0) {
++      throw new IllegalArgumentException("base must be non-negative");
++    }
++    if (exponent.signum() < 0) {
++      throw new IllegalArgumentException("exponent must be non-negative");
++    }
+     return INSTANCE.get().modPowInsecureImpl(base, exponent, modulus);
+   }
+ 
+@@ -136,6 +142,12 @@ public final class Gmp {
+     if (!modulus.testBit(0)) {
+       throw new IllegalArgumentException("modulus must be odd");
+     }
++    if (base.signum() < 0) {
++      throw new IllegalArgumentException("base must be non-negative");
++    }
++    if (exponent.signum() < 0) {
++      throw new IllegalArgumentException("exponent must be non-negative");
++    }
+     return INSTANCE.get().modPowSecureImpl(base, exponent, modulus);
+   }
+ 
+@@ -244,21 +256,11 @@ public final class Gmp {
+   }
+ 
+   private BigInteger modPowInsecureImpl(BigInteger base, BigInteger exp, BigInteger mod) {
+-    boolean invert = exp.signum() < 0;
+-    if (invert) {
+-      exp = exp.negate();
+-    }
+ 
+     mpz_t basePeer = getPeer(base, sharedOperands[0]);
+     mpz_t expPeer = getPeer(exp, sharedOperands[1]);
+     mpz_t modPeer = getPeer(mod, sharedOperands[2]);
+ 
+-    if (invert) {
+-      int res = __gmpz_invert(basePeer, basePeer, modPeer);
+-      if (res == 0) {
+-        throw new ArithmeticException("val not invertible");
+-      }
+-    }
+ 
+     __gmpz_powm(sharedOperands[3], basePeer, expPeer, modPeer);
+ 
+@@ -268,21 +270,11 @@ public final class Gmp {
+   }
+ 
+   private BigInteger modPowSecureImpl(BigInteger base, BigInteger exp, BigInteger mod) {
+-    boolean invert = exp.signum() < 0;
+-    if (invert) {
+-      exp = exp.negate();
+-    }
+ 
+     mpz_t basePeer = getPeer(base, sharedOperands[0]);
+     mpz_t expPeer = getPeer(exp, sharedOperands[1]);
+     mpz_t modPeer = getPeer(mod, sharedOperands[2]);
+ 
+-    if (invert) {
+-      int res = __gmpz_invert(basePeer, basePeer, modPeer);
+-      if (res == 0) {
+-        throw new ArithmeticException("val not invertible");
+-      }
+-    }
+ 
+     __gmpz_powm_sec(sharedOperands[3], basePeer, expPeer, modPeer);
+ 

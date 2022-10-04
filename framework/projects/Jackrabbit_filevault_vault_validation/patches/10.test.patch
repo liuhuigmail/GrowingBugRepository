@@ -1,0 +1,50 @@
+diff --git a/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java b/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java
+index c0102893..81afbb10 100644
+--- a/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java
++++ b/vault-validation/src/test/java/org/apache/jackrabbit/vault/validation/spi/impl/nodetype/NodeTypeValidatorTest.java
+@@ -377,45 +377,4 @@ public class NodeTypeValidatorTest {
+                 AnyValidationMessageMatcher.noValidationInCollection());
+         MatcherAssert.assertThat(validator.done(), AnyValidationMessageMatcher.noValidationInCollection());
+     }
+-
+-    // JCRVLT-539
+-    @Test
+-    public void testFolderAfterDocviewNotOverwritingPrimaryType() {
+-        NodeContext nodeContext = new NodeContextImpl("/apps/test", Paths.get("apps", "test", ".content.xml"), Paths.get(""));
+-        // first process docview xml with three nodes
+-        
+-        // 1. "test" (root)
+-        MatcherAssert.assertThat(validator.validateJcrPath(nodeContext, false, true),
+-                AnyValidationMessageMatcher.noValidationInCollection());
+-        Map<String, DocViewProperty> props = new HashMap<>();
+-        props.put(NameConstants.JCR_PRIMARYTYPE.toString(), new DocViewProperty(NameConstants.JCR_PRIMARYTYPE.toString(),
+-                new String[] { "nt:unstructured" }, false, PropertyType.STRING));
+-        DocViewNode node = new DocViewNode("jcr:root", "jcr:root", null, props, new String[] { }, "nt:unstructured");
+-        MatcherAssert.assertThat(validator.validate(node, nodeContext, true),
+-                AnyValidationMessageMatcher.noValidationInCollection());
+-        
+-        // and 2. "test/child"
+-        nodeContext = new NodeContextImpl("/apps/test/child", Paths.get("apps", "test", ".content.xml"), Paths.get(""));
+-        node = new DocViewNode("child", "child", null, props, new String[] { }, "nt:unstructured");
+-        MatcherAssert.assertThat(validator.validateJcrPath(nodeContext, false, true),
+-                AnyValidationMessageMatcher.noValidationInCollection());
+-        MatcherAssert.assertThat(validator.validate(node, nodeContext, false),
+-                AnyValidationMessageMatcher.noValidationInCollection());
+-        
+-        // and 3. "test/child/grandchild"
+-        nodeContext = new NodeContextImpl("/apps/test/child/grandchild", Paths.get("apps", "test", ".content.xml"), Paths.get(""));
+-        node = new DocViewNode("grandchild", "grandchild", null, props, new String[] { }, "nt:unstructured");
+-        MatcherAssert.assertThat(validator.validateJcrPath(nodeContext, false, true),
+-                AnyValidationMessageMatcher.noValidationInCollection());
+-        MatcherAssert.assertThat(validator.validate(node, nodeContext, false),
+-                AnyValidationMessageMatcher.noValidationInCollection());
+-        
+-        // then process folder "test/child"
+-        nodeContext = new NodeContextImpl("/apps/test/child", Paths.get("apps", "test", "child"), Paths.get(""));
+-        MatcherAssert.assertThat(validator.validateJcrPath(nodeContext, true, false),
+-                AnyValidationMessageMatcher.noValidationInCollection());
+-        
+-        // make sure that grandchild is valid (as parent is nt:unstructured and not nt:folder)
+-        MatcherAssert.assertThat(validator.done(), AnyValidationMessageMatcher.noValidationInCollection());
+-    }
+ }

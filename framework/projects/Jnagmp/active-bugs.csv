@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,636c65af1795265d6f9d00fcfd2adbcc92c60aff,c1667fbce6b356ed02b2e06587d55d538c5c22b4,27,https://github.com/square/jna-gmp/pull/27

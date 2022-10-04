@@ -1,0 +1,3 @@
+org.apache.jackrabbit.vault.validation.spi.impl.nodetype.JcrNodeTypeMetaData
+vault-validation.org.apache.jackrabbit.vault.validation.spi.impl.nodetype.JcrNodeTypeMetaDataImpl
+vault-validation.org.apache.jackrabbit.vault.validation.spi.impl.nodetype.NodeTypeValidator

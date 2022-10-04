@@ -1,0 +1,42 @@
+diff --git a/src/main/java/com/jcabi/github/RtCollaborators.java b/src/main/java/com/jcabi/github/RtCollaborators.java
+index bbead80b..90df5b55 100644
+--- a/src/main/java/com/jcabi/github/RtCollaborators.java
++++ b/src/main/java/com/jcabi/github/RtCollaborators.java
+@@ -97,19 +97,8 @@ final class RtCollaborators implements Collaborators {
+ 
+     @Override
+     public boolean isCollaborator(
+-        @NotNull(message = "User is never null") final String user)
+-        throws IOException {
+-        return this.request
+-            .method(Request.GET)
+-            .uri().path(user).back()
+-            .fetch()
+-            .as(RestResponse.class)
+-            .assertStatus(
+-                Matchers.isOneOf(
+-                    HttpURLConnection.HTTP_NO_CONTENT,
+-                    HttpURLConnection.HTTP_NOT_FOUND
+-                )
+-            ).status() == HttpURLConnection.HTTP_NO_CONTENT;
++        @NotNull(message = "User is never null") final String user) {
++        throw new UnsupportedOperationException();
+     }
+ 
+     @Override
+@@ -121,13 +110,8 @@ final class RtCollaborators implements Collaborators {
+     @Override
+     public void remove(
+         @NotNull(message = "user is never NULL") final String user
+-    )
+-        throws IOException {
+-        this.request.method(Request.DELETE)
+-            .uri().path(user).back()
+-            .fetch()
+-            .as(RestResponse.class)
+-            .assertStatus(HttpURLConnection.HTTP_NO_CONTENT);
++    ) {
++        throw new UnsupportedOperationException();
+     }
+ 
+     @Override

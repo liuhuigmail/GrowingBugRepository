@@ -1,0 +1,3 @@
+com.jcabi.github.VisibilityTest
+com.jcabi.github.mock.MkRepoCommitsTest
+com.jcabi.github.mock.MkRepoTest
