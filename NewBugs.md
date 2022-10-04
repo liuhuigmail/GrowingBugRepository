@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`938`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`947`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -201,7 +201,7 @@ To date, growingBugs contains **`938`** unique bugs that are not included in Def
 | 194     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 195     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 196     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
-| 197     | Jcabi_github         | jcabi-github           |                  |      58       | 1-42,44-63                  |
+| 197     | Jcabi_github         | jcabi-github           |                  |      62       | 1-42,44-67                  |
 | 198     | Podam         | podam           |                  |      1       | 1                  |
 | 199     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
 | 200     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
@@ -229,5 +229,7 @@ To date, growingBugs contains **`938`** unique bugs that are not included in Def
 | 219     | Proj4J         | proj4j           |                  |      9       | 1-9                  |
 | 220     | Rocketmq_mqtt_ds         | rocketmq-mqtt-ds           |       mqtt-ds           |      4       | 1-4                  |
 | 221     | Retrofit         | retrofit           |       retrofit           |      3       | 1-3                  |
-| 222     | Burst         | burst           |       burst           |      2       | 1-2                  |
-| 223     | Jackrabbit_filevault_vault_validation        | jackrabbit-filevault-vault-validation          |       vault-validation           |      5       | 1-5                  |
+| 222     | Burst         | burst           |       burst           |      3       | 1-3                  |
+| 223     | Jackrabbit_filevault_vault_validation        | jackrabbit-filevault-vault-validation          |       vault-validation           |      7       | 1-7                  |
+| 224     | Jnagmp         | jnagmp           |       jnagmp           |      1       | 1                  |
+| 225     | Rocketmq_mqtt_cs         | rocketmq-mqtt-cs           |       mqtt-cs           |      1       | 1    
