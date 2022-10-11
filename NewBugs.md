@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`947`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`958`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -232,4 +232,5 @@ To date, growingBugs contains **`947`** unique bugs that are not included in Def
 | 222     | Burst         | burst           |       burst           |      3       | 1-3                  |
 | 223     | Jackrabbit_filevault_vault_validation        | jackrabbit-filevault-vault-validation          |       vault-validation           |      7       | 1-7                  |
 | 224     | Jnagmp         | jnagmp           |       jnagmp           |      1       | 1                  |
-| 225     | Rocketmq_mqtt_cs         | rocketmq-mqtt-cs           |       mqtt-cs           |      1       | 1    
+| 225     | Rocketmq_mqtt_cs         | rocketmq-mqtt-cs           |       mqtt-cs           |      1       | 1    |
+| 226     | Dagger_core         | dagger-core           |       core           |      11       | 1-11                  |

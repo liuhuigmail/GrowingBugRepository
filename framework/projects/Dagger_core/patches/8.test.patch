@@ -1,0 +1,33 @@
+diff --git a/core/src/test/java/dagger/ModuleTest.java b/core/src/test/java/dagger/ModuleIncludesTest.java
+similarity index 93%
+rename from core/src/test/java/dagger/ModuleTest.java
+rename to core/src/test/java/dagger/ModuleIncludesTest.java
+index 223c987e..09d5ab6f 100644
+--- a/core/src/test/java/dagger/ModuleTest.java
++++ b/core/src/test/java/dagger/ModuleIncludesTest.java
+@@ -24,7 +24,7 @@ import static org.fest.assertions.Assertions.assertThat;
+ import static org.junit.Assert.fail;
+ 
+ @RunWith(JUnit4.class)
+-public final class ModuleTest {
++public final class ModuleIncludesTest {
+   static class TestEntryPoint {
+     @Inject String s;
+   }
+@@ -181,16 +181,4 @@ public final class ModuleTest {
+   public void childModuleMissingModuleAnnotation() {
+     ObjectGraph.create(new ChildModuleMissingModuleAnnotation());
+   }
+-
+-  @Module
+-  static class ThreadModule extends Thread {}
+-
+-  @Test public void moduleExtendingClassThrowsException() {
+-    try {
+-      ObjectGraph.create(new ThreadModule());
+-      fail();
+-    } catch (IllegalArgumentException e) {
+-      assertThat(e.getMessage()).startsWith("Modules must not extend from other classes: ");
+-    }
+-  }
+ }

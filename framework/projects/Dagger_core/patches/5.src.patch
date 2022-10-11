@@ -1,0 +1,15 @@
+diff --git a/core/src/main/java/dagger/internal/Linker.java b/core/src/main/java/dagger/internal/Linker.java
+index fb6dc3b7..6a016eb5 100644
+--- a/core/src/main/java/dagger/internal/Linker.java
++++ b/core/src/main/java/dagger/internal/Linker.java
+@@ -307,10 +307,7 @@ public final class Linker {
+       binding.getDependencies(get, injectMembers);
+     }
+ 
+-    @Override public boolean isLinked() {
+-      return binding.isLinked();
+-    }
+ 
+     @Override public String toString() {
+       return "@Singleton/" + binding.toString();
+     }

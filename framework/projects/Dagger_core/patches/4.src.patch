@@ -1,0 +1,16 @@
+diff --git a/core/src/main/java/dagger/internal/SetBinding.java b/core/src/main/java/dagger/internal/SetBinding.java
+index 9c471119..83e20a55 100644
+--- a/core/src/main/java/dagger/internal/SetBinding.java
++++ b/core/src/main/java/dagger/internal/SetBinding.java
+@@ -59,11 +59,7 @@ public final class SetBinding<T> extends Binding<Set<T>> {
+     return Collections.unmodifiableSet(result);
+   }
+ 
+-  @Override public void getDependencies(
+-      Set<Binding<?>> getBindings, Set<Binding<?>> injectMembersBindings) {
+-    getBindings.addAll(contributors);
+-  }
+ 
+   @Override public String toString() {
+     return "SetBinding" + contributors;
+   }

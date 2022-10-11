@@ -1,0 +1,13 @@
+diff --git a/core/src/test/java/dagger/InjectionTest.java b/core/src/test/java/dagger/InjectionTest.java
+index fab618fb..b1581325 100644
+--- a/core/src/test/java/dagger/InjectionTest.java
++++ b/core/src/test/java/dagger/InjectionTest.java
+@@ -613,8 +613,6 @@ public final class InjectionTest {
+   }
+ 
+   static class NoInjections {
+-    NoInjections(Void noDefaultConstructorEither) {
+-    }
+   }
+ 
+   @Test public void entryPointNeedsNoInjectAnnotation() {

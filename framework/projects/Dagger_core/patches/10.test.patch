@@ -1,0 +1,148 @@
+diff --git a/core/src/test/java/dagger/internal/FailoverLoaderTest.java b/core/src/test/java/dagger/internal/FailoverLoaderTest.java
+deleted file mode 100644
+index cb17ef68..00000000
+--- a/core/src/test/java/dagger/internal/FailoverLoaderTest.java
++++ /dev/null
+@@ -1,57 +0,0 @@
+-/*
+- * Copyright (C) 2013 Google Inc.
+- * Copyright (C) 2013 Square Inc.
+- *
+- * Licensed under the Apache License, Version 2.0 (the "License");
+- * you may not use this file except in compliance with the License.
+- * You may obtain a copy of the License at
+- *
+- * http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+- */
+-package dagger.internal;
+-
+-import dagger.Module;
+-import dagger.ObjectGraph;
+-import dagger.Provides;
+-import javax.inject.Inject;
+-import org.junit.Test;
+-import org.junit.runner.RunWith;
+-import org.junit.runners.JUnit4;
+-
+-import static org.fest.assertions.Assertions.assertThat;
+-
+-/**
+- * A test case to deal with fall-back to reflection where the concrete type has been generated
+- * but the parent has no {@code @Inject} annotation, and so has not been generated.
+- */
+-@RunWith(JUnit4.class)
+-public final class FailoverLoaderTest {
+-
+-  @Module(injects = EntryPoint.class)
+-  static class TestModule {
+-    @Provides String aString() { return "a"; }
+-  }
+-
+-  /** A reflective module that will be loaded in place of a generated module for this test. */
+-  static final class TestModule$$ModuleAdapter extends TestingModuleAdapter<TestModule> {
+-    public TestModule$$ModuleAdapter() {
+-      super(TestModule.class, TestModule.class.getAnnotation(Module.class));
+-    }
+-  }
+-
+-  static class EntryPoint {
+-    @Inject String a;
+-  }
+-
+-  @Test public void simpleInjectionWithUnGeneratedCode() {
+-    EntryPoint entryPoint = new EntryPoint();
+-    ObjectGraph.create(new TestModule()).inject(entryPoint);
+-    assertThat(entryPoint.a).isEqualTo("a");
+-  }
+-}
+diff --git a/core/src/test/java/dagger/internal/TestingModuleAdapter.java b/core/src/test/java/dagger/internal/TestOnlyModuleAdapter.java
+similarity index 88%
+rename from core/src/test/java/dagger/internal/TestingModuleAdapter.java
+rename to core/src/test/java/dagger/internal/TestOnlyModuleAdapter.java
+index d1cf36d4..a2b1a204 100644
+--- a/core/src/test/java/dagger/internal/TestingModuleAdapter.java
++++ b/core/src/test/java/dagger/internal/TestOnlyModuleAdapter.java
+@@ -30,10 +30,10 @@ import javax.inject.Provider;
+ import javax.inject.Singleton;
+ 
+ //TODO: Reduce the complexity of this and/or replace with a mock or fake.
+-public class TestingModuleAdapter<M> extends ModuleAdapter<M> {
++public final class TestOnlyModuleAdapter extends ModuleAdapter<Object> {
+   final Class<?> moduleClass;
+ 
+-  public TestingModuleAdapter(Class<?> moduleClass, Module annotation) {
++  public TestOnlyModuleAdapter(Class<?> moduleClass, Module annotation) {
+     super(
+         injectableTypesToKeys(annotation.injects()),
+         annotation.staticInjections(),
+@@ -95,23 +95,23 @@ public class TestingModuleAdapter<M> extends ModuleAdapter<M> {
+     }
+   }
+ 
+-  private void handleBindings(Map<String, Binding<?>> bindings, Method method, String key,
++  private <T> void handleBindings(Map<String, Binding<?>> bindings, Method method, String key,
+       boolean library) {
+-    bindings.put(key, new ProviderMethodBinding<M>(method, key, module, library));
++    bindings.put(key, new ProviderMethodBinding<T>(method, key, module, library));
+   }
+ 
+-  private void handleSetBindings(Map<String, Binding<?>> bindings, Method method, String key,
++  private <T> void handleSetBindings(Map<String, Binding<?>> bindings, Method method, String key,
+       boolean library) {
+     String setKey = Keys.getSetKey(method.getGenericReturnType(), method.getAnnotations(), method);
+-    SetBinding.<M>add(bindings, setKey, new ProviderMethodBinding<M>(method, key, module,
++    SetBinding.<T>add(bindings, setKey, new ProviderMethodBinding<T>(method, key, module,
+         library));
+   }
+ 
+-  @Override public M newModule() {
++  @Override public Object newModule() {
+     try {
+       Constructor<?> constructor = moduleClass.getDeclaredConstructor();
+       constructor.setAccessible(true);
+-      return (M)constructor.newInstance();
++      return constructor.newInstance();
+     } catch (InvocationTargetException e) {
+       throw new IllegalArgumentException(e.getCause());
+     } catch (NoSuchMethodException e) {
+@@ -126,9 +126,10 @@ public class TestingModuleAdapter<M> extends ModuleAdapter<M> {
+   }
+ 
+   /**
+-   * Creates a TestingModuleAdapter or throws an {@code IllegalArgumentException}.
++   * Creates a TestOnlyModuleAdapter or throws an {@code IllegalArgumentException}.
+    */
+-  public static <M> ModuleAdapter<M> create(Class<? extends M> moduleClass) {
++  @SuppressWarnings("unchecked") // Runtime checks validate that the result type matches 'T'.
++  public static <T> ModuleAdapter<T> create(Class<? extends T> moduleClass) {
+     Module annotation = moduleClass.getAnnotation(Module.class);
+     if (annotation == null) {
+       throw new IllegalArgumentException("No @Module on " + moduleClass.getName());
+@@ -137,7 +138,7 @@ public class TestingModuleAdapter<M> extends ModuleAdapter<M> {
+       throw new IllegalArgumentException(
+           "Modules must not extend from other classes: " + moduleClass.getName());
+     }
+-    return new TestingModuleAdapter<M>(moduleClass, annotation);
++    return (ModuleAdapter<T>) new TestOnlyModuleAdapter(moduleClass, annotation);
+   }
+ 
+   /**
+diff --git a/core/src/test/java/dagger/internal/TestingLoader.java b/core/src/test/java/dagger/internal/TestingLoader.java
+index 958068d0..512c4b68 100644
+--- a/core/src/test/java/dagger/internal/TestingLoader.java
++++ b/core/src/test/java/dagger/internal/TestingLoader.java
+@@ -26,7 +26,7 @@ import dagger.internal.loaders.ReflectiveStaticInjection;
+ public final class TestingLoader implements Loader {
+ 
+   @Override public <T> ModuleAdapter<T> getModuleAdapter(Class<? extends T> type, T instance) {
+-    ModuleAdapter<T> adapter = TestingModuleAdapter.create(type);
++    ModuleAdapter<T> adapter = TestOnlyModuleAdapter.create(type);
+     adapter.module = (instance != null) ? instance : adapter.newModule();
+     return adapter;
+   }

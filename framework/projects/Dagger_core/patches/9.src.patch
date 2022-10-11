@@ -1,0 +1,15 @@
+diff --git a/core/src/main/java/dagger/internal/plugins/reflect/ReflectivePlugin.java b/core/src/main/java/dagger/internal/plugins/reflect/ReflectivePlugin.java
+index 44cd87ce..99ead709 100644
+--- a/core/src/main/java/dagger/internal/plugins/reflect/ReflectivePlugin.java
++++ b/core/src/main/java/dagger/internal/plugins/reflect/ReflectivePlugin.java
+@@ -52,10 +52,6 @@ public final class ReflectivePlugin implements Plugin {
+     if (annotation == null) {
+       throw new IllegalArgumentException("No @Module on " + moduleClass.getName());
+     }
+-    if (moduleClass.getSuperclass() != Object.class) {
+-      throw new IllegalArgumentException(
+-          "Modules must not extend from other classes: " + moduleClass.getName());
+-    }
+     return (ModuleAdapter<T>) new ReflectiveModuleAdapter(moduleClass, annotation);
+   }
+ 

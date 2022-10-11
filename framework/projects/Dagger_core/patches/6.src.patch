@@ -1,0 +1,25 @@
+diff --git a/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java b/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java
+index c49aa124..9bc17403 100644
+--- a/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java
++++ b/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java
+@@ -156,9 +156,6 @@ final class ReflectiveAtInjectBinding<T> extends Binding<T> {
+         if (!field.isAnnotationPresent(Inject.class) || Modifier.isStatic(field.getModifiers())) {
+           continue;
+         }
+-        if ((field.getModifiers() & Modifier.PRIVATE) != 0) {
+-          throw new IllegalStateException("Can't inject private field: " + field);
+-        }
+         field.setAccessible(true);
+         injectedFields.add(field);
+         keys.add(Keys.get(field.getGenericType(), field.getAnnotations(), field));
+@@ -192,10 +189,7 @@ final class ReflectiveAtInjectBinding<T> extends Binding<T> {
+     int parameterCount;
+     String provideKey;
+     if (injectedConstructor != null) {
+-      if ((injectedConstructor.getModifiers() & Modifier.PRIVATE) != 0) {
+-        throw new IllegalStateException("Can't inject private constructor: " + injectedConstructor);
+-      }
+ 
+       provideKey = Keys.get(type);
+       injectedConstructor.setAccessible(true);
+       Type[] types = injectedConstructor.getGenericParameterTypes();

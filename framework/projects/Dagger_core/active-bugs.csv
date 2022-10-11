@@ -1,0 +1,12 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,efdad40efb51e18b07764ee4428470b1e5947ca8,1141ed83dc75f6965f6030c6af8d027030909220,75,https://github.com/square/dagger/pull/75
+2,9fb5411a88e78d3c766b77fc0daccd1192b87014,017ffd50341d8a732d52378ce2e7a16bc96c63a5,85,https://github.com/square/dagger/pull/85
+3,ec78a3f36983a47fd665129d3c3f01090dba8ed3,b736b24f67c990c411fb7b06c49cccc549661b44,100,https://github.com/square/dagger/pull/100
+4,d8de3a7841193573e86f67e6ab766c35fa21815e,91af996450a68723e8a57fc33c9bd378eae60154,104,https://github.com/square/dagger/pull/104
+5,a95ad22e0fe487fb8d9f4b1993b04c8332d54e41,22928a33d596959f4e90f80ce5bba6c52e05fbf4,169,https://github.com/square/dagger/pull/169
+6,cdb58e65a0eb33883247106942e067424014bb73,b6197880f4637a4e7678617aba5c3e40b747ed09,181,https://github.com/square/dagger/issues/181
+7,cdb58e65a0eb33883247106942e067424014bb73,ce4ae1a17832e311d17abf5c4247f53037702281,193,https://github.com/square/dagger/pull/193
+8,ce4ae1a17832e311d17abf5c4247f53037702281,54079aeb0b2d9d348ddd127347da111bf5b100e8,188,https://github.com/square/dagger/issues/188
+9,6f2413a4e940b96b3b94bd0a104676b012f4a29b,079a3dc521c0a5bf3f818933d223ce6a11449062,196,https://github.com/square/dagger/pull/196
+10,6682d768a61f19741f012c93b1e687f8e6031ad5,66cae0f7242594d559674b2adc13ee2bf268883d,290,https://github.com/square/dagger/pull/290
+11,5c3bf8fdce0c5426558b4174cde8e5327d1aac84,d6d3a60dd96dc4476ec5866dc1bd4b177ebaf947,347,https://github.com/square/dagger/pull/347

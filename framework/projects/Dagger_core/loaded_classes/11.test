@@ -1,0 +1,3 @@
+dagger.internal.TestingLoader
+dagger.internal.TestingModuleAdapter
+dagger.SetBindingTest

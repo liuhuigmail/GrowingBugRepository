@@ -1,0 +1,40 @@
+diff --git a/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java b/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java
+index 9bc17403..272f631f 100644
+--- a/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java
++++ b/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java
+@@ -96,13 +96,10 @@ final class ReflectiveAtInjectBinding<T> extends Binding<T> {
+     T result;
+     try {
+       result = constructor.newInstance(args);
+-    } catch (InvocationTargetException e) {
+-      Throwable cause = e.getCause();
+-      throw cause instanceof RuntimeException
+-          ? (RuntimeException) cause
+-          : new RuntimeException(cause);
+     } catch (IllegalAccessException e) {
+       throw new AssertionError(e);
++    } catch (InvocationTargetException e) {
++      throw new RuntimeException(e.getCause());
+     } catch (InstantiationException e) {
+       throw new RuntimeException(e);
+     }
+diff --git a/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveModuleAdapter.java b/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveModuleAdapter.java
+index 2d3efe8b..60d6bd0e 100644
+--- a/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveModuleAdapter.java
++++ b/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveModuleAdapter.java
+@@ -132,13 +132,10 @@ final class ReflectiveModuleAdapter extends ModuleAdapter<Object> {
+       }
+       try {
+         return (T) method.invoke(instance, args);
+-      } catch (InvocationTargetException e) {
+-        Throwable cause = e.getCause();
+-        throw cause instanceof RuntimeException
+-            ? (RuntimeException) cause
+-            : new RuntimeException(cause);
+       } catch (IllegalAccessException e) {
+         throw new RuntimeException(e);
++      } catch (InvocationTargetException e) {
++        throw new RuntimeException(e.getCause());
+       }
+     }
+ 
