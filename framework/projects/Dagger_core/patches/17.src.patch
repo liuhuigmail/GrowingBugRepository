@@ -1,0 +1,54 @@
+diff --git a/core/src/main/java/dagger/ObjectGraph.java b/core/src/main/java/dagger/ObjectGraph.java
+index 33d5705d..09c2883e 100644
+--- a/core/src/main/java/dagger/ObjectGraph.java
++++ b/core/src/main/java/dagger/ObjectGraph.java
+@@ -239,7 +239,7 @@ public abstract class ObjectGraph {
+ 
+     @Override public <T> T get(Class<T> type) {
+       String key = Keys.get(type);
+-      String injectableTypeKey = type.isInterface() ? key : Keys.getMembersKey(type);
++      String injectableTypeKey = Keys.getMembersKey(type);
+       @SuppressWarnings("unchecked") // The linker matches keys to bindings by their type.
+       Binding<T> binding = (Binding<T>) getInjectableTypeBinding(injectableTypeKey, key);
+       return binding.get();
+@@ -255,9 +255,8 @@ public abstract class ObjectGraph {
+ 
+     /**
+      * @param injectableTypeKey the key used to store the injectable type. This
+-     *     is a provides key for interfaces and a members injection key for
+-     *     other types. That way keys can always be created, even if the type
+-     *     has no injectable constructor.
++     *     is always a members injection key because those keys can always be
++     *     created, even if the type has no injectable constructor.
+      * @param key the key to use when retrieving the binding. This may be a
+      *     regular (provider) key or a members key.
+      */
+diff --git a/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveModuleAdapter.java b/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveModuleAdapter.java
+index 2745001d..805a7109 100644
+--- a/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveModuleAdapter.java
++++ b/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveModuleAdapter.java
+@@ -39,7 +39,7 @@ final class ReflectiveModuleAdapter extends ModuleAdapter<Object> {
+ 
+   public ReflectiveModuleAdapter(Class<?> moduleClass, Module annotation) {
+     super(
+-        injectableTypesToKeys(annotation.injects()),
++        toMemberKeys(annotation.injects()),
+         annotation.staticInjections(),
+         annotation.overrides(),
+         annotation.includes(),
+@@ -48,13 +48,10 @@ final class ReflectiveModuleAdapter extends ModuleAdapter<Object> {
+     this.moduleClass = moduleClass;
+   }
+ 
+-  private static String[] injectableTypesToKeys(Class<?>[] injectableTypes) {
++  private static String[] toMemberKeys(Class<?>[] injectableTypes) {
+     String[] result = new String[injectableTypes.length];
+     for (int i = 0; i < injectableTypes.length; i++) {
+-      Class<?> injectableType = injectableTypes[i];
+-      result[i] = injectableType.isInterface()
+-          ? Keys.get(injectableType)
+-          : Keys.getMembersKey(injectableType);
++      result[i] = Keys.getMembersKey(injectableTypes[i]);
+     }
+     return result;
+   }

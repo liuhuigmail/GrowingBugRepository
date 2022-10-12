@@ -1,0 +1,9 @@
+com.jcabi.github.Repo
+com.jcabi.github.RtCollaborators
+com.jcabi.github.RtRepo
+com.jcabi.github.mock.MkContent
+com.jcabi.github.mock.MkContents
+com.jcabi.github.mock.MkOrganizations
+com.jcabi.github.mock.MkReleaseAsset
+com.jcabi.github.mock.MkRepo
+com.jcabi.github.mock.MkRepoCommits

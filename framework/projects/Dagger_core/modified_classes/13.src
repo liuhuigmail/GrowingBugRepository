@@ -1,0 +1,3 @@
+dagger.ObjectGraph
+core.dagger.internal.Linker
+core.dagger.internal.plugins.reflect.ReflectiveAtInjectBinding

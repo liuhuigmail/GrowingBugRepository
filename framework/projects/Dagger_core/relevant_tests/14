@@ -1,0 +1,10 @@
+dagger.ExtensionTest
+dagger.InjectStaticsTest
+dagger.InjectionOfLazyTest
+dagger.InjectionTest
+dagger.LazyInjectionTest
+dagger.MembersInjectorTest
+dagger.ModuleIncludesTest
+dagger.ProblemDetectorTest
+dagger.SetBindingTest
+dagger.internal.SingletonBindingTest

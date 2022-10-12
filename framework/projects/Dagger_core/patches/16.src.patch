@@ -1,0 +1,26 @@
+diff --git a/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveModuleAdapter.java b/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveModuleAdapter.java
+index 0fb595b8..ac8655f7 100644
+--- a/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveModuleAdapter.java
++++ b/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveModuleAdapter.java
+@@ -63,21 +63,6 @@ final class ReflectiveModuleAdapter extends ModuleAdapter<Object> {
+           Type genericReturnType = method.getGenericReturnType();
+ 
+           Type typeToCheck = genericReturnType;
+-          if (genericReturnType instanceof ParameterizedType) {
+-            typeToCheck = ((ParameterizedType) genericReturnType).getRawType();
+-          }
+-          if (Provider.class.equals(typeToCheck)) {
+-            throw new IllegalStateException("@Provides method must not return Provider directly: "
+-                + c.getName()
+-                + "."
+-                + method.getName());
+-          }
+-          if (Lazy.class.equals(typeToCheck)) {
+-            throw new IllegalStateException("@Provides method must not return Lazy directly: "
+-                + c.getName()
+-                + "."
+-                + method.getName());
+-          }
+ 
+           String key = Keys.get(genericReturnType, method.getAnnotations(), method);
+           switch (provides.type()) {

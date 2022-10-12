@@ -1,0 +1,3 @@
+dagger.internal.Plugin
+core.dagger.internal.plugins.reflect.ReflectiveAtInjectBinding
+core.dagger.internal.plugins.reflect.ReflectivePlugin

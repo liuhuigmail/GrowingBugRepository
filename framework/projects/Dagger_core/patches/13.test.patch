@@ -1,0 +1,57 @@
+diff --git a/core/src/test/java/dagger/InjectionTest.java b/core/src/test/java/dagger/InjectionTest.java
+index b1581325..99a3d564 100644
+--- a/core/src/test/java/dagger/InjectionTest.java
++++ b/core/src/test/java/dagger/InjectionTest.java
+@@ -250,7 +250,7 @@ public final class InjectionTest {
+     }
+   }
+ 
+-  @Test public void injectableSupertypes() {
++  @Test public void subclasses() {
+     class TestEntryPoint {
+       @Inject Q q;
+     }
+@@ -267,20 +267,6 @@ public final class InjectionTest {
+     assertThat(entryPoint.q.f).isNotNull();
+   }
+ 
+-  @Test public void uninjectableSupertypes() {
+-    class TestEntryPoint {
+-      @Inject T t;
+-    }
+-
+-    @Module(entryPoints = TestEntryPoint.class)
+-    class TestModule {
+-    }
+-
+-    TestEntryPoint entryPoint = new TestEntryPoint();
+-    ObjectGraph.create(new TestModule()).inject(entryPoint);
+-    assertThat(entryPoint.t).isNotNull();
+-  }
+-
+   public static class P {
+     @Inject F f;
+   }
+@@ -289,13 +275,6 @@ public final class InjectionTest {
+     @Inject Q() {}
+   }
+ 
+-  static class S {
+-  }
+-
+-  public static class T extends S {
+-    @Inject T() {}
+-  }
+-
+   @Test public void singletonsAreNotEager() {
+     class TestEntryPoint {
+       @Inject Provider<A> aProvider;
+@@ -332,6 +311,8 @@ public final class InjectionTest {
+     }
+   }
+ 
++  static class S {}
++
+   @Test public void providerMethodsConflict() {
+     @Module
+     class TestModule {

@@ -1,0 +1,47 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkStorage.java b/src/main/java/com/jcabi/github/mock/MkStorage.java
+index c4d4b36d..14c9cfe2 100644
+--- a/src/main/java/com/jcabi/github/mock/MkStorage.java
++++ b/src/main/java/com/jcabi/github/mock/MkStorage.java
+@@ -146,27 +146,20 @@ public interface MkStorage {
+         @Override
+         @NotNull(message = "XML is never NULL")
+         public XML xml() throws IOException {
+-            if(!this.lock.isHeldByCurrentThread()) {
+-                throw new ConcurrentModificationException(
+-                    "lock should be taken before method call"
++            this.lock();
++            try {
++                return new XMLDocument(FileUtils.readFileToString(new File(this.name), Charsets.UTF_8)
+                 );
++            } finally {
++                this.unlock();
+             }
+-            return new XMLDocument(
+-                FileUtils.readFileToString(
+-                    new File(this.name), Charsets.UTF_8
+-                )
+-            );
+         }
+         @Override
+         public void apply(
+             @NotNull(message = "dirs cannot be NULL")
+             final Iterable<Directive> dirs
+         ) throws IOException {
+-            if(!this.lock.isHeldByCurrentThread()) {
+-                throw new ConcurrentModificationException(
+-                    "lock should be taken before method call"
+-                );
+-            }
++            this.lock();
+             try {
+                 FileUtils.write(
+                     new File(this.name),
+@@ -177,6 +170,8 @@ public interface MkStorage {
+                 );
+             } catch (final ImpossibleModificationException ex) {
+                 throw new IllegalArgumentException(ex);
++            } finally {
++                this.unlock();
+             }
+         }
+         @Override

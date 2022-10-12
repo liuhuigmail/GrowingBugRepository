@@ -1,0 +1,64 @@
+diff --git a/core/src/main/java/dagger/ObjectGraph.java b/core/src/main/java/dagger/ObjectGraph.java
+index e1225d3d..0a0bca24 100644
+--- a/core/src/main/java/dagger/ObjectGraph.java
++++ b/core/src/main/java/dagger/ObjectGraph.java
+@@ -164,7 +164,7 @@ public final class ObjectGraph {
+ 
+   private void linkEntryPoints() {
+     for (Map.Entry<String, Class<?>> entry : entryPoints.entrySet()) {
+-      linker.requestBinding(entry.getKey(), entry.getValue(), false);
++      linker.requestEntryPoint(entry.getKey(), entry.getValue());
+     }
+   }
+ 
+@@ -257,10 +257,10 @@ public final class ObjectGraph {
+     }
+ 
+     synchronized (linker) {
+-      Binding<?> binding = linker.requestBinding(key, moduleClass, false);
++      Binding<?> binding = linker.requestBinding(key, moduleClass);
+       if (binding == null || !binding.isLinked()) {
+         linker.linkRequested();
+-        binding = linker.requestBinding(key, moduleClass, false);
++        binding = linker.requestBinding(key, moduleClass);
+       }
+       return binding;
+     }
+diff --git a/core/src/main/java/dagger/internal/Linker.java b/core/src/main/java/dagger/internal/Linker.java
+index d9cdaafe..3ca22cf0 100644
+--- a/core/src/main/java/dagger/internal/Linker.java
++++ b/core/src/main/java/dagger/internal/Linker.java
+@@ -187,7 +187,7 @@ public final class Linker {
+    * enqueued to be linked.
+    */
+   public Binding<?> requestBinding(String key, Object requiredBy) {
+-    return requestBinding(key, requiredBy, true);
++    return requestBinding(key, true, requiredBy);
+   }
+ 
+   /**
+@@ -200,7 +200,10 @@ public final class Linker {
+    *     can inject arbitrary entry points like JUnit test cases or Android
+    *     activities) and for supertypes.
+    */
+-  public Binding<?> requestBinding(String key, Object requiredBy, boolean mustBeInjectable) {
++  public Binding<?> requestEntryPoint(String key, Class<?> requiredByModule) {
++    return requestBinding(key, false, requiredByModule);
++  }
++  private Binding<?> requestBinding(String key, boolean mustBeInjectable, Object requiredBy) {
+     assertLockHeld();
+ 
+     Binding<?> binding = null;
+diff --git a/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java b/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java
+index 272f631f..edbca82e 100644
+--- a/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java
++++ b/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java
+@@ -81,7 +81,7 @@ final class ReflectiveAtInjectBinding<T> extends Binding<T> {
+       }
+     }
+     if (supertype != null && supertypeBinding == null) {
+-      supertypeBinding = (Binding<? super T>) linker.requestBinding(keys[k], membersKey, false);
++      supertypeBinding = (Binding<? super T>) linker.requestBinding(keys[k], membersKey);
+     }
+   }
+ 

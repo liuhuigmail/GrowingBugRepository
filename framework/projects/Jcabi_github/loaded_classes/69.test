@@ -1,0 +1,5 @@
+com.jcabi.github.mock.MkContentsTest
+com.jcabi.github.mock.MkOrganizationsTest
+com.jcabi.github.mock.MkReleaseAssetTest
+com.jcabi.github.mock.MkRepoCommitsTest
+com.jcabi.github.RtCollaboratorsTest

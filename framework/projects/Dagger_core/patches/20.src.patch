@@ -1,0 +1,13 @@
+diff --git a/core/src/main/java/dagger/ObjectGraph.java b/core/src/main/java/dagger/ObjectGraph.java
+index a1736d2b..431c6f3a 100644
+--- a/core/src/main/java/dagger/ObjectGraph.java
++++ b/core/src/main/java/dagger/ObjectGraph.java
+@@ -185,7 +185,7 @@ public abstract class ObjectGraph {
+           moduleAdapter.getBindings(addTo, loadedModule.getValue());
+         } catch (IllegalArgumentException e) {
+           throw new IllegalArgumentException(
+-              moduleAdapter.moduleClass.getSimpleName() + ": " + e.getMessage(), e);
++              moduleAdapter.moduleClass.getSimpleName() + " is an overriding module and cannot contribute set bindings.");
+         }
+       }
+ 

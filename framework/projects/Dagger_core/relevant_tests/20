@@ -1,0 +1,14 @@
+dagger.ExtensionTest
+dagger.ExtensionWithSetBindingsTest
+dagger.ExtensionWithStateTest
+dagger.InjectStaticsTest
+dagger.InjectionOfLazyTest
+dagger.InjectionTest
+dagger.LazyInjectionTest
+dagger.MembersInjectorTest
+dagger.ModuleTest
+dagger.ProblemDetectorTest
+dagger.SetBindingTest
+dagger.ThreadSafetyTest
+dagger.UnusedProviderTest
+dagger.internal.FailoverLoaderTest

@@ -1,0 +1,5 @@
+dagger.ObjectGraph
+core.dagger.internal.Linker
+core.dagger.internal.ModuleAdapter
+core.dagger.internal.Modules
+core.dagger.internal.SetBinding

@@ -1,0 +1,96 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkContent.java b/src/main/java/com/jcabi/github/mock/MkContent.java
+index 8a9d5446..2dc448e8 100644
+--- a/src/main/java/com/jcabi/github/mock/MkContent.java
++++ b/src/main/java/com/jcabi/github/mock/MkContent.java
+@@ -83,7 +83,6 @@ final class MkContent implements Content {
+     /**
+      * Branch of this content.
+      */
+-    private final transient String branch;
+ 
+     /**
+      * Public ctor.
+@@ -99,14 +98,12 @@ final class MkContent implements Content {
+         @NotNull(message = "stg can't be NULL") final MkStorage stg,
+         @NotNull(message = "login can't be NULL") final String login,
+         @NotNull(message = "rep can't be NULL") final Coordinates rep,
+-        @NotNull(message = "path can't be NULL") final String path,
+-        @NotNull(message = "ref can't be NULL") final String ref
++        @NotNull(message = "path can't be NULL") final String path
+     ) throws IOException {
+         this.storage = stg;
+         this.self = login;
+         this.coords = rep;
+         this.location = path;
+-        this.branch = ref;
+     }
+ 
+     @Override
+@@ -166,8 +163,8 @@ final class MkContent implements Content {
+     private String xpath() {
+         return String.format(
+             // @checkstyle LineLength (1 line)
+-            "/github/repos/repo[@coords='%s']/contents/content[path='%s' and @ref='%s']",
+-            this.coords, this.location, this.branch
++            "/github/repos/repo[@coords='%s']/contents/content[path='%s']",
++            this.coords, this.location
+         );
+     }
+ }
+diff --git a/src/main/java/com/jcabi/github/mock/MkContents.java b/src/main/java/com/jcabi/github/mock/MkContents.java
+index 919a7ffb..1aee4c7e 100644
+--- a/src/main/java/com/jcabi/github/mock/MkContents.java
++++ b/src/main/java/com/jcabi/github/mock/MkContents.java
+@@ -106,7 +106,7 @@ final class MkContents implements Contents {
+     public Content readme() throws IOException {
+         // @checkstyle MultipleStringLiterals (2 lines)
+         return new MkContent(
+-            this.storage, this.self, this.coords, "README.md", "master"
++            this.storage, this.self, this.coords, "README.md"
+         );
+     }
+ 
+@@ -114,7 +114,7 @@ final class MkContents implements Contents {
+     @NotNull(message = "the content is never NULL")
+     public Content readme(final String branch) throws IOException {
+         return new MkContent(
+-            this.storage, this.self, this.coords, "README.md", branch
++            this.storage, this.self, this.coords, branch
+         );
+     }
+ 
+@@ -125,16 +125,9 @@ final class MkContents implements Contents {
+     ) throws IOException {
+         this.storage.lock();
+         // @checkstyle MultipleStringLiterals (20 lines)
+-        final String branch;
+         try {
+-            if (json.containsKey("ref")) {
+-                branch = json.getString("ref");
+-            } else {
+-                branch = "master";
+-            }
+             this.storage.apply(
+                 new Directives().xpath(this.xpath()).add("content")
+-                    .attr("ref", branch)
+                     .add("name").set(json.getString("path")).up()
+                     .add("path").set(json.getString("path")).up()
+                     .add("content").set(json.getString("content")).up()
+@@ -150,7 +143,7 @@ final class MkContents implements Contents {
+             this.storage.unlock();
+         }
+         return new MkContent(
+-            this.storage, this.self, this.coords, json.getString("path"), branch
++            this.storage, this.self, this.coords, json.getString("path")
+         );
+     }
+ 
+@@ -160,7 +153,7 @@ final class MkContents implements Contents {
+         @NotNull(message = "path can't be NULL") final String path,
+         @NotNull(message = "ref can't be NULL") final String ref
+     ) throws IOException {
+-        return new MkContent(this.storage, this.self, this.coords, path, ref);
++        return new MkContent(this.storage, this.self, this.coords, path);
+     }
+ 
+     @Override

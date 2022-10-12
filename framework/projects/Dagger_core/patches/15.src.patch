@@ -1,0 +1,36 @@
+diff --git a/core/src/main/java/dagger/internal/LazyBinding.java b/core/src/main/java/dagger/internal/LazyBinding.java
+index 0bcbc970..eb39783f 100644
+--- a/core/src/main/java/dagger/internal/LazyBinding.java
++++ b/core/src/main/java/dagger/internal/LazyBinding.java
+@@ -51,14 +51,7 @@ final class LazyBinding<T> extends Binding<Lazy<T>> {
+       @SuppressWarnings("unchecked") // Delegate is of type T
+       @Override
+       public T get() {
+-        if (cacheValue == NOT_PRESENT) {
+-          synchronized (this) {
+-            if (cacheValue == NOT_PRESENT) {
+-              cacheValue = delegate.get();
+-            }
+-          }
+-        }
+-        return (T) cacheValue;
++        return (T) ((cacheValue != NOT_PRESENT) ? cacheValue : (cacheValue = delegate.get()));
+       }
+     };
+   }
+diff --git a/core/src/main/java/dagger/internal/Linker.java b/core/src/main/java/dagger/internal/Linker.java
+index fe1be298..789b99bc 100644
+--- a/core/src/main/java/dagger/internal/Linker.java
++++ b/core/src/main/java/dagger/internal/Linker.java
+@@ -297,11 +297,7 @@ public final class Linker {
+     @SuppressWarnings("unchecked") // onlyInstance is either 'UNINITIALIZED' or a 'T'.
+     @Override public T get() {
+       if (onlyInstance == UNINITIALIZED) {
+-        synchronized (this) {
+-          if (onlyInstance == UNINITIALIZED) {
+             onlyInstance = binding.get();
+-          }
+-        }
+       }
+       return (T) onlyInstance;
+     }

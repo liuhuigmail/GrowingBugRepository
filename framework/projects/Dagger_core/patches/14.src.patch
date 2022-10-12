@@ -1,0 +1,60 @@
+diff --git a/core/src/main/java/dagger/internal/Linker.java b/core/src/main/java/dagger/internal/Linker.java
+index 18115ca7..776600ae 100644
+--- a/core/src/main/java/dagger/internal/Linker.java
++++ b/core/src/main/java/dagger/internal/Linker.java
+@@ -112,9 +112,8 @@ public final class Linker {
+             throw new IllegalStateException("Unable to create binding for " + key);
+           }
+           // Enqueue the JIT binding so its own dependencies can be linked.
+-          Binding<?> scopedJitBinding = scope(jitBinding);
+-          toLink.add(scopedJitBinding);
+-          putBinding(scopedJitBinding);
++          toLink.add(jitBinding);
++          putBinding(jitBinding);
+         } catch (Exception e) {
+           if (e.getMessage() != null) {
+             addError(e.getMessage() + " required by " + binding.requiredBy);
+@@ -234,7 +233,8 @@ public final class Linker {
+     return binding;
+   }
+ 
+-  private <T> void putBinding(final Binding<T> binding) {
++  private <T> void putBinding(Binding<T> binding) {
++    binding = scope(binding);
+ 
+     // At binding insertion time it's possible that another binding for the same
+     // key to already exist. This occurs when an @Provides method returns a type T
+@@ -307,33 +307,15 @@ public final class Linker {
+       binding.getDependencies(get, injectMembers);
+     }
+ 
+-    @Override public boolean isCycleFree() {
+-      return binding.isCycleFree();
+-    }
+ 
+     @Override public boolean isLinked() {
+       return binding.isLinked();
+     }
+ 
+-    @Override public boolean isVisiting() {
+-      return binding.isVisiting();
+-    }
+ 
+-    @Override public void setCycleFree(final boolean cycleFree) {
+-      binding.setCycleFree(cycleFree);
+-    }
+ 
+-    @Override public void setVisiting(final boolean visiting) {
+-      binding.setVisiting(visiting);
+-    }
+ 
+-    @Override protected boolean isSingleton() {
+-      return true;
+-    }
+ 
+-    @Override protected void setLinked() {
+-      binding.setLinked();
+-    }
+ 
+     @Override public String toString() {
+       return "@Singleton/" + binding.toString();
