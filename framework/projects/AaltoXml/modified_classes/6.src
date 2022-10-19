@@ -1,0 +1,3 @@
+com.fasterxml.aalto.async.AsyncByteArrayScanner
+com.fasterxml.aalto.async.AsyncByteBufferScanner
+com.fasterxml.aalto.async.AsyncByteScanner

@@ -185,8 +185,18 @@ sub initialize_revision {
     }
     elsif (-e "$work_dir/src/java" and -e "$work_dir/src/tests"){
         $result = {src=>"src/java", test=>"src/tests"} unless defined $result;
-    }elsif (-e "$work_dir/src" and -e "$work_dir/test"){
+    }
+    elsif (-e "$work_dir/src" and -e "$work_dir/test"){
         $result = {src=>"src", test=>"test"} unless defined $result;
+    }
+    elsif (-e "$work_dir/src" and -e "$work_dir/tests"){
+        $result = {src=>"src", test=>"tests"} unless defined $result;
+    }
+    elsif (-e "$work_dir/main" and -e "$work_dir/test"){
+        $result = {src=>"main", test=>"test"} unless defined $result;
+    }
+    elsif (-e "$work_dir/main" and -e "$work_dir/tests"){
+        $result = {src=>"main", test=>"tests"} unless defined $result;
     }
     else {
         if (-e "$work_dir"){

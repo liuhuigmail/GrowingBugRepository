@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/apache/xmlgraphics/xmp/XMPHandler.java b/src/main/java/org/apache/xmlgraphics/xmp/XMPHandler.java
+index b3b918f..506baf2 100644
+--- a/src/main/java/org/apache/xmlgraphics/xmp/XMPHandler.java
++++ b/src/main/java/org/apache/xmlgraphics/xmp/XMPHandler.java
+@@ -287,9 +287,7 @@ public class XMPHandler extends DefaultHandler {
+             if (prop.getName() == null) {
+                 throw new IllegalStateException("No content in XMP property");
+             }
+-            if (getCurrentProperties() == null) {
+-                startStructure();
+-            }
++            assert getCurrentProperties() != null : "no current property";
+             getCurrentProperties().setProperty(prop);
+         }
+ 

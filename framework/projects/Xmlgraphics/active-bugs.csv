@@ -1,3 +1,5 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,f4a9081eb9b59b548fff4fd85b646d4c598c8735,ece53b548aaf2b4f8d87bffa067ed8c4137430f2,XGC-111,https://issues.apache.org/jira/browse/XGC-111
 2,57393912eb87b994c7fed39ddf30fb778a275183,ee025383c3e79ce23ae19e6da961189b636915eb,XGC-123,https://issues.apache.org/jira/browse/XGC-123
+3,2429ace84a6da8137122e7c323f4c5c8112d4d78,57393912eb87b994c7fed39ddf30fb778a275183,XGC-122,https://issues.apache.org/jira/browse/XGC-122
+4,c50615ba47be103d1dabbd7cdedc4e7913fed528,6323ec4a09b64ac92ce0226198c5b643ae942bb0,XGC-130,https://issues.apache.org/jira/browse/XGC-130

@@ -1,0 +1,18 @@
+diff --git a/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java b/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java
+index 6753862..491a3f1 100644
+--- a/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java
++++ b/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java
+@@ -1078,9 +1082,9 @@ public abstract class ByteXmlWriter
+                 default:
+                     break;
+                 }
+             } else { // beyond 2-byte encodables; 3-byte, surrogates?
+-                offset = outputMultiByteChar(ch, cbuf, offset, len);
+-                continue;
++                writeAsEntity(ch);
++                continue main_loop;
+             }
+ 
+             if (_outputPtr >= _outputBufferLen) {
+
+

@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1799`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1807`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -69,12 +69,12 @@ To date, growingBugs contains **`1799`** real-world bugs from open-source Java p
 | 40     | Jackrabbit_filevault<br/>_vault_validation | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
 | 41     | Jackrabbit_oak_core            | oak-core               |       oak-core       |        5       | 1-5               |
 | 42     | Doxia_module_apt            | doxia-module-apt               |   doxia-modules/doxia-module-apt       |       2       | 1-2               |
-| 43     | Xmlgraphics            | xmlgraphics-commons |       |       2     | 1-2              |
+| 43     | Xmlgraphics            | xmlgraphics-commons |       |       4     | 1-4              |
 | 44     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
 | 45     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
 | 46     | James_project_core            | james-project-core               |       core       |        1       | 1               |
 | 47     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        5       | 1-5               |
-| 48     | AaltoXml            | aalto-xml      |             |        4       | 1-4               |
+| 48     | AaltoXml            | aalto-xml      |             |        6       | 1-6               |
 | 49     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-2,4-8               |
 | 50     | jackson_modules<br/>_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |
 | 51     | Pdfbox_pdfbox         | pdfbox-pdfbox |    pdfbox    |        3      | 1-3               |
@@ -259,6 +259,9 @@ To date, growingBugs contains **`1799`** real-world bugs from open-source Java p
 | 230     | Jnagmp         | jnagmp           |       jnagmp           |      1       | 1                  |
 | 231     | Rocketmq_mqtt_cs         | rocketmq-mqtt-cs           |       mqtt-cs           |      1       | 1   |
 | 232     | Dagger_core         | dagger-core           |       core           |      11       | 1-11                  |
+| 233     | Google_java_format_core         | google-java-format-core           |       core           |      1       | 1                  |
+| 234     | Jimfs         | jimfs           |       jimfs           |      1       | 1                  |
+| 235     | Open_location_code_java         | open-location-code-java           |       java           |      2       | 1-2                  |
 # Setting up GrowingBugs
 
 ## Requirements

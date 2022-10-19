@@ -1,0 +1,17 @@
+diff --git a/java/src/main/java/com/google/openlocationcode/OpenLocationCode.java b/java/src/main/java/com/google/openlocationcode/OpenLocationCode.java
+index 08ab819..a6265f2 100644
+--- a/java/src/main/java/com/google/openlocationcode/OpenLocationCode.java
++++ b/java/src/main/java/com/google/openlocationcode/OpenLocationCode.java
+@@ -184,10 +184,10 @@ public final class OpenLocationCode {
+     }
+ 
+     // Adjust latitude and longitude to be in positive number ranges.
+     // We add the max values when creating the BigDecimal (as opposed to creating a BigDecimal and
+     // then adding the value) to be consistent with the other implementations.
+-    BigDecimal remainingLatitude = new BigDecimal(latitude + LATITUDE_MAX.doubleValue());
+-    BigDecimal remainingLongitude = new BigDecimal(longitude + LONGITUDE_MAX.doubleValue());
++    BigDecimal remainingLatitude = new BigDecimal(latitude).add(LATITUDE_MAX);
++    BigDecimal remainingLongitude = new BigDecimal(longitude).add(LONGITUDE_MAX);
+ 
+     // Count how many digits have been created.
+     int generatedDigits = 0;

@@ -1,0 +1,2 @@
+com.google.common.jimfs.JimfsPathTest
+com.google.common.jimfs.PathServiceTest

@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,00823e891efd2da8759e513af73406ce63042b6b,856b039364648705e0f378c0756c330b948b3257,203,https://github.com/google/google-java-format/issues/203

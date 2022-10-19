@@ -206,4 +206,6 @@ Spatial4j	spatial4j	https://github.com/locationtech/spatial4j.git	github	locatio
 Markedj	markedj	https://github.com/gitbucket/markedj.git	github	gitbucket/markedj	/#(\\d+)/mi	.
 Retrofit    retrofit    https://github.com/square/retrofit.git  github  square/retrofit /#(\\d+)/mi retrofit    
 Rocketmq_mqtt_ds	rocketmq-mqtt-ds	https://github.com/apache/rocketmq-mqtt.git	github	apache/rocketmq-mqtt	/#(\\d+)/mi	mqtt-ds
-Dagger_core    dagger-core    https://github.com/square/dagger.git  github  square/dagger /#(\\d+)/mi core    	
+Dagger_core    dagger-core    https://github.com/square/dagger.git  github  square/dagger /#(\\d+)/mi core 
+Google_java_format_core   google-java-format-core    https://github.com/google/google-java-format.git  github  google/google-java-format /#(\\d+)/mi core  
+Jimfs   jimfs    https://github.com/google/jimfs.git  github  google/jimfs /#(\\d+)/mi jimfs     	

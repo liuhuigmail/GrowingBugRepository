@@ -1,0 +1,61 @@
+diff --git a/src/test/java/async/TestCharactersParsing.java b/src/test/java/async/TestCharactersParsing.java
+index 29df3ad..8aa43e2 100644
+--- a/src/test/java/async/TestCharactersParsing.java
++++ b/src/test/java/async/TestCharactersParsing.java
+@@ -141,17 +141,7 @@ public class TestCharactersParsing extends AsyncTestBase
+ 
+     private void _testTextWithEntities(final int chunkSize, final boolean checkValues, final String SPC) throws Exception
+     {
+-        _testTextWithEntities(chunkSize, checkValues, SPC, "&lt", "<");
+-        _testTextWithEntities(chunkSize, checkValues, SPC, "&gt", ">");
+-        _testTextWithEntities(chunkSize, checkValues, SPC, "&apos", "'");
+-        // for [aalto-xml#78]
+-        _testTextWithEntities(chunkSize, checkValues, SPC, "&quot", "\"");
+-    }
+-
+-    private void _testTextWithEntities(final int chunkSize, final boolean checkValues, final String SPC,
+-            final String entity, final String entityExpanded) throws Exception
+-    {
+-        final String XML = SPC + "<root>a"+entity+";b\rMOT</root>";
++        final String XML = SPC + "<root>a&lt;b\rMOT</root>";
+ 
+         final AsyncXMLInputFactory f = new InputFactoryImpl();
+ 
+@@ -160,7 +150,7 @@ public class TestCharactersParsing extends AsyncTestBase
+         try {
+             sr_array = f.createAsyncForByteArray();
+             final AsyncReaderWrapperForByteArray reader_array = new AsyncReaderWrapperForByteArray(sr_array, chunkSize, XML);
+-            _testTextWithEntities(sr_array, reader_array, checkValues, entityExpanded);
++            _testTextWithEntities(sr_array, reader_array, checkValues);
+         } finally {
+             if (sr_array != null) {
+                 sr_array.close();
+@@ -172,7 +162,7 @@ public class TestCharactersParsing extends AsyncTestBase
+         try {
+             sr_buffer = f.createAsyncForByteBuffer();
+             final AsyncReaderWrapperForByteBuffer reader_buffer = new AsyncReaderWrapperForByteBuffer(sr_buffer, chunkSize, XML);
+-            _testTextWithEntities(sr_buffer, reader_buffer, checkValues, entityExpanded);
++            _testTextWithEntities(sr_buffer, reader_buffer, checkValues);
+         } finally {
+             if (sr_buffer != null) {
+                 sr_buffer.close();
+@@ -180,9 +170,7 @@ public class TestCharactersParsing extends AsyncTestBase
+         }
+     }
+ 
+-    private void _testTextWithEntities(final AsyncXMLStreamReader<?> sr, final AsyncReaderWrapper reader,
+-            final boolean checkValues,
+-            final String entityExpanded) throws Exception
++    private void _testTextWithEntities(final AsyncXMLStreamReader<?> sr, final AsyncReaderWrapper reader, final boolean checkValues) throws Exception
+     {
+         // should start with START_DOCUMENT, but for now skip
+         int t = verifyStart(reader);
+@@ -194,7 +182,7 @@ public class TestCharactersParsing extends AsyncTestBase
+         assertTokenType(CHARACTERS, reader.nextToken());
+         if (checkValues) {
+             String str = collectAsyncText(reader, CHARACTERS); // moves to end-element
+-            assertEquals("a"+entityExpanded+"b\nMOT", str);
++            assertEquals("a<b\nMOT", str);
+         } else {
+             reader.nextToken();
+         }

@@ -1,0 +1,12 @@
+com.google.googlejavaformat.java.ArrayDimensionTest
+com.google.googlejavaformat.java.DiagnosticTest
+com.google.googlejavaformat.java.FormatterIntegrationTest
+com.google.googlejavaformat.java.FormatterTest
+com.google.googlejavaformat.java.JavadocFormattingTest
+com.google.googlejavaformat.java.LineRangesToCharRangesTest
+com.google.googlejavaformat.java.MainTest
+com.google.googlejavaformat.java.ModifierOrdererTest
+com.google.googlejavaformat.java.PartialFormattingTest
+com.google.googlejavaformat.java.RemoveUnusedImportsTest
+com.google.googlejavaformat.java.SnippetFormatterTest
+com.google.googlejavaformat.java.filer.FormattingFilerTest

@@ -1,0 +1,17 @@
+diff --git a/jimfs/src/main/java/com/google/common/jimfs/JimfsPath.java b/jimfs/src/main/java/com/google/common/jimfs/JimfsPath.java
+index 9d18837..7c6b115 100644
+--- a/jimfs/src/main/java/com/google/common/jimfs/JimfsPath.java
++++ b/jimfs/src/main/java/com/google/common/jimfs/JimfsPath.java
+@@ -251,7 +251,11 @@ final class JimfsPath implements Path {
+ 
+   /** Resolves the given name against this path. The name is assumed not to be a root name. */
+   JimfsPath resolve(Name name) {
+-    return resolve(pathService.createFileName(name));
++    if (name.toString().isEmpty()) {
++      return this;
++    }
++    return pathService.createPathInternal(
++        root, ImmutableList.<Name>builder().addAll(names).add(name).build());
+   }
+ 
+   @Override

@@ -1,0 +1,40 @@
+diff --git a/src/test/java/wstream/TestUTF8Surrogates.java b/src/test/java/failing/TestUTF8Surrogates.java
+similarity index 84%
+rename from src/test/java/wstream/TestUTF8Surrogates.java
+rename to src/test/java/failing/TestUTF8Surrogates.java
+index 9b1332b..f3772d0 100644
+--- a/src/test/java/wstream/TestUTF8Surrogates.java
++++ b/src/test/java/failing/TestUTF8Surrogates.java
+@@ -1,4 +1,4 @@
+-package wstream;
++package failing;
+ 
+ import java.io.ByteArrayOutputStream;
+ 
+@@ -10,9 +10,6 @@ public class TestUTF8Surrogates extends BaseWriterTest
+ {
+     public void testWithKappas() throws Exception
+     {
+-        // !!! TODO: mark using Unicode escape, for better source compatibility
+-        final String K = new StringBuilder().append("𝜅").toString();
+-        
+         //loop to find exactly at which point entity encoding kicks in.
+ //        for (int j = 0; j < 1000; j++)
+         final int j = 985;
+@@ -22,7 +19,7 @@ public class TestUTF8Surrogates extends BaseWriterTest
+             final String namespace = "http://example.org";
+             StringBuilder kappas = new StringBuilder();
+             for (int i = 0; i < (2000 + j); i++) {
+-                kappas.append(K);
++                kappas.append("𝜅");
+             }
+             w.writeStartElement("", "ex", namespace);
+             w.writeCharacters(kappas.toString());
+@@ -34,6 +31,7 @@ public class TestUTF8Surrogates extends BaseWriterTest
+             if (!exp.equals(act)) {
+                 fail("Iteration "+j+" failed; exp length "+exp.length()+" vs actual "+act.length());
+             }
++            else System.err.println("#"+j+" length: "+exp.length());
+         }
+     }
+ }

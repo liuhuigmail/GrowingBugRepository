@@ -1,0 +1,13 @@
+com.google.common.jimfs.ClassLoaderTest
+com.google.common.jimfs.ConfigurationTest
+com.google.common.jimfs.FileFactoryTest
+com.google.common.jimfs.FileTest
+com.google.common.jimfs.FileTreeTest
+com.google.common.jimfs.JimfsFileSystemCloseTest
+com.google.common.jimfs.JimfsPathTest
+com.google.common.jimfs.JimfsUnixLikeFileSystemTest
+com.google.common.jimfs.JimfsWindowsLikeFileSystemTest
+com.google.common.jimfs.PathServiceTest
+com.google.common.jimfs.PollingWatchServiceTest
+com.google.common.jimfs.UrlTest
+com.google.common.jimfs.WatchServiceConfigurationTest

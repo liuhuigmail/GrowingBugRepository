@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/xmlgraphics/xmp/XMPParser.java b/src/main/java/org/apache/xmlgraphics/xmp/XMPParser.java
+index e907e89..5e7d8b6 100644
+--- a/src/main/java/org/apache/xmlgraphics/xmp/XMPParser.java
++++ b/src/main/java/org/apache/xmlgraphics/xmp/XMPParser.java
+@@ -21,7 +21,6 @@ package org.apache.xmlgraphics.xmp;
+ 
+ import java.net.URL;
+ 
+-import javax.xml.XMLConstants;
+ import javax.xml.transform.Source;
+ import javax.xml.transform.Transformer;
+ import javax.xml.transform.TransformerException;
+@@ -55,8 +54,6 @@ public final class XMPParser {
+      */
+     public static Metadata parseXMP(Source src) throws TransformerException {
+         TransformerFactory tFactory = TransformerFactory.newInstance();
+-        tFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+-        tFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
+         Transformer transformer = tFactory.newTransformer();
+         XMPHandler handler = createXMPHandler();
+         SAXResult res = new SAXResult(handler);

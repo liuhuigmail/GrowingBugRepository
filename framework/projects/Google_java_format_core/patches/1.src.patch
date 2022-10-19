@@ -1,0 +1,29 @@
+diff --git a/core/src/main/java/com/google/googlejavaformat/java/JavaOutput.java b/core/src/main/java/com/google/googlejavaformat/java/JavaOutput.java
+index f3f2020..2a6f1ab 100644
+--- a/core/src/main/java/com/google/googlejavaformat/java/JavaOutput.java
++++ b/core/src/main/java/com/google/googlejavaformat/java/JavaOutput.java
+@@ -182,7 +182,7 @@ public final class JavaOutput extends Output {
+   /** Flush any incomplete last line, then add the EOF token into our data structures. */
+   void flush() {
+     String lastLine = lineBuilder.toString();
+-    if (!CharMatcher.whitespace().matchesAllOf(lastLine)) {
++    if (!lastLine.isEmpty()) {
+       mutableLines.add(lastLine);
+     }
+     int jN = mutableLines.size();
+@@ -295,13 +295,13 @@ public final class JavaOutput extends Output {
+       }
+       for (; i < getLineCount(); i++) {
+         String after = getLine(i);
+-        int idx = CharMatcher.whitespace().negate().indexIn(after);
+-        if (idx == -1) {
+           // Write out trailing empty lines from the formatted output.
++        if (after.isEmpty()) {
+           replacement.append(lineSeparator);
+         } else {
+           if (newline == -1) {
+             // If there wasn't a trailing newline in the input, indent the next line.
++            int idx = CharMatcher.whitespace().negate().indexIn(after);
+             replacement.append(after.substring(0, idx));
+           }
+           break;

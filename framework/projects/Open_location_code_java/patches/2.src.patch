@@ -1,0 +1,15 @@
+diff --git a/java/src/main/java/com/google/openlocationcode/OpenLocationCode.java b/java/src/main/java/com/google/openlocationcode/OpenLocationCode.java
+index 13f6e77..ff868cb 100644
+--- a/java/src/main/java/com/google/openlocationcode/OpenLocationCode.java
++++ b/java/src/main/java/com/google/openlocationcode/OpenLocationCode.java
+@@ -540,10 +540,7 @@ public final class OpenLocationCode {
+       }
+       if (PADDING_CHARACTER == code.charAt(i)) {
+         paddingStarted = true;
+         // Short codes cannot have padding
+-        if (separatorPosition < SEPARATOR_POSITION) {
+-          return false;
+-        }
+         // Padding can start on even character: 2, 4 or 6.
+         if (i != 2 && i != 4 && i != 6) {
+           return false;

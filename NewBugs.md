@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`958`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`966`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -37,12 +37,12 @@ To date, growingBugs contains **`958`** unique bugs that are not included in Def
 | 31     | Jackrabbit_filevault<br/>_vault_validation | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
 | 32     | Jackrabbit_oak_core | oak-core              |       oak-core           |        5       | 1-5               |
 | 33     | Doxia_module_apt    | doxia-module-apt      |   doxia-moduleRestfixtures/doxia-module-apt       |       2       | 1-2               |
-| 34     | Xmlgraphics            | xmlgraphics-commons |       |       2     | 1-2              |
+| 34     | Xmlgraphics            | xmlgraphics-commons |       |       4     | 1-4              |
 | 35     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
 | 36     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
 | 37     | James_project_core            | james-project-core               |       core       |        1       | 1               |
 | 38     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        5       | 1-5               |
-| 39     | AaltoXml            | aalto-xml      |             |        4       | 1-4               |
+| 39     | AaltoXml            | aalto-xml      |             |        6       | 1-6               |
 | 40     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-2,4-8               |
 | 41     | jackson_modules<br/>_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |
 | 42     | Pdfbox_pdfbox         | pdfbox-pdfbox |    pdfbox    |        3      | 1-3               |
@@ -234,3 +234,6 @@ To date, growingBugs contains **`958`** unique bugs that are not included in Def
 | 224     | Jnagmp         | jnagmp           |       jnagmp           |      1       | 1                  |
 | 225     | Rocketmq_mqtt_cs         | rocketmq-mqtt-cs           |       mqtt-cs           |      1       | 1    |
 | 226     | Dagger_core         | dagger-core           |       core           |      11       | 1-11                  |
+| 227     | Google_java_format_core         | google-java-format-core           |       core           |      1       | 1                  |
+| 228     | Jimfs         | jimfs           |       jimfs           |      1       | 1                  |
+| 229     | Open_location_code_java         | open-location-code-java           |       java           |      2       | 1-2                  |
