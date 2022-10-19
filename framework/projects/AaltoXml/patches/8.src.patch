@@ -1,0 +1,52 @@
+diff --git a/src/main/java/com/fasterxml/aalto/async/AsyncByteArrayScanner.java b/src/main/java/com/fasterxml/aalto/async/AsyncByteArrayScanner.java
+index a4a272b..46fecf3 100644
+--- a/src/main/java/com/fasterxml/aalto/async/AsyncByteArrayScanner.java
++++ b/src/main/java/com/fasterxml/aalto/async/AsyncByteArrayScanner.java
+@@ -1064,7 +1064,7 @@ public class AsyncByteArrayScanner
+                     return handlePI();
+                 }
+                 if (!isProlog || (b == BYTE_SLASH)) {
+-                    reportPrologUnexpElement(isProlog, b);
++                    reportPrologUnexpChar(isProlog, decodeCharForError(b), " (unbalanced start/end tags?)");
+                 }
+                 return handleStartElementStart(b);
+             }
+diff --git a/src/main/java/com/fasterxml/aalto/async/AsyncByteBufferScanner.java b/src/main/java/com/fasterxml/aalto/async/AsyncByteBufferScanner.java
+index e592819..8332322 100644
+--- a/src/main/java/com/fasterxml/aalto/async/AsyncByteBufferScanner.java
++++ b/src/main/java/com/fasterxml/aalto/async/AsyncByteBufferScanner.java
+@@ -1072,7 +1072,7 @@ public class AsyncByteBufferScanner
+                     return handlePI();
+                 }
+                 if (b == BYTE_SLASH || !isProlog) {
+-                    reportPrologUnexpElement(isProlog, b);
++                    reportPrologUnexpChar(isProlog, decodeCharForError(b), " (unbalanced start/end tags?)");
+                 }
+                 return handleStartElementStart(b);
+             }
+diff --git a/src/main/java/com/fasterxml/aalto/in/ReaderScanner.java b/src/main/java/com/fasterxml/aalto/in/ReaderScanner.java
+index bcd5faa..a9e31cb 100644
+--- a/src/main/java/com/fasterxml/aalto/in/ReaderScanner.java
++++ b/src/main/java/com/fasterxml/aalto/in/ReaderScanner.java
+@@ -231,7 +231,7 @@ public final class ReaderScanner
+          * element (one root-level start tag)
+          */
+         if (c == '/' || !isProlog) {
+-            reportPrologUnexpElement(isProlog, c);
++            reportPrologUnexpChar(isProlog, c, " (unbalanced start/end tags?)");
+         }
+         return handleStartElement(c);
+     }
+diff --git a/src/main/java/com/fasterxml/aalto/in/StreamScanner.java b/src/main/java/com/fasterxml/aalto/in/StreamScanner.java
+index 7a13280..e72d6cd 100644
+--- a/src/main/java/com/fasterxml/aalto/in/StreamScanner.java
++++ b/src/main/java/com/fasterxml/aalto/in/StreamScanner.java
+@@ -177,7 +177,7 @@ public abstract class StreamScanner
+          * element (one root-level start tag)
+          */
+         if (b == BYTE_SLASH || !isProlog) {
+-            reportPrologUnexpElement(isProlog, b);
++            reportPrologUnexpChar(isProlog, decodeCharForError(b), " (unbalanced start/end tags?)");
+         }
+         return handleStartElement(b);
+     }

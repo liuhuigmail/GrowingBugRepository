@@ -1,0 +1,60 @@
+diff --git a/java/src/test/java/com/google/openlocationcode/BenchmarkTest.java b/java/src/test/java/com/google/openlocationcode/BenchmarkTest.java
+index 038bdd6..3e514d3 100644
+--- a/java/src/test/java/com/google/openlocationcode/BenchmarkTest.java
++++ b/java/src/test/java/com/google/openlocationcode/BenchmarkTest.java
+@@ -3,7 +3,6 @@ package com.google.openlocationcode;
+ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Random;
+-
+ import org.junit.Before;
+ import org.junit.Test;
+ import org.junit.runner.RunWith;
+diff --git a/java/src/test/java/com/google/openlocationcode/PrecisionTest.java b/java/src/test/java/com/google/openlocationcode/PrecisionTest.java
+index f029acf..e5f3c4a 100644
+--- a/java/src/test/java/com/google/openlocationcode/PrecisionTest.java
++++ b/java/src/test/java/com/google/openlocationcode/PrecisionTest.java
+@@ -8,19 +8,15 @@ import org.junit.runners.JUnit4;
+ /** Tests size of rectangles defined by open location codes of various size. */
+ @RunWith(JUnit4.class)
+ public class PrecisionTest {
+-
++  
+   private static final double epsilon = 1e-10;
+ 
+   @Test
+   public void testWidthInDegrees() {
+-    Assert.assertEquals(
+-        new OpenLocationCode("67000000+").decode().getLongitudeWidth(), 20., epsilon);
+-    Assert.assertEquals(
+-        new OpenLocationCode("67890000+").decode().getLongitudeWidth(), 1., epsilon);
+-    Assert.assertEquals(
+-        new OpenLocationCode("6789CF00+").decode().getLongitudeWidth(), 0.05, epsilon);
+-    Assert.assertEquals(
+-        new OpenLocationCode("6789CFGH+").decode().getLongitudeWidth(), 0.0025, epsilon);
++    Assert.assertEquals(new OpenLocationCode("67000000+").decode().getLongitudeWidth(), 20., epsilon);
++    Assert.assertEquals(new OpenLocationCode("67890000+").decode().getLongitudeWidth(), 1., epsilon);
++    Assert.assertEquals(new OpenLocationCode("6789CF00+").decode().getLongitudeWidth(), 0.05, epsilon);
++    Assert.assertEquals(new OpenLocationCode("6789CFGH+").decode().getLongitudeWidth(), 0.0025, epsilon);
+     Assert.assertEquals(
+         new OpenLocationCode("6789CFGH+JM").decode().getLongitudeWidth(), 0.000125, epsilon);
+     Assert.assertEquals(
+@@ -29,14 +25,10 @@ public class PrecisionTest {
+ 
+   @Test
+   public void testHeightInDegrees() {
+-    Assert.assertEquals(
+-        new OpenLocationCode("67000000+").decode().getLatitudeHeight(), 20., epsilon);
+-    Assert.assertEquals(
+-        new OpenLocationCode("67890000+").decode().getLatitudeHeight(), 1., epsilon);
+-    Assert.assertEquals(
+-        new OpenLocationCode("6789CF00+").decode().getLatitudeHeight(), 0.05, epsilon);
+-    Assert.assertEquals(
+-        new OpenLocationCode("6789CFGH+").decode().getLatitudeHeight(), 0.0025, epsilon);
++    Assert.assertEquals(new OpenLocationCode("67000000+").decode().getLatitudeHeight(), 20., epsilon);
++    Assert.assertEquals(new OpenLocationCode("67890000+").decode().getLatitudeHeight(), 1., epsilon);
++    Assert.assertEquals(new OpenLocationCode("6789CF00+").decode().getLatitudeHeight(), 0.05, epsilon);
++    Assert.assertEquals(new OpenLocationCode("6789CFGH+").decode().getLatitudeHeight(), 0.0025, epsilon);
+     Assert.assertEquals(
+         new OpenLocationCode("6789CFGH+JM").decode().getLatitudeHeight(), 0.000125, epsilon);
+     Assert.assertEquals(

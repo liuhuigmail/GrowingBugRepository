@@ -1,0 +1,28 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkContents.java b/src/main/java/com/jcabi/github/mock/MkContents.java
+index eb69e40e..e787d98c 100644
+--- a/src/main/java/com/jcabi/github/mock/MkContents.java
++++ b/src/main/java/com/jcabi/github/mock/MkContents.java
+@@ -168,21 +168,9 @@ final class MkContents implements Contents {
+ 
+     @Override
+     @NotNull(message = "Iterable of contents is never NULL")
+-    public Iterable<Content> iterate(final String pattern, final String ref)
++    public Iterable<Content> iterate(final String path, final String ref)
+         throws IOException {
+-        final Collection<XML> nodes = this.storage.xml().nodes(
+-            String.format("%s/content[@ref='%s']", this.xpath(), ref)
+-        );
+-        final Collection<Content> result = new ArrayList<Content>(nodes.size());
+-        for (final XML node : nodes) {
+-            final String path = node.xpath("path/text()").get(0);
+-            if (path.startsWith(pattern)) {
+-                result.add(
+-                    this.mkContent(ref, path)
+-                );
+-            }
+-        }
+-        return result;
++        throw new UnsupportedOperationException("Not yet implemented.");
+     }
+ 
+     @Override

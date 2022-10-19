@@ -1,0 +1,29 @@
+diff --git a/jimfs/src/main/java/com/google/common/jimfs/Options.java b/jimfs/src/main/java/com/google/common/jimfs/Options.java
+index a240eca..eaa33bc 100644
+--- a/jimfs/src/main/java/com/google/common/jimfs/Options.java
++++ b/jimfs/src/main/java/com/google/common/jimfs/Options.java
+@@ -96,7 +96,14 @@ final class Options {
+ 
+     // options contains write or append and may also contain read
+     // it does not contain both read and append
+-    return addWrite(options);
++    if (options.contains(WRITE)) {
++      return ImmutableSet.copyOf(options);
++    } else {
++      return new ImmutableSet.Builder<OpenOption>()
++          .add(WRITE)
++          .addAll(options)
++          .build();
++    }
+   }
+ 
+   /**
+@@ -128,7 +135,7 @@ final class Options {
+       return DEFAULT_WRITE;
+     }
+ 
+-    ImmutableSet<OpenOption> result = addWrite(Arrays.asList(options));
++    ImmutableSet<OpenOption> result = ImmutableSet.copyOf(options);
+     if (result.contains(READ)) {
+       throw new UnsupportedOperationException("'READ' not allowed");
+     }

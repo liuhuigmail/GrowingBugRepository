@@ -1,0 +1,118 @@
+diff --git a/src/test/java/async/TestAsyncViaEventReader.java b/src/test/java/async/TestAsyncViaEventReader.java
+deleted file mode 100644
+index 3be24d5..0000000
+--- a/src/test/java/async/TestAsyncViaEventReader.java
++++ /dev/null
+@@ -1,58 +0,0 @@
+-package async;
+-
+-import javax.xml.stream.XMLEventReader;
+-import javax.xml.stream.events.XMLEvent;
+-
+-import com.fasterxml.aalto.*;
+-import com.fasterxml.aalto.stax.InputFactoryImpl;
+-
+-/**
+- * Set of tests to ensure that it is possible to use Stax {@link XMLEventReader} with
+- * async parser.
+- */
+-public class TestAsyncViaEventReader extends AsyncTestBase
+-{
+-    public void testSimple() throws Exception
+-    {
+-        AsyncXMLInputFactory f = new InputFactoryImpl();
+-        AsyncXMLStreamReader<AsyncByteArrayFeeder> sr = f.createAsyncFor("<root>a</r".getBytes("UTF-8"));
+-//        AsyncReaderWrapperForByteArray reader = new AsyncReaderWrapperForByteArray(sr, 3, "<root>abc</root>";
+-
+-        assertTokenType(START_DOCUMENT, sr.next());
+-        
+-        XMLEventReader er = f.createXMLEventReader(sr);
+-
+-        XMLEvent evt = er.nextEvent();
+-        assertTokenType(START_DOCUMENT, evt.getEventType());
+-
+-        evt = er.nextEvent();
+-        assertTokenType(START_ELEMENT, evt.getEventType());
+-        assertEquals("root", sr.getLocalName());
+-
+-        evt = er.nextEvent();
+-        assertTokenType(CHARACTERS, evt.getEventType());
+-        assertEquals("a", sr.getText());
+-        
+-        // then need more input
+-        evt = er.nextEvent();
+-        assertTokenType(AsyncXMLStreamReader.EVENT_INCOMPLETE, evt.getEventType());
+-
+-        byte[] b = "oot>".getBytes("UTF-8");
+-        sr.getInputFeeder().feedInput(b, 0, b.length);
+-
+-        evt = er.nextEvent();
+-        assertTokenType(END_ELEMENT, evt.getEventType());
+-        assertEquals("root", sr.getLocalName());
+-
+-        evt = er.nextEvent();
+-        assertTokenType(AsyncXMLStreamReader.EVENT_INCOMPLETE, evt.getEventType());
+-
+-        sr.getInputFeeder().endOfInput();
+-        evt = er.nextEvent();
+-        assertTokenType(END_DOCUMENT, evt.getEventType());
+-        
+-        assertFalse(er.hasNext());
+-        
+-        sr.close();
+-    }
+-}
+diff --git a/src/test/java/async/TestCDataParsing.java b/src/test/java/async/TestCDataParsing.java
+index e540b1d..dbecc5a 100644
+--- a/src/test/java/async/TestCDataParsing.java
++++ b/src/test/java/async/TestCDataParsing.java
+@@ -36,7 +36,7 @@ public class TestCDataParsing extends AsyncTestBase
+             _testCDataSkip(999, SPC);
+         }
+     }
+-
++    
+     /*
+     /**********************************************************************
+     /* Secondary test methods
+@@ -44,7 +44,7 @@ public class TestCDataParsing extends AsyncTestBase
+      */
+ 
+     private final static String XML = "<root><![CDATA[cdata\r\n&] ]] stuff]]>...<![CDATA[this\r\r and Unicode: "+UNICODE_SEGMENT+"!]]></root>";
+-
++    
+     private void _testCData(int chunkSize, String SPC) throws Exception
+     {
+         AsyncXMLInputFactory f = new InputFactoryImpl();
+diff --git a/src/test/java/async/TestElementParsing.java b/src/test/java/async/TestElementParsing.java
+index dac5557..194fd89 100644
+--- a/src/test/java/async/TestElementParsing.java
++++ b/src/test/java/async/TestElementParsing.java
+@@ -10,27 +10,6 @@ import com.fasterxml.aalto.util.IllegalCharHandler;
+ 
+ public class TestElementParsing extends AsyncTestBase
+ {
+-    /**
+-     * Trivial test to verify basic operation with a full buffer.
+-     */
+-    public void testTrivial() throws Exception
+-    {
+-        AsyncXMLInputFactory f = new InputFactoryImpl();
+-        AsyncXMLStreamReader<AsyncByteArrayFeeder> sr = f.createAsyncFor("<root>a</root>".getBytes("UTF-8"));
+-        assertTokenType(START_DOCUMENT, sr.next());
+-        assertTokenType(START_ELEMENT, sr.next());
+-        assertEquals("root", sr.getLocalName());
+-        assertTokenType(CHARACTERS, sr.next());
+-        assertEquals("a", sr.getText());
+-        assertTokenType(END_ELEMENT, sr.next());
+-        assertEquals("root", sr.getLocalName());
+-        // no input to see (could still get a PI, comment etc), so
+-        assertTokenType(AsyncXMLStreamReader.EVENT_INCOMPLETE, sr.next());
+-        sr.getInputFeeder().endOfInput();
+-        
+-        assertTokenType(END_DOCUMENT, sr.next());
+-    }
+-    
+     public void testRootElement() throws Exception
+     {
+         // let's try with different chunking, addition (or not) of space

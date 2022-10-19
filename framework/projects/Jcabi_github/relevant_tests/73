@@ -1,0 +1,4 @@
+com.jcabi.github.RtContentsTest
+com.jcabi.github.RtRepoTest
+com.jcabi.github.RtSearchTest
+com.jcabi.github.VisibilityTest

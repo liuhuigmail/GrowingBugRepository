@@ -1,0 +1,3 @@
+com.google.common.jimfs.AbstractJimfsIntegrationTest
+com.google.common.jimfs.JimfsUnixLikeFileSystemTest
+com.google.common.jimfs.PathSubject

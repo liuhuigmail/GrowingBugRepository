@@ -1,2 +1,3 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,93a6c6782a9fdf1365face2461876b8644b2a404,a9b336e3f1ef089951e02e469f164d15ae939315,105,https://github.com/google/jimfs/issues/105
+2,94ef329706347150b7fec23f45dc37fab6b254fa,24a71cc920572bcf3f7cf9bd739843460098dd17,77,https://github.com/google/jimfs/pull/77

@@ -1,3 +1,5 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,864254893b1be108ae0d142f53a53009b1b43698,801a3e4c82719ddbb7e68b40392cd7ac135941c9,217,https://github.com/google/open-location-code/pull/217
 2,852a63221b8522a2b741f521c0e0f1d4ceaa4b5b,fd88e9b9aa53b00aaf365f745712fdb4083b0b66,274,https://github.com/google/open-location-code/pull/274
+3,2f67d024111ac011b33e104cd6c3ba910636d9fd,3a0f20a6074e948ca4c88f180213ba034a972e82,272,https://github.com/google/open-location-code/pull/272
+4,5537559b72d7262387de65b811ae8a2d4d765787,cd581570de7e3eb4984e78657068060e529527d1,347,https://github.com/google/open-location-code/pull/347

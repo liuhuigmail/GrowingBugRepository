@@ -1,0 +1,32 @@
+diff --git a/src/test/java/com/jcabi/github/RtContentsTest.java b/src/test/java/com/jcabi/github/RtContentsTest.java
+index 3b4c0710..30461b1a 100644
+--- a/src/test/java/com/jcabi/github/RtContentsTest.java
++++ b/src/test/java/com/jcabi/github/RtContentsTest.java
+@@ -160,14 +160,12 @@ public final class RtContentsTest {
+         );
+         try {
+             final Content.Smart smart = new Content.Smart(
+-                contents.get(path, "branch1")
++                contents.get(path, "master")
+             );
+             final MkQuery query = container.take();
+             MatcherAssert.assertThat(
+                 query.uri().toString(),
+-                Matchers.endsWith(
+-                    "/repos/test/contents/contents/test/file?ref=branch1"
+-                )
++                Matchers.endsWith("/repos/test/contents/contents/test/file")
+             );
+             MatcherAssert.assertThat(
+                 smart.path(),
+@@ -183,9 +181,7 @@ public final class RtContentsTest {
+             );
+             MatcherAssert.assertThat(
+                 container.take().uri().toString(),
+-                Matchers.endsWith(
+-                    "/repos/test/contents/contents/test/file?ref=branch1"
+-                )
++                Matchers.endsWith("/repos/test/contents/contents/test/file")
+             );
+         } finally {
+             container.stop();

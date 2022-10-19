@@ -1,0 +1,8 @@
+com.google.openlocationcode.BenchmarkTest
+com.google.openlocationcode.DecodingTest
+com.google.openlocationcode.EncodingTest
+com.google.openlocationcode.PrecisionTest
+com.google.openlocationcode.RecoverTest
+com.google.openlocationcode.ShorteningTest
+com.google.openlocationcode.UtilsTest
+com.google.openlocationcode.ValidityTest
