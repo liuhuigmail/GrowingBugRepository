@@ -1,0 +1,5 @@
+org.apache.shiro.web.env.EnvironmentLoader
+org.apache.shiro.web.env.MutableWebEnvironment
+org.apache.shiro.web.env.WebEnvironment
+org.apache.shiro.web.filter.mgt.FilterChainResolver
+org.apache.shiro.web.mgt.WebSecurityManager

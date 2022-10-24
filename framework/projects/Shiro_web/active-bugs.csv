@@ -2,3 +2,7 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,ed8cf1702173302e0f64348ff5cce2141f8c5955,786f608fee8426362e8c20ce789e68c74761dbc0,SHIRO-190,https://issues.apache.org/jira/browse/SHIRO-190
 3,9a4de3bba6fa353c3b99f4f1eb127346cfd57e7c,96aa7f13532e563ac7e130f93709195cb6e85468,SHIRO-421,https://issues.apache.org/jira/browse/SHIRO-421
 7,9dfed7d2e361faf91ee8ade786e20cf072a38899,f782eb1084df73eff3e2ac0f9780cb4a4f429041,SHIRO-637,https://issues.apache.org/jira/browse/SHIRO-637
+8,7abcba5d18d31a8eec08f76e6f221d64d74aaf66,fa34a92fa77943b67e29b9f1c5f30b17abc8915f,SHIRO-350,https://issues.apache.org/jira/browse/SHIRO-350
+9,c4ded8485d4907c98c9aa3a18e414ccb40a94ef7,0c48445a23303d1d8f830c40867debbe7fe0856a,SHIRO-374,https://issues.apache.org/jira/browse/SHIRO-374
+10,ea7eb0029660ad437c0c820e3d8f35a49ad81c1e,09ebb5ca7f81525cb7da67f2fea29648dc9e3fbd,SHIRO-608,https://issues.apache.org/jira/browse/SHIRO-608
+11,79e596d61e54658696e1cf8773e7ffcb03a91b2c,958a8dee1cb0bbb45397c02b3f944e81ceaa573c,unknown,unknown

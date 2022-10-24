@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,d1ce2f718b65582cecde0deb1707feefedfbb40c,dc26c843ce2b1de29dd0404ecbe90c6f62e63fff,55,https://github.com/google/gwtmockito/issues/55
+2,6dfd20639620dc1367d3f318f79ef65d563f4d1f,842d1e8dda23df9d895135dc16226232aa0be2a9,66,https://github.com/google/gwtmockito/pull/66

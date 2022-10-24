@@ -1,0 +1,3 @@
+com.google.gwtmockito.GwtMockitoTestRunner
+gwtmockito.com.google.gwtmockito.impl.ReturnsCustomMocks
+gwtmockito.com.google.gwtmockito.impl.StubGenerator

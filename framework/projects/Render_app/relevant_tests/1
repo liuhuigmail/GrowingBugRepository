@@ -1,0 +1,2 @@
+org.janelia.alignment.mipmap.BoxMipmapGeneratorTest
+org.janelia.alignment.util.LabelImageProcessorCacheTest

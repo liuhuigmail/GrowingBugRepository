@@ -1,0 +1,2 @@
+org.apache.shiro.web.mgt.DefaultWebSecurityManager
+web.org.apache.shiro.web.mgt.DefaultWebSessionStorageEvaluator

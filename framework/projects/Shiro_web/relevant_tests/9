@@ -1,0 +1,2 @@
+org.apache.shiro.web.mgt.DefaultWebSecurityManagerTest
+org.apache.shiro.web.session.mgt.DefaultWebSessionManagerTest

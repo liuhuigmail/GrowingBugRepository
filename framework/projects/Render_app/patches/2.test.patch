@@ -1,0 +1,137 @@
+diff --git a/render-app/src/test/java/org/janelia/alignment/spec/stack/HierarchicalStackTest.java b/render-app/src/test/java/org/janelia/alignment/spec/stack/HierarchicalStackTest.java
+index 7dde23ed..2ae52878 100644
+--- a/render-app/src/test/java/org/janelia/alignment/spec/stack/HierarchicalStackTest.java
++++ b/render-app/src/test/java/org/janelia/alignment/spec/stack/HierarchicalStackTest.java
+@@ -95,39 +95,22 @@ public class HierarchicalStackTest {
+     @Test
+     public void testGetFullScaleRelativeModel() throws Exception {
+ 
+-        final int tier = 1;
+-        final Integer tierRow = 1;
+-        final Integer tierColumn = 0;
+-        final Integer totalTierRowCount = 3;
+-        final Integer totalTierColumnCount = 3;
+-        final Double scale = 0.274457;
+-        final Bounds fullScaleBounds = new Bounds(36801.0, 42182.0, 2213.0, 40532.0, 45836.0, 2215.0);
+-
+-        final StackId roughTilesStackId = new StackId("testOwner", "tilesProject", "roughTiles");
+-
+-        final HierarchicalStack tier1Stack =
+-                new HierarchicalStack(roughTilesStackId,
+-                                      tier,
+-                                      tierRow,
+-                                      tierColumn,
+-                                      totalTierRowCount,
+-                                      totalTierColumnCount,
+-                                      scale,
+-                                      fullScaleBounds);
++        // http://renderer-dev:8080/render-ws/v1/owner/flyTEM/project/trautmane_fafb_fold_rough_tiles_01_AGGREGATED_CONSENSUS_SETS_tier_1/stack/0003x0003_000002/hierarchicalData
++        final double splitStackScale = 0.27445725006700616;
++        final Bounds fullScaleBounds = new Bounds(44263.0, 38528.0, 2213.0, 47994.0, 42182.0, 2215.0);
+ 
+-        final AffineModel2D model = getModel(0.995586140332, -0.003078890727,
+-                                             0.001019805737, 0.997255702031,
+-                                             10101.0, 11578.0);
++        // http://renderer-dev:8080/render-ws/v1/owner/flyTEM/project/trautmane_fafb_fold_rough_tiles_01_AGGREGATED_CONSENSUS_SETS_tier_1/stack/0003x0003_000002_align/z/2213/resolvedTiles
++        final AffineModel2D model = getModel(0.993066409663, 0.014806698843,
++                                             -0.011630185859, 0.999452281992,
++                                             12145.447082412213, 10614.308863353232);
+ 
+         final double[] expectedArray = new double[6];
+         model.toArray(expectedArray);
+-        expectedArray[4] = (expectedArray[4] / scale) - fullScaleBounds.getMinX();
+-        expectedArray[5] = (expectedArray[5] / scale) - fullScaleBounds.getMinY();
+-
+-        final Bounds alignedStackBounds = new Bounds(10097.0, 11570.0, 2213.0, 11127.0, 12583.0, 2215.0);
++        expectedArray[4] = 744.5899587683962;
++        expectedArray[5] = -488.4716178320232;
+ 
+         final AffineModel2D relativeModel = HierarchicalStack.getFullScaleRelativeModel(model,
+-                                                                                        scale,
++                                                                                        splitStackScale,
+                                                                                         fullScaleBounds);
+         final double[] array = new double[6];
+         relativeModel.toArray(array);
+diff --git a/render-app/src/test/java/org/janelia/alignment/transform/AffineWarpFieldTransformTest.java b/render-app/src/test/java/org/janelia/alignment/transform/AffineWarpFieldTransformTest.java
+index b983d006..6ec19973 100644
+--- a/render-app/src/test/java/org/janelia/alignment/transform/AffineWarpFieldTransformTest.java
++++ b/render-app/src/test/java/org/janelia/alignment/transform/AffineWarpFieldTransformTest.java
+@@ -19,10 +19,6 @@ package org.janelia.alignment.transform;
+ import java.io.File;
+ import java.util.Collections;
+ 
+-import mpicbg.models.CoordinateTransform;
+-import mpicbg.models.CoordinateTransformList;
+-import mpicbg.trakem2.transform.TranslationModel2D;
+-
+ import org.janelia.alignment.ArgbRenderer;
+ import org.janelia.alignment.spec.LeafTransformSpec;
+ import org.janelia.alignment.spec.TileSpec;
+@@ -92,52 +88,27 @@ public class AffineWarpFieldTransformTest {
+     }
+ 
+     @Test
+-    public void testApply() throws Exception {
+-        testApplyForOffset(0, 0);
+-        testApplyForOffset(500, 0);
+-        testApplyForOffset(0, 500);
+-        testApplyForOffset(500, 500);
+-    }
++    public void testApplyWithOffset() throws Exception {
+ 
+-    private void testApplyForOffset(final double x,
+-                                    final double y) throws Exception {
++        // after warped alignment, these coordinates should map to the same location
++        // ( see http://renderer-dev:8080/render-ws/v1/owner/flyTEM/project/trautmane_fafb_fold_rough_tiles_01_AGGREGATED_CONSENSUS_SETS_tier_1/stack/0003x0003_000002 )
++        final double[] rough2213 = { 46214.0, 39961.0 };
++        final double[] rough2214 = { 46068.0, 40484.0 };
+ 
+-        final TranslationModel2D offsetModel = new TranslationModel2D();
+-        offsetModel.init(x + " " + y);
++        final AffineWarpFieldTransform warpTransform2213 = new AffineWarpFieldTransform();
++        warpTransform2213.init("36801.0 38528.0 11193.0 10962.0 3 3 net.imglib2.interpolation.randomaccess.NLinearInterpolatorFactory none 0.9955773305800001 0.991077036436 0.993045280237 0.995354187201 1.000440714444 0.993790147206 0.996826382514 0.995984897583 0.993719307666 0.01409965501 0.016043896631 0.014746860293 -0.002873982878 -0.00116022483 0.013510382867 -0.001192439754 5.859217E-6 0.003145943468 -0.011013582015 -0.012338129925 -0.011908982997 9.48924979E-4 0.001618271534 -0.010230964811 -0.003459918858 -0.001934553341 -0.003394926989 1.005886392262 0.997166313186 0.999118607908 0.997128656592 0.99959916781 0.9938648030169999 0.995198137272 0.99522146313 0.996689024213 595.9319718807892 840.5108973976676 756.6997755585908 134.61896849736513 -90.68584564211778 653.6872400376087 276.2241293772531 252.27854943129933 442.0244489518518 -712.0535594469839 -444.47068907479843 -472.35482359516755 232.63408066138072 54.873101921861235 -171.56798092255485 266.64185113671556 213.42933412336424 9.520116822772252");
++        System.out.println("\nwarpTransform2213: " + warpTransform2213.toDebugJson());
+ 
+-        final AffineWarpField affineWarpField =
+-                new AffineWarpField(1000, 1000, 2, 2, AffineWarpField.getDefaultInterpolatorFactory());
++        final AffineWarpFieldTransform warpTransform2214 = new AffineWarpFieldTransform();
++        warpTransform2214.init("36801.0 38528.0 11193.0 10962.0 3 3 net.imglib2.interpolation.randomaccess.NLinearInterpolatorFactory none 1.005916360785 0.999726895974 1.0032903825 0.999011164133 0.995630647938 0.999171576137 0.993627298016 0.992966230905 0.995784242226 -0.033505270333 -0.025013174227 -0.023106681427 0.010199359671 0.007466438547 -0.018462225246 0.004145377744 0.002953109544 -0.004881533511 0.02749785704 0.022379883781 0.020515981125000003 -0.004649267250000001 -0.007437328707999999 0.023141381705999997 0.001742504742 0.001594180262 0.003233441931 0.987061846555 0.9888275814660001 0.987195727255 0.9940432578330001 0.99379727775 0.987054589311 0.9988320354900001 0.990503841195 0.988658379966 -1285.8920960785908 -818.2145529960326 -876.2297317394696 243.17938852629595 517.9499065289638 -800.95992288657 161.5480024563949 209.21105711330165 30.77146844597155 1683.4249266760016 1254.852962180652 1233.1454154581006 -149.63373950312962 -24.064125550125027 1046.9034649959576 -117.76655505561939 323.5501992759964 755.2238918685835");
++        System.out.println("\nwarpTransform2214: " + warpTransform2214.toDebugJson());
+ 
+-        affineWarpField.set(0, 0, new double[] {1, 0, 0, 1,  0,  0});
+-        affineWarpField.set(0, 1, new double[] {1, 0, 0, 1,  0,  0});
+-        affineWarpField.set(1, 0, new double[] {1, 0, 0, 1,  0,  0});
+-        affineWarpField.set(1, 1, new double[] {1, 0, 0, 1, 20, 20});
++        final double[] warp2213 = warpTransform2213.apply(rough2213);
++        final double[] warp2214 = warpTransform2214.apply(rough2214);
+ 
+-        final AffineWarpFieldTransform warpFieldTransform =
+-                new AffineWarpFieldTransform(AffineWarpFieldTransform.EMPTY_OFFSETS,
+-                                             affineWarpField);
+-
+-        System.out.println(warpFieldTransform.toDataString());
+-
+-        final CoordinateTransformList<CoordinateTransform> ctl = new CoordinateTransformList<>();
+-        ctl.add(offsetModel);
+-        ctl.add(warpFieldTransform);
+-
+-        final double[][] testLocations = {
+-                { 0.0, 0.0 },
+-                { 250.0, 250.0 },
+-                { 500.0, 500.0 }
+-        };
+-
+-        for (final double[] location : testLocations) {
+-            final double[] result = ctl.apply(location);
+-            final String msg =
+-                    String.format("offset: (%3.0f, %3.0f), location: (%6.1f, %6.1f), result: (%6.1f, %6.1f)",
+-                                  x, y, location[0], location[1], result[0], result[1]);
+-            System.out.println(msg);
+-        }
++        Assert.assertEquals("warped X values are not aligned", warp2213[0], warp2214[0], 0.5);
++        Assert.assertEquals("warped Y values are not aligned", warp2213[1], warp2214[1], 0.5);
+ 
+-        System.out.println();
+     }
+ 
+     public static void main(final String[] args)

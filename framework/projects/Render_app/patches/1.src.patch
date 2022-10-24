@@ -1,0 +1,43 @@
+diff --git a/render-app/src/main/java/org/janelia/alignment/util/LabelImageProcessorCache.java b/render-app/src/main/java/org/janelia/alignment/util/LabelImageProcessorCache.java
+index 69773934..b7e5017e 100644
+--- a/render-app/src/main/java/org/janelia/alignment/util/LabelImageProcessorCache.java
++++ b/render-app/src/main/java/org/janelia/alignment/util/LabelImageProcessorCache.java
+@@ -9,10 +9,12 @@ import java.awt.image.BufferedImage;
+ import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.Collections;
++import java.util.Comparator;
+ import java.util.HashMap;
+ import java.util.List;
+ import java.util.Map;
+ import java.util.Random;
++import java.util.concurrent.atomic.AtomicInteger;
+ 
+ import mpicbg.trakem2.util.Downsampler;
+ 
+@@ -185,16 +187,16 @@ public class LabelImageProcessorCache extends ImageProcessorCache {
+                     colorList.size() + " distinct labels");
+         }
+ 
+-        int tileIndex = 0;
+-        ChannelSpec firstChannelSpec;
+-        String imageUrl;
+-        for (final TileSpec tileSpec : tileSpecs) {
+-            firstChannelSpec = tileSpec.getAllChannels().get(0);
+-            imageUrl = firstChannelSpec.getFloorMipmapEntry(0).getValue().getImageUrl();
++        final AtomicInteger tileIndex = new AtomicInteger(0);
++        tileSpecs.stream()
++                .sorted(Comparator.comparing(TileSpec::getTileId))
++                .forEach(tileSpec -> {
++                    final ChannelSpec firstChannelSpec = tileSpec.getAllChannels().get(0);
++                    final String imageUrl = firstChannelSpec.getFloorMipmapEntry(0).getValue().getImageUrl();
++                    final int colorIndex = tileIndex.getAndIncrement();
+             urlToTileSpec.put(imageUrl, tileSpec);
+-            urlToColor.put(imageUrl, colorList.get(tileIndex));
+-            tileIndex++;
+-        }
++                    urlToColor.put(imageUrl, colorList.get(colorIndex));
++                    });
+ 
+     }
+ 

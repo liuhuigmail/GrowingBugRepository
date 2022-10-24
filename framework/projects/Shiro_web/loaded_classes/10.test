@@ -1,0 +1,2 @@
+org.apache.shiro.web.env.EnvironmentLoaderServiceTest
+org.apache.shiro.web.env.WebEnvironmentStub

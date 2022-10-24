@@ -1,0 +1,44 @@
+diff --git a/gwtmockito/src/test/java/com/google/gwtmockito/GwtMockitoTest.java b/gwtmockito/src/test/java/com/google/gwtmockito/GwtMockitoTest.java
+index 66b3d9e..b55dea3 100644
+--- a/gwtmockito/src/test/java/com/google/gwtmockito/GwtMockitoTest.java
++++ b/gwtmockito/src/test/java/com/google/gwtmockito/GwtMockitoTest.java
+@@ -61,7 +61,6 @@ import com.google.gwt.user.client.ui.Anchor;
+ import com.google.gwt.user.client.ui.Button;
+ import com.google.gwt.user.client.ui.CheckBox;
+ import com.google.gwt.user.client.ui.Composite;
+-import com.google.gwt.user.client.ui.Grid;
+ import com.google.gwt.user.client.ui.HTML;
+ import com.google.gwt.user.client.ui.Image;
+ import com.google.gwt.user.client.ui.InlineHTML;
+@@ -72,7 +71,6 @@ import com.google.gwt.user.client.ui.RadioButton;
+ import com.google.gwt.user.client.ui.SimpleLayoutPanel;
+ import com.google.gwt.user.client.ui.TextBox;
+ import com.google.gwt.user.client.ui.Widget;
+-import com.google.gwt.user.datepicker.client.DatePicker;
+ import com.google.gwtmockito.fakes.FakeProvider;
+ 
+ import org.hamcrest.BaseMatcher;
+@@ -566,23 +564,12 @@ public class GwtMockitoTest {
+     assertNotNull(new InlineHTML());
+   }
+ 
+-  @Test
+-  public void shouldBeAbleToInstantiateDatePicker() {
+-    assertNotNull(new DatePicker());
+-  }
+-
+   @Test
+   public void shouldBeAbleToSetHtml() {
+     new HTML().setHTML("html");
+     new HTML().setHTML(SafeHtmlUtils.fromSafeConstant("html"));
+   }
+ 
+-  @Test
+-  public void shouldBeAbleToSetTextInGrids() {
+-    Grid grid = new Grid();
+-    grid.setText(0, 0, "foo");
+-  }
+-
+   @Test
+   public void shouldReturnRealElementTagNames() {
+     assertEquals("div", Document.get().createDivElement().getTagName());

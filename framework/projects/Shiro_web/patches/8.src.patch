@@ -1,0 +1,59 @@
+diff --git a/web/src/main/java/org/apache/shiro/web/mgt/DefaultWebSecurityManager.java b/web/src/main/java/org/apache/shiro/web/mgt/DefaultWebSecurityManager.java
+index 77606b51..29c3a6e6 100644
+--- a/web/src/main/java/org/apache/shiro/web/mgt/DefaultWebSecurityManager.java
++++ b/web/src/main/java/org/apache/shiro/web/mgt/DefaultWebSecurityManager.java
+@@ -95,30 +95,11 @@ public class DefaultWebSecurityManager extends DefaultSecurityManager implements
+ 
+     @Override
+     //since 1.2.1 for fixing SHIRO-350
+-    public void setSubjectDAO(SubjectDAO subjectDAO) {
+-        super.setSubjectDAO(subjectDAO);
+-        applySessionManagerToSessionStorageEvaluatorIfPossible();
+-    }
+ 
+     //since 1.2.1 for fixing SHIRO-350
+-    @Override
+-    protected void afterSessionManagerSet() {
+-        super.afterSessionManagerSet();
+-        applySessionManagerToSessionStorageEvaluatorIfPossible();
+-    }
+ 
+     //since 1.2.1 for fixing SHIRO-350:
+-    private void applySessionManagerToSessionStorageEvaluatorIfPossible() {
+-        SubjectDAO subjectDAO = getSubjectDAO();
+-        if (subjectDAO instanceof DefaultSubjectDAO) {
+-            SessionStorageEvaluator evaluator = ((DefaultSubjectDAO)subjectDAO).getSessionStorageEvaluator();
+-            if (evaluator instanceof DefaultWebSessionStorageEvaluator) {
+-                ((DefaultWebSessionStorageEvaluator)evaluator).setSessionManager(getSessionManager());
+-            }
+-        }
+-    }
+ 
+-    @Override
+     protected SubjectContext copy(SubjectContext subjectContext) {
+         if (subjectContext instanceof WebSubjectContext) {
+             return new DefaultWebSubjectContext((WebSubjectContext) subjectContext);
+diff --git a/web/src/main/java/org/apache/shiro/web/mgt/DefaultWebSessionStorageEvaluator.java b/web/src/main/java/org/apache/shiro/web/mgt/DefaultWebSessionStorageEvaluator.java
+index 33685f92..dd6a2e67 100644
+--- a/web/src/main/java/org/apache/shiro/web/mgt/DefaultWebSessionStorageEvaluator.java
++++ b/web/src/main/java/org/apache/shiro/web/mgt/DefaultWebSessionStorageEvaluator.java
+@@ -84,12 +84,9 @@ public class DefaultWebSessionStorageEvaluator extends DefaultSessionStorageEval
+ 
+         if (!isSessionStorageEnabled()) {
+             //honor global setting:
+-            return false;
+-        }
+ 
+         //SHIRO-350: non-web subject instances can't be saved to web-only session managers:
+         //since 1.2.1:
+-        if (!(subject instanceof WebSubject) && (this.sessionManager != null && !(this.sessionManager instanceof NativeSessionManager))) {
+             return false;
+         }
+ 
+@@ -97,4 +94,4 @@ public class DefaultWebSessionStorageEvaluator extends DefaultSessionStorageEval
+     }
+ 
+ 
+-}
+\ No newline at end of file
++}

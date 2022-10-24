@@ -1,0 +1,132 @@
+diff --git a/render-app/src/main/java/org/janelia/alignment/spec/stack/HierarchicalStack.java b/render-app/src/main/java/org/janelia/alignment/spec/stack/HierarchicalStack.java
+index 95b802b4..696ec659 100644
+--- a/render-app/src/main/java/org/janelia/alignment/spec/stack/HierarchicalStack.java
++++ b/render-app/src/main/java/org/janelia/alignment/spec/stack/HierarchicalStack.java
+@@ -11,6 +11,7 @@ import java.util.List;
+ import java.util.Set;
+ 
+ import mpicbg.models.AffineModel2D;
++import mpicbg.models.TranslationModel2D;
+ 
+ import org.janelia.alignment.json.JsonUtils;
+ import org.janelia.alignment.match.CanvasId;
+@@ -373,23 +374,26 @@ public class HierarchicalStack implements Serializable {
+      */
+     @JsonIgnore
+     public static AffineModel2D getFullScaleRelativeModel(final AffineModel2D alignedLayerTransformModel,
+-                                                          final double splitStackScale,
+-                                                          final Bounds splitStackFullScaleBounds) {
++                                                          final double alignedStackScale,
++                                                          final Bounds fullScaleStackBounds) {
+ 
+-        final AffineTransform affine = new AffineTransform();
+-        affine.scale(1 / splitStackScale, 1 / splitStackScale);
++        final double invertedScale = 1.0 / alignedStackScale;
++        final AffineModel2D invertedScaleModel = new AffineModel2D();
++        invertedScaleModel.set(invertedScale, 0.0, 0.0, invertedScale, 0.0, 0.0);
+ 
+-        final double scaledSplitStackMinX = splitStackFullScaleBounds.getMinX() * splitStackScale;
+-        final double scaledSplitStackMinY = splitStackFullScaleBounds.getMinY() * splitStackScale;
++        final AffineModel2D scaleModel = new AffineModel2D();
++        scaleModel.set(alignedStackScale, 0.0, 0.0, alignedStackScale, 0.0, 0.0);
+ 
+-        affine.translate(-scaledSplitStackMinX, -scaledSplitStackMinY);
++        final TranslationModel2D offsetModel = new TranslationModel2D();
++        offsetModel.set(-fullScaleStackBounds.getMinX(), -fullScaleStackBounds.getMinY());
+ 
+-        affine.concatenate(alignedLayerTransformModel.createAffine());
+-        affine.scale(splitStackScale, splitStackScale);
++        final AffineModel2D fullScaleRelativeModel = new AffineModel2D();
++        fullScaleRelativeModel.concatenate(invertedScaleModel);
++        fullScaleRelativeModel.concatenate(alignedLayerTransformModel);
++        fullScaleRelativeModel.concatenate(scaleModel);
++        fullScaleRelativeModel.concatenate(offsetModel);
+ 
+-        final AffineModel2D model = new AffineModel2D();
+-        model.set(affine);
+-        return model;
++        return fullScaleRelativeModel;
+     }
+ 
+     /**
+diff --git a/render-app/src/main/java/org/janelia/alignment/transform/AffineWarpField.java b/render-app/src/main/java/org/janelia/alignment/transform/AffineWarpField.java
+index c256c554..bc14bd21 100644
+--- a/render-app/src/main/java/org/janelia/alignment/transform/AffineWarpField.java
++++ b/render-app/src/main/java/org/janelia/alignment/transform/AffineWarpField.java
+@@ -300,6 +300,35 @@ public class AffineWarpField
+         return new AffineWarpField(width, height, hiResRowCount, hiResColumnCount, hiResValues, interpolatorFactory);
+     }
+ 
++    /**
++     * @return a nicely formatted human-readable JSON string with the affine data for this warp field.
++     */
++    public String toDebugJson() {
++        final StringBuilder sb = new StringBuilder();
++        sb.append("  [\n");
++        final int affineCount = rowCount * columnCount;
++        for (int row = 0; row < rowCount; row++) {
++            for (int column = 0; column < columnCount; column++) {
++                final int startIndex = (row * columnCount) + column;
++                final double cellValues[] = new double[VALUES_PER_AFFINE];
++                int valuesIndex;
++                for (int i = 0; i < VALUES_PER_AFFINE; i++) {
++                    valuesIndex = startIndex + (i * affineCount);
++                    cellValues[i] = values[valuesIndex];
++                }
++                sb.append(String.format("    { \"index\": %6d, \"row\": %3d, \"column\": %3d, \"affine\": \"%16.12f %16.12f %16.12f %16.12f %20.12f %20.12f\" },\n",
++                                        startIndex, row, column,
++                                        cellValues[0], cellValues[1], cellValues[2],
++                                        cellValues[3], cellValues[4], cellValues[5]));
++            }
++            sb.append("\n");
++        }
++        if (sb.length() > 4) {
++            sb.setLength(sb.length() - 3);
++        }
++        sb.append("\n  ]");
++        return sb.toString();
++    }
+     /**
+      * @return the default interpolator factory for warp field instances.
+      */
+diff --git a/render-app/src/main/java/org/janelia/alignment/transform/AffineWarpFieldTransform.java b/render-app/src/main/java/org/janelia/alignment/transform/AffineWarpFieldTransform.java
+index bb6f6d40..df54cf26 100644
+--- a/render-app/src/main/java/org/janelia/alignment/transform/AffineWarpFieldTransform.java
++++ b/render-app/src/main/java/org/janelia/alignment/transform/AffineWarpFieldTransform.java
+@@ -63,10 +63,9 @@ public class AffineWarpFieldTransform
+     public void applyInPlace(final double[] location) {
+ 
+         // subtract offsets before applying warp field
+-        location[0] = location[0] - locationOffsets[0];
+-        location[1] = location[1] - locationOffsets[1];
++        final double[] warpFieldLocation = { location[0] - locationOffsets[0], location[1] - locationOffsets[1] };
+ 
+-        warpFieldAccessor.setPosition(location);
++        warpFieldAccessor.setPosition(warpFieldLocation);
+         final RealComposite<DoubleType> coefficients = warpFieldAccessor.get();
+ 
+         final double m00 = coefficients.get(0).getRealDouble();
+@@ -82,8 +81,6 @@ public class AffineWarpFieldTransform
+         location[1] = l0 * m10 + location[1] * m11 + m12;
+ 
+         // restore (add) offsets back once warp field has been applied
+-        location[0] = location[0] + locationOffsets[0];
+-        location[1] = location[1] + locationOffsets[1];
+     }
+ 
+     /**
+@@ -180,6 +177,14 @@ public class AffineWarpFieldTransform
+         return new AffineWarpFieldTransform(locationOffsets.clone(),
+                                             affineWarpField.getCopy());
+     }
++    public String toDebugJson() {
++        return
++                "{\n" +
++                "  \"locationOffsets\": { \"x\": " + locationOffsets[0] + ", \"y\": " + locationOffsets[1] + " },\n" +
++                "  \"warpField\": \n" +
++                affineWarpField.toDebugJson() + "\n" +
++                "}";
++    }
+ 
+     private void setWarpFieldAccessor() throws IllegalArgumentException {
+         // set accessor and validate interpolator factory instance

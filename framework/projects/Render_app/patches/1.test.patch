@@ -1,0 +1,74 @@
+diff --git a/render-app/src/test/java/org/janelia/alignment/util/LabelImageProcessorCacheTest.java b/render-app/src/test/java/org/janelia/alignment/util/LabelImageProcessorCacheTest.java
+index 8df5b520..7d910d9c 100644
+--- a/render-app/src/test/java/org/janelia/alignment/util/LabelImageProcessorCacheTest.java
++++ b/render-app/src/test/java/org/janelia/alignment/util/LabelImageProcessorCacheTest.java
+@@ -1,7 +1,6 @@
+ package org.janelia.alignment.util;
+ 
+ import java.awt.Color;
+-import java.util.ArrayList;
+ import java.util.HashMap;
+ import java.util.List;
+ import java.util.Map;
+@@ -20,7 +19,7 @@ import org.junit.Test;
+ public class LabelImageProcessorCacheTest {
+ 
+     @Test
+-    public void testBuildColorList() throws Exception {
++    public void testBuildColorList() {
+ 
+         // ensure distinct set of 16-bit colors are generated
+         final List<Color> colorList = LabelImageProcessorCache.buildColorList();
+@@ -47,34 +46,44 @@ public class LabelImageProcessorCacheTest {
+     }
+ 
+     @Test
+-    public void testColorMappingConsistency() throws Exception {
++    public void testColorMappingConsistency() {
+ 
+         final int tileCount = 8000;
+-        final List<TileSpec> tileSpecs = new ArrayList<>(tileCount);
++        final Map<String, TileSpec> tileSpecsA = new HashMap<>(tileCount * 2);
++        final Map<String, TileSpec> tileSpecsB = new HashMap<>(tileCount * 2);
+         TileSpec tileSpec;
+         String imageUrl;
+         for (int i = 0; i < tileCount; i++) {
+             tileSpec = new TileSpec();
++            tileSpec.setTileId(getTileId(i));
+             imageUrl = "file://tile_" + i;
+             final ChannelSpec channelSpec = new ChannelSpec();
+             channelSpec.putMipmap(0, new ImageAndMask(imageUrl, null));
+             tileSpec.addChannel(channelSpec);
+             tileSpec.setWidth((double) i);
+             tileSpec.setHeight((double) i + 1);
+-            tileSpecs.add(tileSpec);
++            tileSpecsA.put(tileSpec.getTileId(), tileSpec);
+         }
+ 
+-        final LabelImageProcessorCache cache1 = new LabelImageProcessorCache(100, false, false, tileSpecs);
++        for (int i = tileCount - 1; i >= 0; i--) {
++            tileSpec = tileSpecsA.get(getTileId(i));
++            tileSpecsB.put(tileSpec.getTileId(), tileSpec);
++        }
++
++        final LabelImageProcessorCache cache1 = new LabelImageProcessorCache(100, false, false, tileSpecsA.values());
+ 
+-        final LabelImageProcessorCache cache2 = new LabelImageProcessorCache(100, false, false, tileSpecs);
++        final LabelImageProcessorCache cache2 = new LabelImageProcessorCache(100, false, false, tileSpecsB.values());
+ 
+-        for (int i = tileSpecs.size(); i > 0; i--) {
+-            tileSpec = tileSpecs.get(i-1);
++        for (int i = tileCount - 1; i >= 0; i--) {
++            tileSpec = tileSpecsA.get(getTileId(i));
+             imageUrl = tileSpec.getFirstMipmapEntry().getValue().getImageUrl();
+-            Assert.assertEquals("different label color mapped for second cache instance",
++            Assert.assertEquals("different label color mapped for second cache instance of " + getTileId(i),
+                                 cache1.getColorForUrl(imageUrl), cache2.getColorForUrl(imageUrl));
+         }
+ 
+     }
+ 
++    private String getTileId(final int forIndex) {
++        return "tile_" + forIndex;
++    }
+ }

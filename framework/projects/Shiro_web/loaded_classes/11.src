@@ -1,0 +1,7 @@
+org.apache.shiro.web.servlet.Cookie
+org.apache.shiro.web.servlet.ShiroHttpServletRequest
+org.apache.shiro.web.servlet.SimpleCookie
+org.apache.shiro.web.session.mgt.DefaultWebSessionManager
+org.apache.shiro.web.session.mgt.WebSessionContext
+org.apache.shiro.web.session.mgt.WebSessionManager
+org.apache.shiro.web.util.RequestPairSource

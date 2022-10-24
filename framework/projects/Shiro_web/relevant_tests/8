@@ -1,0 +1,2 @@
+org.apache.shiro.web.config.WebIniSecurityManagerFactoryTest
+org.apache.shiro.web.mgt.DefaultWebSecurityManagerTest

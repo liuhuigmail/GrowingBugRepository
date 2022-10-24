@@ -1,0 +1,12 @@
+diff --git a/gwtmockito/src/main/java/com/google/gwtmockito/GwtMockitoTestRunner.java b/gwtmockito/src/main/java/com/google/gwtmockito/GwtMockitoTestRunner.java
+index 4a6023b..86d535e 100644
+--- a/gwtmockito/src/main/java/com/google/gwtmockito/GwtMockitoTestRunner.java
++++ b/gwtmockito/src/main/java/com/google/gwtmockito/GwtMockitoTestRunner.java
+@@ -196,7 +196,6 @@ public class GwtMockitoTestRunner extends BlockJUnit4ClassRunner {
+     classes.add(Widget.class);
+ 
+     classes.add(DataGrid.class);
+-    classes.add(HTMLTable.class);
+     classes.add(Image.class);
+ 
+     classes.add(AbsolutePanel.class);

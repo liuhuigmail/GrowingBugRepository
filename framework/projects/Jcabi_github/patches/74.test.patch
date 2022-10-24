@@ -1,0 +1,25 @@
+diff --git a/src/test/java/com/jcabi/github/mock/MkReposTest.java b/src/test/java/com/jcabi/github/mock/MkReposTest.java
+index a3f38973..97549014 100644
+--- a/src/test/java/com/jcabi/github/mock/MkReposTest.java
++++ b/src/test/java/com/jcabi/github/mock/MkReposTest.java
+@@ -110,20 +110,4 @@ public final class MkReposTest {
+         this.thrown.expectMessage("repository jeff/remove-me doesn't exist");
+         repos.get(repo.coordinates());
+     }
+-
+-    /**
+-     * MkRepos can iterate repos.
+-     * @throws Exception if there is any error
+-     */
+-    @Test
+-    public void iterateRepos() throws Exception {
+-        final String since = "1";
+-        final Repos repos = new MkRepos(new MkStorage.InFile(), "jeff");
+-        repos.create(Json.createObjectBuilder().add("name", since).build());
+-        repos.create(Json.createObjectBuilder().add("name", "2").build());
+-        MatcherAssert.assertThat(
+-            repos.iterate(since),
+-            Matchers.<Repo>iterableWithSize(2)
+-        );
+-    }
+ }

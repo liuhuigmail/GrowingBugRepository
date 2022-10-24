@@ -1,0 +1,2 @@
+org.apache.shiro.web.mgt.AbstractWebSecurityManagerTest
+org.apache.shiro.web.mgt.DefaultWebSecurityManagerTest

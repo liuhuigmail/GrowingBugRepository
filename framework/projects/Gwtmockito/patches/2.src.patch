@@ -1,0 +1,43 @@
+diff --git a/gwtmockito/src/main/java/com/google/gwtmockito/GwtMockitoTestRunner.java b/gwtmockito/src/main/java/com/google/gwtmockito/GwtMockitoTestRunner.java
+index 4a2174f..e8ed9be 100644
+--- a/gwtmockito/src/main/java/com/google/gwtmockito/GwtMockitoTestRunner.java
++++ b/gwtmockito/src/main/java/com/google/gwtmockito/GwtMockitoTestRunner.java
+@@ -224,7 +224,6 @@ public class GwtMockitoTestRunner extends BlockJUnit4ClassRunner {
+     classes.add(SplitLayoutPanel.class);
+     classes.add(StackPanel.class);
+     classes.add(VerticalPanel.class);
+-    classes.add(ValueListBox.class);
+ 
+     WithClassesToStub annotation = unitTestClass.getAnnotation(WithClassesToStub.class);
+     if (annotation != null) {
+diff --git a/gwtmockito/src/main/java/com/google/gwtmockito/impl/ReturnsCustomMocks.java b/gwtmockito/src/main/java/com/google/gwtmockito/impl/ReturnsCustomMocks.java
+index ab2d48a..5c0e1ce 100644
+--- a/gwtmockito/src/main/java/com/google/gwtmockito/impl/ReturnsCustomMocks.java
++++ b/gwtmockito/src/main/java/com/google/gwtmockito/impl/ReturnsCustomMocks.java
+@@ -43,8 +43,6 @@ public class ReturnsCustomMocks extends ReturnsMocks {
+     } else if (invocation.getMock() instanceof Element && methodName.equals("getTagName")) {
+       String className = invocation.getMock().getClass().getSimpleName();
+       return className.substring(0, className.indexOf("Element")).toLowerCase();
+-    } else if (invocation.getMock() instanceof InputElement && methodName.equals("getType")) {
+-      return "text";
+     } else {
+       return super.answer(invocation);
+     }
+diff --git a/gwtmockito/src/main/java/com/google/gwtmockito/impl/StubGenerator.java b/gwtmockito/src/main/java/com/google/gwtmockito/impl/StubGenerator.java
+index b92c0e9..cdd4fca 100644
+--- a/gwtmockito/src/main/java/com/google/gwtmockito/impl/StubGenerator.java
++++ b/gwtmockito/src/main/java/com/google/gwtmockito/impl/StubGenerator.java
+@@ -63,13 +63,7 @@ public class StubGenerator {
+         new ClassAndMethod(InputElement.class, "as"),
+         new ReturnMockStubMethod(InputElement.class));
+     // URL.encodeQueryStringImpl
+-    STUB_METHODS.put(
+-      new ClassAndMethod(URL.class, "encodeQueryStringImpl"),
+-      new ReturnStringStubMethod("encodeQueryStringImpl"));
+     // URL.encodePathSegmentImpl
+-    STUB_METHODS.put(
+-      new ClassAndMethod(URL.class, "encodePathSegmentImpl"),
+-      new ReturnStringStubMethod("encodePathSegmentImpl"));
+   }
+ 
+   /** Returns whether the behavior of the given method should be replaced. */

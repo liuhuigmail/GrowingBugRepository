@@ -1,0 +1,18 @@
+diff --git a/web/src/main/java/org/apache/shiro/web/session/mgt/DefaultWebSessionManager.java b/web/src/main/java/org/apache/shiro/web/session/mgt/DefaultWebSessionManager.java
+index 3ff80bad..0bb31d58 100644
+--- a/web/src/main/java/org/apache/shiro/web/session/mgt/DefaultWebSessionManager.java
++++ b/web/src/main/java/org/apache/shiro/web/session/mgt/DefaultWebSessionManager.java
+@@ -115,11 +115,10 @@ public class DefaultWebSessionManager extends DefaultSessionManager implements W
+                     ShiroHttpServletRequest.COOKIE_SESSION_ID_SOURCE);
+         } else {
+             //not in a cookie, or cookie is disabled - try the request params as a fallback (i.e. URL rewriting):
+-            String name = getSessionIdName();
+-            id = request.getParameter(name);
++            id = request.getParameter(ShiroHttpSession.DEFAULT_SESSION_ID_NAME);
+             if (id == null) {
+                 //try lowercase:
+-                id = request.getParameter(name.toLowerCase());
++                id = request.getParameter(ShiroHttpSession.DEFAULT_SESSION_ID_NAME.toLowerCase());
+             }
+             if (id != null) {
+                 request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID_SOURCE,

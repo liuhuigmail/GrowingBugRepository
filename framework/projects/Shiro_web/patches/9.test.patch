@@ -1,0 +1,20 @@
+diff --git a/web/src/test/java/org/apache/shiro/web/session/mgt/DefaultWebSessionManagerTest.java b/web/src/test/java/org/apache/shiro/web/session/mgt/DefaultWebSessionManagerTest.java
+index b6000b18..90527bf7 100644
+--- a/web/src/test/java/org/apache/shiro/web/session/mgt/DefaultWebSessionManagerTest.java
++++ b/web/src/test/java/org/apache/shiro/web/session/mgt/DefaultWebSessionManagerTest.java
+@@ -147,7 +147,6 @@ public class DefaultWebSessionManagerTest {
+ 
+         String id = "12345";
+ 
+-        expect(cookie.getName()).andReturn(ShiroHttpSession.DEFAULT_SESSION_ID_NAME);
+         expect(request.getParameter(ShiroHttpSession.DEFAULT_SESSION_ID_NAME)).andReturn(id);
+         request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID_SOURCE,
+                 ShiroHttpServletRequest.URL_SESSION_ID_SOURCE);
+@@ -181,7 +180,6 @@ public class DefaultWebSessionManagerTest {
+ 
+         String id = "12345";
+ 
+-        expect(cookie.getName()).andReturn(ShiroHttpSession.DEFAULT_SESSION_ID_NAME);
+         expect(request.getParameter(ShiroHttpSession.DEFAULT_SESSION_ID_NAME)).andReturn(null);
+         expect(request.getParameter(ShiroHttpSession.DEFAULT_SESSION_ID_NAME.toLowerCase())).andReturn(id);
+         request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID_SOURCE,

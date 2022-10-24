@@ -1,0 +1,21 @@
+diff --git a/web/src/main/java/org/apache/shiro/web/env/EnvironmentLoader.java b/web/src/main/java/org/apache/shiro/web/env/EnvironmentLoader.java
+index 4d334e7d..f4bd9938 100644
+--- a/web/src/main/java/org/apache/shiro/web/env/EnvironmentLoader.java
++++ b/web/src/main/java/org/apache/shiro/web/env/EnvironmentLoader.java
+@@ -189,13 +189,14 @@ public class EnvironmentLoader {
+         String className = servletContext.getInitParameter(ENVIRONMENT_CLASS_PARAM);
+         if (className != null) {
+             try {
+-                webEnvironmentClass = ClassUtils.forName(className);
++                return ClassUtils.forName(className);
+             } catch (UnknownClassException ex) {
+                 throw new ConfigurationException(
+                         "Failed to load custom WebEnvironment class [" + className + "]", ex);
+             }
++        } else {
++            return IniWebEnvironment.class;
+         }
+-        return webEnvironmentClass;
+     }
+ 
+     private WebEnvironment webEnvironmentFromServiceLoader() {
