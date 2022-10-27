@@ -1,0 +1,32 @@
+diff --git a/gwtmockito/src/test/java/com/google/gwtmockito/GwtMockitoTest.java b/gwtmockito/src/test/java/com/google/gwtmockito/GwtMockitoTest.java
+index cc796c3..192085f 100644
+--- a/gwtmockito/src/test/java/com/google/gwtmockito/GwtMockitoTest.java
++++ b/gwtmockito/src/test/java/com/google/gwtmockito/GwtMockitoTest.java
+@@ -412,12 +412,6 @@ public class GwtMockitoTest {
+     assertEquals("externalText", result.toString());
+   }
+ 
+-  @Test
+-  public void shouldMockCustomClientBundles() throws Exception {
+-    SvgClientBundle clientBundle = GWT.create(SvgClientBundle.class);
+-    assertTrue(clientBundle.icon().transform() instanceof DataResource);
+-  }
+-
+   /**
+    * This would fail if we didn't stub the create methods from DOM. See
+    * https://github.com/google/gwtmockito/issues/4.
+@@ -752,14 +746,6 @@ public class GwtMockitoTest {
+     TextResource text();
+   }
+ 
+-  interface SvgResource extends DataResource {
+-    SvgResource transform();
+-  }
+-
+-  interface SvgClientBundle extends ClientBundle {
+-    SvgResource icon();
+-  }
+-
+   enum SomeEnum {
+     ONE, TWO
+   }

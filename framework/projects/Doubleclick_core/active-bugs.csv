@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,789f07f028e9d60ac75fcd45cddcc8f3e5eae353,e11616e4f6e9b9e9e2616a4882307324b7a0ebb6,4,https://github.com/google/openrtb-doubleclick/pull/4

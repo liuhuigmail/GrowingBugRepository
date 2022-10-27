@@ -1,0 +1,34 @@
+diff --git a/render-app/src/test/java/org/janelia/alignment/ArgbRendererTest.java b/render-app/src/test/java/org/janelia/alignment/ArgbRendererTest.java
+index 97ceec32..3e686f11 100644
+--- a/render-app/src/test/java/org/janelia/alignment/ArgbRendererTest.java
++++ b/render-app/src/test/java/org/janelia/alignment/ArgbRendererTest.java
+@@ -226,29 +226,6 @@ public class ArgbRendererTest {
+                             expectedDigestString, actualDigestString);
+     }
+ 
+-    @Test
+-    public void testUpScaledImage() throws Exception {
+-
+-        final String[] args = {
+-                "--tile_spec_url", "src/test/resources/mipmap-test/upscale_test.json",
+-                "--out", outputFile.getAbsolutePath(),
+-                "--x", "0",
+-                "--y", "0",
+-                "--width", "2560",
+-                "--height", "2160",
+-                "--scale", "1.0"
+-        };
+-
+-        try {
+-            ArgbRenderer.renderUsingCommandLineArguments(args);
+-            Assert.fail("attempt to render upscale image should throw exception");
+-        } catch (final IllegalArgumentException iae) {
+-            Assert.assertTrue("invalid exception message",
+-                              iae.getMessage().startsWith("The highest resolution mipmap"));
+-        }
+-
+-    }
+-
+     @Test
+     public void testCaching() throws Exception {
+ 

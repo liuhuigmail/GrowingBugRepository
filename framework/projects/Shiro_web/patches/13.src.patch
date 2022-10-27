@@ -1,0 +1,13 @@
+diff --git a/web/src/main/java/org/apache/shiro/web/filter/mgt/PathMatchingFilterChainResolver.java b/web/src/main/java/org/apache/shiro/web/filter/mgt/PathMatchingFilterChainResolver.java
+index e2161086..6d81e023 100644
+--- a/web/src/main/java/org/apache/shiro/web/filter/mgt/PathMatchingFilterChainResolver.java
++++ b/web/src/main/java/org/apache/shiro/web/filter/mgt/PathMatchingFilterChainResolver.java
+@@ -125,7 +125,7 @@ public class PathMatchingFilterChainResolver implements FilterChainResolver {
+                         log.trace("Matched path pattern [{}] for requestURI [{}].  " +
+                                   "Utilizing corresponding filter chain...", pathPattern, Encode.forHtml(requestURINoTrailingSlash));
+                     }
+-                    return filterChainManager.proxy(originalChain, pathPattern);
++                    return filterChainManager.proxy(originalChain, requestURINoTrailingSlash);
+                 }
+             }
+         }

@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1837`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1844`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -64,7 +64,7 @@ To date, growingBugs contains **`1837`** real-world bugs from open-source Java p
 | 35     | Tika_app            | tika-app               |   tika-app     |        2       | 1,3               |
 | 36     | Shiro_core            | shiro-core               |      core      |        9       | 37,40,46,52,98,</br>144,176,181,202               |
 | 37     | Jena_core            | jena-core               |    jena-core   |        1       | 2               |
-| 38     | Shiro_web            | shiro-web               |        web      |        7       | 1,3,7-11               |
+| 38     | Shiro_web            | shiro-web               |        web      |        9       | 1,3,7-13               |
 | 39     | MDeploy            | maven-deploy-plugin               |              |        1       | 1               |
 | 40     | Jackrabbit_filevault<br/>_vault_validation | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
 | 41     | Jackrabbit_oak_core            | oak-core               |       oak-core       |        5       | 1-5               |
@@ -262,8 +262,9 @@ To date, growingBugs contains **`1837`** real-world bugs from open-source Java p
 | 233     | Google_java_format_core         | google-java-format-core           |       core           |      1       | 1                  |
 | 234     | Jimfs         | jimfs           |       jimfs           |      2       | 1-2                  |
 | 235     | Open_location_code_java         | open-location-code-java           |       java           |      4       | 1-4                  |
-| 236     | Gwtmockito         | gwtmockito           |       gwtmockito           |      2       | 1-2                  |
-| 237     | Render_app         | render-app           |       render-app           |      2       | 1-2                  |
+| 236     | Gwtmockito         | gwtmockito           |       gwtmockito           |      3       | 1-3                  |
+| 237     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
+| 238     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
 # Setting up GrowingBugs
 
 ## Requirements

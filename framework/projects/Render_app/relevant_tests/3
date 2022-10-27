@@ -1,0 +1,5 @@
+org.janelia.alignment.ArgbRendererTest
+org.janelia.alignment.RenderRawTileTest
+org.janelia.alignment.ShortRendererTest
+org.janelia.alignment.mipmap.AveragedChannelMipmapSourceTest
+org.janelia.alignment.mipmap.BoxMipmapGeneratorTest

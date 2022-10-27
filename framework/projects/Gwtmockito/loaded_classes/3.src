@@ -1,0 +1,13 @@
+com.google.gwtmockito.fakes.FakeClientBundleProvider
+com.google.gwtmockito.fakes.FakeLocaleInfoImplProvider
+com.google.gwtmockito.fakes.FakeMessagesProvider
+com.google.gwtmockito.fakes.FakeNumberConstantsImplProvider
+com.google.gwtmockito.fakes.FakeProvider
+com.google.gwtmockito.fakes.FakeUiBinderProvider
+com.google.gwtmockito.GwtMock
+com.google.gwtmockito.GwtMockito
+com.google.gwtmockito.GwtMockitoTestRunner
+com.google.gwtmockito.impl.StubGenerator
+com.google.gwtmockito.WithClassesToStub
+com.google.gwtmockito.WithExperimentalGarbageCollection
+com.google.gwtmockito.WithPackagesToLoadViaStandardClassLoader

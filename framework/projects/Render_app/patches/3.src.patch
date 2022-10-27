@@ -1,0 +1,16 @@
+diff --git a/render-app/src/main/java/org/janelia/alignment/mipmap/UrlMipmapSource.java b/render-app/src/main/java/org/janelia/alignment/mipmap/UrlMipmapSource.java
+index 8f36fd4a..ef7f6957 100644
+--- a/render-app/src/main/java/org/janelia/alignment/mipmap/UrlMipmapSource.java
++++ b/render-app/src/main/java/org/janelia/alignment/mipmap/UrlMipmapSource.java
+@@ -107,11 +107,6 @@ public class UrlMipmapSource
+             final int currentMipmapLevel = mipmapEntry.getKey();
+             if (currentMipmapLevel < mipmapLevel) {
+                 downSampleLevels = mipmapLevel - currentMipmapLevel;
+-            } else if (currentMipmapLevel > mipmapLevel) {
+-                throw new IllegalArgumentException(
+-                        "The highest resolution mipmap for " + imageAndMask.getImageUrl() + " is level " +
+-                        currentMipmapLevel + " but a level " + mipmapLevel +
+-                        " mipmap is needed.  Upscaling is not currently supported.");
+             }
+ 
+             final ImageProcessor imageProcessor = imageProcessorCache.get(imageAndMask.getImageUrl(),

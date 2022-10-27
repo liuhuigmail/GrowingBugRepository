@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`996`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1003`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -32,7 +32,7 @@ To date, growingBugs contains **`996`** unique bugs that are not included in Def
 | 26     | Tika_app        | tika-app                  |   tika-app               |        2       | 1,3               |
 | 27     | Shiro_core      | shiro-core                |      core                |        9       | 37,40,46,52,98,</br>144,176,181,202               |
 | 28     | Jena_core       | jena-core                 |    jena-core             |        1       | 2               |
-| 29     | Shiro_web       | shiro-web                 |        web               |        7       | 1,3,7-11               |
+| 29     | Shiro_web       | shiro-web                 |        web               |        9       | 1,3,7-13               |
 | 30     | MDeploy         | maven-deploy-plugin       |                          |        1       | 1               |
 | 31     | Jackrabbit_filevault<br/>_vault_validation | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
 | 32     | Jackrabbit_oak_core | oak-core              |       oak-core           |        5       | 1-5               |
@@ -237,5 +237,6 @@ To date, growingBugs contains **`996`** unique bugs that are not included in Def
 | 227     | Google_java_format_core         | google-java-format-core           |       core           |      1       | 1                  |
 | 228     | Jimfs         | jimfs           |       jimfs           |      2       | 1-2                  |
 | 229     | Open_location_code_java         | open-location-code-java           |       java           |      4       | 1-4                  |
-| 230     | Gwtmockito         | gwtmockito           |       gwtmockito           |      2       | 1-2                  |
-| 231     | Render_app         | render-app           |       render-app           |      2       | 1-2                  |
+| 230     | Gwtmockito         | gwtmockito           |       gwtmockito           |      3       | 1-3                  |
+| 231     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
+| 232     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |

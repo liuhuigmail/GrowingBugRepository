@@ -1,3 +1,6 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,484b017ab79e9d6bea037c128f0141a93137b145,00c9e09c0ddf6474449235fac17c82cbc71e42b5,unknown,unknown
 2,d0a6b88f2dfc69c1a854456be29657b323790d5f,52049e889f7fb14dac573b454b8d0933de621a86,unknown,unknown
+3,b15b5d9817d9b4a72ccd567189e8fd0c60c36289,7e8515dd55604cfb85edab6307b5b82cd3db9b01,62,https://github.com/saalfeldlab/render/issues/62
+4,8a0b928823e0b293a72c373c039a0495b1fff9cd,28488381e9438ffe8c568be215d68171d8fd29b3,unknown,unknown
+5,d561ac31442b23891c0cf8d90dccd8b28069eceb,9bfb808c6aac5f0814aeb1f8ade9d99584ad24ad,unknown,unknown

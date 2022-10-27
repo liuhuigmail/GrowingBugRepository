@@ -1,0 +1,3 @@
+org.apache.shiro.web.config.WebIniSecurityManagerFactoryTest
+org.apache.shiro.web.filter.authc.BasicHttpFilterAuthenticationTest
+org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolverTest

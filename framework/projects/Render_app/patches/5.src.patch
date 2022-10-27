@@ -1,0 +1,13 @@
+diff --git a/render-app/src/main/java/org/janelia/alignment/transform/ExponentialFunctionOffsetTransform.java b/render-app/src/main/java/org/janelia/alignment/transform/ExponentialFunctionOffsetTransform.java
+index 1bed67a4..857f60a0 100644
+--- a/render-app/src/main/java/org/janelia/alignment/transform/ExponentialFunctionOffsetTransform.java
++++ b/render-app/src/main/java/org/janelia/alignment/transform/ExponentialFunctionOffsetTransform.java
+@@ -21,7 +21,7 @@ public class ExponentialFunctionOffsetTransform
+ 
+     @Override
+     public void applyInPlace(final double[] location) {
+-        location[dimension] += a * Math.exp(b * location[dimension]) + c;
++        location[dimension] += a * Math.exp(-b * location[dimension]) + c;
+     }
+ 
+     @Override

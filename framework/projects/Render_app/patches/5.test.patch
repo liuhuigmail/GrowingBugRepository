@@ -1,0 +1,13 @@
+diff --git a/render-app/src/test/java/org/janelia/alignment/transform/ExponentialFunctionOffsetTransformTest.java b/render-app/src/test/java/org/janelia/alignment/transform/ExponentialFunctionOffsetTransformTest.java
+index 9a64782a..5abb3773 100644
+--- a/render-app/src/test/java/org/janelia/alignment/transform/ExponentialFunctionOffsetTransformTest.java
++++ b/render-app/src/test/java/org/janelia/alignment/transform/ExponentialFunctionOffsetTransformTest.java
+@@ -42,7 +42,7 @@ public class ExponentialFunctionOffsetTransformTest {
+     public void testApply() {
+ 
+         final ExponentialFunctionOffsetTransform transform =
+-                new ExponentialFunctionOffsetTransform(3.26097, -0.0060185, 0.30164, 0);
++                new ExponentialFunctionOffsetTransform(3.26097, 0.0060185, 0.30164, 0);
+ 
+         final double[][] testLocations = {   {0,       1111}, {200,       1111}, {600,       1111} };
+         final double[][] expectedResults = { {0 + 3.5, 1111}, {200 + 1.2, 1111}, {600 + 0.3, 1111} };

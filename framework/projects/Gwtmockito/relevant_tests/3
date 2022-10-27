@@ -1,0 +1,11 @@
+com.google.gwtmockito.GwtMockInheritanceTest
+com.google.gwtmockito.GwtMockitoRunnerlessTest
+com.google.gwtmockito.GwtMockitoSuiteTest
+com.google.gwtmockito.GwtMockitoTautologyTest
+com.google.gwtmockito.GwtMockitoTest
+com.google.gwtmockito.GwtMockitoWidgetBaseClassesTest
+com.google.gwtmockito.OveriddenRunnerTest
+com.google.gwtmockito.WithClassesToStubTest
+com.google.gwtmockito.WithPackagesToLoadViaStandardClassLoaderTest
+com.google.gwtmockito.rpc.GwtMockitoRpcTest
+com.google.gwtmockito.rpc.GwtMockitoRpcWithoutGwtMockTest
