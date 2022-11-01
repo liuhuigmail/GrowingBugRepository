@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`1003`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1011`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -30,7 +30,7 @@ To date, growingBugs contains **`1003`** unique bugs that are not included in De
 | 24     | Text            | commons-text              |                          |        4       | 1-2,4-5               |
 | 25     | Tika_core       | tika-core                 |  tika-core               |        25       | 4,6,9,11,</br>17,20-39               |
 | 26     | Tika_app        | tika-app                  |   tika-app               |        2       | 1,3               |
-| 27     | Shiro_core      | shiro-core                |      core                |        9       | 37,40,46,52,98,</br>144,176,181,202               |
+| 27     | Shiro_core      | shiro-core                |      core                |        10       | 37,40,46,52,98,</br>144,176,181,202-203               |
 | 28     | Jena_core       | jena-core                 |    jena-core             |        1       | 2               |
 | 29     | Shiro_web       | shiro-web                 |        web               |        9       | 1,3,7-13               |
 | 30     | MDeploy         | maven-deploy-plugin       |                          |        1       | 1               |
@@ -201,7 +201,7 @@ To date, growingBugs contains **`1003`** unique bugs that are not included in De
 | 194     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 195     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 196     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
-| 197     | Jcabi_github         | jcabi-github           |                  |      69       | 1-42,44-74                  |
+| 197     | Jcabi_github         | jcabi-github           |                  |      71       | 1-42,44-76                  |
 | 198     | Podam         | podam           |                  |      1       | 1                  |
 | 199     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
 | 200     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
@@ -240,3 +240,4 @@ To date, growingBugs contains **`1003`** unique bugs that are not included in De
 | 230     | Gwtmockito         | gwtmockito           |       gwtmockito           |      3       | 1-3                  |
 | 231     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
 | 232     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
+| 233     | Tape         | tape           |       tape           |      5       | 1-5                  |
