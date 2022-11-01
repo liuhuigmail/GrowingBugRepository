@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/mail/util/MimeMessageParser.java b/src/main/java/org/apache/commons/mail/util/MimeMessageParser.java
+index cc8387b..9c6e850 100644
+--- a/src/main/java/org/apache/commons/mail/util/MimeMessageParser.java
++++ b/src/main/java/org/apache/commons/mail/util/MimeMessageParser.java
+@@ -170,15 +170,13 @@ public class MimeMessageParser
+     protected void parse(Multipart parent, MimePart part)
+         throws MessagingException, IOException
+     {
+-        if (part.isMimeType("text/plain") && (plainContent == null)
+-                && (! MimePart.ATTACHMENT.equalsIgnoreCase(part.getDisposition())))
++        if (part.isMimeType("text/plain") && (plainContent == null))
+         {
+             plainContent = (String) part.getContent();
+         }
+         else
+         {
+-            if (part.isMimeType("text/html") && (htmlContent == null)
+-                    && (! MimePart.ATTACHMENT.equalsIgnoreCase(part.getDisposition())))
++            if (part.isMimeType("text/html") && (htmlContent == null))
+             {
+                 htmlContent = (String) part.getContent();
+             }

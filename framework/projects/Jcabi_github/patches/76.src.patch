@@ -1,0 +1,113 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkRepo.java b/src/main/java/com/jcabi/github/mock/MkRepo.java
+index 1ec40009..7738a814 100644
+--- a/src/main/java/com/jcabi/github/mock/MkRepo.java
++++ b/src/main/java/com/jcabi/github/mock/MkRepo.java
+@@ -266,11 +266,7 @@ final class MkRepo implements Repo {
+     @Override
+     @NotNull(message = "Stars is never NULL")
+     public Stars stars() {
+-        try {
+-            return new MkStars(this.storage, this.self, this.coords);
+-        } catch (final IOException ex) {
+-            throw new IllegalStateException(ex);
+-        }
++        return new MkStars();
+     }
+ 
+     @Override
+diff --git a/src/main/java/com/jcabi/github/mock/MkStars.java b/src/main/java/com/jcabi/github/mock/MkStars.java
+index d057f34f..a3f7f224 100644
+--- a/src/main/java/com/jcabi/github/mock/MkStars.java
++++ b/src/main/java/com/jcabi/github/mock/MkStars.java
+@@ -40,6 +40,7 @@ import javax.validation.constraints.NotNull;
+ import lombok.ToString;
+ import org.apache.commons.lang3.StringUtils;
+ import org.xembly.Directives;
++import org.apache.commons.lang3.NotImplementedException;
+ 
+ /**
+  * Github starring API.
+@@ -55,15 +56,12 @@ final class MkStars implements Stars {
+     /**
+      * Storage.
+      */
+-    private final transient MkStorage storage;
+     /**
+      * Login of the user logged in.
+      */
+-    private final transient String self;
+     /**
+      * Repo's name.
+      */
+-    private final transient Coordinates coords;
+ 
+     /**
+      * Public ctor.
+@@ -72,60 +70,29 @@ final class MkStars implements Stars {
+      * @param rep The Repository.
+      * @throws java.io.IOException If something goes wrong.
+      */
+-    MkStars(
+-        @NotNull(message = "stg can't be NULL") final MkStorage stg,
+-        @NotNull(message = "login can't be NULL") final String login,
+-        @NotNull(message = "rep can't be NULL") final Coordinates rep
+-    ) throws IOException {
+-        this.storage = stg;
+-        this.self = login;
+-        this.coords = rep;
+-        this.storage.apply(
+-            new Directives().xpath("/github/repos/repo")
+-                .addIf("stars")
+-        );
+-    }
+ 
+     @Override
+     public Repo repo() {
+-        return new MkRepo(this.storage, this.self, this.coords);
++        throw new NotImplementedException("MkStars.repo()");
+     }
+ 
+     @Override
+-    public boolean starred() throws IOException {
+-        final List<String> xpath = this.storage.xml().xpath(
+-            String.format("%s/star/login/text()", this.xpath())
+-        );
+-        return !xpath.isEmpty()
+-            && StringUtils.equalsIgnoreCase(this.self, xpath.get(0));
++    public boolean starred() {
++        throw new NotImplementedException("MkStars.starred()");
+     }
+ 
+     @Override
+-    public void star() throws IOException {
+-        this.storage.apply(
+-            new Directives().xpath(this.xpath()).add("star").add("login")
+-                .set(this.self)
+-        );
++    public void star() {
++        throw new NotImplementedException("MkStars.star()");
+     }
+ 
+     @Override
+-    public void unstar() throws IOException {
+-        this.storage.apply(
+-            new Directives().xpath(this.xpath())
+-                .xpath(String.format("star/login[.='%s']", this.self))
+-                .remove()
+-        );
+-    }
+ 
+     /**
+      * XPath of this element in XML tree.
+      * @return XPath
+      */
+-    @NotNull(message = "Xpath is never NULL")
+-    private String xpath() {
+-        return String.format(
+-            "/github/repos/repo[@coords='%s']/stars",
+-            this.coords
+-        );
++    public void unstar() {
++        throw new NotImplementedException("MkStars.unstar()");
+     }
+ }

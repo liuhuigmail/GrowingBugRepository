@@ -1,0 +1,21 @@
+diff --git a/core/src/main/java/org/apache/shiro/mgt/AbstractRememberMeManager.java b/core/src/main/java/org/apache/shiro/mgt/AbstractRememberMeManager.java
+index 5d1a4f62..0880d549 100644
+--- a/core/src/main/java/org/apache/shiro/mgt/AbstractRememberMeManager.java
++++ b/core/src/main/java/org/apache/shiro/mgt/AbstractRememberMeManager.java
+@@ -481,14 +481,11 @@ public abstract class AbstractRememberMeManager implements RememberMeManager {
+         try {
+             byte[] bytes = getRememberedSerializedIdentity(subjectContext);
+             //SHIRO-138 - only call convertBytesToPrincipals if bytes exist:
+-            if ( bytes != null && bytes.length > 0 ) {
+-                principals = convertBytesToPrincipals(bytes, subjectContext);
+-            }
++            return convertBytesToPrincipals(bytes, subjectContext);
+         } catch (RuntimeException re) {
+-            principals = onRememberedPrincipalFailure(re, subjectContext);
++            return onRememberedPrincipalFailure(re, subjectContext);
+         }
+ 
+-        return principals;
+     }
+ 
+     /**

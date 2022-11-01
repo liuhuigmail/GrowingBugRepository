@@ -1,0 +1,2 @@
+org.apache.commons.mail.util.MimeMessageParser
+org.apache.commons.mail.util.MimeMessageUtils

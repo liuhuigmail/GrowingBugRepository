@@ -1,0 +1,24 @@
+diff --git a/tape/src/test/java/com/squareup/tape/QueueFileTest.java b/tape/src/test/java/com/squareup/tape/QueueFileTest.java
+index be17877..dee66a1 100644
+--- a/tape/src/test/java/com/squareup/tape/QueueFileTest.java
++++ b/tape/src/test/java/com/squareup/tape/QueueFileTest.java
+@@ -773,19 +773,6 @@ import static org.junit.Assert.fail;
+     }
+   }
+ 
+-  @Test public void queueToString() throws IOException {
+-    QueueFile queueFile = new QueueFile(file);
+-    for (int i = 0; i < 15; i++) {
+-      queueFile.add(values[i]);
+-    }
+-
+-    assertThat(queueFile.toString()).isEqualTo("QueueFile["
+-        + "length=4096, "
+-        + "size=15, "
+-        + "first=Element[position=16, length=0], "
+-        + "last=Element[position=163, length=14]]");
+-  }
+-
+   /**
+    * A RandomAccessFile that can break when you go to write the COMMITTED
+    * status.

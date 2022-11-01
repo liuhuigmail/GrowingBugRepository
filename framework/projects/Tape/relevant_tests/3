@@ -1,0 +1,3 @@
+com.squareup.tape.FileObjectQueueTest
+com.squareup.tape.QueueFileTest
+com.squareup.tape.SerializedConverterTest

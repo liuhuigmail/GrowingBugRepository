@@ -1,0 +1,12 @@
+diff --git a/tape/src/main/java/com/squareup/tape/QueueFile.java b/tape/src/main/java/com/squareup/tape/QueueFile.java
+index d502692..66405e7 100644
+--- a/tape/src/main/java/com/squareup/tape/QueueFile.java
++++ b/tape/src/main/java/com/squareup/tape/QueueFile.java
+@@ -496,7 +496,6 @@ public class QueueFile {
+       // assert elementCount > 1
+       int firstTotalLength = Element.HEADER_LENGTH + first.length;
+ 
+-      ringErase(first.position, firstTotalLength);
+ 
+       int newFirstPosition = wrapPosition(first.position + firstTotalLength);
+       ringRead(newFirstPosition, buffer, 0, Element.HEADER_LENGTH);

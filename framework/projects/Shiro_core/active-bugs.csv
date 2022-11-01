@@ -8,3 +8,4 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 176,89909102182231ce74f66af2ccf8f8fa8e953975,49e3132fae55eaa92c9b4c9e0c6cff27c0fb1125,SHIRO-660,https://issues.apache.org/jira/browse/SHIRO-660
 181,6891aaf74e0b61296e4c47439bf333ada7b0032e,d7d33bfbd0a1d3f41b288d1ae8bf8f6fefe35022,SHIRO-685,https://issues.apache.org/jira/browse/SHIRO-685
 202,dc380036ddabec2ab0a935e3ae5a9ff0936cc401,c7c9c57d69a180dce679c5f26d4f6db64b250a7e,SHIRO-747,https://issues.apache.org/jira/browse/SHIRO-747
+203,cf986d47c5d7c5ff6c8c3b5126d6dcb0e9ed3014,dcd98954b60f57876ba564cb721be54010f27a9c,SHIRO-138,https://issues.apache.org/jira/browse/SHIRO-138

@@ -1,0 +1,118 @@
+diff --git a/src/test/java/org/apache/commons/mail/util/MimeMessageParserTest.java b/src/test/java/org/apache/commons/mail/util/MimeMessageParserTest.java
+index a159adb..34c8aad 100644
+--- a/src/test/java/org/apache/commons/mail/util/MimeMessageParserTest.java
++++ b/src/test/java/org/apache/commons/mail/util/MimeMessageParserTest.java
+@@ -218,113 +218,4 @@ public class MimeMessageParserTest
+         assertEquals(mimeMessageParser.getCc().size(), 0);
+         assertEquals(mimeMessageParser.getBcc().size(), 0);
+     }
+-
+-    /**
+-     * This test parses an email which contains a text attachment together with email text.
+-     *
+-     * @throws Exception the test failed
+-     */
+-    @Test    
+-    public void testMultipartTextAttachment() throws Exception
+-    {
+-        DataSource dataSource;
+-        Session session = Session.getDefaultInstance(new Properties());
+-        MimeMessage message = MimeMessageUtils.createMimeMessage(session, new File("./src/test/resources/eml/multipart-text-attachment.eml"));
+-        MimeMessageParser mimeMessageParser = new MimeMessageParser(message);
+-
+-        mimeMessageParser.parse();
+-
+-        assertEquals("test", mimeMessageParser.getSubject());
+-        assertNotNull(mimeMessageParser.getMimeMessage());
+-        assertTrue(mimeMessageParser.isMultipart());
+-        assertFalse(mimeMessageParser.hasHtmlContent());
+-        assertTrue(mimeMessageParser.hasPlainContent());
+-        assertNotNull(mimeMessageParser.getPlainContent());
+-        assertNull(mimeMessageParser.getHtmlContent());
+-        assertTrue(mimeMessageParser.getTo().size() == 1);
+-        assertTrue(mimeMessageParser.getCc().size() == 0);
+-        assertTrue(mimeMessageParser.getBcc().size() == 0);
+-        assertEquals("test_from@apache.org", mimeMessageParser.getFrom());
+-        assertEquals("test_from@apache.org", mimeMessageParser.getReplyTo());
+-        assertTrue(mimeMessageParser.hasAttachments());
+-        List<?> attachmentList = mimeMessageParser.getAttachmentList();
+-        assertTrue(attachmentList.size() == 1);
+-
+-        dataSource = mimeMessageParser.findAttachmentByName("test.txt");
+-        assertNotNull(dataSource);
+-        assertEquals("text/plain", dataSource.getContentType());
+-    }
+-
+-    /**
+-     * This test parses an email which only contains a text attachment with content-disposition: attachment.
+-     *
+-     * @throws Exception the test failed
+-     */
+-    @Test    
+-    public void testMultipartTextAttachmentOnly() throws Exception
+-    {
+-        DataSource dataSource;
+-        Session session = Session.getDefaultInstance(new Properties());
+-        MimeMessage message = MimeMessageUtils.createMimeMessage(session, new File("./src/test/resources/eml/multipart-text-attachment-only.eml"));
+-        MimeMessageParser mimeMessageParser = new MimeMessageParser(message);
+-
+-        mimeMessageParser.parse();
+-
+-        assertEquals("test", mimeMessageParser.getSubject());
+-        assertNotNull(mimeMessageParser.getMimeMessage());
+-        assertTrue(mimeMessageParser.isMultipart());
+-        assertFalse(mimeMessageParser.hasHtmlContent());
+-        assertFalse(mimeMessageParser.hasPlainContent());
+-        assertNull(mimeMessageParser.getPlainContent());
+-        assertNull(mimeMessageParser.getHtmlContent());
+-        assertTrue(mimeMessageParser.getTo().size() == 1);
+-        assertTrue(mimeMessageParser.getCc().size() == 0);
+-        assertTrue(mimeMessageParser.getBcc().size() == 0);
+-        assertEquals("test_from@apache.org", mimeMessageParser.getFrom());
+-        assertEquals("test_from@apache.org", mimeMessageParser.getReplyTo());
+-        assertTrue(mimeMessageParser.hasAttachments());
+-        List<?> attachmentList = mimeMessageParser.getAttachmentList();
+-        assertTrue(attachmentList.size() == 1);
+-
+-        dataSource = mimeMessageParser.findAttachmentByName("test.txt");
+-        assertNotNull(dataSource);
+-        assertEquals("text/plain", dataSource.getContentType());
+-    }
+-
+-    /**
+-     * This test parses an email which contains an html attachment with content-disposition: attachment.
+-     *
+-     * @throws Exception the test failed
+-     */
+-    @Test
+-    public void testParseHtmlEmailWithHtmlAttachment() throws Exception
+-    {
+-        DataSource dataSource;
+-        Session session = Session.getDefaultInstance(new Properties());
+-        MimeMessage message = MimeMessageUtils.createMimeMessage(session, new File("./src/test/resources/eml/html-attachment-content-disposition.eml"));
+-        MimeMessageParser mimeMessageParser = new MimeMessageParser(message);
+-
+-        mimeMessageParser.parse();
+-
+-        assertEquals("test", mimeMessageParser.getSubject());
+-        assertNotNull(mimeMessageParser.getMimeMessage());        
+-        assertTrue(mimeMessageParser.isMultipart());
+-        assertFalse(mimeMessageParser.hasHtmlContent());
+-        assertTrue(mimeMessageParser.hasPlainContent());
+-        assertNotNull(mimeMessageParser.getPlainContent());
+-        assertNull(mimeMessageParser.getHtmlContent());
+-        assertTrue(mimeMessageParser.getTo().size() == 1);
+-        assertTrue(mimeMessageParser.getCc().size() == 0);
+-        assertTrue(mimeMessageParser.getBcc().size() == 0);
+-        assertEquals("test_from@apache.org", mimeMessageParser.getFrom());
+-        assertEquals("test_from@apache.org", mimeMessageParser.getReplyTo());
+-        assertTrue(mimeMessageParser.hasAttachments());
+-        List<?> attachmentList = mimeMessageParser.getAttachmentList();
+-        assertTrue(attachmentList.size() == 1);
+-
+-        dataSource = mimeMessageParser.findAttachmentByName("test.html");
+-        assertNotNull(dataSource);
+-        assertEquals("text/html", dataSource.getContentType());
+-    }
+-
+ }

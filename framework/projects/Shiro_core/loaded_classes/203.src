@@ -1,0 +1,11 @@
+org.apache.shiro.codec.Base64
+org.apache.shiro.codec.CodecException
+org.apache.shiro.codec.CodecSupport
+org.apache.shiro.crypto.BlowfishCipher
+org.apache.shiro.crypto.Cipher
+org.apache.shiro.io.DefaultSerializer
+org.apache.shiro.io.SerializationException
+org.apache.shiro.io.Serializer
+org.apache.shiro.mgt.AbstractRememberMeManager
+org.apache.shiro.mgt.RememberMeManager
+org.apache.shiro.ShiroException

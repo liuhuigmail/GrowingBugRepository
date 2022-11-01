@@ -1,0 +1,9 @@
+com.jcabi.github.mock.MkBlobsTest
+com.jcabi.github.mock.MkCommitsTest
+com.jcabi.github.mock.MkGitTest
+com.jcabi.github.mock.MkReferenceTest
+com.jcabi.github.mock.MkReferencesTest
+com.jcabi.github.mock.MkTagTest
+com.jcabi.github.mock.MkTagsTest
+com.jcabi.github.mock.MkTreeTest
+com.jcabi.github.mock.MkTreesTest

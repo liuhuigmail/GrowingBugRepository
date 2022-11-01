@@ -1,0 +1,6 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,dc3f67dea820648e9c29cae6e0032a5c5de12005,51b36303762a0a413e7f0fc90dc65c8f176d11e3,39,https://github.com/square/tape/pull/39
+2,5a74dcfd17e5376269c0b4481d304c05b31ce72b,0efa7ea3bfe1bf5f3b7875ca51b993e7600efcca,77,https://github.com/square/tape/pull/77
+3,759ff273ef036d5dc70cb61b1a923ac5a20ebe9f,6bed87308bf7706eb7a2bc7b40e19096aada6e0f,79,https://github.com/square/tape/pull/79
+4,64dfc3140e5a86b142dfeb10baabca5edece061c,193e08dcdad385c5f2ab219702bc553e2d1886ed,107,https://github.com/square/tape/pull/107
+5,193e08dcdad385c5f2ab219702bc553e2d1886ed,52e9782058033864562494255b927f1fc407d24f,105,https://github.com/square/tape/pull/105

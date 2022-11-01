@@ -151,13 +151,13 @@ sub _post_checkout {
     if (-e $exclude_test22){
         Utils::exec_cmd("rm $exclude_test22", "Copy generated Ant build file") or die;
     }
-    my $exclude_test23="$work_dir/src/test/java/com/jcabi/github/VisibilityTest.java";
-    if (-e $exclude_test23){
-        Utils::exec_cmd("rm $exclude_test23", "Copy generated Ant build file") or die;
-    }
     my $exclude_test333="$work_dir/src/test/java/com/jcabi/github/NullabilityTest.java";
     if (-e $exclude_test333){
         Utils::exec_cmd("rm $exclude_test333", "Copy generated Ant build file") or die;
+    }
+    my $exclude_test23="$work_dir/src/test/java/com/jcabi/github/VisibilityTest.java";
+    if (-e $exclude_test23){
+        Utils::exec_cmd("rm $exclude_test23", "Copy generated Ant build file") or die;
     }
 
 }
