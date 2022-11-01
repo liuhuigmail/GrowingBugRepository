@@ -265,7 +265,7 @@ To date, growingBugs contains **`1852`** real-world bugs from open-source Java p
 | 236     | Gwtmockito         | gwtmockito           |       gwtmockito           |      3       | 1-3                  |
 | 237     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
 | 238     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
-| 239     | Tape         | tape           |       tape           |      2       | 1-2                  |
+| 239     | Tape         | tape           |       tape           |      5       | 1-5                  |
 # Setting up GrowingBugs
 
 ## Requirements
