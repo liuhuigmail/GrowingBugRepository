@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1844`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1852`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -62,7 +62,7 @@ To date, growingBugs contains **`1844`** real-world bugs from open-source Java p
 | 33     | Text            | commons-text               ||        4       | 1-2,4-5               |
 | 34     | Tika_core            | tika-core               |  tika-core |        25       | 4,6,9,11,</br>17,20-39               |
 | 35     | Tika_app            | tika-app               |   tika-app     |        2       | 1,3               |
-| 36     | Shiro_core            | shiro-core               |      core      |        9       | 37,40,46,52,98,</br>144,176,181,202               |
+| 36     | Shiro_core            | shiro-core               |      core      |        10       | 37,40,46,52,98,</br>144,176,181,202-203               |
 | 37     | Jena_core            | jena-core               |    jena-core   |        1       | 2               |
 | 38     | Shiro_web            | shiro-web               |        web      |        9       | 1,3,7-13               |
 | 39     | MDeploy            | maven-deploy-plugin               |              |        1       | 1               |
@@ -228,7 +228,7 @@ To date, growingBugs contains **`1844`** real-world bugs from open-source Java p
 | 199     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 200     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 201     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
-| 202     | Jcabi_github         | jcabi-github           |                  |      69       | 1-42,44-74                  |
+| 202     | Jcabi_github         | jcabi-github           |                  |      71       | 1-42,44-76                  |
 | 203     | Podam         | podam           |                  |      1       | 1                  |
 | 204     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
 | 205     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
@@ -265,6 +265,7 @@ To date, growingBugs contains **`1844`** real-world bugs from open-source Java p
 | 236     | Gwtmockito         | gwtmockito           |       gwtmockito           |      3       | 1-3                  |
 | 237     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
 | 238     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
+| 239     | Tape         | tape           |       tape           |      2       | 1-2                  |
 # Setting up GrowingBugs
 
 ## Requirements
