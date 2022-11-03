@@ -1,0 +1,20 @@
+diff --git a/tape/src/main/java/com/squareup/tape/QueueFile.java b/tape/src/main/java/com/squareup/tape/QueueFile.java
+index 26dd722..1fe4252 100644
+--- a/tape/src/main/java/com/squareup/tape/QueueFile.java
++++ b/tape/src/main/java/com/squareup/tape/QueueFile.java
+@@ -441,15 +441,11 @@ public class QueueFile {
+       if ((offset | length) < 0 || length > buffer.length - offset) {
+         throw new ArrayIndexOutOfBoundsException();
+       }
+-      if (remaining > 0) {
+         if (length > remaining) length = remaining;
+         ringRead(position, buffer, offset, length);
+         position = wrapPosition(position + length);
+         remaining -= length;
+         return length;
+-      } else {
+-        return -1;
+-      }
+     }
+ 
+     @Override public int read() throws IOException {

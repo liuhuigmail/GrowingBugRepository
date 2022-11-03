@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1852`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1861`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -53,7 +53,7 @@ To date, growingBugs contains **`1852`** real-world bugs from open-source Java p
 | 24     | Tika            | tika                       |                          |        5       | 1-2,5-7               |
 | 25     | Validator       | commons-validator          |                          |        21      | 1-2,4,6-9,11,</br>13-25 |
 | 26     | Pool            | commons-pool               |                          |        17      | 1,5-7,10-14,</br>16,20-21,24,</br>26-27,29-30|
-| 27     | Email           | commons-email              |                          |        3       | 3-5                 |
+| 27     | Email           | commons-email              |                          |        4       | 3-6                 |
 | 28     | Graph           | commons-graph              |                          |        3       | 1-3                 |
 | 29     | Net             | commons-net                |                          |        14      | 9,10,12,</br>14-18,20-21,</br>23-26             |
 | 30     | Numbers_angle   | commons-numbers-angle            |  commons-numbers-angle         |        2       | 1-2               |
@@ -265,7 +265,7 @@ To date, growingBugs contains **`1852`** real-world bugs from open-source Java p
 | 236     | Gwtmockito         | gwtmockito           |       gwtmockito           |      3       | 1-3                  |
 | 237     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
 | 238     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
-| 239     | Tape         | tape           |       tape           |      5       | 1-5                  |
+| 239     | Tape         | tape           |       tape           |      13       | 1-13                  |
 # Setting up GrowingBugs
 
 ## Requirements

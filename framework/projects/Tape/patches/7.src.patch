@@ -1,0 +1,13 @@
+diff --git a/tape/src/main/java/com/squareup/tape/QueueFile.java b/tape/src/main/java/com/squareup/tape/QueueFile.java
+index aaa289f..26dd722 100644
+--- a/tape/src/main/java/com/squareup/tape/QueueFile.java
++++ b/tape/src/main/java/com/squareup/tape/QueueFile.java
+@@ -247,7 +247,7 @@ public class QueueFile {
+     position = wrapPosition(position);
+     if (position + count <= fileLength) {
+       raf.seek(position);
+-      raf.readFully(buffer, offset, count);
++      raf.readFully(buffer, 0, count);
+     } else {
+       // The read overlaps the EOF.
+       // # of bytes to read before the EOF.

@@ -1,0 +1,13 @@
+diff --git a/tape/src/main/java/com/squareup/tape/QueueFile.java b/tape/src/main/java/com/squareup/tape/QueueFile.java
+index e2f771e..8914c21 100644
+--- a/tape/src/main/java/com/squareup/tape/QueueFile.java
++++ b/tape/src/main/java/com/squareup/tape/QueueFile.java
+@@ -377,7 +377,7 @@ public class QueueFile {
+     int endOfLastElement = wrapPosition(last.position + Element.HEADER_LENGTH + last.length);
+ 
+     // If the buffer is split, we need to make it contiguous
+-    if (endOfLastElement <= first.position) {
++    if (endOfLastElement < first.position) {
+       FileChannel channel = raf.getChannel();
+       channel.position(fileLength); // destination position
+       int count = endOfLastElement - Element.HEADER_LENGTH;

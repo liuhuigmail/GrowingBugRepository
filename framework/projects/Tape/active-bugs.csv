@@ -4,3 +4,11 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 3,759ff273ef036d5dc70cb61b1a923ac5a20ebe9f,6bed87308bf7706eb7a2bc7b40e19096aada6e0f,79,https://github.com/square/tape/pull/79
 4,64dfc3140e5a86b142dfeb10baabca5edece061c,193e08dcdad385c5f2ab219702bc553e2d1886ed,107,https://github.com/square/tape/pull/107
 5,193e08dcdad385c5f2ab219702bc553e2d1886ed,52e9782058033864562494255b927f1fc407d24f,105,https://github.com/square/tape/pull/105
+6,100249dac7bb21ce8c4fa6f8665ddff96d078e60,3c28f50aed5f370b9d572d7ba0da3d8f2248faf7,32,https://github.com/square/tape/pull/32
+7,3c28f50aed5f370b9d572d7ba0da3d8f2248faf7,52b24f2650ac23fdecfca7ee31f758d00bb823a5,30,https://github.com/square/tape/pull/30
+8,65027b14fdd4967acd5abe68ae993e151413362b,2116ee3dba8610a22cb4d894cdd4943e32870705,43,https://github.com/square/tape/issues/43
+9,65027b14fdd4967acd5abe68ae993e151413362b,d8a7b160b7f63a15f8c3da127e679081613b1e74,44,https://github.com/square/tape/pull/44
+10,95315e7abc2ee75da400193b9f5499fa7a561b4e,ba22953f2a36f8c19d9c95e127746536a584fb5a,42,https://github.com/square/tape/pull/42
+11,3aa89d807c85b8f67ffe972de1c2b47e9d790497,33dc5aeaf1d2ae9b9ff5a221cf6fe2cc6ab434f4,53,https://github.com/square/tape/issues/53
+12,3aa89d807c85b8f67ffe972de1c2b47e9d790497,d94f2a67587db009a16113ecb19819cd9fd4f3ea,57,https://github.com/square/tape/pull/57
+13,6310b29e05e71161cddde44d5745534c9baa1bfd,86f6af87e16cf07f24f4612c92f6a9a2f771e5e0,100,https://github.com/square/tape/pull/100

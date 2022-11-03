@@ -1,0 +1,3 @@
+com.squareup.tape.FileObjectQueueTest
+com.squareup.tape.QueueFileLoadingTest
+com.squareup.tape.QueueFileTest

@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`1011`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1020`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -21,7 +21,7 @@ To date, growingBugs contains **`1011`** unique bugs that are not included in De
 | 15     | Tika            | tika                      |                          |        5       | 1-2,5-7               |
 | 16     | Validator       | commons-validator         |                          |        21      | 1-2,4,6-9,11,</br>13-25 |
 | 17     | Pool            | commons-pool              |                          |        18      | 1-2,5-7,10-14,</br>16,20-21,24,</br>26-27,29-30|
-| 18     | Email           | commons-email             |                          |        3       | 3-5                 |
+| 18     | Email           | commons-email             |                          |        4       | 3-6                 |
 | 19     | Graph           | commons-graph             |                          |        3       | 1-3                 |
 | 20     | Net             | commons-net               |                          |        14      | 9,10,12,</br>14-18,20-21,</br>23-26             |
 | 21     | Numbers_angle   | commons-numbers-angle     |  commons-numbers-angle   |        2       | 1-2               |
@@ -240,4 +240,4 @@ To date, growingBugs contains **`1011`** unique bugs that are not included in De
 | 230     | Gwtmockito         | gwtmockito           |       gwtmockito           |      3       | 1-3                  |
 | 231     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
 | 232     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
-| 233     | Tape         | tape           |       tape           |      5       | 1-5                  |
+| 233     | Tape         | tape           |       tape           |      13       | 1-13                  |

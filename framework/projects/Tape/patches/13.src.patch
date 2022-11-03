@@ -1,0 +1,12 @@
+diff --git a/tape/src/main/java/com/squareup/tape/QueueFile.java b/tape/src/main/java/com/squareup/tape/QueueFile.java
+index 7625165..42b65aa 100644
+--- a/tape/src/main/java/com/squareup/tape/QueueFile.java
++++ b/tape/src/main/java/com/squareup/tape/QueueFile.java
+@@ -605,7 +605,6 @@ public final class QueueFile implements Closeable, Iterable<byte[]> {
+     last = Element.NULL;
+     if (fileLength > INITIAL_LENGTH) setLength(INITIAL_LENGTH);
+     fileLength = INITIAL_LENGTH;
+-    modCount++;
+   }
+ 
+   /** Closes the underlying file. */
