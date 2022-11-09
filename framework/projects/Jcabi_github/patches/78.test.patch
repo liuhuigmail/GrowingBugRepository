@@ -1,0 +1,37 @@
+diff --git a/src/test/java/com/jcabi/github/mock/MkPullTest.java b/src/test/java/com/jcabi/github/mock/MkPullTest.java
+index df031f73..47193635 100644
+--- a/src/test/java/com/jcabi/github/mock/MkPullTest.java
++++ b/src/test/java/com/jcabi/github/mock/MkPullTest.java
+@@ -30,7 +30,6 @@
+ package com.jcabi.github.mock;
+ 
+ import com.jcabi.github.Coordinates;
+-import com.jcabi.github.Issue;
+ import com.jcabi.github.Pull;
+ import com.jcabi.github.PullRef;
+ import com.jcabi.github.Repo;
+@@ -47,7 +46,6 @@ import org.mockito.Mockito;
+  * @author Carlos Miranda (miranda.cma@gmail.com)
+  * @version $Id$
+  * @checkstyle MultipleStringLiterals (500 lines)
+- * @checkstyle JavadocMethodCheck (500 lines)
+  */
+ public final class MkPullTest {
+     /**
+@@ -225,16 +223,6 @@ public final class MkPullTest {
+         );
+     }
+ 
+-    @Test
+-    public void issueIsPull() throws Exception {
+-        final Pull pull = MkPullTest.pullRequest();
+-        MatcherAssert.assertThat(
+-            "Issue is not a pull request",
+-            new Issue.Smart(pull.repo().issues().get(pull.number())).isPull(),
+-            Matchers.is(true)
+-        );
+-    }
+-
+     /**
+      * Create an repo to work with.
+      * @return Repo

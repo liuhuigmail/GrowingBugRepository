@@ -1,0 +1,19 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkNotifications.java b/src/main/java/com/jcabi/github/mock/MkNotifications.java
+index 61e71c10..7d5314c0 100644
+--- a/src/main/java/com/jcabi/github/mock/MkNotifications.java
++++ b/src/main/java/com/jcabi/github/mock/MkNotifications.java
+@@ -53,12 +53,12 @@ final class MkNotifications implements Notifications {
+ 
+     @Override
+     public Iterable<Notification> iterate() {
+-        return Collections.emptyList();
++        throw new NotImplementedException("MkNotifications#iterate");
+     }
+ 
+     @Override
+     public Notification get(final int number) {
+-        return new MkNotification(number);
++        throw new NotImplementedException("MkNotifications#get");
+     }
+ 
+     @Override

@@ -75,3 +75,5 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 74,b7f3f63796f56ab04b590d0fc74fe64d1fb6a524,e72b9847a0b6ff71033ae8af7e9814e6269e7210,895,https://github.com/jcabi/jcabi-github/issues/895
 75,b4d0d5da2dd3e623145813f66fc8bab492a48562,7648c7a4830a45a80f88ffd7d9afc102da12bdb9,94,https://github.com/jcabi/jcabi-github/issues/94
 76,6c261ad05546a8cc7e47ddd95c11e1f51ad36b32,6772bd14259a2d9ca877a2513145b2fdf9cf0c2e,965,https://github.com/jcabi/jcabi-github/issues/965
+77,dad90e738ccc32361481edb44aade573b52d5eed,cb7a58d2cca083bd164dd0b1116bb88f70ddfc13,952,https://github.com/jcabi/jcabi-github/issues/952
+78,9d418c84ac4f59a678bcb2aacda1e6ed358d22f1,5212bec0ddd18f786c636990123f0e0bb8f30b84,1323,https://github.com/jcabi/jcabi-github/issues/1323

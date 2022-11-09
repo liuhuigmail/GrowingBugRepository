@@ -20,3 +20,4 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 27,e9eb2d8b5a858bb6810c941ee7891c3adcf9949d,a4705cc3c310ffb422336b319891f63eef021f1c,IO-535,https://issues.apache.org/jira/browse/IO-535
 29,4597f38c3608cfe8ef872144ed4bfe393a05dc84,c6b8a383de96cd0a8e94037a04510f162e4bbc68,IO-554,https://issues.apache.org/jira/browse/IO-554
 30,58324c1cfb9814b390a8750b0ba97dc5367817a8,d463fa0120fc1041729b7a564b2b5f96de9d6ab6,IO-625,https://issues.apache.org/jira/browse/IO-625
+31,eaa8e0c698f694b7e5fdded5dbb9024c8cf15c4e,0a03609ddc6380dd7c9053eb8cb04072baa476a1,IO-90,https://issues.apache.org/jira/browse/IO-90
