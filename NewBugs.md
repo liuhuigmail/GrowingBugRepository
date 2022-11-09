@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`1022`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1026`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -15,7 +15,7 @@ To date, growingBugs contains **`1022`** unique bugs that are not included in De
 | 9     | Dbutils         | commons-dbutils           |                          |        2       | 1-2                 |
 | 10     | Functor         | commons-functor           |                          |        2       | 1-2                 |
 | 11     | Imaging         | commons-imaging           |                          |        10      | 1,3-8,10-11,14  |
-| 12     | IO              | commons-io                |                          |        21       | 1-3,5-6,8-18,</br>22,25,27,29-30                |
+| 12     | IO              | commons-io                |                          |        22       | 1-3,5-6,8-18,</br>22,25,27,29-31                |
 | 13     | JXR             | maven-jxr                 |                          |        1       | 1                   |
 | 14     | MShade          | maven-shade-plugin        |                          |        6       | 1-4,6-7                 |
 | 15     | Tika            | tika                      |                          |        5       | 1-2,5-7               |
@@ -40,7 +40,7 @@ To date, growingBugs contains **`1022`** unique bugs that are not included in De
 | 34     | Xmlgraphics            | xmlgraphics-commons |       |       4     | 1-4              |
 | 35     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
 | 36     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
-| 37     | James_project_core            | james-project-core               |       core       |        1       | 1               |
+| 37     | James_project_core            | james-project-core               |       core       |        2       | 1-2               |
 | 38     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        5       | 1-5               |
 | 39     | AaltoXml            | aalto-xml      |             |        9       | 1-9               |
 | 40     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-2,4-8               |
@@ -201,7 +201,7 @@ To date, growingBugs contains **`1022`** unique bugs that are not included in De
 | 194     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 195     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 196     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
-| 197     | Jcabi_github         | jcabi-github           |                  |      71       | 1-42,44-76                  |
+| 197     | Jcabi_github         | jcabi-github           |                  |      73       | 1-42,44-78                  |
 | 198     | Podam         | podam           |                  |      1       | 1                  |
 | 199     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
 | 200     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
