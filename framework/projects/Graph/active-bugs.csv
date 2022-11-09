@@ -2,3 +2,5 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,3249c5fd606cda769a8c0bbb5788403f57f9d82f,808c1c7512778204b72424bb6a72a6181af4176e,SANDBOX-334,https://issues.apache.org/jira/browse/SANDBOX-334
 2,7b6463ac2eeadf3d73d457e8ff18ea444b6159e5,8a89bffddac4dd221525ba00b764a66fce9033b2,SANDBOX-336,https://issues.apache.org/jira/browse/SANDBOX-336
 3,cb0c6b7e7c9316fe89217e40010958e30cd7cfc7,28443c5378e12745049f5cca70935a1d7c4e185a,SANDBOX-391,https://issues.apache.org/jira/browse/SANDBOX-391
+4,ce874f0ff693f336e33d11c95dcfbb3b1594344c,251fd46f717c74dce9297aaa16396af3a7135a33,unknown,unknown
+5,064c0ee082b887fe148d02ccaf3ec11c434115e7,cf696dc2366c9ba9595f27e48e9833f172988400,unknown,unknown

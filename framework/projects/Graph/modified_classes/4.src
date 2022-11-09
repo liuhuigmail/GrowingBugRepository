@@ -1,2 +1,1 @@
-org.apache.commons.graph.collections.FibonacciHeap
-org.apache.commons.graph.spanning.DefaultSpanningTreeAlgorithmSelector
+org.apache.commons.graph.visit.DefaultVisitAlgorithmsSelector

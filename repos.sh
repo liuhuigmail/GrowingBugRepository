@@ -12,7 +12,11 @@ do
     project_name=${strarr[1]} 
     echo "PROJECT_LINK: $project_link"
     echo "PROJECT_NAME: $project_name"
-    #if [ ! -d "$project_name.git" ]; then
+    if [  -d "$project_name.git" ]; 
+    then
+    	echo "$project_name.git exist"
+    	continue
+    fi
     #echo "$project_name.git"  
     #echo "WORK_DIR: $work_dir"
             

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/graph/visit/DefaultVisitAlgorithmsSelector.java b/src/main/java/org/apache/commons/graph/visit/DefaultVisitAlgorithmsSelector.java
+index 99f7e6b..5f44fbd 100644
+--- a/src/main/java/org/apache/commons/graph/visit/DefaultVisitAlgorithmsSelector.java
++++ b/src/main/java/org/apache/commons/graph/visit/DefaultVisitAlgorithmsSelector.java
+@@ -138,6 +138,10 @@ final class DefaultVisitAlgorithmsSelector<V extends Vertex, E extends Edge, G e
+                 }
+             }
+ 
++            if ( !skipVertex )
++            {
++                visitedVertices.add( v );                
++            }
+             if ( !skipVertex && handler.discoverVertex( v ) )
+             {
+                 Iterator<V> connected = ( graph instanceof DirectedGraph ) ?
+@@ -150,7 +157,6 @@ final class DefaultVisitAlgorithmsSelector<V extends Vertex, E extends Edge, G e
+                     if ( !visitedVertices.contains( w ) )
+                     {
+                         vertexList.addLast( new VertexPair<V>( w, v ) );
+-                        visitedVertices.add( w );
+                     }
+                 }
+             }

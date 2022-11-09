@@ -1,7 +1,4 @@
-org.apache.commons.graph.collections.FibonacciHeapTestCase
-org.apache.commons.graph.shortestpath.AStarTestCase
-org.apache.commons.graph.shortestpath.DijkstraTestCase
-org.apache.commons.graph.spanning.BoruvkaTestCase
-org.apache.commons.graph.spanning.KruskalTestCase
-org.apache.commons.graph.spanning.PrimTestCase
-org.apache.commons.graph.spanning.ReverseDeleteTestCase
+org.apache.commons.graph.connectivity.FindConnectedComponetTestCase
+org.apache.commons.graph.flow.EdmondsKarpTestCase
+org.apache.commons.graph.flow.FordFulkersonTestCase
+org.apache.commons.graph.visit.VisitTestCase
