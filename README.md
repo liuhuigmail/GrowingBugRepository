@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1863`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1867`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -47,7 +47,7 @@ To date, growingBugs contains **`1863`** real-world bugs from open-source Java p
 | 18     | Dbutils         | commons-dbutils            |                          |        2       | 1-2                 |
 | 19     | Functor         | commons-functor            |                          |        2       | 1-2                 |
 | 20     | Imaging         | commons-imaging            |                          |        10      | 1,3-8,10-11,14  |
-| 21     | IO              | commons-io                 |                          |        21       | 1-3,5-6,8-18,</br>22,25,27,29-30                |
+| 21     | IO              | commons-io                 |                          |        22       | 1-3,5-6,8-18,</br>22,25,27,29-31                |
 | 22     | JXR             | maven-jxr                  |                          |        1       | 1                   |
 | 23     | MShade          | maven-shade-plugin         |                          |        6       | 1-4,6-7                 |
 | 24     | Tika            | tika                       |                          |        5       | 1-2,5-7               |
@@ -72,7 +72,7 @@ To date, growingBugs contains **`1863`** real-world bugs from open-source Java p
 | 43     | Xmlgraphics            | xmlgraphics-commons |       |       4     | 1-4              |
 | 44     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
 | 45     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
-| 46     | James_project_core            | james-project-core               |       core       |        1       | 1               |
+| 46     | James_project_core            | james-project-core               |       core       |        2       | 1-2               |
 | 47     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        5       | 1-5               |
 | 48     | AaltoXml            | aalto-xml      |             |        9       | 1-9               |
 | 49     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-2,4-8               |
@@ -228,7 +228,7 @@ To date, growingBugs contains **`1863`** real-world bugs from open-source Java p
 | 199     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 200     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 201     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
-| 202     | Jcabi_github         | jcabi-github           |                  |      71       | 1-42,44-76                  |
+| 202     | Jcabi_github         | jcabi-github           |                  |      73       | 1-42,44-78                  |
 | 203     | Podam         | podam           |                  |      1       | 1                  |
 | 204     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
 | 205     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
