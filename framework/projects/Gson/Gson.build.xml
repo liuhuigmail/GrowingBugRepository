@@ -37,7 +37,7 @@ of the checked-out project version.
     <property name="compile.debug" value="yes" />
 
     <!-- Include existing project build file -->
-    <import file="${d4j.workdir}/gson/build.xml"/>
+    <import file="${d4j.workdir}/build.xml"/>
 
     <!-- Project properties targets -->
     <if> <isset property="ant.refid:compile.classpath" />
