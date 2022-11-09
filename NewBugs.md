@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`1026`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1042`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -241,3 +241,4 @@ To date, growingBugs contains **`1026`** unique bugs that are not included in De
 | 231     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
 | 232     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
 | 233     | Tape         | tape           |       tape           |      13       | 1-13                  |
+| 234     | Jcabi_http         | jcabi-http           |       jcabi-http           |      16       | 1-16                  |
