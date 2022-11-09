@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1867`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1883`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -166,7 +166,7 @@ To date, growingBugs contains **`1867`** real-world bugs from open-source Java p
 | 137     | Maven2_artifact            | maven-artifact |  maven-artifact   |       2     | 1-2              |
 | 138     | Maven2_project            | maven-project |  maven-project   |       2     | 1-2              |
 | 139     | Math            | commons-math               |                          |      35       | 1-35               |
-| 140     | Wicket_request            | wicket-request               |     wicket-request                     |      6       | 1-6               |
+| 140     | Wicket_request            | wicket-request               |     wicket-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request                     |      6       | 1-6               |
 | 141     | Cayenne_xmpp            | cayenne-xmpp               |    cayenne-xmpp                      |      1       | 1               |
 | 142     | Wicket_util            | wicket-util               |     wicket-util                     |     4       | 1-4               |
 | 143     | Wicket_spring            | wicket-spring               |        wicket-spring                  |      1       | 1               |
@@ -266,6 +266,7 @@ To date, growingBugs contains **`1867`** real-world bugs from open-source Java p
 | 237     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
 | 238     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
 | 239     | Tape         | tape           |       tape           |      13       | 1-13                  |
+| 240     | Jcabi_http         | jcabi-http           |       jcabi-http           |      16       | 1-16                  |
 # Setting up GrowingBugs
 
 ## Requirements
