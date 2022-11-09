@@ -1,0 +1,73 @@
+diff --git a/src/main/java/com/jcabi/http/response/JsonResponse.java b/src/main/java/com/jcabi/http/response/JsonResponse.java
+index 4b6267d..a1e5651 100644
+--- a/src/main/java/com/jcabi/http/response/JsonResponse.java
++++ b/src/main/java/com/jcabi/http/response/JsonResponse.java
+@@ -104,65 +104,13 @@ public final class JsonResponse extends AbstractResponse {
+      */
+     @NotNull(message = "JSON reader is never NULL")
+     public JsonReader json() {
+-        final String body = this.escapeControl(this.body());
+         // @checkstyle AnonInnerLength (50 lines)
+-        final JsonReader reader = new JsonReader() {
+             /**
+              * Underlying reader instance.
+              */
+-            private final transient JsonReader rdr =
+-                Json.createReader(new StringReader(body));
+-            @Override
+-            public JsonObject readObject() {
+-                final JsonObject json;
+-                try {
+-                    json = this.rdr.readObject();
+-                } catch (final JsonParsingException exp) {
+-                    Logger.error(
+-                        JsonResponse.this,
+-                        "Failed to parse JSON object: %s, JSON body: %s",
+-                        exp.getMessage(), body
+-                    );
+-                    throw exp;
+-                }
+-                return json;
+-            }
+-            @Override
+-            public JsonArray readArray() {
+-                final JsonArray array;
+-                try {
+-                    array = this.rdr.readArray();
+-                } catch (final JsonParsingException exp) {
+-                    Logger.error(
+-                        JsonResponse.this,
+-                        "Failed to parse JSON array: %s, JSON body: %s",
+-                        exp.getMessage(), body
+-                    );
+-                    throw exp;
+-                }
+-                return array;
+-            }
+-            @Override
+-            public JsonStructure read() {
+-                final JsonStructure struct;
+-                try {
+-                    struct = this.rdr.read();
+-                } catch (final JsonParsingException exp) {
+-                    Logger.error(
+-                        JsonResponse.this,
+-                        "Failed to parse JSON structure: %s, JSON body: %s",
+-                        exp.getMessage(), body
+-                    );
+-                    throw exp;
+-                }
+-                return struct;
+-            }
+-            @Override
+-            public void close() {
+-                this.rdr.close();
+-            }
+-        };
+-        return reader;
++        return Json.createReader(
++            new StringReader(this.escapeControl(this.body()))
++        );
+     }
+ 
+     /**

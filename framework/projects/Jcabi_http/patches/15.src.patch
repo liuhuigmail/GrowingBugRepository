@@ -1,0 +1,17 @@
+diff --git a/src/main/java/com/jcabi/http/request/BaseRequest.java b/src/main/java/com/jcabi/http/request/BaseRequest.java
+index 2ef5bdd..344f96f 100644
+--- a/src/main/java/com/jcabi/http/request/BaseRequest.java
++++ b/src/main/java/com/jcabi/http/request/BaseRequest.java
+@@ -178,11 +178,7 @@ final class BaseRequest implements Request {
+         final String method, final byte[] body,
+         final int cnct, final int rdd) {
+         this.wire = wre;
+-        URI addr = URI.create(uri);
+-        if (addr.getPath().isEmpty()) {
+-            addr = UriBuilder.fromUri(addr).path("/").build();
+-        }
+-        this.home = addr.toString();
++        this.home = uri;
+         this.hdrs = new Array<Map.Entry<String, String>>(headers);
+         this.mtd = method;
+         this.content = body.clone();

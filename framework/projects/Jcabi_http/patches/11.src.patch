@@ -1,0 +1,47 @@
+diff --git a/src/main/java/com/jcabi/http/request/FakeRequest.java b/src/main/java/com/jcabi/http/request/FakeRequest.java
+index e505818..bdb2a41 100644
+--- a/src/main/java/com/jcabi/http/request/FakeRequest.java
++++ b/src/main/java/com/jcabi/http/request/FakeRequest.java
+@@ -87,28 +87,14 @@ public final class FakeRequest implements Request {
+             public Response send(final Request req, final String home,
+                 final String method,
+                 final Collection<Map.Entry<String, String>> headers,
+-                final InputStream text) throws IOException {
+-                final ByteArrayOutputStream output =
+-                    new ByteArrayOutputStream();
++                final InputStream text) {
+                 // @checkstyle MagicNumber (1 line)
+-                final byte[] buffer = new byte[8192];
+-                for (int bytes = text.read(buffer); bytes != -1;
+-                    bytes = text.read(buffer)) {
+-                    output.write(buffer, 0, bytes);
+-                }
+-                output.flush();
+-                final byte[] body;
+-                if (output.size() > 0) {
+-                    body = output.toByteArray();
+-                } else {
+-                    body = FakeRequest.this.content;
+-                }
+                 return new DefaultResponse(
+                     req,
+                     FakeRequest.this.code,
+                     FakeRequest.this.phrase,
+                     FakeRequest.this.hdrs,
+-                    body
++                    FakeRequest.this.content
+                 );
+             }
+         },
+@@ -209,11 +195,6 @@ public final class FakeRequest implements Request {
+ 
+     @Override
+     public Response fetch(final InputStream stream) throws IOException {
+-        if (this.content.length > 0) {
+-            throw new IllegalStateException(
+-                "Request Body is not empty, use fetch() instead"
+-            );
+-        }
+         return this.base.fetch(stream);
+     }
+ 

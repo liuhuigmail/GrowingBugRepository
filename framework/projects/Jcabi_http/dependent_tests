@@ -1,0 +1,3 @@
+--- com.jcabi.http.RequestITCase::sendsHttpRequestAndProcessesHttpResponse[0]
+--- com.jcabi.http.RequestITCase::sendsHttpRequestAndProcessesHttpResponse[1]
+--- com.jcabi.http.RequestITCase::processesNotOkHttpResponse[1]

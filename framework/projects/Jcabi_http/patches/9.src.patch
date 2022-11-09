@@ -1,0 +1,16 @@
+diff --git a/src/main/java/com/jcabi/http/request/JdkRequest.java b/src/main/java/com/jcabi/http/request/JdkRequest.java
+index 800093f..e6ae469 100644
+--- a/src/main/java/com/jcabi/http/request/JdkRequest.java
++++ b/src/main/java/com/jcabi/http/request/JdkRequest.java
+@@ -121,11 +121,6 @@ public final class JdkRequest implements Request {
+                     this.headers(conn.getHeaderFields()),
+                     this.body(conn)
+                 );
+-            } catch (final IOException exp) {
+-                throw new IOException(
+-                    String.format("Failed %s request to %s", method, home),
+-                    exp
+-                );
+             } finally {
+                 conn.disconnect();
+             }

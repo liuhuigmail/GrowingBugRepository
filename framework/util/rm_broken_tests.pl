@@ -118,6 +118,7 @@ for (@list){
     /--- ([^:]+)(::([^:]+))?/;
     my $class  = $1;
     my $method = $3;
+    
     _exclude_test_class($class) unless defined $method;
 
     if ($except) {
@@ -139,23 +140,22 @@ for (@list){
         copy("$file","$file.bak") or die "Cannot backup file ($file): $!";
     }
 
-    # Buffer file for modifications
+   # Buffer file for modifications
     _buffer_file($file);
-
     if (defined $method) {
         # Check wether removing failing assertions is enabled and successful
-        unless ($RM_ASSERTS && _remove_assertion($class, $method)) {
+        unless ( $RM_ASSERTS && _remove_assertion($class, $method)) {
             push(@method_list, $_);
         }
     }
 }
-
 # Remove the remaining test methods -- the ones for which we couldn't remove the failing
 # assertion.
 for (@method_list) {
     /--- ([^:]+)(::([^:]+))?/;
     my $class  = $1;
     my $method = $3;
+    	
     _remove_test_method($class, $method);
 }
 
@@ -172,11 +172,12 @@ sub _exclude_test_class {
 
 # TODO: Use Utils::get_failing_tests to obtain information about failing assertions
 sub _remove_assertion {
+
     my ($class, $method) = @_;
     my $file = $class;
     $file =~ s/\./\//g;
-    $file = "$base_dir/$file.java";
-
+    $file = "$base_dir/$file.java"; 
+    
     for (my $i=0; $i <= $#log_lines; ++$i) {
         local $_ = $log_lines[$i];
         chomp;
@@ -222,11 +223,11 @@ sub _remove_test_method {
     # Line buffer for the fixed source file
     my @buffer;
      
-    for (my $i=0; $i<=$#lines; ++$i) {
+     for (my $i=0; $i<=$#lines; ++$i) {
      my $temp_method=$method;
-     system("echo $method") ;#and die;
      #$temp_method=~ s/\[/\\\[/g;
      #$temp_method =~ s/\]/\\\]/g; 
+     
         if ($lines[$i] =~ /^([^\/]*)public.+$temp_method\(\)/) {
             my $index = $i;
             # Found the test to exclude
@@ -271,15 +272,22 @@ sub _remove_test_method {
             }
             # Add everything after broken method
             push(@buffer, @lines[($index+$len)..$#lines]);
-
-            last;
-        }
-    } 
+	    last;
+        } 
+    	
+    }  
+    
     if (@buffer) {
         # Update file buffer
+        
         $buffers{$file} = \@buffer;
+        
     } else {
-        # Override failing test method if it was implemented in super class
+        # Override failing test method if it was implemented in super class 
+        
+        $method=~ s/\[/_/;
+        
+        $method=~ s/]/_/; 
         my $override = ###### "    \@Override\n" .
                        ###### TODO: There is a problem with adding the @Override annotation
                        #              it is that when we are dealing with e.g, broken_tests
@@ -289,14 +297,13 @@ sub _remove_test_method {
                        #              This is different than the case when we know it is
                        #              failing for this particular revision.
                        "    public void $method() {} // Fails in super class\n";
-
-        # Only add @Test annotation if we are using Junit 4
+	# Only add @Test annotation if we are using Junit 4
         $override =       "    \@Test\n" . $override if $is_buffer_junit4{$file};
-
-
+        
         # Read file buffer, determine closing curly brace of test class,
         # and insert test method before the brace.
         # TODO: This is probably not the most elegant solution.
+        
         my @buffer = @{$buffers{$file}};
         for (my $index=$#buffer; $index>=0; --$index) {
             # Find closing curly
@@ -318,7 +325,7 @@ sub _buffer_file {
         my @data = <$in>;
         $in->close();
         $buffers{$file}=\@data;
-
+    
         # Check for junit 4
         $is_buffer_junit4{$file} = 0;
         $is_buffer_junit4{$file} = 1 if grep {/import org\.junit\.Test/} @data;

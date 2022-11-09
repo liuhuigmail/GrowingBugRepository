@@ -1,0 +1,35 @@
+diff --git a/src/main/java/com/jcabi/http/wire/BasicAuthWire.java b/src/main/java/com/jcabi/http/wire/BasicAuthWire.java
+index 2aeadec..bdac378 100644
+--- a/src/main/java/com/jcabi/http/wire/BasicAuthWire.java
++++ b/src/main/java/com/jcabi/http/wire/BasicAuthWire.java
+@@ -119,7 +119,6 @@ public final class BasicAuthWire implements Wire {
+         final String info = URI.create(home).getUserInfo();
+         if (absent && info != null) {
+             final String[] parts = info.split(":", 2);
+-            try {
+                 hdrs.add(
+                     new ImmutableHeader(
+                         HttpHeaders.AUTHORIZATION,
+@@ -128,20 +127,13 @@ public final class BasicAuthWire implements Wire {
+                             DatatypeConverter.printBase64Binary(
+                                 Logger.format(
+                                     "%s:%s",
+-                                    URLEncoder.encode(
+-                                        parts[0], BasicAuthWire.ENCODING
+-                                    ),
+-                                    URLEncoder.encode(
+-                                        parts[1], BasicAuthWire.ENCODING
+-                                    )
++                                parts[0],
++                                parts[1]
+                                 ).getBytes(BasicAuthWire.CHARSET)
+                             )
+                         )
+                     )
+                 );
+-            } catch (final UnsupportedEncodingException ex) {
+-                throw new IllegalStateException(ex);
+-            }
+         }
+         return this.origin.send(
+             req, home, method, hdrs, content, connect, read

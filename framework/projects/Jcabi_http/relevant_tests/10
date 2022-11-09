@@ -1,0 +1,6 @@
+com.jcabi.http.RequestTest
+com.jcabi.http.mock.MkContainerTest
+com.jcabi.http.wire.CachingWireTest
+com.jcabi.http.wire.CookieOptimizingWireTest
+com.jcabi.http.wire.UserAgentWireTest
+com.jcabi.http.wire.VerboseWireTest

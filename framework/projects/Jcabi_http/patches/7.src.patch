@@ -1,0 +1,18 @@
+diff --git a/src/main/java/com/jcabi/http/response/JsonResponse.java b/src/main/java/com/jcabi/http/response/JsonResponse.java
+index eec6ba4..f809ae9 100644
+--- a/src/main/java/com/jcabi/http/response/JsonResponse.java
++++ b/src/main/java/com/jcabi/http/response/JsonResponse.java
+@@ -68,11 +68,9 @@ import lombok.EqualsAndHashCode;
+ public final class JsonResponse extends AbstractResponse {
+ 
+     /**
+-     * Pattern matching non-ASCII characters, to escape them before parsing.
++     * Pattern matching control characters U+0000 - U001F for JSON escaping.
+      */
+-    private static final Pattern CONTROL = Pattern.compile(
+-        "[\u0000-\u0008\u000e-\u001f\u007f-\uffff]"
+-    );
++    private static final Pattern CONTROL = Pattern.compile("[\u0000-\u001f]");
+ 
+     /**
+      * Public ctor.

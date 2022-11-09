@@ -1,0 +1,13 @@
+diff --git a/src/main/java/com/jcabi/http/request/JdkRequest.java b/src/main/java/com/jcabi/http/request/JdkRequest.java
+index 47a1824..956f4ec 100644
+--- a/src/main/java/com/jcabi/http/request/JdkRequest.java
++++ b/src/main/java/com/jcabi/http/request/JdkRequest.java
+@@ -102,7 +102,7 @@ public final class JdkRequest implements Request {
+                 conn.setUseCaches(false);
+                 conn.setInstanceFollowRedirects(false);
+                 for (final Map.Entry<String, String> header : headers) {
+-                    conn.addRequestProperty(header.getKey(), header.getValue());
++                    conn.setRequestProperty(header.getKey(), header.getValue());
+                 }
+                 if (method.equals(Request.POST) || method.equals(Request.PUT)
+                     || method.equals(Request.PATCH)) {

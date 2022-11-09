@@ -1,0 +1,15 @@
+diff --git a/src/main/java/com/jcabi/http/response/JsonResponse.java b/src/main/java/com/jcabi/http/response/JsonResponse.java
+index 4bd12f4..9e51cea 100644
+--- a/src/main/java/com/jcabi/http/response/JsonResponse.java
++++ b/src/main/java/com/jcabi/http/response/JsonResponse.java
+@@ -94,9 +94,7 @@ public final class JsonResponse extends AbstractResponse {
+      */
+     @NotNull(message = "JSON reader is never NULL")
+     public JsonReader json() {
+-        return Json.createReader(
+-            new StringReader(this.escapeControl(this.body()))
+-        );
++        return Json.createReader(new StringReader(this.body()));
+     }
+ 
+     /**

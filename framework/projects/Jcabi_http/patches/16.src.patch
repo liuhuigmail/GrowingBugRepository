@@ -1,0 +1,33 @@
+diff --git a/src/main/java/com/jcabi/http/request/FakeRequest.java b/src/main/java/com/jcabi/http/request/FakeRequest.java
+index e505818..ad49135 100644
+--- a/src/main/java/com/jcabi/http/request/FakeRequest.java
++++ b/src/main/java/com/jcabi/http/request/FakeRequest.java
+@@ -88,27 +88,13 @@ public final class FakeRequest implements Request {
+                 final String method,
+                 final Collection<Map.Entry<String, String>> headers,
+                 final InputStream text) throws IOException {
+-                final ByteArrayOutputStream output =
+-                    new ByteArrayOutputStream();
+                 // @checkstyle MagicNumber (1 line)
+-                final byte[] buffer = new byte[8192];
+-                for (int bytes = text.read(buffer); bytes != -1;
+-                    bytes = text.read(buffer)) {
+-                    output.write(buffer, 0, bytes);
+-                }
+-                output.flush();
+-                final byte[] body;
+-                if (output.size() > 0) {
+-                    body = output.toByteArray();
+-                } else {
+-                    body = FakeRequest.this.content;
+-                }
+                 return new DefaultResponse(
+                     req,
+                     FakeRequest.this.code,
+                     FakeRequest.this.phrase,
+                     FakeRequest.this.hdrs,
+-                    body
++                    FakeRequest.this.content
+                 );
+             }
+         },
