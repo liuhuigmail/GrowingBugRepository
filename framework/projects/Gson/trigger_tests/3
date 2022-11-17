@@ -1,6 +1,7 @@
---- com.google.gson.functional.MapTest::testConcurrentMap
-java.lang.ClassCastException: java.util.LinkedHashMap cannot be cast to java.util.concurrent.ConcurrentMap
-	at com.google.gson.functional.MapTest.testConcurrentMap(MapTest.java:188)
+--- com.google.gson.internal.bind.JsonTreeReaderTest::testSkipValue_filledJsonObject
+java.lang.ArrayIndexOutOfBoundsException: -1
+	at com.google.gson.internal.bind.JsonTreeReader.skipValue(JsonTreeReader.java:262)
+	at com.google.gson.internal.bind.JsonTreeReaderTest.testSkipValue_filledJsonObject(JsonTreeReaderTest.java:47)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -11,8 +12,6 @@ java.lang.ClassCastException: java.util.LinkedHashMap cannot be cast to java.uti
 	at junit.framework.TestResult.runProtected(TestResult.java:142)
 	at junit.framework.TestResult.run(TestResult.java:125)
 	at junit.framework.TestCase.run(TestCase.java:129)
-	at junit.framework.TestSuite.runTest(TestSuite.java:255)
-	at junit.framework.TestSuite.run(TestSuite.java:250)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)
@@ -35,9 +34,10 @@ java.lang.ClassCastException: java.util.LinkedHashMap cannot be cast to java.uti
 	at org.apache.tools.ant.Main.startAnt(Main.java:217)
 	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
 	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
---- com.google.gson.functional.MapTest::testConcurrentNavigableMap
-java.lang.ClassCastException: java.util.TreeMap cannot be cast to java.util.concurrent.ConcurrentNavigableMap
-	at com.google.gson.functional.MapTest.testConcurrentNavigableMap(MapTest.java:208)
+--- com.google.gson.internal.bind.JsonTreeReaderTest::testSkipValue_emptyJsonObject
+java.lang.ArrayIndexOutOfBoundsException: -1
+	at com.google.gson.internal.bind.JsonTreeReader.skipValue(JsonTreeReader.java:262)
+	at com.google.gson.internal.bind.JsonTreeReaderTest.testSkipValue_emptyJsonObject(JsonTreeReaderTest.java:29)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -48,8 +48,6 @@ java.lang.ClassCastException: java.util.TreeMap cannot be cast to java.util.conc
 	at junit.framework.TestResult.runProtected(TestResult.java:142)
 	at junit.framework.TestResult.run(TestResult.java:125)
 	at junit.framework.TestCase.run(TestCase.java:129)
-	at junit.framework.TestSuite.runTest(TestSuite.java:255)
-	at junit.framework.TestSuite.run(TestSuite.java:250)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)

@@ -1,32 +1,15 @@
-diff --git a/gson/src/main/java/com/google/gson/stream/JsonReader.java b/gson/src/main/java/com/google/gson/stream/JsonReader.java
-index 7a5e9cbb..d375ba15 100644
---- a/gson/src/main/java/com/google/gson/stream/JsonReader.java
-+++ b/gson/src/main/java/com/google/gson/stream/JsonReader.java
-@@ -951,12 +951,8 @@ public class JsonReader implements Closeable {
-     if (p == PEEKED_NUMBER) {
-       peekedString = new String(buffer, pos, peekedNumberLength);
-       pos += peekedNumberLength;
--    } else if (p == PEEKED_SINGLE_QUOTED || p == PEEKED_DOUBLE_QUOTED || p == PEEKED_UNQUOTED) {
--      if (p == PEEKED_UNQUOTED) {
--        peekedString = nextUnquotedValue();
--      } else {
-+    } else if (p == PEEKED_SINGLE_QUOTED || p == PEEKED_DOUBLE_QUOTED) {
-         peekedString = nextQuotedValue(p == PEEKED_SINGLE_QUOTED ? '\'' : '"');
--      }
-       try {
-         long result = Long.parseLong(peekedString);
-         peeked = PEEKED_NONE;
-@@ -1183,12 +1179,8 @@ public class JsonReader implements Closeable {
-     if (p == PEEKED_NUMBER) {
-       peekedString = new String(buffer, pos, peekedNumberLength);
-       pos += peekedNumberLength;
--    } else if (p == PEEKED_SINGLE_QUOTED || p == PEEKED_DOUBLE_QUOTED || p == PEEKED_UNQUOTED) {
--      if (p == PEEKED_UNQUOTED) {
--        peekedString = nextUnquotedValue();
--      } else {
-+    } else if (p == PEEKED_SINGLE_QUOTED || p == PEEKED_DOUBLE_QUOTED) {
-         peekedString = nextQuotedValue(p == PEEKED_SINGLE_QUOTED ? '\'' : '"');
--      }
-       try {
-         result = Integer.parseInt(peekedString);
-         peeked = PEEKED_NONE;
+diff --git a/gson/src/main/java/com/google/gson/internal/$Gson$Types.java b/gson/src/main/java/com/google/gson/internal/$Gson$Types.java
+index adea605f..f66ac157 100644
+--- a/gson/src/main/java/com/google/gson/internal/$Gson$Types.java
++++ b/gson/src/main/java/com/google/gson/internal/$Gson$Types.java
+@@ -275,10 +275,7 @@ public final class $Gson$Types {
+    * @param supertype a superclass of, or interface implemented by, this.
+    */
+   static Type getSupertype(Type context, Class<?> contextRawType, Class<?> supertype) {
+-    if (context instanceof WildcardType) {
+       // wildcards are useless for resolving supertypes. As the upper bound has the same raw type, use it instead
+-      context = ((WildcardType)context).getUpperBounds()[0];
+-    }
+     checkArgument(supertype.isAssignableFrom(contextRawType));
+     return resolve(context, contextRawType,
+         $Gson$Types.getGenericSupertype(context, contextRawType, supertype));

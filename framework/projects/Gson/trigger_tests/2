@@ -1,8 +1,12 @@
---- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch
-java.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject
-	at java.lang.Class.cast(Class.java:3369)
-	at com.google.gson.Gson.fromJson(Gson.java:701)
-	at com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)
+--- com.google.gson.functional.PrimitiveTest::testNumberAsStringDeserialization
+com.google.gson.JsonSyntaxException: Expecting number, got: STRING
+	at com.google.gson.internal.bind.TypeAdapters$14.read(TypeAdapters.java:373)
+	at com.google.gson.internal.bind.TypeAdapters$14.read(TypeAdapters.java:362)
+	at com.google.gson.Gson.fromJson(Gson.java:887)
+	at com.google.gson.Gson.fromJson(Gson.java:852)
+	at com.google.gson.Gson.fromJson(Gson.java:801)
+	at com.google.gson.Gson.fromJson(Gson.java:773)
+	at com.google.gson.functional.PrimitiveTest.testNumberAsStringDeserialization(PrimitiveTest.java:162)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -13,8 +17,6 @@ java.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.g
 	at junit.framework.TestResult.runProtected(TestResult.java:142)
 	at junit.framework.TestResult.run(TestResult.java:125)
 	at junit.framework.TestCase.run(TestCase.java:129)
-	at junit.framework.TestSuite.runTest(TestSuite.java:255)
-	at junit.framework.TestSuite.run(TestSuite.java:250)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)

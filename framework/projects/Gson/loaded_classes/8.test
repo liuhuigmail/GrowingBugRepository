@@ -1,1 +1,1 @@
-com.google.gson.internal.UnsafeAllocatorInstantiationTest
+com.google.gson.stream.JsonReaderPathTest

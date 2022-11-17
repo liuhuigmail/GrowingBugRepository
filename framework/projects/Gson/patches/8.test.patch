@@ -1,80 +1,67 @@
-diff --git a/gson/src/test/java/com/google/gson/internal/UnsafeAllocatorInstantiationTest.java b/gson/src/test/java/com/google/gson/internal/UnsafeAllocatorInstantiationTest.java
-deleted file mode 100644
-index 431fc83d..00000000
---- a/gson/src/test/java/com/google/gson/internal/UnsafeAllocatorInstantiationTest.java
-+++ /dev/null
-@@ -1,74 +0,0 @@
--/*
-- * Copyright (C) 2016 Google Inc.
-- *
-- * Licensed under the Apache License, Version 2.0 (the "License");
-- * you may not use this file except in compliance with the License.
-- * You may obtain a copy of the License at
-- *
-- * http://www.apache.org/licenses/LICENSE-2.0
-- *
-- * Unless required by applicable law or agreed to in writing, software
-- * distributed under the License is distributed on an "AS IS" BASIS,
-- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-- * See the License for the specific language governing permissions and
-- * limitations under the License.
-- */
--package com.google.gson.internal;
--
--import junit.framework.TestCase;
--
--/**
-- * Test unsafe allocator instantiation
-- * @author Ugljesa Jovanovic
-- */
--public final class UnsafeAllocatorInstantiationTest extends TestCase {
--
--  public interface Interface {
--  }
--
--  public static abstract class AbstractClass {
--  }
--
--  public static class ConcreteClass {
--  }
--
--  /**
--   * Ensure that the {@link java.lang.UnsupportedOperationException} is thrown when  trying
--   * to instantiate an interface
--   */
--  public void testInterfaceInstantiation() {
--    UnsafeAllocator unsafeAllocator = UnsafeAllocator.create();
--    try {
--      unsafeAllocator.newInstance(Interface.class);
--      fail();
--    } catch (Exception e) {
--      assertEquals(e.getClass(), UnsupportedOperationException.class);
--    }
--  }
--
--  /**
--   * Ensure that the {@link java.lang.UnsupportedOperationException} is thrown when  trying
--   * to instantiate an abstract class
--   */
--  public void testAbstractClassInstantiation() {
--    UnsafeAllocator unsafeAllocator = UnsafeAllocator.create();
--    try {
--      unsafeAllocator.newInstance(AbstractClass.class);
--      fail();
--    } catch (Exception e) {
--      assertEquals(e.getClass(), UnsupportedOperationException.class);
--    }
--  }
--
--  /**
--   * Ensure that no exception is thrown when trying to instantiate a concrete class
--   */
--  public void testConcreteClassInstantiation() {
--    UnsafeAllocator unsafeAllocator = UnsafeAllocator.create();
--    try {
--      unsafeAllocator.newInstance(ConcreteClass.class);
--    } catch (Exception e) {
--      fail();
--    }
--  }
--}
+diff --git a/gson/src/test/java/com/google/gson/stream/JsonReaderPathTest.java b/gson/src/test/java/com/google/gson/stream/JsonReaderPathTest.java
+index fe8c9ed0..537696f9 100644
+--- a/gson/src/test/java/com/google/gson/stream/JsonReaderPathTest.java
++++ b/gson/src/test/java/com/google/gson/stream/JsonReaderPathTest.java
+@@ -48,13 +48,13 @@ public class JsonReaderPathTest extends TestCase {
+     reader.nextString();
+     assertEquals("$.a[5].c", reader.getPath());
+     reader.endObject();
+-    assertEquals("$.a[5]", reader.getPath());
++    assertEquals("$.a[6]", reader.getPath());
+     reader.beginArray();
+-    assertEquals("$.a[5][0]", reader.getPath());
++    assertEquals("$.a[6][0]", reader.getPath());
+     reader.nextInt();
+-    assertEquals("$.a[5][1]", reader.getPath());
++    assertEquals("$.a[6][1]", reader.getPath());
+     reader.endArray();
+-    assertEquals("$.a[5]", reader.getPath());
++    assertEquals("$.a[7]", reader.getPath());
+     reader.endArray();
+     assertEquals("$.a", reader.getPath());
+     reader.endObject();
+@@ -173,4 +173,44 @@ public class JsonReaderPathTest extends TestCase {
+     reader.skipValue();
+     assertEquals("$[1]", reader.getPath());
+   }
++
++  public void testArrayOfObjects() throws IOException {
++    JsonReader reader = new JsonReader(new StringReader("[{},{},{}]"));
++    reader.beginArray();
++    assertEquals("$[0]", reader.getPath());
++    reader.beginObject();
++    assertEquals("$[0].", reader.getPath());
++    reader.endObject();
++    assertEquals("$[1]", reader.getPath());
++    reader.beginObject();
++    assertEquals("$[1].", reader.getPath());
++    reader.endObject();
++    assertEquals("$[2]", reader.getPath());
++    reader.beginObject();
++    assertEquals("$[2].", reader.getPath());
++    reader.endObject();
++    assertEquals("$[3]", reader.getPath());
++    reader.endArray();
++    assertEquals("$", reader.getPath());
++  }
++
++  public void testArrayOfArrays() throws IOException {
++    JsonReader reader = new JsonReader(new StringReader("[[],[],[]]"));
++    reader.beginArray();
++    assertEquals("$[0]", reader.getPath());
++    reader.beginArray();
++    assertEquals("$[0][0]", reader.getPath());
++    reader.endArray();
++    assertEquals("$[1]", reader.getPath());
++    reader.beginArray();
++    assertEquals("$[1][0]", reader.getPath());
++    reader.endArray();
++    assertEquals("$[2]", reader.getPath());
++    reader.beginArray();
++    assertEquals("$[2][0]", reader.getPath());
++    reader.endArray();
++    assertEquals("$[3]", reader.getPath());
++    reader.endArray();
++    assertEquals("$", reader.getPath());
++  }
+ }

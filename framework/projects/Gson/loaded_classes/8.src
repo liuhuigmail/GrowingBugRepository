@@ -1,1 +1,3 @@
-com.google.gson.internal.UnsafeAllocator
+com.google.gson.internal.JsonReaderInternalAccess
+com.google.gson.stream.JsonReader
+com.google.gson.stream.MalformedJsonException

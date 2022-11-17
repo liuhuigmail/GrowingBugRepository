@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1883`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1875`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -34,7 +34,7 @@ To date, growingBugs contains **`1883`** real-world bugs from open-source Java p
 | 5     | Collections     | commons-collections        |                           |        8       | 25-31,35               |
 | 6     | Compress        | commons-compress           |                           |       51       | 1-48,50,52-53       |
 | 7     | Csv             | commons-csv                |                           |       17       | 1-17                |
-| 8     | Gson            | gson                       |                           |       18       | 1-18                |
+| 8     | Gson            | gson                       |                           |       10       | 1-10                |
 | 9     | JacksonCore     | jackson-core               |                           |       30       | 1-26,28-31                |
 | 10     | JacksonDatabind | jackson-databind           |                          |      150       | 1-85,87-117,119,121-126,</br>128-129,131-133,135-156               |
 | 11     | JacksonXml      | jackson-dataformat-xml     |                          |        6       | 1-6                 |

@@ -1,1 +1,2 @@
-com.google.gson.functional.JsonAdapterAnnotationOnFieldsTest
+com.google.gson.functional.TypeAdapterPrecedenceTest
+com.google.gson.functional.TypeHierarchyAdapterTest

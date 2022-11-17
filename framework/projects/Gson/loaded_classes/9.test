@@ -1,1 +1,2 @@
-com.google.gson.stream.JsonWriterTest
+com.google.gson.functional.DefaultTypeAdaptersTest
+com.google.gson.functional.PrimitiveTest

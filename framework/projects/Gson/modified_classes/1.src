@@ -1,1 +1,1 @@
-com.google.gson.TypeInfoFactory
+com.google.gson.internal.bind.util.ISO8601Utils

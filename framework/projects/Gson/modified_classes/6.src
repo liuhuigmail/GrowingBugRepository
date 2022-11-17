@@ -1,1 +1,1 @@
-com.google.gson.internal.bind.JsonAdapterAnnotationTypeAdapterFactory
+com.google.gson.DefaultDateTypeAdapter

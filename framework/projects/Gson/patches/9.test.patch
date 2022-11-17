@@ -1,22 +1,49 @@
-diff --git a/gson/src/test/java/com/google/gson/stream/JsonWriterTest.java b/gson/src/test/java/com/google/gson/stream/JsonWriterTest.java
-index 34dc9140..91763d18 100644
---- a/gson/src/test/java/com/google/gson/stream/JsonWriterTest.java
-+++ b/gson/src/test/java/com/google/gson/stream/JsonWriterTest.java
-@@ -283,17 +283,6 @@ public final class JsonWriterTest extends TestCase {
-     assertEquals("[true,false]", stringWriter.toString());
+diff --git a/gson/src/test/java/com/google/gson/stream/JsonReaderTest.java b/gson/src/test/java/com/google/gson/stream/JsonReaderTest.java
+index cddec2b6..81df7565 100644
+--- a/gson/src/test/java/com/google/gson/stream/JsonReaderTest.java
++++ b/gson/src/test/java/com/google/gson/stream/JsonReaderTest.java
+@@ -422,11 +422,43 @@ public final class JsonReaderTest extends TestCase {
+     assertEquals(-9223372036854775808L, reader.nextLong());
    }
  
--  public void testBoxedBooleans() throws IOException {
--    StringWriter stringWriter = new StringWriter();
--    JsonWriter jsonWriter = new JsonWriter(stringWriter);
--    jsonWriter.beginArray();
--    jsonWriter.value((Boolean) true);
--    jsonWriter.value((Boolean) false);
--    jsonWriter.value((Boolean) null);
--    jsonWriter.endArray();
--    assertEquals("[true,false,null]", stringWriter.toString());
--  }
--
-   public void testNulls() throws IOException {
-     StringWriter stringWriter = new StringWriter();
-     JsonWriter jsonWriter = new JsonWriter(stringWriter);
++  public void testPeekLongMaxValue() throws IOException {
++    JsonReader reader = new JsonReader(new StringReader("[9223372036854775807]"));
++    reader.setLenient(true);
++    reader.beginArray();
++    assertEquals(NUMBER, reader.peek());
++    assertEquals(9223372036854775807L, reader.nextLong());
++  }
++
++  public void testLongLargerThanMaxLongThatWrapsAround() throws IOException {
++    JsonReader reader = new JsonReader(new StringReader("[22233720368547758070]"));
++    reader.setLenient(true);
++    reader.beginArray();
++    assertEquals(NUMBER, reader.peek());
++    try {
++      reader.nextLong();
++      fail();
++    } catch (NumberFormatException expected) {
++    }
++  }
++
++  public void testLongLargerThanMinLongThatWrapsAround() throws IOException {
++    JsonReader reader = new JsonReader(new StringReader("[-22233720368547758070]"));
++    reader.setLenient(true);
++    reader.beginArray();
++    assertEquals(NUMBER, reader.peek());
++    try {
++      reader.nextLong();
++      fail();
++    } catch (NumberFormatException expected) {
++    }
++  }
++
+   /**
+    * This test fails because there's no double for -9223372036854775809, and our
+    * long parsing uses Double.parseDouble() for fractional values.
+    */
+-  public void disabled_testPeekLargerThanLongMinValue() throws IOException {
++  public void testPeekLargerThanLongMinValue() throws IOException {
+     JsonReader reader = new JsonReader(new StringReader("[-9223372036854775809]"));
+     reader.setLenient(true);
+     reader.beginArray();

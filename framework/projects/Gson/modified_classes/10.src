@@ -1,1 +1,1 @@
-com.google.gson.internal.bind.ReflectiveTypeAdapterFactory
+com.google.gson.GsonBuilder

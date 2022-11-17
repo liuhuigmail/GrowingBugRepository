@@ -1,1 +1,1 @@
-com.google.gson.regression.JsonAdapterNullSafeTest
+com.google.gson.DefaultDateTypeAdapterTest

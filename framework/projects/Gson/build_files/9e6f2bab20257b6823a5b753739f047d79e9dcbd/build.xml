@@ -20,7 +20,7 @@
     <echo message="Please run: $ant -projecthelp"/>
   </target>
 
-  <target name="compile" depends="gson-from-maven.compile"> </target>
-  <target name="compile.tests" depends="gson-from-maven.compile-tests"> </target>
+  <target name="gson-from-maven.compile"> </target>
+  <target name="gson-from-maven.compile-tests"> </target>
 
 </project>

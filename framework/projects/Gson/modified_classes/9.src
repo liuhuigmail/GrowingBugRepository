@@ -1,3 +1,1 @@
-com.google.gson.internal.bind.JsonTreeWriter
-com.google.gson.internal.bind.TypeAdapters
-com.google.gson.stream.JsonWriter
+com.google.gson.stream.JsonReader
