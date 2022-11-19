@@ -243,3 +243,4 @@ To date, growingBugs contains **`1070`** unique bugs that are not included in De
 | 233     | Tape         | tape           |       tape           |      13       | 1-13                  |
 | 234     | Jcabi_http         | jcabi-http           |       jcabi-http           |      16       | 1-16                  |
 | 235     | Jcabi_aether         | jcabi-aether           |       jcabi-aether           |      1       | 1                  |
+| 236     | Gson            | gson                       |                           |       25       | 1-25                |
