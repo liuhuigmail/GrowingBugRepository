@@ -1,0 +1,165 @@
+diff --git a/gson/src/test/java/com/google/gson/stream/JsonReaderPathTest.java b/gson/src/test/java/com/google/gson/stream/JsonReaderPathTest.java
+index c0b26917..50661664 100644
+--- a/gson/src/test/java/com/google/gson/stream/JsonReaderPathTest.java
++++ b/gson/src/test/java/com/google/gson/stream/JsonReaderPathTest.java
+@@ -16,35 +16,15 @@
+ 
+ package com.google.gson.stream;
+ 
+-import com.google.gson.JsonElement;
+-import com.google.gson.internal.Streams;
+-import com.google.gson.internal.bind.JsonTreeReader;
+ import java.io.IOException;
+ import java.io.StringReader;
+-import java.util.Arrays;
+-import java.util.List;
+-import org.junit.Test;
+-import org.junit.runner.RunWith;
+-import org.junit.runners.Parameterized;
++import junit.framework.TestCase;
+ 
+-import static junit.framework.Assert.assertEquals;
+-import static org.junit.Assume.assumeTrue;
+-
+-@RunWith(Parameterized.class)
+-public class JsonReaderPathTest {
+-  @Parameterized.Parameters(name = "{0}")
+-  public static List<Object[]> parameters() {
+-    return Arrays.asList(
+-        new Object[] { Factory.STRING_READER },
+-        new Object[] { Factory.OBJECT_READER }
+-    );
+-  }
+-
+-  @Parameterized.Parameter
+-  public Factory factory;
+-
+-  @Test public void path() throws IOException {
+-    JsonReader reader = factory.create("{\"a\":[2,true,false,null,\"b\",{\"c\":\"d\"},[3]]}");
++@SuppressWarnings("resource")
++public class JsonReaderPathTest extends TestCase {
++  public void testPath() throws IOException {
++    JsonReader reader = new JsonReader(
++        new StringReader("{\"a\":[2,true,false,null,\"b\",{\"c\":\"d\"},[3]]}"));
+     assertEquals("$", reader.getPath());
+     reader.beginObject();
+     assertEquals("$.", reader.getPath());
+@@ -82,8 +62,8 @@ public class JsonReaderPathTest {
+     assertEquals("$", reader.getPath());
+   }
+ 
+-  @Test public void objectPath() throws IOException {
+-    JsonReader reader = factory.create("{\"a\":1,\"b\":2}");
++  public void testObjectPath() throws IOException {
++    JsonReader reader = new JsonReader(new StringReader("{\"a\":1,\"b\":2}"));
+     assertEquals("$", reader.getPath());
+ 
+     reader.peek();
+@@ -122,8 +102,8 @@ public class JsonReaderPathTest {
+     assertEquals("$", reader.getPath());
+   }
+ 
+-  @Test public void arrayPath() throws IOException {
+-    JsonReader reader = factory.create("[1,2]");
++  public void testArrayPath() throws IOException {
++    JsonReader reader = new JsonReader(new StringReader("[1,2]"));
+     assertEquals("$", reader.getPath());
+ 
+     reader.peek();
+@@ -152,10 +132,8 @@ public class JsonReaderPathTest {
+     assertEquals("$", reader.getPath());
+   }
+ 
+-  @Test public void multipleTopLevelValuesInOneDocument() throws IOException {
+-    assumeTrue(factory == Factory.STRING_READER);
+-
+-    JsonReader reader = factory.create("[][]");
++  public void testMultipleTopLevelValuesInOneDocument() throws IOException {
++    JsonReader reader = new JsonReader(new StringReader("[][]"));
+     reader.setLenient(true);
+     reader.beginArray();
+     reader.endArray();
+@@ -165,25 +143,24 @@ public class JsonReaderPathTest {
+     assertEquals("$", reader.getPath());
+   }
+ 
+-  @Test public void skipArrayElements() throws IOException {
+-    JsonReader reader = factory.create("[1,2,3]");
++  public void testSkipArrayElements() throws IOException {
++    JsonReader reader = new JsonReader(new StringReader("[1,2,3]"));
+     reader.beginArray();
+     reader.skipValue();
+     reader.skipValue();
+     assertEquals("$[2]", reader.getPath());
+   }
+ 
+-  @Test public void skipObjectNames() throws IOException {
+-    JsonReader reader = factory.create("{\"a\":1}");
++  public void testSkipObjectNames() throws IOException {
++    JsonReader reader = new JsonReader(new StringReader("{\"a\":1}"));
+     reader.beginObject();
+     reader.skipValue();
+     assertEquals("$.null", reader.getPath());
+   }
+ 
+-  @Test public void skipObjectValues() throws IOException {
+-    JsonReader reader = factory.create("{\"a\":1,\"b\":2}");
++  public void testSkipObjectValues() throws IOException {
++    JsonReader reader = new JsonReader(new StringReader("{\"a\":1,\"b\":2}"));
+     reader.beginObject();
+-    assertEquals("$.", reader.getPath());
+     reader.nextName();
+     reader.skipValue();
+     assertEquals("$.null", reader.getPath());
+@@ -191,15 +168,15 @@ public class JsonReaderPathTest {
+     assertEquals("$.b", reader.getPath());
+   }
+ 
+-  @Test public void skipNestedStructures() throws IOException {
+-    JsonReader reader = factory.create("[[1,2,3],4]");
++  public void testSkipNestedStructures() throws IOException {
++    JsonReader reader = new JsonReader(new StringReader("[[1,2,3],4]"));
+     reader.beginArray();
+     reader.skipValue();
+     assertEquals("$[1]", reader.getPath());
+   }
+ 
+-  @Test public void arrayOfObjects() throws IOException {
+-    JsonReader reader = factory.create("[{},{},{}]");
++  public void testArrayOfObjects() throws IOException {
++    JsonReader reader = new JsonReader(new StringReader("[{},{},{}]"));
+     reader.beginArray();
+     assertEquals("$[0]", reader.getPath());
+     reader.beginObject();
+@@ -218,8 +195,8 @@ public class JsonReaderPathTest {
+     assertEquals("$", reader.getPath());
+   }
+ 
+-  @Test public void arrayOfArrays() throws IOException {
+-    JsonReader reader = factory.create("[[],[],[]]");
++  public void testArrayOfArrays() throws IOException {
++    JsonReader reader = new JsonReader(new StringReader("[[],[],[]]"));
+     reader.beginArray();
+     assertEquals("$[0]", reader.getPath());
+     reader.beginArray();
+@@ -237,20 +214,4 @@ public class JsonReaderPathTest {
+     reader.endArray();
+     assertEquals("$", reader.getPath());
+   }
+-
+-  enum Factory {
+-    STRING_READER {
+-      @Override public JsonReader create(String data) {
+-        return new JsonReader(new StringReader(data));
+-      }
+-    },
+-    OBJECT_READER {
+-      @Override public JsonReader create(String data) {
+-        JsonElement element = Streams.parse(new JsonReader(new StringReader(data)));
+-        return new JsonTreeReader(element);
+-      }
+-    };
+-
+-    abstract JsonReader create(String data);
+-  }
+ }

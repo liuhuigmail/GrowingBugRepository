@@ -1,0 +1,101 @@
+diff --git a/gson/src/main/java/com/google/gson/JsonDeserializationVisitor.java b/gson/src/main/java/com/google/gson/JsonDeserializationVisitor.java
+index 65378cac..8b1e735e 100644
+--- a/gson/src/main/java/com/google/gson/JsonDeserializationVisitor.java
++++ b/gson/src/main/java/com/google/gson/JsonDeserializationVisitor.java
+@@ -35,6 +35,7 @@ abstract class JsonDeserializationVisitor<T> implements ObjectNavigator.Visitor
+   protected final JsonElement json;
+   protected final Type targetType;
+   protected final JsonDeserializationContext context;
++  protected boolean constructed;
+ 
+   public JsonDeserializationVisitor(JsonElement json, Type targetType,
+       ObjectNavigatorFactory factory, ObjectConstructor objectConstructor,
+@@ -47,11 +48,13 @@ abstract class JsonDeserializationVisitor<T> implements ObjectNavigator.Visitor
+     this.deserializers = deserializers;
+     this.json = json;
+     this.context = context;
++    this.constructed = false;
+   }
+ 
+   public T getTarget() {
+-    if (target == null) {
++    if (!constructed) {
+       target = constructTarget();
++      constructed = true;
+     }
+     return target;
+   }
+@@ -70,13 +73,19 @@ abstract class JsonDeserializationVisitor<T> implements ObjectNavigator.Visitor
+     if (pair == null) {
+       return false;
+     }    
+-    if (!json.isJsonNull()) {
+-      JsonDeserializer deserializer = pair.getFirst();
+-      Type objType = pair.getSecond().getType();
+-      target = (T) deserializer.deserialize(json, objType, context);
+-    }
++    Object value = invokeCustomDeserializer(json, pair);
++    target = (T) value;
++    constructed = true;
+     return true;
+   }
++  protected Object invokeCustomDeserializer(JsonElement element, 
++      Pair<JsonDeserializer<?>, ObjectTypePair> pair) {
++    if (element == null || element.isJsonNull()) {
++      return null;
++    }
++    Type objType = pair.getSecond().getType();
++    return (pair.getFirst()).deserialize(element, objType, context);
++  }
+ 
+   final Object visitChildAsObject(Type childType, JsonElement jsonChild) {
+     JsonDeserializationVisitor<?> childVisitor =
+diff --git a/gson/src/main/java/com/google/gson/JsonObjectDeserializationVisitor.java b/gson/src/main/java/com/google/gson/JsonObjectDeserializationVisitor.java
+index 9c1518b2..b3a2ea94 100644
+--- a/gson/src/main/java/com/google/gson/JsonObjectDeserializationVisitor.java
++++ b/gson/src/main/java/com/google/gson/JsonObjectDeserializationVisitor.java
+@@ -93,32 +93,32 @@ final class JsonObjectDeserializationVisitor<T> extends JsonDeserializationVisit
+     return namingPolicy.translateName(f);
+   }
+ 
+-  public boolean visitFieldUsingCustomHandler(Field f, Type actualTypeOfField, Object parent) {
++  public boolean visitFieldUsingCustomHandler(Field f, Type declaredTypeOfField, Object parent) {
+     try {
+       String fName = getFieldName(f);
+       if (!json.isJsonObject()) {
+         throw new JsonParseException("Expecting object found: " + json); 
+       }
+       JsonElement child = json.getAsJsonObject().get(fName);
+-      if (child == null) {
++      TypeInfo typeInfo = new TypeInfo(declaredTypeOfField);
++      if (child == null) { // Child will be null if the field wasn't present in Json
+         return true;
+       } else if (child.isJsonNull()) {
+-        TypeInfo typeInfo = new TypeInfo(actualTypeOfField);
+         if (!typeInfo.isPrimitive()) {
+           f.set(parent, null);
+         }
+         return true;
+       }
+-      @SuppressWarnings("unchecked")
+-      JsonDeserializer deserializer = deserializers.getHandlerFor(actualTypeOfField);
+-      if (deserializer != null) {
+-        if (!child.isJsonNull()) {
+-          Object value = deserializer.deserialize(child, actualTypeOfField, context);
+-          f.set(parent, value);
+-        }
+-        return true;
++      ObjectTypePair objTypePair = new ObjectTypePair(null, declaredTypeOfField, false);
++      Pair<JsonDeserializer<?>, ObjectTypePair> pair = objTypePair.getMatchingHandler(deserializers);
++      if (pair == null) {
++        return false;
++      }      
++      Object value = invokeCustomDeserializer(child, pair);
++      if (value != null || !typeInfo.isPrimitive()) {
++        f.set(parent, value);
+       }
+-      return false;
++      return true;
+     } catch (IllegalAccessException e) {
+       throw new RuntimeException();
+     }

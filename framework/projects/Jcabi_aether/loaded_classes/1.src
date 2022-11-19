@@ -1,0 +1,8 @@
+com.jcabi.aether.Aether
+com.jcabi.aether.AmazonWagonProvider
+com.jcabi.aether.Classpath
+com.jcabi.aether.LogTransferListener
+com.jcabi.aether.Repository
+com.jcabi.aether.RepositorySystemBuilder
+com.jcabi.aether.RootArtifact
+com.jcabi.aether.SimpleRepository

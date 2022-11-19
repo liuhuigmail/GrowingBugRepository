@@ -1,0 +1,43 @@
+diff --git a/gson/src/main/java/com/google/gson/Gson.java b/gson/src/main/java/com/google/gson/Gson.java
+index c29eada4..33c3b4b8 100644
+--- a/gson/src/main/java/com/google/gson/Gson.java
++++ b/gson/src/main/java/com/google/gson/Gson.java
+@@ -232,7 +232,6 @@ public final class Gson {
+     factories.add(TypeAdapters.URL_FACTORY);
+     factories.add(TypeAdapters.URI_FACTORY);
+     factories.add(TypeAdapters.UUID_FACTORY);
+-    factories.add(TypeAdapters.CURRENCY_FACTORY);
+     factories.add(TypeAdapters.LOCALE_FACTORY);
+     factories.add(TypeAdapters.INET_ADDRESS_FACTORY);
+     factories.add(TypeAdapters.BIT_SET_FACTORY);
+diff --git a/gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java b/gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java
+index 0d6d013c..c72c0d9a 100644
+--- a/gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java
++++ b/gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java
+@@ -27,7 +27,6 @@ import java.sql.Timestamp;
+ import java.util.ArrayList;
+ import java.util.BitSet;
+ import java.util.Calendar;
+-import java.util.Currency;
+ import java.util.Date;
+ import java.util.GregorianCalendar;
+ import java.util.HashMap;
+@@ -577,18 +576,6 @@ public final class TypeAdapters {
+ 
+   public static final TypeAdapterFactory UUID_FACTORY = newFactory(UUID.class, UUID);
+ 
+-  public static final TypeAdapter<Currency> CURRENCY = new TypeAdapter<Currency>() {
+-    @Override
+-    public Currency read(JsonReader in) throws IOException {
+-      return Currency.getInstance(in.nextString());
+-    }
+-    @Override
+-    public void write(JsonWriter out, Currency value) throws IOException {
+-      out.value(value.getCurrencyCode());
+-    }
+-  }.nullSafe();
+-  public static final TypeAdapterFactory CURRENCY_FACTORY = newFactory(Currency.class, CURRENCY);
+-
+   public static final TypeAdapterFactory TIMESTAMP_FACTORY = new TypeAdapterFactory() {
+     @SuppressWarnings("unchecked") // we use a runtime check to make sure the 'T's equal
+     @Override public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {

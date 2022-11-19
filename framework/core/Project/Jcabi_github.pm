@@ -147,6 +147,7 @@ sub _post_checkout {
         #print OUT $converted_file;
         #close(OUT);
     }
+
     my $exclude_test22="$work_dir/src/test/java/com/jcabi/github/ImmutabilityTest.java";
     if (-e $exclude_test22){
         Utils::exec_cmd("rm $exclude_test22", "Copy generated Ant build file") or die;
@@ -159,7 +160,6 @@ sub _post_checkout {
     if (-e $exclude_test23){
         Utils::exec_cmd("rm $exclude_test23", "Copy generated Ant build file") or die;
     }
-
 }
 
 

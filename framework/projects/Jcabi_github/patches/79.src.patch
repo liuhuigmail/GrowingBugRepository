@@ -1,0 +1,29 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkReleaseAsset.java b/src/main/java/com/jcabi/github/mock/MkReleaseAsset.java
+index da427acf..2efe8f45 100644
+--- a/src/main/java/com/jcabi/github/mock/MkReleaseAsset.java
++++ b/src/main/java/com/jcabi/github/mock/MkReleaseAsset.java
+@@ -154,9 +154,10 @@ final class MkReleaseAsset implements ReleaseAsset {
+     @Override
+     public InputStream raw() throws IOException {
+         return new ByteArrayInputStream(
++            DatatypeConverter.parseBase64Binary(
+             this.storage.xml().xpath(
+                 String.format("%s/content/text()", this.xpath())
+-            ).get(0).getBytes(Charsets.UTF_8)
++            ).get(0))
+         );
+     }
+ 
+diff --git a/src/main/java/com/jcabi/github/mock/MkReleaseAssets.java b/src/main/java/com/jcabi/github/mock/MkReleaseAssets.java
+index 0aec7c07..2ae36a55 100644
+--- a/src/main/java/com/jcabi/github/mock/MkReleaseAssets.java
++++ b/src/main/java/com/jcabi/github/mock/MkReleaseAssets.java
+@@ -147,7 +147,7 @@ final class MkReleaseAssets implements ReleaseAssets {
+                 new Directives().xpath(this.xpath()).add("asset")
+                     .add("id").set(Integer.toString(number)).up()
+                     .add("name").set(name).up()
+-                    .add("content").set(DatatypeConverter.printBase64Binary(content)).up()
++                    .add("content").set(new String(content, "UTF-8")).up()
+                     .add("content_type").set(type).up()
+                     .add("size").set(Integer.toString(content.length)).up()
+                     .add("download_count").set("42").up()

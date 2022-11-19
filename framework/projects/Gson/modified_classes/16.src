@@ -1,0 +1,3 @@
+com.google.gson.DefaultDateTypeAdapter
+gson.com.google.gson.internal.bind.DateTypeAdapter
+gson.com.google.gson.internal.bind.util.ISO8601Utils

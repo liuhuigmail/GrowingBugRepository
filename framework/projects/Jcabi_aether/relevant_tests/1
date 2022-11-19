@@ -1,0 +1,3 @@
+com.jcabi.aether.AetherTest
+com.jcabi.aether.ClasspathTest
+com.jcabi.aether.RootArtifactTest

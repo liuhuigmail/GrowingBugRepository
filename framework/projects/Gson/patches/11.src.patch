@@ -1,0 +1,21 @@
+diff --git a/gson/src/main/java/com/google/gson/TypeInfoFactory.java b/gson/src/main/java/com/google/gson/TypeInfoFactory.java
+index 3085e8a8..bc6cc2ae 100644
+--- a/gson/src/main/java/com/google/gson/TypeInfoFactory.java
++++ b/gson/src/main/java/com/google/gson/TypeInfoFactory.java
+@@ -90,16 +90,8 @@ final class TypeInfoFactory {
+         int indexOfActualTypeArgument = getIndex(classTypeVariables, fieldTypeVariable);
+         Type[] actualTypeArguments = objParameterizedType.getActualTypeArguments();
+         return actualTypeArguments[indexOfActualTypeArgument];
+-      } else if (typeToEvaluate instanceof TypeVariable<?>) {
+-        Type theSearchedType = null;
+ 
+-        do {
+-          theSearchedType = extractTypeForHierarchy(parentType, (TypeVariable<?>) typeToEvaluate);
+-        } while ((theSearchedType != null) && (theSearchedType instanceof TypeVariable<?>));
+ 
+-        if (theSearchedType != null) {
+-          return theSearchedType;
+-        }
+       }
+ 
+       throw new UnsupportedOperationException("Expecting parameterized type, got " + parentType

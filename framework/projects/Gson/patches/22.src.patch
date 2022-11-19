@@ -1,0 +1,122 @@
+diff --git a/gson/src/main/java/com/google/gson/Gson.java b/gson/src/main/java/com/google/gson/Gson.java
+index e97b1627..cbb73b66 100644
+--- a/gson/src/main/java/com/google/gson/Gson.java
++++ b/gson/src/main/java/com/google/gson/Gson.java
+@@ -134,7 +134,6 @@ public final class Gson {
+   private final boolean generateNonExecutableJson;
+   private final boolean prettyPrinting;
+   private final boolean lenient;
+-  private final JsonAdapterAnnotationTypeAdapterFactory jsonAdapterFactory;
+ 
+   /**
+    * Constructs a Gson object with default configuration. The default configuration has the
+@@ -246,11 +245,10 @@ public final class Gson {
+     // type adapters for composite and user-defined types
+     factories.add(new CollectionTypeAdapterFactory(constructorConstructor));
+     factories.add(new MapTypeAdapterFactory(constructorConstructor, complexMapKeySerialization));
+-    this.jsonAdapterFactory = new JsonAdapterAnnotationTypeAdapterFactory(constructorConstructor);
+-    factories.add(jsonAdapterFactory);
++    factories.add(new JsonAdapterAnnotationTypeAdapterFactory(constructorConstructor));
+     factories.add(TypeAdapters.ENUM_FACTORY);
+     factories.add(new ReflectiveTypeAdapterFactory(
+-        constructorConstructor, fieldNamingStrategy, excluder, jsonAdapterFactory));
++        constructorConstructor, fieldNamingStrategy, excluder));
+ 
+     this.factories = Collections.unmodifiableList(factories);
+   }
+@@ -490,11 +488,9 @@ public final class Gson {
+   public <T> TypeAdapter<T> getDelegateAdapter(TypeAdapterFactory skipPast, TypeToken<T> type) {
+     // Hack. If the skipPast factory isn't registered, assume the factory is being requested via
+     // our @JsonAdapter annotation.
+-    if (!factories.contains(skipPast)) {
+-      skipPast = jsonAdapterFactory;
+-    }
+ 
+     boolean skipPastFound = false;
++    if (!factories.contains(skipPast)) skipPastFound = true;
+     for (TypeAdapterFactory factory : factories) {
+       if (!skipPastFound) {
+         if (factory == skipPast) {
+diff --git a/gson/src/main/java/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.java b/gson/src/main/java/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.java
+index c079b64d..3e8a9df1 100644
+--- a/gson/src/main/java/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.java
++++ b/gson/src/main/java/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.java
+@@ -50,27 +50,22 @@ public final class JsonAdapterAnnotationTypeAdapterFactory implements TypeAdapte
+   }
+ 
+   @SuppressWarnings({ "unchecked", "rawtypes" }) // Casts guarded by conditionals.
+-  TypeAdapter<?> getTypeAdapter(ConstructorConstructor constructorConstructor, Gson gson,
+-      TypeToken<?> type, JsonAdapter annotation) {
+-    Object instance = constructorConstructor.get(TypeToken.get(annotation.value())).construct();
++  static TypeAdapter<?> getTypeAdapter(ConstructorConstructor constructorConstructor, Gson gson,
++      TypeToken<?> fieldType, JsonAdapter annotation) {
++    Class<?> value = annotation.value();
+ 
+     TypeAdapter<?> typeAdapter;
+-    if (instance instanceof TypeAdapter) {
+-      typeAdapter = (TypeAdapter<?>) instance;
+-    } else if (instance instanceof TypeAdapterFactory) {
+-      typeAdapter = ((TypeAdapterFactory) instance).create(gson, type);
+-    } else if (instance instanceof JsonSerializer || instance instanceof JsonDeserializer) {
+-      JsonSerializer<?> serializer = instance instanceof JsonSerializer
+-          ? (JsonSerializer) instance
+-          : null;
+-      JsonDeserializer<?> deserializer = instance instanceof JsonDeserializer
+-          ? (JsonDeserializer) instance
+-          : null;
+-      typeAdapter = new TreeTypeAdapter(serializer, deserializer, gson, type, null);
++    if (TypeAdapter.class.isAssignableFrom(value)) {
++      Class<TypeAdapter<?>> typeAdapterClass = (Class<TypeAdapter<?>>) value;
++      typeAdapter = constructorConstructor.get(TypeToken.get(typeAdapterClass)).construct();
++    } else if (TypeAdapterFactory.class.isAssignableFrom(value)) {
++      Class<TypeAdapterFactory> typeAdapterFactory = (Class<TypeAdapterFactory>) value;
++      typeAdapter = constructorConstructor.get(TypeToken.get(typeAdapterFactory))
++          .construct()
++          .create(gson, fieldType);
+     } else {
+       throw new IllegalArgumentException(
+-          "@JsonAdapter value must be TypeAdapter, TypeAdapterFactory, "
+-              + "JsonSerializer or JsonDeserializer reference.");
++          "@JsonAdapter value must be TypeAdapter or TypeAdapterFactory reference.");
+     }
+ 
+     if (typeAdapter != null) {
+diff --git a/gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java b/gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java
+index 34e97664..d3abb47f 100644
+--- a/gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java
++++ b/gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java
+@@ -41,6 +41,7 @@ import java.util.LinkedHashMap;
+ import java.util.List;
+ import java.util.Map;
+ 
++import static com.google.gson.internal.bind.JsonAdapterAnnotationTypeAdapterFactory.getTypeAdapter;
+ /**
+  * Type adapter that reflects over the fields and methods of a class.
+  */
+@@ -48,15 +49,12 @@ public final class ReflectiveTypeAdapterFactory implements TypeAdapterFactory {
+   private final ConstructorConstructor constructorConstructor;
+   private final FieldNamingStrategy fieldNamingPolicy;
+   private final Excluder excluder;
+-  private final JsonAdapterAnnotationTypeAdapterFactory jsonAdapterFactory;
+ 
+   public ReflectiveTypeAdapterFactory(ConstructorConstructor constructorConstructor,
+-      FieldNamingStrategy fieldNamingPolicy, Excluder excluder,
+-      JsonAdapterAnnotationTypeAdapterFactory jsonAdapterFactory) {
++      FieldNamingStrategy fieldNamingPolicy, Excluder excluder) {
+     this.constructorConstructor = constructorConstructor;
+     this.fieldNamingPolicy = fieldNamingPolicy;
+     this.excluder = excluder;
+-    this.jsonAdapterFactory = jsonAdapterFactory;
+   }
+ 
+   public boolean excludeField(Field f, boolean serialize) {
+@@ -108,8 +106,7 @@ public final class ReflectiveTypeAdapterFactory implements TypeAdapterFactory {
+     JsonAdapter annotation = field.getAnnotation(JsonAdapter.class);
+     TypeAdapter<?> mapped = null;
+     if (annotation != null) {
+-      mapped = jsonAdapterFactory.getTypeAdapter(
+-          constructorConstructor, context, fieldType, annotation);
++      mapped = getTypeAdapter(constructorConstructor, context, fieldType, annotation);
+     }
+     final boolean jsonAdapterPresent = mapped != null;
+     if (mapped == null) mapped = context.getAdapter(fieldType);

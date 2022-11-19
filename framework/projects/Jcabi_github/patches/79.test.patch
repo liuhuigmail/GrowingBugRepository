@@ -1,0 +1,84 @@
+diff --git a/src/test/java/com/jcabi/github/mock/MkReleaseAssetTest.java b/src/test/java/com/jcabi/github/mock/MkReleaseAssetTest.java
+index 69104046..8cc120b4 100644
+--- a/src/test/java/com/jcabi/github/mock/MkReleaseAssetTest.java
++++ b/src/test/java/com/jcabi/github/mock/MkReleaseAssetTest.java
+@@ -181,24 +181,27 @@ public final class MkReleaseAssetTest {
+     }
+ 
+     /**
+-     * Should return the Base64-encoded value of the input contents. When
+-     * decoded, should be equal to the input.
+-     * 
+-     * @throws Exception Unexpected.
++     * MkReleaseAsset should be able to fetch its raw representation.
++     *
++     * @throws Exception if some problem inside
+      */
+     @Test
+-    public void canDecodeContentsIntoOriginalValue() throws Exception {
+-        final String test = "This is a test asset.";
+-        final ReleaseAsset asset = new MkGithub().randomRepo().releases()
+-            .create("v1.0")
+-            .assets()
+-            .upload(test.getBytes(), "type", "name");
++    public void fetchesRawRepresentation() throws Exception {
++        final String fetch = "fetch";
++        final ReleaseAssets assets = release().assets();
++        final ReleaseAsset asset = assets.upload(
++            fetch.getBytes(), "text/plain", "raw.txt"
++        );
++        final InputStream raw = new ByteArrayInputStream(
++            DatatypeConverter.parseBase64Binary(
++                fetch
++            )
++        );
+         MatcherAssert.assertThat(
+-            new String(
+-              DatatypeConverter.parseBase64Binary(IOUtils.toString(asset.raw()))
+-            ),
+-            Matchers.is(test)
++            IOUtils.toString(asset.raw(), StandardCharsets.UTF_8),
++            Matchers.is(IOUtils.toString(raw, StandardCharsets.UTF_8))
+         );
++        asset.remove();
+     }
+ 
+     /**
+diff --git a/src/test/java/com/jcabi/github/mock/MkReleaseAssetsTest.java b/src/test/java/com/jcabi/github/mock/MkReleaseAssetsTest.java
+index 48922756..ea6a39de 100644
+--- a/src/test/java/com/jcabi/github/mock/MkReleaseAssetsTest.java
++++ b/src/test/java/com/jcabi/github/mock/MkReleaseAssetsTest.java
+@@ -32,8 +32,6 @@ package com.jcabi.github.mock;
+ import com.jcabi.github.Release;
+ import com.jcabi.github.ReleaseAsset;
+ import com.jcabi.github.ReleaseAssets;
+-import javax.xml.bind.DatatypeConverter;
+-import org.apache.commons.io.IOUtils;
+ import org.hamcrest.MatcherAssert;
+ import org.hamcrest.Matchers;
+ import org.junit.Test;
+@@ -113,24 +111,6 @@ public final class MkReleaseAssetsTest {
+         );
+     }
+ 
+-    /**
+-     * Must encode the input bytes into Base64.
+-     * 
+-     * @throws Exception Unexpected.
+-     */
+-    @Test
+-    public void encodesContentsAsBase64() throws Exception {
+-        final String test = "This is a test asset.";
+-        final ReleaseAsset asset = new MkGithub().randomRepo().releases()
+-            .create("v1.0")
+-            .assets()
+-            .upload(test.getBytes(), "type", "name");
+-        MatcherAssert.assertThat(
+-            IOUtils.toString(asset.raw()),
+-            Matchers.is(DatatypeConverter.printBase64Binary(test.getBytes()))
+-        ); 
+-    }
+-
+     /**
+      * Create a Release to work with.
+      * @return Repo
