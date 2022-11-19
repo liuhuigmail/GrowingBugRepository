@@ -34,7 +34,7 @@ To date, growingBugs contains **`1875`** real-world bugs from open-source Java p
 | 5     | Collections     | commons-collections        |                           |        8       | 25-31,35               |
 | 6     | Compress        | commons-compress           |                           |       51       | 1-48,50,52-53       |
 | 7     | Csv             | commons-csv                |                           |       17       | 1-17                |
-| 8     | Gson            | gson                       |                           |       10       | 1-10                |
+| 8     | Gson            | gson                       |                           |       25       | 1-25                |
 | 9     | JacksonCore     | jackson-core               |                           |       30       | 1-26,28-31                |
 | 10     | JacksonDatabind | jackson-databind           |                          |      150       | 1-85,87-117,119,121-126,</br>128-129,131-133,135-156               |
 | 11     | JacksonXml      | jackson-dataformat-xml     |                          |        6       | 1-6                 |
@@ -228,7 +228,7 @@ To date, growingBugs contains **`1875`** real-world bugs from open-source Java p
 | 199     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 200     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 201     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
-| 202     | Jcabi_github         | jcabi-github           |                  |      73       | 1-42,44-78                  |
+| 202     | Jcabi_github         | jcabi-github           |                  |      75       | 1-42,44-80                  |
 | 203     | Podam         | podam           |                  |      1       | 1                  |
 | 204     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
 | 205     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
@@ -267,6 +267,7 @@ To date, growingBugs contains **`1875`** real-world bugs from open-source Java p
 | 238     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
 | 239     | Tape         | tape           |       tape           |      13       | 1-13                  |
 | 240     | Jcabi_http         | jcabi-http           |       jcabi-http           |      16       | 1-16                  |
+| 241     | Jcabi_aether         | jcabi-aether           |       jcabi-aether           |      1       | 1                  |
 # Setting up GrowingBugs
 
 ## Requirements
