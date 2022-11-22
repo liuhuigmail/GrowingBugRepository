@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1898`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1902`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -269,6 +269,7 @@ To date, growingBugs contains **`1898`** real-world bugs from open-source Java p
 | 240     | Jcabi_http         | jcabi-http           |                  |      16       | 1-16                  |
 | 241     | Jcabi_aether         | jcabi-aether           |                  |      1       | 1                  |
 | 242     | Jcabi_w3c            | jcabi-w3c                       |                           |       1       | 1                |
+| 242     | Jcabi_email            | jcabi-email                       |        |       4       | 1-4                |
 # Setting up GrowingBugs
 
 ## Requirements

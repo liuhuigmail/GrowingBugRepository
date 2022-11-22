@@ -1,0 +1,5 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,e8ba5b1771575be72240b09b5e184a43ac822c98,5500312e18fb68a7110576c4093a34b3731fdce9,5,https://github.com/jcabi/jcabi-email/issues/5
+2,1e01328d1d595dfdf988b90c49c2f7b4f07f94d9,9489fbaaa083f5ddb523c7422c39a32748e11e65,7,https://github.com/jcabi/jcabi-email/issues/7
+3,75fdba14c289b426bce1e9f1af29350bc503190d,9ca7457dbe55eb3dd21721db3125fe65710a7c44,15,https://github.com/jcabi/jcabi-email/issues/15
+4,274da08c262dff272dbb599e7b544c5cc6f9e217,1df8a7d6580ad82e42f39735de629765ad9ce3e2,16,https://github.com/jcabi/jcabi-email/issues/16

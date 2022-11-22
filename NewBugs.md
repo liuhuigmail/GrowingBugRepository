@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`1075`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1079`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -245,3 +245,4 @@ To date, growingBugs contains **`1075`** unique bugs that are not included in De
 | 235     | Jcabi_aether         | jcabi-aether           |                  |      1       | 1                  |
 | 236     | Gson            | gson                       |                           |       25       | 1-25                |
 | 237     | Jcabi_w3c            | jcabi-w3c                       |                           |       1       | 1                |
+| 238     | Jcabi_email            | jcabi-email                       |                        |       4       | 1-4                |
