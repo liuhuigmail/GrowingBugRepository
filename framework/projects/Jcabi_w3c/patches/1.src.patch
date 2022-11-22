@@ -1,0 +1,22 @@
+diff --git a/src/main/java/com/jcabi/w3c/ValidatorBuilder.java b/src/main/java/com/jcabi/w3c/ValidatorBuilder.java
+index 7bf4f16..c12de36 100644
+--- a/src/main/java/com/jcabi/w3c/ValidatorBuilder.java
++++ b/src/main/java/com/jcabi/w3c/ValidatorBuilder.java
+@@ -69,7 +69,7 @@ public final class ValidatorBuilder {
+      */
+     @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
+     public static final Validator HTML = new DefaultHtmlValidator(
+-        URI.create("https://validator.w3.org/nu/?out=xml&showsource=yes")
++        URI.create("http://validator.w3.org/nu/?out=xml&showsource=yes")
+     );
+ 
+     /**
+@@ -77,7 +77,7 @@ public final class ValidatorBuilder {
+      */
+     @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
+     public static final Validator CSS = new DefaultCssValidator(
+-        URI.create("https://jigsaw.w3.org/css-validator/validator")
++        URI.create("http://jigsaw.w3.org/css-validator/validator")
+     );
+ 
+     /**

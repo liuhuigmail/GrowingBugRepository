@@ -1,0 +1,20 @@
+diff --git a/fontbox/src/main/java/org/apache/fontbox/ttf/TrueTypeFont.java b/fontbox/src/main/java/org/apache/fontbox/ttf/TrueTypeFont.java
+index f8cc39668..9914c1580 100644
+--- a/fontbox/src/main/java/org/apache/fontbox/ttf/TrueTypeFont.java
++++ b/fontbox/src/main/java/org/apache/fontbox/ttf/TrueTypeFont.java
+@@ -577,13 +577,10 @@ public class TrueTypeFont implements FontBoxFont, Closeable
+     {
+         // look up in 'post' table
+         readPostScriptNames();
+-        if (postScriptNames != null)
++        Integer gid = postScriptNames.get(name);
++        if (gid != null && gid > 0 && gid < getMaximumProfile().getNumGlyphs())
+         {
+-            Integer gid = postScriptNames.get(name);
+-            if (gid != null && gid > 0 && gid < getMaximumProfile().getNumGlyphs())
+-            {
+                 return gid;
+-            }
+         }
+ 
+         // look up in 'cmap'
