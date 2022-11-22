@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`1071`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1075`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -41,7 +41,7 @@ To date, growingBugs contains **`1071`** unique bugs that are not included in De
 | 35     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
 | 36     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
 | 37     | James_project_core            | james-project-core               |       core       |        2       | 1-2               |
-| 38     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        6       | 1-6               |
+| 38     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        7       | 1-7               |
 | 39     | AaltoXml            | aalto-xml      |             |        9       | 1-9               |
 | 40     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-2,4-8               |
 | 41     | jackson_modules<br/>_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |
@@ -201,7 +201,7 @@ To date, growingBugs contains **`1071`** unique bugs that are not included in De
 | 194     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 195     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 196     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
-| 197     | Jcabi_github         | jcabi-github           |                  |      75       | 1-42,44-80                  |
+| 197     | Jcabi_github         | jcabi-github           |                  |      77       | 1-42,44-82                  |
 | 198     | Podam         | podam           |                  |      1       | 1                  |
 | 199     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
 | 200     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
@@ -240,7 +240,8 @@ To date, growingBugs contains **`1071`** unique bugs that are not included in De
 | 230     | Gwtmockito         | gwtmockito           |       gwtmockito           |      3       | 1-3                  |
 | 231     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
 | 232     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
-| 233     | Tape         | tape           |       tape           |      13       | 1-13                  |
-| 234     | Jcabi_http         | jcabi-http           |       jcabi-http           |      16       | 1-16                  |
-| 235     | Jcabi_aether         | jcabi-aether           |       jcabi-aether           |      1       | 1                  |
+| 233     | Tape         | tape           |                  |      13       | 1-13                  |
+| 234     | Jcabi_http         | jcabi-http           |                  |      16       | 1-16                  |
+| 235     | Jcabi_aether         | jcabi-aether           |                  |      1       | 1                  |
 | 236     | Gson            | gson                       |                           |       25       | 1-25                |
+| 237     | Jcabi_w3c            | jcabi-w3c                       |                           |       1       | 1                |
