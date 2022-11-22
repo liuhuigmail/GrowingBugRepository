@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1893`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1894`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -73,7 +73,7 @@ To date, growingBugs contains **`1893`** real-world bugs from open-source Java p
 | 44     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
 | 45     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
 | 46     | James_project_core            | james-project-core               |       core       |        2       | 1-2               |
-| 47     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        5       | 1-5               |
+| 47     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        6       | 1-6               |
 | 48     | AaltoXml            | aalto-xml      |             |        9       | 1-9               |
 | 49     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-2,4-8               |
 | 50     | jackson_modules<br/>_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |

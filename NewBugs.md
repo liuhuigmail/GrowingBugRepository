@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`1070`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1071`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -41,7 +41,7 @@ To date, growingBugs contains **`1070`** unique bugs that are not included in De
 | 35     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
 | 36     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
 | 37     | James_project_core            | james-project-core               |       core       |        2       | 1-2               |
-| 38     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        5       | 1-5               |
+| 38     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        6       | 1-6               |
 | 39     | AaltoXml            | aalto-xml      |             |        9       | 1-9               |
 | 40     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-2,4-8               |
 | 41     | jackson_modules<br/>_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |

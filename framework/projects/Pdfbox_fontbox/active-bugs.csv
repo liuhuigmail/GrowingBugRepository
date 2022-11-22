@@ -4,3 +4,4 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 3,9fe43ea4f4be69f8d5e65994300f1a23ca1b7dca,392edabe141f43d2f90c570fc6e1e62fd81e7039,PDFBOX-2854,https://issues.apache.org/jira/browse/PDFBOX-2854
 4,8dfcf094188619831c08cbf1088e4edd86e0365f,b9f049e7469ec8ac8399c4a713bcda4450ebb02b,PDFBOX-3757,https://issues.apache.org/jira/browse/PDFBOX-3757
 5,a6b2cf98e431f0815251d2e41a1e61a5e7d5e110,40b34e561c78b3b1dea86062376b69d0754fc14b,PDFBOX-4242,https://issues.apache.org/jira/browse/PDFBOX-4242
+6,21feaee9500aacb0be413dbdb6123b176f19db78,8c6f34f495f322378617c6e02a0d4f1a86e1bd55,PDFBOX-787,https://issues.apache.org/jira/browse/PDFBOX-787
