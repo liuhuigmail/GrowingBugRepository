@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,64feb1ac523c5533910f345198b3132fb97b7df4,94a07dbaa8405615ab0ea38b661af5fd4f2c56df,49,https://github.com/jcabi/jcabi-w3c/issues/49
