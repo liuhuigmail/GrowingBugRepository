@@ -1,0 +1,4 @@
+com.jcabi.email.Enclosure
+com.jcabi.email.enclosure.EnPlain
+com.jcabi.email.Envelope
+com.jcabi.email.Stamp

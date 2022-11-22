@@ -209,4 +209,5 @@ Rocketmq_mqtt_ds	rocketmq-mqtt-ds	https://github.com/apache/rocketmq-mqtt.git	gi
 Dagger_core    dagger-core    https://github.com/square/dagger.git  github  square/dagger /#(\\d+)/mi core 
 Google_java_format_core   google-java-format-core    https://github.com/google/google-java-format.git  github  google/google-java-format /#(\\d+)/mi core  
 Jimfs   jimfs    https://github.com/google/jimfs.git  github  google/jimfs /#(\\d+)/mi jimfs   
-Tape    tape    https://github.com/square/tape.git  github  square/tape /#(\\d+)/mi	tape      	
+Tape    tape    https://github.com/square/tape.git  github  square/tape /#(\\d+)/mi	tape 
+Jcabi_email   jcabi-email    https://github.com/jcabi/jcabi-email.git  github  jcabi/jcabi-email /#(\\d+)/mi .     	

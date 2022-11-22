@@ -1,0 +1,5 @@
+com.jcabi.email.Stamp
+com.jcabi.email.stamp.StBCC
+com.jcabi.email.stamp.StCC
+com.jcabi.email.stamp.StRecipient
+com.jcabi.email.stamp.StSender

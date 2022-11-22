@@ -1,0 +1,67 @@
+diff --git a/src/main/java/com/jcabi/email/Envelope.java b/src/main/java/com/jcabi/email/Envelope.java
+index d171d80..14cbd41 100644
+--- a/src/main/java/com/jcabi/email/Envelope.java
++++ b/src/main/java/com/jcabi/email/Envelope.java
+@@ -29,17 +29,12 @@
+  */
+ package com.jcabi.email;
+ 
+-import com.google.common.cache.Cache;
+-import com.google.common.cache.CacheBuilder;
+ import com.jcabi.aspects.Immutable;
+ import com.jcabi.aspects.Loggable;
+ import com.jcabi.immutable.Array;
+ import com.jcabi.log.Logger;
+ import java.io.IOException;
+ import java.util.Properties;
+-import java.util.concurrent.Callable;
+-import java.util.concurrent.ExecutionException;
+-import java.util.concurrent.TimeUnit;
+ import javax.mail.Message;
+ import javax.mail.MessagingException;
+ import javax.mail.Multipart;
+@@ -244,7 +239,7 @@ public interface Envelope {
+     }
+ 
+     /**
+-     * Envelope that always returns the same message (within one hour).
++     * Envelope that always returns the same message.
+      * @since 1.4
+      */
+     @Immutable
+@@ -252,14 +247,6 @@ public interface Envelope {
+     @EqualsAndHashCode(of = "origin")
+     @Loggable(Loggable.DEBUG)
+     final class Constant implements Envelope {
+-        /**
+-         * Guava cache.
+-         */
+-        @SuppressWarnings("PMD.UnusedPrivateField")
+-        private static final Cache<Envelope, Message> CACHE =
+-            CacheBuilder.newBuilder()
+-                .expireAfterWrite(1L, TimeUnit.HOURS)
+-                .build();
+         /**
+          * Origin env.
+          */
+@@ -273,19 +260,7 @@ public interface Envelope {
+         }
+         @Override
+         public Message unwrap() throws IOException {
+-            try {
+-                return Envelope.Constant.CACHE.get(
+-                    this.origin,
+-                    new Callable<Message>() {
+-                        @Override
+-                        public Message call() throws Exception {
+-                            return Envelope.Constant.this.origin.unwrap();
+-                        }
+-                    }
+-                );
+-            } catch (final ExecutionException ex) {
+-                throw new IOException(ex);
+-            }
++            return this.origin.unwrap();
+         }
+     }
+ 
