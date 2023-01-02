@@ -349,7 +349,7 @@ If you are exploiting our dataset, please kindly cite the following paper:
 
 **[2]Yanjie Jiang, [Hui Liu*](https://liuhuigmail.github.io/), Xiaoqing Luo, Zhihao Zhu, Xiaye Chi, Nan Niu, Yuxia Zhang, Yamin Hu, Pan Bian, and Lu Zhang. " [BugBuilder: An Automated Approach to Building Bug Repository](https://ieeexplore.ieee.org/document/9782533)," in IEEE Transactions on Software Engineering, Online 2022, doi: 10.1109/TSE.2022.3177713**
 
-**[3]Yanjie Jiang, [Hui Liu*](https://liuhuigmail.github.io/),Yuxia Zhang, Weixing Ji, Hao Zhong, and Lu Zhang. "Do Bugs Lead to Unnaturalness of Source Code?" in 21st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE 2022), to appear**
+**[3]Yanjie Jiang, [Hui Liu*](https://liuhuigmail.github.io/),Yuxia Zhang, Weixing Ji, Hao Zhong, and Lu Zhang. "Do Bugs Lead to Unnaturalness of Source Code?" In Proceedings of the 30th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE 2022). Association for Computing Machinery, New York, NY, USA, 1085–1096. https://doi.org/10.1145/3540250.3549149**
 
 `@INPROCEEDINGS {GrowingBugsICSE21,
 author = {Yanjie Jiang and Hui Liu and Nan Niu and Lu Zhang and Yamin Hu},
@@ -374,3 +374,19 @@ number={},
 pages={1-22},  
 doi={10.1109/TSE.2022.3177713}}`
 
+`@inproceedings{NaturalnessOfBugsFSE2022,
+author = {Jiang, Yanjie and Liu, Hui and Zhang, Yuxia and Ji, Weixing and Zhong, Hao and Zhang, Lu},
+title = {Do Bugs Lead to Unnaturalness of Source Code?},
+year = {2022},
+isbn = {9781450394130},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3540250.3549149},
+doi = {10.1145/3540250.3549149},
+booktitle = {Proceedings of the 30th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering},
+pages = {1085–1096},
+numpages = {12},
+keywords = {Naturalness, Source Code, Bug Fixing, Bugs, Code Entropy},
+location = {Singapore, Singapore},
+series = {ESEC/FSE 2022}
+}`
