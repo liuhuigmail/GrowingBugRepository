@@ -156,7 +156,7 @@ To date, growingBugs contains **`1902`** real-world bugs from open-source Java p
 | 127     | Rdf4j_rio_jsonld            | rdf4j-rio-jsonld | core/rio/jsonld  |       2     | 1-2              |
 | 128     | Rdf4j_rio_rdfjson            | rdf4j-rio-rdfjson | core/rio/rdfjson |       2     | 1-2              |
 | 129     | Rdf4j_rio_rdfxml            | rdf4j-rio-rdfxml | core/rio/rdfxml    |       1     | 1              |
-| 130     | Rdf4j_rio_turtle            | rdf4j-rio-turtle | core/rio/turtle    |       10    | 1-10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              |
+| 130     | Rdf4j_rio_turtle            | rdf4j-rio-turtle | core/rio/turtle    |       10    | 1-10              |
 | 131     | Sentry_ccommon            | sentry-core-common |  sentry-core/sentry-core-common   |       2     | 1-2              |
 | 132     | Sling_apiregions            | sling-apiregions |     |       3     | 1-3              |
 | 133     | Sling_cpconverter            | sling-cpconverter |     |       3     | 1-3              |
@@ -166,7 +166,7 @@ To date, growingBugs contains **`1902`** real-world bugs from open-source Java p
 | 137     | Maven2_artifact            | maven-artifact |  maven-artifact   |       2     | 1-2              |
 | 138     | Maven2_project            | maven-project |  maven-project   |       2     | 1-2              |
 | 139     | Math            | commons-math               |                          |      35       | 1-35               |
-| 140     | Wicket_request            | wicket-request               |     wicket-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request                     |      6       | 1-6               |
+| 140     | Wicket_request            | wicket-request               |     wicket-request                     |      6       | 1-6               |
 | 141     | Cayenne_xmpp            | cayenne-xmpp               |    cayenne-xmpp                      |      1       | 1               |
 | 142     | Wicket_util            | wicket-util               |     wicket-util                     |     4       | 1-4               |
 | 143     | Wicket_spring            | wicket-spring               |        wicket-spring                  |      1       | 1               |
