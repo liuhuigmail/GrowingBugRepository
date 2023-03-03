@@ -246,3 +246,5 @@ To date, growingBugs contains **`1079`** unique bugs that are not included in De
 | 236     | Gson            | gson                       |                           |       25       | 1-25                |
 | 237     | Jcabi_w3c            | jcabi-w3c                       |                           |       1       | 1                |
 | 238     | Jcabi_email            | jcabi-email                       |                        |       4       | 1-4                |
+| 239     | Jcabi_log            | jcabi-log                       |                        |       9       | 1-9                |
+| 239     | Jcabi_matchers            | jcabi-matchers                       |                        |       2       | 1-2                |

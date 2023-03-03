@@ -1,0 +1,7 @@
+com.jcabi.log.DecorsManagerTest
+com.jcabi.log.LoggerTest
+com.jcabi.log.PreFormatterTest
+com.jcabi.log.SizeDecorTest
+com.jcabi.log.VerboseProcessTest
+com.jcabi.log.VerboseRunnableTest
+com.jcabi.log.VerboseThreadsTest

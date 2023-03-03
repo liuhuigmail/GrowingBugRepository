@@ -1,0 +1,21 @@
+diff --git a/src/main/java/com/jcabi/log/VerboseProcess.java b/src/main/java/com/jcabi/log/VerboseProcess.java
+index 6e0c44b..2fe764d 100644
+--- a/src/main/java/com/jcabi/log/VerboseProcess.java
++++ b/src/main/java/com/jcabi/log/VerboseProcess.java
+@@ -142,16 +142,6 @@ public final class VerboseProcess implements Closeable {
+         if (stderr == null) {
+             throw new IllegalArgumentException("stderr LEVEL can't be NULL");
+         }
+-        if (Level.ALL.equals(stdout)) {
+-            throw new IllegalArgumentException(
+-                "stdout LEVEL can't be set to ALL"
+-            );
+-        }
+-        if (Level.ALL.equals(stderr)) {
+-            throw new IllegalArgumentException(
+-                "stderr LEVEL can't be set to ALL"
+-            );
+-        }
+         this.process = prc;
+         this.olevel = stdout;
+         this.elevel = stderr;
