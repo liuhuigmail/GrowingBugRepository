@@ -1,0 +1,12 @@
+diff --git a/src/main/java/com/jcabi/log/PreFormatter.java b/src/main/java/com/jcabi/log/PreFormatter.java
+index 993473c..e542e92 100644
+--- a/src/main/java/com/jcabi/log/PreFormatter.java
++++ b/src/main/java/com/jcabi/log/PreFormatter.java
+@@ -124,7 +124,6 @@ final class PreFormatter {
+                     matcher.appendReplacement(
+                         buf, Matcher.quoteReplacement(group)
+                     );
+-                    --pos;
+                 } else if (decor == null) {
+                     matcher.appendReplacement(
+                         buf, Matcher.quoteReplacement(group)

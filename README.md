@@ -269,7 +269,9 @@ To date, growingBugs contains **`1902`** real-world bugs from open-source Java p
 | 240     | Jcabi_http         | jcabi-http           |                  |      16       | 1-16                  |
 | 241     | Jcabi_aether         | jcabi-aether           |                  |      1       | 1                  |
 | 242     | Jcabi_w3c            | jcabi-w3c                       |                           |       1       | 1                |
-| 242     | Jcabi_email            | jcabi-email                       |        |       4       | 1-4                |
+| 243     | Jcabi_email            | jcabi-email                       |        |       4       | 1-4                |
+| 244     | Jcabi_log            | jcabi-log                       |                        |       9       | 1-9                |
+| 245     | Jcabi_matchers            | jcabi-matchers                       |                        |       2       | 1-2                |
 # Setting up GrowingBugs
 
 ## Requirements

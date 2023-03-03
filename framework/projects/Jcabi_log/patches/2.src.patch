@@ -1,0 +1,33 @@
+diff --git a/src/main/java/com/jcabi/log/SizeDecor.java b/src/main/java/com/jcabi/log/SizeDecor.java
+index 42687df..d300c37 100644
+--- a/src/main/java/com/jcabi/log/SizeDecor.java
++++ b/src/main/java/com/jcabi/log/SizeDecor.java
+@@ -93,27 +93,7 @@ final class SizeDecor implements Formattable {
+     @Override
+     public void formatTo(final Formatter formatter, final int flags,
+         final int width, final int precision) {
+-        if (this.size == null) {
+-            formatter.format("NULL");
+-        } else {
+-            final StringBuilder format = new StringBuilder().append('%');
+-            if ((flags & FormattableFlags.LEFT_JUSTIFY) == FormattableFlags
+-                .LEFT_JUSTIFY) {
+-                format.append('-');
+-            }
+-            if (width > 0) {
+-                format.append(Integer.toString(width));
+-            }
+-            if ((flags & FormattableFlags.UPPERCASE) == FormattableFlags
+-                .UPPERCASE) {
+-                format.append('S');
+-            } else {
+-                format.append('s');
+-            }
+-            formatter.format(
+-                format.toString(), this.formatSizeWithSuffix(precision)
+-            );
+-        }
++        formatter.format("%s", this.size.toString());
+     }
+ 
+     /**

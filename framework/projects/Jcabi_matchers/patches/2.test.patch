@@ -1,0 +1,20 @@
+diff --git a/src/test/java/com/jcabi/matchers/RegexMatchersTest.java b/src/test/java/com/jcabi/matchers/RegexMatchersTest.java
+index e5f5cd0..c419deb 100644
+--- a/src/test/java/com/jcabi/matchers/RegexMatchersTest.java
++++ b/src/test/java/com/jcabi/matchers/RegexMatchersTest.java
+@@ -31,6 +31,7 @@ package com.jcabi.matchers;
+ 
+ import org.hamcrest.MatcherAssert;
+ import org.hamcrest.Matchers;
++import org.junit.Ignore;
+ import org.junit.Test;
+ 
+ /**
+@@ -60,6 +61,7 @@ public final class RegexMatchersTest {
+      * pattern.
+      */
+     @Test
++    @Ignore
+     public void checksIfStringContainsPattern() {
+         MatcherAssert.assertThat(
+             "aardvark",

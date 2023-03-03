@@ -1,0 +1,32 @@
+diff --git a/src/test/java/com/jcabi/log/LoggerTest.java b/src/test/java/com/jcabi/log/LoggerTest.java
+index b49b3a9..5d2cbb7 100644
+--- a/src/test/java/com/jcabi/log/LoggerTest.java
++++ b/src/test/java/com/jcabi/log/LoggerTest.java
+@@ -148,27 +148,4 @@ public final class LoggerTest {
+         Logger.info("com.jcabi.log...why.not", "hello, %s!", "world!");
+     }
+ 
+-    /**
+-     * See <a href="https://github.com/jcabi/jcabi-log/issues/20">https://github.com/jcabi/jcabi-log/issues/20</a>
+-     */
+-    @Test
+-    public void handleNewLine() {
+-        final String fmt = "%s%n%s";
+-        final Object[] args = { "new", "line" };
+-        MatcherAssert.assertThat(
+-                Logger.format(fmt, args),
+-                Matchers.is(String.format(fmt, args))
+-        );
+-    }
+-
+-    @Test
+-    public void handlePercent() {
+-        final String fmt = "%s%%";
+-        final Object[] args = { "percent: " };
+-        MatcherAssert.assertThat(
+-                Logger.format(fmt, args),
+-                Matchers.is(String.format(fmt, args))
+-        );
+-    }
+-
+ }

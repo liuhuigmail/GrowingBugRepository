@@ -1,0 +1,36 @@
+diff --git a/src/test/java/com/jcabi/log/LoggerTest.java b/src/test/java/com/jcabi/log/LoggerTest.java
+index 49833a1..f85894e 100644
+--- a/src/test/java/com/jcabi/log/LoggerTest.java
++++ b/src/test/java/com/jcabi/log/LoggerTest.java
+@@ -154,16 +154,4 @@ public final class LoggerTest {
+         Logger.info("com.jcabi.log...why.not", "hello, %s!", "world!");
+     }
+ 
+-    /**
+-     * Finds args by position numbers.
+-     */
+-    @Test
+-    public void findsArgsByPositions() {
+-        final String val = "xyz";
+-        MatcherAssert.assertThat(
+-            Logger.format("first: %s, first again: %1$s", val),
+-            Matchers.endsWith(String.format(": %s, first again: %1$s", val))
+-        );
+-    }
+-
+ }
+diff --git a/src/test/java/com/jcabi/log/PreFormatterTest.java b/src/test/java/com/jcabi/log/PreFormatterTest.java
+index d5096ba..54e7602 100644
+--- a/src/test/java/com/jcabi/log/PreFormatterTest.java
++++ b/src/test/java/com/jcabi/log/PreFormatterTest.java
+@@ -59,6 +59,10 @@ public final class PreFormatterTest {
+             pre.getArguments()[0],
+             Matchers.instanceOf(DecorMocker.class)
+         );
++        MatcherAssert.assertThat(
++            pre.getArguments()[1],
++            Matchers.instanceOf(String.class)
++        );
+     }
+ 
+     /**

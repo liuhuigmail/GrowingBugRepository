@@ -258,3 +258,5 @@ Elasticsearch_approx_plugin	elasticsearch-approx-plugin	https://github.com/pears
 Openid4java	openid4java	https://github.com/jbufu/openid4java.git	github	jbufu/openid4java	/#(\\d+)/mi	.	
 Jcabi_w3c   jcabi-w3c    https://github.com/jcabi/jcabi-w3c.git  github  jcabi/jcabi-w3c /#(\\d+)/mi .
 Jcabi_s3   jcabi-s3    https://github.com/jcabi/jcabi-s3.git  github  jcabi/jcabi-s3 /#(\\d+)/mi .
+Jcabi_log	jcabi-log	https://github.com/jcabi/jcabi-log.git	jcabi/jcabi-log	/#(\\d+)/mi .
+Jcabi_matchers	jcabi-matchers	https://github.com/jcabi/jcabi-matchers.git	jcabi/jcabi-matchers	/#(\\d+)/mi .

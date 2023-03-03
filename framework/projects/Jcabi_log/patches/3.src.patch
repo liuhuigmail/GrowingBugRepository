@@ -1,0 +1,19 @@
+diff --git a/src/main/java/com/jcabi/log/ObjectDecor.java b/src/main/java/com/jcabi/log/ObjectDecor.java
+index 5936932..13d0dea 100644
+--- a/src/main/java/com/jcabi/log/ObjectDecor.java
++++ b/src/main/java/com/jcabi/log/ObjectDecor.java
+@@ -68,13 +68,7 @@ final class ObjectDecor implements Formattable {
+     @Override
+     public void formatTo(final Formatter formatter, final int flags,
+         final int width, final int precision) {
+-        if (this.object == null) {
+-            formatter.format("NULL");
+-        } else {
+-            final String output =
+-                AccessController.doPrivileged(new ObjectContentsFormatAction());
+-            formatter.format(output);
+-        }
++        formatter.format("%s", this.object.getClass().getName());
+     }
+ 
+     /**
