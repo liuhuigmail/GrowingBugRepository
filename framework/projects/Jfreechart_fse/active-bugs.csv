@@ -1,0 +1,3 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,986bcecfd44c48b51710ae3d7b8ca6ec93bd03fc,7147fe78d6f60f1218c8a6af71389dfc29b54790,12,https://github.com/jfree/jfreechart-fse/pull/12
+2,5dd6af16370c52b0ac08c4e65e36230ae03f6a67,20ab2037a52ff118cd0d7a406ff55bd6de8fdd74,unknown,unknown

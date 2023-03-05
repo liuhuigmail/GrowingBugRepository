@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/jfree/chart/axis/CompassFormat.java b/src/main/java/org/jfree/chart/axis/CompassFormat.java
+index 3771055..cd30051 100644
+--- a/src/main/java/org/jfree/chart/axis/CompassFormat.java
++++ b/src/main/java/org/jfree/chart/axis/CompassFormat.java
+@@ -66,7 +66,7 @@ public class CompassFormat extends NumberFormat {
+     public CompassFormat(String n, String e, String s, String w) {
+         this(new String[] {
+             n, n + n + e, n + e, e + n + e, e, e + s + e, s + e, s + s + e, s,
+-            s + s + w, s + w, w + s + w, w, w + n + w, n + w, n + n + w
++            s + s + w, s + w, w + s + w, w, w + n + w, n + w, n + n + w, n
+         });
+     }
+ 

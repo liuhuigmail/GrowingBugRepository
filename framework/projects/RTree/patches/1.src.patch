@@ -2,7 +2,7 @@ diff --git a/src/main/java/com/github/davidmoten/rtree/geometry/Geometries.java 
 index fcb0102..e93c9f1 100644
 --- a/src/main/java/com/github/davidmoten/rtree/geometry/Geometries.java
 +++ b/src/main/java/com/github/davidmoten/rtree/geometry/Geometries.java
-@@ -36,15 +35,12 @@ public final class Geometries {
+@@ -36,15 +35,11 @@ public final class Geometries {
  
      @VisibleForTesting
      static double normalizeLongitude(double d) {
@@ -15,6 +15,6 @@ index fcb0102..e93c9f1 100644
              if (x2 >= 180)
                  x2 -= 360;
              return x2 * sign;
-         }
+-        }
      }
  }
