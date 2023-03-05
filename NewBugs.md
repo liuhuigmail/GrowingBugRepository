@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`1079`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1093`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -247,4 +247,6 @@ To date, growingBugs contains **`1079`** unique bugs that are not included in De
 | 237     | Jcabi_w3c            | jcabi-w3c                       |                           |       1       | 1                |
 | 238     | Jcabi_email            | jcabi-email                       |                        |       4       | 1-4                |
 | 239     | Jcabi_log            | jcabi-log                       |                        |       9       | 1-9                |
-| 239     | Jcabi_matchers            | jcabi-matchers                       |                        |       2       | 1-2                |
+| 240     | Jcabi_matchers            | jcabi-matchers                       |                        |       2       | 1-2                |
+| 241     | Jfreechart_fse            | jfreechart-fse                       |                        |       2       | 1-2                |
+| 242     | Jfreesvg            | jfreesvg                       |                        |       1       | 1                |

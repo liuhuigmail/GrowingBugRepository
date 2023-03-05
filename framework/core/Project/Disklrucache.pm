@@ -59,16 +59,16 @@ sub new {
 ##
 ## Determines the directory layout for sources and tests
 ##
-#sub determine_layout {
-#    @_ == 2 or die $ARG_ERROR;
-#    my ($self, $rev_id) = @_;
-#    my $dir = $self->{prog_root};
+sub determine_layout {
+    @_ == 2 or die $ARG_ERROR;
+    my ($self, $rev_id) = @_;
+    my $dir = $self->{prog_root};
 
-#    # Add additional layouts if necessary
-#    my $result = _ant_layout($dir) // _maven_layout($dir);
-#    die "Unknown layout for revision: ${rev_id}" unless defined $result;
-#    return $result;
-#}
+    # Add additional layouts if necessary
+    my $result = _ant_layout($dir) // _maven_layout($dir);
+    die "Unknown layout for revision: ${rev_id}" unless defined $result;
+    return $result;
+}
 
 #
 # Post-checkout tasks include, for instance, providing cached build files,

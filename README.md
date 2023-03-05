@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1902`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1916`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -57,7 +57,7 @@ To date, growingBugs contains **`1902`** real-world bugs from open-source Java p
 | 28     | Graph           | commons-graph              |                          |        5       | 1-5                 |
 | 29     | Net             | commons-net                |                          |        14      | 9,10,12,</br>14-18,20-21,</br>23-26             |
 | 30     | Numbers_angle   | commons-numbers-angle            |  commons-numbers-angle         |        2       | 1-2               |
-| 31     | Geometry_core   | commons-geometry-core           |    commons-geometry-core |        2       | 1,3               |
+| 31     | Geometry_core   | geometry-core           |    commons-geometry-core |        2       | 1,3               |
 | 32     | MGpg            | maven-gpg-plugin           ||        1       | 1               |
 | 33     | Text            | commons-text               ||        4       | 1-2,4-5               |
 | 34     | Tika_core            | tika-core               |  tika-core |        25       | 4,6,9,11,</br>17,20-39               |
@@ -272,6 +272,8 @@ To date, growingBugs contains **`1902`** real-world bugs from open-source Java p
 | 243     | Jcabi_email            | jcabi-email                       |        |       4       | 1-4                |
 | 244     | Jcabi_log            | jcabi-log                       |                        |       9       | 1-9                |
 | 245     | Jcabi_matchers            | jcabi-matchers                       |                        |       2       | 1-2                |
+| 246     | Jfreechart_fse            | jfreechart-fse                       |                        |       2       | 1-2                |
+| 247     | Jfreesvg            | jfreesvg                       |                        |       1       | 1                |
 # Setting up GrowingBugs
 
 ## Requirements

@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/jfree/chart/renderer/RendererUtilities.java b/src/main/java/org/jfree/chart/renderer/RendererUtilities.java
+index 17ec08d..329cd8e 100644
+--- a/src/main/java/org/jfree/chart/renderer/RendererUtilities.java
++++ b/src/main/java/org/jfree/chart/renderer/RendererUtilities.java
+@@ -138,7 +138,7 @@ public class RendererUtilities {
+             int index = 0;
+             // skip any items that don't need including...
+             double x = dataset.getXValue(series, index);
+-            while (index < itemCount && (x < xLow || x > xHigh)) {
++            while (index < itemCount && x < xLow) {
+                 index++;
+                 if (index < itemCount) {
+                     x = dataset.getXValue(series, index);
+@@ -232,7 +232,7 @@ public class RendererUtilities {
+             int index = itemCount - 1;
+             // skip any items that don't need including...
+             double x = dataset.getXValue(series, index);
+-            while (index >= 0 && (x < xLow || x > xHigh)) {
++            while (index >= 0 && x > xHigh) {
+                 index--;
+                 if (index >= 0) {
+                     x = dataset.getXValue(series, index);

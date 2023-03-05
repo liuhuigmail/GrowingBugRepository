@@ -92,6 +92,9 @@ sub _post_checkout {
         while(<IN>) {
 
             $_ =~ s/compile-tests/compile\.tests/g;
+
+            $_ =~ s/source="1\.."/source="1\.8"/g;
+            $_ =~ s/target="1\.."/target="1\.8"/g;
             #$_ =~ s/=src\//=$SUBPROJ\/src\//g;
             #$_ =~ s/classesdir/classes\.dir/g;
             #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
@@ -110,6 +113,9 @@ sub _post_checkout {
         open(OUT, '>'."$work_dir/maven-build.xml") or die $!;
         while(<IN>) {
             $_ =~ s/compile-tests/compile\.tests/g;
+
+            $_ =~ s/source="1\.."/source="1\.8"/g;
+            $_ =~ s/target="1\.."/target="1\.8"/g;
             #$_ =~ s/classesdir/classes\.dir/g;
             #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
             #$_ =~ s/src\//$SUBPROJ\/src\//g;
@@ -126,6 +132,9 @@ sub _post_checkout {
         open(OUT, '>'."$work_dir/maven-build.properties") or die $!;
         while(<IN>) {
             $_ =~ s/compile-tests/compile\.tests/g;
+
+            $_ =~ s/source="1\.."/source="1\.8"/g;
+            $_ =~ s/target="1\.."/target="1\.8"/g;
             #$_ =~ s/=src\//=$SUBPROJ\/src\//g;
             #$_ =~ s/classesdir/classes\.dir/g;
             #$_ =~ s/testclasses\.dir/test\.classes\.dir/g;
