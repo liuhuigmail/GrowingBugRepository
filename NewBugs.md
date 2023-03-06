@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`1093`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1082`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -28,7 +28,7 @@ To date, growingBugs contains **`1093`** unique bugs that are not included in De
 | 22     | Geometry_core   | commons-geometry-core     |    commons-geometry-core |        2       | 1,3               |
 | 23     | MGpg            | maven-gpg-plugin          |                          |        1       | 1               |
 | 24     | Text            | commons-text              |                          |        4       | 1-2,4-5               |
-| 25     | Tika_core       | tika-core                 |  tika-core               |        25       | 4,6,9,11,</br>17,20-39               |
+| 25     | Tika_core       | tika-core                 |  tika-core               |        23       | 4,6,9,11,</br>17,20-25,28-39               |
 | 26     | Tika_app        | tika-app                  |   tika-app               |        2       | 1,3               |
 | 27     | Shiro_core      | shiro-core                |      core                |        10       | 37,40,46,52,98,</br>144,176,181,202-203               |
 | 28     | Jena_core       | jena-core                 |    jena-core             |        1       | 2               |
@@ -124,7 +124,7 @@ To date, growingBugs contains **`1093`** unique bugs that are not included in De
 | 118     | Rdf4j_rio_jsonld            | rdf4j-rio-jsonld | core/rio/jsonld  |       2     | 1-2              |
 | 119     | Rdf4j_rio_rdfjson            | rdf4j-rio-rdfjson | core/rio/rdfjson |       2     | 1-2              |
 | 120     | Rdf4j_rio_rdfxml            | rdf4j-rio-rdfxml | core/rio/rdfxml    |       3     | 1-3              |
-| 121     | Rdf4j_rio_turtle            | rdf4j-rio-turtle | core/rio/turtle    |       11    | 1-11              |
+| 121     | Rdf4j_rio_turtle            | rdf4j-rio-turtle | core/rio/turtle    |       9    | 1-4,6,8-11              |
 | 122     | Sentry_ccommon            | sentry-core-common |  sentry-core/sentry-core-common   |       2     | 1-2              |
 | 123     | Sling_apiregions            | sling-apiregions |     |       3     | 1-3              |
 | 124     | Sling_cpconverter            | sling-cpconverter |     |       3     | 1-3              |
@@ -204,15 +204,12 @@ To date, growingBugs contains **`1093`** unique bugs that are not included in De
 | 197     | Jcabi_github         | jcabi-github           |                  |      77       | 1-42,44-82                  |
 | 198     | Podam         | podam           |                  |      1       | 1                  |
 | 199     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
-| 200     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
-| 201     | Docker_java_api         | docker-java-api           |                  |      2       | 1-2                  |
-| 202     | Github_release_plugin         | github-release-plugin           |                  |      2       | 1-2                  |
-| 203     | Spring_context_support         | spring-context-support           |                  |      1       | 1                  |
-| 201     | Transmittable_thread_local         | transmittable-thread-local           |                  |      4       | 1-4                  |
-| 202     | Jchronic         | jchronic           |                  |      1       | 1                  |
-| 203     | Netconf_java         | netconf-java           |                  |      1       | 1                  |
-| 204     | Xades4j         | xades4j           |                  |      4       | 1-4                  |
-| 205     | Spatial4j         | spatial4j           |                  |      4       | 1-4                  |
+| 200     | Docker_java_api         | docker-java-api           |                  |      2       | 1-2                  |
+| 201     | Github_release_plugin         | github-release-plugin           |                  |      2       | 1-2                  |
+| 202     | Spring_context_support         | spring-context-support           |                  |      1       | 1                  |
+| 203     | Transmittable_thread_local         | transmittable-thread-local           |                  |      4       | 1-4                  |
+| 204     | Jchronic         | jchronic           |                  |      1       | 1                  |
+| 205     | Netconf_java         | netconf-java           |                  |      1       | 1                  |
 | 206     | Hive_funnel_udf         | hive-funnel-udf           |                  |      1       | 1                  |
 | 207     | Iciql         | iciql           |                  |      2       | 1-2                  |
 | 208     | Metrics_opentsdb         | metrics-opentsdb           |                  |      2       | 1-2                  |
@@ -227,10 +224,10 @@ To date, growingBugs contains **`1093`** unique bugs that are not included in De
 | 217     | Snomed_owl_toolkit         | snomed-owl-toolkit           |                  |      2       | 1-2                  |
 | 218     | Weak_lock_free         | weak-lock-free           |                  |      1       | 1                  |
 | 219     | Proj4J         | proj4j           |                  |      9       | 1-9                  |
-| 220     | Rocketmq_mqtt_ds         | rocketmq-mqtt-ds           |       mqtt-ds           |      4       | 1-4                  |
+| 220     | Rocketmq_mqtt_ds         | rocketmq-mqtt-ds           |       mqtt-ds           |      1       | 1                  |
 | 221     | Retrofit         | retrofit           |       retrofit           |      3       | 1-3                  |
 | 222     | Burst         | burst           |       burst           |      3       | 1-3                  |
-| 223     | Jackrabbit_filevault_vault_validation        | jackrabbit-filevault-vault-validation          |       vault-validation           |      7       | 1-7                  |
+| 223     | Jackrabbit_filevault_vault_validation        | jackrabbit-filevault-vault-validation          |       vault-validation           |      4       | 1-4                  |
 | 224     | Jnagmp         | jnagmp           |       jnagmp           |      1       | 1                  |
 | 225     | Rocketmq_mqtt_cs         | rocketmq-mqtt-cs           |       mqtt-cs           |      1       | 1    |
 | 226     | Dagger_core         | dagger-core           |       core           |      20       | 1-20                  |
@@ -250,3 +247,5 @@ To date, growingBugs contains **`1093`** unique bugs that are not included in De
 | 240     | Jcabi_matchers            | jcabi-matchers                       |                        |       2       | 1-2                |
 | 241     | Jfreechart_fse            | jfreechart-fse                       |                        |       2       | 1-2                |
 | 242     | Jfreesvg            | jfreesvg                       |                        |       1       | 1                |
+| 243     | Xades4j         | xades4j           |                  |      4       | 1-4                  |
+| 244     | Spatial4j         | spatial4j           |                  |      4       | 1-4                  |

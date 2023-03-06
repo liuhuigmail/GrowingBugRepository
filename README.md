@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1916`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1902`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -60,7 +60,7 @@ To date, growingBugs contains **`1916`** real-world bugs from open-source Java p
 | 31     | Geometry_core   | geometry-core           |    commons-geometry-core |        2       | 1,3               |
 | 32     | MGpg            | maven-gpg-plugin           ||        1       | 1               |
 | 33     | Text            | commons-text               ||        4       | 1-2,4-5               |
-| 34     | Tika_core            | tika-core               |  tika-core |        25       | 4,6,9,11,</br>17,20-39               |
+| 34     | Tika_core            | tika-core               |  tika-core |        23       | 4,6,9,11,</br>17,20-25,28-39               |
 | 35     | Tika_app            | tika-app               |   tika-app     |        2       | 1,3               |
 | 36     | Shiro_core            | shiro-core               |      core      |        10       | 37,40,46,52,98,</br>144,176,181,202-203               |
 | 37     | Jena_core            | jena-core               |    jena-core   |        1       | 2               |
@@ -156,7 +156,7 @@ To date, growingBugs contains **`1916`** real-world bugs from open-source Java p
 | 127     | Rdf4j_rio_jsonld            | rdf4j-rio-jsonld | core/rio/jsonld  |       2     | 1-2              |
 | 128     | Rdf4j_rio_rdfjson            | rdf4j-rio-rdfjson | core/rio/rdfjson |       2     | 1-2              |
 | 129     | Rdf4j_rio_rdfxml            | rdf4j-rio-rdfxml | core/rio/rdfxml    |       1     | 1              |
-| 130     | Rdf4j_rio_turtle            | rdf4j-rio-turtle | core/rio/turtle    |       10    | 1-10              |
+| 130     | Rdf4j_rio_turtle            | rdf4j-rio-turtle | core/rio/turtle    |       8    | 1-4,6,8-10              |
 | 131     | Sentry_ccommon            | sentry-core-common |  sentry-core/sentry-core-common   |       2     | 1-2              |
 | 132     | Sling_apiregions            | sling-apiregions |     |       3     | 1-3              |
 | 133     | Sling_cpconverter            | sling-cpconverter |     |       3     | 1-3              |
@@ -193,7 +193,7 @@ To date, growingBugs contains **`1916`** real-world bugs from open-source Java p
 | 164     | Canvas_api            | canvas-api               |                 |      4       | 1-4               |
 | 165     | Coveralls_maven_plugin            | coveralls-maven-plugin               |                  |      8       | 1-8               |
 | 166     | Slack_java_webhook            | slack-java-webhook               |                 |      1       | 1               |
-| 167     | Zip4j            | zip4j               |                  |      55       | 1-55               |
+| 167     | Zip4j            | zip4j               |                  |      52       | 1-52               |
 | 168     | Incubator_retired_pirk            | incubator-retired-pirk               |                  |      1       | 1               |
 | 169     | Sparsebitset             | SparseBitSet                |                  |      2       | 1-2               |
 | 170     | Assertj_assertions_generator            | assertj-assertions-generator               |                  |      7       | 1-7               |
@@ -213,7 +213,7 @@ To date, growingBugs contains **`1916`** real-world bugs from open-source Java p
 | 184     | Ber_tlv         | ber-tlv            |                  |      4       | 1-4                  |                 |
 | 185     | Commons_suncalc         | commons-suncalc            |                  |      2       | 1-2                  |                 |
 | 186     | Dropwizard_spring         | dropwizard-spring            |                  |      1       | 1                  |                 |
-| 187     | Semux_core         | semux-core            |                  |      3       | 1-3                  |                 |
+| 187     | Semux_core         | semux-core            |                  |      1       | 1-3                  |                 |
 | 188     | Solarpositioning         | solarpositioning            |                  |      3       | 1-3                  |                 |
 | 189     | Sparkey_java         | sparkey-java            |                  |      3       | 1-3                  |                 |
 | 190     | Shazamcrest         | shazamcrest            |                  |      2       | 1-2                  |                 |
@@ -223,57 +223,56 @@ To date, growingBugs contains **`1916`** real-world bugs from open-source Java p
 | 194     | Gocd_slack_build_notifier         | gocd-slack-build-notifier            |                  |      3       | 1-3                  |                 |
 | 195     | Confluence_http_authenticator         | confluence_http_authenticator            |                  |      1       | 1                  |                 |
 | 196     | Tempus_fugit         | tempus-fugit            |                  |      1       | 1                  |                 |
-| 197     | Disklrucache         | DiskLruCache           |                  |      4       | 1-4                  |                 |
-| 198     | Kafka_graphite         | kafka-graphite           |                  |      1       | 1                  |                 |
-| 199     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
-| 200     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
-| 201     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
-| 202     | Jcabi_github         | jcabi-github           |                  |      77       | 1-42,44-82                  |
-| 203     | Podam         | podam           |                  |      1       | 1                  |
-| 204     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
-| 205     | Snowleopard         | SnowLeopard           |                  |      1       | 1                  |
-| 206     | Transmittable_thread_local         | transmittable-thread-local           |                  |      4       | 1-4                  |
-| 207     | Jchronic         | jchronic           |                  |      1       | 1                  |
-| 208     | Netconf_java         | netconf-java           |                  |      1       | 1                  |
-| 209     | Xades4j         | xades4j           |                  |      4       | 1-4                  |
-| 210     | Spatial4j         | spatial4j           |                  |      4       | 1-4                  |
-| 211     | Hive_funnel_udf         | hive-funnel-udf           |                  |      1       | 1                  |
-| 212     | Iciql         | iciql           |                  |      2       | 1-2                  |
-| 213     | Metrics_opentsdb         | metrics-opentsdb           |                  |      2       | 1-2                  |
-| 214     | Hierarchical_clustering_java         | hierarchical-clustering-java           |                  |      1       | 1                  |
-| 215     | Docker_java_api         | docker-java-api           |                  |      10       | 1-10                  |
-| 216     | Github_release_plugin         | github-release-plugin           |                  |      2       | 1-2                  |
-| 217     | Spring_context_support         | spring-context-support           |                  |      2       | 2                  |
-| 218     | Jmimemagic         | jmimemagic           |                  |      1       | 1                  |
-| 219     | Markedj         | markedj           |                  |      17       | 1-17                  |
-| 220     | Sonartsplugin         | SonarTsPlugin           |                  |      10       | 1-10                  |
-| 221     | Aws_maven         | aws-maven           |                  |      1       | 1                  |
-| 222     | Snomed_owl_toolkit         | snomed-owl-toolkit           |                  |      2       | 1-2                  |
-| 223     | Weak_lock_free         | weak-lock-free           |                  |      1       | 1                  |
-| 224     | Proj4J         | proj4j           |                  |      9       | 1-9                  |
-| 225     | Markedj         | markedj           |                  |      2       | 1-2                  |
-| 226     | Rocketmq_mqtt_ds         | rocketmq-mqtt-ds           |       mqtt-ds           |      4       | 1-4                  |
-| 227     | Retrofit         | retrofit           |       retrofit           |      3       | 1-3                  |
-| 228     | Burst         | burst           |       burst           |      3       | 1-3                  |
-| 229     | Jackrabbit_filevault_vault_validation        | jackrabbit-filevault-vault-validation          |       vault-validation           |      7       | 1-7                  |
-| 230     | Jnagmp         | jnagmp           |       jnagmp           |      1       | 1                  |
-| 231     | Rocketmq_mqtt_cs         | rocketmq-mqtt-cs           |       mqtt-cs           |      1       | 1   |
-| 232     | Dagger_core         | dagger-core           |       core           |      20       | 1-20                  |
-| 233     | Google_java_format_core         | google-java-format-core           |       core           |      1       | 1                  |
-| 234     | Jimfs         | jimfs           |       jimfs           |      2       | 1-2                  |
-| 235     | Open_location_code_java         | open-location-code-java           |       java           |      4       | 1-4                  |
-| 236     | Gwtmockito         | gwtmockito           |       gwtmockito           |      3       | 1-3                  |
-| 237     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
-| 238     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
-| 239     | Tape         | tape           |                  |      13       | 1-13                  |
-| 240     | Jcabi_http         | jcabi-http           |                  |      16       | 1-16                  |
-| 241     | Jcabi_aether         | jcabi-aether           |                  |      1       | 1                  |
-| 242     | Jcabi_w3c            | jcabi-w3c                       |                           |       1       | 1                |
-| 243     | Jcabi_email            | jcabi-email                       |        |       4       | 1-4                |
-| 244     | Jcabi_log            | jcabi-log                       |                        |       9       | 1-9                |
-| 245     | Jcabi_matchers            | jcabi-matchers                       |                        |       2       | 1-2                |
-| 246     | Jfreechart_fse            | jfreechart-fse                       |                        |       2       | 1-2                |
-| 247     | Jfreesvg            | jfreesvg                       |                        |       1       | 1                |
+| 197     | Kafka_graphite         | kafka-graphite           |                  |      1       | 1                  |                 |
+| 198     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
+| 199     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
+| 200     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
+| 201     | Jcabi_github         | jcabi-github           |                  |      77       | 1-42,44-82                  |
+| 202     | Podam         | podam           |                  |      1       | 1                  |
+| 203     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
+| 204     | Transmittable_thread_local         | transmittable-thread-local           |                  |      4       | 1-4                  |
+| 205     | Jchronic         | jchronic           |                  |      1       | 1                  |
+| 206     | Netconf_java         | netconf-java           |                  |      1       | 1                  |
+| 207     | Xades4j         | xades4j           |                  |      4       | 1-4                  |
+| 208     | Spatial4j         | spatial4j           |                  |      4       | 1-4                  |
+| 209     | Hive_funnel_udf         | hive-funnel-udf           |                  |      1       | 1                  |
+| 210     | Iciql         | iciql           |                  |      2       | 1-2                  |
+| 211     | Metrics_opentsdb         | metrics-opentsdb           |                  |      2       | 1-2                  |
+| 212     | Hierarchical_clustering_java         | hierarchical-clustering-java           |                  |      1       | 1                  |
+| 213     | Docker_java_api         | docker-java-api           |                  |      10       | 1-10                  |
+| 214     | Github_release_plugin         | github-release-plugin           |                  |      2       | 1-2                  |
+| 215     | Spring_context_support         | spring-context-support           |                  |      2       | 2                  |
+| 216     | Jmimemagic         | jmimemagic           |                  |      1       | 1                  |
+| 217     | Markedj         | markedj           |                  |      17       | 1-17                  |
+| 218     | Sonartsplugin         | SonarTsPlugin           |                  |      10       | 1-10                  |
+| 219     | Aws_maven         | aws-maven           |                  |      1       | 1                  |
+| 220     | Snomed_owl_toolkit         | snomed-owl-toolkit           |                  |      2       | 1-2                  |
+| 221     | Weak_lock_free         | weak-lock-free           |                  |      1       | 1                  |
+| 222     | Proj4J         | proj4j           |                  |      9       | 1-9                  |
+| 223     | Markedj         | markedj           |                  |      2       | 1-2                  |
+| 224     | Rocketmq_mqtt_ds         | rocketmq-mqtt-ds           |       mqtt-ds           |      1       | 1                  |
+| 225     | Retrofit         | retrofit           |       retrofit           |      3       | 1-3                  |
+| 226     | Burst         | burst           |       burst           |      3       | 1-3                  |
+| 227     | Jackrabbit_filevault_vault_validation        | jackrabbit-filevault-vault-validation          |       vault-validation           |      4       | 1-4                  |
+| 228     | Jnagmp         | jnagmp           |       jnagmp           |      1       | 1                  |
+| 229     | Rocketmq_mqtt_cs         | rocketmq-mqtt-cs           |       mqtt-cs           |      1       | 1   |
+| 230     | Dagger_core         | dagger-core           |       core           |      20       | 1-20                  |
+| 231     | Google_java_format_core         | google-java-format-core           |       core           |      1       | 1                  |
+| 232     | Jimfs         | jimfs           |       jimfs           |      2       | 1-2                  |
+| 233     | Open_location_code_java         | open-location-code-java           |       java           |      4       | 1-4                  |
+| 234     | Gwtmockito         | gwtmockito           |       gwtmockito           |      3       | 1-3                  |
+| 235     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
+| 236     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
+| 237     | Tape         | tape           |                  |      13       | 1-13                  |
+| 238     | Jcabi_http         | jcabi-http           |                  |      16       | 1-16                  |
+| 239     | Jcabi_aether         | jcabi-aether           |                  |      1       | 1                  |
+| 240     | Jcabi_w3c            | jcabi-w3c                       |                           |       1       | 1                |
+| 241     | Jcabi_email            | jcabi-email                       |        |       4       | 1-4                |
+| 242     | Jcabi_log            | jcabi-log                       |                        |       9       | 1-9                |
+| 243     | Jcabi_matchers            | jcabi-matchers                       |                        |       2       | 1-2                |
+| 244     | Jfreechart_fse            | jfreechart-fse                       |                        |       2       | 1-2                |
+| 245     | Jfreesvg            | jfreesvg                       |                        |       1       | 1                |
+| 246     | Disklrucache         | DiskLruCache           |                  |      4       | 1-4                  |                 |
 # Setting up GrowingBugs
 
 ## Requirements
