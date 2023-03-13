@@ -1,6 +1,6 @@
 # Unique Bugs in growingBugs
 
-To date, growingBugs contains **`1082`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1085`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -249,3 +249,5 @@ To date, growingBugs contains **`1082`** unique bugs that are not included in De
 | 242     | Jfreesvg            | jfreesvg                       |                        |       1       | 1                |
 | 243     | Xades4j         | xades4j           |                  |      4       | 1-4                  |
 | 244     | Spatial4j         | spatial4j           |                  |      4       | 1-4                  |
+| 245     | Leshan_core         | leshan-core           |       leshan-core      |      2       | 1-2                  |                 |
+| 246     | Geo         | geo           |       geo        |      1       | 1                  |                 |

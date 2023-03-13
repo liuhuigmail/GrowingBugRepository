@@ -260,3 +260,5 @@ Jcabi_w3c   jcabi-w3c    https://github.com/jcabi/jcabi-w3c.git  github  jcabi/j
 Jcabi_s3   jcabi-s3    https://github.com/jcabi/jcabi-s3.git  github  jcabi/jcabi-s3 /#(\\d+)/mi .
 Jcabi_log	jcabi-log	https://github.com/jcabi/jcabi-log.git	jcabi/jcabi-log	/#(\\d+)/mi .
 Jcabi_matchers	jcabi-matchers	https://github.com/jcabi/jcabi-matchers.git	jcabi/jcabi-matchers	/#(\\d+)/mi .
+Leshan_core	leshan-core	https://github.com/eclipse/leshan.git	github	eclipse/leshan	/#(\\d+)/mi	leshan-core
+Geo	geo	https://github.com/davidmoten/geo.git	github	davidmoten/geo	/#(\\d+)/mi	geo
