@@ -1,0 +1,3 @@
+org.eclipse.leshan.core.node.codec.LwM2mNodeDecoderTest
+org.eclipse.leshan.tlv.TlvDecoderTest
+org.eclipse.leshan.tlv.TlvEncoderTest
