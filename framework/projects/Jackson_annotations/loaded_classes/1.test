@@ -1,0 +1,2 @@
+com.fasterxml.jackson.annotation.IncludeTest
+com.fasterxml.jackson.annotation.TestBase

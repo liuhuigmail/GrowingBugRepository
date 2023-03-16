@@ -1,3 +1,5 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,f8e3b9d984508be16fad90a990cd15533c3f59ff,8a4c9c7a63ebae24331c067c1c9e43b9220b36bc,200,https://github.com/eclipse/leshan/issues/200
 2,69881c0d1a588b268c6cdf70002931a16c9e6606,ba3a1039db31266b6747f0d20c0398a7c02accfd,416,https://github.com/eclipse/leshan/issues/416
+3,ee77166041fc7afc843b432795663fde97d86eb9,b6bfe60c079cd3a66b96ff95870e11d78ea9673c,463,https://github.com/eclipse/leshan/issues/463
+4,4b6c499be08e3afd0a83a38a58133b63ebec2702,932bd6bf72c40b7be487bf151fc1691132396e40,429,https://github.com/eclipse/leshan/issues/429

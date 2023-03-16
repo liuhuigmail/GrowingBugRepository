@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,818991398a2270b9f132454ba52f2d56f3c87b47,dc91111f36cafa427a7b9d30da3a13cd43d1fb02,76,https://github.com/FasterXML/jackson-annotations/issues/76

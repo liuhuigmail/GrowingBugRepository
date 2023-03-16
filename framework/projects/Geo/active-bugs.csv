@@ -1,2 +1,3 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,53df045efb373d892d228309ceba0353854e2e89,33c5f2f0ae0fc10d684065fccb2a4d2285f5cb9d,29,https://github.com/davidmoten/geo/issues/29
+2,53df045efb373d892d228309ceba0353854e2e89,ae81f9ef3e906292c370d1f37d58eddd47accafa,30,https://github.com/davidmoten/geo/pull/30
