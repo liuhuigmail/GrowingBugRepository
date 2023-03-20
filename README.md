@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1909`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1913`** real-world bugs from open-source Java projects. 
 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
@@ -273,8 +273,8 @@ To date, growingBugs contains **`1909`** real-world bugs from open-source Java p
 | 244     | Jfreechart_fse            | jfreechart-fse                       |                        |       2       | 1-2                |
 | 245     | Jfreesvg            | jfreesvg                       |                        |       1       | 1                |
 | 246     | Disklrucache         | DiskLruCache           |                  |      4       | 1-4                  |                 
-| 247     | Leshan_core         | leshan-core           |       leshan-core      |      4       | 1-4                  |                 
-| 248     | Geo         | geo           |       geo        |      2       | 1-2                  |                 |
+| 247     | Leshan_core         | leshan-core           |       leshan-core      |      7       | 1-7                  |                 
+| 248     | Geo         | geo           |       geo        |      3       | 1-3                  |                 |
 | 249     | Jackson_annotations         | jackson-annotations           |               |      1       | 1                  |                 
 # Setting up GrowingBugs
 
