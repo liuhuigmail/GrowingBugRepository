@@ -1,0 +1,3 @@
+org.eclipse.leshan.core.node.codec.senml.LwM2mNodeSenMLDecoder
+leshan-core.org.eclipse.leshan.senml.cbor.upokecenter.SenMLCborUpokecenterEncoderDecoder
+leshan-core.org.eclipse.leshan.senml.json.jackson.SenMLJsonJacksonEncoderDecoder
