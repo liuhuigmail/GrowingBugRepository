@@ -1,0 +1,2 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,256eba41b901a903c11f13f2d880e729ab49ed30,c6625bac0b3ce44c9bbbd46015ce6ced07bcce04,96,https://github.com/FasterXML/jackson-datatype-hibernate/pull/96

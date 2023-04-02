@@ -1,0 +1,36 @@
+diff --git a/hibernate4/src/main/java/com/fasterxml/jackson/datatype/hibernate4/Hibernate4Module.java b/hibernate4/src/main/java/com/fasterxml/jackson/datatype/hibernate4/Hibernate4Module.java
+index 56f624f..12884c8 100644
+--- a/hibernate4/src/main/java/com/fasterxml/jackson/datatype/hibernate4/Hibernate4Module.java
++++ b/hibernate4/src/main/java/com/fasterxml/jackson/datatype/hibernate4/Hibernate4Module.java
+@@ -205,4 +205,4 @@ public class Hibernate4Module extends Module
+         return this;
+     }
+ 
+-}
+\ No newline at end of file
++}
+diff --git a/hibernate4/src/main/java/com/fasterxml/jackson/datatype/hibernate4/HibernateProxySerializer.java b/hibernate4/src/main/java/com/fasterxml/jackson/datatype/hibernate4/HibernateProxySerializer.java
+index 229aec1..794c7c2 100644
+--- a/hibernate4/src/main/java/com/fasterxml/jackson/datatype/hibernate4/HibernateProxySerializer.java
++++ b/hibernate4/src/main/java/com/fasterxml/jackson/datatype/hibernate4/HibernateProxySerializer.java
+@@ -178,7 +178,7 @@ public class HibernateProxySerializer
+         LazyInitializer init = proxy.getHibernateLazyInitializer();
+         if (!_forceLazyLoading && init.isUninitialized()) {
+             if (_serializeIdentifier) {
+-                String idName;
++                final String idName;
+                 if (_mapping != null) {
+                     idName = _mapping.getIdentifierPropertyName(init.getEntityName());
+                 } else {
+@@ -186,10 +186,7 @@ public class HibernateProxySerializer
+                     if (session != null) {
+                         idName = session.getFactory().getIdentifierPropertyName(init.getEntityName());
+                     } else {
+-                        idName = ProxyReader.getIdentifierPropertyName(init);
+-                        if (idName == null) {
+-                        	idName = init.getEntityName();
+-                        }
++                        idName = init.getEntityName();
+                     }
+                 }
+         		final Object idValue = init.getIdentifier();

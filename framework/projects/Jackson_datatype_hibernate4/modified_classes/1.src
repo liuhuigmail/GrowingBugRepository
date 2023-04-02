@@ -1,0 +1,2 @@
+com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module
+hibernate4.com.fasterxml.jackson.datatype.hibernate4.HibernateProxySerializer
