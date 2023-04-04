@@ -241,7 +241,7 @@ To date, growingBugs contains **`1915`** real-world bugs from open-source Java p
 | 212     | Hierarchical_clustering_java         | hierarchical-clustering-java           |                  |      1       | 1                  |
 | 213     | Docker_java_api         | docker-java-api           |                  |      10       | 1-10                  |
 | 214     | Github_release_plugin         | github-release-plugin           |                  |      2       | 1-2                  |
-| 215     | Spring_context_support         | spring-context-support           |                  |      2       | 2                  |
+| 215     | Spring_context_support         | spring-context-support           |                  |      1       | 2                  |
 | 216     | Jmimemagic         | jmimemagic           |                  |      1       | 1                  |
 | 217     | Markedj         | markedj           |                  |      17       | 1-17                  |
 | 218     | Sonartsplugin         | SonarTsPlugin           |                  |      10       | 1-10                  |
