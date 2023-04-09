@@ -1,0 +1,10 @@
+com.fasterxml.jackson.datatype.hibernate4.ForceLazyLoadingTest
+com.fasterxml.jackson.datatype.hibernate4.HibernateTest
+com.fasterxml.jackson.datatype.hibernate4.InclusionTest
+com.fasterxml.jackson.datatype.hibernate4.InfiniteRecursion70Test
+com.fasterxml.jackson.datatype.hibernate4.LazyLoadingTest
+com.fasterxml.jackson.datatype.hibernate4.OneToManyTest
+com.fasterxml.jackson.datatype.hibernate4.Polymorphic81Test
+com.fasterxml.jackson.datatype.hibernate4.TestMaps
+com.fasterxml.jackson.datatype.hibernate4.TestVersions
+com.fasterxml.jackson.datatype.hibernate4.TransientTest

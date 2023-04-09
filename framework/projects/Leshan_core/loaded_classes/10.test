@@ -1,0 +1,2 @@
+org.eclipse.leshan.core.datatype.NumberUtilTest
+org.eclipse.leshan.core.node.codec.LwM2mNodeDecoderTest

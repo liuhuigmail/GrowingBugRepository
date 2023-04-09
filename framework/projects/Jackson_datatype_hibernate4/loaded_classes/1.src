@@ -1,0 +1,7 @@
+com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module
+com.fasterxml.jackson.datatype.hibernate4.HibernateAnnotationIntrospector
+com.fasterxml.jackson.datatype.hibernate4.HibernateProxySerializer
+com.fasterxml.jackson.datatype.hibernate4.HibernateSerializerModifier
+com.fasterxml.jackson.datatype.hibernate4.HibernateSerializers
+com.fasterxml.jackson.datatype.hibernate4.ModuleVersion
+com.fasterxml.jackson.datatype.hibernate4.PersistentCollectionSerializer
