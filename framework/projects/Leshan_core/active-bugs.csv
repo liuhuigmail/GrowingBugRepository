@@ -8,7 +8,4 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 7,f512b574797e852f8e883641ab0df852bebb7fcd,6817e749d5d32e9978e463008c362242c57bb540,775,https://github.com/eclipse/leshan/issues/775
 8,983b21eedc0cd9a18f789124987cba7231f4ab83,c8712dd99ef5e3ab9601de2b4dc6c4d85fe694bf,677,https://github.com/eclipse/leshan/pull/677
 9,64c0ba619498bba6db10797c3baac4749f82bc77,b6528f3fe1541e2b8965ee2f85e1803974f49d81,915,https://github.com/eclipse/leshan/issues/915
-<<<<<<< HEAD
 10,eb336976172cf943b4b8db4603352bd3dd0ebeab,ca740491db975b23e45475c9b8584ae40b799183,1170,https://github.com/eclipse/leshan/issues/1170
-=======
->>>>>>> 4299ef44b3de855ac15736b10557789b0620c4b7
