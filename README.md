@@ -22,8 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1919`** real-world bugs from open-source Java projects. 
-
+To date, growingBugs contains **`1917`** real-world bugs from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -241,7 +240,7 @@ To date, growingBugs contains **`1919`** real-world bugs from open-source Java p
 | 212     | Hierarchical_clustering_java         | hierarchical-clustering-java           |                  |      1       | 1                  |
 | 213     | Docker_java_api         | docker-java-api           |                  |      10       | 1-10                  |
 | 214     | Github_release_plugin         | github-release-plugin           |                  |      2       | 1-2                  |
-| 215     | Spring_context_support         | spring-context-support           |                  |      2       | 2                  |
+| 215     | Spring_context_support         | spring-context-support           |                  |      1       | 2                  |
 | 216     | Jmimemagic         | jmimemagic           |                  |      1       | 1                  |
 | 217     | Markedj         | markedj           |                  |      17       | 1-17                  |
 | 218     | Sonartsplugin         | SonarTsPlugin           |                  |      10       | 1-10                  |
@@ -263,7 +262,7 @@ To date, growingBugs contains **`1919`** real-world bugs from open-source Java p
 | 234     | Gwtmockito         | gwtmockito           |       gwtmockito           |      3       | 1-3                  |
 | 235     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
 | 236     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
-| 237     | Tape         | tape           |                  |      13       | 1-13                  |
+| 237     | Tape         | tape           |         tape         |      13       | 1-13                  |
 | 238     | Jcabi_http         | jcabi-http           |                  |      16       | 1-16                  |
 | 239     | Jcabi_aether         | jcabi-aether           |                  |      1       | 1                  |
 | 240     | Jcabi_w3c            | jcabi-w3c                       |                           |       1       | 1                |
@@ -272,13 +271,12 @@ To date, growingBugs contains **`1919`** real-world bugs from open-source Java p
 | 243     | Jcabi_matchers            | jcabi-matchers                       |                        |       2       | 1-2                |
 | 244     | Jfreechart_fse            | jfreechart-fse                       |                        |       2       | 1-2                |
 | 245     | Jfreesvg            | jfreesvg                       |                        |       1       | 1                |
-| 246     | Disklrucache         | DiskLruCache           |                  |      4       | 1-4                  |                 
-| 247     | Leshan_core         | leshan-core           |       leshan-core      |      10       | 1-10                  |                 
+| 246     | Disklrucache         | DiskLruCache           |                  |      4       | 1-4                  |     
+| 247     | Leshan_core         | leshan-core           |       leshan-core      |      10       | 1-10                  |    
 | 248     | Geo         | geo           |       geo        |      3       | 1-3                  |                 |
 | 249     | Jackson_annotations         | jackson-annotations           |               |      1       | 1                  |
-| 250     | Jackson_datatype_hibernate4         | jackson-datatype-hibernate4           |   hibernate4   |      1       | 1                  |
-| 251     | Rtree2         | rtree2           |           |      2       | 1-2                  | 
-                
+| 250     | Jackson_datatype_hibernate4         | jackson-datatype-hibernate4           |   hibernate4   |      1       | 1                  |              
+
 # Setting up GrowingBugs
 
 ## Requirements

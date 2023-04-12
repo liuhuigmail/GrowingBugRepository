@@ -1,7 +1,7 @@
 # Unique Bugs in growingBugs
 
 
-To date, growingBugs contains **`1099`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1097`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -250,8 +250,7 @@ To date, growingBugs contains **`1099`** unique bugs that are not included in De
 | 242     | Jfreesvg            | jfreesvg                       |                        |       1       | 1                |
 | 243     | Xades4j         | xades4j           |                  |      4       | 1-4                  |
 | 244     | Spatial4j         | spatial4j           |                  |      4       | 1-4                  |
-| 245     | Leshan_core         | leshan-core           |       leshan-core      |      10       | 1-10                  |                 
+| 245     | Leshan_core         | leshan-core           |       leshan-core      |      10       | 1-10                  |  
 | 246     | Geo         | geo           |       geo        |      3       | 1-3                  |                 
 | 247     | Jackson_annotations         | jackson-annotations           |               |      1       | 1                  |
 | 248     | Jackson_datatype_hibernate4         | jackson-datatype-hibernate4           |   hibernate4   |      1       | 1                  |
-| 249     | Rtree2         | rtree2           |           |      2       | 1-2                  |
