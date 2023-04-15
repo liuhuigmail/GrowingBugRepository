@@ -263,3 +263,4 @@ Jcabi_matchers	jcabi-matchers	https://github.com/jcabi/jcabi-matchers.git	jcabi/
 Leshan_core	leshan-core	https://github.com/eclipse/leshan.git	github	eclipse/leshan	/#(\\d+)/mi	leshan-core
 Geo	geo	https://github.com/davidmoten/geo.git	github	davidmoten/geo	/#(\\d+)/mi	geo
 Jackson_annotations        jackson-annotations        https://github.com/FasterXML/jackson-annotations.git     github  FasterXML/jackson-annotations    /#(\\d+)/mi     .
+Rtree2	rtree2	https://github.com/davidmoten/rtree2.git	github	davidmoten/rtree2	/#(\\d+)/mi	.
