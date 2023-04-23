@@ -1,0 +1,5 @@
+com.github.davidmoten.rtree.BackpressureTest
+com.github.davidmoten.rtree.LatLongExampleTest
+com.github.davidmoten.rtree.OnSubscribeSearchTest
+com.github.davidmoten.rtree.RTreeTest
+com.github.davidmoten.rx.operators.OperatorBoundedPriorityQueueTest

@@ -1,0 +1,33 @@
+diff --git a/src/test/java/com/github/davidmoten/rtree/UtilTest.java b/src/test/java/com/github/davidmoten/rtree/UtilTest.java
+index a1d0649..baa3781 100644
+--- a/src/test/java/com/github/davidmoten/rtree/UtilTest.java
++++ b/src/test/java/com/github/davidmoten/rtree/UtilTest.java
+@@ -1,14 +1,8 @@
+ package com.github.davidmoten.rtree;
+ 
+-import static org.junit.Assert.assertEquals;
+-
+-import java.util.Collections;
+-
+ import org.junit.Test;
+ 
+ import com.github.davidmoten.junit.Asserts;
+-import com.github.davidmoten.rtree.geometry.Geometries;
+-import com.github.davidmoten.rtree.geometry.Rectangle;
+ 
+ public class UtilTest {
+ 
+@@ -16,13 +10,5 @@ public class UtilTest {
+     public void coverPrivateConstructor() {
+         Asserts.assertIsUtilityClass(Util.class);
+     }
+-    
+-    @Test
+-    public void testMbrWithNegativeValues() {
+-        Rectangle r = Geometries.rectangle(-2,-2,-1,-1);
+-        Rectangle mbr = Util.mbr(Collections.singleton(r));
+-        assertEquals(r,mbr);
+-        System.out.println(r);
+-    }
+ 
+ }
