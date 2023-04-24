@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1919`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1908`** real-world bugs from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -52,7 +52,7 @@ To date, growingBugs contains **`1919`** real-world bugs from open-source Java p
 | 24     | Tika            | tika                       |                          |        5       | 1-2,5-7               |
 | 25     | Validator       | commons-validator          |                          |        21      | 1-2,4,6-9,11,</br>13-25 |
 | 26     | Pool            | commons-pool               |                          |        17      | 1,5-7,10-14,</br>16,20-21,24,</br>26-27,29-30|
-| 27     | Email           | commons-email              |                          |        4       | 3-6                 |
+| 27     | Email           | commons-email              |                          |        3       | 3-5                 |
 | 28     | Graph           | commons-graph              |                          |        5       | 1-5                 |
 | 29     | Net             | commons-net                |                          |        14      | 9,10,12,</br>14-18,20-21,</br>23-26             |
 | 30     | Numbers_angle   | commons-numbers-angle            |  commons-numbers-angle         |        2       | 1-2               |
@@ -63,17 +63,16 @@ To date, growingBugs contains **`1919`** real-world bugs from open-source Java p
 | 35     | Tika_app            | tika-app               |   tika-app     |        2       | 1,3               |
 | 36     | Shiro_core            | shiro-core               |      core      |        10       | 37,40,46,52,98,</br>144,176,181,202-203               |
 | 37     | Jena_core            | jena-core               |    jena-core   |        1       | 2               |
-| 38     | Shiro_web            | shiro-web               |        web      |        9       | 1,3,7-13               |
+| 38     | Shiro_web            | shiro-web               |        web      |        8       | 1,3,7-12               |
 | 39     | MDeploy            | maven-deploy-plugin               |              |        1       | 1               |
 | 40     | Jackrabbit_filevault<br/>_vault_validation | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
 | 41     | Jackrabbit_oak_core            | oak-core               |       oak-core       |        5       | 1-5               |
 | 42     | Doxia_module_apt            | doxia-module-apt               |   doxia-modules/doxia-module-apt       |       2       | 1-2               |
-| 43     | Xmlgraphics            | xmlgraphics-commons |       |       4     | 1-4              |
 | 44     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
 | 45     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
 | 46     | James_project_core            | james-project-core               |       core       |        2       | 1-2               |
 | 47     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        7       | 1-7               |
-| 48     | AaltoXml            | aalto-xml      |             |        9       | 1-9               |
+| 48     | AaltoXml            | aalto-xml      |             |        8       | 1-5,7-9               |
 | 49     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-2,4-8               |
 | 50     | jackson_modules<br/>_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |
 | 51     | Pdfbox_pdfbox         | pdfbox-pdfbox |    pdfbox    |        3      | 1-3               |
@@ -85,7 +84,7 @@ To date, growingBugs contains **`1919`** real-world bugs from open-source Java p
 | 57     | JacksonDataformatBinary<br/>_cbor            | jackson-dataformats-binary-cbor |      cbor   |       5     | 1-5              |
 | 58     | JavaClassmate            | java-classmate |        |       2     | 1-2              |
 | 59     | JacksonModuleJsonSchema            | jackson-module-jsonSchema |      |       1     | 1              |
-| 60     | JacksonDatatypeJoda            | jackson-datatype-joda |        |       3     | 1-3              |
+| 60     | JacksonDatatypeJoda            | jackson-datatype-joda |        |       2     | 2-3              |
 | 61     | Bcel            | commons-bcel |        |       6     | 1-6              |
 | 62     | JacksonDataformatBinary<br/>_protobuf            | jackson-dataformats-binary-protobuf |      protobuf   |       4     | 1-4              |
 | 63     | Jackrabbit_filevault<br/>_vault_core            | jackrabbit-filevault-vault-core |      vault-core   |       1     | 1              |
@@ -142,7 +141,6 @@ To date, growingBugs contains **`1919`** real-world bugs from open-source Java p
 | 114     | Sling_validation            | sling-org-apache-sling-validation-core |       |       1     | 1              |
 | 115     | Switchyard_config            | switchyard-config |  config       |       1     | 1              |
 | 116     | Switchyard_validate            | switchyard-validate |  validate       |       1     | 1              |
-| 117     | Vysper_nbxml            | vysper-nbxml |  nbxml       |       2     | 1-2              |
 | 118     | Wildfly_naming_client            | wildfly-naming-client |     |       2     | 1-2              |
 | 119     | Dosgi_common            | dosgi-common | common    |       2     | 1-2              |
 | 120     | Fluo_api            | fluo-api | modules/api     |       2     | 1,3              |
@@ -208,7 +206,6 @@ To date, growingBugs contains **`1919`** real-world bugs from open-source Java p
 | 180     | Vectorz            | vectorz               |                  |      6       | 1-6               |
 | 181     | Cli_parser         | cli-parser            |                  |      1       | 1                  |                 |
 | 182     | Gatling_report         | gatling-report            |                  |      3       | 1-3                  |                 |
-| 183     | Tabula_java         | tabula-java            |                  |      1       | 1                  |                 |
 | 184     | Ber_tlv         | ber-tlv            |                  |      4       | 1-4                  |                 |
 | 185     | Commons_suncalc         | commons-suncalc            |                  |      2       | 1-2                  |                 |
 | 186     | Dropwizard_spring         | dropwizard-spring            |                  |      1       | 1                  |                 |
