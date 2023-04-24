@@ -1,7 +1,7 @@
 # Unique Bugs in growingBugs
 
 
-To date, growingBugs contains **`1099`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1088`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -22,7 +22,7 @@ To date, growingBugs contains **`1099`** unique bugs that are not included in De
 | 15     | Tika            | tika                      |                          |        5       | 1-2,5-7               |
 | 16     | Validator       | commons-validator         |                          |        21      | 1-2,4,6-9,11,</br>13-25 |
 | 17     | Pool            | commons-pool              |                          |        18      | 1-2,5-7,10-14,</br>16,20-21,24,</br>26-27,29-30|
-| 18     | Email           | commons-email             |                          |        4       | 3-6                 |
+| 18     | Email           | commons-email             |                          |        3       | 3-5                 |
 | 19     | Graph           | commons-graph             |                          |        5       | 1-5                 |
 | 20     | Net             | commons-net               |                          |        14      | 9,10,12,</br>14-18,20-21,</br>23-26             |
 | 21     | Numbers_angle   | commons-numbers-angle     |  commons-numbers-angle   |        2       | 1-2               |
@@ -33,17 +33,16 @@ To date, growingBugs contains **`1099`** unique bugs that are not included in De
 | 26     | Tika_app        | tika-app                  |   tika-app               |        2       | 1,3               |
 | 27     | Shiro_core      | shiro-core                |      core                |        10       | 37,40,46,52,98,</br>144,176,181,202-203               |
 | 28     | Jena_core       | jena-core                 |    jena-core             |        1       | 2               |
-| 29     | Shiro_web       | shiro-web                 |        web               |        9       | 1,3,7-13               |
+| 29     | Shiro_web       | shiro-web                 |        web               |        8       | 1,3,7-12               |
 | 30     | MDeploy         | maven-deploy-plugin       |                          |        1       | 1               |
 | 31     | Jackrabbit_filevault<br/>_vault_validation | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
 | 32     | Jackrabbit_oak_core | oak-core              |       oak-core           |        5       | 1-5               |
 | 33     | Doxia_module_apt    | doxia-module-apt      |   doxia-moduleRestfixtures/doxia-module-apt       |       2       | 1-2               |
-| 34     | Xmlgraphics            | xmlgraphics-commons |       |       4     | 1-4              |
 | 35     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
 | 36     | Maven_checkstyle_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
 | 37     | James_project_core            | james-project-core               |       core       |        2       | 1-2               |
 | 38     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        7       | 1-7               |
-| 39     | AaltoXml            | aalto-xml      |             |        9       | 1-9               |
+| 39     | AaltoXml            | aalto-xml      |             |        8       | 1-5,7-9               |
 | 40     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-2,4-8               |
 | 41     | jackson_modules<br/>_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |
 | 42     | Pdfbox_pdfbox         | pdfbox-pdfbox |    pdfbox    |        3      | 1-3               |
@@ -55,7 +54,7 @@ To date, growingBugs contains **`1099`** unique bugs that are not included in De
 | 48     | JacksonDataformatBinary<br/>_cbor            | jackson-dataformats-binary-cbor |      cbor   |       5     | 1-5              |
 | 49     | JavaClassmate            | java-classmate |        |       2     | 1-2              |
 | 50     | JacksonModuleJsonSchema            | jackson-module-jsonSchema |      |       1     | 1              |
-| 51     | JacksonDatatypeJoda            | jackson-datatype-joda |        |       3     | 1-3              |
+| 51     | JacksonDatatypeJoda            | jackson-datatype-joda |        |       2     | 2-3              |
 | 52     | Bcel            | commons-bcel |        |       6     | 1-6              |
 | 53     | JacksonDataformatBinary<br/>_protobuf            | jackson-dataformats-binary-protobuf |      protobuf   |       4     | 1-4              |
 | 54     | Jackrabbit_filevault<br/>_vault_core            | jackrabbit-filevault-vault-core |      vault-core   |       1     | 1              |
@@ -112,7 +111,6 @@ To date, growingBugs contains **`1099`** unique bugs that are not included in De
 | 105     | Sling_validation            | sling-org-apache-sling-validation-core |       |       1     | 1              |
 | 106     | Switchyard_config            | switchyard-config |  config       |       1     | 1              |
 | 107     | Switchyard_validate            | switchyard-validate |  validate       |       1     | 1              |
-| 108     | Vysper_nbxml            | vysper-nbxml |  nbxml       |       2     | 1-2              |
 | 109     | Wildfly_naming_client            | wildfly-naming-client |     |       2     | 1-2              |
 | 110     | Dosgi_common            | dosgi-common | common    |       2     | 1-2              |
 | 111     | Fluo_api            | fluo-api | modules/api     |       4     | 1-4              |
@@ -180,7 +178,6 @@ To date, growingBugs contains **`1099`** unique bugs that are not included in De
 | 173     | Cli_parser         | cli-parser            |                  |      1       | 1                  |                 |
 | 174     | Gatling_report         | gatling-report            |                  |      3       | 1-3                  |                 |
 | 175     | Jumlr         | Jumlr            |                  |      2       | 1-2                  |                 |
-| 176     | Tabula_java         | tabula-java            |                  |      1       | 1                  |                 |
 | 177     | Vectorz         | vectorz            |                  |      2       | 1-2                  |                 |
 | 178     | Ber_tlv         | ber-tlv            |                  |      4       | 1-4                  |                 |
 | 179     | Commons_suncalc         | commons-suncalc            |                  |      2       | 1-2                  |                 |
