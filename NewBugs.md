@@ -1,7 +1,7 @@
 # Unique Bugs in growingBugs
 
 
-To date, growingBugs contains **`1101`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1099`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -186,7 +186,7 @@ To date, growingBugs contains **`1101`** unique bugs that are not included in De
 | 179     | Commons_suncalc         | commons-suncalc            |                  |      2       | 1-2                  |                 |
 | 180     | Jfreechart         | jfreechart            |                  |      4       | 1-4                  |                 |
 | 181     | Dropwizard_spring         | dropwizard-spring            |                  |      1       | 1                  |                 |
-| 182     | Semux_core         | semux-core            |                  |      3       | 1-3                  |                 |
+| 182     | Semux_core         | semux-core            |                  |      1       |   3                  |                 |
 | 183     | Solarpositioning         | solarpositioning            |                  |      3       | 1-3                  |                 |
 | 184     | Sparkey_java         | sparkey-java            |                  |      3       | 1-3                  |                 |
 | 185     | Shazamcrest         | shazamcrest            |                  |      2       | 1-2                  |                 |
