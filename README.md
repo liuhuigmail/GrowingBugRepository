@@ -212,7 +212,7 @@ To date, growingBugs contains **`1921`** real-world bugs from open-source Java p
 | 184     | Ber_tlv         | ber-tlv            |                  |      4       | 1-4                  |                 |
 | 185     | Commons_suncalc         | commons-suncalc            |                  |      2       | 1-2                  |                 |
 | 186     | Dropwizard_spring         | dropwizard-spring            |                  |      1       | 1                  |                 |
-| 187     | Semux_core         | semux-core            |                  |      1       | 1-3                  |                 |
+| 187     | Semux_core         | semux-core            |                  |      1       | 3                  |                 |
 | 188     | Solarpositioning         | solarpositioning            |                  |      3       | 1-3                  |                 |
 | 189     | Sparkey_java         | sparkey-java            |                  |      3       | 1-3                  |                 |
 | 190     | Shazamcrest         | shazamcrest            |                  |      2       | 1-2                  |                 |
