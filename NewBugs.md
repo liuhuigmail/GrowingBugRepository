@@ -199,7 +199,7 @@ To date, growingBugs contains **`1088`** unique bugs that are not included in De
 | 194     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
 | 195     | Trident_ml         | trident-ml           |                  |      1       | 1                  |                 |
 | 196     | Tascalate_concurrent         | tascalate-concurrent           |                  |      2       | 1-2                  |                 |
-| 197     | Jcabi_github         | jcabi-github           |                  |      77       | 1-42,44-82                  |
+| 197     | Jcabi_github         | jcabi-github           |                  |      81       | 1-42,44-82                  |
 | 198     | Podam         | podam           |                  |      1       | 1                  |
 | 199     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
 | 200     | Docker_java_api         | docker-java-api           |                  |      2       | 1-2                  |
