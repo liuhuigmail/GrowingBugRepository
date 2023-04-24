@@ -192,8 +192,7 @@ To date, growingBugs contains **`1088`** unique bugs that are not included in De
 | 188     | Farm         | farm            |                  |      4       | 1-4                  |                 |
 | 189     | Gocd_slack_build_notifier         | gocd-slack-build-notifier            |                  |      3       | 1-3                  |                 |
 | 190     | Confluence_http_authenticator         | confluence_http_authenticator            |                  |      1       | 1                  |                 |
-| 191     | Tempus_fugit         | tempus-fugit            |                  |      
-1       | 1                  |                 |
+| 191     | Tempus_fugit         | tempus-fugit            |                  |      1       | 1                  |                 |
 | 192     | Disklrucache         | DiskLruCache           |                  |      4       | 1-4                  |                 |
 | 193     | Kafka_graphite         | kafka-graphite           |                  |      1       | 1                  |                 |
 | 194     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
