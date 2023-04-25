@@ -174,11 +174,11 @@ To date, growingBugs contains **`1119`** unique bugs that are not included in De
 | 167     | Stash_jenkins_postreceive_webhook            | stash-jenkins-postreceive-webhook               |                  |      1       | 1               |
 | 168     | Suffixtree            | suffixtree               |                  |      1       | 1               |
 | 169     | Template_benchmark            | template-benchmark               |                  |      1       | 1               |
-| 170     | Vectorz            | vectorz               |                  |      4       | 1-4               |
+| 170     | Vectorz            | vectorz               |                  |      6       | 1-6               |
 | 171     | Cli_parser         | cli-parser            |                  |      1       | 1                  |                 |
 | 172     | Gatling_report         | gatling-report            |                  |      3       | 1-3                  |                 |
 | 173     | Jumlr         | Jumlr            |                  |      2       | 1-2                  |                 |
-| 174     | Vectorz         | vectorz            |                  |      2       | 1-2                  |                 |
+| 174     | RTree2         | rtree2           |        |      4       | 1-4                |
 | 175     | Ber_tlv         | ber-tlv            |                  |      4       | 1-4                  |                 |
 | 176     | Commons_suncalc         | commons-suncalc            |                  |      2       | 1-2                  |                 |
 | 177     | Jfreechart         | jfreechart            |                  |      4       | 1-4                  |                 |
@@ -250,4 +250,4 @@ To date, growingBugs contains **`1119`** unique bugs that are not included in De
 | 243     | Geo         | geo           |       geo        |      3       | 1-3                  |                 
 | 244     | Jackson_annotations         | jackson-annotations           |               |      1       | 1                  |
 | 245     | Jackson_datatype_hibernate4         | jackson-datatype-hibernate4           |   hibernate4   |      1       | 1                  |
-| 246     | RTree2         | rtree2           |        |      4       | 1-4                |
+
