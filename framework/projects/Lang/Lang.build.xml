@@ -81,15 +81,10 @@ of the checked-out project version.
         <available file="${build.home}/classes" />
     </condition>
     
-    <condition property="test.classes.dir" value="${maven.build.testOutputDir}"  >
+    <condition property="test.classes.dir" value="${maven.build.testOutputDir}"  else="${build.home}/tests">
         <isset property="maven.build.testOutputDir" />
     </condition>
-    <condition property="test.classes.dir" value="${testclassesdir}"  >
-        <isset property="testclassesdir" />
-    </condition>
-    <condition property="test.classes.dir" value="${build.home}/test-classes" >
-        <available file="${build.home}/test-classes" />
-    </condition>
+
     <property name="test.home" value="${test.classes.dir}" />
     <property name="build.home" value="${classes.dir}/.." />
    

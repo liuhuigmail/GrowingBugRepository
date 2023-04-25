@@ -1,7 +1,7 @@
 # Unique Bugs in growingBugs
 
 
-To date, growingBugs contains **`1119`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1113`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -11,7 +11,7 @@ To date, growingBugs contains **`1119`** unique bugs that are not included in De
 | 4     | Compress        | commons-compress           |                           |       4      | 48,50,52-53       |
 | 5     | Csv             | commons-csv                |                           |       1      | 17                |
 | 6     | JacksonCore     | jackson-core               |                           |       4      | 28-31                |
-| 7     | JacksonDatabind | jackson-databind          |                          |       39     | 113-117,119,121-126,</br>128-129,131-133,135-156               |
+| 7     | JacksonDatabind | jackson-databind          |                          |       33     | 112,121-126,</br>128-129,131-133,135-156               |
 | 8     | Lang            | commons-lang              |                          |       9       |69,71,73,</br>76,80-84              |
 | 9     | Dbutils         | commons-dbutils           |                          |        2       | 1-2                 |
 | 10     | Functor         | commons-functor           |                          |        2       | 1-2                 |
@@ -237,7 +237,7 @@ To date, growingBugs contains **`1119`** unique bugs that are not included in De
 | 230     | Tape         | tape           |                  |      13       | 1-13                  |
 | 231     | Jcabi_http         | jcabi-http           |                  |      16       | 1-16                  |
 | 232     | Jcabi_aether         | jcabi-aether           |                  |      1       | 1                  |
-| 233     | Gson            | gson                       |                           |       25       | 1-25                |
+| 233     | Gson            | gson                       |       gson             |       25       | 1-25                |
 | 234     | Jcabi_w3c            | jcabi-w3c                       |                           |       1       | 1                |
 | 235     | Jcabi_email            | jcabi-email                       |                        |       4       | 1-4                |
 | 236     | Jcabi_log            | jcabi-log                       |                        |       9       | 1-9                |
