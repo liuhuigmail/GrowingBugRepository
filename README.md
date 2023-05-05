@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1903`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1899`** real-world bugs from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -268,12 +268,11 @@ To date, growingBugs contains **`1903`** real-world bugs from open-source Java p
 | 240     | Jcabi_matchers            | jcabi-matchers                       |                        |       2       | 1-2                |
 | 241     | Jfreechart_fse            | jfreechart-fse                       |                        |       2       | 1-2                |
 | 242     | Jfreesvg            | jfreesvg                       |                        |       1       | 1                |
-| 243     | Disklrucache         | DiskLruCache           |                  |      4       | 1-4                  |     
-| 244     | Leshan_core         | leshan-core           |       leshan-core      |      10       | 1-10                  |    
-| 245     | Geo         | geo           |       geo        |      3       | 1-3                  |                 |
-| 246     | Jackson_annotations         | jackson-annotations           |               |      1       | 1                  |
-| 247     | Jackson_datatype_hibernate4         | jackson-datatype-hibernate4           |   hibernate4   |      1       | 1                  |
-| 248     | Rtree2         | rtree2           |         |      4       | 1-4                |              
+| 243     | Leshan_core         | leshan-core           |       leshan-core      |      10       | 1-10                  |    
+| 244     | Geo         | geo           |       geo        |      3       | 1-3                  |                 |
+| 245     | Jackson_annotations         | jackson-annotations           |               |      1       | 1                  |
+| 246     | Jackson_datatype_hibernate4         | jackson-datatype-hibernate4           |   hibernate4   |      1       | 1                  |
+| 247     | Rtree2         | rtree2           |         |      4       | 1-4                |              
 
 # Setting up GrowingBugs
 
