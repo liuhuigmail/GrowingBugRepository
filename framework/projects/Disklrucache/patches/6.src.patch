@@ -1,0 +1,26 @@
+diff --git a/src/main/java/com/jakewharton/disklrucache/DiskLruCache.java b/src/main/java/com/jakewharton/disklrucache/DiskLruCache.java
+index e81e7fb..9069197 100644
+--- a/src/main/java/com/jakewharton/disklrucache/DiskLruCache.java
++++ b/src/main/java/com/jakewharton/disklrucache/DiskLruCache.java
+@@ -224,6 +224,8 @@ public final class DiskLruCache implements Closeable {
+       try {
+         cache.readJournal();
+         cache.processJournal();
++        cache.journalWriter = new BufferedWriter(
++            new OutputStreamWriter(new FileOutputStream(cache.journalFile, true), Util.US_ASCII));
+         return cache;
+       } catch (IOException journalIsCorrupt) {
+         System.out
+@@ -272,12 +274,6 @@ public final class DiskLruCache implements Closeable {
+       redundantOpCount = lineCount - lruEntries.size();
+ 
+       // If we ended on a truncated line, rebuild the journal before appending to it.
+-      if (reader.hasUnterminatedLine()) {
+-        rebuildJournal();
+-      } else {
+-        journalWriter = new BufferedWriter(new OutputStreamWriter(
+-            new FileOutputStream(journalFile, true), Util.US_ASCII));
+-      }
+     } finally {
+       Util.closeQuietly(reader);
+     }
