@@ -1,7 +1,7 @@
 # Unique Bugs in growingBugs
 
 
-To date, growingBugs contains **`1093`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1103`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -247,4 +247,6 @@ To date, growingBugs contains **`1093`** unique bugs that are not included in De
 | 240     | Geo         | geo           |       geo        |      3       | 1-3                  |                 
 | 241     | Jackson_annotations         | jackson-annotations           |               |      1       | 1                  |
 | 242     | Jackson_datatype_hibernate4         | jackson-datatype-hibernate4           |   hibernate4   |      1       | 1                  |
-
+| 243     | Rtree2         | rtree2           |         |      6       | 1-6                |              
+| 244     | Hilbert_curve         | hilbert-curve           |         |      3       | 1-3                |
+| 245     | Subethasmtp         | subethasmtp           |         |      1       | 1                |
