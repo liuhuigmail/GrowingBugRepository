@@ -264,3 +264,5 @@ Leshan_core	leshan-core	https://github.com/eclipse/leshan.git	github	eclipse/les
 Geo	geo	https://github.com/davidmoten/geo.git	github	davidmoten/geo	/#(\\d+)/mi	geo
 Jackson_annotations        jackson-annotations        https://github.com/FasterXML/jackson-annotations.git     github  FasterXML/jackson-annotations    /#(\\d+)/mi     .
 Rtree2	rtree2	https://github.com/davidmoten/rtree2.git	github	davidmoten/rtree2	/#(\\d+)/mi	.
+Subethasmtp	subethasmtp	https://github.com/davidmoten/subethasmtp.git	github	davidmoten/subethasmtp	/#(\\d+)/mi	.
+Hilbert_curve	hilbert-curve	https://github.com/davidmoten/hilbert-curve.git	github	davidmoten/hilbert-curve	/#(\\d+)/mi	.
