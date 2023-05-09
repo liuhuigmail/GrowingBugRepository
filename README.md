@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1899`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1905`** real-world bugs from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -272,7 +272,9 @@ To date, growingBugs contains **`1899`** real-world bugs from open-source Java p
 | 244     | Geo         | geo           |       geo        |      3       | 1-3                  |                 |
 | 245     | Jackson_annotations         | jackson-annotations           |               |      1       | 1                  |
 | 246     | Jackson_datatype_hibernate4         | jackson-datatype-hibernate4           |   hibernate4   |      1       | 1                  |
-| 247     | Rtree2         | rtree2           |         |      4       | 1-4                |              
+| 247     | Rtree2         | rtree2           |         |      6       | 1-6                |              
+| 248     | Hilbert_curve         | hilbert-curve           |         |      3       | 1-3                |
+| 249     | Subethasmtp         | subethasmtp           |         |      1       | 1                |
 
 # Setting up GrowingBugs
 
