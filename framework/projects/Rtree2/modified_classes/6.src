@@ -1,0 +1,3 @@
+com.github.davidmoten.rtree.fbs.FlatBuffersHelper
+com.github.davidmoten.rtree.geometry.Point
+com.github.davidmoten.rtree.geometry.RectangleImpl

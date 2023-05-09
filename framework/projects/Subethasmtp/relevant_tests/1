@@ -1,0 +1,17 @@
+org.subethamail.smtp.ErrorResponseTest
+org.subethamail.smtp.MessageContentTest
+org.subethamail.smtp.PureSSLTest
+org.subethamail.smtp.StartTLSFullTest
+org.subethamail.smtp.WiserFailuresTest
+org.subethamail.smtp.command.AuthTest
+org.subethamail.smtp.command.DataTest
+org.subethamail.smtp.command.HeloTest
+org.subethamail.smtp.command.MailTest
+org.subethamail.smtp.command.QuitTest
+org.subethamail.smtp.command.ReceiptTest
+org.subethamail.smtp.examples.BasicSMTPServerTest
+org.subethamail.smtp.server.BasicMessageHandlerFactoryTest
+org.subethamail.smtp.server.ConcurrentSessionsBySourceLimiterTest
+org.subethamail.smtp.server.MessageHandlerTest
+org.subethamail.smtp.server.RequireAuthTest
+org.subethamail.smtp.util.EmailUtilsTest

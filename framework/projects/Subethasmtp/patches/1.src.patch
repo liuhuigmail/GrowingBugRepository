@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/subethamail/smtp/internal/util/EmailUtils.java b/src/main/java/org/subethamail/smtp/internal/util/EmailUtils.java
+index 277bade..d739b0e 100644
+--- a/src/main/java/org/subethamail/smtp/internal/util/EmailUtils.java
++++ b/src/main/java/org/subethamail/smtp/internal/util/EmailUtils.java
+@@ -39,7 +39,7 @@ public final class EmailUtils {
+     public static String extractEmailAddress(String args, int offset) {
+         String address = args.substring(offset).trim();
+         if (address.indexOf('<') == 0) {
+-            address = address.substring(1, address.lastIndexOf('>'));
++            address = address.substring(1, address.indexOf('>'));
+             // spaces within the <> are also possible, Postfix apparently
+             // trims these away:
+             return address.trim();

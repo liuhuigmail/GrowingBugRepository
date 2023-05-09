@@ -1,0 +1,55 @@
+diff --git a/src/test/java/org/davidmoten/hilbert/HilbertCurveTest.java b/src/test/java/org/davidmoten/hilbert/HilbertCurveTest.java
+index 7617912..45a03a2 100644
+--- a/src/test/java/org/davidmoten/hilbert/HilbertCurveTest.java
++++ b/src/test/java/org/davidmoten/hilbert/HilbertCurveTest.java
+@@ -9,9 +9,11 @@ import java.io.PrintStream;
+ import java.math.BigInteger;
+ import java.nio.charset.StandardCharsets;
+ import java.nio.file.Files;
++import java.text.DecimalFormat;
+ import java.util.Arrays;
+ import java.util.BitSet;
+ import java.util.List;
++import java.util.Random;
+ 
+ import org.junit.Assert;
+ import org.junit.Test;
+@@ -119,12 +121,12 @@ public class HilbertCurveTest {
+     }
+ 
+     @Test
+-    public void testRoundTripsSmall() {
++    public void testRoundTripsLong() {
+         boolean failed = false;
+         for (int bits = 1; bits <= 10; bits++) {
+             for (int dimensions = 2; dimensions <= Math.min(5, 63 / bits); dimensions++)
+                 for (long i = 0; i < Math.pow(2, bits + 1); i++) {
+-                    if (!checkRoundTripSmall(bits, dimensions, i)) {
++                    if (!checkRoundTripLong(bits, dimensions, i)) {
+                         System.out.println(
+                                 "failed round trip for bits=" + bits + ", dimensions=" + dimensions + ", index=" + i);
+                         failed = true;
+@@ -264,7 +266,7 @@ public class HilbertCurveTest {
+         return value == c.index(point).longValue();
+     }
+ 
+-    private static boolean checkRoundTripSmall(int bits, int dimensions, long value) {
++    private static boolean checkRoundTripLong(int bits, int dimensions, long value) {
+         SmallHilbertCurve c = HilbertCurve.small().bits(bits).dimensions(dimensions);
+         long[] point = c.point(value);
+         assertEquals(dimensions, point.length);
+@@ -339,14 +341,6 @@ public class HilbertCurveTest {
+                 ranges);
+     }
+ 
+-    @Test
+-    public void testIssue1() {
+-        int bits = 16;
+-        int dimensions = 2;
+-        long index = Math.round(Math.pow(2, bits * dimensions - 1) + 1);
+-        assertTrue(checkRoundTripSmall(bits, dimensions, index));
+-    }
+-
+     private static long[] point(long... values) {
+         return values;
+     }

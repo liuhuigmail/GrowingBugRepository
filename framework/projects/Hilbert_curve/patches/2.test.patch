@@ -1,0 +1,31 @@
+diff --git a/src/test/java/org/davidmoten/hilbert/HilbertCurveTest.java b/src/test/java/org/davidmoten/hilbert/HilbertCurveTest.java
+index 27f47b8..f94db83 100644
+--- a/src/test/java/org/davidmoten/hilbert/HilbertCurveTest.java
++++ b/src/test/java/org/davidmoten/hilbert/HilbertCurveTest.java
+@@ -312,11 +312,16 @@ public class HilbertCurveTest {
+         h.query(point1, point2);
+         {
+             long t = System.currentTimeMillis();
++            System.out.println("maxOrdinate=" + h.maxOrdinate());
+             Ranges ranges = h.query(new long[] { 0, 0, 0 }, new long[] { h.maxOrdinate(), h.maxOrdinate(), h.maxOrdinate() });
+             System.out.println("full domain query in 3 dimensions, 10 bits, took " + (System.currentTimeMillis() - t) + "ms with " + ranges.size() + " ranges");
+-            assertEquals(278300, ranges.size());
++            assertEquals(1, ranges.size());
+             ranges = h.query(new long[] { 0, 0, 0 }, new long[] { h.maxOrdinate(), h.maxOrdinate(), h.maxOrdinate() }, 12);
+             System.out.println("full domain query in 3 dimensions, 10 bits, took " + (System.currentTimeMillis() - t) + "ms with " + ranges.size() + " ranges");
++            ranges = h.query(new long[] { 0, 0, 0 }, new long[] { h.maxOrdinate(), h.maxOrdinate(), h.maxOrdinate() }, 1);
++            System.out.println("full domain query in 3 dimensions, 10 bits, took " + (System.currentTimeMillis() - t) + "ms with " + ranges.size() + " ranges");
++            ranges.println();
++            System.out.println("maxIndex=" + h.maxIndex());
+         }
+         {
+             long t = System.currentTimeMillis();
+@@ -324,7 +329,7 @@ public class HilbertCurveTest {
+                     new long[] { h.maxOrdinate(), h.maxOrdinate(), h.maxOrdinate() / 24 }).size();
+             System.out.println("full domain query in 3 dimensions, 10 bits, for first hour took " + (System.currentTimeMillis() - t) + "ms with "
+                     + count + " ranges");
+-            assertEquals(25206, count);
++            assertEquals(295051, count);
+         }
+     }
+ 
