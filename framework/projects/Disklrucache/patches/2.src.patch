@@ -1,0 +1,29 @@
+diff --git a/src/main/java/com/jakewharton/DiskLruCache.java b/src/main/java/com/jakewharton/DiskLruCache.java
+index 90c32bb..a6d6c95 100644
+--- a/src/main/java/com/jakewharton/DiskLruCache.java
++++ b/src/main/java/com/jakewharton/DiskLruCache.java
+@@ -738,23 +738,13 @@ public final class DiskLruCache implements Closeable {
+                 if (!entry.readable) {
+                   written[index] = true;
+                 }
+-                File dirtyFile = entry.getDirtyFile(index);
+-                FileOutputStream outputStream;
+                 try {
+-                    outputStream = new FileOutputStream(dirtyFile);
++                    return new FaultHidingOutputStream(new FileOutputStream(entry.getDirtyFile(index)));
+                 } catch (FileNotFoundException e) {
+                     // Attempt to recreate the cache directory and allow reading and writing.
+-                    directory.mkdirs();
+-                    directory.setReadable(true, false);
+-                    directory.setWritable(true, false);
+-                    try {
+-                      outputStream = new FileOutputStream(dirtyFile);
+-                    } catch (FileNotFoundException e2) {
+                       // We are unable to recover. Silently eat the writes.
+                       return NULL_OUTPUT_STREAM;
+-                    }
+                 }
+-                return new FaultHidingOutputStream(outputStream);
+             }
+         }
+ 

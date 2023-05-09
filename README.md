@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1905`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1911`** real-world bugs from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -275,6 +275,7 @@ To date, growingBugs contains **`1905`** real-world bugs from open-source Java p
 | 247     | Rtree2         | rtree2           |         |      6       | 1-6                |              
 | 248     | Hilbert_curve         | hilbert-curve           |         |      3       | 1-3                |
 | 249     | Subethasmtp         | subethasmtp           |         |      1       | 1                |
+| 250     | Disklrucache         | DiskLruCache           |         |      6       | 1-6                |
 
 # Setting up GrowingBugs
 

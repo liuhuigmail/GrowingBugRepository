@@ -1,0 +1,12 @@
+diff --git a/src/main/java/com/jakewharton/DiskLruCache.java b/src/main/java/com/jakewharton/DiskLruCache.java
+index cac76ab..4b33cf8 100644
+--- a/src/main/java/com/jakewharton/DiskLruCache.java
++++ b/src/main/java/com/jakewharton/DiskLruCache.java
+@@ -563,7 +563,6 @@ public final class DiskLruCache implements Closeable {
+             lruEntries.remove(entry.key);
+             journalWriter.write(REMOVE + ' ' + entry.key + '\n');
+         }
+-        journalWriter.flush();
+ 
+         if (size > maxSize || journalRebuildRequired()) {
+             executorService.submit(cleanupCallable);
