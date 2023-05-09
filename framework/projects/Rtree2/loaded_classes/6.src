@@ -1,0 +1,5 @@
+com.github.davidmoten.rtree.geometry.Geometries
+com.github.davidmoten.rtree.geometry.Geometry
+com.github.davidmoten.rtree.geometry.HasGeometry
+com.github.davidmoten.rtree.geometry.Point
+com.github.davidmoten.rtree.geometry.Rectangle

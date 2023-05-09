@@ -1,0 +1,63 @@
+diff --git a/src/test/java/org/subethamail/smtp/util/EmailUtilsTest.java b/src/test/java/org/subethamail/smtp/util/EmailUtilsTest.java
+index 0875edb..37cde8a 100644
+--- a/src/test/java/org/subethamail/smtp/util/EmailUtilsTest.java
++++ b/src/test/java/org/subethamail/smtp/util/EmailUtilsTest.java
+@@ -1,12 +1,12 @@
+ package org.subethamail.smtp.util;
+ 
+-import com.github.davidmoten.junit.Asserts;
++import static org.junit.Assert.assertEquals;
++
+ import org.junit.Assert;
+ import org.junit.Test;
+ import org.subethamail.smtp.internal.util.EmailUtils;
+ 
+-import static org.junit.Assert.assertEquals;
+-import static org.junit.Assert.assertTrue;
++import com.github.davidmoten.junit.Asserts;
+ 
+ public class EmailUtilsTest {
+ 
+@@ -28,37 +28,25 @@ public class EmailUtilsTest {
+     @Test
+     public void testExtract() {
+         assertEquals("anyone2@anywhere.com",
+-            extractAndValidate("TO:<anyone2@anywhere.com>", 3));
++                EmailUtils.extractEmailAddress("TO:<anyone2@anywhere.com>", 3));
+     }
+ 
+     @Test
+     public void testExtractWithNoLessThanSymbolAtStartOfEmailAndPrecedingSpace() {
+         assertEquals("test@example.com",
+-            extractAndValidate("FROM: test@example.com", 5));
++                EmailUtils.extractEmailAddress("FROM: test@example.com", 5));
+     }
+ 
+     @Test
+     public void testExtractWithNoLessThanSymbolAtStartOfEmailAndNoPrecedingSpace() {
+         assertEquals("test@example.com",
+-            extractAndValidate("FROM:test@example.com", 5));
++                EmailUtils.extractEmailAddress("FROM:test@example.com", 5));
+     }
+ 
++    
+     @Test
+     public void testExtractWithNoLessThanSymbolAtStartOfEmailAndSIZECommand() {
+         assertEquals("test@example.com",
+-            extractAndValidate("FROM:test@example.com SIZE=1000", 5));
+-    }
+-
+-    @Test
+-    public void testExtractWithEmbeddedPersonalName() {
+-        // see https://github.com/davidmoten/subethasmtp/issues/17
+-        assertEquals("Foo Bar <foobar@example.com>",
+-            extractAndValidate("FROM:<Foo Bar <foobar@example.com>>", 5));
+-    }
+-
+-    private static String extractAndValidate(String args, int offset) {
+-        String address = EmailUtils.extractEmailAddress(args, offset);
+-        assertTrue(EmailUtils.isValidEmailAddress(address));
+-        return address;
++                EmailUtils.extractEmailAddress("FROM:test@example.com SIZE=1000", 5));
+     }
+ }

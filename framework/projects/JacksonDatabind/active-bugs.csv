@@ -110,12 +110,6 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 110,3e6524801d689c6875b861897f31411a7c04c6ab,83264a7e377bd3399f0b550460077959aaece16d,2265,https://github.com/FasterXML/jackson-databind/issues/2265
 111,4b630c6e741782efdf560a0bd3b6b1d0de9da8c3,f36222e5c0b318e2b739e2b77b93c5d2c919413f,2303,https://github.com/FasterXML/jackson-databind/issues/2303
 112,f36222e5c0b318e2b739e2b77b93c5d2c919413f,8bb7c9abca9a2e298a2436cb995ba1721e49de5c,2324,https://github.com/FasterXML/jackson-databind/issues/2324
-113,6d2e7c261f55d43c6a9885d96fcd955eb6bb0675,e4670a7278fcc4537d4b114defc9a3bd7e9712df,324,https://github.com/FasterXML/jackson-databind/issues/324
-114,4ec01ea0f00d06f41e0c3b0fc75ff0c9fe6380bd,37cf6f243424570e39b5f65280ca673089e55945,346,https://github.com/FasterXML/jackson-databind/issues/346
-115,c4a00322e562be3a53b93638b8ea9640a7c27806,9077a58a1325a4e5e610c13849b3509e8cd88111,362,https://github.com/FasterXML/jackson-databind/issues/362
-116,8667b6da9d39d0c35aa4ebdc848c2e0e5d3d7a77,f95a92786724c90bb33ec30eee6990831617eb23,541,https://github.com/FasterXML/jackson-databind/issues/541
-117,7b0913f9d7322295fb670b264f4ef02ac91a76a0,ddde8e3f7ab870803bf3a607c2cfe6cd846e3799,496,https://github.com/FasterXML/jackson-databind/issues/496
-119,b1d34069d9e3627c1ed42d6873ab8266ec6d8b60,63b33fb2965b0fdcb73c41ea0e76b53ef23e0385,647,https://github.com/FasterXML/jackson-databind/issues/647
 121,0a47e54fe4a263351494cb0aa40f6743f382b0fd,c7ff8f6974759302037d6ebb815d14ca89ec6549,2513,https://github.com/FasterXML/jackson-databind/issues/2513
 122,df8b4b12cf84cd9d23231a089984fb17c8b9ae54,6f9a26dc71b2d0ccf7b3a5d754cd5821de259163,913,https://github.com/FasterXML/jackson-databind/issues/913
 123,563470e6ea72eead488e917ed939b4a3d5abded5,f89737c46e7adaef5c18874dc68b78adbdd9f2d9,978,https://github.com/FasterXML/jackson-databind/issues/978

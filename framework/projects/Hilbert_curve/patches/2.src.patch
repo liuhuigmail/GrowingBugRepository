@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/davidmoten/hilbert/SmallHilbertCurve.java b/src/main/java/org/davidmoten/hilbert/SmallHilbertCurve.java
+index 9989bc1..3614a95 100644
+--- a/src/main/java/org/davidmoten/hilbert/SmallHilbertCurve.java
++++ b/src/main/java/org/davidmoten/hilbert/SmallHilbertCurve.java
+@@ -103,11 +103,11 @@ public final class SmallHilbertCurve {
+     }
+ 
+     public long maxOrdinate() {
+-        return 1 << bits - 1;
++        return (1 << bits) - 1;
+     }
+     
+     public long maxIndex() {
+-        return 1 << (bits * dimensions) - 1;
++        return (1 << (bits * dimensions)) - 1;
+     }
+ 
+     /////////////////////////////////////////////////
