@@ -1,7 +1,7 @@
 # Unique Bugs in growingBugs
 
 
-To date, growingBugs contains **`1042`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1009`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
