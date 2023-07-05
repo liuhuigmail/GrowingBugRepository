@@ -1,7 +1,7 @@
 # Unique Bugs in growingBugs
 
 
-To date, growingBugs contains **`1109`** unique bugs that are not included in Defects4J. 
+To date, growingBugs contains **`1042`** unique bugs that are not included in Defects4J. 
 
 |   | Project ID      | Project name               |   SubProject name             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -232,22 +232,3 @@ To date, growingBugs contains **`1109`** unique bugs that are not included in De
 | 225     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
 | 226     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
 | 227     | Tape         | tape           |                  |      13       | 1-13                  |
-| 228     | Jcabi_http         | jcabi-http           |                  |      16       | 1-16                  |
-| 229     | Jcabi_aether         | jcabi-aether           |                  |      1       | 1                  |
-| 230     | Gson            | gson                       |       gson             |       25       | 1-25                |
-| 231     | Jcabi_w3c            | jcabi-w3c                       |                           |       1       | 1                |
-| 232     | Jcabi_email            | jcabi-email                       |                        |       4       | 1-4                |
-| 233     | Jcabi_log            | jcabi-log                       |                        |       9       | 1-9                |
-| 234     | Jcabi_matchers            | jcabi-matchers                       |                        |       2       | 1-2                |
-| 235     | Jfreechart_fse            | jfreechart-fse                       |                        |       2       | 1-2                |
-| 236     | Jfreesvg            | jfreesvg                       |                        |       1       | 1                |
-| 237     | Xades4j         | xades4j           |                  |      4       | 1-4                  |
-| 238     | Spatial4j         | spatial4j           |                  |      4       | 1-4                  |
-| 239     | Leshan_core         | leshan-core           |       leshan-core      |      10       | 1-10                  |  
-| 240     | Geo         | geo           |       geo        |      3       | 1-3                  |                 
-| 241     | Jackson_annotations         | jackson-annotations           |               |      1       | 1                  |
-| 242     | Jackson_datatype_hibernate4         | jackson-datatype-hibernate4           |   hibernate4   |      1       | 1                  |
-| 243     | Rtree2         | rtree2           |         |      6       | 1-6                |              
-| 244     | Hilbert_curve         | hilbert-curve           |         |      3       | 1-3                |
-| 245     | Subethasmtp         | subethasmtp           |         |      1       | 1                |
-| 246     | Disklrucache         | DiskLruCache           |         |      6       | 1-6                |

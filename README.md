@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1911`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`1844`** real-world bugs from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -35,7 +35,7 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 7     | Csv             | commons-csv                |                           |       17       | 1-17                |
 | 8     | Gson            | gson                       |         gson              |       25       | 1-25                |
 | 9     | JacksonCore     | jackson-core               |                           |       30       | 1-26,28-31                |
-| 10     | JacksonDatabind | jackson-databind           |                          |      150       | 1-85,87-112,121-126,</br>128-129,131-133,135-156               |
+| 10     | JacksonDatabind | jackson-databind           |                          |      144       | 1-85,87-112,121-126,</br>128-129,131-133,135-156               |
 | 11     | JacksonXml      | jackson-dataformat-xml     |                          |        6       | 1-6                 |
 | 12    | Jsoup           | jsoup                      |                           |       93       | 1-93                |
 | 13     | JxPath          | commons-jxpath             |                          |       22       | 1-22                |
@@ -260,22 +260,6 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 232     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
 | 233     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
 | 234     | Tape         | tape           |         tape         |      13       | 1-13                  |
-| 235     | Jcabi_http         | jcabi-http           |                  |      16       | 1-16                  |
-| 236     | Jcabi_aether         | jcabi-aether           |                  |      1       | 1                  |
-| 237     | Jcabi_w3c            | jcabi-w3c                       |                           |       1       | 1                |
-| 238     | Jcabi_email            | jcabi-email                       |        |       4       | 1-4                |
-| 239     | Jcabi_log            | jcabi-log                       |                        |       9       | 1-9                |
-| 240     | Jcabi_matchers            | jcabi-matchers                       |                        |       2       | 1-2                |
-| 241     | Jfreechart_fse            | jfreechart-fse                       |                        |       2       | 1-2                |
-| 242     | Jfreesvg            | jfreesvg                       |                        |       1       | 1                |
-| 243     | Leshan_core         | leshan-core           |       leshan-core      |      10       | 1-10                  |    
-| 244     | Geo         | geo           |       geo        |      3       | 1-3                  |                 |
-| 245     | Jackson_annotations         | jackson-annotations           |               |      1       | 1                  |
-| 246     | Jackson_datatype_hibernate4         | jackson-datatype-hibernate4           |   hibernate4   |      1       | 1                  |
-| 247     | Rtree2         | rtree2           |         |      6       | 1-6                |              
-| 248     | Hilbert_curve         | hilbert-curve           |         |      3       | 1-3                |
-| 249     | Subethasmtp         | subethasmtp           |         |      1       | 1                |
-| 250     | Disklrucache         | DiskLruCache           |         |      6       | 1-6                |
 
 # Setting up GrowingBugs
 

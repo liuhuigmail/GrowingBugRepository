@@ -1,7 +1,0 @@
-com.jcabi.http.Request
-com.jcabi.http.request.BaseRequest
-com.jcabi.http.request.JdkRequest
-com.jcabi.http.RequestBody
-com.jcabi.http.RequestURI
-com.jcabi.http.Response
-com.jcabi.http.Wire

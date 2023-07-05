@@ -1,2 +1,0 @@
-org.eclipse.leshan.core.node.codec.DefaultLwM2mNodeEncoder
-leshan-core.org.eclipse.leshan.core.node.codec.senml.LwM2mNodeSenMLJsonEncoder

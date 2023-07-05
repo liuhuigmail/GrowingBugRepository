@@ -1,3 +1,0 @@
-bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
-1,66329fbcf8ab66a29969a49257c25ecaa14a7b11,466c60fc235186963f92d78ba1b2802d33cdc6f0,10,https://github.com/jcabi/jcabi-matchers/issues/10
-2,466c60fc235186963f92d78ba1b2802d33cdc6f0,540d11dc42453ab14752a104cf6dfbfc540ccc7c,10,https://github.com/jcabi/jcabi-matchers/issues/10

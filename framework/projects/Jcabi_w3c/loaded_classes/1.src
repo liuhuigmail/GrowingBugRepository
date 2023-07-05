@@ -1,8 +1,0 @@
-com.jcabi.w3c.AbstractBaseValidator
-com.jcabi.w3c.DefaultCssValidator
-com.jcabi.w3c.DefaultHtmlValidator
-com.jcabi.w3c.DefaultValidationResponse
-com.jcabi.w3c.Defect
-com.jcabi.w3c.ValidationResponse
-com.jcabi.w3c.Validator
-com.jcabi.w3c.ValidatorBuilder

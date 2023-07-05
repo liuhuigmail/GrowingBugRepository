@@ -1,5 +1,0 @@
-org.jfree.graphics2d.svg.FontMapper
-org.jfree.graphics2d.svg.StandardFontMapper
-org.jfree.graphics2d.svg.SVGGraphics2D
-org.jfree.graphics2d.svg.SVGGraphicsConfiguration
-org.jfree.graphics2d.svg.SVGHints

@@ -1,4 +1,0 @@
-bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
-1,299fdb33cbd4610c9207ad4e03f96d6044b520d9,657f158b797f776a0c7bb8b6bcf99f6bdb7edc4d,1,https://github.com/davidmoten/hilbert-curve/issues/1
-2,c9d222d122ec7dbfae2d1d26c86caea28995b065,bdcec5956d9d6bc4dca6bf5af36fa2ef0d5d65b7,unknown,unknown
-3,e64c664a325355a76e00824e0f2503d92b85dc1f,5f36f5d05ddb6d6e34be0476c514954af8f80d4f,unknown,unknown

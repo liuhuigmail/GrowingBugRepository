@@ -1,6 +1,0 @@
-com.jcabi.http.request.FakeRequestTest
-com.jcabi.http.response.JsonResponseTest
-com.jcabi.http.response.JsoupResponseTest
-com.jcabi.http.response.RestResponseTest
-com.jcabi.http.response.WebLinkingResponseTest
-com.jcabi.http.response.XmlResponseTest

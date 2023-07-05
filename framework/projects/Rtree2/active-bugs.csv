@@ -1,7 +1,0 @@
-bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
-1,81a212e43e9649cf6181a6ef40572ee180509826,98bac668a8b3856d18ca6037886c4e7361d25d33,21,https://github.com/davidmoten/rtree2/pull/21
-2,b17a51128636b6cbc24935c3eb2f33612dca1f7e,7019ef296bf1fa731ccea37eed2224d79618e62d,33,https://github.com/davidmoten/rtree2/pull/33
-3,f158eab63606b7339bf6f94e3f6ded9b031f7257,bb3b0b3b773630a286a9e16797aad2861ebf0765,34,https://github.com/davidmoten/rtree2/pull/34
-4,3f5a55d7fa0308cb7ceac846a2ae24be8799e0a8,c74e1b397b7caa3771c679eaf48b4d95c18cded4,40,https://github.com/davidmoten/rtree2/pull/40
-5,c0844a65fb081ffa1657ba98c96052ec74002bca,16400fc53d776a352ca65390c5e93e4e479f3d32,50,https://github.com/davidmoten/rtree2/pull/50
-6,9d11206b306f588ee9ce5a38c29e7121706cb2ad,3d5865ad5076ad45cde319c165acf62d5c716dc0,56,https://github.com/davidmoten/rtree2/pull/56

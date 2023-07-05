@@ -1,5 +1,0 @@
-com.jcabi.email.SMTPTest
-com.jcabi.email.stamp.StBCCTest
-com.jcabi.email.stamp.StCCTest
-com.jcabi.email.stamp.StRecipientTest
-com.jcabi.email.stamp.StSenderTest
