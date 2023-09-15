@@ -38,13 +38,13 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 10     | Collections     | commons-collections        |                           |        8       | 25-31,35               |
 | 11     | Commons_suncalc         | commons-suncalc            |                  |      2       | 1-2                  |                 |
 | 12     | Compress        | commons-compress           |                           |       51       | 1-48,50,52-53       |
-| 13     | Coveralls_maven<br/>_plugin            | coveralls-maven-plugin               |                  |      8       | 1-8               |
+| 13     | Coveralls_maven<br/>_plugin            | coveralls-maven<br/>-plugin               |                  |      8       | 1-8               |
 | 14     | Csv             | commons-csv                |                           |       17       | 1-17                |
 | 15     | Dbutils         | commons-dbutils            |                          |        2       | 1-2                 |
-| 16     | Deltaspike_api            | deltaspike-core-api |  deltaspike/core/api       |       6     | 1-6              |
+| 16     | Deltaspike_api            | deltaspike-core-api |  deltaspike<br/>/core/api       |       6     | 1-6              |
 | 17     | Disklrucache         | DiskLruCache           |         |      6       | 1-6                |
 | 18     | Docker_java_api         | docker-java-api           |                  |      10       | 1-10                  |
-| 19     | Drools_model<br/>_compiler            | drools-model-compiler |  drools-model/drools-model-compiler       |       1     | 1              |
+| 19     | Drools_model<br/>_compiler            | drools-model-compiler |  drools-model/<br/>drools-model-compiler       |       1     | 1              |
 | 20     | Email           | commons-email              |                          |        3       | 3-5                 |
 | 21     | Functor         | commons-functor            |                          |        2       | 1-2                 |
 | 22     | Geo         | geo           |       geo        |      3       | 1-3                  |                 |
@@ -59,8 +59,8 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 31     | Jackrabbit_<br/>filevault_vault<br/>_validation        | jackrabbit-filevault-vault-validation          |       vault-validation           |      4       | 1-4                  |
 | 32     | JacksonCore     | jackson-core               |                           |       30       | 1-26,28-31                |
 | 33     | JacksonDatabind | jackson-databind           |                          |      150       | 1-85,87-112,121-126,</br>128-129,131-133,135-156               |
-| 34     | JacksonDataformat<br/>Binary_cbor            | jackson-dataformats-binary-cbor |      cbor   |       5     | 1-5              |
-| 35     | JacksonDataformat<br/>Binary_protobuf            | jackson-dataformats-binary-protobuf |      protobuf   |       4     | 1-4              |
+| 34     | JacksonDataformat<br/>Binary_cbor            | jackson-dataformats<br/>-binary-cbor |      cbor   |       5     | 1-5              |
+| 35     | JacksonDataformat<br/>Binary_protobuf            | jackson-dataformats<br/>-binary-protobuf |      protobuf   |       4     | 1-4              |
 | 36     | JacksonXml      | jackson-dataformat-xml     |                          |        6       | 1-6                 |
 | 37     | James_mime4j<br/>_core            | James-mime4j-core |      core   |       9     | 1-9              |
 | 38     | Lang            | commons-lang               |                          |       72       | 1,3-33,35-65,69,71,73,</br>76,80-84              |
@@ -71,14 +71,14 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 43     | Deft            | deft               |                  |      1       | 1               |
 | 44     | Dosgi_common            | dosgi-common | common    |       2     | 1-2              |
 | 45     | Doubleclick_core         | openrtb-doubleclick-core           |       doubleclick-core           |      1       | 1                  |
-| 46     | Doxia_module_apt            | doxia-module-apt               |   doxia-modules/doxia-module-apt       |       2       | 1-2               |
+| 46     | Doxia_module_apt            | doxia-module-apt               |   doxia-modules/<br/>doxia-module-apt       |       2       | 1-2               |
 | 47     | Drools_traits            | drools-traits |  drools-traits       |       1     | 1              |
 | 48     | Dropwizard_spring         | dropwizard-spring            |                  |      1       | 1                  |                 |
 | 49     | Farm         | farm            |                  |      4       | 1-4                  |                 |
 | 50     | Flume_ngcore            | flume-ng-core |  flume-ng-core       |       2     | 1-2              |
 | 51     | Fluo_api            | fluo-api | modules/api     |       2     | 1,3              |
 | 52     | Hbase_common      | hbase-common |  hbase-common       |       1     | 1              |
-| 53     | Hierarchical_<br/>clustering_java         | hierarchical-clustering-java           |                  |      1       | 1                  |
+| 53     | Hierarchical_<br/>clustering_java         | hierarchical-<br/>clustering-java           |                  |      1       | 1                  |
 | 54     | Hilbert_curve         | hilbert-curve           |         |      3       | 1-3                |
 | 55     | Hive_funnel_udf         | hive-funnel-udf           |                  |      1       | 1                  |
 | 56     | Hono_client            | hono-client |  client       |       4     | 1-4              |
@@ -93,7 +93,7 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 65     | Validator       | commons-validator          |                          |        21      | 1-2,4,6-9,11,</br>13-25 |
 | 66     | Pool            | commons-pool               |                          |        17      | 1,5-7,10-14,</br>16,20-21,24,</br>26-27,29-30|
 | 67     | Net             | commons-net                |                          |        14      | 9,10,12,</br>14-18,20-21,</br>23-26             |
-| 68     | Numbers_angle   | commons-numbers-angle            |  commons-numbers-angle         |        2       | 1-2               |
+| 68     | Numbers_angle   | commons-numbers-angle            |  commons-numbers<br/>-angle         |        2       | 1-2               |
 | 69     | MGpg            | maven-gpg-plugin           ||        1       | 1               |
 | 70     | Text            | commons-text               ||        4       | 1-2,4-5               |
 | 71     | Tika_core            | tika-core               |  tika-core |        23       | 4,6,9,11,</br>17,20-25,28-39               |
@@ -101,23 +101,23 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 73     | Shiro_core            | shiro-core               |      core      |        10       | 37,40,46,52,98,</br>144,176,181,202-203               |
 | 74     | Jena_core            | jena-core               |    jena-core   |        1       | 2               |
 | 75     | MDeploy            | maven-deploy-plugin               |              |        1       | 1               |
-| 76     | Jackrabbit_filevault<br/>_vault_validation | jackrabbit-filevault-vault-validation               |       vault-validation       |        4       | 1-4               |
+| 76     | Jackrabbit_filevault<br/>_vault_validation | jackrabbit-filevault<br/>-vault-validation               |       vault-validation       |        4       | 1-4               |
 | 77     | Jackrabbit_oak_core            | oak-core               |       oak-core       |        5       | 1-5               |
-| 78     | Maven_checkstyle<br/>_plugin            | maven-checkstyle-plugin               |             |        1       | 1               |
+| 78     | Maven_checkstyle<br/>_plugin            | maven-checkstyle<br/>-plugin               |             |        1       | 1               |
 | 79     | James_project<br/>_core            | james-project-core               |       core       |        2       | 1-2               |
 | 80     | Pdfbox_fontbox            | pdfbox-fontbox      |       fontbox      |        7       | 1-7               |
 | 81     | HttpClient5            | httpclient5      |       httpclient5      |        7       | 1-2,4-8               |
-| 82     | jackson_modules<br/>_java8_datetime      | jackson-modules-java8-datetime |      datetime  |        5       | 1-5               |
+| 82     | jackson_modules<br/>_java8_datetime      | jackson-modules<br/>-java8-datetime |      datetime  |        5       | 1-5               |
 | 83     | Pdfbox_pdfbox         | pdfbox-pdfbox |    pdfbox    |        3      | 1-3               |
 | 84     | Storm_client            | storm-client      |       storm-client      |        1       | 1              |
-| 85     | JacksonDataformats<br/>Text_yaml            | jackson-dataformats-text-yaml |      yaml   |       6     | 1-2,4-7              |
-| 86     | JacksonDataformats<br/>Text_properties            | jackson-dataformats-text-properties |      properties   |       2     | 1-2              |
-| 87     | JacksonDataformat<br/>Binary_avro            | jackson-dataformats-binary-avro |      avro   |       2     | 1-2              |
+| 85     | JacksonDataformats<br/>Text_yaml            | jackson-dataformats<br/>-text-yaml |      yaml   |       6     | 1-2,4-7              |
+| 86     | JacksonDataformats<br/>Text_properties            | jackson-dataformats<br/>-text-properties |      properties   |       2     | 1-2              |
+| 87     | JacksonDataformat<br/>Binary_avro            | jackson-dataformats<br/>-binary-avro |      avro   |       2     | 1-2              |
 | 88     | JavaClassmate            | java-classmate |        |       2     | 1-2              |
-| 89     | JacksonModule<br/>JsonSchema            | jackson-module-jsonSchema |      |       1     | 1              |
+| 89     | JacksonModule<br/>JsonSchema            | jackson-module-<br/>jsonSchema |      |       1     | 1              |
 | 90     | JacksonData<br/>typeJoda            | jackson-datatype-joda |        |       2     | 2-3              |
 | 91     | JacksonDatatype<br/>Jsr310            | jackson-datatype-jsr310 |         |       4     | 1-4              |
-| 92     | JacksonDataformat<br/>Binary_smile            | jackson-dataformats-binary-smile |    smile     |       3     | 1-3              |
+| 92     | JacksonDataformat<br/>Binary_smile            | jackson-dataformats<br/>-binary-smile |    smile     |       3     | 1-3              |
 | 93     | JacksonModule<br/>Afterburner            | jackson-module-afterburner |         |       3     | 1-3              |
 | 94     | Woodstox            | woodstox |         |       7     | 1-7              |
 | 95     | MetaModel_core            | MetaModel-core | core        |       9     | 1-9              |
@@ -128,7 +128,7 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 100     | MetaModel_<br/>salesforce            | MetaModel-salesforce |   salesforce      |       1     | 1              |
 | 101     | Wink_common            | wink-common |  wink-common       |       4     | 1-4              |
 | 102     | Xbean_naming            | xbean-naming |  xbean-naming       |       1     | 1              |
-| 103     | James_project_<br/>server_container<br/>_core            | james-project-server-container-core |  server/container/core       |       1     | 1              |
+| 103     | James_project_<br/>server_container<br/>_core            | james-project-server-<br/>container-core |  server/container/core       |       1     | 1              |
 | 104     | Johnzon_core            | johnzon-core |  johnzon-core       |       11     | 1-2,4-12              |
 | 105     | Nifi_mock            | nifi-mock |  nifi-mock       |       2     | 1-2              |
 | 106     | Rat_core            | apache-rat-core |  apache-rat-core       |       1     | 1              |
@@ -138,19 +138,19 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 110     | Webbeans_web            | webbeans-web |  webbeans-web       |       1     | 1              |
 | 111     | Johnzon_jsonb            | johnzon-jsonb |  johnzon-jsonb       |       6     | 1-6              |
 | 112     | Johnzon_jaxrs            | johnzon-jaxrs |  johnzon-jaxrs       |       1     | 1              |
-| 113     | Incubator_tamaya<br/>_api            | incubator-retired-tamaya-api |  code/api       |       2     | 1-2              |
-| 114     | James_project_<br/>mailet_standard            | james-project-mailet-standard |  mailet/standard       |       1     | 1              |
+| 113     | Incubator_tamaya<br/>_api            | incubator-retired<br/>-tamaya-api |  code/api       |       2     | 1-2              |
+| 114     | James_project_<br/>mailet_standard            | james-project-<br/>mailet-standard |  mailet/standard       |       1     | 1              |
 | 115     | Johnzon_<br/>jsonschema            | johnzon-jsonschema |  johnzon-jsonschema       |       2     | 1-2              |
 | 116     | Johnzon_<br/>mapper            | johnzon-mapper |  johnzon-mapper       |       6     | 1-6              |
 | 117     | Karaf_main            | karaf-main |  main       |       1     | 1              |
-| 118     | Appformer_uberfire<br/>_commons_editor<br/>_backend            | uberfire-commons-editor-backend |  uberfire-extensions/uberfire-commons-editor/uberfire-commons-editor-backend       |       1     | 1              |
-| 119     | Kie_pmml_<br/>commons            | kie-pmml-commons |  kie-pmml-trusty/kie-pmml-commons       |       3     | 1-3              |
+| 118     | Appformer_uberfire<br/>_commons_editor<br/>_backend            | uberfire-commons-editor-backend |  uberfire-extensions<br/>/uberfire-commons-editor/<br/>uberfire-commons-editor-backend       |       1     | 1              |
+| 119     | Kie_pmml_<br/>commons            | kie-pmml-commons |  kie-pmml-trusty/<br/>kie-pmml-commons       |       3     | 1-3              |
 | 120     | Kie_memory_<br/>compiler            | kie-memory-compiler |  kie-memory-compiler       |       1     | 1              |
-| 121     | Jbpm_human<br/>_task_workitems            | jbpm-human-task-workitems |  jbpm-human-task/jbpm-human-task-workitems       |       1     | 1              |
-| 122     | Appformer_uberfire_<br/>security_management</br>_client            | uberfire-security-management-client | uberfire-extensions/uberfire-security/uberfire-security-management/uberfire-security-management-client  |       1     | 1              |
-| 123     | Appformer_uberfire<br/>_workbench_client            | uberfire-workbench-client |  uberfire-workbench/uberfire-workbench-client       |       3     | 1-3              |
+| 121     | Jbpm_human<br/>_task_workitems            | jbpm-human-task-workitems |  jbpm-human-task/<br/>jbpm-human-task-workitems       |       1     | 1              |
+| 122     | Appformer_uberfire_<br/>security_management</br>_client            | uberfire-security-management-client | uberfire-extensions<br/>/uberfire-security<br/>/uberfire-security-management<br/>/uberfire-security<br/>-management-client  |       1     | 1              |
+| 123     | Appformer_uberfire<br/>_workbench_client            | uberfire-workbench-client |  uberfire-workbench/<br/>uberfire-workbench-client       |       3     | 1-3              |
 | 124     | Jandex            | jandex |         |       6     | 1-6              |
-| 125     | Kogito_editors<br/>_java_kie_wb<br/>_common_stunner<br/>_widgets            | kie-wb-common-stunner-widgets |  kie-wb-common-stunner/kie-wb-common-stunner-client/kie-wb-common-stunner-widgets       |       1     | 1              |
+| 125     | Kogito_editors<br/>_java_kie_wb<br/>_common_stunner<br/>_widgets            | kie-wb-common-<br/>stunner-widgets |  kie-wb-common-stunner/<br/>kie-wb-common-stunner-client/<br/>kie-wb-common-stunner-widgets       |       1     | 1              |
 | 126     | Ognl            | commons-ognl |         |       1     | 1              |
 | 127     | Qpid_client            | qpid-jms-client |  qpid-jms-client       |       8     | 1-8              |
 | 128     | Switchyard_admin            | switchyard-admin |  admin       |       1     | 1              |
@@ -192,12 +192,12 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 164     | Shindig_<br/>common            | shindig-common               |     java/common                     |      1       | 1               |
 | 165     | Xbean_<br/>reflect            | xbean-reflect               |     xbean-reflect                     |      1       | 1               |
 | 166     | Mrunit            | mrunit               |                          |      2       | 1-2               |
-| 167     | Rave_core            | rave-core               |          rave-components/rave-core         |      2       | 1-2               |
-| 168     | Rave_commons            | rave-commons               |          rave-components/rave-commons         |      1       | 1               |
+| 167     | Rave_core            | rave-core               |          rave-components<br/>/rave-core         |      2       | 1-2               |
+| 168     | Rave_commons            | rave-commons               |          rave-components<br/>/rave-commons         |      1       | 1               |
 | 169     | Rave_web            | rave-web               |          rave-components/rave-web         |      1       | 1               |
 | 170     | Jmh_core            | jmh-core               |          jmh-core         |      1       | 1               |
 | 171     | Sdk_core            | sdk-core               |                   |      3       | 1-3               |
-| 172     | Cargo_<br/>container            | cargo-container               |          core/api/container         |      4       | 1-4               |
+| 172     | Cargo_<br/>container            | cargo-container               |          core/api/<br/>container         |      4       | 1-4               |
 | 173     | Oak_commons            | oak-commons               |          oak-commons         |      1       | 1               |
 | 174     | Streamex            | streamex               |                   |      7       | 1-7               |
 | 175     | Javapoet            | javapoet               |                   |      17       | 1-17               |
@@ -207,13 +207,13 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 179     | Zip4j            | zip4j               |                  |      52       | 1-52               |
 | 180     | Incubator_<br/>retired_pirk            | incubator-retired-pirk               |                  |      1       | 1               |
 | 181     | Sparsebitset             | SparseBitSet                |                  |      2       | 1-2               |
-| 182     | Assertj_assert<br/>ions_generator            | assertj-assertions-generator               |                  |      7       | 1-7               |
+| 182     | Assertj_assert<br/>ions_generator            | assertj-assertions<br/>-generator               |                  |      7       | 1-7               |
 | 183     | Config_magic            | config-magic               |                  |      2       | 2               |
 | 184     | Jcodemodel            | jcodemodel               |                  |      7       | 1-7               |
 | 185     | Jdbm3            | JDBM3               |                  |      6       | 1-6               |
 | 186     | Mybatis_<br/>pagehelper            | Mybatis-PageHelper               |                  |      4       | 1-4               |
 | 187     | N5            | n5               |                  |      2       | 1-2               |
-| 188     | Stash_jenkins_<br/>postreceive<br/>_webhook            | stash-jenkins-postreceive-webhook               |                  |      1       | 1               |
+| 188     | Stash_jenkins_<br/>postreceive<br/>_webhook            | stash-jenkins<br/>-postreceive-webhook               |                  |      1       | 1               |
 | 189     | Suffixtree            | suffixtree               |                  |      1       | 1               |
 | 190     | Template_<br/>benchmark            | template-benchmark               |                  |      1       | 1               |
 | 191     | Vectorz            | vectorz               |                  |      6       | 1-6               |
@@ -225,8 +225,8 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 197     | Shazamcrest         | shazamcrest            |                  |      2       | 1-2                  |                 |
 | 198     | Restfixture         | RestFixture            |                  |      4       | 1-4                  |                 |
 | 199     | Chronicle_network         | Chronicle-Network            |                  |      4       | 1-4                  |                 |
-| 200     | Gocd_slack_build<br/>_notifier         | gocd-slack-build-notifier            |                  |      3       | 1-3                  |                 |
-| 201     | Confluence_http<br/>_authenticator         | confluence_http_authenticator            |                  |      1       | 1                  |                 |
+| 200     | Gocd_slack_build<br/>_notifier         | gocd-slack-<br/>build-notifier            |                  |      3       | 1-3                  |                 |
+| 201     | Confluence_http<br/>_authenticator         | confluence_http<br/>_authenticator            |                  |      1       | 1                  |                 |
 | 202     | Tempus_fugit         | tempus-fugit            |                  |      1       | 1                  |                 |
 | 203     | Kafka_graphite         | kafka-graphite           |                  |      1       | 1                  |                 |
 | 204     | Simple_excel         | simple-excel           |                  |      1       | 1                  |                 |
@@ -235,19 +235,19 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 207     | Jcabi_github         | jcabi-github           |                  |      81       | 1-42,44-82                  |
 | 208     | Podam         | podam           |                  |      1       | 1                  |
 | 209     | Sansorm         | SansOrm           |                  |      7       | 1-7                  |
-| 210     | Transmittable_<br/>thread_local         | transmittable-thread-local           |                  |      4       | 1-4                  |
+| 210     | Transmittable_<br/>thread_local         | transmittable<br/>-thread-local           |                  |      4       | 1-4                  |
 | 211     | Jchronic         | jchronic           |                  |      1       | 1                  |
 | 212     | Netconf_java         | netconf-java           |                  |      1       | 1                  |
 | 213     | Xades4j         | xades4j           |                  |      4       | 1-4                  |
 | 214     | Spatial4j         | spatial4j           |                  |      4       | 1-4                  |
 | 215     | Iciql         | iciql           |                  |      2       | 1-2                  |
 | 216     | Metrics_opentsdb         | metrics-opentsdb           |                  |      2       | 1-2                  |
-| 217     | Spring_context<br/>_support         | spring-context-support           |                  |      1       | 2                  |
+| 217     | Spring_context<br/>_support         | spring-context<br/>-support           |                  |      1       | 2                  |
 | 218     | Jmimemagic         | jmimemagic           |                  |      1       | 1                  |
 | 219     | Markedj         | markedj           |                  |      17       | 1-17                  |
 | 220     | Sonartsplugin         | SonarTsPlugin           |                  |      10       | 1-10                  |
 | 221     | Aws_maven         | aws-maven           |                  |      1       | 1                  |
-| 222     | Snomed_owl<br/>_toolkit         | snomed-owl-toolkit           |                  |      2       | 1-2                  |
+| 222     | Snomed_owl<br/>_toolkit         | snomed-owl<br/>-toolkit           |                  |      2       | 1-2                  |
 | 223     | Weak_lock_free         | weak-lock-free           |                  |      1       | 1                  |
 | 224     | Proj4J         | proj4j           |                  |      9       | 1-9                  |
 | 225     | Markedj         | markedj           |                  |      2       | 1-2                  |
@@ -256,9 +256,9 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 228     | Jnagmp         | jnagmp           |       jnagmp           |      1       | 1                  |
 | 229     | Rocketmq_<br/>mqtt_cs         | rocketmq-mqtt-cs           |       mqtt-cs           |      1       | 1   |
 | 230     | Dagger_core         | dagger-core           |       core           |      20       | 1-20                  |
-| 231     | Google_java<br/>_format_core         | google-java-format-core           |       core           |      1       | 1                  |
+| 231     | Google_java<br/>_format_core         | google-java<br/>-format-core           |       core           |      1       | 1                  |
 | 232     | Jimfs         | jimfs           |       jimfs           |      2       | 1-2                  |
-| 233     | Open_location<br/>_code_java         | open-location-code-java           |       java           |      4       | 1-4                  |
+| 233     | Open_location<br/>_code_java         | open-location<br/>-code-java           |       java           |      4       | 1-4                  |
 | 234     | Gwtmockito         | gwtmockito           |       gwtmockito           |      3       | 1-3                  |
 | 235     | Render_app         | render-app           |       render-app           |      5       | 1-5                  |
 | 236     | Tape         | tape           |         tape         |      13       | 1-13                  |
@@ -273,7 +273,7 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 245     | Leshan_core         | leshan-core           |       leshan-core      |      10       | 1-10                  |    
 | 246     | Rdf_jena            | commons-rdf-jena               |       commons-rdf-jena       |        1       | 1               |
 | 247     | Jackson_<br/>annotations         | jackson-annotations           |               |      1       | 1                  |
-| 248     | Jackson_datatype<br/>_hibernate4         | jackson-datatype-hibernate4           |   hibernate4   |      1       | 1                  |
+| 248     | Jackson_datatype<br/>_hibernate4         | jackson-datatype<br/>-hibernate4           |   hibernate4   |      1       | 1                  |
 | 249     | Rtree2         | rtree2           |         |      6       | 1-6                |              
 | 250     | Subethasmtp         | subethasmtp           |         |      1       | 1                |
 
