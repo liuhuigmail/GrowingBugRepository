@@ -26,7 +26,7 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
-| 1     | [AaltoXml](https://github.com/liuhuigmail/GrowingBugRepository/tree/main/framework/projects/AaltoXml)            | aalto-xml      |             |        8       | 1-5,7-9               |
+| 1     | [AaltoXml](./framework/projects/AaltoXml)            | aalto-xml      |             |        8       | 1-5,7-9               |
 | 2     | Bcel            | commons-bcel |        |       6     | 1-6              |
 | 3     | Ber_tlv         | ber-tlv            |                  |      4       | 1-4                  |                 |
 | 4     | Burst         | burst           |       burst           |      3       | 1-3                  |
