@@ -188,16 +188,16 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 160     | Struts1_core            | struts1-core               |     core                     |      2       | 1-2               |
 | 161     | Wicket_cdi            | wicket-cdi               |     wicket-cdi                     |      1       | 1               |
 | 162     | Wicket_core            | wicket-core               |     wicket-core                     |      18       | 1-18               |
-| 163     | Mshared_<br/>archiver            | maven-archiver               |     maven-archiver                     |      1       | 1               |
-| 164     | Shindig_<br/>common            | shindig-common               |     java/common                     |      1       | 1               |
-| 165     | Xbean_<br/>reflect            | xbean-reflect               |     xbean-reflect                     |      1       | 1               |
+| 163     | Mshared_archiver            | maven-archiver               |     maven-archiver                     |      1       | 1               |
+| 164     | Shindig_common            | shindig-common               |     java/common                     |      1       | 1               |
+| 165     | Xbean_reflect            | xbean-reflect               |     xbean-reflect                     |      1       | 1               |
 | 166     | Mrunit            | mrunit               |                          |      2       | 1-2               |
 | 167     | Rave_core            | rave-core               |          rave-components<br/>/rave-core         |      2       | 1-2               |
 | 168     | Rave_commons            | rave-commons               |          rave-components<br/>/rave-commons         |      1       | 1               |
 | 169     | Rave_web            | rave-web               |          rave-components/rave-web         |      1       | 1               |
 | 170     | Jmh_core            | jmh-core               |          jmh-core         |      1       | 1               |
 | 171     | Sdk_core            | sdk-core               |                   |      3       | 1-3               |
-| 172     | Cargo_<br/>container            | cargo-container               |          core/api/<br/>container         |      4       | 1-4               |
+| 172     | Cargo_container            | cargo-container               |          core/api/<br/>container         |      4       | 1-4               |
 | 173     | Oak_commons            | oak-commons               |          oak-commons         |      1       | 1               |
 | 174     | Streamex            | streamex               |                   |      7       | 1-7               |
 | 175     | Javapoet            | javapoet               |                   |      17       | 1-17               |
@@ -211,7 +211,7 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 183     | Config_magic            | config-magic               |                  |      2       | 2               |
 | 184     | Jcodemodel            | jcodemodel               |                  |      7       | 1-7               |
 | 185     | Jdbm3            | JDBM3               |                  |      6       | 1-6               |
-| 186     | Mybatis_<br/>pagehelper            | Mybatis-PageHelper               |                  |      4       | 1-4               |
+| 186     | Mybatis_pagehelper            | Mybatis-PageHelper               |                  |      4       | 1-4               |
 | 187     | N5            | n5               |                  |      2       | 1-2               |
 | 188     | Stash_jenkins_<br/>postreceive<br/>_webhook            | stash-jenkins<br/>-postreceive-webhook               |                  |      1       | 1               |
 | 189     | Suffixtree            | suffixtree               |                  |      1       | 1               |
@@ -251,7 +251,7 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 223     | Weak_lock_free         | weak-lock-free           |                  |      1       | 1                  |
 | 224     | Proj4J         | proj4j           |                  |      9       | 1-9                  |
 | 225     | Markedj         | markedj           |                  |      2       | 1-2                  |
-| 226     | Rocketmq_<br/>mqtt_ds         | rocketmq-mqtt-ds           |       mqtt-ds           |      1       | 1                  |
+| 226     | Rocketmq_mqtt_ds         | rocketmq-mqtt-ds           |       mqtt-ds           |      1       | 1                  |
 | 227     | Retrofit         | retrofit           |       retrofit           |      3       | 1-3                  |
 | 228     | Jnagmp         | jnagmp           |       jnagmp           |      1       | 1                  |
 | 229     | Rocketmq_<br/>mqtt_cs         | rocketmq-mqtt-cs           |       mqtt-cs           |      1       | 1   |
