@@ -166,24 +166,24 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 138     | Oozie_client            | oozie-client | client |       2     | 1-2              |
 | 139     | Qpidjms_client            | qpidjms-client | client  |       3     | 1-3              |
 | 140     | Rdf4j_query            | rdf4j-query | core/query    |       1     | 1              |
-| 141     | Rdf4j_rio<br/>_api            | rdf4j-rio-api | core/rio/api  |       2     | 1-2              |
-| 142     | Rdf4j_rio<br/>_jsonld            | rdf4j-rio-jsonld | core/rio/jsonld  |       2     | 1-2              |
-| 143     | Rdf4j_rio<br/>_rdfjson            | rdf4j-rio-rdfjson | core/rio/rdfjson |       2     | 1-2              |
-| 144     | Rdf4j_rio<br/>_rdfxml            | rdf4j-rio-rdfxml | core/rio/rdfxml    |       1     | 1              |
-| 145     | Rdf4j_rio<br/>_turtle            | rdf4j-rio-turtle | core/rio/turtle    |       8    | 1-4,6,8-10              |
-| 146     | Sentry_<br/>ccommon            | sentry-core-common |  sentry-core/sentry-core-common   |       2     | 1-2              |
-| 147     | Sling_<br/>apiregions            | sling-apiregions |     |       3     | 1-3              |
-| 148     | Sling_<br/>cpconverter            | sling-cpconverter |     |       3     | 1-3              |
+| 141     | Rdf4j_rio_api            | rdf4j-rio-api | core/rio/api  |       2     | 1-2              |
+| 142     | Rdf4j_rio_jsonld            | rdf4j-rio-jsonld | core/rio/jsonld  |       2     | 1-2              |
+| 143     | Rdf4j_rio_rdfjson            | rdf4j-rio-rdfjson | core/rio/rdfjson |       2     | 1-2              |
+| 144     | Rdf4j_rio_rdfxml            | rdf4j-rio-rdfxml | core/rio/rdfxml    |       1     | 1              |
+| 145     | Rdf4j_rio_turtle            | rdf4j-rio-turtle | core/rio/turtle    |       8    | 1-4,6,8-10              |
+| 146     | Sentry_ccommon            | sentry-core-common |  sentry-core/sentry-core-common   |       2     | 1-2              |
+| 147     | Sling_apiregions            | sling-apiregions |     |       3     | 1-3              |
+| 148     | Sling_cpconverter            | sling-cpconverter |     |       3     | 1-3              |
 | 149     | Tiles_api            | tiles-api | tiles-api    |       2     | 1-2              |
 | 150     | Tiles_core            | tiles-core |  tiles-core   |       3     | 1-3              |
 | 151     | Twill_dcore            | twill-discovery-core |  twill-discovery-core   |       1     | 1              |
-| 152     | Maven2_<br/>artifact            | maven-artifact |  maven-artifact   |       2     | 1-2              |
-| 153     | Maven2_<br/>project            | maven-project |  maven-project   |       2     | 1-2              |
-| 154     | Wicket_<br/>request            | wicket-request               |     wicket-request                     |      6       | 1-6               |
-| 155     | Cayenne_<br/>xmpp            | cayenne-xmpp               |    cayenne-xmpp                      |      1       | 1               |
-| 156     | Wicket_<br/>util            | wicket-util               |     wicket-util                     |     4       | 1-4               |
-| 157     | Wicket_<br/>spring            | wicket-spring               |        wicket-spring                  |      1       | 1               |
-| 158     | Cayenne_<br/>jgroups            | cayenne-jgroups               |    cayenne-jgroups                      |      1       | 1               |
+| 152     | Maven2_artifact            | maven-artifact |  maven-artifact   |       2     | 1-2              |
+| 153     | Maven2_project            | maven-project |  maven-project   |       2     | 1-2              |
+| 154     | Wicket_request            | wicket-request               |     wicket-request                     |      6       | 1-6               |
+| 155     | Cayenne_xmpp            | cayenne-xmpp               |    cayenne-xmpp                      |      1       | 1               |
+| 156     | Wicket_util            | wicket-util               |     wicket-util                     |     4       | 1-4               |
+| 157     | Wicket_spring            | wicket-spring               |        wicket-spring                  |      1       | 1               |
+| 158     | Cayenne_jgroups            | cayenne-jgroups               |    cayenne-jgroups                      |      1       | 1               |
 | 159     | Cayenne_jms            | cayenne-jms               |     cayenne-jms                     |      1       | 1               |
 | 160     | Struts1_core            | struts1-core               |     core                     |      2       | 1-2               |
 | 161     | Wicket_cdi            | wicket-cdi               |     wicket-cdi                     |      1       | 1               |
