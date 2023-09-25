@@ -1,5 +1,0 @@
-net.tascalate.concurrent.DependentPromiseTests
-net.tascalate.concurrent.EitherCompletableTaskTests
-net.tascalate.concurrent.SimpleCompletableTaskTests
-net.tascalate.concurrent.ThenComposeAsyncTest
-net.tascalate.concurrent.WhenCompleteAsyncTest
