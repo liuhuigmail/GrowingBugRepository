@@ -1,6 +1,0 @@
-org.apache.rocketmq.mqtt.cs.test.channel.TestDefaultChannelManager
-org.apache.rocketmq.mqtt.cs.test.protocol.mqtt.handler.TestMqttPubAckHandler
-org.apache.rocketmq.mqtt.cs.test.protocol.mqtt.handler.TestMqttPubCompHandler
-org.apache.rocketmq.mqtt.cs.test.protocol.mqtt.handler.TestMqttPubRecHandler
-org.apache.rocketmq.mqtt.cs.test.session.infly.TestPushAction
-org.apache.rocketmq.mqtt.cs.test.session.infly.TestRetryDriver

@@ -1,3 +1,0 @@
-org.apache.hc.client5.http.impl.TestAuthSupport
-org.apache.hc.client5.http.impl.classic.TestFutureRequestExecutionService
-org.apache.hc.client5.http.impl.classic.TestProtocolExec

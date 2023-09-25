@@ -1,8 +1,0 @@
-org.apache.tika.detect.Detector
-org.apache.tika.detect.EmptyDetector
-org.apache.tika.detect.FileCommandDetector
-org.apache.tika.detect.OverrideDetector
-org.apache.tika.detect.ZeroSizeFileDetector
-org.apache.tika.io.BoundedInputStream
-org.apache.tika.utils.CompareUtils
-org.apache.tika.utils.ServiceLoaderUtils

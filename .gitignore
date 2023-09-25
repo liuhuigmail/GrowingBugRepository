@@ -11,3 +11,4 @@ work/
 framework/bug-mining/bug_commit_classification/saveT.pt
 framework/bug-mining/bug_commit_classification/data/*
 !framework/bug-mining/bug_commit_classification/data/example.csv
+.DS_Store

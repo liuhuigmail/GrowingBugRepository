@@ -1,9 +1,0 @@
-org.apache.commons.collections4.AbstractObjectTest
-org.apache.commons.collections4.BulkTest
-org.apache.commons.collections4.collection.AbstractCollectionTest
-org.apache.commons.collections4.iterators.AbstractIteratorTest
-org.apache.commons.collections4.iterators.AbstractMapIteratorTest
-org.apache.commons.collections4.map.AbstractIterableMapTest
-org.apache.commons.collections4.map.AbstractMapTest
-org.apache.commons.collections4.map.CompositeMapTest
-org.apache.commons.collections4.set.AbstractSetTest

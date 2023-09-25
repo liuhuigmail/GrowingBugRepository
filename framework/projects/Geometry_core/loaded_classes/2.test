@@ -1,5 +1,0 @@
-org.apache.commons.geometry.core.partition.test.PartitionTestUtils
-org.apache.commons.geometry.core.partition.test.TestLine
-org.apache.commons.geometry.core.partition.test.TestLineSegment
-org.apache.commons.geometry.core.partition.test.TestPoint2D
-org.apache.commons.geometry.core.partitioning.AbstractConvexHyperplaneBoundedRegionTest

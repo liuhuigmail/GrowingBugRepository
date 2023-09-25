@@ -1,7 +1,0 @@
-org.apache.tika.fork.ForkParserTest
-org.apache.tika.parser.CompositeParserTest
-org.apache.tika.parser.ParserDecoratorTest
-org.apache.tika.parser.multiple.MultipleParserTest
-org.apache.tika.sax.BodyContentHandlerTest
-org.apache.tika.sax.RichTextContentHandlerTest
-org.apache.tika.sax.XHTMLContentHandlerTest

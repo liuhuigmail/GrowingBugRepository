@@ -1,9 +1,0 @@
-org.apache.commons.collections4.CollectionUtils
-org.apache.commons.collections4.Get
-org.apache.commons.collections4.IterableGet
-org.apache.commons.collections4.IterableMap
-org.apache.commons.collections4.map.AbstractIterableMap
-org.apache.commons.collections4.map.CompositeMap
-org.apache.commons.collections4.MapIterator
-org.apache.commons.collections4.Put
-org.apache.commons.collections4.Transformer

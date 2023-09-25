@@ -1,3 +1,0 @@
-org.apache.tika.TikaTest
-org.apache.tika.detect.TextDetectorTest
-org.apache.tika.mime.MimeTypesReaderTest
