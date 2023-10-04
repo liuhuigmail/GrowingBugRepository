@@ -346,6 +346,12 @@ By simply loading the image with Docker, you can make the system ready for evalu
 ## Versions
 Because the bug repository keeps growing, let us known if you need a stable version for your study (e.g., evalutions for a research paper), and we will release a specific version where the bugs and patches are fixed (to faciliate the replication of your study).  
 
+# State of the art APR tools' performance on growingBugs(v6.0)
+|   | APR tools      | generated patches       |   correct patches            |success ratio  | 
+|-----------------|-----------------|----------------------------|-------------:|-------------------|
+| 1     | Recoder            | 145      |    34         |       3.38%          |
+| 2     | TBar               | 121      |    19         |       1.89%          |
+
 # Copyright
 Notably, this bug repository is based on the well-known **Defects4J** https://github.com/rjust/defects4j. We reuse its source code as well as the bugs in **Defects4J**. The key difference is that **growingBugs** levearages **BugBuilder**[1] to exclude bug-irrelevarange changes from bug-fixing commmits automatically whereas **Defects4J** requests human experts to accomplish the same task. Consequently, **growingBugs** can keep growing automatically even ***without human intervention***.  
 
