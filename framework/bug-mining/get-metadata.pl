@@ -343,6 +343,9 @@ sub _export_relevant_tests {
         if ($test =~ /\.less/){
             next;
         }
+        if ($test =~ /\.gif/){
+            next;
+        }
         
         if ($test =~ /\.java\.bak/){
             next;
