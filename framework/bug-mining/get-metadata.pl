@@ -173,8 +173,8 @@ foreach my $bid (@bids) {
 
     printf ("%4d: $project->{prog_name}\n", $bid);
 
-    # Checkout to version 2
-    $project->checkout_vid("${bid}f", $TMP_DIR, 1,$SUBPROJ) or die;
+    # Checkout to version 2 
+    $project->checkout_vid("${bid}f", "$TMP_DIR", 1,$SUBPROJ) or die;
 
     # Compile sources and tests
     $project->compile() or die;
@@ -344,6 +344,9 @@ sub _export_relevant_tests {
             next;
         }
         if ($test =~ /\.gif/){
+            next;
+        }
+        if ($test =~ /\.conf/){
             next;
         }
         

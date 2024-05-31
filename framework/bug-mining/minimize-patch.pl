@@ -152,7 +152,6 @@ my $bbcmd = "java -jar $LIB_DIR/Bug_Builder.jar $TMP_DIR/$PID-${BID}b/$SUB_PROJE
 #my $exec_status=Utils::exec_cmd($bbcmd, "Running BugBuilder to minimize patch   ") ;
 print("$bbcmd \n");
 system($bbcmd); 
-die;
 if (! -e "$outputPath"){
 	 system("rm -rf $TMP_DIR");
          die "Failed to generate the patch!";

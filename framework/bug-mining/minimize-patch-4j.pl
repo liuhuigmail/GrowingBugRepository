@@ -125,14 +125,14 @@ my $CHECKOUT_DIR = "$TMP_DIR/$PID-${BID}f";
 
 # Set up project
 my $project = Project::create_project($PID);
-$project->{prog_root} = $CHECKOUT_DIR;
-
+$project->{prog_root} = "$CHECKOUT_DIR/$SUB_PROJECT";
+ 
 while (1) {
     # Remove temporary checkout directory create a new one
     system("rm -rf $CHECKOUT_DIR && mkdir -p $CHECKOUT_DIR");
 
     my $src_path = $project->src_dir("${BID}f");
-    $project->checkout_vid("${BID}f", $CHECKOUT_DIR, 1,$SUB_PROJECT);
+    $project->checkout_vid("${BID}f", "$TMP_DIR/$PID-${BID}f", 1,$SUB_PROJECT);
     $project->apply_patch($CHECKOUT_DIR, "$PATCH_DIR/$src_patch") or die "Cannot apply patch";
 
     # Copy the non-minimized patch
@@ -207,11 +207,11 @@ while (1) {
     system("cat $local_trigger_tests > $trigger_tests");
 
     # Store minimized patch
-    Utils::exec_cmd("cd $CHECKOUT_DIR; git diff $orig $min -- $src_path $src_path > $PATCH_DIR/$src_patch",
+    Utils::exec_cmd("cd $CHECKOUT_DIR/$SUB_PROJECT; git diff $orig $min -- $src_path $src_path > $PATCH_DIR/$src_patch",
             "Export minimized patch") or die "Cannot export patch";
 
     # Re-run get-metadata script as metadata might have changed
-    if (!Utils::exec_cmd("./get-metadata.pl -p $PID -w $WORK_DIR -b $BID", "Re-running get-metadata script as metadata might have changed")) {
+    if (!Utils::exec_cmd("./get-metadata.pl -p $PID -w $WORK_DIR -b $BID -s $SUB_PROJECT", "Re-running get-metadata script as metadata might have changed")) {
         Utils::exec_cmd("cp $TMP_DIR/$src_patch $PATCH_DIR", "Restore original patch")
                 or die "Cannot restore patch";
     }
