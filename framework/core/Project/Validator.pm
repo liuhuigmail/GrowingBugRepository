@@ -100,11 +100,9 @@ sub _post_checkout {
 
     my $project_dir = "$PROJECTS_DIR/$self->{pid}";
     # Check whether ant build file exists
-    unless (-e "$work_dir/build.xml") {
-        my $build_files_dir = "$PROJECTS_DIR/$PID/build_files/$rev_id";
-        if (-d "$build_files_dir") {
-            Utils::exec_cmd("cp $build_files_dir/* $work_dir", "Copy generated Ant build file") or die;
-        }
+    my $build_files_dir = "$PROJECTS_DIR/$PID/build_files/$rev_id";
+    if (-d "$build_files_dir") {
+       Utils::exec_cmd("cp -r $build_files_dir/* $work_dir", "Copy generated Ant build file") or die;
     }
 
      if (-e "$work_dir/build.xml"){
