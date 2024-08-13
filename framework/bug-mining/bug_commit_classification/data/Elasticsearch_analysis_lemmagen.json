@@ -1,0 +1,1 @@
+{"number": ["9e4627296d425b5dd9ca75a367bfc8943ac5505e"], "father_version": ["1c6579d4af61afd0a304a3c29fa498b882878378"], "commit": ["Renamed IndexMetaData to IndexMetadata to fix tests after https://github.com/elastic/elasticsearch/pull/54519"], "metric": [["0", "0", "0", "0", "1", "2", "2", "2", "0", "0", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "0", "0"]]}

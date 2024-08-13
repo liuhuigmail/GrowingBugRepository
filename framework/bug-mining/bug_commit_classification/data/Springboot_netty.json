@@ -1,0 +1,1 @@
+{"number": ["e727e69196b0b6fb4116afa9fa60bf1ca655c325"], "father_version": ["eb191b647559c92dea0189e936e5209afe6cec2d"], "commit": ["fix the problem of nettyclient cannot inject the HeartbeatHandler"], "metric": [["1", "2", "7", "1", "0", "0", "0", "0", "2", "2", "6", "2", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0"]]}
