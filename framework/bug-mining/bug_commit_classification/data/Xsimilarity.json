@@ -1,0 +1,1 @@
+{"number": ["2330e1f92fe0f99dcbc4043d4d2805f849c77b3c"], "father_version": ["c56ea005159342942ed22018762ffa0f6c6f95d3"], "commit": ["fix a bug on array iterator in SemanticSimilarity, thanks to Chen Wen"], "metric": [["1", "1", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "1", "0", "0", "1"]]}
