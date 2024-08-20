@@ -61,6 +61,34 @@ def load_all_data():
     print('[Data Size]', len(Y))
     return Y, Y_Parent,X_NL, X_FEAT
 
+def cross_validation_split(labels, sentences, features, k=10):
+    n = len(labels)
+    label_folds, sentence_folds, feature_folds = [], [], []
+    fold_size = (n-1) // k + 1
+    while labels!=[]:
+        label_folds.append(labels[:fold_size])
+        labels = labels[fold_size:]
+        sentence_folds.append(sentences[:fold_size])
+        sentences = sentences[fold_size:]
+        feature_folds.append(features[:fold_size])
+        features = features[fold_size:]
+    print('[Fold Size]', [len(fold) for fold in label_folds])
+    return label_folds, sentence_folds, feature_folds
+
+def load_cross_validation_split(use_filtered):
+    if use_filtered==True:
+        #fname = "../data/v4_10-folds_filtered.json" # This is the old version split
+        assert False, "NOT support!"
+    else:
+        #fname = "../data/v4_10-folds.json"
+        fname = "../data/v5_10-folds.json"
+    with open(fname, "r") as f:
+        d = json.load(f)
+        labels_folds = d["label"]
+        commits_folds = d["commit"]
+        metrics_folds = d["metric"]
+        return labels_folds, commits_folds, metrics_folds
+
 if __name__=="__main__":
 
     #input arguments
