@@ -285,6 +285,8 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
  - SVN >= 1.8
  - Perl >= 5.0.12
  - Curl
+
+Note that only `Ubuntu 18` and later are supported.
  
 ## Steps to set up GrowingBugs
 1. Clone GrowingBugs:
@@ -295,7 +297,7 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
     Download the project repositories and external libraries that are not included in the git repository for size purposes and to avoid redundancies. We provide a mechanism to download them automatically as follows:
     
     - `cd GrowingBugRepository`
-    - `cpanm --installdeps .`
+    - `sudo cpanm --installdeps .`
     - `./init.sh`
     - `./repos.sh`
     

@@ -270,7 +270,9 @@ sub _copy {
     }
     print "\t... copying $src -> $dst\n";
     $dst =~ m[^(.*)/.*$];
-    system ("mkdir -p $1") == 0 or die "could not mkdir dest $1: $!";
+    if (!-e $1) {
+	      system ("mkdir -p $1") == 0 or die "could not mkdir dest $1: $!";
+    }
     if (-e $src) {
         system("cp -R $src $dst") == 0 or die "could not copy $src: $!";
         print "\t... OK\n";
