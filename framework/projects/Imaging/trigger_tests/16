@@ -1,8 +1,8 @@
 --- org.apache.commons.imaging.formats.jpeg.specific.JpegImageParserTest::testGetBufferedImage10
 org.apache.commons.imaging.ImageReadException: 4 components are invalid or unsupported
-	at org.apache.commons.imaging.formats.jpeg.decoder.JpegDecoder.visitSOS(JpegDecoder.java:131)
+	at org.apache.commons.imaging.formats.jpeg.decoder.JpegDecoder.visitSOS(JpegDecoder.java:132)
 	at org.apache.commons.imaging.formats.jpeg.JpegUtils.traverseJFIF(JpegUtils.java:77)
-	at org.apache.commons.imaging.formats.jpeg.decoder.JpegDecoder.decode(JpegDecoder.java:532)
+	at org.apache.commons.imaging.formats.jpeg.decoder.JpegDecoder.decode(JpegDecoder.java:533)
 	at org.apache.commons.imaging.formats.jpeg.JpegImageParser.getBufferedImage(JpegImageParser.java:103)
 	at org.apache.commons.imaging.formats.jpeg.specific.JpegImageParserTest.testGetBufferedImage10(JpegImageParserTest.java:46)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -22,7 +22,7 @@ org.apache.commons.imaging.ImageReadException: 4 components are invalid or unsup
 	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
 	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at org.apache.tools.ant.taskdefs.optional.junit.JUnit4TestMethodAdapter.run(JUnit4TestMethodAdapter.java:109)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1484)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:872)

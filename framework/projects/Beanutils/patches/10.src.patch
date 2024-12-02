@@ -1,0 +1,17 @@
+diff --git a/src/java/org/apache/commons/beanutils/PropertyUtilsBean.java b/src/java/org/apache/commons/beanutils/PropertyUtilsBean.java
+index 68af3bd8..0f2f0dec 100644
+--- a/src/java/org/apache/commons/beanutils/PropertyUtilsBean.java
++++ b/src/java/org/apache/commons/beanutils/PropertyUtilsBean.java
+@@ -2169,11 +2169,7 @@ public class PropertyUtilsBean {
+                     if (i>0) {
+                         valueString += ", " ;
+                     }
+-                    if (values[i] == null) {
+-                        valueString += "<null>";
+-                    } else {
+-                        valueString += (values[i]).getClass().getName();
+-                    }
++                    valueString += (values[i]).getClass().getName();
+                 }
+             }
+             String expectedString = "";

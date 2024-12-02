@@ -1,0 +1,4 @@
+org.apache.commons.dbcp2.cpdsadapter.TestDriverAdapterCPDS
+org.apache.commons.dbcp2.TesterConnection
+org.apache.commons.dbcp2.TesterDatabaseMetaData
+org.apache.commons.dbcp2.TesterDriver

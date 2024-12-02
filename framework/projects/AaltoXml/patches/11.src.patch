@@ -1,0 +1,12 @@
+diff --git a/src/main/java/com/fasterxml/aalto/async/AsyncByteScanner.java b/src/main/java/com/fasterxml/aalto/async/AsyncByteScanner.java
+index 64b3b63..47b6294 100644
+--- a/src/main/java/com/fasterxml/aalto/async/AsyncByteScanner.java
++++ b/src/main/java/com/fasterxml/aalto/async/AsyncByteScanner.java
+@@ -633,7 +633,6 @@ public abstract class AsyncByteScanner
+             c == 0xA ||                     //<LF>
+             c == 0xD ||                     //<CR>
+             c == 0x20 ||                    //<SPACE>
+-            (c >= '0' && c <= '9') ||       //[0-9]
+             (c >= '@' && c <= 'Z') ||       //@[A-Z]
+             (c >= 'a' && c <= 'z') ||
+             c == '!' ||

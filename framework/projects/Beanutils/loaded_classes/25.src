@@ -1,0 +1,7 @@
+org.apache.commons.beanutils.ConversionException
+org.apache.commons.beanutils.Converter
+org.apache.commons.beanutils.ConvertUtils
+org.apache.commons.beanutils.locale.BaseLocaleConverter
+org.apache.commons.beanutils.locale.converters.DecimalLocaleConverter
+org.apache.commons.beanutils.locale.converters.IntegerLocaleConverter
+org.apache.commons.beanutils.locale.LocaleConverter

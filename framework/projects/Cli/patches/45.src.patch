@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/cli/DefaultParser.java b/src/main/java/org/apache/commons/cli/DefaultParser.java
+index fe0f92c..40af67a 100644
+--- a/src/main/java/org/apache/commons/cli/DefaultParser.java
++++ b/src/main/java/org/apache/commons/cli/DefaultParser.java
+@@ -228,9 +228,6 @@ public class DefaultParser implements CommandLineParser {
+      */
+     private void checkRequiredArgs() throws ParseException {
+         if (currentOption != null && currentOption.requiresArg()) {
+-            if (isJavaProperty(currentOption.getKey()) && currentOption.getValuesList().size() == 1) {
+-                return;
+-            }
+             throw new MissingArgumentException(currentOption);
+         }
+     }

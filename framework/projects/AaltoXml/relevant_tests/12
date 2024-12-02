@@ -1,0 +1,5 @@
+com.fasterxml.aalto.sax.TestSaxWriter
+wstream.TestIndentation
+wstream.TestLongerContent
+wstream.TestNameEncoding
+wstream.WriteRawTest

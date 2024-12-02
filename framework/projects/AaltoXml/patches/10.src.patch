@@ -1,0 +1,481 @@
+diff --git a/src/main/java/com/fasterxml/aalto/in/InputBootstrapper.java b/src/main/java/com/fasterxml/aalto/in/InputBootstrapper.java
+index 9a1c019..e420de3 100644
+--- a/src/main/java/com/fasterxml/aalto/in/InputBootstrapper.java
++++ b/src/main/java/com/fasterxml/aalto/in/InputBootstrapper.java
+@@ -21,6 +21,7 @@ import javax.xml.stream.Location;
+ import javax.xml.stream.XMLStreamException;
+ 
+ import com.fasterxml.aalto.WFCException;
++import com.fasterxml.aalto.impl.IoStreamException;
+ import com.fasterxml.aalto.util.XmlConsts;
+ 
+ /**
+diff --git a/src/main/java/com/fasterxml/aalto/out/AsciiXmlWriter.java b/src/main/java/com/fasterxml/aalto/out/AsciiXmlWriter.java
+index e797b2a..f10ccce 100644
+--- a/src/main/java/com/fasterxml/aalto/out/AsciiXmlWriter.java
++++ b/src/main/java/com/fasterxml/aalto/out/AsciiXmlWriter.java
+@@ -52,8 +52,8 @@ public final class AsciiXmlWriter
+         if (_out == null || len == 0) {
+             return;
+         }
+-        if (_surrogate != 0) {
+-            outputSurrogates(_surrogate, cbuf[offset]);
++        if (mSurrogate != 0) {
++            outputSurrogates(mSurrogate, cbuf[offset]);
+             ++offset;
+             --len;
+         }
+diff --git a/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java b/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java
+index 25fdf94..1697dc7 100644
+--- a/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java
++++ b/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java
+@@ -123,7 +123,16 @@ public abstract class ByteXmlWriter
+      * some of the methods, possibly depending on encoding),
+      * the first part is temporarily stored within this member variable.
+      */
+-    protected int _surrogate = 0;
++    protected int mSurrogate = 0;
++
++    /**
++     * Temporary copy buffer, in which character content from Strings
++     * can be copied to first (since {@link String#getChars} can be
++     * drastically faster than {@link String#charAt}!), to be converted
++     */
++    protected char[] mCopyBuffer;
++
++    protected final int mCopyBufferLen;
+ 
+     /*
+     ////////////////////////////////////////////////
+@@ -134,7 +143,7 @@ public abstract class ByteXmlWriter
+     /**
+      * Validation tables used for verifying validity (and need for quoting)
+      */
+-    final protected XmlCharTypes _charTypes;
++    final protected XmlCharTypes mCharTypes;
+ 
+     /*
+     ////////////////////////////////////////////////
+@@ -148,8 +157,10 @@ public abstract class ByteXmlWriter
+         _out = out;
+         _outputBuffer = cfg.allocFullBBuffer(DEFAULT_FULL_BUFFER_SIZE);
+         _outputBufferLen = _outputBuffer.length;
++        mCopyBuffer = cfg.allocFullCBuffer(DEFAULT_COPY_BUFFER_SIZE);
++        mCopyBufferLen = mCopyBuffer.length;
+         _outputPtr = 0;
+-        _charTypes = charTypes;
++        mCharTypes = charTypes;
+     }
+ 
+     @Override
+@@ -299,9 +310,9 @@ public abstract class ByteXmlWriter
+             _config.freeFullBBuffer(_outputBuffer);
+             _outputBuffer = null;
+         }
+-        if (_copyBuffer != null) {
+-            _config.freeFullCBuffer(_copyBuffer);
+-            _copyBuffer = null;
++        if (mCopyBuffer != null) {
++            _config.freeFullCBuffer(mCopyBuffer);
++            mCopyBuffer = null;
+         }
+     }
+ 
+@@ -336,7 +347,7 @@ public abstract class ByteXmlWriter
+         throws IOException, XMLStreamException
+     {
+         while (len > 0) {
+-            char[] buf = _copyBuffer;
++            char[] buf = mCopyBuffer;
+             final int blen = buf.length;
+             final int len2 = (len < blen) ? len : blen;
+             text.getChars(offset, offset+len2, buf, 0);
+@@ -364,7 +375,7 @@ public abstract class ByteXmlWriter
+     public final void writeStartTagStart(WName name)
+         throws IOException, XMLStreamException
+     {
+-        if (_surrogate != 0) {
++        if (mSurrogate != 0) {
+             throwUnpairedSurrogate();
+         }
+         int ptr = _outputPtr;
+@@ -383,7 +394,7 @@ public abstract class ByteXmlWriter
+         throws IOException, XMLStreamException
+     {
+         // inlined writeRaw(), gets called so often
+-        if (_surrogate != 0) {
++        if (mSurrogate != 0) {
+             throwUnpairedSurrogate();
+         }
+         if (_outputPtr >= _outputBufferLen) {
+@@ -411,7 +422,7 @@ public abstract class ByteXmlWriter
+     public final void writeEndTag(WName name)
+         throws IOException, XMLStreamException
+     {
+-        if (_surrogate != 0) {
++        if (mSurrogate != 0) {
+             throwUnpairedSurrogate();
+         }
+         int ptr = _outputPtr;
+@@ -449,11 +460,11 @@ public abstract class ByteXmlWriter
+     {
+         int vlen = value.length();
+         // Let's off-line rare case:
+-        if (vlen > _copyBufferLen) {
++        if (vlen > mCopyBufferLen) {
+             writeLongAttribute(name, value, vlen);
+             return;
+         }
+-        char[] cbuf = _copyBuffer;
++        char[] cbuf = mCopyBuffer;
+         if (vlen > 0) {
+             value.getChars(0, vlen, cbuf, 0);
+         }
+@@ -464,7 +475,7 @@ public abstract class ByteXmlWriter
+     public final void writeAttribute(WName name, char[] vbuf, int offset, int vlen)
+         throws IOException, XMLStreamException
+     {
+-        if (_surrogate != 0) {
++        if (mSurrogate != 0) {
+             throwUnpairedSurrogate();
+         }
+ 
+@@ -515,7 +526,7 @@ public abstract class ByteXmlWriter
+ 
+         main_loop:
+         while (offset < len) {
+-            final int[] charTypes = _charTypes.ATTR_CHARS;
++            final int[] charTypes = mCharTypes.ATTR_CHARS;
+ 
+             inner_loop:
+             while (true) {
+@@ -570,8 +581,8 @@ public abstract class ByteXmlWriter
+     protected final void writeAttrValue(char[] vbuf, int offset, int len)
+         throws IOException, XMLStreamException
+     {
+-        if (_surrogate != 0) {
+-            outputSurrogates(_surrogate, vbuf[offset]);
++        if (mSurrogate != 0) {
++            outputSurrogates(mSurrogate, vbuf[offset]);
+             ++offset;
+             --len;
+         }
+@@ -580,7 +591,7 @@ public abstract class ByteXmlWriter
+ 
+         main_loop:
+         while (offset < len) {
+-            final int[] charTypes = _charTypes.ATTR_CHARS;
++            final int[] charTypes = mCharTypes.ATTR_CHARS;
+ 
+             inner_loop:
+             while (true) {
+@@ -611,12 +622,12 @@ public abstract class ByteXmlWriter
+                     break;
+                 default:
+                     writeAsEntity(ch);
+-                    break;
+                 }
+             } else {
+                 offset = outputMultiByteChar(ch, vbuf, offset, len);
+-                continue main_loop;
+             }
++
++            _outputBuffer[_outputPtr++] = (byte) ch;
+         }
+     }
+ 
+@@ -638,7 +649,7 @@ public abstract class ByteXmlWriter
+         writeRaw(BYTE_EQ, BYTE_QUOT);
+         int offset = 0;
+         while (vlen > 0) {
+-            char[] buf = _copyBuffer;
++            char[] buf = mCopyBuffer;
+             final int blen = buf.length;
+             int len2 = (vlen < blen) ? vlen : blen;
+             value.getChars(offset, offset+len2, buf, 0);
+@@ -711,7 +722,7 @@ public abstract class ByteXmlWriter
+     private final void writeAttrNameEqQ(WName name)
+         throws IOException, XMLStreamException
+     {
+-        if (_surrogate != 0) {
++        if (mSurrogate != 0) {
+             throwUnpairedSurrogate();
+         }
+         // Enough room for ' attr="' part?
+@@ -755,7 +766,7 @@ public abstract class ByteXmlWriter
+         int len = data.length();
+         int offset = 0;
+         while (len > 0) {
+-            char[] buf = _copyBuffer;
++            char[] buf = mCopyBuffer;
+             int blen = buf.length;
+ 
+             // Can write all the rest?
+@@ -800,7 +811,7 @@ public abstract class ByteXmlWriter
+ 
+         main_loop:
+         while (offset < len) {
+-            final int[] charTypes = _charTypes.OTHER_CHARS;
++            final int[] charTypes = mCharTypes.OTHER_CHARS;
+ 
+             inner_loop:
+             while (true) {
+@@ -874,12 +885,12 @@ public abstract class ByteXmlWriter
+         final int len = text.length();
+ 
+         // Not so common case, let's offline:
+-        if (len > _copyBufferLen) {
++        if (len > mCopyBufferLen) {
+             longWriteCharacters(text);
+             return;
+         }
+         if (len > 0) {
+-            char[] buf = _copyBuffer;
++            char[] buf = mCopyBuffer;
+             text.getChars(0, len, buf, 0);
+             writeCharacters(buf, 0, len);
+         }
+@@ -890,7 +901,7 @@ public abstract class ByteXmlWriter
+     {
+         int offset = 0;
+         int len = text.length();
+-        char[] buf = _copyBuffer;
++        char[] buf = mCopyBuffer;
+ 
+         do {
+             final int blen = buf.length;
+@@ -906,8 +917,8 @@ public abstract class ByteXmlWriter
+     public final void writeCharacters(char[] cbuf, int offset, int len)
+         throws IOException, XMLStreamException
+     {
+-        if (_surrogate != 0) {
+-            outputSurrogates(_surrogate, cbuf[offset]);
++        if (mSurrogate != 0) {
++            outputSurrogates(mSurrogate, cbuf[offset]);
+             ++offset;
+             --len;
+         }
+@@ -925,7 +936,7 @@ public abstract class ByteXmlWriter
+ 
+         main_loop:
+         while (offset < len) {
+-            final int[] charTypes = _charTypes.TEXT_CHARS;
++            final int[] charTypes = mCharTypes.TEXT_CHARS;
+ 
+             inner_loop:
+             while (true) {
+@@ -1022,7 +1033,7 @@ public abstract class ByteXmlWriter
+ 
+         main_loop:
+         while (offset < len) {
+-            final int[] charTypes = _charTypes.TEXT_CHARS;
++            final int[] charTypes = mCharTypes.TEXT_CHARS;
+ 
+             inner_loop:
+             while (true) {
+@@ -1070,7 +1081,7 @@ public abstract class ByteXmlWriter
+                 case CT_MULTIBYTE_2: // 3, 4 and N can never occur
+                     // To off-line or not?
+                     output2ByteChar(ch);
+-                    continue main_loop;
++                    break;
+                 case CT_RBRACKET: // may need to quote as well...
+                     // Let's not quote if known not to be followed by '>'
+                     if (offset >= len || cbuf[offset] == '>') {
+@@ -1103,7 +1114,7 @@ public abstract class ByteXmlWriter
+     public void writeTypedValue(AsciiValueEncoder enc)
+         throws IOException, XMLStreamException
+     {
+-        if (_surrogate != 0) {
++        if (mSurrogate != 0) {
+             throwUnpairedSurrogate();
+         }
+         int free = _outputBufferLen - _outputPtr;
+@@ -1168,7 +1179,7 @@ public abstract class ByteXmlWriter
+         int len = data.length();
+         int offset = 0;
+         while (len > 0) {
+-            char[] buf = _copyBuffer;
++            char[] buf = mCopyBuffer;
+             final int blen = buf.length;
+             int len2 = (len < blen) ? len : blen;
+             // Nope, can only do part
+@@ -1201,7 +1212,7 @@ public abstract class ByteXmlWriter
+ 
+         main_loop:
+         while (offset < len) {
+-            final int[] charTypes = _charTypes.OTHER_CHARS;
++            final int[] charTypes = mCharTypes.OTHER_CHARS;
+ 
+             inner_loop:
+             while (true) {
+@@ -1290,7 +1301,7 @@ public abstract class ByteXmlWriter
+ 
+         main_loop:
+         while (offset < len) {
+-            final int[] charTypes = _charTypes.OTHER_CHARS;
++            final int[] charTypes = mCharTypes.OTHER_CHARS;
+ 
+             inner_loop:
+             while (true) {
+@@ -1368,7 +1379,7 @@ public abstract class ByteXmlWriter
+             int len = data.length();
+             int offset = 0;
+             while (len > 0) {
+-                char[] buf = _copyBuffer;
++                char[] buf = mCopyBuffer;
+                 int blen = buf.length;
+ 
+                 // Can write all the rest?
+@@ -1397,7 +1408,7 @@ public abstract class ByteXmlWriter
+         int offset = 0;
+ 
+         while (len > 0) {
+-            char[] buf = _copyBuffer;
++            char[] buf = mCopyBuffer;
+             final int blen = buf.length;
+             int len2 = (len < blen) ? len : blen;
+             data.getChars(offset, offset+len2, buf, 0);
+@@ -1414,8 +1425,8 @@ public abstract class ByteXmlWriter
+         if (_out == null) {
+             return;
+         }
+-        if (_surrogate != 0) { // can this actually happen?
+-            reportNwfContent(ErrorConsts.WERR_SPACE_CONTENT, (int)_surrogate, offset-1);
++        if (mSurrogate != 0) { // can this actually happen?
++            reportNwfContent(ErrorConsts.WERR_SPACE_CONTENT, (int)mSurrogate, offset-1);
+         }
+ 
+         len += offset; // now marks the end
+@@ -1498,7 +1509,7 @@ public abstract class ByteXmlWriter
+     protected final void writeRaw(byte b)
+         throws IOException
+     {
+-        if (_surrogate != 0) {
++        if (mSurrogate != 0) {
+             throwUnpairedSurrogate();
+         }
+         if (_outputPtr >= _outputBufferLen) {
+@@ -1510,7 +1521,7 @@ public abstract class ByteXmlWriter
+     protected final void writeRaw(byte b1, byte b2)
+         throws IOException
+     {
+-        if (_surrogate != 0) {
++        if (mSurrogate != 0) {
+             throwUnpairedSurrogate();
+         }
+         if ((_outputPtr + 1) >= _outputBufferLen) {
+@@ -1529,7 +1540,7 @@ public abstract class ByteXmlWriter
+     protected final void writeRaw(byte[] buf, int offset, int len)
+         throws IOException
+     {
+-        if (_surrogate != 0) {
++        if (mSurrogate != 0) {
+             throwUnpairedSurrogate();
+         }
+ 
+@@ -1563,8 +1574,8 @@ public abstract class ByteXmlWriter
+     protected final void throwUnpairedSurrogate()
+         throws IOException
+     {
+-        int surr = _surrogate;
+-        _surrogate = 0;
++        int surr = mSurrogate;
++        mSurrogate = 0;
+         throwUnpairedSurrogate(surr);
+     }
+ 
+diff --git a/src/main/java/com/fasterxml/aalto/out/Latin1XmlWriter.java b/src/main/java/com/fasterxml/aalto/out/Latin1XmlWriter.java
+index 972e891..72a4bea 100644
+--- a/src/main/java/com/fasterxml/aalto/out/Latin1XmlWriter.java
++++ b/src/main/java/com/fasterxml/aalto/out/Latin1XmlWriter.java
+@@ -55,8 +55,8 @@ public final class Latin1XmlWriter
+         if (_out == null || len == 0) {
+             return;
+         }
+-        if (_surrogate != 0) {
+-            outputSurrogates(_surrogate, cbuf[offset]);
++        if (mSurrogate != 0) {
++            outputSurrogates(mSurrogate, cbuf[offset]);
+             ++offset;
+             --len;
+         }
+diff --git a/src/main/java/com/fasterxml/aalto/out/SingleByteXmlWriter.java b/src/main/java/com/fasterxml/aalto/out/SingleByteXmlWriter.java
+index 331ca08..ebc0402 100644
+--- a/src/main/java/com/fasterxml/aalto/out/SingleByteXmlWriter.java
++++ b/src/main/java/com/fasterxml/aalto/out/SingleByteXmlWriter.java
+@@ -83,7 +83,7 @@ public abstract class SingleByteXmlWriter
+             if (ch <= SURR2_LAST) { // yes, outside of BMP
+                 // Do we have second part?
+                 if (inputOffset >= inputLen) { // nope... have to note down
+-                    _surrogate = ch;
++                    mSurrogate = ch;
+                 } else {
+                     int ch2 = cbuf[inputOffset++];
+                     outputSurrogates(ch, ch2);
+diff --git a/src/main/java/com/fasterxml/aalto/out/Utf8XmlWriter.java b/src/main/java/com/fasterxml/aalto/out/Utf8XmlWriter.java
+index 5cffa6a..c116e96 100644
+--- a/src/main/java/com/fasterxml/aalto/out/Utf8XmlWriter.java
++++ b/src/main/java/com/fasterxml/aalto/out/Utf8XmlWriter.java
+@@ -54,8 +54,8 @@ public final class Utf8XmlWriter
+         if (_out == null || len == 0) {
+             return;
+         }
+-        if (_surrogate != 0) {
+-            outputSurrogates(_surrogate, cbuf[offset]);
++        if (mSurrogate != 0) {
++            outputSurrogates(mSurrogate, cbuf[offset]);
+             ++offset;
+             --len;
+         }
+@@ -169,7 +169,7 @@ public final class Utf8XmlWriter
+             if (ch <= SURR2_LAST) { // yes, outside of BMP
+                 // Do we have second part?
+                 if (inputOffset >= inputLen) { // nope... have to note down
+-                    _surrogate = ch;
++                    mSurrogate = ch;
+                 } else {
+                     outputSurrogates(ch, cbuf[inputOffset]);
+                     ++inputOffset;
+@@ -199,7 +199,7 @@ public final class Utf8XmlWriter
+             if (ch <= SURR2_LAST) { // yes, outside of BMP
+                 // Do we have second part?
+                 if (inputOffset >= inputLen) { // nope... have to note down
+-                    _surrogate = ch;
++                    mSurrogate = ch;
+                 } else {
+                     outputSurrogates(ch, cbuf[inputOffset]);
+                     ++inputOffset;
+diff --git a/src/main/java/com/fasterxml/aalto/out/XmlWriter.java b/src/main/java/com/fasterxml/aalto/out/XmlWriter.java
+index f0db548..bfd4b12 100644
+--- a/src/main/java/com/fasterxml/aalto/out/XmlWriter.java
++++ b/src/main/java/com/fasterxml/aalto/out/XmlWriter.java
+@@ -64,15 +64,13 @@ public abstract class XmlWriter
+      */
+     protected char[] _copyBuffer;
+ 
+-    protected final int _copyBufferLen;
+-    
+     /**
+      * Indicates whether output is to be compliant; if false, is to be
+      * xml 1.0 compliant, if true, xml 1.1 compliant.
+      */
+     protected boolean _xml11 = false;
+ 
+-    protected final boolean _cfgNsAware;
++    protected final boolean mCfgNsAware;
+ 
+     /*
+     /**********************************************************************
+@@ -113,9 +111,8 @@ public abstract class XmlWriter
+     {
+         _config = cfg;
+         _copyBuffer = cfg.allocMediumCBuffer(DEFAULT_COPYBUFFER_LEN);
+-        _copyBufferLen = _copyBuffer.length;
+-        
+-        _cfgNsAware = cfg.isNamespaceAware();
++
++        mCfgNsAware = cfg.isNamespaceAware();
+         mCheckContent = cfg.willCheckContent();
+         mCheckNames = cfg.willCheckNames();
+     }

@@ -1,0 +1,116 @@
+diff --git a/src/test/java/org/apache/commons/scxml/SCXMLExecutorTest.java b/src/test/java/org/apache/commons/scxml/SCXMLExecutorTest.java
+index 1353602d..1ee52d54 100644
+--- a/src/test/java/org/apache/commons/scxml/SCXMLExecutorTest.java
++++ b/src/test/java/org/apache/commons/scxml/SCXMLExecutorTest.java
+@@ -46,7 +46,7 @@ public class SCXMLExecutorTest extends TestCase {
+ 
+     // Test data
+     private URL microwave01jsp, microwave02jsp, microwave01jexl,
+-        microwave02jexl, transitions01, transitions02, send02;
++        microwave02jexl, transitions01, send02;
+     private SCXMLExecutor exec;
+ 
+     /**
+@@ -63,8 +63,6 @@ public class SCXMLExecutorTest extends TestCase {
+             getResource("org/apache/commons/scxml/env/jexl/microwave-02.xml");
+         transitions01 = this.getClass().getClassLoader().
+             getResource("org/apache/commons/scxml/transitions-01.xml");
+-        transitions02 = this.getClass().getClassLoader().
+-            getResource("org/apache/commons/scxml/transitions-02.xml");
+         send02 = this.getClass().getClassLoader().
+             getResource("org/apache/commons/scxml/send-02.xml");
+     }
+@@ -74,7 +72,7 @@ public class SCXMLExecutorTest extends TestCase {
+      */
+     public void tearDown() {
+         microwave01jsp = microwave02jsp = microwave01jexl = microwave02jexl =
+-            transitions01 = transitions02 = send02 = null;
++            transitions01 = send02 = null;
+     }
+ 
+     /**
+@@ -125,27 +123,6 @@ public class SCXMLExecutorTest extends TestCase {
+         }
+     }
+ 
+-    public void testSCXMLExecutorTransitions02Sample() {
+-        exec = SCXMLTestHelper.getExecutor(transitions02);
+-        assertNotNull(exec);
+-        try {
+-            Set currentStates = SCXMLTestHelper.fireEvent(exec, "ten.stay");
+-            assertEquals(1, currentStates.size());
+-            assertEquals("ten", ((State)currentStates.iterator().
+-                next()).getId());
+-            currentStates = SCXMLTestHelper.fireEvent(exec, "ten.self");
+-            assertEquals(1, currentStates.size());
+-            assertEquals("ten", ((State)currentStates.iterator().
+-                next()).getId());
+-            currentStates = SCXMLTestHelper.fireEvent(exec, "ten.done");
+-            assertEquals(1, currentStates.size());
+-            assertEquals("twenty", ((State)currentStates.iterator().
+-                next()).getId());
+-        } catch (Exception e) {
+-            fail(e.getMessage());
+-        }
+-    }
+-
+     public void testSendTargettypeSCXMLSample() {
+         exec = SCXMLTestHelper.getExecutor(send02);
+         assertNotNull(exec);
+diff --git a/src/test/java/org/apache/commons/scxml/transitions-02.xml b/src/test/java/org/apache/commons/scxml/transitions-02.xml
+deleted file mode 100644
+index 89a07151..00000000
+--- a/src/test/java/org/apache/commons/scxml/transitions-02.xml
++++ /dev/null
+@@ -1,51 +0,0 @@
+-<?xml version="1.0"?>
+-<!--
+-   Copyright 2006 The Apache Software Foundation
+-
+-   Licensed under the Apache License, Version 2.0 (the "License");
+-   you may not use this file except in compliance with the License.
+-   You may obtain a copy of the License at
+-
+-       http://www.apache.org/licenses/LICENSE-2.0
+-
+-   Unless required by applicable law or agreed to in writing, software
+-   distributed under the License is distributed on an "AS IS" BASIS,
+-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+-   See the License for the specific language governing permissions and
+-   limitations under the License.
+--->
+-<scxml xmlns="http://www.w3.org/2005/07/SCXML"
+-       version="1.0"
+-       initialstate="ten">
+-
+-    <state id="ten">
+-
+-        <onentry>
+-            <var name="foo" expr="1" />
+-            <log expr="'Foo is:' + foo" />
+-        </onentry>
+-
+-        <!-- stay transition -->
+-        <transition event="ten.stay">
+-            <assign name="foo" expr="foo + 1" />
+-            <log expr="'Foo is:' + foo" />
+-        </transition>
+-
+-        <!-- self transition -->
+-        <transition event="ten.self" target="ten">
+-            <assign name="foo" expr="foo + 1" />
+-            <log expr="'Foo is:' + foo" />
+-        </transition>
+-
+-        <!-- "regular" transition -->
+-        <transition event="ten.done" target="twenty">
+-            <assign name="foo" expr="foo + 1" />
+-            <log expr="'Foo is:' + foo" />
+-        </transition>
+-
+-    </state>
+-
+-    <state id="twenty" final="true" />
+-
+-</scxml>
+-

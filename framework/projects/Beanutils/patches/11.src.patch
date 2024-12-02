@@ -1,0 +1,45 @@
+diff --git a/src/java/org/apache/commons/beanutils/LazyDynaList.java b/src/java/org/apache/commons/beanutils/LazyDynaList.java
+index 2174b5f9..13901510 100644
+--- a/src/java/org/apache/commons/beanutils/LazyDynaList.java
++++ b/src/java/org/apache/commons/beanutils/LazyDynaList.java
+@@ -503,8 +503,7 @@ public class LazyDynaList extends ArrayList {
+             throw new IllegalArgumentException("Element Type is missing");
+         }
+ 
+-        boolean changeType = (this.elementType != null && !this.elementType.equals(elementType));
+-        if (changeType && size() > 0) {
++        if (size() > 0) {
+             throw new IllegalStateException("Element Type cannot be reset");
+         }
+ 
+@@ -635,17 +634,18 @@ public class LazyDynaList extends ArrayList {
+             }
+ 
+             // Get DynaClass (restore WrapDynaClass lost in serialization)
+-            if (getDynaClass() == null) {
++            DynaClass dynaClass = (elementDynaClass == null) ? wrapDynaClass : elementDynaClass;
++            if (dynaClass == null) {
+                 setElementType(elementType);
+             }
+                          
+             // Create a new DynaBean            
+             try {
+-                dynaBean = getDynaClass().newInstance();
++                dynaBean = dynaClass.newInstance();
+                 newDynaBeanType = dynaBean.getClass();
+             } catch (Exception e) {
+                 throw new IllegalArgumentException("Error creating DynaBean: " 
+-                              + getDynaClass().getClass().getName() 
++                              + dynaClass.getClass().getName() 
+                               + " - " + e);
+             }
+ 
+@@ -675,7 +675,7 @@ public class LazyDynaList extends ArrayList {
+ 
+         // Check the new element type, matches all the 
+         // other elements in the List
+-        if (elementType != null && !newElementType.equals(elementType)) {
++        if (newElementType != elementType) {
+             throw new IllegalArgumentException("Element Type "  + newElementType 
+                        + " doesn't match other elements " + elementType);
+         }

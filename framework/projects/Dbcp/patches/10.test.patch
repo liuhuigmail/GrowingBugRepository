@@ -1,0 +1,51 @@
+diff --git a/src/test/java/org/apache/commons/dbcp2/datasources/TestCPDSConnectionFactory.java b/src/test/java/org/apache/commons/dbcp2/datasources/TestCPDSConnectionFactory.java
+index fefdba7f..c7e1b26d 100644
+--- a/src/test/java/org/apache/commons/dbcp2/datasources/TestCPDSConnectionFactory.java
++++ b/src/test/java/org/apache/commons/dbcp2/datasources/TestCPDSConnectionFactory.java
+@@ -143,20 +143,5 @@ public class TestCPDSConnectionFactory {
+         factory.getPool().clear();
+         assertEquals(0, pool.getNumIdle());
+     }
+-    
+-    /**
+-     * JIRA: DBCP-442
+-     */
+-    @Test
+-    public void testNullValidationQuery() throws Exception {
+-        CPDSConnectionFactory factory =
+-                new CPDSConnectionFactory(cpds, null, -1, false, "username", "password");
+-        GenericObjectPool<PooledConnectionAndInfo> pool = new GenericObjectPool<>(factory);
+-        factory.setPool(pool);
+-        pool.setTestOnBorrow(true);
+-        PooledConnection pcon = pool.borrowObject().getPooledConnection();
+-        Connection con = pcon.getConnection();
+-        con.close();
+-    }
+ 
+ }
+diff --git a/src/test/java/org/apache/commons/dbcp2/datasources/TestKeyedCPDSConnectionFactory.java b/src/test/java/org/apache/commons/dbcp2/datasources/TestKeyedCPDSConnectionFactory.java
+index 9d49e5bd..68139dcc 100644
+--- a/src/test/java/org/apache/commons/dbcp2/datasources/TestKeyedCPDSConnectionFactory.java
++++ b/src/test/java/org/apache/commons/dbcp2/datasources/TestKeyedCPDSConnectionFactory.java
+@@ -151,20 +151,5 @@ public class TestKeyedCPDSConnectionFactory {
+         factory.getPool().clear();
+         assertEquals(0, pool.getNumIdle(key));
+     }
+-    
+-    /**
+-     * JIRA: DBCP-442
+-     */
+-    @Test
+-    public void testNullValidationQuery() throws Exception {
+-        UserPassKey key = new UserPassKey("username", "password");
+-        KeyedCPDSConnectionFactory factory =
+-                new KeyedCPDSConnectionFactory(cpds, null, -1, false);
+-        GenericKeyedObjectPool<UserPassKey, PooledConnectionAndInfo> pool = new GenericKeyedObjectPool<>(factory);
+-        factory.setPool(pool);
+-        pool.setTestOnBorrow(true);
+-        PooledConnection pcon = pool.borrowObject(key).getPooledConnection();
+-        Connection con = pcon.getConnection();
+-        con.close();
+-    }
++
+ }

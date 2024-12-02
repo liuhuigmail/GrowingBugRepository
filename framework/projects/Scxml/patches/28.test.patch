@@ -1,0 +1,113 @@
+diff --git a/src/test/java/org/apache/commons/scxml/env/jexl/eventdata-03.xml b/src/test/java/org/apache/commons/scxml/env/jexl/eventdata-03.xml
+index c62c4c24..ad1e1232 100644
+--- a/src/test/java/org/apache/commons/scxml/env/jexl/eventdata-03.xml
++++ b/src/test/java/org/apache/commons/scxml/env/jexl/eventdata-03.xml
+@@ -37,7 +37,7 @@
+         <onentry>
+             <cs:var name="one" expr="Data(rootdata,'root/one')"/>
+             <cs:var name="two" expr="Data(rootdata,'root/two')"/>
+-            <send event="'event.bar'" namelist="one two"/>
++            <send event="event.bar" namelist="one two"/>
+         </onentry>
+         <transition event="event.bar"
+             cond="_eventdatamap['event.bar'].one + _eventdatamap['event.bar'].two eq 3"
+diff --git a/src/test/java/org/apache/commons/scxml/env/jexl/eventdata-04.xml b/src/test/java/org/apache/commons/scxml/env/jexl/eventdata-04.xml
+index 541d2e9a..c2876d7d 100644
+--- a/src/test/java/org/apache/commons/scxml/env/jexl/eventdata-04.xml
++++ b/src/test/java/org/apache/commons/scxml/env/jexl/eventdata-04.xml
+@@ -28,7 +28,7 @@
+            </datamodel>
+ 
+            <onentry>
+-               <send event="'event.bar'" namelist="one two" delay="'100ms'"/>
++               <send event="event.bar" namelist="one two" delay="'100ms'"/>
+            </onentry>
+            <transition event="event.bar">
+                <log label="'simulatedUser'" expr="_eventdatamap['event.bar'].one + ', ' + _eventdatamap['event.bar'].two"/>
+diff --git a/src/test/java/org/apache/commons/scxml/env/jexl/wizard-02.xml b/src/test/java/org/apache/commons/scxml/env/jexl/wizard-02.xml
+index 76e83765..4fcc8b12 100644
+--- a/src/test/java/org/apache/commons/scxml/env/jexl/wizard-02.xml
++++ b/src/test/java/org/apache/commons/scxml/env/jexl/wizard-02.xml
+@@ -25,7 +25,7 @@
+                       default to be chosen as "scxml".
+                       This will cause the first transition
+                       to state2 to be immediately followed. -->
+-                 <send event="'event2'" />
++                 <send event="event2" />
+            </onentry>
+            <transition event="event2" target="state2"/>
+            <transition event="event3" target="state3"/>
+diff --git a/src/test/java/org/apache/commons/scxml/invoke/invoked-02.xml b/src/test/java/org/apache/commons/scxml/invoke/invoked-02.xml
+index b1b471aa..31868bd1 100644
+--- a/src/test/java/org/apache/commons/scxml/invoke/invoked-02.xml
++++ b/src/test/java/org/apache/commons/scxml/invoke/invoked-02.xml
+@@ -21,7 +21,7 @@
+ 
+     <state id="state1">
+         <onentry>
+-            <send event="'invoked.next'" />
++            <send event="invoked.next" />
+         </onentry>
+         <transition event="invoked.next" target="state2" />
+     </state>
+diff --git a/src/test/java/org/apache/commons/scxml/send-02.xml b/src/test/java/org/apache/commons/scxml/send-02.xml
+index e9fcdd60..adca5f8b 100644
+--- a/src/test/java/org/apache/commons/scxml/send-02.xml
++++ b/src/test/java/org/apache/commons/scxml/send-02.xml
+@@ -25,49 +25,49 @@
+          the state "seventy", then hop over and end up in "ninety" -->
+     <state id="ten">
+         <onentry>
+-            <send event="'ten.' + 'done'" />
++            <send event="ten.done" />
+         </onentry>
+         <transition event="ten.done" target="twenty" />
+     </state>
+ 
+     <state id="twenty">
+         <onentry>
+-            <send event="'twenty.done'" targettype="'scxml'" />
++            <send event="twenty.done" targettype="'scxml'" />
+         </onentry>
+         <transition event="twenty.done" target="thirty" />
+     </state>
+ 
+     <state id="thirty">
+         <onentry>
+-            <send event="'thirty.done'" targettype="' sCxML  '" />
++            <send event="thirty.done" targettype="' sCxML  '" />
+         </onentry>
+         <transition event="thirty.done" target="forty" />
+     </state>
+ 
+     <state id="forty">
+         <onentry>
+-            <send event="'forty.done'" targettype=" " target=" " />
++            <send event="forty.done" targettype=" " target=" " />
+         </onentry>
+         <transition event="forty.done" target="fifty" />
+     </state>
+ 
+     <state id="fifty">
+         <onentry>
+-            <send event="'fifty.done'" target="'  '" />
++            <send event="fifty.done" target="'  '" />
+         </onentry>
+         <transition event="fifty.done" target="sixty" />
+     </state>
+ 
+     <state id="sixty">
+         <onentry>
+-            <send event="'sixty.done'" targettype="'scxml'" target=" " />
++            <send event="sixty.done" targettype="'scxml'" target=" " />
+         </onentry>
+         <transition event="sixty.done" target="seventy" />
+     </state>
+ 
+     <state id="seventy">
+         <onentry>
+-            <send event="'seventy.done'" targettype="'scxml'" target="'foo'" />
++            <send event="seventy.done" targettype="'scxml'" target="'foo'" />
+         </onentry>
+ 
+         <!-- This transition should not be followed since

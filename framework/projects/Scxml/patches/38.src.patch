@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/scxml2/io/SCXMLReader.java b/src/main/java/org/apache/commons/scxml2/io/SCXMLReader.java
+index 99fa5638..a82e67f4 100644
+--- a/src/main/java/org/apache/commons/scxml2/io/SCXMLReader.java
++++ b/src/main/java/org/apache/commons/scxml2/io/SCXMLReader.java
+@@ -1097,18 +1097,7 @@ public final class SCXMLReader {
+         final String expr = readAV(reader, ATTR_EXPR);
+         final String src = readAV(reader, ATTR_SRC);
+ 
+-        if (expr != null && src != null) {
+-          LogFactory.getLog(SCXMLReader.class).error(
+-              "Found src and expr attributes for data node '" + datum.getId() + "', which is not valid SCXML.");
+-          throw new ModelException();
+-        }
+-        if (expr != null) {
+-            datum.setExpr(expr);
+-        }
+-        if (src != null) {
+-          datum.setSrc(src);
+-        }
+-
++        datum.setExpr(readAV(reader, ATTR_EXPR));
+         readNamespaces(configuration, datum);
+         Node node = readNode(reader, configuration, XMLNS_SCXML, ELEM_DATA, new String[]{"id"});
+         datum.setNode(node);

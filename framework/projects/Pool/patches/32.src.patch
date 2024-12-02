@@ -1,0 +1,30 @@
+diff --git a/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java b/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
+index a17eeb98..1aeb29ae 100644
+--- a/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
++++ b/src/java/org/apache/commons/pool/impl/GenericKeyedObjectPool.java
+@@ -1298,9 +1298,7 @@ public class GenericKeyedObjectPool extends BaseKeyedObjectPool implements Keyed
+                         pool.queue.addLast(new ObjectTimestampPair(obj));
+                     }
+                     _totalIdle++;
+-                    if (decrementNumActive) {
+-                        pool.decrementActiveCount();
+-                    }
++                    pool.decrementActiveCount();
+                     notifyAll();
+                 }
+             }
+diff --git a/src/java/org/apache/commons/pool/impl/GenericObjectPool.java b/src/java/org/apache/commons/pool/impl/GenericObjectPool.java
+index 4c15a083..0d2a0fe5 100644
+--- a/src/java/org/apache/commons/pool/impl/GenericObjectPool.java
++++ b/src/java/org/apache/commons/pool/impl/GenericObjectPool.java
+@@ -1149,9 +1149,7 @@ public class GenericObjectPool extends BaseObjectPool implements ObjectPool {
+                     } else {
+                         _pool.addLast(new ObjectTimestampPair(obj));
+                     }
+-                    if (decrementNumActive) {
+-                        _numActive--;
+-                    }
++                    _numActive--;
+                     notifyAll();
+                 }
+             }

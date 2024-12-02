@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/scxml2/io/SCXMLReader.java b/src/main/java/org/apache/commons/scxml2/io/SCXMLReader.java
+index 3a6c8479..02de78fa 100644
+--- a/src/main/java/org/apache/commons/scxml2/io/SCXMLReader.java
++++ b/src/main/java/org/apache/commons/scxml2/io/SCXMLReader.java
+@@ -1883,19 +1883,9 @@ public final class SCXMLReader {
+      */
+     private static void readCancel(final XMLStreamReader reader, final Configuration configuration,
+                                    final Executable executable, final ActionsContainer parent)
+-            throws XMLStreamException, ModelException {
++            throws XMLStreamException {
+ 
+         Cancel cancel = new Cancel();
+-        cancel.setSendid(readAV(reader, ATTR_SENDID));
+-        String attrValue = readAV(reader, ATTR_SENDIDEXPR);
+-        if (attrValue != null) {
+-            if (cancel.getSendid() != null) {
+-                reportConflictingAttribute(reader, configuration, ELEM_CANCEL, ATTR_SENDID, ATTR_SENDIDEXPR);
+-            }
+-            else {
+-                cancel.setSendidexpr(attrValue);
+-            }
+-        }
+         readNamespaces(configuration, cancel);
+         cancel.setParent(executable);
+         if (parent != null) {

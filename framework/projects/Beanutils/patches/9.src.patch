@@ -1,0 +1,113 @@
+diff --git a/src/java/org/apache/commons/beanutils/PropertyUtilsBean.java b/src/java/org/apache/commons/beanutils/PropertyUtilsBean.java
+index b413bb56..6721622a 100644
+--- a/src/java/org/apache/commons/beanutils/PropertyUtilsBean.java
++++ b/src/java/org/apache/commons/beanutils/PropertyUtilsBean.java
+@@ -881,10 +881,19 @@ public class PropertyUtilsBean {
+         // Resolve nested references
+         while (resolver.hasNested(name)) {
+             String next = resolver.next(name);
+-            Object nestedBean = getProperty(bean, next);
++            Object nestedBean = null;
++            if (bean instanceof Map) {
++                nestedBean = getPropertyOfMapBean((Map)bean, next);
++            } else if (resolver.isMapped(next)) {
++                nestedBean = getMappedProperty(bean, next);
++            } else if (resolver.isIndexed(next)) {
++                nestedBean = getIndexedProperty(bean, next);
++            } else {
++                nestedBean = getSimpleProperty(bean, next);
++            }
+             if (nestedBean == null) {
+                 throw new NestedNullException
+-                        ("Null property value for '" + next +
++                        ("Null property value for '" + name +
+                         "' on bean class '" + bean.getClass() + "'");
+             }
+             bean = nestedBean;
+@@ -1167,22 +1176,6 @@ public class PropertyUtilsBean {
+                     bean.getClass() + "'");
+         }
+ 
+-        // Resolve nested references
+-        while (resolver.hasNested(name)) {
+-            String next = resolver.next(name);
+-            Object nestedBean = getProperty(bean, next);
+-            if (nestedBean == null) {
+-                throw new NestedNullException
+-                        ("Null property value for '" + next +
+-                        "' on bean class '" + bean.getClass() + "'");
+-            }
+-            bean = nestedBean;
+-            name = resolver.remove(name);
+-        }
+-
+-        // Remove any subscript from the final name value
+-        name = resolver.getProperty(name);
+-
+         // Special handling for DynaBeans
+         if (bean instanceof DynaBean) {
+             DynaProperty descriptor =
+@@ -1383,31 +1376,6 @@ public class PropertyUtilsBean {
+                     bean.getClass() + "'");
+         }
+ 
+-        // Resolve nested references
+-        while (resolver.hasNested(name)) {
+-            String next = resolver.next(name);
+-            Object nestedBean = null; 
+-            try {
+-                nestedBean = getProperty(bean, next);
+-            } catch (IllegalAccessException e) {
+-                return false;
+-            } catch (InvocationTargetException e) {
+-                return false;
+-            } catch (NoSuchMethodException e) {
+-                return false;
+-            }
+-            if (nestedBean == null) {
+-                throw new NestedNullException
+-                        ("Null property value for '" + next +
+-                        "' on bean class '" + bean.getClass() + "'");
+-            }
+-            bean = nestedBean;
+-            name = resolver.remove(name);
+-        }
+-
+-        // Remove any subscript from the final name value
+-        name = resolver.getProperty(name);
+-
+         // Treat WrapDynaBean as special case - may be a write-only property
+         // (see Jira issue# BEANUTILS-61)
+         if (bean instanceof WrapDynaBean) {
+@@ -1474,31 +1442,6 @@ public class PropertyUtilsBean {
+                     bean.getClass() + "'");
+         }
+ 
+-        // Resolve nested references
+-        while (resolver.hasNested(name)) {
+-            String next = resolver.next(name);
+-            Object nestedBean = null; 
+-            try {
+-                nestedBean = getProperty(bean, next);
+-            } catch (IllegalAccessException e) {
+-                return false;
+-            } catch (InvocationTargetException e) {
+-                return false;
+-            } catch (NoSuchMethodException e) {
+-                return false;
+-            }
+-            if (nestedBean == null) {
+-                throw new NestedNullException
+-                        ("Null property value for '" + next +
+-                        "' on bean class '" + bean.getClass() + "'");
+-            }
+-            bean = nestedBean;
+-            name = resolver.remove(name);
+-        }
+-
+-        // Remove any subscript from the final name value
+-        name = resolver.getProperty(name);
+-
+         // Treat WrapDynaBean as special case - may be a read-only property
+         // (see Jira issue# BEANUTILS-61)
+         if (bean instanceof WrapDynaBean) {

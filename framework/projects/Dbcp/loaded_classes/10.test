@@ -1,0 +1,6 @@
+org.apache.commons.dbcp2.datasources.ConnectionPoolDataSourceProxy
+org.apache.commons.dbcp2.datasources.PooledConnectionProxy
+org.apache.commons.dbcp2.datasources.TestCPDSConnectionFactory
+org.apache.commons.dbcp2.TesterConnection
+org.apache.commons.dbcp2.TesterDatabaseMetaData
+org.apache.commons.dbcp2.TesterDriver

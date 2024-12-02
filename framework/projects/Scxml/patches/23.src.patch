@@ -1,0 +1,33 @@
+diff --git a/src/main/java/org/apache/commons/scxml/Builtin.java b/src/main/java/org/apache/commons/scxml/Builtin.java
+index 0d7c7189..cc286fd9 100644
+--- a/src/main/java/org/apache/commons/scxml/Builtin.java
++++ b/src/main/java/org/apache/commons/scxml/Builtin.java
+@@ -122,7 +122,7 @@ public class Builtin implements Serializable {
+         } else {
+             if (length > 1) {
+                 Log log = LogFactory.getLog(Builtin.class);
+-                log.warn("Data(): Multiple nodes matching XPath expression \""
++                log.warn("Data(): Multiple nodes matching XPath expression"
+                     + path + "\", returning first");
+             }
+             return result.item(0);
+diff --git a/src/main/java/org/apache/commons/scxml/model/Assign.java b/src/main/java/org/apache/commons/scxml/model/Assign.java
+index e3ba0457..37c0b8ed 100644
+--- a/src/main/java/org/apache/commons/scxml/model/Assign.java
++++ b/src/main/java/org/apache/commons/scxml/model/Assign.java
+@@ -197,11 +197,10 @@ public class Assign extends Action implements PathResolverHolder {
+                         newNode = eval.evalLocation(ctx, expr);
+                     }
+                     // Remove all children
+-                    Node removeChild = oldNode.getFirstChild();
+-                    while (removeChild != null) {
+-                        Node nextChild = removeChild.getNextSibling();
+-                        oldNode.removeChild(removeChild);
+-                        removeChild = nextChild;
++                    for (Node child = oldNode.getFirstChild();
++                            child != null;
++                            child = child.getNextSibling()) {
++                        oldNode.removeChild(child);
+                     }
+                     if (newNode != null) {
+                         // Adopt new children

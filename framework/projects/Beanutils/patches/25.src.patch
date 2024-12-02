@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/apache/commons/beanutils/locale/BaseLocaleConverter.java b/src/main/java/org/apache/commons/beanutils/locale/BaseLocaleConverter.java
+index f34a74ea..f650efde 100644
+--- a/src/main/java/org/apache/commons/beanutils/locale/BaseLocaleConverter.java
++++ b/src/main/java/org/apache/commons/beanutils/locale/BaseLocaleConverter.java
+@@ -281,10 +281,6 @@ public abstract class BaseLocaleConverter implements LocaleConverter {
+             T temp = (T) result;
+             return temp;
+         }
+-
+-        if (result == null) {
+-            return null;
+-        }
+         if (type.isInstance(result)) {
+             return type.cast(result);
+         }

@@ -1,0 +1,71 @@
+diff --git a/src/main/java/org/apache/commons/scxml/env/AbstractStateMachine.java b/src/main/java/org/apache/commons/scxml/env/AbstractStateMachine.java
+index ab5d19fb..9dd960e1 100644
+--- a/src/main/java/org/apache/commons/scxml/env/AbstractStateMachine.java
++++ b/src/main/java/org/apache/commons/scxml/env/AbstractStateMachine.java
+@@ -67,7 +67,7 @@ public abstract class AbstractStateMachine {
+     /**
+      * The state machine that will drive the instances of this class.
+      */
+-    private SCXML stateMachine;
++    private static SCXML stateMachine;
+ 
+     /**
+      * The instance specific SCXML engine.
+@@ -118,7 +118,8 @@ public abstract class AbstractStateMachine {
+     public AbstractStateMachine(final URL scxmlDocument,
+             final Context rootCtx, final Evaluator evaluator) {
+         log = LogFactory.getLog(this.getClass());
+-        ErrorHandler errHandler = new SimpleErrorHandler();
++        if (stateMachine == null) { 
++            ErrorHandler errHandler = new SimpleErrorHandler();
+         try {
+             stateMachine = SCXMLDigester.digest(scxmlDocument,
+                 errHandler);
+@@ -129,7 +130,6 @@ public abstract class AbstractStateMachine {
+         } catch (ModelException me) {
+             logError(me);
+         }
+-        initialize(stateMachine, rootCtx, evaluator);
+     }
+ 
+     /**
+@@ -139,10 +139,7 @@ public abstract class AbstractStateMachine {
+      *                     describes the &quot;lifecycle&quot; of the
+      *                     instances of this class.
+      */
+-    public AbstractStateMachine(final SCXML stateMachine) {
+         // default is JEXL
+-        this(stateMachine, new JexlContext(), new JexlEvaluator());
+-    }
+ 
+     /**
+      * Primary constructor.
+@@ -156,10 +153,6 @@ public abstract class AbstractStateMachine {
+      * @see Context
+      * @see Evaluator
+      */
+-    public AbstractStateMachine(final SCXML stateMachine,
+-            final Context rootCtx, final Evaluator evaluator) {
+-        initialize(stateMachine, rootCtx, evaluator);
+-    }
+ 
+     /**
+      * Instantiate and initialize the underlying executor instance.
+@@ -168,8 +161,6 @@ public abstract class AbstractStateMachine {
+      * @param rootCtx The root context
+      * @param evaluator The expression evaluator
+      */
+-    private void initialize(final SCXML stateMachine,
+-            final Context rootCtx, final Evaluator evaluator) {
+         engine = new SCXMLExecutor(evaluator, new SimpleDispatcher(),
+             new SimpleErrorReporter());
+         engine.setStateMachine(stateMachine);
+@@ -208,7 +199,7 @@ public abstract class AbstractStateMachine {
+      * @deprecated Returns null, use getEngine().getStateMachine() instead
+      */
+     public static SCXML getStateMachine() {
+-        return null;
++        return stateMachine;
+     }
+ 
+     /**

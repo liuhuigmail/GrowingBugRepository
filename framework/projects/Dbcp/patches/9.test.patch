@@ -1,0 +1,20 @@
+diff --git a/src/test/java/org/apache/commons/dbcp2/TestBasicDataSourceFactory.java b/src/test/java/org/apache/commons/dbcp2/TestBasicDataSourceFactory.java
+index 2a474f0b..61c1e8d7 100644
+--- a/src/test/java/org/apache/commons/dbcp2/TestBasicDataSourceFactory.java
++++ b/src/test/java/org/apache/commons/dbcp2/TestBasicDataSourceFactory.java
+@@ -75,7 +75,6 @@ public class TestBasicDataSourceFactory {
+         properties.setProperty("removeAbandoned", "true");
+         properties.setProperty("removeAbandonedTimeout", "3000");
+         properties.setProperty("logAbandoned", "true");
+-        properties.setProperty("abandonedUsageTracking", "true");
+         properties.setProperty("poolPreparedStatements", "true");
+         properties.setProperty("maxOpenPreparedStatements", "10");
+         properties.setProperty("lifo", "true");
+@@ -115,7 +114,6 @@ public class TestBasicDataSourceFactory {
+         assertEquals(false, ds.getRemoveAbandonedOnMaintenance());
+         assertEquals(3000, ds.getRemoveAbandonedTimeout());
+         assertEquals(true, ds.getLogAbandoned());
+-        assertEquals(true, ds.getAbandonedUsageTracking());
+         assertEquals(true, ds.isPoolPreparedStatements());
+         assertEquals(10, ds.getMaxOpenPreparedStatements());
+         assertEquals(true, ds.getLifo());

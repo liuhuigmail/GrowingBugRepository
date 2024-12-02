@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java b/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
+index 4cdcf0b2..3a9a4398 100644
+--- a/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
++++ b/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
+@@ -555,6 +555,13 @@ public class SCXMLSerializer {
+         if (id != null) {
+             b.append(" id=\"").append(id).append("\"");
+         }
++        TransitionTarget pt = t.getParent();
++        if (pt != null) {
++            String pid = pt.getId();
++            if (pid != null) {
++                b.append(" parentid=\"").append(pid).append("\"");
++            }
++        }
+     }
+ 
+     /**

@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/dbcp2/PoolingDataSource.java b/src/main/java/org/apache/commons/dbcp2/PoolingDataSource.java
+index 173ce3d3..f90282ff 100644
+--- a/src/main/java/org/apache/commons/dbcp2/PoolingDataSource.java
++++ b/src/main/java/org/apache/commons/dbcp2/PoolingDataSource.java
+@@ -45,8 +45,6 @@ import org.apache.commons.pool2.impl.GenericObjectPool;
+  */
+ public class PoolingDataSource<C extends Connection> implements DataSource {
+ 
+-    private static final Log log = LogFactory.getLog(PoolingDataSource.class);
+-    
+     /** Controls access to the underlying connection */
+     private boolean accessToUnderlyingConnectionAllowed = false;
+ 
+@@ -56,18 +54,6 @@ public class PoolingDataSource<C extends Connection> implements DataSource {
+         }
+         _pool = pool;
+         // Verify that _pool's factory refers back to it.  If not, log a warning and try to fix.
+-        if (_pool instanceof GenericObjectPool<?>) {
+-            PoolableConnectionFactory pcf = (PoolableConnectionFactory) ((GenericObjectPool<?>) _pool).getFactory();
+-            if (pcf == null) {
+-                throw new NullPointerException("PoolableConnectionFactory must not be null.");
+-            }
+-            if (pcf.getPool() != _pool) {
+-                log.warn(Utils.getMessage("poolingDataSource.factoryConfig"));
+-                @SuppressWarnings("unchecked") // PCF must have a pool of PCs
+-                ObjectPool<PoolableConnection> p = (ObjectPool<PoolableConnection>) _pool;
+-                pcf.setPool(p);
+-            }
+-        }
+     }
+ 
+     /**

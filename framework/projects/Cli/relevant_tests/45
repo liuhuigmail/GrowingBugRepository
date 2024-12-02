@@ -1,0 +1,6 @@
+org.apache.commons.cli.CommandLineTest
+org.apache.commons.cli.DefaultParserTest
+org.apache.commons.cli.DisablePartialMatchingTest
+org.apache.commons.cli.bug.BugCLI252Test
+org.apache.commons.cli.bug.BugCLI265Test
+org.apache.commons.cli.bug.BugCLI312Test

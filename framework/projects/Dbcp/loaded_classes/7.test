@@ -1,0 +1,8 @@
+org.apache.commons.dbcp2.StackMessageLog
+org.apache.commons.dbcp2.TestBasicDataSourceFactory
+org.apache.commons.dbcp2.TesterConnection
+org.apache.commons.dbcp2.TesterDatabaseMetaData
+org.apache.commons.dbcp2.TesterDriver
+org.apache.commons.dbcp2.TesterPreparedStatement
+org.apache.commons.dbcp2.TesterResultSet
+org.apache.commons.dbcp2.TesterStatement

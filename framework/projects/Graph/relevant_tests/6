@@ -1,0 +1,7 @@
+org.apache.commons.graph.collections.FibonacciHeapTestCase
+org.apache.commons.graph.shortestpath.AStarTestCase
+org.apache.commons.graph.shortestpath.DijkstraTestCase
+org.apache.commons.graph.spanning.BoruvkaTestCase
+org.apache.commons.graph.spanning.KruskalTestCase
+org.apache.commons.graph.spanning.PrimTestCase
+org.apache.commons.graph.spanning.ReverseDeleteTestCase

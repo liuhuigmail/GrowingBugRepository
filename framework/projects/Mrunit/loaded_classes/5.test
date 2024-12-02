@@ -1,0 +1,2 @@
+org.apache.hadoop.mrunit.ExpectedSuppliedException
+org.apache.hadoop.mrunit.mapreduce.TestMapDriver

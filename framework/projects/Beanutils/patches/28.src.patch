@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/beanutils/FluentPropertyBeanIntrospector.java b/src/main/java/org/apache/commons/beanutils/FluentPropertyBeanIntrospector.java
+index 7ccbbd8a..7528484b 100644
+--- a/src/main/java/org/apache/commons/beanutils/FluentPropertyBeanIntrospector.java
++++ b/src/main/java/org/apache/commons/beanutils/FluentPropertyBeanIntrospector.java
+@@ -160,7 +160,8 @@ public class FluentPropertyBeanIntrospector implements BeanIntrospector {
+     private String propertyName(final Method m) {
+         final String methodName = m.getName().substring(
+                 getWriteMethodPrefix().length());
+-        return (methodName.length() > 1) ? Introspector.decapitalize(methodName) : methodName
++        return (methodName.length() > 1) ? Character.toLowerCase(methodName
++                .charAt(0)) + methodName.substring(1) : methodName
+                 .toLowerCase(Locale.ENGLISH);
+     }
+ 
+@@ -176,4 +177,4 @@ public class FluentPropertyBeanIntrospector implements BeanIntrospector {
+             final String propertyName) throws IntrospectionException {
+         return new PropertyDescriptor(propertyName(m), null, m);
+     }
+-}
+\ No newline at end of file
++}

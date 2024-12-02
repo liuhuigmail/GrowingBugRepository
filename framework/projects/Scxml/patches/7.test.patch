@@ -1,0 +1,241 @@
+diff --git a/src/test/java/org/apache/commons/scxml/custom-hello-world-04-el.xml b/src/test/java/org/apache/commons/scxml/custom-hello-world-04-el.xml
+deleted file mode 100644
+index a76b154f..00000000
+--- a/src/test/java/org/apache/commons/scxml/custom-hello-world-04-el.xml
++++ /dev/null
+@@ -1,43 +0,0 @@
+-<?xml version="1.0"?>
+-<!--
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+--->
+-<!-- Used for CustomActionTest.java in model package -->
+-<scxml xmlns="http://www.w3.org/2005/07/scxml"
+-       xmlns:my="http://my.custom-actions.domain/CUSTOM"
+-       version="1.0" initialstate="init">
+-    <datamodel>
+-        <data name="helloName1" />
+-    </datamodel>
+-
+-    <state id="init">        
+-        <onentry>
+-            <my:hello name="custom04" />
+-        </onentry>
+-
+-        <transition event="helloevent" target="middle1">
+-            <assign name="helloName1" expr="${_eventdatamap.helloevent}" />
+-        </transition>
+-    </state>
+-
+-    <state id="middle1">
+-        <transition target="custom" cond="${helloName1 eq 'custom04'}" />
+-    </state>
+-
+-    <state id="custom" final="true"/>
+-
+-</scxml>
+-
+diff --git a/src/test/java/org/apache/commons/scxml/custom-hello-world-04-jexl.xml b/src/test/java/org/apache/commons/scxml/custom-hello-world-04-jexl.xml
+deleted file mode 100644
+index a2e79306..00000000
+--- a/src/test/java/org/apache/commons/scxml/custom-hello-world-04-jexl.xml
++++ /dev/null
+@@ -1,61 +0,0 @@
+-<?xml version="1.0"?>
+-<!--
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+--->
+-<!-- Used for CustomActionTest.java in model package -->
+-<scxml xmlns="http://www.w3.org/2005/07/scxml"
+-       xmlns:my="http://my.custom-actions.domain/CUSTOM"
+-       version="1.0" initialstate="init">
+-    <datamodel>
+-        <data name="helloName1" />
+-    </datamodel>
+-
+-    <state id="init">        
+-        <onentry>
+-            <my:hello name="custom04a" />
+-        </onentry>
+-
+-        <transition event="helloevent" target="middle1">
+-            <assign name="helloName1" expr="_eventdatamap['helloevent']" />
+-        </transition>
+-    </state>
+-
+-    <state id="middle1">
+-        <transition target="custom1" cond="helloName1 eq 'custom04a'" />
+-    </state>
+-
+-    <state id="custom1">
+-        <transition event="custom.next" target="custom2"/>
+-    </state>
+-
+-    <state id="custom2">        
+-        <onentry>
+-            <my:hello name="custom04b" />
+-        </onentry>
+-
+-        <transition event="helloevent" target="custom3">
+-            <assign name="helloName1" expr="_eventdatamap.helloevent" />
+-        </transition>
+-    </state>
+-
+-    <state id="custom3">
+-        <transition target="end" cond="helloName1 eq 'custom04b'" />
+-    </state>
+-
+-    <state id="end" final="true"/>
+-
+-</scxml>
+-
+diff --git a/src/test/java/org/apache/commons/scxml/model/CustomActionTest.java b/src/test/java/org/apache/commons/scxml/model/CustomActionTest.java
+index 491e54cd..95fa02b2 100644
+--- a/src/test/java/org/apache/commons/scxml/model/CustomActionTest.java
++++ b/src/test/java/org/apache/commons/scxml/model/CustomActionTest.java
+@@ -26,7 +26,6 @@ import junit.framework.TestSuite;
+ 
+ import org.apache.commons.scxml.SCXMLExecutor;
+ import org.apache.commons.scxml.SCXMLTestHelper;
+-import org.apache.commons.scxml.env.jsp.ELEvaluator;
+ 
+ public class CustomActionTest extends TestCase {
+ 
+@@ -43,7 +42,7 @@ public class CustomActionTest extends TestCase {
+         junit.textui.TestRunner.main(testCaseName);
+     }
+ 
+-    private URL hello01, custom01, external01, override01, payload01, payload02;
++    private URL hello01, custom01, external01, override01;
+     private SCXMLExecutor exec;
+ 
+     /**
+@@ -58,17 +57,13 @@ public class CustomActionTest extends TestCase {
+             getResource("org/apache/commons/scxml/external-hello-world.xml");
+         override01 = this.getClass().getClassLoader().
+             getResource("org/apache/commons/scxml/custom-hello-world-03.xml");
+-        payload01 = this.getClass().getClassLoader().
+-            getResource("org/apache/commons/scxml/custom-hello-world-04-jexl.xml");
+-        payload02 = this.getClass().getClassLoader().
+-            getResource("org/apache/commons/scxml/custom-hello-world-04-el.xml");
+     }
+ 
+     /**
+      * Tear down instance variables required by this test case.
+      */
+     public void tearDown() {
+-        hello01 = custom01 = external01 = payload01 = payload02 = null;
++        hello01 = custom01 = external01 = null;
+         exec = null;
+     }
+ 
+@@ -217,60 +212,5 @@ public class CustomActionTest extends TestCase {
+         assertEquals(5, Hello.callbacks);
+     }
+ 
+-    // Hello World example using custom <my:hello> action that generates an
+-    // event which has the payload examined with JEXL expressions
+-    public void testCustomActionEventPayloadHelloWorldJexl() {
+-        // (1) Form a list of custom actions defined in the SCXML
+-        //     document (and any included documents via "src" attributes)
+-        CustomAction ca =
+-            new CustomAction("http://my.custom-actions.domain/CUSTOM",
+-                             "hello", Hello.class);
+-        List customActions = new ArrayList();
+-        customActions.add(ca);
+-        // (2) Parse the document with a custom digester.
+-        SCXML scxml = SCXMLTestHelper.digest(payload01, customActions);
+-        // (3) Get a SCXMLExecutor
+-        exec = SCXMLTestHelper.getExecutor(scxml);
+-        // (4) Single, final state
+-        assertEquals("Invalid intermediate state",
+-                     "custom1", ((State) exec.getCurrentStatus().getStates().
+-                                iterator().next()).getId());
+-        // (5) Verify datamodel variable is correct
+-        assertEquals("Missing helloName1 in root context", "custom04a",
+-                     (String) exec.getRootContext().get("helloName1"));
+-        // (6) Check use of payload in non-initial state
+-        SCXMLTestHelper.fireEvent(exec, "custom.next");
+-        // (7) Verify correct end state
+-        assertEquals("Missing helloName1 in root context", "custom04b",
+-                (String) exec.getRootContext().get("helloName1"));
+-        assertEquals("Invalid final state",
+-                "end", ((State) exec.getCurrentStatus().getStates().
+-                iterator().next()).getId());
+-        assertTrue(exec.getCurrentStatus().isFinal());
+-    }
+-
+-    // Hello World example using custom <my:hello> action that generates an
+-    // event which has the payload examined with EL expressions
+-    public void testCustomActionEventPayloadHelloWorldEL() {
+-        // (1) Form a list of custom actions defined in the SCXML
+-        //     document (and any included documents via "src" attributes)
+-        CustomAction ca =
+-            new CustomAction("http://my.custom-actions.domain/CUSTOM",
+-                             "hello", Hello.class);
+-        List customActions = new ArrayList();
+-        customActions.add(ca);
+-        // (2) Parse the document with a custom digester.
+-        SCXML scxml = SCXMLTestHelper.digest(payload02, customActions);
+-        // (3) Get a SCXMLExecutor
+-        exec = SCXMLTestHelper.getExecutor(new ELEvaluator(), scxml);
+-        // (4) Single, final state
+-        assertEquals("Invalid final state",
+-                     "custom", ((State) exec.getCurrentStatus().getStates().
+-                                iterator().next()).getId());
+-        // (5) Verify datamodel variable is correct
+-        assertEquals("Missing helloName1 in root context", "custom04",
+-                     (String) exec.getRootContext().get("helloName1"));
+-    }
+-
+ }
+ 
+diff --git a/src/test/java/org/apache/commons/scxml/model/Hello.java b/src/test/java/org/apache/commons/scxml/model/Hello.java
+index c64f64c6..6d868623 100644
+--- a/src/test/java/org/apache/commons/scxml/model/Hello.java
++++ b/src/test/java/org/apache/commons/scxml/model/Hello.java
+@@ -23,7 +23,7 @@ import org.apache.commons.scxml.ErrorReporter;
+ import org.apache.commons.scxml.EventDispatcher;
+ import org.apache.commons.scxml.SCInstance;
+ import org.apache.commons.scxml.SCXMLExpressionException;
+-import org.apache.commons.scxml.TriggerEvent;
++import org.apache.commons.scxml.model.Action;
+ 
+ /**
+  * Our custom &quot;hello world&quot; action.
+@@ -70,10 +70,6 @@ public class Hello extends Action {
+         if (appLog.isInfoEnabled()) {
+             appLog.info("Hello " + name);
+         }
+-        // For derived events payload testing
+-        TriggerEvent event =
+-            new TriggerEvent("helloevent", TriggerEvent.SIGNAL_EVENT, name);
+-        derivedEvents.add(event);
+         callbacks++;
+     }
+ }

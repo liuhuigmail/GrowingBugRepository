@@ -1,0 +1,4 @@
+org.apache.commons.scxml2.Context
+org.apache.commons.scxml2.env.javascript.JSBindings
+org.apache.commons.scxml2.env.javascript.JSContext
+org.apache.commons.scxml2.env.SimpleContext

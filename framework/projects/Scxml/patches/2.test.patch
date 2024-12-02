@@ -1,0 +1,97 @@
+diff --git a/src/test/java/org/apache/commons/scxml/env/jexl/wizard-02.xml b/src/test/java/org/apache/commons/scxml/env/jexl/wizard-02.xml
+index b6df4810..dc4573da 100644
+--- a/src/test/java/org/apache/commons/scxml/env/jexl/wizard-02.xml
++++ b/src/test/java/org/apache/commons/scxml/env/jexl/wizard-02.xml
+@@ -38,7 +38,7 @@
+                       EventDispatcher implementation. See
+                       testWizard02Sample() in WizardsTest
+                       (org.apache.commons.scxml test package) -->
+-                 <send namelist="aValue" targettype="'foo'" />
++                 <send namelist="aValue" targettype="foo" />
+            </onentry>
+            <transition event="event1" target="state1"/>
+            <transition event="event3" target="state3"/>
+@@ -47,7 +47,7 @@
+      <state id="state3">
+            <onentry>
+                  <var name="aValue" expr="3"/>
+-                 <send namelist="aValue" targettype="'foo'" />
++                 <send namelist="aValue" targettype="foo" />
+            </onentry>
+            <transition event="event1" target="state1"/>
+            <transition event="event2" target="state2"/>
+@@ -56,7 +56,7 @@
+      <state id="state4">
+            <onentry>
+                  <var name="aValue" expr="4"/>
+-                 <send namelist="aValue" targettype="'foo'" />
++                 <send namelist="aValue" targettype="foo" />
+            </onentry>
+            <transition event="event1" target="state1"/>
+            <transition event="event2" target="state2"/>
+diff --git a/src/test/java/org/apache/commons/scxml/send-01.xml b/src/test/java/org/apache/commons/scxml/send-01.xml
+index a66a8874..2b8689d2 100644
+--- a/src/test/java/org/apache/commons/scxml/send-01.xml
++++ b/src/test/java/org/apache/commons/scxml/send-01.xml
+@@ -22,7 +22,7 @@
+     <state id="ten">
+         <transition event="ten.done" target="twenty">
+             <send sendid="send1" delay="0"
+-             target="'http://localhost:8080/VXMLInterpreter'" targettype="'v3'"
++             target="http://localhost:8080/VXMLInterpreter" targettype="v3"
+              xmlns:v3="http://foo.bar.com/vxml3"
+              xmlns:test="http://my.test.namespace">
+                 <v3:form id="Confirm">
+diff --git a/src/test/java/org/apache/commons/scxml/send-02.xml b/src/test/java/org/apache/commons/scxml/send-02.xml
+index adca5f8b..29f2a79c 100644
+--- a/src/test/java/org/apache/commons/scxml/send-02.xml
++++ b/src/test/java/org/apache/commons/scxml/send-02.xml
+@@ -32,42 +32,42 @@
+ 
+     <state id="twenty">
+         <onentry>
+-            <send event="twenty.done" targettype="'scxml'" />
++            <send event="twenty.done" targettype="scxml" />
+         </onentry>
+         <transition event="twenty.done" target="thirty" />
+     </state>
+ 
+     <state id="thirty">
+         <onentry>
+-            <send event="thirty.done" targettype="' sCxML  '" />
++            <send event="thirty.done" targettype=" sCxML  " />
+         </onentry>
+         <transition event="thirty.done" target="forty" />
+     </state>
+ 
+     <state id="forty">
+         <onentry>
+-            <send event="forty.done" targettype=" " target=" " />
++            <send event="forty.done" target="" />
+         </onentry>
+         <transition event="forty.done" target="fifty" />
+     </state>
+ 
+     <state id="fifty">
+         <onentry>
+-            <send event="fifty.done" target="'  '" />
++            <send event="fifty.done" target="   " />
+         </onentry>
+         <transition event="fifty.done" target="sixty" />
+     </state>
+ 
+     <state id="sixty">
+         <onentry>
+-            <send event="sixty.done" targettype="'scxml'" target=" " />
++            <send event="sixty.done" targettype="scxml" target=" " />
+         </onentry>
+         <transition event="sixty.done" target="seventy" />
+     </state>
+ 
+     <state id="seventy">
+         <onentry>
+-            <send event="seventy.done" targettype="'scxml'" target="'foo'" />
++            <send event="seventy.done" targettype="scxml" target="foo" />
+         </onentry>
+ 
+         <!-- This transition should not be followed since

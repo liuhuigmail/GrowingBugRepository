@@ -1,0 +1,33 @@
+diff --git a/src/test/java/org/apache/commons/cli/AbstractParserTestCase.java b/src/test/java/org/apache/commons/cli/AbstractParserTestCase.java
+index 534939a..907e1f0 100644
+--- a/src/test/java/org/apache/commons/cli/AbstractParserTestCase.java
++++ b/src/test/java/org/apache/commons/cli/AbstractParserTestCase.java
+@@ -75,13 +75,12 @@ public abstract class AbstractParserTestCase {
+         assertEquals("bar", cl.getOptionValue("foo"));
+     }
+ 
+-    @Test
+     public void testAmbiguousLongWithoutEqualSingleDash2() throws Exception {
+         final String[] args = {"-b", "-foobar"};
+ 
+         final Options options = new Options();
+-        options.addOption(Option.builder().longOpt("foo").option("f").optionalArg(true).build());
+-        options.addOption(Option.builder().longOpt("bar").option("b").optionalArg(false).build());
++        options.addOption(Option.builder().option("f").longOpt("foo").optionalArg(true).build());
++        options.addOption(Option.builder().option("b").longOpt("bar").optionalArg(false).build());
+ 
+         final CommandLine cl = parser.parse(options, args);
+ 
+diff --git a/src/test/java/org/apache/commons/cli/OptionTest.java b/src/test/java/org/apache/commons/cli/OptionTest.java
+index 6650357..0ee4005 100644
+--- a/src/test/java/org/apache/commons/cli/OptionTest.java
++++ b/src/test/java/org/apache/commons/cli/OptionTest.java
+@@ -131,7 +131,7 @@ public class OptionTest {
+             String.class);
+         checkOption(Option.builder("a").desc("desc").optionalArg(false).build(), "a", "desc", null, Option.UNINITIALIZED, null, false, false, defaultSeparator,
+             String.class);
+-        checkOption(Option.builder("a").desc("desc").optionalArg(true).build(), "a", "desc", null, 1, null, false, true, defaultSeparator,
++        checkOption(Option.builder("a").desc("desc").optionalArg(true).build(), "a", "desc", null, Option.UNINITIALIZED, null, false, true, defaultSeparator,
+             String.class);
+         checkOption(Option.builder("a").desc("desc").valueSeparator(':').build(), "a", "desc", null, Option.UNINITIALIZED, null, false, false, ':',
+             String.class);

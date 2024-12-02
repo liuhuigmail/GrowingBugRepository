@@ -1,0 +1,15 @@
+org.apache.commons.scxml.io.SCXMLSerializer
+org.apache.commons.scxml.model.Action
+org.apache.commons.scxml.model.Else
+org.apache.commons.scxml.model.ElseIf
+org.apache.commons.scxml.model.Executable
+org.apache.commons.scxml.model.ExternalContent
+org.apache.commons.scxml.model.History
+org.apache.commons.scxml.model.Initial
+org.apache.commons.scxml.model.NamespacePrefixesHolder
+org.apache.commons.scxml.model.OnEntry
+org.apache.commons.scxml.model.OnExit
+org.apache.commons.scxml.model.Parallel
+org.apache.commons.scxml.model.SCXML
+org.apache.commons.scxml.model.State
+org.apache.commons.scxml.model.TransitionTarget

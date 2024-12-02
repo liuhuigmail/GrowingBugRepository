@@ -1,0 +1,2 @@
+org.apache.commons.dbcp2.datasources.TestCPDSConnectionFactory
+org.apache.commons.dbcp2.datasources.TestPerUserPoolDataSource

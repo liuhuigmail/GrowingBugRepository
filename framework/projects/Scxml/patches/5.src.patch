@@ -1,0 +1,43 @@
+diff --git a/src/main/java/org/apache/commons/scxml/SCXMLHelper.java b/src/main/java/org/apache/commons/scxml/SCXMLHelper.java
+index 77be3841..d93981d0 100644
+--- a/src/main/java/org/apache/commons/scxml/SCXMLHelper.java
++++ b/src/main/java/org/apache/commons/scxml/SCXMLHelper.java
+@@ -228,9 +228,6 @@ public final class SCXMLHelper {
+     public static Set getStatesExited(final Transition t,
+             final Set currentStates) {
+         Set allStates = new HashSet();
+-        if (t.getTargets().size() == 0) {
+-            return allStates;
+-        }
+         Path p = (Path) t.getPaths().get(0); // all paths have same upseg
+         //the easy part
+         allStates.addAll(p.getUpwardSegment());
+diff --git a/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java b/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
+index f2c84672..7c02e11e 100644
+--- a/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
++++ b/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
+@@ -426,6 +426,7 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+         if (step.getTransitList().size() > 1) {
+             // global transition precedence check
+             Object[] trans = step.getTransitList().toArray();
++            Set currentStates = step.getBeforeStatus().getStates();
+             // non-determinism candidates
+             Set nonDeterm = new LinkedHashSet();
+             for (int i = 0; i < trans.length; i++) {
+@@ -433,6 +434,8 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+                 TransitionTarget tsrc = t.getParent();
+                 for (int j = i + 1; j < trans.length; j++) {
+                     Transition t2 = (Transition) trans[j];
++                    boolean conflict = SCXMLHelper.inConflict(t, t2, currentStates);
++                    if (conflict) {
+                     TransitionTarget t2src = t2.getParent();
+                     if (SCXMLHelper.isDescendant(t2src, tsrc)) {
+                         //t2 takes precedence over t
+@@ -446,6 +449,7 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+                         nonDeterm.add(t);
+                         nonDeterm.add(t2);
+                     }
++                    }
+                 }
+             }
+             // check if all non-deterministic situations have been resolved

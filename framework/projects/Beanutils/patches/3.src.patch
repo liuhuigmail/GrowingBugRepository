@@ -1,0 +1,100 @@
+diff --git a/src/java/org/apache/commons/beanutils/JDBCDynaClass.java b/src/java/org/apache/commons/beanutils/JDBCDynaClass.java
+index dbd5eb80..984562ac 100644
+--- a/src/java/org/apache/commons/beanutils/JDBCDynaClass.java
++++ b/src/java/org/apache/commons/beanutils/JDBCDynaClass.java
+@@ -166,12 +166,6 @@ abstract class JDBCDynaClass implements DynaClass, Serializable {
+ 
+         String columnName = metadata.getColumnName(i);
+         String name = lowerCase ? columnName.toLowerCase() : columnName;
+-        if (!name.equals(columnName)) {
+-            if (columnNameXref == null) {
+-                columnNameXref = new HashMap();
+-            }
+-            columnNameXref.put(name, columnName);
+-        }
+         String className = null;
+         try {
+             className = metadata.getColumnClassName(i);
+@@ -223,33 +217,4 @@ abstract class JDBCDynaClass implements DynaClass, Serializable {
+ 
+     }
+ 
+-    /**
+-     * Get a column value from a {@link ResultSet} for the specified name.
+-     *
+-     * @param resultSet The result set
+-     * @param name The property name
+-     * @return The value
+-     * @throws SQLException if an error occurs
+-     */
+-    protected Object getObject(ResultSet resultSet, String name) throws SQLException {
+-
+-        String columnName = getColumnName(name);
+-        return resultSet.getObject(columnName);
+-    }
+-
+-    /**
+-     * Get the table column name for the specified property name.
+-     * 
+-     * @param name The property name
+-     * @return The column name (which can be different if the <i>lowerCase</i>
+-     * option is used).
+-     */
+-    protected String getColumnName(String name) {
+-        if (columnNameXref != null && columnNameXref.containsKey(name)) {
+-            return (String)columnNameXref.get(name);
+-        } else {
+-            return name;
+-        }
+-    }
+-
+ }
+diff --git a/src/java/org/apache/commons/beanutils/ResultSetDynaClass.java b/src/java/org/apache/commons/beanutils/ResultSetDynaClass.java
+index 558e458f..6d38d4f5 100644
+--- a/src/java/org/apache/commons/beanutils/ResultSetDynaClass.java
++++ b/src/java/org/apache/commons/beanutils/ResultSetDynaClass.java
+@@ -166,18 +166,6 @@ public class ResultSetDynaClass extends JDBCDynaClass implements DynaClass {
+     }
+ 
+ 
+-    /**
+-     * Get a value from the {@link ResultSet} for the specified
+-     * property name.
+-     *
+-     * @param name The property name
+-     * @return The value
+-     * @throws SQLException if an error occurs
+-     */
+-    public Object getObjectFromResultSet(String name) throws SQLException {
+-        return getObject(getResultSet(), name);
+-    }
+-
+     // -------------------------------------------------------- Package Methods
+ 
+ 
+diff --git a/src/java/org/apache/commons/beanutils/ResultSetIterator.java b/src/java/org/apache/commons/beanutils/ResultSetIterator.java
+index 5da570e1..c91bad2e 100644
+--- a/src/java/org/apache/commons/beanutils/ResultSetIterator.java
++++ b/src/java/org/apache/commons/beanutils/ResultSetIterator.java
+@@ -116,7 +116,7 @@ public class ResultSetIterator implements DynaBean, Iterator {
+             throw new IllegalArgumentException(name);
+         }
+         try {
+-            return dynaClass.getObjectFromResultSet(name);
++            return (dynaClass.getResultSet().getObject(name));
+         } catch (SQLException e) {
+             throw new RuntimeException
+                 ("get(" + name + "): SQLException: " + e);
+diff --git a/src/java/org/apache/commons/beanutils/RowSetDynaClass.java b/src/java/org/apache/commons/beanutils/RowSetDynaClass.java
+index 8ee3da9c..dc7ae2d4 100644
+--- a/src/java/org/apache/commons/beanutils/RowSetDynaClass.java
++++ b/src/java/org/apache/commons/beanutils/RowSetDynaClass.java
+@@ -229,7 +229,7 @@ public class RowSetDynaClass extends JDBCDynaClass implements DynaClass, Seriali
+             DynaBean bean = createDynaBean();
+             for (int i = 0; i < properties.length; i++) {
+                 String name = properties[i].getName();
+-                Object value = getObject(resultSet, name);
++                Object value = resultSet.getObject(name);
+                 if (value != null) {
+                     Class type = properties[i].getType();
+                     try {

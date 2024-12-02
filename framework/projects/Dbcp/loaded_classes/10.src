@@ -1,0 +1,13 @@
+org.apache.commons.dbcp2.AbandonedTrace
+org.apache.commons.dbcp2.cpdsadapter.ConnectionImpl
+org.apache.commons.dbcp2.cpdsadapter.DriverAdapterCPDS
+org.apache.commons.dbcp2.cpdsadapter.PooledConnectionImpl
+org.apache.commons.dbcp2.datasources.CPDSConnectionFactory
+org.apache.commons.dbcp2.datasources.PooledConnectionAndInfo
+org.apache.commons.dbcp2.datasources.PooledConnectionManager
+org.apache.commons.dbcp2.datasources.UserPassKey
+org.apache.commons.dbcp2.DelegatingCallableStatement
+org.apache.commons.dbcp2.DelegatingConnection
+org.apache.commons.dbcp2.DelegatingPreparedStatement
+org.apache.commons.dbcp2.DelegatingStatement
+org.apache.commons.dbcp2.Utils

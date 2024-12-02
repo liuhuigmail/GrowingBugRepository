@@ -1,0 +1,13 @@
+diff --git a/src/java/org/apache/commons/beanutils/BeanUtilsBean.java b/src/java/org/apache/commons/beanutils/BeanUtilsBean.java
+index a9ac122d..d83d4349 100644
+--- a/src/java/org/apache/commons/beanutils/BeanUtilsBean.java
++++ b/src/java/org/apache/commons/beanutils/BeanUtilsBean.java
+@@ -1000,7 +1000,7 @@ public class BeanUtilsBean {
+                 newValue = convert(value, type.getComponentType());
+             }
+         } else {                             // Value into scalar
+-            if (value instanceof String) {
++            if ((value instanceof String) || (value == null)) {
+                 newValue = getConvertUtils().convert((String) value, type);
+             } else if (value instanceof String[]) {
+                 newValue = getConvertUtils().convert(((String[]) value)[0],

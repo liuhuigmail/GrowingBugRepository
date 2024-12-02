@@ -1,0 +1,2 @@
+org.apache.commons.beanutils.locale.converters.BaseLocaleConverterTestCase
+org.apache.commons.beanutils.locale.converters.FloatLocaleConverterTestCase

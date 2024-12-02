@@ -1,0 +1,57 @@
+diff --git a/src/java/org/apache/commons/dbcp2/DelegatingDatabaseMetaData.java b/src/java/org/apache/commons/dbcp2/DelegatingDatabaseMetaData.java
+index 29048a02..966e481e 100644
+--- a/src/java/org/apache/commons/dbcp2/DelegatingDatabaseMetaData.java
++++ b/src/java/org/apache/commons/dbcp2/DelegatingDatabaseMetaData.java
+@@ -1287,13 +1287,7 @@ public class DelegatingDatabaseMetaData implements DatabaseMetaData {
+ 
+     @Override
+     public boolean isWrapperFor(Class<?> iface) throws SQLException {
+-        if (iface.isAssignableFrom(getClass())) {
+-            return true;
+-        } else if (iface.isAssignableFrom(_meta.getClass())) {
+-            return true;
+-        } else {
+-            return _meta.isWrapperFor(iface);
+-        }
++        return iface.isAssignableFrom(getClass()) || _meta.isWrapperFor(iface);
+     }
+ 
+     @Override
+diff --git a/src/java/org/apache/commons/dbcp2/DelegatingResultSet.java b/src/java/org/apache/commons/dbcp2/DelegatingResultSet.java
+index 7d44fa3c..8fbc4836 100644
+--- a/src/java/org/apache/commons/dbcp2/DelegatingResultSet.java
++++ b/src/java/org/apache/commons/dbcp2/DelegatingResultSet.java
+@@ -775,13 +775,7 @@ public class DelegatingResultSet extends AbandonedTrace implements ResultSet {
+ 
+     @Override
+     public boolean isWrapperFor(Class<?> iface) throws SQLException {
+-        if (iface.isAssignableFrom(getClass())) {
+-            return true;
+-        } else if (iface.isAssignableFrom(_res.getClass())) {
+-            return true;
+-        } else {
+-            return _res.isWrapperFor(iface);
+-        }
++        return iface.isAssignableFrom(getClass()) || _res.isWrapperFor(iface);
+     }
+ 
+     @Override
+diff --git a/src/java/org/apache/commons/dbcp2/DelegatingStatement.java b/src/java/org/apache/commons/dbcp2/DelegatingStatement.java
+index e9a91f4d..c8aaee7a 100644
+--- a/src/java/org/apache/commons/dbcp2/DelegatingStatement.java
++++ b/src/java/org/apache/commons/dbcp2/DelegatingStatement.java
+@@ -495,13 +495,7 @@ public class DelegatingStatement extends AbandonedTrace implements Statement {
+ 
+     @Override
+     public boolean isWrapperFor(Class<?> iface) throws SQLException {
+-        if (iface.isAssignableFrom(getClass())) {
+-            return true;
+-        } else if (iface.isAssignableFrom(_stmt.getClass())) {
+-            return true;
+-        } else {
+-            return _stmt.isWrapperFor(iface);
+-        }
++        return iface.isAssignableFrom(getClass()) || _stmt.isWrapperFor(iface);
+     }
+ 
+     @Override

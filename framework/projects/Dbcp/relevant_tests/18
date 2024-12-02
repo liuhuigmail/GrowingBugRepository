@@ -1,0 +1,12 @@
+org.apache.commons.dbcp2.TestAbandonedBasicDataSource
+org.apache.commons.dbcp2.TestBasicDataSource
+org.apache.commons.dbcp2.TestBasicDataSourceFactory
+org.apache.commons.dbcp2.TestDriverManagerConnectionFactory
+org.apache.commons.dbcp2.TestPStmtPooling
+org.apache.commons.dbcp2.TestPStmtPoolingBasicDataSource
+org.apache.commons.dbcp2.TestPoolingDataSource
+org.apache.commons.dbcp2.TestPoolingDriver
+org.apache.commons.dbcp2.managed.TestBasicManagedDataSource
+org.apache.commons.dbcp2.managed.TestDataSourceXAConnectionFactory
+org.apache.commons.dbcp2.managed.TestManagedDataSource
+org.apache.commons.dbcp2.managed.TestManagedDataSourceInTx

@@ -1,0 +1,5 @@
+org.apache.commons.beanutils.AbstractParent
+org.apache.commons.beanutils.AlphaBean
+org.apache.commons.beanutils.Child
+org.apache.commons.beanutils.MethodUtilsTestCase
+org.apache.commons.beanutils.TestBean

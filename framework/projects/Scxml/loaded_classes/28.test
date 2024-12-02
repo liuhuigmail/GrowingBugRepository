@@ -1,0 +1,4 @@
+org.apache.commons.scxml.EventDataTest
+org.apache.commons.scxml.SCXMLExecutorTest
+org.apache.commons.scxml.SCXMLTestHelper
+org.apache.commons.scxml.WizardsTest

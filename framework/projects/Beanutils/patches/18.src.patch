@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/beanutils/ConstructorUtils.java b/src/main/java/org/apache/commons/beanutils/ConstructorUtils.java
+index daca3c18..42f4e57e 100644
+--- a/src/main/java/org/apache/commons/beanutils/ConstructorUtils.java
++++ b/src/main/java/org/apache/commons/beanutils/ConstructorUtils.java
+@@ -82,9 +82,6 @@ public class ConstructorUtils {
+             InstantiationException {
+ 
+         Object[] args = { arg };
+-        if (arg == null) {
+-            args = null;
+-        }
+         return invokeConstructor(klass, args);
+     }
+ 

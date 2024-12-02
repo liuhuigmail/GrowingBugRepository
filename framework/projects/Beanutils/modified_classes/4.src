@@ -1,0 +1,2 @@
+org.apache.commons.beanutils.JDBCDynaClass
+org.apache.commons.beanutils.RowSetDynaClass

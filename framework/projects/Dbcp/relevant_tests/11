@@ -1,0 +1,4 @@
+org.apache.commons.dbcp2.cpdsadapter.TestDriverAdapterCPDS
+org.apache.commons.dbcp2.datasources.TestInstanceKeyDataSource
+org.apache.commons.dbcp2.datasources.TestKeyedCPDSConnectionFactory
+org.apache.commons.dbcp2.datasources.TestSharedPoolDataSource

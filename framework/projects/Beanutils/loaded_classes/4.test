@@ -1,0 +1,3 @@
+org.apache.commons.beanutils.DynaRowSetTestCase
+org.apache.commons.beanutils.TestResultSet
+org.apache.commons.beanutils.TestResultSetMetaData

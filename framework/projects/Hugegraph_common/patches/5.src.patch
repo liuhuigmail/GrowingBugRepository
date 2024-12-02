@@ -1,0 +1,11 @@
+diff --git a/hugegraph-common/src/main/java/com/baidu/hugegraph/version/CommonVersion.java b/hugegraph-common/src/main/java/com/baidu/hugegraph/version/CommonVersion.java
+index 32e2025..ac91e09 100644
+--- a/hugegraph-common/src/main/java/com/baidu/hugegraph/version/CommonVersion.java
++++ b/hugegraph-common/src/main/java/com/baidu/hugegraph/version/CommonVersion.java
+@@ -27,5 +27,5 @@ public class CommonVersion {
+ 
+     // The second parameter of Version.of() is for all-in-one JAR
+     public static final Version VERSION = Version.of(CommonVersion.class,
+-                                                     "2.0.1");
++                                                     "2.0.0");
+ }

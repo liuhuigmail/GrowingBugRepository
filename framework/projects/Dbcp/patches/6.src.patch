@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/dbcp2/DelegatingConnection.java b/src/main/java/org/apache/commons/dbcp2/DelegatingConnection.java
+index ac8320ed..270d5a56 100644
+--- a/src/main/java/org/apache/commons/dbcp2/DelegatingConnection.java
++++ b/src/main/java/org/apache/commons/dbcp2/DelegatingConnection.java
+@@ -593,7 +593,7 @@ public class DelegatingConnection<C extends Connection> extends AbandonedTrace
+ 
+     @Override
+     public boolean isClosed() throws SQLException {
+-        return _closed || _conn == null || _conn.isClosed();
++        return _closed || _conn.isClosed();
+     }
+ 
+     protected void checkOpen() throws SQLException {

@@ -4,3 +4,4 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 3,cb0c6b7e7c9316fe89217e40010958e30cd7cfc7,28443c5378e12745049f5cca70935a1d7c4e185a,SANDBOX-391,https://issues.apache.org/jira/browse/SANDBOX-391
 4,ce874f0ff693f336e33d11c95dcfbb3b1594344c,251fd46f717c74dce9297aaa16396af3a7135a33,unknown,unknown
 5,064c0ee082b887fe148d02ccaf3ec11c434115e7,cf696dc2366c9ba9595f27e48e9833f172988400,unknown,unknown
+6,832eb9bb0114e354bd910cef1ea2b5f6e0f63b1c,026e464e445eb655b3b745bddaba2d80c12c589b,SANDBOX-425,https://issues.apache.org/jira/browse/SANDBOX-425

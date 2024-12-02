@@ -1,0 +1,5 @@
+org.apache.commons.dbcp2.AbandonedTrace
+org.apache.commons.dbcp2.DelegatingCallableStatement
+org.apache.commons.dbcp2.DelegatingConnection
+org.apache.commons.dbcp2.DelegatingPreparedStatement
+org.apache.commons.dbcp2.DelegatingStatement

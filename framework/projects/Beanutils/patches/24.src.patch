@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/beanutils/PropertyUtilsBean.java b/src/main/java/org/apache/commons/beanutils/PropertyUtilsBean.java
+index 0b767306..bea501f6 100644
+--- a/src/main/java/org/apache/commons/beanutils/PropertyUtilsBean.java
++++ b/src/main/java/org/apache/commons/beanutils/PropertyUtilsBean.java
+@@ -1299,7 +1299,7 @@ public class PropertyUtilsBean {
+     Method getWriteMethod(Class<?> clazz, PropertyDescriptor descriptor) {
+         BeanIntrospectionData data = getIntrospectionData(clazz);
+         return (MethodUtils.getAccessibleMethod(clazz,
+-                data.getWriteMethod(clazz, descriptor)));
++                descriptor.getWriteMethod()));
+     }
+ 
+ 

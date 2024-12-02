@@ -1,0 +1,20 @@
+diff --git a/src/java/org/apache/commons/beanutils/locale/converters/DateLocaleConverter.java b/src/java/org/apache/commons/beanutils/locale/converters/DateLocaleConverter.java
+index 07583316..ede79730 100755
+--- a/src/java/org/apache/commons/beanutils/locale/converters/DateLocaleConverter.java
++++ b/src/java/org/apache/commons/beanutils/locale/converters/DateLocaleConverter.java
+@@ -273,14 +273,7 @@ public class DateLocaleConverter extends BaseLocaleConverter {
+         ParsePosition pos = new ParsePosition(0);
+         String strValue = value.toString();
+         Object parsedValue = formatter.parseObject(strValue, pos);
+-        if (pos.getErrorIndex() > -1) {
+-            throw new ConversionException("Error parsing date '" + value + "' at position="+ pos.getErrorIndex());
+-        }
+-        if (pos.getIndex() < strValue.length()) {
+-            throw new ConversionException("Date '" + value + "' contains unparsed characters from position=" + pos.getIndex());
+-        }
+-
+-        return parsedValue;
++         return formatter.parse((String) value);
+      }
+    
+      /**

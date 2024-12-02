@@ -1,0 +1,53 @@
+diff --git a/src/test/java/org/apache/commons/scxml/model/AssignTest.java b/src/test/java/org/apache/commons/scxml/model/AssignTest.java
+index 261d67b7..b60e10a8 100644
+--- a/src/test/java/org/apache/commons/scxml/model/AssignTest.java
++++ b/src/test/java/org/apache/commons/scxml/model/AssignTest.java
+@@ -69,7 +69,7 @@ public class AssignTest extends TestCase {
+     public void testAssignSrc() {
+         Set currentStates = exec.getCurrentStatus().getStates();
+         assertEquals(1, currentStates.size());
+-        assertEquals("assign3", ((State)currentStates.iterator().
++        assertEquals("assign2", ((State)currentStates.iterator().
+             next()).getId());
+         assertTrue(exec.getCurrentStatus().isFinal());
+     }
+diff --git a/src/test/java/org/apache/commons/scxml/model/assign-test.xml b/src/test/java/org/apache/commons/scxml/model/assign-test.xml
+index 2d1f983c..1fb0fb3a 100644
+--- a/src/test/java/org/apache/commons/scxml/model/assign-test.xml
++++ b/src/test/java/org/apache/commons/scxml/model/assign-test.xml
+@@ -17,7 +17,6 @@
+ -->
+ <!-- Test "src" attribute of assign element -->
+ <scxml xmlns="http://www.w3.org/2005/07/scxml"
+-       xmlns:rad="http://foo/bar"
+        version="1.0"
+        initialstate="assign1">
+   
+@@ -45,26 +44,6 @@
+ 
+   </state>
+ 
+-  <state id="assign2">
+-
+-    <datamodel>
+-      <data name="jira51data1">
+-          <rad:timeout>10</rad:timeout>
+-      </data> 
+-      <data name="jira51data2">
+-          <rad:short xmlns="">20</rad:short>
+-      </data>
+-    </datamodel>
+-
+-    <onentry>
+-        <assign location="Data(jira51data1,'rad:timeout')" expr="Data(jira51data2,'rad:short')"/>
+-    </onentry>
+-
+-    <transition cond="Data(jira51data1,'rad:timeout') eq 20"
+-                target="assign3" />
+-
+-  </state>
+-
+-  <state id="assign3" final="true"/>
++  <state id="assign2" final="true" />
+ 
+ </scxml>

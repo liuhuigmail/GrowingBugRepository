@@ -1,0 +1,28 @@
+diff --git a/src/test/org/apache/commons/beanutils/LazyDynaListTestCase.java b/src/test/org/apache/commons/beanutils/LazyDynaListTestCase.java
+index b37faed7..2140fc80 100644
+--- a/src/test/org/apache/commons/beanutils/LazyDynaListTestCase.java
++++ b/src/test/org/apache/commons/beanutils/LazyDynaListTestCase.java
+@@ -219,13 +219,6 @@ public class LazyDynaListTestCase extends TestCase {
+ 
+     }
+ 
+-    /**
+-     * Test adding a map to List with no type set.
+-     */
+-    public void testNullType() {
+-        LazyDynaList lazyList = new LazyDynaList();
+-        lazyList.add(new HashMap());
+-    }
+ 
+     /**
+      * Test DynaBean Create
+@@ -526,9 +519,6 @@ public class LazyDynaListTestCase extends TestCase {
+         target = null;
+         bean = null;
+ 
+-        // Test BEANUTILS-300
+-        result.add(null);
+-
+         // Confirm property value
+         bean = (WrapDynaBean)result.get(0);
+         assertEquals("post-serialize check", "value1", bean.get("stringProperty"));

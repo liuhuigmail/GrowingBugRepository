@@ -1,0 +1,2 @@
+org.apache.hugegraph.unit.UnitTestSuite
+org.apache.hugegraph.unit.version.VersionTest

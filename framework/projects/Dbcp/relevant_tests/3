@@ -1,0 +1,8 @@
+org.apache.commons.dbcp2.managed.TestBasicManagedDataSource
+org.apache.commons.dbcp2.managed.TestConnectionWithNarayana
+org.apache.commons.dbcp2.managed.TestDataSourceXAConnectionFactory
+org.apache.commons.dbcp2.managed.TestManagedConnection
+org.apache.commons.dbcp2.managed.TestManagedDataSource
+org.apache.commons.dbcp2.managed.TestManagedDataSourceInTx
+org.apache.commons.dbcp2.managed.TestSynchronizationOrder
+org.apache.commons.dbcp2.managed.TestTransactionContext

@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/beanutils/BeanUtilsBean.java b/src/main/java/org/apache/commons/beanutils/BeanUtilsBean.java
+index beee7fee..b04fa7c4 100644
+--- a/src/main/java/org/apache/commons/beanutils/BeanUtilsBean.java
++++ b/src/main/java/org/apache/commons/beanutils/BeanUtilsBean.java
+@@ -901,9 +901,6 @@ public class BeanUtilsBean {
+         while (resolver.hasNested(name)) {
+             try {
+                 target = getPropertyUtils().getProperty(target, resolver.next(name));
+-                if (target == null) { // the value of a nested property is null
+-                    return;
+-                }
+                 name = resolver.remove(name);
+             } catch (NoSuchMethodException e) {
+                 return; // Skip this property setter

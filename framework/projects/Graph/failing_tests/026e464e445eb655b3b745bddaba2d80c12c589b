@@ -2,7 +2,7 @@
 --- org.apache.commons.graph.coloring.GraphColoringTestCase::testSudoku
 org.apache.commons.graph.coloring.NotEnoughColorsException: Input color set [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] has not enough colors to color the given graph
 	at org.apache.commons.graph.coloring.DefaultColoringAlgorithmsSelector.applyingGreedyAlgorithm(DefaultColoringAlgorithmsSelector.java:74)
-	at org.apache.commons.graph.coloring.GraphColoringTestCase.testSudoku(GraphColoringTestCase.java:192)
+	at org.apache.commons.graph.coloring.GraphColoringTestCase.testSudoku(GraphColoringTestCase.java:193)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

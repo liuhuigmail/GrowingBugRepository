@@ -122,8 +122,8 @@ get_modification_timestamp() {
 #
 # Download project repositories if necessary
 #
-echo "Setting up project repositories ... "
-cd "$DIR_REPOS" && ./get_repos.sh
+#echo "Setting up project repositories ... "
+#cd "$DIR_REPOS" && ./get_repos.sh
 
 ################################################################################
 #

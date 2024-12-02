@@ -1,0 +1,113 @@
+diff --git a/src/test/java/org/apache/commons/scxml/model/AssignTest.java b/src/test/java/org/apache/commons/scxml/model/AssignTest.java
+index 10395707..014a92e9 100644
+--- a/src/test/java/org/apache/commons/scxml/model/AssignTest.java
++++ b/src/test/java/org/apache/commons/scxml/model/AssignTest.java
+@@ -45,24 +45,21 @@ public class AssignTest extends TestCase {
+     }
+ 
+     // Test data
+-    private URL assign01, assign02;
+     private SCXMLExecutor exec;
+ 
+     /**
+      * Set up instance variables required by this test case.
+      */
+     public void setUp() {
+-        assign01 = this.getClass().getClassLoader().
+-            getResource("org/apache/commons/scxml/model/assign-test-01.xml");
+-        assign02 = this.getClass().getClassLoader().
+-            getResource("org/apache/commons/scxml/model/assign-test-02.xml");
++        URL assignSample = this.getClass().getClassLoader().
++            getResource("org/apache/commons/scxml/model/assign-test.xml");
++        exec = SCXMLTestHelper.getExecutor(assignSample);
+     }
+ 
+     /**
+      * Tear down instance variables required by this test case.
+      */
+     public void tearDown() {
+-        assign01 = assign02 = null;
+         exec = null;
+     }
+ 
+@@ -70,23 +67,13 @@ public class AssignTest extends TestCase {
+      * Test the implementation
+      */
+     public void testAssignSrc() {
+-        exec = SCXMLTestHelper.getExecutor(assign01);
+         Set<TransitionTarget> currentStates = exec.getCurrentStatus().getStates();
+         assertEquals(1, currentStates.size());
+         assertEquals("assign3", currentStates.iterator().next().getId());
+         assertTrue(exec.getCurrentStatus().isFinal());
+     }
+ 
+-    public void testAssignDeep() {
+-        exec = SCXMLTestHelper.getExecutor(assign02);
+-        Set<TransitionTarget> currentStates = exec.getCurrentStatus().getStates();
+-        assertEquals(1, currentStates.size());
+-        assertEquals("assign3", ((State)currentStates.iterator().
+-            next()).getId());
+-        assertTrue(exec.getCurrentStatus().isFinal());
+-    }
+-
+-    public static void main(String args[]) {
++     public static void main(String args[]) {
+         TestRunner.run(suite());
+     }
+ }
+diff --git a/src/test/java/org/apache/commons/scxml/model/assign-test-02.xml b/src/test/java/org/apache/commons/scxml/model/assign-test-02.xml
+deleted file mode 100644
+index 38ab9b3d..00000000
+--- a/src/test/java/org/apache/commons/scxml/model/assign-test-02.xml
++++ /dev/null
+@@ -1,46 +0,0 @@
+-<?xml version="1.0"?>
+-<!--
+-   * Licensed to the Apache Software Foundation (ASF) under one or more
+-   * contributor license agreements.  See the NOTICE file distributed with
+-   * this work for additional information regarding copyright ownership.
+-   * The ASF licenses this file to You under the Apache License, Version 2.0
+-   * (the "License"); you may not use this file except in compliance with
+-   * the License.  You may obtain a copy of the License at
+-   *
+-   *     http://www.apache.org/licenses/LICENSE-2.0
+-   *
+-   * Unless required by applicable law or agreed to in writing, software
+-   * distributed under the License is distributed on an "AS IS" BASIS,
+-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+-   * See the License for the specific language governing permissions and
+-   * limitations under the License.
+--->
+-<!-- Regress JIRA 89, incomplete child removal -->
+-<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:rad="http://foo/bar" version="1.0" initialstate="assign1">
+-   <datamodel>
+-       <data name="source">
+-           <rad:foo>
+-               <rad:a>1</rad:a>
+-               <rad:b>2</rad:b>
+-           </rad:foo>
+-       </data>
+-       <data name="destination">
+-           <rad:bar>
+-               <rad:a>3</rad:a>
+-               <rad:b>4</rad:b>
+-           </rad:bar>
+-       </data>
+-   </datamodel>
+-   <!-- verify the destination contents -->
+-   <state id="assign1" final="true">
+-       <transition cond="Data(destination,'rad:bar/rad:a') eq 3 and Data(destination,'rad:bar/rad:b') eq 4" target="assign2" />
+-   </state>
+-   <!-- copy the new contents and verify -->
+-   <state id="assign2">
+-       <onentry>
+-           <assign location="Data(destination,'rad:bar')" expr="Data(source,'rad:foo')" />
+-       </onentry>
+-       <transition cond="Data(destination,'rad:bar/rad:a') eq 1 and Data(destination,'rad:bar/rad:b') eq 2" target="assign3" />
+-   </state>
+-   <state id="assign3" final="true" />
+-</scxml>
+diff --git a/src/test/java/org/apache/commons/scxml/model/assign-test-01.xml b/src/test/java/org/apache/commons/scxml/model/assign-test.xml
+similarity index 100%
+rename from src/test/java/org/apache/commons/scxml/model/assign-test-01.xml
+rename to src/test/java/org/apache/commons/scxml/model/assign-test.xml

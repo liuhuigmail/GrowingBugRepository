@@ -1,0 +1,16 @@
+async.TestCDataParsing
+async.TestCharactersParsing
+async.TestCommentParsing
+async.TestDoctypeParsing
+async.TestElementParsing
+async.TestEntityParsing
+async.TestPIParsing
+async.TestXmlDeclaration
+evt.TestLaziness
+sax.TestEntityResolver
+sax.TestSaxReader
+stream.TestDTDSkimming
+stream.TestNameDecoding
+stream.TestSimple
+wstream.TestLongerContent
+wstream.TestNameEncoding

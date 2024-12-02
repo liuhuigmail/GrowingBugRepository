@@ -1,0 +1,8 @@
+org.apache.commons.dbcp2.TestAbandonedBasicDataSource
+org.apache.commons.dbcp2.TestBasicDataSource
+org.apache.commons.dbcp2.TestBasicDataSourceFactory
+org.apache.commons.dbcp2.TestJndi
+org.apache.commons.dbcp2.TestPStmtPoolingBasicDataSource
+org.apache.commons.dbcp2.managed.TestBasicManagedDataSource
+org.apache.commons.dbcp2.managed.TestDataSourceXAConnectionFactory
+org.apache.commons.dbcp2.managed.TestTransactionContext

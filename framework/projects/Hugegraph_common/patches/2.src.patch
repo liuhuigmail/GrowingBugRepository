@@ -1,0 +1,18 @@
+diff --git a/hugegraph-common/src/main/java/com/baidu/hugegraph/testutil/Whitebox.java b/hugegraph-common/src/main/java/com/baidu/hugegraph/testutil/Whitebox.java
+index 826ab01..f08089b 100644
+--- a/hugegraph-common/src/main/java/com/baidu/hugegraph/testutil/Whitebox.java
++++ b/hugegraph-common/src/main/java/com/baidu/hugegraph/testutil/Whitebox.java
+@@ -38,12 +38,7 @@ public class Whitebox {
+         assert fieldName != null;
+         int sep = fieldName.lastIndexOf(SEPARATOR);
+         if (sep > 0) {
+-            String prefix = fieldName.substring(0, sep);
+-            Object result = getInternalState(target, prefix);
+-            E.checkArgument(result != null,
+-                            "Can't set value on null field: `%s.%s`",
+-                            target, prefix);
+-            target = result;
++            target = getInternalState(target, fieldName.substring(0, sep));
+             fieldName = fieldName.substring(sep + 1);
+         }
+ 

@@ -1,0 +1,125 @@
+diff --git a/src/main/java/org/apache/hadoop/mrunit/MapReduceDriverBase.java b/src/main/java/org/apache/hadoop/mrunit/MapReduceDriverBase.java
+index 873a3b2..e5c093e 100644
+--- a/src/main/java/org/apache/hadoop/mrunit/MapReduceDriverBase.java
++++ b/src/main/java/org/apache/hadoop/mrunit/MapReduceDriverBase.java
+@@ -21,10 +21,9 @@ import java.io.IOException;
+ import java.util.ArrayList;
+ import java.util.Collections;
+ import java.util.Comparator;
+-import java.util.LinkedHashMap;
+ import java.util.List;
+-import java.util.Map;
+ import java.util.Map.Entry;
++import java.util.TreeMap;
+ 
+ import org.apache.commons.logging.Log;
+ import org.apache.commons.logging.LogFactory;
+@@ -164,22 +163,7 @@ public abstract class MapReduceDriverBase<K1, V1, K2, V2, K3, V3> extends
+    * @return the sorted list of (key, list(val))'s to present to the reducer
+    */
+   public List<Pair<K2, List<V2>>> shuffle(final List<Pair<K2, V2>> mapOutputs) {
+-    
+-    // sort the map outputs using the key order comparator (if set)
+-    if (keyValueOrderComparator != null) {
+-      final Comparator<Pair<K2, V2>> pairKeyComparator = new Comparator<Pair<K2, V2>>() {
+-        @Override
+-        public int compare(final Pair<K2, V2> o1, final Pair<K2, V2> o2) {
+-          return keyValueOrderComparator.compare(o1.getFirst(), o2.getFirst());
+-        }
+-      };
+-      Collections.sort(mapOutputs, pairKeyComparator);
+-    }
+-    else {
+-      Collections.sort(mapOutputs, new Pair.FirstElemComparator());
+-    }
+-    
+-    // initialise grouping comparator
++    // step 1 - use the key group comparator to organise map outputs
+     final Comparator<K2> keyGroupComparator;
+     if (this.keyGroupComparator == null) {
+       keyGroupComparator = new JobConf(getConfiguration())
+@@ -187,28 +171,39 @@ public abstract class MapReduceDriverBase<K1, V1, K2, V2, K3, V3> extends
+     } else {
+       keyGroupComparator = this.keyGroupComparator;
+     }
+-    
+-    // apply grouping comparator to create groups
+-    final Map<K2, List<Pair<K2, V2>>> groupedByKey = 
+-        new LinkedHashMap<K2, List<Pair<K2, V2>>>();
+-    
+-    List<Pair<K2, V2>> groupedKeyList = null;
+-    Pair<K2,V2> previous = null;
+-    
++    final TreeMap<K2, List<Pair<K2, V2>>> groupedByKey = new TreeMap<K2, List<Pair<K2, V2>>>(
++        keyGroupComparator);
++
++    List<Pair<K2, V2>> groupedKeyList;
+     for (final Pair<K2, V2> mapOutput : mapOutputs) {
+-      if (previous == null || keyGroupComparator
+-          .compare(previous.getFirst(), mapOutput.getFirst()) != 0) {
++      groupedKeyList = groupedByKey.get(mapOutput.getFirst());
++
++      if (groupedKeyList == null) {
+         groupedKeyList = new ArrayList<Pair<K2, V2>>();
+         groupedByKey.put(mapOutput.getFirst(), groupedKeyList);
+       }
++
+       groupedKeyList.add(mapOutput);
+-      previous = mapOutput;
+     }
+ 
+-    // populate output list
++    // step 2 - sort each key group using the key order comparator (if set)
++    final Comparator<Pair<K2, V2>> pairKeyComparator = new Comparator<Pair<K2, V2>>() {
++      @Override
++      public int compare(final Pair<K2, V2> o1, final Pair<K2, V2> o2) {
++        return keyValueOrderComparator.compare(o1.getFirst(), o2.getFirst());
++      }
++    };
++
++    // create shuffle stage output list
+     final List<Pair<K2, List<V2>>> outputKeyValuesList = new ArrayList<Pair<K2, List<V2>>>();
+-    for (final Entry<K2, List<Pair<K2, V2>>> groupedByKeyEntry : 
+-            groupedByKey.entrySet()) {
++
++    // populate output list
++    for (final Entry<K2, List<Pair<K2, V2>>> groupedByKeyEntry : groupedByKey
++        .entrySet()) {
++      if (keyValueOrderComparator != null) {
++        // sort the key/value pairs using the key order comparator (if set)
++        Collections.sort(groupedByKeyEntry.getValue(), pairKeyComparator);
++      }
+ 
+       // create list to hold values for the grouped key
+       final List<V2> valuesList = new ArrayList<V2>();
+@@ -221,6 +216,7 @@ public abstract class MapReduceDriverBase<K1, V1, K2, V2, K3, V3> extends
+           groupedByKeyEntry.getKey(), valuesList));
+     }
+ 
++    // return output list
+     return outputKeyValuesList;
+   }
+ 
+diff --git a/src/main/java/org/apache/hadoop/mrunit/types/Pair.java b/src/main/java/org/apache/hadoop/mrunit/types/Pair.java
+index 5ce462b..96a8e26 100644
+--- a/src/main/java/org/apache/hadoop/mrunit/types/Pair.java
++++ b/src/main/java/org/apache/hadoop/mrunit/types/Pair.java
+@@ -69,7 +69,8 @@ public class Pair<S, T> implements Comparable<Pair<S, T>> {
+     return firstResult;
+   }
+ 
+-  public static class FirstElemComparator<S, T> implements Comparator<Pair<S, T>> {
++  // TODO: Can this be made static? Same with SecondElemComparator?
++  public class FirstElemComparator implements Comparator<Pair<S, T>> {
+     public FirstElemComparator() {
+     }
+ 
+@@ -79,7 +80,7 @@ public class Pair<S, T> implements Comparable<Pair<S, T>> {
+     }
+   }
+ 
+-  public static class SecondElemComparator<S, T> implements Comparator<Pair<S, T>> {
++  public class SecondElemComparator implements Comparator<Pair<S, T>> {
+     public SecondElemComparator() {
+     }
+ 

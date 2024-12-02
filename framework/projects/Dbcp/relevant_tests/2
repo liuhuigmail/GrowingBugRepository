@@ -1,0 +1,17 @@
+org.apache.commons.dbcp2.TestAbandonedBasicDataSource
+org.apache.commons.dbcp2.TestBasicDataSource
+org.apache.commons.dbcp2.TestBasicDataSourceFactory
+org.apache.commons.dbcp2.TestDelegatingCallableStatement
+org.apache.commons.dbcp2.TestDelegatingDatabaseMetaData
+org.apache.commons.dbcp2.TestDelegatingPreparedStatement
+org.apache.commons.dbcp2.TestDelegatingStatement
+org.apache.commons.dbcp2.TestPStmtPooling
+org.apache.commons.dbcp2.TestPStmtPoolingBasicDataSource
+org.apache.commons.dbcp2.TestPoolingDataSource
+org.apache.commons.dbcp2.TestPoolingDriver
+org.apache.commons.dbcp2.cpdsadapter.TestDriverAdapterCPDS
+org.apache.commons.dbcp2.datasources.TestPerUserPoolDataSource
+org.apache.commons.dbcp2.datasources.TestSharedPoolDataSource
+org.apache.commons.dbcp2.managed.TestBasicManagedDataSource
+org.apache.commons.dbcp2.managed.TestManagedDataSource
+org.apache.commons.dbcp2.managed.TestManagedDataSourceInTx

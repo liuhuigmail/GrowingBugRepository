@@ -1,0 +1,177 @@
+diff --git a/src/main/java/org/apache/commons/scxml/SCXMLHelper.java b/src/main/java/org/apache/commons/scxml/SCXMLHelper.java
+index 71acd1f6..8a11cc67 100644
+--- a/src/main/java/org/apache/commons/scxml/SCXMLHelper.java
++++ b/src/main/java/org/apache/commons/scxml/SCXMLHelper.java
+@@ -16,7 +16,6 @@
+  */
+ package org.apache.commons.scxml;
+ 
+-import java.io.StringWriter;
+ import java.util.HashSet;
+ import java.util.IdentityHashMap;
+ import java.util.List;
+@@ -459,60 +458,6 @@ public final class SCXMLHelper {
+         }
+     }
+ 
+-    /**
+-     * Escape XML strings for serialization.
+-     * The basic algorithm is taken from Commons Lang (see oacl.Entities.java)
+-     *
+-     * @param str A string to be escaped
+-     * @return The escaped string
+-     */
+-    public static String escapeXML(final String str) {
+-        if (str == null) {
+-            return null;
+-        }
+-
+-        // Make the writer an arbitrary bit larger than the source string
+-        int len = str.length();
+-        StringWriter stringWriter = new StringWriter(len + 8);
+-
+-        for (int i = 0; i < len; i++) {
+-            char c = str.charAt(i);
+-            String entityName = null; // Look for XML 1.0 predefined entities
+-            switch (c) {
+-                case '"':
+-                    entityName = "quot";
+-                    break;
+-                case '&':
+-                    entityName = "amp";
+-                    break;
+-                case '\'':
+-                    entityName = "apos";
+-                    break;
+-                case '<':
+-                    entityName = "lt";
+-                    break;
+-                case '>':
+-                    entityName = "gt";
+-                    break;
+-            }
+-            if (entityName == null) {
+-                if (c > 0x7F) {
+-                    stringWriter.write("&#");
+-                    stringWriter.write(Integer.toString(c));
+-                    stringWriter.write(';');
+-                } else {
+-                    stringWriter.write(c);
+-                }
+-            } else {
+-                stringWriter.write('&');
+-                stringWriter.write(entityName);
+-                stringWriter.write(';');
+-            }
+-        }
+-
+-        return stringWriter.toString();
+-    }
+-
+     /**
+      * Discourage instantiation since this is a utility class.
+      */
+@@ -527,3 +472,4 @@ public final class SCXMLHelper {
+     private static final String NAMESPACES_KEY = "_ALL_NAMESPACES";
+ 
+ }
++
+diff --git a/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java b/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
+index 68b1dd4a..7087cbed 100644
+--- a/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
++++ b/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
+@@ -214,7 +214,7 @@ public class SCXMLSerializer {
+         for (Param p : params) {
+             b.append(indent).append(INDENT).append("<param name=\"").
+                 append(p.getName()).append("\" expr=\"").
+-                append(SCXMLHelper.escapeXML(p.getExpr())).append("\"/>\n");
++                append(p.getExpr()).append("\"/>\n");
+         }
+         Finalize f = i.getFinalize();
+         if (f != null) {
+@@ -280,8 +280,7 @@ public class SCXMLSerializer {
+             b.append(" event=\"").append(t.getEvent()).append("\"");
+         }
+         if (!SCXMLHelper.isStringEmpty(t.getCond())) {
+-            b.append(" cond=\"").append(SCXMLHelper.escapeXML(t.getCond())).
+-                append("\"");
++            b.append(" cond=\"").append(t.getCond()).append("\"");
+         }
+         boolean next = !SCXMLHelper.isStringEmpty(t.getNext());
+         if (next) {
+@@ -353,8 +352,7 @@ public class SCXMLSerializer {
+                 } else {
+                     b.append(indent).append(INDENT).append("<data id=\"").
+                         append(datum.getId()).append("\" expr=\"").
+-                        append(SCXMLHelper.escapeXML(datum.getExpr())).
+-                        append("\" />\n");
++                        append(datum.getExpr()).append("\" />\n");
+                 }
+             }
+             b.append(indent).append("</datamodel>\n");
+@@ -413,9 +411,8 @@ public class SCXMLSerializer {
+             if (a instanceof Var) {
+                 Var v = (Var) a;
+                 b.append(indent).append("<var name=\"").append(v.getName())
+-                    .append("\" expr=\"")
+-                    .append(SCXMLHelper.escapeXML(v.getExpr()))
+-                    .append("\"/>\n");
++                        .append("\" expr=\"").append(v.getExpr()).append(
++                                "\"/>\n");
+             } else if (a instanceof Assign) {
+                 Assign asn = (Assign) a;
+                 b.append(indent).append("<assign");
+@@ -424,13 +421,11 @@ public class SCXMLSerializer {
+                     if (!SCXMLHelper.isStringEmpty(asn.getSrc())) {
+                         b.append("\" src=\"").append(asn.getSrc());
+                     } else {
+-                        b.append("\" expr=\"").
+-                            append(SCXMLHelper.escapeXML(asn.getExpr()));
++                        b.append("\" expr=\"").append(asn.getExpr());
+                     }
+                 } else {
+                     b.append(" name=\"").append(asn.getName()).
+-                        append("\" expr=\"").
+-                        append(SCXMLHelper.escapeXML(asn.getExpr()));
++                        append("\" expr=\"").append(asn.getExpr());
+                 }
+                 b.append("\"/>\n");
+             } else if (a instanceof Send) {
+@@ -441,13 +436,12 @@ public class SCXMLSerializer {
+                     .append(c.getSendid()).append("\"/>\n");
+             } else if (a instanceof Log) {
+                 Log lg = (Log) a;
+-                b.append(indent).append("<log expr=\"").
+-                    append(SCXMLHelper.escapeXML(lg.getExpr())).
+-                    append("\"/>\n");
++                b.append(indent).append("<log expr=\"").append(lg.getExpr())
++                        .append("\"/>\n");
+             } else if (a instanceof Exit) {
+                 Exit e = (Exit) a;
+                 b.append(indent).append("<exit");
+-                String expr = SCXMLHelper.escapeXML(e.getExpr());
++                String expr = e.getExpr();
+                 String nl = e.getNamelist();
+                 if (expr != null) {
+                     b.append(" expr=\"" + expr + "\"");
+@@ -465,8 +459,7 @@ public class SCXMLSerializer {
+             } else if (a instanceof ElseIf) {
+                 ElseIf eif = (ElseIf) a;
+                 b.append(indent).append("<elseif cond=\"")
+-                    .append(SCXMLHelper.escapeXML(eif.getCond()))
+-                    .append("\" />\n");
++                        .append(eif.getCond()).append("\" />\n");
+             }
+         }
+         return exit;
+@@ -533,8 +526,8 @@ public class SCXMLSerializer {
+      */
+     public static void serializeIf(final StringBuffer b,
+             final If iff, final String indent) {
+-        b.append(indent).append("<if cond=\"").append(SCXMLHelper.
+-            escapeXML(iff.getCond())).append("\">\n");
++        b.append(indent).append("<if cond=\"").append(iff.getCond()).append(
++                "\">\n");
+         serializeActions(b, iff.getActions(), indent + INDENT);
+         b.append(indent).append("</if>\n");
+     }

@@ -1,0 +1,104 @@
+diff --git a/hugegraph-common/src/test/java/com/baidu/hugegraph/testutil/WhiteboxTest.java b/hugegraph-common/src/test/java/com/baidu/hugegraph/testutil/WhiteboxTest.java
+index 6375c0d..92ab1af 100644
+--- a/hugegraph-common/src/test/java/com/baidu/hugegraph/testutil/WhiteboxTest.java
++++ b/hugegraph-common/src/test/java/com/baidu/hugegraph/testutil/WhiteboxTest.java
+@@ -56,7 +56,7 @@ public class WhiteboxTest {
+         Test1 test1 = newTest();
+         Assert.assertEquals(1, Whitebox.getInternalState(test1, "ivalue"));
+         Assert.assertEquals(2f, Whitebox.getInternalState(test1,
+-                                                          "test2.finalValue"));
++                                                          "test2.fvalue"));
+         Assert.assertEquals("3",  Whitebox.getInternalState(test1,
+                                                             "test2.test3.str"));
+ 
+@@ -65,7 +65,7 @@ public class WhiteboxTest {
+         });
+ 
+         Assert.assertThrows(RuntimeException.class, () -> {
+-            Whitebox.getInternalState(test1, "test2.valueNotExist");
++            Whitebox.getInternalState(test1, "test2.fvalue2");
+         });
+     }
+ 
+@@ -75,11 +75,10 @@ public class WhiteboxTest {
+ 
+         Whitebox.setInternalState(test1, "ivalue", 11);
+         Assert.assertEquals(11, Whitebox.getInternalState(test1, "ivalue"));
+-        Assert.assertEquals(11, test1.ivalue);
+ 
+-        Whitebox.setInternalState(test1, "test2.finalValue", 22f);
++        Whitebox.setInternalState(test1, "test2.fvalue", 22f);
+         Assert.assertEquals(22f, Whitebox.getInternalState(test1,
+-                                                          "test2.finalValue"));
++                                                          "test2.fvalue"));
+ 
+         Whitebox.setInternalState(test1, "test2.test3.str", "33");
+         Assert.assertEquals("33",  Whitebox.getInternalState(test1,
+@@ -90,40 +89,12 @@ public class WhiteboxTest {
+         });
+ 
+         Assert.assertThrows(RuntimeException.class, () -> {
+-            Whitebox.setInternalState(test1, "test2.valueNotExist", 22f);
++            Whitebox.setInternalState(test1, "test2.fvalue2", 22f);
+         });
+ 
+         Assert.assertThrows(RuntimeException.class, () -> {
+-            Whitebox.setInternalState(test1, "test2.finalValue", 22d);
++            Whitebox.setInternalState(test1, "test2.fvalue", 22d);
+         });
+-
+-        Assert.assertThrows(RuntimeException.class, () -> {
+-            test1.test2 = null;
+-            Whitebox.setInternalState(test1, "test2.finalValue", 22f);
+-        }, e -> {
+-            Assert.assertContains("Can't set value on null field",
+-                                  e.getMessage());
+-        });
+-    }
+-
+-    @Test
+-    public void testSetInternalFinalState() {
+-        Test1 test1 = newTest();
+-        Assert.assertEquals(1, test1.finalValue);
+-
+-        Whitebox.setInternalState(test1, "finalValue", 2);
+-        Assert.assertEquals(2, Whitebox.getInternalState(test1, "finalValue"));
+-
+-        Whitebox.setInternalState(test1, "finalValue", 3);
+-        Assert.assertEquals(3, Whitebox.getInternalState(test1, "finalValue"));
+-
+-        Whitebox.setInternalState(test1, "test2.finalValue", 22f);
+-        Assert.assertEquals(22f, Whitebox.getInternalState(test1,
+-                                                           "test2.finalValue"));
+-
+-        // FIXME: seems don't take effect!!!
+-        Assert.assertEquals(1, test1.finalValue);
+-        Assert.assertEquals(2f, test1.test2.finalValue, 0f);
+     }
+ 
+     @Test
+@@ -188,10 +159,7 @@ public class WhiteboxTest {
+     private static class Test1 {
+ 
+         private static int staticValue = 1;
+-
+         private int ivalue = 1;
+-        private final int finalValue = 1;
+-
+         private Test2 test2;
+         private TestSubClass test4;
+ 
+@@ -228,11 +196,11 @@ public class WhiteboxTest {
+     private static class Test2 {
+ 
+         private static int staticValue = 2;
+-        private final float finalValue = 2f;
++        private final float fvalue = 2;
+         private Test3 test3;
+ 
+         private float value() {
+-            return this.finalValue;
++            return this.fvalue;
+         }
+ 
+         private <T> T value(T o) {

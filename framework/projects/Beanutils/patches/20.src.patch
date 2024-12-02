@@ -1,0 +1,40 @@
+diff --git a/src/main/java/org/apache/commons/beanutils/MethodUtils.java b/src/main/java/org/apache/commons/beanutils/MethodUtils.java
+index 9549d0c0..afa26cbb 100644
+--- a/src/main/java/org/apache/commons/beanutils/MethodUtils.java
++++ b/src/main/java/org/apache/commons/beanutils/MethodUtils.java
+@@ -173,7 +173,7 @@ public class MethodUtils {
+             IllegalAccessException,
+             InvocationTargetException {
+ 
+-        Object[] args = toArray(arg);
++        Object[] args = {arg};
+         return invokeMethod(object, methodName, args);
+     }
+ 
+@@ -309,7 +309,7 @@ public class MethodUtils {
+             IllegalAccessException,
+             InvocationTargetException {
+ 
+-        Object[] args = toArray(arg);
++        Object[] args = {arg};
+         return invokeExactMethod(object, methodName, args);
+     }
+ 
+@@ -487,7 +487,7 @@ public class MethodUtils {
+             IllegalAccessException,
+             InvocationTargetException {
+ 
+-        Object[] args = toArray(arg);
++        Object[] args = {arg};
+         return invokeStaticMethod (objectClass, methodName, args);
+     }
+ 
+@@ -626,7 +626,7 @@ public class MethodUtils {
+             IllegalAccessException,
+             InvocationTargetException {
+ 
+-        Object[] args = toArray(arg);
++        Object[] args = {arg};
+         return invokeExactStaticMethod (objectClass, methodName, args);
+     }
+ 

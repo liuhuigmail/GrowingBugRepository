@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java b/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
+index 445f8cd1..4cdcf0b2 100644
+--- a/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
++++ b/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
+@@ -490,7 +490,7 @@ public class SCXMLSerializer {
+             .append(send.getTarget()).append("\" targetType=\"")
+             .append(send.getTargettype()).append("\" namelist=\"")
+             .append(send.getNamelist()).append("\" delay=\"")
+-            .append(send.getDelay()).append("\" event=\"")
++            .append(send.getDelay()).append("\" events=\"")
+             .append(send.getEvent()).append("\" hints=\"")
+             .append(send.getHints()).append("\">\n")
+             .append(getBodyContent(send))

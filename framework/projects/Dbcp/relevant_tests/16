@@ -1,0 +1,3 @@
+org.apache.commons.dbcp2.managed.TestManagedDataSource
+org.apache.commons.dbcp2.managed.TestManagedDataSourceInTx
+org.apache.commons.dbcp2.managed.TestTransactionContext

@@ -1,0 +1,5 @@
+org.apache.commons.beanutils.locale.LocaleBeanUtilsTestCase
+org.apache.commons.beanutils.locale.LocaleBeanificationTestCase
+org.apache.commons.beanutils.locale.LocaleConvertTestSuite
+org.apache.commons.beanutils.locale.LocaleConvertUtilsTestCase
+org.apache.commons.beanutils.locale.converters.DateLocaleConverterTestCase

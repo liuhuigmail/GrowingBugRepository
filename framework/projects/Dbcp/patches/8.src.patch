@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/dbcp2/BasicDataSource.java b/src/main/java/org/apache/commons/dbcp2/BasicDataSource.java
+index 59f3b102..1a03ee62 100644
+--- a/src/main/java/org/apache/commons/dbcp2/BasicDataSource.java
++++ b/src/main/java/org/apache/commons/dbcp2/BasicDataSource.java
+@@ -1987,6 +1987,13 @@ public class BasicDataSource implements DataSource, BasicDataSourceMXBean, MBean
+             throw new IllegalStateException("Cannot invalidate connection: Unwrapping poolable connection failed.", e);
+         }
+ 
++        // attempt to close the connection for good measure
++        try {
++            connection.close();
++        } catch (Exception e) {
++            // ignore any exceptions here
++        }
++
+         try {
+             connectionPool.invalidateObject(poolableConnection);
+         } catch (Exception e) {

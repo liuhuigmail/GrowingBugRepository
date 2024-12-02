@@ -1,0 +1,98 @@
+diff --git a/src/test/java/org/apache/commons/scxml2/io/SCXMLReaderTest.java b/src/test/java/org/apache/commons/scxml2/io/SCXMLReaderTest.java
+index 415e66c9..d935bb50 100644
+--- a/src/test/java/org/apache/commons/scxml2/io/SCXMLReaderTest.java
++++ b/src/test/java/org/apache/commons/scxml2/io/SCXMLReaderTest.java
+@@ -278,23 +278,6 @@ public class SCXMLReaderTest {
+         Assert.assertNotNull(scxml.getGlobalScript());
+     }
+ 
+-    @Test(expected=org.apache.commons.scxml2.model.ModelException.class)
+-    public void dataWithSrcAndExprIsRejected() throws Exception {
+-      SCXMLTestHelper.parse("org/apache/commons/scxml2/io/data-with-src-and-expr.xml");
+-    }
+-
+-    @Test
+-    public void srcAttributeOfDataIsParsed() throws Exception {
+-      SCXML scxml = SCXMLTestHelper.parse("org/apache/commons/scxml2/io/data-with-src.xml");
+-      Assert.assertNotNull(scxml);
+-      Assert.assertNotNull(scxml.getDatamodel());
+-      Assert.assertNotNull(scxml.getDatamodel().getData());
+-      Assert.assertEquals("Exactly one data element parsed.", 1, scxml.getDatamodel().getData().size());
+-      Data data = scxml.getDatamodel().getData().get(0);
+-      Assert.assertNotNull(data);
+-      Assert.assertEquals("http://www.w3.org/TR/sxcml", data.getSrc());
+-    }
+-
+     private String serialize(final SCXML scxml) throws IOException, XMLStreamException {
+         String scxmlAsString = SCXMLWriter.write(scxml);
+         Assert.assertNotNull(scxmlAsString);
+diff --git a/src/test/java/org/apache/commons/scxml2/io/data-with-src-and-expr.xml b/src/test/java/org/apache/commons/scxml2/io/data-with-src-and-expr.xml
+deleted file mode 100644
+index 9dad4e5f..00000000
+--- a/src/test/java/org/apache/commons/scxml2/io/data-with-src-and-expr.xml
++++ /dev/null
+@@ -1,29 +0,0 @@
+-<?xml version="1.0"?>
+-<!--
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+--->
+-<!-- Used for SrcTest.java in io package -->
+-<scxml xmlns="http://www.w3.org/2005/07/scxml"
+-       version="1.0"
+-       initial="foo">
+-
+-    <datamodel>
+-        <data id="theData" src="http://www.w3.org/TR/sxcml" expr="'a value'" />
+-    </datamodel>
+-
+-    <final id="foo"/>
+-
+-</scxml>
+diff --git a/src/test/java/org/apache/commons/scxml2/io/data-with-src.xml b/src/test/java/org/apache/commons/scxml2/io/data-with-src.xml
+deleted file mode 100644
+index cc044fe4..00000000
+--- a/src/test/java/org/apache/commons/scxml2/io/data-with-src.xml
++++ /dev/null
+@@ -1,29 +0,0 @@
+-<?xml version="1.0"?>
+-<!--
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+--->
+-<!-- Used for SrcTest.java in io package -->
+-<scxml xmlns="http://www.w3.org/2005/07/scxml"
+-       version="1.0"
+-       initial="foo">
+-
+-    <datamodel>
+-        <data id="theData" src="http://www.w3.org/TR/sxcml" />
+-    </datamodel>
+-
+-    <final id="foo"/>
+-
+-</scxml>

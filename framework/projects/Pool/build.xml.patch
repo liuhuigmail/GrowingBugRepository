@@ -6,7 +6,7 @@ index f8de60b..3583d72 100644
      <echo message="Please run: $ant -projecthelp"/>
    </target>
  
-+  <target name="compile" depends="commons-pool2-from-maven.compile"> </target>
-+  <target name="compile.tests" depends="commons-pool2-from-maven.compile-tests"> </target>
++  <target name="compile" depends="commons-pool-from-maven.compile"> </target>
++  <target name="compile.tests" depends="commons-pool-from-maven.compile-tests"> </target>
 +
  </project>

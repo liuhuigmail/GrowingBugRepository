@@ -1,0 +1,13 @@
+diff --git a/src/test/java/org/apache/hadoop/mrunit/mapreduce/TestMapDriver.java b/src/test/java/org/apache/hadoop/mrunit/mapreduce/TestMapDriver.java
+index 2e6626f..ff07395 100644
+--- a/src/test/java/org/apache/hadoop/mrunit/mapreduce/TestMapDriver.java
++++ b/src/test/java/org/apache/hadoop/mrunit/mapreduce/TestMapDriver.java
+@@ -196,7 +196,7 @@ public class TestMapDriver extends TestCase {
+ 	  confDriver.withMapper(mapper).withConfiguration(conf).
+ 	      withInput(NullWritable.get(),NullWritable.get()).
+ 	      withOutput(NullWritable.get(),NullWritable.get()).runTest();
+-	  assertEquals("TestValue", mapper.setupConfiguration.get("TestKey"));
++	  assertEquals(mapper.setupConfiguration.get("TestKey"), "TestValue");
+   }
+ 
+   /**

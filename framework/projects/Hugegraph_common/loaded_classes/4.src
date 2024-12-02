@@ -1,0 +1,4 @@
+com.baidu.hugegraph.testutil.Assert
+com.baidu.hugegraph.util.E
+com.baidu.hugegraph.util.VersionUtil
+com.baidu.hugegraph.version.CommonVersion

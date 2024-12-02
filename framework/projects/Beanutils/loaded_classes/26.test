@@ -1,0 +1,2 @@
+org.apache.commons.beanutils.converters.BigDecimalConverterTestCase
+org.apache.commons.beanutils.converters.NumberConverterTestBase

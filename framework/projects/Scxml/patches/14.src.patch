@@ -1,0 +1,90 @@
+diff --git a/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java b/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
+index f546590f..97d41d7b 100644
+--- a/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
++++ b/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
+@@ -222,7 +222,7 @@ public class SCXMLSerializer {
+             Param p = (Param) iter.next();
+             b.append(indent).append(INDENT).append("<param name=\"").
+                 append(p.getName()).append("\" expr=\"").
+-                append(SCXMLHelper.escapeXML(p.getExpr())).append("\"/>\n");
++                append(p.getExpr()).append("\"/>\n");
+         }
+         Finalize f = i.getFinalize();
+         if (f != null) {
+@@ -289,7 +289,7 @@ public class SCXMLSerializer {
+             b.append(" event=\"").append(t.getEvent()).append("\"");
+         }
+         if (!SCXMLHelper.isStringEmpty(t.getCond())) {
+-            b.append(" cond=\"").append(SCXMLHelper.escapeXML(t.getCond())).
++            b.append(" cond=\"").append(t.getCond()).
+                 append("\"");
+         }
+         boolean next = !SCXMLHelper.isStringEmpty(t.getNext());
+@@ -363,7 +363,7 @@ public class SCXMLSerializer {
+                 } else {
+                     b.append(indent).append(INDENT).append("<data id=\"").
+                         append(datum.getId()).append("\" expr=\"").
+-                        append(SCXMLHelper.escapeXML(datum.getExpr())).
++                        append(datum.getExpr()).
+                         append("\" />\n");
+                 }
+             }
+@@ -426,7 +426,7 @@ public class SCXMLSerializer {
+                 Var v = (Var) a;
+                 b.append(indent).append("<var name=\"").append(v.getName())
+                     .append("\" expr=\"")
+-                    .append(SCXMLHelper.escapeXML(v.getExpr()))
++                    .append(v.getExpr())
+                     .append("\"/>\n");
+             } else if (a instanceof Assign) {
+                 Assign asn = (Assign) a;
+@@ -437,12 +437,12 @@ public class SCXMLSerializer {
+                         b.append("\" src=\"").append(asn.getSrc());
+                     } else {
+                         b.append("\" expr=\"").
+-                            append(SCXMLHelper.escapeXML(asn.getExpr()));
++                            append(asn.getExpr());
+                     }
+                 } else {
+                     b.append(" name=\"").append(asn.getName()).
+                         append("\" expr=\"").
+-                        append(SCXMLHelper.escapeXML(asn.getExpr()));
++                        append(asn.getExpr());
+                 }
+                 b.append("\"/>\n");
+             } else if (a instanceof Send) {
+@@ -454,12 +454,12 @@ public class SCXMLSerializer {
+             } else if (a instanceof Log) {
+                 Log lg = (Log) a;
+                 b.append(indent).append("<log expr=\"").
+-                    append(SCXMLHelper.escapeXML(lg.getExpr())).
++                    append(lg.getExpr()).
+                     append("\"/>\n");
+             } else if (a instanceof Exit) {
+                 Exit e = (Exit) a;
+                 b.append(indent).append("<exit");
+-                String expr = SCXMLHelper.escapeXML(e.getExpr());
++                String expr = e.getExpr();
+                 String nl = e.getNamelist();
+                 if (expr != null) {
+                     b.append(" expr=\"" + expr + "\"");
+@@ -477,7 +477,7 @@ public class SCXMLSerializer {
+             } else if (a instanceof ElseIf) {
+                 ElseIf eif = (ElseIf) a;
+                 b.append(indent).append("<elseif cond=\"")
+-                    .append(SCXMLHelper.escapeXML(eif.getCond()))
++                        .append(eif.getCond())
+                     .append("\" />\n");
+             }
+         }
+@@ -545,8 +545,8 @@ public class SCXMLSerializer {
+      */
+     public static void serializeIf(final StringBuffer b,
+             final If iff, final String indent) {
+-        b.append(indent).append("<if cond=\"").append(SCXMLHelper.
+-            escapeXML(iff.getCond())).append("\">\n");
++        b.append(indent).append("<if cond=\"").append(iff.getCond()).append(
++                "\">\n");
+         serializeActions(b, iff.getActions(), indent + INDENT);
+         b.append(indent).append("</if>\n");
+     }

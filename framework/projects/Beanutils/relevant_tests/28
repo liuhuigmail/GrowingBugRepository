@@ -1,0 +1,4 @@
+org.apache.commons.beanutils.BeanIntrospectionDataTestCase
+org.apache.commons.beanutils.FluentPropertyBeanIntrospectorTestCase
+org.apache.commons.beanutils.WrapDynaBeanTestCase
+org.apache.commons.beanutils.bugs.Jira456TestCase

@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/cli/HelpFormatter.java b/src/main/java/org/apache/commons/cli/HelpFormatter.java
+index 81cc03c..694ff03 100644
+--- a/src/main/java/org/apache/commons/cli/HelpFormatter.java
++++ b/src/main/java/org/apache/commons/cli/HelpFormatter.java
+@@ -482,13 +482,13 @@ public class HelpFormatter {
+             printUsage(pw, width, cmdLineSyntax);
+         }
+ 
+-        if (header != null && !header.isEmpty()) {
++        if (header != null && !header.trim().isEmpty()) {
+             printWrapped(pw, width, header);
+         }
+ 
+         printOptions(pw, width, options, leftPad, descPad);
+ 
+-        if (footer != null && !footer.isEmpty()) {
++        if (footer != null && !footer.trim().isEmpty()) {
+             printWrapped(pw, width, footer);
+         }
+     }

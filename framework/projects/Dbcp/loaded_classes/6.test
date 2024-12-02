@@ -1,0 +1,3 @@
+org.apache.commons.dbcp2.TestDelegatingConnection
+org.apache.commons.dbcp2.TesterConnection
+org.apache.commons.dbcp2.TesterDatabaseMetaData

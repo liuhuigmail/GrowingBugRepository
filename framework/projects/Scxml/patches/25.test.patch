@@ -1,0 +1,24 @@
+diff --git a/src/test/java/org/apache/commons/scxml/io/SCXMLSerializerTest.java b/src/test/java/org/apache/commons/scxml/io/SCXMLSerializerTest.java
+index 08251d36..d352e8d5 100644
+--- a/src/test/java/org/apache/commons/scxml/io/SCXMLSerializerTest.java
++++ b/src/test/java/org/apache/commons/scxml/io/SCXMLSerializerTest.java
+@@ -92,19 +92,6 @@ public class SCXMLSerializerTest extends TestCase {
+         assertEquals(assertValue.toString(), returnValue.toString());
+     }
+ 
+-    public void testSerializeSendEmptyAttributes() {
+-        // test a <send event="foo"/>, i.e.most attributes are empty
+-        Send send = new Send();
+-        send.setEvent("foo");
+-
+-        String assertValue = " <send event=\"foo\">\n </send>\n";
+-
+-        StringBuffer returnValue = new StringBuffer();
+-        SCXMLSerializer.serializeSend(returnValue, send, " ");
+-
+-        assertEquals(assertValue.toString(), returnValue.toString());
+-    }
+-
+     public void testSerializeActionsListNull() {
+         TransitionTarget target = new State();
+         target.setId("1");

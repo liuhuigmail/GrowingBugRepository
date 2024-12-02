@@ -1,0 +1,12 @@
+org.apache.commons.dbcp2.AbandonedTrace
+org.apache.commons.dbcp2.ConnectionFactory
+org.apache.commons.dbcp2.DelegatingConnection
+org.apache.commons.dbcp2.DelegatingPreparedStatement
+org.apache.commons.dbcp2.DelegatingStatement
+org.apache.commons.dbcp2.DriverManagerConnectionFactory
+org.apache.commons.dbcp2.PoolableConnection
+org.apache.commons.dbcp2.PoolableConnectionFactory
+org.apache.commons.dbcp2.PoolablePreparedStatement
+org.apache.commons.dbcp2.PoolingConnection
+org.apache.commons.dbcp2.PoolingDataSource
+org.apache.commons.dbcp2.PStmtKey

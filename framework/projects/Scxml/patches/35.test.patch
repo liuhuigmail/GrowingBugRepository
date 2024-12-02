@@ -1,0 +1,184 @@
+diff --git a/src/test/java/org/apache/commons/scxml2/SCXMLExecutorTest.java b/src/test/java/org/apache/commons/scxml2/SCXMLExecutorTest.java
+index bf5bc77d..e154f061 100644
+--- a/src/test/java/org/apache/commons/scxml2/SCXMLExecutorTest.java
++++ b/src/test/java/org/apache/commons/scxml2/SCXMLExecutorTest.java
+@@ -17,9 +17,7 @@
+ package org.apache.commons.scxml2;
+ 
+ import java.net.URL;
+-import java.util.HashMap;
+ import java.util.HashSet;
+-import java.util.Map;
+ import java.util.Set;
+ 
+ import org.apache.commons.scxml2.env.SimpleContext;
+@@ -39,8 +37,7 @@ public class SCXMLExecutorTest {
+     // Test data
+     private URL microwave01jsp, microwave02jsp, microwave01jexl,
+         microwave02jexl, microwave03jexl, microwave04jexl, microwave05jexl, transitions01,
+-        transitions02, transitions03, transitions04, transitions05, transitions06, prefix01, send01, send02,
+-        transitionsWithCond01;
++        transitions02, transitions03, transitions04, transitions05, transitions06, prefix01, send01, send02;
+     private SCXMLExecutor exec;
+ 
+     /**
+@@ -80,8 +77,6 @@ public class SCXMLExecutorTest {
+             getResource("org/apache/commons/scxml2/send-01.xml");
+         send02 = this.getClass().getClassLoader().
+             getResource("org/apache/commons/scxml2/send-02.xml");
+-        transitionsWithCond01 = this.getClass().getClassLoader().
+-                getResource("org/apache/commons/scxml2/transitions-with-cond-01.xml");
+     }
+ 
+     /**
+@@ -91,8 +86,7 @@ public class SCXMLExecutorTest {
+     public void tearDown() {
+         microwave01jsp = microwave02jsp = microwave01jexl = microwave02jexl =
+             microwave04jexl = microwave05jexl = transitions01 = transitions02 = transitions03 =
+-            transitions04 = transitions05 = transitions06 = prefix01 = send01 = send02 = 
+-            transitionsWithCond01 = null;
++            transitions04 = transitions05 = transitions06 = prefix01 = send01 = send02 = null;
+     }
+ 
+     /**
+@@ -282,38 +276,6 @@ public class SCXMLExecutorTest {
+         Assert.assertTrue(exec.getCurrentStatus().isFinal());
+     }
+ 
+-    @Test
+-    public void testSCXMLExecutorTransitionsWithCond01Sample() throws Exception {
+-        SCXML scxml = SCXMLTestHelper.parse(transitionsWithCond01);
+-        Assert.assertNotNull(scxml);
+-        exec = SCXMLTestHelper.getExecutor(scxml);
+-        Assert.assertNotNull(exec);
+-
+-        Map<String, Object> payload = new HashMap<String, Object>();
+-
+-        // with _eventdata['keyed'] set to true, transition should happen as expected.
+-        payload.put("keyed", Boolean.TRUE);
+-        SCXMLTestHelper.assertPostTriggerState(exec, "open", payload, "opened");
+-        // turn back to closed
+-        SCXMLTestHelper.assertPostTriggerState(exec, "close", payload, "closed");
+-
+-        // with _eventdata['keyed'] set to false, transition shouldn't happen as expected.
+-        payload.put("keyed", Boolean.FALSE);
+-        SCXMLTestHelper.assertPostTriggerState(exec, "open", payload, "closed");
+-
+-        // with _eventdata['keyed'] set to null, transition shouldn't happen as expected.
+-        payload.clear();
+-        SCXMLTestHelper.assertPostTriggerState(exec, "open", payload, "closed");
+-
+-        // with _eventdata set to null, transition shouldn't happen as expected.
+-        SCXMLTestHelper.assertPostTriggerState(exec, "open", null, "closed");
+-
+-        // transition to locked for testing
+-        SCXMLTestHelper.assertPostTriggerState(exec, "lock", null, "locked");
+-        // due to intentional expression syntax error, it catches an exception and so treat the cond as false
+-        SCXMLTestHelper.assertPostTriggerState(exec, "unlock", null, "locked");
+-    }
+-
+     private void checkMicrowave01Sample() throws Exception {
+         Set<TransitionTarget> currentStates = SCXMLTestHelper.fireEvent(exec, "turn_on");
+         Assert.assertEquals(1, currentStates.size());
+@@ -326,6 +288,5 @@ public class SCXMLExecutorTest {
+         String id = ((State)currentStates.iterator().next()).getId();
+         Assert.assertTrue(id.equals("closed") || id.equals("cooking"));
+     }
+-
+ }
+ 
+diff --git a/src/test/java/org/apache/commons/scxml2/SCXMLTestHelper.java b/src/test/java/org/apache/commons/scxml2/SCXMLTestHelper.java
+index f19d0718..eeee277f 100644
+--- a/src/test/java/org/apache/commons/scxml2/SCXMLTestHelper.java
++++ b/src/test/java/org/apache/commons/scxml2/SCXMLTestHelper.java
+@@ -195,12 +195,8 @@ public class SCXMLTestHelper {
+     }
+ 
+     public static Set<TransitionTarget> fireEvent(SCXMLExecutor exec, String name) throws Exception {
+-        return fireEvent(exec, name, null);
+-    }
+-
+-    public static Set<TransitionTarget> fireEvent(SCXMLExecutor exec, String name, Object payload) throws Exception {
+         TriggerEvent[] evts = {new TriggerEvent(name,
+-                TriggerEvent.SIGNAL_EVENT, payload)};
++                TriggerEvent.SIGNAL_EVENT, null)};
+         exec.triggerEvents(evts);
+         return exec.getCurrentStatus().getStates();
+     }
+@@ -217,24 +213,14 @@ public class SCXMLTestHelper {
+ 
+     public static void assertPostTriggerState(SCXMLExecutor exec,
+             String triggerEventName, String expectedStateId) throws Exception {
+-        assertPostTriggerState(exec, triggerEventName, null, expectedStateId);
+-    }
+-
+-    public static void assertPostTriggerState(SCXMLExecutor exec,
+-            String triggerEventName, Object payload, String expectedStateId) throws Exception {
+         assertPostTriggerState(exec, new TriggerEvent(triggerEventName,
+-                TriggerEvent.SIGNAL_EVENT, payload), expectedStateId);
++                TriggerEvent.SIGNAL_EVENT), expectedStateId);
+     }
+ 
+     public static void assertPostTriggerStates(SCXMLExecutor exec,
+             String triggerEventName, String[] expectedStateIds) throws Exception {
+-        assertPostTriggerStates(exec, triggerEventName, null, expectedStateIds);
+-    }
+-
+-    public static void assertPostTriggerStates(SCXMLExecutor exec,
+-            String triggerEventName, Object payload, String[] expectedStateIds) throws Exception {
+         assertPostTriggerStates(exec, new TriggerEvent(triggerEventName,
+-                TriggerEvent.SIGNAL_EVENT, payload), expectedStateIds);
++                TriggerEvent.SIGNAL_EVENT), expectedStateIds);
+     }
+ 
+     public static void assertPostTriggerState(SCXMLExecutor exec,
+diff --git a/src/test/java/org/apache/commons/scxml2/transitions-with-cond-01.xml b/src/test/java/org/apache/commons/scxml2/transitions-with-cond-01.xml
+deleted file mode 100644
+index 31a1078c..00000000
+--- a/src/test/java/org/apache/commons/scxml2/transitions-with-cond-01.xml
++++ /dev/null
+@@ -1,44 +0,0 @@
+-<?xml version="1.0"?>
+-<!--
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+--->
+-<!--
+-    Uses SCXMLReader
+--->
+-<scxml xmlns="http://www.w3.org/2005/07/scxml"
+-       version="1.0"
+-       initial="closed">
+-
+-  <state id="closed">
+-    <transition event="open" cond="_eventdata['keyed']" target="opened" />
+-    <transition event="lock" target="locked" />
+-  </state>
+-
+-  <state id="locked">
+-    <transition event="unlock" cond="_eventdata :-( intendedSyntaxError" target="closed" />
+-  </state>
+-
+-  <state id="opened">
+-    <onentry>
+-      <if cond="_eventdata['newface']">
+-        <log expr="'Welcome!'" />
+-      </if>
+-    </onentry>
+-    <transition event="close" target="closed" />
+-  </state>
+-
+-</scxml>
+-

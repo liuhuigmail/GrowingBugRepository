@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/apache/commons/cli/Option.java b/src/main/java/org/apache/commons/cli/Option.java
+index 0e7a36b..1904809 100644
+--- a/src/main/java/org/apache/commons/cli/Option.java
++++ b/src/main/java/org/apache/commons/cli/Option.java
+@@ -216,9 +216,7 @@ public class Option implements Cloneable, Serializable {
+          * @return this builder, to allow method chaining
+          */
+         public Builder optionalArg(final boolean optionalArg) {
+-            if (optionalArg && this.argCount == UNINITIALIZED) {
+-                this.argCount = 1;
+-            }
++            this.argCount = optionalArg ? 1 : UNINITIALIZED;
+             this.optionalArg = optionalArg;
+             return this;
+         }

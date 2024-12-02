@@ -1,0 +1,66 @@
+diff --git a/hugegraph-common/src/main/java/com/baidu/hugegraph/config/HugeConfig.java b/hugegraph-common/src/main/java/com/baidu/hugegraph/config/HugeConfig.java
+index 69f7874..5b0e45f 100644
+--- a/hugegraph-common/src/main/java/com/baidu/hugegraph/config/HugeConfig.java
++++ b/hugegraph-common/src/main/java/com/baidu/hugegraph/config/HugeConfig.java
+@@ -45,7 +45,7 @@ public class HugeConfig extends PropertiesConfiguration {
+ 
+     private static final Logger LOG = Log.logger(HugeConfig.class);
+ 
+-    private String configPath;
++    private final String configPath;
+ 
+     public HugeConfig(Configuration config) {
+         loadConfig(config);
+@@ -75,6 +75,14 @@ public class HugeConfig extends PropertiesConfiguration {
+         this.setLayout(propConf.getLayout());
+     }
+ 
++    private static Configuration loadConfigFile(String path) {
++        E.checkNotNull(path, "config path");
++        E.checkArgument(!path.isEmpty(),
++                        "The config path can't be empty");
++        File file = new File(path);
++        return loadConfigFile(file);
++    }
++
+     @SuppressWarnings("unchecked")
+     public <T, R> R get(TypedOption<T, R> option) {
+         Object value = this.getProperty(option.name());
+@@ -147,25 +155,15 @@ public class HugeConfig extends PropertiesConfiguration {
+     }
+ 
+     @Nullable
+-    public File file() {
++    public File getFile() {
+         if (StringUtils.isEmpty(this.configPath)) {
+             return null;
+         }
+ 
+         return new File(this.configPath);
+-    }
+ 
+-    public void file(String path) {
+-        this.configPath = path;
+-    }
+ 
+-    private static Configuration loadConfigFile(String path) {
+-        E.checkNotNull(path, "config path");
+-        E.checkArgument(!path.isEmpty(),
+-                        "The config path can't be empty");
+ 
+-        File file = new File(path);
+-        return loadConfigFile(file);
+     }
+ 
+     private static Configuration loadConfigFile(File configFile) {
+diff --git a/hugegraph-common/src/main/java/com/baidu/hugegraph/version/CommonVersion.java b/hugegraph-common/src/main/java/com/baidu/hugegraph/version/CommonVersion.java
+index 5aa53b9..e10b092 100644
+--- a/hugegraph-common/src/main/java/com/baidu/hugegraph/version/CommonVersion.java
++++ b/hugegraph-common/src/main/java/com/baidu/hugegraph/version/CommonVersion.java
+@@ -27,5 +27,5 @@ public class CommonVersion {
+ 
+     // The second parameter of Version.of() is for all-in-one JAR
+     public static final Version VERSION = Version.of(CommonVersion.class,
+-                                                     "2.1.1");
++                                                     "2.1.0");
+ }

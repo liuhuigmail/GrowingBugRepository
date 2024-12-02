@@ -1,0 +1,7 @@
+--- org.apache.commons.dbcp2.managed.TestManagedDataSource::testThreaded
+--- org.apache.commons.dbcp2.TestPStmtPoolingBasicDataSource::testThreaded
+--- org.apache.commons.dbcp2.TestAbandonedBasicDataSource::testConcurrentInitBorrow
+--- org.apache.commons.dbcp2.TestBasicDataSource::testConcurrentInitBorrow
+--- org.apache.commons.dbcp2.TestPStmtPoolingBasicDataSource::testConcurrentInitBorrow
+--- org.apache.commons.dbcp2.managed.TestBasicManagedDataSource::testConcurrentInitBorrow
+--- org.apache.commons.dbcp2.managed.TestDataSourceXAConnectionFactory::testConcurrentInitBorrow

@@ -1,0 +1,182 @@
+diff --git a/src/test/java/org/apache/commons/scxml/model/StatelessModelTest.java b/src/test/java/org/apache/commons/scxml/model/StatelessModelTest.java
+index 4d9acd72..d7ce1462 100644
+--- a/src/test/java/org/apache/commons/scxml/model/StatelessModelTest.java
++++ b/src/test/java/org/apache/commons/scxml/model/StatelessModelTest.java
+@@ -17,7 +17,6 @@
+ package org.apache.commons.scxml.model;
+ 
+ import java.net.URL;
+-import java.util.Iterator;
+ import java.util.Set;
+ 
+ import junit.framework.Test;
+@@ -49,9 +48,9 @@ public class StatelessModelTest extends TestCase {
+     }
+ 
+     // Test data
+-    private URL stateless01jexl, stateless01jsp, stateless01par;
+-    private SCXML scxml01jexl, scxml01jsp, scxml01par, scxml02par;
+-    private SCXMLExecutor exec01, exec02, exec03;
++    private URL stateless01jexl, stateless01jsp;
++    private SCXML scxml01jexl, scxml01jsp;
++    private SCXMLExecutor exec01, exec02;
+ 
+     /**
+      * Set up instance variables required by this test case.
+@@ -61,12 +60,8 @@ public class StatelessModelTest extends TestCase {
+             getResource("org/apache/commons/scxml/env/jexl/stateless-01.xml");
+         stateless01jsp = this.getClass().getClassLoader().
+             getResource("org/apache/commons/scxml/env/jsp/stateless-01.xml");
+-        stateless01par = this.getClass().getClassLoader().
+-            getResource("org/apache/commons/scxml/model/stateless-parallel-01.xml");
+         scxml01jexl = SCXMLTestHelper.digest(stateless01jexl);
+         scxml01jsp = SCXMLTestHelper.digest(stateless01jsp);
+-        scxml01par = SCXMLTestHelper.digest(stateless01par);
+-        scxml02par = SCXMLTestHelper.digest(stateless01par);
+     }
+ 
+     /**
+@@ -129,83 +124,6 @@ public class StatelessModelTest extends TestCase {
+         }
+     }
+ 
+-    /**
+-     * Test sharing a single SCXML object between two executors
+-     */
+-    public void testStatelessModelParallelSharedSCXML() {
+-        exec01 = SCXMLTestHelper.getExecutor(scxml01par);
+-        assertNotNull(exec01);
+-        exec02 = SCXMLTestHelper.getExecutor(scxml01par);
+-        assertNotNull(exec02);
+-        assertFalse(exec01 == exec02);
+-
+-        Set currentStates = exec01.getCurrentStatus().getStates();
+-        checkParallelStates(currentStates, "state1.init", "state2.init", "exec01");
+-
+-        currentStates = exec02.getCurrentStatus().getStates();
+-        checkParallelStates(currentStates, "state1.init", "state2.init", "exec02");
+-
+-        currentStates = fireEvent("state1.event", exec01);
+-        checkParallelStates(currentStates, "state1.final", "state2.init", "exec01");
+-
+-        currentStates = fireEvent("state2.event", exec02);
+-        checkParallelStates(currentStates, "state1.init", "state2.final", "exec02");
+-
+-        currentStates = fireEvent("state2.event", exec01);
+-        checkParallelStates(currentStates, "next", null, "exec01");
+-
+-        currentStates = fireEvent("state1.event", exec02);
+-        checkParallelStates(currentStates, "next", null, "exec02");
+-    }
+-
+-    /**
+-     * Test sharing two SCXML objects between one executor (not recommended)
+-     */
+-    public void testStatelessModelParallelSwapSCXML() {
+-        exec01 = SCXMLTestHelper.getExecutor(scxml01par);
+-        assertNotNull(exec01);
+-        assertTrue(scxml01par != scxml02par);
+-
+-        Set currentStates = exec01.getCurrentStatus().getStates();
+-        checkParallelStates(currentStates, "state1.init", "state2.init", "exec01");
+-
+-        currentStates = fireEvent("state1.event", exec01);
+-        checkParallelStates(currentStates, "state1.final", "state2.init", "exec01");
+-        exec01.setStateMachine(scxml02par);
+-
+-        currentStates = fireEvent("state2.event", exec01);
+-        checkParallelStates(currentStates, "next", null, "exec01");
+-    }
+-
+-    private void checkParallelStates(Set currentStates, String s1, String s2,
+-            String label) {
+-        Iterator i = currentStates.iterator();
+-        assertTrue("Not enough states", i.hasNext());
+-        String cs1 = ((State) i.next()).getId();
+-        String cs2 = null;
+-        if (s2 != null) {
+-            assertTrue("Not enough states, found one state: " + cs1, i.hasNext());
+-            cs2 = ((State) i.next()).getId();
+-            assertFalse("Too many states", i.hasNext());
+-            if (s2.equals(cs2)) {
+-                cs2 = null;
+-            } else if (s1.equals(cs2)) {
+-                cs2 = null;
+-            } else {
+-                fail(label + " in unexpected state " + cs2);
+-            }
+-        } else {
+-            assertFalse("Too many states", i.hasNext());
+-        }
+-        if (s1 != null && s1.equals(cs1)) {
+-            return;
+-        }
+-        if (s2 != null && s2.equals(cs1)) {
+-            return;
+-        }
+-        fail(label + " in unexpected state " + cs1);
+-    }
+-
+     private void runSimultaneousTest() {
+         try {
+             //// Interleaved
+diff --git a/src/test/java/org/apache/commons/scxml/model/stateless-parallel-01.xml b/src/test/java/org/apache/commons/scxml/model/stateless-parallel-01.xml
+deleted file mode 100644
+index f2e90172..00000000
+--- a/src/test/java/org/apache/commons/scxml/model/stateless-parallel-01.xml
++++ /dev/null
+@@ -1,54 +0,0 @@
+-<?xml version="1.0"?>
+-<!--
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+--->
+-<scxml xmlns="http://www.w3.org/2005/07/scxml"
+-       version="1.0"
+-       initialstate="main">
+-
+-    <state id="main">
+-
+-        <parallel id="main.parallel">
+-
+-            <state id="state1">
+-                <initial>
+-                    <transition target="state1.init"/>
+-                </initial>
+-                <state id="state1.init">
+-                    <transition event="state1.event" target="state1.final" />
+-                </state>
+-                <state id="state1.final" final="true" />
+-            </state>
+-
+-            <state id="state2">
+-                <initial>
+-                    <transition target="state2.init"/>
+-                </initial>
+-                <state id="state2.init">
+-                    <transition event="state2.event" target="state2.final" />
+-                </state>
+-                <state id="state2.final" final="true" />
+-            </state>
+-
+-        </parallel>
+-
+-        <transition event="main.parallel.done" target="next" />
+-
+-    </state>
+-
+-    <state id="next" final="true"/>
+-
+-</scxml>

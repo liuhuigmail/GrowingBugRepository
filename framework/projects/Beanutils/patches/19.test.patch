@@ -1,0 +1,17 @@
+diff --git a/src/test/java/org/apache/commons/beanutils/ConstructorUtilsTestCase.java b/src/test/java/org/apache/commons/beanutils/ConstructorUtilsTestCase.java
+index 70ccb030..375cf7da 100644
+--- a/src/test/java/org/apache/commons/beanutils/ConstructorUtilsTestCase.java
++++ b/src/test/java/org/apache/commons/beanutils/ConstructorUtilsTestCase.java
+@@ -147,12 +147,6 @@ public class ConstructorUtilsTestCase extends TestCase {
+         }
+     }
+ 
+-    public void testInvokeExactConstructorWithNull() throws Exception {
+-        Object obj = ConstructorUtils.invokeExactConstructor(TestBean.class, (Object) null);
+-        assertNotNull(obj);
+-        assertTrue(obj instanceof TestBean);
+-    }
+-
+     public void testInvokeExactConstructorWithArgArray() throws Exception {
+         {
+             Object[] args = { new Float(17.3f), "TEST" };

@@ -1,0 +1,46 @@
+diff --git a/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java b/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
+index b6d93c02..445f8cd1 100644
+--- a/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
++++ b/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
+@@ -485,31 +485,16 @@ public class SCXMLSerializer {
+      */
+     public static void serializeSend(final StringBuffer b,
+             final Send send, final String indent) {
+-        b.append(indent).append("<send");
+-        if (send.getSendid() != null) {
+-            b.append(" sendid=\"").append(send.getSendid()).append("\"");
+-        }
+-        if (send.getTarget() != null) {
+-            b.append(" target=\"").append(send.getTarget()).append("\"");
+-        }
+-        if (send.getTargettype() != null) {
+-            b.append(" targetType=\"").append(send.getTargettype()).append("\"");
+-        }
+-        if (send.getNamelist() != null) {
+-            b.append(" namelist=\"").append(send.getNamelist()).append("\"");
+-        }
+-        if (send.getDelay() != null) {
+-            b.append(" delay=\"").append(send.getDelay()).append("\"");
+-        }
+-        if (send.getEvent() != null) {
+-            b.append(" event=\"").append(send.getEvent()).append("\"");
+-        }
+-        if (send.getHints() != null) {
+-            b.append(" hints=\"").append(send.getHints()).append("\"");
+-        }
+-        b.append(">\n");
+-        b.append(getBodyContent(send));
+-        b.append(indent).append("</send>\n");
++        b.append(indent).append("<send sendid=\"")
++            .append(send.getSendid()).append("\" target=\"")
++            .append(send.getTarget()).append("\" targetType=\"")
++            .append(send.getTargettype()).append("\" namelist=\"")
++            .append(send.getNamelist()).append("\" delay=\"")
++            .append(send.getDelay()).append("\" event=\"")
++            .append(send.getEvent()).append("\" hints=\"")
++            .append(send.getHints()).append("\">\n")
++            .append(getBodyContent(send))
++            .append(indent).append("</send>\n");
+     }
+ 
+     /**

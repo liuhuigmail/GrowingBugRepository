@@ -1,0 +1,28 @@
+diff --git a/src/java/org/apache/commons/beanutils/BeanUtilsBean.java b/src/java/org/apache/commons/beanutils/BeanUtilsBean.java
+index c668e5f2..bee51996 100644
+--- a/src/java/org/apache/commons/beanutils/BeanUtilsBean.java
++++ b/src/java/org/apache/commons/beanutils/BeanUtilsBean.java
+@@ -924,8 +924,6 @@ public class BeanUtilsBean {
+                 return; // Skip this property setter
+             }
+             type = dynaProperty.getType();
+-        } else if (target instanceof Map) {
+-            type = Object.class;
+         } else {
+             PropertyDescriptor descriptor = null;
+             try {
+@@ -1011,7 +1009,13 @@ public class BeanUtilsBean {
+ 
+         // Invoke the setter method
+         try {
+-          getPropertyUtils().setProperty(target, name, newValue);
++            if (index >= 0) {
++                getPropertyUtils().setIndexedProperty(target, propName,index, newValue);
++            } else if (key != null) {
++                getPropertyUtils().setMappedProperty(target, propName,key, newValue);
++            } else {
++                getPropertyUtils().setProperty(target, propName, newValue);
++            }
+         } catch (NoSuchMethodException e) {
+             throw new InvocationTargetException
+                 (e, "Cannot set " + propName);

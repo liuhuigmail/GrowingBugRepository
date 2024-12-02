@@ -1,0 +1,2 @@
+org.apache.commons.dbcp2.BasicDataSource
+org.apache.commons.dbcp2.managed.BasicManagedDataSource

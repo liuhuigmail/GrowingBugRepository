@@ -1,0 +1,33 @@
+diff --git a/src/test/java/org/apache/commons/scxml/WildcardTest.java b/src/test/java/org/apache/commons/scxml/WildcardTest.java
+index 00a04564..9212528d 100644
+--- a/src/test/java/org/apache/commons/scxml/WildcardTest.java
++++ b/src/test/java/org/apache/commons/scxml/WildcardTest.java
+@@ -75,7 +75,7 @@ public class WildcardTest extends TestCase {
+             assertEquals("state1", ((State)currentStates.iterator().
+                 next()).getId());
+             exec = SCXMLTestHelper.testExecutorSerializability(exec);
+-            currentStates = SCXMLTestHelper.fireEvent(exec, "foo.bar.baz");
++            currentStates = SCXMLTestHelper.fireEvent(exec, "*");
+             assertEquals(1, currentStates.size());
+             assertEquals("state4", ((State)currentStates.iterator().
+                 next()).getId());
+diff --git a/src/test/java/org/apache/commons/scxml/env/jexl/wildcard-01.xml b/src/test/java/org/apache/commons/scxml/env/jexl/wildcard-01.xml
+index 77d68b13..a1a738ee 100644
+--- a/src/test/java/org/apache/commons/scxml/env/jexl/wildcard-01.xml
++++ b/src/test/java/org/apache/commons/scxml/env/jexl/wildcard-01.xml
+@@ -22,11 +22,11 @@
+            <onentry>
+                <var name="switch" expr="4" />
+            </onentry>
+-           <!-- We'll trigger 'foo.bar.baz' event,
++           <!-- We'll match all the events using a wildcard (*),
+                 and therefore, must end up in state4 -->
+-           <transition event="*" cond="switch eq 2" target="state2"/>
+-           <transition event="foo.*" cond="switch eq 3" target="state3"/>
+-           <transition event="foo.bar.*" cond="switch eq 4" target="state4"/>
++           <transition event="foo.bar" cond="switch eq 2" target="state2"/>
++           <transition event="err.foo" cond="switch eq 3" target="state3"/>
++           <transition event="done.it" cond="switch eq 4" target="state4"/>
+      </state>
+      <state id="state2" final="true"/>
+      <state id="state3" final="true"/>

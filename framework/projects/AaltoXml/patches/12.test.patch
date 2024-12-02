@@ -1,0 +1,45 @@
+diff --git a/src/test/java/com/fasterxml/aalto/sax/TestSaxWriter.java b/src/test/java/com/fasterxml/aalto/sax/TestSaxWriter.java
+index 31ccc10..58c9b9f 100644
+--- a/src/test/java/com/fasterxml/aalto/sax/TestSaxWriter.java
++++ b/src/test/java/com/fasterxml/aalto/sax/TestSaxWriter.java
+@@ -60,7 +60,11 @@ public class TestSaxWriter extends base.BaseTestCase
+ 
+     public void testSplitSurrogateWithCData() throws Exception
+     {
+-        // Modification of "testSplitSurrogateWithAttributeValue()" but for CDATA
++        // This test aims to produce the
++        // javax.xml.stream.XMLStreamException: Incomplete surrogate pair in content: first char 0xdfce, second 0x78
++        // error message. The issue was similar to the one described in testSurrogateMemory1(), except it happened in
++        // ByteXmlWriter#writeCDataContents(), where check for existing _surrogate was missing prior to the fix,
++        // as opposed to ByteXmlWriter#writeCharacters().
+         StringBuilder testText = new StringBuilder();
+         for (int i = 0; i < 511; i++) {
+             testText.append('x');
+@@ -79,27 +83,4 @@ public class TestSaxWriter extends base.BaseTestCase
+         writer.writeEndTag(writer.constructName("testelement"));
+         writer.close(false);
+     }
+-
+-
+-    public void testSplitSurrogateWithComment() throws Exception
+-    {
+-        // Modification of "testSplitSurrogateWithAttributeValue()" but for Comment
+-        StringBuilder testText = new StringBuilder();
+-        for (int i = 0; i < 511; i++) {
+-            testText.append('x');
+-        }
+-        testText.append("\uD835\uDFCE");
+-        for (int i = 0; i < 512; i++) {
+-            testText.append('x');
+-        }
+-
+-        WriterConfig writerConfig = new WriterConfig();
+-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+-        Utf8XmlWriter writer = new Utf8XmlWriter(writerConfig, byteArrayOutputStream);
+-        writer.writeStartTagStart(writer.constructName("testelement"));
+-        writer.writeComment(testText.toString());
+-        writer.writeStartTagEnd();
+-        writer.writeEndTag(writer.constructName("testelement"));
+-        writer.close(false);
+-    }
+ }

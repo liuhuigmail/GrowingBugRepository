@@ -1,0 +1,3 @@
+org.apache.commons.cli.AbstractParserTestCase
+org.apache.commons.cli.DefaultParserTest
+org.apache.commons.cli.OptionTest

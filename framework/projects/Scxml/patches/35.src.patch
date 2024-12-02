@@ -1,0 +1,51 @@
+diff --git a/src/main/java/org/apache/commons/scxml2/model/If.java b/src/main/java/org/apache/commons/scxml2/model/If.java
+index fbe81efe..40ccad69 100644
+--- a/src/main/java/org/apache/commons/scxml2/model/If.java
++++ b/src/main/java/org/apache/commons/scxml2/model/If.java
+@@ -125,15 +125,7 @@ public class If extends Action {
+         Boolean rslt = Boolean.FALSE;
+         try {
+             rslt = eval.evalCond(ctx, cond);
+-            if (rslt == null) {
+-                if (appLog.isDebugEnabled()) {
+-                    appLog.debug("Treating as false because the cond expression was evaluated as null: '" + cond + "'");
+-                }
+-                rslt = Boolean.FALSE;
+-            }
+         } catch (SCXMLExpressionException e) {
+-            rslt = Boolean.FALSE;
+-            errRep.onError(ErrorConstants.EXPRESSION_ERROR, "Treating as false due to error: " + e.getMessage(), this);
+             // TODO: place the error 'error.execution' in the internal event queue. (section "3.12.2 Errors")
+         }
+         execute = rslt.booleanValue();
+diff --git a/src/main/java/org/apache/commons/scxml2/semantics/SCXMLSemanticsImpl.java b/src/main/java/org/apache/commons/scxml2/semantics/SCXMLSemanticsImpl.java
+index 49f4e34c..4830da9b 100644
+--- a/src/main/java/org/apache/commons/scxml2/semantics/SCXMLSemanticsImpl.java
++++ b/src/main/java/org/apache/commons/scxml2/semantics/SCXMLSemanticsImpl.java
+@@ -395,7 +395,7 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+                 continue; //makes no sense to eval guard cond.
+             }
+             // guard condition check
+-            Boolean rslt = Boolean.FALSE;
++            Boolean rslt;
+             String expr = t.getCond();
+             if (SCXMLHelper.isStringEmpty(expr)) {
+                 rslt = Boolean.TRUE;
+@@ -405,16 +405,10 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+                     ctx.setLocal(NAMESPACES_KEY, t.getNamespaces());
+                     rslt = scInstance.getEvaluator().evalCond(ctx,
+                         t.getCond());
+-                    if (rslt == null) {
+-                        if (appLog.isDebugEnabled()) {
+-                            appLog.debug("Treating as false because the cond expression was evaluated as null: '" + t.getCond() + "'");
+-                        }
+-                        rslt = Boolean.FALSE;
+-                    }
+                     ctx.setLocal(NAMESPACES_KEY, null);
+                 } catch (SCXMLExpressionException e) {
+                     rslt = Boolean.FALSE;
+-                    errRep.onError(ErrorConstants.EXPRESSION_ERROR, "Treating as false due to error: " + e.getMessage(), t);
++                    errRep.onError(ErrorConstants.EXPRESSION_ERROR, e.getMessage(), t);
+                     // TODO: place the error 'error.execution' in the internal event queue. (section "3.12.2 Errors")
+                 }
+             }
