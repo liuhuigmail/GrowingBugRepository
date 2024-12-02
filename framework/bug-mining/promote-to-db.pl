@@ -214,7 +214,7 @@ _copy($src, $dst);
 my $dir_name = $REPOSITORY_DIR;
 $dir_name =~ m[^.*/(.*)$];
 #system ("rm -rf $REPO_DIR/$1") == 0 or die "Could not remove $REPO_DIR/$1: $!";
-_copy($REPOSITORY_DIR, "$REPO_DIR/${PID}");
+_copy($REPOSITORY_DIR, "$REPO_DIR");
 
 # Update README file
 my $bug_miniming_repos_readme_file = "$WORK_DIR/project_repos/README";
@@ -265,9 +265,6 @@ sub _get_bug_ids {
 
 sub _copy {
     my ($src, $dst) = @_;
-    if (-e $src) {
-        $dst = dirname($dst);
-    }
     print "\t... copying $src -> $dst\n";
     $dst =~ m[^(.*)/.*$];
     if (!-e $1) {
