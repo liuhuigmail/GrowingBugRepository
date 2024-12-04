@@ -1,0 +1,43 @@
+diff --git a/src/main/java/org/apache/commons/scxml2/io/ModelUpdater.java b/src/main/java/org/apache/commons/scxml2/io/ModelUpdater.java
+index e492580c..e20f4237 100644
+--- a/src/main/java/org/apache/commons/scxml2/io/ModelUpdater.java
++++ b/src/main/java/org/apache/commons/scxml2/io/ModelUpdater.java
+@@ -58,23 +58,17 @@ final class ModelUpdater {
+      */
+    static void updateSCXML(final SCXML scxml) throws ModelException {
+        String initial = scxml.getInitial();
+-       TransitionTarget initialTarget = null;
+ 
+-       if (initial != null) {
+            //we have to use getTargets() here since the initialTarget can be
+            //an indirect descendant
+-           initialTarget = scxml.getTargets().get(initial);
++       TransitionTarget initialTarget = scxml.getTargets().get(initial);
+            if (initialTarget == null) {
+                // Where do we, where do we go?
+                logAndThrowModelError(ERR_SCXML_NO_INIT, new Object[] {
+                    initial });
+-           }
+-       } else {
+            // If 'initial' is not specified, the default initial state is
+            // the first child state in document order.
+-           initialTarget = scxml.getFirstChild();
+        }
+-
+        scxml.setInitialTarget(initialTarget);
+        Map<String, TransitionTarget> targets = scxml.getTargets();
+        Map<String, TransitionTarget> children = scxml.getChildren();
+diff --git a/src/main/java/org/apache/commons/scxml2/model/SCXML.java b/src/main/java/org/apache/commons/scxml2/model/SCXML.java
+index 55897ccf..d7b45234 100644
+--- a/src/main/java/org/apache/commons/scxml2/model/SCXML.java
++++ b/src/main/java/org/apache/commons/scxml2/model/SCXML.java
+@@ -168,9 +168,6 @@ public class SCXML implements Serializable, Observable,
+      *
+      * @since 2.0
+      */
+-    public final TransitionTarget getFirstChild() {
+-        return children.values().iterator().next();
+-    }
+ 
+     /**
+      * Add an immediate child target of the SCXML root.

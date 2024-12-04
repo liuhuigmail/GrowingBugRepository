@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/beanutils/converters/NumberConverter.java b/src/main/java/org/apache/commons/beanutils/converters/NumberConverter.java
+index 0ea89a63..a1dcc15e 100644
+--- a/src/main/java/org/apache/commons/beanutils/converters/NumberConverter.java
++++ b/src/main/java/org/apache/commons/beanutils/converters/NumberConverter.java
+@@ -371,8 +371,6 @@ public abstract class NumberConverter extends AbstractConverter {
+                 return targetType.cast(new BigDecimal(value.toString()));
+             } else if (value instanceof BigInteger) {
+                 return targetType.cast(new BigDecimal((BigInteger)value));
+-            } else if (value instanceof BigDecimal) {
+-                return targetType.cast(new BigDecimal(value.toString()));
+             } else {
+                 return targetType.cast(BigDecimal.valueOf(value.longValue()));
+             }

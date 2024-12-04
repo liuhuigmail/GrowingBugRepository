@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/dbcp2/managed/ManagedConnection.java b/src/main/java/org/apache/commons/dbcp2/managed/ManagedConnection.java
+index f9e7d1e0..a161528c 100644
+--- a/src/main/java/org/apache/commons/dbcp2/managed/ManagedConnection.java
++++ b/src/main/java/org/apache/commons/dbcp2/managed/ManagedConnection.java
+@@ -108,7 +108,7 @@ public class ManagedConnection<C extends Connection> extends DelegatingConnectio
+             @SuppressWarnings("resource")
+             final C connection = getDelegateInternal();
+             setDelegate(null);
+-            if (connection != null && transactionContext.getSharedConnection() != connection) {
++            if (connection != null) {
+                 try {
+                     pool.returnObject(connection);
+                 } catch (final Exception ignored) {

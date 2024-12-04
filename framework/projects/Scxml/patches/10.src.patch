@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/scxml/io/ModelUpdater.java b/src/main/java/org/apache/commons/scxml/io/ModelUpdater.java
+index 140f4ee7..a79320d0 100644
+--- a/src/main/java/org/apache/commons/scxml/io/ModelUpdater.java
++++ b/src/main/java/org/apache/commons/scxml/io/ModelUpdater.java
+@@ -205,12 +205,7 @@ final class ModelUpdater {
+         } else {
+             Iterator j = c.keySet().iterator();
+             while (j.hasNext()) {
+-                TransitionTarget tt = (TransitionTarget) c.get(j.next());
+-                if (tt instanceof State) {
+-                    updateState((State) tt, targets);
+-                } else if (tt instanceof Parallel) {
+-                    updateParallel((Parallel) tt, targets);
+-                }
++                updateState((State) c.get(j.next()), targets);
+             }
+         }
+     }
+diff --git a/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java b/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
+index 0ac032c6..44e54beb 100644
+--- a/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
++++ b/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
+@@ -160,12 +160,8 @@ public class SCXMLSerializer {
+             Map c = s.getChildren();
+             Iterator j = c.keySet().iterator();
+             while (j.hasNext()) {
+-            	TransitionTarget tt = (TransitionTarget) c.get(j.next());
+-                if (tt instanceof State) {
+-                    serializeState(b, (State) tt, indent + INDENT);
+-                } else if (tt instanceof Parallel) {
+-                    serializeParallel(b, (Parallel) tt, indent + INDENT);
+-                }
++                State cs = (State) c.get(j.next());
++                serializeState(b, cs, indent + INDENT);
+             }
+         }
+         serializeOnExit(b, s, indent + INDENT);

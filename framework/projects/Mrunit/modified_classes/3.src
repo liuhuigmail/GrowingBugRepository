@@ -1,0 +1,7 @@
+org.apache.hadoop.mrunit.MapDriver
+org.apache.hadoop.mrunit.ReduceDriver
+org.apache.hadoop.mrunit.mapreduce.MapDriver
+org.apache.hadoop.mrunit.mapreduce.ReduceDriver
+org.apache.hadoop.mrunit.mapreduce.mock.MockMapContextWrapper
+org.apache.hadoop.mrunit.mapreduce.mock.MockReduceContextWrapper
+org.apache.hadoop.mrunit.mock.MockOutputCollector

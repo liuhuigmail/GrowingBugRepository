@@ -16,3 +16,8 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 27,60a041d393c75035e9a63c33723c382ac6f35c30,016a1f67263fe1cde1d910dc7002d972811951c5,POOL-356,https://issues.apache.org/jira/browse/POOL-356
 29,11521c1fdbfbb079cc1859034a425191112f5358,41f4e410b3e7dc34b294ac9941721073bf5e5271,POOL-374,https://issues.apache.org/jira/browse/POOL-374
 30,cb38a1b69384a3811d50d9eb0145683227fe8d51,0cdff0ade7e6a6ae2a48356e55d7549353535043,POOL-356,https://issues.apache.org/jira/browse/POOL-356
+31,5b9e00f8671193108ee6374c3713e241ebc47db3,0486f34de43d9772defdfe6bedfefb0552c36991,POOL-116,https://issues.apache.org/jira/browse/POOL-116
+32,ec683346f8d375b84a8479b20a0b5a2432ee4c92,a9320e67e788e0ff68df38e8afe1e8aaaaba1a47,POOL-135,https://issues.apache.org/jira/browse/POOL-135
+33,51ae45b7462481c08fb53feaffc4d18ad4772074,1b80d343ca28618318e7c13760913ad91dca78c5,POOL-146,https://issues.apache.org/jira/browse/POOL-146
+34,c46728a98690e86b4fab24295d044f20e8ba17f1,4910eb8c161fe6b1a9de972cf87545cb213b4133,unknown,unknown
+35,ec683346f8d375b84a8479b20a0b5a2432ee4c92,cfbd7b08ea9026dca6dcdf4678f40b22af2666e4,unknown,unknown

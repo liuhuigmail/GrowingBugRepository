@@ -1,2 +1,4 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,66467b73f57fe0f1334ef2bfb90731563ae82e97,1be52c5f189783fd70d18d42b478c9f5420b6f2b,XBEAN-154,https://issues.apache.org/jira/browse/XBEAN-154
+2,e7885b864592fcc3c3b7532c1f444c32d12dc26e,62e02c773b7880fa854f5a0392c80ae877c2eb57,XBEAN-91,https://issues.apache.org/jira/browse/XBEAN-91
+3,4b30127812a885eec244841f78316a5052420b7d,2cad5f0010d4758c821693b06a7e198c47900c32,unknown,unknown

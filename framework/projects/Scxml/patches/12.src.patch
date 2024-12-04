@@ -1,0 +1,78 @@
+diff --git a/src/main/java/org/apache/commons/scxml/SCXMLHelper.java b/src/main/java/org/apache/commons/scxml/SCXMLHelper.java
+index 17dbf4cb..77be3841 100644
+--- a/src/main/java/org/apache/commons/scxml/SCXMLHelper.java
++++ b/src/main/java/org/apache/commons/scxml/SCXMLHelper.java
+@@ -445,7 +445,7 @@ public final class SCXMLHelper {
+             }
+             // prefer "src" over "expr" over "inline"
+             if (!SCXMLHelper.isStringEmpty(datum.getSrc())) {
+-                ctx.setLocal(datum.getId(), valueNode);
++                ctx.setLocal(datum.getName(), valueNode);
+             } else if (!SCXMLHelper.isStringEmpty(datum.
+                     getExpr())) {
+                 Object value = null;
+@@ -461,9 +461,9 @@ public final class SCXMLHelper {
+                         defaultLog.error(see.getMessage(), see);
+                     }
+                 }
+-                ctx.setLocal(datum.getId(), value);
++                ctx.setLocal(datum.getName(), value);
+             } else {
+-                ctx.setLocal(datum.getId(), valueNode);
++                ctx.setLocal(datum.getName(), valueNode);
+             }
+         }
+     }
+diff --git a/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java b/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
+index 1074bb53..d2a63aeb 100644
+--- a/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
++++ b/src/main/java/org/apache/commons/scxml/io/SCXMLSerializer.java
+@@ -360,8 +360,8 @@ public class SCXMLSerializer {
+                     }
+                     b.append(indent).append(INDENT).append(out.toString());
+                 } else {
+-                    b.append(indent).append(INDENT).append("<data id=\"").
+-                        append(datum.getId()).append("\" expr=\"").
++                    b.append(indent).append(INDENT).append("<data name=\"").
++                        append(datum.getName()).append("\" expr=\"").
+                         append(datum.getExpr()).append("\" />\n");
+                 }
+             }
+diff --git a/src/main/java/org/apache/commons/scxml/model/Data.java b/src/main/java/org/apache/commons/scxml/model/Data.java
+index 61c77065..e342c7e3 100644
+--- a/src/main/java/org/apache/commons/scxml/model/Data.java
++++ b/src/main/java/org/apache/commons/scxml/model/Data.java
+@@ -37,6 +37,7 @@ public class Data implements NamespacePrefixesHolder, Serializable {
+      * The identifier of this data instance.
+      * For backwards compatibility this is also the name.
+      */
++    private String name;
+     private String id;
+ 
+     /**
+@@ -67,6 +68,7 @@ public class Data implements NamespacePrefixesHolder, Serializable {
+      */
+     public Data() {
+         this.id = null;
++        this.name = null;
+         this.src = null;
+         this.expr = null;
+         this.node = null;
+@@ -79,7 +81,7 @@ public class Data implements NamespacePrefixesHolder, Serializable {
+      * @deprecated Use {@link #getId()} instead.
+      */
+     public final String getName() {
+-        return id;
++        return name;
+     }
+ 
+     /**
+@@ -89,7 +91,7 @@ public class Data implements NamespacePrefixesHolder, Serializable {
+      * @deprecated Use {@link #setId(String)} instead.
+      */
+     public final void setName(final String name) {
+-        this.id = name;
++        this.name = name;
+     }
+ 
+     /**

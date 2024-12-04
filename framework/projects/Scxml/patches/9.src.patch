@@ -1,0 +1,77 @@
+diff --git a/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java b/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
+index 39544b4b..4650520d 100644
+--- a/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
++++ b/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
+@@ -348,8 +348,16 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+          */
+         Set allEvents = new HashSet(step.getBeforeStatus().getEvents().size()
+             + step.getExternalEvents().size());
+-        allEvents.addAll(step.getBeforeStatus().getEvents());
+-        allEvents.addAll(step.getExternalEvents());
++        for (Iterator ei = step.getBeforeStatus().getEvents().iterator();
++                ei.hasNext();) {
++            TriggerEvent te = (TriggerEvent) ei.next();
++            allEvents.add(te.getName());
++        }
++        for (Iterator ei = step.getExternalEvents().iterator();
++                ei.hasNext();) {
++            TriggerEvent te = (TriggerEvent) ei.next();
++            allEvents.add(te.getName());
++        }
+         // Finalize invokes, if applicable
+         for (Iterator iter = scInstance.getInvokers().keySet().iterator();
+                 iter.hasNext();) {
+@@ -716,7 +724,9 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+             final ErrorReporter errRep, final SCInstance scInstance)
+     throws ModelException {
+         Set allEvents = new HashSet();
+-        allEvents.addAll(Arrays.asList(events));
++        for (int i = 0; i < events.length; i++) {
++            allEvents.add(events[i].getName());
++        }
+         for (Iterator invokeIter = scInstance.getInvokers().entrySet().
+                 iterator(); invokeIter.hasNext();) {
+             Map.Entry iEntry = (Map.Entry) invokeIter.next();
+@@ -831,23 +841,16 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+         if (SCXMLHelper.isStringEmpty(transEvent)) { // Eventless transition
+             return true;
+         } else {
+-            String trimTransEvent = transEvent.trim();
++            String transEventDot = transEvent + ".";
+             Iterator i = eventOccurrences.iterator();
+             while (i.hasNext()) {
+-                TriggerEvent te = (TriggerEvent) i.next();
+-                String event = te.getName();
+-                if (event == null) {
++                String evt = (String) i.next();
++                if (evt == null) {
+                     continue; // Unnamed events
+-                }
+-                String trimEvent = event.trim();
+-                if (trimEvent.equals(trimTransEvent)) {
+-                    return true; // Match
+-                } else if (te.getType() != TriggerEvent.CHANGE_EVENT
+-                        && trimTransEvent.equals("*")) {
++                } else if (evt.equals("*")) {
+                     return true; // Wildcard, skip gen'ed ones like .done etc.
+-                } else if (trimTransEvent.endsWith(".*")
+-                        && trimEvent.startsWith(trimTransEvent.substring(0,
+-                                trimTransEvent.length()-1))) {
++                } else if (evt.equals(transEvent)
++                            || evt.startsWith(transEventDot)) {
+                     return true; // Prefixed wildcard
+                 }
+             }
+@@ -870,10 +873,10 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+         String prefix = parentStateId + ".invoke."; // invoke prefix
+         Iterator i = eventOccurrences.iterator();
+         while (i.hasNext()) {
+-            String evt = ((TriggerEvent) i.next()).getName();
++            String evt = (String) i.next();
+             if (evt == null) {
+                 continue; // Unnamed events
+-            } else if (evt.trim().startsWith(prefix)) {
++            } else if (evt.startsWith(prefix)) {
+                 return true;
+             }
+         }

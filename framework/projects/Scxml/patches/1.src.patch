@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/scxml/io/ModelUpdater.java b/src/main/java/org/apache/commons/scxml/io/ModelUpdater.java
+index 7aa65541..a8ca8de5 100644
+--- a/src/main/java/org/apache/commons/scxml/io/ModelUpdater.java
++++ b/src/main/java/org/apache/commons/scxml/io/ModelUpdater.java
+@@ -224,9 +224,6 @@ final class ModelUpdater {
+     private static void updateTransition(final Transition t,
+             final Map targets) throws ModelException {
+         String next = t.getNext();
+-        if (next == null) { // stay transition
+-            return;
+-        }
+         TransitionTarget tt = t.getTarget();
+         if (tt == null) {
+             tt = (TransitionTarget) targets.get(next);

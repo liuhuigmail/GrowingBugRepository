@@ -1,0 +1,113 @@
+diff --git a/src/test/java/org/apache/commons/scxml/io/SCXMLSerializerTest.java b/src/test/java/org/apache/commons/scxml/io/SCXMLSerializerTest.java
+index b79fbc0d..19a93e15 100644
+--- a/src/test/java/org/apache/commons/scxml/io/SCXMLSerializerTest.java
++++ b/src/test/java/org/apache/commons/scxml/io/SCXMLSerializerTest.java
+@@ -32,7 +32,6 @@ import org.apache.commons.scxml.model.If;
+ import org.apache.commons.scxml.model.Log;
+ import org.apache.commons.scxml.model.OnEntry;
+ import org.apache.commons.scxml.model.OnExit;
+-import org.apache.commons.scxml.model.Parallel;
+ import org.apache.commons.scxml.model.SCXML;
+ import org.apache.commons.scxml.model.Send;
+ import org.apache.commons.scxml.model.State;
+@@ -62,8 +61,8 @@ public class SCXMLSerializerTest extends TestCase {
+         scxml.addChild(new State());
+         
+         String assertValue = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+-            + "<scxml xmlns=\"http://www.w3.org/2005/07/scxml\" xmlns:cs=\"http://commons.apache.org/scxml\" "
+-            + "version=\"version1\" initial=\"off\">\n <state>\n </state>\n</scxml>\n";
++            + "<scxml xmlns=\"http://www.w3.org/2005/07/scxml\" version=\"version1\" "
++            + "initial=\"off\">\n <state>\n </state>\n</scxml>\n";
+         
+         assertEquals(assertValue, SCXMLSerializer.serialize(scxml));
+     }
+@@ -111,7 +110,7 @@ public class SCXMLSerializerTest extends TestCase {
+         List values = new ArrayList();
+         values.add(var);
+         
+-        String actualValue = " <cs:var name=\"newName\" expr=\"newExpression\"/>\n";
++        String actualValue = " <var name=\"newName\" expr=\"newExpression\"/>\n";
+         
+         StringBuffer returnValue = new StringBuffer();
+         boolean returnBoolean = SCXMLSerializer.serializeActions(returnValue, values, " ");
+@@ -177,7 +176,7 @@ public class SCXMLSerializerTest extends TestCase {
+         List values = new ArrayList();
+         values.add(exit);
+         
+-        String actualValue = " <cs:exit expr=\"newExpression\" namelist=\"names\"/>\n";
++        String actualValue = " <exit expr=\"newExpression\" namelist=\"names\"/>\n";
+         
+         StringBuffer returnValue = new StringBuffer();
+         boolean returnBoolean = SCXMLSerializer.serializeActions(returnValue, values, " ");
+@@ -303,71 +302,4 @@ public class SCXMLSerializerTest extends TestCase {
+         assertEquals(actualValue, returnValue.toString());
+     }
+ 
+-    public void testSerializeSCXMLState() {
+-        SCXML scxml = new SCXML();
+-        scxml.setVersion("1.0");
+-        scxml.setInitial("S1");
+-
+-        State s1 = new State();
+-        s1.setId("S1");
+-
+-        scxml.addChild(s1);
+-
+-        String assertValue = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+-            + "<scxml xmlns=\"http://www.w3.org/2005/07/scxml\" xmlns:cs=\"http://commons.apache.org/scxml\" "
+-            + "version=\"1.0\" initial=\"S1\">\n <state id=\"S1\">\n </state>\n</scxml>\n";
+-
+-        assertEquals(assertValue, SCXMLSerializer.serialize(scxml));
+-    }
+-
+-    public void testSerializeParallel() {
+-
+-        SCXML scxml = new SCXML();
+-        scxml.setVersion("1.0");
+-        scxml.setInitial("par");
+-
+-        Parallel par = new Parallel();
+-        par.setId("par");
+-
+-        State s1 = new State();
+-        s1.setId("S1");
+-
+-        State s11 = new State();
+-        s11.setId("S11");
+-
+-        s1.addChild((TransitionTarget)s11);
+-
+-        State s2 = new State();
+-        s2.setId("S2");
+-
+-        State s21 = new State();
+-        s21.setId("S21");
+-
+-        s2.addChild((TransitionTarget)s21);
+-
+-        par.addChild((TransitionTarget)s1);
+-        par.addChild((TransitionTarget)s2);
+-
+-        scxml.addChild(par);
+-
+-        String assertValue = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+-            + "<scxml xmlns=\"http://www.w3.org/2005/07/scxml\" xmlns:cs=\"http://commons.apache.org/scxml\" "
+-            + "version=\"1.0\" initial=\"par\">\n"
+-            + " <parallel id=\"par\">\n"
+-            + "  <state id=\"S1\">\n"
+-            + "   <state id=\"S11\">\n"
+-            + "   </state>\n"
+-            + "  </state>\n"
+-            + "  <state id=\"S2\">\n"
+-            + "   <state id=\"S21\">\n"
+-            + "   </state>\n"
+-            + "  </state>\n"
+-            + " </parallel>\n"
+-            + "</scxml>\n";
+-
+-        String s = SCXMLSerializer.serialize(scxml);
+-
+-        assertEquals(assertValue, s);
+-     }
+-
+ }

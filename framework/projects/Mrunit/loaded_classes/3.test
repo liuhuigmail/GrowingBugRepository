@@ -1,0 +1,3 @@
+org.apache.hadoop.mrunit.mapreduce.TestMapDriver
+org.apache.hadoop.mrunit.mapreduce.TestMapReduceDriver
+org.apache.hadoop.mrunit.mapreduce.TestReduceDriver

@@ -1,0 +1,48 @@
+diff --git a/src/test/java/org/apache/commons/scxml2/env/javascript/JSEvaluatorTest.java b/src/test/java/org/apache/commons/scxml2/env/javascript/JSEvaluatorTest.java
+index 28d923e4..45cae01b 100644
+--- a/src/test/java/org/apache/commons/scxml2/env/javascript/JSEvaluatorTest.java
++++ b/src/test/java/org/apache/commons/scxml2/env/javascript/JSEvaluatorTest.java
+@@ -19,10 +19,6 @@ package org.apache.commons.scxml2.env.javascript;
+ 
+ import java.io.StringReader;
+ 
+-import javax.xml.xpath.XPath;
+-import javax.xml.xpath.XPathConstants;
+-import javax.xml.xpath.XPathFactory;
+-
+ import org.apache.commons.scxml2.Context;
+ import org.apache.commons.scxml2.Evaluator;
+ import org.apache.commons.scxml2.SCXMLExecutor;
+@@ -35,6 +31,10 @@ import org.junit.Test;
+ import org.w3c.dom.Element;
+ import org.w3c.dom.Node;
+ 
++import javax.xml.xpath.XPath;
++import javax.xml.xpath.XPathConstants;
++import javax.xml.xpath.XPathFactory;
++
+ /** JUnit 3 test case for the JSEvaluator expression evaluator
+  *  class. Includes basic tests for:
+  *  <ul>
+@@ -145,21 +145,6 @@ public class JSEvaluatorTest {
+         Assert.assertTrue   (((Boolean) evaluator.eval(context, "1+1 == 2")).booleanValue());
+     }
+ 
+-    @Test
+-    public void testScript() throws SCXMLExpressionException {
+-        Evaluator evaluator = new JSEvaluator();
+-        context.set("x", 3);
+-        context.set("y", 0);
+-        String script = 
+-            "if ((x * 2.0) == 5.0) {" +
+-                "y = 1.0;\n" +
+-            "} else {\n" +
+-                "y = 2.0;\n" +
+-            "}";
+-        Assert.assertEquals(2.0, evaluator.evalScript(context, script));
+-        Assert.assertEquals(2.0, context.get("y"));
+-    }
+-
+     /**
+      * Tests handling of illegal expressions.
+      *

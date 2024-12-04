@@ -1,0 +1,4 @@
+org.apache.commons.dbcp2.TestPStmtPooling
+org.apache.commons.dbcp2.TestPStmtPoolingBasicDataSource
+org.apache.commons.dbcp2.TestPoolingDriver
+org.apache.commons.dbcp2.datasources.TestSharedPoolDataSource

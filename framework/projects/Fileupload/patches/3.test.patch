@@ -1,0 +1,20 @@
+diff --git a/src/test/java/org/apache/commons/fileupload2/DiskFileUploadTest.java b/src/test/java/org/apache/commons/fileupload2/DiskFileUploadTest.java
+index fad393ca..a9fcdecd 100644
+--- a/src/test/java/org/apache/commons/fileupload2/DiskFileUploadTest.java
++++ b/src/test/java/org/apache/commons/fileupload2/DiskFileUploadTest.java
+@@ -91,7 +91,14 @@ public class DiskFileUploadTest {
+         assertNotNull(items);
+         assertFalse(items.isEmpty());
+         final DiskFileItem dfi = (DiskFileItem) items.get(0);
+-        final File out = File.createTempFile("install", ".tmp");
++        final File out = new File("target/unit-tests/DiskFileUpload/out.file");
++        if (out.isFile()) {
++        	out.delete();
++        }
++        final File outDir = out.getParentFile();
++        if (!outDir.isDirectory()) {
++        	outDir.mkdirs();
++        }
+         dfi.write(out);
+     }
+ }

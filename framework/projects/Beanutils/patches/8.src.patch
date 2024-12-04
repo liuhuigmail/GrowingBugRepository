@@ -1,0 +1,260 @@
+diff --git a/src/java/org/apache/commons/beanutils/BeanUtilsBean.java b/src/java/org/apache/commons/beanutils/BeanUtilsBean.java
+index 41154f85..135cf482 100644
+--- a/src/java/org/apache/commons/beanutils/BeanUtilsBean.java
++++ b/src/java/org/apache/commons/beanutils/BeanUtilsBean.java
+@@ -510,7 +510,7 @@ public class BeanUtilsBean {
+             Class clazz = bean.getClass();
+             for (int i = 0; i < descriptors.length; i++) {
+                 String name = descriptors[i].getName();
+-                if (getPropertyUtils().getReadMethod(clazz, descriptors[i]) != null) {
++                if (getPropertyUtils().getReadMethod(descriptors[i]) != null) {
+                     description.put(name, getProperty(bean, name));
+                 }
+             }
+diff --git a/src/java/org/apache/commons/beanutils/MethodUtils.java b/src/java/org/apache/commons/beanutils/MethodUtils.java
+index da399a9a..b792c858 100644
+--- a/src/java/org/apache/commons/beanutils/MethodUtils.java
++++ b/src/java/org/apache/commons/beanutils/MethodUtils.java
+@@ -717,7 +717,7 @@ public class MethodUtils {
+             }
+             
+             method =  getAccessibleMethod
+-                    (clazz, clazz.getMethod(methodName, parameterTypes));
++                    (clazz.getMethod(methodName, parameterTypes));
+             cacheMethod(md, method);
+             return method;
+         } catch (NoSuchMethodException e) {
+@@ -737,14 +737,6 @@ public class MethodUtils {
+      */
+     public static Method getAccessibleMethod(Method method) {
+ 
+-        // Make sure we have a method to check
+-        if (method == null) {
+-            return (null);
+-        }
+-
+-        return getAccessibleMethod(method.getDeclaringClass(), method);
+-
+-    }
+ 
+ 
+ 
+@@ -757,8 +749,6 @@ public class MethodUtils {
+      * @param method The method that we wish to call
+      * @return The accessible method
+      */
+-    public static Method getAccessibleMethod(Class clazz, Method method) {
+-
+         // Make sure we have a method to check
+         if (method == null) {
+             return (null);
+@@ -769,9 +759,7 @@ public class MethodUtils {
+             return (null);
+         }
+ 
+-        if (clazz == null) {
+-            clazz = method.getDeclaringClass();
+-        }
++        Class clazz = method.getDeclaringClass();
+ 
+         // If the class is public, we are done
+         if (Modifier.isPublic(clazz.getModifiers())) {
+@@ -868,7 +856,7 @@ public class MethodUtils {
+                      */
+                 }
+                 if (method != null) {
+-                    return method;
++                    break;
+                 }
+ 
+                 // Recursively check our parent interfaces
+@@ -877,7 +865,7 @@ public class MethodUtils {
+                                 methodName,
+                                 parameterTypes);
+                 if (method != null) {
+-                    return method;
++                    break;
+                 }
+ 
+             }
+@@ -1032,7 +1020,7 @@ public class MethodUtils {
+                     
+                     if (match) {
+                         // get accessible version of method
+-                        Method method = getAccessibleMethod(clazz, methods[i]);
++                        Method method = getAccessibleMethod(methods[i]);
+                         if (method != null) {
+                             if (log.isTraceEnabled()) {
+                                 log.trace(method + " accessible version of " 
+diff --git a/src/java/org/apache/commons/beanutils/PropertyUtilsBean.java b/src/java/org/apache/commons/beanutils/PropertyUtilsBean.java
+index 0365435b..514c65c9 100644
+--- a/src/java/org/apache/commons/beanutils/PropertyUtilsBean.java
++++ b/src/java/org/apache/commons/beanutils/PropertyUtilsBean.java
+@@ -475,7 +475,7 @@ public class PropertyUtilsBean {
+         if (descriptor instanceof IndexedPropertyDescriptor) {
+             Method readMethod = ((IndexedPropertyDescriptor) descriptor).
+                     getIndexedReadMethod();
+-            readMethod = MethodUtils.getAccessibleMethod(bean.getClass(), readMethod);
++            readMethod = MethodUtils.getAccessibleMethod(readMethod);
+             if (readMethod != null) {
+                 Object[] subscript = new Object[1];
+                 subscript[0] = new Integer(index);
+@@ -494,7 +494,7 @@ public class PropertyUtilsBean {
+         }
+ 
+         // Otherwise, the underlying property must be an array
+-        Method readMethod = getReadMethod(bean.getClass(), descriptor);
++        Method readMethod = getReadMethod(descriptor);
+         if (readMethod == null) {
+             throw new NoSuchMethodException("Property '" + name + "' has no " +
+                     "getter method on bean class '" + bean.getClass() + "'");
+@@ -629,7 +629,7 @@ public class PropertyUtilsBean {
+             // Call the keyed getter method if there is one
+             Method readMethod = ((MappedPropertyDescriptor) descriptor).
+                     getMappedReadMethod();
+-            readMethod = MethodUtils.getAccessibleMethod(bean.getClass(), readMethod);
++            readMethod = MethodUtils.getAccessibleMethod(readMethod);
+             if (readMethod != null) {
+                 Object[] keyArray = new Object[1];
+                 keyArray[0] = key;
+@@ -641,7 +641,7 @@ public class PropertyUtilsBean {
+             }
+         } else {
+           /* means that the result has to be retrieved from a map */
+-          Method readMethod = getReadMethod(bean.getClass(), descriptor);
++          Method readMethod = getReadMethod(descriptor);
+           if (readMethod != null) {
+             Object invokeResult = invokeMethod(readMethod, bean, EMPTY_OBJECT_ARRAY);
+             /* test and fetch from the map */
+@@ -1226,21 +1226,6 @@ public class PropertyUtilsBean {
+     }
+ 
+ 
+-    /**
+-     * <p>Return an accessible property getter method for this property,
+-     * if there is one; otherwise return <code>null</code>.</p>
+-     *
+-     * <p><strong>FIXME</strong> - Does not work with DynaBeans.</p>
+-     *
+-     * @param clazz The class of the read method will be invoked on
+-     * @param descriptor Property descriptor to return a getter for
+-     * @return The read method
+-     */
+-    Method getReadMethod(Class clazz, PropertyDescriptor descriptor) {
+-        return (MethodUtils.getAccessibleMethod(clazz, descriptor.getReadMethod()));
+-    }
+-
+-
+     /**
+      * Return the value of the specified simple property of the specified
+      * bean, with no type conversions.
+@@ -1306,7 +1291,7 @@ public class PropertyUtilsBean {
+             throw new NoSuchMethodException("Unknown property '" +
+                     name + "' on class '" + bean.getClass() + "'" );
+         }
+-        Method readMethod = getReadMethod(bean.getClass(), descriptor);
++        Method readMethod = getReadMethod(descriptor);
+         if (readMethod == null) {
+             throw new NoSuchMethodException("Property '" + name +
+                     "' has no getter method in class '" + bean.getClass() + "'");
+@@ -1335,21 +1320,6 @@ public class PropertyUtilsBean {
+     }
+ 
+ 
+-    /**
+-     * <p>Return an accessible property setter method for this property,
+-     * if there is one; otherwise return <code>null</code>.</p>
+-     *
+-     * <p><strong>FIXME</strong> - Does not work with DynaBeans.</p>
+-     *
+-     * @param clazz The class of the read method will be invoked on
+-     * @param descriptor Property descriptor to return a setter for
+-     * @return The write method
+-     */
+-    Method getWriteMethod(Class clazz, PropertyDescriptor descriptor) {
+-        return (MethodUtils.getAccessibleMethod(clazz, descriptor.getWriteMethod()));
+-    }
+-
+-
+     /**
+      * <p>Return <code>true</code> if the specified property name identifies
+      * a readable property on the specified bean; otherwise, return
+@@ -1391,14 +1361,14 @@ public class PropertyUtilsBean {
+                 PropertyDescriptor desc =
+                     getPropertyDescriptor(bean, name);
+                 if (desc != null) {
+-                    Method readMethod = getReadMethod(bean.getClass(), desc);
++                    Method readMethod = getReadMethod(desc);
+                     if (readMethod == null) {
+                         if (desc instanceof IndexedPropertyDescriptor) {
+                             readMethod = ((IndexedPropertyDescriptor) desc).getIndexedReadMethod();
+                         } else if (desc instanceof MappedPropertyDescriptor) {
+                             readMethod = ((MappedPropertyDescriptor) desc).getMappedReadMethod();
+                         }
+-                        readMethod = MethodUtils.getAccessibleMethod(bean.getClass(), readMethod);
++                        readMethod = MethodUtils.getAccessibleMethod(readMethod);
+                     }
+                     return (readMethod != null);
+                 } else {
+@@ -1457,14 +1427,14 @@ public class PropertyUtilsBean {
+                 PropertyDescriptor desc =
+                     getPropertyDescriptor(bean, name);
+                 if (desc != null) {
+-                    Method writeMethod = getWriteMethod(bean.getClass(), desc);
++                    Method writeMethod = getWriteMethod(desc);
+                     if (writeMethod == null) {
+                         if (desc instanceof IndexedPropertyDescriptor) {
+                             writeMethod = ((IndexedPropertyDescriptor) desc).getIndexedWriteMethod();
+                         } else if (desc instanceof MappedPropertyDescriptor) {
+                             writeMethod = ((MappedPropertyDescriptor) desc).getMappedWriteMethod();
+                         }
+-                        writeMethod = MethodUtils.getAccessibleMethod(bean.getClass(), writeMethod);
++                        writeMethod = MethodUtils.getAccessibleMethod(writeMethod);
+                     }
+                     return (writeMethod != null);
+                 } else {
+@@ -1610,7 +1580,7 @@ public class PropertyUtilsBean {
+         if (descriptor instanceof IndexedPropertyDescriptor) {
+             Method writeMethod = ((IndexedPropertyDescriptor) descriptor).
+                     getIndexedWriteMethod();
+-            writeMethod = MethodUtils.getAccessibleMethod(bean.getClass(), writeMethod);
++            writeMethod = MethodUtils.getAccessibleMethod(writeMethod);
+             if (writeMethod != null) {
+                 Object[] subscript = new Object[2];
+                 subscript[0] = new Integer(index);
+@@ -1640,7 +1610,7 @@ public class PropertyUtilsBean {
+         }
+ 
+         // Otherwise, the underlying property must be an array or a list
+-        Method readMethod = getReadMethod(bean.getClass(), descriptor);
++        Method readMethod = getReadMethod(descriptor);
+         if (readMethod == null) {
+             throw new NoSuchMethodException("Property '" + name +
+                     "' has no getter method on bean class '" + bean.getClass() + "'");
+@@ -1778,7 +1748,7 @@ public class PropertyUtilsBean {
+             Method mappedWriteMethod =
+                     ((MappedPropertyDescriptor) descriptor).
+                     getMappedWriteMethod();
+-            mappedWriteMethod = MethodUtils.getAccessibleMethod(bean.getClass(), mappedWriteMethod);
++            mappedWriteMethod = MethodUtils.getAccessibleMethod(mappedWriteMethod);
+             if (mappedWriteMethod != null) {
+                 Object[] params = new Object[2];
+                 params[0] = key;
+@@ -1799,7 +1769,7 @@ public class PropertyUtilsBean {
+             }
+         } else {
+           /* means that the result has to be retrieved from a map */
+-          Method readMethod = getReadMethod(bean.getClass(), descriptor);
++          Method readMethod = getReadMethod(descriptor);
+           if (readMethod != null) {
+             Object invokeResult = invokeMethod(readMethod, bean, EMPTY_OBJECT_ARRAY);
+             /* test and fetch from the map */
+@@ -2066,7 +2036,7 @@ public class PropertyUtilsBean {
+             throw new NoSuchMethodException("Unknown property '" +
+                     name + "' on class '" + bean.getClass() + "'" );
+         }
+-        Method writeMethod = getWriteMethod(bean.getClass(), descriptor);
++        Method writeMethod = getWriteMethod(descriptor);
+         if (writeMethod == null) {
+             throw new NoSuchMethodException("Property '" + name +
+                     "' has no setter method in class '" + bean.getClass() + "'");

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/scxml2/env/javascript/JSEvaluator.java b/src/main/java/org/apache/commons/scxml2/env/javascript/JSEvaluator.java
+index 8b47e931..99f39713 100644
+--- a/src/main/java/org/apache/commons/scxml2/env/javascript/JSEvaluator.java
++++ b/src/main/java/org/apache/commons/scxml2/env/javascript/JSEvaluator.java
+@@ -151,15 +151,13 @@ public class JSEvaluator implements Evaluator {
+             jsExpression = LOCATION_FN.matcher(jsExpression).replaceAll("_builtin.Location(");
+ 
+             // ... evaluate
+-            JSBindings jsBindings = new JSBindings(effectiveContext, bindings);
+-            jsBindings.put("_builtin", new JSFunctions(effectiveContext));
++            JSBindings jsBindings = new JSBindings(context, bindings);
+ 
+-            Object ret = engine.eval(jsExpression, jsBindings);
++            jsBindings.put("_builtin", new JSFunctions(context));
+ 
+             // copy global bindings attributes to context, so callers may get access to the evaluated variables.
+-            copyGlobalBindingsToContext(jsBindings, (JSContext) effectiveContext);
++            return engine.eval(jsExpression,jsBindings);
+ 
+-            return ret;
+ 
+         } catch (Exception x) {
+             throw new SCXMLExpressionException("Error evaluating ['" + expression + "'] " + x);

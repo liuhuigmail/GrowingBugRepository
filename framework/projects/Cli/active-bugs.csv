@@ -40,3 +40,12 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 40,e400f9256a2af526e9a06b9d5d2965965109a8db,b0024d482050a08efc36c3cabee37c0af0e57a10,CLI-282,https://issues.apache.org/jira/browse/CLI-282
 41,b20a8e9fd4d7d63621bf61ffaa43b51ea2fca3c7,880a9f6c45dbcb14215bb35de21fdbbfaeb89c2e,CLI-162,https://issues.apache.org/jira/browse/CLI-162
 42,4141904a4bc95471d2f80ecf35d012e7fcf34bb3,84234a65638f0e9e4be73dfcccaa6530a5b571af,CLI-162,https://issues.apache.org/jira/browse/CLI-162
+43,a175b2d2144f6f6c610407a2070494539bf26c89,2dac643fff43efcb7c42afca526e8af3938a60ba,CLI-325,https://issues.apache.org/jira/browse/CLI-325
+44,ae7147049e8f5ee7a1ecd0ab8b56d5986e55e7a3,fbd01940d2e675fb1fd2a5b526f831bd0853ce55,CLI-320,https://issues.apache.org/jira/browse/CLI-320
+45,bcfcddeed8006772b2372e65e251338450171664,ce86213e7e5aa10aa19194c4e172ca146b80c7fa,CLI-312,https://issues.apache.org/jira/browse/CLI-312
+46,34278395b6115752774c3d16a00292591da2dde3,e8e4efa781074e9531908c72c7afca4adc6b5631,CLI-313,https://issues.apache.org/jira/browse/CLI-313
+47,34278395b6115752774c3d16a00292591da2dde3,0374deecea322be7500dd7164106b1bfe1dd0ce9,CLI-313,https://issues.apache.org/jira/browse/CLI-313
+48,3f3a2e52074e44385e513735c28a5f6787ec58c5,34278395b6115752774c3d16a00292591da2dde3,CLI-317,https://issues.apache.org/jira/browse/CLI-317
+49,3790cec2dbc27f66f4518dcf311cbd70d9e2140b,379558822e41b749b968a9cd7ca90d371c927e30,CLI-313,https://issues.apache.org/jira/browse/CLI-313
+50,8dcf11911ab73ddb5455853a31149a00549261b5,82403d07579665a0c194a638425ac24e08581ac2,CLI-287,https://issues.apache.org/jira/browse/CLI-287
+51,f588f55ad6ee8d64fcb9956847dfa8c064d888ee,5560a086886c4d6dba2c30eb75e57e3167765c6e,CLI-202,https://issues.apache.org/jira/browse/CLI-202

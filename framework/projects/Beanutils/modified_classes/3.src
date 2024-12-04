@@ -1,0 +1,4 @@
+org.apache.commons.beanutils.JDBCDynaClass
+org.apache.commons.beanutils.ResultSetDynaClass
+org.apache.commons.beanutils.ResultSetIterator
+org.apache.commons.beanutils.RowSetDynaClass

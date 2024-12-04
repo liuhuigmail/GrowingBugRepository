@@ -1,3 +1,7 @@
 bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 1,2929a3a9659e6c511b61273026691ea7fb5e3054,2c24ab2af152bc7b41c4d52cba4883aacba40764,MRUNIT-186,https://issues.apache.org/jira/browse/MRUNIT-186
 2,2c24ab2af152bc7b41c4d52cba4883aacba40764,57196c39a73cf2251e0f2ba7da225731362407ba,MRUNIT-193,https://issues.apache.org/jira/browse/MRUNIT-193
+3,72143cb27bfdd8de3e88f2ad249bb50f2e93ed58,a063810b8b88e29c79b3c81af9ccc633a81985bd,MRUNIT-8,https://issues.apache.org/jira/browse/MRUNIT-8
+4,a063810b8b88e29c79b3c81af9ccc633a81985bd,82b0b3e475aff662f0ff876628c12aa21d02417f,MRUNIT-9,https://issues.apache.org/jira/browse/MRUNIT-9
+5,7d228077bb2912174e8037ba0905e44d571924d8,12d6df971de68b4560c044947f307ecf01d9a3dd,MRUNIT-97,https://issues.apache.org/jira/browse/MRUNIT-97
+6,b0e290d35ccdb669fe6df812c789af501ea8bdae,85f5ea303a4a4cfd17b554c02458afca63a49eb9,MRUNIT-127,https://issues.apache.org/jira/browse/MRUNIT-127

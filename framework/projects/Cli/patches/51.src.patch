@@ -1,0 +1,63 @@
+diff --git a/src/main/java/org/apache/commons/cli/DefaultParser.java b/src/main/java/org/apache/commons/cli/DefaultParser.java
+index f823081..4f0052c 100644
+--- a/src/main/java/org/apache/commons/cli/DefaultParser.java
++++ b/src/main/java/org/apache/commons/cli/DefaultParser.java
+@@ -169,8 +169,7 @@ public class DefaultParser implements CommandLineParser
+                     continue;
+                 }
+                 
+-                handleOption(opt);
+-                currentOption = null;
++                cmd.addOption(opt);
+             }
+         }
+     }
+diff --git a/src/main/java/org/apache/commons/cli/Parser.java b/src/main/java/org/apache/commons/cli/Parser.java
+index eecfb82..56dac26 100644
+--- a/src/main/java/org/apache/commons/cli/Parser.java
++++ b/src/main/java/org/apache/commons/cli/Parser.java
+@@ -291,7 +291,6 @@ public abstract class Parser implements CommandLineParser
+                 }
+ 
+                 cmd.addOption(opt);
+-                updateRequiredOptions(opt);
+             }
+         }
+     }
+@@ -379,25 +378,15 @@ public abstract class Parser implements CommandLineParser
+         Option opt = (Option) getOptions().getOption(arg).clone();
+         
+         // update the required options and groups
+-        updateRequiredOptions(opt);
+         
+         // if the option takes an argument value
+-        if (opt.hasArg())
+-        {
+-            processArgs(opt, iter);
+-        }
+-        
+         // set the option on the command line
+-        cmd.addOption(opt);
+-    }
+ 
+     /**
+      * Removes the option or its group from the list of expected elements.
+      * 
+      * @param opt
+      */
+-    private void updateRequiredOptions(Option opt) throws ParseException
+-    {
+         // if the option is a required option remove the option from
+         // the requiredOptions list
+         if (opt.isRequired())
+@@ -418,5 +407,10 @@ public abstract class Parser implements CommandLineParser
+ 
+             group.setSelected(opt);
+         }
++        if (opt.hasArg())
++        {
++            processArgs(opt, iter);
++        }
++        cmd.addOption(opt);
+     }
+ }

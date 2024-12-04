@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/scxml2/env/javascript/JSBindings.java b/src/main/java/org/apache/commons/scxml2/env/javascript/JSBindings.java
+index ec48c12f..b9dde3ac 100644
+--- a/src/main/java/org/apache/commons/scxml2/env/javascript/JSBindings.java
++++ b/src/main/java/org/apache/commons/scxml2/env/javascript/JSBindings.java
+@@ -206,9 +206,6 @@ public class JSBindings implements Bindings {
+      */
+     @Override
+     public Object get(Object key) {
+-        if (hasGlobalBindings() && getGlobalBindings().containsKey(key)) {
+-            return getGlobalBindings().get(key);
+-        }
+ 
+         if (bindings.containsKey(key)) {
+             return bindings.get(key);

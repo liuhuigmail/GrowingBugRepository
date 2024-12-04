@@ -1,0 +1,24 @@
+diff --git a/src/test/java/org/apache/commons/scxml/io/SCXMLSerializerTest.java b/src/test/java/org/apache/commons/scxml/io/SCXMLSerializerTest.java
+index d352e8d5..b79fbc0d 100644
+--- a/src/test/java/org/apache/commons/scxml/io/SCXMLSerializerTest.java
++++ b/src/test/java/org/apache/commons/scxml/io/SCXMLSerializerTest.java
+@@ -74,7 +74,7 @@ public class SCXMLSerializerTest extends TestCase {
+         send.setTarget("newTarget");
+         send.setTargettype("newTargetType");
+         send.setNamelist("names");
+-        send.setDelay("4s");
++        send.setDelay("4 secs");
+         send.setEvent("turnoff");
+         send.setHints("guess");
+         
+@@ -82,8 +82,8 @@ public class SCXMLSerializerTest extends TestCase {
+                 "target=\"newTarget\" " +
+                 "targetType=\"newTargetType\" " +
+                 "namelist=\"names\" " +
+-                "delay=\"4s\" " +
+-                "event=\"turnoff\" " +
++                "delay=\"4 secs\" " +
++                "events=\"turnoff\" " +
+                 "hints=\"guess\">\n </send>\n";
+         
+         StringBuffer returnValue = new StringBuffer(); 

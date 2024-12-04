@@ -1,0 +1,5 @@
+org.apache.commons.dbcp2.cpdsadapter.DriverAdapterCPDS
+org.apache.commons.dbcp2.datasources.InstanceKeyDataSource
+org.apache.commons.dbcp2.datasources.InstanceKeyObjectFactory
+org.apache.commons.dbcp2.datasources.PooledConnectionManager
+org.apache.commons.dbcp2.datasources.SharedPoolDataSource

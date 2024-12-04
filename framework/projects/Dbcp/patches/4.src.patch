@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/dbcp2/managed/TransactionContext.java b/src/main/java/org/apache/commons/dbcp2/managed/TransactionContext.java
+index 2af93656..486ffcd0 100644
+--- a/src/main/java/org/apache/commons/dbcp2/managed/TransactionContext.java
++++ b/src/main/java/org/apache/commons/dbcp2/managed/TransactionContext.java
+@@ -130,12 +130,6 @@ public class TransactionContext {
+      */
+     public void addTransactionContextListener(final TransactionContextListener listener) throws SQLException {
+         try {
+-            if (!isActive()) {
+-                Transaction transaction = this.transactionRef.get();
+-                listener.afterCompletion(TransactionContext.this,
+-                        transaction == null ? false : transaction.getStatus() == Status.STATUS_COMMITTED);
+-                return;
+-            }
+             final Synchronization s = new Synchronization() {
+                 @Override
+                 public void beforeCompletion() {

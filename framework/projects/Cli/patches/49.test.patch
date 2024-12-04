@@ -1,0 +1,18 @@
+diff --git a/src/test/java/org/apache/commons/cli/ParserTestCase.java b/src/test/java/org/apache/commons/cli/ParserTestCase.java
+index db8d7b0..25ade7e 100644
+--- a/src/test/java/org/apache/commons/cli/ParserTestCase.java
++++ b/src/test/java/org/apache/commons/cli/ParserTestCase.java
+@@ -1020,12 +1020,5 @@ public abstract class ParserTestCase {
+         assertEquals("Confirm arg of -b", "file", cl.getOptionValue("b"));
+         assertTrue("Confirm NO of extra args", cl.getArgList().isEmpty());
+     }
+-    
+-    @Test(expected = UnrecognizedOptionException.class)
+-    public void testAmbiguousArgParsing() throws Exception {
+-        final String[] args = {"-=-"};
+-        final Options options = new Options();
+-        
+-        final CommandLine cl = parser.parse(options, args);
+-    }
++
+ }

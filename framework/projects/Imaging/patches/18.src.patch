@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/imaging/common/mylzw/MyLzwDecompressor.java b/src/main/java/org/apache/commons/imaging/common/mylzw/MyLzwDecompressor.java
+index aa056866..bb096c66 100644
+--- a/src/main/java/org/apache/commons/imaging/common/mylzw/MyLzwDecompressor.java
++++ b/src/main/java/org/apache/commons/imaging/common/mylzw/MyLzwDecompressor.java
+@@ -108,10 +108,10 @@ public final class MyLzwDecompressor {
+         if (codes < (1 << codeSize)) {
+             table[codes] = bytes;
+             codes++;
++        } else {
++            throw new IOException("AddStringToTable: codes: " + codes
++                    + " code_size: " + codeSize);
+         }
+-        // If the table already full, then we simply ignore these bytes
+-        // per the https://www.w3.org/Graphics/GIF/spec-gif89a.txt 'spec'.
+-
+         checkCodeSize();
+     }
+ 

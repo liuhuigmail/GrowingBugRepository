@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/scxml/SCXMLHelper.java b/src/main/java/org/apache/commons/scxml/SCXMLHelper.java
+index cf52f20f..222f7721 100644
+--- a/src/main/java/org/apache/commons/scxml/SCXMLHelper.java
++++ b/src/main/java/org/apache/commons/scxml/SCXMLHelper.java
+@@ -250,7 +250,7 @@ public final class SCXMLHelper {
+                 for (TransitionTarget tt : par.getChildren()) {
+                     State s = (State) tt;
+                     for (TransitionTarget a : currentStates) {
+-                        if (isDescendant(a, s) || a == s) {
++                        if (isDescendant(a, s)) {
+                             //a is affected
+                             boolean added = false;
+                             added = allStates.add(a);

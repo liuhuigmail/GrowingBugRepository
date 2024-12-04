@@ -1,0 +1,69 @@
+diff --git a/src/java/org/apache/commons/beanutils/JDBCDynaClass.java b/src/java/org/apache/commons/beanutils/JDBCDynaClass.java
+index 347ffac4..caaa2456 100644
+--- a/src/java/org/apache/commons/beanutils/JDBCDynaClass.java
++++ b/src/java/org/apache/commons/beanutils/JDBCDynaClass.java
+@@ -178,16 +178,7 @@ abstract class JDBCDynaClass implements DynaClass, Serializable {
+         String className = null;
+         try {
+             int sqlType = metadata.getColumnType(i);
+-            switch (sqlType) {
+-                case java.sql.Types.DATE:
+-                    return new DynaProperty(name, java.sql.Date.class);
+-                case java.sql.Types.TIMESTAMP:
+-                    return new DynaProperty(name, java.sql.Timestamp.class);
+-                case java.sql.Types.TIME:
+-                    return new DynaProperty(name, java.sql.Time.class);
+-                default:
+-                    className = metadata.getColumnClassName(i);
+-            }
++            className = metadata.getColumnClassName(i);
+         } catch (SQLException e) {
+             // this is a patch for HsqlDb to ignore exceptions
+             // thrown by its metadata implementation
+@@ -246,28 +237,7 @@ abstract class JDBCDynaClass implements DynaClass, Serializable {
+      */
+     protected Object getObject(ResultSet resultSet, String name) throws SQLException {
+ 
+-        DynaProperty property = getDynaProperty(name);
+-        if (property == null) {
+-            throw new IllegalArgumentException("Invalid name '" + name + "'");
+-        }
+         String columnName = getColumnName(name);
+-        Class type = property.getType();
+-
+-        // java.sql.Date
+-        if (type.equals(Date.class)) {
+-            return resultSet.getDate(columnName);
+-        }
+-
+-        // java.sql.Timestamp
+-        if (type.equals(Timestamp.class)) {
+-            return resultSet.getTimestamp(columnName);
+-        }
+-
+-        // java.sql.Time
+-        if (type.equals(Time.class)) {
+-            return resultSet.getTime(columnName);
+-        }
+-
+         return resultSet.getObject(columnName);
+     }
+ 
+diff --git a/src/java/org/apache/commons/beanutils/RowSetDynaClass.java b/src/java/org/apache/commons/beanutils/RowSetDynaClass.java
+index b1979053..8ee3da9c 100644
+--- a/src/java/org/apache/commons/beanutils/RowSetDynaClass.java
++++ b/src/java/org/apache/commons/beanutils/RowSetDynaClass.java
+@@ -230,6 +230,13 @@ public class RowSetDynaClass extends JDBCDynaClass implements DynaClass, Seriali
+             for (int i = 0; i < properties.length; i++) {
+                 String name = properties[i].getName();
+                 Object value = getObject(resultSet, name);
++                if (value != null) {
++                    Class type = properties[i].getType();
++                    try {
++                        value = ConvertUtils.convert(value, type);
++                    } catch (Throwable t) {
++                    }
++                }
+                 bean.set(name, value);
+             }
+             rows.add(bean);

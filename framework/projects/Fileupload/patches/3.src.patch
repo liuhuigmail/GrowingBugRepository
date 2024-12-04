@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/fileupload2/disk/DiskFileItem.java b/src/main/java/org/apache/commons/fileupload2/disk/DiskFileItem.java
+index d5c538dc..2b9bfa7b 100644
+--- a/src/main/java/org/apache/commons/fileupload2/disk/DiskFileItem.java
++++ b/src/main/java/org/apache/commons/fileupload2/disk/DiskFileItem.java
+@@ -402,9 +402,6 @@ public class DiskFileItem
+                  * in a temporary location so move it to the
+                  * desired file.
+                  */
+-                if (file.exists()) {
+-                	file.delete();
+-                }
+                 FileUtils.moveFile(outputFile, file);
+             } else {
+                 /*

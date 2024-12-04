@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/dbcp2/managed/ManagedConnection.java b/src/main/java/org/apache/commons/dbcp2/managed/ManagedConnection.java
+index 9b37a3d8..9e5b6168 100644
+--- a/src/main/java/org/apache/commons/dbcp2/managed/ManagedConnection.java
++++ b/src/main/java/org/apache/commons/dbcp2/managed/ManagedConnection.java
+@@ -196,7 +196,7 @@ public class ManagedConnection<C extends Connection> extends DelegatingConnectio
+                 setDelegate(null);
+ 
+                 if (!delegate.isClosed()) {
+-                    delegate.close();
++                    super.close();
+                 }
+             } catch (SQLException ignored) {
+                 // Not a whole lot we can do here as connection is closed

@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/cli/CommandLine.java b/src/main/java/org/apache/commons/cli/CommandLine.java
+index 3df5f77..3f76dd0 100644
+--- a/src/main/java/org/apache/commons/cli/CommandLine.java
++++ b/src/main/java/org/apache/commons/cli/CommandLine.java
+@@ -203,7 +203,12 @@ public class CommandLine implements Serializable {
+         final Properties props = new Properties();
+         for (final Option processedOption : options) {
+             if (processedOption.equals(option)) {
+-                processPropertiesFromValues(props, processedOption.getValuesList());
++                final List<String> values = processedOption.getValuesList();
++                if (values.size() >= 2) {
++                    props.put(values.get(0), values.get(1));
++                } else if (values.size() == 1) {
++                    props.put(values.get(0), "true");
++                }
+             }
+         }
+ 
+@@ -224,7 +229,12 @@ public class CommandLine implements Serializable {
+         final Properties props = new Properties();
+         for (final Option option : options) {
+             if (opt.equals(option.getOpt()) || opt.equals(option.getLongOpt())) {
+-                processPropertiesFromValues(props, option.getValuesList());
++                final List<String> values = option.getValuesList();
++                if (values.size() >= 2) {
++                    props.put(values.get(0), values.get(1));
++                } else if (values.size() == 1) {
++                    props.put(values.get(0), "true");
++                }
+             }
+         }
+ 

@@ -1,0 +1,45 @@
+diff --git a/src/main/java/org/apache/commons/scxml2/semantics/TransitionTargetComparator.java b/src/main/java/org/apache/commons/scxml2/semantics/TransitionTargetComparator.java
+index eae4dfcd..bfdf8073 100644
+--- a/src/main/java/org/apache/commons/scxml2/semantics/TransitionTargetComparator.java
++++ b/src/main/java/org/apache/commons/scxml2/semantics/TransitionTargetComparator.java
+@@ -22,6 +22,7 @@ import java.util.Comparator;
+ 
+ import org.apache.commons.scxml2.SCXMLHelper;
+ import org.apache.commons.scxml2.model.Parallel;
++import org.apache.commons.scxml2.model.State;
+ import org.apache.commons.scxml2.model.TransitionTarget;
+ 
+ 
+@@ -75,7 +76,7 @@ final class TransitionTargetComparator<T> implements Comparator<T>, Serializable
+                 // - not a requirement
+                 // - though useful for an impl to have repeatable behavior
+                 // - downside is users may rely on this behavior
+-                TransitionTarget lca = SCXMLHelper.getLCA(tt1, tt2);
++                Parallel lca = (Parallel) SCXMLHelper.getLCA(tt1, tt2);
+                 TransitionTarget parent1 = tt1;
+                 while (parent1.getParent() != lca) {
+                     parent1 = parent1.getParent();
+@@ -84,17 +85,12 @@ final class TransitionTargetComparator<T> implements Comparator<T>, Serializable
+                 while (parent2.getParent() != lca) {
+                     parent2 = parent2.getParent();
+                 }
+-                Collection<TransitionTarget> children = null;
+-                if (lca instanceof Parallel) {
+-                    children = ((Parallel) lca).getChildren();
+-                }
+-                if (children != null) {
+-                    for (TransitionTarget tt : children) {
+-                        if (tt == parent1) {
+-                            return 1;
+-                        } else if (tt == parent2) {
+-                            return -1;
+-                        }
++                for (TransitionTarget tt : lca.getChildren()) {
++                    State s = (State) tt;
++                    if (s == parent1) {
++                        return 1;
++                    } else if (s == parent2) {
++                        return -1;
+                     }
+                 }
+             }

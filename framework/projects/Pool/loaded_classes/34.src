@@ -1,0 +1,4 @@
+org.apache.commons.pool.BaseKeyedObjectPool
+org.apache.commons.pool.impl.GenericKeyedObjectPool
+org.apache.commons.pool.KeyedObjectPool
+org.apache.commons.pool.KeyedPoolableObjectFactory

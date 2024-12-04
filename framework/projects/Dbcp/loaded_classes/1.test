@@ -1,0 +1,3 @@
+org.apache.commons.dbcp2.datasources.TestSharedPoolDataSource
+org.apache.commons.dbcp2.TestConnectionPool
+org.apache.commons.dbcp2.TesterDriver

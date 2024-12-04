@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java b/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
+index 1cbde2b8..3886cfe4 100644
+--- a/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
++++ b/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
+@@ -453,20 +453,14 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+             if (nonDeterm.size() > 0) {
+                 // if not, first one in each state / region (which is also
+                 // first in document order) wins
+-                Set regions = new HashSet();
+-                Iterator iter = nonDeterm.iterator();
+-                while (iter.hasNext()) {
+-                    Transition t = (Transition) iter.next();
+-                    TransitionTarget parent = t.getParent();
+-                    if (regions.contains(parent)) {
+-                        removeList.add(t);
+-                    } else {
+-                        regions.add(parent);
+-                    }
+-                }
++                Transition t = (Transition) nonDeterm.iterator().next();
++                nonDeterm.remove(t);
+             }
+             // apply global and document order transition filter
+             step.getTransitList().removeAll(removeList);
++            step.getTransitList().removeAll(nonDeterm);
++            removeList.clear();
++            nonDeterm.clear();
+         }
+     }
+ 

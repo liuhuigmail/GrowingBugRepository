@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/dbcp2/BasicDataSourceFactory.java b/src/main/java/org/apache/commons/dbcp2/BasicDataSourceFactory.java
+index 681b0101..8757ebee 100644
+--- a/src/main/java/org/apache/commons/dbcp2/BasicDataSourceFactory.java
++++ b/src/main/java/org/apache/commons/dbcp2/BasicDataSourceFactory.java
+@@ -518,11 +518,6 @@ public class BasicDataSourceFactory implements ObjectFactory {
+         if (value != null) {
+             dataSource.setLogAbandoned(Boolean.valueOf(value).booleanValue());
+         }
+-        
+-        value = properties.getProperty(PROP_ABANDONEDUSAGETRACKING);
+-        if (value != null) {
+-            dataSource.setAbandonedUsageTracking(Boolean.valueOf(value).booleanValue());
+-        }
+ 
+         value = properties.getProperty(PROP_POOLPREPAREDSTATEMENTS);
+         if (value != null) {

@@ -1,0 +1,47 @@
+diff --git a/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSource.java b/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSource.java
+index 43b4b89f..87f14c1d 100644
+--- a/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSource.java
++++ b/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSource.java
+@@ -114,7 +114,7 @@ public class TestManagedDataSource extends TestConnectionPool {
+     }
+ 
+     /**
+-     * Verify that connection sharing is working (or not working) as expected.
++     * Verify that conection sharing is working (or not working) as expected.
+      */
+     public void testSharedConnection() throws Exception {
+         DelegatingConnection<?> connectionA = (DelegatingConnection<?>) newConnection();
+@@ -128,18 +128,7 @@ public class TestManagedDataSource extends TestConnectionPool {
+         connectionA.close();
+         connectionB.close();
+     }
+-    
+-    public void testConnectionReturnOnCommit() throws Exception {
+-        transactionManager.begin();
+-        DelegatingConnection<?> connectionA = (DelegatingConnection<?>) newConnection();
+-        connectionA.close();
+-        transactionManager.commit();
+-        assertEquals(1, pool.getBorrowedCount());
+-        assertEquals(1, pool.getReturnedCount());
+-        assertEquals(0, pool.getNumActive());
+-    }
+ 
+-    
+     public void testManagedConnectionEqualsSameDelegateNoUnderlyingAccess() throws Exception {
+         // Get a maximal set of connections from the pool
+         Connection[] c = new Connection[getMaxTotal()];
+diff --git a/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSourceInTx.java b/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSourceInTx.java
+index f82d9a91..ffa3d62a 100644
+--- a/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSourceInTx.java
++++ b/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSourceInTx.java
+@@ -344,10 +344,5 @@ public class TestManagedDataSourceInTx extends TestManagedDataSource {
+ 
+         resultSet.getStatement().getConnection().close();
+     }
+-    
+-    public void testConnectionReturnOnCommit() throws Exception {
+-         // override with no-op test
+-         return;
+-    }
+ 
+ }

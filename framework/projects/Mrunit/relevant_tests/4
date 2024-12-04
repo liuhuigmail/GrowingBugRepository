@@ -1,0 +1,5 @@
+org.apache.hadoop.mrunit.AllTests
+org.apache.hadoop.mrunit.mapreduce.AllTests
+org.apache.hadoop.mrunit.mapreduce.TestCounters
+org.apache.hadoop.mrunit.mapreduce.TestMapReduceDriver
+org.apache.hadoop.mrunit.mapreduce.TestReduceDriver

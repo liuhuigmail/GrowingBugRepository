@@ -1,0 +1,36 @@
+diff --git a/src/main/java/org/apache/commons/dbcp2/managed/ManagedConnection.java b/src/main/java/org/apache/commons/dbcp2/managed/ManagedConnection.java
+index bb7e325a..77ee2073 100644
+--- a/src/main/java/org/apache/commons/dbcp2/managed/ManagedConnection.java
++++ b/src/main/java/org/apache/commons/dbcp2/managed/ManagedConnection.java
+@@ -119,12 +119,11 @@ public class ManagedConnection<C extends Connection> extends DelegatingConnectio
+             // transaction completes
+             isSharedConnection = true;
+         } else {
+-            C connection = getDelegateInternal();
+             // if our delegate is null, create one
+-            if (connection == null) {
++            if (getDelegateInternal() == null) {
+                 try {
+                     // borrow a new connection from the pool
+-                    connection = pool.borrowObject();
++                    C connection = pool.borrowObject();
+                     setDelegate(connection);
+                 } catch (Exception e) {
+                     throw new SQLException("Unable to acquire a new connection from the pool", e);
+@@ -138,15 +137,11 @@ public class ManagedConnection<C extends Connection> extends DelegatingConnectio
+ 
+                 // register our connection as the shared connection
+                 try {
+-                    transactionContext.setSharedConnection(connection);
++                    transactionContext.setSharedConnection(getDelegateInternal());
+                 } catch (SQLException e) {
+                     // transaction is hosed
+                     transactionContext = null;
+-                    try {
+-                        pool.invalidateObject(connection);
+-                    } catch (Exception e1) {
+                         // we are try but no luck
+-                    }
+                     throw e;
+                 }
+             }

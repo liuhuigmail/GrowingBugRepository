@@ -1,0 +1,16 @@
+org.apache.hadoop.mrunit.TestConfigureClose
+org.apache.hadoop.mrunit.TestCounters
+org.apache.hadoop.mrunit.TestExample
+org.apache.hadoop.mrunit.TestMapDriver
+org.apache.hadoop.mrunit.TestMapReduceDriver
+org.apache.hadoop.mrunit.TestPipelineMapReduceDriver
+org.apache.hadoop.mrunit.TestReduceDriver
+org.apache.hadoop.mrunit.TestTestDriver
+org.apache.hadoop.mrunit.internal.mapred.TestMockOutputCollector
+org.apache.hadoop.mrunit.mapreduce.TestCounters
+org.apache.hadoop.mrunit.mapreduce.TestMapDriver
+org.apache.hadoop.mrunit.mapreduce.TestMapReduceDriver
+org.apache.hadoop.mrunit.mapreduce.TestReduceDriver
+org.apache.hadoop.mrunit.mapreduce.TestReducerInputValueResuse
+org.apache.hadoop.mrunit.mapreduce.TestWordCount
+org.apache.hadoop.mrunit.types.TestPair

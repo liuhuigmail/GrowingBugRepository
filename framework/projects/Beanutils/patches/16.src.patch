@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/beanutils/MethodUtils.java b/src/main/java/org/apache/commons/beanutils/MethodUtils.java
+index d01191da..afad4847 100644
+--- a/src/main/java/org/apache/commons/beanutils/MethodUtils.java
++++ b/src/main/java/org/apache/commons/beanutils/MethodUtils.java
+@@ -1118,7 +1118,7 @@ public class MethodUtils {
+      */
+     private static float getObjectTransformationCost(Class srcClass, Class destClass) {
+         float cost = 0.0f;
+-        while (srcClass != null && !destClass.equals(srcClass)) {
++        while (destClass != null && !destClass.equals(srcClass)) {
+             if (destClass.isInterface() && isAssignmentCompatible(destClass,srcClass)) {
+                 // slight penalty for interface match. 
+                 // we still want an exact match to override an interface match, but  
+@@ -1128,14 +1128,14 @@ public class MethodUtils {
+                 break;
+             }
+             cost++;
+-            srcClass = srcClass.getSuperclass();
++            destClass = destClass.getSuperclass();
+         }
+ 
+         /*
+          * If the destination class is null, we've travelled all the way up to 
+          * an Object match. We'll penalize this by adding 1.5 to the cost.
+          */
+-        if (srcClass == null) {
++        if (destClass == null) {
+             cost += 1.5f;
+         }
+ 

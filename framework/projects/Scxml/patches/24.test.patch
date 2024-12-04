@@ -1,0 +1,247 @@
+diff --git a/src/test/java/org/apache/commons/scxml/SCXMLTestHelper.java b/src/test/java/org/apache/commons/scxml/SCXMLTestHelper.java
+index 60595821..2c98d7f0 100644
+--- a/src/test/java/org/apache/commons/scxml/SCXMLTestHelper.java
++++ b/src/test/java/org/apache/commons/scxml/SCXMLTestHelper.java
+@@ -24,7 +24,6 @@ import java.io.NotSerializableException;
+ import java.io.ObjectInputStream;
+ import java.io.ObjectOutputStream;
+ import java.net.URL;
+-import java.util.ArrayList;
+ import java.util.Arrays;
+ import java.util.Iterator;
+ import java.util.List;
+@@ -295,7 +294,7 @@ public class SCXMLTestHelper {
+             + " on firing event " + triggerEvent + " but found "
+             + currentStates.size() + " states instead.",
+             n, currentStates.size());
+-        List expectedStateIdList = new ArrayList(Arrays.asList(expectedStateIds));
++        List expectedStateIdList = Arrays.asList(expectedStateIds);
+         Iterator iter = currentStates.iterator();
+         while (iter.hasNext()) {
+             String stateId = ((State) iter.next()).getId();
+diff --git a/src/test/java/org/apache/commons/scxml/model/ParallelTest.java b/src/test/java/org/apache/commons/scxml/model/ParallelTest.java
+deleted file mode 100644
+index bea2f7f9..00000000
+--- a/src/test/java/org/apache/commons/scxml/model/ParallelTest.java
++++ /dev/null
+@@ -1,85 +0,0 @@
+-/*
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+- */
+-package org.apache.commons.scxml.model;
+-
+-import java.net.URL;
+-
+-import org.apache.commons.scxml.SCXMLExecutor;
+-import org.apache.commons.scxml.SCXMLTestHelper;
+-
+-import junit.framework.Test;
+-import junit.framework.TestCase;
+-import junit.framework.TestSuite;
+-
+-public class ParallelTest extends TestCase {
+-
+-    public ParallelTest(String testName) {
+-        super(testName);
+-    }
+-
+-    public static Test suite() {
+-        return new TestSuite(ParallelTest.class);
+-    }
+-
+-    public static void main(String args[]) {
+-        String[] testCaseName = { ParallelTest.class.getName() };
+-        junit.textui.TestRunner.main(testCaseName);
+-    }
+-
+-    // Test data
+-    private URL parallel01, parallel02;
+-    private SCXMLExecutor exec;
+-    
+-    public void setUp() {
+-        parallel01 = this.getClass().getClassLoader().
+-            getResource("org/apache/commons/scxml/model/parallel-01.xml");
+-        parallel02 = this.getClass().getClassLoader().
+-            getResource("org/apache/commons/scxml/model/parallel-02.xml");
+-    }
+-
+-    public void tearDown() {
+-        parallel01 = parallel02 = null;
+-        exec = null;
+-    }
+-
+-    public void testParallel01() {
+-    	SCXML scxml = SCXMLTestHelper.parse(parallel01);
+-        assertNotNull(scxml);
+-        exec = SCXMLTestHelper.getExecutor(scxml);
+-        assertNotNull(exec);
+-        try {
+-            SCXMLTestHelper.assertPostTriggerState(exec, "foo", "end");
+-        } catch (Exception e) {
+-            fail(e.getMessage());
+-        }
+-    }
+-
+-    public void testParallel02() {
+-    	SCXML scxml = SCXMLTestHelper.parse(parallel02);
+-        assertNotNull(scxml);
+-        exec = SCXMLTestHelper.getExecutor(scxml);
+-        assertNotNull(exec);
+-        try {
+-        	SCXMLTestHelper.assertPostTriggerStates(exec, "dummy.event", new String[] { "state01", "state02" });
+-            SCXMLTestHelper.assertPostTriggerState(exec, "event1", "state1");
+-        } catch (Exception e) {
+-        	e.printStackTrace();
+-            fail(e.getMessage());
+-        }
+-    }
+-
+-}
+diff --git a/src/test/java/org/apache/commons/scxml/model/PathTest.java b/src/test/java/org/apache/commons/scxml/model/PathTest.java
+index b4a37d3b..eba4dee9 100644
+--- a/src/test/java/org/apache/commons/scxml/model/PathTest.java
++++ b/src/test/java/org/apache/commons/scxml/model/PathTest.java
+@@ -157,7 +157,7 @@ public class PathTest extends TestCase {
+ 
+         Path path = new Path(source, target);
+ 
+-        assertEquals("parentid", path.getPathScope().getId());
++        assertNull(path.getPathScope());
+     }
+     
+     public void testConstructorParentParallelParent() {
+@@ -180,7 +180,7 @@ public class PathTest extends TestCase {
+ 
+         Path path = new Path(source, target);
+ 
+-        assertEquals("parentid", path.getPathScope().getId());
++        assertEquals("superParent", path.getPathScope().getId());
+     }
+     
+     public void testGetRegionsExitedNull() {
+diff --git a/src/test/java/org/apache/commons/scxml/model/parallel-01.xml b/src/test/java/org/apache/commons/scxml/model/parallel-01.xml
+deleted file mode 100644
+index e8222857..00000000
+--- a/src/test/java/org/apache/commons/scxml/model/parallel-01.xml
++++ /dev/null
+@@ -1,70 +0,0 @@
+-<?xml version="1.0"?>
+-<!--
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+--->
+-<!--
+-    Needs SCXMLParser
+--->
+-<scxml xmlns="http://www.w3.org/2005/07/scxml"
+-       version="1.0"
+-       initialstate="para">
+-
+-    <parallel id="para">
+-
+-        <state id="para1">
+-
+-            <initial>
+-                <transition target="para11"/>
+-            </initial>
+-
+-            <state id="para11">
+-                <transition event="foo" target="para12"/>
+-            </state>
+-
+-            <state id="para12">
+-                <onexit>
+-                    <log expr="'Exiting para12'" />
+-                </onexit>
+-            </state>
+-
+-        </state>
+-
+-        <state id="para2">
+-
+-            <initial>
+-                <transition target="para21"/>
+-            </initial>
+-
+-            <state id="para21">
+-                <transition cond="In('para12')" target="para22"/>
+-            </state>
+-
+-            <state id="para22">
+-                <onexit>
+-                    <log expr="'Exiting para22'" />
+-                </onexit>
+-
+-                <transition target="end"/>
+-            </state>
+-
+-        </state>
+-
+-    </parallel>
+-
+-    <state id="end" final="true" />
+-
+-</scxml>
+-
+diff --git a/src/test/java/org/apache/commons/scxml/model/parallel-02.xml b/src/test/java/org/apache/commons/scxml/model/parallel-02.xml
+deleted file mode 100644
+index 106fc866..00000000
+--- a/src/test/java/org/apache/commons/scxml/model/parallel-02.xml
++++ /dev/null
+@@ -1,31 +0,0 @@
+-<?xml version="1.0"?>
+-<!--
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+--->
+-<!--
+-   Needs SCXMLParser
+--->
+-<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" initialstate="state0">
+-
+-    <parallel id="state0">
+-        <transition event="event1" target="state1" />
+-        <!-- dummy regions -->
+-        <state id="state01"/>
+-        <state id="state02"/>
+-    </parallel>
+-    <final id="state1"/>
+-
+-</scxml>

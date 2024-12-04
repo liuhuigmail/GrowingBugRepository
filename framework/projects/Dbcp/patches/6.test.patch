@@ -1,0 +1,17 @@
+diff --git a/src/test/java/org/apache/commons/dbcp2/TestDelegatingConnection.java b/src/test/java/org/apache/commons/dbcp2/TestDelegatingConnection.java
+index 610daf46..ade401fd 100644
+--- a/src/test/java/org/apache/commons/dbcp2/TestDelegatingConnection.java
++++ b/src/test/java/org/apache/commons/dbcp2/TestDelegatingConnection.java
+@@ -139,12 +139,4 @@ public class TestDelegatingConnection {
+         assertTrue(conn.isClosed());
+     }
+ 
+-    @Test
+-    public void testIsClosedNullDelegate() throws Exception {
+-        conn.checkOpen();
+-        assertFalse(conn.isClosed());
+-        conn.setDelegate(null);
+-        assertTrue(conn.isClosed());
+-    }
+-
+ }

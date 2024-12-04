@@ -1,0 +1,2 @@
+org.apache.hadoop.mrunit.mapreduce.MapDriver
+org.apache.hadoop.mrunit.mapreduce.mock.MockMapContextWrapper

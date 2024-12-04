@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/beanutils/BeanUtilsBean.java b/src/main/java/org/apache/commons/beanutils/BeanUtilsBean.java
+index 30045f3d..731f9fa6 100644
+--- a/src/main/java/org/apache/commons/beanutils/BeanUtilsBean.java
++++ b/src/main/java/org/apache/commons/beanutils/BeanUtilsBean.java
+@@ -953,8 +953,6 @@ public class BeanUtilsBean {
+                 }
+                 type = ((IndexedPropertyDescriptor) descriptor).
+                     getIndexedPropertyType();
+-            } else if (index >= 0 && List.class.isAssignableFrom(descriptor.getPropertyType())) {
+-                type = Object.class;
+             } else if (key != null) {
+                 if (descriptor.getReadMethod() == null) {
+                     if (log.isDebugEnabled()) {

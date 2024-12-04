@@ -1,0 +1,4 @@
+org.apache.commons.beanutils.BeanUtils2TestCase
+org.apache.commons.beanutils.BeanUtilsTestCase
+org.apache.commons.beanutils.PassTestException
+org.apache.commons.beanutils.TestBean

@@ -1,0 +1,107 @@
+diff --git a/src/test/java/org/apache/commons/scxml2/io/SCXMLReaderTest.java b/src/test/java/org/apache/commons/scxml2/io/SCXMLReaderTest.java
+index 62812c60..415e66c9 100644
+--- a/src/test/java/org/apache/commons/scxml2/io/SCXMLReaderTest.java
++++ b/src/test/java/org/apache/commons/scxml2/io/SCXMLReaderTest.java
+@@ -279,50 +279,20 @@ public class SCXMLReaderTest {
+     }
+ 
+     @Test(expected=org.apache.commons.scxml2.model.ModelException.class)
+-    public void dataWithSrcAndExprIsRejectedInStrictConfiguration() throws Exception {
+-        Configuration configuration = new Configuration();
+-        configuration.setStrict(true);
+-        configuration.setSilent(true);
+-        SCXMLReader.read(getClass().getResourceAsStream("data-with-src-and-expr.xml"), configuration);
+-    }
+-
+-    @Test
+-    public void dataWithSrcAndExprUsesExprInNonStrictConfiguration() throws Exception {
+-        Configuration configuration = new Configuration();
+-        configuration.setStrict(false);
+-        configuration.setSilent(true);
+-        SCXML scxml = SCXMLReader.read(getClass().getResourceAsStream("data-with-src-and-expr.xml"), configuration);
+-        Assert.assertNotNull(scxml);
+-        Assert.assertNotNull(scxml.getDatamodel());
+-        Assert.assertNotNull(scxml.getDatamodel().getData());
+-        Assert.assertEquals("Exactly one data element parsed.", 1, scxml.getDatamodel().getData().size());
+-        Data data = scxml.getDatamodel().getData().get(0);
+-        Assert.assertNotNull(data);
+-        Assert.assertEquals("'an expression'", data.getExpr());
++    public void dataWithSrcAndExprIsRejected() throws Exception {
++      SCXMLTestHelper.parse("org/apache/commons/scxml2/io/data-with-src-and-expr.xml");
+     }
+ 
+     @Test
+     public void srcAttributeOfDataIsParsed() throws Exception {
+-        SCXML scxml = SCXMLTestHelper.parse("org/apache/commons/scxml2/io/data-with-src.xml");
+-        Assert.assertNotNull(scxml);
+-        Assert.assertNotNull(scxml.getDatamodel());
+-        Assert.assertNotNull(scxml.getDatamodel().getData());
+-        Assert.assertEquals("Exactly one data element parsed.", 1, scxml.getDatamodel().getData().size());
+-        Data data = scxml.getDatamodel().getData().get(0);
+-        Assert.assertNotNull(data);
+-        Assert.assertEquals("http://www.w3.org/TR/sxcml", data.getSrc());
+-    }
+-
+-    @Test
+-    public void exprAttributeOfDataIsParsed() throws Exception {
+-      SCXML scxml = SCXMLTestHelper.parse("org/apache/commons/scxml2/io/data-with-expr.xml");
++      SCXML scxml = SCXMLTestHelper.parse("org/apache/commons/scxml2/io/data-with-src.xml");
+       Assert.assertNotNull(scxml);
+       Assert.assertNotNull(scxml.getDatamodel());
+       Assert.assertNotNull(scxml.getDatamodel().getData());
+       Assert.assertEquals("Exactly one data element parsed.", 1, scxml.getDatamodel().getData().size());
+       Data data = scxml.getDatamodel().getData().get(0);
+       Assert.assertNotNull(data);
+-      Assert.assertEquals("'an expression'", data.getExpr());
++      Assert.assertEquals("http://www.w3.org/TR/sxcml", data.getSrc());
+     }
+ 
+     private String serialize(final SCXML scxml) throws IOException, XMLStreamException {
+diff --git a/src/test/java/org/apache/commons/scxml2/io/data-with-expr.xml b/src/test/java/org/apache/commons/scxml2/io/data-with-expr.xml
+deleted file mode 100644
+index d848590f..00000000
+--- a/src/test/java/org/apache/commons/scxml2/io/data-with-expr.xml
++++ /dev/null
+@@ -1,29 +0,0 @@
+-<?xml version="1.0"?>
+-<!--
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+--->
+-<!-- Used for SrcTest.java in io package -->
+-<scxml xmlns="http://www.w3.org/2005/07/scxml"
+-       version="1.0"
+-       initial="foo">
+-
+-    <datamodel>
+-        <data id="theData" expr="'an expression'" />
+-    </datamodel>
+-
+-    <final id="foo"/>
+-
+-</scxml>
+diff --git a/src/test/java/org/apache/commons/scxml2/io/data-with-src-and-expr.xml b/src/test/java/org/apache/commons/scxml2/io/data-with-src-and-expr.xml
+index 68b4e667..9dad4e5f 100644
+--- a/src/test/java/org/apache/commons/scxml2/io/data-with-src-and-expr.xml
++++ b/src/test/java/org/apache/commons/scxml2/io/data-with-src-and-expr.xml
+@@ -21,7 +21,7 @@
+        initial="foo">
+ 
+     <datamodel>
+-        <data id="theData" src="http://www.w3.org/TR/sxcml" expr="'an expression'" />
++        <data id="theData" src="http://www.w3.org/TR/sxcml" expr="'a value'" />
+     </datamodel>
+ 
+     <final id="foo"/>

@@ -1,0 +1,180 @@
+diff --git a/src/test/java/org/apache/commons/scxml2/model/CancelTest.java b/src/test/java/org/apache/commons/scxml2/model/CancelTest.java
+deleted file mode 100644
+index 27409d5f..00000000
+--- a/src/test/java/org/apache/commons/scxml2/model/CancelTest.java
++++ /dev/null
+@@ -1,50 +0,0 @@
+-/*
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+- */
+-package org.apache.commons.scxml2.model;
+-
+-import org.apache.commons.scxml2.SCXMLExecutor;
+-import org.apache.commons.scxml2.SCXMLTestHelper;
+-import org.apache.commons.scxml2.TriggerEvent;
+-import org.apache.commons.scxml2.env.SimpleDispatcher;
+-import org.junit.Test;
+-
+-public class CancelTest {
+-
+-    @Test
+-    public void testCancelBySendId() throws Exception {
+-        final SCXML scxml = SCXMLTestHelper.parse("org/apache/commons/scxml2/model/cancel-test-01.xml");
+-        final SCXMLExecutor exec = SCXMLTestHelper.getExecutor(scxml, null, new SimpleDispatcher());
+-        exec.go();
+-        TriggerEvent te = new TriggerEvent("event.foo", TriggerEvent.SIGNAL_EVENT);
+-        SCXMLTestHelper.fireEvent(exec, te);
+-        Thread.sleep(3000);
+-        exec.triggerEvents();
+-        SCXMLTestHelper.assertState(exec, "twenty");
+-    }
+-
+-    @Test
+-    public void testCancelBySendIdExpr() throws Exception {
+-        final SCXML scxml = SCXMLTestHelper.parse("org/apache/commons/scxml2/model/cancel-test-02.xml");
+-        final SCXMLExecutor exec = SCXMLTestHelper.getExecutor(scxml, null, new SimpleDispatcher());
+-        exec.go();
+-        TriggerEvent te = new TriggerEvent("event.foo", TriggerEvent.SIGNAL_EVENT);
+-        SCXMLTestHelper.fireEvent(exec, te);
+-        Thread.sleep(3000);
+-        exec.triggerEvents();
+-        SCXMLTestHelper.assertState(exec, "twenty");
+-    }
+-}
+diff --git a/src/test/java/org/apache/commons/scxml2/model/cancel-test-01.xml b/src/test/java/org/apache/commons/scxml2/model/cancel-test-01.xml
+deleted file mode 100644
+index 2829d871..00000000
+--- a/src/test/java/org/apache/commons/scxml2/model/cancel-test-01.xml
++++ /dev/null
+@@ -1,56 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!--
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+--->
+-<scxml xmlns="http://www.w3.org/2005/07/scxml"
+-       xmlns:cs="http://commons.apache.org/scxml"
+-       version="1.0"
+-       datamodel="jexl"
+-       initial="ten">
+-
+-    <datamodel>
+-        <data id="rootdata">
+-            <root xmlns="">
+-                <one>1</one>
+-                <two>2</two>
+-            </root>
+-        </data>
+-    </datamodel>
+-
+-    <state id="ten">
+-
+-        <transition event="event.foo" target="twenty" />
+-
+-        <onexit>
+-            <cs:var name="one" expr="Data('number($rootdata/root/one)')" />
+-            <cs:var name="two" expr="Data('number($rootdata/root/two)')" />
+-            <send id="send123" event="event.bar" namelist="one two" delay="1500" />
+-        </onexit>
+-
+-    </state>
+-
+-    <state id="twenty">
+-        <onentry>
+-            <cancel sendid="send123" />
+-        </onentry>
+-
+-        <transition event="event.bar" target="thirty" />
+-
+-    </state>
+-
+-    <final id="thirty" />
+-
+-</scxml>
+diff --git a/src/test/java/org/apache/commons/scxml2/model/cancel-test-02.xml b/src/test/java/org/apache/commons/scxml2/model/cancel-test-02.xml
+deleted file mode 100644
+index d87b6944..00000000
+--- a/src/test/java/org/apache/commons/scxml2/model/cancel-test-02.xml
++++ /dev/null
+@@ -1,56 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!--
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+--->
+-<scxml xmlns="http://www.w3.org/2005/07/scxml"
+-       xmlns:cs="http://commons.apache.org/scxml"
+-       version="1.0"
+-       datamodel="jexl"
+-       initial="ten">
+-
+-    <datamodel>
+-        <data id="rootdata">
+-            <root xmlns="">
+-                <one>1</one>
+-                <two>2</two>
+-            </root>
+-        </data>
+-    </datamodel>
+-
+-    <state id="ten">
+-
+-        <transition event="event.foo" target="twenty" />
+-
+-        <onexit>
+-            <cs:var name="one" expr="Data('number($rootdata/root/one)')" />
+-            <cs:var name="two" expr="Data('number($rootdata/root/two)')" />
+-            <send id="send123" event="event.bar" namelist="one two" delay="1500" />
+-        </onexit>
+-
+-    </state>
+-
+-    <state id="twenty">
+-        <onentry>
+-            <cancel sendidexpr="'send123'" />
+-        </onentry>
+-
+-        <transition event="event.bar" target="thirty" />
+-
+-    </state>
+-
+-    <final id="thirty" />
+-
+-</scxml>

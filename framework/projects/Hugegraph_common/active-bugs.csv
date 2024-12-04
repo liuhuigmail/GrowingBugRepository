@@ -1,0 +1,6 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,82f2a6539f50cf060f02c3d8663444b14050796f,297e49123298da7c17aecd5db826f4ff8d8a5fe5,131,https://github.com/apache/incubator-hugegraph-commons/pull/131
+2,f2e838443de26d21619708f90988abcf332ef36e,deac513c43858a144f0e7171d9f2ff33196b1e1a,99,https://github.com/apache/incubator-hugegraph-commons/pull/99
+3,d0e5971c7e49077411dd6c4f933c830b0a5fba4f,f2e838443de26d21619708f90988abcf332ef36e,96,https://github.com/apache/incubator-hugegraph-commons/pull/96
+4,88d2f897edb5209674c1fa5504be8e249cef6e10,d0e5971c7e49077411dd6c4f933c830b0a5fba4f,93,https://github.com/apache/incubator-hugegraph-commons/pull/93
+5,8f0f2ba012e06b67b8084938e545a6b12c78309a,922a4f6334416edc573450b7156ca09cc21b5899,89,https://github.com/apache/incubator-hugegraph-commons/pull/89

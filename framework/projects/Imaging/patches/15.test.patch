@@ -1,0 +1,570 @@
+diff --git a/src/test/java/org/apache/sanselan/SanselanTest.java b/src/test/java/org/apache/sanselan/SanselanTest.java
+index 0181261e..ed9195c9 100644
+--- a/src/test/java/org/apache/sanselan/SanselanTest.java
++++ b/src/test/java/org/apache/sanselan/SanselanTest.java
+@@ -108,25 +108,17 @@ public abstract class SanselanTest extends TestCase implements
+ 		return getTestImages(filter, -1);
+ 	}
+ 
+-	protected List getTestImages(final ImageFilter filter, final int max)
+-			throws IOException, ImageReadException
+-	{
++	private static final List ALL_IMAGES = new ArrayList();
+ 
++	static
++	{
+ 		File srcFolder = new File("src");
+ 		File testFolder = new File(srcFolder, "test");
+ 		File dataFolder = new File(testFolder, "data");
+ 		File imagesFolder = new File(dataFolder, "images");
+ 
+ 		// imagesFolder = new File(
+-		// "C:\\work\\personal\\apache\\sanselan\\src\\test\\data\\images\\exif\\drewNoakes\\007_Canon EOS D60.jpg"
+-		// );
+-		// imagesFolder = new File(
+-		// "C:\\work\\personal\\apache\\sanselan\\src\\test\\data\\images\\exif\\drewNoakes\\007_FujiFilm FinePixS1Pro (1).jpg"
+-		// );
+-		// imagesFolder = new File(
+-		// "C:\\work\\personal\\apache\\sanselan\\src\\test\\data\\images\\exif\\philHarvey\\Nikon\\NikonCoolpixS7.jpg"
+-		// );
+-//		imagesFolder = new File("C:\\work\\personal\\apache\\sanselan\\src\\test\\data\\images\\exif\\philHarvey\\UMAX\\UmaxAstraCam.jpg");
++		// "C:\\personal\\apache\\sanselan\\src\\test\\data\\images\\bmp\\2");
+ 
+ 		imagesFolder = imagesFolder.getAbsoluteFile();
+ 
+@@ -134,57 +126,50 @@ public abstract class SanselanTest extends TestCase implements
+ 
+ 		Debug.debug("imagesFolder", imagesFolder);
+ 
+-		final List images = new ArrayList();
+-
+ 		FSTraversal.Visitor visitor = new FSTraversal.Visitor() {
+-			long counter = 0;
+ 
+ 			public boolean visit(File file, double progressEstimate)
+ 			{
+-
+ 				if (!Sanselan.hasImageFileExtension(file))
+ 					return true;
+-
+-				if (counter++ % 10 == 0)
+-					Debug.purgeMemory();
+-
+-				try
+-				{
+-					if (filter != null && !filter.accept(file))
+-						return true;
+-				} catch (Exception e)
+-				{
+-					Debug.debug(e);
+-					return false;
+-				}
+-
+-				images.add(file);
+-
+-				if (max < 1)
+-					return true;
+-				return images.size() < max;
++				ALL_IMAGES.add(file);
++				return true;
+ 			}
+ 		};
+ 		new FSTraversal().traverseFiles(imagesFolder, visitor);
++	}
+ 
+-		List filtered = new ArrayList();
+-		// long last = System.currentTimeMillis();
+-		for (int i = 0; i < images.size(); i++)
++	protected List getTestImages(final ImageFilter filter, final int max)
++			throws IOException, ImageReadException
++	{
++		final List images = new ArrayList();
++		int counter = 0;
++		
++		for (int i = 0; i < ALL_IMAGES.size(); i++)
+ 		{
+-			// if (i % 10 == 0)
+-			// Debug.purgeMemory();
++			File file = (File) ALL_IMAGES.get(i);
+ 
+-			File file = (File) images.get(i);
+-			// Debug.debug("considering file", file.getAbsoluteFile());
++			if (!Sanselan.hasImageFileExtension(file))
++				continue;
++
++			if (counter++ % 10 == 0)
++				Debug.purgeMemory();
+ 
+ 			if (file.getParentFile().getName().toLowerCase().equals("@broken"))
+ 				continue;
+-			filtered.add(file);
++
++			if (filter != null && !filter.accept(file))
++				continue;
++
++			images.add(file);
++
++			if (max > 0 && images.size() >= max)
++				break;
+ 		}
+ 
+-		assertTrue(filtered.size() > 0);
++		assertTrue(images.size() > 0);
+ 
+-		return filtered;
++		return images;
+ 	}
+ 
+ 	protected boolean isInvalidPNGTestFile(File file)
+diff --git a/src/test/java/org/apache/sanselan/common/byteSources/ByteSourceImageTest.java b/src/test/java/org/apache/sanselan/common/byteSources/ByteSourceImageTest.java
+index be1d319c..eefd469f 100644
+--- a/src/test/java/org/apache/sanselan/common/byteSources/ByteSourceImageTest.java
++++ b/src/test/java/org/apache/sanselan/common/byteSources/ByteSourceImageTest.java
+@@ -38,7 +38,8 @@ import org.apache.sanselan.Sanselan;
+ import org.apache.sanselan.util.Debug;
+ import org.apache.sanselan.util.IOUtils;
+ 
+-public class ByteSourceImageTest extends ByteSourceTest {
++public class ByteSourceImageTest extends ByteSourceTest
++{
+ 	// public ByteSourceImageTest()
+ 	// {
+ 	// super(ByteSourceImageTest.class.getName());
+@@ -47,15 +48,18 @@ public class ByteSourceImageTest extends ByteSourceTest {
+ 	/**
+ 	 * @return the suite of tests being tested
+ 	 */
+-	public static Test suite() {
++	public static Test suite()
++	{
+ 		return new TestSuite(ByteSourceImageTest.class);
+ 	}
+ 
+ 	public void test() throws IOException, ImageReadException,
+ 			IllegalAccessException, IllegalArgumentException,
+-			InvocationTargetException {
++			InvocationTargetException
++	{
+ 		List imageFiles = getTestImages();
+-		for (int i = 0; i < imageFiles.size(); i++) {
++		for (int i = 0; i < imageFiles.size(); i++)
++		{
+ 			if (i % 10 == 0)
+ 				Debug.purgeMemory();
+ 
+@@ -103,7 +107,8 @@ public class ByteSourceImageTest extends ByteSourceTest {
+ 	}
+ 
+ 	public void checkGetBufferedImage(File file, byte[] bytes)
+-			throws IOException, ImageReadException {
++			throws IOException, ImageReadException
++	{
+ 		BufferedImage imageFile = Sanselan.getBufferedImage(file);
+ 		assertTrue(imageFile != null);
+ 		assertTrue(imageFile.getWidth() > 0);
+@@ -116,7 +121,8 @@ public class ByteSourceImageTest extends ByteSourceTest {
+ 	}
+ 
+ 	public void checkGetImageSize(File imageFile, byte[] imageFileBytes)
+-			throws IOException, ImageReadException {
++			throws IOException, ImageReadException
++	{
+ 		Dimension imageSizeFile = Sanselan.getImageSize(imageFile);
+ 		assertTrue(imageSizeFile != null);
+ 		assertTrue(imageSizeFile.width > 0);
+@@ -129,7 +135,8 @@ public class ByteSourceImageTest extends ByteSourceTest {
+ 	}
+ 
+ 	public void checkGuessFormat(File imageFile, byte[] imageFileBytes)
+-			throws IOException, ImageReadException {
++			throws IOException, ImageReadException
++	{
+ 		// check guessFormat()
+ 		ImageFormat imageFormatFile = Sanselan.guessFormat(imageFile);
+ 		assertTrue(imageFormatFile != null);
+@@ -145,7 +152,8 @@ public class ByteSourceImageTest extends ByteSourceTest {
+ 	}
+ 
+ 	public void checkGetICCProfileBytes(File imageFile, byte[] imageFileBytes)
+-			throws IOException, ImageReadException {
++			throws IOException, ImageReadException
++	{
+ 		// check guessFormat()
+ 		byte iccBytesFile[] = Sanselan.getICCProfileBytes(imageFile);
+ 
+@@ -161,12 +169,16 @@ public class ByteSourceImageTest extends ByteSourceTest {
+ 
+ 	public void checkGetImageInfo(File imageFile, byte[] imageFileBytes)
+ 			throws IOException, ImageReadException, IllegalAccessException,
+-			IllegalArgumentException, InvocationTargetException {
+-		// check guessFormat()
+-
++			IllegalArgumentException, InvocationTargetException
++	{
+ 		Map params = new HashMap();
+ 		boolean ignoreImageData = isPhilHarveyTestImage(imageFile);
+-		params.put(PARAM_KEY_READ_THUMBNAILS, new Boolean(!ignoreImageData));
++		ImageFormat imageFormat = Sanselan.guessFormat(imageFile);
++		if (imageFormat.equals(ImageFormat.IMAGE_FORMAT_TIFF)
++				|| imageFormat.equals(ImageFormat.IMAGE_FORMAT_JPEG))
++			params
++					.put(PARAM_KEY_READ_THUMBNAILS, new Boolean(
++							!ignoreImageData));
+ 
+ 		ImageInfo imageInfoFile = Sanselan.getImageInfo(imageFile, params);
+ 
+@@ -177,7 +189,8 @@ public class ByteSourceImageTest extends ByteSourceTest {
+ 		assertTrue(imageInfoBytes != null);
+ 
+ 		Method methods[] = ImageInfo.class.getMethods();
+-		for (int i = 0; i < methods.length; i++) {
++		for (int i = 0; i < methods.length; i++)
++		{
+ 			Method method = methods[i];
+ 			method.getModifiers();
+ 			if (!Modifier.isPublic(method.getModifiers()))
+diff --git a/src/test/java/org/apache/sanselan/formats/bmp/BmpBaseTest.java b/src/test/java/org/apache/sanselan/formats/bmp/BmpBaseTest.java
+new file mode 100644
+index 00000000..6db54379
+--- /dev/null
++++ b/src/test/java/org/apache/sanselan/formats/bmp/BmpBaseTest.java
+@@ -0,0 +1,57 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.apache.sanselan.formats.bmp;
++
++import java.awt.image.BufferedImage;
++import java.io.File;
++import java.io.IOException;
++import java.util.List;
++
++import org.apache.sanselan.ImageFormat;
++import org.apache.sanselan.ImageInfo;
++import org.apache.sanselan.ImageReadException;
++import org.apache.sanselan.ImageWriteException;
++import org.apache.sanselan.Sanselan;
++import org.apache.sanselan.SanselanTest;
++import org.apache.sanselan.common.IImageMetadata;
++import org.apache.sanselan.util.Debug;
++
++public abstract class BmpBaseTest extends SanselanTest
++{
++
++	private static boolean isBmp(File file) throws IOException,
++			ImageReadException
++	{
++		ImageFormat format = Sanselan.guessFormat(file);
++		return format == ImageFormat.IMAGE_FORMAT_BMP;
++	}
++
++	private static final ImageFilter IMAGE_FILTER = new ImageFilter() {
++		public boolean accept(File file) throws IOException, ImageReadException
++		{
++			return isBmp(file);
++		}
++	};
++
++	protected List getBmpImages() throws IOException, ImageReadException
++	{
++		return getTestImages(IMAGE_FILTER);
++	}
++
++
++}
+diff --git a/src/test/java/org/apache/sanselan/formats/bmp/BmpReadTest.java b/src/test/java/org/apache/sanselan/formats/bmp/BmpReadTest.java
+new file mode 100644
+index 00000000..1cd00d57
+--- /dev/null
++++ b/src/test/java/org/apache/sanselan/formats/bmp/BmpReadTest.java
+@@ -0,0 +1,64 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.apache.sanselan.formats.bmp;
++
++import java.awt.image.BufferedImage;
++import java.io.File;
++import java.io.IOException;
++import java.util.HashMap;
++import java.util.List;
++import java.util.Map;
++
++import org.apache.sanselan.ImageInfo;
++import org.apache.sanselan.ImageReadException;
++import org.apache.sanselan.ImageWriteException;
++import org.apache.sanselan.Sanselan;
++import org.apache.sanselan.common.IImageMetadata;
++import org.apache.sanselan.util.Debug;
++
++public class BmpReadTest extends BmpBaseTest
++{
++
++	public void test() throws IOException, ImageReadException,
++			ImageWriteException
++	{
++		Debug.debug("start");
++
++		List images = getBmpImages();
++		for (int i = 0; i < images.size(); i++)
++		{
++			if (i % 10 == 0)
++				Debug.purgeMemory();
++
++			File imageFile = (File) images.get(i);
++			Debug.debug("imageFile", imageFile);
++
++			IImageMetadata metadata = Sanselan.getMetadata(imageFile);
++			// assertNotNull(metadata);
++
++			Map params = new HashMap();
++//			params.put(PARAM_KEY_VERBOSE, Boolean.TRUE);
++			ImageInfo imageInfo = Sanselan.getImageInfo(imageFile, params);
++			assertNotNull(imageInfo);
++
++			BufferedImage image = Sanselan.getBufferedImage(imageFile);
++			assertNotNull(image);
++		}
++	}
++
++}
+diff --git a/src/test/java/org/apache/sanselan/formats/bmp/BmpRoundtripTest.java b/src/test/java/org/apache/sanselan/formats/bmp/BmpRoundtripTest.java
+new file mode 100644
+index 00000000..69640d99
+--- /dev/null
++++ b/src/test/java/org/apache/sanselan/formats/bmp/BmpRoundtripTest.java
+@@ -0,0 +1,206 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.apache.sanselan.formats.bmp;
++
++import java.awt.image.BufferedImage;
++import java.io.File;
++import java.io.IOException;
++import java.util.HashMap;
++import java.util.Map;
++import java.util.Random;
++
++import org.apache.sanselan.ImageFormat;
++import org.apache.sanselan.ImageReadException;
++import org.apache.sanselan.ImageWriteException;
++import org.apache.sanselan.Sanselan;
++import org.apache.sanselan.util.Debug;
++import org.apache.sanselan.util.IOUtils;
++
++public class BmpRoundtripTest extends BmpBaseTest
++{
++
++	private int[][] getSimpleRawData(int width, int height, int value)
++	{
++		int[][] result = new int[height][width];
++		for (int y = 0; y < height; y++)
++			for (int x = 0; x < width; x++)
++				result[y][x] = value;
++		return result;
++	}
++
++	private int[][] getAscendingRawData(int width, int height)
++	{
++		int[][] result = new int[height][width];
++		for (int y = 0; y < height; y++)
++			for (int x = 0; x < width; x++)
++			{
++				int alpha = (x + y) % 256;
++				int value = (x + y) % 256;
++				int argb = (0xff & alpha) << 24 | (0xff & value) << 16
++						| (0xff & value) << 8 | (0xff & value) << 0;
++
++				result[y][x] = argb;
++			}
++		return result;
++	}
++
++	private int[][] randomRawData(int width, int height)
++	{
++		Random random = new Random();
++		int[][] result = new int[height][width];
++		for (int y = 0; y < height; y++)
++			for (int x = 0; x < width; x++)
++			{
++				int argb = random.nextInt();
++				result[y][x] = argb;
++			}
++		return result;
++	}
++
++	 public void testSmallBlackPixels() throws IOException,
++	 ImageReadException,
++	 ImageWriteException
++	 {
++	 int[][] smallBlackPixels = getSimpleRawData(256, 256, 0);
++	 writeAndReadImageData(smallBlackPixels);
++	 }
++	
++	public void testSingleBlackPixel() throws IOException, ImageReadException,
++			ImageWriteException
++	{
++		int[][] singleBlackPixel = getSimpleRawData(1, 1, 0);
++		writeAndReadImageData(singleBlackPixel);
++	}
++
++	
++	 public void testSmallRedPixels() throws IOException, ImageReadException,
++	 ImageWriteException
++	 {
++	 int[][] smallRedPixels = getSimpleRawData(256, 256, 0xffff0000);
++	 writeAndReadImageData(smallRedPixels);
++	 }
++	
++	 public void testSingleRedPixel() throws IOException, ImageReadException,
++	 ImageWriteException
++	 {
++	 int[][] singleRedPixel = getSimpleRawData(1, 1, 0xffff0000);
++	 writeAndReadImageData(singleRedPixel);
++	 }
++	
++	 public void testSmallAscendingPixels() throws IOException,
++	 ImageReadException, ImageWriteException
++	 {
++	 int[][] smallAscendingPixels = getAscendingRawData(256, 256);
++	 writeAndReadImageData(smallAscendingPixels);
++	 }
++	
++	 public void testSmallRandomPixels() throws IOException,
++	 ImageReadException,
++	 ImageWriteException
++	 {
++	 int[][] smallRandomPixels = randomRawData(256, 256);
++	 writeAndReadImageData(smallRandomPixels);
++	 }
++
++	private BufferedImage imageDataToBufferedImage(int[][] rawData)
++	{
++		int width = rawData[0].length;
++		int height = rawData.length;
++		BufferedImage image = new BufferedImage(width, height,
++				BufferedImage.TYPE_INT_ARGB);
++		for (int y = 0; y < height; y++)
++			for (int x = 0; x < width; x++)
++			{
++				image.setRGB(x, y, rawData[y][x]);
++			}
++		return image;
++	}
++
++	private int[][] bufferedImageToImageData(BufferedImage image)
++	{
++		int width = image.getWidth();
++		int height = image.getHeight();
++		int[][] result = new int[height][width];
++
++		for (int y = 0; y < height; y++)
++			for (int x = 0; x < width; x++)
++			{
++				result[y][x] = image.getRGB(x, y);
++			}
++		return result;
++	}
++
++	private void writeAndReadImageData(int[][] rawData) throws IOException,
++			ImageReadException, ImageWriteException
++	{
++		BufferedImage srcImage = imageDataToBufferedImage(rawData);
++
++		Map writeParams = new HashMap();
++		// writeParams.put(SanselanConstants.PARAM_KEY_FORMAT,
++		// ImageFormat.IMAGE_FORMAT_BMP);
++		// writeParams.put(PngConstants.PARAM_KEY_BMP_FORCE_TRUE_COLOR,
++		// Boolean.TRUE);
++
++		byte bytes[] = Sanselan.writeImageToBytes(srcImage,
++				ImageFormat.IMAGE_FORMAT_BMP, writeParams);
++
++		// Debug.debug("bytes", bytes);
++
++		File tempFile = createTempFile("temp", ".bmp");
++		IOUtils.writeToFile(bytes, tempFile);
++
++		BufferedImage dstImage = Sanselan.getBufferedImage(bytes);
++
++		assertTrue(null != dstImage);
++		assertTrue(srcImage.getWidth() == dstImage.getWidth());
++		assertTrue(srcImage.getHeight() == dstImage.getHeight());
++
++		int dstData[][] = bufferedImageToImageData(dstImage);
++		compare(rawData, dstData);
++	}
++
++	private void compare(int[][] a, int[][] b)
++	{
++		assertTrue(null != a);
++		assertTrue(null != b);
++		assertTrue(a.length == b.length);
++
++		for (int y = 0; y < a.length; y++)
++		{
++			assertTrue(a[y].length == b[y].length);
++			// make sure row lengths consistent.
++			assertTrue(a[0].length == b[y].length);
++			for (int x = 0; x < a[y].length; x++)
++			{
++				// ignore alpha channel - BMP has no transparency.
++				int rgbA = 0xffffff & a[y][x];
++				int rgbB = 0xffffff & b[y][x];
++
++				if (rgbA != rgbB)
++				{
++					Debug.debug("x: " + x + ", y: " + y + ", rgbA: " + rgbA
++							+ " (0x" + Integer.toHexString(rgbA) + ")"
++							+ ", rgbB: " + rgbB + " (0x"
++							+ Integer.toHexString(rgbB) + ")");
++				}
++				assertTrue(rgbA == rgbB);
++			}
++		}
++	}
++
++}

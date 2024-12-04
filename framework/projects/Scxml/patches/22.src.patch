@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/scxml/Builtin.java b/src/main/java/org/apache/commons/scxml/Builtin.java
+index 96846ec6..c440121b 100644
+--- a/src/main/java/org/apache/commons/scxml/Builtin.java
++++ b/src/main/java/org/apache/commons/scxml/Builtin.java
+@@ -126,7 +126,7 @@ public class Builtin implements Serializable {
+         } else {
+             if (length > 1) {
+                 Log log = LogFactory.getLog(Builtin.class);
+-                log.warn("Data(): Multiple nodes matching XPath expression \""
++                log.warn("Data(): Multiple nodes matching XPath expression"
+                     + path + "\", returning first");
+             }
+             return result.item(0);
+@@ -209,7 +209,7 @@ public class Builtin implements Serializable {
+         } else {
+             if (length > 1) {
+                 Log log = LogFactory.getLog(Builtin.class);
+-                log.warn("Data(): Multiple nodes matching XPath expression \""
++                log.warn("Data(): Multiple nodes matching XPath expression"
+                     + path + "\", returning first");
+             }
+             return result.item(0);
+diff --git a/src/main/java/org/apache/commons/scxml/model/Assign.java b/src/main/java/org/apache/commons/scxml/model/Assign.java
+index fb7f8359..8c3a4827 100644
+--- a/src/main/java/org/apache/commons/scxml/model/Assign.java
++++ b/src/main/java/org/apache/commons/scxml/model/Assign.java
+@@ -196,11 +196,10 @@ public class Assign extends Action implements PathResolverHolder {
+                         newNode = eval.evalLocation(ctx, expr);
+                     }
+                     // Remove all children
+-                    Node removeChild = oldNode.getFirstChild();
+-                    while (removeChild != null) {
+-                        Node nextChild = removeChild.getNextSibling();
+-                        oldNode.removeChild(removeChild);
+-                        removeChild = nextChild;
++                    for (Node child = oldNode.getFirstChild();
++                            child != null;
++                            child = child.getNextSibling()) {
++                        oldNode.removeChild(child);
+                     }
+                     if (newNode != null) {
+                         // Adopt new children

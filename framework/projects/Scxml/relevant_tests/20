@@ -1,0 +1,5 @@
+org.apache.commons.scxml.AllSCXMLTestSuite
+org.apache.commons.scxml.io.IOTestSuite
+org.apache.commons.scxml.io.SCXMLDigesterTest
+org.apache.commons.scxml.io.SCXMLParserTest
+org.apache.commons.scxml.io.SCXMLSerializerTest

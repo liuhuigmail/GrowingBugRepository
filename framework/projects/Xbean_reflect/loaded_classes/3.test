@@ -1,0 +1,3 @@
+org.apache.xbean.recipe.AbstractObjectGraphTest
+org.apache.xbean.recipe.ObjectGraphNestedTest
+org.apache.xbean.recipe.ObjectGraphReferenceTest

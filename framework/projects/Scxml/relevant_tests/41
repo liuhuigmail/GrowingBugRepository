@@ -1,0 +1,4 @@
+org.apache.commons.scxml2.env.javascript.JSBindingsTest
+org.apache.commons.scxml2.env.javascript.JSEvaluatorTest
+org.apache.commons.scxml2.env.javascript.JSExampleTest
+org.apache.commons.scxml2.env.javascript.JavaScriptEngineTest

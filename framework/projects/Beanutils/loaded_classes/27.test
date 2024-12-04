@@ -1,0 +1,3 @@
+org.apache.commons.beanutils.bugs.Jira465TestCase
+org.apache.commons.beanutils.IndexedPropertyTestCase
+org.apache.commons.beanutils.IndexedTestBean

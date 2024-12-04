@@ -1,0 +1,42 @@
+diff --git a/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSource.java b/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSource.java
+index acae0bf5..8ccd7559 100644
+--- a/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSource.java
++++ b/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSource.java
+@@ -242,20 +242,4 @@ public class TestManagedDataSource extends TestConnectionPool {
+         assertTrue(con2.innermostDelegateEquals(inner));
+         assertFalse(con.equals(con2));
+     }
+-    
+-    @Test
+-    public void testNestedConnections() throws Exception {
+-        transactionManager.begin();
+-        
+-        Connection c1 = null;
+-        Connection c2 = null;
+-        
+-        c1 = newConnection();
+-        c2 = newConnection();
+-        
+-        transactionManager.commit();
+-        
+-        c1.close();
+-        c2.close();
+-    }   
+ }
+diff --git a/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSourceInTx.java b/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSourceInTx.java
+index d6726014..d2d67b87 100644
+--- a/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSourceInTx.java
++++ b/src/test/java/org/apache/commons/dbcp2/managed/TestManagedDataSourceInTx.java
+@@ -70,12 +70,6 @@ public class TestManagedDataSourceInTx extends TestManagedDataSource {
+         // two connections to the same datasource are supposed to share
+         // a single connection
+     }
+-    
+-    @Override
+-    @Test
+-    public void testNestedConnections() {
+-        // Not supported
+-    }
+ 
+     @Override
+     @Test

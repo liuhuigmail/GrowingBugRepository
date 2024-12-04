@@ -1,0 +1,14 @@
+org.apache.commons.beanutils.BeanAccessLanguageException
+org.apache.commons.beanutils.BeanIntrospectionData
+org.apache.commons.beanutils.BeanIntrospector
+org.apache.commons.beanutils.DefaultBeanIntrospector
+org.apache.commons.beanutils.DefaultIntrospectionContext
+org.apache.commons.beanutils.expression.DefaultResolver
+org.apache.commons.beanutils.expression.Resolver
+org.apache.commons.beanutils.FluentPropertyBeanIntrospector
+org.apache.commons.beanutils.IntrospectionContext
+org.apache.commons.beanutils.MappedPropertyDescriptor
+org.apache.commons.beanutils.NestedNullException
+org.apache.commons.beanutils.PropertyUtils
+org.apache.commons.beanutils.PropertyUtilsBean
+org.apache.commons.beanutils.WeakFastHashMap

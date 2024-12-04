@@ -1,0 +1,11 @@
+org.apache.commons.dbcp2.managed.TestBasicManagedDataSource
+org.apache.commons.dbcp2.managed.TestDataSourceXAConnectionFactory
+org.apache.commons.dbcp2.StackMessageLog
+org.apache.commons.dbcp2.TestAbandonedBasicDataSource
+org.apache.commons.dbcp2.TestBasicDataSource
+org.apache.commons.dbcp2.TestConnectionPool
+org.apache.commons.dbcp2.TesterClassLoader
+org.apache.commons.dbcp2.TesterConnection
+org.apache.commons.dbcp2.TesterDatabaseMetaData
+org.apache.commons.dbcp2.TesterDriver
+org.apache.commons.dbcp2.TestPStmtPoolingBasicDataSource

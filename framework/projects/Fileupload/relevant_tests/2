@@ -1,0 +1,7 @@
+org.apache.commons.fileupload.DefaultFileItemTest
+org.apache.commons.fileupload.MultipartStreamTest
+org.apache.commons.fileupload.ProgressListenerTest
+org.apache.commons.fileupload.ServletFileUploadTest
+org.apache.commons.fileupload.SizesTest
+org.apache.commons.fileupload.StreamingTest
+org.apache.commons.fileupload.TestAll

@@ -1,0 +1,7 @@
+org.apache.commons.beanutils.BasicDynaBean
+org.apache.commons.beanutils.ConversionException
+org.apache.commons.beanutils.DynaBean
+org.apache.commons.beanutils.DynaClass
+org.apache.commons.beanutils.DynaProperty
+org.apache.commons.beanutils.JDBCDynaClass
+org.apache.commons.beanutils.RowSetDynaClass

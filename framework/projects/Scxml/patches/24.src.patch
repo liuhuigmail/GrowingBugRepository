@@ -1,0 +1,336 @@
+diff --git a/src/main/java/org/apache/commons/scxml/io/ModelUpdater.java b/src/main/java/org/apache/commons/scxml/io/ModelUpdater.java
+index 89a51f2f..da2c6a12 100644
+--- a/src/main/java/org/apache/commons/scxml/io/ModelUpdater.java
++++ b/src/main/java/org/apache/commons/scxml/io/ModelUpdater.java
+@@ -227,10 +227,6 @@ final class ModelUpdater {
+         while (i.hasNext()) {
+             updateState((State) i.next(), targets);
+         }
+-        Iterator j = p.getTransitionsList().iterator();
+-        while (j.hasNext()) {
+-            updateTransition((Transition) j.next(), targets);
+-        }
+     }
+ 
+     /**
+diff --git a/src/main/java/org/apache/commons/scxml/io/SCXMLDigester.java b/src/main/java/org/apache/commons/scxml/io/SCXMLDigester.java
+index c6428702..5dd0248b 100644
+--- a/src/main/java/org/apache/commons/scxml/io/SCXMLDigester.java
++++ b/src/main/java/org/apache/commons/scxml/io/SCXMLDigester.java
+@@ -251,7 +251,6 @@ public final class SCXMLDigester {
+         if (scxml != null) {
+             ModelUpdater.updateSCXML(scxml);
+         }
+-        scxml.setLegacy(true);
+ 
+         return scxml;
+ 
+diff --git a/src/main/java/org/apache/commons/scxml/io/SCXMLParser.java b/src/main/java/org/apache/commons/scxml/io/SCXMLParser.java
+index a743cc1a..6629c894 100644
+--- a/src/main/java/org/apache/commons/scxml/io/SCXMLParser.java
++++ b/src/main/java/org/apache/commons/scxml/io/SCXMLParser.java
+@@ -814,8 +814,6 @@ public final class SCXMLParser {
+         addSimpleRulesTuple(xp, scxmlRules, Parallel.class, null, null,
+                 "addChild");
+         addDatamodelRules(xp + XPF_DM, scxmlRules, scxml, pr);
+-        addTransitionRules(xp + XPF_TR, scxmlRules, "addTransition",
+-            pr, customActions);
+         addHandlerRules(xp, scxmlRules, pr, customActions);
+         scxmlRules.add(xp, new UpdateModelRule(scxml));
+     }
+diff --git a/src/main/java/org/apache/commons/scxml/model/Path.java b/src/main/java/org/apache/commons/scxml/model/Path.java
+index 484c87c6..0e031a87 100644
+--- a/src/main/java/org/apache/commons/scxml/model/Path.java
++++ b/src/main/java/org/apache/commons/scxml/model/Path.java
+@@ -55,7 +55,7 @@ public class Path implements Serializable {
+      * &quot;Lowest&quot; transition target which is not being exited nor
+      * entered by the transition.
+      */
+-    private TransitionTarget scope = null;
++    private State scope = null;
+ 
+     /**
+      * Whether the path crosses region border(s).
+@@ -71,14 +71,18 @@ public class Path implements Serializable {
+     Path(final TransitionTarget source, final TransitionTarget target) {
+         if (target == null) {
+             //a local "stay" transition
+-            scope = source;
++            scope = (State) source;
+             //all segments remain empty
+         } else {
+             TransitionTarget tt = SCXMLHelper.getLCA(source, target);
+             if (tt != null) {
+-                scope = tt;
++                if (tt instanceof State) {
++                    scope = (State) tt;
++                } else {
++                    scope = tt.getParentState();
++                }
+                 if (scope == source || scope == target) {
+-                    scope = scope.getParent();
++                    scope = scope.getParentState();
+                 }
+             }
+             tt = source;
+@@ -169,10 +173,7 @@ public class Path implements Serializable {
+      * @deprecated Use {@link #getPathScope()} instead.
+      */
+     public final State getScope() {
+-        if (scope instanceof State) {
+-            return (State) scope;
+-        }
+-        return null;
++        return scope;
+     }
+ 
+     /**
+diff --git a/src/main/java/org/apache/commons/scxml/model/State.java b/src/main/java/org/apache/commons/scxml/model/State.java
+index 06f25dc8..2b217693 100644
+--- a/src/main/java/org/apache/commons/scxml/model/State.java
++++ b/src/main/java/org/apache/commons/scxml/model/State.java
+@@ -16,7 +16,10 @@
+  */
+ package org.apache.commons.scxml.model;
+ 
++import java.util.ArrayList;
++import java.util.HashMap;
+ import java.util.LinkedHashMap;
++import java.util.List;
+ import java.util.Map;
+ 
+ /**
+@@ -66,6 +69,11 @@ public class State extends TransitionTarget {
+      */
+     private Initial initial;
+ 
++    /**
++     * A list of outgoing Transitions from this state, by document order.
++     */
++    private List transitions;
++
+     /**
+      * Applies to composite states only. If one of its final children is
+      * active, its parent is marked done. This property is reset upon
+@@ -80,6 +88,7 @@ public class State extends TransitionTarget {
+      */
+     public State() {
+         this.children = new LinkedHashMap();
++        this.transitions = new ArrayList();
+     }
+ 
+     /**
+@@ -190,6 +199,62 @@ public class State extends TransitionTarget {
+         target.setParent(this);
+     }
+ 
++    /**
++     * Get the map of all outgoing transitions from this state.
++     *
++     * @return Map Returns the transitions Map.
++     * @deprecated Use {@link #getTransitionsList()} instead
++     */
++    public final Map getTransitions() {
++        Map transitionsMap = new HashMap();
++        for (int i = 0; i < transitions.size(); i++) {
++            Transition transition = (Transition) transitions.get(i);
++            String event = transition.getEvent();
++            if (!transitionsMap.containsKey(event)) {
++                List eventTransitions = new ArrayList();
++                eventTransitions.add(transition);
++                transitionsMap.put(event, eventTransitions);
++            } else {
++                ((List) transitionsMap.get(event)).add(transition);
++            }
++        }
++        return transitionsMap;
++    }
++
++    /**
++     * Get the list of all outgoing transitions from this state, that
++     * will be candidates for being fired on the given event.
++     *
++     * @param event The event
++     * @return List Returns the candidate transitions for given event
++     */
++    public final List getTransitionsList(final String event) {
++        List matchingTransitions = null; // since we returned null upto v0.6
++        for (int i = 0; i < transitions.size(); i++) {
++            Transition t = (Transition) transitions.get(i);
++            if ((event == null && t.getEvent() == null)
++                    || (event != null && event.equals(t.getEvent()))) {
++                if (matchingTransitions == null) {
++                    matchingTransitions = new ArrayList();
++                }
++                matchingTransitions.add(t);
++            }
++        }
++        return matchingTransitions;
++    }
++
++    /**
++     * Add a transition to the map of all outgoing transitions for
++     * this state.
++     *
++     * @param transition
++     *            The transitions to set.
++     */
++    public final void addTransition(final Transition transition) {
++        transitions.add(transition);
++        transition.setParent(this);
++    }
++
+     /**
+      * Get the map of child states (may be empty).
+      *
+@@ -225,6 +290,15 @@ public class State extends TransitionTarget {
+         tt.setParent(this);
+     }
+ 
++    /**
++     * Get the outgoing transitions for this state as a java.util.List.
++     *
++     * @return List Returns the transitions list.
++     */
++    public final List getTransitionsList() {
++        return transitions;
++    }
++
+     /**
+      * Check whether this is a simple (leaf) state (UML terminology).
+      *
+diff --git a/src/main/java/org/apache/commons/scxml/model/TransitionTarget.java b/src/main/java/org/apache/commons/scxml/model/TransitionTarget.java
+index 8d088f30..aa06b474 100644
+--- a/src/main/java/org/apache/commons/scxml/model/TransitionTarget.java
++++ b/src/main/java/org/apache/commons/scxml/model/TransitionTarget.java
+@@ -58,11 +58,6 @@ public abstract class TransitionTarget implements Serializable {
+      */
+     private TransitionTarget parent;
+ 
+-    /**
+-     * A list of outgoing Transitions from this target, by document order.
+-     */
+-    private List transitions;
+-
+     /**
+      * List of history states owned by a given state (applies to non-leaf
+      * states).
+@@ -79,7 +74,6 @@ public abstract class TransitionTarget implements Serializable {
+         onExit = new OnExit();   //empty defaults
+         onExit.setParent(this);
+         parent = null;
+-        transitions = new ArrayList();
+         history = new ArrayList();
+     }
+ 
+@@ -195,71 +189,6 @@ public abstract class TransitionTarget implements Serializable {
+         }
+     }
+ 
+-    /**
+-     * Get the map of all outgoing transitions from this state.
+-     *
+-     * @return Map Returns the transitions Map.
+-     * @deprecated Use {@link #getTransitionsList()} instead
+-     */
+-    public final Map getTransitions() {
+-        Map transitionsMap = new HashMap();
+-        for (int i = 0; i < transitions.size(); i++) {
+-            Transition transition = (Transition) transitions.get(i);
+-            String event = transition.getEvent();
+-            if (!transitionsMap.containsKey(event)) {
+-                List eventTransitions = new ArrayList();
+-                eventTransitions.add(transition);
+-                transitionsMap.put(event, eventTransitions);
+-            } else {
+-                ((List) transitionsMap.get(event)).add(transition);
+-            }
+-        }
+-        return transitionsMap;
+-    }
+-
+-    /**
+-     * Get the list of all outgoing transitions from this target, that
+-     * will be candidates for being fired on the given event.
+-     *
+-     * @param event The event
+-     * @return List Returns the candidate transitions for given event
+-     */
+-    public final List getTransitionsList(final String event) {
+-        List matchingTransitions = null; // TODO v1.0 we returned null <= v0.6
+-        for (int i = 0; i < transitions.size(); i++) {
+-            Transition t = (Transition) transitions.get(i);
+-            if ((event == null && t.getEvent() == null)
+-                    || (event != null && event.equals(t.getEvent()))) {
+-                if (matchingTransitions == null) {
+-                    matchingTransitions = new ArrayList();
+-                }
+-                matchingTransitions.add(t);
+-            }
+-        }
+-        return matchingTransitions;
+-    }
+-
+-    /**
+-     * Add a transition to the map of all outgoing transitions for
+-     * this transition target.
+-     *
+-     * @param transition
+-     *            The transitions to set.
+-     */
+-    public final void addTransition(final Transition transition) {
+-        transitions.add(transition);
+-        transition.setParent(this);
+-    }
+-
+-    /**
+-     * Get the outgoing transitions for this target as a java.util.List.
+-     *
+-     * @return List Returns the transitions list.
+-     */
+-    public final List getTransitionsList() {
+-        return transitions;
+-    }
+-
+     /**
+      * This method is used by XML digester.
+      *
+diff --git a/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java b/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
+index 309a112b..5ce748bf 100644
+--- a/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
++++ b/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
+@@ -279,14 +279,11 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+                             te = new TriggerEvent(p.getId() + ".done",
+                                         TriggerEvent.CHANGE_EVENT);
+                             internalEvents.add(te);
+-                            scInstance.setDone(p, true);
+-                            if (stateMachine.isLegacy()) {
+                                 te = new TriggerEvent(p.getParent().getId()
+                                     + ".done", TriggerEvent.CHANGE_EVENT);
+                                 internalEvents.add(te);
+                                 //this is not in the specs, but is makes sense
+                                 scInstance.setDone(p.getParentState(), true);
+-                            }
+                         }
+                     }
+                 }
+@@ -312,8 +309,8 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+         // breath-first search to-do list
+         LinkedList todoList = new LinkedList(stateSet);
+         while (!todoList.isEmpty()) {
+-            TransitionTarget tt = (TransitionTarget) todoList.removeFirst();
+-            for (Iterator i = tt.getTransitionsList().iterator();
++            State st = (State) todoList.removeFirst();
++            for (Iterator i = st.getTransitionsList().iterator();
+                     i.hasNext();) {
+                 Transition t = (Transition) i.next();
+                 if (!transSet.contains(t)) {
+@@ -321,7 +318,7 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+                     step.getTransitList().add(t);
+                 }
+             }
+-            TransitionTarget parent = tt.getParent();
++            State parent = st.getParentState();
+             if (parent != null && !stateSet.contains(parent)) {
+                 stateSet.add(parent);
+                 todoList.addLast(parent);

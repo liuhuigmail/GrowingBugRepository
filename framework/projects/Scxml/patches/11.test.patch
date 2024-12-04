@@ -1,0 +1,151 @@
+diff --git a/src/test/java/org/apache/commons/scxml/SCXMLExecutorTest.java b/src/test/java/org/apache/commons/scxml/SCXMLExecutorTest.java
+index e9fc78a0..6d689cfa 100644
+--- a/src/test/java/org/apache/commons/scxml/SCXMLExecutorTest.java
++++ b/src/test/java/org/apache/commons/scxml/SCXMLExecutorTest.java
+@@ -50,7 +50,7 @@ public class SCXMLExecutorTest extends TestCase {
+ 
+     // Test data
+     private URL microwave01jsp, microwave02jsp, microwave01jexl,
+-        microwave02jexl, microwave03jexl, microwave04jexl, microwave05jexl, transitions01,
++        microwave02jexl, microwave03jexl, microwave04jexl, transitions01,
+         transitions02, transitions03, transitions04, prefix01, send01, send02;
+     private SCXMLExecutor exec;
+ 
+@@ -70,8 +70,6 @@ public class SCXMLExecutorTest extends TestCase {
+             getResource("org/apache/commons/scxml/env/jexl/microwave-03.xml");
+         microwave04jexl = this.getClass().getClassLoader().
+             getResource("org/apache/commons/scxml/env/jexl/microwave-04.xml");
+-        microwave05jexl = this.getClass().getClassLoader().
+-            getResource("org/apache/commons/scxml/env/jexl/microwave-05.xml");
+         transitions01 = this.getClass().getClassLoader().
+             getResource("org/apache/commons/scxml/transitions-01.xml");
+         transitions02 = this.getClass().getClassLoader().
+@@ -93,7 +91,7 @@ public class SCXMLExecutorTest extends TestCase {
+      */
+     public void tearDown() {
+         microwave01jsp = microwave02jsp = microwave01jexl = microwave02jexl =
+-            microwave04jexl = microwave05jexl = transitions01 = transitions02 = transitions03 =
++            microwave04jexl = transitions01 = transitions02 = transitions03 =
+             transitions04 = prefix01 = send01 = send02 = null;
+     }
+ 
+@@ -144,15 +142,6 @@ public class SCXMLExecutorTest extends TestCase {
+         checkMicrowave02Sample();
+     }
+ 
+-    // Uses SCXMLParser (latest WD)
+-    public void testSCXMLExecutorMicrowave05JexlSample() {
+-        SCXML scxml = SCXMLTestHelper.parse(microwave05jexl);
+-        assertNotNull(scxml);
+-        exec = SCXMLTestHelper.getExecutor(scxml);
+-        assertNotNull(exec);
+-        checkMicrowave02Sample();
+-    }
+-
+     public void testSCXMLExecutorPrefix01Sample() {
+         exec = SCXMLTestHelper.getExecutor(prefix01);
+         assertNotNull(exec);
+diff --git a/src/test/java/org/apache/commons/scxml/env/jexl/microwave-05.xml b/src/test/java/org/apache/commons/scxml/env/jexl/microwave-05.xml
+deleted file mode 100644
+index 06b9fc9a..00000000
+--- a/src/test/java/org/apache/commons/scxml/env/jexl/microwave-05.xml
++++ /dev/null
+@@ -1,98 +0,0 @@
+-<?xml version="1.0"?>
+-<!--
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+--->
+-<!--
+-   This document uses Commons JEXL as the expressions language.
+-   Needs SCXMLParser.
+--->
+-<scxml xmlns="http://www.w3.org/2005/07/scxml"
+-       xmlns:cs="http://commons.apache.org/scxml"
+-       version="1.0"
+-       initialstate="microwave">
+-
+-  <!--  trivial microwave oven example -->
+-  <!-- using parallel (part of composite state) and In() predicate -->
+-
+-  <state id="microwave">
+-
+-    <initial>
+-      <transition target="parts"/>
+-    </initial>
+-
+-    <parallel id="parts">
+-
+-      <state id="oven">
+-        <initial>
+-          <transition target="off"/>
+-        </initial>
+-
+-        <state id="off">
+-          <!-- off state -->
+-          <transition event="turn_on" target="on"/>
+-        </state>
+-        
+-        <state id="on">
+-          <initial>
+-            <transition target="idle"/>
+-          </initial>
+-
+-          <!-- on/pause state -->
+-          <onentry>
+-            <!-- we assume the cook_time is passed in as a context parameter -->
+-            <if cond="empty(cook_time)">
+-              <!-- default setting, note namespace of this custom action -->
+-              <cs:var name="cook_time" expr="5"/>
+-            </if>
+-            <!-- timer variable -->
+-            <cs:var name="timer" expr="0"/>
+-          </onentry>
+-          
+-          <transition event="turn_off" target="off"/>
+-
+-          <transition cond="timer ge cook_time" target="off"/>
+-          
+-          <state id="idle">
+-            <transition cond="In('closed')" target="cooking"/>
+-          </state>
+-          
+-          <state id="cooking">
+-            <transition cond="not In('closed')" target="idle"/>
+-
+-            <transition event="time" target="cooking">
+-              <assign name="timer" expr="timer + 1"/>
+-            </transition>
+-          </state>
+-        </state>
+-      </state>
+-
+-      <state id="door">
+-        <initial>
+-          <transition target="closed"/>
+-        </initial>
+-        <state id="closed">
+-          <transition event="door_open" target="open"/>
+-        </state>
+-        <state id="open">
+-          <transition event="door_close" target="closed"/>
+-        </state>
+-      </state>
+-
+-    </parallel>
+-
+-  </state>
+-
+-</scxml>

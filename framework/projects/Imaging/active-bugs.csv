@@ -9,3 +9,11 @@ bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
 10,120ef1c107e8641a4277b46997dd144bb851df5d,305e78a0aef8dc0cd267581ebc7a4a5f8316ee18,IMAGING-199,https://issues.apache.org/jira/browse/IMAGING-199
 11,55f7368822b9781d186024524c7cd08adb3a2f59,f55035ac7fb451e85e3139c959a25f47f4ffd04a,IMAGING-211,https://issues.apache.org/jira/browse/IMAGING-211
 14,0c773d2a83c81eb470ab491f9bb4eb0031c3f9f1,02bd6c4fb271cbf69fe11554b3dbb69279428c6f,IMAGING-210,https://issues.apache.org/jira/browse/IMAGING-210
+15,5d27ef56cf0ab6f912c91a709b06692bbb0391a8,1244076bf7ee61ceab784a8f4071d8c92085d293,unknown,unknown
+16,5e5483f11582c0774fc9b255c6e39cf3f1869853,90efae3789aed0eb138355ba6f44aacf489818ca,IMAGING-136,https://issues.apache.org/jira/browse/IMAGING-136
+17,0c773d2a83c81eb470ab491f9bb4eb0031c3f9f1,8ee267db7a05d26f66e5f0b0ec7af6b813f99345,IMAGING-210,https://issues.apache.org/jira/browse/IMAGING-210
+18,06dd48ee5f3a6bf1bc020891f96bbc2ab154fd26,f8d7d2eb84518aa6c9f89e84702a54442da245ec,IMAGING-130,https://issues.apache.org/jira/browse/IMAGING-130
+19,06dd48ee5f3a6bf1bc020891f96bbc2ab154fd26,d328b7f1c3c7e597f4d0c5fa9adb01f8a5a1193a,IMAGING-130,https://issues.apache.org/jira/browse/IMAGING-130
+20,55f7368822b9781d186024524c7cd08adb3a2f59,c4eeebee7855ba9cdcb3734bcbadf8f37ffa66b6,IMAGING-211,https://issues.apache.org/jira/browse/IMAGING-211
+21,eb98398bd111cdc35b2c9a5fc8022a28d7c99035,9519e44ebf045fdc84262327e076556806aec932,IMAGING-219,https://issues.apache.org/jira/browse/IMAGING-219
+22,fcf027c38ac94ded8cdb248ec41e9d37b32e8b14,837cc0b926b2989fbe7ed484ef3460b041e81e27,IMAGING-90,https://issues.apache.org/jira/browse/IMAGING-90

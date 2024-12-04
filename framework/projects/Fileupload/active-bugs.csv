@@ -1,0 +1,4 @@
+bug.id,revision.id.buggy,revision.id.fixed,report.id,report.url
+1,684984971e95ac0dff142934323d02df77168126,854c658ecfb665c8483abc5da4b2c86af9209c8a,FILEUPLOAD-111,https://issues.apache.org/jira/browse/FILEUPLOAD-111
+2,42c3044102508340b0b11f656f785b5f46cd0635,488b8af3dbb15f0a9f5d247bf800399d598d8931,FILEUPLOAD-135,https://issues.apache.org/jira/browse/FILEUPLOAD-135
+3,97f0092b16e8a17bc016f21a8aafab74de9a89bb,5c2302bbf3859aabf3a719285237f6d0773612b2,FILEUPLOAD-293,https://issues.apache.org/jira/browse/FILEUPLOAD-293

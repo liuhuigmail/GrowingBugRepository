@@ -1,0 +1,9 @@
+org.apache.commons.imaging.formats.tiff.TiffLzwTest
+org.apache.commons.imaging.formats.tiff.TiffReadTest
+org.apache.commons.imaging.formats.tiff.TiffRoundtripTest
+org.apache.commons.imaging.formats.tiff.TiffSubImageTest
+org.apache.commons.imaging.formats.xmp.XmpUpdateTest
+org.apache.commons.imaging.roundtrip.BitmapRoundtripTest
+org.apache.commons.imaging.roundtrip.GrayscaleRountripTest
+org.apache.commons.imaging.roundtrip.LimitedColorRoundtripTest
+org.apache.commons.imaging.roundtrip.NullParametersRoundtripTest

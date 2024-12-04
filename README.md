@@ -26,13 +26,13 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
-| 1     | AaltoXml            | aalto-xml      |             |        8       | 1-5,7-9               |
+| 1     | AaltoXml            | aalto-xml      |             |        10       | 1-5,7-11               |
 | 2     | Bcel            | commons-bcel |        |       6     | 1-6              |
 | 3     | Ber_tlv         | ber-tlv            |                  |      4       | 1-4                  |                 |
 | 4     | Burst         | burst           |       burst           |      3       | 1-3                  |
 | 5     | Canvas_api            | canvas-api               |                 |      4       | 1-4               |
 | 6     | Chart           | jfreechart                 |                           |       26       | 1-26                |
-| 7     | Cli             | commons-cli                |                           |       41       | 1-5,7-42            |
+| 7     | Cli             | commons-cli                |                           |       43       | 1-5,7-42,50-51            |
 | 8     | Closure         | closure-compiler           |                           |      174       | 1-62,64-92,94-176   |
 | 9     | Codec           | commons-codec              |                           |       19       | 1-19                |
 | 10     | Collections     | commons-collections        |                           |        8       | 25-31,35               |
@@ -50,11 +50,11 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 22     | Geo         | geo           |       geo        |      3       | 1-3                  |                 |
 | 23     | Geometry_core   | geometry-core           |    commons-geometry-core |        2       | 1,3               |
 | 24     | Github_release<br/>_plugin         | github-release-plugin           |                  |      2       | 1-2                  |
-| 25     | Graph           | commons-graph              |                          |        5       | 1-5                 |
+| 25     | Graph           | commons-graph              |                          |        6       | 1-6                 |
 | 26     | Gson            | gson                       |         gson              |       25       | 1-25                |
 | 27     | Hivemall_core            | core |  core   |       3     | 1-3              |
 | 28     | IO              | commons-io                 |                          |        22       | 1-3,5-6,8-18,</br>22,25,27,29-31                |
-| 29     | Imaging         | commons-imaging            |                          |        10      | 1,3-8,10-11,14  |
+| 29     | Imaging         | commons-imaging            |                          |        10      | 1,3-8,10-11,14,16  |
 | 30     | Jackrabbit_<br/>filevault<br/>_vault_core            | jackrabbit-filevault-vault-core |      vault-core   |       1     | 1              |
 | 31     | Jackrabbit_<br/>filevault_vault<br/>_validation        | jackrabbit-filevault-vault-validation          |       vault-validation           |      4       | 1-4                  |
 | 32     | JacksonCore     | jackson-core               |                           |       30       | 1-26,28-31                |
@@ -91,7 +91,7 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 63     | MShade          | maven-shade-plugin         |                          |        6       | 1-4,6-7                 |
 | 64     | Tika            | tika                       |                          |        5       | 1-2,5-7               |
 | 65     | Validator       | commons-validator          |                          |        21      | 1-2,4,6-9,11,</br>13-25 |
-| 66     | Pool            | commons-pool               |                          |        17      | 1,5-7,10-14,</br>16,20-21,24,</br>26-27,29-30|
+| 66     | Pool            | commons-pool               |                          |        22      | 1,5-7,10-14,</br>16,20-21,24,</br>26-27,29-35|
 | 67     | Net             | commons-net                |                          |        14      | 9,10,12,</br>14-18,20-21,</br>23-26             |
 | 68     | Numbers_angle   | commons-numbers-angle            |  commons-numbers<br/>-angle         |        2       | 1-2               |
 | 69     | MGpg            | maven-gpg-plugin           ||        1       | 1               |
@@ -190,8 +190,8 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 162     | Wicket_core            | wicket-core               |     wicket-core                     |      18       | 1-18               |
 | 163     | Mshared_archiver            | maven-archiver               |     maven-archiver                     |      1       | 1               |
 | 164     | Shindig_common            | shindig-common               |     java/common                     |      1       | 1               |
-| 165     | Xbean_reflect            | xbean-reflect               |     xbean-reflect                     |      1       | 1               |
-| 166     | Mrunit            | mrunit               |                          |      2       | 1-2               |
+| 165     | Xbean_reflect            | xbean-reflect               |     xbean-reflect                     |      2       | 1-2               |
+| 166     | Mrunit            | mrunit               |                          |      6       | 1-6               |
 | 167     | Rave_core            | rave-core               |          rave-components<br/>/rave-core         |      2       | 1-2               |
 | 168     | Rave_commons            | rave-commons               |          rave-components<br/>/rave-commons         |      1       | 1               |
 | 169     | Rave_web            | rave-web               |          rave-components/rave-web         |      1       | 1               |
@@ -276,7 +276,13 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 248     | Jackson_datatype<br/>_hibernate4         | jackson-datatype<br/>-hibernate4           |   hibernate4   |      1       | 1                  |
 | 249     | Rtree2         | rtree2           |         |      6       | 1-6                |              
 | 250     | Subethasmtp         | subethasmtp           |         |      1       | 1                |
-
+| 251	  | Fileupload		| commons-fileupload	|		|	2	| 1-2	|
+| 252	  | Beanutils		| commons-beanutils	|		|	27	| 1-18,20-21,23-29	|
+| 253	  | Hugegraph_common	| hugegraph-common	|	hugegraph-common	| 5 	| 1-5	|
+| 254	  | Dbcp		| commons-dbcp		|		|	18	| 1-7,9-19 |
+| 255	  | Rng_sampling	| rng-sampling		|		|	2	| 1-2	|
+| 256	  | Scxml		| scxml			|		|	30	| 1-12,14,16,18,20,22,25,27,31,33-42 |
+| 257	  | Mrunit		| commons-mrunit	|		|	4	| 1-4 |
 # Setting up GrowingBugs
 
 ## Requirements

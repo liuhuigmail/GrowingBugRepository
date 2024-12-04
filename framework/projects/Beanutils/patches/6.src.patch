@@ -1,0 +1,19 @@
+diff --git a/src/java/org/apache/commons/beanutils/converters/ArrayConverter.java b/src/java/org/apache/commons/beanutils/converters/ArrayConverter.java
+index da19ca23..f9a00cbf 100644
+--- a/src/java/org/apache/commons/beanutils/converters/ArrayConverter.java
++++ b/src/java/org/apache/commons/beanutils/converters/ArrayConverter.java
+@@ -434,12 +434,10 @@ public class ArrayConverter extends AbstractConverter {
+             while (true) {
+                 int ttype = st.nextToken();
+                 if ((ttype == StreamTokenizer.TT_WORD) || (ttype > 0)) {
+-                    if (st.sval != null) {
+-                        if (list == null) {
++                    if (list == null) {
+                             list = new ArrayList();
+-                        }
+-                        list.add(st.sval);
+                     }
++                    list.add(st.sval.trim());
+                 } else if (ttype == StreamTokenizer.TT_EOF) {
+                     break;
+                 } else {

@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java b/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
+index f3cb48c3..26163766 100644
+--- a/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
++++ b/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
+@@ -796,34 +796,21 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+                     Param p = (Param) pIter.next();
+                     String argExpr = p.getExpr();
+                     Object argValue = null;
+-                    ctx.setLocal(NAMESPACES_KEY, p.getNamespaces());
+                     // Do we have an "expr" attribute?
+                     if (argExpr != null && argExpr.trim().length() > 0) {
+                         // Yes, evaluate and store as parameter value
+                         try {
++                            ctx.setLocal(NAMESPACES_KEY, p.getNamespaces());
+                             argValue = eval.eval(ctx, argExpr);
+-                        } catch (SCXMLExpressionException see) {
+-                            errRep.onError(ErrorConstants.EXPRESSION_ERROR,
+-                                see.getMessage(), i);
+-                        }
+-                    } else {
++                            ctx.setLocal(NAMESPACES_KEY, null);
+                         // No. Does value of "name" attribute refer to a valid
+                         // location in the data model?
+-                        try {
+-                            argValue = eval.evalLocation(ctx, p.getName());
+-                            if (argValue == null) {
+                                 // Generate error, 4.3.1 in WD-scxml-20080516
+-                                TriggerEvent te = new TriggerEvent(s.getId()
+-                                    + ERR_ILLEGAL_ALLOC,
+-                                    TriggerEvent.ERROR_EVENT);
+-                                internalEvents.add(te);
+-                            }
+                         } catch (SCXMLExpressionException see) {
+                             errRep.onError(ErrorConstants.EXPRESSION_ERROR,
+                                 see.getMessage(), i);
+                         }
+                     }
+-                    ctx.setLocal(NAMESPACES_KEY, null);
+                     args.put(p.getName(), argValue);
+                 }
+                 try {

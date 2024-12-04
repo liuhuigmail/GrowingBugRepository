@@ -1,0 +1,42 @@
+diff --git a/xbean-reflect/src/test/java/org/apache/xbean/recipe/AbstractObjectGraphTest.java b/xbean-reflect/src/test/java/org/apache/xbean/recipe/AbstractObjectGraphTest.java
+index a15178cc..50b32a10 100644
+--- a/xbean-reflect/src/test/java/org/apache/xbean/recipe/AbstractObjectGraphTest.java
++++ b/xbean-reflect/src/test/java/org/apache/xbean/recipe/AbstractObjectGraphTest.java
+@@ -108,13 +108,13 @@ public abstract class AbstractObjectGraphTest extends TestCase {
+ 
+         graph = new ObjectGraph(createNewRepository());
+         created = graph.createAll("Bends");
+-        assertEquals(Arrays.asList("Radiohead", "Bends", "High and Dry", "Fake Plastic Trees"), new ArrayList<String>(created.keySet()));
++        assertEquals(Arrays.asList("Radiohead", "High and Dry", "Fake Plastic Trees", "Bends"), new ArrayList<String>(created.keySet()));
+ 
+         graph = new ObjectGraph(createNewRepository());
+         created = graph.createAll("Radiohead");
+         assertEquals(Arrays.asList("Radiohead"), new ArrayList<String>(created.keySet()));
+         created = graph.createAll("Bends");
+-        assertEquals(Arrays.asList("Bends", "High and Dry", "Fake Plastic Trees"), new ArrayList<String>(created.keySet()));
++        assertEquals(Arrays.asList("High and Dry", "Fake Plastic Trees", "Bends"), new ArrayList<String>(created.keySet()));
+     }
+ 
+     public void testCreateUnknown() {
+@@ -149,6 +149,7 @@ public abstract class AbstractObjectGraphTest extends TestCase {
+     }
+ 
+     public void testCircularDependency() {
++        // Add a constructor dependency
+         Repository repository = createNewRepository();
+         ObjectRecipe recipe = (ObjectRecipe) repository.get("Radiohead");
+         recipe.setConstructorArgNames(new String[] {"name", "albums"});
+@@ -163,10 +164,11 @@ public abstract class AbstractObjectGraphTest extends TestCase {
+                     expected.getCircularDependency());
+         }
+ 
+-
++        // Add a non constructor dependency
++        // This will fail too, unless Option.LAZY_ASSIGNMENT is set
+         repository = createNewRepository();
+         recipe = (ObjectRecipe) repository.get("Radiohead");
+-        recipe.setConstructorArgNames(new String[] {"name", "albums"});
++        recipe.setConstructorArgNames(new String[] {"name"});
+         recipe.setProperty("albums", new CollectionRecipe(Arrays.asList(repository.get("Bends"))));
+ 
+         graph = new ObjectGraph(repository);

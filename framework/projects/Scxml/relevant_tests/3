@@ -1,0 +1,4 @@
+org.apache.commons.scxml.AllSCXMLTestSuite
+org.apache.commons.scxml.env.AbstractStateMachineTest
+org.apache.commons.scxml.env.EnvTestSuite
+org.apache.commons.scxml.env.StopWatchTest

@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/beanutils/BeanUtilsBean.java b/src/main/java/org/apache/commons/beanutils/BeanUtilsBean.java
+index 0fc46514..c5836de2 100644
+--- a/src/main/java/org/apache/commons/beanutils/BeanUtilsBean.java
++++ b/src/main/java/org/apache/commons/beanutils/BeanUtilsBean.java
+@@ -410,7 +410,7 @@ public class BeanUtilsBean {
+ 
+         // Convert the specified value to the required type and store it
+         if (index >= 0) {                    // Destination must be indexed
+-            value = convertForCopy(value, type.getComponentType());
++            value = convert(value, type.getComponentType());
+             try {
+                 getPropertyUtils().setIndexedProperty(target, propName,
+                                                  index, value);
+@@ -430,7 +430,7 @@ public class BeanUtilsBean {
+                     (e, "Cannot set " + propName);
+             }
+         } else {                             // Destination must be simple
+-            value = convertForCopy(value, type);
++            value = convert(value, type);
+             try {
+                 getPropertyUtils().setSimpleProperty(target, propName, value);
+             } catch (NoSuchMethodException e) {
+@@ -1084,9 +1084,6 @@ public class BeanUtilsBean {
+      * @param type the target type of the conversion
+      * @return the converted value
+      */
+-    private Object convertForCopy(Object value, Class<?> type) {
+-        return (value != null) ? convert(value, type) : value;
+-    }
+ 
+     /**
+      * Returns a <code>Method<code> allowing access to

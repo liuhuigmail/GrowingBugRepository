@@ -1,0 +1,93 @@
+diff --git a/src/test/java/org/apache/commons/scxml/SCXMLExecutorTest.java b/src/test/java/org/apache/commons/scxml/SCXMLExecutorTest.java
+index 89cac8b2..4e4e2bf7 100644
+--- a/src/test/java/org/apache/commons/scxml/SCXMLExecutorTest.java
++++ b/src/test/java/org/apache/commons/scxml/SCXMLExecutorTest.java
+@@ -41,7 +41,7 @@ public class SCXMLExecutorTest extends TestCase {
+     // Test data
+     private URL microwave01jsp, microwave02jsp, microwave01jexl,
+         microwave02jexl, microwave03jexl, microwave04jexl, microwave05jexl, transitions01,
+-        transitions02, transitions03, transitions04, transitions05, transitions06, prefix01, send01, send02;
++        transitions02, transitions03, transitions04, transitions05, prefix01, send01, send02;
+     private SCXMLExecutor exec;
+ 
+     /**
+@@ -73,8 +73,6 @@ public class SCXMLExecutorTest extends TestCase {
+             getResource("org/apache/commons/scxml/transitions-04.xml");
+         transitions05 = this.getClass().getClassLoader().
+             getResource("org/apache/commons/scxml/transitions-05.xml");
+-        transitions06 = this.getClass().getClassLoader().
+-            getResource("org/apache/commons/scxml/transitions-06.xml");
+         prefix01 = this.getClass().getClassLoader().
+             getResource("org/apache/commons/scxml/prefix-01.xml");
+         send01 = this.getClass().getClassLoader().
+@@ -90,7 +88,7 @@ public class SCXMLExecutorTest extends TestCase {
+     public void tearDown() {
+         microwave01jsp = microwave02jsp = microwave01jexl = microwave02jexl =
+             microwave04jexl = microwave05jexl = transitions01 = transitions02 = transitions03 =
+-            transitions04 = transitions05 = transitions06 = prefix01 = send01 = send02 = null;
++            transitions04 = transitions05 = prefix01 = send01 = send02 = null;
+     }
+ 
+     /**
+@@ -237,17 +235,6 @@ public class SCXMLExecutorTest extends TestCase {
+         SCXMLTestHelper.assertPostTriggerState(exec, "foo", "end");
+     }
+ 
+-    public void testSCXMLExecutorTransitions06Sample() throws Exception {
+-        SCXML scxml = SCXMLTestHelper.parse(transitions06);
+-        assertNotNull(scxml);
+-        exec = SCXMLTestHelper.getExecutor(scxml);
+-        assertNotNull(exec);
+-        SCXMLTestHelper.assertPostTriggerStates(exec, "start", new String[]{"one", "two"});
+-        SCXMLTestHelper.assertPostTriggerState(exec, "onetwo_three", "three");
+-        SCXMLTestHelper.assertPostTriggerStates(exec, "three_one", new String[]{"one", "two"});
+-        SCXMLTestHelper.assertPostTriggerState(exec, "two_four", "four");
+-    }
+-
+     public void testSend01Sample() throws Exception {
+         exec = SCXMLTestHelper.getExecutor(send01);
+         assertNotNull(exec);
+diff --git a/src/test/java/org/apache/commons/scxml/transitions-06.xml b/src/test/java/org/apache/commons/scxml/transitions-06.xml
+deleted file mode 100644
+index 7400359d..00000000
+--- a/src/test/java/org/apache/commons/scxml/transitions-06.xml
++++ /dev/null
+@@ -1,38 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!--
+- * Licensed to the Apache Software Foundation (ASF) under one or more
+- * contributor license agreements.  See the NOTICE file distributed with
+- * this work for additional information regarding copyright ownership.
+- * The ASF licenses this file to You under the Apache License, Version 2.0
+- * (the "License"); you may not use this file except in compliance with
+- * the License.  You may obtain a copy of the License at
+- *
+- *     http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+--->
+-<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" initial="init">
+-       <state id="init">
+-               <transition event="start" target="onetwo" />
+-       </state>
+-       <parallel id="onetwo">
+-               <transition event="onetwo_three" target="three" />
+-               <state id="one">
+-               </state>
+-               <state id="two">
+-                       <transition event="two_four" target="four" />
+-               </state>
+-       </parallel>
+-       <state id="three">
+-               <transition event="three_one" target="one" />
+-               <transition event="three_four" target="four" />
+-       </state>
+-       <state id="four">
+-               <transition event="four_onetwo" target="onetwo" />
+-               <transition event="four_three" target="three" />
+-       </state>
+-</scxml>

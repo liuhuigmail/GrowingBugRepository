@@ -1,0 +1,204 @@
+diff --git a/src/main/java/org/apache/commons/graph/collections/FibonacciHeap.java b/src/main/java/org/apache/commons/graph/collections/FibonacciHeap.java
+index 4de98e2..bb58de6 100644
+--- a/src/main/java/org/apache/commons/graph/collections/FibonacciHeap.java
++++ b/src/main/java/org/apache/commons/graph/collections/FibonacciHeap.java
+@@ -125,10 +125,10 @@ public final class FibonacciHeap<E>
+         else
+         {
+             // 7 concatenate the root list containing x with root list H
+-            node.setLeft( minimumNode );
+-            node.setRight( minimumNode.getRight() );
+-            minimumNode.setRight( node );
+-            node.getRight().setLeft( node );
++            minimumNode.getLeft().setRight( node );
++            node.setLeft( minimumNode.getLeft() );
++            node.setRight( minimumNode );
++            minimumNode.setLeft( node );
+ 
+             // 8''  if key[x] < key[min[H]]
+             if ( compare( node, minimumNode ) < 0 )
+@@ -355,31 +355,33 @@ public final class FibonacciHeap<E>
+ 
+         // 1  z <- min[H]
+         FibonacciHeapNode<E> z = minimumNode;
+-        int numOfKids = z.getDegree(); 
+-        
+-        FibonacciHeapNode<E> x = z.getChild();
+-        FibonacciHeapNode<E> tempRight;
+-        
+-        while ( numOfKids > 0 )
++
++        // 3  for each child x of z
++        if ( z.getDegree() > 0 )
+         {
+-            // 3  for each child x of z
+-            tempRight = x.getRight();
++            FibonacciHeapNode<E> x = z.getChild();
++            FibonacciHeapNode<E> tempRight;
+ 
+-            // 4  do add x to the root list of H
+-            x.getLeft().setRight( x.getRight() );
+-            x.getRight().setLeft( x.getLeft() );
++            do
++            {
++                tempRight = x.getRight();
++
++                // 4  do add x to the root list of H
++                x.getLeft().setRight( x.getRight() );
++                x.getRight().setLeft( x.getLeft() );
+ 
+-            // 4  add x to the root list of H
+-            x.setLeft( minimumNode );
+-            x.setRight( minimumNode.getRight() );
+-            minimumNode.setRight( x );
+-            x.getRight().setLeft( x );
++                // 4  add x to the root list of H
++                z.getLeft().setRight( x );
++                x.setLeft( z.getLeft() );
++                z.setLeft( x );
++                x.setRight( z );
+ 
+-            // 5  p[x] <- NIL
+-            x.setParent( null );
++                // 5  p[x] <- NIL
++                x.setParent( null );
+ 
+-            x = tempRight;
+-            numOfKids--;
++                x = tempRight;
++            }
++            while ( x != z.getChild() );
+         }
+ 
+         // 6  remove z from the root list of H
+@@ -468,30 +470,16 @@ public final class FibonacciHeap<E>
+             nodeSequence.add( i, null );
+         }
+ 
+-        int numRoots = 0;
+         
+         // 3  for each node x in the root list of H
+         // 4  do x &larr; w
+         FibonacciHeapNode<E> x = minimumNode;
+-        
+-        if ( x != null ) 
+-        {
+-            numRoots++;
+-            x = x.getRight();
+-            
+-            while ( x != minimumNode )
+-            {
+-                numRoots++;
+-                x = x.getRight();
+-            }
+-        }
++        do
+         
+         
+-        while ( numRoots > 0 )
+         {
+             // 5  d <- degree[x]
+             int degree = x.getDegree();
+-            FibonacciHeapNode<E> next = x.getRight();
+ 
+             
+             // 6  while A[d] != NIL
+@@ -522,10 +510,9 @@ public final class FibonacciHeap<E>
+             // 13  A[d] <- x
+             nodeSequence.set( degree, x );
+ 
+-            x = next;
+-            numRoots--;
++            x = x.getRight();
+         }
+-        
++        while ( x != minimumNode );
+ 
+         // 14  min[H] <- NIL
+         minimumNode = null;
+@@ -533,19 +520,12 @@ public final class FibonacciHeap<E>
+         // 15  for i <- 0 to D(n[H])
+         for ( FibonacciHeapNode<E> pointer : nodeSequence )
+         {
+-            if ( pointer == null ) continue;
+-            if ( minimumNode == null )
+-            {
+-                minimumNode = pointer;
+-            }
+              
+             // 16 if A[i] != NIL
+             // We've got a live one, add it to root list.
+-            if ( minimumNode != null )
++            if ( pointer != null )
+             {
+                 //  First remove node from root list.
+-                pointer.getLeft().setRight( pointer.getRight() );
+-                pointer.getRight().setLeft( pointer.getLeft() );
+                 
+                 moveToRoot( pointer );
+             }
+@@ -569,22 +549,10 @@ public final class FibonacciHeap<E>
+         y.getLeft().setRight( y.getRight() );
+         y.getRight().setLeft( y.getLeft() );
+ 
+-        y.setParent( x );
+ 
+-        if ( x.getChild() == null )
+-        {
+             // 2 make y a child of x, incrementing degree[x]
+-            x.setChild( y );
+-            y.setRight( y );
+-            y.setLeft( y );
+-        }
+-        else
+-        {
+-            y.setLeft( x.getChild() );
+-            y.setRight( x.getChild().getRight() );
+-            x.getChild().setRight( y );
+-            y.getRight().setLeft( y );
+-        }
++        x.setChild( y );
++        y.setParent( x );
+         
+         x.incraeseDegree();
+         
+diff --git a/src/main/java/org/apache/commons/graph/spanning/DefaultSpanningTreeAlgorithmSelector.java b/src/main/java/org/apache/commons/graph/spanning/DefaultSpanningTreeAlgorithmSelector.java
+index 30aa708..56073ba 100644
+--- a/src/main/java/org/apache/commons/graph/spanning/DefaultSpanningTreeAlgorithmSelector.java
++++ b/src/main/java/org/apache/commons/graph/spanning/DefaultSpanningTreeAlgorithmSelector.java
+@@ -27,6 +27,7 @@ import java.util.HashSet;
+ import java.util.LinkedList;
+ import java.util.List;
+ import java.util.Map;
++import java.util.PriorityQueue;
+ import java.util.Set;
+ 
+ import org.apache.commons.graph.Graph;
+@@ -172,8 +173,8 @@ final class DefaultSpanningTreeAlgorithmSelector<V, W, WE>
+         checkNotNull( weightOperations, "The Kruskal algorithm cannot be calculated with null weight operations" );
+         final Set<V> settledNodes = new HashSet<V>();
+ 
+-        final FibonacciHeap<WE> orderedEdges =
+-                        new FibonacciHeap<WE>( new WeightedEdgesComparator<W, WE>( weightOperations, weightedEdges ) );
++        final PriorityQueue<WE> orderedEdges =
++            new PriorityQueue<WE>( graph.getSize(), new WeightedEdgesComparator<W, WE>( weightOperations, weightedEdges ) );
+ 
+         for ( WE edge : graph.getEdges() )
+         {
+@@ -219,7 +220,7 @@ final class DefaultSpanningTreeAlgorithmSelector<V, W, WE>
+ 
+         final ShortestEdges<V, WE, W> shortestEdges = new ShortestEdges<V, WE, W>( graph, source, weightOperations, weightedEdges );
+ 
+-        final FibonacciHeap<V> unsettledNodes = new FibonacciHeap<V>( shortestEdges );
++        final PriorityQueue<V> unsettledNodes = new PriorityQueue<V>( graph.getOrder(), shortestEdges );
+         unsettledNodes.add( source );
+ 
+         final Set<WE> settledEdges = new HashSet<WE>();
+@@ -247,7 +248,6 @@ final class DefaultSpanningTreeAlgorithmSelector<V, W, WE>
+                 }
+             }
+         }
+-        
+         return shortestEdges.createSpanningTree();
+     }
+ 

@@ -1,0 +1,89 @@
+diff --git a/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/DateEditor.java b/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/DateEditor.java
+index f3a3bf4a..66f0f73d 100644
+--- a/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/DateEditor.java
++++ b/xbean-reflect/src/main/java/org/apache/xbean/propertyeditor/DateEditor.java
+@@ -19,72 +19,36 @@ package org.apache.xbean.propertyeditor;
+ import java.text.DateFormat;
+ import java.text.ParseException;
+ import java.util.Date;
+-import java.util.Locale;
+ 
+ /**
+  * A property editor for Date typed properties.
+- * 
+- * @version $Rev$ $Date$
++ *
++ * @version $Rev: 6680 $
+  */
+ public class DateEditor extends AbstractConverter {
+-    private DateFormat formatter;
++    private final DateFormat formatter;
+ 
+     public DateEditor() {
+         super(Date.class);
++
++        // Get a date formatter to parse this.
++        // This retrieves the formatter using the current execution locale,
++        // which could present an intererting problem when applied to deployment
++        // plans written in other locales.  Sort of a Catch-22 situation.
++        formatter = DateFormat.getDateInstance();
+     }
+ 
+     /**
+      * Convert the text value of the property into a Date object instance.
+-     * 
++     *
+      * @return a Date object constructed from the property text value.
+-     * @throws PropertyEditorException
+-     *                 Unable to parse the string value into a Date.
++     * @throws PropertyEditorException Unable to parse the string value into a Date.
+      */
+     protected Object toObjectImpl(String text) {
+         try {
+-            // find out whether the first token is a locale id and style in that
+-            // order
+-            // if there's locale, style is mandatory
+-            Locale locale = Locale.getDefault();
+-            int style = DateFormat.MEDIUM;
+-            int firstSpaceIndex = text.indexOf(' ');
+-            if (firstSpaceIndex != -1) {
+-                String token = text.substring(0, firstSpaceIndex).intern();
+-                if (token.startsWith("locale")) {
+-                    String localeStr = token.substring(token.indexOf('=') + 1);
+-                    int underscoreIndex = localeStr.indexOf('_');
+-                    if (underscoreIndex != -1) {
+-                        String language = localeStr.substring(0, underscoreIndex);
+-                        String country = localeStr.substring(underscoreIndex + 1);
+-                        locale = new Locale(language, country);
+-                    } else {
+-                        locale = new Locale(localeStr);
+-                    }
+-                    // locale is followed by mandatory style
+-                    int nextSpaceIndex = text.indexOf(' ', firstSpaceIndex + 1);
+-                    token = text.substring(firstSpaceIndex + 1, nextSpaceIndex);
+-                    String styleStr = token.substring(token.indexOf('=') + 1);
+-                    if (styleStr.equalsIgnoreCase("SHORT")) {
+-                        style = DateFormat.SHORT;
+-                    } else if (styleStr.equalsIgnoreCase("MEDIUM")) {
+-                        style = DateFormat.MEDIUM;
+-                    } else if (styleStr.equalsIgnoreCase("LONG")) {
+-                        style = DateFormat.LONG;
+-                    } else if (styleStr.equalsIgnoreCase("FULL")) {
+-                        style = DateFormat.FULL;
+-                    } else {
+-                        // unknown style name
+-                        // throw exception or assume default?
+-                        style = DateFormat.MEDIUM;
+-                    }
+-                    text = text.substring(nextSpaceIndex + 1);
+-                }
+-            }
+-            formatter = DateFormat.getDateInstance(style, locale);
+             return formatter.parse(text);
+         } catch (ParseException e) {
+-            // any format errors show up as a ParseException, which we turn into
+-            // a PropertyEditorException.
++            // any format errors show up as a ParseException, which we turn into a PropertyEditorException.
+             throw new PropertyEditorException(e);
+         }
+     }

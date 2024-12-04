@@ -1,0 +1,16 @@
+diff --git a/src/java/org/apache/commons/beanutils/locale/converters/FloatLocaleConverter.java b/src/java/org/apache/commons/beanutils/locale/converters/FloatLocaleConverter.java
+index a60fe7fa..16830b6c 100755
+--- a/src/java/org/apache/commons/beanutils/locale/converters/FloatLocaleConverter.java
++++ b/src/java/org/apache/commons/beanutils/locale/converters/FloatLocaleConverter.java
+@@ -215,9 +215,8 @@ public class FloatLocaleConverter extends DecimalLocaleConverter {
+    protected Object parse(Object value, String pattern) throws ParseException {
+       final Number parsed = (Number) super.parse(value, pattern);
+       double doubleValue = parsed.doubleValue();
+-      double posDouble = (doubleValue >= (double)0) ? doubleValue : (doubleValue * (double)-1);
+-      if (posDouble < Float.MIN_VALUE || posDouble > Float.MAX_VALUE) {
+-          throw new ConversionException("Suplied number is not of type Float: "+parsed);
++      if( Math.abs(doubleValue - parsed.floatValue()) > parsed.floatValue() * 0.00001 ) {
++         throw new ConversionException("Suplied number is not of type Float: "+parsed.longValue());
+       }
+       return new Float(parsed.floatValue()); // unlike superclass it returns Float type
+    }

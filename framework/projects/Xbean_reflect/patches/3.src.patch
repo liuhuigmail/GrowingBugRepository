@@ -1,0 +1,47 @@
+diff --git a/xbean-reflect/src/main/java/org/apache/xbean/recipe/ObjectGraph.java b/xbean-reflect/src/main/java/org/apache/xbean/recipe/ObjectGraph.java
+index c8670a50..585b93a1 100644
+--- a/xbean-reflect/src/main/java/org/apache/xbean/recipe/ObjectGraph.java
++++ b/xbean-reflect/src/main/java/org/apache/xbean/recipe/ObjectGraph.java
+@@ -125,7 +125,7 @@ public class ObjectGraph {
+         List<Node> sortedNodes = new ArrayList<Node>(nodes.size());
+         LinkedList<Node> leafNodes = new LinkedList<Node>();
+         for (Node n : nodes.values()) {
+-            if (n.refernceCount == 0) {
++            if (n.referenceCount == 0) {
+                 // if the node is totally isolated (no in or out refs),
+                 // move it directly to the finished list, so they are first
+                 if (n.references.size() == 0) {
+@@ -141,8 +141,8 @@ public class ObjectGraph {
+             Node node = leafNodes.removeFirst();
+             sortedNodes.add(node);
+             for (Node ref : node.references) {
+-                ref.refernceCount--;
+-                if (ref.refernceCount == 0) {
++                ref.referenceCount--;
++                if (ref.referenceCount == 0) {
+                     leafNodes.add(ref);
+                 }
+             }
+@@ -215,11 +215,12 @@ public class ObjectGraph {
+ 
+                 // if this is a constructor recipe, we need to add a reference link
+                 if (constructorRecipes.contains(nestedRecipe)) {
+-                    node.refernceCount++;
++                    node.referenceCount++;
+                     nestedNode.references.add(node);
+                 }
+             } else {
+                 nestedRecipes.addAll(nestedRecipe.getNestedRecipes());
++                constructorRecipes.addAll(nestedRecipe.getConstructorRecipes());
+             }
+         }
+ 
+@@ -230,7 +231,7 @@ public class ObjectGraph {
+         String name;
+         Recipe recipe;
+         final List<Node> references = new ArrayList<Node>();
+-        int refernceCount;
++        int referenceCount;
+     }
+ 
+     private static class WrapperExecutionContext extends ExecutionContext {

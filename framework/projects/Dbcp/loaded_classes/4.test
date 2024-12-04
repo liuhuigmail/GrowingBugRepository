@@ -1,0 +1,6 @@
+org.apache.commons.dbcp2.managed.TestManagedDataSource
+org.apache.commons.dbcp2.managed.TestManagedDataSourceInTx
+org.apache.commons.dbcp2.TestConnectionPool
+org.apache.commons.dbcp2.TesterConnection
+org.apache.commons.dbcp2.TesterDatabaseMetaData
+org.apache.commons.dbcp2.TesterDriver

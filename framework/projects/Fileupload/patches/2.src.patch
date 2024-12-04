@@ -1,0 +1,77 @@
+diff --git a/src/java/org/apache/commons/fileupload/FileUploadException.java b/src/java/org/apache/commons/fileupload/FileUploadException.java
+index 3f2863b5..6d84df3b 100644
+--- a/src/java/org/apache/commons/fileupload/FileUploadException.java
++++ b/src/java/org/apache/commons/fileupload/FileUploadException.java
+@@ -92,8 +92,4 @@ public class FileUploadException extends Exception {
+             cause.printStackTrace(writer);
+         }
+     }
+-
+-    public Throwable getCause() {
+-        return cause;
+-    }
+ }
+diff --git a/src/java/org/apache/commons/fileupload/MultipartStream.java b/src/java/org/apache/commons/fileupload/MultipartStream.java
+index 3e590ac5..30e40d4e 100644
+--- a/src/java/org/apache/commons/fileupload/MultipartStream.java
++++ b/src/java/org/apache/commons/fileupload/MultipartStream.java
+@@ -202,6 +202,7 @@ public class MultipartStream {
+     protected static final byte[] BOUNDARY_PREFIX = {
+         CR, LF, DASH, DASH};
+ 
++    private static final int KEEP_REGION_PAD = 3;
+ 
+     // ----------------------------------------------------------- Data members
+ 
+@@ -335,7 +336,7 @@ public class MultipartStream {
+         // body-data tokens.
+         this.boundary = new byte[boundary.length + BOUNDARY_PREFIX.length];
+         this.boundaryLength = boundary.length + BOUNDARY_PREFIX.length;
+-        this.keepRegion = this.boundary.length;
++        this.keepRegion = boundary.length + KEEP_REGION_PAD;
+         System.arraycopy(BOUNDARY_PREFIX, 0, this.boundary, 0,
+                 BOUNDARY_PREFIX.length);
+         System.arraycopy(boundary, 0, this.boundary, BOUNDARY_PREFIX.length,
+@@ -425,9 +426,7 @@ public class MultipartStream {
+                 // No more data available.
+                 throw new IOException("No more data is available");
+             }
+-            if(notifier != null) {
+                 notifier.noteBytesRead(tail);
+-            }
+         }
+         return buffer[head++];
+     }
+@@ -952,28 +951,19 @@ public class MultipartStream {
+ 
+             // Refill buffer with new data.
+             head = 0;
+-            tail = pad;
+-
+-            for(;;) {
+-                int bytesRead = input.read(buffer, tail, bufSize - tail);
++            int bytesRead = input.read(buffer, pad, bufSize - pad);
+                 if (bytesRead == -1) {
+                     // The last pad amount is left in the buffer.
+                     // Boundary can't be in there so signal an error
+                     // condition.
+                     throw new MalformedStreamException("Stream ended unexpectedly");
+-                }
+-                if(notifier != null) {
+-                    notifier.noteBytesRead(bytesRead);
+-                }
+-                tail += bytesRead;
++            }
++            notifier.noteBytesRead(bytesRead);
++            tail = pad + bytesRead;
+ 
+                 findSeparator();
+                 int av = available();
+-
+-                if (av > 0 || pos != -1) {
+                     return av;
+-                }
+-            }
+         }
+ 
+         /**

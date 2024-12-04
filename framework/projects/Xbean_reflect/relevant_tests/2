@@ -1,0 +1,7 @@
+org.apache.xbean.propertyeditor.DateEditorTest
+org.apache.xbean.recipe.ExplicitInjectionStyleTest
+org.apache.xbean.recipe.HiddenPropertiesTest
+org.apache.xbean.recipe.MissingPropertiesTest
+org.apache.xbean.recipe.MixedRecipeTest
+org.apache.xbean.recipe.ObjectRecipeTest
+org.apache.xbean.recipe.UnsetPropertiesTest

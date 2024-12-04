@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/apache/commons/dbcp2/managed/TransactionContext.java b/src/main/java/org/apache/commons/dbcp2/managed/TransactionContext.java
+index 256d6a73..68d56767 100644
+--- a/src/main/java/org/apache/commons/dbcp2/managed/TransactionContext.java
++++ b/src/main/java/org/apache/commons/dbcp2/managed/TransactionContext.java
+@@ -90,9 +90,7 @@ public class TransactionContext {
+         Transaction transaction = getTransaction();
+         try {
+             XAResource xaResource = transactionRegistry.getXAResource(sharedConnection);
+-            if ( !transaction.enlistResource(xaResource) ) {
+-                throw new SQLException("Unable to enlist connection in transaction: enlistResource returns 'false'.");
+-            }
++            transaction.enlistResource(xaResource);
+         } catch (RollbackException e) {
+             // transaction was rolled back... proceed as if there never was a transaction
+         } catch (SystemException e) {

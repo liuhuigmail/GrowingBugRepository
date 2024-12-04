@@ -1,0 +1,53 @@
+diff --git a/src/main/java/org/apache/commons/scxml/io/SCXMLParser.java b/src/main/java/org/apache/commons/scxml/io/SCXMLParser.java
+index 80d1d650..9d1b6266 100644
+--- a/src/main/java/org/apache/commons/scxml/io/SCXMLParser.java
++++ b/src/main/java/org/apache/commons/scxml/io/SCXMLParser.java
+@@ -854,9 +854,7 @@ public final class SCXMLParser {
+     private static void addStatePropertiesRules(final String xp,
+             final ExtendedBaseRules scxmlRules, final List<CustomAction> customActions,
+             final PathResolver pr, final SCXML scxml) {
+-        scxmlRules.add(xp, new SetPropertiesRule(
+-                new String[] {"id", "final", "initial"},
+-                new String[] {"id", "final", "first"}));
++        scxmlRules.add(xp, new SetPropertiesRule());
+         scxmlRules.add(xp, new DigestSrcAttributeRule(scxml,
+             customActions, pr));
+     }
+diff --git a/src/main/java/org/apache/commons/scxml/model/State.java b/src/main/java/org/apache/commons/scxml/model/State.java
+index 7c24e59e..a6deda28 100644
+--- a/src/main/java/org/apache/commons/scxml/model/State.java
++++ b/src/main/java/org/apache/commons/scxml/model/State.java
+@@ -190,33 +190,6 @@ public class State extends TransitionTarget {
+         target.setParent(this);
+     }
+ 
+-    /**
+-     * Get the initial state's ID.
+-     *
+-     * @return The initial state's string ID.
+-     */
+-    public final String getFirst() {
+-        if (initial != null) {
+-            return initial.getTransition().getNext();
+-        }
+-        return null;
+-    }
+-
+-    /**
+-     * Set the initial state by its ID string.
+-     *
+-     * @param target
+-     *            The initial target's ID to set.
+-     */
+-    public final void setFirst(final String target) {
+-        Transition t = new Transition();
+-        t.setNext(target);
+-        Initial ini = new Initial();
+-        ini.setTransition(t);
+-        ini.setParent(this);
+-        this.initial = ini;
+-    }
+-
+     /**
+      * Get the map of child states (may be empty).
+      *

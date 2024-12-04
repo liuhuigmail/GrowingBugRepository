@@ -1,0 +1,4 @@
+org.apache.commons.imaging.formats.jpeg.JpegWithJpegThumbnailTest
+org.apache.commons.imaging.formats.jpeg.decoder.JpegDecoderTest
+org.apache.commons.imaging.formats.jpeg.segments.NegSizeSegmentTest
+org.apache.commons.imaging.formats.jpeg.specific.JpegImageParserTest

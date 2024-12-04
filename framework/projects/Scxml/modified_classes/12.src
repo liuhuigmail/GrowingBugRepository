@@ -1,0 +1,3 @@
+org.apache.commons.scxml.SCXMLHelper
+org.apache.commons.scxml.io.SCXMLSerializer
+org.apache.commons.scxml.model.Data

@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/dbcp2/datasources/InstanceKeyObjectFactory.java b/src/main/java/org/apache/commons/dbcp2/datasources/InstanceKeyObjectFactory.java
+index 63c404a6..07fd8ac9 100644
+--- a/src/main/java/org/apache/commons/dbcp2/datasources/InstanceKeyObjectFactory.java
++++ b/src/main/java/org/apache/commons/dbcp2/datasources/InstanceKeyObjectFactory.java
+@@ -27,6 +27,7 @@ import java.util.HashMap;
+ import java.util.Iterator;
+ import java.util.Map.Entry;
+ import java.util.Properties;
++import java.util.concurrent.ConcurrentHashMap;
+ 
+ import javax.naming.Context;
+ import javax.naming.Name;
+@@ -40,11 +41,11 @@ import javax.naming.spi.ObjectFactory;
+  *
+  * @version $Revision$ $Date$
+  */
+-abstract class InstanceKeyObjectFactory
+-    implements ObjectFactory
++abstract class InstanceKeyObjectFactory 
++    implements ObjectFactory 
+ {
+     private static final Map<String, InstanceKeyDataSource> instanceMap =
+-            new HashMap<>();
++            new ConcurrentHashMap<>();
+ 
+     synchronized static String registerNewInstance(InstanceKeyDataSource ds) {
+         int max = 0;

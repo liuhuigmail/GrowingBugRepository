@@ -1,0 +1,3 @@
+org.apache.commons.dbcp2.DelegatingDatabaseMetaData
+org.apache.commons.dbcp2.DelegatingResultSet
+org.apache.commons.dbcp2.DelegatingStatement

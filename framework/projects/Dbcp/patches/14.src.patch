@@ -1,0 +1,62 @@
+diff --git a/src/main/java/org/apache/commons/dbcp2/BasicDataSource.java b/src/main/java/org/apache/commons/dbcp2/BasicDataSource.java
+index f29bcea8..0814734c 100644
+--- a/src/main/java/org/apache/commons/dbcp2/BasicDataSource.java
++++ b/src/main/java/org/apache/commons/dbcp2/BasicDataSource.java
+@@ -2219,7 +2219,6 @@ public class BasicDataSource implements DataSource, BasicDataSourceMXBean, MBean
+         // Create an object pool to contain our active connections
+         GenericObjectPoolConfig config = new GenericObjectPoolConfig();
+         updateJmxName(config);
+-        config.setJmxEnabled(registeredJmxName != null);  // Disable JMX on the underlying pool if the DS is not registered.
+         GenericObjectPool<PoolableConnection> gop;
+         if (abandonedConfig != null &&
+                 (abandonedConfig.getRemoveAbandonedOnBorrow() ||
+diff --git a/src/main/java/org/apache/commons/dbcp2/PoolableConnectionFactory.java b/src/main/java/org/apache/commons/dbcp2/PoolableConnectionFactory.java
+index 2b664c90..f57643f8 100644
+--- a/src/main/java/org/apache/commons/dbcp2/PoolableConnectionFactory.java
++++ b/src/main/java/org/apache/commons/dbcp2/PoolableConnectionFactory.java
+@@ -286,8 +286,6 @@ public class PoolableConnectionFactory
+                 base.append(Long.toString(connIndex));
+                 config.setJmxNameBase(base.toString());
+                 config.setJmxNamePrefix(Constants.JMX_STATEMENT_POOL_PREFIX);
+-            } else {
+-                config.setJmxEnabled(false);
+             }
+             KeyedObjectPool<PStmtKey,DelegatingPreparedStatement> stmtPool =
+                     new GenericKeyedObjectPool<>((PoolingConnection)conn, config);
+@@ -444,14 +442,6 @@ public class PoolableConnectionFactory
+     protected boolean getCacheState() {
+         return _cacheState;
+     }
+-    
+-    protected ObjectName getDataSourceJmxName() {
+-        return dataSourceJmxName;
+-    }
+-    
+-    protected AtomicLong getConnectionIndex() {
+-        return connectionIndex;
+-    }
+ 
+     private final ConnectionFactory _connFactory;
+     private final ObjectName dataSourceJmxName;
+diff --git a/src/main/java/org/apache/commons/dbcp2/managed/PoolableManagedConnectionFactory.java b/src/main/java/org/apache/commons/dbcp2/managed/PoolableManagedConnectionFactory.java
+index 245f3e66..0153766c 100644
+--- a/src/main/java/org/apache/commons/dbcp2/managed/PoolableManagedConnectionFactory.java
++++ b/src/main/java/org/apache/commons/dbcp2/managed/PoolableManagedConnectionFactory.java
+@@ -76,17 +76,6 @@ public class PoolableManagedConnectionFactory extends PoolableConnectionFactory
+             config.setMaxWaitMillis(0);
+             config.setMaxIdlePerKey(1);
+             config.setMaxTotal(getMaxOpenPreparedStatements());
+-            ObjectName dataSourceJmxName = getDataSourceJmxName();
+-            long connIndex = getConnectionIndex().getAndIncrement();
+-            if (dataSourceJmxName != null) {
+-                StringBuilder base = new StringBuilder(dataSourceJmxName.toString());
+-                base.append(Constants.JMX_CONNECTION_BASE_EXT);
+-                base.append(Long.toString(connIndex));
+-                config.setJmxNameBase(base.toString());
+-                config.setJmxNamePrefix(Constants.JMX_STATEMENT_POOL_PREFIX);
+-            } else {
+-                config.setJmxEnabled(false);
+-            }
+             KeyedObjectPool<PStmtKey,DelegatingPreparedStatement> stmtPool =
+                 new GenericKeyedObjectPool<>((PoolingConnection)conn, config);
+             ((PoolingConnection)conn).setStatementPool(stmtPool);

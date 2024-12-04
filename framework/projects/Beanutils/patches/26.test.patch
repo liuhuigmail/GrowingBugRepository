@@ -1,0 +1,60 @@
+diff --git a/src/test/java/org/apache/commons/beanutils/converters/BigDecimalConverterTestCase.java b/src/test/java/org/apache/commons/beanutils/converters/BigDecimalConverterTestCase.java
+index df400aee..8bb4b875 100644
+--- a/src/test/java/org/apache/commons/beanutils/converters/BigDecimalConverterTestCase.java
++++ b/src/test/java/org/apache/commons/beanutils/converters/BigDecimalConverterTestCase.java
+@@ -20,6 +20,7 @@ package org.apache.commons.beanutils.converters;
+ import java.math.BigDecimal;
+ 
+ import junit.framework.TestSuite;
++
+ import org.apache.commons.beanutils.Converter;
+ 
+ 
+@@ -90,9 +91,7 @@ public class BigDecimalConverterTestCase extends NumberConverterTestBase {
+             "from Integer",
+             "from Long",
+             "from Float",
+-            "from Double",
+-            "from BigDecimal",
+-            "from BigDecimal extension"
++            "from Double"
+         };
+ 
+         Object[] input = {
+@@ -106,9 +105,7 @@ public class BigDecimalConverterTestCase extends NumberConverterTestBase {
+             new Integer(9),
+             new Long(10),
+             new Float("11.1"),
+-            new Double("12.2"),
+-            new BigDecimal("3200.11"),
+-            new ExtendingBigDecimal("3200.11")
++            new Double("12.2")
+         };
+ 
+         BigDecimal[] expected = {
+@@ -122,9 +119,7 @@ public class BigDecimalConverterTestCase extends NumberConverterTestBase {
+             new BigDecimal("9"),
+             new BigDecimal("10"),
+             new BigDecimal("11.1"),
+-            new BigDecimal("12.2"),
+-            new BigDecimal("3200.11"),
+-            new BigDecimal("3200.11")
++            new BigDecimal("12.2")
+         };
+ 
+         for(int i=0;i<expected.length;i++) {
+@@ -139,14 +134,5 @@ public class BigDecimalConverterTestCase extends NumberConverterTestBase {
+         }
+     }
+ 
+-    /**
+-     * A class derived from {@code BigDecimal} used for testing whether
+-     * derived number classes are handled correctly.
+-     */
+-    private class ExtendingBigDecimal extends BigDecimal {
+-        private ExtendingBigDecimal(String val) {
+-            super(val);
+-        }
+-    }
+ }
+ 

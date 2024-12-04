@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/dbcp2/PoolablePreparedStatement.java b/src/main/java/org/apache/commons/dbcp2/PoolablePreparedStatement.java
+index b1e44836..4cc5b761 100644
+--- a/src/main/java/org/apache/commons/dbcp2/PoolablePreparedStatement.java
++++ b/src/main/java/org/apache/commons/dbcp2/PoolablePreparedStatement.java
+@@ -123,9 +123,6 @@ public class PoolablePreparedStatement<K, S extends PoolablePreparedStatement<K,
+     public void passivate() throws SQLException {
+         // DBCP-372. clearBatch with throw an exception if called when the
+         // connection is marked as closed.
+-        if (batchAdded) {
+-            clearBatch();
+-        }
+         setClosedInternal(true);
+         if(getConnectionInternal() != null) {
+             getConnectionInternal().removeTrace(this);
+@@ -143,6 +140,9 @@ public class PoolablePreparedStatement<K, S extends PoolablePreparedStatement<K,
+             }
+             clearTrace();
+         }
++        if (batchAdded) {
++            clearBatch();
++        }
+ 
+         super.passivate();
+     }

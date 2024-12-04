@@ -1,0 +1,3 @@
+org.apache.commons.scxml2.env.javascript.JSEvaluatorTest
+org.apache.commons.scxml2.model.ScriptTest
+org.apache.commons.scxml2.SCXMLTestHelper

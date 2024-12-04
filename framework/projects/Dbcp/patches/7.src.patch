@@ -1,0 +1,12 @@
+diff --git a/src/main/java/org/apache/commons/dbcp2/BasicDataSource.java b/src/main/java/org/apache/commons/dbcp2/BasicDataSource.java
+index 963228f9..1c5cf769 100644
+--- a/src/main/java/org/apache/commons/dbcp2/BasicDataSource.java
++++ b/src/main/java/org/apache/commons/dbcp2/BasicDataSource.java
+@@ -2208,7 +2208,6 @@ public class BasicDataSource implements DataSource, BasicDataSourceMXBean, MBean
+         gop.setTestOnReturn(testOnReturn);
+         gop.setNumTestsPerEvictionRun(numTestsPerEvictionRun);
+         gop.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
+-        gop.setSoftMinEvictableIdleTimeMillis(softMinEvictableIdleTimeMillis);
+         gop.setTestWhileIdle(testWhileIdle);
+         gop.setLifo(lifo);
+         gop.setSwallowedExceptionListener(new SwallowedExceptionLogger(log, logExpiredConnections));

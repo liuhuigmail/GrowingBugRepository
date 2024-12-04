@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/dbcp2/DelegatingConnection.java b/src/main/java/org/apache/commons/dbcp2/DelegatingConnection.java
+index 00657379..bbb56dc8 100644
+--- a/src/main/java/org/apache/commons/dbcp2/DelegatingConnection.java
++++ b/src/main/java/org/apache/commons/dbcp2/DelegatingConnection.java
+@@ -231,13 +231,9 @@ public class DelegatingConnection<C extends Connection> extends AbandonedTrace
+         try {
+             passivate();
+         } finally {
+-            if (_conn != null) {
+-                try {
+-                    _conn.close();
+-                } finally {
+-                    _closed = true;
+-                }
+-            } else {
++            try {
++                _conn.close();
++            } finally {
+                 _closed = true;
+             }
+         }

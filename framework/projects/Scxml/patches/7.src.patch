@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/scxml/SCXMLExecutor.java b/src/main/java/org/apache/commons/scxml/SCXMLExecutor.java
+index 2d010976..8fd3d6a9 100644
+--- a/src/main/java/org/apache/commons/scxml/SCXMLExecutor.java
++++ b/src/main/java/org/apache/commons/scxml/SCXMLExecutor.java
+@@ -548,10 +548,9 @@ public class SCXMLExecutor implements Serializable {
+         Context rootCtx = scInstance.getRootContext();
+         Object[] oldData = {rootCtx.get(EVENT_DATA),
+             rootCtx.get(EVENT_DATA_MAP)};
++        Object eventData = null;
++        Map payloadMap = new HashMap();
+         int len = evts.length;
+-        if (len > 0) { // 0 has retry semantics (eg: see usage in reset())
+-            Object eventData = null;
+-            Map payloadMap = new HashMap();
+             for (int i = 0; i < len; i++) {
+                 TriggerEvent te = evts[i];
+                 payloadMap.put(te.getName(), te.getPayload());
+@@ -562,7 +561,6 @@ public class SCXMLExecutor implements Serializable {
+             }
+             rootCtx.setLocal(EVENT_DATA, eventData);
+             rootCtx.setLocal(EVENT_DATA_MAP, payloadMap);
+-        }
+         return oldData;
+     }
+ 

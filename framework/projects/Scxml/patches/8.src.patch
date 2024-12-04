@@ -1,0 +1,40 @@
+diff --git a/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java b/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
+index b4be968d..1cbde2b8 100644
+--- a/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
++++ b/src/main/java/org/apache/commons/scxml/semantics/SCXMLSemanticsImpl.java
+@@ -254,7 +254,7 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+                             TriggerEvent.CHANGE_EVENT);
+                     internalEvents.add(te);
+                     if (parent != null) {
+-                        scInstance.setDone(parent, true);
++                        parent.setDone(true);
+                     }
+                     if (parent != null && parent.isRegion()) {
+                         //3.4 we got a region, which is finalized
+@@ -265,7 +265,7 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+                         for (Iterator regions = p.getChildren().iterator();
+                                 regions.hasNext();) {
+                             State reg = (State) regions.next();
+-                            if (scInstance.isDone(reg)) {
++                            if (reg.isDone()) {
+                                 finCount++;
+                             }
+                         }
+@@ -277,7 +277,7 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+                                 + ".done", TriggerEvent.CHANGE_EVENT);
+                             internalEvents.add(te);
+                             //this is not in the specs, but is makes sense
+-                            scInstance.setDone(p.getParentState(), true);
++                            p.getParentState().setDone(true);
+                         }
+                     }
+                 }
+@@ -704,7 +704,7 @@ public class SCXMLSemanticsImpl implements SCXMLSemantics, Serializable {
+         for (Iterator reset = entering.iterator(); reset.hasNext();) {
+             Object o = reset.next();
+             if (o instanceof State) {
+-                scInstance.setDone((State) o, false);
++                ((State) o).setDone(false);
+             }
+         }
+     }

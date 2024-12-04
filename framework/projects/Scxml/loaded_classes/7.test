@@ -1,0 +1,3 @@
+org.apache.commons.scxml.model.CustomActionTest
+org.apache.commons.scxml.model.Hello
+org.apache.commons.scxml.SCXMLTestHelper

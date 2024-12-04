@@ -1,0 +1,197 @@
+diff --git a/src/test/org/apache/commons/beanutils/DynaResultSetTestCase.java b/src/test/org/apache/commons/beanutils/DynaResultSetTestCase.java
+index b7f8ae3b..61407a3f 100644
+--- a/src/test/org/apache/commons/beanutils/DynaResultSetTestCase.java
++++ b/src/test/org/apache/commons/beanutils/DynaResultSetTestCase.java
+@@ -242,63 +242,4 @@ public class DynaResultSetTestCase extends TestCase {
+     }
+ 
+ 
+-    /**
+-     * Test normal case column names (i.e. not converted to lower case)
+-     */
+-    public void testIteratorResultsNormalCase() {
+-        ResultSetDynaClass dynaClass = null;
+-        try {
+-            dynaClass = new ResultSetDynaClass(TestResultSet.createProxy(), false);
+-        } catch (Exception e) {
+-            fail("Error creating ResultSetDynaClass: " + e);
+-        }
+-
+-        // Grab the third row
+-        Iterator rows = dynaClass.iterator();
+-        rows.next();
+-        rows.next();
+-        DynaBean row = (DynaBean) rows.next();
+-
+-        // Invalid argument test
+-        try {
+-            row.get("unknownProperty");
+-            fail("Did not throw IllegalArgumentException");
+-        } catch (IllegalArgumentException e) {
+-            // Expected result
+-        }
+-
+-        // Verify property values
+-
+-        Object bigDecimalProperty = row.get("bigDecimalProperty");
+-        assertNotNull("bigDecimalProperty exists", bigDecimalProperty);
+-        assertTrue("bigDecimalProperty type",
+-                   bigDecimalProperty instanceof BigDecimal);
+-        assertEquals("bigDecimalProperty value",
+-                     123.45,
+-                     ((BigDecimal) bigDecimalProperty).doubleValue(),
+-                     0.005);
+-
+-        Object intProperty = row.get("intProperty");
+-        assertNotNull("intProperty exists", intProperty);
+-        assertTrue("intProperty type",
+-                   intProperty instanceof Integer);
+-        assertEquals("intProperty value",
+-                     103,
+-                     ((Integer) intProperty).intValue());
+-
+-        Object nullProperty = row.get("nullProperty");
+-        assertNull("nullProperty null", nullProperty);
+-
+-        Object stringProperty = row.get("stringProperty");
+-        assertNotNull("stringProperty exists", stringProperty);
+-        assertTrue("stringProperty type",
+-                   stringProperty instanceof String);
+-        assertEquals("stringProperty value",
+-                     "This is a string",
+-                     (String) stringProperty);
+-
+-
+-    }
+-
+-
+ }
+diff --git a/src/test/org/apache/commons/beanutils/DynaRowSetTestCase.java b/src/test/org/apache/commons/beanutils/DynaRowSetTestCase.java
+index 377f052b..4fb22f32 100644
+--- a/src/test/org/apache/commons/beanutils/DynaRowSetTestCase.java
++++ b/src/test/org/apache/commons/beanutils/DynaRowSetTestCase.java
+@@ -232,62 +232,6 @@ public class DynaRowSetTestCase extends TestCase {
+                      (String) stringProperty);
+ 
+ 
+-    }
+-
+-    /**
+-     * Test normal case column names (i.e. not converted to lower case)
+-     */
+-    public void testListResultsNormalCase() {
+-        RowSetDynaClass dynaClass = null;
+-        try {
+-            dynaClass = new RowSetDynaClass(TestResultSet.createProxy(), false);
+-        } catch (Exception e) {
+-            fail("Error creating RowSetDynaClass: " + e);
+-        }
+-
+-        // Grab the third row
+-        List rows = dynaClass.getRows();
+-        DynaBean row = (DynaBean) rows.get(2);
+-
+-        // Invalid argument test
+-        try {
+-            row.get("unknownProperty");
+-            fail("Did not throw IllegalArgumentException");
+-        } catch (IllegalArgumentException e) {
+-            // Expected result
+-        }
+-
+-        // Verify property values
+-
+-        Object bigDecimalProperty = row.get("bigDecimalProperty");
+-        assertNotNull("bigDecimalProperty exists", bigDecimalProperty);
+-        assertTrue("bigDecimalProperty type",
+-                   bigDecimalProperty instanceof BigDecimal);
+-        assertEquals("bigDecimalProperty value",
+-                     123.45,
+-                     ((BigDecimal) bigDecimalProperty).doubleValue(),
+-                     0.005);
+-
+-        Object intProperty = row.get("intProperty");
+-        assertNotNull("intProperty exists", intProperty);
+-        assertTrue("intProperty type",
+-                   intProperty instanceof Integer);
+-        assertEquals("intProperty value",
+-                     103,
+-                     ((Integer) intProperty).intValue());
+-
+-        Object nullProperty = row.get("nullProperty");
+-        assertNull("nullProperty null", nullProperty);
+-
+-        Object stringProperty = row.get("stringProperty");
+-        assertNotNull("stringProperty exists", stringProperty);
+-        assertTrue("stringProperty type",
+-                   stringProperty instanceof String);
+-        assertEquals("stringProperty value",
+-                     "This is a string",
+-                     (String) stringProperty);
+-
+-
+     }
+ 
+     public void testLimitedRows() throws Exception {
+@@ -308,7 +252,7 @@ public class DynaRowSetTestCase extends TestCase {
+         int dateColIdx = 4;
+         assertEquals("Meta Column Name",       "dateProperty",       metaData.getColumnName(dateColIdx));
+         assertEquals("Meta Column Class Name", "java.sql.Timestamp", metaData.getColumnClassName(dateColIdx));
+-        assertEquals("ResultSet Value",        java.sql.Date.class,  resultSet.getObject("dateProperty").getClass());
++        assertEquals("ResultSet Value",        java.sql.Date.class,  resultSet.getObject("dateproperty").getClass());
+ 
+         RowSetDynaClass inconsistentDynaClass = new RowSetDynaClass(resultSet);
+         DynaBean firstRow = (DynaBean)inconsistentDynaClass.getRows().get(0);
+diff --git a/src/test/org/apache/commons/beanutils/TestResultSet.java b/src/test/org/apache/commons/beanutils/TestResultSet.java
+index f72fb213..443a4af8 100644
+--- a/src/test/org/apache/commons/beanutils/TestResultSet.java
++++ b/src/test/org/apache/commons/beanutils/TestResultSet.java
+@@ -161,35 +161,35 @@ public class TestResultSet implements InvocationHandler {
+         if (row > 5) {
+             throw new SQLException("No current row");
+         }
+-        if ("bigDecimalProperty".equals(columnName)) {
++        if ("bigdecimalproperty".equals(columnName)) {
+             return (new BigDecimal(123.45));
+-        } else if ("booleanProperty".equals(columnName)) {
++        } else if ("booleanproperty".equals(columnName)) {
+             if ((row % 2) == 0) {
+                 return (Boolean.TRUE);
+             } else {
+                 return (Boolean.FALSE);
+             }
+-        } else if ("byteProperty".equals(columnName)) {
++        } else if ("byteproperty".equals(columnName)) {
+             return (new Byte((byte) row));
+-        } else if ("dateProperty".equals(columnName)) {
++        } else if ("dateproperty".equals(columnName)) {
+             return (new Date(timestamp));
+-        } else if ("doubleProperty".equals(columnName)) {
++        } else if ("doubleproperty".equals(columnName)) {
+             return (new Double(321.0));
+-        } else if ("floatProperty".equals(columnName)) {
++        } else if ("floatproperty".equals(columnName)) {
+             return (new Float((float) 123.0));
+-        } else if ("intProperty".equals(columnName)) {
++        } else if ("intproperty".equals(columnName)) {
+             return (new Integer(100 + row));
+-        } else if ("longProperty".equals(columnName)) {
++        } else if ("longproperty".equals(columnName)) {
+             return (new Long(200 + row));
+-        } else if ("nullProperty".equals(columnName)) {
++        } else if ("nullproperty".equals(columnName)) {
+             return (null);
+-        } else if ("shortProperty".equals(columnName)) {
++        } else if ("shortproperty".equals(columnName)) {
+             return (new Short((short) (300 + row)));
+-        } else if ("stringProperty".equals(columnName)) {
++        } else if ("stringproperty".equals(columnName)) {
+             return ("This is a string");
+-        } else if ("timeProperty".equals(columnName)) {
++        } else if ("timeproperty".equals(columnName)) {
+             return (new Time(timestamp));
+-        } else if ("timestampProperty".equals(columnName)) {
++        } else if ("timestampproperty".equals(columnName)) {
+             return (new Timestamp(timestamp));
+         } else {
+             throw new SQLException("Unknown column name " + columnName);

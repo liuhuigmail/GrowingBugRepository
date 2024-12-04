@@ -1,0 +1,467 @@
+diff --git a/src/test/java/org/apache/commons/scxml/custom-hello-world-04-el.xml b/src/test/java/org/apache/commons/scxml/custom-hello-world-04-el.xml
+index 57b642ce..a76b154f 100644
+--- a/src/test/java/org/apache/commons/scxml/custom-hello-world-04-el.xml
++++ b/src/test/java/org/apache/commons/scxml/custom-hello-world-04-el.xml
+@@ -20,7 +20,7 @@
+        xmlns:my="http://my.custom-actions.domain/CUSTOM"
+        version="1.0" initialstate="init">
+     <datamodel>
+-        <data id="helloName1" />
++        <data name="helloName1" />
+     </datamodel>
+ 
+     <state id="init">        
+diff --git a/src/test/java/org/apache/commons/scxml/custom-hello-world-04-jexl.xml b/src/test/java/org/apache/commons/scxml/custom-hello-world-04-jexl.xml
+index 624e2a4b..a2e79306 100644
+--- a/src/test/java/org/apache/commons/scxml/custom-hello-world-04-jexl.xml
++++ b/src/test/java/org/apache/commons/scxml/custom-hello-world-04-jexl.xml
+@@ -20,7 +20,7 @@
+        xmlns:my="http://my.custom-actions.domain/CUSTOM"
+        version="1.0" initialstate="init">
+     <datamodel>
+-        <data id="helloName1" />
++        <data name="helloName1" />
+     </datamodel>
+ 
+     <state id="init">        
+diff --git a/src/test/java/org/apache/commons/scxml/env/javascript/JSEvaluatorTest.java b/src/test/java/org/apache/commons/scxml/env/javascript/JSEvaluatorTest.java
+index 561b39cc..374fc586 100644
+--- a/src/test/java/org/apache/commons/scxml/env/javascript/JSEvaluatorTest.java
++++ b/src/test/java/org/apache/commons/scxml/env/javascript/JSEvaluatorTest.java
+@@ -61,7 +61,7 @@ public class JSEvaluatorTest extends TestCase {
+                                                         "initialstate = 'start' "  +
+                                                         "version      = '1.0'>" +
+                                                   "<datamodel>"           +
+-                                                  "<data id='forest'>"  +
++                                                  "<data name='forest'>"  +
+                                                    "<tree xmlns=''>"      +
+                                                    "<branch>"             +
+                                                    "<twig>leaf</twig>"    +
+diff --git a/src/test/java/org/apache/commons/scxml/env/javascript/example-01.xml b/src/test/java/org/apache/commons/scxml/env/javascript/example-01.xml
+index fcac09c8..c90f75a4 100644
+--- a/src/test/java/org/apache/commons/scxml/env/javascript/example-01.xml
++++ b/src/test/java/org/apache/commons/scxml/env/javascript/example-01.xml
+@@ -24,7 +24,7 @@
+  <!-- DATA MODEL -->
+ 
+  <datamodel>
+-  <data id='jungle'>
++  <data name='jungle'>
+    <animals xmlns=''>
+     <lion>
+      <name>Simba</name>
+diff --git a/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-01.xml b/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-01.xml
+index 5bb3fdf1..6da64d80 100644
+--- a/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-01.xml
++++ b/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-01.xml
+@@ -24,7 +24,7 @@
+ 
+     <!-- Root or document datamodel -->
+     <datamodel>
+-        <data id="docdata">
++        <data name="docdata">
+             <root xmlns="">
+                 <foo>
+                     <bar>alpha</bar>
+@@ -42,9 +42,9 @@
+         <!-- datamodel scoped to state "main" -->
+         <datamodel>
+             <!-- Degenerate usage, similar to the <var> element -->
+-            <data id="mainvar" expr="0" />
++            <data name="mainvar" expr="0" />
+             <!-- Usage where the value is an XML data tree -->
+-            <data id="maindata">
++            <data name="maindata">
+                 <root xmlns="">
+                     <a>
+                         <b>
+diff --git a/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-02.xml b/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-02.xml
+index 7278fa6b..aaadde99 100644
+--- a/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-02.xml
++++ b/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-02.xml
+@@ -25,7 +25,7 @@
+     <state id="ten">
+ 
+         <datamodel>
+-            <data id="data10" xmlns:ns1="http://namespace.test.domain/1">
++            <data name="data10" xmlns:ns1="http://namespace.test.domain/1">
+                 <root xmlns="">
+                     <ns1:foo>
+                       <bar>10</bar>
+@@ -48,7 +48,7 @@
+ 
+         <datamodel>
+             <!-- Start with a prefixless XPath -->
+-            <data id="data20">
++            <data name="data20">
+                 <ns1:root>
+                     <ns2:foo>20</ns2:foo>
+                 </ns1:root>
+@@ -65,7 +65,7 @@
+ 
+         <datamodel>
+             <!-- Start with a prefixless XPath -->
+-            <data id="data30">
++            <data name="data30">
+                 <root xmlns="http://namespace.test.domain/1">
+                     <foo xmlns="http://namespace.test.domain/2"
+                          xmlns:ns1="http://namespace.test.domain/3"
+diff --git a/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-03.xml b/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-03.xml
+index 274d7239..c5ed31c6 100644
+--- a/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-03.xml
++++ b/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-03.xml
+@@ -29,7 +29,7 @@
+      <datamodel>
+ 
+         <!-- We'll use this for XPaths -->
+-        <data id="rootdata"
++        <data name="rootdata"
+               xmlns:ns1="scheme://namespace.test.domain/1"
+               xmlns:ns2="scheme://namespace.test.domain/2"
+               xmlns:ns3="scheme://namespace.test.domain/3">
+@@ -42,7 +42,7 @@
+ 
+         <!-- We'll use this for the JUnit test
+              NamespacePrefixedPathsTest.java (scxml package) -->
+-        <data id="retval" />
++        <data name="retval" />
+ 
+     </datamodel>
+ 
+@@ -51,7 +51,7 @@
+ 
+         <datamodel>
+ 
+-            <data id="data10" xmlns:ns4="scheme://namespace.test.domain/1">
++            <data name="data10" xmlns:ns4="scheme://namespace.test.domain/1">
+                 <root xmlns="">
+                     <ns4:foo>
+                       <bar>10</bar>
+@@ -87,7 +87,7 @@
+ 
+         <datamodel>
+ 
+-            <data id="data20">
++            <data name="data20">
+                 <ns1:root>
+                     <ns2:foo>20</ns2:foo>
+                 </ns1:root>
+@@ -136,7 +136,7 @@
+ 
+         <datamodel>
+ 
+-            <data id="data30">
++            <data name="data30">
+                 <root xmlns="scheme://namespace.test.domain/1">
+                     <foo xmlns="scheme://namespace.test.domain/2"
+                          xmlns:ns1="scheme://namespace.test.domain/3"
+@@ -163,13 +163,13 @@
+ 
+         <datamodel>
+ 
+-            <data id="data40">
++            <data name="data40">
+                 <root xmlns="">
+                     <ns1:foo ns2:attfoo="40"/>
+                 </root>
+             </data>
+ 
+-            <data id="data41">
++            <data name="data41">
+                 <ns3:root>
+                     <ns4:foo>41</ns4:foo>
+                 </ns3:root>
+@@ -188,7 +188,7 @@
+ 
+         <datamodel>
+ 
+-            <data id="data50"  xmlns:ns1="scheme://namespace.test.domain/1"
++            <data name="data50"  xmlns:ns1="scheme://namespace.test.domain/1"
+                                  xmlns:ns2="scheme://namespace.test.domain/2"
+                                  xmlns:ns3="scheme://namespace.test.domain/3">
+                 <ns1:root>
+@@ -196,7 +196,7 @@
+                 </ns1:root>
+             </data>
+ 
+-            <data id="data51" xmlns:ns3="scheme://namespace.test.domain/3"
++            <data name="data51" xmlns:ns3="scheme://namespace.test.domain/3"
+                                 xmlns:ns4="scheme://namespace.test.domain/4">
+                 <ns3:root>
+                     <ns4:foo attfoo="51"/>
+@@ -223,13 +223,13 @@
+                    xmlns:ns3="scheme://namespace.test.domain/3"
+                    xmlns:ns4="scheme://namespace.test.domain/4">
+ 
+-            <data id="data60">
++            <data name="data60">
+                 <root xmlns="">
+                     <ns1:foo ns2:attfoo="60"/>
+                 </root>
+             </data>
+ 
+-            <data id="data61">
++            <data name="data61">
+                 <ns3:root>
+                     <ns4:foo attfoo="61"/>
+                 </ns3:root>
+diff --git a/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-04.xml b/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-04.xml
+index c6392821..91675231 100644
+--- a/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-04.xml
++++ b/src/test/java/org/apache/commons/scxml/env/jexl/datamodel-04.xml
+@@ -24,7 +24,7 @@
+ 
+     <!-- Root or document datamodel -->
+     <datamodel>
+-        <data id="payload"/>
++        <data name="payload"/>
+     </datamodel>
+ 
+     <state id="ten">
+diff --git a/src/test/java/org/apache/commons/scxml/env/jexl/eventdata-03.xml b/src/test/java/org/apache/commons/scxml/env/jexl/eventdata-03.xml
+index ad1e1232..a48d1e82 100644
+--- a/src/test/java/org/apache/commons/scxml/env/jexl/eventdata-03.xml
++++ b/src/test/java/org/apache/commons/scxml/env/jexl/eventdata-03.xml
+@@ -21,7 +21,7 @@
+        initialstate="ten">
+ 
+     <datamodel>
+-        <data id="rootdata">
++        <data name="rootdata">
+             <root xmlns="">
+                 <one>1</one>
+                 <two>2</two>
+diff --git a/src/test/java/org/apache/commons/scxml/env/jsp/datamodel-01.xml b/src/test/java/org/apache/commons/scxml/env/jsp/datamodel-01.xml
+index 7e4194fc..7a8391a0 100644
+--- a/src/test/java/org/apache/commons/scxml/env/jsp/datamodel-01.xml
++++ b/src/test/java/org/apache/commons/scxml/env/jsp/datamodel-01.xml
+@@ -24,7 +24,7 @@
+ 
+     <!-- Root or document datamodel -->
+     <datamodel>
+-        <data id="docdata">
++        <data name="docdata">
+             <root xmlns="">
+                 <foo>foo</foo>
+             </root>
+@@ -39,8 +39,8 @@
+ 
+         <!-- datamodel scoped to state "main" -->
+         <datamodel>
+-            <data id="mainvar" expr="${0}" />
+-            <data id="maindata">
++            <data name="mainvar" expr="${0}" />
++            <data name="maindata">
+                 <root xmlns="">
+                     <foo>
+                         <bar>bar</bar>
+diff --git a/src/test/java/org/apache/commons/scxml/env/jsp/datamodel-02.xml b/src/test/java/org/apache/commons/scxml/env/jsp/datamodel-02.xml
+index 55b925e9..2e6e4535 100644
+--- a/src/test/java/org/apache/commons/scxml/env/jsp/datamodel-02.xml
++++ b/src/test/java/org/apache/commons/scxml/env/jsp/datamodel-02.xml
+@@ -25,7 +25,7 @@
+     <state id="ten">
+ 
+         <datamodel>
+-            <data id="data10">
++            <data name="data10">
+                 <root xmlns="">
+                     <foo>10</foo>
+                 </root>
+@@ -43,7 +43,7 @@
+ 
+         <datamodel>
+             <!-- Start with a prefixless XPath -->
+-            <data id="data20">
++            <data name="data20">
+                 <ns1:root>
+                     <ns2:foo>20</ns2:foo>
+                 </ns1:root>
+@@ -60,7 +60,7 @@
+ 
+         <datamodel>
+             <!-- Start with a prefixless XPath -->
+-            <data id="data30">
++            <data name="data30">
+                 <root xmlns="http://namespace.test.domain/1">
+                     <foo xmlns="http://namespace.test.domain/2">30</foo>
+                 </root>
+diff --git a/src/test/java/org/apache/commons/scxml/env/jsp/datamodel-03.xml b/src/test/java/org/apache/commons/scxml/env/jsp/datamodel-03.xml
+index 0d0cc923..8516637a 100644
+--- a/src/test/java/org/apache/commons/scxml/env/jsp/datamodel-03.xml
++++ b/src/test/java/org/apache/commons/scxml/env/jsp/datamodel-03.xml
+@@ -29,7 +29,7 @@
+      <datamodel>
+ 
+         <!-- We'll use this for XPaths -->
+-        <data id="rootdata"
++        <data name="rootdata"
+               xmlns:ns1="scheme://namespace.test.domain/1"
+               xmlns:ns2="scheme://namespace.test.domain/2"
+               xmlns:ns3="scheme://namespace.test.domain/3">
+@@ -42,7 +42,7 @@
+ 
+         <!-- We'll use this for the JUnit test
+              NamespacePrefixedPathsTest.java (scxml package) -->
+-        <data id="retval" />
++        <data name="retval" />
+ 
+     </datamodel>
+ 
+@@ -51,7 +51,7 @@
+ 
+         <datamodel>
+ 
+-            <data id="data10" xmlns:ns4="scheme://namespace.test.domain/1">
++            <data name="data10" xmlns:ns4="scheme://namespace.test.domain/1">
+                 <root xmlns="">
+                     <ns4:foo>
+                       <bar>10</bar>
+@@ -87,7 +87,7 @@
+ 
+         <datamodel>
+ 
+-            <data id="data20">
++            <data name="data20">
+                 <ns1:root>
+                     <ns2:foo>20</ns2:foo>
+                 </ns1:root>
+@@ -136,7 +136,7 @@
+ 
+         <datamodel>
+ 
+-            <data id="data30">
++            <data name="data30">
+                 <root xmlns="scheme://namespace.test.domain/1">
+                     <foo xmlns="scheme://namespace.test.domain/2"
+                          xmlns:ns1="scheme://namespace.test.domain/3"
+@@ -163,13 +163,13 @@
+ 
+         <datamodel>
+ 
+-            <data id="data40">
++            <data name="data40">
+                 <root xmlns="">
+                     <ns1:foo ns2:attfoo="40"/>
+                 </root>
+             </data>
+ 
+-            <data id="data41">
++            <data name="data41">
+                 <ns3:root>
+                     <ns4:foo>41</ns4:foo>
+                 </ns3:root>
+@@ -188,7 +188,7 @@
+ 
+         <datamodel>
+ 
+-            <data id="data50"  xmlns:ns1="scheme://namespace.test.domain/1"
++            <data name="data50"  xmlns:ns1="scheme://namespace.test.domain/1"
+                                  xmlns:ns2="scheme://namespace.test.domain/2"
+                                  xmlns:ns3="scheme://namespace.test.domain/3">
+                 <ns1:root>
+@@ -196,7 +196,7 @@
+                 </ns1:root>
+             </data>
+ 
+-            <data id="data51" xmlns:ns3="scheme://namespace.test.domain/3"
++            <data name="data51" xmlns:ns3="scheme://namespace.test.domain/3"
+                                 xmlns:ns4="scheme://namespace.test.domain/4">
+                 <ns3:root>
+                     <ns4:foo attfoo="51"/>
+@@ -223,13 +223,13 @@
+                    xmlns:ns3="scheme://namespace.test.domain/3"
+                    xmlns:ns4="scheme://namespace.test.domain/4">
+ 
+-            <data id="data60">
++            <data name="data60">
+                 <root xmlns="">
+                     <ns1:foo ns2:attfoo="60"/>
+                 </root>
+             </data>
+ 
+-            <data id="data61">
++            <data name="data61">
+                 <ns3:root>
+                     <ns4:foo attfoo="61"/>
+                 </ns3:root>
+diff --git a/src/test/java/org/apache/commons/scxml/env/xpath/example-01.xml b/src/test/java/org/apache/commons/scxml/env/xpath/example-01.xml
+index 2bf8c553..f7293d50 100644
+--- a/src/test/java/org/apache/commons/scxml/env/xpath/example-01.xml
++++ b/src/test/java/org/apache/commons/scxml/env/xpath/example-01.xml
+@@ -21,7 +21,7 @@
+        version="1.0">
+ 
+     <datamodel>
+-        <data id="jungle">
++        <data name="jungle">
+             <animals xmlns="">
+                 <lion>
+                     <name>Simba</name>
+diff --git a/src/test/java/org/apache/commons/scxml/issues/issue64-01.xml b/src/test/java/org/apache/commons/scxml/issues/issue64-01.xml
+index 95d4d9ef..018a126a 100644
+--- a/src/test/java/org/apache/commons/scxml/issues/issue64-01.xml
++++ b/src/test/java/org/apache/commons/scxml/issues/issue64-01.xml
+@@ -22,7 +22,7 @@
+ 
+     <state id="tranbug">
+          <datamodel>
+- 			<data id="dummy" expr="'somedata'"/>
++ 			<data name="dummy" expr="'somedata'"/>
+          </datamodel>
+         <onentry>
+             <log expr="'Begin transition bug test ...'" />
+diff --git a/src/test/java/org/apache/commons/scxml/issues/issue64-02.xml b/src/test/java/org/apache/commons/scxml/issues/issue64-02.xml
+index bccffb93..c3dce5fb 100644
+--- a/src/test/java/org/apache/commons/scxml/issues/issue64-02.xml
++++ b/src/test/java/org/apache/commons/scxml/issues/issue64-02.xml
+@@ -22,7 +22,7 @@
+        initialstate="tranbug">
+ 
+     <datamodel>
+-        <data id="foo">
++        <data name="foo">
+             <alpha xmlns="">
+                 <beta/>
+             </alpha>
+@@ -39,7 +39,7 @@
+         <transition event="show.bug" target="end">
+          <!-- For example, FOLLOWING datamodel IS MISPLACED -->
+          <datamodel>
+- 			<data id="dummy" expr="'somedata'"/>
++ 			<data name="dummy" expr="'somedata'"/>
+          </datamodel>
+          <log expr="dummy" />
+          <log expr="'*****' + dummy" />
+diff --git a/src/test/java/org/apache/commons/scxml/model/assign-test.xml b/src/test/java/org/apache/commons/scxml/model/assign-test.xml
+index ed7e9770..2d1f983c 100644
+--- a/src/test/java/org/apache/commons/scxml/model/assign-test.xml
++++ b/src/test/java/org/apache/commons/scxml/model/assign-test.xml
+@@ -24,12 +24,12 @@
+   <state id="assign1" final="true">
+ 
+     <datamodel>
+-        <data id="foo">
++        <data name="foo">
+             <root xmlns="">
+                 <foo/>
+             </root>
+         </data>
+-        <data id="bar">
++        <data name="bar">
+             <root xmlns="">
+                 <bar>5</bar>
+             </root>
+@@ -48,10 +48,10 @@
+   <state id="assign2">
+ 
+     <datamodel>
+-      <data id="jira51data1">
++      <data name="jira51data1">
+           <rad:timeout>10</rad:timeout>
+       </data> 
+-      <data id="jira51data2">
++      <data name="jira51data2">
+           <rad:short xmlns="">20</rad:short>
+       </data>
+     </datamodel>

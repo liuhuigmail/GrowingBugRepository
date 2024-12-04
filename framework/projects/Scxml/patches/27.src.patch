@@ -1,0 +1,12 @@
+diff --git a/src/main/java/org/apache/commons/scxml/model/Send.java b/src/main/java/org/apache/commons/scxml/model/Send.java
+index 864650ee..fb7c336f 100644
+--- a/src/main/java/org/apache/commons/scxml/model/Send.java
++++ b/src/main/java/org/apache/commons/scxml/model/Send.java
+@@ -326,7 +326,6 @@ public class Send extends Action implements ExternalContent {
+         }
+         String eventValue = event;
+         if (!SCXMLHelper.isStringEmpty(event)) {
+-            eventValue = (String) eval.eval(ctx, event);
+             if (SCXMLHelper.isStringEmpty(eventValue)
+                     && appLog.isWarnEnabled()) {
+                 appLog.warn("<send>: event expression \"" + event

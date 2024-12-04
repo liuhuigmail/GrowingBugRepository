@@ -1,0 +1,9 @@
+org.apache.commons.beanutils.priv.PrivateBean
+org.apache.commons.beanutils.priv.PrivateBeanFactory
+org.apache.commons.beanutils.priv.PrivateBeanSubclass
+org.apache.commons.beanutils.priv.PrivateDirect
+org.apache.commons.beanutils.priv.PrivateIndirect
+org.apache.commons.beanutils.PropertyUtilsTestCase
+org.apache.commons.beanutils.TestBean
+org.apache.commons.beanutils.TestBeanPackageSubclass
+org.apache.commons.beanutils.TestBeanPublicSubclass

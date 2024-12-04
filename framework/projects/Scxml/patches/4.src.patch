@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/scxml/model/Assign.java b/src/main/java/org/apache/commons/scxml/model/Assign.java
+index 8c3a4827..2e375148 100644
+--- a/src/main/java/org/apache/commons/scxml/model/Assign.java
++++ b/src/main/java/org/apache/commons/scxml/model/Assign.java
+@@ -196,11 +196,6 @@ public class Assign extends Action implements PathResolverHolder {
+                         newNode = eval.evalLocation(ctx, expr);
+                     }
+                     // Remove all children
+-                    for (Node child = oldNode.getFirstChild();
+-                            child != null;
+-                            child = child.getNextSibling()) {
+-                        oldNode.removeChild(child);
+-                    }
+                     if (newNode != null) {
+                         // Adopt new children
+                         for (Node child = newNode.getFirstChild();

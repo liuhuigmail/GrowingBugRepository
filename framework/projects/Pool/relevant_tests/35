@@ -1,0 +1,5 @@
+org.apache.commons.pool.TestPoolUtils
+org.apache.commons.pool.impl.TestGenericKeyedObjectPool
+org.apache.commons.pool.impl.TestGenericKeyedObjectPoolFactory
+org.apache.commons.pool.impl.TestGenericObjectPoolFactory
+org.apache.commons.pool.impl.TestStackKeyedObjectPool
