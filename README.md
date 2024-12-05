@@ -22,7 +22,7 @@ Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed v
 
 # Contents of growingBugs
 
-To date, growingBugs contains **`1911`** real-world bugs from open-source Java projects. 
+To date, growingBugs contains **`2012`** real-world bugs from open-source Java projects. 
 
 |   | Project ID      | Project name               |   SubProject locator             |Number of bugs | Bug IDs      | 
 |-----------------|-----------------|----------------------------|--------------------------------|-------------:|-------------------|
@@ -280,7 +280,7 @@ To date, growingBugs contains **`1911`** real-world bugs from open-source Java p
 | 252	  | Beanutils		| commons-beanutils	|		|	27	| 1-18,20-21,23-29	|
 | 253	  | Hugegraph_common	| hugegraph-common	|	hugegraph-common	| 5 	| 1-5	|
 | 254	  | Dbcp		| commons-dbcp		|		|	18	| 1-7,9-19 |
-| 255	  | Rng_sampling	| rng-sampling		|		|	2	| 1-2	|
+| 255	  | Rng_sampling	| rng-sampling		|	rng-sampling	|	2	| 1-2	|
 | 256	  | Scxml		| scxml			|		|	30	| 1-12,14,16,18,20,22,25,27,31,33-42 |
 | 257	  | Mrunit		| commons-mrunit	|		|	4	| 1-4 |
 # Setting up GrowingBugs
