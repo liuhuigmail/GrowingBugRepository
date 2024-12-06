@@ -348,6 +348,8 @@ To free users (especially beginers) of the repository from the complex configura
 
 - `docker pull registry.cn-hangzhou.aliyuncs.com/bit-zhuzhihao/growingbugrepository:0.3`
 
+Or you can download docker image with latest version of growingBugs on https://zenodo.org/records/14286643
+
 By simply loading the image with Docker, you can make the system ready for evaluation where all configurations (e.g., Java versions, paths, and even all data within the repository) should have been well set.  
 
 
