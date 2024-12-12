@@ -18,6 +18,13 @@ This is a bug repository that keeps growing, called ***growingBugs***
 
 Notably, each bug in ***growingBugs*** is composed of a buggy version, a fixed version, a ***concise patch*** (bug-fixing changes only), and one or more triggering test cases.
 
+## Docker image
+To free users (especially beginers) of the repository from the complex configuration of the environments, we create and publish a Docker image of the system with latest release version(v7.0). You may download it at https://zenodo.org/records/14286643
+
+By simply loading the image with Docker, you can make the system ready for evaluation where all configurations (e.g., Java versions, paths, and even all data within the repository) should have been well set.
+
+Note that we use "docker export" command to obtain a compressed file. So you nee
+d to run "docker import" command to use this image.
 
 
 # Contents of growingBugs
@@ -342,13 +349,6 @@ Note that only `Ubuntu 18` and later are supported.
    - `defects4j test`
 
 Currently, we resuse all APIs of **Defects4J** (more details at  https://github.com/rjust/defects4j), and thus all applications relying on **Defects4J** could be transferred smoothly to **GrowingBugs**. 
-
-## Docker Image
-To free users (especially beginers) of the repository from the complex configuration of the environments, we create and publish a Docker image of the system. You may download it by the following command:
-
-- `docker pull registry.cn-hangzhou.aliyuncs.com/bit-zhuzhihao/growingbugrepository:0.3`
-
-By simply loading the image with Docker, you can make the system ready for evaluation where all configurations (e.g., Java versions, paths, and even all data within the repository) should have been well set.  
 
 
 ## Versions
