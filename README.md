@@ -1,3 +1,6 @@
+📢📢📢 Our GrowingBugs was selected as the official dataset for the ChinaSoft 2024 Software Defect Repair Competition. Details 👉 https://aprchallenge.github.io/
+
+
 Table of Contents
 =================
 
