@@ -3,7 +3,8 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = '3'
 
 from transformers import AutoTokenizer, AutoModel, AutoConfig
-from transformers import AdamW, get_scheduler
+from transformers import get_scheduler
+from torch.optim import AdamW
 import torch.nn.functional as F
 import torch.nn as nn
 import torch
@@ -115,7 +116,7 @@ for param in model.parameters():
     num_params += param.numel()
 print("model size", num_params, end=" ")
 model.to(device)
-model.load_state_dict(torch.load('saveT.pt') if torch.cuda.is_available() else torch.load('saveT.pt', map_location='cpu')  )
+model.load_state_dict(torch.load('saveT.pt') if torch.cuda.is_available() else torch.load('saveT.pt', map_location='cpu'),strict =False  )
 model.eval()
 
 labels_list=[]
@@ -126,7 +127,7 @@ n_eval = len(commit_eval)
 
 
 def process_metrics( valid_metrics, method="minmax"):
-    valid_metrics = np.asarray(valid_metrics).astype(np.float)
+    valid_metrics = np.asarray(valid_metrics).astype(float)
     whole_metrics =  valid_metrics 
     if method=="minmax":
         min_metric = np.min(whole_metrics)

@@ -1,5 +1,5 @@
 from cgi import print_directory
-from distutils import command
+from setuptools import command
 import os
 import numpy as np
 import subprocess
@@ -168,7 +168,9 @@ if __name__ == '__main__':
                 for i in range(0, len(res)):
                     row[metrics[i]] = res[i]
                 row['father_version'] = father_version
-                new_df = new_df.append(row) #warning
+                new_df = pd.concat([new_df, pd.DataFrame([row])], ignore_index=True)
+
+                #new_df = new_df.append(row) #warning
         except:
              continue
     new_df.to_csv(output_file, index=None)

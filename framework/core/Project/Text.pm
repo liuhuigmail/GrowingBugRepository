@@ -79,13 +79,47 @@ sub _post_checkout {
 
     my $project_dir = "$PROJECTS_DIR/$self->{pid}";
     # Check whether ant build file exists
-    unless (-e "$work_dir/build.xml") {
-        my $build_files_dir = "$PROJECTS_DIR/$PID/build_files/$rev_id";
-        if (-d "$build_files_dir") {
-            Utils::exec_cmd("cp $build_files_dir/* $work_dir", "Copy generated Ant build file") or die;
-        }
+    my $build_files_dir = "$PROJECTS_DIR/$PID/build_files/$rev_id";
+    if (-d "$build_files_dir") {
+        Utils::exec_cmd("cp $build_files_dir/* $work_dir", "Copy generated Ant build file") or die;
     }
-    
+    if (-e "$work_dir/build.xml"){
+        rename("$work_dir/build.xml", "$work_dir/build.xml".'.bak');
+        open(IN, '<'."$work_dir/build.xml".'.bak') or die $!;
+        open(OUT, '>'."$work_dir/build.xml") or die $!;
+        while(<IN>) {
+            $_ =~ s/compile-tests/compile\.tests/g;
+            $_ =~ s/fork="false"/fork="true"/g;
+            print OUT $_;
+        }
+        close(IN);
+        close(OUT);
+    }
+    if (-e "$work_dir/maven-build.xml"){
+        rename("$work_dir/maven-build.xml", "$work_dir/maven-build.xml".'.bak');
+        open(IN, '<'."$work_dir/maven-build.xml".'.bak') or die $!;
+        open(OUT, '>'."$work_dir/maven-build.xml") or die $!;
+        while(<IN>) {
+            $_ =~ s/compile-tests/compile\.tests/g;
+            $_ =~ s/fork="false"/fork="true"/g;
+            print OUT $_;
+        }
+        close(IN);
+        close(OUT);
+    }
+    if (-e "$work_dir/maven-build.properties"){
+        rename("$work_dir/maven-build.properties", "$work_dir/maven-build.properties".'.bak');
+        open(IN, '<'."$work_dir/maven-build.properties".'.bak') or die $!;
+        open(OUT, '>'."$work_dir/maven-build.properties") or die $!;
+        while(<IN>) {
+            $_ =~ s/compile-tests/compile\.tests/g;
+            $_ =~ s/fork="false"/fork="true"/g;
+            print OUT $_;
+        }
+        close(IN);
+        close(OUT);
+    }
+
     #exclude the test you don't need
     my $exclude_test1="$work_dir/src/test/java/org/apache/commons/text/RandomStringGeneratorTest.java";
     if (-e $exclude_test1){
