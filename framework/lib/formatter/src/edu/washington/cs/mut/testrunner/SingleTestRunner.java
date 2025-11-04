@@ -29,7 +29,7 @@ public class SingleTestRunner {
     }
 
     public static void main(String ... args) {
-        if (args.length != 1) {
+if (args.length < 1) {
             usageAndExit();
         }
         Matcher m = Pattern.compile("(?<className>[^:]+)(::(?<methodName>[^:]+))?").matcher(args[0]);
@@ -50,9 +50,9 @@ public class SingleTestRunner {
         // Check whether a test method is provided and create request
         String methodName=m.group("methodName");
         Request req;
-        if (methodName == null) {
+if (methodName == null || methodName.length() == 0) {
             req = Request.aClass(clazz);
-        } else {
+        }
             req = Request.method(clazz, methodName);
         }
 
