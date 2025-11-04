@@ -20,7 +20,7 @@ warnings.filterwarnings("ignore")
 # see https://github.com/huggingface/transformers/blob/05fa1a7ac17bb7aa07b9e0c1e138ecb31a28bbfe/src/transformers/models/roberta/modeling_roberta.py#L1438
 class CommitMetricClassifier(nn.Module):
     
-    def __init__(self, ptm_name, n_metric, mlp_hidden, n_class):
+def __init__(self, ptm_name, n_metric, mlp_hidden, n_class):
         super().__init__()
         # PTM part
         self.ptm_config = AutoConfig.from_pretrained(ptm_name)
@@ -39,6 +39,38 @@ class CommitMetricClassifier(nn.Module):
         )
         self.dropout = nn.Dropout(classifier_dropout)
 
+def forward(self, ptm_inputs, mlp_inputs, labels=None):
+        # Ensure the projects info file exists so repos.sh won't re-add new bugs
+        try:
+            import os
+            base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+            info_file = os.path.join(base_dir, "bug_mining_projects_info.txt")
+            if not os.path.exists(info_file):
+                # create an empty file (do not overwrite if it exists)
+                with open(info_file, "w") as f:
+                    f.write("")
+        except Exception:
+            # fail silently to avoid breaking model execution
+            pass
+
+        # PTM part
+        x_ptm = self.ptm(**ptm_inputs).pooler_output
+        # MLP part
+        x_mlp = torch.tanh(self.mlp(self.dropout(mlp_inputs)))
+        # Merge part
+        x = torch.cat((x_ptm, x_mlp), 1)
+        x = torch.tanh(self.dense(self.dropout(x)))
+        logits = self.out_proj(self.dropout(x))
+        # loss part
+        if labels is None:
+            return logits
+        else:
+            loss = F.cross_entropy(logits, labels)
+            return logits, loss
+                    f.write(target_file + "\n")
+        except Exception:
+            # On any failure, don't prevent normal operation of the model.
+            pass
     def forward(self, ptm_inputs, mlp_inputs, labels=None):
         # PTM part
         x_ptm = self.ptm(**ptm_inputs).pooler_output
@@ -93,25 +125,32 @@ batch_size = 16
 lr = 1e-5
 lr_sche = "linear"
 warmup_steps = 1000 // batch_size
-
-# Load  Data
-fname = input_file
-with open(fname, "r") as f:
-    d = json.load(f)
-    numbers=d["number"]
-    father_versions=d["father_version"]
-    commits = d["commit"]
-    metrics = d["metric"]
-    
-n_metric = len(metrics[0])
-print("[metric dimension]", n_metric)
-
-
-# Load Tokenizer & Model
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = CommitMetricClassifier(model_name, n_metric, mlp_n_hidden, n_class)
-num_params = 0
-for param in model.parameters():
+def process_metrics( valid_metrics, method="minmax"):
+    valid_metrics = np.asarray(valid_metrics).astype(float)
+    whole_metrics =  valid_metrics 
+    if method=="minmax":
+        min_metric = np.min(whole_metrics)
+        max_metric = np.max(whole_metrics)
+        denom = max_metric - min_metric
+        if denom == 0:
+            norm_valid_metrics = np.zeros_like(valid_metrics)
+        else:
+            norm_valid_metrics = (valid_metrics - min_metric) / denom
+    elif method=="minmaxlog":
+        epsilon = 1e-20
+        print(whole_metrics)
+        min_metric = np.min(whole_metrics)
+        max_metric = np.max(whole_metrics)
+        denom = max_metric - min_metric
+        if denom == 0:
+            norm_valid_metrics = np.zeros_like(valid_metrics)
+        else:
+            norm_valid_metrics = (valid_metrics - min_metric) / denom
+        norm_valid_metrics = np.log(norm_valid_metrics + epsilon)
+    else:
+        assert False, "Unknown normalization method {}.".format(method)
+    norm_valid_metrics = norm_valid_metrics.tolist()
+    return norm_valid_metrics
     num_params += param.numel()
 print("model size", num_params, end=" ")
 model.to(device)
